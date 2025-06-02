@@ -177,14 +177,11 @@ const sharedStyles = StyleSheet.create({
     shared: {
         height: theme.root.sizing.height.medium,
         paddingBlock: 0,
-        paddingInline: theme.root.padding.medium,
     },
     small: {
-        borderRadius: theme.root.border.radius.small,
         height: theme.root.sizing.height.small,
     },
     large: {
-        borderRadius: theme.root.border.radius.large,
         height: theme.root.sizing.height.large,
     },
     text: {
@@ -253,8 +250,7 @@ export const _generateStyles = (
         return styles[buttonType];
     }
 
-    const padding =
-        size === "large" ? theme.root.padding.large : theme.root.padding.medium;
+    const paddingInline = theme.root.layout.padding.inline[kind][size];
 
     const borderWidthKind = theme.root.border.width[kind];
     const outlineOffsetKind = theme.root.border.offset[kind];
@@ -264,6 +260,7 @@ export const _generateStyles = (
     const disabledStatesStyles = {
         borderColor: disabledState.border,
         borderWidth: borderWidthKind.default,
+        borderRadius: theme.root.border.radius.default,
         background: disabledState.background,
         color: disabledState.foreground,
     };
@@ -280,16 +277,47 @@ export const _generateStyles = (
         textUnderlineOffset: "unset",
     };
 
+    const pressStyles = {
+        // shared
+        background: themeVariant.press.background,
+        borderRadius: theme.root.border.radius.press,
+        color: themeVariant.press.foreground,
+        // primary
+        ...(kind === "primary"
+            ? {
+                  outline: `${borderWidthKind.press} solid ${themeVariant.press.border}`,
+                  outlineOffset: outlineOffsetKind,
+              }
+            : undefined),
+        // secondary
+        ...(kind !== "primary"
+            ? {
+                  borderColor: themeVariant.press.border,
+                  boxShadow: `inset 0 0 0 ${borderWidthKind.press} ${themeVariant.press.border}`,
+              }
+            : undefined),
+
+        // tertiary-specific styles
+        ...(kind === "tertiary"
+            ? {
+                  textUnderlineOffset: theme.root.font.offset.default,
+                  textDecoration: `${theme.root.font.decoration.press} ${theme.root.sizing.underline.press}`,
+              }
+            : undefined),
+    };
+
     const newStyles = {
         default: {
-            borderRadius: theme.root.border.radius[size],
-            paddingInline: kind === "tertiary" ? 0 : padding,
+            borderRadius: theme.root.border.radius.default,
+            paddingInline: paddingInline,
             // theming
             borderStyle: "solid",
             borderWidth: borderWidthKind.default,
             borderColor: themeVariant.default.border,
             background: themeVariant.default.background,
             color: themeVariant.default.foreground,
+            // animation
+            transition: "border-radius 0.1s ease-in-out",
 
             /**
              * States
@@ -304,6 +332,7 @@ export const _generateStyles = (
             ":hover": {
                 // shared
                 background: themeVariant.hover.background,
+                borderRadius: theme.root.border.radius.hover,
                 color: themeVariant.hover.foreground,
                 ...(kind === "primary"
                     ? {
@@ -311,8 +340,7 @@ export const _generateStyles = (
                           outlineOffset: outlineOffsetKind,
                       }
                     : undefined),
-                // secondary-specific styles
-                ...(kind === "secondary"
+                ...(kind !== "primary"
                     ? {
                           borderColor: themeVariant.hover.border,
                           boxShadow: `inset 0 0 0 ${borderWidthKind.hover} ${themeVariant.hover.border}`,
@@ -322,10 +350,8 @@ export const _generateStyles = (
                 // tertiary-specific styles
                 ...(kind === "tertiary"
                     ? {
-                          textDecoration: "underline",
                           textUnderlineOffset: theme.root.font.offset.default,
-                          textDecorationThickness:
-                              theme.root.sizing.underline.hover,
+                          textDecoration: `${theme.root.font.decoration.hover} ${theme.root.sizing.underline.hover}`,
                       }
                     : undefined),
             },
@@ -338,35 +364,7 @@ export const _generateStyles = (
                 },
             },
 
-            ":active": {
-                // shared
-                background: themeVariant.press.background,
-                color: themeVariant.press.foreground,
-                // primary
-                ...(kind === "primary"
-                    ? {
-                          outline: `${borderWidthKind.press} solid ${themeVariant.press.border}`,
-                          outlineOffset: outlineOffsetKind,
-                      }
-                    : undefined),
-                // secondary
-                ...(kind === "secondary"
-                    ? {
-                          borderColor: themeVariant.press.border,
-                          boxShadow: `inset 0 0 0 ${borderWidthKind.press} ${themeVariant.press.border}`,
-                      }
-                    : undefined),
-
-                // tertiary-specific styles
-                ...(kind === "tertiary"
-                    ? {
-                          textDecoration: "underline",
-                          textUnderlineOffset: theme.root.font.offset.default,
-                          textDecorationThickness:
-                              theme.root.sizing.underline.press,
-                      }
-                    : undefined),
-            },
+            ":active": pressStyles,
 
             ...focusStyles.focus,
             // These overrides are needed to ensure that the boxShadow is
@@ -385,6 +383,7 @@ export const _generateStyles = (
                   }
                 : {}),
         },
+        pressed: pressStyles,
         disabled: {
             cursor: "not-allowed",
             ...disabledStatesStyles,

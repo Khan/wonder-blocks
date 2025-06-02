@@ -21,8 +21,8 @@ const theme = {
                 },
                 tertiary: {
                     default: border.width.none,
-                    hover: border.width.medium,
-                    press: border.width.medium,
+                    hover: border.width.none,
+                    press: border.width.none,
                 },
             },
             offset: {
@@ -32,9 +32,9 @@ const theme = {
                 tertiary: 0,
             },
             radius: {
-                small: border.radius.radius_040,
-                medium: border.radius.radius_040, // default
-                large: border.radius.radius_040,
+                default: border.radius.radius_040,
+                hover: border.radius.radius_040,
+                press: border.radius.radius_040,
             },
         },
         sizing: {
@@ -48,10 +48,29 @@ const theme = {
                 press: sizing.size_010,
             },
         },
-        padding: {
-            medium: sizing.size_160,
-            large: sizing.size_320,
+        layout: {
+            padding: {
+                inline: {
+                    primary: {
+                        small: sizing.size_160,
+                        medium: sizing.size_160,
+                        large: sizing.size_320,
+                    },
+                    secondary: {
+                        small: sizing.size_120,
+                        medium: sizing.size_160, // default
+                        large: sizing.size_180,
+                    },
+                    // Special case for tertiary kind buttons.
+                    tertiary: {
+                        small: sizing.size_0,
+                        medium: sizing.size_0, // default
+                        large: sizing.size_0,
+                    },
+                },
+            },
         },
+
         font: {
             size: {
                 // NOTE: This token is specific to this button size.
@@ -65,6 +84,10 @@ const theme = {
             },
             weight: {
                 default: font.weight.bold,
+            },
+            decoration: {
+                hover: "underline",
+                press: "underline",
             },
             offset: {
                 default: textUnderlineOffset,
@@ -80,6 +103,11 @@ const theme = {
             },
         },
         padding: sizing.size_020,
+        sizing: {
+            small: sizing.size_160,
+            medium: sizing.size_240,
+            large: sizing.size_240,
+        },
     },
 };
 
