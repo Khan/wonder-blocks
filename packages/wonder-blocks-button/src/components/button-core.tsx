@@ -260,6 +260,7 @@ export const _generateStyles = (
     const disabledStatesStyles = {
         borderColor: disabledState.border,
         borderWidth: borderWidthKind.default,
+        borderRadius: theme.root.border.radius.default,
         background: disabledState.background,
         color: disabledState.foreground,
     };
