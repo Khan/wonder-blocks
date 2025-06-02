@@ -1,5 +1,27 @@
 # @khanacademy/wonder-blocks-typography
 
+## 4.2.0
+
+### Minor Changes
+
+- 6998d03: Removes default margins from BodyText component, which defaults to an HTML paragraph tag
+
+## 4.1.0
+
+### Minor Changes
+
+- 7d2a646: Adjust styles in BodyText and Heading components for backwards compatibility
+
+### Patch Changes
+
+- Updated dependencies [b1ee2b4]
+- Updated dependencies [7abcccf]
+- Updated dependencies [9bacc1a]
+- Updated dependencies [9bacc1a]
+- Updated dependencies [1c3c335]
+- Updated dependencies [689f5d3]
+    - @khanacademy/wonder-blocks-tokens@10.4.0
+
 ## 4.0.0
 
 ### Major Changes
