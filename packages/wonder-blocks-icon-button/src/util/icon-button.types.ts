@@ -9,6 +9,8 @@ export type IconButtonSize = "xsmall" | "small" | "medium" | "large";
 
 export type IconButtonActionType = "progressive" | "destructive" | "neutral";
 
+export type ActivityIconButtonActionType = "progressive" | "neutral";
+
 export type IconButtonProps = Partial<Omit<AriaProps, "aria-disabled">> & {
     /**
      * A unique identifier for the IconButton.
