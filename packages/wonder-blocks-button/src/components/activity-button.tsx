@@ -60,7 +60,7 @@ const ActivityButtonCore: React.ForwardRefExoticComponent<
 
     const disabled = spinner || disabledProp;
 
-    const styles = [
+    const sharedStyles = [
         buttonStyles.button,
         disabled && buttonStyles.disabled,
         !disabled && pressed && buttonStyles.pressed,
@@ -78,7 +78,7 @@ const ActivityButtonCore: React.ForwardRefExoticComponent<
             {...restProps}
             disabled={disabled}
             ref={ref}
-            style={styles}
+            style={sharedStyles}
             type={type}
         >
             <>
@@ -91,12 +91,17 @@ const ActivityButtonCore: React.ForwardRefExoticComponent<
                             size="medium"
                             color="currentColor"
                             icon={startIcon}
-                            style={buttonStyles.icon}
+                            style={styles.icon}
                             aria-hidden="true"
                         />
                     )}
 
-                    <BodyText tag="span" size="medium" weight="semi">
+                    <BodyText
+                        tag="span"
+                        size="medium"
+                        weight="semi"
+                        style={styles.label}
+                    >
                         {children}
                     </BodyText>
 
@@ -107,7 +112,7 @@ const ActivityButtonCore: React.ForwardRefExoticComponent<
                             size="medium"
                             color="currentColor"
                             icon={endIcon}
-                            style={buttonStyles.icon}
+                            style={styles.icon}
                             aria-hidden="true"
                         />
                     )}
@@ -228,7 +233,7 @@ const theme = {
         layout: {
             padding: {
                 block: sizing.size_140,
-                inline: sizing.size_200,
+                inline: sizing.size_480,
             },
         },
         shadow: {
@@ -247,7 +252,16 @@ const theme = {
             neutral: semanticColor.core.foreground.neutral.default,
             disabled: semanticColor.core.foreground.disabled.default,
         },
+        font: {
+            // NOTE: This is intended by design to correctly align the text
+            // with the icon in the button.
+            lineHeight: sizing.size_140,
+        },
         layout: {
+            padding: {
+                blockStart: sizing.size_040,
+                blockEnd: sizing.size_060,
+            },
             width: sizing.size_640,
         },
     },
@@ -259,16 +273,30 @@ const theme = {
     },
 };
 
-const styles: Record<string, any> = {};
+// Static styles for the button.
+const styles = {
+    icon: {
+        width: theme.icon.sizing.width,
+        height: theme.icon.sizing.height,
+    },
+    label: {
+        lineHeight: theme.label.font.lineHeight,
+        paddingBlockStart: theme.label.layout.padding.blockStart,
+        paddingBlockEnd: theme.label.layout.padding.blockEnd,
+    },
+};
 
+const stateStyles: Record<string, any> = {};
+
+// Dynamically generate styles for the button based on the different variants.
 const _generateStyles = (
     actionType: ActivityButtonActionType = "progressive",
     disabled: boolean,
     kind: ButtonKind,
 ) => {
     const buttonType = `${actionType}-d_${disabled}-${kind}`;
-    if (styles[buttonType]) {
-        return styles[buttonType];
+    if (stateStyles[buttonType]) {
+        return stateStyles[buttonType];
     }
 
     const borderWidthKind = theme.root.border.width[kind];
@@ -382,15 +410,8 @@ const _generateStyles = (
         },
         chonkyPressed,
         chonkyDisabled,
-        /**
-         * Inner elements
-         */
-        icon: {
-            width: theme.icon.sizing.width,
-            height: theme.icon.sizing.height,
-        },
     } as const;
 
-    styles[buttonType] = StyleSheet.create(newStyles);
-    return styles[buttonType];
+    stateStyles[buttonType] = StyleSheet.create(newStyles);
+    return stateStyles[buttonType];
 };
