@@ -121,9 +121,9 @@ const styles = StyleSheet.create({
     },
     badgeTypography: {
         fontFamily: font.family.sans,
-        fontSize: font.size.xSmall,
+        fontSize: font.body.size.xsmall,
         fontWeight: font.weight.bold,
-        lineHeight: font.lineHeight.xSmall,
+        lineHeight: font.body.lineHeight.xsmall,
     },
     defaultBadgeStyling: {
         backgroundColor: badgeTokens.root.color.background,
