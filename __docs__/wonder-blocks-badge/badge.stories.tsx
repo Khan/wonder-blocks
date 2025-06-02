@@ -212,13 +212,6 @@ export const CustomStyles: StoryComponentType = {
             />
         );
     },
-    parameters: {
-        chromatic: {
-            // Enable snapshots for this story so we can verify custom styles
-            // are applied correctly
-            disableSnapshot: false,
-        },
-    },
 };
 
 /**
