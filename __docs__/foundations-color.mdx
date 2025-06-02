@@ -216,7 +216,50 @@ validity.
     <ActionColorGroup category={semanticColor.input} group="input" />
 </View>
 
-### Status
+### Feedback
+
+For elements where color can add meaning to the state of the system or an item
+in the system.
+
+<Banner
+    kind="success"
+    layout="full-width"
+    text="Make sure to use these colors consistently to communicate the same meaning
+and include an icon or label to provide more context and clarity."
+    actions={[
+        {
+            type: "custom",
+            node: (
+                <a
+                    href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html"
+                    target="_blank"
+                >
+                    WCAG Guidelines - Contrast (minimum)
+                </a>
+            ),
+        },
+    ]}
+/>
+
+#### Info
+##### Subtle
+<ColorGroup colors={semanticColor.feedback.info.subtle} group="feedback.info.subtle" />
+
+#### Success
+##### Subtle
+<ColorGroup colors={semanticColor.feedback.success.subtle} group="feedback.success.subtle" />
+
+#### Warning
+##### Subtle
+<ColorGroup colors={semanticColor.feedback.warning.subtle} group="feedback.warning.subtle" />
+
+#### Critical
+##### Subtle
+<ColorGroup colors={semanticColor.feedback.critical.subtle} group="feedback.critical.subtle" />
+
+### Status (deprecated)
+
+<Banner kind="warning" text="These status tokens are deprecated and will be removed in the future. Please use the semantic feedback tokens instead: semanticColor.feedback" />
 
 For labels, icons, filters, alerts, and other elements where color can add
 meaning to the state of the system or an item in the system.
@@ -259,7 +302,7 @@ the UI.
 
 <ColorGroup colors={semanticColor.surface} group="surface" />
 
-### Text
+### Text (deprecated)
 
 For all type to ensure contrast for legibility. Inverse text applies for dark
 backgrounds in light mode.

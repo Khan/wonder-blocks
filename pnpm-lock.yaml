@@ -120,6 +120,9 @@ importers:
       '@khanacademy/wonder-blocks-announcer':
         specifier: workspace:*
         version: link:packages/wonder-blocks-announcer
+      '@khanacademy/wonder-blocks-badge':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-badge
       '@khanacademy/wonder-blocks-banner':
         specifier: workspace:*
         version: link:packages/wonder-blocks-banner

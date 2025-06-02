@@ -1,6 +1,10 @@
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    font,
+    semanticColor,
+    sizing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
@@ -37,8 +41,8 @@ const Badge = React.forwardRef<HTMLDivElement, Props>(function Badge(
             data-testid={testId}
             ref={ref}
             style={[
-                typographyStyles.LabelXSmall,
                 styles.badge,
+                styles.badgeTypography,
                 styles.defaultBadgeStyling,
                 icon && !label ? styles.iconOnly : {},
                 stylesProp?.root,
@@ -66,9 +70,14 @@ export {Badge};
 const badgeTokens = {
     root: {
         layout: {
-            paddingBlock: sizing.size_040,
-            paddingInline: sizing.size_080,
-            gap: sizing.size_040,
+            default: {
+                paddingBlock: sizing.size_040,
+                paddingInline: sizing.size_080,
+                gap: sizing.size_040,
+            },
+            iconOnly: {
+                padding: sizing.size_040,
+            },
         },
         border: {
             width: border.width.thin,
@@ -90,30 +99,31 @@ const badgeTokens = {
             foreground: semanticColor.icon.primary,
         },
     },
-    iconOnly: {
-        layout: {
-            padding: sizing.size_040,
-        },
-    },
 };
 
 const styles = StyleSheet.create({
     badge: {
         display: "inline-flex",
         alignItems: "center",
-        gap: badgeTokens.root.layout.gap,
+        gap: badgeTokens.root.layout.default.gap,
         // Make sure badge container fits the content
         width: "fit-content",
         // Make sure the badge text doesn't wrap
         textWrap: "nowrap",
         borderWidth: badgeTokens.root.border.width,
         borderStyle: badgeTokens.root.border.style,
-        paddingBlock: badgeTokens.root.layout.paddingBlock,
-        paddingInline: badgeTokens.root.layout.paddingInline,
+        paddingBlock: badgeTokens.root.layout.default.paddingBlock,
+        paddingInline: badgeTokens.root.layout.default.paddingInline,
         borderRadius: badgeTokens.root.border.radius,
         // Include focus styles in case the badge is made interactive by using
         // it with another component like `Tooltip`
         ...focusStyles.focus,
+    },
+    badgeTypography: {
+        fontFamily: font.family.sans,
+        fontSize: font.body.size.xsmall,
+        fontWeight: font.weight.bold,
+        lineHeight: font.body.lineHeight.xsmall,
     },
     defaultBadgeStyling: {
         backgroundColor: badgeTokens.root.color.background,
@@ -133,6 +143,6 @@ const styles = StyleSheet.create({
         color: badgeTokens.icon.color.foreground,
     },
     iconOnly: {
-        padding: badgeTokens.iconOnly.layout.padding,
+        padding: badgeTokens.root.layout.iconOnly.padding,
     },
 });

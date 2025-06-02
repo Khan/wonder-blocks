@@ -1,6 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {Icon, StreakIcon} from "@khanacademy/wonder-blocks-icon";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {Badge} from "./badge";
 import {BaseBadgeProps, ShowIconProps} from "../types";
 
@@ -36,11 +37,20 @@ const StreakBadge = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 
 export {StreakBadge};
 
+const streakBadgeTokens = {
+    root: {
+        color: {
+            background: semanticColor.core.background.streak.subtle,
+            border: semanticColor.core.background.streak.subtle, // Border should be the same as the background
+            foreground: semanticColor.core.foreground.streak.strong,
+        },
+    },
+};
+
 const styles = StyleSheet.create({
     streakBadge: {
-        // TODO: Replace with tokens
-        backgroundColor: "#FEE9E5",
-        border: "#FEE9E5",
-        color: "#983C1A",
+        backgroundColor: streakBadgeTokens.root.color.background,
+        border: streakBadgeTokens.root.color.border,
+        color: streakBadgeTokens.root.color.foreground,
     },
 });
