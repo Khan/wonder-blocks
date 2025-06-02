@@ -60,7 +60,11 @@ const Badge = React.forwardRef<HTMLDivElement, Props>(function Badge(
                     {icon}
                 </StyledSpan>
             )}
-            {label}
+            {label && (
+                <StyledSpan style={[styles.label, stylesProp?.label]}>
+                    {label}
+                </StyledSpan>
+            )}
         </StyledTag>
     );
 });
@@ -118,6 +122,13 @@ const styles = StyleSheet.create({
         // Include focus styles in case the badge is made interactive by using
         // it with another component like `Tooltip`
         ...focusStyles.focus,
+    },
+    label: {
+        // Truncate the label after ~30 characters
+        maxWidth: "30ch",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap",
     },
     badgeTypography: {
         fontFamily: font.family.sans,
