@@ -1,5 +1,25 @@
 # @khanacademy/wonder-blocks-button
 
+## 10.0.4
+
+### Patch Changes
+
+- ec3c80c: Removes the `khanmigo` theme from the `Button` component. Switches theming to use CSS variables.
+- 15ac1e6: Reorganizes the Button docs, tests and types to prepare for the upcoming ActivityButton component
+- Updated dependencies [b1ee2b4]
+- Updated dependencies [7abcccf]
+- Updated dependencies [9bacc1a]
+- Updated dependencies [9bacc1a]
+- Updated dependencies [7abcccf]
+- Updated dependencies [1c3c335]
+- Updated dependencies [689f5d3]
+- Updated dependencies [7d2a646]
+    - @khanacademy/wonder-blocks-tokens@10.4.0
+    - @khanacademy/wonder-blocks-clickable@7.1.5
+    - @khanacademy/wonder-blocks-styles@0.2.12
+    - @khanacademy/wonder-blocks-typography@4.1.0
+    - @khanacademy/wonder-blocks-progress-spinner@3.1.16
+
 ## 10.0.3
 
 ### Patch Changes
