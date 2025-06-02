@@ -19,49 +19,57 @@ describe("Badge types", () => {
         it("should forward the ref to the root element", () => {
             // Arrange
             const ref = React.createRef<HTMLDivElement>();
-            render(<Component ref={ref} label="Badge label" />);
 
             // Act
-            const badge = screen.getByText("Badge label");
+            const {container} = render(
+                <Component ref={ref} label="Badge label" />,
+            );
 
             // Assert
-            expect(ref.current).toBe(badge);
+            // eslint-disable-next-line testing-library/no-node-access -- explicitly check the root element
+            expect(ref.current).toBe(container.firstChild);
         });
 
         it("should use the tag prop if provided", () => {
             // Arrange
-            render(<Component tag={"strong"} label="Badge label" />);
-
             // Act
-            const badge = screen.getByText("Badge label");
+            const {container} = render(
+                <Component tag={"strong"} label="Badge label" />,
+            );
 
             // Assert
-            expect(badge).toHaveProperty("tagName", "STRONG");
+            // eslint-disable-next-line testing-library/no-node-access -- explicitly check the root element
+            expect(container.firstChild).toHaveProperty("tagName", "STRONG");
         });
 
         describe("Attributes", () => {
             it("should set the id attribute", () => {
                 // Arrange
                 const id = "badge-id";
-                render(<Component id={id} label="Badge label" />);
-
                 // Act
-                const badge = screen.getByText("Badge label");
+                const {container} = render(
+                    <Component id={id} label="Badge label" />,
+                );
 
                 // Assert
-                expect(badge).toHaveAttribute("id", id);
+                // eslint-disable-next-line testing-library/no-node-access -- explicitly check the root element
+                expect(container.firstChild).toHaveAttribute("id", id);
             });
 
             it("should set the data-testid attribute", () => {
                 // Arrange
                 const testId = "badge-testid";
-                render(<Component testId={testId} label="Badge label" />);
-
                 // Act
-                const badge = screen.getByTestId(testId);
+                const {container} = render(
+                    <Component testId={testId} label="Badge label" />,
+                );
 
                 // Assert
-                expect(badge).toHaveAttribute("data-testid", testId);
+                // eslint-disable-next-line testing-library/no-node-access -- explicitly check the root element
+                expect(container.firstChild).toHaveAttribute(
+                    "data-testid",
+                    testId,
+                );
             });
         });
 
@@ -84,29 +92,33 @@ describe("Badge types", () => {
 
                 it("should set the role if provided", () => {
                     // Arrange
-                    render(<Component role="button" label="Badge label" />);
-
                     // Act
-                    const badge = screen.getByText("Badge label");
+                    const {container} = render(
+                        <Component role="button" label="Badge label" />,
+                    );
 
                     // Assert
-                    expect(badge).toHaveAttribute("role", "button");
+                    // eslint-disable-next-line testing-library/no-node-access -- explicitly check the root element
+                    expect(container.firstChild).toHaveAttribute(
+                        "role",
+                        "button",
+                    );
                 });
 
                 it("should be focusable when used with a tooltip and it has the role=button", async () => {
                     // Arrange
-                    render(
+                    const {container} = render(
                         <Tooltip content="Tooltip content">
                             <Component role="button" label="Badge label" />
                         </Tooltip>,
                     );
-                    const badge = screen.getByText("Badge label");
 
                     // Act
                     await userEvent.tab();
 
                     // Assert
-                    expect(badge).toHaveFocus();
+                    // eslint-disable-next-line testing-library/no-node-access -- explicitly check the root element
+                    expect(container.firstChild).toHaveFocus();
                 });
             });
         });
