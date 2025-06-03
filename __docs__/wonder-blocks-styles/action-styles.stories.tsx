@@ -124,10 +124,12 @@ export const InverseOutline: Story = {
             </View>
         ),
     ],
-    parameters: {
+    globals: {
         backgrounds: {
-            default: "darkBlue",
+            value: "darkBlue",
         },
+    },
+    parameters: {
         chromatic: {
             // Disabling because this is already covered by the All variants
             // stories.

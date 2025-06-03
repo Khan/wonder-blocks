@@ -92,6 +92,11 @@ export default {
         placeholder: "Choose a fruit",
         selectedValue: "",
     },
+    globals: {
+        backgrounds: {
+            value: "offWhite",
+        },
+    },
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -99,9 +104,6 @@ export default {
                 version={packageConfig.version}
             />
         ),
-        backgrounds: {
-            default: "offWhite",
-        },
     },
 } as Meta<typeof SingleSelect>;
 
