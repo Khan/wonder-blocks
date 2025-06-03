@@ -136,6 +136,12 @@ export const Light: StoryComponentType = () => (
     </View>
 );
 
+Light.globals = {
+    backgrounds: {
+        value: "darkBlue",
+    },
+};
+
 Light.parameters = {
     chromatic: {
         // Not needed because the default state doesn't test the disabled
@@ -146,9 +152,6 @@ Light.parameters = {
         description: {
             story: "Clickable has a `light` prop which changes the default focus ring color to fit a dark background.",
         },
-    },
-    backgrounds: {
-        default: "darkBlue",
     },
 };
 

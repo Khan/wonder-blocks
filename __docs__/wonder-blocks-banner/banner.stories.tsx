@@ -166,9 +166,9 @@ export const Layouts: StoryComponentType = () => {
     );
 };
 
-Layouts.parameters = {
+Layouts.globals = {
     backgrounds: {
-        default: "darkBlue",
+        value: "darkBlue",
     },
 };
 
@@ -208,9 +208,9 @@ export const DarkBackground: StoryComponentType = () => (
     </View>
 );
 
-DarkBackground.parameters = {
+DarkBackground.globals = {
     backgrounds: {
-        default: "darkBlue",
+        value: "darkBlue",
     },
 };
 

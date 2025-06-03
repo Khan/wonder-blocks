@@ -15,12 +15,14 @@ import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
  */
 export default {
     title: "Packages / Cell / DetailCell / All Variants",
+    globals: {
+        backgrounds: {
+            value: "offWhite",
+        },
+    },
     parameters: {
         docs: {
             autodocs: false,
-        },
-        backgrounds: {
-            default: "offWhite",
         },
     },
 } as Meta;
