@@ -1,5 +1,5 @@
 import React from "react";
-import type {StrictArgs} from "@storybook/react";
+import type {StrictArgs} from "@storybook/react-vite";
 import {StyleSheet} from "aphrodite";
 import {StyleType, View} from "@khanacademy/wonder-blocks-core";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";

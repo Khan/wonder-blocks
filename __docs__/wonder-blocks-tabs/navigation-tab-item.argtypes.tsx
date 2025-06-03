@@ -1,4 +1,4 @@
-import {ArgTypes} from "@storybook/react";
+import {ArgTypes} from "@storybook/react-vite";
 
 export default {
     children: {

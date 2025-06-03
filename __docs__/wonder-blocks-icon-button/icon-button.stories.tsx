@@ -3,8 +3,8 @@ import * as React from "react";
 import {MemoryRouter} from "react-router-dom";
 import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
 import {StyleSheet} from "aphrodite";
-import {action} from "@storybook/addon-actions";
-import type {Meta, StoryObj} from "@storybook/react";
+import {action} from "storybook/actions";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import caretLeft from "@phosphor-icons/core/regular/caret-left.svg";
 import caretRight from "@phosphor-icons/core/regular/caret-right.svg";
