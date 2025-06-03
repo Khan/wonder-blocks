@@ -48,6 +48,9 @@ catalogs:
     react-window:
       specifier: ^1.8.11
       version: 1.8.11
+    storybook:
+      specifier: ^9.0.4
+      version: 9.0.4
     temporal-polyfill:
       specifier: ^0.3.0
       version: 0.3.0
@@ -391,7 +394,7 @@ importers:
         specifier: ^8.0.0
         version: 8.0.0(rollup@2.79.2)
       storybook:
-        specifier: ^9.0.4
+        specifier: 'catalog:'
         version: 9.0.4(@testing-library/dom@10.4.0)(prettier@3.4.2)
       storybook-addon-pseudo-states:
         specifier: ^9.0.4
@@ -1234,9 +1237,6 @@ importers:
       '@khanacademy/wonder-stuff-core':
         specifier: 'catalog:'
         version: 1.5.4
-      '@storybook/addon-actions':
-        specifier: ^8.5.2
-        version: 8.5.2(storybook@9.0.4(@testing-library/dom@10.4.0)(prettier@3.4.2))
       aphrodite:
         specifier: 'catalog:'
         version: 1.2.5
@@ -1255,6 +1255,9 @@ importers:
       react-router-dom-v5-compat:
         specifier: 'catalog:'
         version: 6.30.0(patch_hash=a5aa3aa17ce8dee8928732ae0a22bd6e9e3c0c458e4c2024a78e155de1060245)(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
+      storybook:
+        specifier: 'catalog:'
+        version: 9.0.4(@testing-library/dom@10.4.0)(prettier@3.4.2)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -1268,9 +1271,6 @@ importers:
       '@khanacademy/wonder-stuff-core':
         specifier: 'catalog:'
         version: 1.5.4
-      '@storybook/addon-actions':
-        specifier: ^8.5.2
-        version: 8.5.2(storybook@9.0.4(@testing-library/dom@10.4.0)(prettier@3.4.2))
       aphrodite:
         specifier: 'catalog:'
         version: 1.2.5
@@ -1289,6 +1289,9 @@ importers:
       react-router-dom-v5-compat:
         specifier: 'catalog:'
         version: 6.30.0(patch_hash=a5aa3aa17ce8dee8928732ae0a22bd6e9e3c0c458e4c2024a78e155de1060245)(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
+      storybook:
+        specifier: 'catalog:'
+        version: 9.0.4(@testing-library/dom@10.4.0)(prettier@3.4.2)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -2819,11 +2822,6 @@ packages:
     peerDependencies:
       storybook: ^9.0.4
 
-  '@storybook/addon-actions@8.5.2':
-    resolution: {integrity: sha512-g0gLesVSFgstUq5QphsLeC1vEdwNHgqo2TE0m+STM47832xbxBwmK6uvBeqi416xZvnt1TTKaaBr4uCRRQ64Ww==}
-    peerDependencies:
-      storybook: ^8.5.2
-
   '@storybook/addon-docs@9.0.4':
     resolution: {integrity: sha512-g9Cywdicc8iXFwQm3XFLwZgFMel7BF21zTumErLs30tsowTCqE9dTxwPSrqlbvfknhLp7I/lwyzDXGf9SXmERA==}
     peerDependencies:
@@ -3201,9 +3199,6 @@ packages:
 
   '@types/unist@3.0.3':
     resolution: {integrity: sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==}
-
-  '@types/uuid@9.0.8':
-    resolution: {integrity: sha512-jg+97EGIcY9AGHJJRaaPVgetKDsrTgbRjQ5Msgjh/DQKEFl0DtyRr/VCOyD1T2R1MNeWPK/u7JoGhlDZnKBAfA==}
 
   '@types/yargs-parser@21.0.3':
     resolution: {integrity: sha512-I4q9QU9MQv4oEOz4tAHJtNz1cwuLxn2F3xcc2iV5WdqLPpUnj30aUuxt1mAxYTG+oe8CZMV/+6rU4S4gRDzqtQ==}
@@ -6209,10 +6204,6 @@ packages:
     resolution: {integrity: sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==}
     engines: {node: '>=4'}
 
-  polished@4.3.1:
-    resolution: {integrity: sha512-OBatVyC/N7SCW/FaDHrSd+vn0o5cS855TOmYi4OkdWUMSJCET/xip//ch8xGUvtr3i44X9LVyWwQlRMTN3pwSA==}
-    engines: {node: '>=10'}
-
   possible-typed-array-names@1.0.0:
     resolution: {integrity: sha512-d7Uw+eZoloe0EHDIYoe+bQ5WXnGMOpmiZFTuMWCwpjzzkL2nTjcKiAk4hh8TjnGye2TwWOk3UXucZ+3rbmBa8Q==}
     engines: {node: '>= 0.4'}
@@ -7293,10 +7284,6 @@ packages:
 
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
-
-  uuid@9.0.1:
-    resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
-    hasBin: true
 
   uvu@0.5.6:
     resolution: {integrity: sha512-+g8ENReyr8YsOc6fv/NVJs2vFdHBnBNdfE49rshrTzDWOlUx4Gq7KOS2GD8eqhy2j+Ejq29+SbKH8yjkAqXqoA==}
@@ -9314,15 +9301,6 @@ snapshots:
       axe-core: 4.10.2
       storybook: 9.0.4(@testing-library/dom@10.4.0)(prettier@3.4.2)
 
-  '@storybook/addon-actions@8.5.2(storybook@9.0.4(@testing-library/dom@10.4.0)(prettier@3.4.2))':
-    dependencies:
-      '@storybook/global': 5.0.0
-      '@types/uuid': 9.0.8
-      dequal: 2.0.3
-      polished: 4.3.1
-      storybook: 9.0.4(@testing-library/dom@10.4.0)(prettier@3.4.2)
-      uuid: 9.0.1
-
   '@storybook/addon-docs@9.0.4(@types/react@18.3.18)(storybook@9.0.4(@testing-library/dom@10.4.0)(prettier@3.4.2))':
     dependencies:
       '@mdx-js/react': 3.1.0(@types/react@18.3.18)(react@18.2.0)
@@ -9726,8 +9704,6 @@ snapshots:
   '@types/unist@2.0.11': {}
 
   '@types/unist@3.0.3': {}
-
-  '@types/uuid@9.0.8': {}
 
   '@types/yargs-parser@21.0.3': {}
 
@@ -13765,10 +13741,6 @@ snapshots:
 
   pluralize@8.0.0: {}
 
-  polished@4.3.1:
-    dependencies:
-      '@babel/runtime': 7.27.0
-
   possible-typed-array-names@1.0.0: {}
 
   postcss@8.5.1:
@@ -15105,8 +15077,6 @@ snapshots:
       requires-port: 1.0.0
 
   util-deprecate@1.0.2: {}
-
-  uuid@9.0.1: {}
 
   uvu@0.5.6:
     dependencies:
