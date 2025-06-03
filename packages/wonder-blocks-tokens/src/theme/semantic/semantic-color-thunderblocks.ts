@@ -280,7 +280,7 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
             },
 
             disabled: {
-                border: core.border.disabled.strong,
+                border: core.border.disabled.default,
                 background: core.background.disabled.default,
                 foreground: core.foreground.disabled.default,
             },
