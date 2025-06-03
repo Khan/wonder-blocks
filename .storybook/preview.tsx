@@ -74,25 +74,29 @@ function DocsContainerWithTheme({children, context, ...props}) {
     );
 }
 
-const parameters = {
+const parameters: Preview["parameters"] = {
     // Enable the RenderStateRoot decorator by default.
     enableRenderStateRootDecorator: true,
     backgrounds: {
         default: "baseDefault",
-        values: [
-            {
+        options: {
+            baseDefault: {
                 name: "baseDefault",
                 value: semanticColor.core.background.base.default,
             },
-            {
+            light: {
                 name: "neutralStrong",
                 value: semanticColor.core.background.neutral.strong,
             },
-            {
+            baseSubtle: {
                 name: "baseSubtle",
                 value: semanticColor.core.background.base.subtle,
             },
-        ],
+        },
+    },
+    initialGlobals: {
+        // 👇 Set the initial background color
+        backgrounds: {value: "baseDefault"},
     },
     // https://storybook.js.org/docs/react/configure/story-layout
     layout: "padded",

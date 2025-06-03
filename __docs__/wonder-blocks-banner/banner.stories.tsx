@@ -169,9 +169,9 @@ export const Layouts: StoryComponentType = () => {
     );
 };
 
-Layouts.parameters = {
+Layouts.globals = {
     backgrounds: {
-        default: "neutralStrong",
+        value: "neutralStrong",
     },
 };
 
@@ -208,9 +208,9 @@ export const DarkBackground: StoryComponentType = () => (
     </View>
 );
 
-DarkBackground.parameters = {
+DarkBackground.globals = {
     backgrounds: {
-        default: "neutralStrong",
+        value: "neutralStrong",
     },
     chromatic: {
         // Testing snapshots don't cover dark background case

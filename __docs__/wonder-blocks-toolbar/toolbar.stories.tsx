@@ -204,10 +204,13 @@ export const Dark: StoryComponentType = {
     },
 };
 
-Dark.parameters = {
+Dark.globals = {
     backgrounds: {
-        default: "neutralStrong",
+        value: "neutralStrong",
     },
+};
+
+Dark.parameters = {
     docs: {
         description: {
             story:

@@ -66,10 +66,12 @@ const meta = {
             </View>
         ),
     ],
-    parameters: {
+    globals: {
         backgrounds: {
-            default: "baseSubtle",
+            value: "baseSubtle",
         },
+    },
+    parameters: {
         chromatic: {
             modes: themeModes,
         },

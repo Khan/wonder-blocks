@@ -92,6 +92,11 @@ export default {
         placeholder: "Choose a fruit",
         selectedValue: "",
     },
+    globals: {
+        backgrounds: {
+            value: "baseDefault",
+        },
+    },
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -100,7 +105,7 @@ export default {
             />
         ),
         backgrounds: {
-            default: "baseSubtle",
+            value: "baseSubtle",
         },
     },
 } as Meta<typeof SingleSelect>;

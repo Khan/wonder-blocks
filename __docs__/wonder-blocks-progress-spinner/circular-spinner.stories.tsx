@@ -120,10 +120,13 @@ Sizes.parameters = {
 
 export const Light: StoryComponentType = () => <CircularSpinner light={true} />;
 
-Light.parameters = {
+Light.globals = {
     backgrounds: {
-        default: "neutralStrong",
+        value: "neutralStrong",
     },
+};
+
+Light.parameters = {
     docs: {
         description: {
             story: `This is a progress spinner with its \`light\`
