@@ -1,7 +1,7 @@
 import * as React from "react";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 import {StyleSheet} from "aphrodite";
-import {expect, within} from "@storybook/test";
+import {expect, within} from "storybook/test";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tabs/package.json";
 import {

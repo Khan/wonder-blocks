@@ -1,7 +1,7 @@
 import * as React from "react";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
-// import {expect, within} from "@storybook/test";
+// import {expect, within} from "storybook/test";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
 import Pill from "@khanacademy/wonder-blocks-pill";

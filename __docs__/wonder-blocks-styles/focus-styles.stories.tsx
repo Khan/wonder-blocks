@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Meta, StoryObj} from "@storybook/react";
+import {Meta, StoryObj} from "@storybook/react-vite";
 import info from "@phosphor-icons/core/regular/info.svg";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-styles/package.json";

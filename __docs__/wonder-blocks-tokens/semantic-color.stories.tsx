@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Title, Subtitle, Description, Stories} from "@storybook/blocks";
-import {Meta} from "@storybook/react";
+import {Meta} from "@storybook/react-vite";
 import {View} from "@khanacademy/wonder-blocks-core";
 import TokenTable from "../components/token-table";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";

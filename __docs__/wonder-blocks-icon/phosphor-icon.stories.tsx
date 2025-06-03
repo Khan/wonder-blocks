@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import articleIcon from "./icons/article.svg";
 import courseIcon from "./icons/course.svg";

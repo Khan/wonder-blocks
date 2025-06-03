@@ -1,5 +1,5 @@
 import * as React from "react";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 import info from "@phosphor-icons/core/regular/info.svg";
 import {ScenariosLayout} from "../components/scenarios-layout";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";

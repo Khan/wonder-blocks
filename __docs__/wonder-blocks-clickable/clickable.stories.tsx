@@ -2,7 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {MemoryRouter} from "react-router-dom";
 import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
