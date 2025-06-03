@@ -3,6 +3,9 @@ import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import microphone from "@phosphor-icons/core/bold/microphone-bold.svg";
+import microphoneFill from "@phosphor-icons/core/fill/microphone-fill.svg";
+import plus from "@phosphor-icons/core/bold/plus-bold.svg";
+import plusFill from "@phosphor-icons/core/fill/plus-fill.svg";
 
 import {action} from "@storybook/addon-actions";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -13,6 +16,9 @@ import packageConfig from "../../packages/wonder-blocks-icon-button/package.json
 import IconButtonArgtypes from "./icon-button.argtypes";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
+import {ActionItem, ActionMenu} from "@khanacademy/wonder-blocks-dropdown";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 export default {
     title: "Packages / IconButton / ConversationIconButton",
@@ -42,13 +48,13 @@ export default {
     },
 } as Meta<typeof ConversationIconButton>;
 
-type StoryComponentType = StoryObj<typeof ConversationIconButton>;
+type Story = StoryObj<typeof ConversationIconButton>;
 
 /**
  * Minimal activity icon button. The only props specified in this example are
  * `icon` and `onClick`.
  */
-export const Default: StoryComponentType = {
+export const Default: Story = {
     args: {
         icon: microphone,
         actionType: "progressive",
@@ -64,7 +70,7 @@ export const Default: StoryComponentType = {
  * In this example, we have `primary`, `secondary`, `tertiary` and disabled
  * `ConversationIconButton`s from left to right.
  */
-export const Kinds: StoryComponentType = {
+export const Kinds: Story = {
     render: () => {
         return (
             <View style={{gap: sizing.size_160, flexDirection: "row"}}>
@@ -96,68 +102,69 @@ export const Kinds: StoryComponentType = {
     },
 };
 
-const kinds = ["primary", "secondary", "tertiary"] as const;
-const actionTypes = ["progressive", "neutral"] as const;
-
 /**
- * ConversationIconButton has an `actionType` prop that is either `progressive`
- * (the default, as shown above) or `neutral`:
+ * ConversationIconButton can be configured to be toggleable. This is useful for
+ * features like toggling a microphone on and off.
+ *
+ * Note that the `aria-pressed` attribute is used to indicate the toggle state
+ * of the button. This is important for accessibility, as it allows screen
+ * readers to announce the current state of the button to users.
  */
-export const ActionType: StoryComponentType = {
-    name: "ActionType",
-    render: (args) => (
-        <View style={{gap: sizing.size_160}}>
-            {actionTypes.map((actionType, index) => (
-                <View
-                    key={index}
-                    style={{gap: sizing.size_160, flexDirection: "row"}}
-                >
-                    {kinds.map((kind, index) => (
-                        <ConversationIconButton
-                            icon={IconMappings.arrowUpBold}
-                            aria-label="navigate up progressive"
-                            onClick={() => {}}
-                            actionType={actionType}
-                            kind={kind}
-                            key={`${kind}-${actionType}-${index}`}
-                        />
-                    ))}
-                    <ConversationIconButton
-                        disabled={true}
-                        icon={IconMappings.arrowUpBold}
-                        aria-label="navigate up neutral"
-                        onClick={(e) => action("clicked")(e)}
-                        actionType={actionType}
-                        key={`disabled-${actionType}-${index}`}
-                    />
-                </View>
-            ))}
-        </View>
-    ),
+export const Toggleable: Story = {
+    render: function Render() {
+        const [on, setOn] = React.useState(false);
+        return (
+            <View style={{gap: sizing.size_080, placeItems: "center"}}>
+                <ConversationIconButton
+                    icon={on ? microphoneFill : microphone}
+                    onClick={(e) => {
+                        setOn(!on);
+                        action("clicked")(e);
+                    }}
+                    aria-label="Toggle microphone"
+                    aria-pressed={on}
+                />
+                <BodyText>The microphone is {on ? "ON" : "OFF"}</BodyText>
+            </View>
+        );
+    },
 };
 
 /**
- * Conversation icon buttons need to have accessible names. The `aria-label`
- * prop must be used to explain the function of the button. Remember to keep the
- * description concise but understandable.
+ * This example shows how to use the `ConversationIconButton` in an `ActionMenu`.
+ * The `ConversationIconButton` is used as the opener for the menu, which allows
+ * the button to be used in its "expanded" state.
  */
-export const WithAriaLabel: StoryComponentType = {
-    render: () => {
+export const Expanded: Story = {
+    render: function Render() {
         return (
-            <View style={{gap: sizing.size_080, flexDirection: "row"}}>
-                <ConversationIconButton
-                    icon={microphone}
-                    kind="secondary"
-                    actionType="neutral"
-                    onClick={(e) => action("clicked")(e)}
-                    aria-label="Turn on microphone"
+            <ActionMenu
+                aria-label="Conversation options"
+                menuText=""
+                opener={({opened}) => (
+                    <ConversationIconButton
+                        kind="secondary"
+                        icon={opened ? plusFill : plus}
+                        aria-label="Open menu"
+                    />
+                )}
+            >
+                <ActionItem
+                    label="Add to calendar"
+                    leftAccessory={
+                        <PhosphorIcon
+                            size="medium"
+                            icon={IconMappings.calendar}
+                        />
+                    }
                 />
-                <ConversationIconButton
-                    icon={IconMappings.arrowUpBold}
-                    onClick={(e) => action("clicked")(e)}
-                    aria-label="Send message"
+                <ActionItem
+                    label="Add to contacts"
+                    leftAccessory={
+                        <PhosphorIcon size="medium" icon={IconMappings.gear} />
+                    }
                 />
-            </View>
+            </ActionMenu>
         );
     },
 };
