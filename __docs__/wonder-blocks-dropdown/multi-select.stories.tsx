@@ -73,6 +73,11 @@ export default {
         testId: "",
         "aria-label": "Planets",
     },
+    globals: {
+        backgrounds: {
+            value: "baseDefault",
+        },
+    },
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -81,7 +86,7 @@ export default {
             />
         ) as any,
         backgrounds: {
-            default: "baseSubtle",
+            value: "baseSubtle",
         },
     },
 } as Meta<typeof MultiSelect>;

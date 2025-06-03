@@ -136,6 +136,12 @@ export const Light: StoryComponentType = () => (
     </View>
 );
 
+Light.globals = {
+    backgrounds: {
+        value: "darkBlue",
+    },
+};
+
 Light.parameters = {
     chromatic: {
         // Not needed because the default state doesn't test the disabled
@@ -148,7 +154,7 @@ Light.parameters = {
         },
     },
     backgrounds: {
-        default: "neutralStrong",
+        value: "neutralStrong",
     },
 };
 
