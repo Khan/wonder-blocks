@@ -3,22 +3,22 @@ import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import microphone from "@phosphor-icons/core/bold/microphone-bold.svg";
-import microphoneFill from "@phosphor-icons/core/fill/microphone-fill.svg";
 import plus from "@phosphor-icons/core/bold/plus-bold.svg";
+import microphoneFill from "@phosphor-icons/core/fill/microphone-fill.svg";
 import plusFill from "@phosphor-icons/core/fill/plus-fill.svg";
 
 import {action} from "@storybook/addon-actions";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {ConversationIconButton} from "@khanacademy/wonder-blocks-icon-button";
 
-import ComponentInfo from "../components/component-info";
-import packageConfig from "../../packages/wonder-blocks-icon-button/package.json";
-import IconButtonArgtypes from "./icon-button.argtypes";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
-import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
-import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {ActionItem, ActionMenu} from "@khanacademy/wonder-blocks-dropdown";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
+import packageConfig from "../../packages/wonder-blocks-icon-button/package.json";
+import ComponentInfo from "../components/component-info";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
+import iconButtonSharedArgtypes from "./icon-button-shared.argtypes";
 
 export default {
     title: "Packages / IconButton / ConversationIconButton",
@@ -42,7 +42,7 @@ export default {
             },
         },
     },
-    argTypes: IconButtonArgtypes,
+    argTypes: iconButtonSharedArgtypes,
     args: {
         "aria-label": "Search",
     },
@@ -51,8 +51,13 @@ export default {
 type Story = StoryObj<typeof ConversationIconButton>;
 
 /**
- * Minimal activity icon button. The only props specified in this example are
- * `icon` and `onClick`.
+ * Minimal conversation icon button. The only props specified in this example
+ * are `icon` and `onClick`.
+ *
+ * Note that the `aria-label` prop is required for accessibility, as it
+ * provides a text alternative for the icon button. This is important for
+ * screen readers and other assistive technologies to understand the purpose
+ * of the button.
  */
 export const Default: Story = {
     args: {
@@ -67,8 +72,8 @@ export const Default: Story = {
 };
 
 /**
- * In this example, we have `primary`, `secondary`, `tertiary` and disabled
- * `ConversationIconButton`s from left to right.
+ * In this example, we have `primary` (default), `secondary`, `tertiary` and
+ * disabled `ConversationIconButton`'s from left to right.
  */
 export const Kinds: Story = {
     render: () => {
