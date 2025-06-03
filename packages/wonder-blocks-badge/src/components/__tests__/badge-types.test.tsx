@@ -26,6 +26,7 @@ describe("Badge types", () => {
             );
 
             // Assert
+            // eslint-disable-next-line testing-library/no-node-access -- explicitly check the root element
             expect(ref.current).toBe(container.firstChild);
         });
 
@@ -37,6 +38,7 @@ describe("Badge types", () => {
             );
 
             // Assert
+            // eslint-disable-next-line testing-library/no-node-access -- explicitly check the root element
             expect(container.firstChild).toHaveProperty("tagName", "STRONG");
         });
 
@@ -50,6 +52,7 @@ describe("Badge types", () => {
                 );
 
                 // Assert
+                // eslint-disable-next-line testing-library/no-node-access -- explicitly check the root element
                 expect(container.firstChild).toHaveAttribute("id", id);
             });
 
@@ -62,6 +65,7 @@ describe("Badge types", () => {
                 );
 
                 // Assert
+                // eslint-disable-next-line testing-library/no-node-access -- explicitly check the root element
                 expect(container.firstChild).toHaveAttribute(
                     "data-testid",
                     testId,
@@ -94,6 +98,7 @@ describe("Badge types", () => {
                     );
 
                     // Assert
+                    // eslint-disable-next-line testing-library/no-node-access -- explicitly check the root element
                     expect(container.firstChild).toHaveAttribute(
                         "role",
                         "button",
@@ -112,6 +117,7 @@ describe("Badge types", () => {
                     await userEvent.tab();
 
                     // Assert
+                    // eslint-disable-next-line testing-library/no-node-access -- explicitly check the root element
                     expect(container.firstChild).toHaveFocus();
                 });
             });

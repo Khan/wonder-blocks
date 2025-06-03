@@ -161,6 +161,7 @@ describe("Tabs", () => {
         );
 
         // Assert
+        // eslint-disable-next-line testing-library/no-node-access -- check ref is on root element
         expect(ref.current).toBe(container.firstChild);
     });
 
@@ -182,6 +183,7 @@ describe("Tabs", () => {
                 );
 
                 // Assert
+                // eslint-disable-next-line testing-library/no-node-access -- checking the root element
                 expect(container.firstChild).toHaveAttribute("id", id);
             });
 
@@ -218,6 +220,7 @@ describe("Tabs", () => {
                 );
 
                 // Assert
+                // eslint-disable-next-line testing-library/no-node-access -- checking the root element
                 expect(container.firstChild).toHaveAttribute("id");
             });
 
@@ -256,6 +259,7 @@ describe("Tabs", () => {
                 );
 
                 // Assert
+                // eslint-disable-next-line testing-library/no-node-access -- checking the root element
                 expect(container.firstChild).toHaveAttribute(
                     "data-testid",
                     testId,
@@ -297,6 +301,7 @@ describe("Tabs", () => {
                 );
 
                 // Assert
+                // eslint-disable-next-line testing-library/no-node-access -- checking the root element
                 expect(container.firstChild).not.toHaveAttribute("data-testid");
             });
 
