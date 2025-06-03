@@ -1,5 +1,5 @@
 import * as React from "react";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-labeled-field/package.json";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";

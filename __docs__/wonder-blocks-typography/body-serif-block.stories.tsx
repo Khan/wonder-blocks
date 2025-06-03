@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Meta, StoryObj} from "@storybook/react";
+import {Meta, StoryObj} from "@storybook/react-vite";
 import packageConfig from "../../packages/wonder-blocks-typography/package.json";
 
 import ComponentInfo from "../components/component-info";

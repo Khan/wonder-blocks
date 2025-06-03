@@ -10,7 +10,7 @@ import {
     Routes,
     useViewTransitionState,
 } from "react-router-dom-v5-compat";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
