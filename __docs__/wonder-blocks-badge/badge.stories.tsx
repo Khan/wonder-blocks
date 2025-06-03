@@ -6,7 +6,7 @@ import {Badge} from "@khanacademy/wonder-blocks-badge";
 import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import singleColoredIcon from "../components/single-colored-icon.svg";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import badgeArgtypes, {iconArgType} from "./badge.argtypes";
 import {multiColoredIcon} from "../components/icons-for-testing";
@@ -176,6 +176,7 @@ export const CustomIcons: StoryComponentType = {
  * A badge can be used with custom styles. The following parts can be styled:
  * - `root`: Styles the root element
  * - `icon`: Styles the icon element
+ * - `label`: Styles the text in the element
  *
  * Here is an example of custom styles using semantic tokens.
  */
@@ -204,16 +205,12 @@ export const CustomStyles: StoryComponentType = {
                         color: semanticColor.text.inverse,
                     },
                     icon: {color: semanticColor.icon.inverse},
+                    label: {
+                        fontWeight: font.weight.medium,
+                    },
                 }}
             />
         );
-    },
-    parameters: {
-        chromatic: {
-            // Enable snapshots for this story so we can verify custom styles
-            // are applied correctly
-            disableSnapshot: false,
-        },
     },
 };
 
@@ -258,6 +255,18 @@ export const BadgeWithTooltip: StoryComponentType = {
     },
     args: {
         label: "Badge",
+        icon: "cookie",
+    },
+};
+
+/**
+ * By default, the label is truncated after `30ch` (approximately 30 characters).
+ * If you have long lines of text to communicate information, this badge pattern
+ * is not the right component for that purpose.
+ */
+export const BadgeTruncation: StoryComponentType = {
+    args: {
+        label: "Badge with a long label that should be truncated",
         icon: "cookie",
     },
 };

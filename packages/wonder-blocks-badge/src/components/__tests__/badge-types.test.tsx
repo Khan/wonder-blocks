@@ -19,10 +19,10 @@ describe("Badge types", () => {
         it("should forward the ref to the root element", () => {
             // Arrange
             const ref = React.createRef<HTMLDivElement>();
-            render(<Component ref={ref} label="Badge label" />);
+            render(<Component ref={ref} label="Badge label" testId="badge" />);
 
             // Act
-            const badge = screen.getByText("Badge label");
+            const badge = screen.getByTestId("badge");
 
             // Assert
             expect(ref.current).toBe(badge);
@@ -30,10 +30,12 @@ describe("Badge types", () => {
 
         it("should use the tag prop if provided", () => {
             // Arrange
-            render(<Component tag={"strong"} label="Badge label" />);
+            render(
+                <Component tag={"strong"} label="Badge label" testId="badge" />,
+            );
 
             // Act
-            const badge = screen.getByText("Badge label");
+            const badge = screen.getByTestId("badge");
 
             // Assert
             expect(badge).toHaveProperty("tagName", "STRONG");
@@ -43,10 +45,12 @@ describe("Badge types", () => {
             it("should set the id attribute", () => {
                 // Arrange
                 const id = "badge-id";
-                render(<Component id={id} label="Badge label" />);
+                render(
+                    <Component id={id} label="Badge label" testId="badge" />,
+                );
 
                 // Act
-                const badge = screen.getByText("Badge label");
+                const badge = screen.getByTestId("badge");
 
                 // Assert
                 expect(badge).toHaveAttribute("id", id);
@@ -55,13 +59,17 @@ describe("Badge types", () => {
             it("should set the data-testid attribute", () => {
                 // Arrange
                 const testId = "badge-testid";
-                render(<Component testId={testId} label="Badge label" />);
-
                 // Act
-                const badge = screen.getByTestId(testId);
+                const {container} = render(
+                    <Component testId={testId} label="Badge label" />,
+                );
 
                 // Assert
-                expect(badge).toHaveAttribute("data-testid", testId);
+                // eslint-disable-next-line testing-library/no-node-access -- explicitly check the root element for this test since we are testing the testId functionality
+                expect(container.firstChild).toHaveAttribute(
+                    "data-testid",
+                    testId,
+                );
             });
         });
 
@@ -84,10 +92,17 @@ describe("Badge types", () => {
 
                 it("should set the role if provided", () => {
                     // Arrange
-                    render(<Component role="button" label="Badge label" />);
+                    // Act
+                    render(
+                        <Component
+                            role="button"
+                            label="Badge label"
+                            testId="badge"
+                        />,
+                    );
 
                     // Act
-                    const badge = screen.getByText("Badge label");
+                    const badge = screen.getByTestId("badge");
 
                     // Assert
                     expect(badge).toHaveAttribute("role", "button");
@@ -97,10 +112,14 @@ describe("Badge types", () => {
                     // Arrange
                     render(
                         <Tooltip content="Tooltip content">
-                            <Component role="button" label="Badge label" />
+                            <Component
+                                role="button"
+                                label="Badge label"
+                                testId="badge"
+                            />
                         </Tooltip>,
                     );
-                    const badge = screen.getByText("Badge label");
+                    const badge = screen.getByTestId("badge");
 
                     // Act
                     await userEvent.tab();

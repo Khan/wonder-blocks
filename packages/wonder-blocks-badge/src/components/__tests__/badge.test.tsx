@@ -39,10 +39,11 @@ describe("Badge", () => {
     it("should forward the ref to the root element", () => {
         // Arrange
         const ref = React.createRef<HTMLDivElement>();
-        render(<Badge ref={ref} label="Badge label" />);
+        render(<Badge ref={ref} label="Badge label" testId="badge" />);
 
         // Act
-        const badge = screen.getByText("Badge label");
+        const badge = screen.getByTestId("badge");
+
         // Assert
         expect(ref.current).toBe(badge);
     });
@@ -51,10 +52,10 @@ describe("Badge", () => {
         it("should set the id attribute", () => {
             // Arrange
             const id = "badge-id";
-            render(<Badge id={id} label="Badge label" />);
+            render(<Badge id={id} label="Badge label" testId="badge" />);
 
             // Act
-            const badge = screen.getByText("Badge label");
+            const badge = screen.getByTestId("badge");
 
             // Assert
             expect(badge).toHaveAttribute("id", id);
@@ -63,13 +64,14 @@ describe("Badge", () => {
         it("should set the data-testid attribute", () => {
             // Arrange
             const testId = "badge-testid";
-            render(<Badge testId={testId} label="Badge label" />);
-
             // Act
-            const badge = screen.getByTestId(testId);
+            const {container} = render(
+                <Badge testId={testId} label="Badge label" />,
+            );
 
             // Assert
-            expect(badge).toHaveAttribute("data-testid", testId);
+            // eslint-disable-next-line testing-library/no-node-access -- explicitly check the root element for this test since we are testing the testId functionality
+            expect(container.firstChild).toHaveAttribute("data-testid", testId);
         });
     });
 
@@ -105,10 +107,12 @@ describe("Badge", () => {
         describe("Semantics", () => {
             it("should use the tag prop if provided", () => {
                 // Arrange
-                render(<Badge tag={"strong"} label="Badge label" />);
+                render(
+                    <Badge tag="strong" label="Badge label" testId="badge" />,
+                );
 
                 // Act
-                const badge = screen.getByText("Badge label");
+                const badge = screen.getByTestId("badge");
 
                 // Assert
                 expect(badge).toHaveProperty("tagName", "STRONG");

@@ -23,7 +23,7 @@ import {
     longTextWithNoWordBreak,
 } from "../components/text-for-testing";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {Heading, HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import singleColoredIcon from "../components/single-colored-icon.svg";
 import {multiColoredIcon} from "../components/icons-for-testing";
@@ -274,12 +274,7 @@ export const Scenarios: StoryComponentType = {
         ];
         return (
             <View style={{gap: sizing.size_080}}>
-                <View
-                    style={{
-                        width: "200px",
-                        border: `${border.width.thin} dashed ${semanticColor.border.primary}`,
-                    }}
-                >
+                <View>
                     <ScenariosLayout scenarios={textScenarios}>
                         {(props) => <Badge {...props} />}
                     </ScenariosLayout>
@@ -321,9 +316,6 @@ export const AllBadgesScenarios: StoryComponentType = {
             <View
                 style={{
                     gap: sizing.size_240,
-                    // Include end padding to ensure tooltips are included in the
-                    // snapshot
-                    paddingBlockEnd: sizing.size_880,
                 }}
             >
                 <Heading>Badges</Heading>
@@ -333,7 +325,12 @@ export const AllBadgesScenarios: StoryComponentType = {
                     ))}
                 </View>
                 <Heading>Badges with Tooltip</Heading>
-                <View style={styles.badgesContainer}>
+                <View
+                    style={[
+                        styles.badgesContainer,
+                        {paddingBlockEnd: sizing.size_480},
+                    ]}
+                >
                     {badges.map((badge, index) => (
                         <Tooltip
                             content="Tooltip"
@@ -344,6 +341,30 @@ export const AllBadgesScenarios: StoryComponentType = {
                             {React.cloneElement(badge, {role: "button"})}
                         </Tooltip>
                     ))}
+                </View>
+                <Heading>Custom styles</Heading>
+                <View style={styles.badgesContainer}>
+                    {badges
+                        .map((badge) =>
+                            React.cloneElement(badge, {
+                                styles: {
+                                    root: {
+                                        backgroundColor:
+                                            semanticColor.surface.inverse,
+                                        borderColor:
+                                            semanticColor.border.inverse,
+                                        color: semanticColor.text.inverse,
+                                    },
+                                    icon: {color: semanticColor.icon.inverse},
+                                    label: {
+                                        fontWeight: font.weight.medium,
+                                    },
+                                },
+                            }),
+                        )
+                        .map((badge, index) => (
+                            <View key={index}>{badge}</View>
+                        ))}
                 </View>
             </View>
         );
