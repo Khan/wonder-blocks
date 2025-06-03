@@ -1,7 +1,7 @@
 import * as React from "react";
 import wonderBlocksTheme from "./wonder-blocks-theme";
-import {Decorator} from "@storybook/react";
-import {DocsContainer} from "@storybook/blocks";
+import {Decorator} from "@storybook/react-vite";
+import {DocsContainer} from "@storybook/addon-docs/blocks";
 import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {initAnnouncer} from "@khanacademy/wonder-blocks-announcer";
@@ -10,7 +10,7 @@ import {
     ThemeSwitcherContext,
     ThemeSwitcher,
 } from "@khanacademy/wonder-blocks-theming";
-import {Preview} from "@storybook/react";
+import {Preview} from "@storybook/react-vite";
 
 // Import the Wonder Blocks CSS variables
 import "@khanacademy/wonder-blocks-tokens/styles.css";

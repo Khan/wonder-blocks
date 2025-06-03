@@ -1,9 +1,9 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
-import * as AddonActionsModule from "@storybook/addon-actions";
+import * as AddonActionsModule from "storybook/actions";
 import {fixtures} from "../fixtures";
 
-jest.mock("@storybook/addon-actions");
+jest.mock("storybook/actions");
 
 describe("fixtures", () => {
     beforeEach(() => {

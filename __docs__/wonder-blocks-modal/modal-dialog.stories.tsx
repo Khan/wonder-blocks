@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {Meta, StoryObj} from "@storybook/react";
-import {useGlobals} from "@storybook/preview-api";
+import type {Meta, StoryObj} from "@storybook/react-vite";
+import {useGlobals} from "storybook/preview-api";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
