@@ -1,5 +1,5 @@
 import * as React from "react";
-import type {ArgTypes} from "@storybook/react";
+import type {ArgTypes} from "@storybook/react-vite";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Pill from "@khanacademy/wonder-blocks-pill";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";

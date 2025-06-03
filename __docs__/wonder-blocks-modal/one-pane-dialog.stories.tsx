@@ -1,7 +1,7 @@
 /* eslint-disable no-alert */
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {
     Breadcrumbs,
