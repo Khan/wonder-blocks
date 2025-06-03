@@ -107,6 +107,45 @@ export const Kinds: Story = {
     },
 };
 
+const kinds = ["primary", "secondary", "tertiary"] as const;
+const actionTypes = ["progressive", "neutral"] as const;
+/**
+ * ConversationIconButton has an `actionType` prop that is either `progressive`
+ * (default) or `neutral`:
+ */
+export const ActionType: Story = {
+    name: "ActionType",
+    render: (args) => (
+        <View style={{gap: sizing.size_160}}>
+            {actionTypes.map((actionType, index) => (
+                <View
+                    key={index}
+                    style={{gap: sizing.size_160, flexDirection: "row"}}
+                >
+                    {kinds.map((kind, index) => (
+                        <ConversationIconButton
+                            icon={IconMappings.arrowUpBold}
+                            aria-label="navigate"
+                            onClick={() => {}}
+                            actionType={actionType}
+                            kind={kind}
+                            key={`${kind}-${actionType}-${index}`}
+                        />
+                    ))}
+                    <ConversationIconButton
+                        disabled={true}
+                        icon={IconMappings.arrowUpBold}
+                        aria-label="search"
+                        onClick={(e) => action("clicked")(e)}
+                        actionType={actionType}
+                        key={`disabled-${actionType}-${index}`}
+                    />
+                </View>
+            ))}
+        </View>
+    ),
+};
+
 /**
  * ConversationIconButton can be configured to be toggleable. This is useful for
  * features like toggling a microphone on and off.
