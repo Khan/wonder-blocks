@@ -1301,9 +1301,6 @@ importers:
       react-router-dom-v5-compat:
         specifier: 'catalog:'
         version: 6.30.0(patch_hash=a5aa3aa17ce8dee8928732ae0a22bd6e9e3c0c458e4c2024a78e155de1060245)(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
-      storybook:
-        specifier: 'catalog:'
-        version: 9.1.8(@testing-library/dom@10.4.0)(msw@2.7.0(@types/node@22.13.0)(typescript@5.7.3))(prettier@3.4.2)(vite@6.0.11(@types/node@22.13.0)(terser@5.39.0)(yaml@2.7.0))
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
