@@ -8,6 +8,7 @@
         {"path": "./packages/wonder-blocks-accordion/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-announcer/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-banner/tsconfig-build.json"},
+        {"path": "./packages/wonder-blocks-badge/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-birthday-picker/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-breadcrumbs/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-button/tsconfig-build.json"},
