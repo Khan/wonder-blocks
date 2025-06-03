@@ -66,10 +66,12 @@ const meta = {
             </View>
         ),
     ],
-    parameters: {
+    globals: {
         backgrounds: {
-            default: "offWhite",
+            value: "offWhite",
         },
+    },
+    parameters: {
         chromatic: {
             modes: themeModes,
         },
