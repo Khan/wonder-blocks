@@ -39,25 +39,26 @@ describe("Badge", () => {
     it("should forward the ref to the root element", () => {
         // Arrange
         const ref = React.createRef<HTMLDivElement>();
+        render(<Badge ref={ref} label="Badge label" testId="badge" />);
 
         // Act
-        const {container} = render(<Badge ref={ref} label="Badge label" />);
+        const badge = screen.getByTestId("badge");
 
         // Assert
-        // eslint-disable-next-line testing-library/no-node-access -- explicitly check the root element
-        expect(ref.current).toBe(container.firstChild);
+        expect(ref.current).toBe(badge);
     });
 
     describe("Attributes", () => {
         it("should set the id attribute", () => {
             // Arrange
             const id = "badge-id";
+            render(<Badge id={id} label="Badge label" testId="badge" />);
+
             // Act
-            const {container} = render(<Badge id={id} label="Badge label" />);
+            const badge = screen.getByTestId("badge");
 
             // Assert
-            // eslint-disable-next-line testing-library/no-node-access -- explicitly check the root element
-            expect(container.firstChild).toHaveAttribute("id", id);
+            expect(badge).toHaveAttribute("id", id);
         });
 
         it("should set the data-testid attribute", () => {
@@ -69,7 +70,7 @@ describe("Badge", () => {
             );
 
             // Assert
-            // eslint-disable-next-line testing-library/no-node-access -- explicitly check the root element
+            // eslint-disable-next-line testing-library/no-node-access -- explicitly check the root element for this test since we are testing the testId functionality
             expect(container.firstChild).toHaveAttribute("data-testid", testId);
         });
     });
@@ -106,17 +107,15 @@ describe("Badge", () => {
         describe("Semantics", () => {
             it("should use the tag prop if provided", () => {
                 // Arrange
-                // Act
-                const {container} = render(
-                    <Badge tag={"strong"} label="Badge label" />,
+                render(
+                    <Badge tag="strong" label="Badge label" testId="badge" />,
                 );
 
+                // Act
+                const badge = screen.getByTestId("badge");
+
                 // Assert
-                // eslint-disable-next-line testing-library/no-node-access -- explicitly check the root element
-                expect(container.firstChild).toHaveProperty(
-                    "tagName",
-                    "STRONG",
-                );
+                expect(badge).toHaveProperty("tagName", "STRONG");
             });
         });
     });
