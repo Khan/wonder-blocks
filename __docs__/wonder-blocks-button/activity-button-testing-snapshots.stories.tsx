@@ -45,7 +45,6 @@ const kinds = [
 
 const actionTypes = [
     {name: "Progressive", props: {actionType: "progressive"}},
-    {name: "Neutral", props: {actionType: "neutral"}},
     {name: "Disabled", props: {disabled: true}},
 ];
 
@@ -119,7 +118,12 @@ export const Scenarios: Story = {
                     children: (
                         <ActivityButton
                             startIcon={paperPlaneIcon}
-                            style={{maxWidth: 200, minHeight: sizing.size_320}}
+                            styles={{
+                                root: {
+                                    maxWidth: 200,
+                                    minHeight: sizing.size_320,
+                                },
+                            }}
                         >
                             Send with a very long text
                         </ActivityButton>
@@ -142,7 +146,11 @@ export const Scenarios: Story = {
                     children: (
                         <ActivityButton
                             startIcon={paperPlaneIcon}
-                            style={{maxWidth: 200}}
+                            styles={{
+                                root: {
+                                    maxWidth: 200,
+                                },
+                            }}
                         >
                             {longTextWithNoWordBreak}
                         </ActivityButton>

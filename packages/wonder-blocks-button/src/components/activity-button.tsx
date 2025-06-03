@@ -16,24 +16,13 @@ import {
 import type {
     ActivityButtonActionType,
     ButtonKind,
-    ButtonProps,
+    ActivityButtonProps,
     ButtonRef,
 } from "../util/button.types";
 
 import {ButtonUnstyled} from "./button-unstyled";
 
-type Props = Omit<ButtonProps, "actionType" | "size"> & {
-    /**
-     * The action type of the button. This determines the visual style of the
-     * button.
-     *
-     * - `progressive` is used for actions that move the user forward in a flow.
-     * - `neutral` is used for buttons that indicate a neutral action.
-     */
-    actionType?: ActivityButtonActionType;
-};
-
-type ButtonCoreProps = Props & ChildrenProps & ClickableState;
+type ButtonCoreProps = ActivityButtonProps & ChildrenProps & ClickableState;
 
 const ActivityButtonCore: React.ForwardRefExoticComponent<
     ButtonCoreProps & React.RefAttributes<ButtonRef>
@@ -43,34 +32,32 @@ const ActivityButtonCore: React.ForwardRefExoticComponent<
 ) {
     const {
         children,
-        actionType,
-        disabled: disabledProp = false,
+        disabled = false,
         kind = "primary",
         pressed,
-        style,
+        styles: stylesProp,
         type = undefined,
-        spinner,
         startIcon,
         endIcon,
         waiting: _,
         ...restProps
     } = props;
 
-    const buttonStyles = _generateStyles(actionType, disabledProp, kind);
-
-    const disabled = spinner || disabledProp;
+    // NOTE: `progressive` is the only action type supported by this component.
+    const buttonStyles = _generateStyles("progressive", disabled, kind);
 
     const sharedStyles = [
         buttonStyles.button,
         disabled && buttonStyles.disabled,
         !disabled && pressed && buttonStyles.pressed,
-        style,
+        stylesProp?.root,
     ];
 
     const chonkyStyles = [
         buttonStyles.chonky,
         disabled && buttonStyles.chonkyDisabled,
         !disabled && pressed && buttonStyles.chonkyPressed,
+        stylesProp?.box,
     ];
 
     return (
@@ -91,7 +78,7 @@ const ActivityButtonCore: React.ForwardRefExoticComponent<
                             size="medium"
                             color="currentColor"
                             icon={startIcon}
-                            style={styles.icon}
+                            style={[styles.icon, stylesProp?.startIcon]}
                             aria-hidden="true"
                         />
                     )}
@@ -100,7 +87,7 @@ const ActivityButtonCore: React.ForwardRefExoticComponent<
                         tag="span"
                         size="medium"
                         weight="semi"
-                        style={styles.label}
+                        style={[styles.label, stylesProp?.label]}
                     >
                         {children}
                     </BodyText>
@@ -112,7 +99,7 @@ const ActivityButtonCore: React.ForwardRefExoticComponent<
                             size="medium"
                             color="currentColor"
                             icon={endIcon}
-                            style={styles.icon}
+                            style={[styles.icon, stylesProp?.endIcon]}
                             aria-hidden="true"
                         />
                     )}
@@ -141,7 +128,7 @@ const ActivityButtonCore: React.ForwardRefExoticComponent<
  * ```
  */
 export const ActivityButton = React.forwardRef(function ActivityButton(
-    props: Props,
+    props: ActivityButtonProps,
     ref: React.ForwardedRef<ButtonRef>,
 ) {
     const {
@@ -155,10 +142,8 @@ export const ActivityButton = React.forwardRef(function ActivityButton(
         tabIndex,
         target,
         rel,
-        actionType = "progressive",
         kind = "primary",
         disabled = false,
-        spinner = false,
         ...sharedButtonCoreProps
     } = props;
 
@@ -174,7 +159,7 @@ export const ActivityButton = React.forwardRef(function ActivityButton(
 
     return (
         <ClickableBehavior
-            disabled={spinner || disabled}
+            disabled={disabled}
             href={href}
             role={href ? "link" : "button"}
             type={type}
@@ -189,8 +174,6 @@ export const ActivityButton = React.forwardRef(function ActivityButton(
                     {...state}
                     {...restChildProps}
                     disabled={disabled}
-                    spinner={spinner || state.waiting}
-                    actionType={actionType}
                     kind={kind}
                     skipClientNav={skipClientNav}
                     href={href}
@@ -276,6 +259,7 @@ const theme = {
 // Static styles for the button.
 const styles = {
     icon: {
+        alignSelf: "center",
         width: theme.icon.sizing.width,
         height: theme.icon.sizing.height,
     },

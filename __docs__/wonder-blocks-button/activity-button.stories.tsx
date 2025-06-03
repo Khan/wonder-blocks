@@ -3,6 +3,7 @@ import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
+import caretRight from "@phosphor-icons/core/regular/caret-right.svg";
 
 import {action} from "@storybook/addon-actions";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -10,7 +11,9 @@ import {ActivityButton} from "@khanacademy/wonder-blocks-button";
 
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon-button/package.json";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+
+import activityButtonArgtypes from "./activity-button.argtypes";
 
 export default {
     title: "Packages / Button / ActivityButton",
@@ -34,11 +37,10 @@ export default {
             },
         },
     },
-    // argTypes: iconButtonSharedArgtypes,
+    argTypes: activityButtonArgtypes,
     args: {
         children: "Search",
         kind: "primary",
-        actionType: "progressive",
         onClick: (e: React.SyntheticEvent) => {
             action("clicked")(e);
         },
@@ -48,31 +50,33 @@ export default {
 type Story = StoryObj<typeof ActivityButton>;
 
 /**
- * Minimal activity button. The only props specified in this example are `icon`
- * and `onClick`.
+ * Minimal activity button which only includes a label and an `onClick`
+ * handler. The `kind` prop is set to `primary` by default.
  */
 export const Default: Story = {
     args: {
-        // icon: magnifyingGlass,
-        actionType: "progressive",
-        disabled: false,
-        kind: "primary",
-    },
-};
-
-export const WithStartIcon: Story = {
-    args: {
-        children: "Search",
-        startIcon: magnifyingGlass,
-        actionType: "progressive",
         disabled: false,
         kind: "primary",
     },
 };
 
 /**
- * In this example, we have `primary`, `secondary`, `tertiary` and `disabled`
- * `ActivityButton`s from left to right.
+ * This example includes a start icon, which is specified using the
+ * `startIcon` prop. The `endIcon` prop can also be used to specify an icon
+ * that appears at the end of the button.
+ */
+export const WithStartIcon: Story = {
+    args: {
+        children: "Search",
+        startIcon: magnifyingGlass,
+        disabled: false,
+        kind: "primary",
+    },
+};
+
+/**
+ * In this example, we have `primary (default), `secondary`, `tertiary` and
+ * `disabled` `ActivityButton`'s from left to right.
  */
 export const Kinds: Story = {
     render: (args) => {
@@ -87,37 +91,44 @@ export const Kinds: Story = {
     },
 };
 
-const kinds = ["primary", "secondary", "tertiary"] as const;
-const actionTypes = ["progressive", "neutral"] as const;
 /**
- * ActivityButton has an `actionType` prop that is either `progressive` (the
- * default, as shown above) or `neutral`:
+ * Sometimes you may want to apply custom styles to the button. In this
+ * example, we apply this by passing a `style` prop to the button.
+ *
+ * Note that we recommend using the default styles, but if you need to
+ * customize the button, we encourage to use it for layout purposes only.
+ *
+ * The following parts can be styled:
+ * - `root`: Styles the root element (button)
+ * - `box`: Styles the "chonky" box element
+ * - `startIcon`: Styles the start icon element
+ * - `endIcon`: Styles the end icon element
+ * - `label`: Styles the text in the button
  */
-export const ActionType: Story = {
-    name: "ActionType",
-    render: (args) => (
-        <View style={{gap: sizing.size_160}}>
-            {actionTypes.map((actionType, index) => (
-                <View
-                    key={index}
-                    style={{gap: sizing.size_160, flexDirection: "row"}}
-                >
-                    {kinds.map((kind, index) => (
-                        <ActivityButton
-                            {...args}
-                            actionType={actionType}
-                            kind={kind}
-                            key={`${kind}-${actionType}-${index}`}
-                        />
-                    ))}
-                    <ActivityButton
-                        {...args}
-                        disabled={true}
-                        actionType={actionType}
-                        key={`disabled-${actionType}-${index}`}
-                    />
-                </View>
-            ))}
-        </View>
-    ),
+export const WithCustomStyles: Story = {
+    args: {
+        children: "Search",
+        startIcon: magnifyingGlass,
+        endIcon: caretRight,
+        styles: {
+            root: {
+                gap: sizing.size_200,
+            },
+            box: {
+                gap: sizing.size_320,
+            },
+            startIcon: {
+                outline: `${border.width.thin} solid ${semanticColor.core.border.instructive.subtle}`,
+                alignSelf: "flex-start",
+            },
+            endIcon: {
+                outline: `${border.width.thin} solid ${semanticColor.core.border.instructive.subtle}`,
+                alignSelf: "flex-end",
+            },
+            label: {
+                border: `${border.width.thin} solid ${semanticColor.core.border.instructive.subtle}`,
+                padding: sizing.size_120,
+            },
+        },
+    },
 };
