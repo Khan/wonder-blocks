@@ -137,7 +137,7 @@
     "remark-gfm": "^4.0.0",
     "rollup": "^2.79.2",
     "rollup-plugin-node-externals": "^8.0.0",
-    "storybook": "^9.1.8",
+    "storybook": "catalog:",
     "storybook-addon-pseudo-states": "^9.1.8",
     "swc_mut_cjs_exports": "^10.7.0",
     "turbo": "^2.5.3",
