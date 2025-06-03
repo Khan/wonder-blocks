@@ -131,4 +131,11 @@ export const WithCustomStyles: Story = {
             },
         },
     },
+    parameters: {
+        chromatic: {
+            // Enable snapshots for this story so we can verify custom styles
+            // are used correctly
+            disableSnapshot: false,
+        },
+    },
 };
