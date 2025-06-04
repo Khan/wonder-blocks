@@ -367,6 +367,9 @@ const bannerTokens = {
         layout: {
             marginBlock: sizing.size_080,
         },
+        sizing: {
+            height: sizing.size_180,
+        },
     },
     action: {
         layout: {
@@ -422,7 +425,7 @@ const styles = StyleSheet.create({
         justifyContent: "flex-start",
         marginBlock: bannerTokens.actions.layout.marginBlock,
         // Set the height to remove the padding from buttons
-        height: 18,
+        height: bannerTokens.actions.sizing.height,
         alignItems: "center",
     },
     action: {
