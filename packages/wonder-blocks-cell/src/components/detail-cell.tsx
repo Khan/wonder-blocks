@@ -73,10 +73,14 @@ type DetailCellProps = CellProps & {
  * ```
  */
 const DetailCell = function (props: DetailCellProps): React.ReactElement {
-    const {title, subtitle1, subtitle2, ...coreProps} = props;
+    const {contentStyle, title, subtitle1, subtitle2, ...coreProps} = props;
 
     return (
-        <CellCore {...coreProps} innerStyle={styles.innerWrapper}>
+        <CellCore
+            {...coreProps}
+            innerStyle={styles.innerWrapper}
+            contentStyle={{gap: sizing.size_020, ...contentStyle}}
+        >
             <Subtitle subtitle={subtitle1} disabled={coreProps.disabled} />
             {typeof title === "string" ? (
                 <LabelMedium>{title}</LabelMedium>
@@ -92,10 +96,8 @@ const styles = StyleSheet.create({
     subtitle: {
         color: semanticColor.text.secondary,
     },
-
     // This is to override the default padding of the CellCore innerWrapper.
     innerWrapper: {
-        gap: sizing.size_020,
         padding: `${CellMeasurements.detailCellPadding.paddingVertical}px ${CellMeasurements.detailCellPadding.paddingHorizontal}px`,
     },
 });
