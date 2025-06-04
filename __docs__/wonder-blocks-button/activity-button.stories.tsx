@@ -146,7 +146,7 @@ export const WithCustomStyles: Story = {
  * To do this, we use a `ref` to the button and call the `focus()` method
  * on it, so the `ActivityButton` receives focus.
  */
-export const RecievingFocusProgrammatically: Story = {
+export const ReceivingFocusProgrammatically: Story = {
     render: function Render(args) {
         // This story is used to test the focus ring when the button receives
         // focus programmatically. The button is focused when the story is
