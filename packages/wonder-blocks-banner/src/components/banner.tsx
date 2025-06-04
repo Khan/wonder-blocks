@@ -13,7 +13,6 @@ import {
     font,
     semanticColor,
     sizing,
-    spacing,
 } from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
@@ -324,8 +323,45 @@ const bannerTokens = {
                 blockEnd: border.width.none,
             },
         },
+        layout: {
+            padding: sizing.size_080,
+        },
     },
-    icon: {},
+    icon: {
+        layout: {
+            marginBlockStart: sizing.size_080,
+            marginBlockEnd: sizing.size_080,
+            // The total distance from the icon to the edge is 16px. The
+            // vertical identifier is already 6px, and the padding on inner
+            // conatiner is 8px. So that leaves 2px.
+            marginInlineStart: sizing.size_020,
+            marginInlineEnd: sizing.size_080,
+        },
+    },
+    label: {
+        layout: {
+            margin: sizing.size_080,
+        },
+    },
+    actions: {
+        layout: {
+            marginBlock: sizing.size_080,
+        },
+    },
+    action: {
+        layout: {
+            marginInline: sizing.size_080,
+        },
+    },
+    dismiss: {
+        sizing: {
+            height: sizing.size_400,
+            width: sizing.size_400,
+        },
+        layout: {
+            marginInline: sizing.size_080,
+        },
+    },
 };
 
 const styles = StyleSheet.create({
@@ -338,16 +374,13 @@ const styles = StyleSheet.create({
     },
     containerInner: {
         flexDirection: "row",
-        padding: spacing.xSmall_8,
+        padding: bannerTokens.root.layout.padding,
     },
     icon: {
-        marginTop: spacing.xSmall_8,
-        marginBottom: spacing.xSmall_8,
-        // The total distance from the icon to the edge is 16px. The
-        // vertical identifier is already 6px, and the padding on inner
-        // conatiner is 8px. So that leaves 2px.
-        marginInlineStart: spacing.xxxxSmall_2,
-        marginInlineEnd: spacing.xSmall_8,
+        marginBlockStart: bannerTokens.icon.layout.marginBlockStart,
+        marginBlockEnd: bannerTokens.icon.layout.marginBlockEnd,
+        marginInlineStart: bannerTokens.icon.layout.marginInlineStart,
+        marginInlineEnd: bannerTokens.icon.layout.marginInlineEnd,
         alignSelf: "flex-start",
         color: semanticColor.icon.primary,
     },
@@ -361,22 +394,20 @@ const styles = StyleSheet.create({
     },
     labelContainer: {
         flexShrink: 1,
-        margin: spacing.xSmall_8,
+        margin: bannerTokens.label.layout.margin,
         textAlign: "start",
         overflowWrap: "break-word",
     },
     actionsContainer: {
         flexDirection: "row",
         justifyContent: "flex-start",
-        marginTop: spacing.xSmall_8,
-        marginBottom: spacing.xSmall_8,
+        marginBlock: bannerTokens.actions.layout.marginBlock,
         // Set the height to remove the padding from buttons
         height: 18,
         alignItems: "center",
     },
     action: {
-        marginLeft: spacing.xSmall_8,
-        marginRight: spacing.xSmall_8,
+        marginInline: bannerTokens.action.layout.marginInline,
         justifyContent: "center",
     },
     link: {
@@ -386,12 +417,11 @@ const styles = StyleSheet.create({
         flexShrink: 1,
     },
     dismissContainer: {
-        height: 40,
-        width: 40,
+        height: bannerTokens.dismiss.sizing.height,
+        width: bannerTokens.dismiss.sizing.width,
         justifyContent: "center",
         alignItems: "center",
-        marginLeft: spacing.xSmall_8,
-        marginRight: spacing.xSmall_8,
+        marginInline: bannerTokens.dismiss.layout.marginInline,
     },
     floatingLayout: {
         borderRadius: bannerTokens.root.border.radius.floating,
