@@ -14,7 +14,7 @@ import {
     semanticColor,
     spacing,
 } from "@khanacademy/wonder-blocks-tokens";
-import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import infoIcon from "@phosphor-icons/core/regular/info.svg";
 import successIcon from "@phosphor-icons/core/regular/smiley.svg";
@@ -281,7 +281,9 @@ const Banner = (props: Props): React.ReactElement => {
                 />
                 <View style={styles.labelAndButtonsContainer}>
                     <View style={styles.labelContainer}>
-                        <LabelSmall>{text}</LabelSmall>
+                        <BodyText size="small" tag="span">
+                            {text}
+                        </BodyText>
                     </View>
                     {actions && (
                         <View style={styles.actionsContainer}>
