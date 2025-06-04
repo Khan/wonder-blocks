@@ -104,7 +104,7 @@ export const StateSheetStory: StoryComponentType = {
                                 <Banner
                                     {...props}
                                     text={
-                                        <BodyText>
+                                        <BodyText size="small">
                                             Example text with an{" "}
                                             <Link href="/" inline={true}>
                                                 Inline Link
@@ -269,7 +269,7 @@ const scenarios = [
         name: "With inline link",
         props: {
             text: (
-                <BodyText>
+                <BodyText size="small">
                     Example text with an{" "}
                     <Link href="/" inline={true}>
                         Inline Link
