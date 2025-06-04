@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 10.3.0
+
+### Minor Changes
+
+- e9498ec: Adds `ConversationIconButton` component
+
 ## 10.2.2
 
 ### Patch Changes
