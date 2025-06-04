@@ -62,27 +62,32 @@ export const DefaultCompactCell: StoryComponentType = {
 };
 
 /**
- * Only including an accessory on the left.
+ * You can create a minimal cell that only uses a title and an PhosphorIcon that
+ * can be placed on the left or right (or both). In this case, we will place the
+ * icon on the left to show you how cell is flexible. Note that you can pass any
+ * of the existing WB components such as `PhosphorIcon`, `IconButton`,
+ * `Tooltip`, etc.
  */
-export const CompactCellLeft: StoryComponentType = () => (
-    <CompactCell
-        title="Intro to rational & irrational numbers"
-        leftAccessory={
-            <PhosphorIcon icon={IconMappings.article} size="medium" />
-        }
-    />
-);
-
-CompactCellLeft.parameters = {
-    docs: {
-        description: {
-            story: "You can create a minimal cell that only uses a title and an PhosphorIcon that can be placed on the left or right (or both). In this case, we will place the icon on the left to show you how cell is flexible. Note that you can pass any of the existing WB components such as `PhosphorIcon`, `IconButton`, `Tooltip`, etc.",
+export const CompactCellLeft: StoryComponentType = {
+    render: () => (
+        <CompactCell
+            title="Intro to rational & irrational numbers"
+            leftAccessory={
+                <PhosphorIcon icon={IconMappings.article} size="medium" />
+            }
+        />
+    ),
+    parameters: {
+        chromatic: {
+            // This is already tested in the StateSheet story.
+            disableSnapshot: true,
         },
     },
 };
 
 /**
- * Only including an accessory on the right.
+ * You can also create a cell with an accessory placed on the right. Note that
+ * you can pass any of the existing WB components such as `PhosphorIcon`.
  */
 export const CompactCellRight: StoryComponentType = {
     render: () => (
@@ -93,48 +98,43 @@ export const CompactCellRight: StoryComponentType = {
             }
         />
     ),
-};
-
-CompactCellRight.parameters = {
-    docs: {
-        description: {
-            story: "You can also create a cell with an accessory placed on the right. Note that you can pass any of the existing WB components such as `PhosphorIcon`.",
+    parameters: {
+        chromatic: {
+            // This is already tested in the StateSheet story.
+            disableSnapshot: true,
         },
     },
 };
 
 /**
- * Adding multiline title to verify that the cell's height is correct.
+ * Cells should keep a consistent height no matter the content passed in the
+ * title prop. It should also respect a `minHeight` of 48px.
  */
-export const CompactCellWithDifferentHeights: StoryComponentType = () => (
-    <>
-        <CompactCell
-            title="Single line with short accessory."
-            rightAccessory={AccessoryMappings.withCaret}
-        />
-        <Strut size={spacing.xSmall_8} />
-        <CompactCell
-            title="Single line with tall accessory."
-            rightAccessory={AccessoryMappings.withIconText}
-        />
-        <Strut size={spacing.xSmall_8} />
-        <CompactCell
-            title="Multi line title with tall accessory. Content should fit within the container and the cell height should be consistent no matter the content length."
-            rightAccessory={AccessoryMappings.withIconText}
-        />
-    </>
-);
-
-CompactCellWithDifferentHeights.parameters = {
-    docs: {
-        description: {
-            story: "Cells should keep a consistent height no matter the content passed in the title prop. It should also respect a `minHeight` of 48px",
-        },
-    },
+export const CompactCellWithDifferentHeights: StoryComponentType = {
+    render: () => (
+        <>
+            <CompactCell
+                title="Single line with short accessory."
+                rightAccessory={AccessoryMappings.withCaret}
+            />
+            <Strut size={spacing.xSmall_8} />
+            <CompactCell
+                title="Single line with tall accessory."
+                rightAccessory={AccessoryMappings.withIconText}
+            />
+            <Strut size={spacing.xSmall_8} />
+            <CompactCell
+                title="Multi line title with tall accessory. Content should fit within the container and the cell height should be consistent no matter the content length."
+                rightAccessory={AccessoryMappings.withIconText}
+            />
+        </>
+    ),
 };
 
 /**
- * A CompactCell example adding both accessories (left and right)
+ * You can also create a more complex cell with accessories placed on both
+ * sides. Note that you can extend the PhosphorIcon component with custom paths
+ * such as the following example.
  */
 export const CompactCellBoth: StoryComponentType = {
     name: "CompactCell with both accessories",
@@ -153,16 +153,19 @@ export const CompactCellBoth: StoryComponentType = {
             }
         />
     ),
-};
-
-CompactCellBoth.parameters = {
-    docs: {
-        description: {
-            story: "You can also create a more complex cell with accessories placed on both sides. Note that you can extend the PhosphorIcon component with custom paths such as the following example.",
+    parameters: {
+        chromatic: {
+            // This is already tested in the StateSheet story.
+            disableSnapshot: true,
         },
     },
 };
 
+/**
+ * Accessories can also be customized to adapt to different sizes and
+ * alignments. In this example, we can see how a cell can be customized for both
+ * accessories.
+ */
 export const CompactCellAccessoryStyles: StoryComponentType = {
     name: "CompactCell accessories with custom styles",
     render: () => (
@@ -188,16 +191,9 @@ export const CompactCellAccessoryStyles: StoryComponentType = {
     ),
 };
 
-CompactCellAccessoryStyles.parameters = {
-    docs: {
-        description: {
-            story: "Accessories can also be customized to adapt to different sizes and alignments. In this example, we can see how a cell can be customized for both accessories.",
-        },
-    },
-};
-
 /**
- * Defining horizontal rule variants
+ * Cell components can use the `horizontalRule` prop to use a set of predefined
+ * variants that we can use to match our needs.
  */
 export const CompactCellHorizontalRules: StoryComponentType = {
     name: "Defining horizontal rule variants",
@@ -228,108 +224,106 @@ export const CompactCellHorizontalRules: StoryComponentType = {
     ),
 };
 
-CompactCellHorizontalRules.parameters = {
-    docs: {
-        description: {
-            story: "Cell components can use the `horizontalRule` prop to use a set of predefined variants that we can use to match our needs.",
-        },
-    },
-};
-
-export const CompactCellWithCustomStyles: StoryComponentType = () => (
-    <CompactCell
-        title="CompactCell with a darkBlue background"
-        leftAccessory={
-            <PhosphorIcon icon={IconMappings.article} size="medium" />
-        }
-        rightAccessory={
-            <PhosphorIcon icon={IconMappings.calendar} color={color.white} />
-        }
-        style={{
-            background: color.darkBlue,
-            color: color.white,
-        }}
-        onClick={() => {}}
-    />
-);
-
-CompactCellWithCustomStyles.parameters = {
-    docs: {
-        description: {
-            story: "Cell components can also adapt to different visual needs. One example of this can be done by passing a custom style object to the `style` prop.",
-        },
-    },
+/**
+ * Cell components can also adapt to different visual needs. One example of this
+ * can be done by passing a custom style object to the `style` prop.
+ */
+export const CompactCellWithCustomStyles: StoryComponentType = {
+    render: () => (
+        <CompactCell
+            title="CompactCell with a darkBlue background"
+            leftAccessory={
+                <PhosphorIcon icon={IconMappings.article} size="medium" />
+            }
+            rightAccessory={
+                <PhosphorIcon
+                    icon={IconMappings.calendar}
+                    color={color.white}
+                />
+            }
+            style={{
+                background: color.darkBlue,
+                color: color.white,
+            }}
+            onClick={() => {}}
+        />
+    ),
 };
 
 /*
- * CompactCell with onClick set
-
+ * Cell components can also also be clickable. This is done by passing an
+ * `onClick` prop to the component.
  */
-
-export const ClickableCompactCell: StoryComponentType = () => (
-    <CompactCell
-        title="Intro to rational & irrational numbers"
-        rightAccessory={<PhosphorIcon icon={IconMappings.caretRight} />}
-        onClick={() => {}}
-        aria-label="Press to navigate to the article"
-    />
-);
-
-ClickableCompactCell.parameters = {
-    chromatic: {
-        // This only includes interactions with the clickable cell, so no need
-        // to capture screenshots.
-        disableSnapshot: true,
-    },
-    docs: {
-        description: {
-            story: "Cell components can also also be clickable. This is done by passing a `onClick` prop to the component.",
+export const ClickableCompactCell: StoryComponentType = {
+    render: () => (
+        <CompactCell
+            title="Intro to rational & irrational numbers"
+            rightAccessory={<PhosphorIcon icon={IconMappings.caretRight} />}
+            onClick={() => {}}
+            aria-label="Press to navigate to the article"
+        />
+    ),
+    parameters: {
+        chromatic: {
+            // This only includes interactions with the clickable cell, so no
+            // need to capture screenshots.
+            disableSnapshot: true,
         },
     },
 };
 
-export const CompactCellActive: StoryComponentType = () => (
-    <CompactCell
-        title="Title for article item"
-        leftAccessory={
-            <PhosphorIcon
-                icon={IconMappings.playCircle}
-                size="medium"
-                color="black"
-            />
-        }
-        rightAccessory={
-            <PhosphorIcon icon={IconMappings.calendarBold} size="small" />
-        }
-        active={true}
-        onClick={() => {}}
-    />
-);
-
-CompactCellActive.parameters = {
-    docs: {
-        description: {
-            story: "The cell also supports different states within itself. The different styles are defined internally (e.g hover, focused, pressed, active, disabled) and we allow passing some props to use the `active` or `disabled` state.",
+/**
+ * The cell also supports different states within itself. The different styles
+ * are defined internally (e.g hover, focused, pressed, active, disabled) and we
+ * allow passing some props to use the `active` or `disabled` state.
+ */
+export const CompactCellActive: StoryComponentType = {
+    render: () => (
+        <CompactCell
+            title="Title for article item"
+            leftAccessory={
+                <PhosphorIcon
+                    icon={IconMappings.playCircle}
+                    size="medium"
+                    color="black"
+                />
+            }
+            rightAccessory={
+                <PhosphorIcon icon={IconMappings.calendarBold} size="small" />
+            }
+            active={true}
+            onClick={() => {}}
+        />
+    ),
+    parameters: {
+        chromatic: {
+            // This is already tested in the StateSheet story.
+            disableSnapshot: true,
         },
     },
 };
 
-export const CompactCellDisabled: StoryComponentType = () => (
-    <CompactCell
-        title="Title for article item"
-        leftAccessory={AccessoryMappings.withImage}
-        rightAccessory={
-            <PhosphorIcon icon={IconMappings.calendarBold} size="small" />
-        }
-        disabled={true}
-        onClick={() => {}}
-    />
-);
-
-CompactCellDisabled.parameters = {
-    docs: {
-        description: {
-            story: "In the following example we can see how the `disabled` state works. Note that we apply an opacity to all the elements to make it more apparent that the cell is disabled. This includes text, SVG icons, images, etc.",
+/**
+ * In the following example we can see how the `disabled` state works. Note that
+ * we apply an opacity to all the elements to make it more apparent that the
+ * cell is disabled. This includes text, SVG icons, images, etc.
+ */
+export const CompactCellDisabled: StoryComponentType = {
+    render: () => (
+        <CompactCell
+            title="Title for article item"
+            leftAccessory={AccessoryMappings.withImage}
+            rightAccessory={
+                <PhosphorIcon icon={IconMappings.calendarBold} size="small" />
+            }
+            disabled={true}
+            onClick={() => {}}
+        />
+    ),
+    parameters: {
+        chromatic: {
+            // This is already tested in the StateSheet story.
+            disableSnapshot: true,
         },
     },
 };
