@@ -12,6 +12,7 @@ import {
     border,
     font,
     semanticColor,
+    sizing,
     spacing,
 } from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
@@ -262,7 +263,8 @@ const Banner = (props: Props): React.ReactElement => {
         <View
             style={[
                 styles.containerOuter,
-                layout === "floating" && styles.floatingBorder,
+                layout === "floating" && styles.floatingLayout,
+                layout === "full-width" && styles.fullWidthLayout,
                 bannerKindStyle,
             ]}
             role={valuesForKind.role}
@@ -308,9 +310,30 @@ const Banner = (props: Props): React.ReactElement => {
     );
 };
 
+const bannerTokens = {
+    root: {
+        border: {
+            radius: {
+                default: border.radius.radius_0,
+                floating: border.radius.radius_040,
+            },
+            width: {
+                inlineStart: sizing.size_060, // uses rem so the border indicator scales to font size
+                inlineEnd: border.width.none,
+                blockStart: border.width.none,
+                blockEnd: border.width.none,
+            },
+        },
+    },
+    icon: {},
+};
+
 const styles = StyleSheet.create({
     containerOuter: {
-        borderInlineStartWidth: spacing.xxSmall_6,
+        borderInlineStartWidth: bannerTokens.root.border.width.inlineStart,
+        borderInlineEndWidth: bannerTokens.root.border.width.inlineEnd,
+        borderBlockStartWidth: bannerTokens.root.border.width.blockStart,
+        borderBlockEndWidth: bannerTokens.root.border.width.blockEnd,
         width: "100%",
     },
     containerInner: {
@@ -370,27 +393,30 @@ const styles = StyleSheet.create({
         marginLeft: spacing.xSmall_8,
         marginRight: spacing.xSmall_8,
     },
-    floatingBorder: {
-        borderRadius: border.radius.radius_040,
+    floatingLayout: {
+        borderRadius: bannerTokens.root.border.radius.floating,
         // Stop the square corners of the inner container from
         // flowing out of the rounded corners of the outer container.
         overflow: "hidden",
     },
+    fullWidthLayout: {
+        borderRadius: bannerTokens.root.border.radius.default,
+    },
     successBanner: {
         backgroundColor: semanticColor.feedback.success.subtle.background,
-        borderInlineStartColor: semanticColor.core.border.success.default,
+        borderColor: semanticColor.core.border.success.default,
     },
     infoBanner: {
         backgroundColor: semanticColor.feedback.info.subtle.background,
-        borderInlineStartColor: semanticColor.core.border.instructive.default,
+        borderColor: semanticColor.core.border.instructive.default,
     },
     warningBanner: {
         backgroundColor: semanticColor.feedback.warning.subtle.background,
-        borderInlineStartColor: semanticColor.core.border.warning.default,
+        borderColor: semanticColor.core.border.warning.default,
     },
     criticalBanner: {
         backgroundColor: semanticColor.feedback.critical.subtle.background,
-        borderInlineStartColor: semanticColor.core.border.critical.default,
+        borderColor: semanticColor.core.border.critical.default,
     },
 });
 
