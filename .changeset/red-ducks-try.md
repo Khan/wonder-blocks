@@ -1,6 +1,5 @@
 ---
 "@khanacademy/wonder-blocks-testing-core": patch
-"@khanacademy/wonder-blocks-popover": patch
 "@khanacademy/wonder-blocks-testing": patch
 ---
 
