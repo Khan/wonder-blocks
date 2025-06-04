@@ -34,12 +34,14 @@ const ActivityButtonCore: React.ForwardRefExoticComponent<
         children,
         disabled = false,
         kind = "primary",
+        focused,
         pressed,
         styles: stylesProp,
         type = undefined,
         startIcon,
         endIcon,
-        waiting: _,
+        hovered: _,
+        waiting: __,
         ...restProps
     } = props;
 
@@ -50,6 +52,7 @@ const ActivityButtonCore: React.ForwardRefExoticComponent<
         buttonStyles.button,
         disabled && buttonStyles.disabled,
         !disabled && pressed && buttonStyles.pressed,
+        !disabled && focused && buttonStyles.focused,
         stylesProp?.root,
     ];
 
@@ -347,6 +350,8 @@ const _generateStyles = (
             // :focus-visible -> Provide focus styles for keyboard users only.
             ...focusStyles.focus,
         },
+        // To receive programmatic focus.
+        focused: focusStyles.focus[":focus-visible"],
         disabled: {
             cursor: "not-allowed",
             color: theme.label.color.disabled,

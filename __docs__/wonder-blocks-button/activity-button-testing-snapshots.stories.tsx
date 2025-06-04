@@ -22,7 +22,6 @@ export default {
         children: "Button",
         icon: paperPlaneIcon,
         onClick: action("clicked"),
-        actionType: "progressive",
         size: "medium",
     },
     parameters: {
@@ -44,7 +43,7 @@ const kinds = [
 ];
 
 const actionTypes = [
-    {name: "Progressive", props: {actionType: "progressive"}},
+    {name: "Progressive", props: {}},
     {name: "Disabled", props: {disabled: true}},
 ];
 

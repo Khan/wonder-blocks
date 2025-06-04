@@ -7,7 +7,7 @@ import caretRight from "@phosphor-icons/core/regular/caret-right.svg";
 
 import {action} from "@storybook/addon-actions";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {ActivityButton} from "@khanacademy/wonder-blocks-button";
+import Button, {ActivityButton} from "@khanacademy/wonder-blocks-button";
 
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon-button/package.json";
@@ -118,11 +118,9 @@ export const WithCustomStyles: Story = {
                 gap: sizing.size_320,
             },
             startIcon: {
-                outline: `${border.width.thin} solid ${semanticColor.core.border.instructive.subtle}`,
                 alignSelf: "flex-start",
             },
             endIcon: {
-                outline: `${border.width.thin} solid ${semanticColor.core.border.instructive.subtle}`,
                 alignSelf: "flex-end",
             },
             label: {
@@ -137,5 +135,40 @@ export const WithCustomStyles: Story = {
             // are used correctly
             disableSnapshot: false,
         },
+    },
+};
+
+export const RecievingFocusProgrammatically: Story = {
+    render: function Render(args) {
+        // This story is used to test the focus ring when the button receives
+        // focus programmatically. The button is focused when the story is
+        // rendered.
+        const buttonRef = React.useRef<HTMLButtonElement | null>(null);
+
+        return (
+            <View style={{gap: sizing.size_160, flexDirection: "row"}}>
+                <ActivityButton
+                    {...args}
+                    ref={buttonRef}
+                    onClick={(e) => action("clicked")(e)}
+                />
+                <Button
+                    onClick={() => {
+                        // Focus the button when the button is clicked.
+                        if (buttonRef.current) {
+                            buttonRef.current.focus();
+                        }
+                    }}
+                    kind="secondary"
+                >
+                    Focus on the Activity Button (left)
+                </Button>
+            </View>
+        );
+    },
+    args: {
+        children: "Search",
+        startIcon: magnifyingGlass,
+        endIcon: caretRight,
     },
 };
