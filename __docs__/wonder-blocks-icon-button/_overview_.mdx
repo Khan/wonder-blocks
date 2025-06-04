@@ -1,6 +1,7 @@
 import {Meta, Canvas} from "@storybook/blocks";
 import * as IconButtonStories from "./icon-button.stories";
 import * as ActivityIconButtonStories from "./activity-icon-button.stories";
+import * as ConversationIconButtonStories from "./conversation-icon-button.stories";
 
 <Meta title="Packages / IconButton / Overview" />
 
@@ -24,8 +25,16 @@ common design pattern that can be used across different experiences.
 
 ## ActivityIconButton
 
-An icon button that is used for actions in the context of learner activities.
-It uses a "chonky" design, which is a more playful and engaging design
-that is suitable for learner activities.
+An icon button that is used for actions in the context of learner activities. It
+uses a "chonky" design, which is a more playful and engaging design that is
+suitable for learner activities.
 
 <Canvas of={ActivityIconButtonStories.Kinds} />
+
+## ConversationIconButton
+
+An icon button that is used in the context of conversations, such as sending a
+message or performing an action related to a conversation. This is useful in
+chat widgets, like the one used in Khanmigo.
+
+<Canvas of={ConversationIconButtonStories.Kinds} />
