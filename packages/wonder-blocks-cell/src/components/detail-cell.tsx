@@ -1,8 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelSmall, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import CellCore from "./internal/cell-core";
@@ -79,14 +78,11 @@ const DetailCell = function (props: DetailCellProps): React.ReactElement {
     return (
         <CellCore {...coreProps} innerStyle={styles.innerWrapper}>
             <Subtitle subtitle={subtitle1} disabled={coreProps.disabled} />
-            {subtitle1 && <Strut size={spacing.xxxxSmall_2} />}
             {typeof title === "string" ? (
                 <LabelMedium>{title}</LabelMedium>
             ) : (
                 title
             )}
-            {/* Add a vertical spacing between the title and the subtitle */}
-            {subtitle2 && <Strut size={spacing.xxxxSmall_2} />}
             <Subtitle subtitle={subtitle2} disabled={coreProps.disabled} />
         </CellCore>
     );
@@ -99,6 +95,7 @@ const styles = StyleSheet.create({
 
     // This is to override the default padding of the CellCore innerWrapper.
     innerWrapper: {
+        gap: sizing.size_020,
         padding: `${CellMeasurements.detailCellPadding.paddingVertical}px ${CellMeasurements.detailCellPadding.paddingHorizontal}px`,
     },
 });

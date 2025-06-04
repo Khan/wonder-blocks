@@ -1,7 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-cell",
   "version": "4.1.19",
-  "design": "v1",
   "publishConfig": {
     "access": "public"
   },
@@ -16,7 +15,6 @@
   "dependencies": {
     "@khanacademy/wonder-blocks-clickable": "workspace:*",
     "@khanacademy/wonder-blocks-core": "workspace:*",
-    "@khanacademy/wonder-blocks-layout": "workspace:*",
     "@khanacademy/wonder-blocks-tokens": "workspace:*",
     "@khanacademy/wonder-blocks-typography": "workspace:*"
   },

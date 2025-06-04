@@ -5,7 +5,6 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {
     border,
     color,
@@ -38,18 +37,15 @@ const LeftAccessory = ({
     }
 
     return (
-        <>
-            <View
-                style={[
-                    styles.accessory,
-                    disabled && styles.accessoryDisabled,
-                    {...leftAccessoryStyle},
-                ]}
-            >
-                {leftAccessory}
-            </View>
-            <Strut size={CellMeasurements.accessoryHorizontalSpacing} />
-        </>
+        <View
+            style={[
+                styles.accessory,
+                disabled && styles.accessoryDisabled,
+                {...leftAccessoryStyle},
+            ]}
+        >
+            {leftAccessory}
+        </View>
     );
 };
 
@@ -76,20 +72,17 @@ const RightAccessory = ({
     }
 
     return (
-        <>
-            <Strut size={CellMeasurements.accessoryHorizontalSpacing} />
-            <View
-                style={[
-                    styles.accessory,
-                    styles.accessoryRight,
-                    disabled && styles.accessoryDisabled,
-                    {...rightAccessoryStyle},
-                    active && styles.accessoryActive,
-                ]}
-            >
-                {rightAccessory}
-            </View>
-        </>
+        <View
+            style={[
+                styles.accessory,
+                styles.accessoryRight,
+                disabled && styles.accessoryDisabled,
+                {...rightAccessoryStyle},
+                active && styles.accessoryActive,
+            ]}
+        >
+            {rightAccessory}
+        </View>
     );
 };
 
@@ -283,6 +276,7 @@ const styles = StyleSheet.create({
 
     innerWrapper: {
         minHeight: CellMeasurements.cellMinHeight,
+        gap: CellMeasurements.accessoryHorizontalSpacing,
         padding: `${CellMeasurements.cellPadding.paddingVertical}px ${CellMeasurements.cellPadding.paddingHorizontal}px`,
         flexDirection: "row",
         flex: 1,
