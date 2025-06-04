@@ -77,7 +77,6 @@ type BannerLayout =
     | "full-width";
 
 type BannerValues = {
-    color: string;
     icon: PhosphorIconAsset;
     role: "status" | "alert";
     ariaLive?: "assertive" | "polite";
@@ -136,29 +135,38 @@ const getValuesForKind = (kind: BannerKind): BannerValues => {
     switch (kind) {
         case "success":
             return {
-                color: semanticColor.status.success.foreground,
                 icon: successIcon,
                 role: "status",
             };
         case "warning":
             return {
-                color: semanticColor.status.warning.foreground,
                 icon: warningIcon,
                 role: "alert",
                 ariaLive: "polite",
             };
         case "critical":
             return {
-                color: semanticColor.status.critical.foreground,
                 icon: criticalIcon,
                 role: "alert",
             };
         default:
             return {
-                color: semanticColor.status.notice.foreground,
                 icon: infoIcon,
                 role: "status",
             };
+    }
+};
+
+const getBannerKindStyle = (kind: BannerKind) => {
+    switch (kind) {
+        case "success":
+            return styles.successBanner;
+        case "info":
+            return styles.infoBanner;
+        case "warning":
+            return styles.warningBanner;
+        case "critical":
+            return styles.criticalBanner;
     }
 };
 
@@ -248,24 +256,20 @@ const Banner = (props: Props): React.ReactElement => {
 
     const valuesForKind = getValuesForKind(kind);
 
+    const bannerKindStyle = getBannerKindStyle(kind);
+
     return (
         <View
             style={[
                 styles.containerOuter,
                 layout === "floating" && styles.floatingBorder,
-                {borderInlineStartColor: valuesForKind.color},
+                bannerKindStyle,
             ]}
             role={valuesForKind.role}
             aria-label={ariaLabel}
             aria-live={valuesForKind.ariaLive}
             testId={testId}
         >
-            <View
-                style={[
-                    styles.backgroundColor,
-                    {backgroundColor: valuesForKind.color},
-                ]}
-            />
             <View style={styles.containerInner}>
                 <PhosphorIcon
                     icon={icon || valuesForKind.icon}
@@ -303,24 +307,9 @@ const Banner = (props: Props): React.ReactElement => {
 };
 
 const styles = StyleSheet.create({
-    backgroundColor: {
-        position: "absolute",
-        top: 0,
-        bottom: 0,
-        left: 0,
-        right: 0,
-        opacity: 0.08,
-    },
     containerOuter: {
         borderInlineStartWidth: spacing.xxSmall_6,
         width: "100%",
-        // Because of the background color's opacity value,
-        // the base color needs to be hard-coded as white for the
-        // intended pastel background color to show up correctly
-        // on dark backgrounds.
-        // TODO(WB-1865): Verify if we can change this to use semanticColor
-        // status tokens.
-        backgroundColor: semanticColor.surface.primary,
     },
     containerInner: {
         flexDirection: "row",
@@ -384,6 +373,22 @@ const styles = StyleSheet.create({
         // Stop the square corners of the inner container from
         // flowing out of the rounded corners of the outer container.
         overflow: "hidden",
+    },
+    successBanner: {
+        backgroundColor: semanticColor.feedback.success.subtle.background,
+        borderInlineStartColor: semanticColor.core.border.success.default,
+    },
+    infoBanner: {
+        backgroundColor: semanticColor.feedback.info.subtle.background,
+        borderInlineStartColor: semanticColor.core.border.instructive.default,
+    },
+    warningBanner: {
+        backgroundColor: semanticColor.feedback.warning.subtle.background,
+        borderInlineStartColor: semanticColor.core.border.warning.default,
+    },
+    criticalBanner: {
+        backgroundColor: semanticColor.feedback.critical.subtle.background,
+        borderInlineStartColor: semanticColor.core.border.critical.default,
     },
 });
 
