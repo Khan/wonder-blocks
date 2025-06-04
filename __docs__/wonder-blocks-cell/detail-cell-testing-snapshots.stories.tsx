@@ -1,31 +1,36 @@
 import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {CompactCell} from "@khanacademy/wonder-blocks-cell";
+import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
+import {AccessoryMappings} from "./compact-cell.argtypes";
+import {ScenariosLayout} from "../components/scenarios-layout";
 import {
     longText,
     longTextWithNoWordBreak,
 } from "../components/text-for-testing";
-import {ScenariosLayout} from "../components/scenarios-layout";
 
 const defaultProps = {
     title: "Title for article item",
-    leftAccessory: <PhosphorIcon icon={IconMappings.calendarBold} />,
+    subtitle1: "Subtitle 1 for article item",
+    subtitle2: "Subtitle 2 for article item",
+    leftAccessory: AccessoryMappings.withImage,
     rightAccessory: <PhosphorIcon icon={IconMappings.caretRightBold} />,
 };
 
 /**
  * The following stories are used to generate the pseudo states for the
- * CompactCell component. This is only used for visual testing in Chromatic.
+ * DetailCell component. This is only used for visual testing in Chromatic.
  */
 export default {
-    title: "Packages / Cell / Testing / Snapshots / CompactCell",
-    component: CompactCell,
+    title: "Packages / Cell / Testing / Snapshots / DetailCell",
+    component: DetailCell,
     args: {
         title: defaultProps.title,
+        subtitle1: defaultProps.subtitle1,
+        subtitle2: defaultProps.subtitle2,
     },
     parameters: {
         backgrounds: {
@@ -33,9 +38,9 @@ export default {
         },
     },
     tags: ["!autodocs"],
-} as Meta<typeof CompactCell>;
+} as Meta<typeof DetailCell>;
 
-type Story = StoryObj<typeof CompactCell>;
+type Story = StoryObj<typeof DetailCell>;
 
 const rows = [{name: "Clickable", props: {onClick: () => {}}}];
 
@@ -60,7 +65,7 @@ export const StateSheetStory: Story = {
         return (
             <StateSheet rows={rows} columns={columns} title="Status / Variant">
                 {({props, className}) => (
-                    <CompactCell {...args} {...props} className={className} />
+                    <DetailCell {...args} {...props} className={className} />
                 )}
             </StateSheet>
         );
@@ -103,10 +108,40 @@ export const Scenarios: Story = {
                 },
             },
             {
+                name: "No Subtitles",
+                props: {
+                    ...defaultProps,
+                    subtitle1: undefined,
+                    subtitle2: undefined,
+                },
+            },
+            {
+                name: "Subtitle 1 only",
+                props: {
+                    ...defaultProps,
+                    subtitle2: undefined,
+                },
+            },
+            {
+                name: "Subtitle 2 only",
+                props: {
+                    ...defaultProps,
+                    subtitle1: undefined,
+                },
+            },
+            {
+                name: "Title only",
+                props: {
+                    title: defaultProps.title,
+                },
+            },
+            {
                 name: "Long Text",
                 props: {
                     ...defaultProps,
                     title: longText,
+                    subtitle1: longText,
+                    subtitle2: longText,
                 },
             },
             {
@@ -114,6 +149,8 @@ export const Scenarios: Story = {
                 props: {
                     ...defaultProps,
                     title: longTextWithNoWordBreak,
+                    subtitle1: longTextWithNoWordBreak,
+                    subtitle2: longTextWithNoWordBreak,
                 },
             },
             {
@@ -121,6 +158,8 @@ export const Scenarios: Story = {
                 props: {
                     ...defaultProps,
                     title: longText,
+                    subtitle1: longText,
+                    subtitle2: longText,
                     leftAccessory: undefined,
                     rightAccessory: undefined,
                 },
@@ -130,6 +169,8 @@ export const Scenarios: Story = {
                 props: {
                     ...defaultProps,
                     title: longTextWithNoWordBreak,
+                    subtitle1: longTextWithNoWordBreak,
+                    subtitle2: longTextWithNoWordBreak,
                     leftAccessory: undefined,
                     rightAccessory: undefined,
                 },
@@ -138,7 +179,7 @@ export const Scenarios: Story = {
 
         return (
             <ScenariosLayout scenarios={scenarios}>
-                {(props) => <CompactCell {...props} />}
+                {(props) => <DetailCell {...props} />}
             </ScenariosLayout>
         );
     },
