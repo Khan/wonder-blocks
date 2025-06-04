@@ -138,6 +138,14 @@ export const WithCustomStyles: Story = {
     },
 };
 
+/**
+ * This button can receive focus programmatically. This is useful for cases where
+ * you want to focus the button when the user interacts with another
+ * component, such as a form field or another button.
+ *
+ * To do this, we use a `ref` to the button and call the `focus()` method
+ * on it, so the `ActivityButton` receives focus.
+ */
 export const RecievingFocusProgrammatically: Story = {
     render: function Render(args) {
         // This story is used to test the focus ring when the button receives
