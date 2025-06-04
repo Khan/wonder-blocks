@@ -1,0 +1,49 @@
+import {Meta, Canvas} from "@storybook/blocks";
+import * as StatusBadgeStories from "./status-badge.stories";
+import * as BadgeStories from "./badge.stories";
+import * as GemBadgeStories from "./gem-badge.stories";
+import * as StreakBadgeStories from "./streak-badge.stories";
+import * as DueBadgeStories from "./due-badge.stories";
+
+<Meta
+    title="Packages / Badge / Overview"
+/>
+
+# Badges
+
+Badges are visual indicators used to display concise information, such as a
+status, label, or count.
+
+The `wonder-blocks-badge` packages has several types of badges. For more details
+about each type of badge, refer to the docs for that component!
+
+## StatusBadge
+
+A badge that represents a status.
+
+<Canvas of={StatusBadgeStories.Kinds} />
+
+## GemBadge
+
+A badge that represents gems.
+
+<Canvas of={GemBadgeStories.Default} />
+
+## StreakBadge
+
+A badge that represents a streak.
+
+<Canvas of={StreakBadgeStories.Default} />
+
+## DueBadge
+
+A badge that represents when something is due.
+
+<Canvas of={DueBadgeStories.Default} />
+
+## Badge (Custom Badges)
+
+For custom badges, the `Badge` component can be used directly. The styles can be
+overridden using the `styles` prop.
+
+<Canvas of={BadgeStories.Default} />
