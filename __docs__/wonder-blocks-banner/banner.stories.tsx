@@ -67,6 +67,10 @@ export default {
                 excludeDecorators: true,
             },
         },
+        chromatic: {
+            // Disable snapshots for this story because it is covered by testing snapshots
+            disableSnapshot: true,
+        },
     },
     argTypes: BannerArgTypes,
 } as Meta<typeof Banner>;
@@ -211,6 +215,12 @@ export const DarkBackground: StoryComponentType = () => (
 DarkBackground.parameters = {
     backgrounds: {
         default: "darkBlue",
+    },
+    parameters: {
+        chromatic: {
+            // Testing snapshots don't cover dark background case
+            disableSnapshot: false,
+        },
     },
 };
 
@@ -592,6 +602,12 @@ export const RightToLeft: StoryComponentType = {
             />
         </View>
     ),
+    parameters: {
+        chromatic: {
+            // Keep snapshots for rtl stories
+            disableSnapshot: false,
+        },
+    },
 };
 
 /**
@@ -618,6 +634,12 @@ export const RightToLeftMultiline: StoryComponentType = {
             />
         </View>
     ),
+    parameters: {
+        chromatic: {
+            // Keep snapshots for rtl stories
+            disableSnapshot: false,
+        },
+    },
 };
 
 const styles = StyleSheet.create({
