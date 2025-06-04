@@ -7,14 +7,14 @@ import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import type {
     ActivityIconButtonActionType,
+    BaseIconButtonProps,
     IconButtonKind,
-    IconButtonProps,
     IconButtonRef,
 } from "../util/icon-button.types";
 
 import {IconButtonUnstyled} from "./icon-button-unstyled";
 
-type Props = Omit<IconButtonProps, "actionType" | "size"> & {
+type Props = BaseIconButtonProps & {
     /**
      * The action type of the button. This determines the visual style of the
      * button.

@@ -10,8 +10,8 @@ import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {
     ActivityIconButtonActionType,
+    BaseIconButtonProps,
     IconButtonKind,
-    IconButtonProps,
 } from "../util/icon-button.types";
 
 import {IconButtonUnstyled} from "./icon-button-unstyled";
@@ -36,7 +36,7 @@ type LabelOnly = {
     label: string;
 };
 
-type Props = Omit<IconButtonProps, "actionType" | "size"> &
+type Props = BaseIconButtonProps &
     (AriaLabelOnly | LabelOnly) & {
         /**
          * The action type of the button. This determines the visual style of the
