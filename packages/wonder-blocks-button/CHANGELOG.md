@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-button
 
+## 10.2.0
+
+### Minor Changes
+
+- cca3595: Adds ActivityButton component.
+
 ## 10.1.0
 
 ### Minor Changes
