@@ -36,7 +36,7 @@ type StoryComponentType = StoryObj<typeof Icon>;
 
 export const Default: StoryComponentType = {
     args: {
-        children: <img src="/logo.svg" alt="Wonder Blocks" />,
+        children: <img src="logo.svg" alt="Wonder Blocks" />,
     },
     parameters: {
         chromatic: {
@@ -57,7 +57,7 @@ export const Sizes: StoryComponentType = {
                         <View style={styles.iconContainer} key={size}>
                             <LabelSmall>{size}</LabelSmall>
                             <Icon size={size}>
-                                <img src="/logo.svg" alt="Wonder Blocks" />
+                                <img src="logo.svg" alt="Wonder Blocks" />
                             </Icon>
                         </View>
                     ),
@@ -72,7 +72,7 @@ export const Sizes: StoryComponentType = {
  */
 export const CustomStyles: StoryComponentType = {
     args: {
-        children: <img src="/logo.svg" alt="Wonder Blocks" />,
+        children: <img src="logo.svg" alt="Wonder Blocks" />,
         size: "xlarge",
         style: {
             borderRadius: border.radius.radius_full,
