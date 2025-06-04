@@ -94,7 +94,7 @@ export type BaseButtonProps =
         href?: string;
 
         /**
-         * Used for buttons within <form>s.
+         * Used for buttons within forms.
          */
         type?: "submit";
 
