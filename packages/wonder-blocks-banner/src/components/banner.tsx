@@ -170,6 +170,19 @@ const getBannerKindStyle = (kind: BannerKind) => {
     }
 };
 
+const getBannerIconKindStyle = (kind: BannerKind) => {
+    switch (kind) {
+        case "success":
+            return styles.successIcon;
+        case "info":
+            return styles.infoIcon;
+        case "warning":
+            return styles.warningIcon;
+        case "critical":
+            return styles.criticalIcon;
+    }
+};
+
 /**
  * Banner. A banner displays a prominent message and related optional actions.
  * It can be used as a way of informing the user of important changes.
@@ -257,6 +270,7 @@ const Banner = (props: Props): React.ReactElement => {
     const valuesForKind = getValuesForKind(kind);
 
     const bannerKindStyle = getBannerKindStyle(kind);
+    const bannerIconKindStyle = getBannerIconKindStyle(kind);
 
     return (
         <View
@@ -275,7 +289,7 @@ const Banner = (props: Props): React.ReactElement => {
                 <PhosphorIcon
                     icon={icon || valuesForKind.icon}
                     size="medium"
-                    style={styles.icon}
+                    style={[styles.icon, bannerIconKindStyle]}
                     aria-label={kind}
                     testId="banner-kind-icon"
                     role="img"
@@ -328,6 +342,12 @@ const bannerTokens = {
         },
     },
     icon: {
+        color: {
+            info: semanticColor.icon.primary,
+            success: semanticColor.icon.primary,
+            warning: semanticColor.icon.primary,
+            critical: semanticColor.icon.primary,
+        },
         layout: {
             marginBlockStart: sizing.size_080,
             marginBlockEnd: sizing.size_080,
@@ -382,7 +402,6 @@ const styles = StyleSheet.create({
         marginInlineStart: bannerTokens.icon.layout.marginInlineStart,
         marginInlineEnd: bannerTokens.icon.layout.marginInlineEnd,
         alignSelf: "flex-start",
-        color: semanticColor.icon.primary,
     },
     labelAndButtonsContainer: {
         flex: 1,
@@ -447,6 +466,18 @@ const styles = StyleSheet.create({
     criticalBanner: {
         backgroundColor: semanticColor.feedback.critical.subtle.background,
         borderColor: semanticColor.core.border.critical.default,
+    },
+    successIcon: {
+        color: bannerTokens.icon.color.success,
+    },
+    infoIcon: {
+        color: bannerTokens.icon.color.info,
+    },
+    warningIcon: {
+        color: bannerTokens.icon.color.warning,
+    },
+    criticalIcon: {
+        color: bannerTokens.icon.color.critical,
     },
 });
 
