@@ -1,5 +1,23 @@
 # @khanacademy/wonder-blocks-banner
 
+## 4.1.22
+
+### Patch Changes
+
+- Updated dependencies [8468d8d]
+- Updated dependencies [308696e]
+- Updated dependencies [dc34e0c]
+- Updated dependencies [7c59ffd]
+- Updated dependencies [2cace08]
+- Updated dependencies [f714517]
+- Updated dependencies [8468d8d]
+    - @khanacademy/wonder-blocks-tokens@10.5.0
+    - @khanacademy/wonder-blocks-icon@5.2.0
+    - @khanacademy/wonder-blocks-button@10.1.0
+    - @khanacademy/wonder-blocks-icon-button@10.2.2
+    - @khanacademy/wonder-blocks-link@9.1.6
+    - @khanacademy/wonder-blocks-typography@4.2.1
+
 ## 4.1.21
 
 ### Patch Changes
