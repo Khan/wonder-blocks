@@ -100,7 +100,12 @@ const PillInner = (props: {
 
 /**
  * A `Pill` component displays text in a rounded, colored container. This is
- * usually used to add label tags or indicate a status.
+ * usually used to add label tags.
+ *
+ * **Note:** Before using the `Pill` component, please see if a component from the
+ * [Badge Package](/?path=/docs/packages-badge-overview--docs&globals=theme:default)
+ * can be used instead. For example, prefer using the `StatusBadge` component
+ * instead of a `Pill` to indicate a status.
  *
  * ### Usage
  *

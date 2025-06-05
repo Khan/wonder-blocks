@@ -1,5 +1,38 @@
 # @khanacademy/wonder-blocks-button
 
+## 10.2.1
+
+### Patch Changes
+
+- 52393f6: Fixes an issue where the focus outline was included when the button was pressed"
+
+## 10.2.0
+
+### Minor Changes
+
+- cca3595: Adds ActivityButton component.
+
+## 10.1.0
+
+### Minor Changes
+
+- 7c59ffd: Adds the `thunderblocks` theme to the `Button` component.
+
+### Patch Changes
+
+- Updated dependencies [8468d8d]
+- Updated dependencies [308696e]
+- Updated dependencies [dc34e0c]
+- Updated dependencies [2cace08]
+- Updated dependencies [f714517]
+- Updated dependencies [8468d8d]
+    - @khanacademy/wonder-blocks-tokens@10.5.0
+    - @khanacademy/wonder-blocks-icon@5.2.0
+    - @khanacademy/wonder-blocks-clickable@7.1.6
+    - @khanacademy/wonder-blocks-progress-spinner@3.1.17
+    - @khanacademy/wonder-blocks-styles@0.2.13
+    - @khanacademy/wonder-blocks-typography@4.2.1
+
 ## 10.0.5
 
 ### Patch Changes

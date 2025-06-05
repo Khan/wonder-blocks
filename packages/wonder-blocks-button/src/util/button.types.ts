@@ -5,12 +5,13 @@ import {Link} from "react-router-dom-v5-compat";
 
 // Variants
 export type ButtonActionType = "progressive" | "destructive" | "neutral";
+export type ActivityButtonActionType = "progressive" | "neutral";
 export type ButtonKind = "primary" | "secondary" | "tertiary";
 export type ButtonSize = "small" | "medium" | "large";
 
 export type ButtonRef = typeof Link | HTMLButtonElement | HTMLAnchorElement;
 
-export type ButtonProps =
+export type BaseButtonProps =
     /**
      * aria-label should be used when `spinner={true}` to let people using screen
      * readers that the action taken by clicking the button will take some
@@ -31,23 +32,6 @@ export type ButtonProps =
          * will appear at the end of the button (right for LTR, left for RTL).
          */
         endIcon?: PhosphorIconAsset;
-        /**
-         * If true, replaces the contents with a spinner.
-         *
-         * Note: setting this prop to `true` will disable the button.
-         */
-        spinner?: boolean;
-        /**
-         * The action type/category of the button.
-         *
-         * - `progressive` is used for actions that move the user forward in a
-         *   flow.
-         * - `destructive` is used for actions that have a negative impact on
-         *   the user.
-         *
-         * Defaults to `progressive`.
-         */
-        actionType?: ButtonActionType;
 
         /**
          * The kind of the button, either primary, secondary, or tertiary.
@@ -59,11 +43,7 @@ export type ButtonProps =
          * - Tertiary buttons have no background or border
          */
         kind?: ButtonKind;
-        /**
-         * The size of the button. "medium" = height: 40; "small" = height: 32;
-         * "large" = height: 56;
-         */
-        size?: ButtonSize;
+
         /**
          * Whether the button is disabled.
          */
@@ -107,30 +87,14 @@ export type ButtonProps =
          * page reload.
          */
         skipClientNav?: boolean;
-        /**
-         * Optional custom styles for the inner label.
-         */
-        labelStyle?: StyleType;
-        /**
-         * Optional custom styles.
-         */
-        style?: StyleType;
-        // TODO(yejia): use this if ADR #47 has been implemented
-        /*
-    style?: Style<Exact<{
-        width?: number | string
-        position: Position,
-        ...MarginStyles,
-        ...FlexItemStyles,
-    }>>,
-    */
+
         /**
          * URL to navigate to.
          */
         href?: string;
 
         /**
-         * Used for buttons within <form>s.
+         * Used for buttons within forms.
          */
         type?: "submit";
 
@@ -177,3 +141,57 @@ export type ButtonProps =
          */
         safeWithNav?: () => Promise<unknown>;
     };
+
+export type ButtonProps = BaseButtonProps & {
+    /**
+     * The action type/category of the button.
+     *
+     * - `progressive` is used for actions that move the user forward in a
+     *   flow.
+     * - `destructive` is used for actions that have a negative impact on
+     *   the user.
+     *
+     * Defaults to `progressive`.
+     */
+    actionType?: ButtonActionType;
+
+    /**
+     * The size of the button. "medium" = height: 40; "small" = height: 32;
+     * "large" = height: 56;
+     */
+    size?: ButtonSize;
+
+    /**
+     * If true, replaces the contents with a spinner.
+     *
+     * Note: setting this prop to `true` will disable the button.
+     */
+    spinner?: boolean;
+
+    /**
+     * Optional custom styles for the inner label.
+     */
+    labelStyle?: StyleType;
+    /**
+     * Optional custom styles.
+     */
+    style?: StyleType;
+};
+
+export type ActivityButtonProps = BaseButtonProps & {
+    /**
+     * Custom styles for the elements in the Badge component.
+     * - `root`: Styles the root element (button)
+     * - `box`: Styles the "chonky" box element
+     * - `startIcon`: Styles the start icon element
+     * - `endIcon`: Styles the end icon element
+     * - `label`: Styles the text in the button
+     */
+    styles?: {
+        root?: StyleType;
+        box?: StyleType;
+        startIcon?: StyleType;
+        endIcon?: StyleType;
+        label?: StyleType;
+    };
+};

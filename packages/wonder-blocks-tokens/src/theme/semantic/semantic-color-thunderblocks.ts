@@ -38,6 +38,21 @@ const core = {
             default: color.gray_70,
             strong: color.gray_60,
         },
+        gems: {
+            subtle: color.magenta_80,
+            default: color.magenta_60,
+            strong: color.magenta_30,
+        },
+        streak: {
+            subtle: color.orange_80,
+            default: color.orange_60,
+            strong: color.orange_30,
+        },
+        due: {
+            subtle: color.cyan_80,
+            default: color.cyan_60,
+            strong: color.cyan_30,
+        },
         inverse: {
             subtle: color.gray_60,
             default: color.gray_90,
@@ -75,6 +90,21 @@ const core = {
             default: color.gray_80,
             strong: color.gray_70,
         },
+        gems: {
+            subtle: color.magenta_90,
+            default: color.magenta_80,
+            strong: color.magenta_10,
+        },
+        streak: {
+            subtle: color.orange_80,
+            default: color.orange_60,
+            strong: color.orange_10,
+        },
+        due: {
+            subtle: color.cyan_80,
+            default: color.cyan_60,
+            strong: color.cyan_10,
+        },
     },
 
     /**
@@ -110,6 +140,21 @@ const core = {
             subtle: color.gray_60,
             default: color.gray_50,
             strong: color.gray_40,
+        },
+        gems: {
+            subtle: color.magenta_60,
+            default: color.magenta_30,
+            strong: color.magenta_10,
+        },
+        streak: {
+            subtle: color.orange_60,
+            default: color.orange_30,
+            strong: color.orange_10,
+        },
+        due: {
+            subtle: color.cyan_60,
+            default: color.cyan_20,
+            strong: color.cyan_10,
         },
         inverse: {
             subtle: color.gray_60,
@@ -578,4 +623,38 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
         disabled: core.foreground.inverse.subtle,
     },
     core,
+    feedback: {
+        info: {
+            subtle: {
+                background: core.background.instructive.subtle,
+                border: core.border.instructive.subtle,
+                icon: core.foreground.instructive.default,
+                text: core.foreground.instructive.strong,
+            },
+        },
+        success: {
+            subtle: {
+                background: core.background.success.subtle,
+                border: core.border.success.subtle,
+                icon: core.foreground.success.default,
+                text: core.foreground.success.strong,
+            },
+        },
+        warning: {
+            subtle: {
+                background: core.background.warning.subtle,
+                border: core.border.warning.default,
+                icon: core.foreground.warning.default,
+                text: core.foreground.warning.strong,
+            },
+        },
+        critical: {
+            subtle: {
+                background: core.background.critical.subtle,
+                border: core.border.critical.subtle,
+                icon: core.foreground.critical.default,
+                text: core.foreground.critical.strong,
+            },
+        },
+    },
 });

@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 10.5.0
+
+### Minor Changes
+
+- 8468d8d: Add tokens to support Gems, Streaks, and Due semantics.
+    - Classic:
+        - Add magenta, cyan, and orange primitive colors that are the same values as Thunderblocks
+    - Thunderblocks and Classic:
+        - Add gems, streak, and due semantic core tokens for `background`, `foreground`, and `border`
+        - Add semantic feedback color tokens for `info`, `success`, `warning`, and `critical`
+
 ## 10.4.0
 
 ### Minor Changes
