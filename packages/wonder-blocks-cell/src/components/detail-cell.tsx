@@ -5,9 +5,9 @@ import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelSmall, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import CellCore from "./internal/cell-core";
-import {CellMeasurements} from "./internal/common";
 
 import type {CellProps, TypographyText} from "../util/types";
+import theme from "../theme";
 
 type SubtitleProps = {
     subtitle?: TypographyText;
@@ -98,7 +98,8 @@ const styles = StyleSheet.create({
     },
     // This is to override the default padding of the CellCore innerWrapper.
     innerWrapper: {
-        padding: `${CellMeasurements.detailCellPadding.paddingVertical}px ${CellMeasurements.detailCellPadding.paddingHorizontal}px`,
+        paddingBlock: theme.root.layout.padding.block.detail,
+        paddingInline: theme.root.layout.padding.inline.detail,
     },
 });
 
