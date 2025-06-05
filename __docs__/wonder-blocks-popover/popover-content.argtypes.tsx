@@ -29,9 +29,9 @@ const ActionsMappings: Mappings = {
 
 const IconMappings: Mappings = {
     none: null,
-    logo: <img src="/logo.svg" width="100%" alt="Wonder Blocks logo" />,
+    logo: <img src="logo.svg" width="100%" alt="Wonder Blocks logo" />,
     itemAvatar: (
-        <img src="./avatar.png" alt="ItemAvatar" width={48} height={48} />
+        <img src="avatar.png" alt="ItemAvatar" width={48} height={48} />
     ),
 };
 

@@ -156,7 +156,7 @@ export const TriggerElement: StoryComponentType = () => (
                 content="The popover content."
                 image={
                     <img
-                        src="/illustration.svg"
+                        src="illustration.svg"
                         alt="An illustration of a person skating on a pencil"
                         width={288}
                         height={200}

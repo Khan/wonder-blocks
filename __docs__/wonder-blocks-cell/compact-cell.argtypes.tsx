@@ -29,7 +29,7 @@ export const AccessoryMappings = {
         </View>
     ) as React.ReactElement<React.ComponentProps<typeof View>>,
     withImage: (
-        <img src="./avatar.png" alt="ItemAvatar" width={48} height={48} />
+        <img src="avatar.png" alt="ItemAvatar" width={48} height={48} />
     ) as React.ReactElement<React.ComponentProps<"img">>,
 } as const;
 
