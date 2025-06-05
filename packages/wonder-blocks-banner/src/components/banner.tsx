@@ -296,9 +296,7 @@ const Banner = (props: Props): React.ReactElement => {
                 />
                 <View style={styles.labelAndButtonsContainer}>
                     <View style={styles.labelContainer}>
-                        <BodyText size="small" tag="span">
-                            {text}
-                        </BodyText>
+                        <BodyText size="small">{text}</BodyText>
                     </View>
                     {actions && (
                         <View style={styles.actionsContainer}>
