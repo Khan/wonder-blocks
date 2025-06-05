@@ -216,11 +216,9 @@ DarkBackground.parameters = {
     backgrounds: {
         default: "darkBlue",
     },
-    parameters: {
-        chromatic: {
-            // Testing snapshots don't cover dark background case
-            disableSnapshot: false,
-        },
+    chromatic: {
+        // Testing snapshots don't cover dark background case
+        disableSnapshot: false,
     },
 };
 
