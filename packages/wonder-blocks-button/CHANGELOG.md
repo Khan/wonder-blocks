@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-button
 
+## 10.2.1
+
+### Patch Changes
+
+- 52393f6: Fixes an issue where the focus outline was included when the button was pressed"
+
 ## 10.2.0
 
 ### Minor Changes
