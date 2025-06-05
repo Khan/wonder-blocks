@@ -52,7 +52,8 @@ const ActivityButtonCore: React.ForwardRefExoticComponent<
         buttonStyles.button,
         disabled && buttonStyles.disabled,
         !disabled && pressed && buttonStyles.pressed,
-        !disabled && focused && buttonStyles.focused,
+        // Enables programmatic focus.
+        !disabled && !pressed && focused && buttonStyles.focused,
         stylesProp?.root,
     ];
 
