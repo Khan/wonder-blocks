@@ -6,11 +6,7 @@ import {allModes} from "../../.storybook/modes";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
-import {
-    commonStates,
-    defaultPseudoStates,
-    StateSheet,
-} from "../components/state-sheet";
+import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 import Banner from "@khanacademy/wonder-blocks-banner";
 import {longText, reallyLongText} from "../components/text-for-testing";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
@@ -19,6 +15,7 @@ import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import Link from "@khanacademy/wonder-blocks-link";
 import Button from "@khanacademy/wonder-blocks-button";
 import crownIcon from "../wonder-blocks-icon/icons/crown.svg";
+import {AllVariants} from "../components/all-variants";
 
 /**
  * The following stories are used to generate the pseudo states for the
@@ -54,76 +51,81 @@ export const StateSheetStory: StoryComponentType = {
     name: "StateSheet",
     render: (args) => {
         return (
-            <View>
-                <StateSheet
-                    rows={rows}
-                    columns={columns}
-                    title="Kind / Action Type"
-                    states={[commonStates.rest]}
-                >
-                    {({props, name}) => (
-                        <View key={name} style={{gap: sizing.size_120}}>
-                            <Banner {...props} text={longText} />
-                            <Banner
-                                {...props}
-                                text={`Custom Icon. ${longText}`}
-                                icon={IconMappings.cookie}
-                            />
-                            <Banner
-                                {...props}
-                                text={`Floating. ${longText}`}
-                                layout="floating"
-                            />
-                        </View>
-                    )}
-                </StateSheet>
-                <StateSheet
-                    rows={[
-                        {
-                            name: "With interactive elements (onDismiss, actions, inline link)",
-                            props: {
-                                onDismiss: action("onDismiss"),
-                                actions: [
-                                    {
-                                        title: "Button",
-                                        onClick: action("onClick"),
-                                    },
-                                    {
-                                        title: "Link",
-                                        href: "/",
-                                    },
-                                ],
-                            },
+            <StateSheet
+                rows={[
+                    {
+                        name: "With interactive elements",
+                        props: {
+                            onDismiss: action("onDismiss"),
+                            actions: [
+                                {
+                                    title: "Button",
+                                    onClick: action("onClick"),
+                                },
+                                {
+                                    title: "Link",
+                                    href: "/",
+                                },
+                            ],
                         },
-                    ]}
-                    columns={columns}
-                >
-                    {({props, name}) => (
-                        <View key={name} style={{gap: sizing.size_120}}>
-                            {kinds.map((kind) => (
-                                <Banner
-                                    {...props}
-                                    text={
-                                        <BodyText size="small">
-                                            Example text with an{" "}
-                                            <Link href="/" inline={true}>
-                                                Inline Link
-                                            </Link>
-                                            .
-                                        </BodyText>
-                                    }
-                                    key={kind}
-                                    kind={kind}
-                                />
-                            ))}
-                        </View>
-                    )}
-                </StateSheet>
-            </View>
+                    },
+                ]}
+                columns={columns}
+            >
+                {({props, name}) => (
+                    <View key={name} style={{gap: sizing.size_120}}>
+                        {kinds.map((kind) => (
+                            <Banner
+                                {...props}
+                                text={
+                                    <BodyText size="small">
+                                        Example text with an{" "}
+                                        <Link href="/" inline={true}>
+                                            Inline Link
+                                        </Link>
+                                        .
+                                    </BodyText>
+                                }
+                                key={kind}
+                                kind={kind}
+                            />
+                        ))}
+                    </View>
+                )}
+            </StateSheet>
         );
     },
     parameters: {
         pseudo: defaultPseudoStates,
+    },
+};
+
+export const AllVariantsStory: StoryComponentType = {
+    name: "All Variants",
+    render: (args) => {
+        return (
+            <AllVariants
+                rows={rows}
+                columns={columns}
+                title="Kind / Action Type"
+            >
+                {({props, name}) => (
+                    <View key={name} style={{gap: sizing.size_120}}>
+                        <Banner {...props} text={longText} />
+                        <Banner
+                            {...props}
+                            text={`Custom Icon. ${longText}`}
+                            icon={IconMappings.cookie}
+                        />
+                        <Banner
+                            {...props}
+                            text={`Floating. ${longText}`}
+                            layout="floating"
+                        />
+                    </View>
+                )}
+            </AllVariants>
+        );
     },
 };
 
