@@ -1,11 +1,11 @@
 import * as React from "react";
 
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 import caretRight from "@phosphor-icons/core/regular/caret-right.svg";
 
-import {action} from "@storybook/addon-actions";
+import {action} from "storybook/actions";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Button, {ActivityButton} from "@khanacademy/wonder-blocks-button";
 
