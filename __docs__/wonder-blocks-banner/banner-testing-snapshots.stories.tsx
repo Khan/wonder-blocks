@@ -189,27 +189,6 @@ const scenarios = [
         },
     },
     {
-        name: "With custom action",
-        props: {
-            actions: [
-                {
-                    type: "custom",
-                    node: (
-                        <Button
-                            aria-label="Loading"
-                            kind="tertiary"
-                            size="small"
-                            onClick={action("onClick")}
-                            spinner={true}
-                        >
-                            Spinner Button
-                        </Button>
-                    ),
-                },
-            ],
-        },
-    },
-    {
         name: "With custom action primary button",
         props: {
             actions: [
@@ -246,19 +225,6 @@ const scenarios = [
                     node: (
                         <Button size="small" onClick={() => {}}>
                             Custom button 2
-                        </Button>
-                    ),
-                },
-                {
-                    type: "custom",
-                    node: (
-                        <Button
-                            kind="tertiary"
-                            size="small"
-                            onClick={() => {}}
-                            spinner={true}
-                        >
-                            Spinner Button
                         </Button>
                     ),
                 },
