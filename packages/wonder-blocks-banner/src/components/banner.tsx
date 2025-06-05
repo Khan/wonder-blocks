@@ -340,6 +340,20 @@ const bannerTokens = {
         layout: {
             padding: sizing.size_080,
         },
+        color: {
+            border: {
+                info: semanticColor.core.border.instructive.default,
+                success: semanticColor.core.border.success.default,
+                warning: semanticColor.core.border.warning.default,
+                critical: semanticColor.core.border.critical.default,
+            },
+            background: {
+                info: semanticColor.feedback.info.subtle.background,
+                success: semanticColor.feedback.success.subtle.background,
+                warning: semanticColor.feedback.warning.subtle.background,
+                critical: semanticColor.feedback.critical.subtle.background,
+            },
+        },
     },
     icon: {
         color: {
@@ -455,20 +469,20 @@ const styles = StyleSheet.create({
         borderRadius: bannerTokens.root.border.radius.default,
     },
     successBanner: {
-        backgroundColor: semanticColor.feedback.success.subtle.background,
-        borderColor: semanticColor.core.border.success.default,
+        backgroundColor: bannerTokens.root.color.background.success,
+        borderColor: bannerTokens.root.color.border.success,
     },
     infoBanner: {
-        backgroundColor: semanticColor.feedback.info.subtle.background,
-        borderColor: semanticColor.core.border.instructive.default,
+        backgroundColor: bannerTokens.root.color.background.info,
+        borderColor: bannerTokens.root.color.border.info,
     },
     warningBanner: {
-        backgroundColor: semanticColor.feedback.warning.subtle.background,
-        borderColor: semanticColor.core.border.warning.default,
+        backgroundColor: bannerTokens.root.color.background.warning,
+        borderColor: bannerTokens.root.color.border.warning,
     },
     criticalBanner: {
-        backgroundColor: semanticColor.feedback.critical.subtle.background,
-        borderColor: semanticColor.core.border.critical.default,
+        backgroundColor: bannerTokens.root.color.background.critical,
+        borderColor: bannerTokens.root.color.border.critical,
     },
     successIcon: {
         color: bannerTokens.icon.color.success,
