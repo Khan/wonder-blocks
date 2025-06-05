@@ -1,5 +1,5 @@
 import * as React from "react";
-import type {StoryObj} from "@storybook/react";
+import type {StoryObj} from "@storybook/react-vite";
 import {StyleSheet} from "aphrodite";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-badge/package.json";
