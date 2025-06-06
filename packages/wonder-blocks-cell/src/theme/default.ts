@@ -9,30 +9,14 @@ export default {
             },
             radius: border.radius.radius_040,
         },
+        // NOTE: These colors will change in TB.
         color: {
-            rest: {
-                background: semanticColor.surface.primary,
-                foreground: semanticColor.text.primary,
-            },
-            hover: {
-                background: semanticColor.core.background.instructive.subtle,
-            },
             press: {
-                background: semanticColor.core.background.instructive.subtle,
                 border: semanticColor.core.border.instructive.default,
             },
             selected: {
-                background: semanticColor.core.background.instructive.subtle,
                 foreground: semanticColor.core.foreground.instructive.default,
                 border: semanticColor.core.border.instructive.default,
-            },
-            focus: {
-                border: semanticColor.focus.outer,
-            },
-            disabled: {
-                background: semanticColor.surface.primary,
-                foreground: semanticColor.text.disabled,
-                border: semanticColor.focus.outer,
             },
         },
         layout: {
@@ -53,22 +37,26 @@ export default {
         },
     },
     accessory: {
+        // NOTE: These colors will change in TB.
         color: {
             default: {
-                foreground: semanticColor.icon.primary,
+                foreground: semanticColor.core.foreground.neutral.default,
             },
             selected: {
-                foreground: semanticColor.icon.action,
+                foreground: semanticColor.core.foreground.instructive.subtle,
             },
             disabled: {
-                // Use secondary icon color for disabled state because opacity
-                // is also applied to the accessory. Opacity is used so it is
-                // applied to images also
-                foreground: semanticColor.icon.secondary,
+                // Using neutral.strong for disabled state because opacity is
+                // also applied to the accessory. Opacity is used so it is
+                // applied to images also.
+                foreground: semanticColor.core.foreground.neutral.strong,
             },
         },
     },
     rule: {
+        sizing: {
+            height: sizing.size_020,
+        },
         shadow: `inset 0px -1px 0px ${semanticColor.core.border.inverse.default}`,
     },
 };

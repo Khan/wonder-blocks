@@ -6,6 +6,7 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {getHorizontalRuleStyles} from "./common";
 
 import type {CellProps} from "../../util/types";
@@ -219,8 +220,8 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
 
 const styles = StyleSheet.create({
     wrapper: {
-        background: theme.root.color.rest.background,
-        color: theme.root.color.rest.foreground,
+        background: semanticColor.surface.primary,
+        color: semanticColor.core.foreground.neutral.strong,
         display: "flex",
         minHeight: theme.root.sizing.minHeight,
         textAlign: "left",
@@ -293,6 +294,12 @@ const styles = StyleSheet.create({
         /**
          * States
          */
+        ":hover": {
+            background: semanticColor.core.background.instructive.subtle,
+        },
+        ":active": {
+            background: semanticColor.core.background.instructive.subtle,
+        },
         // focus (only visible when using keyboard navigation)
         ":focus-visible": {
             borderRadius: theme.root.border.radius,
@@ -317,14 +324,8 @@ const styles = StyleSheet.create({
             // that the focus ring is drawn inside the cell.
             width: `calc(100% - ${theme.root.border.width.default} * 2)`,
             height: `calc(100% - ${theme.root.border.width.default} * 2)`,
-            border: `${theme.root.border.width.default} solid ${theme.root.color.focus.border}`,
+            border: `${theme.root.border.width.default} solid ${semanticColor.focus.outer}`,
             borderRadius: theme.root.border.radius,
-        },
-        ":hover": {
-            background: theme.root.color.hover.background,
-        },
-        ":active": {
-            background: theme.root.color.press.background,
         },
         // press + enabled + not currently selected (active prop: false)
         // We apply the left bar indicator styles on the inner-wrapper element
@@ -343,24 +344,24 @@ const styles = StyleSheet.create({
                     left: 0,
                     bottom: 0,
                     width: theme.root.border.width.default,
-                    // We use the border token as this element acts like a border
-                    // when the cell is pressed.
+                    // We use the border token as this element acts like a
+                    // border when the cell is pressed.
                     backgroundColor: theme.root.color.press.border,
                 },
             },
     },
 
     active: {
-        background: theme.root.color.selected.background,
+        background: semanticColor.core.background.instructive.subtle,
         color: theme.root.color.selected.foreground,
         cursor: "default",
     },
 
     disabled: {
-        background: theme.root.color.disabled.background,
-        color: theme.root.color.disabled.foreground,
+        background: semanticColor.surface.primary,
+        color: semanticColor.core.foreground.inverse.subtle,
         ":hover": {
-            background: theme.root.color.disabled.background,
+            background: semanticColor.surface.primary,
             cursor: "not-allowed",
         },
         ":focus-visible": {
@@ -369,7 +370,7 @@ const styles = StyleSheet.create({
             outline: "none",
         },
         ":active": {
-            background: theme.root.color.disabled.background,
+            background: semanticColor.surface.primary,
         },
         [".inner-wrapper" as any]: {
             ":before": {

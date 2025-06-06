@@ -1,10 +1,8 @@
 import {StyleSheet} from "aphrodite";
-
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
-
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
-import type {HorizontalRuleVariant} from "../../util/types";
 import theme from "../../theme";
+
+import type {HorizontalRuleVariant} from "../../util/types";
 
 /**
  * Gets the horizontalRule style based on the variant.
@@ -36,7 +34,7 @@ const styles = StyleSheet.create({
             bottom: 0,
             // align border to the right of the cell
             right: 0,
-            height: sizing.size_020,
+            height: theme.rule.sizing.height,
             boxShadow: theme.rule.shadow,
         },
     },
