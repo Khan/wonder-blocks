@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Meta, StoryObj} from "@storybook/react";
+import {Meta, StoryObj} from "@storybook/react-vite";
 import {Tabs} from "@khanacademy/wonder-blocks-tabs";
 import {Placeholder} from "../components/placeholder";
 import {ControlledTabs} from "./tabs-utils";

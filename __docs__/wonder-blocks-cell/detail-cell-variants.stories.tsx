@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
@@ -15,12 +15,14 @@ import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
  */
 export default {
     title: "Packages / Cell / DetailCell / All Variants",
+    globals: {
+        backgrounds: {
+            value: "offWhite",
+        },
+    },
     parameters: {
         docs: {
             autodocs: false,
-        },
-        backgrounds: {
-            default: "offWhite",
         },
     },
 } as Meta;
