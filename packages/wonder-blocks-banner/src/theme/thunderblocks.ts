@@ -1,5 +1,5 @@
 import {mergeTheme} from "@khanacademy/wonder-blocks-theming";
-import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import defaultTheme from "./default";
 
 export default mergeTheme(defaultTheme, {
@@ -37,6 +37,18 @@ export default mergeTheme(defaultTheme, {
             success: semanticColor.feedback.success.subtle.icon,
             warning: semanticColor.feedback.warning.subtle.icon,
             critical: semanticColor.feedback.critical.subtle.icon,
+        },
+    },
+    link: {
+        layout: {
+            // Set the margin to negative to offset the padding of the link
+            marginInline: `calc(${sizing.size_080} * -1)`,
+        },
+    },
+    button: {
+        layout: {
+            // Set the margin to negative to offset the padding of the button
+            marginInline: `calc(${sizing.size_080} * -1)`,
         },
     },
 });

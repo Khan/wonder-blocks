@@ -259,6 +259,7 @@ const Banner = (props: Props): React.ReactElement => {
                             size="small"
                             aria-label={action.ariaLabel ?? action.title}
                             onClick={handleClick}
+                            style={styles.button}
                         >
                             {action.title}
                         </Button>
@@ -396,6 +397,16 @@ const bannerTokens = {
             marginInline: sizing.size_080,
         },
     },
+    link: {
+        layout: {
+            marginInline: theme.link.layout.marginInline,
+        },
+    },
+    button: {
+        layout: {
+            marginInline: theme.button.layout.marginInline,
+        },
+    },
     dismiss: {
         sizing: {
             height: sizing.size_400,
@@ -453,7 +464,11 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     link: {
+        marginInline: bannerTokens.link.layout.marginInline,
         fontSize: font.body.size.small,
+    },
+    button: {
+        marginInline: bannerTokens.button.layout.marginInline,
     },
     dismiss: {
         flexShrink: 1,
