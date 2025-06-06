@@ -47,49 +47,61 @@ const rows = [
 
 const columns = [{name: "Default", props: {}}];
 
+const stateSheetRows = [
+    {
+        name: "With interactive elements",
+        props: {
+            onDismiss: action("onDismiss"),
+            actions: [
+                {
+                    title: "Button",
+                    onClick: action("onClick"),
+                },
+                {
+                    title: "Link",
+                    href: "/",
+                    type: "link",
+                },
+            ],
+            text: "Example banner text.",
+        },
+    },
+    {
+        name: "With inline link and interactive elements",
+        props: {
+            onDismiss: action("onDismiss"),
+            actions: [
+                {
+                    title: "Button",
+                    onClick: action("onClick"),
+                },
+                {
+                    title: "Link",
+                    href: "/",
+                    type: "link",
+                },
+            ],
+            text: (
+                <BodyText size="small">
+                    Example text with an{" "}
+                    <Link href="/" inline={true}>
+                        Inline Link
+                    </Link>
+                    .
+                </BodyText>
+            ),
+        },
+    },
+];
 export const StateSheetStory: StoryComponentType = {
     name: "StateSheet",
     render: (args) => {
         return (
-            <StateSheet
-                rows={[
-                    {
-                        name: "With interactive elements",
-                        props: {
-                            onDismiss: action("onDismiss"),
-                            actions: [
-                                {
-                                    title: "Button",
-                                    onClick: action("onClick"),
-                                },
-                                {
-                                    title: "Link",
-                                    href: "/",
-                                    type: "link",
-                                },
-                            ],
-                        },
-                    },
-                ]}
-                columns={columns}
-            >
+            <StateSheet rows={stateSheetRows} columns={columns}>
                 {({props, name}) => (
                     <View key={name} style={{gap: sizing.size_120}}>
                         {kinds.map((kind) => (
-                            <Banner
-                                {...props}
-                                text={
-                                    <BodyText size="small">
-                                        Example text with an{" "}
-                                        <Link href="/" inline={true}>
-                                            Inline Link
-                                        </Link>
-                                        .
-                                    </BodyText>
-                                }
-                                key={kind}
-                                kind={kind}
-                            />
+                            <Banner {...props} key={kind} kind={kind} />
                         ))}
                     </View>
                 )}
