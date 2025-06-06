@@ -4,12 +4,11 @@ import {StyleSheet} from "aphrodite";
 import xIcon from "@phosphor-icons/core/regular/x.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon, PhosphorIconAsset} from "@khanacademy/wonder-blocks-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Link from "@khanacademy/wonder-blocks-link";
 import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import infoIcon from "@phosphor-icons/core/regular/info.svg";
 import successIcon from "@phosphor-icons/core/regular/smiley.svg";
@@ -179,6 +178,8 @@ const getBannerIconKindStyle = (kind: BannerKind) => {
     }
 };
 
+const StyledDiv = addStyle("div");
+
 /**
  * Banner. A banner displays a prominent message and related optional actions.
  * It can be used as a way of informing the user of important changes.
@@ -294,9 +295,10 @@ const Banner = (props: Props): React.ReactElement => {
                 />
                 <View style={styles.labelAndButtonsContainer}>
                     <View style={styles.labelContainer}>
-                        <BodyText style={styles.labelTypography} weight="semi">
+                        {/* We use a span here since text can be a React node with other elements */}
+                        <StyledDiv style={styles.labelTypography}>
                             {text}
-                        </BodyText>
+                        </StyledDiv>
                     </View>
                     {actions && (
                         <View style={styles.actionsContainer}>
@@ -382,6 +384,9 @@ const bannerTokens = {
         },
         font: {
             size: theme.label.font.size,
+            weight: font.weight.semi,
+            lineHeight: font.body.lineHeight.small,
+            family: font.family.sans,
         },
     },
     actions: {
@@ -458,6 +463,9 @@ const styles = StyleSheet.create({
     },
     labelTypography: {
         fontSize: bannerTokens.label.font.size,
+        fontWeight: bannerTokens.label.font.weight,
+        lineHeight: bannerTokens.label.font.lineHeight,
+        fontFamily: bannerTokens.label.font.family,
     },
     actionsContainer: {
         flexDirection: "row",
