@@ -1,4 +1,9 @@
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    font,
+    semanticColor,
+    sizing,
+} from "@khanacademy/wonder-blocks-tokens";
 
 const theme = {
     root: {
@@ -46,6 +51,11 @@ const theme = {
         font: {
             decoration: "none",
             underlineOffset: "0%",
+        },
+    },
+    label: {
+        font: {
+            size: font.body.size.small,
         },
     },
 };

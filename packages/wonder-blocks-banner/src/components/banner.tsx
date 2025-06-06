@@ -8,12 +8,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon, PhosphorIconAsset} from "@khanacademy/wonder-blocks-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Link from "@khanacademy/wonder-blocks-link";
-import {
-    border,
-    font,
-    semanticColor,
-    sizing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import infoIcon from "@phosphor-icons/core/regular/info.svg";
@@ -299,7 +294,9 @@ const Banner = (props: Props): React.ReactElement => {
                 />
                 <View style={styles.labelAndButtonsContainer}>
                     <View style={styles.labelContainer}>
-                        <BodyText size="small">{text}</BodyText>
+                        <BodyText style={styles.labelTypography} weight="semi">
+                            {text}
+                        </BodyText>
                     </View>
                     {actions && (
                         <View style={styles.actionsContainer}>
@@ -383,6 +380,9 @@ const bannerTokens = {
         layout: {
             margin: sizing.size_080,
         },
+        font: {
+            size: theme.label.font.size,
+        },
     },
     actions: {
         layout: {
@@ -455,6 +455,9 @@ const styles = StyleSheet.create({
         margin: bannerTokens.label.layout.margin,
         textAlign: "start",
         overflowWrap: "break-word",
+    },
+    labelTypography: {
+        fontSize: bannerTokens.label.font.size,
     },
     actionsContainer: {
         flexDirection: "row",
