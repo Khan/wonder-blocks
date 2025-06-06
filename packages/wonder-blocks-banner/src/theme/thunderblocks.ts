@@ -39,12 +39,6 @@ export default mergeTheme(defaultTheme, {
             critical: semanticColor.feedback.critical.subtle.icon,
         },
     },
-    link: {
-        layout: {
-            // Set the margin to negative to offset the padding of the link
-            marginInline: `calc(${sizing.size_080} * -1)`,
-        },
-    },
     button: {
         layout: {
             // Set the margin to negative to offset the padding of the button

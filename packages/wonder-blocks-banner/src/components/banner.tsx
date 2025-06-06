@@ -397,11 +397,6 @@ const bannerTokens = {
             marginInline: sizing.size_080,
         },
     },
-    link: {
-        layout: {
-            marginInline: theme.link.layout.marginInline,
-        },
-    },
     button: {
         layout: {
             marginInline: theme.button.layout.marginInline,
@@ -464,7 +459,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     link: {
-        marginInline: bannerTokens.link.layout.marginInline,
         fontSize: font.body.size.small,
     },
     button: {
