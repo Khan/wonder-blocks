@@ -50,7 +50,6 @@ export default {
     },
     layout: {
         control: {type: "select"},
-        description: "Determines the edge style of the Banner.",
         options: ["floating", "full-width"],
         table: {
             type: {summary: `"floating" | "full-width"`},

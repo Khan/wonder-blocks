@@ -122,6 +122,9 @@ export const Kinds: StoryComponentType = {
 };
 
 /**
+ * DEPRECATED: The `layout` prop is deprecated and will be removed in a future
+ * release. Currently, it has no effect on the component.
+ *
  * Banners come with two layouts: `full-width` and `floating`. Full-width layout
  * gives the banner squared edges, and floating layout gives the banner rounded
  * edges. Floating banners should have space around them and should not be

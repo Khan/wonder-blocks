@@ -88,7 +88,10 @@ type Props = {
      */
     kind?: BannerKind;
     /**
-     * Determines the edge style of the Banner.
+     * (DEPRECATED) Determines the edge style of the Banner.
+     *
+     * This prop is deprecated and will be removed in a future release.
+     * Currently, it has no effect on the component.
      */
     layout: BannerLayout;
     /**
@@ -216,7 +219,6 @@ const Banner = (props: Props): React.ReactElement => {
         dismissAriaLabel = "Dismiss banner.", // default prop
         onDismiss,
         kind = "info", // default prop
-        layout,
         text,
         testId,
         icon,
@@ -272,13 +274,7 @@ const Banner = (props: Props): React.ReactElement => {
 
     return (
         <View
-            style={[
-                styles.containerOuter,
-                layout === "floating"
-                    ? styles.floatingLayout
-                    : styles.fullWidthLayout,
-                bannerKindStyle,
-            ]}
+            style={[styles.containerOuter, bannerKindStyle]}
             role={valuesForKind.role}
             aria-label={ariaLabel}
             aria-live={valuesForKind.ariaLive}
@@ -326,10 +322,7 @@ const Banner = (props: Props): React.ReactElement => {
 const bannerTokens = {
     root: {
         border: {
-            radius: {
-                default: theme.root.border.radius.default,
-                floating: theme.root.border.radius.floating,
-            },
+            radius: theme.root.border.radius,
             width: {
                 inlineStart: theme.root.border.width.inlineStart,
                 inlineEnd: theme.root.border.width.inlineEnd,
@@ -435,6 +428,10 @@ const styles = StyleSheet.create({
         borderBlockStartWidth: bannerTokens.root.border.width.blockStart,
         borderBlockEndWidth: bannerTokens.root.border.width.blockEnd,
         width: "100%",
+        borderRadius: bannerTokens.root.border.radius,
+        // Stop the square corners of the inner container from
+        // flowing out of the rounded corners of the outer container.
+        overflow: "hidden",
     },
     containerInner: {
         flexDirection: "row",
@@ -499,15 +496,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         marginInline: bannerTokens.dismiss.layout.marginInline,
-    },
-    floatingLayout: {
-        borderRadius: bannerTokens.root.border.radius.floating,
-        // Stop the square corners of the inner container from
-        // flowing out of the rounded corners of the outer container.
-        overflow: "hidden",
-    },
-    fullWidthLayout: {
-        borderRadius: bannerTokens.root.border.radius.default,
     },
     successBanner: {
         backgroundColor: bannerTokens.root.color.background.success,
