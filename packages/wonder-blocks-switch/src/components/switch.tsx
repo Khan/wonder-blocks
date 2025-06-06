@@ -5,7 +5,7 @@ import {AriaProps, View, addStyle} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {useId} from "react";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
-import {theme as switchTheme} from "../theme/index";
+import baseStyles from "./base-styles";
 
 type Props = Pick<
     AriaProps,
@@ -43,8 +43,6 @@ type Props = Pick<
     className?: string;
 };
 
-const theme = switchTheme.switch;
-
 const StyledSpan = addStyle("span");
 const StyledInput = addStyle("input");
 
@@ -58,9 +56,9 @@ const sharedStyles = StyleSheet.create({
     },
     switch: {
         display: "inline-flex",
-        height: theme.root.sizing.height,
-        width: theme.root.sizing.width,
-        borderRadius: theme.root.border.radius.default,
+        height: baseStyles.root.sizing.height,
+        width: baseStyles.root.sizing.width,
+        borderRadius: baseStyles.root.border.radius.default,
         flexShrink: 0,
     },
     switchFocus: {
@@ -80,20 +78,20 @@ const sharedStyles = StyleSheet.create({
     } as any,
     slider: {
         position: "absolute",
-        top: theme.slider.position.top,
-        left: theme.slider.position.left,
-        height: theme.slider.sizing.height,
-        width: theme.slider.sizing.width,
-        borderRadius: theme.root.border.radius.default,
-        backgroundColor: theme.color.bg.slider.on,
-        transition: theme.slider.transform.transition,
+        top: baseStyles.slider.position.top,
+        left: baseStyles.slider.position.left,
+        height: baseStyles.slider.sizing.height,
+        width: baseStyles.slider.sizing.width,
+        borderRadius: baseStyles.root.border.radius.default,
+        backgroundColor: baseStyles.color.bg.slider.on,
+        transition: baseStyles.slider.transform.transition,
     },
     icon: {
         position: "absolute",
-        top: theme.icon.position.top,
-        left: theme.icon.position.left,
+        top: baseStyles.icon.position.top,
+        left: baseStyles.icon.position.left,
         zIndex: 1,
-        transition: theme.icon.transform.transition,
+        transition: baseStyles.icon.transform.transition,
     },
 });
 
@@ -204,12 +202,12 @@ const _generateStyles = (
         newStyles = {
             switch: {
                 backgroundColor: disabled
-                    ? theme.color.bg.switch.disabledOn
-                    : theme.color.bg.switch.on,
+                    ? baseStyles.color.bg.switch.disabledOn
+                    : baseStyles.color.bg.switch.on,
                 ":active": {
                     backgroundColor:
                         !disabled && clickable
-                            ? theme.color.bg.switch.activeOn
+                            ? baseStyles.color.bg.switch.activeOn
                             : undefined,
                     ...focusStylesObject,
                     outline: clickable ? focusStylesObject.outline : "none",
@@ -217,25 +215,25 @@ const _generateStyles = (
                 ...sharedSwitchStyles,
             },
             slider: {
-                transform: theme.slider.transform.default,
+                transform: baseStyles.slider.transform.default,
             },
             icon: {
                 color: disabled
-                    ? theme.color.bg.icon.disabledOn
-                    : theme.color.bg.icon.on,
-                transform: theme.icon.transform.default,
+                    ? baseStyles.color.bg.icon.disabledOn
+                    : baseStyles.color.bg.icon.on,
+                transform: baseStyles.icon.transform.default,
             },
         };
     } else {
         newStyles = {
             switch: {
                 backgroundColor: disabled
-                    ? theme.color.bg.switch.disabledOff
-                    : theme.color.bg.switch.off,
+                    ? baseStyles.color.bg.switch.disabledOff
+                    : baseStyles.color.bg.switch.off,
                 ":active": {
                     backgroundColor:
                         !disabled && clickable
-                            ? theme.color.bg.switch.activeOff
+                            ? baseStyles.color.bg.switch.activeOff
                             : undefined,
                     ...focusStylesObject,
                     outline: clickable ? focusStylesObject.outline : "none",
@@ -243,12 +241,12 @@ const _generateStyles = (
                 ...sharedSwitchStyles,
             },
             slider: {
-                backgroundColor: theme.color.bg.slider.off,
+                backgroundColor: baseStyles.color.bg.slider.off,
             },
             icon: {
                 color: disabled
-                    ? theme.color.bg.icon.disabledOff
-                    : theme.color.bg.icon.off,
+                    ? baseStyles.color.bg.icon.disabledOff
+                    : baseStyles.color.bg.icon.off,
             },
         };
     }
