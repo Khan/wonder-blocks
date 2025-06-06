@@ -65,6 +65,7 @@ export const StateSheetStory: StoryComponentType = {
                                 {
                                     title: "Link",
                                     href: "/",
+                                    type: "link",
                                 },
                             ],
                         },
