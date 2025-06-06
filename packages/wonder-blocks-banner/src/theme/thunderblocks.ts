@@ -45,4 +45,10 @@ export default mergeTheme(defaultTheme, {
             marginInline: `calc(${sizing.size_080} * -1)`,
         },
     },
+    link: {
+        font: {
+            decoration: "underline",
+            underlineOffset: "25%",
+        },
+    },
 });
