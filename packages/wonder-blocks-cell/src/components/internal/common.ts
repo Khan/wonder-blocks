@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     horizontalRuleInset: {
         ":after": {
             // Inset doesn't include the left padding of the cell.
-            width: `calc(100% - ${theme.root.layout.padding.inline})`,
+            width: `calc(100% - ${theme.root.layout.padding.inline.default})`,
         },
     },
 });
