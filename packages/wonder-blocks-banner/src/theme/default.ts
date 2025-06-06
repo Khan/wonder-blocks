@@ -21,6 +21,12 @@ const theme = {
                 warning: semanticColor.core.border.warning.default,
                 critical: semanticColor.core.border.critical.default,
             },
+            foreground: {
+                info: semanticColor.core.foreground.neutral.strong,
+                success: semanticColor.core.foreground.neutral.strong,
+                warning: semanticColor.core.foreground.neutral.strong,
+                critical: semanticColor.core.foreground.neutral.strong,
+            },
         },
     },
     icon: {

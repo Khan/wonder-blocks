@@ -23,6 +23,12 @@ export default mergeTheme(defaultTheme, {
                 warning: semanticColor.feedback.warning.subtle.border,
                 critical: semanticColor.feedback.critical.subtle.border,
             },
+            foreground: {
+                info: semanticColor.feedback.info.subtle.text,
+                success: semanticColor.feedback.success.subtle.text,
+                warning: semanticColor.feedback.warning.subtle.text,
+                critical: semanticColor.feedback.critical.subtle.text,
+            },
         },
     },
     icon: {

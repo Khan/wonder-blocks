@@ -353,6 +353,12 @@ const bannerTokens = {
                 warning: semanticColor.feedback.warning.subtle.background,
                 critical: semanticColor.feedback.critical.subtle.background,
             },
+            foreground: {
+                info: theme.root.color.foreground.info,
+                success: theme.root.color.foreground.success,
+                warning: theme.root.color.foreground.warning,
+                critical: theme.root.color.foreground.critical,
+            },
         },
     },
     icon: {
@@ -471,18 +477,22 @@ const styles = StyleSheet.create({
     successBanner: {
         backgroundColor: bannerTokens.root.color.background.success,
         borderColor: bannerTokens.root.color.border.success,
+        color: bannerTokens.root.color.foreground.success,
     },
     infoBanner: {
         backgroundColor: bannerTokens.root.color.background.info,
         borderColor: bannerTokens.root.color.border.info,
+        color: bannerTokens.root.color.foreground.info,
     },
     warningBanner: {
         backgroundColor: bannerTokens.root.color.background.warning,
         borderColor: bannerTokens.root.color.border.warning,
+        color: bannerTokens.root.color.foreground.warning,
     },
     criticalBanner: {
         backgroundColor: bannerTokens.root.color.background.critical,
         borderColor: bannerTokens.root.color.border.critical,
+        color: bannerTokens.root.color.foreground.critical,
     },
     successIcon: {
         color: bannerTokens.icon.color.success,
