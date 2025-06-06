@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import CellCore from "./internal/cell-core";
 
@@ -31,11 +31,7 @@ const CompactCell = function (props: CellProps): React.ReactElement {
 
     return (
         <CellCore {...coreProps}>
-            {typeof title === "string" ? (
-                <LabelMedium>{title}</LabelMedium>
-            ) : (
-                title
-            )}
+            {typeof title === "string" ? <BodyText>{title}</BodyText> : title}
         </CellCore>
     );
 };

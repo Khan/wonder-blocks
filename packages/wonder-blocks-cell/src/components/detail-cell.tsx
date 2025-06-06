@@ -2,7 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelSmall, LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import CellCore from "./internal/cell-core";
 
@@ -26,9 +26,9 @@ const Subtitle = ({subtitle, disabled}: SubtitleProps): React.ReactElement => {
 
     if (typeof subtitle === "string") {
         return (
-            <LabelSmall style={!disabled && styles.subtitle}>
+            <BodyText size="small" style={!disabled && styles.subtitle}>
                 {subtitle}
-            </LabelSmall>
+            </BodyText>
         );
     }
 
@@ -82,11 +82,7 @@ const DetailCell = function (props: DetailCellProps): React.ReactElement {
             contentStyle={{gap: sizing.size_020, ...contentStyle}}
         >
             <Subtitle subtitle={subtitle1} disabled={coreProps.disabled} />
-            {typeof title === "string" ? (
-                <LabelMedium>{title}</LabelMedium>
-            ) : (
-                title
-            )}
+            {typeof title === "string" ? <BodyText>{title}</BodyText> : title}
             <Subtitle subtitle={subtitle2} disabled={coreProps.disabled} />
         </CellCore>
     );

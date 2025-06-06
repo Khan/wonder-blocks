@@ -2,7 +2,7 @@ import * as React from "react";
 import {render, screen} from "@testing-library/react";
 
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {HeadingMedium} from "@khanacademy/wonder-blocks-typography";
+import {Heading} from "@khanacademy/wonder-blocks-typography";
 import caretRightIcon from "@phosphor-icons/core/regular/caret-right.svg";
 
 import CompactCell from "../compact-cell";
@@ -22,9 +22,7 @@ describe("CompactCell", () => {
         // Arrange
 
         // Act
-        render(
-            <CompactCell title={<HeadingMedium>Compact cell</HeadingMedium>} />,
-        );
+        render(<CompactCell title={<Heading>Compact cell</Heading>} />);
 
         // Assert
         expect(
