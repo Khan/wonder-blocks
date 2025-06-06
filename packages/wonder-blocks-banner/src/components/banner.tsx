@@ -423,7 +423,7 @@ const bannerTokens = {
             width: sizing.size_400,
         },
         layout: {
-            marginInline: sizing.size_080,
+            marginInline: sizing.size_040,
         },
     },
 };
