@@ -36,7 +36,6 @@ export default {
     kind: {
         control: {type: "select"},
         defaultValue: "info",
-        description: "Determines the color and icon of the banner.",
         options: ["info", "success", "warning", "critical"],
         table: {
             type: {summary: `"info" | "success" | "warning" | "critical"`},
@@ -58,8 +57,6 @@ export default {
     },
     text: {
         control: {type: "text"},
-        description:
-            "Text on the banner (LabelSmall) or a node if you want something different.",
         table: {type: {summary: "string | React.Node"}},
         type: {
             name: "union",
@@ -72,9 +69,6 @@ export default {
     },
     actions: {
         control: {type: "select"},
-        description: `Links or tertiary Buttons that appear to the right of the
-            text.\n\nThe ActionTrigger must have either an onClick or an href
-            field, or both.`,
         options: Object.keys(actionsMappings) as Array<React.ReactNode>,
         mapping: actionsMappings,
         table: {
@@ -86,16 +80,12 @@ export default {
     },
     onDismiss: {
         control: {type: "select"},
-        description:
-            "If present, dismiss button is on right side. If not, no button appears.",
         options: Object.keys(dismissMappings) as Array<React.ReactNode>,
         mapping: dismissMappings,
         table: {required: false},
     },
     dismissAriaLabel: {
         control: {type: "text"},
-        description:
-            "The accessible label for the dismiss button. Please pass in a translated string.",
         defaultValue: "Dismiss banner.",
         table: {
             type: {summary: "string"},
