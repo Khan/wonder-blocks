@@ -10,10 +10,7 @@ import defaultTheme from "./default";
 export default mergeTheme(defaultTheme, {
     root: {
         border: {
-            radius: {
-                default: border.radius.radius_080,
-                floating: border.radius.radius_080,
-            },
+            radius: border.radius.radius_080,
             width: {
                 inlineStart: border.width.thin,
                 inlineEnd: border.width.thin,

@@ -8,10 +8,7 @@ import {
 const theme = {
     root: {
         border: {
-            radius: {
-                default: border.radius.radius_0,
-                floating: border.radius.radius_040,
-            },
+            radius: border.radius.radius_040,
             width: {
                 inlineStart: sizing.size_060, // uses rem so the border indicator scales to font size
                 inlineEnd: border.width.none,
