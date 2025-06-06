@@ -20,6 +20,7 @@ import infoIcon from "@phosphor-icons/core/regular/info.svg";
 import successIcon from "@phosphor-icons/core/regular/smiley.svg";
 import warningIcon from "@phosphor-icons/core/regular/warning.svg";
 import criticalIcon from "@phosphor-icons/core/regular/warning-circle.svg";
+import theme from "../theme";
 
 type ActionTriggerBase = {
     title: string;
@@ -276,8 +277,9 @@ const Banner = (props: Props): React.ReactElement => {
         <View
             style={[
                 styles.containerOuter,
-                layout === "floating" && styles.floatingLayout,
-                layout === "full-width" && styles.fullWidthLayout,
+                layout === "floating"
+                    ? styles.floatingLayout
+                    : styles.fullWidthLayout,
                 bannerKindStyle,
             ]}
             role={valuesForKind.role}
@@ -325,14 +327,14 @@ const bannerTokens = {
     root: {
         border: {
             radius: {
-                default: border.radius.radius_0,
-                floating: border.radius.radius_040,
+                default: theme.root.border.radius.default,
+                floating: theme.root.border.radius.floating,
             },
             width: {
-                inlineStart: sizing.size_060, // uses rem so the border indicator scales to font size
-                inlineEnd: border.width.none,
-                blockStart: border.width.none,
-                blockEnd: border.width.none,
+                inlineStart: theme.root.border.width.inlineStart,
+                inlineEnd: theme.root.border.width.inlineEnd,
+                blockStart: theme.root.border.width.blockStart,
+                blockEnd: theme.root.border.width.blockEnd,
             },
         },
         layout: {
@@ -340,10 +342,10 @@ const bannerTokens = {
         },
         color: {
             border: {
-                info: semanticColor.core.border.instructive.default,
-                success: semanticColor.core.border.success.default,
-                warning: semanticColor.core.border.warning.default,
-                critical: semanticColor.core.border.critical.default,
+                info: theme.root.color.border.info,
+                success: theme.root.color.border.success,
+                warning: theme.root.color.border.warning,
+                critical: theme.root.color.border.critical,
             },
             background: {
                 info: semanticColor.feedback.info.subtle.background,
@@ -355,10 +357,10 @@ const bannerTokens = {
     },
     icon: {
         color: {
-            info: semanticColor.icon.primary,
-            success: semanticColor.icon.primary,
-            warning: semanticColor.icon.primary,
-            critical: semanticColor.icon.primary,
+            info: theme.icon.color.info,
+            success: theme.icon.color.success,
+            warning: theme.icon.color.warning,
+            critical: theme.icon.color.critical,
         },
         layout: {
             marginBlockStart: sizing.size_080,
