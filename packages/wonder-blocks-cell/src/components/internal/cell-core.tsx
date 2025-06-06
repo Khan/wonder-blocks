@@ -333,20 +333,21 @@ const styles = StyleSheet.create({
         // have overflow: hidden on the inner wrapper instead of the clickable element
         // because setting it on the clickable element causes issues with existing
         // cases.
-        [":active:not([aria-current=true]) .inner-wrapper" as any]: {
-            position: "relative",
-            ":before": {
-                content: "''",
-                position: "absolute",
-                top: 0,
-                left: 0,
-                bottom: 0,
-                width: theme.root.border.width.default,
-                // We use the border token as this element acts like a border
-                // when the cell is pressed.
-                backgroundColor: theme.root.color.press.border,
+        [":active[aria-disabled=false]:not([aria-current=true]) .inner-wrapper" as any]:
+            {
+                position: "relative",
+                ":before": {
+                    content: "''",
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    bottom: 0,
+                    width: theme.root.border.width.default,
+                    // We use the border token as this element acts like a border
+                    // when the cell is pressed.
+                    backgroundColor: theme.root.color.press.border,
+                },
             },
-        },
     },
 
     active: {
