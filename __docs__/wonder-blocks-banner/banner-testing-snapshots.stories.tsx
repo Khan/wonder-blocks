@@ -164,8 +164,8 @@ const scenarios = [
         props: {
             text: reallyLongText,
             actions: [
-                {title: "Link 1", href: "/"},
-                {title: "Link 2", href: "/"},
+                {title: "Link 1", href: "/", type: "link"},
+                {title: "Link 2", href: "/", type: "link"},
             ],
             onDismiss: action("onDismiss"),
         },
@@ -184,8 +184,8 @@ const scenarios = [
         name: "With Links and onDismiss",
         props: {
             actions: [
-                {title: "Link 1", href: "/"},
-                {title: "Link 2", href: "/"},
+                {title: "Link 1", href: "/", type: "link"},
+                {title: "Link 2", href: "/", type: "link"},
             ],
             onDismiss: action("onDismiss"),
         },

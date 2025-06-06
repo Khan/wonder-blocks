@@ -37,11 +37,6 @@ const theme = {
             critical: semanticColor.icon.primary,
         },
     },
-    link: {
-        layout: {
-            marginInline: sizing.size_0,
-        },
-    },
     button: {
         layout: {
             marginInline: sizing.size_0,
