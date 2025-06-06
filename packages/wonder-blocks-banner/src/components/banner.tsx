@@ -397,6 +397,16 @@ const bannerTokens = {
             marginInline: sizing.size_080,
         },
     },
+    link: {
+        font: {
+            family: font.family.sans,
+            size: font.body.size.small,
+            weight: font.weight.semi,
+            lineHeight: font.body.lineHeight.small,
+            decoration: theme.link.font.decoration,
+            underlineOffset: theme.link.font.underlineOffset,
+        },
+    },
     button: {
         layout: {
             marginInline: theme.button.layout.marginInline,
@@ -459,7 +469,12 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     link: {
-        fontSize: font.body.size.small,
+        fontFamily: bannerTokens.link.font.family,
+        fontSize: bannerTokens.link.font.size,
+        fontWeight: bannerTokens.link.font.weight,
+        lineHeight: bannerTokens.link.font.lineHeight,
+        textDecoration: bannerTokens.link.font.decoration,
+        textUnderlineOffset: bannerTokens.link.font.underlineOffset,
     },
     button: {
         marginInline: bannerTokens.button.layout.marginInline,

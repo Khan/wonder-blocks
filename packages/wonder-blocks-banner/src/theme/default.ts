@@ -42,6 +42,12 @@ const theme = {
             marginInline: sizing.size_0,
         },
     },
+    link: {
+        font: {
+            decoration: "none",
+            underlineOffset: "0%",
+        },
+    },
 };
 
 export default theme;
