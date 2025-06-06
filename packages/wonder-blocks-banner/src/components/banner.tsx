@@ -291,7 +291,7 @@ const Banner = (props: Props): React.ReactElement => {
                 />
                 <View style={styles.labelAndButtonsContainer}>
                     <View style={styles.labelContainer}>
-                        {/* We use a span here since text can be a React node with other elements */}
+                        {/* We use a div here since text can be a React node with other elements */}
                         <StyledDiv style={styles.labelTypography}>
                             {text}
                         </StyledDiv>
