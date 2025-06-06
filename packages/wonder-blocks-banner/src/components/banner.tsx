@@ -12,9 +12,9 @@ import {
     border,
     font,
     semanticColor,
-    spacing,
+    sizing,
 } from "@khanacademy/wonder-blocks-tokens";
-import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import infoIcon from "@phosphor-icons/core/regular/info.svg";
 import successIcon from "@phosphor-icons/core/regular/smiley.svg";
@@ -77,7 +77,6 @@ type BannerLayout =
     | "full-width";
 
 type BannerValues = {
-    color: string;
     icon: PhosphorIconAsset;
     role: "status" | "alert";
     ariaLive?: "assertive" | "polite";
@@ -136,29 +135,51 @@ const getValuesForKind = (kind: BannerKind): BannerValues => {
     switch (kind) {
         case "success":
             return {
-                color: semanticColor.status.success.foreground,
                 icon: successIcon,
                 role: "status",
             };
         case "warning":
             return {
-                color: semanticColor.status.warning.foreground,
                 icon: warningIcon,
                 role: "alert",
                 ariaLive: "polite",
             };
         case "critical":
             return {
-                color: semanticColor.status.critical.foreground,
                 icon: criticalIcon,
                 role: "alert",
             };
         default:
             return {
-                color: semanticColor.status.notice.foreground,
                 icon: infoIcon,
                 role: "status",
             };
+    }
+};
+
+const getBannerKindStyle = (kind: BannerKind) => {
+    switch (kind) {
+        case "success":
+            return styles.successBanner;
+        case "info":
+            return styles.infoBanner;
+        case "warning":
+            return styles.warningBanner;
+        case "critical":
+            return styles.criticalBanner;
+    }
+};
+
+const getBannerIconKindStyle = (kind: BannerKind) => {
+    switch (kind) {
+        case "success":
+            return styles.successIcon;
+        case "info":
+            return styles.infoIcon;
+        case "warning":
+            return styles.warningIcon;
+        case "critical":
+            return styles.criticalIcon;
     }
 };
 
@@ -248,36 +269,34 @@ const Banner = (props: Props): React.ReactElement => {
 
     const valuesForKind = getValuesForKind(kind);
 
+    const bannerKindStyle = getBannerKindStyle(kind);
+    const bannerIconKindStyle = getBannerIconKindStyle(kind);
+
     return (
         <View
             style={[
                 styles.containerOuter,
-                layout === "floating" && styles.floatingBorder,
-                {borderInlineStartColor: valuesForKind.color},
+                layout === "floating" && styles.floatingLayout,
+                layout === "full-width" && styles.fullWidthLayout,
+                bannerKindStyle,
             ]}
             role={valuesForKind.role}
             aria-label={ariaLabel}
             aria-live={valuesForKind.ariaLive}
             testId={testId}
         >
-            <View
-                style={[
-                    styles.backgroundColor,
-                    {backgroundColor: valuesForKind.color},
-                ]}
-            />
             <View style={styles.containerInner}>
                 <PhosphorIcon
                     icon={icon || valuesForKind.icon}
                     size="medium"
-                    style={styles.icon}
+                    style={[styles.icon, bannerIconKindStyle]}
                     aria-label={kind}
                     testId="banner-kind-icon"
                     role="img"
                 />
                 <View style={styles.labelAndButtonsContainer}>
                     <View style={styles.labelContainer}>
-                        <LabelSmall>{text}</LabelSmall>
+                        <BodyText size="small">{text}</BodyText>
                     </View>
                     {actions && (
                         <View style={styles.actionsContainer}>
@@ -302,40 +321,102 @@ const Banner = (props: Props): React.ReactElement => {
     );
 };
 
-const styles = StyleSheet.create({
-    backgroundColor: {
-        position: "absolute",
-        top: 0,
-        bottom: 0,
-        left: 0,
-        right: 0,
-        opacity: 0.08,
+const bannerTokens = {
+    root: {
+        border: {
+            radius: {
+                default: border.radius.radius_0,
+                floating: border.radius.radius_040,
+            },
+            width: {
+                inlineStart: sizing.size_060, // uses rem so the border indicator scales to font size
+                inlineEnd: border.width.none,
+                blockStart: border.width.none,
+                blockEnd: border.width.none,
+            },
+        },
+        layout: {
+            padding: sizing.size_080,
+        },
+        color: {
+            border: {
+                info: semanticColor.core.border.instructive.default,
+                success: semanticColor.core.border.success.default,
+                warning: semanticColor.core.border.warning.default,
+                critical: semanticColor.core.border.critical.default,
+            },
+            background: {
+                info: semanticColor.feedback.info.subtle.background,
+                success: semanticColor.feedback.success.subtle.background,
+                warning: semanticColor.feedback.warning.subtle.background,
+                critical: semanticColor.feedback.critical.subtle.background,
+            },
+        },
     },
+    icon: {
+        color: {
+            info: semanticColor.icon.primary,
+            success: semanticColor.icon.primary,
+            warning: semanticColor.icon.primary,
+            critical: semanticColor.icon.primary,
+        },
+        layout: {
+            marginBlockStart: sizing.size_080,
+            marginBlockEnd: sizing.size_080,
+            // The total distance from the icon to the edge is 16px. The
+            // vertical identifier is already 6px, and the padding on inner
+            // conatiner is 8px. So that leaves 2px.
+            marginInlineStart: sizing.size_020,
+            marginInlineEnd: sizing.size_080,
+        },
+    },
+    label: {
+        layout: {
+            margin: sizing.size_080,
+        },
+    },
+    actions: {
+        layout: {
+            marginBlock: sizing.size_080,
+        },
+        sizing: {
+            height: sizing.size_180,
+        },
+    },
+    action: {
+        layout: {
+            marginInline: sizing.size_080,
+        },
+    },
+    dismiss: {
+        sizing: {
+            height: sizing.size_400,
+            width: sizing.size_400,
+        },
+        layout: {
+            marginInline: sizing.size_080,
+        },
+    },
+};
+
+const styles = StyleSheet.create({
     containerOuter: {
-        borderInlineStartWidth: spacing.xxSmall_6,
+        borderInlineStartWidth: bannerTokens.root.border.width.inlineStart,
+        borderInlineEndWidth: bannerTokens.root.border.width.inlineEnd,
+        borderBlockStartWidth: bannerTokens.root.border.width.blockStart,
+        borderBlockEndWidth: bannerTokens.root.border.width.blockEnd,
         width: "100%",
-        // Because of the background color's opacity value,
-        // the base color needs to be hard-coded as white for the
-        // intended pastel background color to show up correctly
-        // on dark backgrounds.
-        // TODO(WB-1865): Verify if we can change this to use semanticColor
-        // status tokens.
-        backgroundColor: semanticColor.surface.primary,
     },
     containerInner: {
         flexDirection: "row",
-        padding: spacing.xSmall_8,
+        padding: bannerTokens.root.layout.padding,
     },
     icon: {
-        marginTop: spacing.xSmall_8,
-        marginBottom: spacing.xSmall_8,
-        // The total distance from the icon to the edge is 16px. The
-        // vertical identifier is already 6px, and the padding on inner
-        // conatiner is 8px. So that leaves 2px.
-        marginInlineStart: spacing.xxxxSmall_2,
-        marginInlineEnd: spacing.xSmall_8,
+        marginBlockStart: bannerTokens.icon.layout.marginBlockStart,
+        marginBlockEnd: bannerTokens.icon.layout.marginBlockEnd,
+        marginInlineStart: bannerTokens.icon.layout.marginInlineStart,
+        marginInlineEnd: bannerTokens.icon.layout.marginInlineEnd,
         alignSelf: "flex-start",
-        color: semanticColor.icon.primary,
     },
     labelAndButtonsContainer: {
         flex: 1,
@@ -347,22 +428,20 @@ const styles = StyleSheet.create({
     },
     labelContainer: {
         flexShrink: 1,
-        margin: spacing.xSmall_8,
+        margin: bannerTokens.label.layout.margin,
         textAlign: "start",
         overflowWrap: "break-word",
     },
     actionsContainer: {
         flexDirection: "row",
         justifyContent: "flex-start",
-        marginTop: spacing.xSmall_8,
-        marginBottom: spacing.xSmall_8,
+        marginBlock: bannerTokens.actions.layout.marginBlock,
         // Set the height to remove the padding from buttons
-        height: 18,
+        height: bannerTokens.actions.sizing.height,
         alignItems: "center",
     },
     action: {
-        marginLeft: spacing.xSmall_8,
-        marginRight: spacing.xSmall_8,
+        marginInline: bannerTokens.action.layout.marginInline,
         justifyContent: "center",
     },
     link: {
@@ -372,18 +451,48 @@ const styles = StyleSheet.create({
         flexShrink: 1,
     },
     dismissContainer: {
-        height: 40,
-        width: 40,
+        height: bannerTokens.dismiss.sizing.height,
+        width: bannerTokens.dismiss.sizing.width,
         justifyContent: "center",
         alignItems: "center",
-        marginLeft: spacing.xSmall_8,
-        marginRight: spacing.xSmall_8,
+        marginInline: bannerTokens.dismiss.layout.marginInline,
     },
-    floatingBorder: {
-        borderRadius: border.radius.radius_040,
+    floatingLayout: {
+        borderRadius: bannerTokens.root.border.radius.floating,
         // Stop the square corners of the inner container from
         // flowing out of the rounded corners of the outer container.
         overflow: "hidden",
+    },
+    fullWidthLayout: {
+        borderRadius: bannerTokens.root.border.radius.default,
+    },
+    successBanner: {
+        backgroundColor: bannerTokens.root.color.background.success,
+        borderColor: bannerTokens.root.color.border.success,
+    },
+    infoBanner: {
+        backgroundColor: bannerTokens.root.color.background.info,
+        borderColor: bannerTokens.root.color.border.info,
+    },
+    warningBanner: {
+        backgroundColor: bannerTokens.root.color.background.warning,
+        borderColor: bannerTokens.root.color.border.warning,
+    },
+    criticalBanner: {
+        backgroundColor: bannerTokens.root.color.background.critical,
+        borderColor: bannerTokens.root.color.border.critical,
+    },
+    successIcon: {
+        color: bannerTokens.icon.color.success,
+    },
+    infoIcon: {
+        color: bannerTokens.icon.color.info,
+    },
+    warningIcon: {
+        color: bannerTokens.icon.color.warning,
+    },
+    criticalIcon: {
+        color: bannerTokens.icon.color.critical,
     },
 });
 
