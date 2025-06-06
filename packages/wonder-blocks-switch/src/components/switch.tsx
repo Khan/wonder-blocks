@@ -6,6 +6,7 @@ import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {useId} from "react";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import baseStyles from "./base-styles";
+import {theme} from "../theme/index";
 
 type Props = Pick<
     AriaProps,
@@ -56,9 +57,9 @@ const sharedStyles = StyleSheet.create({
     },
     switch: {
         display: "inline-flex",
-        height: baseStyles.root.sizing.height,
-        width: baseStyles.root.sizing.width,
-        borderRadius: baseStyles.root.border.radius.default,
+        height: theme.root.sizing.height,
+        width: theme.root.sizing.width,
+        borderRadius: theme.root.border.radius.default,
         flexShrink: 0,
     },
     switchFocus: {
@@ -78,20 +79,20 @@ const sharedStyles = StyleSheet.create({
     } as any,
     slider: {
         position: "absolute",
-        top: baseStyles.slider.position.top,
-        left: baseStyles.slider.position.left,
-        height: baseStyles.slider.sizing.height,
-        width: baseStyles.slider.sizing.width,
-        borderRadius: baseStyles.root.border.radius.default,
+        top: theme.slider.position.top,
+        left: theme.slider.position.left,
+        height: theme.slider.sizing.height,
+        width: theme.slider.sizing.width,
+        borderRadius: theme.root.border.radius.default,
         backgroundColor: baseStyles.color.bg.slider.on,
-        transition: baseStyles.slider.transform.transition,
+        transition: theme.slider.transform.transition,
     },
     icon: {
         position: "absolute",
-        top: baseStyles.icon.position.top,
-        left: baseStyles.icon.position.left,
+        top: theme.icon.position.top,
+        left: theme.icon.position.left,
         zIndex: 1,
-        transition: baseStyles.icon.transform.transition,
+        transition: theme.icon.transform.transition,
     },
 });
 
@@ -215,13 +216,13 @@ const _generateStyles = (
                 ...sharedSwitchStyles,
             },
             slider: {
-                transform: baseStyles.slider.transform.default,
+                transform: theme.slider.transform.default,
             },
             icon: {
                 color: disabled
                     ? baseStyles.color.bg.icon.disabledOn
                     : baseStyles.color.bg.icon.on,
-                transform: baseStyles.icon.transform.default,
+                transform: theme.icon.transform.default,
             },
         };
     } else {
