@@ -4,22 +4,17 @@ import {StyleSheet} from "aphrodite";
 import xIcon from "@phosphor-icons/core/regular/x.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon, PhosphorIconAsset} from "@khanacademy/wonder-blocks-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Link from "@khanacademy/wonder-blocks-link";
-import {
-    border,
-    font,
-    semanticColor,
-    sizing,
-} from "@khanacademy/wonder-blocks-tokens";
-import {BodyText} from "@khanacademy/wonder-blocks-typography";
+import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import infoIcon from "@phosphor-icons/core/regular/info.svg";
 import successIcon from "@phosphor-icons/core/regular/smiley.svg";
 import warningIcon from "@phosphor-icons/core/regular/warning.svg";
 import criticalIcon from "@phosphor-icons/core/regular/warning-circle.svg";
+import theme from "../theme";
 
 type ActionTriggerBase = {
     title: string;
@@ -93,7 +88,10 @@ type Props = {
      */
     kind?: BannerKind;
     /**
-     * Determines the edge style of the Banner.
+     * (DEPRECATED) Determines the edge style of the Banner.
+     *
+     * This prop is deprecated and will be removed in a future release.
+     * Currently, it has no effect on the component.
      */
     layout: BannerLayout;
     /**
@@ -183,6 +181,8 @@ const getBannerIconKindStyle = (kind: BannerKind) => {
     }
 };
 
+const StyledDiv = addStyle("div");
+
 /**
  * Banner. A banner displays a prominent message and related optional actions.
  * It can be used as a way of informing the user of important changes.
@@ -219,7 +219,6 @@ const Banner = (props: Props): React.ReactElement => {
         dismissAriaLabel = "Dismiss banner.", // default prop
         onDismiss,
         kind = "info", // default prop
-        layout,
         text,
         testId,
         icon,
@@ -258,6 +257,7 @@ const Banner = (props: Props): React.ReactElement => {
                             size="small"
                             aria-label={action.ariaLabel ?? action.title}
                             onClick={handleClick}
+                            style={styles.button}
                         >
                             {action.title}
                         </Button>
@@ -274,12 +274,7 @@ const Banner = (props: Props): React.ReactElement => {
 
     return (
         <View
-            style={[
-                styles.containerOuter,
-                layout === "floating" && styles.floatingLayout,
-                layout === "full-width" && styles.fullWidthLayout,
-                bannerKindStyle,
-            ]}
+            style={[styles.containerOuter, bannerKindStyle]}
             role={valuesForKind.role}
             aria-label={ariaLabel}
             aria-live={valuesForKind.ariaLive}
@@ -296,7 +291,10 @@ const Banner = (props: Props): React.ReactElement => {
                 />
                 <View style={styles.labelAndButtonsContainer}>
                     <View style={styles.labelContainer}>
-                        <BodyText size="small">{text}</BodyText>
+                        {/* We use a div here since text can be a React node with other elements */}
+                        <StyledDiv style={styles.labelTypography}>
+                            {text}
+                        </StyledDiv>
                     </View>
                     {actions && (
                         <View style={styles.actionsContainer}>
@@ -324,15 +322,12 @@ const Banner = (props: Props): React.ReactElement => {
 const bannerTokens = {
     root: {
         border: {
-            radius: {
-                default: border.radius.radius_0,
-                floating: border.radius.radius_040,
-            },
+            radius: theme.root.border.radius,
             width: {
-                inlineStart: sizing.size_060, // uses rem so the border indicator scales to font size
-                inlineEnd: border.width.none,
-                blockStart: border.width.none,
-                blockEnd: border.width.none,
+                inlineStart: theme.root.border.width.inlineStart,
+                inlineEnd: theme.root.border.width.inlineEnd,
+                blockStart: theme.root.border.width.blockStart,
+                blockEnd: theme.root.border.width.blockEnd,
             },
         },
         layout: {
@@ -340,10 +335,10 @@ const bannerTokens = {
         },
         color: {
             border: {
-                info: semanticColor.core.border.instructive.default,
-                success: semanticColor.core.border.success.default,
-                warning: semanticColor.core.border.warning.default,
-                critical: semanticColor.core.border.critical.default,
+                info: theme.root.color.border.info,
+                success: theme.root.color.border.success,
+                warning: theme.root.color.border.warning,
+                critical: theme.root.color.border.critical,
             },
             background: {
                 info: semanticColor.feedback.info.subtle.background,
@@ -351,14 +346,20 @@ const bannerTokens = {
                 warning: semanticColor.feedback.warning.subtle.background,
                 critical: semanticColor.feedback.critical.subtle.background,
             },
+            foreground: {
+                info: theme.root.color.foreground.info,
+                success: theme.root.color.foreground.success,
+                warning: theme.root.color.foreground.warning,
+                critical: theme.root.color.foreground.critical,
+            },
         },
     },
     icon: {
         color: {
-            info: semanticColor.icon.primary,
-            success: semanticColor.icon.primary,
-            warning: semanticColor.icon.primary,
-            critical: semanticColor.icon.primary,
+            info: theme.icon.color.info,
+            success: theme.icon.color.success,
+            warning: theme.icon.color.warning,
+            critical: theme.icon.color.critical,
         },
         layout: {
             marginBlockStart: sizing.size_080,
@@ -374,6 +375,12 @@ const bannerTokens = {
         layout: {
             margin: sizing.size_080,
         },
+        font: {
+            size: theme.label.font.size,
+            weight: font.weight.semi,
+            lineHeight: font.body.lineHeight.small,
+            family: font.family.sans,
+        },
     },
     actions: {
         layout: {
@@ -388,13 +395,28 @@ const bannerTokens = {
             marginInline: sizing.size_080,
         },
     },
+    link: {
+        font: {
+            family: font.family.sans,
+            size: font.body.size.small,
+            weight: font.weight.semi,
+            lineHeight: font.body.lineHeight.small,
+            decoration: theme.link.font.decoration,
+            underlineOffset: theme.link.font.underlineOffset,
+        },
+    },
+    button: {
+        layout: {
+            marginInline: theme.button.layout.marginInline,
+        },
+    },
     dismiss: {
         sizing: {
             height: sizing.size_400,
             width: sizing.size_400,
         },
         layout: {
-            marginInline: sizing.size_080,
+            marginInline: sizing.size_040,
         },
     },
 };
@@ -406,6 +428,10 @@ const styles = StyleSheet.create({
         borderBlockStartWidth: bannerTokens.root.border.width.blockStart,
         borderBlockEndWidth: bannerTokens.root.border.width.blockEnd,
         width: "100%",
+        borderRadius: bannerTokens.root.border.radius,
+        // Stop the square corners of the inner container from
+        // flowing out of the rounded corners of the outer container.
+        overflow: "hidden",
     },
     containerInner: {
         flexDirection: "row",
@@ -432,6 +458,12 @@ const styles = StyleSheet.create({
         textAlign: "start",
         overflowWrap: "break-word",
     },
+    labelTypography: {
+        fontSize: bannerTokens.label.font.size,
+        fontWeight: bannerTokens.label.font.weight,
+        lineHeight: bannerTokens.label.font.lineHeight,
+        fontFamily: bannerTokens.label.font.family,
+    },
     actionsContainer: {
         flexDirection: "row",
         justifyContent: "flex-start",
@@ -445,7 +477,15 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     link: {
-        fontSize: font.body.size.small,
+        fontFamily: bannerTokens.link.font.family,
+        fontSize: bannerTokens.link.font.size,
+        fontWeight: bannerTokens.link.font.weight,
+        lineHeight: bannerTokens.link.font.lineHeight,
+        textDecoration: bannerTokens.link.font.decoration,
+        textUnderlineOffset: bannerTokens.link.font.underlineOffset,
+    },
+    button: {
+        marginInline: bannerTokens.button.layout.marginInline,
     },
     dismiss: {
         flexShrink: 1,
@@ -457,30 +497,25 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginInline: bannerTokens.dismiss.layout.marginInline,
     },
-    floatingLayout: {
-        borderRadius: bannerTokens.root.border.radius.floating,
-        // Stop the square corners of the inner container from
-        // flowing out of the rounded corners of the outer container.
-        overflow: "hidden",
-    },
-    fullWidthLayout: {
-        borderRadius: bannerTokens.root.border.radius.default,
-    },
     successBanner: {
         backgroundColor: bannerTokens.root.color.background.success,
         borderColor: bannerTokens.root.color.border.success,
+        color: bannerTokens.root.color.foreground.success,
     },
     infoBanner: {
         backgroundColor: bannerTokens.root.color.background.info,
         borderColor: bannerTokens.root.color.border.info,
+        color: bannerTokens.root.color.foreground.info,
     },
     warningBanner: {
         backgroundColor: bannerTokens.root.color.background.warning,
         borderColor: bannerTokens.root.color.border.warning,
+        color: bannerTokens.root.color.foreground.warning,
     },
     criticalBanner: {
         backgroundColor: bannerTokens.root.color.background.critical,
         borderColor: bannerTokens.root.color.border.critical,
+        color: bannerTokens.root.color.foreground.critical,
     },
     successIcon: {
         color: bannerTokens.icon.color.success,
