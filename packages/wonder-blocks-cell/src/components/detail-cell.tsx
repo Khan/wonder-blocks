@@ -1,14 +1,13 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelSmall, LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import CellCore from "./internal/cell-core";
-import {CellMeasurements} from "./internal/common";
 
 import type {CellProps, TypographyText} from "../util/types";
+import theme from "../theme";
 
 type SubtitleProps = {
     subtitle?: TypographyText;
@@ -27,9 +26,9 @@ const Subtitle = ({subtitle, disabled}: SubtitleProps): React.ReactElement => {
 
     if (typeof subtitle === "string") {
         return (
-            <LabelSmall style={!disabled && styles.subtitle}>
+            <BodyText size="small" style={!disabled && styles.subtitle}>
                 {subtitle}
-            </LabelSmall>
+            </BodyText>
         );
     }
 
@@ -74,19 +73,16 @@ type DetailCellProps = CellProps & {
  * ```
  */
 const DetailCell = function (props: DetailCellProps): React.ReactElement {
-    const {title, subtitle1, subtitle2, ...coreProps} = props;
+    const {contentStyle, title, subtitle1, subtitle2, ...coreProps} = props;
 
     return (
-        <CellCore {...coreProps} innerStyle={styles.innerWrapper}>
+        <CellCore
+            {...coreProps}
+            innerStyle={styles.innerWrapper}
+            contentStyle={{gap: sizing.size_020, ...contentStyle}}
+        >
             <Subtitle subtitle={subtitle1} disabled={coreProps.disabled} />
-            {subtitle1 && <Strut size={spacing.xxxxSmall_2} />}
-            {typeof title === "string" ? (
-                <LabelMedium>{title}</LabelMedium>
-            ) : (
-                title
-            )}
-            {/* Add a vertical spacing between the title and the subtitle */}
-            {subtitle2 && <Strut size={spacing.xxxxSmall_2} />}
+            {typeof title === "string" ? <BodyText>{title}</BodyText> : title}
             <Subtitle subtitle={subtitle2} disabled={coreProps.disabled} />
         </CellCore>
     );
@@ -96,10 +92,10 @@ const styles = StyleSheet.create({
     subtitle: {
         color: semanticColor.text.secondary,
     },
-
     // This is to override the default padding of the CellCore innerWrapper.
     innerWrapper: {
-        padding: `${CellMeasurements.detailCellPadding.paddingVertical}px ${CellMeasurements.detailCellPadding.paddingHorizontal}px`,
+        paddingBlock: theme.root.layout.padding.block.detail,
+        paddingInline: theme.root.layout.padding.inline.detail,
     },
 });
 

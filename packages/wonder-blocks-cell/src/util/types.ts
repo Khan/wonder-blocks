@@ -31,6 +31,10 @@ export type AccessoryStyle = {
      * To horizontally align the accessory.
      */
     alignItems?: "flex-start" | "flex-end" | "center";
+    /**
+     * To set spacing between child elements.
+     */
+    gap?: number | string;
 };
 
 /**
