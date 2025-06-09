@@ -321,129 +321,30 @@ const Banner = (props: Props): React.ReactElement => {
     );
 };
 
-const bannerTokens = {
-    root: {
-        border: {
-            radius: theme.root.border.radius,
-            width: {
-                inlineStart: theme.root.border.width.inlineStart,
-                inlineEnd: theme.root.border.width.inlineEnd,
-                blockStart: theme.root.border.width.blockStart,
-                blockEnd: theme.root.border.width.blockEnd,
-            },
-        },
-        layout: {
-            padding: sizing.size_080,
-        },
-        color: {
-            border: {
-                info: theme.root.color.border.info,
-                success: theme.root.color.border.success,
-                warning: theme.root.color.border.warning,
-                critical: theme.root.color.border.critical,
-            },
-            background: {
-                info: semanticColor.feedback.info.subtle.background,
-                success: semanticColor.feedback.success.subtle.background,
-                warning: semanticColor.feedback.warning.subtle.background,
-                critical: semanticColor.feedback.critical.subtle.background,
-            },
-            foreground: {
-                info: semanticColor.feedback.info.subtle.text,
-                success: semanticColor.feedback.success.subtle.text,
-                warning: semanticColor.feedback.warning.subtle.text,
-                critical: semanticColor.feedback.critical.subtle.text,
-            },
-        },
-    },
-    icon: {
-        color: {
-            info: theme.icon.color.info,
-            success: theme.icon.color.success,
-            warning: theme.icon.color.warning,
-            critical: theme.icon.color.critical,
-        },
-        layout: {
-            marginBlockStart: sizing.size_080,
-            marginBlockEnd: sizing.size_080,
-            // The total distance from the icon to the edge is 16px. The
-            // vertical identifier is already 6px, and the padding on inner
-            // conatiner is 8px. So that leaves 2px.
-            marginInlineStart: sizing.size_020,
-            marginInlineEnd: sizing.size_080,
-        },
-    },
-    label: {
-        layout: {
-            margin: sizing.size_080,
-        },
-        font: {
-            size: theme.label.font.size,
-            weight: font.weight.semi,
-            lineHeight: font.body.lineHeight.small,
-            family: font.family.sans,
-        },
-    },
-    actions: {
-        layout: {
-            marginBlock: sizing.size_080,
-        },
-        sizing: {
-            height: sizing.size_180,
-        },
-    },
-    action: {
-        layout: {
-            marginInline: sizing.size_080,
-        },
-    },
-    link: {
-        font: {
-            family: font.family.sans,
-            size: font.body.size.small,
-            weight: font.weight.semi,
-            lineHeight: font.body.lineHeight.small,
-            decoration: theme.link.font.decoration,
-            underlineOffset: theme.link.font.underlineOffset,
-        },
-    },
-    button: {
-        layout: {
-            marginInline: theme.button.layout.marginInline,
-        },
-    },
-    dismiss: {
-        sizing: {
-            height: sizing.size_400,
-            width: sizing.size_400,
-        },
-        layout: {
-            marginInline: sizing.size_040,
-        },
-    },
-};
-
 const styles = StyleSheet.create({
     containerOuter: {
-        borderInlineStartWidth: bannerTokens.root.border.width.inlineStart,
-        borderInlineEndWidth: bannerTokens.root.border.width.inlineEnd,
-        borderBlockStartWidth: bannerTokens.root.border.width.blockStart,
-        borderBlockEndWidth: bannerTokens.root.border.width.blockEnd,
+        borderInlineStartWidth: theme.root.border.width.inlineStart,
+        borderInlineEndWidth: theme.root.border.width.inlineEnd,
+        borderBlockStartWidth: theme.root.border.width.blockStart,
+        borderBlockEndWidth: theme.root.border.width.blockEnd,
         width: "100%",
-        borderRadius: bannerTokens.root.border.radius,
+        borderRadius: theme.root.border.radius,
         // Stop the square corners of the inner container from
         // flowing out of the rounded corners of the outer container.
         overflow: "hidden",
     },
     containerInner: {
         flexDirection: "row",
-        padding: bannerTokens.root.layout.padding,
+        padding: sizing.size_080,
     },
     icon: {
-        marginBlockStart: bannerTokens.icon.layout.marginBlockStart,
-        marginBlockEnd: bannerTokens.icon.layout.marginBlockEnd,
-        marginInlineStart: bannerTokens.icon.layout.marginInlineStart,
-        marginInlineEnd: bannerTokens.icon.layout.marginInlineEnd,
+        marginBlockStart: sizing.size_080,
+        marginBlockEnd: sizing.size_080,
+        // The total distance from the icon to the edge is 16px. The
+        // vertical identifier is already 6px, and the padding on inner
+        // conatiner is 8px. So that leaves 2px.
+        marginInlineStart: sizing.size_020,
+        marginInlineEnd: sizing.size_080,
         alignSelf: "flex-start",
     },
     labelAndButtonsContainer: {
@@ -456,80 +357,80 @@ const styles = StyleSheet.create({
     },
     labelContainer: {
         flexShrink: 1,
-        margin: bannerTokens.label.layout.margin,
+        margin: sizing.size_080,
         textAlign: "start",
         overflowWrap: "break-word",
     },
     labelTypography: {
-        fontSize: bannerTokens.label.font.size,
-        fontWeight: bannerTokens.label.font.weight,
-        lineHeight: bannerTokens.label.font.lineHeight,
-        fontFamily: bannerTokens.label.font.family,
+        fontSize: theme.label.font.size,
+        fontWeight: font.weight.semi,
+        lineHeight: font.body.lineHeight.small,
+        fontFamily: font.family.sans,
     },
     actionsContainer: {
         flexDirection: "row",
         justifyContent: "flex-start",
-        marginBlock: bannerTokens.actions.layout.marginBlock,
+        marginBlock: sizing.size_080,
         // Set the height to remove the padding from buttons
-        height: bannerTokens.actions.sizing.height,
+        height: sizing.size_180,
         alignItems: "center",
     },
     action: {
-        marginInline: bannerTokens.action.layout.marginInline,
+        marginInline: sizing.size_080,
         justifyContent: "center",
     },
     link: {
-        fontFamily: bannerTokens.link.font.family,
-        fontSize: bannerTokens.link.font.size,
-        fontWeight: bannerTokens.link.font.weight,
-        lineHeight: bannerTokens.link.font.lineHeight,
-        textDecoration: bannerTokens.link.font.decoration,
-        textUnderlineOffset: bannerTokens.link.font.underlineOffset,
+        fontFamily: font.family.sans,
+        fontSize: font.body.size.small,
+        fontWeight: font.weight.semi,
+        lineHeight: font.body.lineHeight.small,
+        textDecoration: theme.link.font.decoration,
+        textUnderlineOffset: theme.link.font.underlineOffset,
     },
     button: {
-        marginInline: bannerTokens.button.layout.marginInline,
+        marginInline: theme.button.layout.marginInline,
     },
     dismiss: {
         flexShrink: 1,
     },
     dismissContainer: {
-        height: bannerTokens.dismiss.sizing.height,
-        width: bannerTokens.dismiss.sizing.width,
+        height: sizing.size_400,
+        width: sizing.size_400,
         justifyContent: "center",
         alignItems: "center",
-        marginInline: bannerTokens.dismiss.layout.marginInline,
+        marginInline: sizing.size_040,
     },
     successBanner: {
-        backgroundColor: bannerTokens.root.color.background.success,
-        borderColor: bannerTokens.root.color.border.success,
-        color: bannerTokens.root.color.foreground.success,
+        backgroundColor: semanticColor.feedback.success.subtle.background,
+        borderColor: theme.root.color.border.success,
+        color: semanticColor.feedback.success.subtle.text,
     },
     infoBanner: {
-        backgroundColor: bannerTokens.root.color.background.info,
-        borderColor: bannerTokens.root.color.border.info,
-        color: bannerTokens.root.color.foreground.info,
+        backgroundColor: semanticColor.feedback.info.subtle.background,
+        borderColor: theme.root.color.border.info,
+        color: semanticColor.feedback.info.subtle.text,
     },
     warningBanner: {
-        backgroundColor: bannerTokens.root.color.background.warning,
-        borderColor: bannerTokens.root.color.border.warning,
-        color: bannerTokens.root.color.foreground.warning,
+        backgroundColor: semanticColor.feedback.warning.subtle.background,
+        borderColor: theme.root.color.border.warning,
+        color: semanticColor.feedback.warning.subtle.text,
     },
     criticalBanner: {
-        backgroundColor: bannerTokens.root.color.background.critical,
-        borderColor: bannerTokens.root.color.border.critical,
-        color: bannerTokens.root.color.foreground.critical,
+        backgroundColor: semanticColor.feedback.critical.subtle.background,
+        borderColor: theme.root.color.border.critical,
+        color: semanticColor.feedback.critical.subtle.text,
     },
     successIcon: {
-        color: bannerTokens.icon.color.success,
+        color: theme.icon.color.success,
     },
     infoIcon: {
-        color: bannerTokens.icon.color.info,
+        color: theme.icon.color.info,
     },
     warningIcon: {
-        color: bannerTokens.icon.color.warning,
+        color: theme.icon.color.warning,
     },
     criticalIcon: {
-        color: bannerTokens.icon.color.critical,
+        color: theme.icon.color.critical,
     },
 });
 
