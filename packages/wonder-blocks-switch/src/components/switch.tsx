@@ -2,10 +2,10 @@ import * as React from "react";
 import {CSSProperties, StyleSheet} from "aphrodite";
 
 import {AriaProps, View, addStyle} from "@khanacademy/wonder-blocks-core";
+import {color, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {useId} from "react";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
-import baseStyles from "./base-styles";
 import theme from "../theme/index";
 
 type Props = Pick<
@@ -48,6 +48,31 @@ const StyledSpan = addStyle("span");
 const StyledInput = addStyle("input");
 
 const focusStylesObject = focusStyles.focus[":focus-visible"];
+
+const baseStyles = {
+    color: {
+        bg: {
+            switch: {
+                off: semanticColor.core.border.neutral.default,
+                disabledOff: semanticColor.core.border.disabled.strong,
+                activeOff: color.fadedOffBlack64,
+                on: semanticColor.core.background.instructive.default,
+                disabledOn: semanticColor.core.border.instructive.subtle,
+                activeOn: semanticColor.core.background.instructive.strong,
+            },
+            slider: {
+                on: semanticColor.icon.inverse,
+                off: semanticColor.icon.inverse,
+            },
+            icon: {
+                on: semanticColor.icon.action,
+                disabledOn: semanticColor.core.border.instructive.subtle,
+                off: semanticColor.core.border.neutral.default,
+                disabledOff: semanticColor.icon.disabled,
+            },
+        },
+    },
+};
 
 const sharedStyles = StyleSheet.create({
     hidden: {
