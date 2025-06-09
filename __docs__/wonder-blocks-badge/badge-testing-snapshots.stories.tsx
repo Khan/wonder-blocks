@@ -214,7 +214,7 @@ export const Scenarios: StoryComponentType = {
                     label: "Badge",
                     icon: (
                         <Icon>
-                            <img src={"/logo.svg"} alt="Wonder Blocks" />
+                            <img src={"logo.svg"} alt="Wonder Blocks" />
                         </Icon>
                     ),
                 },
@@ -224,7 +224,7 @@ export const Scenarios: StoryComponentType = {
                 props: {
                     icon: (
                         <Icon>
-                            <img src={"/logo.svg"} alt="Wonder Blocks" />
+                            <img src={"logo.svg"} alt="Wonder Blocks" />
                         </Icon>
                     ),
                 },
@@ -235,7 +235,7 @@ export const Scenarios: StoryComponentType = {
                     label: "Badge",
                     icon: (
                         <Icon>
-                            <img src={"/avatar.png"} alt="Example avatar" />
+                            <img src="avatar.png" alt="Example avatar" />
                         </Icon>
                     ),
                 },
@@ -245,7 +245,7 @@ export const Scenarios: StoryComponentType = {
                 props: {
                     icon: (
                         <Icon>
-                            <img src={"/avatar.png"} alt="Example avatar" />
+                            <img src="avatar.png" alt="Example avatar" />
                         </Icon>
                     ),
                 },

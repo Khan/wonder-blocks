@@ -506,13 +506,13 @@ export const LongSections: StoryComponentType = {
                             >
                                 <View>
                                     <img
-                                        src="/logo.svg"
+                                        src="logo.svg"
                                         width="100%"
                                         alt="Wonder Blocks logo"
                                     />
                                     <Strut size={tokens.spacing.xLarge_32} />
                                     <img
-                                        src="/logo.svg"
+                                        src="logo.svg"
                                         width="100%"
                                         alt="Wonder Blocks logo"
                                     />

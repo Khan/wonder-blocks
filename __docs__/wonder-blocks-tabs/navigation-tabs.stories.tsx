@@ -189,7 +189,7 @@ export const HeaderWithNavigationTabsExample: StoryComponentType = {
             <StyledDiv style={styles.pageStyle}>
                 <StyledHeader style={styles.headerStyle}>
                     <img
-                        src="/logo-with-text.svg"
+                        src="logo-with-text.svg"
                         width="80px"
                         alt="Wonder Blocks logo"
                     />

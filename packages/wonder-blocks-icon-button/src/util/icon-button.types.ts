@@ -11,7 +11,7 @@ export type IconButtonActionType = "progressive" | "destructive" | "neutral";
 
 export type ActivityIconButtonActionType = "progressive" | "neutral";
 
-export type IconButtonProps = Partial<Omit<AriaProps, "aria-disabled">> & {
+export type BaseIconButtonProps = Partial<Omit<AriaProps, "aria-disabled">> & {
     /**
      * A unique identifier for the IconButton.
      */
@@ -20,17 +20,6 @@ export type IconButtonProps = Partial<Omit<AriaProps, "aria-disabled">> & {
      * A Phosphor icon asset (imported as a static SVG file).
      */
     icon: PhosphorIconAsset;
-    /**
-     * The action type/category of the icon button.
-     *
-     * - `progressive` is used for actions that move the user forward in a flow.
-     * - `destructive` is used for actions that have a negative impact on the
-     *   user.
-     * - `neutral` is used for actions that are neither positive nor negative.
-     *
-     * Defaults to `progressive`.
-     */
-    actionType?: IconButtonActionType;
     /**
      * The kind of the icon button, either primary, secondary, or tertiary.
      *
@@ -51,16 +40,10 @@ export type IconButtonProps = Partial<Omit<AriaProps, "aria-disabled">> & {
      */
     testId?: string;
     /**
-     * Used for icon buttons within <form>s.
+     * Used for icon buttons within forms.
      */
     type?: "submit" | "button";
-    /**
-     * Size of the icon button.
-     * One of `xsmall` (16 icon, 20 target), `small` (24, 32), `medium` (24, 40),
-     * or `large` (24, 48).
-     * Defaults to `medium`.
-     */
-    size?: IconButtonSize;
+
     /**
      * Optional custom styles.
      */
@@ -137,6 +120,27 @@ export type IconButtonProps = Partial<Omit<AriaProps, "aria-disabled">> & {
      * Function to call when the mouse down event is triggered.
      */
     onMouseDown?: (e: React.MouseEvent) => void;
+};
+
+export type IconButtonProps = BaseIconButtonProps & {
+    /**
+     * The action type/category of the icon button.
+     *
+     * - `progressive` is used for actions that move the user forward in a flow.
+     * - `destructive` is used for actions that have a negative impact on the
+     *   user.
+     * - `neutral` is used for actions that are neither positive nor negative.
+     *
+     * Defaults to `progressive`.
+     */
+    actionType?: IconButtonActionType;
+    /**
+     * Size of the icon button.
+     * One of `xsmall` (16 icon, 20 target), `small` (24, 32), `medium` (24, 40),
+     * or `large` (24, 48).
+     * Defaults to `medium`.
+     */
+    size?: IconButtonSize;
 };
 
 export type IconButtonRef = typeof Link | HTMLButtonElement | HTMLAnchorElement;

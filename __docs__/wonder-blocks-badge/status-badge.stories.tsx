@@ -225,7 +225,7 @@ export const CustomIcons: StoryComponentType = {
                                 icon={
                                     <Icon>
                                         <img
-                                            src={"/logo.svg"}
+                                            src="logo.svg"
                                             alt="Wonder Blocks"
                                         />
                                     </Icon>
@@ -247,7 +247,7 @@ export const CustomIcons: StoryComponentType = {
                                 icon={
                                     <Icon>
                                         <img
-                                            src={"/avatar.png"}
+                                            src="avatar.png"
                                             alt="Example avatar"
                                         />
                                     </Icon>

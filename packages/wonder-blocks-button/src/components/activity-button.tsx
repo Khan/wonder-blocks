@@ -1,6 +1,6 @@
 import * as React from "react";
 import {CSSProperties, StyleSheet} from "aphrodite";
-import {Link} from "react-router-dom-v5-compat";
+import {useInRouterContext} from "react-router-dom-v5-compat";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -8,137 +8,188 @@ import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
+import {
+    ChildrenProps,
+    ClickableState,
+    getClickableBehavior,
+} from "@khanacademy/wonder-blocks-clickable";
 import type {
-    ActivityIconButtonActionType,
-    BaseIconButtonProps,
-    IconButtonKind,
-} from "../util/icon-button.types";
+    ActivityButtonActionType,
+    ButtonKind,
+    ActivityButtonProps,
+    ButtonRef,
+} from "../util/button.types";
 
-import {IconButtonUnstyled} from "./icon-button-unstyled";
+import {ButtonUnstyled} from "./button-unstyled";
 
-type AriaLabelOnly = {
-    /**
-     * The alternative text for the icon button. Use `aria-label` for when
-     * there's no visible label for the button, such as when the button only
-     * contains an icon.
-     */
-    "aria-label": string;
-    label?: never;
-};
+type ButtonCoreProps = ActivityButtonProps & ChildrenProps & ClickableState;
 
-type LabelOnly = {
-    "aria-label"?: never;
-    /**
-     * A label for the button that describes its action.
-     *
-     * NOTE: If `label` is set, then `aria-label` will be ignored.
-     */
-    label: string;
-};
-
-type Props = BaseIconButtonProps &
-    (AriaLabelOnly | LabelOnly) & {
-        /**
-         * The action type of the button. This determines the visual style of the
-         * button.
-         *
-         * - `progressive` is used for actions that move the user forward in a flow.
-         * - `neutral` is used for buttons that indicate a neutral action.
-         */
-        actionType?: ActivityIconButtonActionType;
-    };
-
-/**
- * `ActivityIconButton` is an icon button that is used for actions in the
- * context of learner activities. It uses a "chonky" design, which is a more
- * playful and engaging design that is suitable for learner activities
- *
- * ```tsx
- * import magnifyingGlassIcon from
- * "@phosphor-icons/core/regular/magnifying-glass.svg";
- * import {ActivityIconButton} from "@khanacademy/wonder-blocks-icon-button";
- *
- * <ActivityIconButton
- *     icon={magnifyingGlassIcon}
- *     aria-label="An Icon"
- *     onClick={(e) => console.log("Hello, world!")}
- * />
- * ```
- */
-export const ActivityIconButton: React.ForwardRefExoticComponent<
-    Props &
-        React.RefAttributes<typeof Link | HTMLButtonElement | HTMLAnchorElement>
-> = React.forwardRef<
-    typeof Link | HTMLButtonElement | HTMLAnchorElement,
-    Props
->(function ActivityIconButton(props: Props, ref) {
+const ActivityButtonCore: React.ForwardRefExoticComponent<
+    ButtonCoreProps & React.RefAttributes<ButtonRef>
+> = React.forwardRef<ButtonRef, ButtonCoreProps>(function ActivityButtonCore(
+    props: ButtonCoreProps,
+    ref,
+) {
     const {
-        actionType = "progressive",
+        children,
         disabled = false,
-        icon,
         kind = "primary",
-        style,
-        type = "button",
-        // labeling
-        "aria-label": ariaLabel,
-        label,
+        focused,
+        pressed,
+        styles: stylesProp,
+        type = undefined,
+        startIcon,
+        endIcon,
+        hovered: _,
+        waiting: __,
         ...restProps
     } = props;
 
-    const [pressed, setPressed] = React.useState(false);
+    // NOTE: `progressive` is the only action type supported by this component.
+    const buttonStyles = _generateStyles("progressive", disabled, kind);
 
-    const buttonStyles = _generateStyles(actionType, !!disabled, kind);
-
-    const styles = [
+    const sharedStyles = [
         buttonStyles.button,
         disabled && buttonStyles.disabled,
         !disabled && pressed && buttonStyles.pressed,
-        style,
+        // Enables programmatic focus.
+        !disabled && !pressed && focused && buttonStyles.focused,
+        stylesProp?.root,
     ];
 
     const chonkyStyles = [
         buttonStyles.chonky,
         disabled && buttonStyles.chonkyDisabled,
         !disabled && pressed && buttonStyles.chonkyPressed,
+        stylesProp?.box,
     ];
 
-    const handlePress = React.useCallback((isPressing: boolean) => {
-        setPressed(isPressing);
-    }, []);
-
-    const hasVisibleLabel = label !== undefined && label !== "";
-
     return (
-        <IconButtonUnstyled
+        <ButtonUnstyled
             {...restProps}
             disabled={disabled}
-            onPress={handlePress}
             ref={ref}
-            style={styles}
+            style={sharedStyles}
             type={type}
-            {...(!hasVisibleLabel ? {"aria-label": ariaLabel} : {})}
         >
             <>
                 {/* NOTE: Using a regular className to be able to use descendant selectors to account for the hover and press states */}
                 <View style={chonkyStyles} className="chonky">
-                    <PhosphorIcon
-                        size="medium"
-                        color="currentColor"
-                        icon={icon}
-                    />
-                </View>
-                {hasVisibleLabel && (
+                    {startIcon && (
+                        // We use the `PhosphorIcon` component to render the icon.
+                        // It is a wrapper around the Phosphor icons library.
+                        <PhosphorIcon
+                            size="medium"
+                            color="currentColor"
+                            icon={startIcon}
+                            style={[styles.icon, stylesProp?.startIcon]}
+                            aria-hidden="true"
+                        />
+                    )}
+
                     <BodyText
                         tag="span"
                         size="medium"
                         weight="semi"
-                        style={buttonStyles.label}
+                        style={[styles.label, stylesProp?.label]}
                     >
-                        {label}
+                        {children}
                     </BodyText>
-                )}
+
+                    {endIcon && (
+                        // We use the `PhosphorIcon` component to render the icon.
+                        // It is a wrapper around the Phosphor icons library.
+                        <PhosphorIcon
+                            size="medium"
+                            color="currentColor"
+                            icon={endIcon}
+                            style={[styles.icon, stylesProp?.endIcon]}
+                            aria-hidden="true"
+                        />
+                    )}
+                </View>
             </>
-        </IconButtonUnstyled>
+        </ButtonUnstyled>
+    );
+});
+
+/**
+ * `ActivityButton` is a button that is used for actions in the context of
+ * learner activities. It uses a "chonky" design, which is a more playful and
+ * engaging design that is suitable for learner activities.
+ *
+ * ```tsx
+ * import magnifyingGlassIcon from
+ * "@phosphor-icons/core/regular/magnifying-glass.svg";
+ * import {ActivityButton} from "@khanacademy/wonder-blocks-button";
+ *
+ * <ActivityButton
+ *     startIcon={magnifyingGlassIcon}
+ *     onClick={(e) => console.log("Hello, world!")}
+ * >
+ *  Hello, world!
+ * </ActivityButton>
+ * ```
+ */
+export const ActivityButton = React.forwardRef(function ActivityButton(
+    props: ActivityButtonProps,
+    ref: React.ForwardedRef<ButtonRef>,
+) {
+    const {
+        href = undefined,
+        type = undefined,
+        children,
+        skipClientNav,
+        onClick,
+        beforeNav = undefined,
+        safeWithNav = undefined,
+        tabIndex,
+        target,
+        rel,
+        kind = "primary",
+        disabled = false,
+        ...sharedButtonCoreProps
+    } = props;
+
+    const inRouterContext = useInRouterContext();
+
+    const ClickableBehavior = getClickableBehavior(
+        href,
+        skipClientNav,
+        inRouterContext,
+    );
+
+    const extraClickableProps = beforeNav ? {beforeNav} : {target};
+
+    return (
+        <ClickableBehavior
+            disabled={disabled}
+            href={href}
+            role={href ? "link" : "button"}
+            type={type}
+            onClick={onClick}
+            safeWithNav={safeWithNav}
+            rel={rel}
+            {...extraClickableProps}
+        >
+            {(state: ClickableState, restChildProps: ChildrenProps) => (
+                <ActivityButtonCore
+                    {...sharedButtonCoreProps}
+                    {...state}
+                    {...restChildProps}
+                    disabled={disabled}
+                    kind={kind}
+                    skipClientNav={skipClientNav}
+                    href={href}
+                    target={target}
+                    type={type}
+                    tabIndex={tabIndex}
+                    ref={ref}
+                >
+                    {children}
+                </ActivityButtonCore>
+            )}
+        </ClickableBehavior>
     );
 });
 
@@ -169,7 +220,7 @@ const theme = {
         layout: {
             padding: {
                 block: sizing.size_140,
-                inline: sizing.size_200,
+                inline: sizing.size_480,
             },
         },
         shadow: {
@@ -188,22 +239,52 @@ const theme = {
             neutral: semanticColor.core.foreground.neutral.default,
             disabled: semanticColor.core.foreground.disabled.default,
         },
+        font: {
+            // NOTE: This is intended by design to correctly align the text
+            // with the icon in the button.
+            lineHeight: sizing.size_140,
+        },
         layout: {
+            padding: {
+                blockStart: sizing.size_040,
+                blockEnd: sizing.size_060,
+            },
             width: sizing.size_640,
+        },
+    },
+    icon: {
+        sizing: {
+            height: sizing.size_200,
+            width: sizing.size_200,
         },
     },
 };
 
-const styles: Record<string, any> = {};
+// Static styles for the button.
+const styles = {
+    icon: {
+        alignSelf: "center",
+        width: theme.icon.sizing.width,
+        height: theme.icon.sizing.height,
+    },
+    label: {
+        lineHeight: theme.label.font.lineHeight,
+        paddingBlockStart: theme.label.layout.padding.blockStart,
+        paddingBlockEnd: theme.label.layout.padding.blockEnd,
+    },
+};
 
+const stateStyles: Record<string, any> = {};
+
+// Dynamically generate styles for the button based on the different variants.
 const _generateStyles = (
-    actionType: ActivityIconButtonActionType = "progressive",
+    actionType: ActivityButtonActionType = "progressive",
     disabled: boolean,
-    kind: IconButtonKind,
+    kind: ButtonKind,
 ) => {
     const buttonType = `${actionType}-d_${disabled}-${kind}`;
-    if (styles[buttonType]) {
-        return styles[buttonType];
+    if (stateStyles[buttonType]) {
+        return stateStyles[buttonType];
     }
 
     const borderWidthKind = theme.root.border.width[kind];
@@ -236,14 +317,16 @@ const _generateStyles = (
     const newStyles: Record<string, CSSProperties> = {
         button: {
             // theming
+            // Applying a transparent background to allow the chonky box to show
+            // through.
+            background: "transparent",
             // Used for the focus ring.
             borderRadius: theme.root.border.radius,
             color: theme.label.color[actionType],
             // layout
+            height: "auto",
             flexDirection: "column",
             gap: sizing.size_020,
-            // Prevent the button from stretching to fill the parent
-            maxWidth: theme.label.layout.width,
             alignSelf: "flex-start",
             justifySelf: "center",
             /**
@@ -268,6 +351,8 @@ const _generateStyles = (
             // :focus-visible -> Provide focus styles for keyboard users only.
             ...focusStyles.focus,
         },
+        // To receive programmatic focus.
+        focused: focusStyles.focus[":focus-visible"],
         disabled: {
             cursor: "not-allowed",
             color: theme.label.color.disabled,
@@ -290,15 +375,20 @@ const _generateStyles = (
 
         chonky: {
             // layout
+            // Spacing between the icon(s) and the label.
+            flexDirection: "row",
+            gap: sizing.size_080,
             // Used for the chonky box.
             borderRadius: theme.root.border.radius,
             marginBlockEnd: theme.root.shadow.y.rest,
+            maxWidth: "100%",
             paddingBlock: theme.root.layout.padding.block,
             paddingInline: theme.root.layout.padding.inline,
             // theming
             background: themeVariant.background[kind].rest,
             border: `${borderWidthKind.rest} solid ${themeVariant.border[kind].rest}`,
             color: themeVariant.foreground[kind].rest,
+
             // Gives the button a "chonky" look and feel.
             boxShadow: `0 ${theme.root.shadow.y.rest} 0 0 ${themeVariant.shadow[kind].rest}`,
             // motion
@@ -310,23 +400,8 @@ const _generateStyles = (
         },
         chonkyPressed,
         chonkyDisabled,
-        /**
-         * Label
-         */
-        label: {
-            margin: 0,
-            textAlign: "center",
-            // text clipping
-            // @see https://css-tricks.com/line-clampin/#aa-the-standardized-way
-            display: "-webkit-box",
-            WebkitBoxOrient: "vertical",
-            // We restrict the label to a maximum of 2 lines.
-            WebkitLineClamp: "2",
-            overflow: "hidden",
-            wordBreak: "break-word",
-        },
     } as const;
 
-    styles[buttonType] = StyleSheet.create(newStyles);
-    return styles[buttonType];
+    stateStyles[buttonType] = StyleSheet.create(newStyles);
+    return stateStyles[buttonType];
 };

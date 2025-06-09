@@ -1,5 +1,21 @@
 # @khanacademy/wonder-blocks-icon
 
+## 5.2.0
+
+### Minor Changes
+
+- 308696e: - Rename `useSvgAttributes` hook to `useImageRoleAttributes`
+    - Make the `useImageRoleAttributes` utility public
+- dc34e0c: Adds `StreakIcon` custom icon component
+- 2cace08: Add `Icon` component to support custom icons.
+- f714517: Adds `GemIcon` custom icon component
+
+### Patch Changes
+
+- 8468d8d: Use `semanticColor` tokens for `GemIcon` and `StreakIcon` custom icon components
+- Updated dependencies [8468d8d]
+    - @khanacademy/wonder-blocks-tokens@10.5.0
+
 ## 5.1.4
 
 ### Patch Changes

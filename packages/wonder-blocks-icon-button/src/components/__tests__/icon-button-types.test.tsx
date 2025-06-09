@@ -5,6 +5,7 @@ import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.s
 
 import {IconButton} from "../icon-button";
 import {ActivityIconButton} from "../activity-icon-button";
+import {ConversationIconButton} from "../conversation-icon-button";
 import {IconButtonRef} from "../../util/icon-button.types";
 
 /**
@@ -14,6 +15,7 @@ describe("IconButton types", () => {
     describe.each([
         {name: "IconButton", Component: IconButton},
         {name: "ActivityIconButton", Component: ActivityIconButton},
+        {name: "ConversationIconButton", Component: ConversationIconButton},
     ])("$name", ({Component}) => {
         it("should render the icon", async () => {
             // Arrange
