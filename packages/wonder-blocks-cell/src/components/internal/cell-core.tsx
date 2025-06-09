@@ -221,6 +221,7 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
 const styles = StyleSheet.create({
     wrapper: {
         background: semanticColor.surface.primary,
+        borderRadius: theme.root.border.radius.default,
         color: semanticColor.core.foreground.neutral.strong,
         display: "flex",
         minHeight: theme.root.sizing.minHeight,
@@ -299,10 +300,11 @@ const styles = StyleSheet.create({
         },
         ":active": {
             background: semanticColor.core.background.instructive.subtle,
+            borderRadius: theme.root.border.radius.press,
         },
         // focus (only visible when using keyboard navigation)
         ":focus-visible": {
-            borderRadius: theme.root.border.radius,
+            borderRadius: theme.root.border.radius.focus,
             // To hide the internal corners of the cell.
             overflow: "hidden",
             // To display the focus ring based on the cell's border.
@@ -325,7 +327,7 @@ const styles = StyleSheet.create({
             width: `calc(100% - ${theme.root.border.width.default} * 2)`,
             height: `calc(100% - ${theme.root.border.width.default} * 2)`,
             border: `${theme.root.border.width.default} solid ${semanticColor.focus.outer}`,
-            borderRadius: theme.root.border.radius,
+            borderRadius: theme.root.border.radius.focus,
         },
         // press + enabled + not currently selected (active prop: false)
         // We apply the left bar indicator styles on the inner-wrapper element

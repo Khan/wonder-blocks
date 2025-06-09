@@ -374,6 +374,9 @@ export const CustomRootStyle = {
         leftAccessory: (
             <PhosphorIcon icon={IconMappings.playCircle} size="medium" />
         ),
+        rightAccessory: (
+            <PhosphorIcon icon={IconMappings.checkCircleFill} size="medium" />
+        ),
     },
     render(args: PropsFor<typeof DetailCell>) {
         return (
@@ -440,7 +443,7 @@ export const CustomRootStyle = {
 
 const styles = StyleSheet.create({
     example: {
-        backgroundColor: color.offWhite,
+        backgroundColor: semanticColor.surface.secondary,
         padding: spacing.large_24,
         width: 376,
     },
