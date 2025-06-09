@@ -92,6 +92,8 @@ type Props = {
      *
      * This prop is deprecated and will be removed in a future release.
      * Currently, it has no effect on the component.
+     *
+     * @deprecated
      */
     layout: BannerLayout;
     /**
