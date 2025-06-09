@@ -6,12 +6,21 @@ export default mergeTheme(defaultTheme, {
     root: {
         border: {
             radius: {
-                default: border.radius.radius_080,
-                hover: border.radius.radius_080,
+                default: border.radius.radius_240,
             },
         },
         sizing: {
             width: sizing.size_440,
+        },
+    },
+    slider: {
+        transform: {
+            default: `translateX(${sizing.size_200})`,
+        },
+    },
+    icon: {
+        transform: {
+            default: `translateX(${sizing.size_200})`,
         },
     },
 });

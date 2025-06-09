@@ -6,7 +6,7 @@ import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {useId} from "react";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import baseStyles from "./base-styles";
-import {theme} from "../theme/index";
+import theme from "../theme/index";
 
 type Props = Pick<
     AriaProps,
