@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
     innerWrapper: {
         minHeight: theme.root.sizing.minHeight,
         // The spacing between the left and right accessories.
-        gap: theme.root.layout.gap,
+        gap: theme.root.layout.gap.default,
         paddingBlock: theme.root.layout.padding.block.default,
         paddingInline: theme.root.layout.padding.inline.default,
         flexDirection: "row",

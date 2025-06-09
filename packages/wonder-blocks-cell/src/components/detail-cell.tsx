@@ -1,7 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import CellCore from "./internal/cell-core";
@@ -28,8 +27,16 @@ const Subtitle = ({subtitle, disabled}: SubtitleProps): React.ReactElement => {
         return (
             <BodyText
                 size="small"
-                tag="div"
-                style={!disabled && styles.subtitle}
+                tag="span"
+                style={[
+                    !disabled && styles.subtitle,
+                    // We override the default font styles to account for the
+                    // differences between themes.
+                    {
+                        fontSize: theme.subtitle.font.size,
+                        lineHeight: theme.subtitle.font.lineHeight,
+                    },
+                ]}
             >
                 {subtitle}
             </BodyText>
@@ -83,7 +90,7 @@ const DetailCell = function (props: DetailCellProps): React.ReactElement {
         <CellCore
             {...coreProps}
             innerStyle={styles.innerWrapper}
-            contentStyle={{gap: sizing.size_020, ...contentStyle}}
+            contentStyle={{gap: theme.root.layout.gap.detail, ...contentStyle}}
         >
             <Subtitle subtitle={subtitle1} disabled={coreProps.disabled} />
             {typeof title === "string" ? (
@@ -100,7 +107,7 @@ const DetailCell = function (props: DetailCellProps): React.ReactElement {
 
 const styles = StyleSheet.create({
     subtitle: {
-        color: semanticColor.text.secondary,
+        color: theme.subtitle.color.foreground,
     },
     // This is to override the default padding of the CellCore innerWrapper.
     innerWrapper: {

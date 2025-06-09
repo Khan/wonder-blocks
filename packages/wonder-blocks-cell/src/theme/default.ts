@@ -29,7 +29,10 @@ export default {
             },
         },
         layout: {
-            gap: sizing.size_160,
+            gap: {
+                default: sizing.size_160,
+                detail: sizing.size_020,
+            },
             padding: {
                 block: {
                     default: sizing.size_120,
@@ -71,6 +74,15 @@ export default {
     title: {
         font: {
             lineHeight: font.body.lineHeight.medium,
+        },
+    },
+    subtitle: {
+        color: {
+            foreground: semanticColor.core.foreground.neutral.default,
+        },
+        font: {
+            size: font.body.size.small,
+            lineHeight: font.body.lineHeight.small,
         },
     },
 };
