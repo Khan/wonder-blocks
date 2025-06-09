@@ -344,7 +344,7 @@ const styles = StyleSheet.create({
         // vertical identifier is already 6px, and the padding on inner
         // conatiner is 8px. So that leaves 2px.
         marginInlineStart: sizing.size_020,
-        marginInlineEnd: sizing.size_080,
+        marginInlineEnd: theme.icon.layout.marginInlineEnd,
         alignSelf: "flex-start",
     },
     labelAndButtonsContainer: {

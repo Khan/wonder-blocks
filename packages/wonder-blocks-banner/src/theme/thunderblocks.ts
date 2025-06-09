@@ -34,6 +34,9 @@ export default mergeTheme(defaultTheme, {
             warning: semanticColor.feedback.warning.subtle.icon,
             critical: semanticColor.feedback.critical.subtle.icon,
         },
+        layout: {
+            marginInlineEnd: sizing.size_020,
+        },
     },
     button: {
         layout: {

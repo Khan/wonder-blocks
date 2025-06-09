@@ -32,6 +32,9 @@ const theme = {
             warning: semanticColor.icon.primary,
             critical: semanticColor.icon.primary,
         },
+        layout: {
+            marginInlineEnd: sizing.size_080,
+        },
     },
     button: {
         layout: {
