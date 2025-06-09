@@ -2,7 +2,7 @@ import * as React from "react";
 import {CSSProperties, StyleSheet} from "aphrodite";
 
 import {AriaProps, View, addStyle} from "@khanacademy/wonder-blocks-core";
-import {color, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {useId} from "react";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
@@ -55,7 +55,7 @@ const baseStyles = {
             switch: {
                 off: semanticColor.core.border.neutral.default,
                 disabledOff: semanticColor.core.border.disabled.strong,
-                activeOff: color.fadedOffBlack64,
+                activeOff: semanticColor.core.border.neutral.strong,
                 on: semanticColor.core.background.instructive.default,
                 disabledOn: semanticColor.core.border.instructive.subtle,
                 activeOn: semanticColor.core.background.instructive.strong,
