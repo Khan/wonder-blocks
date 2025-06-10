@@ -2,18 +2,11 @@ import * as React from "react";
 import {CSSProperties, StyleSheet} from "aphrodite";
 
 import {AriaProps, View, addStyle} from "@khanacademy/wonder-blocks-core";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {
-    ThemedStylesFn,
-    useScopedTheme,
-    useStyles,
-} from "@khanacademy/wonder-blocks-theming";
 import {useId} from "react";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
-import ThemedSwitch, {
-    SwitchThemeContext,
-    SwitchThemeContract,
-} from "../themes/themed-switch";
+import theme from "../theme/index";
 
 type Props = Pick<
     AriaProps,
@@ -54,7 +47,81 @@ type Props = Pick<
 const StyledSpan = addStyle("span");
 const StyledInput = addStyle("input");
 
-const SwitchCore = React.forwardRef(function SwitchCore(
+const focusStylesObject = focusStyles.focus[":focus-visible"];
+
+const baseStyles = {
+    color: {
+        bg: {
+            switch: {
+                off: semanticColor.core.border.neutral.default,
+                disabledOff: semanticColor.core.border.disabled.strong,
+                activeOff: semanticColor.core.border.neutral.strong,
+                on: semanticColor.core.background.instructive.default,
+                disabledOn: semanticColor.core.border.instructive.subtle,
+                activeOn: semanticColor.core.background.instructive.strong,
+            },
+            slider: {
+                on: semanticColor.icon.inverse,
+                off: semanticColor.icon.inverse,
+            },
+            icon: {
+                on: semanticColor.icon.action,
+                disabledOn: semanticColor.core.border.instructive.subtle,
+                off: semanticColor.core.border.neutral.default,
+                disabledOff: semanticColor.icon.disabled,
+            },
+        },
+    },
+};
+
+const sharedStyles = StyleSheet.create({
+    hidden: {
+        opacity: 0,
+        height: 0,
+        width: 0,
+    },
+    switch: {
+        display: "inline-flex",
+        height: theme.root.sizing.height,
+        width: theme.root.sizing.width,
+        borderRadius: theme.root.border.radius.default,
+        flexShrink: 0,
+    },
+    switchFocus: {
+        ":focus-within": focusStylesObject,
+    } as any,
+    disabled: {
+        cursor: "not-allowed",
+        ":hover": {
+            outline: "none",
+        },
+        ":active": {
+            outline: "none",
+        },
+    },
+    disabledFocus: {
+        ":focus-within": focusStylesObject,
+    } as any,
+    slider: {
+        position: "absolute",
+        top: theme.slider.position.top,
+        left: theme.slider.position.left,
+        height: theme.slider.sizing.height,
+        width: theme.slider.sizing.width,
+        borderRadius: theme.root.border.radius.default,
+        backgroundColor: baseStyles.color.bg.slider.on,
+        transition: theme.slider.transform.transition,
+    },
+    icon: {
+        position: "absolute",
+        top: theme.icon.position.top,
+        left: theme.icon.position.left,
+        zIndex: 1,
+        transition: theme.icon.transform.transition,
+    },
+});
+
+const Switch = React.forwardRef(function Switch(
     props: Props,
     ref: React.ForwardedRef<HTMLInputElement>,
 ) {
@@ -74,9 +141,6 @@ const SwitchCore = React.forwardRef(function SwitchCore(
     const generatedUniqueId = useId();
     const uniqueId = id ?? generatedUniqueId;
 
-    const {theme, themeName} = useScopedTheme(SwitchThemeContext);
-    const sharedStyles = useStyles(themedSharedStyles, theme);
-
     const handleClick = () => {
         if (!disabled && onChange) {
             onChange(!checked);
@@ -88,9 +152,15 @@ const SwitchCore = React.forwardRef(function SwitchCore(
         checked,
         onChange !== undefined,
         disabled,
-        theme,
-        themeName,
     );
+
+    const combinedStyles = [
+        sharedStyles.switch,
+        sharedStyles.switchFocus,
+        stateStyles.switch,
+        disabled && sharedStyles.disabled,
+        disabled && sharedStyles.disabledFocus,
+    ];
 
     let styledIcon:
         | React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>
@@ -106,11 +176,7 @@ const SwitchCore = React.forwardRef(function SwitchCore(
     return (
         <View
             onClick={handleClick}
-            style={[
-                sharedStyles.switch,
-                stateStyles.switch,
-                disabled && sharedStyles.disabled,
-            ]}
+            style={combinedStyles}
             className={className}
             testId={testId}
         >
@@ -137,60 +203,13 @@ const SwitchCore = React.forwardRef(function SwitchCore(
     );
 });
 
-const themedSharedStyles: ThemedStylesFn<SwitchThemeContract> = (theme) => ({
-    hidden: {
-        opacity: 0,
-        height: theme.size.height.none,
-        width: theme.size.width.none,
-    },
-    switch: {
-        display: "inline-flex",
-        height: theme.size.height.large,
-        width: theme.size.width.large,
-        borderRadius: theme.border.radius.small,
-        flexShrink: 0,
-        ":focus-within": focusStyles.focus[":focus-visible"],
-    },
-    disabled: {
-        cursor: "not-allowed",
-        ":hover": {
-            outline: "none",
-        },
-        ":active": {
-            outline: "none",
-        },
-        ":focus-within": focusStyles.focus[":focus-visible"],
-    },
-    slider: {
-        position: "absolute",
-        top: theme.spacing.slider.position,
-        left: theme.spacing.slider.position,
-        height: theme.size.height.medium,
-        width: theme.size.width.medium,
-        borderRadius: theme.border.radius.full,
-        backgroundColor: theme.color.bg.slider.on,
-        transition: theme.spacing.transform.transition,
-    },
-    icon: {
-        position: "absolute",
-        top: theme.spacing.icon.position,
-        left: theme.spacing.icon.position,
-        zIndex: 1,
-        transition: theme.spacing.transform.transition,
-    },
-});
-
-const focusStylesObject = focusStyles.focus[":focus-visible"];
-
 const styles: Record<string, any> = {};
 const _generateStyles = (
     checked: boolean,
     clickable: boolean,
     disabled: boolean,
-    theme: SwitchThemeContract,
-    themeName: string,
 ) => {
-    const checkedStyle = `${checked}-${clickable}-${disabled}-${themeName}`;
+    const checkedStyle = `${checked}-${clickable}-${disabled}`;
     // The styles are cached to avoid creating a new object on every render.
     if (styles[checkedStyle]) {
         return styles[checkedStyle];
@@ -209,12 +228,12 @@ const _generateStyles = (
         newStyles = {
             switch: {
                 backgroundColor: disabled
-                    ? theme.color.bg.switch.disabledOn
-                    : theme.color.bg.switch.on,
+                    ? baseStyles.color.bg.switch.disabledOn
+                    : baseStyles.color.bg.switch.on,
                 ":active": {
                     backgroundColor:
                         !disabled && clickable
-                            ? theme.color.bg.switch.activeOn
+                            ? baseStyles.color.bg.switch.activeOn
                             : undefined,
                     ...focusStylesObject,
                     outline: clickable ? focusStylesObject.outline : "none",
@@ -222,25 +241,25 @@ const _generateStyles = (
                 ...sharedSwitchStyles,
             },
             slider: {
-                transform: theme.spacing.transform.default,
+                transform: theme.slider.transform.default,
             },
             icon: {
                 color: disabled
-                    ? theme.color.bg.icon.disabledOn
-                    : theme.color.bg.icon.on,
-                transform: theme.spacing.transform.default,
+                    ? baseStyles.color.bg.icon.disabledOn
+                    : baseStyles.color.bg.icon.on,
+                transform: theme.icon.transform.default,
             },
         };
     } else {
         newStyles = {
             switch: {
                 backgroundColor: disabled
-                    ? theme.color.bg.switch.disabledOff
-                    : theme.color.bg.switch.off,
+                    ? baseStyles.color.bg.switch.disabledOff
+                    : baseStyles.color.bg.switch.off,
                 ":active": {
                     backgroundColor:
                         !disabled && clickable
-                            ? theme.color.bg.switch.activeOff
+                            ? baseStyles.color.bg.switch.activeOff
                             : undefined,
                     ...focusStylesObject,
                     outline: clickable ? focusStylesObject.outline : "none",
@@ -248,12 +267,12 @@ const _generateStyles = (
                 ...sharedSwitchStyles,
             },
             slider: {
-                backgroundColor: theme.color.bg.slider.off,
+                backgroundColor: baseStyles.color.bg.slider.off,
             },
             icon: {
                 color: disabled
-                    ? theme.color.bg.icon.disabledOff
-                    : theme.color.bg.icon.off,
+                    ? baseStyles.color.bg.icon.disabledOff
+                    : baseStyles.color.bg.icon.off,
             },
         };
     }
@@ -261,18 +280,5 @@ const _generateStyles = (
     styles[checkedStyle] = StyleSheet.create(newStyles);
     return styles[checkedStyle];
 };
-
-const Switch = React.forwardRef(function Switch(
-    props: Props,
-    ref: React.ForwardedRef<HTMLInputElement>,
-) {
-    return (
-        <ThemedSwitch>
-            <SwitchCore {...props} ref={ref} />
-        </ThemedSwitch>
-    );
-});
-
-Switch.displayName = "Switch";
 
 export default Switch;

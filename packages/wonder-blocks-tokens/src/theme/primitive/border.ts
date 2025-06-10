@@ -15,6 +15,7 @@ export const border = {
         radius_040: remToPx(sizing.size_040),
         radius_080: remToPx(sizing.size_080),
         radius_120: remToPx(sizing.size_120),
+        radius_240: remToPx(sizing.size_240),
         radius_full: "50%",
     },
     width: {
