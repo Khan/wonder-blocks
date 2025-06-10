@@ -24,6 +24,9 @@ const theme = {
                 critical: semanticColor.core.border.critical.default,
             },
         },
+        layout: {
+            paddingInline: sizing.size_080,
+        },
     },
     icon: {
         color: {

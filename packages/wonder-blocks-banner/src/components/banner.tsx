@@ -335,7 +335,8 @@ const styles = StyleSheet.create({
     },
     containerInner: {
         flexDirection: "row",
-        padding: sizing.size_080,
+        paddingBlock: sizing.size_080,
+        paddingInline: theme.root.layout.paddingInline,
     },
     icon: {
         marginBlockStart: sizing.size_080,
