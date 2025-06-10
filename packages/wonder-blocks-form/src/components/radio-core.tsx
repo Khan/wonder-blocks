@@ -52,13 +52,16 @@ const StyledInput = addStyle("input");
     );
 });
 
-const size = 16; // circle with a different color. Here, we add that center circle. // If the checkbox is disabled and selected, it has a border but also an inner
+const baseStyles = {
+    size: 16, // circle with a different color. Here, we add that center circle. // If the checkbox is disabled and selected, it has a border but also an inner
+};
+
 const disabledChecked = {
     position: "absolute",
-    top: size / 4,
-    left: size / 4,
-    height: size / 2,
-    width: size / 2,
+    top: baseStyles.size / 4,
+    left: baseStyles.size / 4,
+    height: baseStyles.size / 2,
+    width: baseStyles.size / 2,
     borderRadius: theme.radio.border.radius.default,
     backgroundColor: semanticColor.core.border.disabled.strong,
 } as const;
@@ -71,10 +74,10 @@ const sharedStyles = StyleSheet.create({
         MozAppearance: "none",
     },
     default: {
-        height: size,
-        width: size,
-        minHeight: size,
-        minWidth: size,
+        height: baseStyles.size,
+        width: baseStyles.size,
+        minHeight: baseStyles.size,
+        minWidth: baseStyles.size,
         margin: 0,
         outline: "none",
         boxSizing: "border-box",

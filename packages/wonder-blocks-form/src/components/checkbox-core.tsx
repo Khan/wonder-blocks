@@ -30,10 +30,12 @@ function mapCheckedToAriaChecked(value: Checked): AriaChecked {
     }
 }
 
-// The checkbox size
-const size = spacing.medium_16;
-// The check icon size
-const checkSize = spacing.small_12;
+const baseStyles = {
+    // The checkbox size
+    size: spacing.medium_16,
+    // The check icon size
+    checkSize: spacing.small_12,
+};
 
 const StyledInput = addStyle("input");
 
@@ -83,8 +85,8 @@ const CheckboxCore = React.forwardRef(function CheckboxCore(
                 sharedStyles.checkboxIcon,
                 // The check icon is smaller than the checkbox, as per design.
                 {
-                    width: checkSize,
-                    height: checkSize,
+                    width: baseStyles.checkSize,
+                    height: baseStyles.checkSize,
                 },
             ]}
         />
@@ -132,10 +134,10 @@ const sharedStyles = StyleSheet.create({
     },
 
     default: {
-        height: size,
-        width: size,
-        minHeight: size,
-        minWidth: size,
+        height: baseStyles.size,
+        width: baseStyles.size,
+        minHeight: baseStyles.size,
+        minWidth: baseStyles.size,
         margin: 0,
         outline: "none",
         boxSizing: "border-box",
@@ -155,7 +157,7 @@ const sharedStyles = StyleSheet.create({
         position: "absolute",
         pointerEvents: "none",
         // This margin is to center the check icon in the checkbox.
-        margin: (size - checkSize) / 2,
+        margin: (baseStyles.size - baseStyles.checkSize) / 2,
     },
 });
 
