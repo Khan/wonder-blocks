@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import xIcon from "@phosphor-icons/core/regular/x.svg";
+import xIcon from "@phosphor-icons/core/bold/x-bold.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
@@ -312,6 +312,7 @@ const Banner = (props: Props): React.ReactElement => {
                             onClick={onDismiss}
                             style={styles.dismiss}
                             aria-label={dismissAriaLabel}
+                            size="xsmall"
                         />
                     </View>
                 ) : null}
@@ -395,8 +396,6 @@ const styles = StyleSheet.create({
         flexShrink: 1,
     },
     dismissContainer: {
-        height: sizing.size_400,
-        width: sizing.size_400,
         justifyContent: "center",
         alignItems: "center",
         marginInline: sizing.size_040,
