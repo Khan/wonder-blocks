@@ -151,7 +151,7 @@ export const CustomIcons: StoryComponentType = {
                 <Badge
                     icon={
                         <Icon>
-                            <img src={"/logo.svg"} alt="Wonder Blocks" />
+                            <img src={"logo.svg"} alt="Wonder Blocks" />
                         </Icon>
                     }
                     label="Custom Icon"
@@ -162,7 +162,7 @@ export const CustomIcons: StoryComponentType = {
                 <Badge
                     icon={
                         <Icon>
-                            <img src={"/avatar.png"} alt="Example avatar" />
+                            <img src="avatar.png" alt="Example avatar" />
                         </Icon>
                     }
                     label="Custom Icon"
