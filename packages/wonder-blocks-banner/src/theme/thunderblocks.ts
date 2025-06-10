@@ -63,7 +63,10 @@ export default mergeTheme(defaultTheme, {
     dismiss: {
         layout: {
             // Negative margin to offset the height of the dismiss button
-            marginBlock: `calc(${sizing.size_040} * -1)`,
+            // We divide by 2 because the margin is split between the top and bottom
+            // 6px is the difference between the banner content height (18px) and the
+            // dismiss icon button (24px).
+            marginBlock: `calc(${sizing.size_060} / 2 * -1)`,
         },
     },
 });
