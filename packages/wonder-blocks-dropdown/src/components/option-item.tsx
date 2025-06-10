@@ -309,15 +309,6 @@ export default class OptionItem extends React.Component<OptionProps> {
 const theme = {
     checkbox: {
         color: {
-            hover: {
-                background: semanticColor.surface.primary,
-                foreground: semanticColor.core.foreground.instructive.subtle,
-            },
-            press: {
-                // NOTE: The checkbox press state uses white as the background
-                background: semanticColor.surface.primary,
-                foreground: semanticColor.core.foreground.instructive.default,
-            },
             selected: {
                 background: semanticColor.input.checked.background,
                 foreground: semanticColor.input.checked.foreground,
@@ -350,24 +341,8 @@ const styles = StyleSheet.create({
         minHeight: "unset",
 
         // checkbox states (see checkbox.tsx)
-        [":hover[aria-disabled=false] .checkbox" as any]: {
-            background: theme.checkbox.color.hover.background,
-        },
-        [":active[aria-disabled=false] .checkbox" as any]: {
-            background: theme.checkbox.color.press.background,
-        },
-        [":hover[aria-disabled=false] .check" as any]: {
-            color: theme.checkbox.color.hover.foreground,
-        },
-        [":active[aria-disabled=false] .check" as any]: {
-            color: theme.checkbox.color.press.foreground,
-        },
-
         [":is([aria-selected=true]) .checkbox" as any]: {
             background: theme.checkbox.color.selected.background,
-        },
-
-        [":is([aria-selected=true]) .check" as any]: {
             color: theme.checkbox.color.selected.foreground,
         },
     },
