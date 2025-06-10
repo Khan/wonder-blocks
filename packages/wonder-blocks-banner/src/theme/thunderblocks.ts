@@ -37,6 +37,10 @@ export default mergeTheme(defaultTheme, {
         layout: {
             marginInlineEnd: sizing.size_020,
         },
+        sizing: {
+            height: sizing.size_180,
+            width: sizing.size_180,
+        },
     },
     button: {
         layout: {

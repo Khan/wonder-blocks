@@ -35,6 +35,10 @@ const theme = {
         layout: {
             marginInlineEnd: sizing.size_080,
         },
+        sizing: {
+            height: sizing.size_240,
+            width: sizing.size_240,
+        },
     },
     button: {
         layout: {

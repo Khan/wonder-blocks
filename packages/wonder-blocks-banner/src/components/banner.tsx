@@ -285,7 +285,6 @@ const Banner = (props: Props): React.ReactElement => {
             <View style={styles.containerInner}>
                 <PhosphorIcon
                     icon={icon || valuesForKind.icon}
-                    size="medium"
                     style={[styles.icon, bannerIconKindStyle]}
                     aria-label={kind}
                     testId="banner-kind-icon"
@@ -346,6 +345,8 @@ const styles = StyleSheet.create({
         marginInlineStart: sizing.size_020,
         marginInlineEnd: theme.icon.layout.marginInlineEnd,
         alignSelf: "flex-start",
+        width: theme.icon.sizing.width,
+        height: theme.icon.sizing.height,
     },
     labelAndButtonsContainer: {
         flex: 1,
