@@ -2,7 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import theme from "../theme/index";
 import type {ChoiceCoreProps, Checked} from "../util/types";
 
@@ -14,6 +14,8 @@ const StyledInput = addStyle("input");
     props: ChoiceCoreProps,
     ref: React.ForwardedRef<HTMLInputElement>,
 ) {
+    const innerRef = React.useRef<HTMLInputElement>(null);
+
     const handleChange = () => {
         // Empty because change is handled by ClickableBehavior
         return;
@@ -30,24 +32,43 @@ const StyledInput = addStyle("input");
         disabled && sharedStyles.disabled,
     ];
 
+    const wrapperStyle = [theme.inputWrapper, stateStyles.inputWrapper];
+
+    const handleWrapperClick = (e: React.MouseEvent) => {
+        // forward event from wrapper Div
+        if (!disabled && e.target !== innerRef?.current) {
+            innerRef?.current?.click();
+        }
+    };
+
     return (
         <React.Fragment>
-            <StyledInput
-                {...sharedProps}
-                type="radio"
-                aria-invalid={error}
-                checked={checked ?? undefined}
-                disabled={disabled}
-                id={id}
-                name={groupName}
-                // Need to specify because this is a controlled React form
-                // component, but we handle the click via ClickableBehavior
-                onChange={handleChange}
-                style={defaultStyle}
-                data-testid={testId}
-                ref={ref}
-            />
-            {disabled && checked && <span style={disabledChecked} />}
+            <View style={wrapperStyle} onClick={handleWrapperClick}>
+                <StyledInput
+                    {...sharedProps}
+                    type="radio"
+                    aria-invalid={error}
+                    checked={checked ?? undefined}
+                    disabled={disabled}
+                    id={id}
+                    name={groupName}
+                    // Need to specify because this is a controlled React form
+                    // component, but we handle the click via ClickableBehavior
+                    onChange={handleChange}
+                    style={defaultStyle}
+                    data-testid={testId}
+                    ref={(node) => {
+                        // @ts-expect-error: current is not actually read-only
+                        innerRef.current = node;
+                        if (typeof ref === "function") {
+                            ref(node);
+                        } else if (ref != null) {
+                            ref.current = node;
+                        }
+                    }}
+                />
+                {disabled && checked && <span style={disabledChecked} />}
+            </View>
         </React.Fragment>
     );
 });
@@ -82,14 +103,14 @@ const sharedStyles = StyleSheet.create({
         outline: "none",
         boxSizing: "border-box",
         borderStyle: "solid",
-        borderWidth: theme.root.border.width.default,
+        borderWidth: theme.radio.border.width.default,
         borderRadius: theme.radio.border.radius.default,
     },
     disabled: {
         cursor: "auto",
         backgroundColor: semanticColor.input.disabled.background,
         borderColor: semanticColor.input.disabled.border,
-        borderWidth: theme.root.border.width.default,
+        borderWidth: theme.radio.border.width.default,
     },
 });
 
@@ -132,22 +153,23 @@ const _generateStyles = (checked: Checked, error: boolean) => {
     let newStyles: Record<string, any> = {};
     if (checked) {
         newStyles = {
+            inputWrapper: {
+                // TODO(WB-1864): Revisit hover, press tokens
+                ":hover input": {
+                    outline: `${border.width.medium} solid ${colorAction.hover.border}`,
+                    outlineOffset: 1,
+                },
+            },
             default: {
                 backgroundColor: states.checked.background,
                 borderColor: states.checked.border,
-                borderWidth: size / 4,
+                borderWidth: baseStyles.size / 4,
 
                 // Focus and hover have the same style. Focus style only shows
                 // up with keyboard navigation.
                 // TODO(WB-1864): Use focusStyles.focus
                 ":focus-visible": {
                     outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
-                    outlineOffset: 1,
-                },
-
-                // TODO(WB-1864): Revisit hover, press tokens
-                ":hover": {
-                    outline: `${border.width.medium} solid ${colorAction.hover.border}`,
                     outlineOffset: 1,
                 },
 
@@ -162,6 +184,16 @@ const _generateStyles = (checked: Checked, error: boolean) => {
         const currentState = error ? states.error : states.unchecked;
 
         newStyles = {
+            inputWrapper: {
+                // TODO(WB-1864): Revisit hover, press tokens
+                ":hover input": {
+                    backgroundColor: error
+                        ? states.error.background
+                        : colorAction.hover.background,
+                    outline: `${border.width.medium} solid ${colorAction.hover.border}`,
+                    outlineOffset: -1,
+                },
+            },
             default: {
                 backgroundColor: currentState.background,
                 borderColor: currentState.border,
@@ -174,15 +206,6 @@ const _generateStyles = (checked: Checked, error: boolean) => {
                         ? states.error.background
                         : colorAction.hover.background,
                     outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
-                    outlineOffset: -1,
-                },
-
-                // TODO(WB-1864): Revisit hover, press tokens
-                ":hover": {
-                    backgroundColor: error
-                        ? states.error.background
-                        : colorAction.hover.background,
-                    outline: `${border.width.medium} solid ${colorAction.hover.border}`,
                     outlineOffset: -1,
                 },
 
