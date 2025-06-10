@@ -10,6 +10,7 @@ import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import checkIcon from "@phosphor-icons/core/bold/check-bold.svg";
 import minusIcon from "@phosphor-icons/core/bold/minus-bold.svg";
+import theme from "../theme/index";
 
 import type {ChoiceCoreProps, Checked} from "../util/types";
 
@@ -139,16 +140,15 @@ const sharedStyles = StyleSheet.create({
         outline: "none",
         boxSizing: "border-box",
         borderStyle: "solid",
-        borderWidth: border.width.thin,
-        // TODO(WB-1864): Use the correct token once TB is updated.
-        borderRadius: 3,
+        borderWidth: theme.root.border.width.default,
+        borderRadius: theme.checkbox.border.radius.default,
     },
 
     disabled: {
         cursor: "auto",
         backgroundColor: semanticColor.input.disabled.background,
         borderColor: semanticColor.input.disabled.border,
-        borderWidth: border.width.thin,
+        borderWidth: theme.root.border.width.default,
     },
 
     checkboxIcon: {

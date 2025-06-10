@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-
+import theme from "../theme/index";
 import type {ChoiceCoreProps, Checked} from "../util/types";
 
 const StyledInput = addStyle("input");
@@ -59,7 +59,7 @@ const disabledChecked = {
     left: size / 4,
     height: size / 2,
     width: size / 2,
-    borderRadius: border.radius.radius_full,
+    borderRadius: theme.radio.border.radius.default,
     backgroundColor: semanticColor.core.border.disabled.strong,
 } as const;
 
@@ -79,14 +79,14 @@ const sharedStyles = StyleSheet.create({
         outline: "none",
         boxSizing: "border-box",
         borderStyle: "solid",
-        borderWidth: border.width.thin,
-        borderRadius: border.radius.radius_full,
+        borderWidth: theme.root.border.width.default,
+        borderRadius: theme.radio.border.radius.default,
     },
     disabled: {
         cursor: "auto",
         backgroundColor: semanticColor.input.disabled.background,
         borderColor: semanticColor.input.disabled.border,
-        borderWidth: border.width.thin,
+        borderWidth: theme.root.border.width.default,
     },
 });
 
