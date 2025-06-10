@@ -335,17 +335,8 @@ const styles = StyleSheet.create({
     },
     containerInner: {
         flexDirection: "row",
-        paddingBlock: sizing.size_080,
-        paddingInline: theme.root.layout.paddingInline,
     },
     icon: {
-        marginBlockStart: sizing.size_080,
-        marginBlockEnd: sizing.size_080,
-        // The total distance from the icon to the edge is 16px. The
-        // vertical identifier is already 6px, and the padding on inner
-        // conatiner is 8px. So that leaves 2px.
-        marginInlineStart: sizing.size_020,
-        marginInlineEnd: theme.icon.layout.marginInlineEnd,
         alignSelf: "flex-start",
         width: theme.icon.sizing.width,
         height: theme.icon.sizing.height,
@@ -360,7 +351,6 @@ const styles = StyleSheet.create({
     },
     labelContainer: {
         flexShrink: 1,
-        margin: sizing.size_080,
         textAlign: "start",
         overflowWrap: "break-word",
     },
@@ -373,13 +363,11 @@ const styles = StyleSheet.create({
     actionsContainer: {
         flexDirection: "row",
         justifyContent: "flex-start",
-        marginBlock: sizing.size_080,
         // Set the height to remove the padding from buttons
         height: sizing.size_180,
         alignItems: "center",
     },
     action: {
-        marginInline: sizing.size_080,
         justifyContent: "center",
     },
     link: {
@@ -399,7 +387,6 @@ const styles = StyleSheet.create({
     dismissContainer: {
         justifyContent: "center",
         alignItems: "center",
-        marginInline: sizing.size_040,
     },
     successBanner: {
         backgroundColor: semanticColor.feedback.success.subtle.background,

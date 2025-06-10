@@ -24,9 +24,6 @@ const theme = {
                 critical: semanticColor.core.border.critical.default,
             },
         },
-        layout: {
-            paddingInline: sizing.size_080,
-        },
     },
     icon: {
         color: {
@@ -34,9 +31,6 @@ const theme = {
             success: semanticColor.icon.primary,
             warning: semanticColor.icon.primary,
             critical: semanticColor.icon.primary,
-        },
-        layout: {
-            marginInlineEnd: sizing.size_080,
         },
         sizing: {
             height: sizing.size_240,
