@@ -304,7 +304,7 @@ const Banner = (props: Props): React.ReactElement => {
                     )}
                 </View>
                 {onDismiss ? (
-                    <View style={styles.dismissContainer}>
+                    <View>
                         <IconButton
                             icon={xIcon}
                             kind="tertiary"
@@ -388,10 +388,7 @@ const styles = StyleSheet.create({
     },
     dismiss: {
         flexShrink: 1,
-    },
-    dismissContainer: {
-        justifyContent: "center",
-        alignItems: "center",
+        marginBlock: theme.dismiss.layout.marginBlock,
     },
     successBanner: {
         backgroundColor: semanticColor.feedback.success.subtle.background,

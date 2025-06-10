@@ -60,4 +60,10 @@ export default mergeTheme(defaultTheme, {
             size: font.body.size.medium,
         },
     },
+    dismiss: {
+        layout: {
+            // Negative margin to offset the height of the dismiss button
+            marginBlock: `calc(${sizing.size_040} * -1)`,
+        },
+    },
 });

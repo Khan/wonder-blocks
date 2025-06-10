@@ -58,6 +58,11 @@ const theme = {
             size: font.body.size.small,
         },
     },
+    dismiss: {
+        layout: {
+            marginBlock: sizing.size_0,
+        },
+    },
 };
 
 export default theme;
