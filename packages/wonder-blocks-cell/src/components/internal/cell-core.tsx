@@ -36,6 +36,7 @@ const LeftAccessory = ({
         <View
             style={[
                 styles.accessory,
+                styles.accessoryLeft,
                 disabled && styles.accessoryDisabled,
                 {...leftAccessoryStyle},
             ]}
@@ -281,10 +282,14 @@ const styles = StyleSheet.create({
         alignSelf: "center",
     },
 
+    accessoryLeft: {
+        color: theme.accessoryLeft.color.default.foreground,
+    },
+
     accessoryRight: {
         // The right accessory will have this color by default. Unless the
         // accessory element overrides that color internally.
-        color: theme.accessory.color.default.foreground,
+        color: theme.accessoryRight.color.default.foreground,
     },
 
     /**
@@ -361,6 +366,7 @@ const styles = StyleSheet.create({
 
     disabled: {
         background: semanticColor.surface.primary,
+        borderRadius: theme.root.border.radius.default,
         color: semanticColor.core.foreground.inverse.subtle,
         ":hover": {
             background: semanticColor.surface.primary,
@@ -373,6 +379,7 @@ const styles = StyleSheet.create({
         },
         ":active": {
             background: semanticColor.surface.primary,
+            borderRadius: theme.root.border.radius.default,
         },
         [".inner-wrapper" as any]: {
             ":before": {
@@ -384,11 +391,11 @@ const styles = StyleSheet.create({
     },
 
     accessoryActive: {
-        color: theme.accessory.color.selected.foreground,
+        color: theme.accessoryRight.color.selected.foreground,
     },
 
     accessoryDisabled: {
-        color: theme.accessory.color.disabled.foreground,
+        color: theme.accessoryRight.color.disabled.foreground,
         opacity: 0.32,
     },
 });

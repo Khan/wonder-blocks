@@ -94,7 +94,10 @@ const DetailCell = function (props: DetailCellProps): React.ReactElement {
         >
             <Subtitle subtitle={subtitle1} disabled={coreProps.disabled} />
             {typeof title === "string" ? (
-                <BodyText style={{lineHeight: theme.title.font.lineHeight}}>
+                <BodyText
+                    weight="semi"
+                    style={{lineHeight: theme.title.font.lineHeight}}
+                >
                     {title}
                 </BodyText>
             ) : (

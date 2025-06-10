@@ -46,10 +46,17 @@ export default mergeTheme(defaultTheme, {
             minHeight: sizing.size_440,
         },
     },
-    accessory: {
+    accessoryLeft: {
         color: {
             default: {
-                foreground: semanticColor.core.foreground.neutral.default,
+                foreground: semanticColor.core.foreground.neutral.subtle,
+            },
+        },
+    },
+    accessoryRight: {
+        color: {
+            default: {
+                foreground: semanticColor.core.foreground.neutral.subtle,
             },
             selected: {
                 foreground: semanticColor.core.foreground.instructive.default,

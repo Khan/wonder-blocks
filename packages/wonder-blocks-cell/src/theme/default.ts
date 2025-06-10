@@ -48,7 +48,14 @@ export default {
             minHeight: sizing.size_480,
         },
     },
-    accessory: {
+    accessoryLeft: {
+        color: {
+            default: {
+                foreground: "inherit",
+            },
+        },
+    },
+    accessoryRight: {
         // NOTE: These colors will change in TB.
         color: {
             default: {

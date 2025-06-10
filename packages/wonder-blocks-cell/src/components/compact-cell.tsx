@@ -33,7 +33,10 @@ const CompactCell = function (props: CellProps): React.ReactElement {
     return (
         <CellCore {...coreProps}>
             {typeof title === "string" ? (
-                <BodyText style={{lineHeight: theme.title.font.lineHeight}}>
+                <BodyText
+                    weight="semi"
+                    style={{lineHeight: theme.title.font.lineHeight}}
+                >
                     {title}
                 </BodyText>
             ) : (
