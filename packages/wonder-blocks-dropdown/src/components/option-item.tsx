@@ -17,6 +17,7 @@ import {
 } from "@khanacademy/wonder-blocks-core";
 
 import {Strut} from "@khanacademy/wonder-blocks-layout";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import Check from "./check";
 import Checkbox from "./checkbox";
 import {CellProps, OptionLabel} from "../util/types";
@@ -305,67 +306,21 @@ export default class OptionItem extends React.Component<OptionProps> {
     }
 }
 
-const focusedStyle = {
-    // Override the default focus state for the cell element, so that it
-    // can be added programmatically to the button element.
-    borderRadius: border.radius.radius_040,
-    outline: `${spacing.xxxxSmall_2}px solid ${semanticColor.focus.outer}`,
-    outlineOffset: -spacing.xxxxSmall_2,
-};
-
-// TODO(WB-1868): Move this to a theme file.
-const actionType = semanticColor.action.primary.progressive;
-
 const theme = {
-    optionItem: {
-        color: {
-            default: {
-                background: semanticColor.surface.primary,
-                foreground: semanticColor.text.primary,
-            },
-            hover: {
-                background: actionType.hover.background,
-                foreground: actionType.hover.foreground,
-            },
-            press: {
-                background: actionType.press.background,
-                foreground: actionType.press.foreground,
-            },
-            disabled: {
-                background: semanticColor.core.background.disabled.subtle,
-                foreground: semanticColor.action.secondary.disabled.foreground,
-            },
-        },
-    },
     checkbox: {
         color: {
             hover: {
                 background: semanticColor.surface.primary,
-                foreground:
-                    semanticColor.action.secondary.progressive.hover.foreground,
+                foreground: semanticColor.core.foreground.instructive.subtle,
             },
             press: {
                 // NOTE: The checkbox press state uses white as the background
                 background: semanticColor.surface.primary,
-                foreground:
-                    semanticColor.action.secondary.progressive.press.foreground,
+                foreground: semanticColor.core.foreground.instructive.default,
             },
             selected: {
                 background: semanticColor.input.checked.background,
                 foreground: semanticColor.input.checked.foreground,
-            },
-        },
-    },
-    subtitle: {
-        color: {
-            default: {
-                foreground: semanticColor.text.secondary,
-            },
-            hover: {
-                foreground: semanticColor.text.inverse,
-            },
-            press: {
-                foreground: semanticColor.text.inverse,
             },
         },
     },
@@ -390,51 +345,9 @@ const styles = StyleSheet.create({
         color: "inherit",
     },
     item: {
-        background: theme.optionItem.color.default.background,
-        color: theme.optionItem.color.default.foreground,
         // Reset the default styles for the cell element so it can grow
         // vertically.
         minHeight: "unset",
-
-        /**
-         * States
-         */
-        ":focus": focusedStyle,
-
-        ":focus-visible": {
-            // Override the default focus-visible state for the cell element, so
-            // that it allows the button to grow vertically with the popover
-            // height.
-            overflow: "visible",
-        },
-
-        // Overrides the default cell state for the button element.
-        [":hover[aria-disabled=false]" as any]: {
-            color: theme.optionItem.color.hover.foreground,
-            background: theme.optionItem.color.hover.background,
-        },
-
-        [":active[aria-selected=false]" as any]: {},
-
-        // disabled
-        [":hover[aria-disabled=true]" as any]: {
-            cursor: "not-allowed",
-        },
-
-        [":is([aria-disabled=true])" as any]: {
-            color: theme.optionItem.color.disabled.foreground,
-            ":focus-visible": {
-                // Prevent the focus ring from being displayed when the cell is
-                // disabled.
-                outline: "none",
-            },
-        },
-
-        // active and pressed states
-        [":active[aria-disabled=false]" as any]: {
-            color: theme.optionItem.color.press.foreground,
-            background: theme.optionItem.color.press.background,
-        },
 
         // checkbox states (see checkbox.tsx)
         [":hover[aria-disabled=false] .checkbox" as any]: {
@@ -457,22 +370,13 @@ const styles = StyleSheet.create({
         [":is([aria-selected=true]) .check" as any]: {
             color: theme.checkbox.color.selected.foreground,
         },
-
-        /**
-         * Cell states
-         */
-        [":is([aria-disabled=false]) .subtitle" as any]: {
-            color: theme.subtitle.color.default.foreground,
-        },
-
-        [":hover[aria-disabled=false] .subtitle" as any]: {
-            color: theme.subtitle.color.hover.foreground,
-        },
-        [":active[aria-disabled=false] .subtitle" as any]: {
-            color: theme.subtitle.color.press.foreground,
-        },
     },
-    itemFocused: focusedStyle,
+    itemFocused: {
+        // Override the default focus state for the cell element, so that it
+        // can be added programmatically to the button element.
+        borderRadius: border.radius.radius_040,
+        ...focusStyles.focus[":focus-visible"],
+    },
     itemDisabled: {
         outlineColor: semanticColor.focus.outer,
     },
