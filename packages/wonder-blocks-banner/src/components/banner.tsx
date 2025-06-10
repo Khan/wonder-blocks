@@ -10,10 +10,10 @@ import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Link from "@khanacademy/wonder-blocks-link";
 import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
-import infoIcon from "@phosphor-icons/core/regular/info.svg";
-import successIcon from "@phosphor-icons/core/regular/smiley.svg";
-import warningIcon from "@phosphor-icons/core/regular/warning.svg";
-import criticalIcon from "@phosphor-icons/core/regular/warning-circle.svg";
+import infoIcon from "@phosphor-icons/core/bold/info-bold.svg";
+import successIcon from "@phosphor-icons/core/bold/smiley-bold.svg";
+import warningIcon from "@phosphor-icons/core/bold/warning-bold.svg";
+import criticalIcon from "@phosphor-icons/core/bold/warning-circle-bold.svg";
 import theme from "../theme";
 
 type ActionTriggerBase = {
