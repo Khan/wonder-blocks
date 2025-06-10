@@ -1,17 +1,17 @@
 import {border} from "@khanacademy/wonder-blocks-tokens";
 
 export default {
-    root: {
-        border: {
-            width: {
-                default: border.width.thin,
-            },
-        },
+    inputWrapper: {
+        padding: "0px",
+        margin: "0px",
     },
     checkbox: {
         border: {
             radius: {
-                default: 3,
+                default: "3px",
+            },
+            width: {
+                default: border.width.thin,
             },
         },
     },
@@ -19,6 +19,9 @@ export default {
         border: {
             radius: {
                 default: border.radius.radius_full,
+            },
+            width: {
+                default: border.width.thin,
             },
         },
     },
