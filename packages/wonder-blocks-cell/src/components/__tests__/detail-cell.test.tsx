@@ -1,7 +1,7 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
 
-import {HeadingMedium} from "@khanacademy/wonder-blocks-typography";
+import {Heading} from "@khanacademy/wonder-blocks-typography";
 
 import DetailCell from "../detail-cell";
 
@@ -20,11 +20,7 @@ describe("DetailCell", () => {
         // Arrange
 
         // Act
-        render(
-            <DetailCell
-                title={<HeadingMedium>Detail cell title</HeadingMedium>}
-            />,
-        );
+        render(<DetailCell title={<Heading>Detail cell title</Heading>} />);
 
         // Assert
         expect(
@@ -54,9 +50,7 @@ describe("DetailCell", () => {
         render(
             <DetailCell
                 title="Detail cell"
-                subtitle1={
-                    <HeadingMedium>Detail cell subtitle 1</HeadingMedium>
-                }
+                subtitle1={<Heading>Detail cell subtitle 1</Heading>}
             />,
         );
 
@@ -88,9 +82,7 @@ describe("DetailCell", () => {
         render(
             <DetailCell
                 title="Detail cell"
-                subtitle2={
-                    <HeadingMedium>Detail cell subtitle 2</HeadingMedium>
-                }
+                subtitle2={<Heading>Detail cell subtitle 2</Heading>}
             />,
         );
 
