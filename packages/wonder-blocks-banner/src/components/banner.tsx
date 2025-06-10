@@ -332,9 +332,12 @@ const styles = StyleSheet.create({
         // Stop the square corners of the inner container from
         // flowing out of the rounded corners of the outer container.
         overflow: "hidden",
+        padding: sizing.size_160,
+        paddingInlineStart: theme.root.layout.paddingInlineStart,
     },
     containerInner: {
         flexDirection: "row",
+        gap: theme.root.layout.gap,
     },
     icon: {
         alignSelf: "flex-start",
@@ -348,6 +351,7 @@ const styles = StyleSheet.create({
         alignContent: "center",
         flexWrap: "wrap",
         justifyContent: "space-between",
+        gap: theme.root.layout.gap,
     },
     labelContainer: {
         flexShrink: 1,
@@ -366,6 +370,7 @@ const styles = StyleSheet.create({
         // Set the height to remove the padding from buttons
         height: sizing.size_180,
         alignItems: "center",
+        gap: theme.root.layout.gap,
     },
     action: {
         justifyContent: "center",

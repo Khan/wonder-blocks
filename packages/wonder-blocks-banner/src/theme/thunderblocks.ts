@@ -26,6 +26,10 @@ export default mergeTheme(defaultTheme, {
                 critical: semanticColor.feedback.critical.subtle.border,
             },
         },
+        layout: {
+            paddingInlineStart: sizing.size_160,
+            gap: sizing.size_120,
+        },
     },
     icon: {
         color: {

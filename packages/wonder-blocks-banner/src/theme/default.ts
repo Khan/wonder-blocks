@@ -24,6 +24,11 @@ const theme = {
                 critical: semanticColor.core.border.critical.default,
             },
         },
+        layout: {
+            // Classic has smaller inline start padding because it has a inline start border
+            paddingInlineStart: sizing.size_080,
+            gap: sizing.size_160,
+        },
     },
     icon: {
         color: {
