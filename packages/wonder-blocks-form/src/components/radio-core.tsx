@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import theme from "../theme/index";
 import type {ChoiceCoreProps, Checked} from "../util/types";
@@ -74,20 +74,23 @@ const StyledInput = addStyle("input");
 });
 
 const baseStyles = {
-    size: 16, // circle with a different color. Here, we add that center circle. // If the checkbox is disabled and selected, it has a border but also an inner
+    size: sizing.size_160,
 };
 
 const disabledChecked = {
     position: "absolute",
-    top: baseStyles.size / 4,
-    left: baseStyles.size / 4,
-    height: baseStyles.size / 2,
-    width: baseStyles.size / 2,
+    top: `calc(${baseStyles.size} * .25 + ${theme.inputWrapper.padding})`,
+    left: `calc(${baseStyles.size} * .25 + ${theme.inputWrapper.padding})`,
+    height: `calc(${baseStyles.size} / 2)`,
+    width: `calc(${baseStyles.size} / 2)`,
     borderRadius: theme.radio.border.radius.default,
     backgroundColor: semanticColor.core.border.disabled.strong,
 } as const;
 
 const sharedStyles = StyleSheet.create({
+    inputWrapper: {
+        position: "relative",
+    },
     // Reset the default styled input element
     inputReset: {
         appearance: "none",
@@ -163,7 +166,8 @@ const _generateStyles = (checked: Checked, error: boolean) => {
             default: {
                 backgroundColor: states.checked.background,
                 borderColor: states.checked.border,
-                borderWidth: baseStyles.size / 4,
+                // borders need to render in pixels for consistent size
+                borderWidth: `calc(${baseStyles.size} / 4)`,
 
                 // Focus and hover have the same style. Focus style only shows
                 // up with keyboard navigation.

@@ -1,11 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {
-    border,
-    spacing,
-    semanticColor,
-} from "@khanacademy/wonder-blocks-tokens";
+import {border, sizing, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import checkIcon from "@phosphor-icons/core/bold/check-bold.svg";
@@ -32,9 +28,9 @@ function mapCheckedToAriaChecked(value: Checked): AriaChecked {
 
 const baseStyles = {
     // The checkbox size
-    size: spacing.medium_16,
+    size: sizing.size_160,
     // The check icon size
-    checkSize: spacing.small_12,
+    checkSize: sizing.size_120,
 };
 
 const StyledInput = addStyle("input");
@@ -108,7 +104,7 @@ const CheckboxCore = React.forwardRef(function CheckboxCore(
             <View
                 style={wrapperStyle}
                 onClick={handleWrapperClick}
-                data-testid="wb-checkbox-wrapper"
+                testId="wb-checkbox-wrapper"
             >
                 <StyledInput
                     {...sharedProps}
@@ -141,6 +137,9 @@ const CheckboxCore = React.forwardRef(function CheckboxCore(
 });
 
 const sharedStyles = StyleSheet.create({
+    inputWrapper: {
+        position: "relative",
+    },
     // Reset the default styled input element
     inputReset: {
         appearance: "none",
@@ -172,7 +171,7 @@ const sharedStyles = StyleSheet.create({
         position: "absolute",
         pointerEvents: "none",
         // This margin is to center the check icon in the checkbox.
-        margin: (baseStyles.size - baseStyles.checkSize) / 2,
+        margin: `calc((${baseStyles.size} - ${baseStyles.checkSize}) / 2)`,
     },
 });
 
