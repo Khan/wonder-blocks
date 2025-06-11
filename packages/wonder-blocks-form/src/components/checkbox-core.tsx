@@ -1,15 +1,12 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {
-    border,
-    spacing,
-    semanticColor,
-} from "@khanacademy/wonder-blocks-tokens";
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {border, sizing, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import checkIcon from "@phosphor-icons/core/bold/check-bold.svg";
 import minusIcon from "@phosphor-icons/core/bold/minus-bold.svg";
+import theme from "../theme/index";
 
 import type {ChoiceCoreProps, Checked} from "../util/types";
 
@@ -29,10 +26,12 @@ function mapCheckedToAriaChecked(value: Checked): AriaChecked {
     }
 }
 
-// The checkbox size
-const size = spacing.medium_16;
-// The check icon size
-const checkSize = spacing.small_12;
+const baseStyles = {
+    // The checkbox size
+    size: sizing.size_160,
+    // The check icon size
+    checkSize: sizing.size_120,
+};
 
 const StyledInput = addStyle("input");
 
@@ -69,6 +68,8 @@ const CheckboxCore = React.forwardRef(function CheckboxCore(
         disabled && sharedStyles.disabled,
     ];
 
+    const wrapperStyle = [theme.inputWrapper, stateStyles.inputWrapper];
+
     const checkboxIcon = (
         <PhosphorIcon
             color={
@@ -82,8 +83,8 @@ const CheckboxCore = React.forwardRef(function CheckboxCore(
                 sharedStyles.checkboxIcon,
                 // The check icon is smaller than the checkbox, as per design.
                 {
-                    width: checkSize,
-                    height: checkSize,
+                    width: baseStyles.checkSize,
+                    height: baseStyles.checkSize,
                 },
             ]}
         />
@@ -91,38 +92,54 @@ const CheckboxCore = React.forwardRef(function CheckboxCore(
 
     const ariaChecked = mapCheckedToAriaChecked(checked);
 
+    const handleWrapperClick = (e: React.MouseEvent) => {
+        // forward event from wrapper Div
+        if (!disabled && e.target !== innerRef.current) {
+            innerRef.current?.click();
+        }
+    };
+
     return (
         <React.Fragment>
-            <StyledInput
-                {...sharedProps}
-                ref={(node) => {
-                    // @ts-expect-error: current is not actually read-only
-                    innerRef.current = node;
-                    if (typeof ref === "function") {
-                        ref(node);
-                    } else if (ref != null) {
-                        ref.current = node;
-                    }
-                }}
-                type="checkbox"
-                aria-checked={ariaChecked}
-                aria-invalid={error}
-                checked={checked ?? undefined}
-                disabled={disabled}
-                id={id}
-                name={groupName}
-                // Need to specify because this is a controlled React form
-                // component, but we handle the click via ClickableBehavior
-                onChange={handleChange}
-                style={defaultStyle}
-                data-testid={testId}
-            />
-            {checked || checked == null ? checkboxIcon : <></>}
+            <View
+                style={wrapperStyle}
+                onClick={handleWrapperClick}
+                testId="wb-checkbox-wrapper"
+            >
+                <StyledInput
+                    {...sharedProps}
+                    ref={(node) => {
+                        // @ts-expect-error: current is not actually read-only
+                        innerRef.current = node;
+                        if (typeof ref === "function") {
+                            ref(node);
+                        } else if (ref != null) {
+                            ref.current = node;
+                        }
+                    }}
+                    type="checkbox"
+                    aria-checked={ariaChecked}
+                    aria-invalid={error}
+                    checked={checked ?? undefined}
+                    disabled={disabled}
+                    id={id}
+                    name={groupName}
+                    // Need to specify because this is a controlled React form
+                    // component, but we handle the click via ClickableBehavior
+                    onChange={handleChange}
+                    style={defaultStyle}
+                    data-testid={testId}
+                />
+                {checked || checked == null ? checkboxIcon : <></>}
+            </View>
         </React.Fragment>
     );
 });
 
 const sharedStyles = StyleSheet.create({
+    inputWrapper: {
+        position: "relative",
+    },
     // Reset the default styled input element
     inputReset: {
         appearance: "none",
@@ -131,31 +148,30 @@ const sharedStyles = StyleSheet.create({
     },
 
     default: {
-        height: size,
-        width: size,
-        minHeight: size,
-        minWidth: size,
+        height: baseStyles.size,
+        width: baseStyles.size,
+        minHeight: baseStyles.size,
+        minWidth: baseStyles.size,
         margin: 0,
         outline: "none",
         boxSizing: "border-box",
         borderStyle: "solid",
-        borderWidth: border.width.thin,
-        // TODO(WB-1864): Use the correct token once TB is updated.
-        borderRadius: 3,
+        borderWidth: theme.checkbox.border.width.default,
+        borderRadius: theme.checkbox.border.radius.default,
     },
 
     disabled: {
         cursor: "auto",
         backgroundColor: semanticColor.input.disabled.background,
         borderColor: semanticColor.input.disabled.border,
-        borderWidth: border.width.thin,
+        borderWidth: theme.checkbox.border.width.default,
     },
 
     checkboxIcon: {
         position: "absolute",
         pointerEvents: "none",
         // This margin is to center the check icon in the checkbox.
-        margin: (size - checkSize) / 2,
+        margin: `calc((${baseStyles.size} - ${baseStyles.checkSize}) / 2)`,
     },
 });
 
@@ -188,10 +204,17 @@ const _generateStyles = (checked: Checked, error: boolean) => {
         },
     };
 
-    let newStyles: Record<string, any> = {};
+    let stateStyles: Record<string, any> = {};
 
     if (isCheckedOrIndeterminate) {
-        newStyles = {
+        stateStyles = {
+            inputWrapper: {
+                // TODO(WB-1864): Revisit hover, press tokens
+                ":hover input:not([disabled])": {
+                    outline: `${border.width.medium} solid ${colorAction.hover.border}`,
+                    outlineOffset: 1,
+                },
+            },
             default: {
                 backgroundColor: states.default.background,
                 borderColor: states.default.border,
@@ -201,12 +224,6 @@ const _generateStyles = (checked: Checked, error: boolean) => {
                 // TODO(WB-1864): Use focusStyles.focus
                 ":focus-visible": {
                     outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
-                    outlineOffset: 1,
-                },
-
-                // TODO(WB-1864): Revisit hover, press tokens
-                ":hover": {
-                    outline: `${border.width.medium} solid ${colorAction.hover.border}`,
                     outlineOffset: 1,
                 },
 
@@ -221,7 +238,16 @@ const _generateStyles = (checked: Checked, error: boolean) => {
     } else {
         const currentState = error ? states.error : states.default;
 
-        newStyles = {
+        stateStyles = {
+            inputWrapper: {
+                ":hover input:not([disabled])": {
+                    backgroundColor: error
+                        ? semanticColor.input.error.background
+                        : colorAction.hover.background,
+                    outline: `${border.width.medium} solid ${colorAction.hover.border}`,
+                    outlineOffset: -1,
+                },
+            },
             default: {
                 backgroundColor: currentState.background,
                 borderColor: currentState.border,
@@ -236,14 +262,6 @@ const _generateStyles = (checked: Checked, error: boolean) => {
                     outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
                     outlineOffset: -1,
                 },
-                // TODO(WB-1864): Revisit hover, press tokens
-                ":hover": {
-                    backgroundColor: error
-                        ? semanticColor.input.error.background
-                        : colorAction.hover.background,
-                    outline: `${border.width.medium} solid ${colorAction.hover.border}`,
-                    outlineOffset: -1,
-                },
 
                 ":active": {
                     backgroundColor: colorAction.press.background,
@@ -253,7 +271,7 @@ const _generateStyles = (checked: Checked, error: boolean) => {
             },
         };
     }
-    styles[styleKey] = StyleSheet.create(newStyles);
+    styles[styleKey] = StyleSheet.create(stateStyles);
     return styles[styleKey];
 };
 
