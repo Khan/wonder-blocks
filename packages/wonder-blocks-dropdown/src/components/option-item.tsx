@@ -476,14 +476,14 @@ const styles = StyleSheet.create({
     itemDisabled: {
         outlineColor: semanticColor.focus.outer,
     },
-    itemContainer: {
-        minHeight: "unset",
-        // Make sure that the item is always at least as tall as 40px.
-        paddingBlock: spacing.xSmall_8 + spacing.xxxxSmall_2,
-        paddingInlineStart: spacing.xSmall_8,
-        paddingInlineEnd: spacing.medium_16,
-        whiteSpace: "nowrap",
-    },
+    // itemContainer: {
+    //     minHeight: "unset",
+    //     // Make sure that the item is always at least as tall as 40px.
+    //     paddingBlock: spacing.xSmall_8 + spacing.xxxxSmall_2,
+    //     paddingInlineStart: spacing.xSmall_8,
+    //     paddingInlineEnd: spacing.medium_16,
+    //     whiteSpace: "nowrap",
+    // },
 
     label: {
         whiteSpace: "nowrap",

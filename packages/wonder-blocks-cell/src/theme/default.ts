@@ -16,6 +16,7 @@ export default {
                 default: border.radius.radius_0,
                 focus: border.radius.radius_040,
                 press: border.radius.radius_0,
+                pressFocus: border.radius.radius_040,
             },
         },
         // NOTE: These colors will change in TB.
