@@ -666,6 +666,12 @@ export const WithCustomStyles: StoryComponentType = {
             </View>
         </View>
     ),
+    parameters: {
+        chromatic: {
+            // Keep snapshots to confirm custom styles are working
+            disableSnapshot: false,
+        },
+    },
 };
 
 const styles = StyleSheet.create({
