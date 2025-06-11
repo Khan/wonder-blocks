@@ -257,8 +257,8 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
 
     const textColor =
         kind === "accent"
-            ? semanticColor.text.inverse
-            : semanticColor.text.primary;
+            ? semanticColor.core.foreground.inverse.strong
+            : semanticColor.core.foreground.neutral.strong;
 
     const theme = {
         default: {
