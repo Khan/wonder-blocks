@@ -158,7 +158,7 @@ const _generateStyles = (checked: Checked, error: boolean) => {
         newStyles = {
             inputWrapper: {
                 // TODO(WB-1864): Revisit hover, press tokens
-                ":hover input": {
+                ":hover input:not([disabled])": {
                     outline: `${border.width.medium} solid ${colorAction.hover.border}`,
                     outlineOffset: 1,
                 },
@@ -190,7 +190,7 @@ const _generateStyles = (checked: Checked, error: boolean) => {
         newStyles = {
             inputWrapper: {
                 // TODO(WB-1864): Revisit hover, press tokens
-                ":hover input": {
+                ":hover input:not([disabled])": {
                     backgroundColor: error
                         ? states.error.background
                         : colorAction.hover.background,
