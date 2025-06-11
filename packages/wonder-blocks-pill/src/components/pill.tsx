@@ -18,6 +18,7 @@ import {
     sizing,
 } from "@khanacademy/wonder-blocks-tokens";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 
 export type PillKind =
     | "neutral"
@@ -267,9 +268,6 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
             background: backgroundColor,
             foreground: textColor,
         },
-        focus: {
-            border: semanticColor.focus.outer,
-        },
         hover: {
             border: semanticColor.core.border.instructive.default,
         },
@@ -299,10 +297,7 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
                 outline: `2px solid ${theme.press.border}`,
                 outlineOffset: sizing.size_020,
             },
-            ":focus-visible": {
-                outline: `2px solid ${theme.focus.border}`,
-                outlineOffset: sizing.size_020,
-            },
+            ...focusStyles,
         },
     };
 
