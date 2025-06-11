@@ -244,7 +244,7 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
             break;
         case "neutral":
         default:
-            backgroundColor = semanticColor.surface.secondary;
+            backgroundColor = semanticColor.core.background.neutral.subtle;
     }
 
     const pressColor =
