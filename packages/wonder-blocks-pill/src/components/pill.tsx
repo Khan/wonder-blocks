@@ -4,11 +4,7 @@ import type {StyleDeclaration} from "aphrodite";
 
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {
-    Body,
-    LabelSmall,
-    LabelXSmall,
-} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 import type {ClickableRole} from "@khanacademy/wonder-blocks-clickable";
 import {
@@ -92,14 +88,14 @@ const PillInner = (props: {
     }
 
     if (size === "small") {
-        return <LabelXSmall>{props.children}</LabelXSmall>;
+        return <BodyText size="xsmall">{props.children}</BodyText>;
     }
 
     if (size === "large") {
-        return <Body>{children}</Body>;
+        return <BodyText>{children}</BodyText>;
     }
 
-    return <LabelSmall>{children}</LabelSmall>;
+    return <BodyText size="small">{children}</BodyText>;
 };
 
 /**
