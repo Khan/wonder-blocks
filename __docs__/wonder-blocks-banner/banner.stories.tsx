@@ -7,7 +7,12 @@ import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Link from "@khanacademy/wonder-blocks-link";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    color,
+    spacing,
+    semanticColor,
+    sizing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import Banner from "@khanacademy/wonder-blocks-banner";
 
@@ -15,6 +20,7 @@ import BannerArgTypes from "./banner.argtypes";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-banner/package.json";
 import crownIcon from "../wonder-blocks-icon/icons/crown.svg";
+import {reallyLongText} from "../components/text-for-testing";
 
 type StoryComponentType = StoryObj<typeof Banner>;
 
@@ -641,6 +647,40 @@ export const RightToLeftMultiline: StoryComponentType = {
             disableSnapshot: false,
         },
     },
+};
+
+/**
+ * There are times where custom styles need to be applied to the Banner
+ * component, especially for layout purposes. Custom styles can be applied by
+ * using the `styles` prop. The following parts can be styled:
+ * - `root`: Styles the root element
+ *
+ * If there are other parts you need to customize, please reach out to the
+ * Wonder Blocks team!
+ */
+export const WithCustomStyles: StoryComponentType = {
+    render: () => (
+        <View style={{height: "500px", width: "300px", gap: sizing.size_160}}>
+            <Banner
+                text={reallyLongText}
+                layout="floating"
+                // styles={{root: {flexShrink: 0}}}
+            />
+            <View
+                style={{
+                    backgroundColor:
+                        semanticColor.core.background.neutral.subtle,
+                    flexGrow: 1,
+                    overflowY: "auto",
+                }}
+            >
+                <View style={{padding: sizing.size_160}}>
+                    {reallyLongText}
+                    {reallyLongText}
+                </View>
+            </View>
+        </View>
+    ),
 };
 
 const styles = StyleSheet.create({
