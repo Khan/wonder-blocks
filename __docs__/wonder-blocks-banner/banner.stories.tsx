@@ -5,14 +5,8 @@ import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Link from "@khanacademy/wonder-blocks-link";
-import {
-    color,
-    spacing,
-    semanticColor,
-    sizing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import Banner from "@khanacademy/wonder-blocks-banner";
 
@@ -105,19 +99,16 @@ export const Kinds: StoryComponentType = {
                 kind="info"
                 layout="floating"
             />
-            <Strut size={spacing.medium_16} />
             <Banner
                 text="kind: success - This is a message about something positive or successful!"
                 kind="success"
                 layout="floating"
             />
-            <Strut size={spacing.medium_16} />
             <Banner
                 text="kind: warning - This is a message warning the user about a potential issue."
                 kind="warning"
                 layout="floating"
             />
-            <Strut size={spacing.medium_16} />
             <Banner
                 text="kind: critical - This is a message about something critical or an error."
                 kind="critical"
@@ -141,8 +132,10 @@ export const Kinds: StoryComponentType = {
  * added around the floating banner so that it will not touch its outline.
  */
 export const Layouts: StoryComponentType = () => {
-    const borderStyle = {border: `2px solid ${color.fadedPurple24}`} as const;
-    const floatingContainerStyle = {padding: spacing.xSmall_8} as const;
+    const borderStyle = {
+        border: `2px solid ${semanticColor.core.border.inverse.strong}`,
+    } as const;
+    const floatingContainerStyle = {padding: sizing.size_080} as const;
 
     return (
         <View style={styles.container}>
@@ -151,13 +144,11 @@ export const Layouts: StoryComponentType = () => {
                 layout="full-width"
                 kind="success"
             />
-            <Strut size={spacing.medium_16} />
             <Banner
                 text="This banner has floating layout."
                 layout="floating"
                 kind="success"
             />
-            <Strut size={spacing.medium_16} />
             <View style={borderStyle}>
                 <Banner
                     text="This banner has full-width layout. There is no space around it."
@@ -165,7 +156,6 @@ export const Layouts: StoryComponentType = () => {
                     kind="success"
                 />
             </View>
-            <Strut size={spacing.medium_16} />
             <View style={[borderStyle, floatingContainerStyle]}>
                 <Banner
                     text={`This banner has floating layout. Padding has been
@@ -212,11 +202,8 @@ export const LongText: StoryComponentType = {
 export const DarkBackground: StoryComponentType = () => (
     <View style={styles.container}>
         <Banner text="kind: info" kind="info" layout="full-width" />
-        <Strut size={spacing.medium_16} />
         <Banner text="kind: success" kind="success" layout="full-width" />
-        <Strut size={spacing.medium_16} />
         <Banner text="kind: warning" kind="warning" layout="full-width" />
-        <Strut size={spacing.medium_16} />
         <Banner text="kind: critical" kind="critical" layout="full-width" />
     </View>
 );
@@ -275,7 +262,7 @@ export const WithLinks: StoryComponentType = {
  */
 export const WithInlineLinks: StoryComponentType = {
     render: () => (
-        <>
+        <View style={styles.container}>
             <Banner
                 text="Oh no! The button and link on the right look different! Don't mix button and link actions."
                 kind="critical"
@@ -285,7 +272,6 @@ export const WithInlineLinks: StoryComponentType = {
                     {type: "button", title: "Button", onClick: () => {}},
                 ]}
             />
-            <Strut size={spacing.medium_16} />
             <Banner
                 text={
                     <LabelSmall>
@@ -302,7 +288,7 @@ export const WithInlineLinks: StoryComponentType = {
                 layout="floating"
                 actions={[{type: "button", title: "Button", onClick: () => {}}]}
             />
-        </>
+        </View>
     ),
 };
 
@@ -589,7 +575,7 @@ export const WithCustomIcon: StoryComponentType = {
  */
 export const RightToLeft: StoryComponentType = {
     render: () => (
-        <View style={styles.rightToLeft}>
+        <View style={[styles.rightToLeft, styles.container]}>
             <Banner
                 text="یہ اردو میں لکھا ہے۔"
                 actions={[
@@ -598,7 +584,6 @@ export const RightToLeft: StoryComponentType = {
                 ]}
                 layout="full-width"
             />
-            <Strut size={spacing.medium_16} />
             <Banner
                 text="یہ اردو میں لکھا ہے۔"
                 actions={[
@@ -690,6 +675,7 @@ const styles = StyleSheet.create({
     },
     container: {
         width: "100%",
+        gap: sizing.size_160,
     },
     narrowBanner: {
         maxWidth: 400,
