@@ -14,7 +14,6 @@ import type {ClickableRole} from "@khanacademy/wonder-blocks-clickable";
 import {
     semanticColor,
     border,
-    spacing,
     color,
     sizing,
 } from "@khanacademy/wonder-blocks-tokens";
@@ -194,27 +193,23 @@ const pillStyles = StyleSheet.create({
         width: "fit-content",
     },
     wrapperSmall: {
-        paddingLeft: spacing.xSmall_8,
-        paddingRight: spacing.xSmall_8,
+        paddingInline: sizing.size_080,
         borderRadius: border.radius.radius_040,
         height: 20,
     },
     wrapperMedium: {
-        paddingLeft: spacing.xSmall_8,
-        paddingRight: spacing.xSmall_8,
+        paddingInline: sizing.size_080,
         borderRadius: border.radius.radius_040,
         // Minimum tap area recommendation for a11y
-        height: spacing.large_24,
+        height: sizing.size_240,
     },
     wrapperLarge: {
-        paddingLeft: spacing.small_12,
-        paddingRight: spacing.small_12,
-        paddingTop: spacing.xxSmall_6,
-        paddingBottom: spacing.xxSmall_6,
+        paddingInline: sizing.size_120,
+        paddingBlock: sizing.size_060,
         // TODO(WB-1876): This should be replaced with a border.radius token.
         // Check with TB to determine final token.
         borderRadius: sizing.size_240,
-        height: spacing.xLarge_32,
+        height: sizing.size_320,
     },
 });
 
@@ -299,16 +294,16 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
 
             ":hover": {
                 outline: `2px solid ${theme.hover.border}`,
-                outlineOffset: spacing.xxxxSmall_2,
+                outlineOffset: sizing.size_020,
             },
             ":active": {
                 backgroundColor: theme.press.background,
                 outline: `2px solid ${theme.press.border}`,
-                outlineOffset: spacing.xxxxSmall_2,
+                outlineOffset: sizing.size_020,
             },
             ":focus-visible": {
                 outline: `2px solid ${theme.focus.border}`,
-                outlineOffset: spacing.xxxxSmall_2,
+                outlineOffset: sizing.size_020,
             },
         },
     };
