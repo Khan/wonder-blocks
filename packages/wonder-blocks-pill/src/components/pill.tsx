@@ -11,10 +11,14 @@ import {
 } from "@khanacademy/wonder-blocks-typography";
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 import type {ClickableRole} from "@khanacademy/wonder-blocks-clickable";
-import * as tokens from "@khanacademy/wonder-blocks-tokens";
+import {
+    semanticColor,
+    border,
+    spacing,
+    color,
+    sizing,
+} from "@khanacademy/wonder-blocks-tokens";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
-
-const {semanticColor} = tokens;
 
 export type PillKind =
     | "neutral"
@@ -190,27 +194,27 @@ const pillStyles = StyleSheet.create({
         width: "fit-content",
     },
     wrapperSmall: {
-        paddingLeft: tokens.spacing.xSmall_8,
-        paddingRight: tokens.spacing.xSmall_8,
-        borderRadius: tokens.border.radius.radius_040,
+        paddingLeft: spacing.xSmall_8,
+        paddingRight: spacing.xSmall_8,
+        borderRadius: border.radius.radius_040,
         height: 20,
     },
     wrapperMedium: {
-        paddingLeft: tokens.spacing.xSmall_8,
-        paddingRight: tokens.spacing.xSmall_8,
-        borderRadius: tokens.border.radius.radius_040,
+        paddingLeft: spacing.xSmall_8,
+        paddingRight: spacing.xSmall_8,
+        borderRadius: border.radius.radius_040,
         // Minimum tap area recommendation for a11y
-        height: tokens.spacing.large_24,
+        height: spacing.large_24,
     },
     wrapperLarge: {
-        paddingLeft: tokens.spacing.small_12,
-        paddingRight: tokens.spacing.small_12,
-        paddingTop: tokens.spacing.xxSmall_6,
-        paddingBottom: tokens.spacing.xxSmall_6,
+        paddingLeft: spacing.small_12,
+        paddingRight: spacing.small_12,
+        paddingTop: spacing.xxSmall_6,
+        paddingBottom: spacing.xxSmall_6,
         // TODO(WB-1876): This should be replaced with a border.radius token.
         // Check with TB to determine final token.
-        borderRadius: tokens.sizing.size_240,
-        height: tokens.spacing.xLarge_32,
+        borderRadius: sizing.size_240,
+        height: spacing.xLarge_32,
     },
 });
 
@@ -250,11 +254,11 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
 
     const pressColor =
         kind === "transparent" || kind === "neutral"
-            ? tokens.color.offBlack16
+            ? color.offBlack16
             : kind === "accent"
-              ? tokens.color.activeBlue
+              ? color.activeBlue
               : // NOTE(WB-1880): This will be simplified once we split this into Badge and Pill.
-                `color-mix(in srgb, ${tokens.color.offBlack32}, ${backgroundColor})`;
+                `color-mix(in srgb, ${color.offBlack32}, ${backgroundColor})`;
 
     const textColor =
         kind === "accent"
@@ -295,16 +299,16 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
 
             ":hover": {
                 outline: `2px solid ${theme.hover.border}`,
-                outlineOffset: tokens.spacing.xxxxSmall_2,
+                outlineOffset: spacing.xxxxSmall_2,
             },
             ":active": {
                 backgroundColor: theme.press.background,
                 outline: `2px solid ${theme.press.border}`,
-                outlineOffset: tokens.spacing.xxxxSmall_2,
+                outlineOffset: spacing.xxxxSmall_2,
             },
             ":focus-visible": {
                 outline: `2px solid ${theme.focus.border}`,
-                outlineOffset: tokens.spacing.xxxxSmall_2,
+                outlineOffset: spacing.xxxxSmall_2,
             },
         },
     };
