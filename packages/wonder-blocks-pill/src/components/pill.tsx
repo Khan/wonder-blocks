@@ -88,14 +88,22 @@ const PillInner = (props: {
     }
 
     if (size === "small") {
-        return <BodyText size="xsmall">{props.children}</BodyText>;
+        return (
+            <BodyText size="xsmall" tag="span">
+                {props.children}
+            </BodyText>
+        );
     }
 
     if (size === "large") {
-        return <BodyText>{children}</BodyText>;
+        return <BodyText tag="span">{children}</BodyText>;
     }
 
-    return <BodyText size="small">{children}</BodyText>;
+    return (
+        <BodyText size="small" tag="span">
+            {children}
+        </BodyText>
+    );
 };
 
 /**
