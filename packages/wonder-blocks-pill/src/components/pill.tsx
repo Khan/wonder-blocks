@@ -195,7 +195,7 @@ const pillStyles = StyleSheet.create({
     wrapperSmall: {
         paddingInline: sizing.size_080,
         borderRadius: border.radius.radius_040,
-        height: 20,
+        height: sizing.size_200,
     },
     wrapperMedium: {
         paddingInline: sizing.size_080,
@@ -206,9 +206,7 @@ const pillStyles = StyleSheet.create({
     wrapperLarge: {
         paddingInline: sizing.size_120,
         paddingBlock: sizing.size_060,
-        // TODO(WB-1876): This should be replaced with a border.radius token.
-        // Check with TB to determine final token.
-        borderRadius: sizing.size_240,
+        borderRadius: border.radius.radius_240,
         height: sizing.size_320,
     },
 });
