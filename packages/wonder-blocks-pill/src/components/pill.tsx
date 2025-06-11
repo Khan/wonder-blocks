@@ -251,7 +251,7 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
         kind === "transparent" || kind === "neutral"
             ? color.offBlack16
             : kind === "accent"
-              ? color.activeBlue
+              ? semanticColor.core.background.instructive.strong
               : // NOTE(WB-1880): This will be simplified once we split this into Badge and Pill.
                 `color-mix(in srgb, ${color.offBlack32}, ${backgroundColor})`;
 
