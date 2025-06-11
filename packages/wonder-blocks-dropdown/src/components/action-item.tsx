@@ -3,8 +3,8 @@ import {StyleSheet} from "aphrodite";
 
 import {CompactCell} from "@khanacademy/wonder-blocks-cell";
 import {
-    // border,
-    // semanticColor,
+    border,
+    semanticColor,
     sizing,
     spacing,
 } from "@khanacademy/wonder-blocks-tokens";
@@ -186,22 +186,22 @@ export default class ActionItem extends React.Component<ActionProps> {
 }
 
 // TODO(WB-1868): Move this to a shared theme file.
-// const actionType = semanticColor.action.primary.progressive;
+const actionType = semanticColor.action.primary.progressive;
 
-// const theme = {
-//     actionItem: {
-//         color: {
-//             hover: {
-//                 background: actionType.hover.background,
-//                 foreground: actionType.hover.foreground,
-//             },
-//             press: {
-//                 background: actionType.press.background,
-//                 foreground: actionType.press.foreground,
-//             },
-//         },
-//     },
-// };
+const theme = {
+    actionItem: {
+        color: {
+            hover: {
+                background: actionType.hover.background,
+                foreground: actionType.hover.foreground,
+            },
+            press: {
+                background: actionType.press.background,
+                foreground: actionType.press.foreground,
+            },
+        },
+    },
+};
 
 const styles = StyleSheet.create({
     wrapper: {
@@ -213,25 +213,25 @@ const styles = StyleSheet.create({
         /**
          * States
          */
-        // ":focus": {
-        //     // Override the default focus state for the cell element, so that it
-        //     // can be added programmatically to the button element.
-        //     borderRadius: border.radius.radius_040,
-        //     outline: `${spacing.xxxxSmall_2}px solid ${semanticColor.focus.outer}`,
-        //     outlineOffset: -spacing.xxxxSmall_2,
-        // },
+        ":focus": {
+            // Override the default focus state for the cell element, so that it
+            // can be added programmatically to the button element.
+            borderRadius: border.radius.radius_040,
+            outline: `${spacing.xxxxSmall_2}px solid ${semanticColor.focus.outer}`,
+            outlineOffset: -spacing.xxxxSmall_2,
+        },
 
-        // // Overrides the default cell state for the button element.
-        // [":hover[aria-disabled=false]" as any]: {
-        //     color: theme.actionItem.color.hover.foreground,
-        //     background: theme.actionItem.color.hover.background,
-        // },
+        // Overrides the default cell state for the button element.
+        [":hover[aria-disabled=false]" as any]: {
+            color: theme.actionItem.color.hover.foreground,
+            background: theme.actionItem.color.hover.background,
+        },
 
-        // // active and pressed states
-        // [":active[aria-disabled=false]" as any]: {
-        //     color: theme.actionItem.color.press.foreground,
-        //     background: theme.actionItem.color.press.background,
-        // },
+        // active and pressed states
+        [":active[aria-disabled=false]" as any]: {
+            color: theme.actionItem.color.press.foreground,
+            background: theme.actionItem.color.press.background,
+        },
     },
     shared: {
         minHeight: DROPDOWN_ITEM_HEIGHT,
