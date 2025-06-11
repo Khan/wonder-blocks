@@ -6,6 +6,7 @@ import {
     spacing,
     semanticColor,
     border,
+    sizing,
 } from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
@@ -20,6 +21,7 @@ import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Check from "./check";
 import Checkbox from "./checkbox";
 import {CellProps, OptionLabel} from "../util/types";
+import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
 
 type OptionProps = AriaProps & {
     /**
@@ -390,11 +392,12 @@ const styles = StyleSheet.create({
         color: "inherit",
     },
     item: {
-        background: theme.optionItem.color.default.background,
-        color: theme.optionItem.color.default.foreground,
+        // background: theme.optionItem.color.default.background,
+        // color: theme.optionItem.color.default.foreground,
         // Reset the default styles for the cell element so it can grow
         // vertically.
-        minHeight: "unset",
+        // minHeight: "unset",
+        minHeight: DROPDOWN_ITEM_HEIGHT,
 
         /**
          * States
@@ -409,32 +412,32 @@ const styles = StyleSheet.create({
         },
 
         // Overrides the default cell state for the button element.
-        [":hover[aria-disabled=false]" as any]: {
-            color: theme.optionItem.color.hover.foreground,
-            background: theme.optionItem.color.hover.background,
-        },
+        // [":hover[aria-disabled=false]" as any]: {
+        //     color: theme.optionItem.color.hover.foreground,
+        //     background: theme.optionItem.color.hover.background,
+        // },
 
-        [":active[aria-selected=false]" as any]: {},
+        // [":active[aria-selected=false]" as any]: {},
 
         // disabled
-        [":hover[aria-disabled=true]" as any]: {
-            cursor: "not-allowed",
-        },
+        // [":hover[aria-disabled=true]" as any]: {
+        //     cursor: "not-allowed",
+        // },
 
-        [":is([aria-disabled=true])" as any]: {
-            color: theme.optionItem.color.disabled.foreground,
-            ":focus-visible": {
-                // Prevent the focus ring from being displayed when the cell is
-                // disabled.
-                outline: "none",
-            },
-        },
+        // [":is([aria-disabled=true])" as any]: {
+        //     color: theme.optionItem.color.disabled.foreground,
+        //     ":focus-visible": {
+        //         // Prevent the focus ring from being displayed when the cell is
+        //         // disabled.
+        //         outline: "none",
+        //     },
+        // },
 
         // active and pressed states
-        [":active[aria-disabled=false]" as any]: {
-            color: theme.optionItem.color.press.foreground,
-            background: theme.optionItem.color.press.background,
-        },
+        // [":active[aria-disabled=false]" as any]: {
+        //     color: theme.optionItem.color.press.foreground,
+        //     background: theme.optionItem.color.press.background,
+        // },
 
         // checkbox states (see checkbox.tsx)
         [":hover[aria-disabled=false] .checkbox" as any]: {
@@ -476,14 +479,14 @@ const styles = StyleSheet.create({
     itemDisabled: {
         outlineColor: semanticColor.focus.outer,
     },
-    // itemContainer: {
-    //     minHeight: "unset",
-    //     // Make sure that the item is always at least as tall as 40px.
-    //     paddingBlock: spacing.xSmall_8 + spacing.xxxxSmall_2,
-    //     paddingInlineStart: spacing.xSmall_8,
-    //     paddingInlineEnd: spacing.medium_16,
-    //     whiteSpace: "nowrap",
-    // },
+    itemContainer: {
+        minHeight: "unset",
+        // Make sure that the item is always at least as tall as 40px.
+        paddingBlock: sizing.size_100,
+        // paddingInlineStart: sizing.xSmall_8,
+        // paddingInlineEnd: spacing.medium_16,
+        whiteSpace: "nowrap",
+    },
 
     label: {
         whiteSpace: "nowrap",
