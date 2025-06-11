@@ -225,29 +225,37 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
     }
 
     let backgroundColor;
+    let textColor;
 
     switch (kind) {
         case "accent":
             backgroundColor = semanticColor.core.background.instructive.default;
+            textColor = semanticColor.core.foreground.inverse.strong;
             break;
         case "info":
             backgroundColor = semanticColor.feedback.info.subtle.background;
+            textColor = semanticColor.feedback.info.subtle.text;
             break;
         case "success":
             backgroundColor = semanticColor.feedback.success.subtle.background;
+            textColor = semanticColor.feedback.success.subtle.text;
             break;
         case "warning":
             backgroundColor = semanticColor.feedback.warning.subtle.background;
+            textColor = semanticColor.feedback.warning.subtle.text;
             break;
         case "critical":
             backgroundColor = semanticColor.feedback.critical.subtle.background;
+            textColor = semanticColor.feedback.critical.subtle.text;
             break;
         case "transparent":
             backgroundColor = semanticColor.core.transparent;
+            textColor = semanticColor.core.foreground.neutral.strong;
             break;
         case "neutral":
         default:
             backgroundColor = semanticColor.core.background.neutral.subtle;
+            textColor = semanticColor.core.foreground.neutral.strong;
     }
 
     const pressColor =
@@ -257,11 +265,6 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
               ? semanticColor.core.background.instructive.strong
               : // NOTE(WB-1880): This will be simplified once we split this into Badge and Pill.
                 `color-mix(in srgb, ${color.offBlack32}, ${backgroundColor})`;
-
-    const textColor =
-        kind === "accent"
-            ? semanticColor.core.foreground.inverse.strong
-            : semanticColor.core.foreground.neutral.strong;
 
     const theme = {
         default: {
