@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import {CompactCell} from "@khanacademy/wonder-blocks-cell";
 import {
     // border,
-    semanticColor,
+    // semanticColor,
     sizing,
     spacing,
 } from "@khanacademy/wonder-blocks-tokens";
