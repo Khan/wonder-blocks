@@ -407,11 +407,6 @@ const styles = StyleSheet.create({
             background: semanticColor.surface.primary,
             cursor: "not-allowed",
         },
-        ":focus-visible": {
-            // Prevent the focus ring from being displayed when the cell is
-            // disabled.
-            outline: "none",
-        },
         ":active": {
             background: semanticColor.surface.primary,
             borderRadius: theme.root.border.radius.default,
