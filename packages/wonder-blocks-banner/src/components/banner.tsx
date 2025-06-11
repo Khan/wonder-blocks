@@ -1,25 +1,20 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import xIcon from "@phosphor-icons/core/regular/x.svg";
+import xIcon from "@phosphor-icons/core/bold/x-bold.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon, PhosphorIconAsset} from "@khanacademy/wonder-blocks-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Link from "@khanacademy/wonder-blocks-link";
-import {
-    border,
-    font,
-    semanticColor,
-    sizing,
-} from "@khanacademy/wonder-blocks-tokens";
-import {BodyText} from "@khanacademy/wonder-blocks-typography";
+import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
-import infoIcon from "@phosphor-icons/core/regular/info.svg";
-import successIcon from "@phosphor-icons/core/regular/smiley.svg";
-import warningIcon from "@phosphor-icons/core/regular/warning.svg";
-import criticalIcon from "@phosphor-icons/core/regular/warning-circle.svg";
+import infoIcon from "@phosphor-icons/core/bold/info-bold.svg";
+import successIcon from "@phosphor-icons/core/bold/smiley-bold.svg";
+import warningIcon from "@phosphor-icons/core/bold/warning-bold.svg";
+import criticalIcon from "@phosphor-icons/core/bold/warning-circle-bold.svg";
+import theme from "../theme";
 
 type ActionTriggerBase = {
     title: string;
@@ -93,7 +88,12 @@ type Props = {
      */
     kind?: BannerKind;
     /**
-     * Determines the edge style of the Banner.
+     * (DEPRECATED) Determines the edge style of the Banner.
+     *
+     * This prop is deprecated and will be removed in a future release.
+     * Currently, it has no effect on the component.
+     *
+     * @deprecated
      */
     layout: BannerLayout;
     /**
@@ -183,6 +183,8 @@ const getBannerIconKindStyle = (kind: BannerKind) => {
     }
 };
 
+const StyledDiv = addStyle("div");
+
 /**
  * Banner. A banner displays a prominent message and related optional actions.
  * It can be used as a way of informing the user of important changes.
@@ -219,7 +221,6 @@ const Banner = (props: Props): React.ReactElement => {
         dismissAriaLabel = "Dismiss banner.", // default prop
         onDismiss,
         kind = "info", // default prop
-        layout,
         text,
         testId,
         icon,
@@ -258,6 +259,7 @@ const Banner = (props: Props): React.ReactElement => {
                             size="small"
                             aria-label={action.ariaLabel ?? action.title}
                             onClick={handleClick}
+                            style={styles.button}
                         >
                             {action.title}
                         </Button>
@@ -274,12 +276,7 @@ const Banner = (props: Props): React.ReactElement => {
 
     return (
         <View
-            style={[
-                styles.containerOuter,
-                layout === "floating" && styles.floatingLayout,
-                layout === "full-width" && styles.fullWidthLayout,
-                bannerKindStyle,
-            ]}
+            style={[styles.containerOuter, bannerKindStyle]}
             role={valuesForKind.role}
             aria-label={ariaLabel}
             aria-live={valuesForKind.ariaLive}
@@ -288,7 +285,6 @@ const Banner = (props: Props): React.ReactElement => {
             <View style={styles.containerInner}>
                 <PhosphorIcon
                     icon={icon || valuesForKind.icon}
-                    size="medium"
                     style={[styles.icon, bannerIconKindStyle]}
                     aria-label={kind}
                     testId="banner-kind-icon"
@@ -296,7 +292,10 @@ const Banner = (props: Props): React.ReactElement => {
                 />
                 <View style={styles.labelAndButtonsContainer}>
                     <View style={styles.labelContainer}>
-                        <BodyText size="small">{text}</BodyText>
+                        {/* We use a div here since text can be a React node with other elements */}
+                        <StyledDiv style={styles.labelTypography}>
+                            {text}
+                        </StyledDiv>
                     </View>
                     {actions && (
                         <View style={styles.actionsContainer}>
@@ -305,7 +304,7 @@ const Banner = (props: Props): React.ReactElement => {
                     )}
                 </View>
                 {onDismiss ? (
-                    <View style={styles.dismissContainer}>
+                    <View>
                         <IconButton
                             icon={xIcon}
                             kind="tertiary"
@@ -313,6 +312,7 @@ const Banner = (props: Props): React.ReactElement => {
                             onClick={onDismiss}
                             style={styles.dismiss}
                             aria-label={dismissAriaLabel}
+                            size="xsmall"
                         />
                     </View>
                 ) : null}
@@ -321,102 +321,28 @@ const Banner = (props: Props): React.ReactElement => {
     );
 };
 
-const bannerTokens = {
-    root: {
-        border: {
-            radius: {
-                default: border.radius.radius_0,
-                floating: border.radius.radius_040,
-            },
-            width: {
-                inlineStart: sizing.size_060, // uses rem so the border indicator scales to font size
-                inlineEnd: border.width.none,
-                blockStart: border.width.none,
-                blockEnd: border.width.none,
-            },
-        },
-        layout: {
-            padding: sizing.size_080,
-        },
-        color: {
-            border: {
-                info: semanticColor.core.border.instructive.default,
-                success: semanticColor.core.border.success.default,
-                warning: semanticColor.core.border.warning.default,
-                critical: semanticColor.core.border.critical.default,
-            },
-            background: {
-                info: semanticColor.feedback.info.subtle.background,
-                success: semanticColor.feedback.success.subtle.background,
-                warning: semanticColor.feedback.warning.subtle.background,
-                critical: semanticColor.feedback.critical.subtle.background,
-            },
-        },
-    },
-    icon: {
-        color: {
-            info: semanticColor.icon.primary,
-            success: semanticColor.icon.primary,
-            warning: semanticColor.icon.primary,
-            critical: semanticColor.icon.primary,
-        },
-        layout: {
-            marginBlockStart: sizing.size_080,
-            marginBlockEnd: sizing.size_080,
-            // The total distance from the icon to the edge is 16px. The
-            // vertical identifier is already 6px, and the padding on inner
-            // conatiner is 8px. So that leaves 2px.
-            marginInlineStart: sizing.size_020,
-            marginInlineEnd: sizing.size_080,
-        },
-    },
-    label: {
-        layout: {
-            margin: sizing.size_080,
-        },
-    },
-    actions: {
-        layout: {
-            marginBlock: sizing.size_080,
-        },
-        sizing: {
-            height: sizing.size_180,
-        },
-    },
-    action: {
-        layout: {
-            marginInline: sizing.size_080,
-        },
-    },
-    dismiss: {
-        sizing: {
-            height: sizing.size_400,
-            width: sizing.size_400,
-        },
-        layout: {
-            marginInline: sizing.size_080,
-        },
-    },
-};
-
 const styles = StyleSheet.create({
     containerOuter: {
-        borderInlineStartWidth: bannerTokens.root.border.width.inlineStart,
-        borderInlineEndWidth: bannerTokens.root.border.width.inlineEnd,
-        borderBlockStartWidth: bannerTokens.root.border.width.blockStart,
-        borderBlockEndWidth: bannerTokens.root.border.width.blockEnd,
+        borderInlineStartWidth: theme.root.border.width.inlineStart,
+        borderInlineEndWidth: theme.root.border.width.inlineEnd,
+        borderBlockStartWidth: theme.root.border.width.blockStart,
+        borderBlockEndWidth: theme.root.border.width.blockEnd,
         width: "100%",
+        borderRadius: theme.root.border.radius,
+        // Stop the square corners of the inner container from
+        // flowing out of the rounded corners of the outer container.
+        overflow: "hidden",
+        padding: sizing.size_160,
+        paddingInlineStart: theme.root.layout.paddingInlineStart,
     },
     containerInner: {
         flexDirection: "row",
-        padding: bannerTokens.root.layout.padding,
+        gap: theme.root.layout.gap,
     },
     icon: {
-        marginBlockStart: bannerTokens.icon.layout.marginBlockStart,
-        marginBlockEnd: bannerTokens.icon.layout.marginBlockEnd,
-        marginInlineStart: bannerTokens.icon.layout.marginInlineStart,
-        marginInlineEnd: bannerTokens.icon.layout.marginInlineEnd,
         alignSelf: "flex-start",
+        width: theme.icon.sizing.width,
+        height: theme.icon.sizing.height,
     },
     labelAndButtonsContainer: {
         flex: 1,
@@ -425,74 +351,76 @@ const styles = StyleSheet.create({
         alignContent: "center",
         flexWrap: "wrap",
         justifyContent: "space-between",
+        gap: theme.root.layout.gap,
     },
     labelContainer: {
         flexShrink: 1,
-        margin: bannerTokens.label.layout.margin,
         textAlign: "start",
         overflowWrap: "break-word",
+    },
+    labelTypography: {
+        fontSize: theme.label.font.size,
+        fontWeight: font.weight.semi,
+        lineHeight: font.body.lineHeight.small,
+        fontFamily: font.family.sans,
     },
     actionsContainer: {
         flexDirection: "row",
         justifyContent: "flex-start",
-        marginBlock: bannerTokens.actions.layout.marginBlock,
         // Set the height to remove the padding from buttons
-        height: bannerTokens.actions.sizing.height,
+        height: sizing.size_180,
         alignItems: "center",
+        gap: theme.root.layout.gap,
     },
     action: {
-        marginInline: bannerTokens.action.layout.marginInline,
         justifyContent: "center",
     },
     link: {
+        fontFamily: font.family.sans,
         fontSize: font.body.size.small,
+        fontWeight: font.weight.semi,
+        lineHeight: font.body.lineHeight.small,
+        textDecoration: theme.link.font.decoration,
+        textUnderlineOffset: theme.link.font.underlineOffset,
+    },
+    button: {
+        marginInline: theme.button.layout.marginInline,
     },
     dismiss: {
         flexShrink: 1,
-    },
-    dismissContainer: {
-        height: bannerTokens.dismiss.sizing.height,
-        width: bannerTokens.dismiss.sizing.width,
-        justifyContent: "center",
-        alignItems: "center",
-        marginInline: bannerTokens.dismiss.layout.marginInline,
-    },
-    floatingLayout: {
-        borderRadius: bannerTokens.root.border.radius.floating,
-        // Stop the square corners of the inner container from
-        // flowing out of the rounded corners of the outer container.
-        overflow: "hidden",
-    },
-    fullWidthLayout: {
-        borderRadius: bannerTokens.root.border.radius.default,
+        marginBlock: theme.dismiss.layout.marginBlock,
     },
     successBanner: {
-        backgroundColor: bannerTokens.root.color.background.success,
-        borderColor: bannerTokens.root.color.border.success,
+        backgroundColor: semanticColor.feedback.success.subtle.background,
+        borderColor: theme.root.color.border.success,
+        color: semanticColor.feedback.success.subtle.text,
     },
     infoBanner: {
-        backgroundColor: bannerTokens.root.color.background.info,
-        borderColor: bannerTokens.root.color.border.info,
+        backgroundColor: semanticColor.feedback.info.subtle.background,
+        borderColor: theme.root.color.border.info,
+        color: semanticColor.feedback.info.subtle.text,
     },
     warningBanner: {
-        backgroundColor: bannerTokens.root.color.background.warning,
-        borderColor: bannerTokens.root.color.border.warning,
+        backgroundColor: semanticColor.feedback.warning.subtle.background,
+        borderColor: theme.root.color.border.warning,
+        color: semanticColor.feedback.warning.subtle.text,
     },
     criticalBanner: {
-        backgroundColor: bannerTokens.root.color.background.critical,
-        borderColor: bannerTokens.root.color.border.critical,
+        backgroundColor: semanticColor.feedback.critical.subtle.background,
+        borderColor: theme.root.color.border.critical,
+        color: semanticColor.feedback.critical.subtle.text,
     },
     successIcon: {
-        color: bannerTokens.icon.color.success,
+        color: theme.icon.color.success,
     },
     infoIcon: {
-        color: bannerTokens.icon.color.info,
+        color: theme.icon.color.info,
     },
     warningIcon: {
-        color: bannerTokens.icon.color.warning,
+        color: theme.icon.color.warning,
     },
     criticalIcon: {
-        color: bannerTokens.icon.color.critical,
+        color: theme.icon.color.critical,
     },
 });
 
