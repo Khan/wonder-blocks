@@ -226,26 +226,26 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
 
     switch (kind) {
         case "accent":
-            backgroundColor = semanticColor.status.notice.foreground;
+            backgroundColor = semanticColor.core.background.instructive.default;
             break;
         case "info":
-            backgroundColor = semanticColor.status.notice.background;
+            backgroundColor = semanticColor.feedback.info.subtle.background;
             break;
         case "success":
-            backgroundColor = semanticColor.status.success.background;
+            backgroundColor = semanticColor.feedback.success.subtle.background;
             break;
         case "warning":
-            backgroundColor = semanticColor.status.warning.background;
+            backgroundColor = semanticColor.feedback.warning.subtle.background;
             break;
         case "critical":
-            backgroundColor = semanticColor.status.critical.background;
+            backgroundColor = semanticColor.feedback.critical.subtle.background;
             break;
         case "transparent":
-            backgroundColor = "transparent";
+            backgroundColor = semanticColor.core.transparent;
             break;
         case "neutral":
         default:
-            backgroundColor = semanticColor.status.neutral.background;
+            backgroundColor = semanticColor.surface.secondary;
     }
 
     const pressColor =
