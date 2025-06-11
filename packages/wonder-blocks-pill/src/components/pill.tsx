@@ -301,7 +301,7 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
                 outline: `2px solid ${theme.press.border}`,
                 outlineOffset: sizing.size_020,
             },
-            ...focusStyles,
+            ...focusStyles.focus,
         },
     };
 
