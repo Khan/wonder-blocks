@@ -649,7 +649,7 @@ export const WithCustomStyles: StoryComponentType = {
             <Banner
                 text={reallyLongText}
                 layout="floating"
-                // styles={{root: {flexShrink: 0}}}
+                styles={{root: {flexShrink: 0}}}
             />
             <View
                 style={{
