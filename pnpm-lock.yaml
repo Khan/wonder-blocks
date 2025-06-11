@@ -845,6 +845,9 @@ importers:
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:../wonder-blocks-core
+      '@khanacademy/wonder-blocks-form':
+        specifier: workspace:*
+        version: 'link:'
       '@khanacademy/wonder-blocks-icon':
         specifier: workspace:*
         version: link:../wonder-blocks-icon
