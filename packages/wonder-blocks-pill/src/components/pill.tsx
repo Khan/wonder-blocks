@@ -252,7 +252,7 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
 
     const pressColor =
         kind === "transparent" || kind === "neutral"
-            ? semanticColor.action.secondary.neutral.press.background
+            ? color.offBlack16
             : kind === "accent"
               ? semanticColor.core.background.instructive.strong
               : // NOTE(WB-1880): This will be simplified once we split this into Badge and Pill.
