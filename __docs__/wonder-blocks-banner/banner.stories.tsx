@@ -6,7 +6,7 @@ import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import Banner from "@khanacademy/wonder-blocks-banner";
 
