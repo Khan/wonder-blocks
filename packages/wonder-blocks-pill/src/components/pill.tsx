@@ -257,16 +257,17 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
             break;
         case "neutral":
         default:
+            // NOTE(WB-1950): Will remove use of status token once the `neutral` kind is removed in favour of Badge
             backgroundColor = semanticColor.status.neutral.background;
             textColor = semanticColor.core.foreground.neutral.strong;
     }
 
     const pressColor =
         kind === "transparent" || kind === "neutral"
-            ? color.offBlack16
+            ? color.offBlack16 // NOTE(WB-1950): Neutral pills will be replaced with Badge and the transparent kind will be removed
             : kind === "accent"
               ? semanticColor.core.background.instructive.strong
-              : // NOTE(WB-1880): This will be simplified once we split this into Badge and Pill.
+              : // NOTE(WB-1950): This will be simplified once we split this into Badge and Pill.
                 `color-mix(in srgb, ${color.offBlack32}, ${backgroundColor})`;
 
     const theme = {
