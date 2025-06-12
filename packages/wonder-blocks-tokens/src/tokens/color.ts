@@ -1,5 +1,4 @@
 import {fade, mix} from "../util/color-utils";
-import {color as thunderBlocksColor} from "../theme/semantic/internal/primitive-color-thunderblocks";
 
 const offBlack = "#21242c";
 const white = "#ffffff";
@@ -99,40 +98,4 @@ export const color = {
     fadedOffBlack32: fadedColorWithWhite(offBlack, 0.32),
     fadedOffBlack16: fadedColorWithWhite(offBlack, 0.16),
     fadedOffBlack8: fadedColorWithWhite(offBlack, 0.08),
-
-    // Magenta - same as Thunderblocks
-    magenta_90: thunderBlocksColor.magenta_90,
-    magenta_80: thunderBlocksColor.magenta_80,
-    magenta_70: thunderBlocksColor.magenta_70,
-    magenta_60: thunderBlocksColor.magenta_60,
-    magenta_50: thunderBlocksColor.magenta_50,
-    magenta_40: thunderBlocksColor.magenta_40,
-    magenta_30: thunderBlocksColor.magenta_30,
-    magenta_20: thunderBlocksColor.magenta_20,
-    magenta_10: thunderBlocksColor.magenta_10,
-    magenta_05: thunderBlocksColor.magenta_05,
-
-    // Orange - same as Thunderblocks
-    orange_90: thunderBlocksColor.orange_90,
-    orange_80: thunderBlocksColor.orange_80,
-    orange_70: thunderBlocksColor.orange_70,
-    orange_60: thunderBlocksColor.orange_60,
-    orange_50: thunderBlocksColor.orange_50,
-    orange_40: thunderBlocksColor.orange_40,
-    orange_30: thunderBlocksColor.orange_30,
-    orange_20: thunderBlocksColor.orange_20,
-    orange_10: thunderBlocksColor.orange_10,
-    orange_05: thunderBlocksColor.orange_05,
-
-    // Cyan - same as Thunderblocks
-    cyan_90: thunderBlocksColor.cyan_90,
-    cyan_80: thunderBlocksColor.cyan_80,
-    cyan_70: thunderBlocksColor.cyan_70,
-    cyan_60: thunderBlocksColor.cyan_60,
-    cyan_50: thunderBlocksColor.cyan_50,
-    cyan_40: thunderBlocksColor.cyan_40,
-    cyan_30: thunderBlocksColor.cyan_30,
-    cyan_20: thunderBlocksColor.cyan_20,
-    cyan_10: thunderBlocksColor.cyan_10,
-    cyan_05: thunderBlocksColor.cyan_05,
 };
