@@ -274,7 +274,7 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
         default: {
             border:
                 kind === "transparent"
-                    ? `1px solid ${semanticColor.core.border.neutral.subtle}`
+                    ? `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`
                     : "none",
             background: backgroundColor,
             foreground: textColor,
@@ -300,12 +300,12 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
             outline: theme.default.border,
 
             ":hover": {
-                outline: `2px solid ${theme.hover.border}`,
+                outline: `${border.width.medium} solid ${theme.hover.border}`,
                 outlineOffset: sizing.size_020,
             },
             ":active": {
                 backgroundColor: theme.press.background,
-                outline: `2px solid ${theme.press.border}`,
+                outline: `${border.width.medium} solid ${theme.press.border}`,
                 outlineOffset: sizing.size_020,
             },
             ...focusStyles.focus,
