@@ -112,8 +112,11 @@ const PillInner = (props: {
  *
  * **Note:** Before using the `Pill` component, please see if a component from the
  * [Badge Package](/?path=/docs/packages-badge-overview--docs&globals=theme:default)
- * can be used instead. For example, prefer using the `StatusBadge` component
- * instead of a `Pill` to indicate a status.
+ * can be used instead.
+ *
+ * For example, prefer using the `StatusBadge` component instead of a `Pill` to
+ * indicate a status. Or, use the `Badge` component instead of a `Pill` with
+ * `kind="neutral"`.
  *
  * ### Usage
  *
@@ -254,7 +257,7 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
             break;
         case "neutral":
         default:
-            backgroundColor = semanticColor.core.background.neutral.subtle;
+            backgroundColor = semanticColor.status.neutral.background;
             textColor = semanticColor.core.foreground.neutral.strong;
     }
 
