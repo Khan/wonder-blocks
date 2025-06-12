@@ -334,7 +334,7 @@ const styles = StyleSheet.create({
             position: "relative",
             // zIndex: 100,
 
-            ":after": {
+            [":after" as any]: {
                 content: "unset",
             },
         },
