@@ -1,4 +1,10 @@
+// This use is valid as this is the only place in the codebase where we should
+// import/reference primitive colors.
+/* eslint-disable import/no-deprecated */
 import {color} from "../../tokens/color";
+// NOTE: This import is only to provide backwards compatibility with some
+// colors that don't exist in the OG primitives.
+import {color as thunderBlocksColor} from "./internal/primitive-color-thunderblocks";
 
 const transparent = "transparent";
 
@@ -36,19 +42,19 @@ const core = {
             strong: color.fadedOffBlack32,
         },
         gems: {
-            subtle: color.magenta_80,
-            default: color.magenta_60,
-            strong: color.magenta_30,
+            subtle: thunderBlocksColor.magenta_80,
+            default: thunderBlocksColor.magenta_60,
+            strong: thunderBlocksColor.magenta_30,
         },
         streak: {
-            subtle: color.orange_80,
-            default: color.orange_60,
-            strong: color.orange_30,
+            subtle: thunderBlocksColor.orange_80,
+            default: thunderBlocksColor.orange_60,
+            strong: thunderBlocksColor.orange_30,
         },
         due: {
-            subtle: color.cyan_80,
-            default: color.cyan_60,
-            strong: color.cyan_30,
+            subtle: thunderBlocksColor.cyan_80,
+            default: thunderBlocksColor.cyan_60,
+            strong: thunderBlocksColor.cyan_30,
         },
         inverse: {
             subtle: color.fadedOffBlack16,
@@ -88,19 +94,19 @@ const core = {
             strong: color.fadedOffBlack16,
         },
         gems: {
-            subtle: color.magenta_90,
-            default: color.magenta_80,
-            strong: color.magenta_10,
+            subtle: thunderBlocksColor.magenta_90,
+            default: thunderBlocksColor.magenta_80,
+            strong: thunderBlocksColor.magenta_10,
         },
         streak: {
-            subtle: color.orange_80,
-            default: color.orange_60,
-            strong: color.orange_10,
+            subtle: thunderBlocksColor.orange_80,
+            default: thunderBlocksColor.orange_60,
+            strong: thunderBlocksColor.orange_10,
         },
         due: {
-            subtle: color.cyan_80,
-            default: color.cyan_60,
-            strong: color.cyan_10,
+            subtle: thunderBlocksColor.cyan_80,
+            default: thunderBlocksColor.cyan_60,
+            strong: thunderBlocksColor.cyan_10,
         },
     },
 
@@ -139,19 +145,19 @@ const core = {
             strong: color.fadedOffBlack50,
         },
         gems: {
-            subtle: color.magenta_60,
-            default: color.magenta_30,
-            strong: color.magenta_10,
+            subtle: thunderBlocksColor.magenta_60,
+            default: thunderBlocksColor.magenta_30,
+            strong: thunderBlocksColor.magenta_10,
         },
         streak: {
-            subtle: color.orange_60,
-            default: color.orange_30,
-            strong: color.orange_10,
+            subtle: thunderBlocksColor.orange_60,
+            default: thunderBlocksColor.orange_30,
+            strong: thunderBlocksColor.orange_10,
         },
         due: {
-            subtle: color.cyan_60,
-            default: color.cyan_20,
-            strong: color.cyan_10,
+            subtle: thunderBlocksColor.cyan_60,
+            default: thunderBlocksColor.cyan_20,
+            strong: thunderBlocksColor.cyan_10,
         },
         inverse: {
             subtle: color.fadedOffBlack32,
