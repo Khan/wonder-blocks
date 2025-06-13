@@ -107,7 +107,7 @@ export const Sizes: Story = {
                                     kind={kind}
                                     key={index}
                                 >
-                                    {kind}, {props.size}
+                                    {`${kind}, ${props.size}`}
                                 </Pill>
                             ))}
                         </View>
