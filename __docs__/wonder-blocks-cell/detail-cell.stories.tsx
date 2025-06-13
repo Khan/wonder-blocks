@@ -4,8 +4,13 @@ import {MemoryRouter} from "react-router-dom";
 import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {View} from "@khanacademy/wonder-blocks-core";
-import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
+import {
+    border,
+    color,
+    semanticColor,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
@@ -355,6 +360,84 @@ export const DetailCellsAsListItems: StoryComponentType = {
             disableSnapshot: true,
         },
     },
+};
+
+/**
+ * Custom styling can be applied to the component using the `style` prop.
+ */
+export const CustomStyles = {
+    args: {
+        title: "Title for article item",
+        subtitle1: "Subtitle for article item",
+        subtitle2: "Subtitle for article item",
+        leftAccessory: (
+            <PhosphorIcon icon={IconMappings.playCircle} size="medium" />
+        ),
+        rightAccessory: (
+            <PhosphorIcon icon={IconMappings.checkCircleFill} size="medium" />
+        ),
+    },
+    render(args: PropsFor<typeof DetailCell>) {
+        return (
+            <View style={{gap: spacing.large_24}}>
+                Active
+                <DetailCell
+                    {...args}
+                    style={{borderRadius: border.radius.radius_120}}
+                    active={true}
+                />
+                Pressed
+                <DetailCell
+                    {...args}
+                    style={{borderRadius: border.radius.radius_120}}
+                />
+                Different content heights
+                <View
+                    style={{
+                        display: "grid",
+                        gridTemplateColumns: "1fr 1fr 1fr",
+                        gap: "16px",
+                    }}
+                >
+                    <DetailCell
+                        title="Title"
+                        subtitle1="Subtitle 1"
+                        subtitle2="Subtitle2"
+                        onClick={() => {}}
+                        style={[
+                            {
+                                border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
+                            },
+                        ]}
+                        horizontalRule={"none"}
+                    />
+                    <DetailCell
+                        title="Title"
+                        onClick={() => {}}
+                        style={[
+                            args.style,
+                            {
+                                border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
+                            },
+                        ]}
+                        horizontalRule={"none"}
+                    />
+                    <DetailCell
+                        title="Title"
+                        onClick={() => {}}
+                        style={[
+                            args.style,
+                            {
+                                border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
+                            },
+                        ]}
+                        horizontalRule={"none"}
+                    />
+                </View>
+            </View>
+        );
+    },
+    parameters: {pseudo: {active: true}},
 };
 
 const styles = StyleSheet.create({
