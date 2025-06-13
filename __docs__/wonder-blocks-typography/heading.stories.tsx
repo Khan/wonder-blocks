@@ -134,6 +134,9 @@ export const SizesAndWeights = {
                 <Heading size="small" weight="semi">
                     Small semibold
                 </Heading>
+                <Heading size="small" weight="medium">
+                    Small medium
+                </Heading>
             </View>
             <View style={styles.row}>
                 <Heading size="medium" weight="bold">
@@ -141,6 +144,9 @@ export const SizesAndWeights = {
                 </Heading>
                 <Heading size="medium" weight="semi">
                     Medium semibold
+                </Heading>
+                <Heading size="medium" weight="medium">
+                    Medium medium
                 </Heading>
             </View>
             <View style={styles.row}>
@@ -150,6 +156,9 @@ export const SizesAndWeights = {
                 <Heading size="large" weight="semi">
                     Large semibold
                 </Heading>
+                <Heading size="large" weight="medium">
+                    Large medium
+                </Heading>
             </View>
             <View style={styles.row}>
                 <Heading size="xlarge" weight="bold">
@@ -158,11 +167,18 @@ export const SizesAndWeights = {
                 <Heading size="xlarge" weight="semi">
                     xLarge semibold
                 </Heading>
+                <Heading size="xlarge" weight="medium">
+                    xLarge medium
+                </Heading>
             </View>
             <View style={styles.row}>
                 <Heading size="xxlarge" weight="bold">
                     xxLarge bold
                 </Heading>
+                <Heading size="xxlarge" weight="semi">
+                    xxLarge semibold
+                </Heading>
+                <div />
             </View>
         </View>
     ),
@@ -213,10 +229,37 @@ export const ClassicConversionGuide = {
     ),
 };
 
+/**
+ * An example of overriding `Heading` component's styling.
+ */
+export const CustomStyling = {
+    parameters: {
+        chromatic: {
+            modes: {
+                default: allModes.themeDefault,
+                thunderblocks: allModes.themeThunderBlocks,
+            },
+        },
+    },
+    render: () => (
+        <View>
+            <Heading>
+                Text to show the default styling based on props. If we add more
+                text here, it will run on multiple lines.
+            </Heading>
+            <Heading style={styles.customStyle}>
+                A lot of text that runs on multiple lines, with custom styling.
+                We really like ice cream. What flavor is your favorite? That’s
+                not ice cream, it’s sorbet!
+            </Heading>
+        </View>
+    ),
+};
+
 const styles = StyleSheet.create({
     grid: {
         display: "grid",
-        gridTemplateColumns: "max-content max-content",
+        gridTemplateColumns: "max-content max-content max-content",
         rowGap: spacing.medium_16,
         columnGap: spacing.large_24,
     },
@@ -226,5 +269,9 @@ const styles = StyleSheet.create({
     },
     row: {
         display: "contents",
+    },
+    customStyle: {
+        lineHeight: "4rem",
+        marginTop: "2rem",
     },
 });

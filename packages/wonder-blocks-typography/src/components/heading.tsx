@@ -1,6 +1,5 @@
 import * as React from "react";
 import {PropsFor, Text} from "@khanacademy/wonder-blocks-core";
-import {font} from "@khanacademy/wonder-blocks-tokens";
 import styles from "../util/styles";
 
 const tagMap = {
@@ -19,6 +18,25 @@ type Props = PropsFor<typeof Text> & {
     weight?: "medium" | "semi" | "bold";
 };
 
+// List style combinations for matching with props
+const styleMapping = {
+    "small-medium": styles.HeadingSmallMedium,
+    "small-semi": styles.HeadingSmallSemi,
+    "small-bold": styles.HeadingSmallBold,
+    "medium-medium": styles.HeadingMediumMedium,
+    "medium-semi": styles.HeadingMediumSemi,
+    "medium-bold": styles.HeadingMediumBold,
+    "large-medium": styles.HeadingLargeMedium,
+    "large-semi": styles.HeadingLargeSemi,
+    "large-bold": styles.HeadingLargeBold,
+    "xlarge-medium": styles.HeadingXLargeMedium,
+    "xlarge-semi": styles.HeadingXLargeSemi,
+    "xlarge-bold": styles.HeadingXLargeBold,
+    "xxlarge-medium": styles.HeadingXxLargeMedium,
+    "xxlarge-semi": styles.HeadingXxLargeSemi,
+    "xxlarge-bold": styles.HeadingXxLargeBold,
+} as const;
+
 const Heading = React.forwardRef(function Heading(props: Props, ref) {
     const {size, weight = "bold", style, children, tag, ...otherProps} = props;
 
@@ -29,11 +47,7 @@ const Heading = React.forwardRef(function Heading(props: Props, ref) {
     const resolvedTag = tag ?? (size ? tagMap[size] : "h2");
 
     // map props to theme and global token defaults for CSS styles
-    const themeHeading = {
-        fontSize: font.heading.size[finalSize],
-        fontWeight: font.weight[weight],
-        lineHeight: font.heading.lineHeight[finalSize],
-    };
+    const themeHeading = styleMapping[`${finalSize}-${weight}`];
 
     return (
         <Text
