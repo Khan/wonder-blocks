@@ -24,12 +24,11 @@ const StyledInput = addStyle("input");
     const {checked, disabled, error, groupName, id, testId, ...sharedProps} =
         props;
 
-    const stateStyles = _generateStyles(checked, error);
+    const stateStyles = _generateStyles(checked, error, disabled);
     const defaultStyle = [
         sharedStyles.inputReset,
         sharedStyles.default,
-        !disabled && stateStyles.default,
-        disabled && sharedStyles.disabled,
+        stateStyles.default,
     ];
 
     const wrapperStyle = [theme.inputWrapper, stateStyles.inputWrapper];
@@ -67,7 +66,9 @@ const StyledInput = addStyle("input");
                         }
                     }}
                 />
-                {disabled && checked && <span style={disabledChecked} />}
+                {disabled && checked && (
+                    <span style={stateStyles.disabledChecked} />
+                )}
             </View>
         </React.Fragment>
     );
@@ -76,16 +77,6 @@ const StyledInput = addStyle("input");
 const baseStyles = {
     size: sizing.size_160,
 };
-
-const disabledChecked = {
-    position: "absolute",
-    top: `calc(${baseStyles.size} * .25 + ${theme.inputWrapper.padding})`,
-    left: `calc(${baseStyles.size} * .25 + ${theme.inputWrapper.padding})`,
-    height: `calc(${baseStyles.size} / 2)`,
-    width: `calc(${baseStyles.size} / 2)`,
-    borderRadius: theme.radio.border.radius.default,
-    backgroundColor: semanticColor.core.border.disabled.strong,
-} as const;
 
 const sharedStyles = StyleSheet.create({
     inputWrapper: {
@@ -109,18 +100,16 @@ const sharedStyles = StyleSheet.create({
         borderWidth: theme.radio.border.width.default,
         borderRadius: theme.radio.border.radius.default,
     },
-    disabled: {
-        cursor: "auto",
-        backgroundColor: semanticColor.input.disabled.background,
-        borderColor: semanticColor.input.disabled.border,
-        borderWidth: theme.radio.border.width.default,
-    },
 });
 
 const styles: Record<string, any> = {};
-const _generateStyles = (checked: Checked, error: boolean) => {
+const _generateStyles = (
+    checked: Checked,
+    error: boolean,
+    disabled: boolean,
+) => {
     // "hash" the parameters
-    const styleKey = `${String(checked)}-${String(error)}`;
+    const styleKey = `${String(checked)}-${String(error)}-${String(disabled)}`;
     if (styles[styleKey]) {
         return styles[styleKey];
     }
@@ -136,7 +125,7 @@ const _generateStyles = (checked: Checked, error: boolean) => {
     const states = {
         // Resting state (unchecked)
         unchecked: {
-            border: semanticColor.input.default.border,
+            border: semanticColor.choice.default.border,
             background: colorCore.subtle,
         },
         checked: {
@@ -148,13 +137,39 @@ const _generateStyles = (checked: Checked, error: boolean) => {
         },
         // Form validation error state
         error: {
-            border: semanticColor.input.error.border,
-            background: semanticColor.input.error.background,
+            border: semanticColor.choice.error.border,
+            background: semanticColor.choice.error.background,
+        },
+        // Disabled state
+        disabled: {
+            border: semanticColor.choice.disabled.border,
+            background: semanticColor.choice.disabled.background,
         },
     };
 
     let newStyles: Record<string, any> = {};
-    if (checked) {
+
+    // Handle disabled states first
+    if (disabled) {
+        newStyles = {
+            inputWrapper: {},
+            default: {
+                cursor: "auto",
+                backgroundColor: states.disabled.background,
+                borderColor: states.disabled.border,
+                borderWidth: theme.radio.border.width.default,
+            },
+            disabledChecked: {
+                position: "absolute",
+                top: `calc(${baseStyles.size} * .25 + ${theme.inputWrapper.padding})`,
+                left: `calc(${baseStyles.size} * .25 + ${theme.inputWrapper.padding})`,
+                height: `calc(${baseStyles.size} / 2)`,
+                width: `calc(${baseStyles.size} / 2)`,
+                borderRadius: theme.radio.border.radius.default,
+                backgroundColor: semanticColor.choice.disabled.background,
+            },
+        };
+    } else if (checked) {
         newStyles = {
             inputWrapper: {
                 // TODO(WB-1864): Revisit hover, press tokens
@@ -182,6 +197,15 @@ const _generateStyles = (checked: Checked, error: boolean) => {
                     outlineOffset: 1,
                     borderColor: colorAction.press.border,
                 },
+            },
+            disabledChecked: {
+                position: "absolute",
+                top: `calc(${baseStyles.size} * .25 + ${theme.inputWrapper.padding})`,
+                left: `calc(${baseStyles.size} * .25 + ${theme.inputWrapper.padding})`,
+                height: `calc(${baseStyles.size} / 2)`,
+                width: `calc(${baseStyles.size} / 2)`,
+                borderRadius: theme.radio.border.radius.default,
+                backgroundColor: semanticColor.choice.disabled.background,
             },
         };
     } else {
@@ -218,6 +242,15 @@ const _generateStyles = (checked: Checked, error: boolean) => {
                     outline: `${border.width.medium} solid ${colorAction.press.border}`,
                     outlineOffset: -1,
                 },
+            },
+            disabledChecked: {
+                position: "absolute",
+                top: `calc(${baseStyles.size} * .25 + ${theme.inputWrapper.padding})`,
+                left: `calc(${baseStyles.size} * .25 + ${theme.inputWrapper.padding})`,
+                height: `calc(${baseStyles.size} / 2)`,
+                width: `calc(${baseStyles.size} / 2)`,
+                borderRadius: theme.radio.border.radius.default,
+                backgroundColor: semanticColor.choice.disabled.background,
             },
         };
     }

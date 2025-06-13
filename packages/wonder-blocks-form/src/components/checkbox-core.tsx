@@ -59,13 +59,12 @@ const CheckboxCore = React.forwardRef(function CheckboxCore(
         return;
     };
 
-    const stateStyles = _generateStyles(checked, error);
+    const stateStyles = _generateStyles(checked, error, disabled);
 
     const defaultStyle = [
         sharedStyles.inputReset,
         sharedStyles.default,
-        !disabled && stateStyles.default,
-        disabled && sharedStyles.disabled,
+        stateStyles.default,
     ];
 
     const wrapperStyle = [theme.inputWrapper, stateStyles.inputWrapper];
@@ -160,13 +159,6 @@ const sharedStyles = StyleSheet.create({
         borderRadius: theme.checkbox.border.radius.default,
     },
 
-    disabled: {
-        cursor: "auto",
-        backgroundColor: semanticColor.input.disabled.background,
-        borderColor: semanticColor.input.disabled.border,
-        borderWidth: theme.checkbox.border.width.default,
-    },
-
     checkboxIcon: {
         position: "absolute",
         pointerEvents: "none",
@@ -177,9 +169,13 @@ const sharedStyles = StyleSheet.create({
 
 const styles: Record<string, any> = {};
 
-const _generateStyles = (checked: Checked, error: boolean) => {
+const _generateStyles = (
+    checked: Checked,
+    error: boolean,
+    disabled: boolean,
+) => {
     // "hash" the parameters
-    const styleKey = `${String(checked)}-${String(error)}`;
+    const styleKey = `${String(checked)}-${String(error)}-${String(disabled)}`;
     if (styles[styleKey]) {
         return styles[styleKey];
     }
@@ -199,14 +195,47 @@ const _generateStyles = (checked: Checked, error: boolean) => {
         },
         // Form validation error state
         error: {
-            border: semanticColor.input.error.border,
-            background: semanticColor.input.error.background,
+            border: semanticColor.choice.error.border,
+            background: semanticColor.choice.error.background,
+        },
+        // Disabled state
+        disabled: {
+            border: semanticColor.choice.disabled.border,
+            background: semanticColor.choice.disabled.background,
+        },
+        // Disabled and checked state
+        disabledChecked: {
+            border: semanticColor.choice.disabledChecked.border,
+            background: semanticColor.choice.disabledChecked.background,
         },
     };
 
     let stateStyles: Record<string, any> = {};
 
-    if (isCheckedOrIndeterminate) {
+    // Handle disabled states first
+    if (disabled) {
+        if (isCheckedOrIndeterminate) {
+            // Disabled and checked/indeterminate
+            stateStyles = {
+                default: {
+                    cursor: "auto",
+                    backgroundColor: states.disabledChecked.background,
+                    borderColor: states.disabledChecked.border,
+                    borderWidth: theme.checkbox.border.width.default,
+                },
+            };
+        } else {
+            // Disabled and unchecked
+            stateStyles = {
+                default: {
+                    cursor: "auto",
+                    backgroundColor: states.disabled.background,
+                    borderColor: states.disabled.border,
+                    borderWidth: theme.checkbox.border.width.default,
+                },
+            };
+        }
+    } else if (isCheckedOrIndeterminate) {
         stateStyles = {
             inputWrapper: {
                 // TODO(WB-1864): Revisit hover, press tokens
@@ -242,7 +271,7 @@ const _generateStyles = (checked: Checked, error: boolean) => {
             inputWrapper: {
                 ":hover input:not([disabled])": {
                     backgroundColor: error
-                        ? semanticColor.input.error.background
+                        ? (semanticColor.choice as any).error.background
                         : colorAction.hover.background,
                     outline: `${border.width.medium} solid ${colorAction.hover.border}`,
                     outlineOffset: -1,
@@ -257,7 +286,7 @@ const _generateStyles = (checked: Checked, error: boolean) => {
                 // TODO(WB-1864): Use focusStyles.focus
                 ":focus-visible": {
                     backgroundColor: error
-                        ? semanticColor.input.error.background
+                        ? (semanticColor.choice as any).error.background
                         : colorAction.hover.background,
                     outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
                     outlineOffset: -1,

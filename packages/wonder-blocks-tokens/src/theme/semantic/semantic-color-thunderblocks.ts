@@ -540,6 +540,21 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
         },
     },
 
+    choice: {
+        default: {
+            border: core.border.neutral.default,
+            background: surface.primary,
+            foreground: core.foreground.neutral.strong,
+        },
+        disabled: {
+            background: core.background.neutral.subtle,
+        },
+        disabledChecked: {
+            border: core.border.disabled.subtle,
+            background: core.background.disabled.strong,
+        },
+    },
+
     status: {
         critical: {
             background: color.red_90,

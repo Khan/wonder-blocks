@@ -699,6 +699,33 @@ export const semanticColor = {
             foreground: core.foreground.neutral.strong,
         },
     },
+    choice: {
+        default: {
+            border: core.border.neutral.default,
+            background: surface.primary,
+            foreground: core.foreground.neutral.strong,
+        },
+        checked: {
+            border: core.border.instructive.default,
+            background: core.background.instructive.default,
+            foreground: core.foreground.inverse.strong,
+        },
+        disabled: {
+            border: core.border.disabled.default,
+            background: color.offWhite,
+            foreground: core.foreground.neutral.default,
+        },
+        disabledChecked: {
+            border: core.border.disabled.default,
+            background: color.offWhite,
+            foreground: core.foreground.disabled.strong,
+        },
+        error: {
+            border: core.border.critical.default,
+            background: core.background.critical.subtle,
+            foreground: core.foreground.neutral.strong,
+        },
+    },
     /**
      * For labels, icons, filters, alerts, and other elements where color can
      * add meaning to the state of the system or an item in the system.
