@@ -209,6 +209,7 @@ export default class OptionItem extends React.Component<OptionProps> {
 
         const defaultStyle = [
             styles.item,
+            styles.optionItem,
             // pass optional styles from react-window (if applies)
             style,
         ];
@@ -218,9 +219,8 @@ export default class OptionItem extends React.Component<OptionProps> {
                 disabled={disabled}
                 horizontalRule={horizontalRule}
                 style={[
-                    parentComponent === "listbox"
-                        ? styles.listboxItem
-                        : defaultStyle,
+                    defaultStyle,
+                    parentComponent === "listbox" && styles.listboxItem,
                 ]}
                 aria-selected={
                     parentComponent !== "listbox" && selected ? "true" : "false"
@@ -389,15 +389,17 @@ const styles = StyleSheet.create({
         backgroundColor: "transparent",
         color: "inherit",
     },
+    optionItem: {
+        paddingBlock: sizing.size_100,
+        paddingInlineStart: sizing.size_080,
+        paddingInlineEnd: sizing.size_160,
+        whiteSpace: "nowrap",
+    },
     item: {
         background: theme.optionItem.color.default.background,
         color: theme.optionItem.color.default.foreground,
         // Make sure that the item is always at least as tall as 40px.
         minHeight: sizing.size_400,
-        paddingBlock: sizing.size_100,
-        paddingInlineStart: sizing.size_080,
-        paddingInlineEnd: sizing.size_160,
-        whiteSpace: "nowrap",
 
         /**
          * States
