@@ -101,22 +101,8 @@ function CellInner(props: CellCoreProps): React.ReactElement {
         rightAccessoryStyle = undefined,
         testId,
     } = props;
-    // const horizontalRuleStyles = getHorizontalRuleStyles(horizontalRule);
 
     return (
-        // <View
-        //     style={[
-        //         styles.innerWrapper,
-        //         innerStyle,
-        //         // custom styles
-        //         style,
-        //         horizontalRuleStyles,
-        //         active && styles.activeInnerWrapper,
-        //     ]}
-        //     // Set className so we can set styles on the inner wrapper directly
-        //     // when the clickable element is pressed
-        //     className="inner-wrapper"
-        // >
         <>
             {/* Left accessory */}
             <LeftAccessory
@@ -182,13 +168,13 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
 
     const horizontalRuleStyles = getHorizontalRuleStyles(horizontalRule);
 
-    const innerStyles = [
-        styles.innerWrapper,
+    const sharedStyles = [
+        styles.wrapper,
         innerStyle,
+        active && styles.active,
         // custom styles
         style,
         horizontalRuleStyles,
-        active && styles.activeInnerWrapper,
     ];
     // Pressable cell.
     if (onClick || href) {
@@ -205,11 +191,9 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
                 role={role}
                 target={target}
                 style={[
-                    styles.wrapper,
+                    sharedStyles,
                     styles.clickable,
-                    active && styles.active,
                     disabled && styles.disabled,
-                    innerStyles,
                 ]}
                 aria-current={active ? "true" : undefined}
             >
@@ -222,7 +206,7 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
     // wrapper.
     return (
         <View
-            style={[styles.wrapper, active && styles.active, innerStyles]}
+            style={sharedStyles}
             aria-current={active ? "true" : undefined}
             role={role}
         >
@@ -236,47 +220,19 @@ const styles = StyleSheet.create({
         background: semanticColor.surface.primary,
         borderRadius: theme.root.border.radius.default,
         color: semanticColor.core.foreground.neutral.strong,
-        display: "flex",
         minHeight: theme.root.sizing.minHeight,
+        // Hide overflow so that if custom styling applies a border radius, the
+        // left visual indicator for press/active states does not overflow
         overflow: "hidden",
         textAlign: "left",
         width: "100%",
-    },
-
-    innerWrapper: {
-        minHeight: theme.root.sizing.minHeight,
+        // layout
+        flex: 1,
+        flexDirection: "row",
         // The spacing between the left and right accessories.
         gap: theme.root.layout.gap.default,
         paddingBlock: theme.root.layout.padding.block.default,
         paddingInline: theme.root.layout.padding.inline.default,
-        flexDirection: "row",
-        flex: 1,
-        // borderRadius: "inherit",
-        // Hide overflow so that if custom styling applies a border radius, the
-        // left visual indicator for press/active states does not overflow
-        overflow: "hidden",
-        // Make sure inner wrapper is always the same height as parent
-        // height: "100%",
-
-        // Reduce the padding of the innerWrapper when the focus ring is
-        // visible.
-        // ":focus-visible": {
-        //     paddingBlock: `calc(${theme.root.layout.padding.block.default} - ${theme.root.border.width.default})`,
-        //     paddingInline: `calc(${theme.root.layout.padding.inline.default} - ${theme.root.border.width.default})`,
-        // },
-    },
-    activeInnerWrapper: {
-        position: "relative",
-        ":before": {
-            // Styles for the left bar indicator
-            content: "''",
-            position: "absolute",
-            top: 0,
-            left: 0,
-            bottom: 0,
-            width: theme.root.border.width.selected,
-            backgroundColor: theme.root.color.selected.border,
-        },
     },
 
     content: {
@@ -310,7 +266,6 @@ const styles = StyleSheet.create({
      */
     clickable: {
         outline: "none",
-        zIndex: "unset",
         /**
          * States
          */
@@ -325,37 +280,13 @@ const styles = StyleSheet.create({
             overflow: "hidden",
             // To display the focus ring based on the cell's border.
             position: "relative",
-            // zIndex: 100,
 
+            // Hide the left bar indicator when focused, so the focus ring
+            // doesn't overlap with it.
             [":after" as any]: {
                 content: "unset",
             },
         },
-        // // NOTE: We use a pseudo element to draw the focus ring because we can't
-        // // use `outline` since it conflicts with different layout contexts (e.g.
-        // // `View` elements add their own z-index).
-        // [":focus-visible:after" as any]: {
-        //     content: "''",
-        //     // Since we are using a pseudo element, we need to manually
-        //     // calculate the width/height and use absolute position to
-        //     // prevent other elements from being shifted around.
-        //     position: "absolute",
-        //     top: 0,
-        //     left: 0,
-        //     zIndex: 1,
-        //     // We remove the border width from the width/height to ensure
-        //     // that the focus ring is drawn inside the cell.
-        //     width: `calc(100% - ${theme.root.border.width.default} * 2)`,
-        //     height: `calc(100% - ${theme.root.border.width.default} * 2)`,
-        //     border: `${theme.root.border.width.default} solid ${semanticColor.focus.outer}`,
-        //     borderRadius: theme.root.border.radius.focus,
-        // },
-        // [":focus-visible:active:after" as any]: {
-        //     // When the cell is pressed, we want to change the focus ring
-        //     // to match the pressed state.
-        //     // borderRadius: theme.root.border.radius.pressFocus,
-        // },
-
         ":hover": {
             background: semanticColor.core.background.instructive.subtle,
         },
@@ -364,12 +295,6 @@ const styles = StyleSheet.create({
             borderRadius: theme.root.border.radius.press,
         },
         // press + enabled + not currently selected (active prop: false)
-        // We apply the left bar indicator styles on the inner-wrapper element
-        // instead of the clickable element directly because we need to hide the
-        // left bar overflow when custom cell styles apply a border-radius. We
-        // have overflow: hidden on the inner wrapper instead of the clickable element
-        // because setting it on the clickable element causes issues with existing
-        // cases.
         [":active[aria-disabled=false]:not([aria-current=true])" as any]: {
             position: "relative",
             ":before": {
@@ -379,8 +304,8 @@ const styles = StyleSheet.create({
                 left: 0,
                 bottom: 0,
                 width: theme.root.border.width.default,
-                // We use the border token as this element acts like a
-                // border when the cell is pressed.
+                // We use the border token as this element acts like a border
+                // when the cell is pressed.
                 backgroundColor: theme.root.color.press.border,
             },
         },
@@ -390,6 +315,17 @@ const styles = StyleSheet.create({
         background: semanticColor.core.background.instructive.subtle,
         color: theme.root.color.selected.foreground,
         cursor: "default",
+        position: "relative",
+        ":before": {
+            // Styles for the left bar indicator
+            content: "''",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            bottom: 0,
+            width: theme.root.border.width.selected,
+            backgroundColor: theme.root.color.selected.border,
+        },
     },
 
     disabled: {
@@ -404,13 +340,6 @@ const styles = StyleSheet.create({
             background: semanticColor.surface.primary,
             borderRadius: theme.root.border.radius.default,
         },
-        // [".inner-wrapper" as any]: {
-        //     ":before": {
-        //         // Prevent the left bar indicator from being displayed when the
-        //         // cell is disabled.
-        //         content: "none",
-        //     },
-        // },
     },
 
     accessoryActive: {
