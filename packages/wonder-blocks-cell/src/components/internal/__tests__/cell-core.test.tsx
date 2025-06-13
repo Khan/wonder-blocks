@@ -125,39 +125,6 @@ describe("CellCore", () => {
         ).toBeInTheDocument();
     });
 
-    it("should pass an style to the top node", () => {
-        // Arrange
-
-        // Act
-        render(
-            <CellCore onClick={jest.fn()} rootStyle={{color: "blue"}}>
-                <div>cell core content</div>
-            </CellCore>,
-        );
-
-        // Assert
-        expect(screen.getByRole("button")).toHaveStyle("color: blue");
-    });
-
-    it("should pass an style to the content container", () => {
-        // Arrange
-
-        // Act
-        render(
-            <CellCore
-                onClick={jest.fn()}
-                contentStyle={{alignSelf: "flex-start"}}
-            >
-                <div>cell core content</div>
-            </CellCore>,
-        );
-
-        // Assert
-        const elem = screen.getByText("cell core content");
-        // eslint-disable-next-line testing-library/no-node-access
-        expect(elem.parentElement).toHaveStyle("align-self: flex-start");
-    });
-
     describe("aria-checked", () => {
         it("should add aria-checked if aria-checked is set and it is a link", () => {
             // Arrange

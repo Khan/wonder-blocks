@@ -104,13 +104,6 @@ export type CellProps = {
      */
     role?: ClickableRole;
     /**
-     * Optional custom styles applied to the top node.
-     *
-     * _NOTE:_ This is the top node of the cell, not the cell container. If
-     * possible, try to use this prop carefully and use `style` instead.
-     */
-    rootStyle?: StyleType;
-    /**
      * Optional custom styles applied to the cell container.
      */
     style?: StyleType;
