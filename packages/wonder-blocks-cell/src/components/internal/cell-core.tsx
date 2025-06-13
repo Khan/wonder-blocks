@@ -277,8 +277,7 @@ const styles = StyleSheet.create({
         ":focus-visible": {
             borderRadius: theme.root.border.radius.focus,
             outline: focusStyles.focus[":focus-visible"].outline,
-            outlineOffset: -2,
-            // boxShadow: `inset 0 0 0 ${theme.root.border.width.default} red`,
+            outlineOffset: `calc(${theme.root.border.width.default} * -1)`,
             // To hide the internal corners of the cell.
             overflow: "hidden",
             // To display the focus ring based on the cell's border.
