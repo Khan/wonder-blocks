@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import packageConfig from "../../packages/wonder-blocks-cell/package.json";
@@ -145,11 +145,7 @@ export const CompactCellBoth: StoryComponentType = {
                 <PhosphorIcon icon={IconMappings.article} size="medium" />
             }
             rightAccessory={
-                <PhosphorIcon
-                    icon={IconMappings.calendar}
-                    size="medium"
-                    color={color.blue}
-                />
+                <PhosphorIcon icon={IconMappings.calendar} size="medium" />
             }
         />
     ),
@@ -238,12 +234,12 @@ export const CompactCellWithCustomStyles: StoryComponentType = {
             rightAccessory={
                 <PhosphorIcon
                     icon={IconMappings.calendar}
-                    color={color.white}
+                    color={semanticColor.core.foreground.inverse.strong}
                 />
             }
             style={{
-                background: color.darkBlue,
-                color: color.white,
+                background: semanticColor.surface.inverse,
+                color: semanticColor.core.foreground.inverse.strong,
             }}
             onClick={() => {}}
         />
@@ -414,7 +410,7 @@ export const CompactCellsAsListItems: StoryComponentType = {
 
 const styles = StyleSheet.create({
     example: {
-        backgroundColor: color.offWhite,
+        backgroundColor: semanticColor.surface.secondary,
         padding: spacing.large_24,
         width: 320 + spacing.xxLarge_48,
     },

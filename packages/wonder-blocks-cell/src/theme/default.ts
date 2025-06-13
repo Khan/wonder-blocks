@@ -1,4 +1,9 @@
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    font,
+    semanticColor,
+    sizing,
+} from "@khanacademy/wonder-blocks-tokens";
 
 export default {
     root: {
@@ -7,7 +12,11 @@ export default {
                 default: border.width.medium,
                 selected: border.width.thick,
             },
-            radius: border.radius.radius_040,
+            radius: {
+                default: border.radius.radius_0,
+                focus: border.radius.radius_040,
+                press: border.radius.radius_0,
+            },
         },
         // NOTE: These colors will change in TB.
         color: {
@@ -20,7 +29,10 @@ export default {
             },
         },
         layout: {
-            gap: sizing.size_160,
+            gap: {
+                default: sizing.size_160,
+                detail: sizing.size_020,
+            },
             padding: {
                 block: {
                     default: sizing.size_120,
@@ -36,7 +48,14 @@ export default {
             minHeight: sizing.size_480,
         },
     },
-    accessory: {
+    accessoryLeft: {
+        color: {
+            default: {
+                foreground: "inherit",
+            },
+        },
+    },
+    accessoryRight: {
         // NOTE: These colors will change in TB.
         color: {
             default: {
@@ -58,5 +77,19 @@ export default {
             height: sizing.size_020,
         },
         shadow: `inset 0px -1px 0px ${semanticColor.core.border.inverse.default}`,
+    },
+    title: {
+        font: {
+            lineHeight: font.body.lineHeight.medium,
+        },
+    },
+    subtitle: {
+        color: {
+            foreground: semanticColor.core.foreground.neutral.default,
+        },
+        font: {
+            size: font.body.size.small,
+            lineHeight: font.body.lineHeight.small,
+        },
     },
 };

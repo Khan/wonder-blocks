@@ -36,6 +36,7 @@ const LeftAccessory = ({
         <View
             style={[
                 styles.accessory,
+                styles.accessoryLeft,
                 disabled && styles.accessoryDisabled,
                 {...leftAccessoryStyle},
             ]}
@@ -221,6 +222,7 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
 const styles = StyleSheet.create({
     wrapper: {
         background: semanticColor.surface.primary,
+        borderRadius: theme.root.border.radius.default,
         color: semanticColor.core.foreground.neutral.strong,
         display: "flex",
         minHeight: theme.root.sizing.minHeight,
@@ -231,7 +233,7 @@ const styles = StyleSheet.create({
     innerWrapper: {
         minHeight: theme.root.sizing.minHeight,
         // The spacing between the left and right accessories.
-        gap: theme.root.layout.gap,
+        gap: theme.root.layout.gap.default,
         paddingBlock: theme.root.layout.padding.block.default,
         paddingInline: theme.root.layout.padding.inline.default,
         flexDirection: "row",
@@ -280,10 +282,14 @@ const styles = StyleSheet.create({
         alignSelf: "center",
     },
 
+    accessoryLeft: {
+        color: theme.accessoryLeft.color.default.foreground,
+    },
+
     accessoryRight: {
         // The right accessory will have this color by default. Unless the
         // accessory element overrides that color internally.
-        color: theme.accessory.color.default.foreground,
+        color: theme.accessoryRight.color.default.foreground,
     },
 
     /**
@@ -299,10 +305,11 @@ const styles = StyleSheet.create({
         },
         ":active": {
             background: semanticColor.core.background.instructive.subtle,
+            borderRadius: theme.root.border.radius.press,
         },
         // focus (only visible when using keyboard navigation)
         ":focus-visible": {
-            borderRadius: theme.root.border.radius,
+            borderRadius: theme.root.border.radius.focus,
             // To hide the internal corners of the cell.
             overflow: "hidden",
             // To display the focus ring based on the cell's border.
@@ -325,7 +332,7 @@ const styles = StyleSheet.create({
             width: `calc(100% - ${theme.root.border.width.default} * 2)`,
             height: `calc(100% - ${theme.root.border.width.default} * 2)`,
             border: `${theme.root.border.width.default} solid ${semanticColor.focus.outer}`,
-            borderRadius: theme.root.border.radius,
+            borderRadius: theme.root.border.radius.focus,
         },
         // press + enabled + not currently selected (active prop: false)
         // We apply the left bar indicator styles on the inner-wrapper element
@@ -359,6 +366,7 @@ const styles = StyleSheet.create({
 
     disabled: {
         background: semanticColor.surface.primary,
+        borderRadius: theme.root.border.radius.default,
         color: semanticColor.core.foreground.inverse.subtle,
         ":hover": {
             background: semanticColor.surface.primary,
@@ -371,6 +379,7 @@ const styles = StyleSheet.create({
         },
         ":active": {
             background: semanticColor.surface.primary,
+            borderRadius: theme.root.border.radius.default,
         },
         [".inner-wrapper" as any]: {
             ":before": {
@@ -382,11 +391,11 @@ const styles = StyleSheet.create({
     },
 
     accessoryActive: {
-        color: theme.accessory.color.selected.foreground,
+        color: theme.accessoryRight.color.selected.foreground,
     },
 
     accessoryDisabled: {
-        color: theme.accessory.color.disabled.foreground,
+        color: theme.accessoryRight.color.disabled.foreground,
         opacity: 0.32,
     },
 });
