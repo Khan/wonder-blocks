@@ -1,4 +1,4 @@
-import type {ArgTypes} from "@storybook/react";
+import type {ArgTypes} from "@storybook/react-vite";
 
 import plusCircle from "@phosphor-icons/core/regular/plus-circle.svg";
 import plusCircleBold from "@phosphor-icons/core/bold/plus-circle-bold.svg";

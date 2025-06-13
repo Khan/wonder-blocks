@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
@@ -166,9 +166,9 @@ export const Layouts: StoryComponentType = () => {
     );
 };
 
-Layouts.parameters = {
+Layouts.globals = {
     backgrounds: {
-        default: "darkBlue",
+        value: "darkBlue",
     },
 };
 
@@ -208,9 +208,9 @@ export const DarkBackground: StoryComponentType = () => (
     </View>
 );
 
-DarkBackground.parameters = {
+DarkBackground.globals = {
     backgrounds: {
-        default: "darkBlue",
+        value: "darkBlue",
     },
 };
 
