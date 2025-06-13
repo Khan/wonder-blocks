@@ -258,7 +258,7 @@ const styles = StyleSheet.create({
         paddingInline: theme.root.layout.padding.inline.default,
         flexDirection: "row",
         flex: 1,
-        borderRadius: "inherit",
+        // borderRadius: "inherit",
         // Hide overflow so that if custom styling applies a border radius, the
         // left visual indicator for press/active states does not overflow
         overflow: "hidden",
