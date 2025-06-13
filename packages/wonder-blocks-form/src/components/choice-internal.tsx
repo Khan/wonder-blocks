@@ -3,8 +3,12 @@ import {StyleSheet} from "aphrodite";
 
 import {View, Id} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {
+    semanticColor,
+    sizing,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import CheckboxCore from "./checkbox-core";
 import RadioCore from "./radio-core";
@@ -92,19 +96,20 @@ type Props = AriaProps & {
 
     const getLabel = (id: string): React.ReactNode => {
         return (
-            <LabelMedium
+            <BodyText
+                tag="div"
                 style={[styles.label, disabled && styles.disabledLabel]}
             >
                 <label htmlFor={id}>{label}</label>
-            </LabelMedium>
+            </BodyText>
         );
     };
 
     const getDescription = (id?: string): React.ReactNode => {
         return (
-            <LabelSmall style={styles.description} id={id}>
+            <BodyText size="small" style={styles.description} id={id}>
                 {description}
-            </LabelSmall>
+            </BodyText>
         );
     };
 
@@ -162,6 +167,7 @@ const styles = StyleSheet.create({
         outline: "none",
     },
     label: {
+        lineHeight: sizing.size_140,
         // NOTE: The checkbox/radio button (height 16px) should be center
         // aligned with the first line of the label. However, LabelMedium has a
         // declared line height of 20px, so we need to adjust the top to get the
