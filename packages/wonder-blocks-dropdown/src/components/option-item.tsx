@@ -216,12 +216,12 @@ export default class OptionItem extends React.Component<OptionProps> {
             <DetailCell
                 disabled={disabled}
                 horizontalRule={horizontalRule}
-                rootStyle={
+                style={[
                     parentComponent === "listbox"
                         ? styles.listboxItem
-                        : defaultStyle
-                }
-                style={styles.itemContainer}
+                        : defaultStyle,
+                    styles.itemContainer,
+                ]}
                 aria-selected={
                     parentComponent !== "listbox" && selected ? "true" : "false"
                 }

@@ -174,7 +174,6 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
         "aria-checked": ariaChecked,
         target,
         role,
-        rootStyle,
 
         horizontalRule = "inset",
         style,
@@ -208,7 +207,6 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
                 style={[
                     styles.wrapper,
                     styles.clickable,
-                    rootStyle,
                     active && styles.active,
                     disabled && styles.disabled,
                     innerStyles,
@@ -224,12 +222,7 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
     // wrapper.
     return (
         <View
-            style={[
-                styles.wrapper,
-                rootStyle,
-                active && styles.active,
-                innerStyles,
-            ]}
+            style={[styles.wrapper, active && styles.active, innerStyles]}
             aria-current={active ? "true" : undefined}
             role={role}
         >
