@@ -12,6 +12,7 @@ import x from "@phosphor-icons/core/regular/x.svg";
 import xBold from "@phosphor-icons/core/bold/x-bold.svg";
 import checkCircle from "@phosphor-icons/core/regular/check-circle.svg";
 import checkCircleBold from "@phosphor-icons/core/bold/check-circle-bold.svg";
+import checkCircleFill from "@phosphor-icons/core/fill/check-circle-fill.svg";
 import check from "@phosphor-icons/core/regular/check.svg";
 import checkBold from "@phosphor-icons/core/bold/check-bold.svg";
 import caretDown from "@phosphor-icons/core/regular/caret-down.svg";
@@ -75,6 +76,7 @@ export const IconMappings = {
     checkBold,
     checkCircle,
     checkCircleBold,
+    checkCircleFill,
     dotsThreeBold,
     x,
     xBold,
