@@ -227,6 +227,9 @@ const styles = StyleSheet.create({
         textAlign: "left",
         width: "100%",
         // layout
+        // We need to specify flex as the wrapper can be a <View> or a
+        // <Clickable> component.
+        display: "flex",
         flex: 1,
         flexDirection: "row",
         // The spacing between the left and right accessories.
