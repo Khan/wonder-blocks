@@ -11,7 +11,7 @@ import {
     border,
     font,
     semanticColor,
-    spacing,
+    sizing,
 } from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 import {useId} from "react";
@@ -313,15 +313,16 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
     },
 );
 
-const VERTICAL_SPACING_PX = 10;
+const VERTICAL_SPACING = sizing.size_100;
 
 const styles = StyleSheet.create({
     textarea: {
         borderRadius: border.radius.radius_040,
         boxSizing: "border-box",
-        padding: `${VERTICAL_SPACING_PX}px ${spacing.medium_16}px`,
+        paddingBlock: VERTICAL_SPACING,
+        paddingInline: sizing.size_160,
         // This minHeight is equivalent to when the textarea has one row
-        minHeight: `calc(${VERTICAL_SPACING_PX * 2 + 2}px + ${font.lineHeight.medium})`,
+        minHeight: `calc(${VERTICAL_SPACING} * 2 + 2px + ${font.lineHeight.medium})`,
     },
     default: {
         background: semanticColor.input.default.background,
