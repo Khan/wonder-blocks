@@ -169,10 +169,9 @@ export default class ActionItem extends React.Component<ActionProps> {
             <CompactCell
                 disabled={disabled}
                 horizontalRule={horizontalRule}
-                rootStyle={defaultStyle}
                 leftAccessory={leftAccessory}
                 rightAccessory={rightAccessory}
-                style={[styles.shared, indent && styles.indent]}
+                style={[defaultStyle, styles.shared, indent && styles.indent]}
                 role={role}
                 testId={testId}
                 title={labelComponent}

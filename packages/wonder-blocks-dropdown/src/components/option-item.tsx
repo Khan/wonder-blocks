@@ -6,6 +6,7 @@ import {
     spacing,
     semanticColor,
     border,
+    sizing,
 } from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
@@ -209,6 +210,7 @@ export default class OptionItem extends React.Component<OptionProps> {
 
         const defaultStyle = [
             styles.item,
+            styles.optionItem,
             // pass optional styles from react-window (if applies)
             style,
         ];
@@ -217,12 +219,10 @@ export default class OptionItem extends React.Component<OptionProps> {
             <DetailCell
                 disabled={disabled}
                 horizontalRule={horizontalRule}
-                rootStyle={
-                    parentComponent === "listbox"
-                        ? styles.listboxItem
-                        : defaultStyle
-                }
-                style={styles.itemContainer}
+                style={[
+                    defaultStyle,
+                    parentComponent === "listbox" && styles.listboxItem,
+                ]}
                 aria-selected={
                     parentComponent !== "listbox" && selected ? "true" : "false"
                 }
@@ -335,6 +335,12 @@ const styles = StyleSheet.create({
         backgroundColor: "transparent",
         color: "inherit",
     },
+    optionItem: {
+        paddingBlock: sizing.size_100,
+        paddingInlineStart: sizing.size_080,
+        paddingInlineEnd: sizing.size_160,
+        whiteSpace: "nowrap",
+    },
     item: {
         // Reset the default styles for the cell element so it can grow
         // vertically.
@@ -354,14 +360,6 @@ const styles = StyleSheet.create({
     },
     itemDisabled: {
         outlineColor: semanticColor.focus.outer,
-    },
-    itemContainer: {
-        minHeight: "unset",
-        // Make sure that the item is always at least as tall as 40px.
-        paddingBlock: spacing.xSmall_8 + spacing.xxxxSmall_2,
-        paddingInlineStart: spacing.xSmall_8,
-        paddingInlineEnd: spacing.medium_16,
-        whiteSpace: "nowrap",
     },
 
     label: {

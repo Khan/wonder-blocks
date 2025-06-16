@@ -363,10 +363,9 @@ export const DetailCellsAsListItems: StoryComponentType = {
 };
 
 /**
- * Custom styling can be applied to the component using the `rootStyle` or
- * `style` props.
+ * Custom styling can be applied to the component using the `style` prop.
  */
-export const CustomRootStyle = {
+export const CustomStyles = {
     args: {
         title: "Title for article item",
         subtitle1: "Subtitle for article item",
@@ -381,18 +380,27 @@ export const CustomRootStyle = {
     render(args: PropsFor<typeof DetailCell>) {
         return (
             <View style={{gap: spacing.large_24}}>
-                Active (with rootStyle prop):
+                Active
                 <DetailCell
                     {...args}
-                    rootStyle={{borderRadius: border.radius.radius_120}}
+                    style={{
+                        borderRadius: border.radius.radius_120,
+                        ":active": {
+                            borderRadius: border.radius.radius_120,
+                        },
+                    }}
                     active={true}
                 />
-                Pressed (with rootStyle prop):
+                Pressed
                 <DetailCell
                     {...args}
-                    rootStyle={{borderRadius: border.radius.radius_120}}
+                    style={{
+                        ":active": {
+                            borderRadius: border.radius.radius_120,
+                        },
+                    }}
                 />
-                Different content heights (with style prop)
+                Different content heights
                 <View
                     style={{
                         display: "grid",
@@ -416,7 +424,7 @@ export const CustomRootStyle = {
                         title="Title"
                         onClick={() => {}}
                         style={[
-                            args.rootStyle,
+                            args.style,
                             {
                                 border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
                             },
@@ -427,7 +435,7 @@ export const CustomRootStyle = {
                         title="Title"
                         onClick={() => {}}
                         style={[
-                            args.rootStyle,
+                            args.style,
                             {
                                 border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
                             },

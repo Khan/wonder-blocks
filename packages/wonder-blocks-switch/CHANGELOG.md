@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-switch
 
+## 3.3.0
+
+### Minor Changes
+
+- e8fc6e4: Add support for Thunderblocks theming
+
+### Patch Changes
+
+- Updated dependencies [7811eb1]
+    - @khanacademy/wonder-blocks-tokens@10.6.0
+    - @khanacademy/wonder-blocks-icon@5.2.1
+    - @khanacademy/wonder-blocks-styles@0.2.14
+
 ## 3.2.10
 
 ### Patch Changes
