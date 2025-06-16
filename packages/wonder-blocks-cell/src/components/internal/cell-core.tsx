@@ -347,6 +347,9 @@ const styles = StyleSheet.create({
             background: semanticColor.surface.primary,
             borderRadius: theme.root.border.radius.default,
         },
+        [":focus-visible:active" as any]: {
+            borderRadius: theme.root.border.radius.default,
+        },
     },
 
     accessoryActive: {
