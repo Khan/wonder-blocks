@@ -383,13 +383,22 @@ export const CustomStyles = {
                 Active
                 <DetailCell
                     {...args}
-                    style={{borderRadius: border.radius.radius_120}}
+                    style={{
+                        borderRadius: border.radius.radius_120,
+                        ":active": {
+                            borderRadius: border.radius.radius_120,
+                        },
+                    }}
                     active={true}
                 />
                 Pressed
                 <DetailCell
                     {...args}
-                    style={{borderRadius: border.radius.radius_120}}
+                    style={{
+                        ":active": {
+                            borderRadius: border.radius.radius_120,
+                        },
+                    }}
                 />
                 Different content heights
                 <View
