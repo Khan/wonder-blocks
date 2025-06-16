@@ -125,7 +125,7 @@ const _generateStyles = (
     const states = {
         // Resting state (unchecked)
         unchecked: {
-            border: semanticColor.choice.default.border,
+            border: theme.choice.default.border,
             background: colorCore.subtle,
         },
         checked: {
@@ -137,13 +137,13 @@ const _generateStyles = (
         },
         // Form validation error state
         error: {
-            border: semanticColor.choice.error.border,
-            background: semanticColor.choice.error.background,
+            border: theme.choice.error.border,
+            background: theme.choice.error.background,
         },
         // Disabled state
         disabled: {
-            border: semanticColor.choice.disabled.border,
-            background: semanticColor.choice.disabled.background,
+            border: theme.choice.disabled.border,
+            background: theme.choice.disabled.background,
         },
     };
 
@@ -161,12 +161,14 @@ const _generateStyles = (
             },
             disabledChecked: {
                 position: "absolute",
+                // position checkmark 1/4 of the overall size for 1/2 of its width/height
+                // accounting for increased padding/hit target area in TB
                 top: `calc(${baseStyles.size} * .25 + ${theme.inputWrapper.padding})`,
                 left: `calc(${baseStyles.size} * .25 + ${theme.inputWrapper.padding})`,
                 height: `calc(${baseStyles.size} / 2)`,
                 width: `calc(${baseStyles.size} / 2)`,
                 borderRadius: theme.radio.border.radius.default,
-                backgroundColor: semanticColor.choice.disabled.background,
+                backgroundColor: theme.choice.disabled.background,
             },
         };
     } else if (checked) {
@@ -205,7 +207,7 @@ const _generateStyles = (
                 height: `calc(${baseStyles.size} / 2)`,
                 width: `calc(${baseStyles.size} / 2)`,
                 borderRadius: theme.radio.border.radius.default,
-                backgroundColor: semanticColor.choice.disabled.background,
+                backgroundColor: theme.choice.disabled.background,
             },
         };
     } else {
@@ -250,7 +252,7 @@ const _generateStyles = (
                 height: `calc(${baseStyles.size} / 2)`,
                 width: `calc(${baseStyles.size} / 2)`,
                 borderRadius: theme.radio.border.radius.default,
-                backgroundColor: semanticColor.choice.disabled.background,
+                backgroundColor: theme.choice.disabled.background,
             },
         };
     }

@@ -73,8 +73,8 @@ const CheckboxCore = React.forwardRef(function CheckboxCore(
         <PhosphorIcon
             color={
                 disabled
-                    ? semanticColor.icon.disabled
-                    : semanticColor.icon.inverse
+                    ? theme.icon.disabled.foreground
+                    : theme.icon.default.foreground
             }
             icon={checked ? checkIcon : minusIcon}
             size="small"
@@ -195,19 +195,13 @@ const _generateStyles = (
         },
         // Form validation error state
         error: {
-            border: semanticColor.choice.error.border,
-            background: semanticColor.choice.error.background,
+            border: theme.choice.error.border,
+            background: theme.choice.error.background,
         },
         // Disabled state
-        disabled: {
-            border: semanticColor.choice.disabled.border,
-            background: semanticColor.choice.disabled.background,
-        },
+        disabled: theme.choice.disabled,
         // Disabled and checked state
-        disabledChecked: {
-            border: semanticColor.choice.disabledChecked.border,
-            background: semanticColor.choice.disabledChecked.background,
-        },
+        disabledChecked: theme.choice.disabledChecked,
     };
 
     let stateStyles: Record<string, any> = {};
@@ -271,7 +265,7 @@ const _generateStyles = (
             inputWrapper: {
                 ":hover input:not([disabled])": {
                     backgroundColor: error
-                        ? (semanticColor.choice as any).error.background
+                        ? theme.choice.error.background
                         : colorAction.hover.background,
                     outline: `${border.width.medium} solid ${colorAction.hover.border}`,
                     outlineOffset: -1,
@@ -286,7 +280,7 @@ const _generateStyles = (
                 // TODO(WB-1864): Use focusStyles.focus
                 ":focus-visible": {
                     backgroundColor: error
-                        ? (semanticColor.choice as any).error.background
+                        ? theme.choice.error.background
                         : colorAction.hover.background,
                     outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
                     outlineOffset: -1,
