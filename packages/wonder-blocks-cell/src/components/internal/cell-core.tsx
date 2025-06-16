@@ -272,7 +272,13 @@ const styles = StyleSheet.create({
         /**
          * States
          */
-
+        ":hover": {
+            background: semanticColor.core.background.instructive.subtle,
+        },
+        ":active": {
+            background: semanticColor.core.background.instructive.subtle,
+            borderRadius: theme.root.border.radius.press,
+        },
         // focus (only visible when using keyboard navigation)
         ":focus-visible": {
             borderRadius: theme.root.border.radius.focus,
@@ -292,12 +298,8 @@ const styles = StyleSheet.create({
                 content: "unset",
             },
         },
-        ":hover": {
-            background: semanticColor.core.background.instructive.subtle,
-        },
-        ":active": {
-            background: semanticColor.core.background.instructive.subtle,
-            borderRadius: theme.root.border.radius.press,
+        [":focus-visible:active" as any]: {
+            borderRadius: theme.root.border.radius.focusPress,
         },
         // press + enabled + not currently selected (active prop: false)
         [":active[aria-disabled=false]:not([aria-current=true])" as any]: {

@@ -15,6 +15,7 @@ export default mergeTheme(defaultTheme, {
                 default: border.radius.radius_080,
                 focus: border.radius.radius_080,
                 press: border.radius.radius_120,
+                focusPress: border.radius.radius_120,
             },
         },
         color: {
