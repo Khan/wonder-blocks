@@ -4,8 +4,8 @@ import WarningCircle from "@phosphor-icons/core/bold/warning-circle-bold.svg";
 
 import {View, addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 type Props = {
     /**
@@ -147,7 +147,7 @@ export default function LabeledField(props: Props) {
 
         return (
             <React.Fragment>
-                <LabelMedium
+                <BodyText
                     style={[
                         styles.textWordBreak,
                         styles.label,
@@ -163,7 +163,7 @@ export default function LabeledField(props: Props) {
                 >
                     {label}
                     {isRequired && requiredIcon}
-                </LabelMedium>
+                </BodyText>
             </React.Fragment>
         );
     }
@@ -175,7 +175,8 @@ export default function LabeledField(props: Props) {
 
         return (
             <React.Fragment>
-                <LabelSmall
+                <BodyText
+                    size="small"
                     style={[
                         styles.textWordBreak,
                         styles.description,
@@ -185,7 +186,7 @@ export default function LabeledField(props: Props) {
                     id={descriptionId}
                 >
                     {description}
-                </LabelSmall>
+                </BodyText>
             </React.Fragment>
         );
     }
