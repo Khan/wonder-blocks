@@ -71,12 +71,12 @@ const styles: StyleDeclaration = StyleSheet.create({
     HeadingLargeSemiWeight: {
         fontSize: font.heading.size.large,
         fontWeight: font.weight.semi,
-        lineHeight: font.heading.lineHeight.small,
+        lineHeight: font.heading.lineHeight.large,
     },
     HeadingLargeMediumWeight: {
         fontSize: font.heading.size.large,
         fontWeight: font.weight.medium,
-        lineHeight: font.heading.lineHeight.small,
+        lineHeight: font.heading.lineHeight.large,
     },
     HeadingXLargeBoldWeight: {
         fontSize: font.heading.size.xlarge,

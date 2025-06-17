@@ -116,29 +116,29 @@ export const SizesAndWeights = {
         <View style={styles.grid}>
             <View style={styles.row}>
                 <BodyText size="xsmall" weight="medium">
-                    xSmall medium
+                    xSmall size, medium weight
                 </BodyText>
                 <BodyText size="xsmall" weight="bold">
-                    xSmall bold
+                    xSmall size, bold weight
                 </BodyText>
                 <div />
             </View>
             <View style={styles.row}>
                 <BodyText size="small" weight="semi">
-                    Small semibold
+                    Small size, semibold weight
                 </BodyText>
                 <div />
                 <div />
             </View>
             <View style={styles.row}>
                 <BodyText size="medium" weight="medium">
-                    Medium medium
+                    Medium size, medium weight
                 </BodyText>
                 <BodyText size="medium" weight="semi">
-                    Medium semibold
+                    Medium size, semibold weight
                 </BodyText>
                 <BodyText size="medium" weight="bold">
-                    Medium bold
+                    Medium size, bold weight
                 </BodyText>
             </View>
         </View>

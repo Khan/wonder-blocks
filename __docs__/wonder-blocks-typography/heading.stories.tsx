@@ -129,54 +129,54 @@ export const SizesAndWeights = {
         <View style={styles.grid}>
             <View style={styles.row}>
                 <Heading size="small" weight="bold">
-                    Small bold
+                    Small size, bold weight
                 </Heading>
                 <Heading size="small" weight="semi">
-                    Small semibold
+                    Small size, semibold weight
                 </Heading>
                 <Heading size="small" weight="medium">
-                    Small medium
+                    Small size, medium weight
                 </Heading>
             </View>
             <View style={styles.row}>
                 <Heading size="medium" weight="bold">
-                    Medium bold
+                    Medium size, bold weight
                 </Heading>
                 <Heading size="medium" weight="semi">
-                    Medium semibold
+                    Medium size, semibold weight
                 </Heading>
                 <Heading size="medium" weight="medium">
-                    Medium medium
+                    Medium size, medium weight
                 </Heading>
             </View>
             <View style={styles.row}>
                 <Heading size="large" weight="bold">
-                    Large bold
+                    Large size, bold weight
                 </Heading>
                 <Heading size="large" weight="semi">
-                    Large semibold
+                    Large size, semibold weight
                 </Heading>
                 <Heading size="large" weight="medium">
-                    Large medium
+                    Large size, medium weight
                 </Heading>
             </View>
             <View style={styles.row}>
                 <Heading size="xlarge" weight="bold">
-                    xLarge bold
+                    xLarge size, bold weight
                 </Heading>
                 <Heading size="xlarge" weight="semi">
-                    xLarge semibold
+                    xLarge size, semibold weight
                 </Heading>
                 <Heading size="xlarge" weight="medium">
-                    xLarge medium
+                    xLarge size, medium weight
                 </Heading>
             </View>
             <View style={styles.row}>
                 <Heading size="xxlarge" weight="bold">
-                    xxLarge bold
+                    xxLarge size, bold weight
                 </Heading>
                 <Heading size="xxlarge" weight="semi">
-                    xxLarge semibold
+                    xxLarge size, semibold weight
                 </Heading>
                 <div />
             </View>
