@@ -671,7 +671,6 @@ export const semanticColor = {
 
     /**
      * For inputs, form elements, and other elements that require user input.
-     * @deprecated Use `core` tokens instead.
      */
     input: {
         default: {
