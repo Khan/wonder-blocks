@@ -287,7 +287,7 @@ const styles = StyleSheet.create({
         paddingBlockStart: sizing.size_120,
     },
     error: {
-        color: semanticColor.core.foreground.critical.default,
+        color: semanticColor.core.foreground.critical.subtle,
     },
     errorIcon: {
         marginTop: sizing.size_010, // This vertically aligns the icon with the text
@@ -296,7 +296,7 @@ const styles = StyleSheet.create({
         minWidth: sizing.size_0, // This enables the wrapping behaviour on the error message
     },
     required: {
-        color: semanticColor.core.foreground.critical.default,
+        color: semanticColor.core.foreground.critical.subtle,
     },
     textWordBreak: {
         overflowWrap: "break-word",
