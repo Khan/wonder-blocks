@@ -185,10 +185,13 @@ export const semanticColor = {
         /**
          * These colors are used for MathJax elements, which are used to
          * render mathematical expressions in Khan Academy.
+         *
+         * NOTE: These colors are extracted from the Khan/mathjax-renderer repo.
+         * @see https://github.com/Khan/mathjax-renderer/blob/main/src/ts/tex-input-config.ts#L26-L35
          */
         math: {
             foreground: {
-                blue: "#20628F",
+                blue: "#3D7586",
                 gold: "#946700",
                 green: "#447A53",
                 gray: "#5D5F66",
