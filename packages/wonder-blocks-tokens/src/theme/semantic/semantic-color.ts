@@ -41,21 +41,6 @@ const core = {
             default: color.fadedOffBlack16,
             strong: color.fadedOffBlack32,
         },
-        gems: {
-            subtle: thunderBlocksColor.magenta_80,
-            default: thunderBlocksColor.magenta_60,
-            strong: thunderBlocksColor.magenta_30,
-        },
-        streak: {
-            subtle: thunderBlocksColor.orange_80,
-            default: thunderBlocksColor.orange_60,
-            strong: thunderBlocksColor.orange_30,
-        },
-        due: {
-            subtle: thunderBlocksColor.cyan_80,
-            default: thunderBlocksColor.cyan_60,
-            strong: thunderBlocksColor.cyan_30,
-        },
         inverse: {
             subtle: color.fadedOffBlack16,
             default: color.fadedOffBlack8,
@@ -93,21 +78,6 @@ const core = {
             default: color.fadedOffBlack8,
             strong: color.fadedOffBlack16,
         },
-        gems: {
-            subtle: thunderBlocksColor.magenta_90,
-            default: thunderBlocksColor.magenta_80,
-            strong: thunderBlocksColor.magenta_10,
-        },
-        streak: {
-            subtle: thunderBlocksColor.orange_80,
-            default: thunderBlocksColor.orange_60,
-            strong: thunderBlocksColor.orange_10,
-        },
-        due: {
-            subtle: thunderBlocksColor.cyan_80,
-            default: thunderBlocksColor.cyan_60,
-            strong: thunderBlocksColor.cyan_10,
-        },
     },
 
     /**
@@ -143,21 +113,6 @@ const core = {
             subtle: color.fadedOffBlack16,
             default: color.fadedOffBlack32,
             strong: color.fadedOffBlack50,
-        },
-        gems: {
-            subtle: thunderBlocksColor.magenta_60,
-            default: thunderBlocksColor.magenta_30,
-            strong: thunderBlocksColor.magenta_10,
-        },
-        streak: {
-            subtle: thunderBlocksColor.orange_60,
-            default: thunderBlocksColor.orange_30,
-            strong: thunderBlocksColor.orange_10,
-        },
-        due: {
-            subtle: thunderBlocksColor.cyan_60,
-            default: thunderBlocksColor.cyan_20,
-            strong: thunderBlocksColor.cyan_10,
         },
         inverse: {
             subtle: color.fadedOffBlack32,
@@ -220,6 +175,93 @@ export const semanticColor = {
      * consistently across all components.
      */
     core,
+    /**
+     * Learning tokens are used for elements that are related to learning
+     * experiences, such as practice and mastery, among others.
+     */
+    learning: {
+        /**
+         * These colors are used for MathJax elements, which are used to
+         * render mathematical expressions in Khan Academy.
+         */
+        math: {
+            foreground: {
+                blue: "#20628F",
+                gold: "#946700",
+                green: "#447A53",
+                gray: "#5D5F66",
+                grayH: "#3B3D45",
+                grayI: "#21242C",
+                purple: "#594094",
+                purpleD: "#8351E8",
+                pink: "#B25071",
+                red: "#D92916",
+            },
+        },
+        background: {
+            gems: {
+                subtle: thunderBlocksColor.magenta_90,
+                default: thunderBlocksColor.magenta_80,
+                strong: thunderBlocksColor.magenta_10,
+            },
+            due: {
+                subtle: thunderBlocksColor.cyan_80,
+                default: thunderBlocksColor.cyan_60,
+                strong: thunderBlocksColor.cyan_10,
+            },
+            streaks: {
+                subtle: thunderBlocksColor.orange_80,
+                default: thunderBlocksColor.orange_60,
+                strong: thunderBlocksColor.orange_10,
+            },
+            progress: {
+                notStarted: {
+                    default: thunderBlocksColor.gray_60,
+                },
+                attempted: {
+                    default: thunderBlocksColor.yellow_60,
+                },
+                complete: {
+                    default: thunderBlocksColor.green_60,
+                },
+            },
+        },
+        border: {
+            gems: {
+                subtle: thunderBlocksColor.magenta_80,
+                default: thunderBlocksColor.magenta_60,
+                strong: thunderBlocksColor.magenta_30,
+            },
+            streaks: {
+                subtle: thunderBlocksColor.orange_80,
+                default: thunderBlocksColor.orange_60,
+                strong: thunderBlocksColor.orange_30,
+            },
+            due: {
+                subtle: thunderBlocksColor.cyan_80,
+                default: thunderBlocksColor.cyan_60,
+                strong: thunderBlocksColor.cyan_30,
+            },
+        },
+        foreground: {
+            gems: {
+                subtle: thunderBlocksColor.magenta_60,
+                default: thunderBlocksColor.magenta_30,
+                strong: thunderBlocksColor.magenta_10,
+            },
+            streaks: {
+                subtle: thunderBlocksColor.orange_60,
+                default: thunderBlocksColor.orange_30,
+                strong: thunderBlocksColor.orange_10,
+            },
+            due: {
+                subtle: thunderBlocksColor.cyan_60,
+                default: thunderBlocksColor.cyan_20,
+                strong: thunderBlocksColor.cyan_10,
+            },
+        },
+    },
+
     /**
      * For buttons, links, and controls to communicate the presence and meaning
      * of interaction.
