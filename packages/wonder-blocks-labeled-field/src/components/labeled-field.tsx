@@ -223,7 +223,8 @@ export default function LabeledField(props: Props) {
                                 role="img"
                                 aria-label={labels.errorIconAriaLabel}
                             />
-                            <LabelSmall
+                            <BodyText
+                                size="small"
                                 style={[
                                     styles.textWordBreak,
                                     styles.errorMessage,
@@ -231,7 +232,7 @@ export default function LabeledField(props: Props) {
                                 ]}
                             >
                                 {errorMessage}
-                            </LabelSmall>
+                            </BodyText>
                         </>
                     )}
                 </View>
