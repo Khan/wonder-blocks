@@ -221,6 +221,7 @@ const theme = {
 
 const styles = StyleSheet.create({
     listbox: {
+        backgroundColor: semanticColor.surface.primary,
         outline: "none",
     },
     disabled: {

@@ -10,12 +10,7 @@ import {
 } from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
-import {
-    addStyle,
-    AriaProps,
-    StyleType,
-    View,
-} from "@khanacademy/wonder-blocks-core";
+import {AriaProps, StyleType, View} from "@khanacademy/wonder-blocks-core";
 
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
@@ -144,8 +139,6 @@ type DefaultProps = {
     selected: OptionProps["selected"];
 };
 
-const StyledLi = addStyle("li");
-
 /**
  * For option items that can be selected in a dropdown, selection denoted either
  * with a check ✔️ or a checkbox ☑️. Use as children in SingleSelect or
@@ -182,9 +175,10 @@ export default class OptionItem extends React.Component<OptionProps> {
         }
     };
 
-    renderCell(): React.ReactNode {
+    render(): React.ReactNode {
         const {
             disabled,
+            focused,
             label,
             selected,
             testId,
@@ -215,18 +209,21 @@ export default class OptionItem extends React.Component<OptionProps> {
             style,
         ];
 
+        const listboxStyles = [
+            focused && styles.itemFocused,
+            disabled && styles.itemDisabled,
+        ];
+
         return (
             <DetailCell
                 disabled={disabled}
                 horizontalRule={horizontalRule}
                 style={[
                     defaultStyle,
-                    parentComponent === "listbox" && styles.listboxItem,
+                    parentComponent === "listbox" && listboxStyles,
                 ]}
-                aria-selected={
-                    parentComponent !== "listbox" && selected ? "true" : "false"
-                }
-                role={parentComponent !== "listbox" ? role : undefined}
+                aria-selected={selected ? "true" : "false"}
+                role={role}
                 testId={testId}
                 leftAccessory={
                     <>
@@ -263,46 +260,11 @@ export default class OptionItem extends React.Component<OptionProps> {
                         </LabelSmall>
                     ) : undefined
                 }
-                onClick={
-                    parentComponent !== "listbox" ? this.handleClick : undefined
-                }
+                onClick={this.handleClick}
+                tabIndex={-1}
                 {...sharedProps}
             />
         );
-    }
-
-    render(): React.ReactNode {
-        const {disabled, focused, parentComponent, role, selected} = this.props;
-
-        // Only used for Combobox component, not SingleSelect/MultiSelect
-        if (parentComponent === "listbox") {
-            return (
-                // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions -- TODO(WB-1882): Address a11y error
-                <StyledLi
-                    onMouseDown={(e) => {
-                        // Prevents the combobox from losing focus when clicking
-                        // on the option item.
-                        e.preventDefault();
-                    }}
-                    onClick={this.handleClick}
-                    style={[
-                        styles.reset,
-                        styles.item,
-                        focused && styles.itemFocused,
-                        disabled && styles.itemDisabled,
-                    ]}
-                    role={role}
-                    aria-selected={selected ? "true" : "false"}
-                    aria-disabled={disabled ? "true" : "false"}
-                    id={this.props.id}
-                    tabIndex={-1}
-                >
-                    {this.renderCell()}
-                </StyledLi>
-            );
-        }
-
-        return this.renderCell();
     }
 }
 
@@ -318,23 +280,6 @@ const theme = {
 };
 
 const styles = StyleSheet.create({
-    reset: {
-        margin: 0,
-        padding: 0,
-        border: 0,
-        background: "none",
-        outline: "none",
-        fontSize: "100%",
-        verticalAlign: "baseline",
-        textAlign: "left",
-        textDecoration: "none",
-        listStyle: "none",
-        cursor: "pointer",
-    },
-    listboxItem: {
-        backgroundColor: "transparent",
-        color: "inherit",
-    },
     optionItem: {
         paddingBlock: sizing.size_100,
         paddingInlineStart: sizing.size_080,
@@ -356,7 +301,11 @@ const styles = StyleSheet.create({
         // Override the default focus state for the cell element, so that it
         // can be added programmatically to the button element.
         borderRadius: border.radius.radius_040,
-        ...focusStyles.focus[":focus-visible"],
+        outline: focusStyles.focus[":focus-visible"].outline,
+        outlineOffset: `calc(${border.width.medium} * -1)`,
+        // We need to use a thicker box-shadow to ensure that the inner ring
+        // is visible when the cell is focused.
+        boxShadow: `inset 0 0 0 calc(${border.width.medium}*2) ${semanticColor.focus.inner}`,
     },
     itemDisabled: {
         outlineColor: semanticColor.focus.outer,

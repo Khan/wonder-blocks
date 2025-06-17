@@ -160,6 +160,7 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
         "aria-checked": ariaChecked,
         target,
         role,
+        tabIndex,
 
         horizontalRule = "inset",
         style,
@@ -196,6 +197,7 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
                     disabled && styles.disabled,
                 ]}
                 aria-current={active ? "true" : undefined}
+                tabIndex={tabIndex}
             >
                 {() => <CellInner {...props} />}
             </Clickable>
@@ -268,7 +270,7 @@ const styles = StyleSheet.create({
      * States
      */
     clickable: {
-        outline: "none",
+        // outline: "none",
         /**
          * States
          */
