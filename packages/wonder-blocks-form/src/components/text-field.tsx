@@ -2,11 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {Id, addStyle} from "@khanacademy/wonder-blocks-core";
-import {
-    border,
-    semanticColor,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
@@ -265,11 +261,11 @@ const TextField = (props: PropsWithForwardRef) => {
 const styles = StyleSheet.create({
     input: {
         width: "100%",
-        height: 40,
+        height: sizing.size_400,
         borderRadius: border.radius.radius_040,
         boxSizing: "border-box",
-        paddingLeft: spacing.medium_16,
-        margin: 0,
+        paddingInlineStart: sizing.size_160,
+        margin: sizing.size_0,
     },
     default: {
         background: semanticColor.input.default.background,
