@@ -9,15 +9,15 @@ type Props = PropsFor<typeof Text> & {
 
 // List style combinations for matching with props
 const styleMapping = {
-    "xsmall-medium": styles.BodyTextXSmallMedium,
-    "xsmall-semi": styles.BodyTextXSmallSemi,
-    "xsmall-bold": styles.BodyTextXSmallBold,
-    "small-medium": styles.BodyTextSmallMedium,
-    "small-semi": styles.BodyTextSmallSemi,
-    "small-bold": styles.BodyTextSmallBold,
-    "medium-medium": styles.BodyTextMediumMedium,
-    "medium-semi": styles.BodyTextMediumSemi,
-    "medium-bold": styles.BodyTextMediumBold,
+    "xsmall-medium": styles.BodyTextXSmallMediumWeight,
+    "xsmall-semi": styles.BodyTextXSmallSemiWeight,
+    "xsmall-bold": styles.BodyTextXSmallBoldWeight,
+    "small-medium": styles.BodyTextSmallMediumWeight,
+    "small-semi": styles.BodyTextSmallSemiWeight,
+    "small-bold": styles.BodyTextSmallBoldWeight,
+    "medium-medium": styles.BodyTextMediumMediumWeight,
+    "medium-semi": styles.BodyTextMediumSemiWeight,
+    "medium-bold": styles.BodyTextMediumBoldWeight,
 } as const;
 
 const BodyText = React.forwardRef(function BodyText(

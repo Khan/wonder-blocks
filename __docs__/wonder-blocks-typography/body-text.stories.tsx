@@ -15,7 +15,7 @@ import {
     LabelLarge,
     Body,
 } from "@khanacademy/wonder-blocks-typography";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {spacing, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {allModes} from "../../.storybook/modes";
 
 /**
@@ -198,14 +198,6 @@ export const ClassicConversionGuide = {
  * An example of overriding `BodyText` component's styling.
  */
 export const CustomStyling = {
-    parameters: {
-        chromatic: {
-            modes: {
-                default: allModes.themeDefault,
-                thunderblocks: allModes.themeThunderBlocks,
-            },
-        },
-    },
     render: () => (
         <View>
             <BodyText>
@@ -240,7 +232,8 @@ const styles = StyleSheet.create({
         margin: 0,
     },
     customStyle: {
-        lineHeight: "3rem",
-        marginTop: "2rem",
+        fontSize: sizing.size_280,
+        lineHeight: sizing.size_320,
+        marginTop: sizing.size_200,
     },
 });

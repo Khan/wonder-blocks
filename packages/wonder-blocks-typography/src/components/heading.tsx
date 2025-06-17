@@ -20,21 +20,21 @@ type Props = PropsFor<typeof Text> & {
 
 // List style combinations for matching with props
 const styleMapping = {
-    "small-medium": styles.HeadingSmallMedium,
-    "small-semi": styles.HeadingSmallSemi,
-    "small-bold": styles.HeadingSmallBold,
-    "medium-medium": styles.HeadingMediumMedium,
-    "medium-semi": styles.HeadingMediumSemi,
-    "medium-bold": styles.HeadingMediumBold,
-    "large-medium": styles.HeadingLargeMedium,
-    "large-semi": styles.HeadingLargeSemi,
-    "large-bold": styles.HeadingLargeBold,
-    "xlarge-medium": styles.HeadingXLargeMedium,
-    "xlarge-semi": styles.HeadingXLargeSemi,
-    "xlarge-bold": styles.HeadingXLargeBold,
-    "xxlarge-medium": styles.HeadingXxLargeMedium,
-    "xxlarge-semi": styles.HeadingXxLargeSemi,
-    "xxlarge-bold": styles.HeadingXxLargeBold,
+    "small-medium": styles.HeadingSmallMediumWeight,
+    "small-semi": styles.HeadingSmallSemiWeight,
+    "small-bold": styles.HeadingSmallBoldWeight,
+    "medium-medium": styles.HeadingMediumMediumWeight,
+    "medium-semi": styles.HeadingMediumSemiWeight,
+    "medium-bold": styles.HeadingMediumBoldWeight,
+    "large-medium": styles.HeadingLargeMediumWeight,
+    "large-semi": styles.HeadingLargeSemiWeight,
+    "large-bold": styles.HeadingLargeBoldWeight,
+    "xlarge-medium": styles.HeadingXLargeMediumWeight,
+    "xlarge-semi": styles.HeadingXLargeSemiWeight,
+    "xlarge-bold": styles.HeadingXLargeBoldWeight,
+    "xxlarge-medium": styles.HeadingXxLargeMediumWeight,
+    "xxlarge-semi": styles.HeadingXxLargeSemiWeight,
+    "xxlarge-bold": styles.HeadingXxLargeBoldWeight,
 } as const;
 
 const Heading = React.forwardRef(function Heading(props: Props, ref) {

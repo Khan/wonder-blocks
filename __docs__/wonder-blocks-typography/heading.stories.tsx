@@ -16,7 +16,7 @@ import {
     Tagline,
     Title,
 } from "@khanacademy/wonder-blocks-typography";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {spacing, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {allModes} from "../../.storybook/modes";
 
 /**
@@ -233,14 +233,6 @@ export const ClassicConversionGuide = {
  * An example of overriding `Heading` component's styling.
  */
 export const CustomStyling = {
-    parameters: {
-        chromatic: {
-            modes: {
-                default: allModes.themeDefault,
-                thunderblocks: allModes.themeThunderBlocks,
-            },
-        },
-    },
     render: () => (
         <View>
             <Heading>
@@ -271,7 +263,8 @@ const styles = StyleSheet.create({
         display: "contents",
     },
     customStyle: {
-        lineHeight: "4rem",
-        marginTop: "2rem",
+        fontSize: sizing.size_320,
+        lineHeight: sizing.size_400,
+        marginTop: sizing.size_200,
     },
 });
