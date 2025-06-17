@@ -259,6 +259,32 @@ export const semanticColor = {
                 default: thunderBlocksColor.cyan_20,
                 strong: thunderBlocksColor.cyan_10,
             },
+            progress: {
+                notStarted: {
+                    subtle: thunderBlocksColor.gray_50,
+                    strong: thunderBlocksColor.gray_10,
+                },
+                attempted: {
+                    subtle: thunderBlocksColor.yellow_50,
+                    strong: thunderBlocksColor.yellow_10,
+                },
+                complete: {
+                    strong: thunderBlocksColor.green_50,
+                },
+            },
+        },
+        shadow: {
+            progress: {
+                notStarted: {
+                    default: thunderBlocksColor.gray_20,
+                },
+                attempted: {
+                    default: thunderBlocksColor.yellow_30,
+                },
+                complete: {
+                    default: thunderBlocksColor.green_30,
+                },
+            },
         },
     },
 
