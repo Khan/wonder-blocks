@@ -48,6 +48,10 @@ const columns = [
         name: "Error",
         props: {error: true},
     },
+    {
+        name: "Readonly",
+        props: {readOnly: true},
+    },
 ];
 
 export const StateSheetStory: Story = {
