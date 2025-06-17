@@ -267,7 +267,7 @@ export default function LabeledField(props: Props) {
 
 const styles = StyleSheet.create({
     label: {
-        color: semanticColor.text.primary,
+        color: semanticColor.core.foreground.neutral.strong,
     },
     labelWithDescription: {
         paddingBlockEnd: sizing.size_040,
@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
         paddingBlockEnd: sizing.size_120,
     },
     description: {
-        color: semanticColor.text.secondary,
+        color: semanticColor.core.foreground.neutral.default,
         paddingBlockEnd: sizing.size_120,
     },
     errorSection: {
@@ -287,7 +287,7 @@ const styles = StyleSheet.create({
         paddingBlockStart: sizing.size_120,
     },
     error: {
-        color: semanticColor.status.critical.foreground,
+        color: semanticColor.core.foreground.critical.default,
     },
     errorIcon: {
         marginTop: sizing.size_010, // This vertically aligns the icon with the text
@@ -296,7 +296,7 @@ const styles = StyleSheet.create({
         minWidth: sizing.size_0, // This enables the wrapping behaviour on the error message
     },
     required: {
-        color: semanticColor.status.critical.foreground,
+        color: semanticColor.core.foreground.critical.default,
     },
     textWordBreak: {
         overflowWrap: "break-word",
