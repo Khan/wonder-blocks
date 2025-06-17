@@ -309,7 +309,7 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
         disabled: {
             background: semanticColor.input.disabled.background,
             borderColor: semanticColor.input.disabled.border,
-            color: semanticColor.input.disabled.foreground,
+            color: semanticColor.input.disabled.placeholder,
             cursor: "not-allowed",
             ":focus-visible": {
                 outlineColor: semanticColor.focus.outer,
