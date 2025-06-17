@@ -289,10 +289,10 @@ const styles = StyleSheet.create({
         color: semanticColor.status.critical.foreground,
     },
     errorIcon: {
-        marginTop: "1px", // This vertically aligns the icon with the text
+        marginTop: sizing.size_010, // This vertically aligns the icon with the text
     },
     errorMessage: {
-        minWidth: "0", // This enables the wrapping behaviour on the error message
+        minWidth: sizing.size_0, // This enables the wrapping behaviour on the error message
     },
     required: {
         color: semanticColor.status.critical.foreground,
