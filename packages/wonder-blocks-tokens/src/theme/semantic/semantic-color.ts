@@ -160,6 +160,8 @@ const surface = {
 /**
  * TODO(WB-1941): Remove text once we have migrated to the new core.foreground
  * tokens.
+ *
+ * @deprecated Use `core.foreground` tokens instead.
  */
 const text = {
     primary: core.foreground.neutral.strong,
@@ -737,6 +739,8 @@ export const semanticColor = {
      * Borders define structure for elements. Generally borders for component
      * elements would use -Primary, rows and layout elements use -Subtle and
      * -Strong for when 3:1 contrast is a priority (ex. form elements)
+     *
+     * @deprecated Use `core.border` tokens instead.
      */
     border: border,
 
@@ -746,6 +750,8 @@ export const semanticColor = {
     },
     /**
      * Default icon colors that change in context (like actions).
+     *
+     * @deprecated Use `core.foreground` tokens instead.
      */
     icon: {
         primary: color.fadedOffBlack72,

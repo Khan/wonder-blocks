@@ -716,4 +716,31 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
             },
         },
     },
+    /**
+     * For inputs, form elements, and other elements that require user input.
+     */
+    input: {
+        default: {
+            border: core.border.neutral.default,
+            background: surface.primary,
+            foreground: core.foreground.neutral.strong,
+            placeholder: core.foreground.neutral.default,
+        },
+        checked: {
+            border: core.border.instructive.default,
+            background: core.background.instructive.default,
+            foreground: core.foreground.inverse.strong,
+        },
+        disabled: {
+            border: core.border.disabled.default,
+            background: core.background.neutral.subtle,
+            foreground: core.foreground.neutral.default,
+            placeholder: core.foreground.neutral.subtle,
+        },
+        error: {
+            border: core.border.critical.default,
+            background: core.background.critical.subtle,
+            foreground: core.foreground.neutral.strong,
+        },
+    },
 });
