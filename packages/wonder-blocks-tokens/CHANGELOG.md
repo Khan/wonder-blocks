@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 11.0.0
+
+### Major Changes
+
+- 0cb7a69: Moves some TB colors out of the OG primitives, so we ensure that these colors are only available via semanticColor
+- cbf58b0: Adds a new learning category in `semanticColor`. Updates yellow_10 and gray_20 TB primivives.
+
+### Patch Changes
+
+- 1ac2ba7: Adds `input` category to TB theme.
+
 ## 10.6.0
 
 ### Minor Changes

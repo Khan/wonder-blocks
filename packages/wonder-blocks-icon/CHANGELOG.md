@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-icon
 
+## 5.2.2
+
+### Patch Changes
+
+- cbf58b0: Uses new learning tokens in custom icon components
+- Updated dependencies [1ac2ba7]
+- Updated dependencies [0cb7a69]
+- Updated dependencies [cbf58b0]
+    - @khanacademy/wonder-blocks-tokens@11.0.0
+
 ## 5.2.1
 
 ### Patch Changes

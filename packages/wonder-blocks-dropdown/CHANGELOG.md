@@ -1,5 +1,25 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.1.9
+
+### Patch Changes
+
+- 1ac2ba7: Updates disabled.placeholder styles to use input.disabled.foreground token
+- Updated dependencies [1ac2ba7]
+- Updated dependencies [0cb7a69]
+- Updated dependencies [cbf58b0]
+- Updated dependencies [cbf58b0]
+    - @khanacademy/wonder-blocks-tokens@11.0.0
+    - @khanacademy/wonder-blocks-icon@5.2.2
+    - @khanacademy/wonder-blocks-cell@4.1.21
+    - @khanacademy/wonder-blocks-clickable@7.1.8
+    - @khanacademy/wonder-blocks-icon-button@10.3.2
+    - @khanacademy/wonder-blocks-layout@3.1.19
+    - @khanacademy/wonder-blocks-modal@7.1.24
+    - @khanacademy/wonder-blocks-pill@3.1.21
+    - @khanacademy/wonder-blocks-search-field@5.1.24
+    - @khanacademy/wonder-blocks-typography@4.2.3
+
 ## 10.1.8
 
 ### Patch Changes
