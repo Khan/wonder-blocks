@@ -6,6 +6,7 @@ import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {OmitConstrained} from "../util/types";
 import {useFieldValidation} from "../hooks/use-field-validation";
 
@@ -229,7 +230,6 @@ const TextField = (props: PropsWithForwardRef) => {
                         styles.input,
                         typographyStyles.LabelMedium,
                         styles.default,
-                        !disabled && styles.defaultFocus,
                         disabled && styles.disabled,
                         hasError && styles.error,
                         style,
@@ -266,6 +266,7 @@ const styles = StyleSheet.create({
         boxSizing: "border-box",
         paddingInlineStart: sizing.size_160,
         margin: sizing.size_0,
+        ...focusStyles.focus,
     },
     default: {
         background: semanticColor.input.default.background,
@@ -275,27 +276,12 @@ const styles = StyleSheet.create({
             color: semanticColor.input.default.placeholder,
         },
     },
-    defaultFocus: {
-        // TODO(WB-1864): Use focusStyles.focus
-        ":focus-visible": {
-            borderColor: semanticColor.focus.outer,
-            outline: `${border.width.thin} solid ${semanticColor.focus.outer}`,
-            // Negative outline offset so it focus outline is not cropped off if
-            // an ancestor element has overflow: hidden
-            outlineOffset: -2,
-        },
-    },
     error: {
         background: semanticColor.input.error.background,
         border: `${border.width.thin} solid ${semanticColor.input.error.border}`,
         color: semanticColor.input.error.foreground,
         "::placeholder": {
             color: semanticColor.input.default.placeholder,
-        },
-        // TODO(WB-1864): Use focusStyles.focus
-        ":focus-visible": {
-            outlineColor: semanticColor.focus.outer,
-            outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
         },
     },
     disabled: {
@@ -306,11 +292,6 @@ const styles = StyleSheet.create({
             color: semanticColor.input.disabled.placeholder,
         },
         cursor: "not-allowed",
-        // TODO(WB-1864): Use focusStyles.focus
-        ":focus-visible": {
-            outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
-            outlineOffset: -3,
-        },
     },
 });
 
