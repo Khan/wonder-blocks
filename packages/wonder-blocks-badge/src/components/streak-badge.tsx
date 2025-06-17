@@ -40,9 +40,9 @@ export {StreakBadge};
 const streakBadgeTokens = {
     root: {
         color: {
-            background: semanticColor.core.background.streak.subtle,
-            border: semanticColor.core.background.streak.subtle, // Border should be the same as the background
-            foreground: semanticColor.core.foreground.streak.strong,
+            background: semanticColor.learning.background.streaks.subtle,
+            border: semanticColor.learning.background.streaks.subtle, // Border should be the same as the background
+            foreground: semanticColor.learning.foreground.streaks.strong,
         },
     },
 };

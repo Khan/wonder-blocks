@@ -75,7 +75,12 @@ how to use these colors depending on the context.
     />
 </View>
 
-### Action
+### Action (deprecated)
+
+<Banner
+    kind="warning"
+    text="These action tokens are meant for internal WB use and will be make private in the future. Please use the semanticColor.core tokens instead."
+/>
 
 For buttons, links, and controls to communicate the presence and meaning of
 interaction.
@@ -200,7 +205,12 @@ Communicates tertiary actions that have the lowest hierarchy.
     style={styles.gridCompact}
 />
 
-### Input
+### Input (deprecated)
+
+<Banner
+    kind="warning"
+    text="These input are now deprecated and will be removed in the future. Please use the semanticColor.core tokens instead."
+/>
 
 For form elements, inputs, and other interactive elements that require user
 interaction. This includes text inputs, checkboxes, radio buttons, and
@@ -397,6 +407,85 @@ important for ensuring that the text and icons are legible and accessible.
     <ActionColorGroup
         category={semanticColor.core.foreground}
         group="core.foreground"
+        includeExample={false}
+    />
+</View>
+
+### Learning
+
+Learning colors are used for elements that are related to learning experiences,
+such as practice and mastery, among others.
+
+#### Math
+
+For MathJax elements, these colors are used to render mathematical expressions
+in the UI.
+
+<ColorGroup
+    colors={semanticColor.learning.math.foreground}
+    group="learning.math.foreground"
+/>
+
+#### Border
+
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={semanticColor.learning.border}
+        group="learning.border"
+        includeExample={false}
+    />
+</View>
+
+#### Background
+
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={{
+            gems: semanticColor.learning.background.gems,
+            streaks: semanticColor.learning.background.streaks,
+            due: semanticColor.learning.background.due,
+        }}
+        group="learning.background"
+        includeExample={false}
+    />
+</View>
+
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={semanticColor.learning.background.progress}
+        group="learning.background.progress"
+        includeExample={false}
+    />
+</View>
+
+#### Foreground
+
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={{
+            gems: semanticColor.learning.foreground.gems,
+            streaks: semanticColor.learning.foreground.streaks,
+            due: semanticColor.learning.foreground.due,
+        }}
+        group="learning.foreground"
+        includeExample={false}
+    />
+</View>
+
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={semanticColor.learning.foreground.progress}
+        group="learning.foreground.progress"
+        includeExample={false}
+    />
+</View>
+
+#### Shadow
+
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={semanticColor.learning.shadow.progress}
+        group="learning.shadow.progress"
         includeExample={false}
     />
 </View>
