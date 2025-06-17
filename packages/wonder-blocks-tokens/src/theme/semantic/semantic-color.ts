@@ -750,6 +750,8 @@ export const semanticColor = {
     },
     /**
      * Default icon colors that change in context (like actions).
+     *
+     * @deprecated Use `core.foreground` tokens instead.
      */
     icon: {
         primary: color.fadedOffBlack72,
