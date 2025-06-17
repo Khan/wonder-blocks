@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 10.6.0
+
+### Minor Changes
+
+- 7811eb1: Add tokens for themable Switch component
+
 ## 10.5.0
 
 ### Minor Changes
