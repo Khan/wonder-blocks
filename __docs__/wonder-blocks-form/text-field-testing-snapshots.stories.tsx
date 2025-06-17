@@ -30,12 +30,10 @@ export default {
 
 type Story = StoryObj<typeof TextField>;
 
-// const longText =
-//     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.";
-// const longTextWithNoWordBreak =
-//     "Loremipsumdolorsitametconsecteturadipiscingelitseddoeiusmodtemporincididuntutlaboreetdoloremagnaaliqua";
-
-const rows = [{name: "Default", props: {}}];
+const rows = [
+    {name: "Default", props: {}},
+    {name: "With Value", props: {value: "Value"}},
+];
 
 const columns = [
     {
