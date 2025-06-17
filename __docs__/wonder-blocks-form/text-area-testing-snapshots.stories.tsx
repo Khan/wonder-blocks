@@ -30,7 +30,10 @@ export default {
 
 type Story = StoryObj<typeof TextArea>;
 
-const rows = [{name: "Default", props: {}}];
+const rows = [
+    {name: "Default", props: {}},
+    {name: "With Value", props: {value: "Value"}},
+];
 
 const columns = [
     {
