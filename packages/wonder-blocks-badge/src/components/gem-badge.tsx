@@ -40,9 +40,9 @@ export {GemBadge};
 const gemBadgeTokens = {
     root: {
         color: {
-            background: semanticColor.core.background.gems.default,
-            border: semanticColor.core.background.gems.default, // Border should be the same as the background
-            foreground: semanticColor.core.foreground.gems.strong,
+            background: semanticColor.learning.background.gems.default,
+            border: semanticColor.learning.background.gems.default, // Border should be the same as the background
+            foreground: semanticColor.learning.foreground.gems.strong,
         },
     },
 };
