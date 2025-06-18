@@ -256,6 +256,16 @@ export default class OptionItem extends React.Component<OptionProps> {
     }
 }
 
+const focusedStyle = {
+    // Override the default focus state for the cell element, so that it
+    // can be added programmatically to the button element.
+    outline: focusStyles.focus[":focus-visible"].outline,
+    outlineOffset: `calc(${border.width.medium} * -1)`,
+    // We need to use a thicker box-shadow to ensure that the inner ring
+    // is visible when the cell is focused.
+    boxShadow: `inset 0 0 0 calc(${border.width.medium}*2) ${semanticColor.focus.inner}`,
+};
+
 const theme = {
     checkbox: {
         color: {
@@ -278,22 +288,18 @@ const styles = StyleSheet.create({
         // Make sure that the item is always at least as tall as 40px.
         minHeight: sizing.size_400,
 
+        /**
+         * States
+         */
+        ":focus": focusedStyle,
+
         // checkbox states (see checkbox.tsx)
         [":is([aria-selected=true]) .checkbox" as any]: {
             background: theme.checkbox.color.selected.background,
             color: theme.checkbox.color.selected.foreground,
         },
     },
-    itemFocused: {
-        // Override the default focus state for the cell element, so that it
-        // can be added programmatically to the button element.
-        borderRadius: border.radius.radius_040,
-        outline: focusStyles.focus[":focus-visible"].outline,
-        outlineOffset: `calc(${border.width.medium} * -1)`,
-        // We need to use a thicker box-shadow to ensure that the inner ring
-        // is visible when the cell is focused.
-        boxShadow: `inset 0 0 0 calc(${border.width.medium}*2) ${semanticColor.focus.inner}`,
-    },
+    itemFocused: focusedStyle,
     itemDisabled: {
         outlineColor: semanticColor.focus.outer,
     },
