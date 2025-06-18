@@ -185,24 +185,6 @@ export default class ActionItem extends React.Component<ActionProps> {
     }
 }
 
-// TODO(WB-1868): Move this to a shared theme file.
-const actionType = semanticColor.action.primary.progressive;
-
-const theme = {
-    actionItem: {
-        color: {
-            hover: {
-                background: actionType.hover.background,
-                foreground: actionType.hover.foreground,
-            },
-            press: {
-                background: actionType.press.background,
-                foreground: actionType.press.foreground,
-            },
-        },
-    },
-};
-
 const styles = StyleSheet.create({
     wrapper: {
         minHeight: DROPDOWN_ITEM_HEIGHT,
@@ -216,7 +198,6 @@ const styles = StyleSheet.create({
         ":focus": {
             // Override the default focus state for the cell element, so that it
             // can be added programmatically to the button element.
-            borderRadius: border.radius.radius_040,
             outline: focusStyles.focus[":focus-visible"].outline,
             outlineOffset: `calc(${border.width.medium} * -1)`,
             // We need to use a thicker box-shadow to ensure that the inner ring
