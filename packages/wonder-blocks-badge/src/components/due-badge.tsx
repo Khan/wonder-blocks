@@ -32,14 +32,14 @@ export {DueBadge};
 const dueBadgeTokens = {
     root: {
         color: {
-            background: semanticColor.core.background.due.subtle,
-            border: semanticColor.core.background.due.subtle, // Border should be the same as the background
-            foreground: semanticColor.core.foreground.due.strong,
+            background: semanticColor.learning.background.due.subtle,
+            border: semanticColor.learning.background.due.subtle, // Border should be the same as the background
+            foreground: semanticColor.learning.foreground.due.strong,
         },
     },
     icon: {
         color: {
-            foreground: semanticColor.core.foreground.due.default,
+            foreground: semanticColor.learning.foreground.due.default,
         },
     },
 };

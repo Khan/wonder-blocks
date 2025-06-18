@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import Banner from "@khanacademy/wonder-blocks-banner";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
-import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import {ColorGroup, ActionColorGroup} from "./components/color";
@@ -46,11 +46,6 @@ Colors are a key part of our design system. They help us communicate information
 and create visual hierarchy. This document outlines the semantic colors we use
 in our product and how these are reflected in our primitive tokens.
 
-Colors are defined into two categories:
-
-- <Link href="#semantic-colors">Semantic Colors</Link>
-- <Link href="#primitive-colors">Primitive Colors</Link>
-
 ## Semantic Colors
 
 Semantic colors are a key part of our design system. They help us communicate
@@ -80,7 +75,284 @@ how to use these colors depending on the context.
     />
 </View>
 
-### Action
+### Core
+
+Core colors are used for the most common elements in the UI. These colors are
+used for backgrounds, borders, and text. They are the foundation of our color
+system and are used to create a consistent look and feel across the product.
+
+#### Border
+
+Borders define structure for elements. Generally borders for component elements
+would use `core.border.neutral.subtle`, `core.border.neutral.default` for when
+3:1 contrast is a priority (ex. form elements) and `core.border.neutral.strong`
+for 4.5:1 contrast.
+
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={semanticColor.core.border}
+        group="core.border"
+        includeExample={false}
+    />
+</View>
+
+#### Background
+
+Background colors are used to define the background of elements. This includes
+the background of components like buttons, banners, and other elements that
+require a background color.
+
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={semanticColor.core.background}
+        group="core.background"
+        includeExample={false}
+    />
+</View>
+
+#### Foreground
+
+Foreground colors are used to define the foreground of elements. This includes
+the text and icons that are displayed on top of the background color. This is
+important for ensuring that the text and icons are legible and accessible.
+
+<Banner
+    kind="success"
+    layout="full-width"
+    text="Make sure to use these colors consistently to ensure readability and accessibility. This includes checking contrast ratios for text and background colors."
+    actions={[
+        {
+            type: "custom",
+            node: (
+                <a
+                    href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html"
+                    target="_blank"
+                >
+                    WCAG Guidelines - Contrast (minimum)
+                </a>
+            ),
+        },
+    ]}
+/>
+
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={semanticColor.core.foreground}
+        group="core.foreground"
+        includeExample={false}
+    />
+</View>
+
+### Feedback
+
+For elements where color can add meaning to the state of the system or an item
+in the system.
+
+<Banner
+    kind="success"
+    layout="full-width"
+    text="Make sure to use these colors consistently to communicate the same meaning
+and include an icon or label to provide more context and clarity."
+    actions={[
+        {
+            type: "custom",
+            node: (
+                <a
+                    href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html"
+                    target="_blank"
+                >
+                    WCAG Guidelines - Contrast (minimum)
+                </a>
+            ),
+        },
+    ]}
+/>
+
+#### Info
+
+##### Subtle
+
+<ColorGroup
+    colors={semanticColor.feedback.info.subtle}
+    group="feedback.info.subtle"
+/>
+
+#### Success
+
+##### Subtle
+
+<ColorGroup
+    colors={semanticColor.feedback.success.subtle}
+    group="feedback.success.subtle"
+/>
+
+#### Warning
+
+##### Subtle
+
+<ColorGroup
+    colors={semanticColor.feedback.warning.subtle}
+    group="feedback.warning.subtle"
+/>
+
+#### Critical
+
+##### Subtle
+
+<ColorGroup
+    colors={semanticColor.feedback.critical.subtle}
+    group="feedback.critical.subtle"
+/>
+
+### Focus
+
+For focus states on interactive elements. This is meant to be used globally for
+all interactive elements regardless of the state (disabled, error, etc).
+
+- `outer`: The outer ring of the focus state.
+- `inner`: The inner ring of the focus state.
+
+<ColorGroup colors={semanticColor.focus} group="focus" />
+
+### Surface
+
+For background colors. Overlays act as supplementary surfaces that mask areas of
+the UI.
+
+<ColorGroup colors={semanticColor.surface} group="surface" />
+
+### Input
+
+For form elements, inputs, and other interactive elements that require user
+interaction. This includes text inputs, checkboxes, radio buttons, and
+selects. These colors are used to communicate the state of the input and its
+validity.
+
+<View style={styles.gridCompact}>
+    <ActionColorGroup category={semanticColor.input} group="input" />
+</View>
+
+### Learning
+
+Learning colors are used for elements that are related to learning experiences,
+such as practice and mastery, among others.
+
+#### Math
+
+For MathJax elements, these colors are used to render mathematical expressions
+in the UI.
+
+<ColorGroup
+    colors={semanticColor.learning.math.foreground}
+    group="learning.math.foreground"
+/>
+
+#### Border
+
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={semanticColor.learning.border}
+        group="learning.border"
+        includeExample={false}
+    />
+</View>
+
+#### Background
+
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={{
+            gems: semanticColor.learning.background.gems,
+            streaks: semanticColor.learning.background.streaks,
+            due: semanticColor.learning.background.due,
+        }}
+        group="learning.background"
+        includeExample={false}
+    />
+</View>
+
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={semanticColor.learning.background.progress}
+        group="learning.background.progress"
+        includeExample={false}
+    />
+</View>
+
+#### Foreground
+
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={{
+            gems: semanticColor.learning.foreground.gems,
+            streaks: semanticColor.learning.foreground.streaks,
+            due: semanticColor.learning.foreground.due,
+        }}
+        group="learning.foreground"
+        includeExample={false}
+    />
+</View>
+
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={semanticColor.learning.foreground.progress}
+        group="learning.foreground.progress"
+        includeExample={false}
+    />
+</View>
+
+#### Shadow
+
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={semanticColor.learning.shadow.progress}
+        group="learning.shadow.progress"
+        includeExample={false}
+    />
+</View>
+
+### Khanmigo
+
+Colors to be used exclusively for Khanmigo or to communicate a relationship to
+it.
+
+<ColorGroup colors={semanticColor.khanmigo} group="khanmigo" />
+
+### Mastery
+
+Standalone colors used only for communicating mastery.
+
+<ColorGroup colors={semanticColor.mastery} group="mastery" />
+
+## Accessibility
+
+When using color, it is important to consider accessibility. The contrast
+between text and background colors should be high enough to ensure readability
+for all users. The <a
+href="https://www.w3.org/WAI/WCAG22/Understanding/distinguishable">Web Content
+Accessibility Guidelines (WCAG)</a> provide guidance on how to ensure that our
+content is accessible to all users.
+
+For more detail, you can check the following Success Criteria documents:
+
+- <a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color">
+      Use of Color
+  </a>
+- <a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum">
+      Contrast (minimum)
+  </a>
+- <a href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast">
+      Non-text Contrast (Level AA)
+  </a>
+
+## Deprecated semantic colors
+
+### Action (deprecated)
+
+<Banner
+    kind="warning"
+    text="These action tokens are meant for internal WB use and will be make private in the future. Please use the semanticColor.core tokens instead."
+/>
 
 For buttons, links, and controls to communicate the presence and meaning of
 interaction.
@@ -205,61 +477,35 @@ Communicates tertiary actions that have the lowest hierarchy.
     style={styles.gridCompact}
 />
 
-### Input
+### Icon (deprecated)
 
-For form elements, inputs, and other interactive elements that require user
-interaction. This includes text inputs, checkboxes, radio buttons, and
-selects. These colors are used to communicate the state of the input and its
-validity.
-
-<View style={styles.gridCompact}>
-    <ActionColorGroup category={semanticColor.input} group="input" />
-</View>
-
-### Feedback
-
-For elements where color can add meaning to the state of the system or an item
-in the system.
+Default icon colors that change in context (like actions).
 
 <Banner
-    kind="success"
-    layout="full-width"
-    text="Make sure to use these colors consistently to communicate the same meaning
-and include an icon or label to provide more context and clarity."
-    actions={[
-        {
-            type: "custom",
-            node: (
-                <a
-                    href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html"
-                    target="_blank"
-                >
-                    WCAG Guidelines - Contrast (minimum)
-                </a>
-            ),
-        },
-    ]}
+    kind="warning"
+    text="These icon tokens are deprecated and will be removed in the future. Please use the semanticColor.core.foreground tokens for icons instead."
 />
 
-#### Info
-##### Subtle
-<ColorGroup colors={semanticColor.feedback.info.subtle} group="feedback.info.subtle" />
+<ColorGroup colors={semanticColor.icon} group="icon" />
 
-#### Success
-##### Subtle
-<ColorGroup colors={semanticColor.feedback.success.subtle} group="feedback.success.subtle" />
+### Text (deprecated)
 
-#### Warning
-##### Subtle
-<ColorGroup colors={semanticColor.feedback.warning.subtle} group="feedback.warning.subtle" />
+For all type to ensure contrast for legibility. Inverse text applies for dark
+backgrounds in light mode.
 
-#### Critical
-##### Subtle
-<ColorGroup colors={semanticColor.feedback.critical.subtle} group="feedback.critical.subtle" />
+<Banner
+    kind="warning"
+    text="These text tokens are deprecated and will be removed in the future. Please use the semanticColor.core.foreground tokens for text instead."
+/>
+
+<ColorGroup colors={semanticColor.text} group="text" />
 
 ### Status (deprecated)
 
-<Banner kind="warning" text="These status tokens are deprecated and will be removed in the future. Please use the semantic feedback tokens instead: semanticColor.feedback" />
+<Banner
+    kind="warning"
+    text="These status tokens are deprecated and will be removed in the future. Please use the semantic feedback tokens instead: semanticColor.feedback"
+/>
 
 For labels, icons, filters, alerts, and other elements where color can add
 meaning to the state of the system or an item in the system.
@@ -294,332 +540,3 @@ and include an icon or label to provide more context and clarity."
     <ColorGroup colors={semanticColor.status.notice} group="status.notice" />
     <ColorGroup colors={semanticColor.status.neutral} group="status.neutral" />
 </View>
-
-### Surface
-
-For background colors. Overlays act as supplementary surfaces that mask areas of
-the UI.
-
-<ColorGroup colors={semanticColor.surface} group="surface" />
-
-### Text (deprecated)
-
-For all type to ensure contrast for legibility. Inverse text applies for dark
-backgrounds in light mode.
-
-<Banner
-    kind="warning"
-    layout="full-width"
-    text="These text tokens are deprecated and will be removed in the future. Please use the semanticColor.core.foreground tokens for text instead."
-/>
-
-<ColorGroup colors={semanticColor.text} group="text" />
-
-### Core
-
-Core colors are used for the most common elements in the UI. These colors are
-used for backgrounds, borders, and text. They are the foundation of our color
-system and are used to create a consistent look and feel across the product.
-
-#### Border
-
-Borders define structure for elements. Generally borders for component elements
-would use `core.border.neutral.subtle`, `core.border.neutral.default` for when
-3:1 contrast is a priority (ex. form elements) and `core.border.neutral.strong`
-for 4.5:1 contrast.
-
-<View style={styles.gridCompact}>
-    <ActionColorGroup
-        category={semanticColor.core.border}
-        group="core.border"
-        includeExample={false}
-    />
-</View>
-
-#### Background
-
-Background colors are used to define the background of elements. This includes
-the background of components like buttons, banners, and other elements that
-require a background color.
-
-<View style={styles.gridCompact}>
-    <ActionColorGroup
-        category={semanticColor.core.background}
-        group="core.background"
-        includeExample={false}
-    />
-</View>
-
-#### Foreground
-
-Foreground colors are used to define the foreground of elements. This includes
-the text and icons that are displayed on top of the background color. This is
-important for ensuring that the text and icons are legible and accessible.
-
-<Banner
-    kind="success"
-    layout="full-width"
-    text="Make sure to use these colors consistently to ensure readability and accessibility. This includes checking contrast ratios for text and background colors."
-    actions={[
-        {
-            type: "custom",
-            node: (
-                <a
-                    href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html"
-                    target="_blank"
-                >
-                    WCAG Guidelines - Contrast (minimum)
-                </a>
-            ),
-        },
-    ]}
-/>
-
-<View style={styles.gridCompact}>
-    <ActionColorGroup
-        category={semanticColor.core.foreground}
-        group="core.foreground"
-        includeExample={false}
-    />
-</View>
-
-### Focus
-
-For focus states on interactive elements. This is meant to be used globally for
-all interactive elements regardless of the state (disabled, error, etc).
-
-- `outer`: The outer ring of the focus state.
-- `inner`: The inner ring of the focus state.
-
-<ColorGroup colors={semanticColor.focus} group="focus" />
-
-### Icon
-
-Default icon colors that change in context (like actions).
-
-<ColorGroup colors={semanticColor.icon} group="icon" />
-
-### Khanmigo
-
-Colors to be used exclusively for Khanmigo or to communicate a relationship to
-it.
-
-<ColorGroup colors={semanticColor.khanmigo} group="khanmigo" />
-
-### Mastery
-
-Standalone colors used only for communicating mastery.
-
-<ColorGroup colors={semanticColor.mastery} group="mastery" />
-
-## Primitive Colors
-
-Wonder Blocks also exports a set of primitive colors that can be used for any
-other use cases that don't fit into the semantic color categories.
-
-<View style={styles.banner}>
-    <Banner
-        kind="warning"
-        layout="full-width"
-        text="We recommend using semantic colors whenever possible, but if you need a color that doesn't fit into any of the categories, you can use these primitive colors."
-        actions={[
-            {
-                type: "custom",
-                // NOTE: This is a hack to bypass a Storybook bug where the
-                // link doesn't work correctly with iframes.
-                node: (
-                    <a
-                        href="/?path=/docs/packages-tokens-color--docs"
-                        target="_blank"
-                    >
-                        Primitive Color tokens
-                    </a>
-                ),
-            },
-        ]}
-    />
-</View>
-
-export const ProductColors = {
-    blue: color.blue,
-    purple: color.purple,
-    gold: color.gold,
-    green: color.green,
-    red: color.red,
-};
-
-### Product
-
-<ColorGroup
-    colors={ProductColors}
-    group="color"
-    variant="primitive"
-    style={styles.gridSmall}
-/>
-
-### Off-Black
-
-#### Solid (hex)
-
-export const NeutralColors = {
-    offBlack: color.offBlack,
-    fadedOffBlack64: color.fadedOffBlack64,
-    fadedOffBlack50: color.fadedOffBlack50,
-    fadedOffBlack32: color.fadedOffBlack32,
-    fadedOffBlack16: color.fadedOffBlack16,
-};
-
-<ColorGroup
-    colors={NeutralColors}
-    group="color"
-    variant="primitive"
-    style={styles.gridSmall}
-/>
-
-#### Transparent (rgba)
-
-export const TransparentNeutralColors = {
-    offBlack: color.offBlack,
-    offBlack64: color.offBlack64,
-    offBlack50: color.offBlack50,
-    offBlack32: color.offBlack32,
-    offBlack16: color.offBlack16,
-};
-
-<ColorGroup
-    colors={TransparentNeutralColors}
-    group="color"
-    variant="primitive"
-    style={styles.gridSmall}
-/>
-
-### White
-
-export const WhiteShades = {
-    offWhite: color.offWhite,
-    white64: color.white64,
-    white50: color.white50,
-    white: color.white,
-};
-
-<ColorGroup
-    colors={WhiteShades}
-    group="color"
-    variant="primitive"
-    style={styles.gridSmall}
-/>
-
-### Blue
-
-export const BlueShades = {
-    activeBlue: color.activeBlue,
-    blue: color.blue,
-    fadedBlue: color.fadedBlue,
-    fadedBlue24: color.fadedBlue24,
-    fadedBlue16: color.fadedBlue16,
-    fadedBlue8: color.fadedBlue8,
-};
-
-<ColorGroup
-    colors={BlueShades}
-    group="color"
-    variant="primitive"
-    style={styles.gridSmall}
-/>
-
-### Green
-
-export const GreenShades = {
-    green: color.green,
-    fadedGreen24: color.fadedGreen24,
-    fadedGreen16: color.fadedGreen16,
-    fadedGreen8: color.fadedGreen8,
-};
-
-<ColorGroup
-    colors={GreenShades}
-    group="color"
-    variant="primitive"
-    style={styles.gridSmall}
-/>
-
-### Gold
-
-export const GoldShades = {
-    gold: color.gold,
-    fadedGold24: color.fadedGold24,
-    fadedGold16: color.fadedGold16,
-    fadedGold8: color.fadedGold8,
-};
-
-<ColorGroup
-    colors={GoldShades}
-    group="color"
-    variant="primitive"
-    style={styles.gridSmall}
-/>
-
-### Purple
-
-export const PurpleShades = {
-    purple: color.purple,
-    fadedPurple24: color.fadedPurple24,
-    fadedPurple16: color.fadedPurple16,
-    fadedPurple8: color.fadedPurple8,
-};
-
-<ColorGroup
-    colors={PurpleShades}
-    group="color"
-    variant="primitive"
-    style={styles.gridSmall}
-/>
-
-### Brand
-
-export const BrandColors = {
-    darkBlue: color.darkBlue,
-    teal: color.teal,
-};
-
-<ColorGroup
-    colors={BrandColors}
-    group="color"
-    variant="primitive"
-    style={styles.gridSmall}
-/>
-
-### Khanmigo
-
-export const KhanmigoColors = {
-    eggplant: color.eggplant,
-    fadedEggplant8: color.fadedEggplant8,
-};
-
-<ColorGroup
-    colors={KhanmigoColors}
-    group="color"
-    variant="primitive"
-    style={styles.gridSmall}
-/>
-
-## Accessibility
-
-When using color, it is important to consider accessibility. The contrast
-between text and background colors should be high enough to ensure readability
-for all users. The <a
-href="https://www.w3.org/WAI/WCAG22/Understanding/distinguishable">Web Content
-Accessibility Guidelines (WCAG)</a> provide guidance on how to ensure that our
-content is accessible to all users.
-
-For more detail, you can check the following Success Criteria documents:
-
-- <a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color">
-      Use of Color
-  </a>
-- <a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum">
-      Contrast (minimum)
-  </a>
-- <a href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast">
-      Non-text Contrast (Level AA)
-  </a>
