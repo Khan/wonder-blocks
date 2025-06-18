@@ -28,7 +28,8 @@
     "@khanacademy/wonder-blocks-search-field": "workspace:*",
     "@khanacademy/wonder-blocks-timing": "workspace:*",
     "@khanacademy/wonder-blocks-tokens": "workspace:*",
-    "@khanacademy/wonder-blocks-typography": "workspace:*"
+    "@khanacademy/wonder-blocks-typography": "workspace:*",
+    "@khanacademy/wonder-blocks-form": "workspace:*"
   },
   "peerDependencies": {
     "@phosphor-icons/core": "catalog:",
