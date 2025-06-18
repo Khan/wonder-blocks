@@ -1,21 +1,26 @@
 import {border, sizing, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
-type StyleState = {
-    rest: any;
-    hover: any;
-    press: any;
+type InteractionState = {
+    background?: string;
+    border?: string;
 };
 
-type StyleCategory = {
-    default: StyleState;
-    disabled: StyleState;
-    error: StyleState;
+type ComponentState = {
+    rest: InteractionState;
+    hover: InteractionState;
+    press: InteractionState;
+};
+
+type ComponentStates = {
+    default: ComponentState;
+    disabled: ComponentState;
+    error: ComponentState;
 };
 
 export interface StyleMap {
     [key: string]: {
-        unchecked: StyleCategory;
-        checked: StyleCategory;
+        unchecked: ComponentStates;
+        checked: ComponentStates;
     };
 }
 
