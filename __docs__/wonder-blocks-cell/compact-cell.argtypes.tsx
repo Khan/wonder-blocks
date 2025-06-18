@@ -121,20 +121,6 @@ export default {
             },
         },
     },
-    rootStyle: {
-        description:
-            `Optional custom styles applied to the top node.\n\n` +
-            `**NOTE:** This is the top node of the cell, not the cell ` +
-            `container. If possible, try to use this prop carefully and use ` +
-            `\`style\` instead.`,
-        control: {type: "object"},
-        table: {
-            category: "Styling",
-            type: {
-                summary: "StyleType",
-            },
-        },
-    },
     style: {
         description: "Optional custom styles.",
         control: {type: "object"},

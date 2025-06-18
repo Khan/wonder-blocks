@@ -12,10 +12,8 @@ import packageConfig from "../../packages/wonder-blocks-popover/package.json";
 import ComponentInfo from "../components/component-info";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
-// NOTE: We are reusing an existing Cell SB Story to test how Popovers can be
-// composed by Cells.
-import {ClickableDetailCell} from "../wonder-blocks-cell/detail-cell.stories";
 import popoverContentCoreArgtypes from "./popover-content-core.argtypes";
+import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 
 export default {
     title: "Packages / Popover / PopoverContentCore",
@@ -92,9 +90,6 @@ export const WithIcon: StoryComponentType = {
     render: (args) => <PopoverContentCore {...args} />,
 };
 
-// NOTE: Adding a wrapper to cast the component so Storybook doesn't complain.
-const ClickableDetailCellWrapper = ClickableDetailCell as React.ElementType;
-
 /**
  * Popovers can also benefit from other Wonder Blocks components. In this
  * example, we are using the `DetailCell` component embedded as part of the
@@ -103,7 +98,22 @@ const ClickableDetailCellWrapper = ClickableDetailCell as React.ElementType;
 export const WithDetailCell: StoryComponentType = {
     args: {
         // use the composed DetailCell component
-        children: <ClickableDetailCellWrapper {...ClickableDetailCell.args} />,
+        children: (
+            <DetailCell
+                title="Title for article item"
+                subtitle1="Subtitle for article item"
+                subtitle2="Subtitle for article item"
+                leftAccessory={
+                    <PhosphorIcon
+                        icon={IconMappings.playCircle}
+                        size="medium"
+                    />
+                }
+                rightAccessory={<PhosphorIcon icon={IconMappings.caretRight} />}
+                onClick={() => {}}
+                aria-label="Press to navigate to the article"
+            />
+        ),
         style: styles.popoverWithCell,
     },
     render: (args) => <PopoverContentCore {...args} />,
