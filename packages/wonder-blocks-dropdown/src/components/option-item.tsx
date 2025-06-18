@@ -287,9 +287,8 @@ const styles = StyleSheet.create({
         whiteSpace: "nowrap",
     },
     item: {
-        // Reset the default styles for the cell element so it can grow
-        // vertically.
-        minHeight: "unset",
+        // Make sure that the item is always at least as tall as 40px.
+        minHeight: sizing.size_400,
 
         // checkbox states (see checkbox.tsx)
         [":is([aria-selected=true]) .checkbox" as any]: {
