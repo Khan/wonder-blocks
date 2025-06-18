@@ -270,7 +270,6 @@ const styles = StyleSheet.create({
      * States
      */
     clickable: {
-        // outline: "none",
         /**
          * States
          */

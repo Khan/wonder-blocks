@@ -8,7 +8,7 @@ import {
     border,
     sizing,
 } from "@khanacademy/wonder-blocks-tokens";
-import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import {AriaProps, StyleType, View} from "@khanacademy/wonder-blocks-core";
 
@@ -245,21 +245,9 @@ export default class OptionItem extends React.Component<OptionProps> {
                     </>
                 }
                 rightAccessory={rightAccessory}
-                subtitle1={
-                    subtitle1 ? (
-                        <LabelSmall className="subtitle">
-                            {subtitle1}
-                        </LabelSmall>
-                    ) : undefined
-                }
+                subtitle1={subtitle1}
                 title={<LabelMedium style={styles.label}>{label}</LabelMedium>}
-                subtitle2={
-                    subtitle2 ? (
-                        <LabelSmall className="subtitle">
-                            {subtitle2}
-                        </LabelSmall>
-                    ) : undefined
-                }
+                subtitle2={subtitle2}
                 onClick={this.handleClick}
                 tabIndex={-1}
                 {...sharedProps}
