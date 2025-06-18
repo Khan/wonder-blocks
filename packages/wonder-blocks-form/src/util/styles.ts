@@ -177,11 +177,9 @@ export const colorStates: StyleMap = {
                 },
                 hover: baseStyles.choice.checked,
                 press: {
-                    border: semanticColor.action.secondary.progressive.press
-                        .border,
+                    border: semanticColor.core.background.instructive.strong,
                     background:
-                        semanticColor.action.secondary.progressive.press
-                            .background,
+                        semanticColor.core.background.instructive.strong,
                 },
             },
             error: {
