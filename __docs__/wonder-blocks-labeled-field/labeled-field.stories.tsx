@@ -20,6 +20,7 @@ import {
 } from "@khanacademy/wonder-blocks-typography";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Button from "@khanacademy/wonder-blocks-button";
+import {allModes} from "../../.storybook/modes";
 
 /**
  * The `LabeledField` component provides common elements for a form field such
@@ -51,6 +52,12 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            modes: {
+                default: allModes.themeDefault,
+                thunderblocks: allModes.themeThunderBlocks,
+            },
+        },
     },
     argTypes: LabeledFieldArgTypes,
 } as Meta<typeof LabeledField>;
