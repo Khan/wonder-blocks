@@ -1,14 +1,17 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {border, sizing, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {border} from "@khanacademy/wonder-blocks-tokens";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import checkIcon from "@phosphor-icons/core/bold/check-bold.svg";
 import minusIcon from "@phosphor-icons/core/bold/minus-bold.svg";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import theme from "../theme/index";
 
 import type {ChoiceCoreProps, Checked} from "../util/types";
+
+import {colorStates, baseStyles} from "../util/styles";
 
 // `AriaChecked` and `mapCheckedToAriaChecked()` are used to convert the
 // `checked` prop value to a value that a screen reader can understand via the
@@ -25,13 +28,6 @@ function mapCheckedToAriaChecked(value: Checked): AriaChecked {
             return "mixed";
     }
 }
-
-const baseStyles = {
-    // The checkbox size
-    size: sizing.size_160,
-    // The check icon size
-    checkSize: sizing.size_120,
-};
 
 const StyledInput = addStyle("input");
 
@@ -73,8 +69,8 @@ const CheckboxCore = React.forwardRef(function CheckboxCore(
         <PhosphorIcon
             color={
                 disabled
-                    ? theme.icon.disabled.foreground
-                    : theme.icon.default.foreground
+                    ? baseStyles.icon.disabled.foreground
+                    : baseStyles.icon.default.foreground
             }
             icon={checked ? checkIcon : minusIcon}
             size="small"
@@ -82,8 +78,8 @@ const CheckboxCore = React.forwardRef(function CheckboxCore(
                 sharedStyles.checkboxIcon,
                 // The check icon is smaller than the checkbox, as per design.
                 {
-                    width: baseStyles.checkSize,
-                    height: baseStyles.checkSize,
+                    width: baseStyles.checkbox.sizing.checkSize,
+                    height: baseStyles.checkbox.sizing.checkSize,
                 },
             ]}
         />
@@ -147,10 +143,10 @@ const sharedStyles = StyleSheet.create({
     },
 
     default: {
-        height: baseStyles.size,
-        width: baseStyles.size,
-        minHeight: baseStyles.size,
-        minWidth: baseStyles.size,
+        height: baseStyles.checkbox.sizing.size,
+        width: baseStyles.checkbox.sizing.size,
+        minHeight: baseStyles.checkbox.sizing.size,
+        minWidth: baseStyles.checkbox.sizing.size,
         margin: 0,
         outline: "none",
         boxSizing: "border-box",
@@ -163,7 +159,7 @@ const sharedStyles = StyleSheet.create({
         position: "absolute",
         pointerEvents: "none",
         // This margin is to center the check icon in the checkbox.
-        margin: `calc((${baseStyles.size} - ${baseStyles.checkSize}) / 2)`,
+        margin: `calc((${baseStyles.checkbox.sizing.size} - ${baseStyles.checkbox.sizing.checkSize}) / 2)`,
     },
 });
 
@@ -181,114 +177,64 @@ const _generateStyles = (
     }
 
     const isCheckedOrIndeterminate = checked || checked == null;
-    const actionType = error ? "destructive" : "progressive";
-    const styleType = isCheckedOrIndeterminate ? "primary" : "secondary";
-
-    const colorAction = semanticColor.action[styleType][actionType];
-
-    // The different states that the component can be in.
-    const states = {
-        // Resting state (shared between checked and unchecked)
-        default: {
-            border: colorAction.default.border,
-            background: colorAction.default.background,
-        },
-        // Form validation error state
-        error: {
-            border: theme.choice.error.border,
-            background: theme.choice.error.background,
-        },
-        // Disabled state
-        disabled: theme.choice.disabled,
-        // Disabled and checked state
-        disabledChecked: theme.choice.disabledChecked,
-    };
 
     let stateStyles: Record<string, any> = {};
 
-    // Handle disabled states first
-    if (disabled) {
-        if (isCheckedOrIndeterminate) {
-            // Disabled and checked/indeterminate
-            stateStyles = {
-                default: {
-                    cursor: "auto",
-                    backgroundColor: states.disabledChecked.background,
-                    borderColor: states.disabledChecked.border,
-                    borderWidth: theme.checkbox.border.width.default,
-                },
-            };
-        } else {
-            // Disabled and unchecked
-            stateStyles = {
-                default: {
-                    cursor: "auto",
-                    backgroundColor: states.disabled.background,
-                    borderColor: states.disabled.border,
-                    borderWidth: theme.checkbox.border.width.default,
-                },
-            };
-        }
-    } else if (isCheckedOrIndeterminate) {
+    type ChoiceState = "default" | "disabled" | "error";
+
+    const currentState: ChoiceState = error
+        ? "error"
+        : disabled
+          ? "disabled"
+          : "default";
+
+    if (isCheckedOrIndeterminate) {
+        const checkedStyles = colorStates.checkbox.checked[currentState];
         stateStyles = {
             inputWrapper: {
                 // TODO(WB-1864): Revisit hover, press tokens
                 ":hover input:not([disabled])": {
-                    outline: `${border.width.medium} solid ${colorAction.hover.border}`,
+                    outline: `${border.width.medium} solid ${checkedStyles.hover.border}`,
                     outlineOffset: 1,
                 },
             },
             default: {
-                backgroundColor: states.default.background,
-                borderColor: states.default.border,
+                backgroundColor: checkedStyles.rest.background,
+                borderColor: checkedStyles.rest.border,
 
-                // Focus and hover have the same style. Focus style only shows
-                // up with keyboard navigation.
-                // TODO(WB-1864): Use focusStyles.focus
-                ":focus-visible": {
-                    outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
-                    outlineOffset: 1,
+                ":focus-visible:not([disabled])": {
+                    ...focusStyles.focus,
                 },
 
-                ":active": {
-                    outline: `${border.width.medium} solid ${colorAction.press.border}`,
+                ":active:not([disabled])": {
+                    outline: `${border.width.medium} solid ${checkedStyles.press.border}`,
                     outlineOffset: 1,
-                    background: colorAction.press.background,
+                    background: checkedStyles.press.background,
                 },
             },
         };
-        // Unchecked state
     } else {
-        const currentState = error ? states.error : states.default;
-
+        // Unchecked state
+        const uncheckedStyles = colorStates.checkbox.unchecked[currentState];
         stateStyles = {
             inputWrapper: {
                 ":hover input:not([disabled])": {
-                    backgroundColor: error
-                        ? theme.choice.error.background
-                        : colorAction.hover.background,
-                    outline: `${border.width.medium} solid ${colorAction.hover.border}`,
+                    backgroundColor: uncheckedStyles.hover.background,
+                    outline: `${border.width.medium} solid ${uncheckedStyles.hover.border}`,
                     outlineOffset: -1,
                 },
             },
             default: {
-                backgroundColor: currentState.background,
-                borderColor: currentState.border,
+                backgroundColor: uncheckedStyles.rest.background,
+                borderColor: uncheckedStyles.rest.border,
 
-                // Focus and hover have the same style. Focus style only shows
-                // up with keyboard navigation.
-                // TODO(WB-1864): Use focusStyles.focus
-                ":focus-visible": {
-                    backgroundColor: error
-                        ? theme.choice.error.background
-                        : colorAction.hover.background,
-                    outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
-                    outlineOffset: -1,
+                ":focus-visible:not([disabled])": {
+                    ...focusStyles.focus,
                 },
 
-                ":active": {
-                    backgroundColor: colorAction.press.background,
-                    outline: `${border.width.medium} solid ${colorAction.press.border}`,
+                ":active:not([disabled])": {
+                    backgroundColor: uncheckedStyles.press.background,
+                    outline: `${border.width.medium} solid ${uncheckedStyles.press.border}`,
                     outlineOffset: -1,
                 },
             },

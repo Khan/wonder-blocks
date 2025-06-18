@@ -1,10 +1,13 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {border} from "@khanacademy/wonder-blocks-tokens";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import theme from "../theme/index";
 import type {ChoiceCoreProps, Checked} from "../util/types";
+
+import {colorStates, baseStyles} from "../util/styles";
 
 const StyledInput = addStyle("input");
 
@@ -74,10 +77,6 @@ const StyledInput = addStyle("input");
     );
 });
 
-const baseStyles = {
-    size: sizing.size_160,
-};
-
 const sharedStyles = StyleSheet.create({
     inputWrapper: {
         position: "relative",
@@ -89,16 +88,16 @@ const sharedStyles = StyleSheet.create({
         MozAppearance: "none",
     },
     default: {
-        height: baseStyles.size,
-        width: baseStyles.size,
-        minHeight: baseStyles.size,
-        minWidth: baseStyles.size,
+        height: baseStyles.radio.sizing.size,
+        width: baseStyles.radio.sizing.size,
+        minHeight: baseStyles.radio.sizing.size,
+        minWidth: baseStyles.radio.sizing.size,
         margin: 0,
         outline: "none",
         boxSizing: "border-box",
         borderStyle: "solid",
-        borderWidth: theme.radio.border.width.default,
-        borderRadius: theme.radio.border.radius.default,
+        borderWidth: baseStyles.radio.border.width.default,
+        borderRadius: baseStyles.radio.border.radius.default,
     },
 });
 
@@ -113,146 +112,79 @@ const _generateStyles = (
     if (styles[styleKey]) {
         return styles[styleKey];
     }
-    const actionType = error ? "destructive" : "progressive";
-    // NOTE: Radio buttons use the secondary style regardless of the checked
-    // state.
-    const colorAction = semanticColor.action.secondary[actionType];
-
-    const coreType = error ? "critical" : "instructive";
-    const colorCore = semanticColor.core.background[coreType];
-
-    // The different states that the component can be in.
-    const states = {
-        // Resting state (unchecked)
-        unchecked: {
-            border: theme.choice.default.border,
-            background: colorCore.subtle,
-        },
-        checked: {
-            // NOTE: This is a special case where the border is the same color
-            // as the foreground. This should change as soon as we simplify the
-            // existing `action` tokens.
-            border: colorAction.default.foreground,
-            background: colorCore.subtle,
-        },
-        // Form validation error state
-        error: {
-            border: theme.choice.error.border,
-            background: theme.choice.error.background,
-        },
-        // Disabled state
-        disabled: {
-            border: theme.choice.disabled.border,
-            background: theme.choice.disabled.background,
-        },
-    };
 
     let newStyles: Record<string, any> = {};
 
-    // Handle disabled states first
-    if (disabled) {
-        newStyles = {
-            inputWrapper: {},
-            default: {
-                cursor: "auto",
-                backgroundColor: states.disabled.background,
-                borderColor: states.disabled.border,
-                borderWidth: theme.radio.border.width.default,
-            },
-            disabledChecked: {
-                position: "absolute",
-                // position checkmark 1/4 of the overall size for 1/2 of its width/height
-                // accounting for increased padding/hit target area in TB
-                top: `calc(${baseStyles.size} * .25 + ${theme.inputWrapper.padding})`,
-                left: `calc(${baseStyles.size} * .25 + ${theme.inputWrapper.padding})`,
-                height: `calc(${baseStyles.size} / 2)`,
-                width: `calc(${baseStyles.size} / 2)`,
-                borderRadius: theme.radio.border.radius.default,
-                backgroundColor: theme.choice.disabled.background,
-            },
-        };
-    } else if (checked) {
+    type ChoiceState = "default" | "disabled" | "error";
+
+    const currentState: ChoiceState = error
+        ? "error"
+        : disabled
+          ? "disabled"
+          : "default";
+
+    if (checked) {
+        const checkedStyles = colorStates.radio.checked[currentState];
         newStyles = {
             inputWrapper: {
                 // TODO(WB-1864): Revisit hover, press tokens
                 ":hover input:not([disabled])": {
-                    outline: `${border.width.medium} solid ${colorAction.hover.border}`,
+                    outline: `${border.width.medium} solid ${checkedStyles.hover.border}`,
                     outlineOffset: 1,
                 },
             },
             default: {
-                backgroundColor: states.checked.background,
-                borderColor: states.checked.border,
+                backgroundColor: checkedStyles.rest.background,
+                borderColor: checkedStyles.rest.border,
                 // borders need to render in pixels for consistent size
-                borderWidth: `calc(${baseStyles.size} / 4)`,
+                borderWidth: `calc(${baseStyles.radio.sizing.size} / 4)`,
 
-                // Focus and hover have the same style. Focus style only shows
-                // up with keyboard navigation.
-                // TODO(WB-1864): Use focusStyles.focus
-                ":focus-visible": {
-                    outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
-                    outlineOffset: 1,
+                ":focus-visible:not([disabled])": {
+                    // Use the global focus style
+                    ...focusStyles.focus,
                 },
 
-                ":active": {
-                    outline: `${border.width.medium} solid ${colorAction.press.border}`,
+                ":active:not([disabled])": {
+                    outline: `${border.width.medium} solid ${checkedStyles.press.border}`,
                     outlineOffset: 1,
-                    borderColor: colorAction.press.border,
+                    borderColor: checkedStyles.press.border,
                 },
             },
             disabledChecked: {
                 position: "absolute",
-                top: `calc(${baseStyles.size} * .25 + ${theme.inputWrapper.padding})`,
-                left: `calc(${baseStyles.size} * .25 + ${theme.inputWrapper.padding})`,
-                height: `calc(${baseStyles.size} / 2)`,
-                width: `calc(${baseStyles.size} / 2)`,
-                borderRadius: theme.radio.border.radius.default,
-                backgroundColor: theme.choice.disabled.background,
+                top: `calc(${baseStyles.radio.sizing.size} * .25 + ${theme.inputWrapper.padding})`,
+                left: `calc(${baseStyles.radio.sizing.size} * .25 + ${theme.inputWrapper.padding})`,
+                height: `calc(${baseStyles.radio.sizing.size} / 2)`,
+                width: `calc(${baseStyles.radio.sizing.size} / 2)`,
+                borderRadius: baseStyles.radio.border.radius.default,
+                backgroundColor: checkedStyles.rest.background,
             },
         };
     } else {
-        const currentState = error ? states.error : states.unchecked;
-
+        const uncheckedStyles = colorStates.radio.unchecked[currentState];
         newStyles = {
             inputWrapper: {
                 // TODO(WB-1864): Revisit hover, press tokens
                 ":hover input:not([disabled])": {
-                    backgroundColor: error
-                        ? states.error.background
-                        : colorAction.hover.background,
-                    outline: `${border.width.medium} solid ${colorAction.hover.border}`,
+                    backgroundColor: uncheckedStyles.hover.background,
+                    outline: `${border.width.medium} solid ${uncheckedStyles.hover.border}`,
                     outlineOffset: -1,
                 },
             },
             default: {
-                backgroundColor: currentState.background,
-                borderColor: currentState.border,
+                backgroundColor: uncheckedStyles.rest.background,
+                borderColor: uncheckedStyles.rest.border,
 
-                // Focus and hover have the same style. Focus style only shows
-                // up with keyboard navigation.
-                // TODO(WB-1864): Use focusStyles.focus
-                ":focus-visible": {
-                    backgroundColor: error
-                        ? states.error.background
-                        : colorAction.hover.background,
-                    outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
-                    outlineOffset: -1,
+                ":focus-visible:not([disabled])": {
+                    // Use the global focus style
+                    ...focusStyles.focus,
                 },
 
-                ":active": {
-                    backgroundColor: colorAction.press.background,
-                    outline: `${border.width.medium} solid ${colorAction.press.border}`,
+                ":active:not([disabled])": {
+                    backgroundColor: uncheckedStyles.press.background,
+                    outline: `${border.width.medium} solid ${uncheckedStyles.press.border}`,
                     outlineOffset: -1,
                 },
-            },
-            disabledChecked: {
-                position: "absolute",
-                top: `calc(${baseStyles.size} * .25 + ${theme.inputWrapper.padding})`,
-                left: `calc(${baseStyles.size} * .25 + ${theme.inputWrapper.padding})`,
-                height: `calc(${baseStyles.size} / 2)`,
-                width: `calc(${baseStyles.size} / 2)`,
-                borderRadius: theme.radio.border.radius.default,
-                backgroundColor: theme.choice.disabled.background,
             },
         };
     }
