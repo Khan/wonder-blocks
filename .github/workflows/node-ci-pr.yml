@@ -190,9 +190,9 @@ jobs:
             🎉 Good news!! We've packaged up the latest commit from this PR (${{
             steps.short-sha.outputs.short_sha }}) and published all packages with changesets to npm.
 
-            You can install the packages in webapp by running:
+            You can install the packages in `frontend` by running:
             ```sh
-            ./services/static/dev/tools/deploy_wonder_blocks.js --tag="${{
+            ./dev/tools/deploy_wonder_blocks.js --tag="${{
             steps.publish-snapshot.outputs.npm_snapshot_tag }}"
             ```
 

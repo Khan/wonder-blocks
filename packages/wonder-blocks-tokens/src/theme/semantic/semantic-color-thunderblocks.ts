@@ -38,21 +38,6 @@ const core = {
             default: color.gray_70,
             strong: color.gray_60,
         },
-        gems: {
-            subtle: color.magenta_80,
-            default: color.magenta_60,
-            strong: color.magenta_30,
-        },
-        streak: {
-            subtle: color.orange_80,
-            default: color.orange_60,
-            strong: color.orange_30,
-        },
-        due: {
-            subtle: color.cyan_80,
-            default: color.cyan_60,
-            strong: color.cyan_30,
-        },
         inverse: {
             subtle: color.gray_60,
             default: color.gray_90,
@@ -90,21 +75,6 @@ const core = {
             default: color.gray_80,
             strong: color.gray_70,
         },
-        gems: {
-            subtle: color.magenta_90,
-            default: color.magenta_80,
-            strong: color.magenta_10,
-        },
-        streak: {
-            subtle: color.orange_80,
-            default: color.orange_60,
-            strong: color.orange_10,
-        },
-        due: {
-            subtle: color.cyan_80,
-            default: color.cyan_60,
-            strong: color.cyan_10,
-        },
     },
 
     /**
@@ -140,21 +110,6 @@ const core = {
             subtle: color.gray_60,
             default: color.gray_50,
             strong: color.gray_40,
-        },
-        gems: {
-            subtle: color.magenta_60,
-            default: color.magenta_30,
-            strong: color.magenta_10,
-        },
-        streak: {
-            subtle: color.orange_60,
-            default: color.orange_30,
-            strong: color.orange_10,
-        },
-        due: {
-            subtle: color.cyan_60,
-            default: color.cyan_20,
-            strong: color.cyan_10,
         },
         inverse: {
             subtle: color.gray_60,
@@ -655,6 +610,137 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                 icon: core.foreground.critical.default,
                 text: core.foreground.critical.strong,
             },
+        },
+    },
+    learning: {
+        math: {
+            foreground: {
+                blue: color.cyan_10,
+                gold: color.yellow_10,
+                green: color.green_20,
+                gray: color.gray_10,
+                grayH: color.gray_05,
+                grayI: color.black_100,
+                purple: color.blue_05,
+                purpleD: color.blue_10,
+                pink: color.magenta_10,
+                red: color.red_20,
+            },
+        },
+        background: {
+            gems: {
+                subtle: color.magenta_90,
+                default: color.magenta_80,
+                strong: color.magenta_10,
+            },
+            due: {
+                subtle: color.cyan_80,
+                default: color.cyan_60,
+                strong: color.cyan_10,
+            },
+            streaks: {
+                subtle: color.orange_80,
+                default: color.orange_60,
+                strong: color.orange_10,
+            },
+            progress: {
+                notStarted: {
+                    default: color.gray_60,
+                },
+                attempted: {
+                    default: color.yellow_60,
+                },
+                complete: {
+                    default: color.green_60,
+                },
+            },
+        },
+        border: {
+            gems: {
+                subtle: color.magenta_80,
+                default: color.magenta_60,
+                strong: color.magenta_30,
+            },
+            streaks: {
+                subtle: color.orange_80,
+                default: color.orange_60,
+                strong: color.orange_30,
+            },
+            due: {
+                subtle: color.cyan_80,
+                default: color.cyan_60,
+                strong: color.cyan_30,
+            },
+        },
+        foreground: {
+            gems: {
+                subtle: color.magenta_60,
+                default: color.magenta_30,
+                strong: color.magenta_10,
+            },
+            streaks: {
+                subtle: color.orange_60,
+                default: color.orange_30,
+                strong: color.orange_10,
+            },
+            due: {
+                subtle: color.cyan_60,
+                default: color.cyan_20,
+                strong: color.cyan_10,
+            },
+            progress: {
+                notStarted: {
+                    subtle: color.gray_50,
+                    strong: color.gray_10,
+                },
+                attempted: {
+                    subtle: color.yellow_50,
+                    strong: color.yellow_10,
+                },
+                complete: {
+                    strong: color.green_50,
+                },
+            },
+        },
+        shadow: {
+            progress: {
+                notStarted: {
+                    default: color.gray_20,
+                },
+                attempted: {
+                    default: color.yellow_30,
+                },
+                complete: {
+                    default: color.green_30,
+                },
+            },
+        },
+    },
+    /**
+     * For inputs, form elements, and other elements that require user input.
+     */
+    input: {
+        default: {
+            border: core.border.neutral.default,
+            background: surface.primary,
+            foreground: core.foreground.neutral.strong,
+            placeholder: core.foreground.neutral.default,
+        },
+        checked: {
+            border: core.border.instructive.default,
+            background: core.background.instructive.default,
+            foreground: core.foreground.inverse.strong,
+        },
+        disabled: {
+            border: core.border.disabled.default,
+            background: core.background.neutral.subtle,
+            foreground: core.foreground.neutral.default,
+            placeholder: core.foreground.neutral.subtle,
+        },
+        error: {
+            border: core.border.critical.default,
+            background: core.background.critical.subtle,
+            foreground: core.foreground.neutral.strong,
         },
     },
 });

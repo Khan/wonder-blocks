@@ -1,12 +1,21 @@
 {
   "name": "@khanacademy/wonder-blocks-switch",
-  "version": "3.2.10",
+  "version": "3.3.1",
   "design": "v1",
   "description": "Switch components for Wonder Blocks.",
   "main": "dist/index.js",
   "module": "dist/es/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/es/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles.css": "./dist/css/vars.css"
+  },
   "scripts": {
+    "build:css": "pnpm exec wonder-blocks-tokens .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },

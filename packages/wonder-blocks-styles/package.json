@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-styles",
-  "version": "0.2.13",
+  "version": "0.2.15",
   "description": "Reusable Wonder Blocks styles.",
   "main": "dist/index.js",
   "module": "dist/es/index.js",

@@ -1,5 +1,29 @@
 # @khanacademy/wonder-blocks-badge
 
+## 0.1.2
+
+### Patch Changes
+
+- cbf58b0: Updates badge components to use the new learning tokens
+- Updated dependencies [1ac2ba7]
+- Updated dependencies [0cb7a69]
+- Updated dependencies [cbf58b0]
+- Updated dependencies [cbf58b0]
+    - @khanacademy/wonder-blocks-tokens@11.0.0
+    - @khanacademy/wonder-blocks-icon@5.2.2
+    - @khanacademy/wonder-blocks-styles@0.2.15
+    - @khanacademy/wonder-blocks-typography@4.2.3
+
+## 0.1.1
+
+### Patch Changes
+
+- Updated dependencies [7811eb1]
+    - @khanacademy/wonder-blocks-tokens@10.6.0
+    - @khanacademy/wonder-blocks-icon@5.2.1
+    - @khanacademy/wonder-blocks-styles@0.2.14
+    - @khanacademy/wonder-blocks-typography@4.2.2
+
 ## 0.1.0
 
 ### Minor Changes
