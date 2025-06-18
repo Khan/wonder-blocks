@@ -1,5 +1,5 @@
 import * as React from "react";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 
 import {View, InitialFallback} from "@khanacademy/wonder-blocks-core";
