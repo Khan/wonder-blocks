@@ -11,10 +11,11 @@ import {
     border,
     font,
     semanticColor,
-    spacing,
+    sizing,
 } from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 import {useId} from "react";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {useFieldValidation} from "../hooks/use-field-validation";
 
 type TextAreaProps = AriaProps & {
@@ -280,7 +281,6 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                         typographyStyles.LabelMedium,
                         resizeType && resizeStyles[resizeType],
                         styles.default,
-                        !disabled && styles.defaultFocus,
                         disabled && styles.disabled,
                         hasError && styles.error,
                         style,
@@ -313,15 +313,17 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
     },
 );
 
-const VERTICAL_SPACING_PX = 10;
+const VERTICAL_SPACING = sizing.size_100;
 
 const styles = StyleSheet.create({
     textarea: {
         borderRadius: border.radius.radius_040,
         boxSizing: "border-box",
-        padding: `${VERTICAL_SPACING_PX}px ${spacing.medium_16}px`,
+        paddingBlock: VERTICAL_SPACING,
+        paddingInline: sizing.size_160,
         // This minHeight is equivalent to when the textarea has one row
-        minHeight: `calc(${VERTICAL_SPACING_PX * 2 + 2}px + ${font.lineHeight.medium})`,
+        minHeight: `calc(${VERTICAL_SPACING} * 2 + ${sizing.size_020} + ${font.lineHeight.medium})`,
+        ...focusStyles.focus,
     },
     default: {
         background: semanticColor.input.default.background,
@@ -329,16 +331,6 @@ const styles = StyleSheet.create({
         color: semanticColor.input.default.foreground,
         "::placeholder": {
             color: semanticColor.input.default.placeholder,
-        },
-    },
-    defaultFocus: {
-        // TODO(WB-1864): Use focusStyles.focus
-        ":focus-visible": {
-            borderColor: semanticColor.focus.outer,
-            outline: `${border.width.thin} solid ${semanticColor.focus.outer}`,
-            // Negative outline offset so it focus outline is not cropped off if
-            // an ancestor element has overflow: hidden
-            outlineOffset: -2,
         },
     },
     disabled: {
@@ -349,11 +341,6 @@ const styles = StyleSheet.create({
             color: semanticColor.input.disabled.placeholder,
         },
         cursor: "not-allowed",
-        // TODO(WB-1864): Use focusStyles.focus
-        ":focus-visible": {
-            outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
-            outlineOffset: -3,
-        },
     },
     error: {
         background: semanticColor.input.error.background,
@@ -361,11 +348,6 @@ const styles = StyleSheet.create({
         color: semanticColor.input.error.foreground,
         "::placeholder": {
             color: semanticColor.input.default.placeholder,
-        },
-        // TODO(WB-1864): Use focusStyles.focus
-        ":focus-visible": {
-            outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
-            borderColor: semanticColor.input.error.border,
         },
     },
 });
