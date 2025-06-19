@@ -106,6 +106,61 @@ const scenarios = [
             ),
         },
     },
+    {
+        name: "All properties",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            description: "Helpful description text.",
+            errorMessage: "Message about the error",
+            required: "Custom required message",
+        },
+    },
+    {
+        name: "Custom ReactNode elements",
+        props: {
+            label: (
+                <span>
+                    <b>Label</b> <i>using</i> <u>JSX</u>
+                </span>
+            ),
+            description: (
+                <span>
+                    <b>Description</b> <i>using</i> <u>JSX</u>
+                </span>
+            ),
+            field: <TextField value="" onChange={() => {}} />,
+            errorMessage: (
+                <span>
+                    <b>Error</b> <i>using</i> <u>JSX</u>
+                </span>
+            ),
+        },
+    },
+    {
+        name: "Custom styles",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            description: "Helpful description text.",
+            errorMessage: "Message about the error",
+            required: "Custom required message",
+            styles: {
+                root: {
+                    padding: sizing.size_080,
+                },
+                label: {
+                    paddingBlockEnd: sizing.size_020,
+                },
+                description: {
+                    paddingBlockEnd: sizing.size_020,
+                },
+                error: {
+                    paddingBlockStart: sizing.size_020,
+                },
+            },
+        },
+    },
 ];
 
 /**

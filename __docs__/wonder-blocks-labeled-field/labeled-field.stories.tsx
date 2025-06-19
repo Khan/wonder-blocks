@@ -6,19 +6,13 @@ import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {TextArea, TextField} from "@khanacademy/wonder-blocks-form";
 import LabeledFieldArgTypes from "./labeled-field.argtypes";
 import {addStyle, PropsFor, View} from "@khanacademy/wonder-blocks-core";
-import {sizing, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {
     MultiSelect,
     OptionItem,
     SingleSelect,
 } from "@khanacademy/wonder-blocks-dropdown";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
-import {
-    HeadingLarge,
-    HeadingMedium,
-    HeadingSmall,
-} from "@khanacademy/wonder-blocks-typography";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Button from "@khanacademy/wonder-blocks-button";
 import {allModes} from "../../.storybook/modes";
 
@@ -53,10 +47,9 @@ export default {
             />
         ),
         chromatic: {
-            modes: {
-                default: allModes.themeDefault,
-                thunderblocks: allModes.themeThunderBlocks,
-            },
+            // Disabling snapshots for all stories by default because the testing
+            // snapshots cover the different scenarios
+            disableSnapshot: true,
         },
     },
     argTypes: LabeledFieldArgTypes,
@@ -339,30 +332,38 @@ const AllFields = (
  * - `MultiSelect`
  * - `SearchField`
  *
- * LabeledField works best with field components that accept `error` and
- * `required` props since these props will get auto-populated by LabeledField.
+ * The `LabeledField`'s `errorMessage` prop can be used to define the error
+ * message to show for the field. It will also put the field component in an
+ * error state by auto-populating the field's `error` prop depending on if there
+ * is an error message.
+ *
+ * Because of this, LabeledField works best with field components that accept
+ * `error` and `required` props since these props will get auto-populated by
+ * LabeledField.
  */
 export const Fields: StoryComponentType = {
     args: {
         description: "Helpful description text.",
     },
-    render: AllFields,
-};
-
-/**
- * The `errorMessage` prop can be used to define the error message to show for
- * the field.
- *
- * It will also put the field component in an error state by
- * auto-populating the field's `error` prop depending on if there is an error
- * message.
- */
-export const Error: StoryComponentType = {
-    args: {
-        description: "Helpful description text.",
-        errorMessage: "Message about the error",
+    render: (args) => {
+        return (
+            <View style={{gap: sizing.size_240}}>
+                <AllFields {...args} />
+                <AllFields {...args} errorMessage="Message about the error" />
+            </View>
+        );
     },
-    render: AllFields,
+    parameters: {
+        chromatic: {
+            // Keep snapshots enabled for this story because it shows all the fields
+            // with LabeledField
+            disableSnapshot: false,
+            modes: {
+                default: allModes.themeDefault,
+                thunderblocks: allModes.themeThunderBlocks,
+            },
+        },
+    },
 };
 
 /**
@@ -389,12 +390,6 @@ export const Required: AllFieldsStoryComponentType = {
         showSubmitButtonInStory: true,
     },
     render: AllFields,
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -417,49 +412,37 @@ export const Validation: AllFieldsStoryComponentType = {
         showSubmitButtonInStory: true,
     },
     render: AllFields,
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
  * When this story is used with a screen reader, any updates to an existing
  * error message will be announced.
  */
-export const ChangingErrors: StoryComponentType = () => {
-    const errorMsg1 = "First error message";
-    const errorMsg2 = "Second error message";
+export const ChangingErrors: StoryComponentType = {
+    render: function ChangingErrors() {
+        const errorMsg1 = "First error message";
+        const errorMsg2 = "Second error message";
 
-    const [errorMessage, setErrorMessage] = React.useState(errorMsg1);
+        const [errorMessage, setErrorMessage] = React.useState(errorMsg1);
 
-    return (
-        <View>
-            <LabeledField
-                label="Label"
-                field={<TextField value="" onChange={() => {}} />}
-                errorMessage={errorMessage}
-            />
-            <Strut size={spacing.small_12} />
-            <Button
-                onClick={() =>
-                    setErrorMessage(
-                        errorMessage === errorMsg1 ? errorMsg2 : errorMsg1,
-                    )
-                }
-            >
-                Change error message
-            </Button>
-        </View>
-    );
-};
-
-ChangingErrors.parameters = {
-    chromatic: {
-        // Disabling because this doesn't test anything visual.
-        disableSnapshot: true,
+        return (
+            <View style={{gap: sizing.size_120}}>
+                <LabeledField
+                    label="Label"
+                    field={<TextField value="" onChange={() => {}} />}
+                    errorMessage={errorMessage}
+                />
+                <Button
+                    onClick={() =>
+                        setErrorMessage(
+                            errorMessage === errorMsg1 ? errorMsg2 : errorMsg1,
+                        )
+                    }
+                >
+                    Change error message
+                </Button>
+            </View>
+        );
     },
 };
 
@@ -488,12 +471,6 @@ export const WithNonWb = {
         errorMessage: "Error message",
         required: true,
         field: <input type="text" />,
-    },
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
     },
 };
 
