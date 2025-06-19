@@ -92,12 +92,12 @@ export function StateSheet({
                         <View style={[styles.container]}>
                             {states.map(({className, name: stateName}) => (
                                 <View
-                                    key={name}
+                                    key={stateName}
                                     className={className}
                                     style={styles.flexStartContainer}
                                 >
                                     <LabelSmall style={styles.label}>
-                                        {name}
+                                        {stateName}
                                     </LabelSmall>
                                     <View style={styles.content}>
                                         {children({
