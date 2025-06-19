@@ -14,7 +14,7 @@ import {
 } from "../components/text-for-testing";
 
 export default {
-    title: "Packages / LabeledField / Testing / Snapshots",
+    title: "Packages / LabeledField / Testing / Snapshots / LabeledField",
     tags: ["!autodocs"],
     parameters: {
         componentSubtitle: (
