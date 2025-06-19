@@ -1,0 +1,137 @@
+import * as React from "react";
+import {Meta} from "@storybook/react";
+import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
+import packageConfig from "../../packages/wonder-blocks-labeled-field/package.json";
+import ComponentInfo from "../components/component-info";
+import {allModes} from "../../.storybook/modes";
+import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
+import {ScenariosLayout} from "../components/scenarios-layout";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {TextField} from "@khanacademy/wonder-blocks-form";
+import {
+    longText,
+    longTextWithNoWordBreak,
+} from "../components/text-for-testing";
+
+export default {
+    title: "Packages / LabeledField / Testing / Snapshots",
+    parameters: {
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
+        chromatic: {
+            modes: {
+                default: allModes.themeDefault,
+                thunderblocks: allModes.themeThunderBlocks,
+            },
+        },
+    },
+} as Meta<typeof LabeledField>;
+
+const scenarios = [
+    {
+        name: "Label only",
+        props: {
+            label: "Label only",
+        },
+    },
+    {
+        name: "With description",
+        props: {
+            label: "With description",
+            description: "Description",
+        },
+    },
+    {
+        name: "With error",
+        props: {
+            label: "With error",
+            errorMessage: "Message about the error",
+            field: (
+                <TextField
+                    value="invalid value"
+                    onChange={() => {}}
+                    validate={() => "Message about the error"}
+                />
+            ),
+        },
+    },
+    {
+        name: "With description and error",
+        props: {
+            label: "With description and error",
+            description: "Description",
+            errorMessage: "Message about the error",
+            field: (
+                <TextField
+                    value="invalid value"
+                    onChange={() => {}}
+                    validate={() => "Message about the error"}
+                />
+            ),
+        },
+    },
+    {
+        name: "With long text",
+        props: {
+            required: true,
+            label: longText,
+            errorMessage: longText,
+            description: longText,
+            field: (
+                <TextField
+                    value="invalid value"
+                    onChange={() => {}}
+                    validate={() => "Message about the error"}
+                />
+            ),
+        },
+    },
+    {
+        name: "With long text and no word break",
+        props: {
+            required: true,
+            label: longTextWithNoWordBreak,
+            errorMessage: longTextWithNoWordBreak,
+            description: longTextWithNoWordBreak,
+            field: (
+                <TextField
+                    value="invalid value"
+                    onChange={() => {}}
+                    validate={() => "Message about the error"}
+                />
+            ),
+        },
+    },
+];
+
+/**
+ * The following story shows what the LabeledField looks like when different
+ * props are set.
+ */
+export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
+    const [textFieldValue, setTextFieldValue] = React.useState("");
+    return (
+        <View style={{gap: sizing.size_240}}>
+            <ScenariosLayout
+                scenarios={scenarios}
+                styles={{root: {alignItems: "stretch"}}}
+            >
+                {(props) => (
+                    <LabeledField
+                        field={
+                            <TextField
+                                value={textFieldValue}
+                                onChange={setTextFieldValue}
+                            />
+                        }
+                        {...props}
+                    />
+                )}
+            </ScenariosLayout>
+        </View>
+    );
+};
