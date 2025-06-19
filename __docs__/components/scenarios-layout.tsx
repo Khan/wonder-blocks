@@ -1,13 +1,16 @@
 import React from "react";
 import type {StrictArgs} from "@storybook/react";
 import {StyleSheet} from "aphrodite";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleType, View} from "@khanacademy/wonder-blocks-core";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 type Props = {
     scenarios: {name: string; props: StrictArgs}[];
     children: (props: any, name: string) => React.ReactNode;
+    styles?: {
+        root?: StyleType;
+    };
 };
 
 /**
@@ -16,9 +19,9 @@ type Props = {
  * Normally, ScenariosLayout is used for different cases at rest state.
  */
 export const ScenariosLayout = (props: Props) => {
-    const {scenarios, children} = props;
+    const {scenarios, children, styles: stylesProp} = props;
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, stylesProp?.root]}>
             {scenarios.map((scenario) => {
                 return (
                     <View key={scenario.name} style={styles.scenario}>
