@@ -31,10 +31,7 @@ export const generateTabs = (
 };
 
 export function ControlledTabs(
-    props: Omit<
-        PropsFor<typeof Tabs>,
-        "onTabSelected" | "aria-labelledby" | "aria-label"
-    >,
+    props: Omit<PropsFor<typeof Tabs>, "onTabSelected" | "aria-labelledby">,
 ) {
     const [selectedTabId, setSelectedTabId] = React.useState(
         props.selectedTabId,
@@ -43,7 +40,7 @@ export function ControlledTabs(
     return (
         <Tabs
             {...props}
-            aria-label="Controlled tabs"
+            aria-label={props["aria-label"] ?? "Controlled tabs"}
             selectedTabId={selectedTabId}
             onTabSelected={setSelectedTabId}
             tabs={props.tabs}

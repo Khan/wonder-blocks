@@ -174,10 +174,20 @@ const generateStateSheet = (
 ) => {
     return (
         <View>
-            <StateSheet rows={rows} columns={columns} title="" layout={layout}>
+            <StateSheet
+                rows={rows}
+                columns={columns}
+                title="States"
+                layout={layout}
+            >
                 {({props, name, className}) => (
                     <View className={className}>
-                        <Tabs {...args} {...props} key={name} />
+                        <Tabs
+                            {...args}
+                            {...props}
+                            key={name}
+                            aria-label={name}
+                        />
                     </View>
                 )}
             </StateSheet>
@@ -185,12 +195,17 @@ const generateStateSheet = (
                 <StateSheet
                     rows={rtlRows}
                     columns={columns}
-                    title=""
+                    title="States"
                     layout={layout}
                 >
                     {({props, name, className}) => (
                         <View className={className}>
-                            <Tabs {...args} {...props} key={name} />
+                            <Tabs
+                                {...args}
+                                {...props}
+                                key={name}
+                                aria-label={name}
+                            />
                         </View>
                     )}
                 </StateSheet>
@@ -218,6 +233,10 @@ export const Zoom: Story = {
     },
     parameters: {
         pseudo: defaultPseudoStates,
+        chromatic: {
+            // This story at zoom produces inconsistent Chromatic snapshots. Disabling for now
+            disableSnapshot: true,
+        },
     },
 };
 
@@ -334,7 +353,9 @@ export const Scenarios: Story = {
     render: (args) => {
         return (
             <ScenariosLayout scenarios={scenarios}>
-                {(props) => <ControlledTabs {...args} {...props} />}
+                {(props, name) => (
+                    <ControlledTabs {...args} {...props} aria-label={name} />
+                )}
             </ScenariosLayout>
         );
     },
