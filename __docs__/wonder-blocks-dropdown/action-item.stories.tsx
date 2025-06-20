@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {ActionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
@@ -28,7 +28,7 @@ const defaultArgs = {
 const styles = StyleSheet.create({
     example: {
         background: semanticColor.surface.secondary,
-        padding: spacing.medium_16,
+        padding: sizing.size_160,
         width: 300,
     },
     items: {

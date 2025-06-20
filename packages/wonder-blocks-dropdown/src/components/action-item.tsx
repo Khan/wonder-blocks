@@ -2,12 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {CompactCell} from "@khanacademy/wonder-blocks-cell";
-import {
-    border,
-    semanticColor,
-    sizing,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import type {PropsFor, StyleType} from "@khanacademy/wonder-blocks-core";
@@ -218,6 +213,6 @@ const styles = StyleSheet.create({
 
     indent: {
         // Cell's internal padding + checkbox width + checkbox margin
-        paddingLeft: spacing.medium_16 * 2,
+        paddingInlineStart: sizing.size_320,
     },
 });

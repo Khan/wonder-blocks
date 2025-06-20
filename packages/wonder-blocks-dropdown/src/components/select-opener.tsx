@@ -6,11 +6,7 @@ import {keys, type AriaProps} from "@khanacademy/wonder-blocks-core";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
-import {
-    border,
-    semanticColor,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import caretDownIcon from "@phosphor-icons/core/bold/caret-down-bold.svg";
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
 import {OptionLabel} from "../util/types";
@@ -210,8 +206,8 @@ const styles = StyleSheet.create({
         // This asymmetry arises from the Icon on the right side, which has
         // extra padding built in. To have the component look more balanced,
         // we need to take off some paddingRight here.
-        paddingLeft: spacing.medium_16,
-        paddingRight: spacing.small_12,
+        paddingInlineStart: sizing.size_160,
+        paddingInlineEnd: sizing.size_120,
         borderWidth: 0,
         borderRadius: border.radius.radius_040,
         borderStyle: "solid",
@@ -225,7 +221,7 @@ const styles = StyleSheet.create({
     },
 
     text: {
-        marginRight: spacing.xSmall_8,
+        marginInlineEnd: sizing.size_080,
         whiteSpace: "nowrap",
         userSelect: "none",
         overflow: "hidden",
@@ -299,8 +295,8 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
                 ":hover:not([aria-disabled=true])": {
                     borderColor: currentState.border,
                     borderWidth: border.width.thin,
-                    paddingLeft: spacing.medium_16,
-                    paddingRight: spacing.small_12,
+                    paddingInlineStart: sizing.size_160,
+                    paddingInlineEnd: sizing.size_120,
                 },
             },
             ":focus-visible:not([aria-disabled=true])": focusStyling,
