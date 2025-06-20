@@ -2,20 +2,13 @@ import * as React from "react";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
-import {
-    ThemedStylesFn,
-    useScopedTheme,
-    useStyles,
-} from "@khanacademy/wonder-blocks-theming";
 import {actionStyles, focusStyles} from "@khanacademy/wonder-blocks-styles";
+import {StyleSheet} from "aphrodite";
 import ModalContent from "./modal-content";
 import ModalHeader from "./modal-header";
 import ModalFooter from "./modal-footer";
 import CloseButton from "./close-button";
-import {
-    ModalDialogThemeContext,
-    ModalDialogThemeContract,
-} from "../themes/themed-modal-dialog";
+import theme from "../theme";
 
 type Props = {
     /**
@@ -99,9 +92,6 @@ export default function ModalPanel({
     style,
     testId,
 }: Props) {
-    const {theme} = useScopedTheme(ModalDialogThemeContext);
-    const styles = useStyles(themedStylesFn, theme);
-
     const renderMainContent = React.useCallback((): React.ReactNode => {
         const mainContent = ModalContent.isComponentOf(content) ? (
             (content as React.ReactElement<PropsFor<typeof ModalContent>>)
@@ -122,7 +112,7 @@ export default function ModalPanel({
             // know about things being positioned around it.
             style: [!!footer && styles.hasFooter, mainContent.props.style],
         });
-    }, [content, footer, scrollOverflow, styles.hasFooter]);
+    }, [content, footer, scrollOverflow]);
 
     const mainContent = renderMainContent();
 
@@ -160,7 +150,7 @@ ModalPanel.defaultProps = {
     light: true,
 };
 
-const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
+const styles = StyleSheet.create({
     wrapper: {
         flex: "1 1 auto",
         position: "relative",
@@ -184,9 +174,7 @@ const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
         // NOTE: IconButton uses :focus-visible, which is not supported for
         // programmatic focus. This is a workaround to make sure the focus
         // outline is visible when this control is focused.
-        ":focus": {
-            ...focusStyles.focus[":focus-visible"],
-        },
+        ":focus": focusStyles.focus[":focus-visible"],
     },
 
     dark: {
