@@ -1,5 +1,5 @@
 import * as React from "react";
-import xIcon from "@phosphor-icons/core/regular/x.svg";
+import xIcon from "@phosphor-icons/core/bold/x-bold.svg";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 

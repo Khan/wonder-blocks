@@ -8,7 +8,7 @@ import {
 } from "@khanacademy/wonder-blocks-breadcrumbs";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
-import {Body} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {
     ModalDialog,
@@ -47,12 +47,12 @@ const customViewports = {
 
 const longBody = (
     <>
-        <Body>
+        <BodyText>
             {`Let's make this body content long in order
 to test scroll overflow.`}
-        </Body>
+        </BodyText>
         <br />
-        <Body>
+        <BodyText>
             {`Lorem ipsum dolor sit amet, consectetur
 adipiscing elit, sed do eiusmod tempor incididunt
 ut labore et dolore magna aliqua. Ut enim ad minim
@@ -63,9 +63,9 @@ esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident,
 sunt in culpa qui officia deserunt mollit anim id
 est.`}
-        </Body>
+        </BodyText>
         <br />
-        <Body>
+        <BodyText>
             {`Lorem ipsum dolor sit amet, consectetur
 adipiscing elit, sed do eiusmod tempor incididunt
 ut labore et dolore magna aliqua. Ut enim ad minim
@@ -76,9 +76,9 @@ esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident,
 sunt in culpa qui officia deserunt mollit anim id
 est.`}
-        </Body>
+        </BodyText>
         <br />
-        <Body>
+        <BodyText>
             {`Lorem ipsum dolor sit amet, consectetur
 adipiscing elit, sed do eiusmod tempor incididunt
 ut labore et dolore magna aliqua. Ut enim ad minim
@@ -89,7 +89,7 @@ esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident,
 sunt in culpa qui officia deserunt mollit anim id
 est.`}
-        </Body>
+        </BodyText>
     </>
 );
 

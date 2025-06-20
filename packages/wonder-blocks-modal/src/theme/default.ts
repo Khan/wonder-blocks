@@ -1,4 +1,4 @@
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {border, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 const theme = {
     /**
@@ -13,38 +13,52 @@ const theme = {
      * Building blocks
      */
     dialog: {
-        spacing: {
+        layout: {
             padding: sizing.size_160,
         },
-    },
-    footer: {
-        color: {
-            border: semanticColor.core.border.neutral.subtle,
+        shadow: {
+            default: "none",
         },
     },
     header: {
-        color: {
-            border: semanticColor.core.border.neutral.subtle,
-            secondary: semanticColor.text.secondary,
-        },
-        spacing: {
-            paddingBlockMd: sizing.size_240,
-            paddingInlineMd: sizing.size_320,
-            paddingInlineSm: sizing.size_160,
-            gap: sizing.size_080,
-            // The space between the title and dismiss button.
-            titleGapMd: sizing.size_160,
-            titleGapSm: sizing.size_320,
+        layout: {
+            padding: {
+                block: sizing.size_240,
+                inline: {
+                    default: sizing.size_320,
+                    small: sizing.size_160,
+                },
+            },
+            gap: {
+                default: sizing.size_080,
+                // The space between the title and dismiss button.
+                title: {
+                    default: sizing.size_160,
+                    small: sizing.size_320,
+                },
+            },
         },
     },
     panel: {
-        spacing: {
-            gap: sizing.size_320,
+        layout: {
+            gap: {
+                default: sizing.size_320,
+                small: sizing.size_160,
+            },
+        },
+    },
+    footer: {
+        layout: {
+            padding: {
+                inline: sizing.size_160,
+                block: sizing.size_080,
+            },
         },
     },
     closeButton: {
-        spacing: {
-            gap: sizing.size_080,
+        layout: {
+            gapRight: sizing.size_080,
+            gapTop: sizing.size_080,
         },
     },
 };

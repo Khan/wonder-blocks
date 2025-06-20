@@ -4,9 +4,8 @@ import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
-import {Body, LabelLarge, Title} from "@khanacademy/wonder-blocks-typography";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 
 import {
     ModalDialog,
@@ -44,12 +43,12 @@ const customViewports = {
 
 const longBody = (
     <>
-        <Body>
+        <BodyText>
             {`Let's make this body content long in order
 to test scroll overflow.`}
-        </Body>
+        </BodyText>
         <br />
-        <Body>
+        <BodyText>
             {`Lorem ipsum dolor sit amet, consectetur
 adipiscing elit, sed do eiusmod tempor incididunt
 ut labore et dolore magna aliqua. Ut enim ad minim
@@ -60,9 +59,9 @@ esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident,
 sunt in culpa qui officia deserunt mollit anim id
 est.`}
-        </Body>
+        </BodyText>
         <br />
-        <Body>
+        <BodyText>
             {`Lorem ipsum dolor sit amet, consectetur
 adipiscing elit, sed do eiusmod tempor incididunt
 ut labore et dolore magna aliqua. Ut enim ad minim
@@ -73,9 +72,9 @@ esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident,
 sunt in culpa qui officia deserunt mollit anim id
 est.`}
-        </Body>
+        </BodyText>
         <br />
-        <Body>
+        <BodyText>
             {`Lorem ipsum dolor sit amet, consectetur
 adipiscing elit, sed do eiusmod tempor incididunt
 ut labore et dolore magna aliqua. Ut enim ad minim
@@ -86,7 +85,7 @@ esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident,
 sunt in culpa qui officia deserunt mollit anim id
 est.`}
-        </Body>
+        </BodyText>
     </>
 );
 
@@ -164,11 +163,12 @@ export const Default: StoryComponentType = {
         <ModalDialog aria-labelledby={"modal-id-0"} style={styles.dialog}>
             <ModalPanel
                 content={
-                    <>
-                        <Title id="modal-id-0">Modal Title</Title>
-                        <Strut size={spacing.large_24} />
+                    <View style={{gap: sizing.size_240}}>
+                        <Heading size="xxlarge" id="modal-id-0">
+                            Modal Heading
+                        </Heading>
                         {longBody}
-                    </>
+                    </View>
                 }
                 footer={<ModalFooter {...args} />}
             />
@@ -185,11 +185,12 @@ export const WithButton: StoryComponentType = {
         <ModalDialog aria-labelledby={"modal-id-2"} style={styles.dialog}>
             <ModalPanel
                 content={
-                    <>
-                        <Title id="modal-id-2">Modal Title</Title>
-                        <Strut size={spacing.large_24} />
+                    <View style={{gap: sizing.size_240}}>
+                        <Heading size="xxlarge" id="modal-id-2">
+                            Modal Heading
+                        </Heading>
                         {longBody}
-                    </>
+                    </View>
                 }
                 footer={
                     <ModalFooter>
@@ -212,10 +213,10 @@ export const WithThreeActions: StoryComponentType = {
 
         const buttonStyle = {
             [desktop]: {
-                marginRight: spacing.medium_16,
+                marginInlineEnd: sizing.size_160,
             },
             [mobile]: {
-                marginBottom: spacing.medium_16,
+                marginBlockEnd: sizing.size_160,
             },
         } as const;
 
@@ -234,11 +235,12 @@ export const WithThreeActions: StoryComponentType = {
             <ModalDialog aria-labelledby={"modal-id-3"} style={styles.dialog}>
                 <ModalPanel
                     content={
-                        <>
-                            <Title id="modal-id-3">Modal Title</Title>
-                            <Strut size={spacing.large_24} />
+                        <View style={{gap: sizing.size_240}}>
+                            <Heading size="xxlarge" id="modal-id-3">
+                                Modal Heading
+                            </Heading>
                             {longBody}
-                        </>
+                        </View>
                     }
                     footer={
                         <ModalFooter>
@@ -276,25 +278,26 @@ export const WithMultipleActions: StoryComponentType = {
         const rowStyle = {
             flexDirection: "row",
             justifyContent: "flex-end",
+            gap: sizing.size_160,
         } as const;
 
         return (
             <ModalDialog aria-labelledby={"modal-id-4"} style={styles.dialog}>
                 <ModalPanel
                     content={
-                        <>
-                            <Title id="modal-id-4">Modal Title</Title>
-                            <Strut size={spacing.large_24} />
-                            {longBody}
-                        </>
+                        <View style={{gap: sizing.size_240}}>
+                            <Heading size="xxlarge" id="modal-id-4">
+                                Modal Heading
+                            </Heading>
+                            <BodyText>Here is some text in the modal.</BodyText>
+                        </View>
                     }
                     footer={
                         <ModalFooter>
                             <View style={footerStyle}>
-                                <LabelLarge>Step 1 of 4</LabelLarge>
+                                <BodyText weight="bold">Step 1 of 4</BodyText>
                                 <View style={rowStyle}>
                                     <Button kind="tertiary">Previous</Button>
-                                    <Strut size={16} />
                                     <Button kind="primary">Next</Button>
                                 </View>
                             </View>

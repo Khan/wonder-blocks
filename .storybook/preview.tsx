@@ -9,6 +9,7 @@ import Link from "@khanacademy/wonder-blocks-link";
 import {
     ThemeSwitcherContext,
     ThemeSwitcher,
+    THEME_DATA_ATTRIBUTE,
 } from "@khanacademy/wonder-blocks-theming";
 import {Preview} from "@storybook/react";
 
@@ -132,6 +133,13 @@ const withThemeSwitcher: Decorator = (
     Story,
     {globals: {theme}, parameters: {enableRenderStateRootDecorator}},
 ) => {
+    React.useEffect(() => {
+        if (theme) {
+            // Switch the body class based on the theme.
+            document.body.setAttribute(THEME_DATA_ATTRIBUTE, theme);
+        }
+    }, [theme]);
+
     if (enableRenderStateRootDecorator) {
         return (
             <RenderStateRoot>
@@ -143,6 +151,7 @@ const withThemeSwitcher: Decorator = (
             </RenderStateRoot>
         );
     }
+
     return (
         <ThemeSwitcherContext.Provider value={theme}>
             <ThemeSwitcher theme={theme}>

@@ -10,14 +10,8 @@ import {
     RadioGroup,
     Choice,
 } from "@khanacademy/wonder-blocks-form";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
-import {
-    Body,
-    HeadingSmall,
-    LabelLarge,
-    Title,
-} from "@khanacademy/wonder-blocks-typography";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 
 import {
     ModalDialog,
@@ -62,7 +56,7 @@ const DefaultModal = (): ModalElement => (
         title="Single-line title"
         content={
             <View>
-                <Body>
+                <BodyText>
                     {`Lorem ipsum dolor sit amet, consectetur
                     adipiscing elit, sed do eiusmod tempor incididunt
                     ut labore et dolore magna aliqua. Ut enim ad minim
@@ -73,7 +67,7 @@ const DefaultModal = (): ModalElement => (
                     Excepteur sint occaecat cupidatat non proident,
                     sunt in culpa qui officia deserunt mollit anim id
                     est.`}
-                </Body>
+                </BodyText>
             </View>
         }
     />
@@ -174,7 +168,7 @@ export const WithCustomCloseButton: StoryComponentType = () => {
             title="Single-line title"
             content={
                 <View>
-                    <Body>
+                    <BodyText>
                         {`Lorem ipsum dolor sit amet, consectetur
                         adipiscing elit, sed do eiusmod tempor incididunt
                         ut labore et dolore magna aliqua. Ut enim ad minim
@@ -185,7 +179,7 @@ export const WithCustomCloseButton: StoryComponentType = () => {
                         Excepteur sint occaecat cupidatat non proident,
                         sunt in culpa qui officia deserunt mollit anim id
                         est.`}
-                    </Body>
+                    </BodyText>
                 </View>
             }
             // No "X" close button in the top right corner
@@ -273,7 +267,7 @@ export const TriggeringProgrammatically: StoryComponentType = () => {
                         title="Triggered from action menu"
                         content={
                             <View>
-                                <Title>Hello, world</Title>
+                                <Heading size="xxlarge">Hello, world</Heading>
                             </View>
                         }
                         footer={
@@ -375,29 +369,27 @@ export const WithInitialFocusId: StoryComponentType = () => {
         <OnePaneDialog
             title="Single-line title"
             content={
-                <>
+                <View style={{gap: sizing.size_240}}>
                     <LabeledTextField
                         label="Label"
                         value={value}
                         onChange={setValue}
                     />
-                    <Strut size={spacing.large_24} />
                     <LabeledTextField
                         label="Label 2"
                         value={value2}
                         onChange={setValue2}
                         id="text-field-to-be-focused"
                     />
-                </>
+                </View>
             }
             footer={
-                <>
+                <View style={styles.row}>
                     <Button kind="tertiary" onClick={closeModal}>
                         Cancel
                     </Button>
-                    <Strut size={spacing.medium_16} />
                     <Button onClick={closeModal}>Submit</Button>
-                </>
+                </View>
             }
         />
     );
@@ -442,16 +434,16 @@ const SubModal = () => (
     <OnePaneDialog
         title="Submodal"
         content={
-            <View style={{gap: spacing.medium_16}}>
-                <Body>
+            <View style={{gap: sizing.size_160}}>
+                <BodyText>
                     This modal demonstrates how the focus trap works when a
                     modal is opened from another modal.
-                </Body>
-                <Body>
+                </BodyText>
+                <BodyText>
                     Try navigating this modal with the keyboard and then close
                     it. The focus should be restored to the button that opened
                     the modal.
-                </Body>
+                </BodyText>
                 <LabeledTextField label="Label" value="" onChange={() => {}} />
                 <Button>A focusable element</Button>
             </View>
@@ -468,14 +460,13 @@ export const FocusTrap: StoryComponentType = () => {
             title="Testing the focus trap on multiple modals"
             closeButtonVisible={false}
             content={
-                <>
-                    <Body id="focus-trap-story-body-text">
+                <View style={{gap: sizing.size_240}}>
+                    <BodyText id="focus-trap-story-body-text">
                         This modal demonstrates how the focus trap works with
                         form elements (or focusable elements). Also demonstrates
                         how the focus trap is moved to the next modal when it is
                         opened (focus/tap on the `Open another modal` button).
-                    </Body>
-                    <Strut size={spacing.large_24} />
+                    </BodyText>
                     <RadioGroup
                         label="A RadioGroup component inside a modal"
                         description="Some description"
@@ -486,10 +477,10 @@ export const FocusTrap: StoryComponentType = () => {
                         <Choice label="Choice 1" value="some-choice-value" />
                         <Choice label="Choice 2" value="some-choice-value-2" />
                     </RadioGroup>
-                </>
+                </View>
             }
             footer={
-                <>
+                <View style={styles.row}>
                     <ModalLauncher modal={SubModal}>
                         {({openModal}) => (
                             <Button kind="secondary" onClick={openModal}>
@@ -497,11 +488,11 @@ export const FocusTrap: StoryComponentType = () => {
                             </Button>
                         )}
                     </ModalLauncher>
-                    <Strut size={spacing.medium_16} />
+
                     <Button onClick={closeModal} disabled={!selectedValue}>
                         Next
                     </Button>
-                </>
+                </View>
             }
             aria-describedby="focus-trap-story-body-text"
         />
@@ -547,6 +538,7 @@ const styles = StyleSheet.create({
     },
     row: {
         flexDirection: "row",
+        gap: sizing.size_160,
     },
 });
 
@@ -588,7 +580,7 @@ export const CreatingACustomModal: StoryComponentType = {
                     style={{maxWidth: 423}}
                     closeButtonVisible={true}
                     content={
-                        <>
+                        <View style={{gap: sizing.size_240}}>
                             <StyledImg
                                 src="./km-ready.svg"
                                 alt="An illustration a bubble with Khanmigo inside."
@@ -598,22 +590,19 @@ export const CreatingACustomModal: StoryComponentType = {
                                     // This is to ensure that the image is
                                     // aligned to the top left corner of the
                                     // dialog.
-                                    marginLeft: -spacing.xLarge_32,
-                                    marginTop: -spacing.xLarge_32,
+                                    marginInlineStart: `calc(${sizing.size_320} * -1)`,
+                                    marginBlockStart: `calc(${sizing.size_320} * -1)`,
                                 }}
                             />
-                            <Strut size={spacing.large_24} />
-                            <HeadingSmall id="ready-dialog-title">
+                            <Heading size="medium" id="ready-dialog-title">
                                 Hi, I’m Khanmigo!
-                            </HeadingSmall>
-                            <Strut size={spacing.xSmall_8} />
-                            <Body>
+                            </Heading>
+                            <BodyText>
                                 I’m your new AI-powered assistant, tutor, and
                                 all around cheerleader to help you power up your
                                 learning journey. Let’s take a look around
                                 together!
-                            </Body>
-                            <Strut size={spacing.large_24} />
+                            </BodyText>
                             {/* Footer */}
                             <View
                                 style={{
@@ -623,12 +612,12 @@ export const CreatingACustomModal: StoryComponentType = {
                                     alignItems: "center",
                                 }}
                             >
-                                <LabelLarge>Step 1 of 4</LabelLarge>
+                                <BodyText weight="bold">Step 1 of 4</BodyText>
                                 <Button kind="primary" onClick={closeModal}>
                                     Next
                                 </Button>
                             </View>
-                        </>
+                        </View>
                     }
                 />
             </ModalDialog>

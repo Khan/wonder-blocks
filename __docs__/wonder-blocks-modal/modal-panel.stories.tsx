@@ -4,13 +4,8 @@ import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {
-    border,
-    semanticColor,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
-import {Body, Title} from "@khanacademy/wonder-blocks-typography";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 
 import {
     ModalDialog,
@@ -49,12 +44,12 @@ const customViewports = {
 
 const longBody = (
     <>
-        <Body>
+        <BodyText>
             {`Let's make this body content long in order
 to test scroll overflow.`}
-        </Body>
+        </BodyText>
         <br />
-        <Body>
+        <BodyText>
             {`Lorem ipsum dolor sit amet, consectetur
 adipiscing elit, sed do eiusmod tempor incididunt
 ut labore et dolore magna aliqua. Ut enim ad minim
@@ -65,9 +60,9 @@ esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident,
 sunt in culpa qui officia deserunt mollit anim id
 est.`}
-        </Body>
+        </BodyText>
         <br />
-        <Body>
+        <BodyText>
             {`Lorem ipsum dolor sit amet, consectetur
 adipiscing elit, sed do eiusmod tempor incididunt
 ut labore et dolore magna aliqua. Ut enim ad minim
@@ -78,9 +73,9 @@ esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident,
 sunt in culpa qui officia deserunt mollit anim id
 est.`}
-        </Body>
+        </BodyText>
         <br />
-        <Body>
+        <BodyText>
             {`Lorem ipsum dolor sit amet, consectetur
 adipiscing elit, sed do eiusmod tempor incididunt
 ut labore et dolore magna aliqua. Ut enim ad minim
@@ -91,7 +86,7 @@ esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident,
 sunt in culpa qui officia deserunt mollit anim id
 est.`}
-        </Body>
+        </BodyText>
     </>
 );
 
@@ -171,11 +166,12 @@ export const Default: StoryComponentType = {
             <ModalPanel
                 {...args}
                 content={
-                    <>
-                        <Title id="modal-title-0">Modal Title</Title>
-                        <Strut size={spacing.large_24} />
+                    <View style={styles.content}>
+                        <Heading size="xxlarge" id="modal-title-0">
+                            Modal Title
+                        </Heading>
                         {longBody}
-                    </>
+                    </View>
                 }
             />
         </ModalDialog>
@@ -209,11 +205,12 @@ export const WithFooter: StoryComponentType = {
         <ModalDialog aria-labelledby="modal-title-3" style={styles.dialog}>
             <ModalPanel
                 content={
-                    <>
-                        <Title id="modal-title-3">Modal Title</Title>
-                        <Strut size={spacing.large_24} />
+                    <View style={styles.content}>
+                        <Heading size="xxlarge" id="modal-title-3">
+                            Modal Title
+                        </Heading>
                         {longBody}
-                    </>
+                    </View>
                 }
                 footer={
                     <ModalFooter>
@@ -270,31 +267,30 @@ export const TwoPanels: StoryComponentType = {
                 <View style={panelGroupStyle}>
                     <ModalPanel
                         content={
-                            <View>
-                                <Title id="sidebar-title-id">Sidebar</Title>
-                                <Strut size={spacing.large_24} />
-                                <Body>
+                            <View style={styles.content}>
+                                <Heading size="xxlarge" id="sidebar-title-id">
+                                    Sidebar
+                                </Heading>
+                                <BodyText>
                                     Lorem ipsum dolor sit amet, consectetur
                                     adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua.
                                     Ut enim ad minim veniam, quis nostrud
                                     exercitation ullamco laboris.
-                                </Body>
+                                </BodyText>
                             </View>
                         }
                         closeButtonVisible={false}
                     />
                     <ModalPanel
                         content={
-                            <View>
-                                <Title>Contents</Title>
-                                <Strut size={spacing.large_24} />
-                                <Body>
+                            <View style={styles.content}>
+                                <Heading size="xxlarge">Contents</Heading>
+                                <BodyText>
                                     Lorem ipsum dolor sit amet, consectetur
                                     adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua.
-                                </Body>
-                                <Strut size={spacing.large_24} />
+                                </BodyText>
                                 <Button>Primary action</Button>
                             </View>
                         }
@@ -365,5 +361,8 @@ const styles = StyleSheet.create({
     example: {
         alignItems: "center",
         justifyContent: "center",
+    },
+    content: {
+        gap: sizing.size_240,
     },
 });

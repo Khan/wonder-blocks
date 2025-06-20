@@ -4,6 +4,7 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {StyleSheet} from "aphrodite";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import ModalContent from "./modal-content";
 import ModalHeader from "./modal-header";
 import ModalFooter from "./modal-footer";
@@ -141,10 +142,8 @@ ModalPanel.defaultProps = {
 const styles = StyleSheet.create({
     wrapper: {
         flex: "1 1 auto",
-        position: "relative",
-        display: "flex",
         flexDirection: "column",
-        background: "white",
+        background: semanticColor.surface.primary,
         boxSizing: "border-box",
         overflow: "hidden",
         height: "100%",
@@ -153,8 +152,8 @@ const styles = StyleSheet.create({
 
     closeButton: {
         position: "absolute",
-        right: theme.closeButton.spacing.gap,
-        top: theme.closeButton.spacing.gap,
+        right: theme.closeButton.layout.gapRight,
+        top: theme.closeButton.layout.gapTop,
         // This is to allow the button to be tab-ordered before the modal
         // content but still be above the header and content.
         zIndex: 1,
@@ -167,6 +166,6 @@ const styles = StyleSheet.create({
 
     hasFooter: {
         // The space between the content and the footer
-        paddingBlockEnd: theme.panel.spacing.gap,
+        paddingBlockEnd: theme.panel.layout.gap.default,
     },
 });

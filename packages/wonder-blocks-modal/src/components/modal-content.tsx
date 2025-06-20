@@ -1,9 +1,9 @@
 import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {StyleSheet} from "aphrodite";
+import theme from "../theme";
 
 type Props = {
     /** Should the content scroll on overflow, or just expand. */
@@ -56,10 +56,10 @@ const styles = StyleSheet.create({
     content: {
         flex: 1,
         minHeight: "100%",
-        padding: sizing.size_320,
+        padding: theme.panel.layout.gap.default,
         boxSizing: "border-box",
         [small]: {
-            paddingInline: sizing.size_160,
+            paddingInline: theme.panel.layout.gap.small,
         },
     },
 });
