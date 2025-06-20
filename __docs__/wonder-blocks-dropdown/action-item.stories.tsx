@@ -10,7 +10,7 @@ import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import actionItemArgtypes from "./action-item.argtypes";
-import {LabelLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 const defaultArgs = {
     label: "Action Item",
@@ -146,8 +146,8 @@ export const CustomActionItemMultiLine = {
     args: {
         label: (
             <View>
-                <LabelLarge>Title</LabelLarge>
-                <LabelMedium>Subtitle</LabelMedium>
+                <BodyText weight="bold">Title</BodyText>
+                <BodyText>Subtitle</BodyText>
             </View>
         ),
         onClick: () => {},

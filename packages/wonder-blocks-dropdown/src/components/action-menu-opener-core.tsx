@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
@@ -64,7 +64,9 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
         ];
 
         const label = (
-            <LabelLarge style={sharedStyles.text}>{children}</LabelLarge>
+            <BodyText weight="bold" style={sharedStyles.text}>
+                {children}
+            </BodyText>
         );
 
         return (
@@ -154,7 +156,6 @@ const sharedStyles = StyleSheet.create({
         textAlign: "left",
         display: "inline-block",
         alignItems: "center",
-        fontWeight: "bold",
         userSelect: "none",
         whiteSpace: "nowrap",
         overflow: "hidden",

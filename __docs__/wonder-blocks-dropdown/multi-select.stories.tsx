@@ -8,7 +8,7 @@ import Button from "@khanacademy/wonder-blocks-button";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
+import {Heading} from "@khanacademy/wonder-blocks-typography";
 import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import Pill from "@khanacademy/wonder-blocks-pill";
 import type {LabelsValues} from "@khanacademy/wonder-blocks-dropdown";
@@ -669,7 +669,8 @@ export const CustomOpener: StoryComponentType = {
             );
 
             return (
-                <HeadingLarge
+                <Heading
+                    size="xlarge"
                     onClick={() => {
                         // eslint-disable-next-line no-console
                         console.log("custom click!!!!!");
@@ -683,7 +684,7 @@ export const CustomOpener: StoryComponentType = {
                 >
                     {text}
                     {opened ? ": opened" : ""}
-                </HeadingLarge>
+                </Heading>
             );
         },
     } as MultiSelectArgs,

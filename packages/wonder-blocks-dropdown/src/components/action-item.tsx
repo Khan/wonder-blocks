@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import {CompactCell} from "@khanacademy/wonder-blocks-cell";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import type {PropsFor, StyleType} from "@khanacademy/wonder-blocks-core";
 
@@ -150,9 +150,9 @@ export default class ActionItem extends React.Component<ActionProps> {
 
         const labelComponent =
             typeof label === "string" ? (
-                <LabelMedium lang={lang} style={styles.label}>
+                <BodyText lang={lang} style={styles.label}>
                     {label}
-                </LabelMedium>
+                </BodyText>
             ) : (
                 React.cloneElement(label, {
                     lang,
