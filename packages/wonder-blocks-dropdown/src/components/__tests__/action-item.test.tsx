@@ -3,7 +3,7 @@ import {render, screen} from "@testing-library/react";
 import * as ReactRouterDOM from "react-router-dom";
 import * as ReactRouterDOMV5Compat from "react-router-dom-v5-compat";
 
-import {HeadingSmall} from "@khanacademy/wonder-blocks-typography";
+import {Heading} from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import plusIcon from "@phosphor-icons/core/regular/plus.svg";
@@ -88,11 +88,7 @@ describe("ActionItem", () => {
         // Arrange
 
         // Act
-        render(
-            <ActionItem
-                label={<HeadingSmall>A heading as an item</HeadingSmall>}
-            />,
-        );
+        render(<ActionItem label={<Heading>A heading as an item</Heading>} />);
 
         // Assert
         expect(screen.getByRole("heading")).toBeInTheDocument();

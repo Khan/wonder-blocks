@@ -7,12 +7,8 @@ import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
-import {
-    border,
-    semanticColor,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
-import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {Heading} from "@khanacademy/wonder-blocks-typography";
 import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import Pill from "@khanacademy/wonder-blocks-pill";
 import type {LabelsValues} from "@khanacademy/wonder-blocks-dropdown";
@@ -29,6 +25,7 @@ import {
 } from "./option-item-examples";
 import {OpenerProps} from "../../packages/wonder-blocks-dropdown/src/util/types";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 
 type StoryComponentType = StoryObj<typeof MultiSelect>;
 
@@ -110,8 +107,8 @@ const styles = StyleSheet.create({
         overflow: "auto",
         border: "1px solid grey",
         borderRadius: border.radius.radius_040,
-        margin: spacing.xSmall_8,
-        padding: spacing.medium_16,
+        margin: sizing.size_080,
+        padding: sizing.size_160,
     },
     scrollableArea: {
         height: "200vh",
@@ -124,12 +121,9 @@ const styles = StyleSheet.create({
         borderRadius: border.radius.radius_040,
         background: semanticColor.status.warning.background,
         color: semanticColor.text.primary,
-        padding: spacing.medium_16,
+        padding: sizing.size_160,
     },
-    focused: {
-        outlineColor: semanticColor.focus.outer,
-        outlineOffset: spacing.xxxxSmall_2,
-    },
+    focused: focusStyles.focus[":focus-visible"],
     hovered: {
         textDecoration: "underline",
         cursor: "pointer",
@@ -432,7 +426,7 @@ export const Required: StoryComponentType = {
 export const ErrorFromValidation: StoryComponentType = {
     render: (args: PropsFor<typeof MultiSelect>) => {
         return (
-            <View style={{gap: spacing.large_24}}>
+            <View style={{gap: sizing.size_240}}>
                 <ControlledMultiSelect
                     {...args}
                     label="Validation example (try picking jupiter)"
@@ -548,7 +542,7 @@ export const DropdownInModal: StoryComponentType = {
  */
 export const Disabled: StoryComponentType = {
     render: () => (
-        <View style={{gap: spacing.xLarge_32}}>
+        <View style={{gap: sizing.size_320}}>
             <LabeledField
                 label="Disabled prop is set to true"
                 field={
@@ -675,7 +669,8 @@ export const CustomOpener: StoryComponentType = {
             );
 
             return (
-                <HeadingLarge
+                <Heading
+                    size="xlarge"
                     onClick={() => {
                         // eslint-disable-next-line no-console
                         console.log("custom click!!!!!");
@@ -689,7 +684,7 @@ export const CustomOpener: StoryComponentType = {
                 >
                     {text}
                     {opened ? ": opened" : ""}
-                </HeadingLarge>
+                </Heading>
             );
         },
     } as MultiSelectArgs,

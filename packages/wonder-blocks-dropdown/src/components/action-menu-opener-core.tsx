@@ -1,15 +1,10 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {
-    border,
-    semanticColor,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import type {ClickableState} from "@khanacademy/wonder-blocks-clickable";
 import caretDownIcon from "@phosphor-icons/core/bold/caret-down-bold.svg";
@@ -69,7 +64,9 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
         ];
 
         const label = (
-            <LabelLarge style={sharedStyles.text}>{children}</LabelLarge>
+            <BodyText weight="bold" style={sharedStyles.text}>
+                {children}
+            </BodyText>
         );
 
         return (
@@ -90,7 +87,6 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
                 >
                     {label}
                 </View>
-                <Strut size={spacing.xxxSmall_4} />
                 <PhosphorIcon
                     size="small"
                     color="currentColor"
@@ -147,19 +143,19 @@ const sharedStyles = StyleSheet.create({
     default: {
         background: theme.actionMenuOpener.color.default.background,
         color: theme.actionMenuOpener.color.default.foreground,
+        gap: sizing.size_040,
     },
     disabled: {
         color: theme.actionMenuOpener.color.disabled.foreground,
         cursor: "not-allowed",
     },
     small: {
-        height: spacing.xLarge_32,
+        height: sizing.size_320,
     },
     text: {
         textAlign: "left",
         display: "inline-block",
         alignItems: "center",
-        fontWeight: "bold",
         userSelect: "none",
         whiteSpace: "nowrap",
         overflow: "hidden",

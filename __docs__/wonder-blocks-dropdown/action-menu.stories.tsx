@@ -10,13 +10,8 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Pill from "@khanacademy/wonder-blocks-pill";
-import {
-    border,
-    semanticColor,
-    sizing,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {
     ActionItem,
     ActionMenu,
@@ -33,6 +28,7 @@ import type {Item} from "../../packages/wonder-blocks-dropdown/src/util/types";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
 import Button from "@khanacademy/wonder-blocks-button";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 
 const actionItems: Array<Item> = [
     <ActionItem
@@ -131,7 +127,7 @@ export default {
 const styles = StyleSheet.create({
     example: {
         background: semanticColor.surface.secondary,
-        padding: spacing.medium_16,
+        padding: sizing.size_160,
     },
     exampleExtended: {
         height: 300,
@@ -156,12 +152,9 @@ const styles = StyleSheet.create({
         borderRadius: border.radius.radius_040,
         background: semanticColor.status.warning.background,
         color: semanticColor.text.primary,
-        padding: spacing.medium_16,
+        padding: sizing.size_160,
     },
-    focused: {
-        outlineColor: semanticColor.focus.outer,
-        outlineOffset: spacing.xxxxSmall_2,
-    },
+    focused: focusStyles.focus[":focus-visible"],
     hovered: {
         textDecoration: "underline",
         cursor: "pointer",
@@ -375,7 +368,8 @@ export const CustomOpener: StoryComponentType = {
     name: "With custom opener",
     args: {
         opener: ({focused, hovered, pressed, text}: any) => (
-            <LabelLarge
+            <BodyText
+                weight="bold"
                 onClick={() => {
                     console.log("custom click!!!!!");
                 }}
@@ -389,7 +383,7 @@ export const CustomOpener: StoryComponentType = {
                 role="button"
             >
                 {text}
-            </LabelLarge>
+            </BodyText>
         ),
     } as Partial<typeof ActionMenu>,
 };
@@ -477,7 +471,7 @@ export const CustomActionItems: StoryComponentType = {
             />,
             <ActionItem
                 key="4"
-                label={<LabelLarge>User profile</LabelLarge>}
+                label={<BodyText weight="bold">User profile</BodyText>}
                 horizontalRule="full-width"
                 leftAccessory={
                     <PhosphorIcon icon={IconMappings.info} size="medium" />

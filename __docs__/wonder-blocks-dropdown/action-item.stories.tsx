@@ -4,13 +4,13 @@ import {StyleSheet} from "aphrodite";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {ActionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import actionItemArgtypes from "./action-item.argtypes";
-import {LabelLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 const defaultArgs = {
     label: "Action Item",
@@ -28,7 +28,7 @@ const defaultArgs = {
 const styles = StyleSheet.create({
     example: {
         background: semanticColor.surface.secondary,
-        padding: spacing.medium_16,
+        padding: sizing.size_160,
         width: 300,
     },
     items: {
@@ -146,8 +146,8 @@ export const CustomActionItemMultiLine = {
     args: {
         label: (
             <View>
-                <LabelLarge>Title</LabelLarge>
-                <LabelMedium>Subtitle</LabelMedium>
+                <BodyText weight="bold">Title</BodyText>
+                <BodyText>Subtitle</BodyText>
             </View>
         ),
         onClick: () => {},
