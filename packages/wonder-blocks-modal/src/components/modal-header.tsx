@@ -11,11 +11,6 @@ type Common = {
      */
     title: string;
     /**
-     * Whether to display the "light" version of this component instead, for
-     * use when the item is used on a dark background.
-     */
-    light: boolean;
-    /**
      * An id to provide a selector for the title element.
      */
     titleId: string;
@@ -75,8 +70,6 @@ type Props = Common | WithSubtitle | WithBreadcrumbs;
  * - Add a title (required).
  * - Optionally add a subtitle or breadcrumbs.
  * - We encourage you to add `titleId` (see Accessibility notes).
- * - If the `ModalPanel` has a dark background, make sure to set `light` to
- *   `false`.
  * - If you need to create e2e tests, make sure to pass a `testId` prop and
  *   add a sufix to scope the testId to this component: e.g.
  *   `some-random-id-ModalHeader`. This scope will also be passed to the title
@@ -89,7 +82,6 @@ type Props = Common | WithSubtitle | WithBreadcrumbs;
  *      title="Sidebar using ModalHeader"
  *      subtitle="subtitle"
  *      titleId="uniqueTitleId"
- *      light={false}
  *  />
  * ```
  */
@@ -97,7 +89,6 @@ export default function ModalHeader(props: Props) {
     const {
         // @ts-expect-error [FEI-5019] - TS2339 - Property 'breadcrumbs' does not exist on type 'Readonly<Props> & Readonly<{ children?: ReactNode; }>'.
         breadcrumbs = undefined,
-        light,
         // @ts-expect-error [FEI-5019] - TS2339 - Property 'subtitle' does not exist on type 'Readonly<Props> & Readonly<{ children?: ReactNode; }>'.
         subtitle = undefined,
         testId,
@@ -110,7 +101,7 @@ export default function ModalHeader(props: Props) {
     }
 
     return (
-        <View style={[styles.header, !light && styles.dark]} testId={testId}>
+        <View style={[styles.header]} testId={testId}>
             {breadcrumbs && (
                 <View style={styles.breadcrumbs}>{breadcrumbs}</View>
             )}
@@ -124,7 +115,7 @@ export default function ModalHeader(props: Props) {
             </HeadingMedium>
             {subtitle && (
                 <LabelSmall
-                    style={light && styles.subtitle}
+                    style={styles.subtitle}
                     testId={testId && `${testId}-subtitle`}
                 >
                     {subtitle}
@@ -158,11 +149,6 @@ const styles = StyleSheet.create({
         },
     },
 
-    dark: {
-        background: theme.root.color.inverse.background,
-        color: theme.root.color.inverse.foreground,
-    },
-
     breadcrumbs: {
         color: theme.header.color.secondary,
         marginBottom: theme.header.spacing.gap,
@@ -181,7 +167,3 @@ const styles = StyleSheet.create({
         marginTop: theme.header.spacing.gap,
     },
 });
-
-ModalHeader.defaultProps = {
-    light: true,
-};

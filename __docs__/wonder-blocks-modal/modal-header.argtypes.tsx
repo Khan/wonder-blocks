@@ -28,18 +28,6 @@ export default {
         description: "The main title rendered in larger bold text.",
         table: {type: {summary: "string"}},
     },
-    light: {
-        control: {type: "boolean"},
-        defaultValue: "true",
-
-        description: `Whether to display the "light" version of this
-            component instead, for use when the item is used on a dark
-            background.`,
-        table: {
-            defaultValue: {summary: "true"},
-            type: {summary: "boolean"},
-        },
-    },
     titleId: {
         control: {type: "text"},
         description: `An id to provide a selector for the title element.
