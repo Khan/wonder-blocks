@@ -4,12 +4,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {
-    border,
-    semanticColor,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 
 import {
@@ -171,13 +166,12 @@ export const Default: StoryComponentType = {
             <ModalPanel
                 {...args}
                 content={
-                    <>
+                    <View style={styles.content}>
                         <Heading size="xxlarge" id="modal-title-0">
                             Modal Title
                         </Heading>
-                        <Strut size={spacing.large_24} />
                         {longBody}
-                    </>
+                    </View>
                 }
             />
         </ModalDialog>
@@ -223,13 +217,12 @@ export const WithFooter: StoryComponentType = {
         <ModalDialog aria-labelledby="modal-title-3" style={styles.dialog}>
             <ModalPanel
                 content={
-                    <>
+                    <View style={styles.content}>
                         <Heading size="xxlarge" id="modal-title-3">
                             Modal Title
                         </Heading>
-                        <Strut size={spacing.large_24} />
                         {longBody}
-                    </>
+                    </View>
                 }
                 footer={
                     <ModalFooter>
@@ -292,11 +285,10 @@ export const TwoPanels: StoryComponentType = {
                 <View style={panelGroupStyle}>
                     <ModalPanel
                         content={
-                            <View>
+                            <View style={styles.content}>
                                 <Heading size="xxlarge" id="sidebar-title-id">
                                     Sidebar
                                 </Heading>
-                                <Strut size={spacing.large_24} />
                                 <BodyText>
                                     Lorem ipsum dolor sit amet, consectetur
                                     adipiscing elit, sed do eiusmod tempor
@@ -310,15 +302,13 @@ export const TwoPanels: StoryComponentType = {
                     />
                     <ModalPanel
                         content={
-                            <View>
+                            <View style={styles.content}>
                                 <Heading size="xxlarge">Contents</Heading>
-                                <Strut size={spacing.large_24} />
                                 <BodyText>
                                     Lorem ipsum dolor sit amet, consectetur
                                     adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua.
                                 </BodyText>
-                                <Strut size={spacing.large_24} />
                                 <Button>Primary action</Button>
                             </View>
                         }
@@ -389,5 +379,8 @@ const styles = StyleSheet.create({
     example: {
         alignItems: "center",
         justifyContent: "center",
+    },
+    content: {
+        gap: sizing.size_240,
     },
 });
