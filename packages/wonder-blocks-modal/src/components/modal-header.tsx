@@ -142,31 +142,31 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "column",
         minHeight: 66,
-        paddingBlock: theme.header.layout.paddingBlockMd,
-        paddingInline: theme.header.layout.paddingInlineMd,
+        paddingBlock: theme.header.layout.padding.block,
+        paddingInline: theme.header.layout.padding.inline.default,
         position: "relative",
         width: "100%",
 
         [small as any]: {
-            paddingInline: theme.header.layout.paddingInlineSm,
+            paddingInline: theme.header.layout.padding.inline.small,
         },
     },
 
     breadcrumbs: {
         color: semanticColor.core.foreground.neutral.default,
-        marginBottom: theme.header.layout.gap,
+        marginBlockEnd: theme.header.layout.gap.default,
     },
 
     title: {
         // Prevent title from overlapping the close button
-        paddingRight: theme.header.layout.titleGapMd,
+        paddingInlineEnd: theme.header.layout.gap.title.default,
         [small as any]: {
-            paddingRight: theme.header.layout.titleGapSm,
+            paddingInlineEnd: theme.header.layout.gap.title.small,
         },
     },
 
     subtitle: {
         color: semanticColor.core.foreground.neutral.default,
-        marginTop: theme.header.layout.gap,
+        marginBlockStart: theme.header.layout.gap.default,
     },
 });

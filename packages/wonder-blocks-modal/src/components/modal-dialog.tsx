@@ -94,12 +94,13 @@ const small = "@media (max-width: 767px)" as any;
 
 const styles = StyleSheet.create({
     wrapper: {
-        display: "flex",
         flexDirection: "row",
         alignItems: "stretch",
         width: "100%",
         height: "100%",
         position: "relative",
+        boxShadow: theme.dialog.shadow.default,
+        borderRadius: theme.root.border.radius,
         [small]: {
             padding: theme.dialog.layout.padding,
             flexDirection: "column",
