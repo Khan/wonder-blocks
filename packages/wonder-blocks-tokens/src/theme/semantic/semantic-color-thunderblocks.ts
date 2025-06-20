@@ -118,7 +118,8 @@ const core = {
         },
     },
     shadow: {
-        transparent: `color-mix(in srgb, ${color.blue_10} 20%, ${transparent})`,
+        transparent: transparent,
+        instructive: `color-mix(in srgb, ${color.blue_10} 20%, ${transparent})`,
         chonky: {
             progressive: {
                 subtle: color.blue_60,
