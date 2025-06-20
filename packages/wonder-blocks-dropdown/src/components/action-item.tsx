@@ -12,6 +12,7 @@ import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import type {PropsFor, StyleType} from "@khanacademy/wonder-blocks-core";
 
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
 
 type CompactCellProps = PropsFor<typeof CompactCell>;
@@ -184,24 +185,6 @@ export default class ActionItem extends React.Component<ActionProps> {
     }
 }
 
-// TODO(WB-1868): Move this to a shared theme file.
-const actionType = semanticColor.action.primary.progressive;
-
-const theme = {
-    actionItem: {
-        color: {
-            hover: {
-                background: actionType.hover.background,
-                foreground: actionType.hover.foreground,
-            },
-            press: {
-                background: actionType.press.background,
-                foreground: actionType.press.foreground,
-            },
-        },
-    },
-};
-
 const styles = StyleSheet.create({
     wrapper: {
         minHeight: DROPDOWN_ITEM_HEIGHT,
@@ -215,21 +198,11 @@ const styles = StyleSheet.create({
         ":focus": {
             // Override the default focus state for the cell element, so that it
             // can be added programmatically to the button element.
-            borderRadius: border.radius.radius_040,
-            outline: `${spacing.xxxxSmall_2}px solid ${semanticColor.focus.outer}`,
-            outlineOffset: -spacing.xxxxSmall_2,
-        },
-
-        // Overrides the default cell state for the button element.
-        [":hover[aria-disabled=false]" as any]: {
-            color: theme.actionItem.color.hover.foreground,
-            background: theme.actionItem.color.hover.background,
-        },
-
-        // active and pressed states
-        [":active[aria-disabled=false]" as any]: {
-            color: theme.actionItem.color.press.foreground,
-            background: theme.actionItem.color.press.background,
+            outline: focusStyles.focus[":focus-visible"].outline,
+            outlineOffset: `calc(${border.width.medium} * -1)`,
+            // We need to use a thicker box-shadow to ensure that the inner ring
+            // is visible when the cell is focused.
+            boxShadow: `inset 0 0 0 calc(${border.width.medium}*2) ${semanticColor.focus.inner}`,
         },
     },
     shared: {

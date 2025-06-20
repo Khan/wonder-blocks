@@ -150,4 +150,9 @@ export type CellProps = {
      * TODO(WB-1262): only allow this prop when `href` is also set.t
      */
     target?: "_blank";
+
+    /**
+     * Set the tabindex attribute on the rendered element.
+     */
+    tabIndex?: number;
 };

@@ -68,6 +68,7 @@ const theme = {
         color: {
             default: {
                 border: semanticColor.input.default.border,
+                background: semanticColor.input.default.background,
             },
             disabled: {
                 border: semanticColor.input.disabled.border,
@@ -84,6 +85,7 @@ const styles = StyleSheet.create({
         minHeight: spacing.medium_16,
         minWidth: spacing.medium_16,
         height: spacing.medium_16,
+        background: theme.checkbox.color.default.background,
         // TODO(WB-1864): Use the correct token once TB is updated.
         borderRadius: 3,
         borderWidth: border.width.thin,

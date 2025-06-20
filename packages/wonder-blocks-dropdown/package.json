@@ -26,6 +26,7 @@
     "@khanacademy/wonder-blocks-modal": "workspace:*",
     "@khanacademy/wonder-blocks-pill": "workspace:*",
     "@khanacademy/wonder-blocks-search-field": "workspace:*",
+    "@khanacademy/wonder-blocks-styles": "workspace:*",
     "@khanacademy/wonder-blocks-timing": "workspace:*",
     "@khanacademy/wonder-blocks-tokens": "workspace:*",
     "@khanacademy/wonder-blocks-typography": "workspace:*"
