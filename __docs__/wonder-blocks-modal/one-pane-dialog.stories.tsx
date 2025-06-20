@@ -79,6 +79,7 @@ export default {
             modes: {
                 small: allModes.small,
                 large: allModes.large,
+                thunderblocks: allModes.themeThunderBlocks,
             },
         },
     },
