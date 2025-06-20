@@ -41,16 +41,6 @@ const argTypes: ArgTypes = {
             type: {summary: "boolean"},
         },
     },
-    light: {
-        control: {type: "boolean"},
-        description: `Whether to display the "light" version of this component
-            instead, for  use when the item is used on a dark background.`,
-        table: {
-            category: "Styling",
-            defaultValue: {summary: "true"},
-            type: {summary: "boolean"},
-        },
-    },
     scrollOverflow: {
         control: {type: "boolean"},
         description: `Should the contents of the panel become scrollable should

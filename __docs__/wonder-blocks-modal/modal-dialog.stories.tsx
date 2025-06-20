@@ -17,7 +17,6 @@ import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 import modalDialogArgtypes from "./modal-dialog.argtypes";
 import {allModes} from "../../.storybook/modes";
-import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 
 const customViewports = {
     phone: {
@@ -87,6 +86,7 @@ export default {
             modes: {
                 small: allModes.small,
                 large: allModes.large,
+                thunderblocks: allModes.themeThunderBlocks,
             },
         },
     },
@@ -249,66 +249,6 @@ export const WithLauncher: StoryComponentType = {
             // Don't take screenshots of this story since it would only show a
             // button and not the actual modal.
             disableSnapshot: true,
-        },
-    },
-};
-
-/**
- * This example shows how a modal dialog/panel can be created with a dark
- * background. The `light` prop of the `<ModalPanel>` element is set to `false`
- * to create a dark background.
- */
-export const WithDarkPanel: StoryComponentType = {
-    render: (args) => (
-        <View style={styles.previewSizer}>
-            <View style={styles.modalPositioner}>
-                <ModalDialog
-                    {...args}
-                    aria-labelledby="modal-title-0"
-                    aria-describedby="modal-desc-0"
-                >
-                    <ModalPanel
-                        content={
-                            <>
-                                <img
-                                    width="100%"
-                                    src="https://cdn.kastatic.org/images/lohp/laptop_collage@2x.png"
-                                    alt=""
-                                />
-                                <View
-                                    style={{
-                                        marginTop: spacing.medium_16,
-                                    }}
-                                >
-                                    <Title id="modal-title-0">
-                                        Modal Title
-                                    </Title>
-                                    <Strut size={spacing.large_24} />
-                                    <Body id="modal-desc-0">
-                                        Here is some text in the modal.
-                                    </Body>
-                                </View>
-                            </>
-                        }
-                        light={false}
-                        footer={
-                            <Button
-                                kind="secondary"
-                                style={[actionStyles.inverse]}
-                                onClick={() => {}}
-                            >
-                                Continue
-                            </Button>
-                        }
-                    />
-                </ModalDialog>
-            </View>
-        </View>
-    ),
-    args: {
-        style: {
-            maxWidth: 300,
-            maxHeight: 500,
         },
     },
 };

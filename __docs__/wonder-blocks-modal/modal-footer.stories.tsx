@@ -138,8 +138,8 @@ export default {
         },
         chromatic: {
             modes: {
-                small: allModes.small,
-                large: allModes.large,
+                default: allModes.themeDefault,
+                thunderblocks: allModes.themeThunderBlocks,
             },
         },
     },
