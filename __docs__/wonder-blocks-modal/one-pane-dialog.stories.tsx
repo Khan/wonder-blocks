@@ -9,9 +9,8 @@ import {
 } from "@khanacademy/wonder-blocks-breadcrumbs";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Link from "@khanacademy/wonder-blocks-link";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
@@ -168,7 +167,6 @@ export const WithFooter: StoryComponentType = () => (
                         <BodyText weight="bold">Step 1 of 4</BodyText>
                         <View style={styles.row}>
                             <Button kind="tertiary">Previous</Button>
-                            <Strut size={16} />
                             <Button kind="primary">Next</Button>
                         </View>
                     </View>
@@ -389,7 +387,7 @@ WithStyle.parameters = {
 export const FlexibleModal: StoryComponentType = () => {
     const styles = StyleSheet.create({
         example: {
-            padding: spacing.xLarge_32,
+            padding: sizing.size_320,
             alignItems: "center",
         },
         row: {
@@ -437,7 +435,6 @@ export const FlexibleModal: StoryComponentType = () => {
                             <Button kind="tertiary" onClick={handlePrevButton}>
                                 Previous
                             </Button>
-                            <Strut size={16} />
                             <Button kind="primary" onClick={handleNextButton}>
                                 Next
                             </Button>
@@ -596,6 +593,7 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
         justifyContent: "flex-end",
+        gap: sizing.size_160,
     },
     footer: {
         alignItems: "center",
