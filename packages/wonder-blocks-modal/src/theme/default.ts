@@ -5,13 +5,6 @@ const theme = {
      * Shared tokens
      */
     root: {
-        // TODO(WB-1852): Remove light variant.
-        color: {
-            inverse: {
-                background: semanticColor.surface.inverse,
-                foreground: semanticColor.text.inverse,
-            },
-        },
         border: {
             radius: border.radius.radius_040,
         },
