@@ -2,15 +2,8 @@ import * as React from "react";
 import {Breadcrumbs} from "@khanacademy/wonder-blocks-breadcrumbs";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {HeadingMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
-import {
-    ThemedStylesFn,
-    useScopedTheme,
-    useStyles,
-} from "@khanacademy/wonder-blocks-theming";
-import {
-    ModalDialogThemeContext,
-    ModalDialogThemeContract,
-} from "../themes/themed-modal-dialog";
+import {StyleSheet} from "aphrodite";
+import theme from "../theme";
 
 type Common = {
     /**
@@ -116,9 +109,6 @@ export default function ModalHeader(props: Props) {
         throw new Error("'subtitle' and 'breadcrumbs' can't be used together");
     }
 
-    const {theme} = useScopedTheme(ModalDialogThemeContext);
-    const styles = useStyles(themedStylesFn, theme);
-
     return (
         <View style={[styles.header, !light && styles.dark]} testId={testId}>
             {breadcrumbs && (
@@ -151,7 +141,7 @@ export default function ModalHeader(props: Props) {
  */
 const small = "@media (max-width: 767px)";
 
-const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
+const styles = StyleSheet.create({
     header: {
         // TODO(WB-1878): Move this to an `elevation` theme token.
         boxShadow: `0px 1px 0px ${theme.header.color.border}`,
@@ -163,7 +153,7 @@ const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
         position: "relative",
         width: "100%",
 
-        [small]: {
+        [small as any]: {
             paddingInline: theme.header.spacing.paddingInlineSm,
         },
     },
@@ -181,7 +171,7 @@ const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
     title: {
         // Prevent title from overlapping the close button
         paddingRight: theme.header.spacing.titleGapMd,
-        [small]: {
+        [small as any]: {
             paddingRight: theme.header.spacing.titleGapSm,
         },
     },

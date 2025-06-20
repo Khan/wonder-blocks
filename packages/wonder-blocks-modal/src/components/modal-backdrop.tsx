@@ -2,16 +2,9 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {
-    ThemedStylesFn,
-    withScopedTheme,
-    WithThemeProps,
-} from "@khanacademy/wonder-blocks-theming";
 
-import {
-    ModalDialogThemeContext,
-    ModalDialogThemeContract,
-} from "../themes/themed-modal-dialog";
+import {StyleSheet} from "aphrodite";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {ModalLauncherPortalAttributeName} from "../util/constants";
 import {findFocusableNodes} from "../util/find-focusable-nodes";
 import type {ModalElement} from "../util/types";
@@ -29,7 +22,7 @@ type Props = {
      * Test ID used for e2e testing.
      */
     testId?: string;
-} & WithThemeProps;
+};
 
 /**
  * A private component used by ModalLauncher. This is the fixed-position
@@ -41,7 +34,7 @@ type Props = {
  * and adding an `onClose` prop that will call `onCloseModal`. If an
  * `onClose` prop is already provided, the two are merged.
  */
-class ModalBackdrop extends React.Component<Props> {
+export default class ModalBackdrop extends React.Component<Props> {
     componentDidMount() {
         // eslint-disable-next-line import/no-deprecated
         const node: HTMLElement = ReactDOM.findDOMNode(this) as any;
@@ -143,7 +136,7 @@ class ModalBackdrop extends React.Component<Props> {
 
         return (
             <View
-                style={this.props.wbThemeStyles.modalPositioner}
+                style={styles.modalPositioner}
                 onMouseDown={this.handleMouseDown}
                 onMouseUp={this.handleMouseUp}
                 testId={testId}
@@ -155,7 +148,7 @@ class ModalBackdrop extends React.Component<Props> {
     }
 }
 
-const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
+const styles = StyleSheet.create({
     modalPositioner: {
         position: "fixed",
         left: 0,
@@ -177,11 +170,6 @@ const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
         //     now!
         overflow: "auto",
 
-        background: theme.backdrop.color.background,
+        background: semanticColor.surface.overlay,
     },
 });
-
-export default withScopedTheme(
-    themedStylesFn,
-    ModalDialogThemeContext,
-)(ModalBackdrop);
