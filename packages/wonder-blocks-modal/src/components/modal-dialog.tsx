@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
         height: "100%",
         position: "relative",
         [small]: {
-            padding: theme.dialog.spacing.padding,
+            padding: theme.dialog.layout.padding,
             flexDirection: "column",
         },
     },

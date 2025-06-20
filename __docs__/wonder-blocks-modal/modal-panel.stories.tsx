@@ -10,7 +10,7 @@ import {
     semanticColor,
     spacing,
 } from "@khanacademy/wonder-blocks-tokens";
-import {Body, Title} from "@khanacademy/wonder-blocks-typography";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 
 import {
     ModalDialog,
@@ -49,12 +49,12 @@ const customViewports = {
 
 const longBody = (
     <>
-        <Body>
+        <BodyText>
             {`Let's make this body content long in order
 to test scroll overflow.`}
-        </Body>
+        </BodyText>
         <br />
-        <Body>
+        <BodyText>
             {`Lorem ipsum dolor sit amet, consectetur
 adipiscing elit, sed do eiusmod tempor incididunt
 ut labore et dolore magna aliqua. Ut enim ad minim
@@ -65,9 +65,9 @@ esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident,
 sunt in culpa qui officia deserunt mollit anim id
 est.`}
-        </Body>
+        </BodyText>
         <br />
-        <Body>
+        <BodyText>
             {`Lorem ipsum dolor sit amet, consectetur
 adipiscing elit, sed do eiusmod tempor incididunt
 ut labore et dolore magna aliqua. Ut enim ad minim
@@ -78,9 +78,9 @@ esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident,
 sunt in culpa qui officia deserunt mollit anim id
 est.`}
-        </Body>
+        </BodyText>
         <br />
-        <Body>
+        <BodyText>
             {`Lorem ipsum dolor sit amet, consectetur
 adipiscing elit, sed do eiusmod tempor incididunt
 ut labore et dolore magna aliqua. Ut enim ad minim
@@ -91,7 +91,7 @@ esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident,
 sunt in culpa qui officia deserunt mollit anim id
 est.`}
-        </Body>
+        </BodyText>
     </>
 );
 
@@ -172,7 +172,9 @@ export const Default: StoryComponentType = {
                 {...args}
                 content={
                     <>
-                        <Title id="modal-title-0">Modal Title</Title>
+                        <Heading size="xxlarge" id="modal-title-0">
+                            Modal Title
+                        </Heading>
                         <Strut size={spacing.large_24} />
                         {longBody}
                     </>
@@ -222,7 +224,9 @@ export const WithFooter: StoryComponentType = {
             <ModalPanel
                 content={
                     <>
-                        <Title id="modal-title-3">Modal Title</Title>
+                        <Heading size="xxlarge" id="modal-title-3">
+                            Modal Title
+                        </Heading>
                         <Strut size={spacing.large_24} />
                         {longBody}
                     </>
@@ -289,15 +293,17 @@ export const TwoPanels: StoryComponentType = {
                     <ModalPanel
                         content={
                             <View>
-                                <Title id="sidebar-title-id">Sidebar</Title>
+                                <Heading size="xxlarge" id="sidebar-title-id">
+                                    Sidebar
+                                </Heading>
                                 <Strut size={spacing.large_24} />
-                                <Body>
+                                <BodyText>
                                     Lorem ipsum dolor sit amet, consectetur
                                     adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua.
                                     Ut enim ad minim veniam, quis nostrud
                                     exercitation ullamco laboris.
-                                </Body>
+                                </BodyText>
                             </View>
                         }
                         closeButtonVisible={false}
@@ -305,13 +311,13 @@ export const TwoPanels: StoryComponentType = {
                     <ModalPanel
                         content={
                             <View>
-                                <Title>Contents</Title>
+                                <Heading size="xxlarge">Contents</Heading>
                                 <Strut size={spacing.large_24} />
-                                <Body>
+                                <BodyText>
                                     Lorem ipsum dolor sit amet, consectetur
                                     adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua.
-                                </Body>
+                                </BodyText>
                                 <Strut size={spacing.large_24} />
                                 <Button>Primary action</Button>
                             </View>

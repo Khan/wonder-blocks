@@ -6,7 +6,7 @@ import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
-import {Body, LabelLarge, Title} from "@khanacademy/wonder-blocks-typography";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 
 import {
     ModalDialog,
@@ -43,12 +43,12 @@ const customViewports = {
 
 const longBody = (
     <>
-        <Body>
+        <BodyText>
             {`Let's make this body content long in order
 to test scroll overflow.`}
-        </Body>
+        </BodyText>
         <br />
-        <Body>
+        <BodyText>
             {`Lorem ipsum dolor sit amet, consectetur
 adipiscing elit, sed do eiusmod tempor incididunt
 ut labore et dolore magna aliqua. Ut enim ad minim
@@ -59,9 +59,9 @@ esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident,
 sunt in culpa qui officia deserunt mollit anim id
 est.`}
-        </Body>
+        </BodyText>
         <br />
-        <Body>
+        <BodyText>
             {`Lorem ipsum dolor sit amet, consectetur
 adipiscing elit, sed do eiusmod tempor incididunt
 ut labore et dolore magna aliqua. Ut enim ad minim
@@ -72,9 +72,9 @@ esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident,
 sunt in culpa qui officia deserunt mollit anim id
 est.`}
-        </Body>
+        </BodyText>
         <br />
-        <Body>
+        <BodyText>
             {`Lorem ipsum dolor sit amet, consectetur
 adipiscing elit, sed do eiusmod tempor incididunt
 ut labore et dolore magna aliqua. Ut enim ad minim
@@ -85,7 +85,7 @@ esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident,
 sunt in culpa qui officia deserunt mollit anim id
 est.`}
-        </Body>
+        </BodyText>
     </>
 );
 
@@ -163,7 +163,9 @@ export const Default: StoryComponentType = {
             <ModalPanel
                 content={
                     <>
-                        <Title id="modal-id-0">Modal Title</Title>
+                        <Heading size="xxlarge" id="modal-id-0">
+                            Modal Heading
+                        </Heading>
                         <Strut size={spacing.large_24} />
                         {longBody}
                     </>
@@ -184,7 +186,9 @@ export const WithButton: StoryComponentType = {
             <ModalPanel
                 content={
                     <>
-                        <Title id="modal-id-2">Modal Title</Title>
+                        <Heading size="xxlarge" id="modal-id-2">
+                            Modal Heading
+                        </Heading>
                         <Strut size={spacing.large_24} />
                         {longBody}
                     </>
@@ -233,7 +237,9 @@ export const WithThreeActions: StoryComponentType = {
                 <ModalPanel
                     content={
                         <>
-                            <Title id="modal-id-3">Modal Title</Title>
+                            <Heading size="xxlarge" id="modal-id-3">
+                                Modal Heading
+                            </Heading>
                             <Strut size={spacing.large_24} />
                             {longBody}
                         </>
@@ -281,7 +287,9 @@ export const WithMultipleActions: StoryComponentType = {
                 <ModalPanel
                     content={
                         <>
-                            <Title id="modal-id-4">Modal Title</Title>
+                            <Heading size="xxlarge" id="modal-id-4">
+                                Modal Heading
+                            </Heading>
                             <Strut size={spacing.large_24} />
                             {longBody}
                         </>
@@ -289,7 +297,7 @@ export const WithMultipleActions: StoryComponentType = {
                     footer={
                         <ModalFooter>
                             <View style={footerStyle}>
-                                <LabelLarge>Step 1 of 4</LabelLarge>
+                                <BodyText weight="bold">Step 1 of 4</BodyText>
                                 <View style={rowStyle}>
                                     <Button kind="tertiary">Previous</Button>
                                     <Strut size={16} />

@@ -12,12 +12,7 @@ import {
 } from "@khanacademy/wonder-blocks-form";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
-import {
-    Body,
-    HeadingSmall,
-    LabelLarge,
-    Title,
-} from "@khanacademy/wonder-blocks-typography";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 
 import {
     ModalDialog,
@@ -62,7 +57,7 @@ const DefaultModal = (): ModalElement => (
         title="Single-line title"
         content={
             <View>
-                <Body>
+                <BodyText>
                     {`Lorem ipsum dolor sit amet, consectetur
                     adipiscing elit, sed do eiusmod tempor incididunt
                     ut labore et dolore magna aliqua. Ut enim ad minim
@@ -73,7 +68,7 @@ const DefaultModal = (): ModalElement => (
                     Excepteur sint occaecat cupidatat non proident,
                     sunt in culpa qui officia deserunt mollit anim id
                     est.`}
-                </Body>
+                </BodyText>
             </View>
         }
     />
@@ -174,7 +169,7 @@ export const WithCustomCloseButton: StoryComponentType = () => {
             title="Single-line title"
             content={
                 <View>
-                    <Body>
+                    <BodyText>
                         {`Lorem ipsum dolor sit amet, consectetur
                         adipiscing elit, sed do eiusmod tempor incididunt
                         ut labore et dolore magna aliqua. Ut enim ad minim
@@ -185,7 +180,7 @@ export const WithCustomCloseButton: StoryComponentType = () => {
                         Excepteur sint occaecat cupidatat non proident,
                         sunt in culpa qui officia deserunt mollit anim id
                         est.`}
-                    </Body>
+                    </BodyText>
                 </View>
             }
             // No "X" close button in the top right corner
@@ -273,7 +268,7 @@ export const TriggeringProgrammatically: StoryComponentType = () => {
                         title="Triggered from action menu"
                         content={
                             <View>
-                                <Title>Hello, world</Title>
+                                <Heading size="xxlarge">Hello, world</Heading>
                             </View>
                         }
                         footer={
@@ -443,15 +438,15 @@ const SubModal = () => (
         title="Submodal"
         content={
             <View style={{gap: spacing.medium_16}}>
-                <Body>
+                <BodyText>
                     This modal demonstrates how the focus trap works when a
                     modal is opened from another modal.
-                </Body>
-                <Body>
+                </BodyText>
+                <BodyText>
                     Try navigating this modal with the keyboard and then close
                     it. The focus should be restored to the button that opened
                     the modal.
-                </Body>
+                </BodyText>
                 <LabeledTextField label="Label" value="" onChange={() => {}} />
                 <Button>A focusable element</Button>
             </View>
@@ -469,12 +464,12 @@ export const FocusTrap: StoryComponentType = () => {
             closeButtonVisible={false}
             content={
                 <>
-                    <Body id="focus-trap-story-body-text">
+                    <BodyText id="focus-trap-story-body-text">
                         This modal demonstrates how the focus trap works with
                         form elements (or focusable elements). Also demonstrates
                         how the focus trap is moved to the next modal when it is
                         opened (focus/tap on the `Open another modal` button).
-                    </Body>
+                    </BodyText>
                     <Strut size={spacing.large_24} />
                     <RadioGroup
                         label="A RadioGroup component inside a modal"
@@ -603,16 +598,16 @@ export const CreatingACustomModal: StoryComponentType = {
                                 }}
                             />
                             <Strut size={spacing.large_24} />
-                            <HeadingSmall id="ready-dialog-title">
+                            <Heading size="medium" id="ready-dialog-title">
                                 Hi, I’m Khanmigo!
-                            </HeadingSmall>
+                            </Heading>
                             <Strut size={spacing.xSmall_8} />
-                            <Body>
+                            <BodyText>
                                 I’m your new AI-powered assistant, tutor, and
                                 all around cheerleader to help you power up your
                                 learning journey. Let’s take a look around
                                 together!
-                            </Body>
+                            </BodyText>
                             <Strut size={spacing.large_24} />
                             {/* Footer */}
                             <View
@@ -623,7 +618,7 @@ export const CreatingACustomModal: StoryComponentType = {
                                     alignItems: "center",
                                 }}
                             >
-                                <LabelLarge>Step 1 of 4</LabelLarge>
+                                <BodyText weight="bold">Step 1 of 4</BodyText>
                                 <Button kind="primary" onClick={closeModal}>
                                     Next
                                 </Button>

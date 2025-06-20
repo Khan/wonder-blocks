@@ -1,8 +1,9 @@
 import * as React from "react";
 import {Breadcrumbs} from "@khanacademy/wonder-blocks-breadcrumbs";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {HeadingMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {Heading, BodyText} from "@khanacademy/wonder-blocks-typography";
 import {StyleSheet} from "aphrodite";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import theme from "../theme";
 
 type Common = {
@@ -105,21 +106,23 @@ export default function ModalHeader(props: Props) {
             {breadcrumbs && (
                 <View style={styles.breadcrumbs}>{breadcrumbs}</View>
             )}
-            <HeadingMedium
+            <Heading
+                size="large"
                 tag="h2"
                 style={styles.title}
                 id={titleId}
                 testId={testId && `${testId}-title`}
             >
                 {title}
-            </HeadingMedium>
+            </Heading>
             {subtitle && (
-                <LabelSmall
+                <BodyText
+                    size="small"
                     style={styles.subtitle}
                     testId={testId && `${testId}-subtitle`}
                 >
                     {subtitle}
-                </LabelSmall>
+                </BodyText>
             )}
         </View>
     );
@@ -135,35 +138,35 @@ const small = "@media (max-width: 767px)";
 const styles = StyleSheet.create({
     header: {
         // TODO(WB-1878): Move this to an `elevation` theme token.
-        boxShadow: `0px 1px 0px ${theme.header.color.border}`,
+        boxShadow: `0px 1px 0px ${semanticColor.core.border.neutral.subtle}`,
         display: "flex",
         flexDirection: "column",
         minHeight: 66,
-        paddingBlock: theme.header.spacing.paddingBlockMd,
-        paddingInline: theme.header.spacing.paddingInlineMd,
+        paddingBlock: theme.header.layout.paddingBlockMd,
+        paddingInline: theme.header.layout.paddingInlineMd,
         position: "relative",
         width: "100%",
 
         [small as any]: {
-            paddingInline: theme.header.spacing.paddingInlineSm,
+            paddingInline: theme.header.layout.paddingInlineSm,
         },
     },
 
     breadcrumbs: {
-        color: theme.header.color.secondary,
-        marginBottom: theme.header.spacing.gap,
+        color: semanticColor.core.foreground.neutral.default,
+        marginBottom: theme.header.layout.gap,
     },
 
     title: {
         // Prevent title from overlapping the close button
-        paddingRight: theme.header.spacing.titleGapMd,
+        paddingRight: theme.header.layout.titleGapMd,
         [small as any]: {
-            paddingRight: theme.header.spacing.titleGapSm,
+            paddingRight: theme.header.layout.titleGapSm,
         },
     },
 
     subtitle: {
-        color: theme.header.color.secondary,
-        marginTop: theme.header.spacing.gap,
+        color: semanticColor.core.foreground.neutral.default,
+        marginTop: theme.header.layout.gap,
     },
 });
