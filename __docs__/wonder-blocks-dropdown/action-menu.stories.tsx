@@ -11,7 +11,7 @@ import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Pill from "@khanacademy/wonder-blocks-pill";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {
     ActionItem,
     ActionMenu,
@@ -368,7 +368,8 @@ export const CustomOpener: StoryComponentType = {
     name: "With custom opener",
     args: {
         opener: ({focused, hovered, pressed, text}: any) => (
-            <LabelLarge
+            <BodyText
+                weight="bold"
                 onClick={() => {
                     console.log("custom click!!!!!");
                 }}
@@ -382,7 +383,7 @@ export const CustomOpener: StoryComponentType = {
                 role="button"
             >
                 {text}
-            </LabelLarge>
+            </BodyText>
         ),
     } as Partial<typeof ActionMenu>,
 };
@@ -470,7 +471,7 @@ export const CustomActionItems: StoryComponentType = {
             />,
             <ActionItem
                 key="4"
-                label={<LabelLarge>User profile</LabelLarge>}
+                label={<BodyText weight="bold">User profile</BodyText>}
                 horizontalRule="full-width"
                 leftAccessory={
                     <PhosphorIcon icon={IconMappings.info} size="medium" />

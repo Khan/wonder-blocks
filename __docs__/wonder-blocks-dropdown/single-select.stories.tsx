@@ -13,7 +13,7 @@ import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 import Pill from "@khanacademy/wonder-blocks-pill";
-import {Body, HeadingLarge} from "@khanacademy/wonder-blocks-typography";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 import {
     SingleSelect,
     OptionItem,
@@ -720,13 +720,13 @@ export const DropdownInModal: StoryComponentType = {
         const modalContent = (
             <View style={styles.scrollableArea}>
                 <View style={{gap: sizing.size_240}}>
-                    <Body>
+                    <BodyText>
                         Sometimes we want to include Dropdowns inside a Modal,
                         and these controls can be accessed only by scrolling
                         down. This example help us to demonstrate that
                         SingleSelect components can correctly be displayed
                         within the visible scrolling area.
-                    </Body>
+                    </BodyText>
                     <SingleSelect
                         onChange={(selected) => setValue(selected)}
                         isFilterable={true}
@@ -790,7 +790,8 @@ export const CustomOpener: StoryComponentType = {
             );
 
             return (
-                <HeadingLarge
+                <Heading
+                    size="xlarge"
                     onClick={() => {
                         // eslint-disable-next-line no-console
                         console.log("custom click!!!!!");
@@ -805,7 +806,7 @@ export const CustomOpener: StoryComponentType = {
                 >
                     {text}
                     {opened ? ": opened" : ""}
-                </HeadingLarge>
+                </Heading>
             );
         },
     } as SingleSelectArgs,

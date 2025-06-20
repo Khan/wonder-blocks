@@ -16,7 +16,7 @@ import {
 
 import {PropsFor, View, keys} from "@khanacademy/wonder-blocks-core";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
-import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
@@ -817,12 +817,12 @@ class DropdownCore extends React.Component<Props, State> {
 
         if (numResults === 0) {
             return (
-                <LabelMedium
+                <BodyText
                     style={styles.noResult}
                     testId="dropdown-core-no-results"
                 >
                     {noResults}
-                </LabelMedium>
+                </BodyText>
             );
         }
         return null;

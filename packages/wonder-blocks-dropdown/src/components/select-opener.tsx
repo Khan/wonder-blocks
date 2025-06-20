@@ -5,7 +5,7 @@ import {keys, type AriaProps} from "@khanacademy/wonder-blocks-core";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import caretDownIcon from "@phosphor-icons/core/bold/caret-down-bold.svg";
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
@@ -175,13 +175,13 @@ export default class SelectOpener extends React.Component<
                 onKeyUp={!disabled ? this.handleKeyUp : undefined}
                 onBlur={onBlur}
             >
-                <LabelMedium style={styles.text}>
+                <BodyText style={styles.text}>
                     {/* Note(tamarab): Prevents unwanted vertical
                                 shift for empty selection.
                         Note2(marcysutton): aria-hidden prevents "space"
                                 from being read in VoiceOver. */}
                     {children || <span aria-hidden="true">&nbsp;</span>}
-                </LabelMedium>
+                </BodyText>
                 <PhosphorIcon
                     icon={caretDownIcon}
                     color={iconColor}

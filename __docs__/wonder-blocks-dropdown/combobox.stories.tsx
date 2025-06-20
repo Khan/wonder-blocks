@@ -6,7 +6,7 @@ import {StyleSheet} from "aphrodite";
 import * as React from "react";
 import magnifyingGlassIcon from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";
 
-import {LabelLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {Combobox, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
@@ -38,7 +38,7 @@ const customItems = allProfilesWithPictures.map((user, index) => (
         key={user.id}
         value={user.id}
         horizontalRule="full-width"
-        label={<LabelLarge>{user.name}</LabelLarge>}
+        label={<BodyText weight="bold">{user.name}</BodyText>}
         // TODO(WB-1752): Refactor API and types to enforce this prop when
         // `label` is not a string.
         labelAsText={user.name}
@@ -450,7 +450,7 @@ export const StartIcon: Story = {
 
         return (
             <View style={{gap: sizing.size_160}}>
-                <LabelMedium>With default size and color:</LabelMedium>
+                <BodyText>With default size and color:</BodyText>
                 <Combobox
                     {...args}
                     startIcon={<PhosphorIcon icon={magnifyingGlassIcon} />}
@@ -459,7 +459,7 @@ export const StartIcon: Story = {
                         action("onChange")(newValue);
                     }}
                 />
-                <LabelMedium>With custom size:</LabelMedium>
+                <BodyText>With custom size:</BodyText>
                 <Combobox
                     {...args}
                     startIcon={
@@ -473,7 +473,7 @@ export const StartIcon: Story = {
                         action("onChange")(newValue);
                     }}
                 />
-                <LabelMedium>With custom color:</LabelMedium>
+                <BodyText>With custom color:</BodyText>
                 <Combobox
                     {...args}
                     startIcon={
@@ -488,7 +488,7 @@ export const StartIcon: Story = {
                         action("onChange")(newValue);
                     }}
                 />
-                <LabelMedium>Disabled (overrides color prop):</LabelMedium>
+                <BodyText>Disabled (overrides color prop):</BodyText>
                 <Combobox
                     {...args}
                     startIcon={

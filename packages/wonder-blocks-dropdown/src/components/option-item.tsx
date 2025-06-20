@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {semanticColor, border, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {AriaProps, StyleType, View} from "@khanacademy/wonder-blocks-core";
 
@@ -247,7 +247,7 @@ export default class OptionItem extends React.Component<OptionProps> {
                 }
                 rightAccessory={rightAccessory}
                 subtitle1={subtitle1}
-                title={<LabelMedium style={styles.label}>{label}</LabelMedium>}
+                title={<BodyText style={styles.label}>{label}</BodyText>}
                 subtitle2={subtitle2}
                 onClick={this.handleClick}
                 tabIndex={parentComponent === "listbox" ? -1 : undefined}
