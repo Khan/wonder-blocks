@@ -7,7 +7,7 @@ import * as React from "react";
 import magnifyingGlassIcon from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";
 
 import {LabelLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {Combobox, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -50,7 +50,7 @@ const customItems = allProfilesWithPictures.map((user, index) => (
 const styles = StyleSheet.create({
     example: {
         background: semanticColor.surface.secondary,
-        padding: spacing.medium_16,
+        padding: sizing.size_160,
         width: 300,
     },
     wrapper: {
@@ -202,7 +202,7 @@ export const ControlledCombobox: Story = {
         }, [args.opened]);
 
         return (
-            <View style={{gap: spacing.medium_16}}>
+            <View style={{gap: sizing.size_160}}>
                 <Checkbox label="Open" onChange={setOpened} checked={opened} />
                 <Combobox
                     {...args}
@@ -449,7 +449,7 @@ export const StartIcon: Story = {
         const [_, updateArgs] = useArgs();
 
         return (
-            <View style={{gap: spacing.medium_16}}>
+            <View style={{gap: sizing.size_160}}>
                 <LabelMedium>With default size and color:</LabelMedium>
                 <Combobox
                     {...args}

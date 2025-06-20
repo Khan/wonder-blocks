@@ -4,7 +4,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {View} from "@khanacademy/wonder-blocks-core";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
@@ -49,10 +49,9 @@ const theme = {
 
 const styles = StyleSheet.create({
     separator: {
-        borderTop: `1px solid ${theme.separator.color.border}`,
+        borderTop: `${border.width.thin} solid ${theme.separator.color.border}`,
         height: 1,
         minHeight: 1,
-        marginTop: spacing.xxxSmall_4,
-        marginBottom: spacing.xxxSmall_4,
+        marginBlock: sizing.size_040,
     },
 });

@@ -3,11 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {
-    border,
-    semanticColor,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import checkIcon from "@phosphor-icons/core/bold/check-bold.svg";
 
 /**
@@ -45,11 +41,11 @@ const Checkbox = function (props: CheckProps): React.ReactElement {
                         {
                             // The check icon is smaller than the checkbox, as
                             // per design.
-                            width: spacing.small_12,
-                            height: spacing.small_12,
+                            width: sizing.size_120,
+                            height: sizing.size_120,
                             // This margin is to center the check icon in the
                             // checkbox.
-                            margin: spacing.xxxxSmall_2,
+                            margin: sizing.size_020,
                         },
                         disabled && selected && styles.disabledCheckFormatting,
                     ]}
@@ -82,9 +78,9 @@ const styles = StyleSheet.create({
     checkbox: {
         alignSelf: "center",
         // Semantically, this are the constants for a small-sized icon
-        minHeight: spacing.medium_16,
-        minWidth: spacing.medium_16,
-        height: spacing.medium_16,
+        minHeight: sizing.size_160,
+        minWidth: sizing.size_160,
+        height: sizing.size_160,
         background: theme.checkbox.color.default.background,
         // TODO(WB-1864): Use the correct token once TB is updated.
         borderRadius: 3,

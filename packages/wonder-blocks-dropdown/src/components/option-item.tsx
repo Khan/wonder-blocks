@@ -2,17 +2,11 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
-import {
-    spacing,
-    semanticColor,
-    border,
-    sizing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, border, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import {AriaProps, StyleType, View} from "@khanacademy/wonder-blocks-core";
 
-import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import Check from "./check";
 import Checkbox from "./checkbox";
@@ -231,12 +225,16 @@ export default class OptionItem extends React.Component<OptionProps> {
                 leftAccessory={
                     <>
                         {leftAccessory ? (
-                            <View style={{flexDirection: "row"}}>
+                            <View
+                                style={{
+                                    flexDirection: "row",
+                                    gap: sizing.size_080,
+                                }}
+                            >
                                 <CheckComponent
                                     disabled={disabled}
                                     selected={selected}
                                 />
-                                <Strut size={spacing.xSmall_8} />
                                 {leftAccessory}
                             </View>
                         ) : (
