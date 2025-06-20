@@ -1,4 +1,4 @@
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {border, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 const theme = {
     /**
@@ -13,21 +13,12 @@ const theme = {
      * Building blocks
      */
     dialog: {
-        spacing: {
+        layout: {
             padding: sizing.size_160,
         },
     },
-    footer: {
-        color: {
-            border: semanticColor.core.border.neutral.subtle,
-        },
-    },
     header: {
-        color: {
-            border: semanticColor.core.border.neutral.subtle,
-            secondary: semanticColor.text.secondary,
-        },
-        spacing: {
+        layout: {
             paddingBlockMd: sizing.size_240,
             paddingInlineMd: sizing.size_320,
             paddingInlineSm: sizing.size_160,
@@ -38,12 +29,12 @@ const theme = {
         },
     },
     panel: {
-        spacing: {
+        layout: {
             gap: sizing.size_320,
         },
     },
     closeButton: {
-        spacing: {
+        layout: {
             gap: sizing.size_080,
         },
     },

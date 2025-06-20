@@ -153,8 +153,8 @@ const styles = StyleSheet.create({
 
     closeButton: {
         position: "absolute",
-        right: theme.closeButton.spacing.gap,
-        top: theme.closeButton.spacing.gap,
+        right: theme.closeButton.layout.gap,
+        top: theme.closeButton.layout.gap,
         // This is to allow the button to be tab-ordered before the modal
         // content but still be above the header and content.
         zIndex: 1,
@@ -167,6 +167,6 @@ const styles = StyleSheet.create({
 
     hasFooter: {
         // The space between the content and the footer
-        paddingBlockEnd: theme.panel.spacing.gap,
+        paddingBlockEnd: theme.panel.layout.gap,
     },
 });

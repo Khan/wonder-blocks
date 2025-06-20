@@ -108,12 +108,12 @@ type DefaultProps = {
  *
  * ```jsx
  * import {OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
- * import {Body} from "@khanacademy/wonder-blocks-typography";
+ * import {BodyText} from "@khanacademy/wonder-blocks-typography";
  *
  * <OnePaneDialog
  *     title="Some title"
  *     content={
- *         <Body>
+ *         <BodyText>
  *             {`Lorem ipsum dolor sit amet, consectetur adipiscing
  *             elit, sed do eiusmod tempor incididunt ut labore et
  *             dolore magna aliqua. Ut enim ad minim veniam,
@@ -123,7 +123,7 @@ type DefaultProps = {
  *             cillum dolore eu fugiat nulla pariatur. Excepteur
  *             sint occaecat cupidatat non proident, sunt in culpa
  *             qui officia deserunt mollit anim id est.`}
- *         </Body>
+ *         </BodyText>
  *     }
  * />
  * ```
