@@ -16,26 +16,49 @@ const theme = {
         layout: {
             padding: sizing.size_160,
         },
+        shadow: {
+            default: "none",
+        },
     },
     header: {
         layout: {
-            paddingBlockMd: sizing.size_240,
-            paddingInlineMd: sizing.size_320,
-            paddingInlineSm: sizing.size_160,
-            gap: sizing.size_080,
-            // The space between the title and dismiss button.
-            titleGapMd: sizing.size_160,
-            titleGapSm: sizing.size_320,
+            padding: {
+                block: sizing.size_240,
+                inline: {
+                    default: sizing.size_320,
+                    small: sizing.size_160,
+                },
+            },
+            gap: {
+                default: sizing.size_080,
+                // The space between the title and dismiss button.
+                title: {
+                    default: sizing.size_160,
+                    small: sizing.size_320,
+                },
+            },
         },
     },
     panel: {
         layout: {
-            gap: sizing.size_320,
+            gap: {
+                default: sizing.size_320,
+                small: sizing.size_160,
+            },
+        },
+    },
+    footer: {
+        layout: {
+            padding: {
+                inline: sizing.size_160,
+                block: sizing.size_080,
+            },
         },
     },
     closeButton: {
         layout: {
-            gap: sizing.size_080,
+            gapRight: sizing.size_080,
+            gapTop: sizing.size_080,
         },
     },
 };

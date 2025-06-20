@@ -2,6 +2,7 @@ import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {StyleSheet} from "aphrodite";
+import theme from "../theme";
 
 type Props = {
     children: React.ReactNode;
@@ -39,8 +40,8 @@ const styles = StyleSheet.create({
         flex: "0 0 auto",
         boxSizing: "border-box",
         minHeight: sizing.size_640,
-        paddingInline: sizing.size_160,
-        paddingBlock: sizing.size_080,
+        paddingInline: theme.footer.layout.padding.inline,
+        paddingBlock: theme.footer.layout.padding.block,
 
         display: "flex",
         flexDirection: "row",
