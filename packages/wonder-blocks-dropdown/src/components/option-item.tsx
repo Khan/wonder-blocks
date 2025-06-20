@@ -203,16 +203,17 @@ export default class OptionItem extends React.Component<OptionProps> {
         const CheckComponent = this.getCheckComponent();
 
         const defaultStyle = [
-            styles.item,
             styles.optionItem,
             // pass optional styles from react-window (if applies)
             style,
         ];
 
         const listboxStyles = [
-            focused && styles.itemFocused,
-            disabled && styles.itemDisabled,
+            styles.listboxOptionItem,
+            focused && styles.listboxOptionItemFocused,
         ];
+
+        const selectStyles = [styles.selectOptionItem];
 
         return (
             <DetailCell
@@ -220,7 +221,9 @@ export default class OptionItem extends React.Component<OptionProps> {
                 horizontalRule={horizontalRule}
                 style={[
                     defaultStyle,
-                    parentComponent === "listbox" && listboxStyles,
+                    parentComponent === "listbox"
+                        ? listboxStyles
+                        : selectStyles,
                 ]}
                 aria-selected={selected ? "true" : "false"}
                 role={role}
@@ -249,7 +252,7 @@ export default class OptionItem extends React.Component<OptionProps> {
                 title={<LabelMedium style={styles.label}>{label}</LabelMedium>}
                 subtitle2={subtitle2}
                 onClick={this.handleClick}
-                tabIndex={-1}
+                tabIndex={parentComponent === "listbox" ? -1 : undefined}
                 {...sharedProps}
             />
         );
@@ -259,11 +262,19 @@ export default class OptionItem extends React.Component<OptionProps> {
 const focusedStyle = {
     // Override the default focus state for the cell element, so that it
     // can be added programmatically to the button element.
+    borderRadius: border.radius.radius_040,
     outline: focusStyles.focus[":focus-visible"].outline,
     outlineOffset: `calc(${border.width.medium} * -1)`,
     // We need to use a thicker box-shadow to ensure that the inner ring
     // is visible when the cell is focused.
     boxShadow: `inset 0 0 0 calc(${border.width.medium}*2) ${semanticColor.focus.inner}`,
+};
+
+const resetFocusStyle = {
+    // Reset the focus style for the cell element, so that it doesn't interfere
+    // with the button element's focus state.
+    outline: "none",
+    boxShadow: "none",
 };
 
 const theme = {
@@ -283,15 +294,19 @@ const styles = StyleSheet.create({
         paddingInlineStart: sizing.size_080,
         paddingInlineEnd: sizing.size_160,
         whiteSpace: "nowrap",
-    },
-    item: {
         // Make sure that the item is always at least as tall as 40px.
         minHeight: sizing.size_400,
 
         /**
          * States
          */
-        ":focus": focusedStyle,
+        ":active": {
+            borderRadius: border.radius.radius_040,
+        },
+
+        [":is([aria-disabled=true])" as any]: {
+            ":focus": resetFocusStyle,
+        },
 
         // checkbox states (see checkbox.tsx)
         [":is([aria-selected=true]) .checkbox" as any]: {
@@ -299,9 +314,21 @@ const styles = StyleSheet.create({
             color: theme.checkbox.color.selected.foreground,
         },
     },
-    itemFocused: focusedStyle,
-    itemDisabled: {
-        outlineColor: semanticColor.focus.outer,
+    // Specific styles for Listbox and Combobox
+    listboxOptionItem: {
+        // This does not apply here as we use visual focus (instead of real DOM
+        // focus).
+        // @see https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#kbd_focus_activedescendant
+        ":focus-visible": resetFocusStyle,
+    },
+    listboxOptionItemFocused: {
+        ...focusedStyle,
+        ":focus-visible": focusedStyle,
+    },
+    // Specific styles for MultiSelect and SingleSelect
+    selectOptionItem: {
+        // Allows programmatic focus to be applied to the item
+        ":focus": focusedStyle,
     },
 
     label: {

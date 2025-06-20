@@ -173,8 +173,6 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
         styles.wrapper,
         innerStyle,
         active && styles.active,
-        // custom styles
-        style,
         horizontalRuleStyles,
     ];
     // Pressable cell.
@@ -195,6 +193,8 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
                     sharedStyles,
                     styles.clickable,
                     disabled && styles.disabled,
+                    // custom styles
+                    style,
                 ]}
                 aria-current={active ? "true" : undefined}
                 tabIndex={tabIndex}
@@ -208,7 +208,10 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
     // wrapper.
     return (
         <View
-            style={sharedStyles}
+            style={[
+                sharedStyles, // custom styles
+                style,
+            ]}
             aria-current={active ? "true" : undefined}
             role={role}
         >
