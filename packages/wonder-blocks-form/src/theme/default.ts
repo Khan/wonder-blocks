@@ -4,6 +4,9 @@ const theme = {
     field: {
         border: {
             radius: border.radius.radius_040,
+            width: {
+                error: border.width.thin,
+            },
         },
         sizing: {
             height: sizing.size_400,

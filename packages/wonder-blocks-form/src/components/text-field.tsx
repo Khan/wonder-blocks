@@ -280,7 +280,7 @@ const styles = StyleSheet.create({
     },
     error: {
         background: semanticColor.input.error.background,
-        border: `${border.width.thin} solid ${semanticColor.input.error.border}`,
+        border: `${theme.field.border.width.error} solid ${semanticColor.input.error.border}`,
         color: semanticColor.input.error.foreground,
         "::placeholder": {
             color: semanticColor.input.default.placeholder,

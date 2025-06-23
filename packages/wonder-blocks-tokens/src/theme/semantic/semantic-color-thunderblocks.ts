@@ -739,7 +739,7 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
         },
         error: {
             border: core.border.critical.default,
-            background: core.background.critical.subtle,
+            background: core.background.neutral.subtle,
             foreground: core.foreground.neutral.strong,
         },
     },

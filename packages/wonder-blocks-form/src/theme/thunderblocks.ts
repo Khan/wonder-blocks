@@ -7,6 +7,9 @@ export default mergeTheme(defaultTheme, {
     field: {
         border: {
             radius: border.radius.radius_080,
+            width: {
+                error: border.width.medium,
+            },
         },
         sizing: {
             height: sizing.size_440,
