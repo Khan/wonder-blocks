@@ -16,7 +16,7 @@ import {
     Tagline,
     Title,
 } from "@khanacademy/wonder-blocks-typography";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {font, spacing, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {allModes} from "../../.storybook/modes";
 
 /**
@@ -129,40 +129,56 @@ export const SizesAndWeights = {
         <View style={styles.grid}>
             <View style={styles.row}>
                 <Heading size="small" weight="bold">
-                    Small bold
+                    Small size, bold weight
                 </Heading>
                 <Heading size="small" weight="semi">
-                    Small semibold
+                    Small size, semibold weight
+                </Heading>
+                <Heading size="small" weight="medium">
+                    Small size, medium weight
                 </Heading>
             </View>
             <View style={styles.row}>
                 <Heading size="medium" weight="bold">
-                    Medium bold
+                    Medium size, bold weight
                 </Heading>
                 <Heading size="medium" weight="semi">
-                    Medium semibold
+                    Medium size, semibold weight
+                </Heading>
+                <Heading size="medium" weight="medium">
+                    Medium size, medium weight
                 </Heading>
             </View>
             <View style={styles.row}>
                 <Heading size="large" weight="bold">
-                    Large bold
+                    Large size, bold weight
                 </Heading>
                 <Heading size="large" weight="semi">
-                    Large semibold
+                    Large size, semibold weight
+                </Heading>
+                <Heading size="large" weight="medium">
+                    Large size, medium weight
                 </Heading>
             </View>
             <View style={styles.row}>
                 <Heading size="xlarge" weight="bold">
-                    xLarge bold
+                    xLarge size, bold weight
                 </Heading>
                 <Heading size="xlarge" weight="semi">
-                    xLarge semibold
+                    xLarge size, semibold weight
+                </Heading>
+                <Heading size="xlarge" weight="medium">
+                    xLarge size, medium weight
                 </Heading>
             </View>
             <View style={styles.row}>
                 <Heading size="xxlarge" weight="bold">
-                    xxLarge bold
+                    xxLarge size, bold weight
                 </Heading>
+                <Heading size="xxlarge" weight="semi">
+                    xxLarge size, semibold weight
+                </Heading>
+                <div />
             </View>
         </View>
     ),
@@ -213,10 +229,29 @@ export const ClassicConversionGuide = {
     ),
 };
 
+/**
+ * An example of overriding `Heading` component's styling.
+ */
+export const CustomStyling = {
+    render: () => (
+        <View>
+            <Heading>
+                Text to show the default styling based on props. If we add more
+                text here, it will run on multiple lines.
+            </Heading>
+            <Heading style={styles.customStyle}>
+                A lot of text that runs on multiple lines, with custom styling.
+                We really like ice cream. What flavor is your favorite? That’s
+                not ice cream, it’s sorbet!
+            </Heading>
+        </View>
+    ),
+};
+
 const styles = StyleSheet.create({
     grid: {
         display: "grid",
-        gridTemplateColumns: "max-content max-content",
+        gridTemplateColumns: "max-content max-content max-content",
         rowGap: spacing.medium_16,
         columnGap: spacing.large_24,
     },
@@ -226,5 +261,11 @@ const styles = StyleSheet.create({
     },
     row: {
         display: "contents",
+    },
+    customStyle: {
+        fontSize: sizing.size_320,
+        fontWeight: font.weight.semi,
+        lineHeight: sizing.size_400,
+        marginTop: sizing.size_200,
     },
 });

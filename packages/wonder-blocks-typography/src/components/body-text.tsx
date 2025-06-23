@@ -1,12 +1,24 @@
 import * as React from "react";
 import {PropsFor, Text} from "@khanacademy/wonder-blocks-core";
-import {font} from "@khanacademy/wonder-blocks-tokens";
 import styles from "../util/styles";
 
 type Props = PropsFor<typeof Text> & {
     size?: "xsmall" | "small" | "medium";
     weight?: "medium" | "semi" | "bold";
 };
+
+// List style combinations for matching with props
+const styleMapping = {
+    "xsmall-medium": styles.BodyTextXSmallMediumWeight,
+    "xsmall-semi": styles.BodyTextXSmallSemiWeight,
+    "xsmall-bold": styles.BodyTextXSmallBoldWeight,
+    "small-medium": styles.BodyTextSmallMediumWeight,
+    "small-semi": styles.BodyTextSmallSemiWeight,
+    "small-bold": styles.BodyTextSmallBoldWeight,
+    "medium-medium": styles.BodyTextMediumMediumWeight,
+    "medium-semi": styles.BodyTextMediumSemiWeight,
+    "medium-bold": styles.BodyTextMediumBoldWeight,
+} as const;
 
 const BodyText = React.forwardRef(function BodyText(
     {
@@ -20,11 +32,7 @@ const BodyText = React.forwardRef(function BodyText(
     ref,
 ) {
     // map props to theme and global token defaults for CSS styles
-    const themeBodyText = {
-        fontSize: font.body.size[size],
-        fontWeight: font.weight[weight],
-        lineHeight: font.body.lineHeight[size],
-    };
+    const themeBodyText = styleMapping[`${size}-${weight}`];
     return (
         <Text
             {...otherProps}
