@@ -210,6 +210,8 @@ const _generateStyles = (
                     outline: `${border.width.medium} solid ${checkedStyles.press.border}`,
                     outlineOffset: 1,
                     background: checkedStyles.press.background,
+                    // Add border to ensure error press state matches background
+                    borderColor: checkedStyles.press.background,
                 },
             },
         };

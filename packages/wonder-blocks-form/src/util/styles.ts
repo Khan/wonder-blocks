@@ -118,7 +118,7 @@ export const colorStates: StyleMap = {
         checked: {
             default: {
                 rest: {
-                    border: semanticColor.input.checked.border,
+                    border: semanticColor.core.transparent,
                     background: semanticColor.input.checked.background,
                 },
                 hover: {
@@ -172,7 +172,7 @@ export const colorStates: StyleMap = {
         checked: {
             default: {
                 rest: {
-                    border: semanticColor.input.checked.border,
+                    border: semanticColor.input.checked.background,
                     background: semanticColor.core.border.inverse.strong,
                 },
                 hover: baseStyles.choice.checked,

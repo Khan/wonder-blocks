@@ -175,7 +175,8 @@ const styles = StyleSheet.create({
         marginTop: -2,
     },
     disabledLabel: {
-        color: semanticColor.action.secondary.disabled.foreground,
+        // Match disabled text input label color
+        color: semanticColor.core.foreground.disabled.subtle,
     },
     description: {
         // 16 for icon + 8 for spacing strut
