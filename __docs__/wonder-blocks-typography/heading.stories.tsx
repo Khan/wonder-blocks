@@ -16,7 +16,7 @@ import {
     Tagline,
     Title,
 } from "@khanacademy/wonder-blocks-typography";
-import {spacing, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {font, spacing, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {allModes} from "../../.storybook/modes";
 
 /**
@@ -264,6 +264,7 @@ const styles = StyleSheet.create({
     },
     customStyle: {
         fontSize: sizing.size_320,
+        fontWeight: font.weight.semi,
         lineHeight: sizing.size_400,
         marginTop: sizing.size_200,
     },
