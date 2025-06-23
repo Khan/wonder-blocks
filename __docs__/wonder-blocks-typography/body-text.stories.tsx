@@ -15,7 +15,7 @@ import {
     LabelLarge,
     Body,
 } from "@khanacademy/wonder-blocks-typography";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {font, spacing, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {allModes} from "../../.storybook/modes";
 
 /**
@@ -115,30 +115,30 @@ export const SizesAndWeights = {
     render: () => (
         <View style={styles.grid}>
             <View style={styles.row}>
-                <BodyText size="xsmall" weight="bold">
-                    xSmall bold
-                </BodyText>
                 <BodyText size="xsmall" weight="medium">
-                    xSmall medium
+                    xSmall size, medium weight
+                </BodyText>
+                <BodyText size="xsmall" weight="bold">
+                    xSmall size, bold weight
                 </BodyText>
                 <div />
             </View>
             <View style={styles.row}>
                 <BodyText size="small" weight="semi">
-                    Small semibold
+                    Small size, semibold weight
                 </BodyText>
                 <div />
                 <div />
             </View>
             <View style={styles.row}>
                 <BodyText size="medium" weight="medium">
-                    Medium medium
+                    Medium size, medium weight
                 </BodyText>
                 <BodyText size="medium" weight="semi">
-                    Medium semibold
+                    Medium size, semibold weight
                 </BodyText>
                 <BodyText size="medium" weight="bold">
-                    Medium bold
+                    Medium size, bold weight
                 </BodyText>
             </View>
         </View>
@@ -161,25 +161,54 @@ export const ClassicConversionGuide = {
     render: () => (
         <View style={[styles.grid, styles.conversionGuide]}>
             <View style={styles.row}>
-                <LabelXSmall tag="p">LabelXSmall</LabelXSmall>
+                <LabelXSmall tag="p" style={styles.classic}>
+                    LabelXSmall
+                </LabelXSmall>
                 <BodyText size="xsmall">BodyText size=xsmall</BodyText>
             </View>
             <View style={styles.row}>
-                <LabelSmall tag="p">LabelSmall</LabelSmall>
+                <LabelSmall tag="p" style={styles.classic}>
+                    LabelSmall
+                </LabelSmall>
                 <BodyText size="small">BodyText size=small</BodyText>
             </View>
             <View style={styles.row}>
-                <LabelMedium tag="p">LabelMedium</LabelMedium>
+                <LabelMedium tag="p" style={styles.classic}>
+                    LabelMedium
+                </LabelMedium>
                 <BodyText>BodyText</BodyText>
             </View>
             <View style={styles.row}>
-                <LabelLarge tag="p">LabelLarge</LabelLarge>
+                <LabelLarge tag="p" style={styles.classic}>
+                    LabelLarge
+                </LabelLarge>
                 <BodyText weight="bold">BodyText weight=bold</BodyText>
             </View>
             <View style={styles.row}>
-                <Body tag="p">Body</Body>
+                <Body tag="p" style={styles.classic}>
+                    Body
+                </Body>
                 <BodyText>BodyText</BodyText>
             </View>
+        </View>
+    ),
+};
+
+/**
+ * An example of overriding `BodyText` component's styling.
+ */
+export const CustomStyling = {
+    render: () => (
+        <View>
+            <BodyText>
+                Text to show the default styling based on props. If we add more
+                text here, it will run on multiple lines.
+            </BodyText>
+            <BodyText style={styles.customStyle}>
+                A lot of text that runs on multiple lines, with custom styling.
+                We really like ice cream. What flavor is your favorite? That’s
+                not ice cream, it’s sorbet!
+            </BodyText>
         </View>
     ),
 };
@@ -198,5 +227,14 @@ const styles = StyleSheet.create({
     },
     row: {
         display: "contents",
+    },
+    classic: {
+        margin: 0,
+    },
+    customStyle: {
+        fontSize: sizing.size_280,
+        fontWeight: font.weight.bold,
+        lineHeight: sizing.size_320,
+        marginTop: sizing.size_200,
     },
 });
