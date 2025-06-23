@@ -17,6 +17,7 @@ import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography"
 import {useId} from "react";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {useFieldValidation} from "../hooks/use-field-validation";
+import theme from "../theme";
 
 type TextAreaProps = AriaProps & {
     /**
@@ -317,7 +318,7 @@ const VERTICAL_SPACING = sizing.size_100;
 
 const styles = StyleSheet.create({
     textarea: {
-        borderRadius: border.radius.radius_040,
+        borderRadius: theme.field.border.radius,
         boxSizing: "border-box",
         paddingBlock: VERTICAL_SPACING,
         paddingInline: sizing.size_160,

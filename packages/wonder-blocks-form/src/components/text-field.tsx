@@ -9,6 +9,7 @@ import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {OmitConstrained} from "../util/types";
 import {useFieldValidation} from "../hooks/use-field-validation";
+import theme from "../theme";
 
 export type TextFieldType = "text" | "password" | "email" | "number" | "tel";
 
@@ -262,7 +263,7 @@ const styles = StyleSheet.create({
     input: {
         width: "100%",
         height: sizing.size_400,
-        borderRadius: border.radius.radius_040,
+        borderRadius: theme.field.border.radius,
         boxSizing: "border-box",
         paddingInlineStart: sizing.size_160,
         margin: sizing.size_0,
