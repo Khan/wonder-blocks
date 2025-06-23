@@ -4,6 +4,7 @@ import {StyleSheet} from "aphrodite";
 import {View, Id} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {
+    font,
     semanticColor,
     sizing,
     spacing,
@@ -162,13 +163,14 @@ type Props = AriaProps & {
 
 const styles = StyleSheet.create({
     wrapper: {
+        lineHeight: font.weight.medium,
         flexDirection: "row",
         alignItems: "center",
         outline: "none",
     },
     label: {
-        // Match the line-height of BodyText, with 20px lineHeight
-        lineHeight: sizing.size_200,
+        // Match the line-height of BodyText medium, minus former -2px margin
+        lineHeight: sizing.size_180,
     },
     disabledLabel: {
         // Match disabled text input label color
