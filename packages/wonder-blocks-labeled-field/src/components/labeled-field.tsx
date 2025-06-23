@@ -6,6 +6,7 @@ import {View, addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
+import theme from "../theme";
 
 type Props = {
     /**
@@ -290,6 +291,7 @@ const styles = StyleSheet.create({
         color: semanticColor.core.foreground.critical.subtle,
     },
     errorIcon: {
+        display: theme.errorIcon.layout.display,
         marginTop: sizing.size_010, // This vertically aligns the icon with the text
     },
     errorMessage: {
