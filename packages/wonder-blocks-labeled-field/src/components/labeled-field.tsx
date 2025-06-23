@@ -162,6 +162,7 @@ export default function LabeledField(props: Props) {
                     htmlFor={fieldId}
                     testId={testId && `${testId}-label`}
                     id={labelId}
+                    weight="semi"
                 >
                     {label}
                     {isRequired && requiredIcon}
@@ -226,7 +227,6 @@ export default function LabeledField(props: Props) {
                                 aria-label={labels.errorIconAriaLabel}
                             />
                             <BodyText
-                                size="small"
                                 style={[
                                     styles.textWordBreak,
                                     styles.errorMessage,
@@ -300,6 +300,9 @@ const styles = StyleSheet.create({
     },
     errorMessage: {
         minWidth: sizing.size_0, // This enables the wrapping behaviour on the error message
+        fontSize: theme.error.font.size,
+        fontWeight: theme.error.font.weight,
+        lineHeight: theme.error.font.lineHeight,
     },
     required: {
         color: theme.requiredIndicator.color.foreground,

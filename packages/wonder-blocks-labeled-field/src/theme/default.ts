@@ -1,4 +1,4 @@
-import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {font, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 const theme = {
     label: {
@@ -16,6 +16,11 @@ const theme = {
     error: {
         color: {
             foreground: semanticColor.core.foreground.critical.subtle,
+        },
+        font: {
+            size: font.body.size.small,
+            weight: font.weight.regular,
+            lineHeight: font.body.lineHeight.small,
         },
     },
     requiredIndicator: {
