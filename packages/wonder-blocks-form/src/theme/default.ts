@@ -8,6 +8,10 @@ const theme = {
         sizing: {
             height: sizing.size_400,
         },
+        layout: {
+            paddingBlock: sizing.size_100,
+            paddingInline: sizing.size_160,
+        },
     },
 };
 

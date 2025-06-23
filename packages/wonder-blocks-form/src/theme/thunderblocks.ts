@@ -11,5 +11,9 @@ export default mergeTheme(defaultTheme, {
         sizing: {
             height: sizing.size_440,
         },
+        layout: {
+            paddingBlock: sizing.size_100,
+            paddingInline: sizing.size_120,
+        },
     },
 });

@@ -314,14 +314,12 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
     },
 );
 
-const VERTICAL_SPACING = sizing.size_100;
-
 const styles = StyleSheet.create({
     textarea: {
         borderRadius: theme.field.border.radius,
         boxSizing: "border-box",
-        paddingBlock: VERTICAL_SPACING,
-        paddingInline: sizing.size_160,
+        paddingInline: theme.field.layout.paddingInline,
+        paddingBlock: theme.field.layout.paddingBlock,
         // This minHeight is equivalent to when the textarea has one row
         minHeight: theme.field.sizing.height,
         ...focusStyles.focus,
