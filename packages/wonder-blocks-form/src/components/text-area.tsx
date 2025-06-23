@@ -323,7 +323,7 @@ const styles = StyleSheet.create({
         paddingBlock: VERTICAL_SPACING,
         paddingInline: sizing.size_160,
         // This minHeight is equivalent to when the textarea has one row
-        minHeight: `calc(${VERTICAL_SPACING} * 2 + ${sizing.size_020} + ${font.lineHeight.medium})`,
+        minHeight: theme.field.sizing.height,
         ...focusStyles.focus,
     },
     default: {

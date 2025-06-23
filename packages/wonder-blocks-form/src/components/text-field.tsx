@@ -262,7 +262,7 @@ const TextField = (props: PropsWithForwardRef) => {
 const styles = StyleSheet.create({
     input: {
         width: "100%",
-        height: sizing.size_400,
+        height: theme.field.sizing.height,
         borderRadius: theme.field.border.radius,
         boxSizing: "border-box",
         paddingInlineStart: sizing.size_160,
