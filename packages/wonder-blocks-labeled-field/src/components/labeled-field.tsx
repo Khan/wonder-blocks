@@ -4,8 +4,8 @@ import WarningCircle from "@phosphor-icons/core/bold/warning-circle-bold.svg";
 
 import {View, addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 type Props = {
     /**
@@ -147,7 +147,7 @@ export default function LabeledField(props: Props) {
 
         return (
             <React.Fragment>
-                <LabelMedium
+                <BodyText
                     style={[
                         styles.textWordBreak,
                         styles.label,
@@ -163,7 +163,7 @@ export default function LabeledField(props: Props) {
                 >
                     {label}
                     {isRequired && requiredIcon}
-                </LabelMedium>
+                </BodyText>
             </React.Fragment>
         );
     }
@@ -175,7 +175,8 @@ export default function LabeledField(props: Props) {
 
         return (
             <React.Fragment>
-                <LabelSmall
+                <BodyText
+                    size="small"
                     style={[
                         styles.textWordBreak,
                         styles.description,
@@ -185,7 +186,7 @@ export default function LabeledField(props: Props) {
                     id={descriptionId}
                 >
                     {description}
-                </LabelSmall>
+                </BodyText>
             </React.Fragment>
         );
     }
@@ -222,7 +223,8 @@ export default function LabeledField(props: Props) {
                                 role="img"
                                 aria-label={labels.errorIconAriaLabel}
                             />
-                            <LabelSmall
+                            <BodyText
+                                size="small"
                                 style={[
                                     styles.textWordBreak,
                                     styles.errorMessage,
@@ -230,7 +232,7 @@ export default function LabeledField(props: Props) {
                                 ]}
                             >
                                 {errorMessage}
-                            </LabelSmall>
+                            </BodyText>
                         </>
                     )}
                 </View>
@@ -265,7 +267,7 @@ export default function LabeledField(props: Props) {
 
 const styles = StyleSheet.create({
     label: {
-        color: semanticColor.text.primary,
+        color: semanticColor.core.foreground.neutral.strong,
     },
     labelWithDescription: {
         paddingBlockEnd: sizing.size_040,
@@ -274,7 +276,7 @@ const styles = StyleSheet.create({
         paddingBlockEnd: sizing.size_120,
     },
     description: {
-        color: semanticColor.text.secondary,
+        color: semanticColor.core.foreground.neutral.default,
         paddingBlockEnd: sizing.size_120,
     },
     errorSection: {
@@ -285,16 +287,16 @@ const styles = StyleSheet.create({
         paddingBlockStart: sizing.size_120,
     },
     error: {
-        color: semanticColor.status.critical.foreground,
+        color: semanticColor.core.foreground.critical.subtle,
     },
     errorIcon: {
-        marginTop: "1px", // This vertically aligns the icon with the text
+        marginTop: sizing.size_010, // This vertically aligns the icon with the text
     },
     errorMessage: {
-        minWidth: "0", // This enables the wrapping behaviour on the error message
+        minWidth: sizing.size_0, // This enables the wrapping behaviour on the error message
     },
     required: {
-        color: semanticColor.status.critical.foreground,
+        color: semanticColor.core.foreground.critical.subtle,
     },
     textWordBreak: {
         overflowWrap: "break-word",

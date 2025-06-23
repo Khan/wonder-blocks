@@ -727,6 +727,7 @@ const styles = StyleSheet.create({
         borderRadius: border.radius.radius_040,
         border: `solid 1px ${theme.combobox.color.default.border}`,
         paddingInline: spacing.xSmall_8,
+        overflow: "hidden",
     },
     focused: {
         background: theme.combobox.color.focus.background,
