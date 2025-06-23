@@ -10,7 +10,7 @@ import {
     Routes,
     useViewTransitionState,
 } from "react-router-dom-v5-compat";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -34,7 +34,7 @@ import ComponentInfo from "../components/component-info";
 import LinkArgTypes from "./link.argtypes";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
-export default {
+const meta = {
     title: "Packages / Link",
     component: Link,
     parameters: {
@@ -50,7 +50,8 @@ export default {
         },
     },
     argTypes: LinkArgTypes,
-} as Meta<typeof Link>;
+} satisfies Meta<typeof Link>;
+export default meta;
 
 type StoryComponentType = StoryObj<typeof Link>;
 
@@ -75,9 +76,9 @@ export const LightPrimary: StoryComponentType = {
             The quick brown fox jumps over the lazy dog.
         </Link>
     ),
-    parameters: {
+    globals: {
         backgrounds: {
-            default: "darkBlue",
+            value: "darkBlue",
         },
     },
 };
@@ -336,10 +337,12 @@ export const InlineLight: StoryComponentType = {
             .
         </Body>
     ),
-    parameters: {
+    globals: {
         backgrounds: {
-            default: "darkBlue",
+            value: "darkBlue",
         },
+    },
+    parameters: {
         chromatic: {
             // Re-enable snapshots for this story since it shows the links in
             // the context of paragraphs.

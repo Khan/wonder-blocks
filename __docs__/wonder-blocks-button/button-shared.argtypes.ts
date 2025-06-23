@@ -1,4 +1,4 @@
-import {ArgTypes} from "@storybook/react";
+import {ArgTypes} from "@storybook/react-vite";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
