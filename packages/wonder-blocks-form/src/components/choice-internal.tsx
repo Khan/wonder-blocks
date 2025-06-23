@@ -163,11 +163,12 @@ type Props = AriaProps & {
 const styles = StyleSheet.create({
     wrapper: {
         flexDirection: "row",
-        alignItems: "flex-start",
+        alignItems: "center",
         outline: "none",
     },
     label: {
-        lineHeight: sizing.size_140,
+        // Match the line-height of BodyText, with 20px lineHeight
+        lineHeight: sizing.size_200,
     },
     disabledLabel: {
         // Match disabled text input label color
