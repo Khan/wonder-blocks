@@ -168,11 +168,6 @@ const styles = StyleSheet.create({
     },
     label: {
         lineHeight: sizing.size_140,
-        // NOTE: The checkbox/radio button (height 16px) should be center
-        // aligned with the first line of the label. However, LabelMedium has a
-        // declared line height of 20px, so we need to adjust the top to get the
-        // desired alignment.
-        marginTop: -2,
     },
     disabledLabel: {
         // Match disabled text input label color
