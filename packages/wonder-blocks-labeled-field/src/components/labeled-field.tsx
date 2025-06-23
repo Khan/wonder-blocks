@@ -156,6 +156,7 @@ export default function LabeledField(props: Props) {
                             ? styles.labelWithDescription
                             : styles.labelWithNoDescription,
                         stylesProp?.label,
+                        hasError ? styles.labelWithError : undefined,
                     ]}
                     tag="label"
                     htmlFor={fieldId}
@@ -270,6 +271,9 @@ const styles = StyleSheet.create({
     label: {
         color: semanticColor.core.foreground.neutral.strong,
     },
+    labelWithError: {
+        color: theme.label.color.error.foreground,
+    },
     labelWithDescription: {
         paddingBlockEnd: sizing.size_040,
     },
@@ -288,7 +292,7 @@ const styles = StyleSheet.create({
         paddingBlockStart: sizing.size_120,
     },
     error: {
-        color: semanticColor.core.foreground.critical.subtle,
+        color: theme.error.color.foreground,
     },
     errorIcon: {
         display: theme.errorIcon.layout.display,
@@ -298,7 +302,7 @@ const styles = StyleSheet.create({
         minWidth: sizing.size_0, // This enables the wrapping behaviour on the error message
     },
     required: {
-        color: semanticColor.core.foreground.critical.subtle,
+        color: theme.requiredIndicator.color.foreground,
     },
     textWordBreak: {
         overflowWrap: "break-word",
