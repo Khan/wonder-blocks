@@ -179,7 +179,6 @@ export default function LabeledField(props: Props) {
         return (
             <React.Fragment>
                 <BodyText
-                    size="small"
                     style={[
                         styles.textWordBreak,
                         styles.description,
@@ -275,21 +274,25 @@ const styles = StyleSheet.create({
         color: theme.label.color.error.foreground,
     },
     labelWithDescription: {
-        paddingBlockEnd: sizing.size_040,
+        paddingBlockEnd: theme.root.layout.paddingBlockEnd.labelWithDescription,
     },
     labelWithNoDescription: {
-        paddingBlockEnd: sizing.size_120,
+        paddingBlockEnd:
+            theme.root.layout.paddingBlockEnd.labelWithNoDescription,
     },
     description: {
-        color: semanticColor.core.foreground.neutral.default,
-        paddingBlockEnd: sizing.size_120,
+        color: theme.description.color.foreground,
+        paddingBlockEnd: theme.root.layout.paddingBlockEnd.description,
+        fontSize: theme.description.font.size,
+        lineHeight: theme.description.font.lineHeight,
     },
     errorSection: {
         flexDirection: "row",
         gap: sizing.size_080,
     },
     errorSectionWithContent: {
-        paddingBlockStart: sizing.size_120,
+        paddingBlockStart:
+            theme.root.layout.paddingBlockEnd.errorSectionWithContent,
     },
     error: {
         color: theme.error.color.foreground,
