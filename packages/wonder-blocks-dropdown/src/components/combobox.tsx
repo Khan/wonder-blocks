@@ -639,7 +639,13 @@ export default function Combobox({
                     referenceElement={rootNodeRef?.current as HTMLElement}
                 >
                     {(isReferenceHidden) => (
-                        <>
+                        <View
+                            onMouseDown={(e) => {
+                                // Prevents the combobox from losing focus when clicking
+                                // on the option item.
+                                e.preventDefault();
+                            }}
+                        >
                             {renderList.length === 0 ? (
                                 // No items to display
                                 <DetailCell
@@ -681,7 +687,7 @@ export default function Combobox({
                                     {renderList}
                                 </Listbox>
                             )}
-                        </>
+                        </View>
                     )}
                 </DropdownPopper>
             )}

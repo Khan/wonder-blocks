@@ -2,7 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import checkIcon from "@phosphor-icons/core/bold/check-bold.svg";
 
 /**
@@ -23,6 +23,7 @@ const Check = function (props: CheckProps): React.ReactElement {
     const {selected} = props;
     return (
         <PhosphorIcon
+            color={semanticColor.core.foreground.instructive.default}
             icon={checkIcon}
             size="small"
             style={[styles.bounds, !selected && styles.hide]}
