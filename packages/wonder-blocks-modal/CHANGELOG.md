@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-modal
 
+## 8.0.0
+
+### Major Changes
+
+- 9ef528a: Removes khanmigo theme from modal in favor of CSS vars. Uses `sizing` instead of `spacing`.
+- 038f9a9: Removes `light` prop from Modal package.
+
+### Patch Changes
+
+- Updated dependencies [705ee01]
+    - @khanacademy/wonder-blocks-typography@4.2.5
+    - @khanacademy/wonder-blocks-icon-button@10.3.4
+
 ## 7.1.25
 
 ### Patch Changes

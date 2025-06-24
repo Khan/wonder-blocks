@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-button
 
+## 10.2.5
+
+### Patch Changes
+
+- Updated dependencies [705ee01]
+    - @khanacademy/wonder-blocks-typography@4.2.5
+
 ## 10.2.4
 
 ### Patch Changes

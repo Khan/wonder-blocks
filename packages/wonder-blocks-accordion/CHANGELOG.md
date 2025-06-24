@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-accordion
 
+## 3.1.23
+
+### Patch Changes
+
+- Updated dependencies [705ee01]
+    - @khanacademy/wonder-blocks-typography@4.2.5
+
 ## 3.1.22
 
 ### Patch Changes
