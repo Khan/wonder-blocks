@@ -1,9 +1,8 @@
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {ComboboxLabels} from "./types";
 
 export const selectDropdownStyle = {
-    marginTop: spacing.xSmall_8,
-    marginBottom: spacing.xSmall_8,
+    marginBlock: sizing.size_080,
 } as const;
 
 // Filterable dropdown has minimum dimensions requested from Design.

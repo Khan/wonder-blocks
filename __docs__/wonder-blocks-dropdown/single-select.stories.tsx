@@ -7,18 +7,13 @@ import {action} from "@storybook/addon-actions";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {
-    border,
-    semanticColor,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 import Pill from "@khanacademy/wonder-blocks-pill";
-import {Body, HeadingLarge} from "@khanacademy/wonder-blocks-typography";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 import {
     SingleSelect,
     OptionItem,
@@ -131,11 +126,11 @@ const styles = StyleSheet.create({
         borderRadius: border.radius.radius_040,
         background: semanticColor.status.warning.background,
         color: semanticColor.text.primary,
-        padding: spacing.medium_16,
+        padding: sizing.size_160,
     },
     focused: {
         outlineColor: semanticColor.focus.outer,
-        outlineOffset: spacing.xxxxSmall_2,
+        outlineOffset: sizing.size_020,
     },
     hovered: {
         textDecoration: "underline",
@@ -163,7 +158,7 @@ const styles = StyleSheet.create({
     // AutoFocus
     icon: {
         position: "absolute",
-        right: spacing.medium_16,
+        right: sizing.size_160,
     },
 });
 
@@ -392,7 +387,7 @@ export const LongOptionLabels: StoryComponentType = {
  */
 export const Disabled: StoryComponentType = {
     render: () => (
-        <View style={{gap: spacing.xLarge_32}}>
+        <View style={{gap: sizing.size_320}}>
             <LabeledField
                 label="Disabled prop is set to true"
                 field={
@@ -540,7 +535,7 @@ export const Required: StoryComponentType = {
 export const ErrorFromValidation: StoryComponentType = {
     render: (args: PropsFor<typeof SingleSelect>) => {
         return (
-            <View style={{gap: spacing.large_24}}>
+            <View style={{gap: sizing.size_240}}>
                 <ControlledSingleSelect
                     {...args}
                     label="Validation example (try picking lemon to trigger an error)"
@@ -724,15 +719,14 @@ export const DropdownInModal: StoryComponentType = {
 
         const modalContent = (
             <View style={styles.scrollableArea}>
-                <View>
-                    <Body>
+                <View style={{gap: sizing.size_240}}>
+                    <BodyText>
                         Sometimes we want to include Dropdowns inside a Modal,
                         and these controls can be accessed only by scrolling
                         down. This example help us to demonstrate that
                         SingleSelect components can correctly be displayed
                         within the visible scrolling area.
-                    </Body>
-                    <Strut size={spacing.large_24} />
+                    </BodyText>
                     <SingleSelect
                         onChange={(selected) => setValue(selected)}
                         isFilterable={true}
@@ -796,7 +790,8 @@ export const CustomOpener: StoryComponentType = {
             );
 
             return (
-                <HeadingLarge
+                <Heading
+                    size="xlarge"
                     onClick={() => {
                         // eslint-disable-next-line no-console
                         console.log("custom click!!!!!");
@@ -811,7 +806,7 @@ export const CustomOpener: StoryComponentType = {
                 >
                     {text}
                     {opened ? ": opened" : ""}
-                </HeadingLarge>
+                </Heading>
             );
         },
     } as SingleSelectArgs,

@@ -9,14 +9,14 @@ import {VariableSizeList as List} from "react-window";
 
 import {
     color,
-    spacing,
     semanticColor,
     border,
+    sizing,
 } from "@khanacademy/wonder-blocks-tokens";
 
 import {PropsFor, View, keys} from "@khanacademy/wonder-blocks-core";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
-import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
@@ -817,12 +817,12 @@ class DropdownCore extends React.Component<Props, State> {
 
         if (numResults === 0) {
             return (
-                <LabelMedium
+                <BodyText
                     style={styles.noResult}
                     testId="dropdown-core-no-results"
                 >
                     {noResults}
-                </LabelMedium>
+                </BodyText>
             );
         }
         return null;
@@ -1096,11 +1096,10 @@ const styles = StyleSheet.create({
     dropdown: {
         backgroundColor: theme.dropdown.color.default.background,
         borderRadius: border.radius.radius_040,
-        paddingTop: spacing.xxxSmall_4,
-        paddingBottom: spacing.xxxSmall_4,
-        border: `solid 1px ${theme.dropdown.color.default.border}`,
+        paddingBlock: sizing.size_040,
+        border: `solid ${border.width.thin} ${theme.dropdown.color.default.border}`,
         // TODO(WB-1878): Move to elevation tokens.
-        boxShadow: `0px 8px 8px 0px ${color.offBlack8}`,
+        boxShadow: `0px ${sizing.size_080} ${sizing.size_080} 0 ${color.offBlack8}`,
         // We use a custom property to set the max height of the dropdown.
         // This comes from the maxHeight custom modifier.
         // @see ../util/popper-max-height-modifier.ts
@@ -1119,12 +1118,12 @@ const styles = StyleSheet.create({
     noResult: {
         color: theme.noResults.color.foreground,
         alignSelf: "center",
-        marginTop: spacing.xxSmall_6,
+        marginBlockStart: sizing.size_060,
     },
 
     searchInputStyle: {
-        margin: spacing.xSmall_8,
-        marginTop: spacing.xxxSmall_4,
+        margin: sizing.size_080,
+        marginBlockStart: sizing.size_040,
         // Set `minHeight` to "auto" to stop the search field from having
         // a height of 0 and being cut off.
         minHeight: "auto",

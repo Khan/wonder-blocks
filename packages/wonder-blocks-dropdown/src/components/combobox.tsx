@@ -11,7 +11,7 @@ import {
     border,
     color,
     semanticColor,
-    spacing,
+    sizing,
 } from "@khanacademy/wonder-blocks-tokens";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
@@ -732,7 +732,7 @@ const styles = StyleSheet.create({
         background: theme.combobox.color.default.background,
         borderRadius: border.radius.radius_040,
         border: `solid 1px ${theme.combobox.color.default.border}`,
-        paddingInline: spacing.xSmall_8,
+        paddingInline: sizing.size_080,
     },
     focused: {
         background: theme.combobox.color.focus.background,
@@ -758,7 +758,7 @@ const styles = StyleSheet.create({
         border: "none",
         outline: "none",
         padding: 0,
-        minWidth: spacing.xxxSmall_4,
+        minWidth: sizing.size_040,
         width: "auto",
         display: "inline-grid",
         gridArea: "1 / 2",
@@ -775,7 +775,7 @@ const styles = StyleSheet.create({
         borderRadius: border.radius.radius_040,
         border: `solid ${border.width.thin} ${theme.listbox.color.default.border}`,
         // TODO(WB-1878): Move to elevation tokens.
-        boxShadow: `0px ${spacing.xSmall_8}px ${spacing.xSmall_8}px 0px ${color.offBlack8}`,
+        boxShadow: `0px ${sizing.size_080} ${sizing.size_080} 0 ${color.offBlack8}`,
         // We use a custom property to set the max height of the dropdown.
         // This comes from the maxHeight custom modifier.
         // @see ../util/popper-max-height-modifier.ts
@@ -791,8 +791,8 @@ const styles = StyleSheet.create({
      */
     button: {
         position: "absolute",
-        right: spacing.xxxSmall_4,
-        top: spacing.xxxSmall_4,
+        right: sizing.size_040,
+        top: sizing.size_040,
         margin: 0,
     },
     buttonOpen: {
@@ -804,10 +804,10 @@ const styles = StyleSheet.create({
     clearButton: {
         // The clear button is positioned to the left of the arrow button.
         // This is calculated based on the padding + width of the arrow button.
-        right: spacing.xLarge_32 + spacing.xSmall_8,
+        right: sizing.size_400,
     },
     iconWrapper: {
-        padding: spacing.xxxSmall_4,
+        padding: sizing.size_040,
         // View has a default minWidth of 0, which causes the label text
         // to encroach on the icon when it needs to truncate. We can fix
         // this by setting the minWidth to auto.
