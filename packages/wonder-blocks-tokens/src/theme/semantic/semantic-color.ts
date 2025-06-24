@@ -122,7 +122,6 @@ const core = {
     },
     shadow: {
         transparent: transparent,
-        instructive: transparent,
         chonky: {
             progressive: {
                 subtle: color.fadedBlue,

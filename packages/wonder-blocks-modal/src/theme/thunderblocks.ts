@@ -10,7 +10,7 @@ export default mergeTheme(defaultTheme, {
     },
     dialog: {
         shadow: {
-            default: `0 0 ${sizing.size_080} ${sizing.size_160} ${semanticColor.core.shadow.instructive}`,
+            default: `0 ${sizing.size_080} ${sizing.size_160} 0 ${semanticColor.core.shadow.transparent}`,
         },
     },
     header: {
