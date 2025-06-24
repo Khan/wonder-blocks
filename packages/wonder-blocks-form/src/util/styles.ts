@@ -85,11 +85,7 @@ export const baseStyles = {
             foreground: semanticColor.core.foreground.inverse.strong,
         },
         disabled: {
-            // the semanticColor isn't working for this icon.
-            // our approach changed to use the TB theme in Classic,
-            // but the icon foreground color is themed and no longer works.
-            // semanticColor for TB: core.border.neutral.subtle (too dark in classic)
-            foreground: "#CBCBCD",
+            foreground: semanticColor.core.foreground.neutral.subtle,
         },
     },
 };
