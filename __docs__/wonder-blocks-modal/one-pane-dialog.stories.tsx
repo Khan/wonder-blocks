@@ -282,7 +282,7 @@ export const WithAboveAndBelow: StoryComponentType = () => {
                 <OnePaneDialog
                     title="Single-line title"
                     content={
-                        <View>
+                        <View style={{gap: sizing.size_160}}>
                             <BodyText>
                                 {`Lorem ipsum dolor sit amet, consectetur
                             adipiscing elit, sed do eiusmod tempor incididunt
@@ -295,7 +295,6 @@ export const WithAboveAndBelow: StoryComponentType = () => {
                             sunt in culpa qui officia deserunt mollit anim id
                             est.`}
                             </BodyText>
-                            <br />
                             <BodyText>
                                 {`Lorem ipsum dolor sit amet, consectetur
                             adipiscing elit, sed do eiusmod tempor incididunt
@@ -308,7 +307,6 @@ export const WithAboveAndBelow: StoryComponentType = () => {
                             sunt in culpa qui officia deserunt mollit anim id
                             est.`}
                             </BodyText>
-                            <br />
                             <BodyText>
                                 {`Lorem ipsum dolor sit amet, consectetur
                             adipiscing elit, sed do eiusmod tempor incididunt

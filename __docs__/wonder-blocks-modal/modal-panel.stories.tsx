@@ -48,7 +48,6 @@ const longBody = (
             {`Let's make this body content long in order
 to test scroll overflow.`}
         </BodyText>
-        <br />
         <BodyText>
             {`Lorem ipsum dolor sit amet, consectetur
 adipiscing elit, sed do eiusmod tempor incididunt
@@ -61,7 +60,6 @@ Excepteur sint occaecat cupidatat non proident,
 sunt in culpa qui officia deserunt mollit anim id
 est.`}
         </BodyText>
-        <br />
         <BodyText>
             {`Lorem ipsum dolor sit amet, consectetur
 adipiscing elit, sed do eiusmod tempor incididunt
@@ -74,7 +72,6 @@ Excepteur sint occaecat cupidatat non proident,
 sunt in culpa qui officia deserunt mollit anim id
 est.`}
         </BodyText>
-        <br />
         <BodyText>
             {`Lorem ipsum dolor sit amet, consectetur
 adipiscing elit, sed do eiusmod tempor incididunt
