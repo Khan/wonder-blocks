@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
     wrapper: {
         lineHeight: font.weight.medium,
         flexDirection: "row",
-        alignItems: "center",
+        alignItems: "flex-start",
         outline: "none",
     },
     label: {
