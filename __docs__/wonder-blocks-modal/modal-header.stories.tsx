@@ -161,12 +161,10 @@ export default {
             viewports: customViewports,
             defaultViewport: "desktop",
         },
-        parameters: {
-            chromatic: {
-                // We already have screenshots of other stories in
-                // one-pane-dialog.stories.tsx
-                disableSnapshot: true,
-            },
+        chromatic: {
+            // We already have screenshots of other stories in
+            // one-pane-dialog.stories.tsx
+            disableSnapshot: true,
         },
     },
     argTypes: ModalHeaderArgtypes,
