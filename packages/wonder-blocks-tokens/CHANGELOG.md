@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 11.1.0
+
+### Minor Changes
+
+- 0f4f771: Include css variables for banner component
+
 ## 11.0.0
 
 ### Major Changes

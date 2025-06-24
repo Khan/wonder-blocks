@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-popover",
-  "version": "6.1.10",
+  "version": "6.1.11",
   "design": "v1",
   "publishConfig": {
     "access": "public"

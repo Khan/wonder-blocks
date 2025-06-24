@@ -1,5 +1,26 @@
 # @khanacademy/wonder-blocks-banner
 
+## 4.2.0
+
+### Minor Changes
+
+- 61a010a: Add `styles` prop to `Banner` so that the `root` element can be styled
+- 0f4f771: Banner updates to support Thunderblocks styling.
+    - Note: The `layout` prop no longer changes the border radius. All banners will have a border radius by default. `layout` is deprecated and will be removed in a future release.
+    - Padding amd margin within the component is simplified
+    - Bold icons are used within the Banner
+
+### Patch Changes
+
+- b0fa809: Update banner styles (use `sizing` instead of `spacing`, use semantic color tokens, set up banner token structure to support theming)
+- Updated dependencies [0f4f771]
+    - @khanacademy/wonder-blocks-tokens@11.1.0
+    - @khanacademy/wonder-blocks-button@10.2.4
+    - @khanacademy/wonder-blocks-icon@5.2.3
+    - @khanacademy/wonder-blocks-icon-button@10.3.3
+    - @khanacademy/wonder-blocks-link@9.1.9
+    - @khanacademy/wonder-blocks-typography@4.2.4
+
 ## 4.1.26
 
 ### Patch Changes

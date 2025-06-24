@@ -19,7 +19,6 @@ import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 
 import ComponentInfo from "../components/component-info";
 import ModalHeaderArgtypes from "./modal-header.argtypes";
-import {allModes} from "../../.storybook/modes";
 
 const customViewports = {
     phone: {
@@ -118,8 +117,6 @@ est.`}
  * - Add a title (required).
  * - Optionally add a subtitle or breadcrumbs.
  * - We encourage you to add `titleId` (see Accessibility notes).
- * - If the `ModalPanel` has a dark background, make sure to set `light` to
- *   `false`.
  * - If you need to create e2e tests, make sure to pass a `testId` prop and
  *   add a sufix to scope the testId to this component: e.g.
  *   `some-random-id-ModalHeader`. This scope will also be passed to the title
@@ -132,7 +129,6 @@ est.`}
  *      title="This is a modal title."
  *      subtitle="subtitle"
  *      titleId="uniqueTitleId"
- *      light={false}
  *  />
  * ```
  */
@@ -166,10 +162,9 @@ export default {
             defaultViewport: "desktop",
         },
         chromatic: {
-            modes: {
-                small: allModes.small,
-                large: allModes.large,
-            },
+            // We already have screenshots of other stories in
+            // one-pane-dialog.stories.tsx
+            disableSnapshot: true,
         },
     },
     argTypes: ModalHeaderArgtypes,
@@ -194,30 +189,6 @@ export const Default: StoryComponentType = {
 };
 
 /**
- * This is `<ModalHeader>` when `light` is set to false. This should only be
- * false if the `light` prop on the encompassing `<ModalPanel>` is also false .
- * Note that the close button is not visible on the header if the panel is
- * light.
- */
-export const Dark: StoryComponentType = {
-    render: () => (
-        <ModalDialog aria-labelledby="modal-title-2" style={styles.dialog}>
-            <ModalPanel
-                header={
-                    <ModalHeader
-                        title="Modal Title"
-                        titleId="modal-title-2"
-                        light={false}
-                    />
-                }
-                content={longBody}
-                light={false}
-            />
-        </ModalDialog>
-    ),
-};
-
-/**
  * This is `<ModalHeader>` with a subtitle, which can be done by passing a
  * string into the `subtitle` prop.
  */
@@ -239,32 +210,8 @@ export const WithSubtitle: StoryComponentType = {
 };
 
 /**
- * This is `<ModalHeader>` with a subtitle when it also has `light` set to
- * false.
- */
-export const WithSubtitleDark: StoryComponentType = {
-    render: () => (
-        <ModalDialog aria-labelledby="modal-title-4" style={styles.dialog}>
-            <ModalPanel
-                header={
-                    <ModalHeader
-                        title="Modal Title"
-                        titleId="modal-title-4"
-                        subtitle="This is what a subtitle looks like."
-                        light={false}
-                    />
-                }
-                content={longBody}
-                light={false}
-            />
-        </ModalDialog>
-    ),
-};
-
-/**
  * This is `<ModalHeader>` with breadcrumbs, which can be done by passing a
- * Wonder Blocks `<Breadcrumbs>` element into the `breadcrumbs` prop. Note that
- * `breadcrumbs` currently do not work when `light` is false.
+ * Wonder Blocks `<Breadcrumbs>` element into the `breadcrumbs` prop.
  */
 export const WithBreadcrumbs: StoryComponentType = {
     render: () => (
