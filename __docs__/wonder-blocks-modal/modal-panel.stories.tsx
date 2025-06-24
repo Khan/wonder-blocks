@@ -43,7 +43,7 @@ const customViewports = {
 } as const;
 
 const longBody = (
-    <>
+    <View style={{gap: sizing.size_160}}>
         <BodyText>
             {`Let's make this body content long in order
 to test scroll overflow.`}
@@ -84,7 +84,7 @@ Excepteur sint occaecat cupidatat non proident,
 sunt in culpa qui officia deserunt mollit anim id
 est.`}
         </BodyText>
-    </>
+    </View>
 );
 
 /**
