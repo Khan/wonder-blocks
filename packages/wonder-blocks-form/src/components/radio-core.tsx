@@ -139,10 +139,9 @@ const _generateStyles = (
                 // borders need to render in pixels for consistent size
                 borderWidth: `calc(${baseStyles.radio.sizing.size} / 4)`,
 
-                ":focus-visible:not([disabled])": {
-                    // Use the global focus style
-                    ...focusStyles.focus,
-                },
+                // Use the global focus style
+                ":focus-visible:not([disabled])":
+                    focusStyles.focus[":focus-visible"],
 
                 ":active:not([disabled])": {
                     outline: `${border.width.medium} solid ${checkedStyles.press.border}`,

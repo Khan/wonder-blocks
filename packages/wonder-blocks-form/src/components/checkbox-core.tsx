@@ -202,9 +202,9 @@ const _generateStyles = (
                 backgroundColor: checkedStyles.rest.background,
                 borderColor: checkedStyles.rest.border,
 
-                ":focus-visible:not([disabled])": {
-                    ...focusStyles.focus,
-                },
+                // Use the global focus style
+                ":focus-visible:not([disabled])":
+                    focusStyles.focus[":focus-visible"],
 
                 ":active:not([disabled])": {
                     outline: `${border.width.medium} solid ${checkedStyles.press.border}`,
