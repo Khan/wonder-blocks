@@ -8,8 +8,10 @@ import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import caretDownIcon from "@phosphor-icons/core/bold/caret-down-bold.svg";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
 import {OptionLabel} from "../util/types";
+import theme from "../theme";
 
 const StyledButton = addStyle("button");
 
@@ -144,8 +146,8 @@ export default class SelectOpener extends React.Component<
         const stateStyles = _generateStyles(isPlaceholder, error);
 
         const iconColor = disabled
-            ? semanticColor.icon.disabled
-            : semanticColor.icon.primary;
+            ? semanticColor.core.foreground.disabled.default
+            : theme.selectOpener.color.icon;
 
         const style = [
             styles.shared,
@@ -206,10 +208,10 @@ const styles = StyleSheet.create({
         // This asymmetry arises from the Icon on the right side, which has
         // extra padding built in. To have the component look more balanced,
         // we need to take off some paddingRight here.
-        paddingInlineStart: sizing.size_160,
-        paddingInlineEnd: sizing.size_120,
+        paddingInlineStart: theme.selectOpener.layout.padding.inlineStart,
+        paddingInlineEnd: theme.selectOpener.layout.padding.inlineEnd,
         borderWidth: 0,
-        borderRadius: border.radius.radius_040,
+        borderRadius: theme.selectOpener.border.radius.rest,
         borderStyle: "solid",
         outline: "none",
         textDecoration: "none",
@@ -249,31 +251,20 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
     // resting/default state.
     const action = semanticColor.action.secondary[actionType];
 
-    // TODO(WB-1868): Address outlineOffset to include hover and focus states
-    const sharedOutlineStyling = {
-        // Outline sits inside the border (inset)
-        outlineOffset: `calc(${border.width.medium} * -1)`,
-        outlineStyle: "solid",
-        outlineWidth: border.width.medium,
-    };
-
-    const focusStyling = {
-        ...sharedOutlineStyling,
-        outlineColor: semanticColor.focus.outer,
-    };
     const hoverStyling = {
-        ...sharedOutlineStyling,
-        outlineColor: action.hover.border,
+        borderColor: action.hover.border,
+        boxShadow: `inset 0 0 0 ${border.width.thin} ${action.hover.border}`,
     };
     const pressStyling = {
         background: action.press.background,
         color: placeholder
             ? error
-                ? semanticColor.text.secondary
-                : semanticColor.action.secondary.progressive.press.foreground
-            : semanticColor.text.primary,
-        outlineColor: action.press.border,
-        ...sharedOutlineStyling,
+                ? semanticColor.core.foreground.neutral.default
+                : semanticColor.core.foreground.instructive.default
+            : semanticColor.core.foreground.neutral.strong,
+        borderColor: action.press.border,
+        boxShadow: `inset 0 0 0 ${border.width.thin} ${action.press.border}`,
+        borderRadius: theme.selectOpener.border.radius.press,
     };
 
     const currentState = error
@@ -286,30 +277,34 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
             borderColor: currentState.border,
             borderWidth: border.width.thin,
             color: placeholder
-                ? semanticColor.text.secondary
+                ? semanticColor.core.foreground.neutral.subtle
                 : currentState.foreground,
-            ":hover:not([aria-disabled=true])": hoverStyling,
+            ":hover": hoverStyling,
             // Allow hover styles on non-touch devices only. This prevents an
             // issue with hover being sticky on touch devices (e.g. mobile).
             ["@media not (hover: hover)"]: {
-                ":hover:not([aria-disabled=true])": {
+                ":hover": {
                     borderColor: currentState.border,
                     borderWidth: border.width.thin,
-                    paddingInlineStart: sizing.size_160,
-                    paddingInlineEnd: sizing.size_120,
+                    paddingInlineStart:
+                        theme.selectOpener.layout.padding.inlineStart,
+                    paddingInlineEnd:
+                        theme.selectOpener.layout.padding.inlineEnd,
                 },
             },
-            ":focus-visible:not([aria-disabled=true])": focusStyling,
-            ":active:not([aria-disabled=true])": pressStyling,
+            ":active": pressStyling,
+            ...focusStyles.focus,
         },
         disabled: {
             background: semanticColor.input.disabled.background,
             borderColor: semanticColor.input.disabled.border,
             color: semanticColor.input.disabled.placeholder,
             cursor: "not-allowed",
-            ":focus-visible": {
-                outlineColor: semanticColor.focus.outer,
-                ...sharedOutlineStyling,
+            ":hover": {
+                outline: "none",
+            },
+            ":active": {
+                outline: "none",
             },
         },
         press: pressStyling,
