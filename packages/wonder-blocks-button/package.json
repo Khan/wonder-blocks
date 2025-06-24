@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-button",
-  "version": "10.2.3",
+  "version": "10.2.4",
   "design": "v1",
   "publishConfig": {
     "access": "public"

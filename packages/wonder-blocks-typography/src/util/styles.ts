@@ -30,15 +30,130 @@ const styles: StyleDeclaration = StyleSheet.create({
     Heading: {
         ...common,
         fontFamily: font.family.sans,
-        // weight and size are determined by props
+        // weight and size are matched by props, using the combinations below
         // lineHeight is determined by fontSize on REM scale
+    },
+    HeadingSmallBoldWeight: {
+        fontSize: font.heading.size.small,
+        fontWeight: font.weight.bold,
+        lineHeight: font.heading.lineHeight.small,
+    },
+    HeadingSmallSemiWeight: {
+        fontSize: font.heading.size.small,
+        fontWeight: font.weight.semi,
+        lineHeight: font.heading.lineHeight.small,
+    },
+    HeadingSmallMediumWeight: {
+        fontSize: font.heading.size.small,
+        fontWeight: font.weight.medium,
+        lineHeight: font.heading.lineHeight.small,
+    },
+    HeadingMediumBoldWeight: {
+        fontSize: font.heading.size.medium,
+        fontWeight: font.weight.bold,
+        lineHeight: font.heading.lineHeight.medium,
+    },
+    HeadingMediumSemiWeight: {
+        fontSize: font.heading.size.medium,
+        fontWeight: font.weight.semi,
+        lineHeight: font.heading.lineHeight.medium,
+    },
+    HeadingMediumMediumWeight: {
+        fontSize: font.heading.size.medium,
+        fontWeight: font.weight.medium,
+        lineHeight: font.heading.lineHeight.medium,
+    },
+    HeadingLargeBoldWeight: {
+        fontSize: font.heading.size.large,
+        fontWeight: font.weight.bold,
+        lineHeight: font.heading.lineHeight.large,
+    },
+    HeadingLargeSemiWeight: {
+        fontSize: font.heading.size.large,
+        fontWeight: font.weight.semi,
+        lineHeight: font.heading.lineHeight.large,
+    },
+    HeadingLargeMediumWeight: {
+        fontSize: font.heading.size.large,
+        fontWeight: font.weight.medium,
+        lineHeight: font.heading.lineHeight.large,
+    },
+    HeadingXLargeBoldWeight: {
+        fontSize: font.heading.size.xlarge,
+        fontWeight: font.weight.bold,
+        lineHeight: font.heading.lineHeight.xlarge,
+    },
+    HeadingXLargeMediumWeight: {
+        fontSize: font.heading.size.xlarge,
+        fontWeight: font.weight.medium,
+        lineHeight: font.heading.lineHeight.xlarge,
+    },
+    HeadingXLargeSemiWeight: {
+        fontSize: font.heading.size.xlarge,
+        fontWeight: font.weight.semi,
+        lineHeight: font.heading.lineHeight.xlarge,
+    },
+    HeadingXxLargeSemiWeight: {
+        fontSize: font.heading.size.xxlarge,
+        fontWeight: font.weight.semi,
+        lineHeight: font.heading.lineHeight.xxlarge,
+    },
+    HeadingXxLargeBoldWeight: {
+        fontSize: font.heading.size.xxlarge,
+        fontWeight: font.weight.bold,
+        lineHeight: font.heading.lineHeight.xxlarge,
     },
     BodyText: {
         ...common,
         fontFamily: font.family.sans,
         margin: 0,
-        // weight and size are determined by props
+        // weight and size are matched by props, using the combinations below
         // lineHeight is determined by fontSize on REM scale
+    },
+    BodyTextXSmallMediumWeight: {
+        fontSize: font.body.size.xsmall,
+        fontWeight: font.weight.medium,
+        lineHeight: font.body.lineHeight.xsmall,
+    },
+    BodyTextXSmallSemiWeight: {
+        fontSize: font.body.size.xsmall,
+        fontWeight: font.weight.semi,
+        lineHeight: font.body.lineHeight.xsmall,
+    },
+    BodyTextXSmallBoldWeight: {
+        fontSize: font.body.size.xsmall,
+        fontWeight: font.weight.bold,
+        lineHeight: font.body.lineHeight.xsmall,
+    },
+    BodyTextSmallMediumWeight: {
+        fontSize: font.body.size.small,
+        fontWeight: font.weight.medium,
+        lineHeight: font.body.lineHeight.small,
+    },
+    BodyTextSmallSemiWeight: {
+        fontSize: font.body.size.small,
+        fontWeight: font.weight.semi,
+        lineHeight: font.body.lineHeight.small,
+    },
+    BodyTextSmallBoldWeight: {
+        fontSize: font.body.size.small,
+        fontWeight: font.weight.bold,
+        lineHeight: font.body.lineHeight.small,
+    },
+    BodyTextMediumMediumWeight: {
+        fontSize: font.body.size.medium,
+        fontWeight: font.weight.medium,
+        lineHeight: font.body.lineHeight.medium,
+    },
+    BodyTextMediumSemiWeight: {
+        fontSize: font.body.size.medium,
+        fontWeight: font.weight.semi,
+        lineHeight: font.body.lineHeight.medium,
+    },
+    BodyTextMediumBoldWeight: {
+        fontSize: font.body.size.medium,
+        fontWeight: font.weight.bold,
+        lineHeight: font.body.lineHeight.medium,
     },
     HeadingLarge: {
         ...common,

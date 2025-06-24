@@ -22,7 +22,6 @@ import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 import ComponentInfo from "../components/component-info";
 import modalPanelArgtypes from "./modal-panel.argtypes";
 import {allModes} from "../../.storybook/modes";
-import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 
 const customViewports = {
     phone: {
@@ -153,6 +152,7 @@ export default {
             modes: {
                 small: allModes.small,
                 large: allModes.large,
+                thunderblocks: allModes.themeThunderBlocks,
             },
         },
     },
@@ -180,26 +180,12 @@ export const Default: StoryComponentType = {
             />
         </ModalDialog>
     ),
-};
-
-/**
- * This is what a modal panel looks like when its `light` prop is set to false.
- */
-export const Dark: StoryComponentType = {
-    render: () => (
-        <ModalDialog aria-labelledby="modal-title-a" style={styles.dialog}>
-            <ModalPanel
-                content={
-                    <>
-                        <Title id="modal-title-a">Modal Title</Title>
-                        <Strut size={spacing.large_24} />
-                        {longBody}
-                    </>
-                }
-                light={false}
-            />
-        </ModalDialog>
-    ),
+    parameters: {
+        chromatic: {
+            // We already have screenshots in one-pane-dialog.stories.tsx
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**
@@ -218,6 +204,12 @@ export const WithHeader: StoryComponentType = {
             />
         </ModalDialog>
     ),
+    parameters: {
+        chromatic: {
+            // We already have screenshots in one-pane-dialog.stories.tsx
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**
@@ -243,32 +235,12 @@ export const WithFooter: StoryComponentType = {
             />
         </ModalDialog>
     ),
-};
-
-/**
- * Here is a dark `<ModalPanel>` with a header and a footer. The `<Button>` in
- * the footer must have the `light` prop set to true in order to be visible on
- * the dark background.
- */
-export const DarkWithHeaderAndFooter: StoryComponentType = {
-    render: () => (
-        <ModalDialog aria-labelledby="modal-title-3" style={styles.dialog}>
-            <ModalPanel
-                header={
-                    <ModalHeader titleId="modal-title-2" title="Modal Title" />
-                }
-                content={longBody}
-                footer={
-                    <ModalFooter>
-                        <Button onClick={() => {}} style={actionStyles.inverse}>
-                            Continue
-                        </Button>
-                    </ModalFooter>
-                }
-                light={false}
-            />
-        </ModalDialog>
-    ),
+    parameters: {
+        chromatic: {
+            // We already have screenshots in one-pane-dialog.stories.tsx
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**
@@ -328,7 +300,6 @@ export const TwoPanels: StoryComponentType = {
                                 </Body>
                             </View>
                         }
-                        light={false}
                         closeButtonVisible={false}
                     />
                     <ModalPanel
