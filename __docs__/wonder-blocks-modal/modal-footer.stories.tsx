@@ -16,7 +16,6 @@ import {
 import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 
 import ComponentInfo from "../components/component-info";
-import {allModes} from "../../.storybook/modes";
 
 const customViewports = {
     phone: {
@@ -137,10 +136,9 @@ export default {
             defaultViewport: "desktop",
         },
         chromatic: {
-            modes: {
-                default: allModes.themeDefault,
-                thunderblocks: allModes.themeThunderBlocks,
-            },
+            // We already have screenshots of other stories in
+            // one-pane-dialog.stories.tsx
+            disableSnapshot: true,
         },
     },
     argTypes: {

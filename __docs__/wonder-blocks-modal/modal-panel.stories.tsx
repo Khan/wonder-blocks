@@ -180,6 +180,12 @@ export const Default: StoryComponentType = {
             />
         </ModalDialog>
     ),
+    parameters: {
+        chromatic: {
+            // We already have screenshots in one-pane-dialog.stories.tsx
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**
@@ -198,6 +204,12 @@ export const WithHeader: StoryComponentType = {
             />
         </ModalDialog>
     ),
+    parameters: {
+        chromatic: {
+            // We already have screenshots in one-pane-dialog.stories.tsx
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**
@@ -223,6 +235,12 @@ export const WithFooter: StoryComponentType = {
             />
         </ModalDialog>
     ),
+    parameters: {
+        chromatic: {
+            // We already have screenshots in one-pane-dialog.stories.tsx
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**
