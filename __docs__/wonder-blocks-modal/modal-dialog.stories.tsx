@@ -1,12 +1,10 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
-import {useGlobals} from "@storybook/preview-api";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {Body, Title} from "@khanacademy/wonder-blocks-typography";
-import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
 import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import {
@@ -259,10 +257,6 @@ export const WithLauncher: StoryComponentType = {
  * This example shows how a modal dialog/panel can be created with a dark
  * background. The `light` prop of the `<ModalPanel>` element is set to `false`
  * to create a dark background.
- *
- * **NOTE:** We are using the `khanmigo` theme for this example for chromatic
- * tests. But you can use any theme you want by clicking in the `theme` option
- * in the toolbar.
  */
 export const WithDarkPanel: StoryComponentType = {
     render: (args) => (
@@ -300,16 +294,7 @@ export const WithDarkPanel: StoryComponentType = {
                         footer={
                             <Button
                                 kind="secondary"
-                                style={[
-                                    actionStyles.inverse,
-                                    // NOTE: This is a workaround while we move
-                                    // this button to DAB and remove the
-                                    // `Button.khanmigo` theme.
-                                    {
-                                        background: "transparent",
-                                        ":hover": {background: "transparent"},
-                                    },
-                                ]}
+                                style={[actionStyles.inverse]}
                                 onClick={() => {}}
                             >
                                 Continue
@@ -326,19 +311,6 @@ export const WithDarkPanel: StoryComponentType = {
             maxHeight: 500,
         },
     },
-    decorators: [
-        (Story) => {
-            const [globals] = useGlobals();
-            // Defaults to khanmigo theme for chromatic tests.
-            const {theme = "khanmigo"} = globals;
-
-            return (
-                <ThemeSwitcherContext.Provider value={theme}>
-                    <Story />
-                </ThemeSwitcherContext.Provider>
-            );
-        },
-    ],
 };
 
 const styles = StyleSheet.create({

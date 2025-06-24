@@ -1,15 +1,8 @@
 import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
-import {
-    ThemedStylesFn,
-    useScopedTheme,
-    useStyles,
-} from "@khanacademy/wonder-blocks-theming";
-import {
-    ModalDialogThemeContext,
-    ModalDialogThemeContract,
-} from "../themes/themed-modal-dialog";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {StyleSheet} from "aphrodite";
+import theme from "../theme";
 
 type Props = {
     children: React.ReactNode;
@@ -33,9 +26,6 @@ type Props = {
  * ```
  */
 export default function ModalFooter({children}: Props) {
-    const {theme} = useScopedTheme(ModalDialogThemeContext);
-    const styles = useStyles(themedStylesFn, theme);
-
     return <View style={styles.footer}>{children}</View>;
 }
 
@@ -45,15 +35,13 @@ ModalFooter.isComponentOf = (instance: any): boolean => {
     return instance && instance.type && instance.type.__IS_MODAL_FOOTER__;
 };
 
-const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
+const styles = StyleSheet.create({
     footer: {
         flex: "0 0 auto",
         boxSizing: "border-box",
-        minHeight: spacing.xxxLarge_64,
-        paddingLeft: spacing.medium_16,
-        paddingRight: spacing.medium_16,
-        paddingTop: spacing.xSmall_8,
-        paddingBottom: spacing.xSmall_8,
+        minHeight: sizing.size_640,
+        paddingInline: sizing.size_160,
+        paddingBlock: sizing.size_080,
 
         display: "flex",
         flexDirection: "row",
