@@ -87,23 +87,23 @@ export function StateSheet({
                 title={title}
                 layout={layout}
             >
-                {({props}) => {
+                {({props, name}) => {
                     return (
                         <View style={[styles.container]}>
-                            {states.map(({className, name}) => (
+                            {states.map(({className, name: stateName}) => (
                                 <View
-                                    key={name}
+                                    key={stateName}
                                     className={className}
                                     style={styles.flexStartContainer}
                                 >
                                     <LabelSmall style={styles.label}>
-                                        {name}
+                                        {stateName}
                                     </LabelSmall>
                                     <View style={styles.content}>
                                         {children({
                                             props,
                                             className,
-                                            name,
+                                            name: `${name}-${stateName}`,
                                         })}
                                     </View>
                                 </View>
