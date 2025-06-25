@@ -99,6 +99,7 @@ type Props = AriaProps & {
         return (
             <BodyText
                 tag="div"
+                weight="semi"
                 style={[styles.label, disabled && styles.disabledLabel]}
             >
                 <label htmlFor={id}>{label}</label>
@@ -163,14 +164,15 @@ type Props = AriaProps & {
 
 const styles = StyleSheet.create({
     wrapper: {
-        lineHeight: font.weight.medium,
+        gap: spacing.xSmall_8,
+        lineHeight: font.body.lineHeight.small,
         flexDirection: "row",
         alignItems: "flex-start",
         outline: "none",
     },
     label: {
-        // Match the line-height of BodyText medium, minus former -2px margin
-        lineHeight: sizing.size_180,
+        color: semanticColor.core.foreground.neutral.strong,
+        lineHeight: font.body.lineHeight.small,
     },
     disabledLabel: {
         // Match disabled text input label color

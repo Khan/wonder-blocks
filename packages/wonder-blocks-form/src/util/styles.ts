@@ -189,7 +189,7 @@ export const colorStates: StyleMap = {
             },
             disabled: {
                 rest: {
-                    border: semanticColor.core.border.disabled.strong,
+                    border: semanticColor.core.border.disabled.default,
                     background: semanticColor.core.border.inverse.strong,
                 },
                 hover: {
