@@ -269,11 +269,6 @@ const styles = StyleSheet.create({
         paddingInline: theme.field.layout.paddingInline,
         paddingBlock: theme.field.layout.paddingBlock,
         margin: sizing.size_0,
-        ...focusStyles.focus,
-        // Don't show active styles if field is disabled or readonly
-        [":active:not([aria-disabled='true']):not([readonly])" as any]: {
-            borderWidth: theme.field.border.width.press,
-        },
     },
     readOnly: {
         background: semanticColor.input.readOnly.background,
@@ -285,6 +280,13 @@ const styles = StyleSheet.create({
         color: semanticColor.input.default.foreground,
         "::placeholder": {
             color: semanticColor.input.default.placeholder,
+        },
+        ...focusStyles.focus,
+        // Don't show active styles if field is disabled or readonly
+        [":active:not([aria-disabled='true']):not([readonly])" as any]: {
+            // Use box shadow to make the border in the press state look thicker
+            // without changing the border
+            boxShadow: `0 0 0 ${theme.field.border.width.press} ${semanticColor.input.default.border}`,
         },
     },
     error: {

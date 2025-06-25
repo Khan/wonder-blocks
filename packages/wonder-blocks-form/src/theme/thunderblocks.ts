@@ -9,7 +9,11 @@ export default mergeTheme(defaultTheme, {
             radius: border.radius.radius_080,
             width: {
                 error: border.width.medium,
-                press: border.width.medium,
+                // Press state has a thin border because box shadow is used to
+                // apply the thicker border so the size of the field doesn't
+                // change. The field still has a border so it will look like a
+                // medium border width.
+                press: border.width.thin,
             },
         },
         sizing: {
