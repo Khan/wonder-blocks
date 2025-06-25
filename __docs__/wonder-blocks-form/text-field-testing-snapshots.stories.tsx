@@ -147,6 +147,14 @@ export const Scenarios: Story = {
                 name: "With Placeholder (long, no word breaks)",
                 props: {placeholder: longTextWithNoWordBreak},
             },
+            {
+                name: "With Long Text and Error",
+                props: {value: longText, error: true},
+            },
+            {
+                name: "With Long Text and Readonly",
+                props: {value: longText, readOnly: true},
+            },
         ];
         return (
             <ScenariosLayout scenarios={scenarios}>
