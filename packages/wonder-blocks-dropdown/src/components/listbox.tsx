@@ -6,6 +6,7 @@ import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {useId} from "react";
 import {useListbox} from "../hooks/use-listbox";
 import {MaybeValueOrValues, OptionItemComponent} from "../util/types";
+import theme from "../theme";
 
 type Props = {
     /**
@@ -207,24 +208,15 @@ export default function Listbox(props: Props) {
     );
 }
 
-// TODO(WB-1868): Move this to a theme file.
-const theme = {
-    // Merge with the `listbox` key in `combobox.tsx`.
-    listbox: {
-        color: {
-            disabled: {
-                foreground: semanticColor.action.secondary.disabled.foreground,
-            },
-        },
-    },
-};
-
 const styles = StyleSheet.create({
     listbox: {
         backgroundColor: semanticColor.surface.primary,
         outline: "none",
+        // layout
+        paddingBlock: theme.listbox.layout.padding.block,
+        paddingInline: theme.listbox.layout.padding.inline,
     },
     disabled: {
-        color: theme.listbox.color.disabled.foreground,
+        color: semanticColor.action.secondary.disabled.foreground,
     },
 });

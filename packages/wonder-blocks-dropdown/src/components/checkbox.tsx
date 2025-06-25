@@ -28,7 +28,7 @@ const Checkbox = function (props: CheckProps): React.ReactElement {
             className="checkbox"
             style={[
                 styles.checkbox,
-                selected && !disabled && styles.noBorder,
+                selected && !disabled && styles.selected,
                 disabled && styles.disabledCheckbox,
             ]}
         >
@@ -57,19 +57,19 @@ const Checkbox = function (props: CheckProps): React.ReactElement {
 
 export default Checkbox;
 
-// TODO(WB-1868): Move this to a theme file.
-const theme = {
-    // Merge this with the `checkbox` key in `option-item.tsx`.
-    checkbox: {
-        color: {
-            default: {
-                border: semanticColor.input.default.border,
-                background: semanticColor.input.default.background,
-            },
-            disabled: {
-                border: semanticColor.input.disabled.border,
-                background: semanticColor.input.disabled.background,
-            },
+const checkboxTokens = {
+    color: {
+        default: {
+            border: semanticColor.input.default.border,
+            background: semanticColor.input.default.background,
+        },
+        disabled: {
+            border: semanticColor.input.disabled.border,
+            background: semanticColor.input.disabled.background,
+        },
+        selected: {
+            background: semanticColor.input.checked.background,
+            foreground: semanticColor.input.checked.foreground,
         },
     },
 };
@@ -81,21 +81,23 @@ const styles = StyleSheet.create({
         minHeight: sizing.size_160,
         minWidth: sizing.size_160,
         height: sizing.size_160,
-        background: theme.checkbox.color.default.background,
+        background: checkboxTokens.color.default.background,
         // TODO(WB-1864): Use the correct token once TB is updated.
         borderRadius: 3,
         borderWidth: border.width.thin,
         borderStyle: "solid",
-        borderColor: theme.checkbox.color.default.border,
+        borderColor: checkboxTokens.color.default.border,
     },
 
-    noBorder: {
+    selected: {
         borderWidth: 0,
+        background: checkboxTokens.color.selected.background,
+        color: checkboxTokens.color.selected.foreground,
     },
 
     disabledCheckbox: {
-        borderColor: theme.checkbox.color.disabled.border,
-        backgroundColor: theme.checkbox.color.disabled.background,
+        borderColor: checkboxTokens.color.disabled.border,
+        backgroundColor: checkboxTokens.color.disabled.background,
     },
 
     // The border of 1px on the selected, disabled checkbox pushes the check out

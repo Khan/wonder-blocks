@@ -20,10 +20,15 @@ type CheckProps = {
  * The check component used by OptionItem.
  */
 const Check = function (props: CheckProps): React.ReactElement {
-    const {selected} = props;
+    const {selected, disabled} = props;
+
+    // Using `strong` for disabled as we are applying an alpha to the listbox.
+    const iconColor = disabled
+        ? semanticColor.core.foreground.disabled.strong
+        : semanticColor.core.foreground.instructive.default;
     return (
         <PhosphorIcon
-            color={semanticColor.core.foreground.instructive.default}
+            color={iconColor}
             icon={checkIcon}
             size="small"
             style={[styles.bounds, !selected && styles.hide]}

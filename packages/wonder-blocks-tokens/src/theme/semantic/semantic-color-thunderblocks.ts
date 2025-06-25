@@ -118,7 +118,7 @@ const core = {
         },
     },
     shadow: {
-        transparent: transparent,
+        transparent: `color-mix(in srgb, ${color.blue_10} 20%, ${transparent})`,
         chonky: {
             progressive: {
                 subtle: color.blue_60,
@@ -427,7 +427,7 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                     selected: core.shadow.chonky.progressive.subtle,
                 },
                 tertiary: {
-                    rest: core.shadow.transparent,
+                    rest: core.transparent,
                     hover: core.shadow.chonky.neutral.subtle,
                     press: core.shadow.chonky.neutral.subtle,
                     selected: core.shadow.chonky.progressive.subtle,
@@ -509,7 +509,7 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                     selected: core.shadow.chonky.neutral.subtle,
                 },
                 tertiary: {
-                    rest: core.shadow.transparent,
+                    rest: core.transparent,
                     hover: core.shadow.chonky.neutral.subtle,
                     press: core.shadow.chonky.neutral.subtle,
                     selected: core.shadow.chonky.progressive.subtle,
@@ -535,7 +535,7 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
             shadow: {
                 primary: core.shadow.chonky.neutral.subtle,
                 secondary: core.shadow.chonky.neutral.subtle,
-                tertiary: core.shadow.transparent,
+                tertiary: core.transparent,
             },
         },
     },

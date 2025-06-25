@@ -275,17 +275,6 @@ const resetFocusStyle = {
     boxShadow: "none",
 };
 
-const theme = {
-    checkbox: {
-        color: {
-            selected: {
-                background: semanticColor.input.checked.background,
-                foreground: semanticColor.input.checked.foreground,
-            },
-        },
-    },
-};
-
 const styles = StyleSheet.create({
     optionItem: {
         paddingBlock: sizing.size_100,
@@ -304,12 +293,6 @@ const styles = StyleSheet.create({
 
         [":is([aria-disabled=true])" as any]: {
             ":focus": resetFocusStyle,
-        },
-
-        // checkbox states (see checkbox.tsx)
-        [":is([aria-selected=true]) .checkbox" as any]: {
-            background: theme.checkbox.color.selected.background,
-            color: theme.checkbox.color.selected.foreground,
         },
     },
     // Specific styles for Listbox and Combobox

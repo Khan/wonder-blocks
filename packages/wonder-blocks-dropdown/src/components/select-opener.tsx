@@ -147,7 +147,7 @@ export default class SelectOpener extends React.Component<
 
         const iconColor = disabled
             ? semanticColor.core.foreground.disabled.default
-            : theme.selectOpener.color.icon;
+            : theme.combobox.color.icon;
 
         const style = [
             styles.shared,
@@ -205,13 +205,9 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         color: semanticColor.text.primary,
         height: DROPDOWN_ITEM_HEIGHT,
-        // This asymmetry arises from the Icon on the right side, which has
-        // extra padding built in. To have the component look more balanced,
-        // we need to take off some paddingRight here.
-        paddingInlineStart: theme.selectOpener.layout.padding.inlineStart,
-        paddingInlineEnd: theme.selectOpener.layout.padding.inlineEnd,
+        paddingInline: theme.combobox.layout.padding.inline,
         borderWidth: 0,
-        borderRadius: theme.selectOpener.border.radius.rest,
+        borderRadius: theme.combobox.border.radius.rest,
         borderStyle: "solid",
         outline: "none",
         textDecoration: "none",
@@ -264,7 +260,7 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
             : semanticColor.core.foreground.neutral.strong,
         borderColor: action.press.border,
         boxShadow: `inset 0 0 0 ${border.width.thin} ${action.press.border}`,
-        borderRadius: theme.selectOpener.border.radius.press,
+        borderRadius: theme.combobox.border.radius.press,
     };
 
     const currentState = error
@@ -286,10 +282,7 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
                 ":hover": {
                     borderColor: currentState.border,
                     borderWidth: border.width.thin,
-                    paddingInlineStart:
-                        theme.selectOpener.layout.padding.inlineStart,
-                    paddingInlineEnd:
-                        theme.selectOpener.layout.padding.inlineEnd,
+                    paddingInline: theme.combobox.layout.padding.inline,
                 },
             },
             ":active": pressStyling,

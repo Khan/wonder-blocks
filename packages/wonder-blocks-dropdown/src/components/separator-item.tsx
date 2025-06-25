@@ -38,18 +38,9 @@ export default class SeparatorItem extends React.Component<{
     }
 }
 
-// TODO(WB-1868): Move this to a theme file.
-const theme = {
-    separator: {
-        color: {
-            border: semanticColor.core.border.neutral.subtle,
-        },
-    },
-};
-
 const styles = StyleSheet.create({
     separator: {
-        borderTop: `${border.width.thin} solid ${theme.separator.color.border}`,
+        borderTop: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
         height: 1,
         minHeight: 1,
         marginBlock: sizing.size_040,

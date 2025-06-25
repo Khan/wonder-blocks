@@ -121,7 +121,7 @@ const core = {
         },
     },
     shadow: {
-        transparent: transparent,
+        transparent: color.offBlack16,
         chonky: {
             progressive: {
                 subtle: color.fadedBlue,
@@ -559,7 +559,7 @@ export const semanticColor = {
                     selected: core.shadow.chonky.progressive.subtle,
                 },
                 tertiary: {
-                    rest: core.shadow.transparent,
+                    rest: core.transparent,
                     hover: core.shadow.chonky.neutral.subtle,
                     press: core.shadow.chonky.neutral.subtle,
                     selected: core.shadow.chonky.progressive.subtle,
@@ -631,7 +631,7 @@ export const semanticColor = {
                 primary: {
                     rest: core.shadow.chonky.neutral.strong,
                     hover: core.shadow.chonky.neutral.strong,
-                    press: core.shadow.transparent,
+                    press: core.transparent,
                     selected: core.shadow.chonky.neutral.strong,
                 },
                 secondary: {
@@ -641,7 +641,7 @@ export const semanticColor = {
                     selected: core.shadow.chonky.neutral.subtle,
                 },
                 tertiary: {
-                    rest: core.shadow.transparent,
+                    rest: core.transparent,
                     hover: core.shadow.chonky.neutral.subtle,
                     press: core.shadow.chonky.neutral.subtle,
                     selected: core.shadow.chonky.progressive.subtle,
@@ -667,7 +667,7 @@ export const semanticColor = {
             shadow: {
                 primary: core.shadow.chonky.neutral.subtle,
                 secondary: core.shadow.chonky.neutral.subtle,
-                tertiary: core.shadow.transparent,
+                tertiary: core.transparent,
             },
         },
     },
