@@ -1,15 +1,24 @@
 {
   "name": "@khanacademy/wonder-blocks-modal",
-  "version": "7.1.25",
+  "version": "8.0.1",
   "design": "v2",
   "publishConfig": {
     "access": "public"
   },
   "description": "",
+  "exports": {
+    ".": {
+      "import": "./dist/es/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles.css": "./dist/css/vars.css"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "module": "dist/es/index.js",
   "scripts": {
+    "build:css": "pnpm exec wonder-blocks-tokens .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },
@@ -21,7 +30,6 @@
     "@khanacademy/wonder-blocks-icon-button": "workspace:*",
     "@khanacademy/wonder-blocks-layout": "workspace:*",
     "@khanacademy/wonder-blocks-styles": "workspace:*",
-    "@khanacademy/wonder-blocks-theming": "workspace:*",
     "@khanacademy/wonder-blocks-timing": "workspace:*",
     "@khanacademy/wonder-blocks-tokens": "workspace:*",
     "@khanacademy/wonder-blocks-typography": "workspace:*"
