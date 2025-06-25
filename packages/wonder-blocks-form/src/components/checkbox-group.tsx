@@ -128,8 +128,11 @@ const CheckboxGroup = React.forwardRef(function CheckboxGroup(
 
     const allChildren = React.Children.toArray(children).filter(Boolean);
 
+    const legendId = React.useId();
+
     return (
         <StyledFieldset
+            aria-labelledby={legendId}
             data-testid={testId}
             style={[styles.fieldset, style]}
             ref={ref}
@@ -144,7 +147,7 @@ const CheckboxGroup = React.forwardRef(function CheckboxGroup(
                 }
             >
                 {label && (
-                    <StyledLegend style={styles.legend}>
+                    <StyledLegend style={styles.legend} id={legendId}>
                         <BodyText tag="span">{label}</BodyText>
                     </StyledLegend>
                 )}
