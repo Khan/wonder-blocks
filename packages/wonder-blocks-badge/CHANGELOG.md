@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-badge
 
+## 0.1.5
+
+### Patch Changes
+
+- Updated dependencies [f26858a]
+    - @khanacademy/wonder-blocks-tokens@11.1.1
+    - @khanacademy/wonder-blocks-icon@5.2.4
+    - @khanacademy/wonder-blocks-styles@0.2.17
+    - @khanacademy/wonder-blocks-typography@4.2.6
+
 ## 0.1.4
 
 ### Patch Changes
