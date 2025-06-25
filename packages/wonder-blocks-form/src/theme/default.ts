@@ -27,11 +27,6 @@ const theme = {
             width: sizing.size_0,
         },
     },
-    errorIcon: {
-        color: {
-            foreground: semanticColor.core.transparent,
-        },
-    },
 };
 
 export default theme;

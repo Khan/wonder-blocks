@@ -8,6 +8,7 @@ import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography"
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import errorIcon from "@phosphor-icons/core/fill/warning-diamond-fill.svg";
+import readOnlyIcon from "@phosphor-icons/core/bold/lock-bold.svg";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {OmitConstrained} from "../util/types";
 import {useFieldValidation} from "../hooks/use-field-validation";
@@ -234,7 +235,15 @@ const TextField = (props: PropsWithForwardRef) => {
             <PhosphorIcon
                 icon={errorIcon}
                 size="small"
-                color={theme.errorIcon.color.foreground}
+                color={semanticColor.core.foreground.critical.default}
+            />
+        );
+    } else if (readOnly) {
+        icon = (
+            <PhosphorIcon
+                icon={readOnlyIcon}
+                size="small"
+                color={semanticColor.core.foreground.neutral.subtle}
             />
         );
     }

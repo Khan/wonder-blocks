@@ -34,9 +34,4 @@ export default mergeTheme(defaultTheme, {
             width: sizing.size_160,
         },
     },
-    errorIcon: {
-        color: {
-            foreground: semanticColor.core.foreground.critical.default,
-        },
-    },
 });
