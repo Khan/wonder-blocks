@@ -74,9 +74,11 @@ const AllFields = (
     storyArgs: PropsFor<typeof LabeledField> & {
         shouldValidateInStory?: boolean;
         showSubmitButtonInStory?: boolean;
+        disabled?: boolean;
     },
 ) => {
-    const {shouldValidateInStory, showSubmitButtonInStory, ...args} = storyArgs;
+    const {shouldValidateInStory, showSubmitButtonInStory, disabled, ...args} =
+        storyArgs;
 
     /** Values */
     const [textFieldValue, setTextFieldValue] = React.useState("");
@@ -233,6 +235,7 @@ const AllFields = (
                             shouldValidateInStory ? textValidate : undefined
                         }
                         instantValidation={false}
+                        disabled={disabled}
                     />
                 }
             />
@@ -251,6 +254,7 @@ const AllFields = (
                             shouldValidateInStory ? textValidate : undefined
                         }
                         instantValidation={false}
+                        disabled={disabled}
                     />
                 }
             />
@@ -268,6 +272,7 @@ const AllFields = (
                         onChange={setSingleSelectValue}
                         onValidate={setSingleSelectErrorMessage}
                         validate={singleSelectValidate}
+                        disabled={disabled}
                     >
                         <OptionItem label="Mango" value="mango" />
                         <OptionItem label="Strawberry" value="strawberry" />
@@ -292,6 +297,7 @@ const AllFields = (
                                 ? multiSelectValidate
                                 : undefined
                         }
+                        disabled={disabled}
                     >
                         <OptionItem label="Mango" value="mango" />
                         <OptionItem label="Strawberry" value="strawberry" />
@@ -315,6 +321,7 @@ const AllFields = (
                         }
                         onValidate={setSearchErrorMessage}
                         instantValidation={false}
+                        disabled={disabled}
                     />
                 }
             />
@@ -350,6 +357,7 @@ export const Fields: StoryComponentType = {
             <View style={{gap: sizing.size_240}}>
                 <AllFields {...args} />
                 <AllFields {...args} errorMessage="Message about the error" />
+                <AllFields {...args} disabled />
             </View>
         );
     },
