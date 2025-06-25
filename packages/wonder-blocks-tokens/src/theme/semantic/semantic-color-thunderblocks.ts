@@ -742,5 +742,10 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
             background: core.background.neutral.subtle,
             foreground: core.foreground.neutral.strong,
         },
+        readOnly: {
+            background: core.background.disabled.default,
+            text: core.foreground.neutral.default,
+            icon: core.foreground.neutral.subtle,
+        },
     },
 });

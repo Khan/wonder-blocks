@@ -233,6 +233,7 @@ const TextField = (props: PropsWithForwardRef) => {
                         styles.default,
                         disabled && styles.disabled,
                         hasError && styles.error,
+                        readOnly && styles.readOnly,
                         style,
                     ]}
                     id={uniqueId}
@@ -269,9 +270,14 @@ const styles = StyleSheet.create({
         paddingBlock: theme.field.layout.paddingBlock,
         margin: sizing.size_0,
         ...focusStyles.focus,
+        // Don't show active styles if field is disabled or readonly
         [":active:not([aria-disabled='true']):not([readonly])" as any]: {
             borderWidth: theme.field.border.width.press,
         },
+    },
+    readOnly: {
+        background: semanticColor.input.readOnly.background,
+        color: semanticColor.input.readOnly.text,
     },
     default: {
         background: semanticColor.input.default.background,

@@ -284,6 +284,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                         styles.default,
                         disabled && styles.disabled,
                         hasError && styles.error,
+                        readOnly && styles.readOnly,
                         style,
                     ]}
                     value={value}
@@ -326,6 +327,10 @@ const styles = StyleSheet.create({
         [":active:not([aria-disabled='true']):not([readonly])" as any]: {
             borderWidth: theme.field.border.width.press,
         },
+    },
+    readOnly: {
+        background: semanticColor.input.readOnly.background,
+        color: semanticColor.input.readOnly.text,
     },
     default: {
         background: semanticColor.input.default.background,
