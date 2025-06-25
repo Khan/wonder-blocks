@@ -1,4 +1,4 @@
-import {border, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 const theme = {
     field: {
@@ -16,6 +16,20 @@ const theme = {
         layout: {
             paddingBlock: sizing.size_100,
             paddingInline: sizing.size_160,
+        },
+    },
+    endAccessory: {
+        layout: {
+            display: "none",
+            paddingInlineStart: sizing.size_0,
+        },
+        sizing: {
+            width: sizing.size_0,
+        },
+    },
+    errorIcon: {
+        color: {
+            foreground: semanticColor.core.transparent,
         },
     },
 };

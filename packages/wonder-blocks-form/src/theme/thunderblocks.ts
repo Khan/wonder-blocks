@@ -1,8 +1,9 @@
 import {mergeTheme} from "@khanacademy/wonder-blocks-theming";
 
-import {border, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import defaultTheme from "./default";
 
+const fieldPaddingInline = sizing.size_120;
 export default mergeTheme(defaultTheme, {
     field: {
         border: {
@@ -21,7 +22,21 @@ export default mergeTheme(defaultTheme, {
         },
         layout: {
             paddingBlock: sizing.size_100,
-            paddingInline: sizing.size_120,
+            paddingInline: fieldPaddingInline,
+        },
+    },
+    endAccessory: {
+        layout: {
+            display: "flex",
+            paddingInlineStart: fieldPaddingInline,
+        },
+        sizing: {
+            width: sizing.size_160,
+        },
+    },
+    errorIcon: {
+        color: {
+            foreground: semanticColor.core.foreground.critical.default,
         },
     },
 });

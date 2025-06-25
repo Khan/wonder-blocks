@@ -7,6 +7,8 @@ import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography"
 
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
+import errorIcon from "@phosphor-icons/core/fill/warning-diamond-fill.svg";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {OmitConstrained} from "../util/types";
 import {useFieldValidation} from "../hooks/use-field-validation";
 import theme from "../theme";
@@ -17,6 +19,7 @@ type WithForwardRef = {
     forwardedRef: React.ForwardedRef<HTMLInputElement>;
 };
 
+const StyledDiv = addStyle("div");
 const StyledInput = addStyle("input");
 
 type CommonProps = AriaProps & {
@@ -225,40 +228,59 @@ const TextField = (props: PropsWithForwardRef) => {
         }
     };
 
+    let icon;
+    if (hasError) {
+        icon = (
+            <PhosphorIcon
+                icon={errorIcon}
+                size="small"
+                color={theme.errorIcon.color.foreground}
+            />
+        );
+    }
+
     return (
-        <StyledInput
-            style={[
-                styles.input,
-                typographyStyles.LabelMedium,
-                styles.default,
-                disabled && styles.disabled,
-                hasError && styles.error,
-                readOnly && styles.readOnly,
-                style,
-            ]}
-            id={id}
-            type={type}
-            placeholder={placeholder}
-            value={value}
-            name={name}
-            aria-disabled={disabled}
-            aria-required={!!required}
-            onChange={handleChange}
-            onKeyDown={disabled ? undefined : onKeyDown}
-            onFocus={handleFocus} // TextField can be focused if disabled
-            onBlur={handleBlur} // TextField can be blurred if disabled
-            data-testid={testId}
-            readOnly={readOnly || disabled} // Set readOnly also if it is disabled, otherwise users can type in the field
-            autoFocus={autoFocus}
-            autoComplete={autoComplete}
-            ref={forwardedRef}
-            aria-invalid={hasError}
-            {...otherProps}
-        />
+        <StyledDiv style={styles.root}>
+            <StyledInput
+                style={[
+                    styles.input,
+                    typographyStyles.LabelMedium,
+                    styles.default,
+                    disabled && styles.disabled,
+                    hasError && styles.error,
+                    readOnly && styles.readOnly,
+                    icon && styles.withIcon,
+                    style,
+                ]}
+                id={id}
+                type={type}
+                placeholder={placeholder}
+                value={value}
+                name={name}
+                aria-disabled={disabled}
+                aria-required={!!required}
+                onChange={handleChange}
+                onKeyDown={disabled ? undefined : onKeyDown}
+                onFocus={handleFocus} // TextField can be focused if disabled
+                onBlur={handleBlur} // TextField can be blurred if disabled
+                data-testid={testId}
+                readOnly={readOnly || disabled} // Set readOnly also if it is disabled, otherwise users can type in the field
+                autoFocus={autoFocus}
+                autoComplete={autoComplete}
+                ref={forwardedRef}
+                aria-invalid={hasError}
+                {...otherProps}
+            />
+            {icon && <StyledDiv style={styles.endAccessory}>{icon}</StyledDiv>}
+        </StyledDiv>
     );
 };
 
 const styles = StyleSheet.create({
+    root: {
+        position: "relative",
+        display: "flex",
+    },
     input: {
         width: "100%",
         height: theme.field.sizing.height,
@@ -267,6 +289,10 @@ const styles = StyleSheet.create({
         paddingInline: theme.field.layout.paddingInline,
         paddingBlock: theme.field.layout.paddingBlock,
         margin: sizing.size_0,
+    },
+    withIcon: {
+        // If there is an icon and the theme supports end accessories, the end padding needs to be adjusted to account for the icon
+        paddingInlineEnd: `calc(${theme.field.layout.paddingInline} + ${theme.endAccessory.sizing.width} + ${theme.endAccessory.layout.paddingInlineStart})`,
     },
     readOnly: {
         background: semanticColor.input.readOnly.background,
@@ -303,6 +329,14 @@ const styles = StyleSheet.create({
             color: semanticColor.input.disabled.placeholder,
         },
         cursor: "not-allowed",
+    },
+    endAccessory: {
+        display: theme.endAccessory.layout.display,
+        position: "absolute",
+        insetBlock: 0, // sizing.size_140,
+        insetInlineEnd: sizing.size_120,
+        alignItems: "center",
+        justifyContent: "center",
     },
 });
 
