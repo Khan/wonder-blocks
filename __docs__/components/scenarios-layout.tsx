@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     },
     scenario: {
         gap: sizing.size_080,
+        alignItems: "flex-start",
         maxWidth: "100%",
     },
 });
