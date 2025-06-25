@@ -134,11 +134,16 @@ export default function LabeledField(props: Props) {
 
     const isRequired = !!required || !!field.props.required;
     const hasError = !!errorMessage || !!field.props.error;
+    const isDisabled = !!field.props.disabled;
 
     function renderLabel(): React.ReactNode {
         const requiredIcon = (
             <StyledSpan
-                style={[styles.textWordBreak, styles.required]}
+                style={[
+                    styles.textWordBreak,
+                    styles.required,
+                    isDisabled && styles.disabledLabel,
+                ]}
                 aria-hidden={true}
             >
                 {" "}
@@ -157,6 +162,7 @@ export default function LabeledField(props: Props) {
                             : styles.labelWithNoDescription,
                         stylesProp?.label,
                         hasError ? styles.labelWithError : undefined,
+                        isDisabled && styles.disabledLabel,
                     ]}
                     tag="label"
                     htmlFor={fieldId}
@@ -272,6 +278,9 @@ const styles = StyleSheet.create({
     },
     labelWithError: {
         color: theme.label.color.error.foreground,
+    },
+    disabledLabel: {
+        color: theme.label.color.disabled.foreground,
     },
     labelWithDescription: {
         paddingBlockEnd: theme.root.layout.paddingBlockEnd.labelWithDescription,

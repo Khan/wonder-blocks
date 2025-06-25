@@ -16,6 +16,9 @@ const theme = {
             error: {
                 foreground: semanticColor.core.foreground.neutral.strong,
             },
+            disabled: {
+                foreground: semanticColor.core.foreground.neutral.strong,
+            },
         },
     },
     description: {
