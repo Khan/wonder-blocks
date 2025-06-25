@@ -269,6 +269,9 @@ const styles = StyleSheet.create({
         paddingBlock: theme.field.layout.paddingBlock,
         margin: sizing.size_0,
         ...focusStyles.focus,
+        [":active:not([aria-disabled='true']):not([readonly])" as any]: {
+            borderWidth: theme.field.border.width.press,
+        },
     },
     default: {
         background: semanticColor.input.default.background,

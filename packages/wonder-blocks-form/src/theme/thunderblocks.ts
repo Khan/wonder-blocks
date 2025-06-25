@@ -9,6 +9,7 @@ export default mergeTheme(defaultTheme, {
             radius: border.radius.radius_080,
             width: {
                 error: border.width.medium,
+                press: border.width.medium,
             },
         },
         sizing: {

@@ -323,6 +323,9 @@ const styles = StyleSheet.create({
         // This minHeight is equivalent to when the textarea has one row
         minHeight: theme.field.sizing.height,
         ...focusStyles.focus,
+        [":active:not([aria-disabled='true']):not([readonly])" as any]: {
+            borderWidth: theme.field.border.width.press,
+        },
     },
     default: {
         background: semanticColor.input.default.background,

@@ -6,6 +6,7 @@ const theme = {
             radius: border.radius.radius_040,
             width: {
                 error: border.width.thin,
+                press: border.width.thin,
             },
         },
         sizing: {
