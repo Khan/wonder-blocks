@@ -1,5 +1,14 @@
 # @khanacademy/wonder-blocks-link
 
+## 9.1.10
+
+### Patch Changes
+
+- Updated dependencies [f26858a]
+    - @khanacademy/wonder-blocks-tokens@11.1.1
+    - @khanacademy/wonder-blocks-clickable@7.1.10
+    - @khanacademy/wonder-blocks-icon@5.2.4
+
 ## 9.1.9
 
 ### Patch Changes
