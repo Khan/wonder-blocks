@@ -7,12 +7,7 @@ import {
     addStyle,
     View,
 } from "@khanacademy/wonder-blocks-core";
-import {
-    border,
-    font,
-    semanticColor,
-    sizing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 import {useId} from "react";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
