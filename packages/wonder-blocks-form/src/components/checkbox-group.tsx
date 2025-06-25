@@ -1,9 +1,8 @@
 import * as React from "react";
 
-import {addStyle} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import styles from "./group-styles";
@@ -135,22 +134,35 @@ const CheckboxGroup = React.forwardRef(function CheckboxGroup(
             style={[styles.fieldset, style]}
             ref={ref}
         >
-            {label && (
-                <StyledLegend style={styles.legend}>
-                    <LabelMedium>{label}</LabelMedium>
-                </StyledLegend>
-            )}
-            {description && (
-                <LabelSmall style={styles.description}>
-                    {description}
-                </LabelSmall>
-            )}
-            {errorMessage && (
-                <LabelSmall style={styles.error}>{errorMessage}</LabelSmall>
-            )}
-            {(label || description || errorMessage) && (
-                <Strut size={spacing.small_12} />
-            )}
+            <View
+                style={
+                    label || description || errorMessage
+                        ? {
+                              marginBlockEnd: spacing.small_12,
+                          }
+                        : undefined
+                }
+            >
+                {label && (
+                    <StyledLegend style={styles.legend}>
+                        <BodyText tag="span">{label}</BodyText>
+                    </StyledLegend>
+                )}
+                {description && (
+                    <BodyText
+                        size="small"
+                        tag="span"
+                        style={styles.description}
+                    >
+                        {description}
+                    </BodyText>
+                )}
+                {errorMessage && (
+                    <BodyText size="small" tag="span" style={styles.error}>
+                        {errorMessage}
+                    </BodyText>
+                )}
+            </View>
 
             {allChildren.map((child, index) => {
                 // @ts-expect-error [FEI-5019] - TS2339 - Property 'props' does not exist on type 'ReactChild | ReactFragment | ReactPortal'.

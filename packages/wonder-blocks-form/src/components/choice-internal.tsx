@@ -2,7 +2,6 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {View, Id} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {
     font,
     semanticColor,
@@ -141,17 +140,18 @@ type Props = AriaProps & {
                             // focus on basis of it being an input element.
                             tabIndex={-1}
                         >
-                            <ChoiceCore
-                                {...coreProps}
-                                id={uniqueId}
-                                checked={checked}
-                                aria-describedby={descriptionId}
-                                onClick={handleClick}
-                                disabled={disabled}
-                                error={error}
-                                ref={ref}
-                            />
-                            <Strut size={spacing.xSmall_8} />
+                            <View style={styles.choiceWrapper}>
+                                <ChoiceCore
+                                    {...coreProps}
+                                    id={uniqueId}
+                                    checked={checked}
+                                    aria-describedby={descriptionId}
+                                    onClick={handleClick}
+                                    disabled={disabled}
+                                    error={error}
+                                    ref={ref}
+                                />
+                            </View>
                             {label && getLabel(uniqueId)}
                         </View>
                         {description && getDescription(descriptionId)}
@@ -169,6 +169,10 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "flex-start",
         outline: "none",
+    },
+    choiceWrapper: {
+        display: "block",
+        marginBlockStart: sizing.size_010,
     },
     label: {
         color: semanticColor.core.foreground.neutral.strong,

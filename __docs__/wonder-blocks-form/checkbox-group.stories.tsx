@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelLarge, LabelXSmall} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {Choice, CheckboxGroup} from "@khanacademy/wonder-blocks-form";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
@@ -164,7 +164,9 @@ export const RowStyling: StoryComponentType = () => {
 
     return (
         <View style={styles.wrapper}>
-            <LabelLarge style={styles.title}>Science</LabelLarge>
+            <BodyText weight="bold" style={styles.title}>
+                Science
+            </BodyText>
             <CheckboxGroup
                 groupName="science-classes"
                 onChange={setSelectedValues}
@@ -220,11 +222,15 @@ export const MultipleChoiceStyling: StoryComponentType = () => {
 
     return (
         <CheckboxGroup
-            label={<LabelLarge>Select all prime numbers</LabelLarge>}
+            label={
+                <BodyText weight="bold" tag="span">
+                    Select all prime numbers
+                </BodyText>
+            }
             description={
-                <LabelXSmall style={styles.description}>
+                <BodyText size="xsmall" tag="span" style={styles.description}>
                     Hint: There is at least one prime number
-                </LabelXSmall>
+                </BodyText>
             }
             groupName="science-classes"
             onChange={setSelectedValues}
