@@ -158,7 +158,6 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        color: semanticColor.core.foreground.neutral.strong,
         // Prevent title from overlapping the close button
         paddingInlineEnd: theme.header.layout.gap.title.default,
         [small as any]: {

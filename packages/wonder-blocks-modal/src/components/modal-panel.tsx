@@ -141,6 +141,8 @@ ModalPanel.defaultProps = {
 
 const styles = StyleSheet.create({
     wrapper: {
+        // Allows propagating the text color to all the children.
+        color: semanticColor.core.foreground.neutral.strong,
         flex: "1 1 auto",
         flexDirection: "column",
         background: semanticColor.surface.primary,
