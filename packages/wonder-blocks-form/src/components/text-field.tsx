@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {Id, addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
@@ -168,7 +168,7 @@ type PropsWithForwardRef = Props & WithForwardRef;
  */
 const TextField = (props: PropsWithForwardRef) => {
     const {
-        id,
+        id: idProp,
         type = "text",
         value,
         name,
@@ -202,6 +202,8 @@ const TextField = (props: PropsWithForwardRef) => {
             onValidate,
         });
     const hasError = error || !!errorMessage;
+    const uniqueId = React.useId();
+    const id = idProp || uniqueId;
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = event.target.value;
@@ -224,39 +226,35 @@ const TextField = (props: PropsWithForwardRef) => {
     };
 
     return (
-        <Id id={id}>
-            {(uniqueId) => (
-                <StyledInput
-                    style={[
-                        styles.input,
-                        typographyStyles.LabelMedium,
-                        styles.default,
-                        disabled && styles.disabled,
-                        hasError && styles.error,
-                        readOnly && styles.readOnly,
-                        style,
-                    ]}
-                    id={uniqueId}
-                    type={type}
-                    placeholder={placeholder}
-                    value={value}
-                    name={name}
-                    aria-disabled={disabled}
-                    aria-required={!!required}
-                    onChange={handleChange}
-                    onKeyDown={disabled ? undefined : onKeyDown}
-                    onFocus={handleFocus} // TextField can be focused if disabled
-                    onBlur={handleBlur} // TextField can be blurred if disabled
-                    data-testid={testId}
-                    readOnly={readOnly || disabled} // Set readOnly also if it is disabled, otherwise users can type in the field
-                    autoFocus={autoFocus}
-                    autoComplete={autoComplete}
-                    ref={forwardedRef}
-                    aria-invalid={hasError}
-                    {...otherProps}
-                />
-            )}
-        </Id>
+        <StyledInput
+            style={[
+                styles.input,
+                typographyStyles.LabelMedium,
+                styles.default,
+                disabled && styles.disabled,
+                hasError && styles.error,
+                readOnly && styles.readOnly,
+                style,
+            ]}
+            id={id}
+            type={type}
+            placeholder={placeholder}
+            value={value}
+            name={name}
+            aria-disabled={disabled}
+            aria-required={!!required}
+            onChange={handleChange}
+            onKeyDown={disabled ? undefined : onKeyDown}
+            onFocus={handleFocus} // TextField can be focused if disabled
+            onBlur={handleBlur} // TextField can be blurred if disabled
+            data-testid={testId}
+            readOnly={readOnly || disabled} // Set readOnly also if it is disabled, otherwise users can type in the field
+            autoFocus={autoFocus}
+            autoComplete={autoComplete}
+            ref={forwardedRef}
+            aria-invalid={hasError}
+            {...otherProps}
+        />
     );
 };
 
