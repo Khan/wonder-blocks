@@ -2,6 +2,7 @@ import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {StyleSheet} from "aphrodite";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import theme from "../theme";
 
 type Props = {
@@ -94,6 +95,8 @@ const small = "@media (max-width: 767px)" as any;
 
 const styles = StyleSheet.create({
     wrapper: {
+        // Allows propagating the text color to all the children.
+        color: semanticColor.core.foreground.neutral.strong,
         flexDirection: "row",
         alignItems: "stretch",
         width: "100%",
