@@ -162,6 +162,15 @@ const scenarios = [
             },
         },
     },
+    {
+        name: "With disabled field",
+        props: {
+            field: <TextField value="" onChange={() => {}} disabled />,
+            label: "Name",
+            description: "Helpful description text.",
+            required: true,
+        },
+    },
 ];
 
 /**
