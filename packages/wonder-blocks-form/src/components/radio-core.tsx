@@ -174,10 +174,9 @@ const _generateStyles = (
                 backgroundColor: uncheckedStyles.rest.background,
                 borderColor: uncheckedStyles.rest.border,
 
-                ":focus-visible:not([disabled])": {
-                    // Use the global focus style
-                    ...focusStyles.focus,
-                },
+                // Use the global focus style
+                ":focus-visible:not([disabled])":
+                    focusStyles.focus[":focus-visible"],
 
                 ":active:not([disabled])": {
                     backgroundColor: uncheckedStyles.press.background,
