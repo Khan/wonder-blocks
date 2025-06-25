@@ -125,10 +125,9 @@ const RadioGroup = React.forwardRef(function RadioGroup(
                 style={
                     label || description || errorMessage
                         ? {
-                              display: "contents",
                               marginBlockEnd: spacing.small_12,
                           }
-                        : {display: "contents"}
+                        : undefined
                 }
             >
                 {label && (
