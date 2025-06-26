@@ -1,6 +1,6 @@
 import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {StyleSheet} from "aphrodite";
 import theme from "../theme";
 
@@ -40,14 +40,14 @@ const styles = StyleSheet.create({
         flex: "0 0 auto",
         boxSizing: "border-box",
         minHeight: sizing.size_640,
-        paddingInline: sizing.size_160,
-        paddingBlock: sizing.size_080,
+        paddingInline: theme.footer.layout.padding.inline,
+        paddingBlock: theme.footer.layout.padding.block,
 
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "flex-end",
 
-        boxShadow: `0px -1px 0px ${theme.footer.color.border}`,
+        boxShadow: `0px -1px 0px ${semanticColor.core.border.neutral.subtle}`,
     },
 });
