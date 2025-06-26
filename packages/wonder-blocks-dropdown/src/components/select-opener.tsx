@@ -257,12 +257,11 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
     };
     const pressStyling = {
         background: action.press.background,
-        // TODO(WB-1868): Use input tokens once the fixes are merged.
         color: placeholder
             ? error
-                ? semanticColor.core.foreground.neutral.subtle
+                ? semanticColor.input.default.placeholder
                 : semanticColor.core.foreground.instructive.default
-            : semanticColor.core.foreground.neutral.strong,
+            : semanticColor.input.default.foreground,
         borderColor: action.press.border,
         boxShadow: `inset 0 0 0 ${border.width.thin} ${action.press.border}`,
         borderRadius: theme.opener.border.radius.press,
