@@ -9,11 +9,7 @@ import {View, Id} from "@khanacademy/wonder-blocks-core";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {
-    border,
-    semanticColor,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 
 import {defaultLabels} from "../util/constants";
@@ -264,15 +260,14 @@ const styles = StyleSheet.create({
         height: 40,
     },
     searchIcon: {
-        marginLeft: spacing.xSmall_8,
-        marginRight: spacing.xSmall_8,
+        marginInline: sizing.size_080,
         position: "absolute",
         zIndex: 1,
     },
     dismissIcon: {
         margin: 0,
         position: "absolute",
-        insetInlineEnd: spacing.xxxSmall_4,
+        insetInlineEnd: sizing.size_040,
     },
     dismissIconWithError: {
         insetInlineEnd: theme.dismissButton.layout.withError.insetInlineEnd,
@@ -281,8 +276,8 @@ const styles = StyleSheet.create({
         display: "flex",
         flex: 1,
         width: "100%",
-        paddingLeft: spacing.xLarge_32,
-        paddingRight: spacing.large_24 + spacing.medium_16,
+        paddingInlineStart: sizing.size_320,
+        paddingRight: sizing.size_400,
     },
     inputWithError: {
         paddingInlineEnd: theme.input.layout.withError.paddingInlineEnd,
