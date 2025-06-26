@@ -128,61 +128,54 @@ const CheckboxGroup = React.forwardRef(function CheckboxGroup(
 
     const allChildren = React.Children.toArray(children).filter(Boolean);
 
-    const legendId = React.useId();
-
     return (
         <StyledFieldset
-            aria-labelledby={legendId}
             data-testid={testId}
             style={[styles.fieldset, style]}
             ref={ref}
         >
+            {label && (
+                <StyledLegend style={styles.legend}>
+                    <BodyText tag="span">{label}</BodyText>
+                </StyledLegend>
+            )}
+            {description && (
+                <BodyText size="small" tag="span" style={styles.description}>
+                    {description}
+                </BodyText>
+            )}
+            {errorMessage && (
+                <BodyText size="small" tag="span" style={styles.error}>
+                    {errorMessage}
+                </BodyText>
+            )}
+
             <View
                 style={
                     label || description || errorMessage
                         ? {
-                              marginBlockEnd: spacing.small_12,
+                              marginBlockStart: spacing.small_12,
                           }
                         : undefined
                 }
             >
-                {label && (
-                    <StyledLegend style={styles.legend} id={legendId}>
-                        <BodyText tag="span">{label}</BodyText>
-                    </StyledLegend>
-                )}
-                {description && (
-                    <BodyText
-                        size="small"
-                        tag="span"
-                        style={styles.description}
-                    >
-                        {description}
-                    </BodyText>
-                )}
-                {errorMessage && (
-                    <BodyText size="small" tag="span" style={styles.error}>
-                        {errorMessage}
-                    </BodyText>
-                )}
+                {allChildren.map((child, index) => {
+                    // @ts-expect-error [FEI-5019] - TS2339 - Property 'props' does not exist on type 'ReactChild | ReactFragment | ReactPortal'.
+                    const {style, value} = child.props;
+                    const checked = selectedValues.includes(value);
+                    // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
+                    return React.cloneElement(child, {
+                        checked: checked,
+                        error: !!errorMessage,
+                        groupName: groupName,
+                        id: `${groupName}-${value}`,
+                        key: value,
+                        onChange: () => handleChange(value, checked),
+                        style: [index > 0 && styles.defaultLineGap, style],
+                        variant: "checkbox",
+                    });
+                })}
             </View>
-
-            {allChildren.map((child, index) => {
-                // @ts-expect-error [FEI-5019] - TS2339 - Property 'props' does not exist on type 'ReactChild | ReactFragment | ReactPortal'.
-                const {style, value} = child.props;
-                const checked = selectedValues.includes(value);
-                // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
-                return React.cloneElement(child, {
-                    checked: checked,
-                    error: !!errorMessage,
-                    groupName: groupName,
-                    id: `${groupName}-${value}`,
-                    key: value,
-                    onChange: () => handleChange(value, checked),
-                    style: [index > 0 && styles.defaultLineGap, style],
-                    variant: "checkbox",
-                });
-            })}
         </StyledFieldset>
     );
 });
