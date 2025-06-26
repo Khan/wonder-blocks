@@ -259,7 +259,7 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
         background: action.press.background,
         color: placeholder
             ? error
-                ? semanticColor.core.foreground.neutral.default
+                ? semanticColor.core.foreground.neutral.subtle
                 : semanticColor.core.foreground.instructive.default
             : semanticColor.core.foreground.neutral.strong,
         borderColor: action.press.border,
