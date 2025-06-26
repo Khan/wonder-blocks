@@ -205,7 +205,11 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         color: semanticColor.text.primary,
         height: DROPDOWN_ITEM_HEIGHT,
-        paddingInline: theme.opener.layout.padding.inline,
+        // This asymmetry arises from the Icon on the right side, which has
+        // extra padding built in. To have the component look more balanced,
+        // we need to take off some paddingRight here.
+        paddingInlineStart: theme.opener.layout.padding.inlineStart,
+        paddingInlineEnd: theme.opener.layout.padding.inlineEnd,
         borderWidth: 0,
         borderRadius: theme.opener.border.radius.rest,
         borderStyle: "solid",
@@ -282,7 +286,8 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
                 ":hover": {
                     borderColor: currentState.border,
                     borderWidth: border.width.thin,
-                    paddingInline: theme.opener.layout.padding.inline,
+                    paddingInlineStart: theme.opener.layout.padding.inlineStart,
+                    paddingInlineEnd: theme.opener.layout.padding.inlineEnd,
                 },
             },
             ":active": pressStyling,

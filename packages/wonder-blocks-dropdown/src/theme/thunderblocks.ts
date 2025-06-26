@@ -30,7 +30,8 @@ export default mergeTheme(defaultTheme, {
         },
         layout: {
             padding: {
-                inline: sizing.size_120,
+                inlineStart: sizing.size_120,
+                inlineEnd: sizing.size_120,
             },
         },
     },

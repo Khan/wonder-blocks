@@ -704,7 +704,7 @@ const styles = StyleSheet.create({
         background: semanticColor.surface.primary,
         borderRadius: theme.opener.border.radius.rest,
         border: `solid 1px ${semanticColor.core.border.neutral.subtle}`,
-        paddingInline: theme.opener.layout.padding.inline,
+        paddingInline: theme.opener.layout.padding.inlineStart,
     },
     focused: focusStyles.focus[":focus-visible"],
     disabled: {

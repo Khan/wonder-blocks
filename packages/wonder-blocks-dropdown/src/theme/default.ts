@@ -27,7 +27,8 @@ export default {
         },
         layout: {
             padding: {
-                inline: sizing.size_160,
+                inlineStart: sizing.size_160,
+                inlineEnd: sizing.size_120,
             },
         },
     },
