@@ -277,7 +277,7 @@ const styles = StyleSheet.create({
         flex: 1,
         width: "100%",
         paddingInlineStart: sizing.size_320,
-        paddingRight: sizing.size_400,
+        paddingInlineEnd: sizing.size_400,
     },
     inputWithErrorAndValue: {
         paddingInlineEnd: theme.input.layout.withError.paddingInlineEnd,
