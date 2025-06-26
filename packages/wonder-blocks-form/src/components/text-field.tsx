@@ -121,8 +121,19 @@ type CommonProps = AriaProps & {
     required?: boolean | string;
     /**
      * Custom styles for the input.
+     *
+     * @deprecated Use `styles` prop instead.
      */
-    style?: StyleType;
+    style?: StyleType; // TODO(WB-2004): Remove this prop in favour of `styles` prop
+    /**
+     * Custom styles for the elements in the TextField.
+     * - `root`: Styles the root element
+     * - `input`: Styles the underlying `input` element
+     */
+    styles?: {
+        root?: StyleType;
+        input?: StyleType;
+    };
     /**
      * Optional test ID for e2e testing.
      */
@@ -183,6 +194,7 @@ const TextField = (props: PropsWithForwardRef) => {
         required,
         placeholder,
         style,
+        styles: stylesProp,
         testId,
         readOnly,
         autoFocus,
@@ -249,7 +261,7 @@ const TextField = (props: PropsWithForwardRef) => {
     }
 
     return (
-        <StyledDiv style={styles.root}>
+        <StyledDiv style={[styles.root, stylesProp?.root]}>
             <StyledInput
                 style={[
                     styles.input,
@@ -260,6 +272,7 @@ const TextField = (props: PropsWithForwardRef) => {
                     readOnly && styles.readOnly,
                     icon && styles.withIcon,
                     style,
+                    stylesProp?.input,
                 ]}
                 id={id}
                 type={type}

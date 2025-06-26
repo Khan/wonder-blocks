@@ -5,7 +5,12 @@ import type {Meta, StoryObj} from "@storybook/react";
 
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    semanticColor,
+    sizing,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import Button from "@khanacademy/wonder-blocks-button";
 import {LabelLarge, Body} from "@khanacademy/wonder-blocks-typography";
 
@@ -624,6 +629,30 @@ Disabled.parameters = {
     },
 };
 
+/**
+ * A TextField can be used with custom styles. The following parts can be styled:
+ * - `root`: Styles the root element
+ * - `input`: Styles the underlying `input` element
+ */
+export const CustomStyles: StoryComponentType = {
+    args: {
+        value: "Value",
+        styles: {
+            root: {
+                backgroundColor:
+                    semanticColor.core.background.instructive.subtle,
+                padding: sizing.size_140,
+            },
+            input: {
+                backgroundColor: semanticColor.surface.secondary,
+                border: `${border.width.thin} solid ${semanticColor.core.border.instructive.default}`,
+                color: semanticColor.core.foreground.instructive.strong,
+            },
+        },
+    },
+};
+
+// TODO(WB-2004): Remove this story once `style` prop is removed.
 export const CustomStyle: StoryComponentType = () => {
     const [value, setValue] = React.useState("");
 
@@ -653,7 +682,7 @@ export const CustomStyle: StoryComponentType = () => {
 CustomStyle.parameters = {
     docs: {
         description: {
-            story: `\`TextField\` can take in custom styles that
+            story: `**DEPRECATED:** Use \`styles\` prop instead.\`TextField\` can take in custom styles that
         override the default styles. This example has custom styles for the
         \`backgroundColor\`, \`color\`, \`border\`, \`maxWidth\`, and
         placeholder \`color\` properties.`,
