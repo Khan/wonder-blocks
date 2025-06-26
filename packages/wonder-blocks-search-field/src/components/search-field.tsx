@@ -262,6 +262,7 @@ const styles = StyleSheet.create({
         marginLeft: spacing.xSmall_8,
         marginRight: spacing.xSmall_8,
         position: "absolute",
+        zIndex: 1,
     },
     dismissIcon: {
         margin: 0,

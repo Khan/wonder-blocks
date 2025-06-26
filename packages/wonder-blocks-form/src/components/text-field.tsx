@@ -301,7 +301,7 @@ const TextField = (props: PropsWithForwardRef) => {
 const styles = StyleSheet.create({
     root: {
         position: "relative",
-        display: "flex",
+        width: "100%",
     },
     input: {
         width: "100%",
