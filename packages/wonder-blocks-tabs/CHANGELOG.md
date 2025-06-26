@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tabs
 
+## 0.3.13
+
+### Patch Changes
+
+- 65e0b82: Adds `flexShrink: 0` to tablist wrapper styles so that it does not vanish
+
 ## 0.3.12
 
 ### Patch Changes
