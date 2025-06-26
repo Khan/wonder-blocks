@@ -1,17 +1,11 @@
-import {border, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 export default {
-    inputWrapper: {
-        padding: sizing.size_0,
-        margin: sizing.size_0,
-    },
-    checkbox: {
-        border: {
-            radius: {
-                default: "3px",
-            },
-            width: {
-                default: border.width.thin,
+    choice: {
+        inputWrapper: {
+            layout: {
+                padding: sizing.size_0,
+                margin: sizing.size_0,
             },
         },
     },

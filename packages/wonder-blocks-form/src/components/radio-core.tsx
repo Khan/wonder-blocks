@@ -34,7 +34,7 @@ const StyledInput = addStyle("input");
         stateStyles.default,
     ];
 
-    const wrapperStyle = [theme.inputWrapper, stateStyles.inputWrapper];
+    const wrapperStyle = [sharedStyles.inputWrapper, stateStyles.inputWrapper];
 
     const handleWrapperClick = (e: React.MouseEvent) => {
         // forward event from wrapper Div
@@ -79,6 +79,8 @@ const StyledInput = addStyle("input");
 
 const sharedStyles = StyleSheet.create({
     inputWrapper: {
+        padding: theme.choice.inputWrapper.layout.padding,
+        margin: theme.choice.inputWrapper.layout.margin,
         position: "relative",
     },
     // Reset the default styled input element
@@ -88,10 +90,10 @@ const sharedStyles = StyleSheet.create({
         MozAppearance: "none",
     },
     default: {
-        height: baseStyles.radio.sizing.size,
-        width: baseStyles.radio.sizing.size,
-        minHeight: baseStyles.radio.sizing.size,
-        minWidth: baseStyles.radio.sizing.size,
+        height: baseStyles.choice.sizing.size,
+        width: baseStyles.choice.sizing.size,
+        minHeight: baseStyles.choice.sizing.size,
+        minWidth: baseStyles.choice.sizing.size,
         margin: 0,
         outline: "none",
         boxSizing: "border-box",
@@ -137,7 +139,7 @@ const _generateStyles = (
                 backgroundColor: checkedStyles.rest.background,
                 borderColor: checkedStyles.rest.border,
                 // borders need to render in pixels for consistent size
-                borderWidth: `calc(${baseStyles.radio.sizing.size} / 4)`,
+                borderWidth: `calc(${baseStyles.choice.sizing.size} / 4)`,
 
                 // Use the global focus style
                 ":focus-visible:not([disabled])":
@@ -151,10 +153,10 @@ const _generateStyles = (
             },
             disabledChecked: {
                 position: "absolute",
-                top: `calc(${baseStyles.radio.sizing.size} * .25 + ${theme.inputWrapper.padding})`,
-                left: `calc(${baseStyles.radio.sizing.size} * .25 + ${theme.inputWrapper.padding})`,
-                height: `calc(${baseStyles.radio.sizing.size} / 2)`,
-                width: `calc(${baseStyles.radio.sizing.size} / 2)`,
+                top: `calc(${baseStyles.choice.sizing.size} * .25 + ${theme.choice.inputWrapper.layout.padding})`,
+                left: `calc(${baseStyles.choice.sizing.size} * .25 + ${theme.choice.inputWrapper.layout.padding})`,
+                height: `calc(${baseStyles.choice.sizing.size} / 2)`,
+                width: `calc(${baseStyles.choice.sizing.size} / 2)`,
                 borderRadius: baseStyles.radio.border.radius.default,
                 backgroundColor: checkedStyles.rest.background,
             },

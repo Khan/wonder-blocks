@@ -63,7 +63,7 @@ const CheckboxCore = React.forwardRef(function CheckboxCore(
         stateStyles.default,
     ];
 
-    const wrapperStyle = [theme.inputWrapper, stateStyles.inputWrapper];
+    const wrapperStyle = [sharedStyles.inputWrapper, stateStyles.inputWrapper];
 
     const checkboxIcon = (
         <PhosphorIcon
@@ -133,6 +133,8 @@ const CheckboxCore = React.forwardRef(function CheckboxCore(
 
 const sharedStyles = StyleSheet.create({
     inputWrapper: {
+        margin: theme.choice.inputWrapper.layout.margin,
+        padding: theme.choice.inputWrapper.layout.padding,
         position: "relative",
     },
     // Reset the default styled input element
@@ -143,23 +145,23 @@ const sharedStyles = StyleSheet.create({
     },
 
     default: {
-        height: baseStyles.checkbox.sizing.size,
-        width: baseStyles.checkbox.sizing.size,
-        minHeight: baseStyles.checkbox.sizing.size,
-        minWidth: baseStyles.checkbox.sizing.size,
+        height: baseStyles.choice.sizing.size,
+        width: baseStyles.choice.sizing.size,
+        minHeight: baseStyles.choice.sizing.size,
+        minWidth: baseStyles.choice.sizing.size,
         margin: 0,
         outline: "none",
         boxSizing: "border-box",
         borderStyle: "solid",
-        borderWidth: theme.checkbox.border.width.default,
-        borderRadius: theme.checkbox.border.radius.default,
+        borderWidth: baseStyles.checkbox.border.width.default,
+        borderRadius: baseStyles.checkbox.border.radius.default,
     },
 
     checkboxIcon: {
         position: "absolute",
         pointerEvents: "none",
         // This margin is to center the check icon in the checkbox.
-        margin: `calc((${baseStyles.checkbox.sizing.size} - ${baseStyles.checkbox.sizing.checkSize}) / 2)`,
+        margin: `calc((${baseStyles.choice.sizing.size} - ${baseStyles.checkbox.sizing.checkSize}) / 2)`,
     },
 });
 

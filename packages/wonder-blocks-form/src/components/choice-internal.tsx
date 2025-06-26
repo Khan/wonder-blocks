@@ -140,7 +140,7 @@ type Props = AriaProps & {
                             // focus on basis of it being an input element.
                             tabIndex={-1}
                         >
-                            <View style={styles.choiceWrapper}>
+                            <View style={[styles.choiceWrapper]}>
                                 <ChoiceCore
                                     {...coreProps}
                                     id={uniqueId}
@@ -172,6 +172,9 @@ const styles = StyleSheet.create({
     },
     choiceWrapper: {
         display: "block",
+        // Account for half of the default label lineHeight difference,
+        // which is 18px (label text) - 16px (choice size).
+        // This equals 1 pixel above, and 1 pixel below to be vertically centered
         marginBlockStart: sizing.size_010,
     },
     label: {

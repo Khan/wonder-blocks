@@ -27,6 +27,10 @@ export interface StyleMap {
 export const baseStyles = {
     // Reusable base styles for Checkbox and Radio
     choice: {
+        sizing: {
+            // The checkbox/radio size
+            size: sizing.size_160,
+        },
         checked: {
             border: semanticColor.input.checked.border,
         },
@@ -56,9 +60,6 @@ export const baseStyles = {
         },
     },
     radio: {
-        sizing: {
-            size: sizing.size_160,
-        },
         border: {
             radius: {
                 default: border.radius.radius_full,
@@ -69,15 +70,21 @@ export const baseStyles = {
         },
     },
     checkbox: {
+        border: {
+            radius: {
+                default: border.radius.radius_040,
+            },
+            width: {
+                default: border.width.thin,
+            },
+        },
+        sizing: {
+            // The check icon size
+            checkSize: sizing.size_120,
+        },
         disabledChecked: {
             border: semanticColor.core.transparent,
             background: semanticColor.core.background.disabled.strong,
-        },
-        sizing: {
-            // The checkbox size
-            size: sizing.size_160,
-            // The check icon size
-            checkSize: sizing.size_120,
         },
     },
     icon: {
