@@ -239,7 +239,7 @@ const SearchField: React.ForwardRefExoticComponent<
                         style={[
                             styles.inputStyleReset,
                             typographyStyles.LabelMedium,
-                            error && styles.inputWithError,
+                            error && !!value && styles.inputWithErrorAndValue,
                         ]}
                         testId={testId}
                         {...otherProps}
@@ -279,7 +279,7 @@ const styles = StyleSheet.create({
         paddingInlineStart: sizing.size_320,
         paddingRight: sizing.size_400,
     },
-    inputWithError: {
+    inputWithErrorAndValue: {
         paddingInlineEnd: theme.input.layout.withError.paddingInlineEnd,
     },
 });
