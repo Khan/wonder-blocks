@@ -6,6 +6,7 @@ import {View, addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
+import theme from "../theme";
 
 type Props = {
     /**
@@ -133,11 +134,16 @@ export default function LabeledField(props: Props) {
 
     const isRequired = !!required || !!field.props.required;
     const hasError = !!errorMessage || !!field.props.error;
+    const isDisabled = !!field.props.disabled;
 
     function renderLabel(): React.ReactNode {
         const requiredIcon = (
             <StyledSpan
-                style={[styles.textWordBreak, styles.required]}
+                style={[
+                    styles.textWordBreak,
+                    styles.required,
+                    isDisabled && styles.disabledLabel,
+                ]}
                 aria-hidden={true}
             >
                 {" "}
@@ -155,11 +161,14 @@ export default function LabeledField(props: Props) {
                             ? styles.labelWithDescription
                             : styles.labelWithNoDescription,
                         stylesProp?.label,
+                        hasError ? styles.labelWithError : undefined,
+                        isDisabled && styles.disabledLabel,
                     ]}
                     tag="label"
                     htmlFor={fieldId}
                     testId={testId && `${testId}-label`}
                     id={labelId}
+                    weight="semi"
                 >
                     {label}
                     {isRequired && requiredIcon}
@@ -176,7 +185,6 @@ export default function LabeledField(props: Props) {
         return (
             <React.Fragment>
                 <BodyText
-                    size="small"
                     style={[
                         styles.textWordBreak,
                         styles.description,
@@ -224,7 +232,6 @@ export default function LabeledField(props: Props) {
                                 aria-label={labels.errorIconAriaLabel}
                             />
                             <BodyText
-                                size="small"
                                 style={[
                                     styles.textWordBreak,
                                     styles.errorMessage,
@@ -269,34 +276,48 @@ const styles = StyleSheet.create({
     label: {
         color: semanticColor.core.foreground.neutral.strong,
     },
+    labelWithError: {
+        color: theme.label.color.error.foreground,
+    },
+    disabledLabel: {
+        color: theme.label.color.disabled.foreground,
+    },
     labelWithDescription: {
-        paddingBlockEnd: sizing.size_040,
+        paddingBlockEnd: theme.root.layout.paddingBlockEnd.labelWithDescription,
     },
     labelWithNoDescription: {
-        paddingBlockEnd: sizing.size_120,
+        paddingBlockEnd:
+            theme.root.layout.paddingBlockEnd.labelWithNoDescription,
     },
     description: {
-        color: semanticColor.core.foreground.neutral.default,
-        paddingBlockEnd: sizing.size_120,
+        color: theme.description.color.foreground,
+        paddingBlockEnd: theme.root.layout.paddingBlockEnd.description,
+        fontSize: theme.description.font.size,
+        lineHeight: theme.description.font.lineHeight,
     },
     errorSection: {
         flexDirection: "row",
         gap: sizing.size_080,
     },
     errorSectionWithContent: {
-        paddingBlockStart: sizing.size_120,
+        paddingBlockStart:
+            theme.root.layout.paddingBlockEnd.errorSectionWithContent,
     },
     error: {
-        color: semanticColor.core.foreground.critical.subtle,
+        color: theme.error.color.foreground,
     },
     errorIcon: {
+        display: theme.errorIcon.layout.display,
         marginTop: sizing.size_010, // This vertically aligns the icon with the text
     },
     errorMessage: {
         minWidth: sizing.size_0, // This enables the wrapping behaviour on the error message
+        fontSize: theme.error.font.size,
+        fontWeight: theme.error.font.weight,
+        lineHeight: theme.error.font.lineHeight,
     },
     required: {
-        color: semanticColor.core.foreground.critical.subtle,
+        color: theme.requiredIndicator.color.foreground,
     },
     textWordBreak: {
         overflowWrap: "break-word",

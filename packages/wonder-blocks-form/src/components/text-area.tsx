@@ -7,16 +7,12 @@ import {
     addStyle,
     View,
 } from "@khanacademy/wonder-blocks-core";
-import {
-    border,
-    font,
-    semanticColor,
-    sizing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 import {useId} from "react";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {useFieldValidation} from "../hooks/use-field-validation";
+import theme from "../theme";
 
 type TextAreaProps = AriaProps & {
     /**
@@ -283,6 +279,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                         styles.default,
                         disabled && styles.disabled,
                         hasError && styles.error,
+                        readOnly && styles.readOnly,
                         style,
                     ]}
                     value={value}
@@ -313,17 +310,18 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
     },
 );
 
-const VERTICAL_SPACING = sizing.size_100;
-
 const styles = StyleSheet.create({
     textarea: {
-        borderRadius: border.radius.radius_040,
+        borderRadius: theme.field.border.radius,
         boxSizing: "border-box",
-        paddingBlock: VERTICAL_SPACING,
-        paddingInline: sizing.size_160,
+        paddingInline: theme.field.layout.paddingInline,
+        paddingBlock: theme.field.layout.paddingBlock,
         // This minHeight is equivalent to when the textarea has one row
-        minHeight: `calc(${VERTICAL_SPACING} * 2 + ${sizing.size_020} + ${font.lineHeight.medium})`,
-        ...focusStyles.focus,
+        minHeight: theme.field.sizing.height,
+    },
+    readOnly: {
+        background: semanticColor.input.readOnly.background,
+        color: semanticColor.input.readOnly.text,
     },
     default: {
         background: semanticColor.input.default.background,
@@ -331,6 +329,13 @@ const styles = StyleSheet.create({
         color: semanticColor.input.default.foreground,
         "::placeholder": {
             color: semanticColor.input.default.placeholder,
+        },
+        ...focusStyles.focus,
+        // Don't show active styles if field is disabled or readonly
+        [":active:not([aria-disabled='true']):not([readonly])" as any]: {
+            // Use box shadow to make the border in the press state look thicker
+            // without changing the border
+            boxShadow: `0 0 0 ${theme.field.border.width.press} ${semanticColor.input.default.border}`,
         },
     },
     disabled: {
@@ -344,7 +349,7 @@ const styles = StyleSheet.create({
     },
     error: {
         background: semanticColor.input.error.background,
-        border: `${border.width.thin} solid ${semanticColor.input.error.border}`,
+        border: `${theme.field.border.width.error} solid ${semanticColor.input.error.border}`,
         color: semanticColor.input.error.foreground,
         "::placeholder": {
             color: semanticColor.input.default.placeholder,

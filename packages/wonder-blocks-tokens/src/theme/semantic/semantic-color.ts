@@ -698,6 +698,11 @@ export const semanticColor = {
             background: core.background.critical.subtle,
             foreground: core.foreground.neutral.strong,
         },
+        readOnly: {
+            background: surface.primary,
+            text: core.foreground.neutral.strong,
+            icon: core.transparent,
+        },
     },
     /**
      * For labels, icons, filters, alerts, and other elements where color can
