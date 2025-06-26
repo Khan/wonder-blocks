@@ -5,7 +5,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {Checkbox, CheckboxGroup, Choice} from "@khanacademy/wonder-blocks-form";
-import {sizing, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing, spacing, font} from "@khanacademy/wonder-blocks-tokens";
 
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 import ComponentInfo from "../components/component-info";
@@ -283,6 +283,39 @@ export const WithLabel: StoryComponentType = () => {
 };
 
 WithLabel.parameters = {
+    docs: {
+        description: {
+            story: "The checkbox can have an optional label and description. This allows it to be used as a settings-like item. The user of this component is responsible for keeping track of checked state and providing an onChange callback.",
+        },
+    },
+};
+
+export const WithStyledLabel: StoryComponentType = () => {
+    const [checked, setChecked] = React.useState(false);
+
+    const handleChange = () => {
+        setChecked(!checked);
+    };
+
+    return (
+        <Checkbox
+            label={
+                <BodyText
+                    weight="bold"
+                    tag="span"
+                    style={{lineHeight: font.body.lineHeight.small}}
+                >
+                    Receive assignment reminders for Algebra
+                </BodyText>
+            }
+            description="You will receive a reminder 24 hours before each deadline"
+            checked={checked}
+            onChange={() => handleChange()}
+        />
+    );
+};
+
+WithStyledLabel.parameters = {
     docs: {
         description: {
             story: "The checkbox can have an optional label and description. This allows it to be used as a settings-like item. The user of this component is responsible for keeping track of checked state and providing an onChange callback.",
