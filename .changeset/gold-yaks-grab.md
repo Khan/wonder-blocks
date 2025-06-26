@@ -2,4 +2,4 @@
 "@khanacademy/wonder-blocks-tokens": minor
 ---
 
-Add core.shadow token. Export modal tokens.
+Export modal tokens. Update `core.shadow.transparent` token value in TB.
