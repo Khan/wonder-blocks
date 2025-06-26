@@ -342,10 +342,8 @@ const styles = StyleSheet.create({
     endAccessory: {
         display: theme.endAccessory.layout.display,
         position: "absolute",
-        insetBlock: 0, // sizing.size_140,
+        insetBlock: sizing.size_140,
         insetInlineEnd: sizing.size_120,
-        alignItems: "center",
-        justifyContent: "center",
     },
 });
 

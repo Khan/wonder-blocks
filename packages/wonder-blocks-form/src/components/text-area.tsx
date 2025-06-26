@@ -7,12 +7,15 @@ import {
     addStyle,
     View,
 } from "@khanacademy/wonder-blocks-core";
-import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 import {useId} from "react";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
-import {useFieldValidation} from "../hooks/use-field-validation";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import errorIcon from "@phosphor-icons/core/fill/warning-diamond-fill.svg";
+import readOnlyIcon from "@phosphor-icons/core/bold/lock-bold.svg";
 import theme from "../theme";
+import {useFieldValidation} from "../hooks/use-field-validation";
 
 type TextAreaProps = AriaProps & {
     /**
@@ -182,6 +185,7 @@ type TextAreaProps = AriaProps & {
     resizeType?: "horizontal" | "vertical" | "both" | "none";
 };
 
+const StyledDiv = addStyle("div");
 const StyledTextarea = addStyle("textarea");
 
 /**
@@ -265,8 +269,27 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             }
         };
 
+        let icon;
+        if (hasError) {
+            icon = (
+                <PhosphorIcon
+                    icon={errorIcon}
+                    size="small"
+                    color={semanticColor.core.foreground.critical.default}
+                />
+            );
+        } else if (readOnly) {
+            icon = (
+                <PhosphorIcon
+                    icon={readOnlyIcon}
+                    size="small"
+                    color={semanticColor.core.foreground.neutral.subtle}
+                />
+            );
+        }
+
         return (
-            <View style={[{width: "100%"}, rootStyle]}>
+            <View style={[styles.root, rootStyle]}>
                 <StyledTextarea
                     id={uniqueId}
                     data-testid={testId}
@@ -280,6 +303,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                         disabled && styles.disabled,
                         hasError && styles.error,
                         readOnly && styles.readOnly,
+                        icon && styles.withIcon,
                         style,
                     ]}
                     value={value}
@@ -305,12 +329,19 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                     {...otherProps}
                     aria-invalid={hasError}
                 />
+                {icon && (
+                    <StyledDiv style={styles.endAccessory}>{icon}</StyledDiv>
+                )}
             </View>
         );
     },
 );
 
 const styles = StyleSheet.create({
+    root: {
+        width: "100%",
+        position: "relative",
+    },
     textarea: {
         borderRadius: theme.field.border.radius,
         boxSizing: "border-box",
@@ -318,6 +349,10 @@ const styles = StyleSheet.create({
         paddingBlock: theme.field.layout.paddingBlock,
         // This minHeight is equivalent to when the textarea has one row
         minHeight: theme.field.sizing.height,
+    },
+    withIcon: {
+        // If there is an icon and the theme supports end accessories, the end padding needs to be adjusted to account for the icon
+        paddingInlineEnd: `calc(${theme.field.layout.paddingInline} + ${theme.endAccessory.sizing.width} + ${theme.endAccessory.layout.paddingInlineStart})`,
     },
     readOnly: {
         background: semanticColor.input.readOnly.background,
@@ -354,6 +389,12 @@ const styles = StyleSheet.create({
         "::placeholder": {
             color: semanticColor.input.default.placeholder,
         },
+    },
+    endAccessory: {
+        display: theme.endAccessory.layout.display,
+        position: "absolute",
+        insetBlock: sizing.size_140,
+        insetInlineEnd: sizing.size_120,
     },
 });
 
