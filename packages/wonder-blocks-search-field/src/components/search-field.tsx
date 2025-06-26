@@ -17,6 +17,7 @@ import {
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 
 import {defaultLabels} from "../util/constants";
+import theme from "../theme";
 
 type Props = AriaProps & {
     /**
@@ -192,7 +193,10 @@ const SearchField: React.ForwardRefExoticComponent<
                 kind="tertiary"
                 actionType="neutral"
                 onClick={handleClear}
-                style={styles.dismissIcon}
+                style={[
+                    styles.dismissIcon,
+                    error && styles.dismissIconWithError,
+                ]}
                 aria-label={clearAriaLabel}
             />
         );
@@ -239,6 +243,7 @@ const SearchField: React.ForwardRefExoticComponent<
                         style={[
                             styles.inputStyleReset,
                             typographyStyles.LabelMedium,
+                            error && styles.inputWithError,
                         ]}
                         testId={testId}
                         {...otherProps}
@@ -267,7 +272,10 @@ const styles = StyleSheet.create({
     dismissIcon: {
         margin: 0,
         position: "absolute",
-        right: spacing.xxxSmall_4,
+        insetInlineEnd: spacing.xxxSmall_4,
+    },
+    dismissIconWithError: {
+        insetInlineEnd: theme.dismissButton.layout.withError.insetInlineEnd,
     },
     inputStyleReset: {
         display: "flex",
@@ -275,6 +283,9 @@ const styles = StyleSheet.create({
         width: "100%",
         paddingLeft: spacing.xLarge_32,
         paddingRight: spacing.large_24 + spacing.medium_16,
+    },
+    inputWithError: {
+        paddingInlineEnd: theme.input.layout.withError.paddingInlineEnd,
     },
 });
 
