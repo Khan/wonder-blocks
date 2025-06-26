@@ -257,6 +257,7 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
     };
     const pressStyling = {
         background: action.press.background,
+        // TODO(WB-1868): Use input tokens once the fixes are merged.
         color: placeholder
             ? error
                 ? semanticColor.core.foreground.neutral.subtle
