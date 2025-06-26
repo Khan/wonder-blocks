@@ -1,6 +1,6 @@
 import {mergeTheme} from "@khanacademy/wonder-blocks-theming";
 
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {border, sizing} from "@khanacademy/wonder-blocks-tokens";
 import defaultTheme from "./default";
 
 const fieldPaddingInline = sizing.size_120;

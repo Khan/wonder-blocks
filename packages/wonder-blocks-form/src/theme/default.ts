@@ -1,4 +1,4 @@
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {border, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 const theme = {
     field: {
