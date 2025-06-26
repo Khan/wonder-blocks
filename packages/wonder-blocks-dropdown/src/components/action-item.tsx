@@ -9,6 +9,7 @@ import type {PropsFor, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
+import theme from "../theme";
 
 type CompactCellProps = PropsFor<typeof CompactCell>;
 
@@ -203,7 +204,7 @@ const styles = StyleSheet.create({
     shared: {
         minHeight: DROPDOWN_ITEM_HEIGHT,
         // Make sure that the item is always at least as tall as 40px.
-        paddingBlock: sizing.size_100,
+        paddingBlock: theme.item.layout.padding.block,
     },
 
     label: {

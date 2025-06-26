@@ -494,9 +494,10 @@ export default function Combobox({
             // Override the disabled state of the icon to match the combobox
             // state.
             color: disabled
-                ? semanticColor.icon.disabled
+                ? semanticColor.core.foreground.disabled.default
                 : // Use the color passed in, otherwise use the default color.
-                  (startIcon.props.color ?? semanticColor.icon.primary),
+                  (startIcon.props.color ??
+                  semanticColor.core.foreground.neutral.default),
         } as Partial<
             React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>
         >);
@@ -701,9 +702,9 @@ const styles = StyleSheet.create({
         flexWrap: "wrap",
         // The following styles are to emulate the input styles
         background: semanticColor.surface.primary,
-        borderRadius: theme.combobox.border.radius.rest,
+        borderRadius: theme.opener.border.radius.rest,
         border: `solid 1px ${semanticColor.core.border.neutral.subtle}`,
-        paddingInline: theme.combobox.layout.padding.inline,
+        paddingInline: theme.opener.layout.padding.inline,
     },
     focused: focusStyles.focus[":focus-visible"],
     disabled: {

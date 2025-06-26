@@ -11,6 +11,7 @@ import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import Check from "./check";
 import Checkbox from "./checkbox";
 import {CellProps, OptionLabel} from "../util/types";
+import theme from "../theme";
 
 type OptionProps = AriaProps & {
     /**
@@ -260,7 +261,7 @@ export default class OptionItem extends React.Component<OptionProps> {
 const focusedStyle = {
     // Override the default focus state for the cell element, so that it
     // can be added programmatically to the button element.
-    borderRadius: border.radius.radius_040,
+    borderRadius: theme.item.border.radius.default,
     outline: focusStyles.focus[":focus-visible"].outline,
     outlineOffset: `calc(${border.width.medium} * -1)`,
     // We need to use a thicker box-shadow to ensure that the inner ring
@@ -277,9 +278,9 @@ const resetFocusStyle = {
 
 const styles = StyleSheet.create({
     optionItem: {
-        paddingBlock: sizing.size_100,
-        paddingInlineStart: sizing.size_080,
-        paddingInlineEnd: sizing.size_160,
+        paddingBlock: theme.item.layout.padding.block,
+        paddingInlineStart: theme.item.layout.padding.inlineStart,
+        paddingInlineEnd: theme.item.layout.padding.inlineEnd,
         whiteSpace: "nowrap",
         // Make sure that the item is always at least as tall as 40px.
         minHeight: sizing.size_400,
@@ -288,7 +289,7 @@ const styles = StyleSheet.create({
          * States
          */
         ":active": {
-            borderRadius: border.radius.radius_040,
+            borderRadius: theme.item.border.radius.press,
         },
 
         [":is([aria-disabled=true])" as any]: {
@@ -313,6 +314,7 @@ const styles = StyleSheet.create({
     },
 
     label: {
+        lineHeight: sizing.size_200,
         whiteSpace: "nowrap",
         userSelect: "none",
         // added to truncate strings that are longer than expected

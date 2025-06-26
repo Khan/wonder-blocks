@@ -439,7 +439,7 @@ export const Error: Story = {
  *
  * **NOTE:** When `startIcon` is set, we set some default values for the icon:
  * - `size`: "small"
- * - `color`: `semanticColor.icon.default`
+ * - `color`: `semanticColor.core.foreground.neutral.default`
  *
  * You can customize the size and color of the icon by passing the `size` and
  * `color` props to the `PhosphorIcon` component.
@@ -480,7 +480,10 @@ export const StartIcon: Story = {
                         <PhosphorIcon
                             icon={magnifyingGlassIcon}
                             size="small"
-                            color={semanticColor.icon.action}
+                            color={
+                                semanticColor.core.foreground.instructive
+                                    .default
+                            }
                         />
                     }
                     onChange={(newValue) => {
@@ -495,7 +498,10 @@ export const StartIcon: Story = {
                         <PhosphorIcon
                             icon={magnifyingGlassIcon}
                             size="small"
-                            color={semanticColor.icon.action}
+                            color={
+                                semanticColor.core.foreground.instructive
+                                    .default
+                            }
                         />
                     }
                     disabled={true}

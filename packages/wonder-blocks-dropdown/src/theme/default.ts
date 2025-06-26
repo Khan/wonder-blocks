@@ -15,7 +15,7 @@ export default {
             default: `0 ${sizing.size_080} ${sizing.size_080} 0 ${semanticColor.core.shadow.transparent}`,
         },
     },
-    combobox: {
+    opener: {
         border: {
             radius: {
                 rest: border.radius.radius_040,
@@ -28,6 +28,21 @@ export default {
         layout: {
             padding: {
                 inline: sizing.size_160,
+            },
+        },
+    },
+    item: {
+        border: {
+            radius: {
+                default: border.radius.radius_040,
+                press: border.radius.radius_040,
+            },
+        },
+        layout: {
+            padding: {
+                block: sizing.size_100,
+                inlineStart: sizing.size_080,
+                inlineEnd: sizing.size_160,
             },
         },
     },

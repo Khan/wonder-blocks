@@ -147,7 +147,7 @@ export default class SelectOpener extends React.Component<
 
         const iconColor = disabled
             ? semanticColor.core.foreground.disabled.default
-            : theme.combobox.color.icon;
+            : theme.opener.color.icon;
 
         const style = [
             styles.shared,
@@ -205,9 +205,9 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         color: semanticColor.text.primary,
         height: DROPDOWN_ITEM_HEIGHT,
-        paddingInline: theme.combobox.layout.padding.inline,
+        paddingInline: theme.opener.layout.padding.inline,
         borderWidth: 0,
-        borderRadius: theme.combobox.border.radius.rest,
+        borderRadius: theme.opener.border.radius.rest,
         borderStyle: "solid",
         outline: "none",
         textDecoration: "none",
@@ -260,7 +260,7 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
             : semanticColor.core.foreground.neutral.strong,
         borderColor: action.press.border,
         boxShadow: `inset 0 0 0 ${border.width.thin} ${action.press.border}`,
-        borderRadius: theme.combobox.border.radius.press,
+        borderRadius: theme.opener.border.radius.press,
     };
 
     const currentState = error
@@ -282,7 +282,7 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
                 ":hover": {
                     borderColor: currentState.border,
                     borderWidth: border.width.thin,
-                    paddingInline: theme.combobox.layout.padding.inline,
+                    paddingInline: theme.opener.layout.padding.inline,
                 },
             },
             ":active": pressStyling,

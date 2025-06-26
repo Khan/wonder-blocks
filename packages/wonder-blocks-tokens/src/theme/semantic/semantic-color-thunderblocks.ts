@@ -118,7 +118,10 @@ const core = {
         },
     },
     shadow: {
-        transparent: `color-mix(in srgb, ${color.blue_10} 20%, ${transparent})`,
+        // NOTE: We use `color-mix` to generate a transparent color because
+        // it supports using CSS variables as input, which is not possible
+        // with the CSS `rgba` function or the `fade` JS function.
+        transparent: `color-mix(in srgb, ${color.blue_05} 20%, ${transparent})`,
         chonky: {
             progressive: {
                 subtle: color.blue_60,
