@@ -569,7 +569,10 @@ export default function Combobox({
                 <TextField
                     id={textFieldId}
                     testId={testId}
-                    style={styles.combobox}
+                    styles={{
+                        root: styles.textFieldRoot,
+                        input: styles.combobox,
+                    }}
                     value={inputValue}
                     onChange={handleTextFieldChange}
                     disabled={disabled}
@@ -753,14 +756,21 @@ const styles = StyleSheet.create({
         border: "none",
         outline: "none",
         padding: 0,
-        minWidth: spacing.xxxSmall_4,
-        width: "auto",
-        display: "inline-grid",
-        gridArea: "1 / 2",
         ":focus-visible": {
             outline: "none",
             border: "none",
+            boxShadow: "none",
         },
+        [":active:not([aria-disabled='true']):not([readonly])" as any]: {
+            // Override press styles from TextField.
+            boxShadow: "none",
+        },
+    },
+    textFieldRoot: {
+        width: "auto",
+        minWidth: spacing.xxxSmall_4,
+        display: "inline-grid",
+        gridArea: "1 / 2",
     },
     /**
      * Listbox custom styles
