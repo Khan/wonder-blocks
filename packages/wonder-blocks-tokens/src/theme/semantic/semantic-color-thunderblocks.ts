@@ -542,7 +542,6 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
             },
         },
     },
-
     status: {
         critical: {
             background: color.red_90,

@@ -98,6 +98,9 @@ const styles = StyleSheet.create({
         height: "600px",
         width: "600px",
     },
+    gap: {
+        gap: sizing.size_010,
+    },
     centered: {
         alignItems: "center",
         justifyContent: "center",
@@ -232,7 +235,7 @@ const ControlledWrapper = (args: any) => {
     }, [args.opened]);
 
     return (
-        <View style={styles.wrapper}>
+        <View style={[styles.wrapper, styles.gap]}>
             <Checkbox label="Open" onChange={setOpened} checked={opened} />
             <MultiSelect
                 {...args}
