@@ -194,6 +194,7 @@ const styles = StyleSheet.create({
         ":focus": {
             // Override the default focus state for the cell element, so that it
             // can be added programmatically to the button element.
+            borderRadius: theme.item.border.radius.default,
             outline: focusStyles.focus[":focus-visible"].outline,
             outlineOffset: `calc(${border.width.medium} * -1)`,
             // We need to use a thicker box-shadow to ensure that the inner ring
