@@ -818,13 +818,14 @@ export const semanticColor = {
             },
         },
         shared: {
+            strong: {
+                background: core.background.neutral.strong,
+                border: core.border.neutral.strong,
+                text: core.foreground.inverse.strong,
+            },
             actions: {
-                subdued: {
-                    foreground: core.foreground.instructive.default,
-                },
-                strong: {
-                    foreground: core.foreground.inverse.strong,
-                },
+                subdued: core.foreground.instructive.default,
+                strong: core.foreground.inverse.strong,
             },
         },
     },
