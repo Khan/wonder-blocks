@@ -30,11 +30,6 @@ const theme = {
             foreground: semanticColor.core.foreground.neutral.default,
         },
     },
-    errorIcon: {
-        layout: {
-            display: "block",
-        },
-    },
     error: {
         color: {
             foreground: semanticColor.core.foreground.critical.subtle,
@@ -43,6 +38,9 @@ const theme = {
             size: font.body.size.small,
             weight: font.weight.regular,
             lineHeight: font.body.lineHeight.small,
+        },
+        layout: {
+            marginBlockStart: sizing.size_0,
         },
     },
     requiredIndicator: {

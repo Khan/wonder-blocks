@@ -307,7 +307,6 @@ const styles = StyleSheet.create({
         color: theme.error.color.foreground,
     },
     errorIcon: {
-        display: theme.errorIcon.layout.display,
         marginTop: sizing.size_010, // This vertically aligns the icon with the text
     },
     errorMessage: {
@@ -315,6 +314,7 @@ const styles = StyleSheet.create({
         fontSize: theme.error.font.size,
         fontWeight: theme.error.font.weight,
         lineHeight: theme.error.font.lineHeight,
+        marginBlockStart: theme.error.layout.marginBlockStart,
     },
     required: {
         color: theme.requiredIndicator.color.foreground,

@@ -15,6 +15,7 @@ import {
 import SearchField from "@khanacademy/wonder-blocks-search-field";
 import Button from "@khanacademy/wonder-blocks-button";
 import {allModes} from "../../.storybook/modes";
+import {Heading} from "@khanacademy/wonder-blocks-typography";
 
 /**
  * The `LabeledField` component provides common elements for a form field such
@@ -75,14 +76,22 @@ const AllFields = (
         shouldValidateInStory?: boolean;
         showSubmitButtonInStory?: boolean;
         disabled?: boolean;
+        readOnly?: boolean;
+        textValue?: string;
     },
 ) => {
-    const {shouldValidateInStory, showSubmitButtonInStory, disabled, ...args} =
-        storyArgs;
+    const {
+        shouldValidateInStory,
+        showSubmitButtonInStory,
+        disabled,
+        readOnly,
+        textValue,
+        ...args
+    } = storyArgs;
 
     /** Values */
-    const [textFieldValue, setTextFieldValue] = React.useState("");
-    const [textAreaValue, setTextAreaValue] = React.useState("");
+    const [textFieldValue, setTextFieldValue] = React.useState(textValue || "");
+    const [textAreaValue, setTextAreaValue] = React.useState(textValue || "");
     const [singleSelectValue, setSingleSelectValue] = React.useState("");
     const [multiSelectValue, setMultiSelectValue] = React.useState<string[]>(
         [],
@@ -236,6 +245,7 @@ const AllFields = (
                         }
                         instantValidation={false}
                         disabled={disabled}
+                        readOnly={readOnly}
                     />
                 }
             />
@@ -255,76 +265,86 @@ const AllFields = (
                         }
                         instantValidation={false}
                         disabled={disabled}
+                        readOnly={readOnly}
                     />
                 }
             />
 
-            <LabeledField
-                {...args}
-                errorMessage={singleSelectErrorMessage}
-                label="Single Select"
-                description={selectDescription}
-                field={
-                    <SingleSelect
-                        // ref={singleSelectRef} // TODO(WB-1841) once SingleSelect supports ref
-                        placeholder="Choose a fruit"
-                        selectedValue={singleSelectValue}
-                        onChange={setSingleSelectValue}
-                        onValidate={setSingleSelectErrorMessage}
-                        validate={singleSelectValidate}
-                        disabled={disabled}
-                    >
-                        <OptionItem label="Mango" value="mango" />
-                        <OptionItem label="Strawberry" value="strawberry" />
-                        <OptionItem label="Banana" value="banana" />
-                    </SingleSelect>
-                }
-            />
+            {/* SingleSelect does not support readonly state */}
+            {!readOnly && (
+                <LabeledField
+                    {...args}
+                    errorMessage={singleSelectErrorMessage}
+                    label="Single Select"
+                    description={selectDescription}
+                    field={
+                        <SingleSelect
+                            // ref={singleSelectRef} // TODO(WB-1841) once SingleSelect supports ref
+                            placeholder="Choose a fruit"
+                            selectedValue={singleSelectValue}
+                            onChange={setSingleSelectValue}
+                            onValidate={setSingleSelectErrorMessage}
+                            validate={singleSelectValidate}
+                            disabled={disabled}
+                        >
+                            <OptionItem label="Mango" value="mango" />
+                            <OptionItem label="Strawberry" value="strawberry" />
+                            <OptionItem label="Banana" value="banana" />
+                        </SingleSelect>
+                    }
+                />
+            )}
 
-            <LabeledField
-                {...args}
-                errorMessage={multiSelectErrorMessage}
-                label="Multi Select"
-                description={selectDescription}
-                field={
-                    <MultiSelect
-                        // ref={multiSelectRef} // TODO(WB-1841) once MultiSelect supports ref
-                        selectedValues={multiSelectValue}
-                        onChange={setMultiSelectValue}
-                        onValidate={setMultiSelectErrorMessage}
-                        validate={
-                            shouldValidateInStory
-                                ? multiSelectValidate
-                                : undefined
-                        }
-                        disabled={disabled}
-                    >
-                        <OptionItem label="Mango" value="mango" />
-                        <OptionItem label="Strawberry" value="strawberry" />
-                        <OptionItem label="Banana" value="banana" />
-                    </MultiSelect>
-                }
-            />
+            {/* MultiSelect does not support readonly state */}
+            {!readOnly && (
+                <LabeledField
+                    {...args}
+                    errorMessage={multiSelectErrorMessage}
+                    label="Multi Select"
+                    description={selectDescription}
+                    field={
+                        <MultiSelect
+                            // ref={multiSelectRef} // TODO(WB-1841) once MultiSelect supports ref
+                            selectedValues={multiSelectValue}
+                            onChange={setMultiSelectValue}
+                            onValidate={setMultiSelectErrorMessage}
+                            validate={
+                                shouldValidateInStory
+                                    ? multiSelectValidate
+                                    : undefined
+                            }
+                            disabled={disabled}
+                        >
+                            <OptionItem label="Mango" value="mango" />
+                            <OptionItem label="Strawberry" value="strawberry" />
+                            <OptionItem label="Banana" value="banana" />
+                        </MultiSelect>
+                    }
+                />
+            )}
 
-            <LabeledField
-                {...args}
-                errorMessage={searchErrorMessage}
-                label="Search"
-                description={textDescription}
-                field={
-                    <SearchField
-                        ref={searchRef}
-                        value={searchValue}
-                        onChange={setSearchValue}
-                        validate={
-                            shouldValidateInStory ? textValidate : undefined
-                        }
-                        onValidate={setSearchErrorMessage}
-                        instantValidation={false}
-                        disabled={disabled}
-                    />
-                }
-            />
+            {/* SearchField does not support readonly state */}
+            {!readOnly && (
+                <LabeledField
+                    {...args}
+                    errorMessage={searchErrorMessage}
+                    label="Search"
+                    description={textDescription}
+                    field={
+                        <SearchField
+                            ref={searchRef}
+                            value={searchValue}
+                            onChange={setSearchValue}
+                            validate={
+                                shouldValidateInStory ? textValidate : undefined
+                            }
+                            onValidate={setSearchErrorMessage}
+                            instantValidation={false}
+                            disabled={disabled}
+                        />
+                    }
+                />
+            )}
 
             {showSubmitButtonInStory && <Button type="submit">Submit</Button>}
         </StyledForm>
@@ -355,9 +375,14 @@ export const Fields: StoryComponentType = {
     render: (args) => {
         return (
             <View style={{gap: sizing.size_240}}>
+                <Heading>Default</Heading>
                 <AllFields {...args} />
+                <Heading>Error</Heading>
                 <AllFields {...args} errorMessage="Message about the error" />
+                <Heading>Disabled</Heading>
                 <AllFields {...args} disabled />
+                <Heading>Read Only</Heading>
+                <AllFields {...args} readOnly={true} textValue={"Value"} />
             </View>
         );
     },
