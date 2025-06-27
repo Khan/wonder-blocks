@@ -817,5 +817,15 @@ export const semanticColor = {
                 text: core.foreground.critical.strong,
             },
         },
+        shared: {
+            actions: {
+                subdued: {
+                    foreground: core.foreground.instructive.default,
+                },
+                strong: {
+                    foreground: core.foreground.inverse.strong,
+                },
+            },
+        },
     },
 };
