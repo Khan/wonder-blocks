@@ -660,9 +660,9 @@ importers:
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:../wonder-blocks-core
-      '@khanacademy/wonder-blocks-layout':
+      '@khanacademy/wonder-blocks-styles':
         specifier: workspace:*
-        version: link:../wonder-blocks-layout
+        version: link:../wonder-blocks-styles
       '@khanacademy/wonder-blocks-tokens':
         specifier: workspace:*
         version: link:../wonder-blocks-tokens
@@ -781,9 +781,6 @@ importers:
       '@khanacademy/wonder-blocks-icon-button':
         specifier: workspace:*
         version: link:../wonder-blocks-icon-button
-      '@khanacademy/wonder-blocks-layout':
-        specifier: workspace:*
-        version: link:../wonder-blocks-layout
       '@khanacademy/wonder-blocks-modal':
         specifier: workspace:*
         version: link:../wonder-blocks-modal
@@ -793,6 +790,9 @@ importers:
       '@khanacademy/wonder-blocks-search-field':
         specifier: workspace:*
         version: link:../wonder-blocks-search-field
+      '@khanacademy/wonder-blocks-styles':
+        specifier: workspace:*
+        version: link:../wonder-blocks-styles
       '@khanacademy/wonder-blocks-timing':
         specifier: workspace:*
         version: link:../wonder-blocks-timing

@@ -6,7 +6,16 @@
   "main": "dist/index.js",
   "module": "dist/es/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/es/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles.css": "./dist/css/vars.css"
+  },
   "scripts": {
+    "build:css": "pnpm exec wonder-blocks-tokens .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },
@@ -22,10 +31,10 @@
     "@khanacademy/wonder-blocks-core": "workspace:*",
     "@khanacademy/wonder-blocks-icon": "workspace:*",
     "@khanacademy/wonder-blocks-icon-button": "workspace:*",
-    "@khanacademy/wonder-blocks-layout": "workspace:*",
     "@khanacademy/wonder-blocks-modal": "workspace:*",
     "@khanacademy/wonder-blocks-pill": "workspace:*",
     "@khanacademy/wonder-blocks-search-field": "workspace:*",
+    "@khanacademy/wonder-blocks-styles": "workspace:*",
     "@khanacademy/wonder-blocks-timing": "workspace:*",
     "@khanacademy/wonder-blocks-tokens": "workspace:*",
     "@khanacademy/wonder-blocks-typography": "workspace:*"
