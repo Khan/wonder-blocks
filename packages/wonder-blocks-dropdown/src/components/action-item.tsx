@@ -200,6 +200,12 @@ const styles = StyleSheet.create({
             // We need to use a thicker box-shadow to ensure that the inner ring
             // is visible when the cell is focused.
             boxShadow: `inset 0 0 0 calc(${border.width.medium}*2) ${semanticColor.focus.inner}`,
+            // Hide the left bar indicator when focused, so the focus ring
+            // doesn't overlap with it.
+            // @see cell-core.tsx
+            [":after" as any]: {
+                content: "unset",
+            },
         },
     },
     shared: {
