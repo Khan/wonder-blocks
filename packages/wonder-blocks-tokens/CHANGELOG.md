@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 11.2.1
+
+### Patch Changes
+
+- a60d5ac: Adds CSS variable tokens for WB Form: Checkbox and Radio
+
 ## 11.2.0
 
 ### Minor Changes
