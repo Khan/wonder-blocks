@@ -43,7 +43,7 @@ export default mergeTheme(defaultTheme, {
         },
         layout: {
             // This aligns the error message with the error icon
-            marginBlockStart: sizing.size_020,
+            marginBlockStart: sizing.size_010,
         },
     },
     requiredIndicator: {
