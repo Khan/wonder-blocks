@@ -229,7 +229,7 @@ const TextField = (props: PropsWithForwardRef) => {
                 <StyledInput
                     style={[
                         styles.input,
-                        typographyStyles.LabelMedium,
+                        typographyStyles.BodyTextMediumMediumWeight,
                         styles.default,
                         disabled && styles.disabled,
                         hasError && styles.error,
