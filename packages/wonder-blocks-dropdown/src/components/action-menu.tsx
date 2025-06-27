@@ -6,6 +6,7 @@ import {
     type AriaProps,
     type StyleType,
 } from "@khanacademy/wonder-blocks-core";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import DropdownOpener from "./dropdown-opener";
 import ActionItem from "./action-item";
 import OptionItem from "./option-item";
@@ -329,7 +330,7 @@ export default class ActionMenu extends React.Component<Props, State> {
 
 const styles = StyleSheet.create({
     caret: {
-        marginLeft: 4,
+        marginInlineStart: sizing.size_040,
     },
     // The design calls for additional offset around the opener.
     opener: {
@@ -340,6 +341,6 @@ const styles = StyleSheet.create({
     },
     // This is to adjust the space between the menu and the opener.
     menuTopSpace: {
-        top: -4,
+        top: `calc(-1 * ${sizing.size_040})`,
     },
 });

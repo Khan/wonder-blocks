@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 11.2.1
+
+### Patch Changes
+
+- de9435a: Fixes some semanticColor values. Adds dropdown CSS variables.
+- f50aafc: Adds cell component-level tokens to css variables build
+
+## 11.2.0
+
+### Minor Changes
+
+- e457d8c: Export modal tokens. Update `core.shadow.transparent` token value in TB.
+
 ## 11.1.1
 
 ### Patch Changes

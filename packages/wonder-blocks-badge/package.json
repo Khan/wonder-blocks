@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-badge",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "design": "v1",
   "description": "Badges are used to display information",
   "main": "dist/index.js",

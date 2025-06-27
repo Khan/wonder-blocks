@@ -1,5 +1,34 @@
 # @khanacademy/wonder-blocks-modal
 
+## 8.1.1
+
+### Patch Changes
+
+- Updated dependencies [de9435a]
+- Updated dependencies [f50aafc]
+    - @khanacademy/wonder-blocks-tokens@11.2.1
+    - @khanacademy/wonder-blocks-breadcrumbs@3.1.23
+    - @khanacademy/wonder-blocks-icon-button@10.3.7
+    - @khanacademy/wonder-blocks-layout@3.1.23
+    - @khanacademy/wonder-blocks-styles@0.2.19
+    - @khanacademy/wonder-blocks-typography@4.2.8
+
+## 8.1.0
+
+### Minor Changes
+
+- e457d8c: Adds ThunderBlocks theme to modal package. Updates typography to use BodyText and Heading. Removes Strut uses.
+
+### Patch Changes
+
+- Updated dependencies [e457d8c]
+    - @khanacademy/wonder-blocks-tokens@11.2.0
+    - @khanacademy/wonder-blocks-breadcrumbs@3.1.22
+    - @khanacademy/wonder-blocks-icon-button@10.3.6
+    - @khanacademy/wonder-blocks-layout@3.1.22
+    - @khanacademy/wonder-blocks-styles@0.2.18
+    - @khanacademy/wonder-blocks-typography@4.2.7
+
 ## 8.0.1
 
 ### Patch Changes

@@ -1,5 +1,52 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.2.0
+
+### Minor Changes
+
+- de9435a: Adds ThunderBlocks theme to dropdown
+- 88c633a: Update Dropdown components to be themeable.
+
+### Patch Changes
+
+- 31f0410: Replaces deprecated typography components with BodyText and Heading. Switches from `spacing` tokens to `sizing`. Removes wb-layout dependency in favor of `gap`.
+- f50aafc: Updates cell internal instances to use only the `style` Cell prop
+- Updated dependencies [f50aafc]
+- Updated dependencies [89c89a7]
+- Updated dependencies [de9435a]
+- Updated dependencies [8fca4ae]
+- Updated dependencies [89c89a7]
+- Updated dependencies [f50aafc]
+- Updated dependencies [88c633a]
+- Updated dependencies [f50aafc]
+    - @khanacademy/wonder-blocks-cell@5.0.0
+    - @khanacademy/wonder-blocks-tokens@11.2.1
+    - @khanacademy/wonder-blocks-clickable@7.1.12
+    - @khanacademy/wonder-blocks-icon@5.2.6
+    - @khanacademy/wonder-blocks-icon-button@10.3.7
+    - @khanacademy/wonder-blocks-modal@8.1.1
+    - @khanacademy/wonder-blocks-pill@3.1.26
+    - @khanacademy/wonder-blocks-search-field@5.1.29
+    - @khanacademy/wonder-blocks-styles@0.2.19
+    - @khanacademy/wonder-blocks-typography@4.2.8
+
+## 10.1.13
+
+### Patch Changes
+
+- Updated dependencies [e457d8c]
+- Updated dependencies [e457d8c]
+    - @khanacademy/wonder-blocks-modal@8.1.0
+    - @khanacademy/wonder-blocks-tokens@11.2.0
+    - @khanacademy/wonder-blocks-cell@4.1.25
+    - @khanacademy/wonder-blocks-clickable@7.1.11
+    - @khanacademy/wonder-blocks-icon@5.2.5
+    - @khanacademy/wonder-blocks-icon-button@10.3.6
+    - @khanacademy/wonder-blocks-layout@3.1.22
+    - @khanacademy/wonder-blocks-pill@3.1.25
+    - @khanacademy/wonder-blocks-search-field@5.1.28
+    - @khanacademy/wonder-blocks-typography@4.2.7
+
 ## 10.1.12
 
 ### Patch Changes

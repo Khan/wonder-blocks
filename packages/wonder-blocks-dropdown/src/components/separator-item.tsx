@@ -4,7 +4,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {View} from "@khanacademy/wonder-blocks-core";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
@@ -38,21 +38,11 @@ export default class SeparatorItem extends React.Component<{
     }
 }
 
-// TODO(WB-1868): Move this to a theme file.
-const theme = {
-    separator: {
-        color: {
-            border: semanticColor.core.border.neutral.subtle,
-        },
-    },
-};
-
 const styles = StyleSheet.create({
     separator: {
-        borderTop: `1px solid ${theme.separator.color.border}`,
+        borderTop: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
         height: 1,
         minHeight: 1,
-        marginTop: spacing.xxxSmall_4,
-        marginBottom: spacing.xxxSmall_4,
+        marginBlock: sizing.size_040,
     },
 });
