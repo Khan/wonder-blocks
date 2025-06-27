@@ -9,6 +9,7 @@ import type {PropsFor, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
+import theme from "../theme";
 
 type CompactCellProps = PropsFor<typeof CompactCell>;
 
@@ -193,20 +194,29 @@ const styles = StyleSheet.create({
         ":focus": {
             // Override the default focus state for the cell element, so that it
             // can be added programmatically to the button element.
+            borderRadius: theme.item.border.radius.default,
             outline: focusStyles.focus[":focus-visible"].outline,
             outlineOffset: `calc(${border.width.medium} * -1)`,
             // We need to use a thicker box-shadow to ensure that the inner ring
             // is visible when the cell is focused.
             boxShadow: `inset 0 0 0 calc(${border.width.medium}*2) ${semanticColor.focus.inner}`,
+            // Hide the left bar indicator when focused, so the focus ring
+            // doesn't overlap with it.
+            // @see cell-core.tsx
+            [":after" as any]: {
+                content: "unset",
+            },
         },
     },
     shared: {
         minHeight: DROPDOWN_ITEM_HEIGHT,
         // Make sure that the item is always at least as tall as 40px.
-        paddingBlock: sizing.size_100,
+        paddingBlock: theme.item.layout.padding.block,
     },
 
     label: {
+        fontWeight: theme.item.font.weight,
+        lineHeight: sizing.size_200,
         whiteSpace: "nowrap",
         userSelect: "none",
     },

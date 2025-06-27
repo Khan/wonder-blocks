@@ -7,12 +7,7 @@ import * as ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 import {VariableSizeList as List} from "react-window";
 
-import {
-    color,
-    semanticColor,
-    border,
-    sizing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, border, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {PropsFor, View, keys} from "@khanacademy/wonder-blocks-core";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
@@ -28,6 +23,7 @@ import type {DropdownItem} from "../util/types";
 import DropdownPopper from "./dropdown-popper";
 import {debounce, getLabel, getStringForKey} from "../util/helpers";
 import OptionItem from "./option-item";
+import theme from "../theme";
 
 /**
  * The number of options to apply the virtualized list to.
@@ -1071,35 +1067,19 @@ class DropdownCore extends React.Component<Props, State> {
     }
 }
 
-// TODO(WB-1868): Move this to a theme file.
-const theme = {
-    dropdown: {
-        color: {
-            default: {
-                background: semanticColor.surface.primary,
-                border: semanticColor.core.border.neutral.subtle,
-            },
-        },
-    },
-    noResults: {
-        color: {
-            foreground: semanticColor.text.secondary,
-        },
-    },
-};
-
 const styles = StyleSheet.create({
     menuWrapper: {
         width: "fit-content",
     },
 
     dropdown: {
-        backgroundColor: theme.dropdown.color.default.background,
-        borderRadius: border.radius.radius_040,
-        paddingBlock: sizing.size_040,
-        border: `solid ${border.width.thin} ${theme.dropdown.color.default.border}`,
+        backgroundColor: semanticColor.surface.primary,
+        borderRadius: theme.listbox.border.radius,
+        paddingBlock: theme.listbox.layout.padding.block,
+        paddingInline: theme.listbox.layout.padding.inline,
+        border: `solid ${border.width.thin} ${semanticColor.core.border.neutral.subtle}`,
         // TODO(WB-1878): Move to elevation tokens.
-        boxShadow: `0px ${sizing.size_080} ${sizing.size_080} 0 ${color.offBlack8}`,
+        boxShadow: theme.listbox.shadow.default,
         // We use a custom property to set the max height of the dropdown.
         // This comes from the maxHeight custom modifier.
         // @see ../util/popper-max-height-modifier.ts
@@ -1116,7 +1096,7 @@ const styles = StyleSheet.create({
     },
 
     noResult: {
-        color: theme.noResults.color.foreground,
+        color: semanticColor.core.foreground.neutral.default,
         alignSelf: "center",
         marginBlockStart: sizing.size_060,
     },

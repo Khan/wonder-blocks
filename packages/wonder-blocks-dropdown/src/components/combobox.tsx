@@ -7,16 +7,12 @@ import xIcon from "@phosphor-icons/core/regular/x.svg";
 import {StyleType, View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
-import {
-    border,
-    color,
-    semanticColor,
-    sizing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {useId} from "react";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {useListbox} from "../hooks/use-listbox";
 import {useMultipleSelection} from "../hooks/use-multiple-selection";
 import {
@@ -30,6 +26,7 @@ import {MultipleSelection} from "./combobox-multiple-selection";
 import DropdownPopper from "./dropdown-popper";
 import Listbox from "./listbox";
 import {getLabel} from "../util/helpers";
+import theme from "../theme";
 
 type Props = {
     /**
@@ -497,9 +494,10 @@ export default function Combobox({
             // Override the disabled state of the icon to match the combobox
             // state.
             color: disabled
-                ? semanticColor.icon.disabled
+                ? semanticColor.core.foreground.disabled.default
                 : // Use the color passed in, otherwise use the default color.
-                  (startIcon.props.color ?? semanticColor.icon.primary),
+                  (startIcon.props.color ??
+                  semanticColor.core.foreground.neutral.default),
         } as Partial<
             React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>
         >);
@@ -695,33 +693,8 @@ export default function Combobox({
     );
 }
 
-// TODO(WB-1868): Move this to a theme file.
-const theme = {
-    combobox: {
-        color: {
-            default: {
-                border: semanticColor.input.default.border,
-                background: semanticColor.input.default.background,
-            },
-            focus: {
-                border: semanticColor.focus.outer,
-                background: semanticColor.surface.primary,
-            },
-            disabled: semanticColor.input.disabled,
-            error: semanticColor.input.error,
-        },
-    },
-    listbox: {
-        color: {
-            default: {
-                background: semanticColor.surface.primary,
-                border: semanticColor.core.border.neutral.subtle,
-            },
-        },
-    },
-};
-
 const styles = StyleSheet.create({
+    // TODO(WB-2007): Adopt design specs
     wrapper: {
         flexDirection: "row",
         alignItems: "center",
@@ -729,24 +702,21 @@ const styles = StyleSheet.create({
         maxWidth: "100%",
         flexWrap: "wrap",
         // The following styles are to emulate the input styles
-        background: theme.combobox.color.default.background,
-        borderRadius: border.radius.radius_040,
-        border: `solid 1px ${theme.combobox.color.default.border}`,
-        paddingInline: sizing.size_080,
+        background: semanticColor.surface.primary,
+        borderRadius: theme.opener.border.radius.rest,
+        border: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
+        paddingInline: theme.opener.layout.padding.inline,
     },
-    focused: {
-        background: theme.combobox.color.focus.background,
-        border: `1px solid ${theme.combobox.color.focus.border}`,
-    },
+    focused: focusStyles.focus[":focus-visible"],
     disabled: {
-        background: theme.combobox.color.disabled.background,
-        border: `1px solid ${theme.combobox.color.disabled.border}`,
-        color: theme.combobox.color.disabled.foreground,
+        background: semanticColor.input.disabled.background,
+        border: `${border.width.thin} solid ${semanticColor.input.disabled.border}`,
+        color: semanticColor.input.disabled.foreground,
     },
     error: {
-        background: theme.combobox.color.error.background,
-        border: `1px solid ${theme.combobox.color.error.border}`,
-        color: theme.combobox.color.error.foreground,
+        background: semanticColor.input.error.background,
+        border: `${theme.opener.border.width.error} solid ${semanticColor.input.error.border}`,
+        color: semanticColor.input.error.foreground,
     },
     /**
      * Combobox input styles
@@ -771,11 +741,11 @@ const styles = StyleSheet.create({
      * Listbox custom styles
      */
     listbox: {
-        backgroundColor: theme.listbox.color.default.background,
-        borderRadius: border.radius.radius_040,
-        border: `solid ${border.width.thin} ${theme.listbox.color.default.border}`,
+        backgroundColor: semanticColor.surface.primary,
+        borderRadius: theme.listbox.border.radius,
+        border: `solid ${border.width.thin} ${semanticColor.core.border.neutral.subtle}`,
         // TODO(WB-1878): Move to elevation tokens.
-        boxShadow: `0px ${sizing.size_080} ${sizing.size_080} 0 ${color.offBlack8}`,
+        boxShadow: theme.listbox.shadow.default,
         // We use a custom property to set the max height of the dropdown.
         // This comes from the maxHeight custom modifier.
         // @see ../util/popper-max-height-modifier.ts
