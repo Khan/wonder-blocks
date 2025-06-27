@@ -32,12 +32,6 @@ export default mergeTheme(defaultTheme, {
             foreground: semanticColor.core.foreground.neutral.strong,
         },
     },
-    errorIcon: {
-        layout: {
-            // Error icon is hidden in TB because it is shown in the field instead
-            display: "none",
-        },
-    },
     error: {
         color: {
             foreground: semanticColor.core.foreground.critical.default,

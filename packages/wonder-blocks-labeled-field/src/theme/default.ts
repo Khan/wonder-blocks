@@ -30,11 +30,6 @@ const theme = {
             foreground: semanticColor.core.foreground.neutral.default,
         },
     },
-    errorIcon: {
-        layout: {
-            display: "block",
-        },
-    },
     error: {
         color: {
             foreground: semanticColor.core.foreground.critical.subtle,
