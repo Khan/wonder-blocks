@@ -4,7 +4,6 @@ import {Decorator} from "@storybook/react";
 import {DocsContainer} from "@storybook/blocks";
 import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
-import {THEME_DATA_ATTRIBUTE} from "@khanacademy/wonder-blocks-theming";
 import {initAnnouncer} from "@khanacademy/wonder-blocks-announcer";
 import Link from "@khanacademy/wonder-blocks-link";
 import {
