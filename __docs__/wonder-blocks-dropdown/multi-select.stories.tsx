@@ -11,7 +11,6 @@ import {
     border,
     semanticColor,
     spacing,
-    sizing,
 } from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
@@ -101,9 +100,6 @@ const styles = StyleSheet.create({
     wrapper: {
         height: "600px",
         width: "600px",
-    },
-    gap: {
-        gap: sizing.size_010,
     },
     centered: {
         alignItems: "center",
@@ -242,7 +238,7 @@ const ControlledWrapper = (args: any) => {
     }, [args.opened]);
 
     return (
-        <View style={[styles.wrapper, styles.gap]}>
+        <View style={styles.wrapper}>
             <Checkbox label="Open" onChange={setOpened} checked={opened} />
             <MultiSelect
                 {...args}

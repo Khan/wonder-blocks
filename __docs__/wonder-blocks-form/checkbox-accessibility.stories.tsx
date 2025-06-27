@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
-import {BodyText} from "@khanacademy/wonder-blocks-typography";
+import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 type CheckboxProps = PropsFor<typeof Checkbox>;
@@ -23,9 +23,9 @@ const ErrorTemplate = (args: CheckboxProps) => {
                 onChange={setChecked}
             />
             {errorState && (
-                <BodyText size="small" style={styles.error} id={errorId}>
+                <LabelSmall style={styles.error} id={errorId}>
                     You must agree to the terms to continue
-                </BodyText>
+                </LabelSmall>
             )}
         </View>
     );

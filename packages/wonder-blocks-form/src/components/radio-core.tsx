@@ -1,13 +1,10 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {border} from "@khanacademy/wonder-blocks-tokens";
-import {addStyle, View} from "@khanacademy/wonder-blocks-core";
-import {focusStyles} from "@khanacademy/wonder-blocks-styles";
-import theme from "../theme/index";
-import type {ChoiceCoreProps, Checked} from "../util/types";
+import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {addStyle} from "@khanacademy/wonder-blocks-core";
 
-import {colorStates, baseStyles} from "../util/styles";
+import type {ChoiceCoreProps, Checked} from "../util/types";
 
 const StyledInput = addStyle("input");
 
@@ -17,8 +14,6 @@ const StyledInput = addStyle("input");
     props: ChoiceCoreProps,
     ref: React.ForwardedRef<HTMLInputElement>,
 ) {
-    const innerRef = React.useRef<HTMLInputElement>(null);
-
     const handleChange = () => {
         // Empty because change is handled by ClickableBehavior
         return;
@@ -27,62 +22,48 @@ const StyledInput = addStyle("input");
     const {checked, disabled, error, groupName, id, testId, ...sharedProps} =
         props;
 
-    const stateStyles = _generateStyles(checked, error, disabled);
+    const stateStyles = _generateStyles(checked, error);
     const defaultStyle = [
         sharedStyles.inputReset,
         sharedStyles.default,
-        stateStyles.default,
+        !disabled && stateStyles.default,
+        disabled && sharedStyles.disabled,
     ];
-
-    const wrapperStyle = [sharedStyles.inputWrapper, stateStyles.inputWrapper];
-
-    const handleWrapperClick = (e: React.MouseEvent) => {
-        // forward event from wrapper Div
-        if (!disabled && e.target !== innerRef?.current) {
-            innerRef?.current?.click();
-        }
-    };
 
     return (
         <React.Fragment>
-            <View style={wrapperStyle} onClick={handleWrapperClick}>
-                <StyledInput
-                    {...sharedProps}
-                    type="radio"
-                    aria-invalid={error}
-                    checked={checked ?? undefined}
-                    disabled={disabled}
-                    id={id}
-                    name={groupName}
-                    // Need to specify because this is a controlled React form
-                    // component, but we handle the click via ClickableBehavior
-                    onChange={handleChange}
-                    style={defaultStyle}
-                    data-testid={testId}
-                    ref={(node) => {
-                        // @ts-expect-error: current is not actually read-only
-                        innerRef.current = node;
-                        if (typeof ref === "function") {
-                            ref(node);
-                        } else if (ref != null) {
-                            ref.current = node;
-                        }
-                    }}
-                />
-                {disabled && checked && (
-                    <span style={stateStyles.disabledChecked} />
-                )}
-            </View>
+            <StyledInput
+                {...sharedProps}
+                type="radio"
+                aria-invalid={error}
+                checked={checked ?? undefined}
+                disabled={disabled}
+                id={id}
+                name={groupName}
+                // Need to specify because this is a controlled React form
+                // component, but we handle the click via ClickableBehavior
+                onChange={handleChange}
+                style={defaultStyle}
+                data-testid={testId}
+                ref={ref}
+            />
+            {disabled && checked && <span style={disabledChecked} />}
         </React.Fragment>
     );
 });
 
+const size = 16; // circle with a different color. Here, we add that center circle. // If the checkbox is disabled and selected, it has a border but also an inner
+const disabledChecked = {
+    position: "absolute",
+    top: size / 4,
+    left: size / 4,
+    height: size / 2,
+    width: size / 2,
+    borderRadius: border.radius.radius_full,
+    backgroundColor: semanticColor.core.border.disabled.strong,
+} as const;
+
 const sharedStyles = StyleSheet.create({
-    inputWrapper: {
-        padding: theme.choice.inputWrapper.layout.padding,
-        margin: theme.choice.inputWrapper.layout.margin,
-        position: "relative",
-    },
     // Reset the default styled input element
     inputReset: {
         appearance: "none",
@@ -90,99 +71,121 @@ const sharedStyles = StyleSheet.create({
         MozAppearance: "none",
     },
     default: {
-        height: baseStyles.choice.sizing.size,
-        width: baseStyles.choice.sizing.size,
-        minHeight: baseStyles.choice.sizing.size,
-        minWidth: baseStyles.choice.sizing.size,
+        height: size,
+        width: size,
+        minHeight: size,
+        minWidth: size,
         margin: 0,
         outline: "none",
         boxSizing: "border-box",
         borderStyle: "solid",
-        borderWidth: baseStyles.radio.border.width.default,
-        borderRadius: baseStyles.radio.border.radius.default,
+        borderWidth: border.width.thin,
+        borderRadius: border.radius.radius_full,
+    },
+    disabled: {
+        cursor: "auto",
+        backgroundColor: semanticColor.input.disabled.background,
+        borderColor: semanticColor.input.disabled.border,
+        borderWidth: border.width.thin,
     },
 });
 
 const styles: Record<string, any> = {};
-const _generateStyles = (
-    checked: Checked,
-    error: boolean,
-    disabled: boolean,
-) => {
+const _generateStyles = (checked: Checked, error: boolean) => {
     // "hash" the parameters
-    const styleKey = `${String(checked)}-${String(error)}-${String(disabled)}`;
+    const styleKey = `${String(checked)}-${String(error)}`;
     if (styles[styleKey]) {
         return styles[styleKey];
     }
+    const actionType = error ? "destructive" : "progressive";
+    // NOTE: Radio buttons use the secondary style regardless of the checked
+    // state.
+    const colorAction = semanticColor.action.secondary[actionType];
+
+    const coreType = error ? "critical" : "instructive";
+    const colorCore = semanticColor.core.background[coreType];
+
+    // The different states that the component can be in.
+    const states = {
+        // Resting state (unchecked)
+        unchecked: {
+            border: semanticColor.input.default.border,
+            background: colorCore.subtle,
+        },
+        checked: {
+            // NOTE: This is a special case where the border is the same color
+            // as the foreground. This should change as soon as we simplify the
+            // existing `action` tokens.
+            border: colorAction.default.foreground,
+            background: colorCore.subtle,
+        },
+        // Form validation error state
+        error: {
+            border: semanticColor.input.error.border,
+            background: semanticColor.input.error.background,
+        },
+    };
 
     let newStyles: Record<string, any> = {};
-
-    type ChoiceState = "default" | "disabled" | "error";
-
-    const currentState: ChoiceState = error
-        ? "error"
-        : disabled
-          ? "disabled"
-          : "default";
-
     if (checked) {
-        const checkedStyles = colorStates.radio.checked[currentState];
         newStyles = {
-            inputWrapper: {
-                // TODO(WB-1864): Revisit hover, press tokens
-                ":hover input:not([disabled])": {
-                    outline: `${border.width.medium} solid ${checkedStyles.hover.border}`,
-                    outlineOffset: 1,
-                },
-            },
             default: {
-                backgroundColor: checkedStyles.rest.background,
-                borderColor: checkedStyles.rest.border,
-                // borders need to render in pixels for consistent size
-                borderWidth: `calc(${baseStyles.choice.sizing.size} / 4)`,
+                backgroundColor: states.checked.background,
+                borderColor: states.checked.border,
+                borderWidth: size / 4,
 
-                // Use the global focus style
-                ":focus-visible:not([disabled])":
-                    focusStyles.focus[":focus-visible"],
-
-                ":active:not([disabled])": {
-                    outline: `${border.width.medium} solid ${checkedStyles.press.border}`,
+                // Focus and hover have the same style. Focus style only shows
+                // up with keyboard navigation.
+                // TODO(WB-1864): Use focusStyles.focus
+                ":focus-visible": {
+                    outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
                     outlineOffset: 1,
-                    borderColor: checkedStyles.press.border,
                 },
-            },
-            disabledChecked: {
-                position: "absolute",
-                top: `calc(${baseStyles.choice.sizing.size} * .25 + ${theme.choice.inputWrapper.layout.padding})`,
-                left: `calc(${baseStyles.choice.sizing.size} * .25 + ${theme.choice.inputWrapper.layout.padding})`,
-                height: `calc(${baseStyles.choice.sizing.size} / 2)`,
-                width: `calc(${baseStyles.choice.sizing.size} / 2)`,
-                borderRadius: baseStyles.radio.border.radius.default,
-                backgroundColor: checkedStyles.rest.background,
+
+                // TODO(WB-1864): Revisit hover, press tokens
+                ":hover": {
+                    outline: `${border.width.medium} solid ${colorAction.hover.border}`,
+                    outlineOffset: 1,
+                },
+
+                ":active": {
+                    outline: `${border.width.medium} solid ${colorAction.press.border}`,
+                    outlineOffset: 1,
+                    borderColor: colorAction.press.border,
+                },
             },
         };
     } else {
-        const uncheckedStyles = colorStates.radio.unchecked[currentState];
+        const currentState = error ? states.error : states.unchecked;
+
         newStyles = {
-            inputWrapper: {
-                // TODO(WB-1864): Revisit hover, press tokens
-                ":hover input:not([disabled])": {
-                    backgroundColor: uncheckedStyles.hover.background,
-                    outline: `${border.width.medium} solid ${uncheckedStyles.hover.border}`,
+            default: {
+                backgroundColor: currentState.background,
+                borderColor: currentState.border,
+
+                // Focus and hover have the same style. Focus style only shows
+                // up with keyboard navigation.
+                // TODO(WB-1864): Use focusStyles.focus
+                ":focus-visible": {
+                    backgroundColor: error
+                        ? states.error.background
+                        : colorAction.hover.background,
+                    outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
                     outlineOffset: -1,
                 },
-            },
-            default: {
-                backgroundColor: uncheckedStyles.rest.background,
-                borderColor: uncheckedStyles.rest.border,
 
-                // Use the global focus style
-                ":focus-visible:not([disabled])":
-                    focusStyles.focus[":focus-visible"],
+                // TODO(WB-1864): Revisit hover, press tokens
+                ":hover": {
+                    backgroundColor: error
+                        ? states.error.background
+                        : colorAction.hover.background,
+                    outline: `${border.width.medium} solid ${colorAction.hover.border}`,
+                    outlineOffset: -1,
+                },
 
-                ":active:not([disabled])": {
-                    backgroundColor: uncheckedStyles.press.background,
-                    outline: `${border.width.medium} solid ${uncheckedStyles.press.border}`,
+                ":active": {
+                    backgroundColor: colorAction.press.background,
+                    outline: `${border.width.medium} solid ${colorAction.press.border}`,
                     outlineOffset: -1,
                 },
             },
