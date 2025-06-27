@@ -726,8 +726,8 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
         default: {
             border: core.border.neutral.default,
             background: surface.primary,
-            foreground: core.foreground.neutral.strong,
-            placeholder: core.foreground.neutral.default,
+            foreground: core.foreground.neutral.default,
+            placeholder: core.foreground.neutral.subtle,
         },
         checked: {
             border: core.border.instructive.default,
@@ -737,13 +737,18 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
         disabled: {
             border: core.border.disabled.default,
             background: core.background.neutral.subtle,
-            foreground: core.foreground.neutral.default,
-            placeholder: core.foreground.neutral.subtle,
+            foreground: core.foreground.disabled.default,
+            placeholder: core.foreground.disabled.subtle,
         },
         error: {
             border: core.border.critical.default,
-            background: core.background.critical.subtle,
+            background: core.background.neutral.subtle,
             foreground: core.foreground.neutral.strong,
+        },
+        readOnly: {
+            background: core.background.disabled.default,
+            text: core.foreground.neutral.default,
+            icon: core.foreground.neutral.subtle,
         },
     },
 });

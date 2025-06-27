@@ -10,6 +10,7 @@ import {
     longText,
     longTextWithNoWordBreak,
 } from "../components/text-for-testing";
+import {AllVariants} from "../components/all-variants";
 
 /**
  * The following stories are used to generate the pseudo states for the
@@ -30,11 +31,6 @@ export default {
 
 type Story = StoryObj<typeof TextField>;
 
-// const longText =
-//     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.";
-// const longTextWithNoWordBreak =
-//     "Loremipsumdolorsitametconsecteturadipiscingelitseddoeiusmodtemporincididuntutlaboreetdoloremagnaaliqua";
-
 const rows = [{name: "Default", props: {}}];
 
 const columns = [
@@ -49,6 +45,10 @@ const columns = [
     {
         name: "Error",
         props: {error: true},
+    },
+    {
+        name: "Readonly",
+        props: {readOnly: true},
     },
 ];
 
@@ -75,6 +75,41 @@ export const StateSheetStory: Story = {
     },
     parameters: {
         pseudo: defaultPseudoStates,
+    },
+};
+
+/**
+ * What the component looks like at rest with different combinations of props.
+ */
+export const Combinations: Story = {
+    render: (args) => {
+        return (
+            <AllVariants
+                rows={[
+                    {name: "Default", props: {}},
+                    {name: "With Value", props: {value: "Value"}},
+                    {
+                        name: "With Placeholder",
+                        props: {placeholder: "Placeholder"},
+                    },
+                ]}
+                columns={columns}
+            >
+                {({props, className, name}) => (
+                    <LabeledField
+                        label="Text Area"
+                        field={
+                            <TextField
+                                {...args}
+                                {...props}
+                                className={className}
+                                key={name}
+                            />
+                        }
+                    />
+                )}
+            </AllVariants>
+        );
     },
 };
 

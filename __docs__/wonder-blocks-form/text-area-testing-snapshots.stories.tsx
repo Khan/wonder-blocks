@@ -10,6 +10,7 @@ import {
     longText,
     longTextWithNoWordBreak,
 } from "../components/text-for-testing";
+import {AllVariants} from "../components/all-variants";
 
 /**
  * The following stories are used to generate the pseudo states for the
@@ -45,6 +46,10 @@ const columns = [
         name: "Error",
         props: {error: true},
     },
+    {
+        name: "Readonly",
+        props: {readOnly: true},
+    },
 ];
 
 export const StateSheetStory: Story = {
@@ -70,6 +75,41 @@ export const StateSheetStory: Story = {
     },
     parameters: {
         pseudo: defaultPseudoStates,
+    },
+};
+
+/**
+ * What the component looks like at rest with different combinations of props.
+ */
+export const Combinations: Story = {
+    render: (args) => {
+        return (
+            <AllVariants
+                rows={[
+                    {name: "Default", props: {}},
+                    {name: "With Value", props: {value: "Value"}},
+                    {
+                        name: "With Placeholder",
+                        props: {placeholder: "Placeholder"},
+                    },
+                ]}
+                columns={columns}
+            >
+                {({props, className, name}) => (
+                    <LabeledField
+                        label="Text Area"
+                        field={
+                            <TextArea
+                                {...args}
+                                {...props}
+                                className={className}
+                                key={name}
+                            />
+                        }
+                    />
+                )}
+            </AllVariants>
+        );
     },
 };
 
