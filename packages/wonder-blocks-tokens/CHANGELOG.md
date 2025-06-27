@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 11.2.1
+
+### Patch Changes
+
+- de9435a: Fixes some semanticColor values. Adds dropdown CSS variables.
+- f50aafc: Adds cell component-level tokens to css variables build
+
 ## 11.2.0
 
 ### Minor Changes
