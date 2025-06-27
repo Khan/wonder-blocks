@@ -3,9 +3,9 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {Checkbox, CheckboxGroup, Choice} from "@khanacademy/wonder-blocks-form";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing, spacing, font} from "@khanacademy/wonder-blocks-tokens";
 
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 import ComponentInfo from "../components/component-info";
@@ -70,7 +70,7 @@ Controlled.parameters = {
 
 export const Indeterminate: StoryComponentType = () => {
     return (
-        <View style={styles.row}>
+        <View style={[styles.row, styles.gap]}>
             <Checkbox
                 aria-label="Default example"
                 checked={null}
@@ -78,7 +78,6 @@ export const Indeterminate: StoryComponentType = () => {
                 error={false}
                 onChange={() => {}}
             />
-            <Strut size={8} />
             <Checkbox
                 aria-label="Disabled example"
                 checked={undefined}
@@ -86,7 +85,6 @@ export const Indeterminate: StoryComponentType = () => {
                 error={false}
                 onChange={() => {}}
             />
-            <Strut size={8} />
             <Checkbox
                 aria-label="Error example"
                 checked={null}
@@ -182,47 +180,41 @@ IndeterminateWithGroup.parameters = {
 };
 
 export const Variants: StoryComponentType = () => (
-    <View style={styles.row}>
+    <View style={[styles.row, styles.gap_240]}>
         <Checkbox
             aria-label="Default example"
             error={false}
             checked={false}
-            style={styles.marginRight}
             onChange={() => {}}
         />
         <Checkbox
             aria-label="Checked example"
             error={false}
             checked={true}
-            style={styles.marginRight}
             onChange={() => {}}
         />
         <Checkbox
             aria-label="Error example"
             error={true}
             checked={false}
-            style={styles.marginRight}
             onChange={() => {}}
         />
         <Checkbox
             aria-label="Error checked example"
             error={true}
             checked={true}
-            style={styles.marginRight}
             onChange={() => {}}
         />
         <Checkbox
             aria-label="Disabled example"
             disabled={true}
             checked={false}
-            style={styles.marginRight}
             onChange={() => {}}
         />
         <Checkbox
             aria-label="Disabled checked example"
             disabled={true}
             checked={true}
-            style={styles.marginRight}
             onChange={() => {}}
         />
     </View>
@@ -242,7 +234,7 @@ export const VariantsControlled: StoryComponentType = () => {
     const [disabledChecked, disabledSetChecked] = React.useState(false);
 
     return (
-        <View style={styles.row}>
+        <View style={[styles.row, styles.gap_240]}>
             <Checkbox
                 aria-label="Checked example"
                 checked={defaultChecked}
@@ -298,6 +290,39 @@ WithLabel.parameters = {
     },
 };
 
+export const WithStyledLabel: StoryComponentType = () => {
+    const [checked, setChecked] = React.useState(false);
+
+    const handleChange = () => {
+        setChecked(!checked);
+    };
+
+    return (
+        <Checkbox
+            label={
+                <BodyText
+                    weight="bold"
+                    tag="span"
+                    style={{lineHeight: font.body.lineHeight.small}}
+                >
+                    Receive assignment reminders for Algebra
+                </BodyText>
+            }
+            description="You will receive a reminder 24 hours before each deadline"
+            checked={checked}
+            onChange={() => handleChange()}
+        />
+    );
+};
+
+WithStyledLabel.parameters = {
+    docs: {
+        description: {
+            story: "The checkbox can have an optional label and description. This allows it to be used as a settings-like item. The user of this component is responsible for keeping track of checked state and providing an onChange callback.",
+        },
+    },
+};
+
 export const AdditionalClickTarget: StoryComponentType = () => {
     const [checked, setChecked] = React.useState(false);
     const headingText = "Functions";
@@ -310,9 +335,9 @@ export const AdditionalClickTarget: StoryComponentType = () => {
         <View style={styles.wrapper}>
             <View style={styles.topic}>
                 <label htmlFor="topic-123">
-                    <LabelMedium>{headingText}</LabelMedium>
+                    <BodyText tag="span">{headingText}</BodyText>
                 </label>
-                <LabelSmall>{descriptionText}</LabelSmall>
+                <BodyText size="small">{descriptionText}</BodyText>
             </View>
             <Checkbox checked={checked} id="topic-123" onChange={setChecked} />
         </View>
@@ -331,11 +356,11 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
     },
-    marginLeft: {
-        marginLeft: 16,
+    gap: {
+        gap: sizing.size_160,
     },
-    marginRight: {
-        marginRight: 16,
+    gap_240: {
+        gap: sizing.size_240,
     },
     wrapper: {
         flexDirection: "row",
