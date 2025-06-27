@@ -151,7 +151,7 @@ export default class ActionItem extends React.Component<ActionProps> {
 
         const labelComponent =
             typeof label === "string" ? (
-                <BodyText lang={lang} style={styles.label}>
+                <BodyText tag="div" lang={lang} style={styles.label}>
                     {label}
                 </BodyText>
             ) : (
