@@ -10,6 +10,7 @@ import Link from "@khanacademy/wonder-blocks-link";
 import {
     ThemeSwitcherContext,
     ThemeSwitcher,
+    THEME_DATA_ATTRIBUTE,
 } from "@khanacademy/wonder-blocks-theming";
 import {Preview} from "@storybook/react";
 
@@ -151,6 +152,7 @@ const withThemeSwitcher: Decorator = (
             </RenderStateRoot>
         );
     }
+
     return (
         <ThemeSwitcherContext.Provider value={theme}>
             <ThemeSwitcher theme={theme}>

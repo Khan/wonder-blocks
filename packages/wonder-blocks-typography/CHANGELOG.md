@@ -1,5 +1,25 @@
 # @khanacademy/wonder-blocks-typography
 
+## 4.2.7
+
+### Patch Changes
+
+- Updated dependencies [e457d8c]
+    - @khanacademy/wonder-blocks-tokens@11.2.0
+
+## 4.2.6
+
+### Patch Changes
+
+- Updated dependencies [f26858a]
+    - @khanacademy/wonder-blocks-tokens@11.1.1
+
+## 4.2.5
+
+### Patch Changes
+
+- 705ee01: Update styling of BodyText and Heading components to allow overrides
+
 ## 4.2.4
 
 ### Patch Changes

@@ -3,9 +3,8 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {Body, Title} from "@khanacademy/wonder-blocks-typography";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {
     ModalLauncher,
@@ -121,13 +120,14 @@ export const Default: StoryComponentType = {
                 >
                     <ModalPanel
                         content={
-                            <>
-                                <Title id="modal-title-0">Modal Title</Title>
-                                <Strut size={spacing.large_24} />
-                                <Body id="modal-desc-0">
+                            <View style={{gap: sizing.size_240}}>
+                                <Heading size="xxlarge" id="modal-title-0">
+                                    Modal Title
+                                </Heading>
+                                <BodyText id="modal-desc-0">
                                     Here is some text in the modal.
-                                </Body>
-                            </>
+                                </BodyText>
+                            </View>
                         }
                     />
                 </ModalDialog>
@@ -184,13 +184,14 @@ export const WithAboveAndBelow: StoryComponentType = {
                     >
                         <ModalPanel
                             content={
-                                <>
-                                    <Title id="modal-title-2">
+                                <View style={{gap: sizing.size_240}}>
+                                    <Heading size="xxlarge" id="modal-title-2">
                                         Modal Title
-                                    </Title>
-                                    <Strut size={spacing.large_24} />
-                                    <Body>Here is some text in the modal.</Body>
-                                </>
+                                    </Heading>
+                                    <BodyText>
+                                        Here is some text in the modal.
+                                    </BodyText>
+                                </View>
                             }
                         />
                     </ModalDialog>
@@ -220,11 +221,12 @@ export const WithLauncher: StoryComponentType = {
             >
                 <ModalPanel
                     content={
-                        <>
-                            <Title id="modal-title-3">Modal Title</Title>
-                            <Strut size={spacing.large_24} />
-                            <Body>Here is some text in the modal.</Body>
-                        </>
+                        <View style={{gap: sizing.size_240}}>
+                            <Heading size="xxlarge" id="modal-title-3">
+                                Modal Title
+                            </Heading>
+                            <BodyText>Here is some text in the modal.</BodyText>
+                        </View>
                     }
                 />
             </ModalDialog>

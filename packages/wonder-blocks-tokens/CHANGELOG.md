@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 11.2.0
+
+### Minor Changes
+
+- e457d8c: Export modal tokens. Update `core.shadow.transparent` token value in TB.
+
+## 11.1.1
+
+### Patch Changes
+
+- f26858a: Export modal css vars from the tokens package.
+
 ## 11.1.0
 
 ### Minor Changes

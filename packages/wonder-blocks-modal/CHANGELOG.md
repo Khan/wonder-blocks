@@ -1,5 +1,46 @@
 # @khanacademy/wonder-blocks-modal
 
+## 8.1.0
+
+### Minor Changes
+
+- e457d8c: Adds ThunderBlocks theme to modal package. Updates typography to use BodyText and Heading. Removes Strut uses.
+
+### Patch Changes
+
+- Updated dependencies [e457d8c]
+    - @khanacademy/wonder-blocks-tokens@11.2.0
+    - @khanacademy/wonder-blocks-breadcrumbs@3.1.22
+    - @khanacademy/wonder-blocks-icon-button@10.3.6
+    - @khanacademy/wonder-blocks-layout@3.1.22
+    - @khanacademy/wonder-blocks-styles@0.2.18
+    - @khanacademy/wonder-blocks-typography@4.2.7
+
+## 8.0.1
+
+### Patch Changes
+
+- Updated dependencies [f26858a]
+    - @khanacademy/wonder-blocks-tokens@11.1.1
+    - @khanacademy/wonder-blocks-breadcrumbs@3.1.21
+    - @khanacademy/wonder-blocks-icon-button@10.3.5
+    - @khanacademy/wonder-blocks-layout@3.1.21
+    - @khanacademy/wonder-blocks-styles@0.2.17
+    - @khanacademy/wonder-blocks-typography@4.2.6
+
+## 8.0.0
+
+### Major Changes
+
+- 9ef528a: Removes khanmigo theme from modal in favor of CSS vars. Uses `sizing` instead of `spacing`.
+- 038f9a9: Removes `light` prop from Modal package.
+
+### Patch Changes
+
+- Updated dependencies [705ee01]
+    - @khanacademy/wonder-blocks-typography@4.2.5
+    - @khanacademy/wonder-blocks-icon-button@10.3.4
+
 ## 7.1.25
 
 ### Patch Changes

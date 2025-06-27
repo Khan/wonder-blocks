@@ -432,5 +432,6 @@ const styles = StyleSheet.create({
     tablistWrapper: {
         position: "relative",
         overflowX: "auto",
+        flexShrink: 0,
     },
 });
