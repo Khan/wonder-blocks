@@ -77,6 +77,7 @@ const AllFields = (
         showSubmitButtonInStory?: boolean;
         disabled?: boolean;
         readOnly?: boolean;
+        textValue?: string;
     },
 ) => {
     const {
@@ -84,12 +85,13 @@ const AllFields = (
         showSubmitButtonInStory,
         disabled,
         readOnly,
+        textValue,
         ...args
     } = storyArgs;
 
     /** Values */
-    const [textFieldValue, setTextFieldValue] = React.useState("");
-    const [textAreaValue, setTextAreaValue] = React.useState("");
+    const [textFieldValue, setTextFieldValue] = React.useState(textValue || "");
+    const [textAreaValue, setTextAreaValue] = React.useState(textValue || "");
     const [singleSelectValue, setSingleSelectValue] = React.useState("");
     const [multiSelectValue, setMultiSelectValue] = React.useState<string[]>(
         [],
@@ -380,7 +382,7 @@ export const Fields: StoryComponentType = {
                 <Heading>Disabled</Heading>
                 <AllFields {...args} disabled />
                 <Heading>Read Only</Heading>
-                <AllFields {...args} readOnly={true} />
+                <AllFields {...args} readOnly={true} textValue={"Value"} />
             </View>
         );
     },
