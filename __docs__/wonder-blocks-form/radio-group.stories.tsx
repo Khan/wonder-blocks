@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {BodyText} from "@khanacademy/wonder-blocks-typography";
+import {LabelLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import {Choice, RadioGroup} from "@khanacademy/wonder-blocks-form";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
@@ -154,9 +154,9 @@ export const MultipleChoiceStyling: StoryComponentType = () => {
 
     return (
         <>
-            <BodyText weight="bold" tag="span" style={styles.prompt}>
+            <LabelLarge style={styles.prompt}>
                 Select your blood type
-            </BodyText>
+            </LabelLarge>
             <RadioGroup
                 groupName="science-classes"
                 onChange={setSelectedValue}
@@ -230,8 +230,9 @@ FiltersOutFalsyChildren.parameters = {
 
 /**
  * There are specific situations where you might want to use a custom label
- * component. This example demonstrates how to use a custom label component
- * that can be passed in as a prop to the `RadioGroup` component.
+ * component instead of using the default `LabelMedium` component. This example
+ * demonstrates how to use a custom label component that can be passed in as a
+ * prop to the `RadioGroup` component.
  */
 export const CustomLabel: StoryComponentType = {
     ...Default,
@@ -250,10 +251,8 @@ export const CustomLabel: StoryComponentType = {
                     justifyContent: "space-between",
                 }}
             >
-                <BodyText weight="bold" tag="span">
-                    Pokemon
-                </BodyText>
-                <BodyText tag="span">(optional)</BodyText>
+                <LabelLarge>Pokemon</LabelLarge>
+                <LabelMedium>(optional)</LabelMedium>
             </View>
         ),
     },

@@ -2,13 +2,9 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {View, Id} from "@khanacademy/wonder-blocks-core";
-import {
-    font,
-    semanticColor,
-    sizing,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
-import {BodyText} from "@khanacademy/wonder-blocks-typography";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import CheckboxCore from "./checkbox-core";
 import RadioCore from "./radio-core";
@@ -96,21 +92,19 @@ type Props = AriaProps & {
 
     const getLabel = (id: string): React.ReactNode => {
         return (
-            <BodyText
-                tag="div"
-                weight="semi"
+            <LabelMedium
                 style={[styles.label, disabled && styles.disabledLabel]}
             >
                 <label htmlFor={id}>{label}</label>
-            </BodyText>
+            </LabelMedium>
         );
     };
 
     const getDescription = (id?: string): React.ReactNode => {
         return (
-            <BodyText size="small" style={styles.description} id={id}>
+            <LabelSmall style={styles.description} id={id}>
                 {description}
-            </BodyText>
+            </LabelSmall>
         );
     };
 
@@ -140,18 +134,17 @@ type Props = AriaProps & {
                             // focus on basis of it being an input element.
                             tabIndex={-1}
                         >
-                            <View style={[styles.choiceWrapper]}>
-                                <ChoiceCore
-                                    {...coreProps}
-                                    id={uniqueId}
-                                    checked={checked}
-                                    aria-describedby={descriptionId}
-                                    onClick={handleClick}
-                                    disabled={disabled}
-                                    error={error}
-                                    ref={ref}
-                                />
-                            </View>
+                            <ChoiceCore
+                                {...coreProps}
+                                id={uniqueId}
+                                checked={checked}
+                                aria-describedby={descriptionId}
+                                onClick={handleClick}
+                                disabled={disabled}
+                                error={error}
+                                ref={ref}
+                            />
+                            <Strut size={spacing.xSmall_8} />
                             {label && getLabel(uniqueId)}
                         </View>
                         {description && getDescription(descriptionId)}
@@ -164,26 +157,19 @@ type Props = AriaProps & {
 
 const styles = StyleSheet.create({
     wrapper: {
-        gap: spacing.xSmall_8,
-        lineHeight: font.body.lineHeight.small,
         flexDirection: "row",
         alignItems: "flex-start",
         outline: "none",
     },
-    choiceWrapper: {
-        display: "block",
-        // Account for half of the default label lineHeight difference,
-        // which is 18px (label text) - 16px (choice size).
-        // This equals 1 pixel above, and 1 pixel below to be vertically centered
-        marginBlockStart: sizing.size_010,
-    },
     label: {
-        color: semanticColor.core.foreground.neutral.strong,
-        lineHeight: font.body.lineHeight.small,
+        // NOTE: The checkbox/radio button (height 16px) should be center
+        // aligned with the first line of the label. However, LabelMedium has a
+        // declared line height of 20px, so we need to adjust the top to get the
+        // desired alignment.
+        marginTop: -2,
     },
     disabledLabel: {
-        // Match disabled text input label color
-        color: semanticColor.core.foreground.disabled.subtle,
+        color: semanticColor.action.secondary.disabled.foreground,
     },
     description: {
         // 16 for icon + 8 for spacing strut

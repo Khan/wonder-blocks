@@ -1,10 +1,10 @@
 import * as React from "react";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
-import {BodyText} from "@khanacademy/wonder-blocks-typography";
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import styles from "./group-styles";
 import Choice from "./choice";
@@ -122,20 +122,17 @@ const RadioGroup = React.forwardRef(function RadioGroup(
         >
             {label && (
                 <StyledLegend style={styles.legend}>
-                    <BodyText tag="span">{label}</BodyText>
+                    <LabelMedium>{label}</LabelMedium>
                 </StyledLegend>
             )}
             {description && (
-                <BodyText size="small" style={styles.description}>
+                <LabelSmall style={styles.description}>
                     {description}
-                </BodyText>
+                </LabelSmall>
             )}
             {errorMessage && (
-                <BodyText size="small" style={styles.error}>
-                    {errorMessage}
-                </BodyText>
+                <LabelSmall style={styles.error}>{errorMessage}</LabelSmall>
             )}
-
             {(label || description || errorMessage) && (
                 <Strut size={spacing.small_12} />
             )}
