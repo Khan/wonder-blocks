@@ -39,6 +39,9 @@ const theme = {
             weight: font.weight.regular,
             lineHeight: font.body.lineHeight.small,
         },
+        layout: {
+            marginBlockStart: sizing.size_0,
+        },
     },
     requiredIndicator: {
         color: {

@@ -41,6 +41,10 @@ export default mergeTheme(defaultTheme, {
             weight: font.weight.bold,
             lineHeight: font.body.lineHeight.xsmall,
         },
+        layout: {
+            // This aligns the error message with the error icon
+            marginBlockStart: sizing.size_020,
+        },
     },
     requiredIndicator: {
         color: {

@@ -314,6 +314,7 @@ const styles = StyleSheet.create({
         fontSize: theme.error.font.size,
         fontWeight: theme.error.font.weight,
         lineHeight: theme.error.font.lineHeight,
+        marginBlockStart: theme.error.layout.marginBlockStart,
     },
     required: {
         color: theme.requiredIndicator.color.foreground,
