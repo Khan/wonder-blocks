@@ -22,6 +22,9 @@ export default {
     },
     opener: {
         border: {
+            width: {
+                error: border.width.thin,
+            },
             radius: {
                 rest: border.radius.radius_040,
                 press: border.radius.radius_040,
@@ -32,6 +35,9 @@ export default {
         },
         layout: {
             padding: {
+                // used by combobox
+                inline: sizing.size_160,
+                // used by select-opener
                 inlineStart: sizing.size_160,
                 inlineEnd: sizing.size_120,
             },

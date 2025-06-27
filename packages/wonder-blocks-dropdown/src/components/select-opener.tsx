@@ -249,6 +249,7 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
     // NOTE: We are using the secondary action type for all the non-resting
     // states as the opener is a bit different from a regular button in its
     // resting/default state.
+    // TODO(WB-2007): Adopt design specs
     const action = semanticColor.action.secondary[actionType];
 
     const hoverStyling = {
@@ -271,14 +272,25 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
         ? semanticColor.input.error
         : semanticColor.input.default;
 
+    const disabledStatesStyles = {
+        background: semanticColor.input.disabled.background,
+        borderColor: semanticColor.input.disabled.border,
+        borderWidth: border.width.thin,
+        borderRadius: theme.opener.border.radius.rest,
+        color: semanticColor.input.disabled.placeholder,
+    };
+
     const newStyles = {
         default: {
             background: currentState.background,
             borderColor: currentState.border,
-            borderWidth: border.width.thin,
+            borderWidth: error
+                ? theme.opener.border.width.error
+                : border.width.thin,
             color: placeholder
                 ? semanticColor.core.foreground.neutral.subtle
                 : currentState.foreground,
+            cursor: "pointer",
             ":hover": hoverStyling,
             // Allow hover styles on non-touch devices only. This prevents an
             // issue with hover being sticky on touch devices (e.g. mobile).
@@ -291,19 +303,23 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
                 },
             },
             ":active": pressStyling,
+            // :focus-visible -> Provide focus styles for keyboard users only.
             ...focusStyles.focus,
         },
         disabled: {
-            background: semanticColor.input.disabled.background,
-            borderColor: semanticColor.input.disabled.border,
-            color: semanticColor.input.disabled.placeholder,
+            ...disabledStatesStyles,
             cursor: "not-allowed",
             ":hover": {
+                ...disabledStatesStyles,
                 outline: "none",
+                boxShadow: "none",
             },
             ":active": {
+                ...disabledStatesStyles,
                 outline: "none",
+                boxShadow: "none",
             },
+            ":focus-visible": disabledStatesStyles,
         },
         press: pressStyling,
     };

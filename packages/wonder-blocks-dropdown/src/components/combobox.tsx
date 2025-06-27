@@ -694,6 +694,7 @@ export default function Combobox({
 }
 
 const styles = StyleSheet.create({
+    // TODO(WB-2007): Adopt design specs
     wrapper: {
         flexDirection: "row",
         alignItems: "center",
@@ -703,18 +704,18 @@ const styles = StyleSheet.create({
         // The following styles are to emulate the input styles
         background: semanticColor.surface.primary,
         borderRadius: theme.opener.border.radius.rest,
-        border: `solid 1px ${semanticColor.core.border.neutral.subtle}`,
-        paddingInline: theme.opener.layout.padding.inlineStart,
+        border: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
+        paddingInline: theme.opener.layout.padding.inline,
     },
     focused: focusStyles.focus[":focus-visible"],
     disabled: {
         background: semanticColor.input.disabled.background,
-        border: `1px solid ${semanticColor.input.disabled.border}`,
+        border: `${border.width.thin} solid ${semanticColor.input.disabled.border}`,
         color: semanticColor.input.disabled.foreground,
     },
     error: {
         background: semanticColor.input.error.background,
-        border: `1px solid ${semanticColor.input.error.border}`,
+        border: `${theme.opener.border.width.error} solid ${semanticColor.input.error.border}`,
         color: semanticColor.input.error.foreground,
     },
     /**

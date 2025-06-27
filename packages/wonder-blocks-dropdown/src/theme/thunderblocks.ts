@@ -25,9 +25,12 @@ export default mergeTheme(defaultTheme, {
     },
     opener: {
         border: {
+            width: {
+                error: border.width.medium,
+            },
             radius: {
                 rest: border.radius.radius_080,
-                press: border.radius.radius_120,
+                press: border.radius.radius_080,
             },
         },
         color: {
@@ -35,6 +38,9 @@ export default mergeTheme(defaultTheme, {
         },
         layout: {
             padding: {
+                // used by combobox
+                inline: sizing.size_120,
+                // used by select-opener
                 inlineStart: sizing.size_120,
                 inlineEnd: sizing.size_120,
             },
