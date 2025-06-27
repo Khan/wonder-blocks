@@ -314,6 +314,7 @@ const styles = StyleSheet.create({
     },
 
     label: {
+        fontWeight: theme.item.font.weight,
         lineHeight: sizing.size_200,
         whiteSpace: "nowrap",
         userSelect: "none",

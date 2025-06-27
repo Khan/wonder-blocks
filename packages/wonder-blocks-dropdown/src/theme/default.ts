@@ -1,4 +1,9 @@
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    font,
+    semanticColor,
+    sizing,
+} from "@khanacademy/wonder-blocks-tokens";
 
 export default {
     listbox: {
@@ -45,6 +50,9 @@ export default {
                 inlineStart: sizing.size_080,
                 inlineEnd: sizing.size_160,
             },
+        },
+        font: {
+            weight: font.weight.regular,
         },
     },
 };

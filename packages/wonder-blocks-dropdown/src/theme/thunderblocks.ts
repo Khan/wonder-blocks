@@ -1,6 +1,11 @@
 import {mergeTheme} from "@khanacademy/wonder-blocks-theming";
 
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    font,
+    semanticColor,
+    sizing,
+} from "@khanacademy/wonder-blocks-tokens";
 import defaultTheme from "./default";
 
 export default mergeTheme(defaultTheme, {
@@ -48,6 +53,9 @@ export default mergeTheme(defaultTheme, {
                 inlineStart: sizing.size_120,
                 inlineEnd: sizing.size_120,
             },
+        },
+        font: {
+            weight: font.weight.semi,
         },
     },
 });
