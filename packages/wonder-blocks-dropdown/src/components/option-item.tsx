@@ -248,7 +248,11 @@ export default class OptionItem extends React.Component<OptionProps> {
                 }
                 rightAccessory={rightAccessory}
                 subtitle1={subtitle1}
-                title={<BodyText style={styles.label}>{label}</BodyText>}
+                title={
+                    <BodyText tag="div" style={styles.label}>
+                        {label}
+                    </BodyText>
+                }
                 subtitle2={subtitle2}
                 onClick={this.handleClick}
                 tabIndex={parentComponent === "listbox" ? -1 : undefined}
