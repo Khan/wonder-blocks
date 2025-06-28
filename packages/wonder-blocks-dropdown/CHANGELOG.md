@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.2.1
+
+### Patch Changes
+
+- e926edc: Updates dropdown option item labels to use div/span instead of p to avoid nesting issues
+
 ## 10.2.0
 
 ### Minor Changes
