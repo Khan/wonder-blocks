@@ -1096,6 +1096,9 @@ importers:
       '@khanacademy/wonder-blocks-link':
         specifier: workspace:*
         version: link:../wonder-blocks-link
+      '@khanacademy/wonder-blocks-styles':
+        specifier: workspace:*
+        version: link:../wonder-blocks-styles
       '@khanacademy/wonder-blocks-tokens':
         specifier: workspace:*
         version: link:../wonder-blocks-tokens
