@@ -3,7 +3,6 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import {
@@ -56,7 +55,6 @@ const ChoiceWrapper = (args: any) => {
                 <Choice label="Mushroom" value="mushroom-checkbox" />
                 <Choice aria-label="Pineapple" value="pineapple" {...args} />
             </CheckboxGroup>
-            <Strut size={spacing.xLarge_32} />
             <RadioGroup
                 label="Pizza order"
                 description="Choose only one topping."
@@ -111,5 +109,6 @@ export const Default: StoryComponentType = {
 const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
+        gap: spacing.xLarge_32,
     },
 });
