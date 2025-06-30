@@ -4,6 +4,14 @@ import {border, sizing} from "@khanacademy/wonder-blocks-tokens";
 import defaultTheme from "./default";
 
 export default mergeTheme(defaultTheme, {
+    choice: {
+        inputWrapper: {
+            layout: {
+                padding: sizing.size_040,
+                margin: `calc(${sizing.size_040} * -1)`,
+            },
+        },
+    },
     field: {
         border: {
             radius: border.radius.radius_080,

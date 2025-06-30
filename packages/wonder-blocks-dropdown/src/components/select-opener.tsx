@@ -177,7 +177,7 @@ export default class SelectOpener extends React.Component<
                 onKeyUp={!disabled ? this.handleKeyUp : undefined}
                 onBlur={onBlur}
             >
-                <BodyText style={styles.text}>
+                <BodyText tag="span" style={styles.text}>
                     {/* Note(tamarab): Prevents unwanted vertical
                                 shift for empty selection.
                         Note2(marcysutton): aria-hidden prevents "space"

@@ -1,5 +1,23 @@
 # @khanacademy/wonder-blocks-pill
 
+## 3.1.28
+
+### Patch Changes
+
+- Updated dependencies [d8716ab]
+    - @khanacademy/wonder-blocks-tokens@11.2.2
+    - @khanacademy/wonder-blocks-clickable@7.1.13
+    - @khanacademy/wonder-blocks-link@9.1.13
+    - @khanacademy/wonder-blocks-styles@0.2.20
+    - @khanacademy/wonder-blocks-typography@4.2.9
+
+## 3.1.27
+
+### Patch Changes
+
+- 6d71614: Update use of tokens (semantic colors, sizing, border) and use new typography components.
+  This is to better support the thunderblocks theme!
+
 ## 3.1.26
 
 ### Patch Changes

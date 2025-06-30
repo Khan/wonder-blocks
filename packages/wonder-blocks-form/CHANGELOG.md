@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-form
 
+## 7.2.0
+
+### Minor Changes
+
+- d8716ab: Add Thunderblocks theme to Checkbox and Radio components
+
+### Patch Changes
+
+- Updated dependencies [d8716ab]
+    - @khanacademy/wonder-blocks-tokens@11.2.2
+    - @khanacademy/wonder-blocks-clickable@7.1.13
+    - @khanacademy/wonder-blocks-icon@5.2.7
+    - @khanacademy/wonder-blocks-layout@3.1.24
+    - @khanacademy/wonder-blocks-typography@4.2.9
+
 ## 7.1.26
 
 ### Patch Changes

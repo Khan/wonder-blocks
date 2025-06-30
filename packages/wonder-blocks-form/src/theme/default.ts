@@ -1,6 +1,14 @@
 import {border, sizing} from "@khanacademy/wonder-blocks-tokens";
 
-const theme = {
+export default {
+    choice: {
+        inputWrapper: {
+            layout: {
+                padding: sizing.size_0,
+                margin: sizing.size_0,
+            },
+        },
+    },
     field: {
         border: {
             radius: border.radius.radius_040,
@@ -19,5 +27,3 @@ const theme = {
         },
     },
 };
-
-export default theme;

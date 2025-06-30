@@ -81,6 +81,25 @@ describe("Checkbox", () => {
         expect(onChangeSpy).toHaveBeenCalled();
     });
 
+    test("clicking the inputWrapper triggers `onChange`", () => {
+        // Arrange
+        const onChangeSpy = jest.fn();
+        render(
+            <Checkbox
+                label="Receive assignment reminders for Algebra"
+                checked={false}
+                onChange={onChangeSpy}
+            />,
+        );
+
+        // Act
+        const checkboxWrapper = screen.getByTestId("wb-checkbox-wrapper");
+        checkboxWrapper.click();
+
+        // Assert
+        expect(onChangeSpy).toHaveBeenCalled();
+    });
+
     test.each`
         indeterminateValue | checkedValue
         ${true}            | ${null}
