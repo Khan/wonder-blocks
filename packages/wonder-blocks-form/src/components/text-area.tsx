@@ -274,7 +274,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                     className={className}
                     style={[
                         styles.textarea,
-                        typographyStyles.LabelMedium,
+                        typographyStyles.BodyTextMediumMediumWeight,
                         resizeType && resizeStyles[resizeType],
                         styles.default,
                         disabled && styles.disabled,

@@ -2,9 +2,9 @@ import * as React from "react";
 import {css, StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {View} from "@khanacademy/wonder-blocks-core";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, sizing, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     Title,
     Heading,
@@ -24,6 +24,7 @@ import {
     Tagline,
     Caption,
     Footnote,
+    styles as typographyStyles,
 } from "@khanacademy/wonder-blocks-typography";
 import packageConfig from "../../packages/wonder-blocks-typography/package.json";
 
@@ -69,6 +70,8 @@ export default {
     },
     argTypes: TypographyArgTypes,
 } as Meta<typeof ComponentInfo>;
+
+const StyledDiv = addStyle("div");
 
 export const ControlProps: StoryObj<typeof Title> = {
     render: (args) => <Title {...args} />,
@@ -429,6 +432,35 @@ LineHeight.parameters = {
         description: {
             story: `This is a visualization of the line height
             for each typography element.`,
+        },
+    },
+};
+
+/**
+ * The following shows the typography styles available.
+ *
+ * ```
+ *     import { styles as typographyStyles } from "@khanacademy/wonder-blocks-typography";
+ * ```
+ */
+export const TypographyStyles: StoryObj = {
+    render: () => {
+        return (
+            <View style={{gap: sizing.size_200}}>
+                {Object.entries(typographyStyles).map(([key, styles]) => (
+                    <StyledDiv key={key} style={{...styles}}>
+                        {key}
+                    </StyledDiv>
+                ))}
+            </View>
+        );
+    },
+    parameters: {
+        chromatic: {
+            modes: {
+                default: allModes.themeDefault,
+                thunderblocks: allModes.themeThunderBlocks,
+            },
         },
     },
 };
