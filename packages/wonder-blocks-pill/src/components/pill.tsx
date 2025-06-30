@@ -4,17 +4,17 @@ import type {StyleDeclaration} from "aphrodite";
 
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {
-    Body,
-    LabelSmall,
-    LabelXSmall,
-} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 import type {ClickableRole} from "@khanacademy/wonder-blocks-clickable";
-import * as tokens from "@khanacademy/wonder-blocks-tokens";
+import {
+    semanticColor,
+    border,
+    color,
+    sizing,
+} from "@khanacademy/wonder-blocks-tokens";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
-
-const {semanticColor} = tokens;
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 
 export type PillKind =
     | "neutral"
@@ -88,14 +88,22 @@ const PillInner = (props: {
     }
 
     if (size === "small") {
-        return <LabelXSmall>{props.children}</LabelXSmall>;
+        return (
+            <BodyText size="xsmall" tag="span">
+                {props.children}
+            </BodyText>
+        );
     }
 
     if (size === "large") {
-        return <Body>{children}</Body>;
+        return <BodyText tag="span">{children}</BodyText>;
     }
 
-    return <LabelSmall>{children}</LabelSmall>;
+    return (
+        <BodyText size="small" tag="span">
+            {children}
+        </BodyText>
+    );
 };
 
 /**
@@ -104,8 +112,11 @@ const PillInner = (props: {
  *
  * **Note:** Before using the `Pill` component, please see if a component from the
  * [Badge Package](/?path=/docs/packages-badge-overview--docs&globals=theme:default)
- * can be used instead. For example, prefer using the `StatusBadge` component
- * instead of a `Pill` to indicate a status.
+ * can be used instead.
+ *
+ * For example, prefer using the `StatusBadge` component instead of a `Pill` to
+ * indicate a status. Or, use the `Badge` component instead of a `Pill` with
+ * `kind="neutral"`.
  *
  * ### Usage
  *
@@ -190,27 +201,21 @@ const pillStyles = StyleSheet.create({
         width: "fit-content",
     },
     wrapperSmall: {
-        paddingLeft: tokens.spacing.xSmall_8,
-        paddingRight: tokens.spacing.xSmall_8,
-        borderRadius: tokens.border.radius.radius_040,
-        height: 20,
+        paddingInline: sizing.size_080,
+        borderRadius: border.radius.radius_040,
+        height: sizing.size_200,
     },
     wrapperMedium: {
-        paddingLeft: tokens.spacing.xSmall_8,
-        paddingRight: tokens.spacing.xSmall_8,
-        borderRadius: tokens.border.radius.radius_040,
+        paddingInline: sizing.size_080,
+        borderRadius: border.radius.radius_040,
         // Minimum tap area recommendation for a11y
-        height: tokens.spacing.large_24,
+        height: sizing.size_240,
     },
     wrapperLarge: {
-        paddingLeft: tokens.spacing.small_12,
-        paddingRight: tokens.spacing.small_12,
-        paddingTop: tokens.spacing.xxSmall_6,
-        paddingBottom: tokens.spacing.xxSmall_6,
-        // TODO(WB-1876): This should be replaced with a border.radius token.
-        // Check with TB to determine final token.
-        borderRadius: tokens.sizing.size_240,
-        height: tokens.spacing.xLarge_32,
+        paddingInline: sizing.size_120,
+        paddingBlock: sizing.size_060,
+        borderRadius: border.radius.radius_240,
+        height: sizing.size_320,
     },
 });
 
@@ -223,55 +228,56 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
     }
 
     let backgroundColor;
+    let textColor;
 
     switch (kind) {
         case "accent":
-            backgroundColor = semanticColor.status.notice.foreground;
+            backgroundColor = semanticColor.core.background.instructive.default;
+            textColor = semanticColor.core.foreground.inverse.strong;
             break;
         case "info":
-            backgroundColor = semanticColor.status.notice.background;
+            backgroundColor = semanticColor.feedback.info.subtle.background;
+            textColor = semanticColor.feedback.info.subtle.text;
             break;
         case "success":
-            backgroundColor = semanticColor.status.success.background;
+            backgroundColor = semanticColor.feedback.success.subtle.background;
+            textColor = semanticColor.feedback.success.subtle.text;
             break;
         case "warning":
-            backgroundColor = semanticColor.status.warning.background;
+            backgroundColor = semanticColor.feedback.warning.subtle.background;
+            textColor = semanticColor.feedback.warning.subtle.text;
             break;
         case "critical":
-            backgroundColor = semanticColor.status.critical.background;
+            backgroundColor = semanticColor.feedback.critical.subtle.background;
+            textColor = semanticColor.feedback.critical.subtle.text;
             break;
         case "transparent":
-            backgroundColor = "transparent";
+            backgroundColor = semanticColor.core.transparent;
+            textColor = semanticColor.core.foreground.neutral.strong;
             break;
         case "neutral":
         default:
+            // NOTE(WB-1950): Will remove use of status token once the `neutral` kind is removed in favour of Badge
             backgroundColor = semanticColor.status.neutral.background;
+            textColor = semanticColor.core.foreground.neutral.strong;
     }
 
     const pressColor =
         kind === "transparent" || kind === "neutral"
-            ? tokens.color.offBlack16
+            ? color.offBlack16 // NOTE(WB-1950): Neutral pills will be replaced with Badge and the transparent kind will be removed
             : kind === "accent"
-              ? tokens.color.activeBlue
-              : // NOTE(WB-1880): This will be simplified once we split this into Badge and Pill.
-                `color-mix(in srgb, ${tokens.color.offBlack32}, ${backgroundColor})`;
-
-    const textColor =
-        kind === "accent"
-            ? semanticColor.text.inverse
-            : semanticColor.text.primary;
+              ? semanticColor.core.background.instructive.strong
+              : // NOTE(WB-1950): This will be simplified once we split this into Badge and Pill.
+                `color-mix(in srgb, ${color.offBlack32}, ${backgroundColor})`;
 
     const theme = {
         default: {
             border:
                 kind === "transparent"
-                    ? `1px solid ${semanticColor.core.border.neutral.subtle}`
+                    ? `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`
                     : "none",
             background: backgroundColor,
             foreground: textColor,
-        },
-        focus: {
-            border: semanticColor.focus.outer,
         },
         hover: {
             border: semanticColor.core.border.instructive.default,
@@ -294,18 +300,15 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
             outline: theme.default.border,
 
             ":hover": {
-                outline: `2px solid ${theme.hover.border}`,
-                outlineOffset: tokens.spacing.xxxxSmall_2,
+                outline: `${border.width.medium} solid ${theme.hover.border}`,
+                outlineOffset: sizing.size_020,
             },
             ":active": {
                 backgroundColor: theme.press.background,
-                outline: `2px solid ${theme.press.border}`,
-                outlineOffset: tokens.spacing.xxxxSmall_2,
+                outline: `${border.width.medium} solid ${theme.press.border}`,
+                outlineOffset: sizing.size_020,
             },
-            ":focus-visible": {
-                outline: `2px solid ${theme.focus.border}`,
-                outlineOffset: tokens.spacing.xxxxSmall_2,
-            },
+            ...focusStyles.focus,
         },
     };
 
