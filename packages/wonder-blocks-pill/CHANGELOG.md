@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-pill
 
+## 3.1.27
+
+### Patch Changes
+
+- 6d71614: Update use of tokens (semantic colors, sizing, border) and use new typography components.
+  This is to better support the thunderblocks theme!
+
 ## 3.1.26
 
 ### Patch Changes

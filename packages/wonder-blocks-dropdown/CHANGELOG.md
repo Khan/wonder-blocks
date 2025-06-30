@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.2.2
+
+### Patch Changes
+
+- Updated dependencies [6d71614]
+    - @khanacademy/wonder-blocks-pill@3.1.27
+
 ## 10.2.1
 
 ### Patch Changes
