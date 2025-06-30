@@ -2,17 +2,14 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {CompactCell} from "@khanacademy/wonder-blocks-cell";
-import {
-    border,
-    semanticColor,
-    sizing,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
-import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import type {PropsFor, StyleType} from "@khanacademy/wonder-blocks-core";
 
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
+import theme from "../theme";
 
 type CompactCellProps = PropsFor<typeof CompactCell>;
 
@@ -154,9 +151,9 @@ export default class ActionItem extends React.Component<ActionProps> {
 
         const labelComponent =
             typeof label === "string" ? (
-                <LabelMedium lang={lang} style={styles.label}>
+                <BodyText tag="div" lang={lang} style={styles.label}>
                     {label}
-                </LabelMedium>
+                </BodyText>
             ) : (
                 React.cloneElement(label, {
                     lang,
@@ -169,10 +166,9 @@ export default class ActionItem extends React.Component<ActionProps> {
             <CompactCell
                 disabled={disabled}
                 horizontalRule={horizontalRule}
-                rootStyle={defaultStyle}
                 leftAccessory={leftAccessory}
                 rightAccessory={rightAccessory}
-                style={[styles.shared, indent && styles.indent]}
+                style={[defaultStyle, styles.shared, indent && styles.indent]}
                 role={role}
                 testId={testId}
                 title={labelComponent}
@@ -184,24 +180,6 @@ export default class ActionItem extends React.Component<ActionProps> {
         );
     }
 }
-
-// TODO(WB-1868): Move this to a shared theme file.
-const actionType = semanticColor.action.primary.progressive;
-
-const theme = {
-    actionItem: {
-        color: {
-            hover: {
-                background: actionType.hover.background,
-                foreground: actionType.hover.foreground,
-            },
-            press: {
-                background: actionType.press.background,
-                foreground: actionType.press.foreground,
-            },
-        },
-    },
-};
 
 const styles = StyleSheet.create({
     wrapper: {
@@ -216,36 +194,35 @@ const styles = StyleSheet.create({
         ":focus": {
             // Override the default focus state for the cell element, so that it
             // can be added programmatically to the button element.
-            borderRadius: border.radius.radius_040,
-            outline: `${spacing.xxxxSmall_2}px solid ${semanticColor.focus.outer}`,
-            outlineOffset: -spacing.xxxxSmall_2,
-        },
-
-        // Overrides the default cell state for the button element.
-        [":hover[aria-disabled=false]" as any]: {
-            color: theme.actionItem.color.hover.foreground,
-            background: theme.actionItem.color.hover.background,
-        },
-
-        // active and pressed states
-        [":active[aria-disabled=false]" as any]: {
-            color: theme.actionItem.color.press.foreground,
-            background: theme.actionItem.color.press.background,
+            borderRadius: theme.item.border.radius.default,
+            outline: focusStyles.focus[":focus-visible"].outline,
+            outlineOffset: `calc(${border.width.medium} * -1)`,
+            // We need to use a thicker box-shadow to ensure that the inner ring
+            // is visible when the cell is focused.
+            boxShadow: `inset 0 0 0 calc(${border.width.medium}*2) ${semanticColor.focus.inner}`,
+            // Hide the left bar indicator when focused, so the focus ring
+            // doesn't overlap with it.
+            // @see cell-core.tsx
+            [":after" as any]: {
+                content: "unset",
+            },
         },
     },
     shared: {
         minHeight: DROPDOWN_ITEM_HEIGHT,
         // Make sure that the item is always at least as tall as 40px.
-        paddingBlock: sizing.size_100,
+        paddingBlock: theme.item.layout.padding.block,
     },
 
     label: {
+        fontWeight: theme.item.font.weight,
+        lineHeight: sizing.size_200,
         whiteSpace: "nowrap",
         userSelect: "none",
     },
 
     indent: {
         // Cell's internal padding + checkbox width + checkbox margin
-        paddingLeft: spacing.medium_16 * 2,
+        paddingInlineStart: sizing.size_320,
     },
 });

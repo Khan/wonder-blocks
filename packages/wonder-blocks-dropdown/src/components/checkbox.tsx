@@ -3,11 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {
-    border,
-    semanticColor,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import checkIcon from "@phosphor-icons/core/bold/check-bold.svg";
 
 /**
@@ -32,7 +28,7 @@ const Checkbox = function (props: CheckProps): React.ReactElement {
             className="checkbox"
             style={[
                 styles.checkbox,
-                selected && !disabled && styles.noBorder,
+                selected && !disabled && styles.selected,
                 disabled && styles.disabledCheckbox,
             ]}
         >
@@ -45,11 +41,11 @@ const Checkbox = function (props: CheckProps): React.ReactElement {
                         {
                             // The check icon is smaller than the checkbox, as
                             // per design.
-                            width: spacing.small_12,
-                            height: spacing.small_12,
+                            width: sizing.size_120,
+                            height: sizing.size_120,
                             // This margin is to center the check icon in the
                             // checkbox.
-                            margin: spacing.xxxxSmall_2,
+                            margin: sizing.size_020,
                         },
                         disabled && selected && styles.disabledCheckFormatting,
                     ]}
@@ -61,18 +57,19 @@ const Checkbox = function (props: CheckProps): React.ReactElement {
 
 export default Checkbox;
 
-// TODO(WB-1868): Move this to a theme file.
-const theme = {
-    // Merge this with the `checkbox` key in `option-item.tsx`.
-    checkbox: {
-        color: {
-            default: {
-                border: semanticColor.input.default.border,
-            },
-            disabled: {
-                border: semanticColor.input.disabled.border,
-                background: semanticColor.input.disabled.background,
-            },
+const checkboxTokens = {
+    color: {
+        default: {
+            border: semanticColor.input.default.border,
+            background: semanticColor.input.default.background,
+        },
+        disabled: {
+            border: semanticColor.input.disabled.border,
+            background: semanticColor.input.disabled.background,
+        },
+        selected: {
+            background: semanticColor.input.checked.background,
+            foreground: semanticColor.input.checked.foreground,
         },
     },
 };
@@ -81,23 +78,26 @@ const styles = StyleSheet.create({
     checkbox: {
         alignSelf: "center",
         // Semantically, this are the constants for a small-sized icon
-        minHeight: spacing.medium_16,
-        minWidth: spacing.medium_16,
-        height: spacing.medium_16,
+        minHeight: sizing.size_160,
+        minWidth: sizing.size_160,
+        height: sizing.size_160,
+        background: checkboxTokens.color.default.background,
         // TODO(WB-1864): Use the correct token once TB is updated.
         borderRadius: 3,
         borderWidth: border.width.thin,
         borderStyle: "solid",
-        borderColor: theme.checkbox.color.default.border,
+        borderColor: checkboxTokens.color.default.border,
     },
 
-    noBorder: {
+    selected: {
         borderWidth: 0,
+        background: checkboxTokens.color.selected.background,
+        color: checkboxTokens.color.selected.foreground,
     },
 
     disabledCheckbox: {
-        borderColor: theme.checkbox.color.disabled.border,
-        backgroundColor: theme.checkbox.color.disabled.background,
+        borderColor: checkboxTokens.color.disabled.border,
+        backgroundColor: checkboxTokens.color.disabled.background,
     },
 
     // The border of 1px on the selected, disabled checkbox pushes the check out

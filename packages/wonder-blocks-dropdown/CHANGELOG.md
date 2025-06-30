@@ -1,5 +1,140 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.2.1
+
+### Patch Changes
+
+- e926edc: Updates dropdown option item labels to use div/span instead of p to avoid nesting issues
+
+## 10.2.0
+
+### Minor Changes
+
+- de9435a: Adds ThunderBlocks theme to dropdown
+- 88c633a: Update Dropdown components to be themeable.
+
+### Patch Changes
+
+- 31f0410: Replaces deprecated typography components with BodyText and Heading. Switches from `spacing` tokens to `sizing`. Removes wb-layout dependency in favor of `gap`.
+- f50aafc: Updates cell internal instances to use only the `style` Cell prop
+- Updated dependencies [f50aafc]
+- Updated dependencies [89c89a7]
+- Updated dependencies [de9435a]
+- Updated dependencies [8fca4ae]
+- Updated dependencies [89c89a7]
+- Updated dependencies [f50aafc]
+- Updated dependencies [88c633a]
+- Updated dependencies [f50aafc]
+    - @khanacademy/wonder-blocks-cell@5.0.0
+    - @khanacademy/wonder-blocks-tokens@11.2.1
+    - @khanacademy/wonder-blocks-clickable@7.1.12
+    - @khanacademy/wonder-blocks-icon@5.2.6
+    - @khanacademy/wonder-blocks-icon-button@10.3.7
+    - @khanacademy/wonder-blocks-modal@8.1.1
+    - @khanacademy/wonder-blocks-pill@3.1.26
+    - @khanacademy/wonder-blocks-search-field@5.1.29
+    - @khanacademy/wonder-blocks-styles@0.2.19
+    - @khanacademy/wonder-blocks-typography@4.2.8
+
+## 10.1.13
+
+### Patch Changes
+
+- Updated dependencies [e457d8c]
+- Updated dependencies [e457d8c]
+    - @khanacademy/wonder-blocks-modal@8.1.0
+    - @khanacademy/wonder-blocks-tokens@11.2.0
+    - @khanacademy/wonder-blocks-cell@4.1.25
+    - @khanacademy/wonder-blocks-clickable@7.1.11
+    - @khanacademy/wonder-blocks-icon@5.2.5
+    - @khanacademy/wonder-blocks-icon-button@10.3.6
+    - @khanacademy/wonder-blocks-layout@3.1.22
+    - @khanacademy/wonder-blocks-pill@3.1.25
+    - @khanacademy/wonder-blocks-search-field@5.1.28
+    - @khanacademy/wonder-blocks-typography@4.2.7
+
+## 10.1.12
+
+### Patch Changes
+
+- Updated dependencies [f26858a]
+    - @khanacademy/wonder-blocks-tokens@11.1.1
+    - @khanacademy/wonder-blocks-cell@4.1.24
+    - @khanacademy/wonder-blocks-clickable@7.1.10
+    - @khanacademy/wonder-blocks-icon@5.2.4
+    - @khanacademy/wonder-blocks-icon-button@10.3.5
+    - @khanacademy/wonder-blocks-layout@3.1.21
+    - @khanacademy/wonder-blocks-modal@8.0.1
+    - @khanacademy/wonder-blocks-pill@3.1.24
+    - @khanacademy/wonder-blocks-search-field@5.1.27
+    - @khanacademy/wonder-blocks-typography@4.2.6
+
+## 10.1.11
+
+### Patch Changes
+
+- Updated dependencies [705ee01]
+- Updated dependencies [9ef528a]
+- Updated dependencies [038f9a9]
+    - @khanacademy/wonder-blocks-typography@4.2.5
+    - @khanacademy/wonder-blocks-modal@8.0.0
+    - @khanacademy/wonder-blocks-cell@4.1.23
+    - @khanacademy/wonder-blocks-icon-button@10.3.4
+    - @khanacademy/wonder-blocks-pill@3.1.23
+    - @khanacademy/wonder-blocks-search-field@5.1.26
+
+## 10.1.10
+
+### Patch Changes
+
+- Updated dependencies [0f4f771]
+    - @khanacademy/wonder-blocks-tokens@11.1.0
+    - @khanacademy/wonder-blocks-cell@4.1.22
+    - @khanacademy/wonder-blocks-clickable@7.1.9
+    - @khanacademy/wonder-blocks-icon@5.2.3
+    - @khanacademy/wonder-blocks-icon-button@10.3.3
+    - @khanacademy/wonder-blocks-layout@3.1.20
+    - @khanacademy/wonder-blocks-modal@7.1.25
+    - @khanacademy/wonder-blocks-pill@3.1.22
+    - @khanacademy/wonder-blocks-search-field@5.1.25
+    - @khanacademy/wonder-blocks-typography@4.2.4
+
+## 10.1.9
+
+### Patch Changes
+
+- 1ac2ba7: Updates disabled.placeholder styles to use input.disabled.foreground token
+- Updated dependencies [1ac2ba7]
+- Updated dependencies [0cb7a69]
+- Updated dependencies [cbf58b0]
+- Updated dependencies [cbf58b0]
+    - @khanacademy/wonder-blocks-tokens@11.0.0
+    - @khanacademy/wonder-blocks-icon@5.2.2
+    - @khanacademy/wonder-blocks-cell@4.1.21
+    - @khanacademy/wonder-blocks-clickable@7.1.8
+    - @khanacademy/wonder-blocks-icon-button@10.3.2
+    - @khanacademy/wonder-blocks-layout@3.1.19
+    - @khanacademy/wonder-blocks-modal@7.1.24
+    - @khanacademy/wonder-blocks-pill@3.1.21
+    - @khanacademy/wonder-blocks-search-field@5.1.24
+    - @khanacademy/wonder-blocks-typography@4.2.3
+
+## 10.1.8
+
+### Patch Changes
+
+- Updated dependencies [7811eb1]
+    - @khanacademy/wonder-blocks-tokens@10.6.0
+    - @khanacademy/wonder-blocks-cell@4.1.20
+    - @khanacademy/wonder-blocks-clickable@7.1.7
+    - @khanacademy/wonder-blocks-icon@5.2.1
+    - @khanacademy/wonder-blocks-icon-button@10.3.1
+    - @khanacademy/wonder-blocks-layout@3.1.18
+    - @khanacademy/wonder-blocks-modal@7.1.23
+    - @khanacademy/wonder-blocks-pill@3.1.20
+    - @khanacademy/wonder-blocks-search-field@5.1.23
+    - @khanacademy/wonder-blocks-typography@4.2.2
+
 ## 10.1.7
 
 ### Patch Changes

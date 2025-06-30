@@ -5,17 +5,13 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {
-    border,
-    color,
-    semanticColor,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
 
-import {CellMeasurements, getHorizontalRuleStyles} from "./common";
+import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
+import {getHorizontalRuleStyles} from "./common";
 
 import type {CellProps} from "../../util/types";
+import theme from "../../theme";
 
 type LeftAccessoryProps = {
     leftAccessory?: CellProps["leftAccessory"];
@@ -38,18 +34,16 @@ const LeftAccessory = ({
     }
 
     return (
-        <>
-            <View
-                style={[
-                    styles.accessory,
-                    disabled && styles.accessoryDisabled,
-                    {...leftAccessoryStyle},
-                ]}
-            >
-                {leftAccessory}
-            </View>
-            <Strut size={CellMeasurements.accessoryHorizontalSpacing} />
-        </>
+        <View
+            style={[
+                styles.accessory,
+                styles.accessoryLeft,
+                disabled && styles.accessoryDisabled,
+                {...leftAccessoryStyle},
+            ]}
+        >
+            {leftAccessory}
+        </View>
     );
 };
 
@@ -76,20 +70,17 @@ const RightAccessory = ({
     }
 
     return (
-        <>
-            <Strut size={CellMeasurements.accessoryHorizontalSpacing} />
-            <View
-                style={[
-                    styles.accessory,
-                    styles.accessoryRight,
-                    disabled && styles.accessoryDisabled,
-                    {...rightAccessoryStyle},
-                    active && styles.accessoryActive,
-                ]}
-            >
-                {rightAccessory}
-            </View>
-        </>
+        <View
+            style={[
+                styles.accessory,
+                styles.accessoryRight,
+                disabled && styles.accessoryDisabled,
+                {...rightAccessoryStyle},
+                active && styles.accessoryActive,
+            ]}
+        >
+            {rightAccessory}
+        </View>
     );
 };
 
@@ -103,32 +94,16 @@ function CellInner(props: CellCoreProps): React.ReactElement {
         active,
         children,
         disabled,
-        horizontalRule = "inset",
         contentStyle = undefined,
         leftAccessory = undefined,
         leftAccessoryStyle = undefined,
         rightAccessory = undefined,
         rightAccessoryStyle = undefined,
-        style,
         testId,
-        innerStyle,
     } = props;
-    const horizontalRuleStyles = getHorizontalRuleStyles(horizontalRule);
 
     return (
-        <View
-            style={[
-                styles.innerWrapper,
-                innerStyle,
-                // custom styles
-                style,
-                horizontalRuleStyles,
-                active && styles.activeInnerWrapper,
-            ]}
-            // Set className so we can set styles on the inner wrapper directly
-            // when the clickable element is pressed
-            className="inner-wrapper"
-        >
+        <>
             {/* Left accessory */}
             <LeftAccessory
                 leftAccessory={leftAccessory}
@@ -148,7 +123,7 @@ function CellInner(props: CellCoreProps): React.ReactElement {
                 active={active}
                 disabled={disabled}
             />
-        </View>
+        </>
     );
 }
 
@@ -185,9 +160,21 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
         "aria-checked": ariaChecked,
         target,
         role,
-        rootStyle,
+        tabIndex,
+
+        horizontalRule = "inset",
+        style,
+        innerStyle,
     } = props;
 
+    const horizontalRuleStyles = getHorizontalRuleStyles(horizontalRule);
+
+    const sharedStyles = [
+        styles.wrapper,
+        innerStyle,
+        active && styles.active,
+        horizontalRuleStyles,
+    ];
     // Pressable cell.
     if (onClick || href) {
         return (
@@ -203,13 +190,14 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
                 role={role}
                 target={target}
                 style={[
-                    styles.wrapper,
+                    sharedStyles,
                     styles.clickable,
-                    rootStyle,
-                    active && styles.active,
                     disabled && styles.disabled,
+                    // custom styles
+                    style,
                 ]}
                 aria-current={active ? "true" : undefined}
+                tabIndex={tabIndex}
             >
                 {() => <CellInner {...props} />}
             </Clickable>
@@ -220,7 +208,10 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
     // wrapper.
     return (
         <View
-            style={[styles.wrapper, rootStyle, active && styles.active]}
+            style={[
+                sharedStyles, // custom styles
+                style,
+            ]}
             aria-current={active ? "true" : undefined}
             role={role}
         >
@@ -229,90 +220,27 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
     );
 };
 
-const cellTokens = {
-    root: {
-        default: {
-            background: semanticColor.surface.primary,
-            foreground: semanticColor.text.primary,
-        },
-        hover: {
-            background: color.fadedBlue8,
-        },
-        press: {
-            background: color.fadedBlue8,
-            border: semanticColor.surface.emphasis,
-        },
-        selected: {
-            background: color.fadedBlue8,
-            foreground: color.activeBlue,
-            border: semanticColor.surface.emphasis,
-        },
-        focus: {
-            border: semanticColor.focus.outer,
-        },
-        disabled: {
-            foreground: semanticColor.text.disabled,
-            border: semanticColor.focus.outer,
-        },
-    },
-    accessory: {
-        default: {
-            foreground: semanticColor.icon.primary,
-        },
-        selected: {
-            foreground: semanticColor.icon.action,
-        },
-        disabled: {
-            // Use secondary icon color for disabled state because opacity is
-            // also applied to the accessory. Opacity is used so it is applied
-            // to images also
-            foreground: semanticColor.icon.secondary,
-        },
-    },
-};
-
 const styles = StyleSheet.create({
     wrapper: {
-        background: cellTokens.root.default.background,
-        color: cellTokens.root.default.foreground,
-        display: "flex",
-        minHeight: CellMeasurements.cellMinHeight,
-        textAlign: "left",
-        width: "100%",
-    },
-
-    innerWrapper: {
-        minHeight: CellMeasurements.cellMinHeight,
-        padding: `${CellMeasurements.cellPadding.paddingVertical}px ${CellMeasurements.cellPadding.paddingHorizontal}px`,
-        flexDirection: "row",
-        flex: 1,
-        borderRadius: "inherit",
+        background: semanticColor.surface.primary,
+        borderRadius: theme.root.border.radius.default,
+        color: semanticColor.core.foreground.neutral.strong,
+        minHeight: theme.root.sizing.minHeight,
         // Hide overflow so that if custom styling applies a border radius, the
         // left visual indicator for press/active states does not overflow
         overflow: "hidden",
-        // Make sure inner wrapper is always the same height as parent
-        height: "100%",
-
-        // Reduce the padding of the innerWrapper when the focus ring is
-        // visible.
-        ":focus-visible": {
-            padding: `${CellMeasurements.cellPadding.paddingVertical - 2}px ${
-                CellMeasurements.cellPadding.paddingHorizontal - 2
-            }px`,
-        },
-    },
-    activeInnerWrapper: {
-        position: "relative",
-        ":before": {
-            // Styles for the left bar indicator
-            content: "''",
-            position: "absolute",
-            top: 0,
-            left: 0,
-            bottom: 0,
-            width: border.width.thick,
-            backgroundColor: cellTokens.root.selected.border,
-        },
+        textAlign: "left",
+        width: "100%",
+        // layout
+        // We need to specify flex as the wrapper can be a <View> or a
+        // <Clickable> component.
+        display: "flex",
+        flex: 1,
+        flexDirection: "row",
+        // The spacing between the left and right accessories.
+        gap: theme.root.layout.gap.default,
+        paddingBlock: theme.root.layout.padding.block.default,
+        paddingInline: theme.root.layout.padding.inline.default,
     },
 
     content: {
@@ -331,110 +259,109 @@ const styles = StyleSheet.create({
         alignSelf: "center",
     },
 
+    accessoryLeft: {
+        color: theme.accessoryLeft.color.default.foreground,
+    },
+
     accessoryRight: {
         // The right accessory will have this color by default. Unless the
         // accessory element overrides that color internally.
-        color: cellTokens.accessory.default.foreground,
+        color: theme.accessoryRight.color.default.foreground,
     },
 
     /**
      * States
      */
     clickable: {
-        outline: "none",
         /**
          * States
          */
-        // disabled
-        // NOTE: We use `aria-disabled` instead of `disabled` because we want
-        // to allow the cell to be focusable even when it's disabled.
-        [":hover[aria-disabled=true]" as any]: {
-            cursor: "not-allowed",
+        ":hover": {
+            background: semanticColor.core.background.instructive.subtle,
         },
-
+        ":active": {
+            background: semanticColor.core.background.instructive.subtle,
+            borderRadius: theme.root.border.radius.press,
+        },
         // focus (only visible when using keyboard navigation)
         ":focus-visible": {
-            borderRadius: border.radius.radius_040,
+            borderRadius: theme.root.border.radius.focus,
+            outline: focusStyles.focus[":focus-visible"].outline,
+            outlineOffset: `calc(${theme.root.border.width.default} * -1)`,
+            // We need to use a thicker box-shadow to ensure that the inner ring
+            // is visible when the cell is focused.
+            boxShadow: `inset 0 0 0 calc(${border.width.medium}*2) ${semanticColor.focus.inner}`,
             // To hide the internal corners of the cell.
             overflow: "hidden",
             // To display the focus ring based on the cell's border.
             position: "relative",
-        },
-        // NOTE: We use a pseudo element to draw the focus ring because we can't
-        // use `outline` since it conflicts with different layout contexts (e.g.
-        // `View` elements add their own z-index).
-        [":focus-visible:after" as any]: {
-            content: "''",
-            // Since we are using a pseudo element, we need to manually
-            // calculate the width/height and use absolute position to
-            // prevent other elements from being shifted around.
-            position: "absolute",
-            top: 0,
-            left: 0,
-            zIndex: 1,
-            // We remove the border width from the width/height to ensure
-            // that the focus ring is drawn inside the cell.
-            width: `calc(100% - ${spacing.xxxSmall_4}px)`,
-            height: `calc(100% - ${spacing.xxxSmall_4}px)`,
-            border: `${spacing.xxxxSmall_2}px solid ${cellTokens.root.focus.border}`,
-            borderRadius: border.radius.radius_040,
-        },
-        [":focus-visible[aria-disabled=true]:after" as any]: {
-            borderColor: cellTokens.root.disabled.border,
-        },
 
-        // hover + enabled
-        [":hover[aria-disabled=false]" as any]: {
-            background: cellTokens.root.hover.background,
+            // Hide the left bar indicator when focused, so the focus ring
+            // doesn't overlap with it.
+            [":after" as any]: {
+                content: "unset",
+            },
         },
-
-        // pressed + enabled
-        [":active[aria-disabled=false]" as any]: {
-            background: cellTokens.root.press.background,
+        [":focus-visible:active" as any]: {
+            borderRadius: theme.root.border.radius.focusPress,
         },
         // press + enabled + not currently selected (active prop: false)
-        // We apply the left bar indicator styles on the inner-wrapper element
-        // instead of the clickable element directly because we need to hide the
-        // left bar overflow when custom cell styles apply a border-radius. We
-        // have overflow: hidden on the inner wrapper instead of the clickable element
-        // because setting it on the clickable element causes issues with existing
-        // cases.
-        [":active[aria-disabled=false]:not([aria-current=true]) .inner-wrapper" as any]:
-            {
-                position: "relative",
-                ":before": {
-                    content: "''",
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    bottom: 0,
-                    width: border.width.medium,
-                    backgroundColor: semanticColor.surface.emphasis,
-                },
+        [":active[aria-disabled=false]:not([aria-current=true])" as any]: {
+            position: "relative",
+            ":before": {
+                content: "''",
+                position: "absolute",
+                top: 0,
+                left: 0,
+                bottom: 0,
+                width: theme.root.border.width.default,
+                // We use the border token as this element acts like a border
+                // when the cell is pressed.
+                backgroundColor: theme.root.color.press.border,
             },
+        },
     },
 
     active: {
-        background: cellTokens.root.selected.background,
-        color: cellTokens.root.selected.foreground,
+        background: semanticColor.core.background.instructive.subtle,
+        color: theme.root.color.selected.foreground,
         cursor: "default",
+        position: "relative",
+        ":before": {
+            // Styles for the left bar indicator
+            content: "''",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            bottom: 0,
+            width: theme.root.border.width.selected,
+            backgroundColor: theme.root.color.selected.border,
+        },
     },
 
     disabled: {
-        color: cellTokens.root.disabled.foreground,
-        ":focus-visible": {
-            // Prevent the focus ring from being displayed when the cell is
-            // disabled.
-            outline: "none",
+        background: semanticColor.surface.primary,
+        borderRadius: theme.root.border.radius.default,
+        color: semanticColor.core.foreground.inverse.subtle,
+        ":hover": {
+            background: semanticColor.surface.primary,
+            cursor: "not-allowed",
+        },
+        ":active": {
+            background: semanticColor.surface.primary,
+            borderRadius: theme.root.border.radius.default,
+        },
+        [":focus-visible:active" as any]: {
+            borderRadius: theme.root.border.radius.default,
         },
     },
 
     accessoryActive: {
-        color: cellTokens.accessory.selected.foreground,
+        color: theme.accessoryRight.color.selected.foreground,
     },
 
     accessoryDisabled: {
-        color: cellTokens.accessory.disabled.foreground,
+        color: theme.accessoryRight.color.disabled.foreground,
         opacity: 0.32,
     },
 });

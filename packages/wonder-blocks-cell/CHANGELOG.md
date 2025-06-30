@@ -1,5 +1,87 @@
 # @khanacademy/wonder-blocks-cell
 
+## 5.0.0
+
+### Major Changes
+
+- f50aafc: Removes `rootStyle` prop as it is no longer needed
+
+### Minor Changes
+
+- 8fca4ae: Updates `CompactCell` and `DetailCell` to support the `thunderblocks` theme. Refactors internal typography to support both themes.
+- 89c89a7: Creates a Cell theme that supports CSS variables
+- 88c633a: Adds `tabIndex` as a prop in case Clickable cells can't be focusable via keyboard navigation
+
+### Patch Changes
+
+- 89c89a7: Refactors Cell structure by removing Strut in favor of CSS's gap property
+- f50aafc: Restructures Cell layout
+- Updated dependencies [de9435a]
+- Updated dependencies [f50aafc]
+    - @khanacademy/wonder-blocks-tokens@11.2.1
+    - @khanacademy/wonder-blocks-clickable@7.1.12
+    - @khanacademy/wonder-blocks-styles@0.2.19
+    - @khanacademy/wonder-blocks-typography@4.2.8
+
+## 4.1.25
+
+### Patch Changes
+
+- Updated dependencies [e457d8c]
+    - @khanacademy/wonder-blocks-tokens@11.2.0
+    - @khanacademy/wonder-blocks-clickable@7.1.11
+    - @khanacademy/wonder-blocks-layout@3.1.22
+    - @khanacademy/wonder-blocks-typography@4.2.7
+
+## 4.1.24
+
+### Patch Changes
+
+- Updated dependencies [f26858a]
+    - @khanacademy/wonder-blocks-tokens@11.1.1
+    - @khanacademy/wonder-blocks-clickable@7.1.10
+    - @khanacademy/wonder-blocks-layout@3.1.21
+    - @khanacademy/wonder-blocks-typography@4.2.6
+
+## 4.1.23
+
+### Patch Changes
+
+- Updated dependencies [705ee01]
+    - @khanacademy/wonder-blocks-typography@4.2.5
+
+## 4.1.22
+
+### Patch Changes
+
+- Updated dependencies [0f4f771]
+    - @khanacademy/wonder-blocks-tokens@11.1.0
+    - @khanacademy/wonder-blocks-clickable@7.1.9
+    - @khanacademy/wonder-blocks-layout@3.1.20
+    - @khanacademy/wonder-blocks-typography@4.2.4
+
+## 4.1.21
+
+### Patch Changes
+
+- Updated dependencies [1ac2ba7]
+- Updated dependencies [0cb7a69]
+- Updated dependencies [cbf58b0]
+    - @khanacademy/wonder-blocks-tokens@11.0.0
+    - @khanacademy/wonder-blocks-clickable@7.1.8
+    - @khanacademy/wonder-blocks-layout@3.1.19
+    - @khanacademy/wonder-blocks-typography@4.2.3
+
+## 4.1.20
+
+### Patch Changes
+
+- Updated dependencies [7811eb1]
+    - @khanacademy/wonder-blocks-tokens@10.6.0
+    - @khanacademy/wonder-blocks-clickable@7.1.7
+    - @khanacademy/wonder-blocks-layout@3.1.18
+    - @khanacademy/wonder-blocks-typography@4.2.2
+
 ## 4.1.19
 
 ### Patch Changes

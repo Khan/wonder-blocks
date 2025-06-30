@@ -1,5 +1,47 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 11.2.1
+
+### Patch Changes
+
+- de9435a: Fixes some semanticColor values. Adds dropdown CSS variables.
+- f50aafc: Adds cell component-level tokens to css variables build
+
+## 11.2.0
+
+### Minor Changes
+
+- e457d8c: Export modal tokens. Update `core.shadow.transparent` token value in TB.
+
+## 11.1.1
+
+### Patch Changes
+
+- f26858a: Export modal css vars from the tokens package.
+
+## 11.1.0
+
+### Minor Changes
+
+- 0f4f771: Include css variables for banner component
+
+## 11.0.0
+
+### Major Changes
+
+- 0cb7a69: Moves some TB colors out of the OG primitives, so we ensure that these colors are only available via semanticColor
+- cbf58b0: Adds a new learning category in `semanticColor`. Updates yellow_10 and gray_20 TB primivives.
+
+### Patch Changes
+
+- 1ac2ba7: Adds `input` category to TB theme.
+
+## 10.6.0
+
+### Minor Changes
+
+- 7811eb1: Add tokens for themable Switch component
+
 ## 10.5.0
 
 ### Minor Changes

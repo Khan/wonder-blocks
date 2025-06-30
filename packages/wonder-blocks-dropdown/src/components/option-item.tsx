@@ -2,24 +2,16 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
-import {
-    spacing,
-    semanticColor,
-    border,
-} from "@khanacademy/wonder-blocks-tokens";
-import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {semanticColor, border, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
-import {
-    addStyle,
-    AriaProps,
-    StyleType,
-    View,
-} from "@khanacademy/wonder-blocks-core";
+import {AriaProps, StyleType, View} from "@khanacademy/wonder-blocks-core";
 
-import {Strut} from "@khanacademy/wonder-blocks-layout";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import Check from "./check";
 import Checkbox from "./checkbox";
 import {CellProps, OptionLabel} from "../util/types";
+import theme from "../theme";
 
 type OptionProps = AriaProps & {
     /**
@@ -142,8 +134,6 @@ type DefaultProps = {
     selected: OptionProps["selected"];
 };
 
-const StyledLi = addStyle("li");
-
 /**
  * For option items that can be selected in a dropdown, selection denoted either
  * with a check ✔️ or a checkbox ☑️. Use as children in SingleSelect or
@@ -180,9 +170,10 @@ export default class OptionItem extends React.Component<OptionProps> {
         }
     };
 
-    renderCell(): React.ReactNode {
+    render(): React.ReactNode {
         const {
             disabled,
+            focused,
             label,
             selected,
             testId,
@@ -207,35 +198,44 @@ export default class OptionItem extends React.Component<OptionProps> {
         const CheckComponent = this.getCheckComponent();
 
         const defaultStyle = [
-            styles.item,
+            styles.optionItem,
             // pass optional styles from react-window (if applies)
             style,
         ];
+
+        const listboxStyles = [
+            styles.listboxOptionItem,
+            focused && styles.listboxOptionItemFocused,
+        ];
+
+        const selectStyles = [styles.selectOptionItem];
 
         return (
             <DetailCell
                 disabled={disabled}
                 horizontalRule={horizontalRule}
-                rootStyle={
+                style={[
+                    defaultStyle,
                     parentComponent === "listbox"
-                        ? styles.listboxItem
-                        : defaultStyle
-                }
-                style={styles.itemContainer}
-                aria-selected={
-                    parentComponent !== "listbox" && selected ? "true" : "false"
-                }
-                role={parentComponent !== "listbox" ? role : undefined}
+                        ? listboxStyles
+                        : selectStyles,
+                ]}
+                aria-selected={selected ? "true" : "false"}
+                role={role}
                 testId={testId}
                 leftAccessory={
                     <>
                         {leftAccessory ? (
-                            <View style={{flexDirection: "row"}}>
+                            <View
+                                style={{
+                                    flexDirection: "row",
+                                    gap: sizing.size_080,
+                                }}
+                            >
                                 <CheckComponent
                                     disabled={disabled}
                                     selected={selected}
                                 />
-                                <Strut size={spacing.xSmall_8} />
                                 {leftAccessory}
                             </View>
                         ) : (
@@ -247,245 +247,79 @@ export default class OptionItem extends React.Component<OptionProps> {
                     </>
                 }
                 rightAccessory={rightAccessory}
-                subtitle1={
-                    subtitle1 ? (
-                        <LabelSmall className="subtitle">
-                            {subtitle1}
-                        </LabelSmall>
-                    ) : undefined
+                subtitle1={subtitle1}
+                title={
+                    <BodyText tag="div" style={styles.label}>
+                        {label}
+                    </BodyText>
                 }
-                title={<LabelMedium style={styles.label}>{label}</LabelMedium>}
-                subtitle2={
-                    subtitle2 ? (
-                        <LabelSmall className="subtitle">
-                            {subtitle2}
-                        </LabelSmall>
-                    ) : undefined
-                }
-                onClick={
-                    parentComponent !== "listbox" ? this.handleClick : undefined
-                }
+                subtitle2={subtitle2}
+                onClick={this.handleClick}
+                tabIndex={parentComponent === "listbox" ? -1 : undefined}
                 {...sharedProps}
             />
         );
-    }
-
-    render(): React.ReactNode {
-        const {disabled, focused, parentComponent, role, selected} = this.props;
-
-        // Only used for Combobox component, not SingleSelect/MultiSelect
-        if (parentComponent === "listbox") {
-            return (
-                // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions -- TODO(WB-1882): Address a11y error
-                <StyledLi
-                    onMouseDown={(e) => {
-                        // Prevents the combobox from losing focus when clicking
-                        // on the option item.
-                        e.preventDefault();
-                    }}
-                    onClick={this.handleClick}
-                    style={[
-                        styles.reset,
-                        styles.item,
-                        focused && styles.itemFocused,
-                        disabled && styles.itemDisabled,
-                    ]}
-                    role={role}
-                    aria-selected={selected ? "true" : "false"}
-                    aria-disabled={disabled ? "true" : "false"}
-                    id={this.props.id}
-                    tabIndex={-1}
-                >
-                    {this.renderCell()}
-                </StyledLi>
-            );
-        }
-
-        return this.renderCell();
     }
 }
 
 const focusedStyle = {
     // Override the default focus state for the cell element, so that it
     // can be added programmatically to the button element.
-    borderRadius: border.radius.radius_040,
-    outline: `${spacing.xxxxSmall_2}px solid ${semanticColor.focus.outer}`,
-    outlineOffset: -spacing.xxxxSmall_2,
+    borderRadius: theme.item.border.radius.default,
+    outline: focusStyles.focus[":focus-visible"].outline,
+    outlineOffset: `calc(${border.width.medium} * -1)`,
+    // We need to use a thicker box-shadow to ensure that the inner ring
+    // is visible when the cell is focused.
+    boxShadow: `inset 0 0 0 calc(${border.width.medium}*2) ${semanticColor.focus.inner}`,
 };
 
-// TODO(WB-1868): Move this to a theme file.
-const actionType = semanticColor.action.primary.progressive;
-
-const theme = {
-    optionItem: {
-        color: {
-            default: {
-                background: semanticColor.surface.primary,
-                foreground: semanticColor.text.primary,
-            },
-            hover: {
-                background: actionType.hover.background,
-                foreground: actionType.hover.foreground,
-            },
-            press: {
-                background: actionType.press.background,
-                foreground: actionType.press.foreground,
-            },
-            disabled: {
-                background: semanticColor.core.background.disabled.subtle,
-                foreground: semanticColor.action.secondary.disabled.foreground,
-            },
-        },
-    },
-    checkbox: {
-        color: {
-            hover: {
-                background: semanticColor.surface.primary,
-                foreground:
-                    semanticColor.action.secondary.progressive.hover.foreground,
-            },
-            press: {
-                // NOTE: The checkbox press state uses white as the background
-                background: semanticColor.surface.primary,
-                foreground:
-                    semanticColor.action.secondary.progressive.press.foreground,
-            },
-            selected: {
-                background: semanticColor.input.checked.background,
-                foreground: semanticColor.input.checked.foreground,
-            },
-        },
-    },
-    subtitle: {
-        color: {
-            default: {
-                foreground: semanticColor.text.secondary,
-            },
-            hover: {
-                foreground: semanticColor.text.inverse,
-            },
-            press: {
-                foreground: semanticColor.text.inverse,
-            },
-        },
-    },
+const resetFocusStyle = {
+    // Reset the focus style for the cell element, so that it doesn't interfere
+    // with the button element's focus state.
+    outline: "none",
+    boxShadow: "none",
 };
 
 const styles = StyleSheet.create({
-    reset: {
-        margin: 0,
-        padding: 0,
-        border: 0,
-        background: "none",
-        outline: "none",
-        fontSize: "100%",
-        verticalAlign: "baseline",
-        textAlign: "left",
-        textDecoration: "none",
-        listStyle: "none",
-        cursor: "pointer",
-    },
-    listboxItem: {
-        backgroundColor: "transparent",
-        color: "inherit",
-    },
-    item: {
-        background: theme.optionItem.color.default.background,
-        color: theme.optionItem.color.default.foreground,
-        // Reset the default styles for the cell element so it can grow
-        // vertically.
-        minHeight: "unset",
+    optionItem: {
+        paddingBlock: theme.item.layout.padding.block,
+        paddingInlineStart: theme.item.layout.padding.inlineStart,
+        paddingInlineEnd: theme.item.layout.padding.inlineEnd,
+        whiteSpace: "nowrap",
+        // Make sure that the item is always at least as tall as 40px.
+        minHeight: sizing.size_400,
 
         /**
          * States
          */
-        ":focus": focusedStyle,
-
-        ":focus-visible": {
-            // Override the default focus-visible state for the cell element, so
-            // that it allows the button to grow vertically with the popover
-            // height.
-            overflow: "visible",
-        },
-
-        // Overrides the default cell state for the button element.
-        [":hover[aria-disabled=false]" as any]: {
-            color: theme.optionItem.color.hover.foreground,
-            background: theme.optionItem.color.hover.background,
-        },
-
-        [":active[aria-selected=false]" as any]: {},
-
-        // disabled
-        [":hover[aria-disabled=true]" as any]: {
-            cursor: "not-allowed",
+        ":active": {
+            borderRadius: theme.item.border.radius.press,
         },
 
         [":is([aria-disabled=true])" as any]: {
-            color: theme.optionItem.color.disabled.foreground,
-            ":focus-visible": {
-                // Prevent the focus ring from being displayed when the cell is
-                // disabled.
-                outline: "none",
-            },
-        },
-
-        // active and pressed states
-        [":active[aria-disabled=false]" as any]: {
-            color: theme.optionItem.color.press.foreground,
-            background: theme.optionItem.color.press.background,
-        },
-
-        // checkbox states (see checkbox.tsx)
-        [":hover[aria-disabled=false] .checkbox" as any]: {
-            background: theme.checkbox.color.hover.background,
-        },
-        [":active[aria-disabled=false] .checkbox" as any]: {
-            background: theme.checkbox.color.press.background,
-        },
-        [":hover[aria-disabled=false] .check" as any]: {
-            color: theme.checkbox.color.hover.foreground,
-        },
-        [":active[aria-disabled=false] .check" as any]: {
-            color: theme.checkbox.color.press.foreground,
-        },
-
-        [":is([aria-selected=true]) .checkbox" as any]: {
-            background: theme.checkbox.color.selected.background,
-        },
-
-        [":is([aria-selected=true]) .check" as any]: {
-            color: theme.checkbox.color.selected.foreground,
-        },
-
-        /**
-         * Cell states
-         */
-        [":is([aria-disabled=false]) .subtitle" as any]: {
-            color: theme.subtitle.color.default.foreground,
-        },
-
-        [":hover[aria-disabled=false] .subtitle" as any]: {
-            color: theme.subtitle.color.hover.foreground,
-        },
-        [":active[aria-disabled=false] .subtitle" as any]: {
-            color: theme.subtitle.color.press.foreground,
+            ":focus": resetFocusStyle,
         },
     },
-    itemFocused: focusedStyle,
-    itemDisabled: {
-        outlineColor: semanticColor.focus.outer,
+    // Specific styles for Listbox and Combobox
+    listboxOptionItem: {
+        // This does not apply here as we use visual focus (instead of real DOM
+        // focus).
+        // @see https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#kbd_focus_activedescendant
+        ":focus-visible": resetFocusStyle,
     },
-    itemContainer: {
-        minHeight: "unset",
-        // Make sure that the item is always at least as tall as 40px.
-        paddingBlock: spacing.xSmall_8 + spacing.xxxxSmall_2,
-        paddingInlineStart: spacing.xSmall_8,
-        paddingInlineEnd: spacing.medium_16,
-        whiteSpace: "nowrap",
+    listboxOptionItemFocused: {
+        ...focusedStyle,
+        ":focus-visible": focusedStyle,
+    },
+    // Specific styles for MultiSelect and SingleSelect
+    selectOptionItem: {
+        // Allows programmatic focus to be applied to the item
+        ":focus": focusedStyle,
     },
 
     label: {
+        fontWeight: theme.item.font.weight,
+        lineHeight: sizing.size_200,
         whiteSpace: "nowrap",
         userSelect: "none",
         // added to truncate strings that are longer than expected

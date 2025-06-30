@@ -1,5 +1,69 @@
 # @khanacademy/wonder-blocks-tabs
 
+## 0.3.15
+
+### Patch Changes
+
+- Updated dependencies [de9435a]
+- Updated dependencies [f50aafc]
+    - @khanacademy/wonder-blocks-tokens@11.2.1
+    - @khanacademy/wonder-blocks-typography@4.2.8
+
+## 0.3.14
+
+### Patch Changes
+
+- Updated dependencies [e457d8c]
+    - @khanacademy/wonder-blocks-tokens@11.2.0
+    - @khanacademy/wonder-blocks-typography@4.2.7
+
+## 0.3.13
+
+### Patch Changes
+
+- 65e0b82: Adds `flexShrink: 0` to tablist wrapper styles so that it does not vanish
+
+## 0.3.12
+
+### Patch Changes
+
+- Updated dependencies [f26858a]
+    - @khanacademy/wonder-blocks-tokens@11.1.1
+    - @khanacademy/wonder-blocks-typography@4.2.6
+
+## 0.3.11
+
+### Patch Changes
+
+- Updated dependencies [705ee01]
+    - @khanacademy/wonder-blocks-typography@4.2.5
+
+## 0.3.10
+
+### Patch Changes
+
+- Updated dependencies [0f4f771]
+    - @khanacademy/wonder-blocks-tokens@11.1.0
+    - @khanacademy/wonder-blocks-typography@4.2.4
+
+## 0.3.9
+
+### Patch Changes
+
+- Updated dependencies [1ac2ba7]
+- Updated dependencies [0cb7a69]
+- Updated dependencies [cbf58b0]
+    - @khanacademy/wonder-blocks-tokens@11.0.0
+    - @khanacademy/wonder-blocks-typography@4.2.3
+
+## 0.3.8
+
+### Patch Changes
+
+- Updated dependencies [7811eb1]
+    - @khanacademy/wonder-blocks-tokens@10.6.0
+    - @khanacademy/wonder-blocks-typography@4.2.2
+
 ## 0.3.7
 
 ### Patch Changes

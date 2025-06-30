@@ -1,27 +1,16 @@
 import * as React from "react";
 import {Breadcrumbs} from "@khanacademy/wonder-blocks-breadcrumbs";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {HeadingMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
-import {
-    ThemedStylesFn,
-    useScopedTheme,
-    useStyles,
-} from "@khanacademy/wonder-blocks-theming";
-import {
-    ModalDialogThemeContext,
-    ModalDialogThemeContract,
-} from "../themes/themed-modal-dialog";
+import {Heading, BodyText} from "@khanacademy/wonder-blocks-typography";
+import {StyleSheet} from "aphrodite";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import theme from "../theme";
 
 type Common = {
     /**
      * The main title rendered in larger bold text.
      */
     title: string;
-    /**
-     * Whether to display the "light" version of this component instead, for
-     * use when the item is used on a dark background.
-     */
-    light: boolean;
     /**
      * An id to provide a selector for the title element.
      */
@@ -82,8 +71,6 @@ type Props = Common | WithSubtitle | WithBreadcrumbs;
  * - Add a title (required).
  * - Optionally add a subtitle or breadcrumbs.
  * - We encourage you to add `titleId` (see Accessibility notes).
- * - If the `ModalPanel` has a dark background, make sure to set `light` to
- *   `false`.
  * - If you need to create e2e tests, make sure to pass a `testId` prop and
  *   add a sufix to scope the testId to this component: e.g.
  *   `some-random-id-ModalHeader`. This scope will also be passed to the title
@@ -96,7 +83,6 @@ type Props = Common | WithSubtitle | WithBreadcrumbs;
  *      title="Sidebar using ModalHeader"
  *      subtitle="subtitle"
  *      titleId="uniqueTitleId"
- *      light={false}
  *  />
  * ```
  */
@@ -104,7 +90,6 @@ export default function ModalHeader(props: Props) {
     const {
         // @ts-expect-error [FEI-5019] - TS2339 - Property 'breadcrumbs' does not exist on type 'Readonly<Props> & Readonly<{ children?: ReactNode; }>'.
         breadcrumbs = undefined,
-        light,
         // @ts-expect-error [FEI-5019] - TS2339 - Property 'subtitle' does not exist on type 'Readonly<Props> & Readonly<{ children?: ReactNode; }>'.
         subtitle = undefined,
         testId,
@@ -116,29 +101,28 @@ export default function ModalHeader(props: Props) {
         throw new Error("'subtitle' and 'breadcrumbs' can't be used together");
     }
 
-    const {theme} = useScopedTheme(ModalDialogThemeContext);
-    const styles = useStyles(themedStylesFn, theme);
-
     return (
-        <View style={[styles.header, !light && styles.dark]} testId={testId}>
+        <View style={[styles.header]} testId={testId}>
             {breadcrumbs && (
                 <View style={styles.breadcrumbs}>{breadcrumbs}</View>
             )}
-            <HeadingMedium
+            <Heading
+                size="large"
                 tag="h2"
                 style={styles.title}
                 id={titleId}
                 testId={testId && `${testId}-title`}
             >
                 {title}
-            </HeadingMedium>
+            </Heading>
             {subtitle && (
-                <LabelSmall
-                    style={light && styles.subtitle}
+                <BodyText
+                    size="small"
+                    style={styles.subtitle}
                     testId={testId && `${testId}-subtitle`}
                 >
                     {subtitle}
-                </LabelSmall>
+                </BodyText>
             )}
         </View>
     );
@@ -151,47 +135,38 @@ export default function ModalHeader(props: Props) {
  */
 const small = "@media (max-width: 767px)";
 
-const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
+const styles = StyleSheet.create({
     header: {
         // TODO(WB-1878): Move this to an `elevation` theme token.
-        boxShadow: `0px 1px 0px ${theme.header.color.border}`,
+        boxShadow: `0px 1px 0px ${semanticColor.core.border.neutral.subtle}`,
         display: "flex",
         flexDirection: "column",
         minHeight: 66,
-        paddingBlock: theme.header.spacing.paddingBlockMd,
-        paddingInline: theme.header.spacing.paddingInlineMd,
+        paddingBlock: theme.header.layout.padding.block,
+        paddingInline: theme.header.layout.padding.inline.default,
         position: "relative",
         width: "100%",
 
-        [small]: {
-            paddingInline: theme.header.spacing.paddingInlineSm,
+        [small as any]: {
+            paddingInline: theme.header.layout.padding.inline.small,
         },
     },
 
-    dark: {
-        background: theme.root.color.inverse.background,
-        color: theme.root.color.inverse.foreground,
-    },
-
     breadcrumbs: {
-        color: theme.header.color.secondary,
-        marginBottom: theme.header.spacing.gap,
+        color: semanticColor.core.foreground.neutral.default,
+        marginBlockEnd: theme.header.layout.gap.default,
     },
 
     title: {
         // Prevent title from overlapping the close button
-        paddingRight: theme.header.spacing.titleGapMd,
-        [small]: {
-            paddingRight: theme.header.spacing.titleGapSm,
+        paddingInlineEnd: theme.header.layout.gap.title.default,
+        [small as any]: {
+            paddingInlineEnd: theme.header.layout.gap.title.small,
         },
     },
 
     subtitle: {
-        color: theme.header.color.secondary,
-        marginTop: theme.header.spacing.gap,
+        color: semanticColor.core.foreground.neutral.default,
+        marginBlockStart: theme.header.layout.gap.default,
     },
 });
-
-ModalHeader.defaultProps = {
-    light: true,
-};

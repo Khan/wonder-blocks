@@ -1,4 +1,10 @@
+// This import is valid as this is the only place in the codebase where we
+// should import/reference primitive colors.
+/* eslint-disable import/no-deprecated */
 import {color} from "../../tokens/color";
+// NOTE: This import is only to provide backwards compatibility with some
+// colors that don't exist in the OG primitives.
+import {color as thunderBlocksColor} from "./internal/primitive-color-thunderblocks";
 
 const transparent = "transparent";
 
@@ -34,21 +40,6 @@ const core = {
             subtle: transparent,
             default: color.fadedOffBlack16,
             strong: color.fadedOffBlack32,
-        },
-        gems: {
-            subtle: color.magenta_80,
-            default: color.magenta_60,
-            strong: color.magenta_30,
-        },
-        streak: {
-            subtle: color.orange_80,
-            default: color.orange_60,
-            strong: color.orange_30,
-        },
-        due: {
-            subtle: color.cyan_80,
-            default: color.cyan_60,
-            strong: color.cyan_30,
         },
         inverse: {
             subtle: color.fadedOffBlack16,
@@ -87,21 +78,6 @@ const core = {
             default: color.fadedOffBlack8,
             strong: color.fadedOffBlack16,
         },
-        gems: {
-            subtle: color.magenta_90,
-            default: color.magenta_80,
-            strong: color.magenta_10,
-        },
-        streak: {
-            subtle: color.orange_80,
-            default: color.orange_60,
-            strong: color.orange_10,
-        },
-        due: {
-            subtle: color.cyan_80,
-            default: color.cyan_60,
-            strong: color.cyan_10,
-        },
     },
 
     /**
@@ -138,21 +114,6 @@ const core = {
             default: color.fadedOffBlack32,
             strong: color.fadedOffBlack50,
         },
-        gems: {
-            subtle: color.magenta_60,
-            default: color.magenta_30,
-            strong: color.magenta_10,
-        },
-        streak: {
-            subtle: color.orange_60,
-            default: color.orange_30,
-            strong: color.orange_10,
-        },
-        due: {
-            subtle: color.cyan_60,
-            default: color.cyan_20,
-            strong: color.cyan_10,
-        },
         inverse: {
             subtle: color.fadedOffBlack32,
             default: color.offWhite,
@@ -160,7 +121,7 @@ const core = {
         },
     },
     shadow: {
-        transparent: transparent,
+        transparent: color.offBlack16,
         chonky: {
             progressive: {
                 subtle: color.fadedBlue,
@@ -199,6 +160,8 @@ const surface = {
 /**
  * TODO(WB-1941): Remove text once we have migrated to the new core.foreground
  * tokens.
+ *
+ * @deprecated Use `core.foreground` tokens instead.
  */
 const text = {
     primary: core.foreground.neutral.strong,
@@ -214,6 +177,122 @@ export const semanticColor = {
      * consistently across all components.
      */
     core,
+    /**
+     * Learning tokens are used for elements that are related to learning
+     * experiences, such as practice and mastery, among others.
+     */
+    learning: {
+        /**
+         * These colors are used for MathJax elements, which are used to
+         * render mathematical expressions in Khan Academy.
+         *
+         * NOTE: These colors are extracted from the Khan/mathjax-renderer repo.
+         * @see https://github.com/Khan/mathjax-renderer/blob/main/src/ts/tex-input-config.ts#L26-L35
+         */
+        math: {
+            foreground: {
+                blue: "#3D7586",
+                gold: "#946700",
+                green: "#447A53",
+                gray: "#5D5F66",
+                grayH: "#3B3D45",
+                grayI: "#21242C",
+                purple: "#594094",
+                purpleD: "#8351E8",
+                pink: "#B25071",
+                red: "#D92916",
+            },
+        },
+        background: {
+            gems: {
+                subtle: thunderBlocksColor.magenta_90,
+                default: thunderBlocksColor.magenta_80,
+                strong: thunderBlocksColor.magenta_10,
+            },
+            due: {
+                subtle: thunderBlocksColor.cyan_80,
+                default: thunderBlocksColor.cyan_60,
+                strong: thunderBlocksColor.cyan_10,
+            },
+            streaks: {
+                subtle: thunderBlocksColor.orange_80,
+                default: thunderBlocksColor.orange_60,
+                strong: thunderBlocksColor.orange_10,
+            },
+            progress: {
+                notStarted: {
+                    default: thunderBlocksColor.gray_60,
+                },
+                attempted: {
+                    default: thunderBlocksColor.yellow_60,
+                },
+                complete: {
+                    default: thunderBlocksColor.green_60,
+                },
+            },
+        },
+        border: {
+            gems: {
+                subtle: thunderBlocksColor.magenta_80,
+                default: thunderBlocksColor.magenta_60,
+                strong: thunderBlocksColor.magenta_30,
+            },
+            streaks: {
+                subtle: thunderBlocksColor.orange_80,
+                default: thunderBlocksColor.orange_60,
+                strong: thunderBlocksColor.orange_30,
+            },
+            due: {
+                subtle: thunderBlocksColor.cyan_80,
+                default: thunderBlocksColor.cyan_60,
+                strong: thunderBlocksColor.cyan_30,
+            },
+        },
+        foreground: {
+            gems: {
+                subtle: thunderBlocksColor.magenta_60,
+                default: thunderBlocksColor.magenta_30,
+                strong: thunderBlocksColor.magenta_10,
+            },
+            streaks: {
+                subtle: thunderBlocksColor.orange_60,
+                default: thunderBlocksColor.orange_30,
+                strong: thunderBlocksColor.orange_10,
+            },
+            due: {
+                subtle: thunderBlocksColor.cyan_60,
+                default: thunderBlocksColor.cyan_20,
+                strong: thunderBlocksColor.cyan_10,
+            },
+            progress: {
+                notStarted: {
+                    subtle: thunderBlocksColor.gray_50,
+                    strong: thunderBlocksColor.gray_10,
+                },
+                attempted: {
+                    subtle: thunderBlocksColor.yellow_50,
+                    strong: thunderBlocksColor.yellow_10,
+                },
+                complete: {
+                    strong: thunderBlocksColor.green_50,
+                },
+            },
+        },
+        shadow: {
+            progress: {
+                notStarted: {
+                    default: thunderBlocksColor.gray_20,
+                },
+                attempted: {
+                    default: thunderBlocksColor.yellow_30,
+                },
+                complete: {
+                    default: thunderBlocksColor.green_30,
+                },
+            },
+        },
+    },
+
     /**
      * For buttons, links, and controls to communicate the presence and meaning
      * of interaction.
@@ -480,7 +559,7 @@ export const semanticColor = {
                     selected: core.shadow.chonky.progressive.subtle,
                 },
                 tertiary: {
-                    rest: core.shadow.transparent,
+                    rest: core.transparent,
                     hover: core.shadow.chonky.neutral.subtle,
                     press: core.shadow.chonky.neutral.subtle,
                     selected: core.shadow.chonky.progressive.subtle,
@@ -552,7 +631,7 @@ export const semanticColor = {
                 primary: {
                     rest: core.shadow.chonky.neutral.strong,
                     hover: core.shadow.chonky.neutral.strong,
-                    press: core.shadow.transparent,
+                    press: core.transparent,
                     selected: core.shadow.chonky.neutral.strong,
                 },
                 secondary: {
@@ -562,7 +641,7 @@ export const semanticColor = {
                     selected: core.shadow.chonky.neutral.subtle,
                 },
                 tertiary: {
-                    rest: core.shadow.transparent,
+                    rest: core.transparent,
                     hover: core.shadow.chonky.neutral.subtle,
                     press: core.shadow.chonky.neutral.subtle,
                     selected: core.shadow.chonky.progressive.subtle,
@@ -588,7 +667,7 @@ export const semanticColor = {
             shadow: {
                 primary: core.shadow.chonky.neutral.subtle,
                 secondary: core.shadow.chonky.neutral.subtle,
-                tertiary: core.shadow.transparent,
+                tertiary: core.transparent,
             },
         },
     },
@@ -660,6 +739,8 @@ export const semanticColor = {
      * Borders define structure for elements. Generally borders for component
      * elements would use -Primary, rows and layout elements use -Subtle and
      * -Strong for when 3:1 contrast is a priority (ex. form elements)
+     *
+     * @deprecated Use `core.border` tokens instead.
      */
     border: border,
 
@@ -669,6 +750,8 @@ export const semanticColor = {
     },
     /**
      * Default icon colors that change in context (like actions).
+     *
+     * @deprecated Use `core.foreground` tokens instead.
      */
     icon: {
         primary: color.fadedOffBlack72,
