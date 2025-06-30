@@ -63,7 +63,7 @@ const core = {
         success: {
             subtle: color.green_90,
             default: color.green_30,
-            strong: color.green_10,
+            strong: color.green_20,
         },
         warning: {
             subtle: color.yellow_90,
