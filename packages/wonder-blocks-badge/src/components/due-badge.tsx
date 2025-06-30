@@ -43,29 +43,14 @@ const DueBadge = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 
 export {DueBadge};
 
-const dueBadgeTokens = {
-    root: {
-        color: {
-            background: semanticColor.learning.background.due.subtle,
-            border: semanticColor.learning.background.due.subtle, // Border should be the same as the background
-            foreground: semanticColor.learning.foreground.due.strong,
-        },
-    },
-    icon: {
-        color: {
-            foreground: semanticColor.learning.foreground.due.default,
-        },
-    },
-};
-
 const styles = StyleSheet.create({
     dueBadge: {
-        backgroundColor: dueBadgeTokens.root.color.background,
-        borderColor: dueBadgeTokens.root.color.border,
-        color: dueBadgeTokens.root.color.foreground,
+        backgroundColor: semanticColor.learning.background.due.subtle,
+        borderColor: semanticColor.learning.background.due.subtle, // Border should be the same as the background
+        color: semanticColor.learning.foreground.due.strong,
     },
     dueIcon: {
-        color: dueBadgeTokens.icon.color.foreground,
+        color: semanticColor.learning.foreground.due.default,
     },
     overdueBadge: {
         backgroundColor: semanticColor.core.background.critical.subtle,
