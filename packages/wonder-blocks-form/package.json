@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-form",
-  "version": "7.2.0",
+  "version": "7.2.1",
   "design": "v1",
   "description": "Form components for Wonder Blocks.",
   "exports": {
@@ -14,14 +14,6 @@
   "main": "dist/index.js",
   "module": "dist/es/index.js",
   "types": "dist/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/es/index.js",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    },
-    "./styles.css": "./dist/css/vars.css"
-  },
   "scripts": {
     "build:css": "pnpm exec wonder-blocks-tokens .",
     "test": "echo \"Error: no test specified\" && exit 1",

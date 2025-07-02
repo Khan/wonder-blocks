@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 11.3.0
+
+### Minor Changes
+
+- dddbe55: Includes css variables for form and labeled-field packages. Adds semanticColor.input.readOnly tokens. Updates TB values for input tokens
+
+### Patch Changes
+
+- a98fe6c: Update LabeledField component css variables
+- e21e448: Update tb semantic color value for input foreground
+
 ## 11.2.2
 
 ### Patch Changes

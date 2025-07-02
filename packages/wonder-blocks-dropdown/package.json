@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-dropdown",
-  "version": "10.2.3",
+  "version": "10.2.4",
   "design": "v1",
   "description": "Dropdown variants for Wonder Blocks.",
   "main": "dist/index.js",
@@ -38,8 +38,7 @@
     "@khanacademy/wonder-blocks-styles": "workspace:*",
     "@khanacademy/wonder-blocks-timing": "workspace:*",
     "@khanacademy/wonder-blocks-tokens": "workspace:*",
-    "@khanacademy/wonder-blocks-typography": "workspace:*",
-    "@khanacademy/wonder-blocks-form": "workspace:*"
+    "@khanacademy/wonder-blocks-typography": "workspace:*"
   },
   "peerDependencies": {
     "@phosphor-icons/core": "catalog:",

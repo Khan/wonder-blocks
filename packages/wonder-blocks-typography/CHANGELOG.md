@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-typography
 
+## 4.2.10
+
+### Patch Changes
+
+- e21e448: Include base CSS properties in shared `BodyText*` and `Heading*` typography styles
+- Updated dependencies [a98fe6c]
+- Updated dependencies [e21e448]
+- Updated dependencies [dddbe55]
+    - @khanacademy/wonder-blocks-tokens@11.3.0
+
 ## 4.2.9
 
 ### Patch Changes
