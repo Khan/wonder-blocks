@@ -701,7 +701,7 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                     strong: color.yellow_10,
                 },
                 complete: {
-                    strong: color.green_50,
+                    strong: color.green_10,
                 },
             },
         },
