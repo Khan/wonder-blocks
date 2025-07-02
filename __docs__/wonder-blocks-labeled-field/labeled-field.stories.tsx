@@ -6,20 +6,16 @@ import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {TextArea, TextField} from "@khanacademy/wonder-blocks-form";
 import LabeledFieldArgTypes from "./labeled-field.argtypes";
 import {addStyle, PropsFor, View} from "@khanacademy/wonder-blocks-core";
-import {sizing, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {
     MultiSelect,
     OptionItem,
     SingleSelect,
 } from "@khanacademy/wonder-blocks-dropdown";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
-import {
-    HeadingLarge,
-    HeadingMedium,
-    HeadingSmall,
-} from "@khanacademy/wonder-blocks-typography";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Button from "@khanacademy/wonder-blocks-button";
+import {allModes} from "../../.storybook/modes";
+import {Heading} from "@khanacademy/wonder-blocks-typography";
 
 /**
  * The `LabeledField` component provides common elements for a form field such
@@ -51,6 +47,11 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // Disabling snapshots for all stories by default because the testing
+            // snapshots cover the different scenarios
+            disableSnapshot: true,
+        },
     },
     argTypes: LabeledFieldArgTypes,
 } as Meta<typeof LabeledField>;
@@ -74,13 +75,23 @@ const AllFields = (
     storyArgs: PropsFor<typeof LabeledField> & {
         shouldValidateInStory?: boolean;
         showSubmitButtonInStory?: boolean;
+        disabled?: boolean;
+        readOnly?: boolean;
+        textValue?: string;
     },
 ) => {
-    const {shouldValidateInStory, showSubmitButtonInStory, ...args} = storyArgs;
+    const {
+        shouldValidateInStory,
+        showSubmitButtonInStory,
+        disabled,
+        readOnly,
+        textValue,
+        ...args
+    } = storyArgs;
 
     /** Values */
-    const [textFieldValue, setTextFieldValue] = React.useState("");
-    const [textAreaValue, setTextAreaValue] = React.useState("");
+    const [textFieldValue, setTextFieldValue] = React.useState(textValue || "");
+    const [textAreaValue, setTextAreaValue] = React.useState(textValue || "");
     const [singleSelectValue, setSingleSelectValue] = React.useState("");
     const [multiSelectValue, setMultiSelectValue] = React.useState<string[]>(
         [],
@@ -233,6 +244,8 @@ const AllFields = (
                             shouldValidateInStory ? textValidate : undefined
                         }
                         instantValidation={false}
+                        disabled={disabled}
+                        readOnly={readOnly}
                     />
                 }
             />
@@ -251,73 +264,87 @@ const AllFields = (
                             shouldValidateInStory ? textValidate : undefined
                         }
                         instantValidation={false}
+                        disabled={disabled}
+                        readOnly={readOnly}
                     />
                 }
             />
 
-            <LabeledField
-                {...args}
-                errorMessage={singleSelectErrorMessage}
-                label="Single Select"
-                description={selectDescription}
-                field={
-                    <SingleSelect
-                        // ref={singleSelectRef} // TODO(WB-1841) once SingleSelect supports ref
-                        placeholder="Choose a fruit"
-                        selectedValue={singleSelectValue}
-                        onChange={setSingleSelectValue}
-                        onValidate={setSingleSelectErrorMessage}
-                        validate={singleSelectValidate}
-                    >
-                        <OptionItem label="Mango" value="mango" />
-                        <OptionItem label="Strawberry" value="strawberry" />
-                        <OptionItem label="Banana" value="banana" />
-                    </SingleSelect>
-                }
-            />
+            {/* SingleSelect does not support readonly state */}
+            {!readOnly && (
+                <LabeledField
+                    {...args}
+                    errorMessage={singleSelectErrorMessage}
+                    label="Single Select"
+                    description={selectDescription}
+                    field={
+                        <SingleSelect
+                            // ref={singleSelectRef} // TODO(WB-1841) once SingleSelect supports ref
+                            placeholder="Choose a fruit"
+                            selectedValue={singleSelectValue}
+                            onChange={setSingleSelectValue}
+                            onValidate={setSingleSelectErrorMessage}
+                            validate={singleSelectValidate}
+                            disabled={disabled}
+                        >
+                            <OptionItem label="Mango" value="mango" />
+                            <OptionItem label="Strawberry" value="strawberry" />
+                            <OptionItem label="Banana" value="banana" />
+                        </SingleSelect>
+                    }
+                />
+            )}
 
-            <LabeledField
-                {...args}
-                errorMessage={multiSelectErrorMessage}
-                label="Multi Select"
-                description={selectDescription}
-                field={
-                    <MultiSelect
-                        // ref={multiSelectRef} // TODO(WB-1841) once MultiSelect supports ref
-                        selectedValues={multiSelectValue}
-                        onChange={setMultiSelectValue}
-                        onValidate={setMultiSelectErrorMessage}
-                        validate={
-                            shouldValidateInStory
-                                ? multiSelectValidate
-                                : undefined
-                        }
-                    >
-                        <OptionItem label="Mango" value="mango" />
-                        <OptionItem label="Strawberry" value="strawberry" />
-                        <OptionItem label="Banana" value="banana" />
-                    </MultiSelect>
-                }
-            />
+            {/* MultiSelect does not support readonly state */}
+            {!readOnly && (
+                <LabeledField
+                    {...args}
+                    errorMessage={multiSelectErrorMessage}
+                    label="Multi Select"
+                    description={selectDescription}
+                    field={
+                        <MultiSelect
+                            // ref={multiSelectRef} // TODO(WB-1841) once MultiSelect supports ref
+                            selectedValues={multiSelectValue}
+                            onChange={setMultiSelectValue}
+                            onValidate={setMultiSelectErrorMessage}
+                            validate={
+                                shouldValidateInStory
+                                    ? multiSelectValidate
+                                    : undefined
+                            }
+                            disabled={disabled}
+                        >
+                            <OptionItem label="Mango" value="mango" />
+                            <OptionItem label="Strawberry" value="strawberry" />
+                            <OptionItem label="Banana" value="banana" />
+                        </MultiSelect>
+                    }
+                />
+            )}
 
-            <LabeledField
-                {...args}
-                errorMessage={searchErrorMessage}
-                label="Search"
-                description={textDescription}
-                field={
-                    <SearchField
-                        ref={searchRef}
-                        value={searchValue}
-                        onChange={setSearchValue}
-                        validate={
-                            shouldValidateInStory ? textValidate : undefined
-                        }
-                        onValidate={setSearchErrorMessage}
-                        instantValidation={false}
-                    />
-                }
-            />
+            {/* SearchField does not support readonly state */}
+            {!readOnly && (
+                <LabeledField
+                    {...args}
+                    errorMessage={searchErrorMessage}
+                    label="Search"
+                    description={textDescription}
+                    field={
+                        <SearchField
+                            ref={searchRef}
+                            value={searchValue}
+                            onChange={setSearchValue}
+                            validate={
+                                shouldValidateInStory ? textValidate : undefined
+                            }
+                            onValidate={setSearchErrorMessage}
+                            instantValidation={false}
+                            disabled={disabled}
+                        />
+                    }
+                />
+            )}
 
             {showSubmitButtonInStory && <Button type="submit">Submit</Button>}
         </StyledForm>
@@ -332,30 +359,44 @@ const AllFields = (
  * - `MultiSelect`
  * - `SearchField`
  *
- * LabeledField works best with field components that accept `error` and
- * `required` props since these props will get auto-populated by LabeledField.
+ * The `LabeledField`'s `errorMessage` prop can be used to define the error
+ * message to show for the field. It will also put the field component in an
+ * error state by auto-populating the field's `error` prop depending on if there
+ * is an error message.
+ *
+ * Because of this, LabeledField works best with field components that accept
+ * `error` and `required` props since these props will get auto-populated by
+ * LabeledField.
  */
 export const Fields: StoryComponentType = {
     args: {
         description: "Helpful description text.",
     },
-    render: AllFields,
-};
-
-/**
- * The `errorMessage` prop can be used to define the error message to show for
- * the field.
- *
- * It will also put the field component in an error state by
- * auto-populating the field's `error` prop depending on if there is an error
- * message.
- */
-export const Error: StoryComponentType = {
-    args: {
-        description: "Helpful description text.",
-        errorMessage: "Message about the error",
+    render: (args) => {
+        return (
+            <View style={{gap: sizing.size_240}}>
+                <Heading>Default</Heading>
+                <AllFields {...args} />
+                <Heading>Error</Heading>
+                <AllFields {...args} errorMessage="Message about the error" />
+                <Heading>Disabled</Heading>
+                <AllFields {...args} disabled />
+                <Heading>Read Only</Heading>
+                <AllFields {...args} readOnly={true} textValue={"Value"} />
+            </View>
+        );
     },
-    render: AllFields,
+    parameters: {
+        chromatic: {
+            // Keep snapshots enabled for this story because it shows all the fields
+            // with LabeledField
+            disableSnapshot: false,
+            modes: {
+                default: allModes.themeDefault,
+                thunderblocks: allModes.themeThunderBlocks,
+            },
+        },
+    },
 };
 
 /**
@@ -382,12 +423,6 @@ export const Required: AllFieldsStoryComponentType = {
         showSubmitButtonInStory: true,
     },
     render: AllFields,
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -410,144 +445,38 @@ export const Validation: AllFieldsStoryComponentType = {
         showSubmitButtonInStory: true,
     },
     render: AllFields,
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
  * When this story is used with a screen reader, any updates to an existing
  * error message will be announced.
  */
-export const ChangingErrors: StoryComponentType = () => {
-    const errorMsg1 = "First error message";
-    const errorMsg2 = "Second error message";
+export const ChangingErrors: StoryComponentType = {
+    render: function ChangingErrors() {
+        const errorMsg1 = "First error message";
+        const errorMsg2 = "Second error message";
 
-    const [errorMessage, setErrorMessage] = React.useState(errorMsg1);
+        const [errorMessage, setErrorMessage] = React.useState(errorMsg1);
 
-    return (
-        <View>
-            <LabeledField
-                label="Label"
-                field={<TextField value="" onChange={() => {}} />}
-                errorMessage={errorMessage}
-            />
-            <Strut size={spacing.small_12} />
-            <Button
-                onClick={() =>
-                    setErrorMessage(
-                        errorMessage === errorMsg1 ? errorMsg2 : errorMsg1,
-                    )
-                }
-            >
-                Change error message
-            </Button>
-        </View>
-    );
-};
-
-ChangingErrors.parameters = {
-    chromatic: {
-        // Disabling because this doesn't test anything visual.
-        disableSnapshot: true,
+        return (
+            <View style={{gap: sizing.size_120}}>
+                <LabeledField
+                    label="Label"
+                    field={<TextField value="" onChange={() => {}} />}
+                    errorMessage={errorMessage}
+                />
+                <Button
+                    onClick={() =>
+                        setErrorMessage(
+                            errorMessage === errorMsg1 ? errorMsg2 : errorMsg1,
+                        )
+                    }
+                >
+                    Change error message
+                </Button>
+            </View>
+        );
     },
-};
-
-/**
- * The following story shows what the LabeledField looks like when different
- * props are set.
- */
-export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
-    const [textFieldValue, setTextFieldValue] = React.useState("");
-    const longText =
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.";
-    const longTextWithNoBreak =
-        "LoremipsumdolorsitametconsecteturadipiscingelitseddoeiusmodtemporincididuntutlaboreetdoloremagnaaliquaUtenimadminimveniamquisnostrudexercitationullamcolaborisnisiutaliquipexeacommodoconsequatDuisauteiruredolorinreprehenderitinvoluptatevelitessecillumdoloreeufugiatnullapariatur";
-    return (
-        <View style={{gap: sizing.size_240}}>
-            <HeadingLarge>Scenarios</HeadingLarge>
-            <LabeledField
-                {...args}
-                label="Label only"
-                field={
-                    <TextField
-                        value={textFieldValue}
-                        onChange={setTextFieldValue}
-                    />
-                }
-            />
-            <LabeledField
-                {...args}
-                label="With description"
-                description="Description"
-                field={
-                    <TextField
-                        value={textFieldValue}
-                        onChange={setTextFieldValue}
-                    />
-                }
-            />
-            <LabeledField
-                {...args}
-                label="With error"
-                errorMessage="Message about the error"
-                field={
-                    <TextField
-                        value="invalid value"
-                        onChange={() => {}}
-                        validate={() => "Message about the error"}
-                    />
-                }
-            />
-            <LabeledField
-                {...args}
-                label="With description and error"
-                errorMessage="Message about the error"
-                description="Description"
-                field={
-                    <TextField
-                        value="invalid value"
-                        onChange={() => {}}
-                        validate={() => "Message about the error"}
-                    />
-                }
-            />
-            <HeadingMedium>Text Scenarios</HeadingMedium>
-            <HeadingSmall>With Long Text</HeadingSmall>
-            <LabeledField
-                required={true}
-                {...args}
-                label={longText}
-                errorMessage={longText}
-                description={longText}
-                field={
-                    <TextField
-                        value="invalid value"
-                        onChange={() => {}}
-                        validate={() => "Message about the error"}
-                    />
-                }
-            />
-            <HeadingSmall>With Long Text and No Word Break</HeadingSmall>
-            <LabeledField
-                required={true}
-                {...args}
-                label={longTextWithNoBreak}
-                errorMessage={longTextWithNoBreak}
-                description={longTextWithNoBreak}
-                field={
-                    <TextField
-                        value="invalid value"
-                        onChange={() => {}}
-                        validate={() => "Message about the error"}
-                    />
-                }
-            />
-        </View>
-    );
 };
 
 /**
@@ -575,12 +504,6 @@ export const WithNonWb = {
         errorMessage: "Error message",
         required: true,
         field: <input type="text" />,
-    },
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
     },
 };
 

@@ -7,15 +7,12 @@ import {
     addStyle,
     View,
 } from "@khanacademy/wonder-blocks-core";
-import {
-    border,
-    font,
-    semanticColor,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 import {useId} from "react";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {useFieldValidation} from "../hooks/use-field-validation";
+import theme from "../theme";
 
 type TextAreaProps = AriaProps & {
     /**
@@ -277,12 +274,12 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                     className={className}
                     style={[
                         styles.textarea,
-                        typographyStyles.LabelMedium,
+                        typographyStyles.BodyTextMediumMediumWeight,
                         resizeType && resizeStyles[resizeType],
                         styles.default,
-                        !disabled && styles.defaultFocus,
                         disabled && styles.disabled,
                         hasError && styles.error,
+                        readOnly && styles.readOnly,
                         style,
                     ]}
                     value={value}
@@ -313,15 +310,18 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
     },
 );
 
-const VERTICAL_SPACING_PX = 10;
-
 const styles = StyleSheet.create({
     textarea: {
-        borderRadius: border.radius.radius_040,
+        borderRadius: theme.field.border.radius,
         boxSizing: "border-box",
-        padding: `${VERTICAL_SPACING_PX}px ${spacing.medium_16}px`,
+        paddingInline: theme.field.layout.paddingInline,
+        paddingBlock: theme.field.layout.paddingBlock,
         // This minHeight is equivalent to when the textarea has one row
-        minHeight: `calc(${VERTICAL_SPACING_PX * 2 + 2}px + ${font.lineHeight.medium})`,
+        minHeight: theme.field.sizing.height,
+    },
+    readOnly: {
+        background: semanticColor.input.readOnly.background,
+        color: semanticColor.input.readOnly.text,
     },
     default: {
         background: semanticColor.input.default.background,
@@ -330,15 +330,12 @@ const styles = StyleSheet.create({
         "::placeholder": {
             color: semanticColor.input.default.placeholder,
         },
-    },
-    defaultFocus: {
-        // TODO(WB-1864): Use focusStyles.focus
-        ":focus-visible": {
-            borderColor: semanticColor.focus.outer,
-            outline: `${border.width.thin} solid ${semanticColor.focus.outer}`,
-            // Negative outline offset so it focus outline is not cropped off if
-            // an ancestor element has overflow: hidden
-            outlineOffset: -2,
+        ...focusStyles.focus,
+        // Don't show active styles if field is disabled or readonly
+        [":active:not([aria-disabled='true']):not([readonly])" as any]: {
+            // Use box shadow to make the border in the press state look thicker
+            // without changing the border
+            boxShadow: `0 0 0 ${theme.field.border.width.press} ${semanticColor.input.default.border}`,
         },
     },
     disabled: {
@@ -349,23 +346,13 @@ const styles = StyleSheet.create({
             color: semanticColor.input.disabled.placeholder,
         },
         cursor: "not-allowed",
-        // TODO(WB-1864): Use focusStyles.focus
-        ":focus-visible": {
-            outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
-            outlineOffset: -3,
-        },
     },
     error: {
         background: semanticColor.input.error.background,
-        border: `${border.width.thin} solid ${semanticColor.input.error.border}`,
+        border: `${theme.field.border.width.error} solid ${semanticColor.input.error.border}`,
         color: semanticColor.input.error.foreground,
         "::placeholder": {
             color: semanticColor.input.default.placeholder,
-        },
-        // TODO(WB-1864): Use focusStyles.focus
-        ":focus-visible": {
-            outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
-            borderColor: semanticColor.input.error.border,
         },
     },
 });

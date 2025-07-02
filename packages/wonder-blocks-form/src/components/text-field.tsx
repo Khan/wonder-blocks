@@ -2,16 +2,14 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {Id, addStyle} from "@khanacademy/wonder-blocks-core";
-import {
-    border,
-    semanticColor,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {OmitConstrained} from "../util/types";
 import {useFieldValidation} from "../hooks/use-field-validation";
+import theme from "../theme";
 
 export type TextFieldType = "text" | "password" | "email" | "number" | "tel";
 
@@ -231,11 +229,11 @@ const TextField = (props: PropsWithForwardRef) => {
                 <StyledInput
                     style={[
                         styles.input,
-                        typographyStyles.LabelMedium,
+                        typographyStyles.BodyTextMediumMediumWeight,
                         styles.default,
-                        !disabled && styles.defaultFocus,
                         disabled && styles.disabled,
                         hasError && styles.error,
+                        readOnly && styles.readOnly,
                         style,
                     ]}
                     id={uniqueId}
@@ -265,11 +263,16 @@ const TextField = (props: PropsWithForwardRef) => {
 const styles = StyleSheet.create({
     input: {
         width: "100%",
-        height: 40,
-        borderRadius: border.radius.radius_040,
+        height: theme.field.sizing.height,
+        borderRadius: theme.field.border.radius,
         boxSizing: "border-box",
-        paddingLeft: spacing.medium_16,
-        margin: 0,
+        paddingInline: theme.field.layout.paddingInline,
+        paddingBlock: theme.field.layout.paddingBlock,
+        margin: sizing.size_0,
+    },
+    readOnly: {
+        background: semanticColor.input.readOnly.background,
+        color: semanticColor.input.readOnly.text,
     },
     default: {
         background: semanticColor.input.default.background,
@@ -278,28 +281,20 @@ const styles = StyleSheet.create({
         "::placeholder": {
             color: semanticColor.input.default.placeholder,
         },
-    },
-    defaultFocus: {
-        // TODO(WB-1864): Use focusStyles.focus
-        ":focus-visible": {
-            borderColor: semanticColor.focus.outer,
-            outline: `${border.width.thin} solid ${semanticColor.focus.outer}`,
-            // Negative outline offset so it focus outline is not cropped off if
-            // an ancestor element has overflow: hidden
-            outlineOffset: -2,
+        ...focusStyles.focus,
+        // Don't show active styles if field is disabled or readonly
+        [":active:not([aria-disabled='true']):not([readonly])" as any]: {
+            // Use box shadow to make the border in the press state look thicker
+            // without changing the border
+            boxShadow: `0 0 0 ${theme.field.border.width.press} ${semanticColor.input.default.border}`,
         },
     },
     error: {
         background: semanticColor.input.error.background,
-        border: `${border.width.thin} solid ${semanticColor.input.error.border}`,
+        border: `${theme.field.border.width.error} solid ${semanticColor.input.error.border}`,
         color: semanticColor.input.error.foreground,
         "::placeholder": {
             color: semanticColor.input.default.placeholder,
-        },
-        // TODO(WB-1864): Use focusStyles.focus
-        ":focus-visible": {
-            outlineColor: semanticColor.focus.outer,
-            outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
         },
     },
     disabled: {
@@ -310,11 +305,6 @@ const styles = StyleSheet.create({
             color: semanticColor.input.disabled.placeholder,
         },
         cursor: "not-allowed",
-        // TODO(WB-1864): Use focusStyles.focus
-        ":focus-visible": {
-            outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
-            outlineOffset: -3,
-        },
     },
 });
 

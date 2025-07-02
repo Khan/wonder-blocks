@@ -4,8 +4,9 @@ import WarningCircle from "@phosphor-icons/core/bold/warning-circle-bold.svg";
 
 import {View, addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
+import theme from "../theme";
 
 type Props = {
     /**
@@ -133,11 +134,16 @@ export default function LabeledField(props: Props) {
 
     const isRequired = !!required || !!field.props.required;
     const hasError = !!errorMessage || !!field.props.error;
+    const isDisabled = !!field.props.disabled;
 
     function renderLabel(): React.ReactNode {
         const requiredIcon = (
             <StyledSpan
-                style={[styles.textWordBreak, styles.required]}
+                style={[
+                    styles.textWordBreak,
+                    styles.required,
+                    isDisabled && styles.disabledLabel,
+                ]}
                 aria-hidden={true}
             >
                 {" "}
@@ -147,7 +153,7 @@ export default function LabeledField(props: Props) {
 
         return (
             <React.Fragment>
-                <LabelMedium
+                <BodyText
                     style={[
                         styles.textWordBreak,
                         styles.label,
@@ -155,15 +161,18 @@ export default function LabeledField(props: Props) {
                             ? styles.labelWithDescription
                             : styles.labelWithNoDescription,
                         stylesProp?.label,
+                        hasError ? styles.labelWithError : undefined,
+                        isDisabled && styles.disabledLabel,
                     ]}
                     tag="label"
                     htmlFor={fieldId}
                     testId={testId && `${testId}-label`}
                     id={labelId}
+                    weight="semi"
                 >
                     {label}
                     {isRequired && requiredIcon}
-                </LabelMedium>
+                </BodyText>
             </React.Fragment>
         );
     }
@@ -175,7 +184,7 @@ export default function LabeledField(props: Props) {
 
         return (
             <React.Fragment>
-                <LabelSmall
+                <BodyText
                     style={[
                         styles.textWordBreak,
                         styles.description,
@@ -185,7 +194,7 @@ export default function LabeledField(props: Props) {
                     id={descriptionId}
                 >
                     {description}
-                </LabelSmall>
+                </BodyText>
             </React.Fragment>
         );
     }
@@ -222,7 +231,7 @@ export default function LabeledField(props: Props) {
                                 role="img"
                                 aria-label={labels.errorIconAriaLabel}
                             />
-                            <LabelSmall
+                            <BodyText
                                 style={[
                                     styles.textWordBreak,
                                     styles.errorMessage,
@@ -230,7 +239,7 @@ export default function LabeledField(props: Props) {
                                 ]}
                             >
                                 {errorMessage}
-                            </LabelSmall>
+                            </BodyText>
                         </>
                     )}
                 </View>
@@ -265,36 +274,50 @@ export default function LabeledField(props: Props) {
 
 const styles = StyleSheet.create({
     label: {
-        color: semanticColor.text.primary,
+        color: semanticColor.core.foreground.neutral.strong,
+    },
+    labelWithError: {
+        color: theme.label.color.error.foreground,
+    },
+    disabledLabel: {
+        color: theme.label.color.disabled.foreground,
     },
     labelWithDescription: {
-        paddingBlockEnd: sizing.size_040,
+        paddingBlockEnd: theme.root.layout.paddingBlockEnd.labelWithDescription,
     },
     labelWithNoDescription: {
-        paddingBlockEnd: sizing.size_120,
+        paddingBlockEnd:
+            theme.root.layout.paddingBlockEnd.labelWithNoDescription,
     },
     description: {
-        color: semanticColor.text.secondary,
-        paddingBlockEnd: sizing.size_120,
+        color: theme.description.color.foreground,
+        paddingBlockEnd: theme.root.layout.paddingBlockEnd.description,
+        fontSize: theme.description.font.size,
+        lineHeight: theme.description.font.lineHeight,
     },
     errorSection: {
         flexDirection: "row",
         gap: sizing.size_080,
     },
     errorSectionWithContent: {
-        paddingBlockStart: sizing.size_120,
+        paddingBlockStart:
+            theme.root.layout.paddingBlockEnd.errorSectionWithContent,
     },
     error: {
-        color: semanticColor.status.critical.foreground,
+        color: theme.error.color.foreground,
     },
     errorIcon: {
-        marginTop: "1px", // This vertically aligns the icon with the text
+        marginTop: sizing.size_010, // This vertically aligns the icon with the text
     },
     errorMessage: {
-        minWidth: "0", // This enables the wrapping behaviour on the error message
+        minWidth: sizing.size_0, // This enables the wrapping behaviour on the error message
+        fontSize: theme.error.font.size,
+        fontWeight: theme.error.font.weight,
+        lineHeight: theme.error.font.lineHeight,
+        marginBlockStart: theme.error.layout.marginBlockStart,
     },
     required: {
-        color: semanticColor.status.critical.foreground,
+        color: theme.requiredIndicator.color.foreground,
     },
     textWordBreak: {
         overflowWrap: "break-word",
