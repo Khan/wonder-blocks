@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-tooltip",
-  "version": "4.1.30",
+  "version": "4.1.31",
   "design": "v1",
   "publishConfig": {
     "access": "public"

@@ -1,5 +1,30 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.2.4
+
+### Patch Changes
+
+- dddbe55: Explicitly add deps for form package
+- 6b05521: Make sure combobox input wrapper contents don't overflow
+- Updated dependencies [e21e448]
+- Updated dependencies [6b05521]
+- Updated dependencies [a98fe6c]
+- Updated dependencies [e21e448]
+- Updated dependencies [dddbe55]
+- Updated dependencies [e21e448]
+- Updated dependencies [dddbe55]
+    - @khanacademy/wonder-blocks-form@7.2.1
+    - @khanacademy/wonder-blocks-tokens@11.3.0
+    - @khanacademy/wonder-blocks-typography@4.2.10
+    - @khanacademy/wonder-blocks-search-field@5.1.31
+    - @khanacademy/wonder-blocks-cell@5.0.2
+    - @khanacademy/wonder-blocks-clickable@7.1.14
+    - @khanacademy/wonder-blocks-icon@5.2.8
+    - @khanacademy/wonder-blocks-icon-button@10.3.9
+    - @khanacademy/wonder-blocks-modal@8.1.3
+    - @khanacademy/wonder-blocks-pill@3.1.29
+    - @khanacademy/wonder-blocks-styles@0.2.21
+
 ## 10.2.3
 
 ### Patch Changes

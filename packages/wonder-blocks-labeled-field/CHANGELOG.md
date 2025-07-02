@@ -1,5 +1,23 @@
 # @khanacademy/wonder-blocks-labeled-field
 
+## 3.1.0
+
+### Minor Changes
+
+- dddbe55: Support thunderblocks theming in LabeledField component. Includes themed styles for the label if the field is disabled
+
+### Patch Changes
+
+- 6b05521: Update semantic color token, typography and sizing usage
+- a98fe6c: LabeledField: Show the error icon with the error message in the TB theme
+- Updated dependencies [a98fe6c]
+- Updated dependencies [e21e448]
+- Updated dependencies [e21e448]
+- Updated dependencies [dddbe55]
+    - @khanacademy/wonder-blocks-tokens@11.3.0
+    - @khanacademy/wonder-blocks-typography@4.2.10
+    - @khanacademy/wonder-blocks-layout@3.1.25
+
 ## 3.0.22
 
 ### Patch Changes

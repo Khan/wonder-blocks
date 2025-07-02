@@ -1,5 +1,22 @@
 # @khanacademy/wonder-blocks-form
 
+## 7.2.1
+
+### Patch Changes
+
+- e21e448: Use typography styles for TextField and TextArea
+- 6b05521: Update semantic color token usage, sizing token usage, and use global focus styles for TextField and TextArea
+- dddbe55: Support TB styling in TextField and TextArea
+- Updated dependencies [a98fe6c]
+- Updated dependencies [e21e448]
+- Updated dependencies [e21e448]
+- Updated dependencies [dddbe55]
+    - @khanacademy/wonder-blocks-tokens@11.3.0
+    - @khanacademy/wonder-blocks-typography@4.2.10
+    - @khanacademy/wonder-blocks-clickable@7.1.14
+    - @khanacademy/wonder-blocks-icon@5.2.8
+    - @khanacademy/wonder-blocks-layout@3.1.25
+
 ## 7.2.0
 
 ### Minor Changes
