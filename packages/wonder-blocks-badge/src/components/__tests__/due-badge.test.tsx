@@ -15,25 +15,48 @@ describe("DueBadge", () => {
         expect(badge).toBeInTheDocument();
     });
 
-    it("should render the icon", () => {
+    it("should render the icon with alt text", () => {
         // Arrange
-        const icon = <svg data-testid="icon-example" />;
-        render(<DueBadge icon={icon} />);
+        render(<DueBadge showIcon={true} iconAriaLabel="Due" />);
 
         // Act
-        const iconElement = screen.getByTestId("icon-example");
+        const iconElement = screen.getByRole("img", {
+            name: "Due",
+        });
 
         // Assert
         expect(iconElement).toBeInTheDocument();
     });
 
-    it("should not render anything if the label is an empty string and there is no icon", () => {
+    it("should not have an img role if showIcon is true and no alt text is provided", () => {
+        // Arrange
+        render(<DueBadge showIcon={true} label="Badge" />);
+
+        // Act
+        const iconElement = screen.queryByRole("img");
+
+        // Assert
+        expect(iconElement).not.toBeInTheDocument();
+    });
+
+    it("should not render anything if there is an empty label and showIcon is false", () => {
         // Arrange
         // Act
-        const {container} = render(<DueBadge label="" />);
+        const {container} = render(<DueBadge label="" showIcon={false} />);
 
         // Assert
         expect(container).toBeEmptyDOMElement();
+    });
+
+    it("should not render the icon if showIcon is not set", () => {
+        // Arrange
+        render(<DueBadge label="Badge" />);
+
+        // Act
+        const iconElement = screen.queryByRole("img");
+
+        // Assert
+        expect(iconElement).not.toBeInTheDocument();
     });
 
     describe("Accessibility", () => {

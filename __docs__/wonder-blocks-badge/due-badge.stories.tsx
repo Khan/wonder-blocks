@@ -3,21 +3,17 @@ import type {StoryObj} from "@storybook/react";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-badge/package.json";
 import {DueBadge} from "@khanacademy/wonder-blocks-badge";
-import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import singleColoredIcon from "../components/single-colored-icon.svg";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
-import badgeArgtypes, {iconArgType} from "./badge.argtypes";
-import {multiColoredIcon} from "../components/icons-for-testing";
+import badgeArgtypes, {showIconArgType} from "./badge.argtypes";
 import {allModes} from "../../.storybook/modes";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 export default {
     title: "Packages / Badge / DueBadge",
     component: DueBadge,
     argTypes: {
         ...badgeArgtypes,
-        ...iconArgType,
+        ...showIconArgType,
     },
     parameters: {
         componentSubtitle: (
@@ -35,50 +31,44 @@ export default {
             },
         },
     },
-    render: (
-        args: Omit<PropsFor<typeof DueBadge>, "icon"> & {icon: string},
-    ) => {
+    render: (args: PropsFor<typeof DueBadge>) => {
         return (
-            <DueBadge
-                {...args}
-                label={args.label || ""}
-                icon={
-                    args.icon ? (
-                        <PhosphorIcon
-                            icon={args.icon}
-                            aria-label={"Example icon"}
-                        />
-                    ) : undefined
-                }
-            />
+            <View style={{flexDirection: "row", gap: sizing.size_160}}>
+                <DueBadge {...args} label={args.label || ""} kind="due" />
+                <DueBadge {...args} label={args.label || ""} kind="overdue" />
+            </View>
         );
     },
 };
 
-type StoryComponentType = StoryObj<
-    // Omit original icon type and replace with string so we can use the IconMapping
-    // for PhosphorIcons
-    Omit<PropsFor<typeof DueBadge>, "icon"> & {icon?: string}
->;
+type StoryComponentType = StoryObj<typeof DueBadge>;
 
 export const Default = {
     args: {
         label: "Badge",
-        icon: "cookie",
+        showIcon: true,
     },
-    render: (
-        args: Omit<PropsFor<typeof DueBadge>, "icon"> & {icon: string},
-    ) => (
-        <DueBadge
-            {...args}
-            label={args.label || ""}
-            icon={
-                args.icon ? (
-                    <PhosphorIcon icon={args.icon} aria-label="Example icon" />
-                ) : undefined
-            }
-        />
-    ),
+    render: (args: PropsFor<typeof DueBadge>) => {
+        return <DueBadge {...args} label={args.label || ""} />;
+    },
+};
+
+/**
+ * The `DueBadge` supports two kinds: `due` and `overdue`. By default, the
+ * `due` kind is used.
+ */
+export const Kinds: StoryComponentType = {
+    args: {
+        showIcon: true,
+    },
+    render: (args: PropsFor<typeof DueBadge>) => {
+        return (
+            <View style={{flexDirection: "row", gap: sizing.size_160}}>
+                <DueBadge {...args} label={"Due"} kind="due" />
+                <DueBadge {...args} label={"Overdue"} kind="overdue" />
+            </View>
+        );
+    },
 };
 
 /**
@@ -91,84 +81,20 @@ export const LabelOnly: StoryComponentType = {
 };
 
 /**
- * A badge can be used with only an icon.
+ * Set `showIcon` to `true` to show the icon only. Alt text for the icon can be
+ * set using the `iconAriaLabel` prop.
  */
 export const IconOnly: StoryComponentType = {
-    args: {
-        icon: "cookie",
-    },
-};
-
-/**
- * For more details about using custom icons, see the Badge docs for custom icons.
- */
-export const CustomIcons: StoryComponentType = {
-    render: () => {
+    render: (args: PropsFor<typeof DueBadge>) => {
         return (
-            <View style={{gap: sizing.size_240}}>
-                <HeadingLarge>
-                    Custom single colored svg icon using PhosphorIcon
-                </HeadingLarge>
+            <View style={{flexDirection: "row", gap: sizing.size_160}}>
+                <DueBadge showIcon={true} iconAriaLabel="Due" kind="due" />
                 <DueBadge
-                    icon={
-                        <PhosphorIcon
-                            icon={singleColoredIcon}
-                            aria-label="Crown"
-                        />
-                    }
-                    label="Custom Icon"
-                />
-                <HeadingLarge>
-                    Custom single colored svg icon using PhosphorIcon and color
-                    prop
-                </HeadingLarge>
-                <DueBadge
-                    icon={
-                        <PhosphorIcon
-                            icon={singleColoredIcon}
-                            aria-label="Crown"
-                            color={semanticColor.icon.primary}
-                        />
-                    }
-                    label="Custom Icon"
-                />
-                <HeadingLarge>
-                    Custom multi-colored inline svg using the Icon component
-                </HeadingLarge>
-                <DueBadge
-                    icon={<Icon>{multiColoredIcon}</Icon>}
-                    label="Custom Icon"
-                />
-                <HeadingLarge>
-                    Custom img element using the Icon component with a svg src
-                </HeadingLarge>
-                <DueBadge
-                    icon={
-                        <Icon>
-                            <img src={"logo.svg"} alt="Wonder Blocks" />
-                        </Icon>
-                    }
-                    label="Custom Icon"
-                />
-                <HeadingLarge>
-                    Custom img element using the Icon component with a png src
-                </HeadingLarge>
-                <DueBadge
-                    icon={
-                        <Icon>
-                            <img src="avatar.png" alt="Example avatar" />
-                        </Icon>
-                    }
-                    label="Custom Icon"
+                    showIcon={true}
+                    iconAriaLabel="Overdue"
+                    kind="overdue"
                 />
             </View>
         );
-    },
-    parameters: {
-        chromatic: {
-            // Enable snapshots for this story so we can verify custom icons
-            // are used correctly
-            disableSnapshot: false,
-        },
     },
 };

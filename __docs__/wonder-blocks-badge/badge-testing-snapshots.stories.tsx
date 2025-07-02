@@ -55,6 +55,7 @@ export default {
 type StoryComponentType = StoryObj<typeof Badge>;
 
 const statusKinds = ["info", "success", "warning", "critical"] as const;
+const dueKinds = ["due", "overdue"] as const;
 
 const states = [
     commonStates.rest,
@@ -100,6 +101,11 @@ export const StateSheetStory: StoryComponentType = {
         ];
 
         const statusRows = statusKinds.map((kind) => ({
+            name: kind,
+            props: {kind},
+        }));
+
+        const dueBadgeRows = dueKinds.map((kind) => ({
             name: kind,
             props: {kind},
         }));
@@ -153,7 +159,11 @@ export const StateSheetStory: StoryComponentType = {
                     {({props}) => <StreakBadge {...props} />}
                 </StateSheet>
                 <HeadingLarge>Due Badge</HeadingLarge>
-                <StateSheet rows={rows} columns={columns} states={states}>
+                <StateSheet
+                    rows={dueBadgeRows}
+                    columns={columnsWithShowIconProp}
+                    states={states}
+                >
                     {({props}) => <DueBadge {...props} />}
                 </StateSheet>
             </View>
@@ -294,7 +304,6 @@ export const AllBadgesScenarios: StoryComponentType = {
             ...statusKinds.map((kind) => (
                 <StatusBadge label="Badge" kind={kind} />
             )),
-            <DueBadge label="Badge" />,
         ].map((component) =>
             React.cloneElement(component, {
                 icon: <PhosphorIcon icon={IconMappings.cookie} />,
@@ -304,6 +313,7 @@ export const AllBadgesScenarios: StoryComponentType = {
         const badgesWithShowIcon = [
             <GemBadge label="Badge" />,
             <StreakBadge label="Badge" />,
+            ...dueKinds.map((kind) => <DueBadge label="Badge" kind={kind} />),
         ].map((component) =>
             React.cloneElement(component, {
                 showIcon: true,
