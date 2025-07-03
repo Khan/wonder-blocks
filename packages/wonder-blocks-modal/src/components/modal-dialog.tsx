@@ -1,16 +1,9 @@
 import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
-
-import {
-    ThemedStylesFn,
-    useScopedTheme,
-    useStyles,
-} from "@khanacademy/wonder-blocks-theming";
-import ThemeModalDialog, {
-    ModalDialogThemeContext,
-    ModalDialogThemeContract,
-} from "../themes/themed-modal-dialog";
+import {StyleSheet} from "aphrodite";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import theme from "../theme";
 
 type Props = {
     /**
@@ -44,9 +37,10 @@ type Props = {
      */
     testId?: string;
     /**
-     * The ID of the title labelling this dialog, if applicable.
+     * The ID of the title labelling this dialog. Required.
+     * See WCAG 2.1: 4.1.2 Name, Role, Value
      */
-    "aria-labelledby"?: string;
+    "aria-labelledby": string;
     /**
      * The ID of the content describing this dialog, if applicable.
      */
@@ -63,7 +57,7 @@ type Props = {
  * - If there is a custom Dialog implementation (e.g. `TwoPaneDialog`), the dialog element doesn’t have to have
  * the `aria-labelledby` attribute however this is recommended. It should match the `id` of the dialog title.
  */
-const ModalDialogCore = React.forwardRef(function ModalDialogCore(
+const ModalDialog = React.forwardRef(function ModalDialog(
     props: Props,
     ref: React.ForwardedRef<HTMLDivElement>,
 ) {
@@ -74,15 +68,9 @@ const ModalDialogCore = React.forwardRef(function ModalDialogCore(
         style,
         children,
         testId,
-        /* eslint-disable react/prop-types */
-        // the react/prop-types plugin does not like these
         "aria-labelledby": ariaLabelledBy,
         "aria-describedby": ariaDescribedBy,
-        /* eslint-enable react/prop-types */
     } = props;
-
-    const {theme} = useScopedTheme(ModalDialogThemeContext);
-    const styles = useStyles(themedStylesFn, theme);
 
     return (
         <View style={[styles.wrapper, style]}>
@@ -103,29 +91,21 @@ const ModalDialogCore = React.forwardRef(function ModalDialogCore(
     );
 });
 
-const ModalDialog = React.forwardRef(function ModalDialog(
-    props: Props,
-    ref: React.ForwardedRef<HTMLDivElement>,
-) {
-    return (
-        <ThemeModalDialog>
-            <ModalDialogCore {...props} ref={ref} />
-        </ThemeModalDialog>
-    );
-});
+const small = "@media (max-width: 767px)" as any;
 
-const small = "@media (max-width: 767px)";
-
-const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
+const styles = StyleSheet.create({
     wrapper: {
-        display: "flex",
+        // Allows propagating the text color to all the children.
+        color: semanticColor.core.foreground.neutral.strong,
         flexDirection: "row",
         alignItems: "stretch",
         width: "100%",
         height: "100%",
         position: "relative",
+        boxShadow: theme.dialog.shadow.default,
+        borderRadius: theme.root.border.radius,
         [small]: {
-            padding: theme.spacing.dialog.small,
+            padding: theme.dialog.layout.padding,
             flexDirection: "column",
         },
     },
@@ -136,7 +116,7 @@ const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
     dialog: {
         width: "100%",
         height: "100%",
-        borderRadius: theme.border.radius,
+        borderRadius: theme.root.border.radius,
         overflow: "hidden",
     },
 

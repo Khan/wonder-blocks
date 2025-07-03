@@ -1,0 +1,18 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta
+    title="Packages / Data / Exports / DataErrors"
+/>
+
+# DataErrors
+
+This export defines the error taxonomy used by Wonder Blocks Data to describe the errors that can occur. These are for use with <a href="./?path=/docs/packages-data-exports-dataerror--docs">`DataError`</a>.
+
+| Kind                      | Description                                                   |
+| ------------------------- | ------------------------------------------------------------- |
+| `DataErrors.Unknown`      | The kind of error is not known.                               |
+| `DataErrors.Internal`     | The error is internal to the executing code.                  |
+| `DataErrors.InvalidInput` | There was a problem with the provided input.                  |
+| `DataErrors.Network`      | A network error occurred.                                     |
+| `DataErrors.Parse`        | Response could not be parsed.                                 |
+| `DataErrors.Hydrated`     | An error that occurred during SSR and was hydrated from cache |

@@ -12,7 +12,7 @@ import {Strut} from "@khanacademy/wonder-blocks-layout";
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
 import {HeadingSmall, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-accordion/package.json";
 
 import AccordionSectionArgtypes from "./accordion-section.argtypes";
@@ -62,7 +62,7 @@ import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
  * ```
  */
 export default {
-    title: "Accordion / AccordionSection",
+    title: "Packages / Accordion / AccordionSection",
     component: AccordionSection,
     parameters: {
         componentSubtitle: (
@@ -238,7 +238,8 @@ export const ReactElementInHeader: StoryComponentType = {
                             <View
                                 style={{
                                     backgroundSize: "contain",
-                                    borderRadius: "8px",
+                                    borderRadius:
+                                        tokens.border.radius.radius_080,
                                     height: 40,
                                     marginRight: tokens.spacing.small_12,
                                     minWidth: 40,

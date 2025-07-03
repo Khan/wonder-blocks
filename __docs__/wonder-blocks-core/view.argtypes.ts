@@ -1,4 +1,4 @@
-import type {InputType} from "@storybook/csf";
+import type {ArgTypes} from "@storybook/react";
 
 export default {
     children: {
@@ -48,7 +48,7 @@ export default {
 
     testId: {
         description:
-            "Test ID used for e2e testing. This sets the `data-test-id` attribute on the rendered element.",
+            "Test ID used for e2e testing. This sets the `data-testid` attribute on the rendered element.",
         control: {type: "text"},
         table: {
             type: {
@@ -56,4 +56,4 @@ export default {
             },
         },
     },
-} satisfies Record<string, InputType>;
+} satisfies ArgTypes;

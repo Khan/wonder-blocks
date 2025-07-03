@@ -2,15 +2,17 @@ import * as React from "react";
 import {css, StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {View} from "@khanacademy/wonder-blocks-core";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, sizing, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     Title,
+    Heading,
     HeadingLarge,
     HeadingMedium,
     HeadingSmall,
     HeadingXSmall,
+    BodyText,
     BodySerifBlock,
     BodySerif,
     BodyMonospace,
@@ -22,31 +24,36 @@ import {
     Tagline,
     Caption,
     Footnote,
+    styles as typographyStyles,
 } from "@khanacademy/wonder-blocks-typography";
 import packageConfig from "../../packages/wonder-blocks-typography/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import TypographyArgTypes from "./typography.argtypes";
+import {allModes} from "../../.storybook/modes";
 
 // NOTE: Only for testing purposes.
 // eslint-disable-next-line import/no-unassigned-import
 import "./styles.css";
 
-const typographyDescription = `Typography. \`wonder-blocks-typography\`
+/**
+Typography. `wonder-blocks-typography`
 provides a set of standardized components for displaying text in a consistent
 way. This includes components for headings, paragraphs, and text
-labels.\n\n\n ### Usage
+labels.
 
-\`\`\`jsx
+### Usage
+
+```jsx
 import {Body, Title} from "@khanacademy/wonder-blocks-typography";
 
 <Title>Title: Hello, world!</Title>
 <Body>This is just a regular paragraph</Body>
-\`\`\`
-`;
+```
+*/
 
 export default {
-    title: "Typography",
+    title: "Packages / Typography",
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -55,16 +62,16 @@ export default {
             />
         ),
         docs: {
-            description: {component: typographyDescription},
             source: {
                 // See https://github.com/storybookjs/storybook/issues/12596
                 excludeDecorators: true,
             },
         },
     },
-    // TODO(FEI-5000): Inline this
-    argTypes: TypographyArgTypes as any,
+    argTypes: TypographyArgTypes,
 } as Meta<typeof ComponentInfo>;
+
+const StyledDiv = addStyle("div");
 
 export const ControlProps: StoryObj<typeof Title> = {
     render: (args) => <Title {...args} />,
@@ -74,34 +81,62 @@ export const ControlProps: StoryObj<typeof Title> = {
     },
 };
 
-export const TypographyElements: StoryObj<any> = () => (
-    <View>
-        <Title>Title</Title>
-        <HeadingLarge>HeadingLarge</HeadingLarge>
-        <HeadingMedium>HeadingMedium</HeadingMedium>
-        <HeadingSmall>HeadingSmall</HeadingSmall>
-        <HeadingXSmall>HeadingXSmall</HeadingXSmall>
-        <BodySerifBlock>BodySerifBlock</BodySerifBlock>
-        <BodySerif>BodySerif</BodySerif>
-        <BodyMonospace>BodyMonospace</BodyMonospace>
-        <Body>Body</Body>
-        <LabelLarge>LabelLarge</LabelLarge>
-        <LabelMedium>LabelMedium</LabelMedium>
-        <LabelSmall>LabelSmall</LabelSmall>
-        <LabelXSmall>LabelXSmall</LabelXSmall>
-        <Tagline>Tagline</Tagline>
-        <Caption>Caption</Caption>
-        <Footnote>Footnote</Footnote>
-    </View>
-);
-
-TypographyElements.parameters = {
-    docs: {
-        description: {
-            story: `These are all the available typography elements
-            with their names written out in their respective styles.`,
+/**
+ These are all the available Thunderblocks typography elements with their names
+ written out in their respective styles. Wrapping them in `ThemeSwitcher` with
+ `theme ="thunderblocks"` will include the Plus Jakarta Sans typeface, otherwise
+ they will default to Lato.
+ */
+export const NewTypographyElements: StoryObj<any> = {
+    render: () => (
+        <View>
+            <Heading size="xxlarge">Heading</Heading>
+            <BodyText>BodyText</BodyText>
+        </View>
+    ),
+    globals: {theme: "thunderblocks"},
+    parameters: {
+        chromatic: {
+            // Disabling because the new typography components are covered
+            // in the Heading / BodyText stories
+            disableSnapshot: true,
         },
     },
+};
+
+/**
+These are all the available classic typography elements with their names written
+out in their respective styles.
+ */
+export const ClassicTypographyElements: StoryObj<any> = {
+    parameters: {
+        chromatic: {
+            modes: {
+                default: allModes.themeDefault,
+                thunderblocks: allModes.themeThunderBlocks,
+            },
+        },
+    },
+    render: () => (
+        <View>
+            <Title>Title</Title>
+            <HeadingLarge>HeadingLarge</HeadingLarge>
+            <HeadingMedium>HeadingMedium</HeadingMedium>
+            <HeadingSmall>HeadingSmall</HeadingSmall>
+            <HeadingXSmall>HeadingXSmall</HeadingXSmall>
+            <BodySerifBlock>BodySerifBlock</BodySerifBlock>
+            <BodySerif>BodySerif</BodySerif>
+            <BodyMonospace>BodyMonospace</BodyMonospace>
+            <Body>Body</Body>
+            <LabelLarge>LabelLarge</LabelLarge>
+            <LabelMedium>LabelMedium</LabelMedium>
+            <LabelSmall>LabelSmall</LabelSmall>
+            <LabelXSmall>LabelXSmall</LabelXSmall>
+            <Tagline>Tagline</Tagline>
+            <Caption>Caption</Caption>
+            <Footnote>Footnote</Footnote>
+        </View>
+    ),
 };
 
 /**
@@ -397,6 +432,35 @@ LineHeight.parameters = {
         description: {
             story: `This is a visualization of the line height
             for each typography element.`,
+        },
+    },
+};
+
+/**
+ * The following shows the typography styles available.
+ *
+ * ```
+ *     import { styles as typographyStyles } from "@khanacademy/wonder-blocks-typography";
+ * ```
+ */
+export const TypographyStyles: StoryObj = {
+    render: () => {
+        return (
+            <View style={{gap: sizing.size_200}}>
+                {Object.entries(typographyStyles).map(([key, styles]) => (
+                    <StyledDiv key={key} style={{...styles}}>
+                        {key}
+                    </StyledDiv>
+                ))}
+            </View>
+        );
+    },
+    parameters: {
+        chromatic: {
+            modes: {
+                default: allModes.themeDefault,
+                thunderblocks: allModes.themeThunderBlocks,
+            },
         },
     },
 };

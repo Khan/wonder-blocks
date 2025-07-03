@@ -13,6 +13,13 @@ type Props = {
      * When not set, the first tabbable element within the component will be used.
      */
     initialFocusId?: string;
+    /**
+     * The delay in milliseconds before the initial focus is set.
+     * This is to ensure that any active event listeners have time to finish.
+     *
+     * Defaults to 0.
+     */
+    delay?: number;
 };
 
 /**
@@ -21,6 +28,7 @@ type Props = {
  */
 export default class InitialFocus extends React.Component<Props> {
     componentDidMount() {
+        // eslint-disable-next-line import/no-deprecated
         const node: HTMLElement = ReactDOM.findDOMNode(this) as any;
 
         if (!node) {
@@ -50,7 +58,11 @@ export default class InitialFocus extends React.Component<Props> {
         // using timeout to prevent page jumps when focusing on this element
         setTimeout(() => {
             firstFocusableElement.focus();
-        }, 0);
+            // Focus on element after a small delay so that any active
+            // event listeners have time to finish. This makes it so the newly
+            // focused element doesn't get any events that were previously
+            // triggered.
+        }, this.props.delay || 0);
     };
 
     /**

@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import {IDProvider} from "@khanacademy/wonder-blocks-core";
+import {Id} from "@khanacademy/wonder-blocks-core";
 import {TooltipPopper} from "@khanacademy/wonder-blocks-tooltip";
 import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
 
@@ -10,14 +10,16 @@ import type {
     Placement,
     PopperElementProps,
 } from "@khanacademy/wonder-blocks-tooltip";
+import type {RootBoundary} from "@popperjs/core";
 
 import PopoverContent from "./popover-content";
 import PopoverContentCore from "./popover-content-core";
 import PopoverContext from "./popover-context";
 import PopoverAnchor from "./popover-anchor";
 import PopoverDialog from "./popover-dialog";
-import FocusManager from "./focus-manager";
 import PopoverEventListener from "./popover-event-listener";
+import InitialFocus from "./initial-focus";
+import FocusManager from "./focus-manager";
 
 type PopoverContents =
     | React.ReactElement<React.ComponentProps<typeof PopoverContent>>
@@ -82,6 +84,13 @@ type Props = AriaProps &
          */
         initialFocusId?: string;
         /**
+         * The delay in milliseconds before the initial focus is set.
+         * This allows any active event listeners to finish before focusing.
+         *
+         * Defaults to 0.
+         */
+        initialFocusDelay?: number;
+        /**
          * Renders the popover when true, renders nothing when false.
          *
          * Using this prop makes the component behave as a controlled component. The
@@ -101,6 +110,33 @@ type Props = AriaProps &
          * Whether to show the popover tail or not. Defaults to true.
          */
         showTail: boolean;
+        /**
+         * Optional property to enable the portal functionality of popover.
+         * This is very handy in cases where the Popover can't be easily
+         * injected into the DOM structure and requires portaling to
+         * the trigger location.
+         *
+         * Set to "true" by default.
+         *
+         * CAUTION: Turning off portal could cause some clipping issues
+         * especially around legacy code with usage of z-indexing,
+         * Use caution when turning this functionality off and ensure
+         * your content does not get clipped or hidden.
+         */
+        portal?: boolean;
+        /**
+         * Optional property to set what the root boundary is for the popper behavior.
+         * This is set to "viewport" by default, causing the popper to be positioned based
+         * on the user's viewport. If set to "document", it will position itself based
+         * on where there is available room within the document body.
+         */
+        rootBoundary?: RootBoundary;
+        /**
+         * If `rootBoundary` is `viewport`, this padding value is used to provide
+         * spacing between the popper and the viewport. If not provided, default
+         * spacing of 12px is applied.
+         */
+        viewportPadding?: number;
     }>;
 
 type State = Readonly<{
@@ -121,6 +157,8 @@ type State = Readonly<{
 type DefaultProps = Readonly<{
     placement: Props["placement"];
     showTail: Props["showTail"];
+    portal: Props["portal"];
+    rootBoundary: Props["rootBoundary"];
 }>;
 
 /**
@@ -150,6 +188,8 @@ export default class Popover extends React.Component<Props, State> {
     static defaultProps: DefaultProps = {
         placement: "top",
         showTail: true,
+        portal: true,
+        rootBoundary: "viewport",
     };
 
     /**
@@ -186,6 +226,7 @@ export default class Popover extends React.Component<Props, State> {
 
         // Focus on the specified element after dismissing the popover.
         if (closedFocusId) {
+            // eslint-disable-next-line import/no-deprecated
             const focusElement = ReactDOM.findDOMNode(
                 document.getElementById(closedFocusId),
             ) as any;
@@ -255,33 +296,68 @@ export default class Popover extends React.Component<Props, State> {
     }
 
     renderPopper(uniqueId: string): React.ReactNode {
-        const {initialFocusId, placement, showTail} = this.props;
+        const {
+            initialFocusId,
+            placement,
+            showTail,
+            portal,
+            "aria-label": ariaLabel,
+            "aria-describedby": ariaDescribedBy,
+            rootBoundary,
+            viewportPadding,
+            initialFocusDelay,
+        } = this.props;
         const {anchorElement} = this.state;
 
-        return (
-            <FocusManager
+        const describedBy = ariaDescribedBy || `${uniqueId}-content`;
+
+        const ariaLabelledBy = ariaLabel ? undefined : `${uniqueId}-title`;
+
+        const popperContent = (
+            <TooltipPopper
                 anchorElement={anchorElement}
-                initialFocusId={initialFocusId}
+                placement={placement}
+                rootBoundary={rootBoundary}
+                viewportPadding={viewportPadding}
             >
-                <TooltipPopper
-                    anchorElement={anchorElement}
-                    placement={placement}
-                >
-                    {(props: PopperElementProps) => (
-                        <PopoverDialog
-                            {...props}
-                            aria-describedby={`${uniqueId}-content`}
-                            aria-labelledby={`${uniqueId}-title`}
-                            id={uniqueId}
-                            onUpdate={(placement) => this.setState({placement})}
-                            showTail={showTail}
-                        >
-                            {this.renderContent(uniqueId)}
-                        </PopoverDialog>
-                    )}
-                </TooltipPopper>
-            </FocusManager>
+                {(props: PopperElementProps) => (
+                    <PopoverDialog
+                        {...props}
+                        aria-label={ariaLabel}
+                        aria-describedby={describedBy}
+                        aria-labelledby={ariaLabelledBy}
+                        id={uniqueId}
+                        onUpdate={(placement) => this.setState({placement})}
+                        showTail={showTail}
+                    >
+                        {this.renderContent(uniqueId)}
+                    </PopoverDialog>
+                )}
+            </TooltipPopper>
         );
+
+        if (portal) {
+            return (
+                <FocusManager
+                    anchorElement={anchorElement}
+                    initialFocusId={initialFocusId}
+                    initialFocusDelay={initialFocusDelay}
+                >
+                    {popperContent}
+                </FocusManager>
+            );
+        } else {
+            return (
+                // Ensures the user is focused on the first available element
+                // when popover is rendered without the focus manager.
+                <InitialFocus
+                    initialFocusId={initialFocusId}
+                    delay={initialFocusDelay}
+                >
+                    {popperContent}
+                </InitialFocus>
+            );
+        }
     }
 
     getHost(): Element | null | undefined {
@@ -295,10 +371,29 @@ export default class Popover extends React.Component<Props, State> {
         );
     }
 
+    renderPortal(uniqueId: string, opened: boolean) {
+        if (!opened) {
+            return null;
+        }
+
+        const {portal} = this.props;
+        const popperHost = this.getHost();
+
+        // Attach the popover to a Portal
+        if (portal && popperHost) {
+            return ReactDOM.createPortal(
+                this.renderPopper(uniqueId),
+                popperHost,
+            );
+        }
+
+        // Otherwise, append the dialog next to the trigger element
+        return this.renderPopper(uniqueId);
+    }
+
     render(): React.ReactNode {
         const {children, dismissEnabled, id} = this.props;
         const {opened, placement} = this.state;
-        const popperHost = this.getHost();
 
         return (
             <PopoverContext.Provider
@@ -307,7 +402,7 @@ export default class Popover extends React.Component<Props, State> {
                     placement: placement,
                 }}
             >
-                <IDProvider id={id} scope="popover">
+                <Id id={id}>
                     {(uniqueId) => (
                         <React.Fragment>
                             <PopoverAnchor
@@ -319,15 +414,10 @@ export default class Popover extends React.Component<Props, State> {
                             >
                                 {children}
                             </PopoverAnchor>
-                            {popperHost &&
-                                opened &&
-                                ReactDOM.createPortal(
-                                    this.renderPopper(uniqueId),
-                                    popperHost,
-                                )}
+                            {this.renderPortal(uniqueId, opened)}
                         </React.Fragment>
                     )}
-                </IDProvider>
+                </Id>
 
                 {dismissEnabled && opened && (
                     <PopoverEventListener

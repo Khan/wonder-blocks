@@ -4,9 +4,9 @@ import Banner from "@khanacademy/wonder-blocks-banner";
 import {View} from "@khanacademy/wonder-blocks-core";
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
 
-import TokenTable from "../../.storybook/components/token-table";
+import TokenTable from "../components/token-table";
 
-<Meta title="Tokens / Typography" />
+<Meta title="Packages / Tokens / Typography" />
 
 export const sampleTextUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 export const sampleTextLower = "abcdefghijklmnopqrstuvwxyz";
@@ -39,7 +39,7 @@ Text sizes, weights and font families used across Wonder Blocks.
             {
                 type: "link",
                 title: "See Typography documentation",
-                href: "../?path=/docs/typography--docs",
+                href: "../?path=/docs/packages-typography--docs",
             },
         ]}
     />
@@ -53,10 +53,10 @@ weight of text elements in our components.
 ```tsx
 import {font} from "@khanacademy/wonder-blocks-tokens";
 const styles = {
-    fontSize: font.size.large,
-    lineHeight: font.lineHeight.large,
-    fontWeight: font.weight.regular,
-    fontFamily: font.family.serif
+    fontSize: font.heading.size.large,
+    lineHeight: font.heading.lineHeight.large,
+    fontWeight: font.weight.medium,
+    fontFamily: font.family.serif,
 };
 ```
 
@@ -90,9 +90,16 @@ The available font families in our system.
 
 The list of possible font sizes that can be used with our components.
 
+Sizes are categorized by `Body` and `Heading`, such as `font.body.size.small` and `font.heading.size.large`.
+
+**Note:** the legacy font token API will be deprecated in the future (e.g. `font.size.small`) to support
+both Classic and Thunderblocks with the same theme structure.
+
+#### Body font sizes
+
 <TokenTable
     columns={[
-        ...baseColumns("size"),
+        ...baseColumns("body.size"),
         {
             label: "Example",
             cell: (row) => (
@@ -108,23 +115,21 @@ The list of possible font sizes that can be used with our components.
             ),
         },
     ]}
-    tokens={tokens.font.size}
+    tokens={tokens.font.body.size}
 />
 
-### LineHeight
-
-The vertical space associated to a given font size.
+#### Heading font sizes
 
 <TokenTable
     columns={[
-        ...baseColumns("lineHeight"),
+        ...baseColumns("heading.size"),
         {
             label: "Example",
             cell: (row) => (
                 <View
                     style={{
-                        backgroundColor: tokens.color.offBlack8,
-                        lineHeight: `${row.value}px`,
+                        fontSize: row.value,
+                        lineHeight: 1,
                     }}
                 >
                     <View className="sb-unstyled">{sampleTextUpper}</View>
@@ -133,12 +138,67 @@ The vertical space associated to a given font size.
             ),
         },
     ]}
-    tokens={tokens.font.lineHeight}
+    tokens={tokens.font.heading.size}
+/>
+
+### LineHeight
+
+The vertical space associated to a given font size.
+
+Line-heights are categorized by `Body` and `Heading`.
+
+#### Body line heights
+
+<TokenTable
+    columns={[
+        ...baseColumns("body.lineHeight"),
+        {
+            label: "Example",
+            cell: (row) => (
+                <View
+                    style={{
+                        backgroundColor: tokens.color.offBlack8,
+                        lineHeight: row.value,
+                    }}
+                >
+                    <View className="sb-unstyled">{sampleTextUpper}</View>
+                    <View className="sb-unstyled">{sampleTextLower}</View>
+                </View>
+            ),
+        },
+    ]}
+    tokens={tokens.font.body.lineHeight}
+/>
+
+
+#### Heading line heights
+
+<TokenTable
+    columns={[
+        ...baseColumns("heading.lineHeight"),
+        {
+            label: "Example",
+            cell: (row) => (
+                <View
+                    style={{
+                        backgroundColor: tokens.color.offBlack8,
+                        lineHeight: row.value,
+                    }}
+                >
+                    <View className="sb-unstyled">{sampleTextUpper}</View>
+                    <View className="sb-unstyled">{sampleTextLower}</View>
+                </View>
+            ),
+        },
+    ]}
+    tokens={tokens.font.heading.lineHeight}
 />
 
 ### Weight
 
-Font weight options include `light`, `regular` and `bold`.
+Font weight options for Lato (Classic) include `light`, `medium` and `bold`.
+
+Font weight options for Plus Jakarta Sans (Classroom) include `light`, `medium`, `semi`, `bold`, and `black`.
 
 <TokenTable
     columns={[

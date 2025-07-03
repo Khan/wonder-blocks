@@ -1,6 +1,20 @@
 /**
  * Overrides for the Storybook preview iframe.
  */
+html {
+    font-size: 62.5%;
+}
+
+/* These overrides depend on a Base 10 font size */
+.sb-show-main.sb-main-padded {
+    padding: 0.8rem;
+}
+
+.sbdocs.sbdocs-wrapper {
+    padding: 0 2rem 3.2rem 2rem;
+    gap: 2.4rem;
+}
+
 .sbdocs ul,
 .sbdocs li,
 .sbdocs p,
@@ -26,7 +40,7 @@
     color: var(--color-text);
     font-family: 'Source Serif Pro', sans-serif;
     font-weight: 400;
-    margin-top: 1.5rem;
+    margin-top: 0.96rem;
 }
 
 /* Reset WB typhography colors inside docs pages */
@@ -59,7 +73,7 @@
 }
 
 /* only include the counter to the stories titles */
-.sb-anchor > h3::before {
+.sb-anchor>h3::before {
     counter-increment: story;
     color: var(--color-text-64);
     content: counter(story) ".";
@@ -78,4 +92,48 @@
 .sbdocs h6 {
     font-size: var(--typography-heading-size-xs);
     line-height: var(--typography-heading-line-height-xs);
+}
+
+
+.showAnnouncer.sb-show-main #wbAnnounce {
+    background-color: white;
+    bottom: 0;
+    display: block !important;
+    clip: revert !important;
+    position: fixed !important;
+    right: 0;
+}
+
+.showAnnouncer.sb-show-main .wbARegion {
+    border: 1px solid red;
+    margin-bottom: 0.5em;
+}
+
+.showAnnouncer.sb-show-main .wbARegion::before {
+    background-color: inherit;
+    border: 1px solid red;
+    content: attr(id) / "";
+    display: block;
+    padding: 0.25em;
+}
+
+/* TOC wrapper */
+.sbdocs-content+div {
+    width: 16rem;
+}
+
+.sbdocs-content+div>* {
+    width: 16rem;
+    padding-top: 6.4rem;
+    padding-bottom: 3.2rem;
+}
+
+/**
+ * View Transitions
+ */
+::view-transition-group(*),
+::view-transition-old(*),
+::view-transition-new(*) {
+    animation-timing-function: linear(0, 0.03 1.3%, 0.113 2.7%, 0.84 11.5%, 0.981 14.7%, 1.049 18.2%, 1.061 20%, 1.061 22.2%, 1.011 32.3%, 0.997 39.3%, 1);
+    animation-duration: 1s;
 }

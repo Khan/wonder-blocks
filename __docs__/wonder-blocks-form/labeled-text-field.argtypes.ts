@@ -1,4 +1,4 @@
-import type {InputType} from "@storybook/csf";
+import type {ArgTypes} from "@storybook/react";
 
 export default {
     id: {
@@ -82,24 +82,22 @@ export default {
         },
     },
 
-    disabled: {
-        description: "Makes a read-only input field that cannot be focused.",
+    name: {
+        description: "Provide a name for the TextField.",
         table: {
             type: {
-                summary: "boolean",
-            },
-            defaultValue: {
-                summary: "false",
+                summary: "string",
             },
         },
         control: {
-            type: "boolean",
+            type: "text",
         },
     },
 
-    light: {
-        description:
-            "Change the field’s sub-components to fit a dark background.",
+    disabled: {
+        description: `Whether the input should be disabled. Defaults to false.
+            If the disabled prop is set to \`true\`, LabeledTextField will have disabled
+            styling and will not be interactable.`,
         table: {
             type: {
                 summary: "boolean",
@@ -181,7 +179,7 @@ export default {
             },
         },
         control: {
-            type: "null",
+            type: undefined,
         },
     },
 
@@ -199,6 +197,46 @@ export default {
         },
         control: {
             type: "text",
+        },
+    },
+
+    /**
+     * Number-specific props
+     */
+    min: {
+        description: "The minimum value for a number input.",
+        table: {
+            category: "Number",
+            type: {
+                summary: "number",
+            },
+        },
+        control: {
+            type: "number",
+        },
+    },
+    max: {
+        description: "The maximum value for a number input.",
+        table: {
+            category: "Number",
+            type: {
+                summary: "number",
+            },
+        },
+        control: {
+            type: "number",
+        },
+    },
+    step: {
+        description: "The step value for a number input.",
+        table: {
+            category: "Number",
+            type: {
+                summary: "number",
+            },
+        },
+        control: {
+            type: "number",
         },
     },
 
@@ -266,4 +304,4 @@ export default {
             },
         },
     },
-} satisfies Record<string, InputType>;
+} satisfies ArgTypes;

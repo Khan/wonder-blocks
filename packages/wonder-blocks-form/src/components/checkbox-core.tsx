@@ -1,14 +1,17 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {mix} from "@khanacademy/wonder-blocks-color";
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {border} from "@khanacademy/wonder-blocks-tokens";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import checkIcon from "@phosphor-icons/core/bold/check-bold.svg";
 import minusIcon from "@phosphor-icons/core/bold/minus-bold.svg";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
+import theme from "../theme/index";
 
 import type {ChoiceCoreProps, Checked} from "../util/types";
+
+import {colorStates, baseStyles} from "../util/styles";
 
 // `AriaChecked` and `mapCheckedToAriaChecked()` are used to convert the
 // `checked` prop value to a value that a screen reader can understand via the
@@ -25,13 +28,6 @@ function mapCheckedToAriaChecked(value: Checked): AriaChecked {
             return "mixed";
     }
 }
-
-const {blue, red, white, offWhite, offBlack16, offBlack32, offBlack50} = color;
-
-// The checkbox size
-const size = spacing.medium_16;
-// The check icon size
-const checkSize = spacing.small_12;
 
 const StyledInput = addStyle("input");
 
@@ -59,26 +55,31 @@ const CheckboxCore = React.forwardRef(function CheckboxCore(
         return;
     };
 
-    const stateStyles = _generateStyles(checked, error);
+    const stateStyles = _generateStyles(checked, error, disabled);
 
     const defaultStyle = [
         sharedStyles.inputReset,
         sharedStyles.default,
-        !disabled && stateStyles.default,
-        disabled && sharedStyles.disabled,
+        stateStyles.default,
     ];
+
+    const wrapperStyle = [sharedStyles.inputWrapper, stateStyles.inputWrapper];
 
     const checkboxIcon = (
         <PhosphorIcon
-            color={disabled ? offBlack32 : white}
+            color={
+                disabled
+                    ? baseStyles.icon.disabled.foreground
+                    : baseStyles.icon.default.foreground
+            }
             icon={checked ? checkIcon : minusIcon}
             size="small"
             style={[
                 sharedStyles.checkboxIcon,
                 // The check icon is smaller than the checkbox, as per design.
                 {
-                    width: checkSize,
-                    height: checkSize,
+                    width: baseStyles.checkbox.sizing.checkSize,
+                    height: baseStyles.checkbox.sizing.checkSize,
                 },
             ]}
         />
@@ -86,38 +87,56 @@ const CheckboxCore = React.forwardRef(function CheckboxCore(
 
     const ariaChecked = mapCheckedToAriaChecked(checked);
 
+    const handleWrapperClick = (e: React.MouseEvent) => {
+        // forward event from wrapper Div
+        if (!disabled && e.target !== innerRef.current) {
+            innerRef.current?.click();
+        }
+    };
+
     return (
         <React.Fragment>
-            <StyledInput
-                {...sharedProps}
-                ref={(node) => {
-                    // @ts-expect-error: current is not actually read-only
-                    innerRef.current = node;
-                    if (typeof ref === "function") {
-                        ref(node);
-                    } else if (ref != null) {
-                        ref.current = node;
-                    }
-                }}
-                type="checkbox"
-                aria-checked={ariaChecked}
-                aria-invalid={error}
-                checked={checked ?? undefined}
-                disabled={disabled}
-                id={id}
-                name={groupName}
-                // Need to specify because this is a controlled React form
-                // component, but we handle the click via ClickableBehavior
-                onChange={handleChange}
-                style={defaultStyle}
-                data-test-id={testId}
-            />
-            {checked || checked == null ? checkboxIcon : <></>}
+            <View
+                style={wrapperStyle}
+                onClick={handleWrapperClick}
+                testId="wb-checkbox-wrapper"
+            >
+                <StyledInput
+                    {...sharedProps}
+                    ref={(node) => {
+                        // @ts-expect-error: current is not actually read-only
+                        innerRef.current = node;
+                        if (typeof ref === "function") {
+                            ref(node);
+                        } else if (ref != null) {
+                            ref.current = node;
+                        }
+                    }}
+                    type="checkbox"
+                    aria-checked={ariaChecked}
+                    aria-invalid={error}
+                    checked={checked ?? undefined}
+                    disabled={disabled}
+                    id={id}
+                    name={groupName}
+                    // Need to specify because this is a controlled React form
+                    // component, but we handle the click via ClickableBehavior
+                    onChange={handleChange}
+                    style={defaultStyle}
+                    data-testid={testId}
+                />
+                {checked || checked == null ? checkboxIcon : <></>}
+            </View>
         </React.Fragment>
     );
 });
 
 const sharedStyles = StyleSheet.create({
+    inputWrapper: {
+        margin: theme.choice.inputWrapper.layout.margin,
+        padding: theme.choice.inputWrapper.layout.padding,
+        position: "relative",
+    },
     // Reset the default styled input element
     inputReset: {
         appearance: "none",
@@ -126,114 +145,106 @@ const sharedStyles = StyleSheet.create({
     },
 
     default: {
-        height: size,
-        width: size,
-        minHeight: size,
-        minWidth: size,
+        height: baseStyles.choice.sizing.size,
+        width: baseStyles.choice.sizing.size,
+        minHeight: baseStyles.choice.sizing.size,
+        minWidth: baseStyles.choice.sizing.size,
         margin: 0,
         outline: "none",
         boxSizing: "border-box",
         borderStyle: "solid",
-        borderWidth: 1,
-        borderRadius: 3,
-    },
-
-    disabled: {
-        cursor: "auto",
-        backgroundColor: offWhite,
-        borderColor: offBlack16,
-        borderWidth: 1,
+        borderWidth: baseStyles.checkbox.border.width.default,
+        borderRadius: baseStyles.checkbox.border.radius.default,
     },
 
     checkboxIcon: {
         position: "absolute",
         pointerEvents: "none",
         // This margin is to center the check icon in the checkbox.
-        margin: (size - checkSize) / 2,
+        margin: `calc((${baseStyles.choice.sizing.size} - ${baseStyles.checkbox.sizing.checkSize}) / 2)`,
     },
 });
 
-const fadedBlue = mix(color.fadedBlue16, white);
-const activeBlue = color.activeBlue;
-const fadedRed = mix(color.fadedRed8, white);
-const activeRed = color.activeRed;
-
-const colors = {
-    default: {
-        faded: fadedBlue,
-        base: blue,
-        active: activeBlue,
-    },
-    error: {
-        faded: fadedRed,
-        base: red,
-        active: activeRed,
-    },
-} as const;
-
 const styles: Record<string, any> = {};
 
-const _generateStyles = (checked: Checked, error: boolean) => {
+const _generateStyles = (
+    checked: Checked,
+    error: boolean,
+    disabled: boolean,
+) => {
     // "hash" the parameters
-    const styleKey = `${String(checked)}-${String(error)}`;
+    const styleKey = `${String(checked)}-${String(error)}-${String(disabled)}`;
     if (styles[styleKey]) {
         return styles[styleKey];
     }
 
-    const palette = error ? colors.error : colors.default;
+    const isCheckedOrIndeterminate = checked || checked == null;
 
-    let newStyles: Record<string, any> = {};
-    if (checked || checked == null) {
-        newStyles = {
+    let stateStyles: Record<string, any> = {};
+
+    type ChoiceState = "default" | "disabled" | "error";
+
+    const currentState: ChoiceState = error
+        ? "error"
+        : disabled
+          ? "disabled"
+          : "default";
+
+    if (isCheckedOrIndeterminate) {
+        const checkedStyles = colorStates.checkbox.checked[currentState];
+        stateStyles = {
+            inputWrapper: {
+                // TODO(WB-1864): Revisit hover, press tokens
+                ":hover input:not([disabled])": {
+                    outline: `${border.width.medium} solid ${checkedStyles.hover.border}`,
+                    outlineOffset: 1,
+                },
+            },
             default: {
-                backgroundColor: palette.base,
-                borderWidth: 0,
+                backgroundColor: checkedStyles.rest.background,
+                borderColor: checkedStyles.rest.border,
 
-                // Focus and hover have the same style. Focus style only shows
-                // up with keyboard navigation.
-                ":focus-visible": {
-                    boxShadow: `0 0 0 1px ${white}, 0 0 0 3px ${palette.base}`,
-                },
+                // Use the global focus style
+                ":focus-visible:not([disabled])":
+                    focusStyles.focus[":focus-visible"],
 
-                ":hover": {
-                    boxShadow: `0 0 0 1px ${white}, 0 0 0 3px ${palette.base}`,
-                },
-
-                ":active": {
-                    boxShadow: `0 0 0 1px ${white}, 0 0 0 3px ${palette.active}`,
-                    background: palette.active,
+                ":active:not([disabled])": {
+                    outline: `${border.width.medium} solid ${checkedStyles.press.border}`,
+                    outlineOffset: 1,
+                    background: checkedStyles.press.background,
+                    // Add border to ensure error press state matches background
+                    borderColor: checkedStyles.press.background,
                 },
             },
         };
     } else {
-        newStyles = {
+        // Unchecked state
+        const uncheckedStyles = colorStates.checkbox.unchecked[currentState];
+        stateStyles = {
+            inputWrapper: {
+                ":hover input:not([disabled])": {
+                    backgroundColor: uncheckedStyles.hover.background,
+                    outline: `${border.width.medium} solid ${uncheckedStyles.hover.border}`,
+                    outlineOffset: -1,
+                },
+            },
             default: {
-                backgroundColor: error ? fadedRed : white,
-                borderColor: error ? red : offBlack50,
+                backgroundColor: uncheckedStyles.rest.background,
+                borderColor: uncheckedStyles.rest.border,
 
-                // Focus and hover have the same style. Focus style only shows
-                // up with keyboard navigation.
-                ":focus-visible": {
-                    backgroundColor: error ? fadedRed : white,
-                    borderColor: palette.base,
-                    borderWidth: 2,
+                ":focus-visible:not([disabled])": {
+                    ...focusStyles.focus,
                 },
 
-                ":hover": {
-                    backgroundColor: error ? fadedRed : white,
-                    borderColor: palette.base,
-                    borderWidth: 2,
-                },
-
-                ":active": {
-                    backgroundColor: palette.faded,
-                    borderColor: error ? activeRed : blue,
-                    borderWidth: 2,
+                ":active:not([disabled])": {
+                    backgroundColor: uncheckedStyles.press.background,
+                    outline: `${border.width.medium} solid ${uncheckedStyles.press.border}`,
+                    outlineOffset: -1,
                 },
             },
         };
     }
-    styles[styleKey] = StyleSheet.create(newStyles);
+    styles[styleKey] = StyleSheet.create(stateStyles);
     return styles[styleKey];
 };
 

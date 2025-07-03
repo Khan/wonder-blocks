@@ -1,18 +1,20 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
+import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Link from "@khanacademy/wonder-blocks-link";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import Banner from "@khanacademy/wonder-blocks-banner";
 
 import BannerArgTypes from "./banner.argtypes";
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-banner/package.json";
+import crownIcon from "../wonder-blocks-icon/icons/crown.svg";
+import {reallyLongText} from "../components/text-for-testing";
 
 type StoryComponentType = StoryObj<typeof Banner>;
 
@@ -43,7 +45,7 @@ type StoryComponentType = StoryObj<typeof Banner>;
  * ```
  */
 export default {
-    title: "Banner",
+    title: "Packages / Banner",
     component: Banner,
     decorators: [
         (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
@@ -64,6 +66,10 @@ export default {
                 // See https://github.com/storybookjs/storybook/issues/12596
                 excludeDecorators: true,
             },
+        },
+        chromatic: {
+            // Disable snapshots for this story because it is covered by testing snapshots
+            disableSnapshot: true,
         },
     },
     argTypes: BannerArgTypes,
@@ -93,19 +99,16 @@ export const Kinds: StoryComponentType = {
                 kind="info"
                 layout="floating"
             />
-            <Strut size={spacing.medium_16} />
             <Banner
                 text="kind: success - This is a message about something positive or successful!"
                 kind="success"
                 layout="floating"
             />
-            <Strut size={spacing.medium_16} />
             <Banner
                 text="kind: warning - This is a message warning the user about a potential issue."
                 kind="warning"
                 layout="floating"
             />
-            <Strut size={spacing.medium_16} />
             <Banner
                 text="kind: critical - This is a message about something critical or an error."
                 kind="critical"
@@ -116,6 +119,9 @@ export const Kinds: StoryComponentType = {
 };
 
 /**
+ * DEPRECATED: The `layout` prop is deprecated and will be removed in a future
+ * release. Currently, it has no effect on the component.
+ *
  * Banners come with two layouts: `full-width` and `floating`. Full-width layout
  * gives the banner squared edges, and floating layout gives the banner rounded
  * edges. Floating banners should have space around them and should not be
@@ -126,8 +132,10 @@ export const Kinds: StoryComponentType = {
  * added around the floating banner so that it will not touch its outline.
  */
 export const Layouts: StoryComponentType = () => {
-    const borderStyle = {border: `2px solid ${color.pink}`} as const;
-    const floatingContainerStyle = {padding: spacing.xSmall_8} as const;
+    const borderStyle = {
+        border: `${border.width.medium} solid ${semanticColor.core.border.inverse.strong}`,
+    } as const;
+    const floatingContainerStyle = {padding: sizing.size_080} as const;
 
     return (
         <View style={styles.container}>
@@ -136,13 +144,11 @@ export const Layouts: StoryComponentType = () => {
                 layout="full-width"
                 kind="success"
             />
-            <Strut size={spacing.medium_16} />
             <Banner
                 text="This banner has floating layout."
                 layout="floating"
                 kind="success"
             />
-            <Strut size={spacing.medium_16} />
             <View style={borderStyle}>
                 <Banner
                     text="This banner has full-width layout. There is no space around it."
@@ -150,7 +156,6 @@ export const Layouts: StoryComponentType = () => {
                     kind="success"
                 />
             </View>
-            <Strut size={spacing.medium_16} />
             <View style={[borderStyle, floatingContainerStyle]}>
                 <Banner
                     text={`This banner has floating layout. Padding has been
@@ -197,11 +202,8 @@ export const LongText: StoryComponentType = {
 export const DarkBackground: StoryComponentType = () => (
     <View style={styles.container}>
         <Banner text="kind: info" kind="info" layout="full-width" />
-        <Strut size={spacing.medium_16} />
         <Banner text="kind: success" kind="success" layout="full-width" />
-        <Strut size={spacing.medium_16} />
         <Banner text="kind: warning" kind="warning" layout="full-width" />
-        <Strut size={spacing.medium_16} />
         <Banner text="kind: critical" kind="critical" layout="full-width" />
     </View>
 );
@@ -209,6 +211,10 @@ export const DarkBackground: StoryComponentType = () => (
 DarkBackground.parameters = {
     backgrounds: {
         default: "darkBlue",
+    },
+    chromatic: {
+        // Testing snapshots don't cover dark background case
+        disableSnapshot: false,
     },
 };
 
@@ -256,7 +262,7 @@ export const WithLinks: StoryComponentType = {
  */
 export const WithInlineLinks: StoryComponentType = {
     render: () => (
-        <>
+        <View style={styles.container}>
             <Banner
                 text="Oh no! The button and link on the right look different! Don't mix button and link actions."
                 kind="critical"
@@ -266,14 +272,13 @@ export const WithInlineLinks: StoryComponentType = {
                     {type: "button", title: "Button", onClick: () => {}},
                 ]}
             />
-            <Strut size={spacing.medium_16} />
             <Banner
                 text={
                     <LabelSmall>
                         Use inline links in the body of the text instead. Click{" "}
                         {
-                            <Link href="" inline={true}>
-                                here
+                            <Link href="#link" inline={true}>
+                                link example
                             </Link>
                         }{" "}
                         to go to some other page.
@@ -283,7 +288,7 @@ export const WithInlineLinks: StoryComponentType = {
                 layout="floating"
                 actions={[{type: "button", title: "Button", onClick: () => {}}]}
             />
-        </>
+        </View>
     ),
 };
 
@@ -414,12 +419,38 @@ export const WithCustomAction: StoryComponentType = {
                     type: "custom",
                     node: (
                         <Button
+                            aria-label="Loading"
                             kind="tertiary"
                             size="small"
                             onClick={() => {}}
                             spinner={true}
                         >
                             Spinner Button
+                        </Button>
+                    ),
+                },
+            ]}
+        />
+    ),
+};
+
+/**
+ * **NOTE: Custom actions are discouraged and should only be used as a last resort!**.
+ *
+ * Another example with a custom action using a primary button.
+ * See **With Custom Action** story for more details.
+ */
+export const WithCustomActionPrimary: StoryComponentType = {
+    render: () => (
+        <Banner
+            text="some text"
+            layout="floating"
+            actions={[
+                {
+                    type: "custom",
+                    node: (
+                        <Button size="small" onClick={() => {}}>
+                            Custom Action
                         </Button>
                     ),
                 },
@@ -453,6 +484,14 @@ export const WithMixedActions: StoryComponentType = {
                 {
                     type: "custom",
                     node: (
+                        <Button size="small" onClick={() => {}}>
+                            Custom button 2
+                        </Button>
+                    ),
+                },
+                {
+                    type: "custom",
+                    node: (
                         <Button
                             kind="tertiary"
                             size="small"
@@ -469,12 +508,74 @@ export const WithMixedActions: StoryComponentType = {
 };
 
 /**
+ * Use the `icon` prop to show a specific Phosphor icon in the banner instead. If the
+ * `icon` prop is not set, a default icon will be used in the banner depending
+ * on the `kind` prop.
+ *
+ * __NOTE:__ Icons are available from the [Phosphor
+ * Icons](https://phosphoricons.com/) library.
+ *
+ * To use a Phosphor icon, you can use the following syntax:
+ *
+ * ```jsx
+ * import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
+ * <Banner icon={magnifyingGlass} layout="floating" text="text" />
+ * ```
+ *
+ * __Accessibility__: The icon chosen for the banner is decorative and
+ * will always have an `aria-label` that communicates the kind of banner
+ * (e.g. "info").
+ */
+export const WithPhosphorIcon: StoryComponentType = {
+    render: (args) => (
+        <Banner
+            icon={magnifyingGlass}
+            {...args}
+            layout="floating"
+            text="Here is an example with a Phosphor Icon"
+        />
+    ),
+};
+
+/**
+ * Use the `icon` prop to show a custom icon in the banner instead. If the
+ * `icon` prop is not set, a default icon will be used in the banner depending
+ * on the `kind` prop.
+ *
+ * To use a custom icon, you can use the following syntax:
+ *
+ * ```jsx
+ * // This SVG should have the following attributes:
+ * // - viewBox="0 0 256 256"
+ * // - fill="currentColor"
+ * // - A path (or paths) scaled up to fit in the 256x256 viewport.
+ *
+ * import crownIcon from "./icons/crown.svg";
+ * <Banner icon={crownIcon} layout="floating" text="text" />
+ * ```
+ *
+ * __Accessibility__: The icon chosen for the banner is decorative and
+ * will always have an `aria-label` that communicates the kind of banner
+ * (e.g. "info").
+ */
+export const WithCustomIcon: StoryComponentType = {
+    render: (args) => (
+        <Banner
+            icon={crownIcon}
+            {...args}
+            layout="floating"
+            text="Here is an example with a custom icon"
+        />
+    ),
+};
+
+/**
  * When in the right-to-left direction, the banner is mirrored. This example has
  * text in Urdu, which is a right-to-left language.
  */
 export const RightToLeft: StoryComponentType = {
     render: () => (
-        <View style={styles.rightToLeft}>
+        <View style={[styles.rightToLeft, styles.container]}>
             <Banner
                 text="یہ اردو میں لکھا ہے۔"
                 actions={[
@@ -483,7 +584,6 @@ export const RightToLeft: StoryComponentType = {
                 ]}
                 layout="full-width"
             />
-            <Strut size={spacing.medium_16} />
             <Banner
                 text="یہ اردو میں لکھا ہے۔"
                 actions={[
@@ -494,6 +594,12 @@ export const RightToLeft: StoryComponentType = {
             />
         </View>
     ),
+    parameters: {
+        chromatic: {
+            // Keep snapshots for rtl stories
+            disableSnapshot: false,
+        },
+    },
 };
 
 /**
@@ -520,6 +626,52 @@ export const RightToLeftMultiline: StoryComponentType = {
             />
         </View>
     ),
+    parameters: {
+        chromatic: {
+            // Keep snapshots for rtl stories
+            disableSnapshot: false,
+        },
+    },
+};
+
+/**
+ * There are times where custom styles need to be applied to the Banner
+ * component, especially for layout purposes. Custom styles can be applied by
+ * using the `styles` prop. The following parts can be styled:
+ * - `root`: Styles the root element
+ *
+ * If there are other parts you need to customize, please reach out to the
+ * Wonder Blocks team!
+ */
+export const WithCustomStyles: StoryComponentType = {
+    render: () => (
+        <View style={{height: "500px", width: "300px", gap: sizing.size_160}}>
+            <Banner
+                text={reallyLongText}
+                layout="floating"
+                styles={{root: {flexShrink: 0}}}
+            />
+            <View
+                style={{
+                    backgroundColor:
+                        semanticColor.core.background.neutral.subtle,
+                    flexGrow: 1,
+                    overflowY: "auto",
+                }}
+            >
+                <View style={{padding: sizing.size_160}}>
+                    {reallyLongText}
+                    {reallyLongText}
+                </View>
+            </View>
+        </View>
+    ),
+    parameters: {
+        chromatic: {
+            // Keep snapshots to confirm custom styles are working
+            disableSnapshot: false,
+        },
+    },
 };
 
 const styles = StyleSheet.create({
@@ -529,6 +681,7 @@ const styles = StyleSheet.create({
     },
     container: {
         width: "100%",
+        gap: sizing.size_160,
     },
     narrowBanner: {
         maxWidth: 400,

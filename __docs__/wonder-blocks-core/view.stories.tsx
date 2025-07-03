@@ -11,11 +11,11 @@ import {
 import {View} from "@khanacademy/wonder-blocks-core";
 import packageConfig from "../../packages/wonder-blocks-core/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import viewArgTypes from "./view.argtypes";
 
 export default {
-    title: "Core / View",
+    title: "Packages / Core / View",
     component: View,
     argTypes: viewArgTypes,
     parameters: {
@@ -52,7 +52,7 @@ export const InlineStyles: StoryComponentType = () => (
             style={[
                 styles.container,
                 {
-                    background: color.lightBlue,
+                    background: color.fadedPurple24,
                     border: `1px solid ${color.blue}`,
                     padding: spacing.xxxSmall_4,
                 },
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     },
 
     view: {
-        border: `1px dashed ${color.lightBlue}`,
+        border: `1px dashed ${color.purple}`,
         gap: spacing.medium_16,
         padding: spacing.medium_16,
     },

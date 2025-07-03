@@ -5,7 +5,7 @@ import {userEvent, PointerEventsCheckLevel} from "@testing-library/user-event";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 
-import {fireEvent} from "@storybook/testing-library";
+import {fireEvent} from "@storybook/test";
 import Popover from "../popover";
 import PopoverContent from "../popover-content";
 import {PopoverContentCore} from "../../index";
@@ -248,27 +248,21 @@ describe("Popover", () => {
 
         // Act
         // Close the popover by pressing Enter on the close button.
-        // NOTE: we need to use fireEvent here because await userEvent doesn't support
-        // keyUp/Down events and we use these handlers to override the default
-        // behavior of the button.
-        // eslint-disable-next-line testing-library/prefer-user-event
-        fireEvent.keyDown(
-            await screen.findByRole("button", {name: "Click to close popover"}),
-            {key: "Enter", code: "Enter", charCode: 13},
-        );
-        // eslint-disable-next-line testing-library/prefer-user-event
-        fireEvent.keyDown(
-            await screen.findByRole("button", {name: "Click to close popover"}),
-            {key: "Enter", code: "Enter", charCode: 13},
-        );
-        // eslint-disable-next-line testing-library/prefer-user-event
-        fireEvent.keyUp(
-            await screen.findByRole("button", {name: "Click to close popover"}),
-            {key: "Enter", code: "Enter", charCode: 13},
-        );
+        const button = await screen.findByRole("button", {
+            name: "Click to close popover",
+        });
+        /* eslint-disable testing-library/prefer-user-event */
+        // NOTE: we need to use fireEvent here because await userEvent doesn't
+        // support keyUp/Down events and we use these handlers to override the
+        // default behavior of the button.
+        fireEvent.keyDown(button, {key: "Enter", code: "Enter", charCode: 13});
+        fireEvent.keyUp(button, {key: "Enter", code: "Enter", charCode: 13});
+        /* eslint-enable testing-library/prefer-user-event */
 
         // Assert
-        expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+        await waitFor(() =>
+            expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),
+        );
     });
 
     describe("return focus", () => {
@@ -301,7 +295,7 @@ describe("Popover", () => {
             const closeButton = await screen.findByRole("button", {
                 name: "Close Popover",
             });
-            closeButton.click();
+            await userEvent.click(closeButton, {pointerEventsCheck: 0});
 
             // Assert
             expect(anchorButton).toHaveFocus();
@@ -582,16 +576,165 @@ describe("Popover", () => {
                 }),
             ).toBeInTheDocument();
         });
+
+        it("should announce a popover correctly by reading the aria-label attribute", async () => {
+            // Arrange
+            render(
+                <Popover
+                    id="test-popover"
+                    onClose={jest.fn()}
+                    aria-label="Popover Aria Label"
+                    content={
+                        <PopoverContentCore closeButtonVisible={true}>
+                            <h1 id="test-popover-title">
+                                This is a popover title
+                            </h1>
+                            <p id="test-popover-content">
+                                This is a popover description
+                            </p>
+                        </PopoverContentCore>
+                    }
+                >
+                    <Button>Open default popover</Button>
+                </Popover>,
+            );
+
+            // Act
+            await userEvent.click(
+                await screen.findByRole("button", {
+                    name: "Open default popover",
+                }),
+            );
+
+            // Assert
+            expect(
+                await screen.findByRole("dialog", {
+                    name: "Popover Aria Label",
+                }),
+            ).toBeInTheDocument();
+        });
+
+        it("should announce a popover correctly by reading the title contents", async () => {
+            // Arrange
+            render(
+                <Popover
+                    id="test-popover"
+                    onClose={jest.fn()}
+                    aria-describedby="describing-popover-id"
+                    content={
+                        <PopoverContentCore closeButtonVisible={true}>
+                            <h1 id="test-popover-title">
+                                This is a popover title
+                            </h1>
+                            <p id="describing-popover-id">
+                                This is a popover description
+                            </p>
+                        </PopoverContentCore>
+                    }
+                >
+                    <Button>Open default popover</Button>
+                </Popover>,
+            );
+
+            // Act
+            await userEvent.click(
+                await screen.findByRole("button", {
+                    name: "Open default popover",
+                }),
+            );
+
+            //Assert
+            expect(
+                await screen.findByRole("dialog", {
+                    name: "This is a popover title",
+                }),
+            ).toBeInTheDocument();
+        });
+
+        it("should announce a popover correctly by reading the describing contents", async () => {
+            // Arrange
+            render(
+                <Popover
+                    id="test-popover"
+                    onClose={jest.fn()}
+                    aria-describedby="describing-popover-id"
+                    content={
+                        <PopoverContentCore closeButtonVisible={true}>
+                            <h1 id="test-popover-title">
+                                This is a popover title
+                            </h1>
+                            <p id="describing-popover-id">
+                                This is a popover description
+                            </p>
+                        </PopoverContentCore>
+                    }
+                >
+                    <Button>Open default popover</Button>
+                </Popover>,
+            );
+
+            // Act
+            await userEvent.click(
+                await screen.findByRole("button", {
+                    name: "Open default popover",
+                }),
+            );
+
+            //Assert
+            expect(
+                await screen.findByRole("dialog", {
+                    description: "This is a popover description",
+                }),
+            ).toBeInTheDocument();
+        });
+
+        it("should correctly describe the popover content core's aria label", async () => {
+            // Arrange
+            render(
+                <Popover
+                    onClose={jest.fn()}
+                    content={
+                        <PopoverContentCore aria-label="Popover Content Core">
+                            <button data-close-button onClick={close}>
+                                Close Popover
+                            </button>
+                        </PopoverContentCore>
+                    }
+                >
+                    <Button>Open default popover</Button>
+                </Popover>,
+            );
+
+            // Act
+            // Open the popover
+            const openButton = await screen.findByRole("button", {
+                name: "Open default popover",
+            });
+
+            await userEvent.click(openButton);
+            const popover = await screen.findByRole("dialog");
+
+            // disabling this check because we need to access the popover content core
+            // in order to verify the aria-label is getting passed correctly
+            // eslint-disable-next-line testing-library/no-node-access
+            const popoverContentCore = popover.firstChild as HTMLElement;
+
+            // Assert
+            expect(popoverContentCore.getAttribute("aria-label")).toBe(
+                "Popover Content Core",
+            );
+        });
     });
 
-    describe("keyboard navigation", () => {
-        it("should move focus to the first focusable element after popover is open", async () => {
+    describe.each([true, false])("keyboard navigation", (portal) => {
+        it(`when portal=${portal}, should move focus to the first focusable element after popover is open`, async () => {
             // Arrange
             render(
                 <>
                     <Button>Prev focusable element outside</Button>
                     <Popover
                         onClose={jest.fn()}
+                        portal={portal}
                         content={
                             <PopoverContent
                                 title="Popover title"
@@ -630,13 +773,14 @@ describe("Popover", () => {
             ).toHaveFocus();
         });
 
-        it("should allow flowing focus correctly even if the popover remains open", async () => {
+        it(`when portal=${portal}, should allow flowing focus correctly even if the popover remains open`, async () => {
             // Arrange
             render(
                 <>
                     <Button>Prev focusable element outside</Button>
                     <Popover
                         onClose={jest.fn()}
+                        portal={portal}
                         content={
                             <PopoverContent
                                 title="Popover title"
@@ -672,13 +816,14 @@ describe("Popover", () => {
             ).toHaveFocus();
         });
 
-        it("should allow circular navigation when the popover is open", async () => {
+        it(`when portal=${portal}, should allow circular navigation when the popover is open`, async () => {
             // Arrange
             render(
                 <>
                     <Button>Prev focusable element outside</Button>
                     <Popover
                         onClose={jest.fn()}
+                        portal={portal}
                         content={
                             <PopoverContent
                                 title="Popover title"
@@ -720,13 +865,14 @@ describe("Popover", () => {
             ).toHaveFocus();
         });
 
-        it("should allow navigating backwards when the popover is open", async () => {
+        it(`when portal=${portal}, should allow navigating backwards when the popover is open`, async () => {
             // Arrange
             render(
                 <>
                     <Button>Prev focusable element outside</Button>
                     <Popover
                         onClose={jest.fn()}
+                        portal={portal}
                         content={
                             <PopoverContent
                                 title="Popover title"

@@ -46,6 +46,87 @@ export type OpenerProps = ClickableState & {
     opened: boolean;
 };
 
-export type OptionItemComponentArray = React.ReactElement<
-    React.ComponentProps<typeof OptionItem>
->[];
+export type OptionItemComponent = React.ReactElement<
+    PropsFor<typeof OptionItem>
+>;
+
+export type OptionItemComponentArray = OptionItemComponent[];
+
+/**
+ * Allows optional values to be passed to the listbox.
+ */
+export type MaybeString = string | null | undefined;
+
+export type MaybeValueOrValues = MaybeString | Array<MaybeString>;
+
+/**
+ * The labels for the combobox component.
+ */
+export type ComboboxLabels = {
+    /**
+     * Label for the "Clear" button that removes a selected item. Only used in
+     * single-select mode.
+     */
+    clearSelection: string;
+    /**
+     * Label for when the listbox changes to the closed state.
+     */
+    closedState: string;
+    /**
+     * Label for the button that toggles the listbox.
+     */
+    comboboxButton: string;
+    /**
+     * Descriptive label for the listbox element.
+     */
+    listbox: string;
+    /**
+     * Label for the "Remove" item button (pill).
+     */
+    removeSelected: (label: string) => string;
+    /**
+     * Label for when the user visually focuses on a specific item in the
+     * combobox.
+     */
+    liveRegionCurrentItem: (options: {
+        current: string;
+        index: number;
+        total: number;
+        disabled?: boolean;
+        focused?: boolean;
+        selected?: boolean;
+    }) => string;
+    /**
+     * Label for when the user visually focuses on multi-select mode (selected
+     * pills group). This is used to announce the total number of selected
+     * items.
+     */
+    liveRegionMultipleSelectionTotal: (total: number) => string;
+    /**
+     * Label for the total number of items in the listbox.
+     */
+    liveRegionListboxTotal: (total: number) => string;
+
+    /**
+     * Label for when there are no items associated with the combobox input
+     * value.
+     */
+    noItems: string;
+
+    /**
+     * Label for the selected item(s) in the listbox.
+     */
+    selected: (labels: string) => string;
+
+    /**
+     * Label for when the user removes a selected item.
+     *
+     * NOTE: This usually happens when the clear selection button is pressed.
+     */
+    selectionCleared: string;
+
+    /**
+     * Label for when item(s) is/are unselected.
+     */
+    unselected: (labels: string) => string;
+};

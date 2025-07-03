@@ -12,10 +12,10 @@ const BreadcrumbsMappings: {
     "lesson path": (
         <Breadcrumbs>
             <BreadcrumbsItem>
-                <Link href="">Course</Link>
+                <Link href="#course">Course</Link>
             </BreadcrumbsItem>
             <BreadcrumbsItem>
-                <Link href="">Unit</Link>
+                <Link href="#unit">Unit</Link>
             </BreadcrumbsItem>
             <BreadcrumbsItem>Lesson</BreadcrumbsItem>
         </Breadcrumbs>
@@ -27,18 +27,6 @@ export default {
         control: {type: "text"},
         description: "The main title rendered in larger bold text.",
         table: {type: {summary: "string"}},
-    },
-    light: {
-        control: {type: "boolean"},
-        defaultValue: "true",
-
-        description: `Whether to display the "light" version of this
-            component instead, for use when the item is used on a dark
-            background.`,
-        table: {
-            defaultValue: {summary: "true"},
-            type: {summary: "boolean"},
-        },
     },
     titleId: {
         control: {type: "text"},

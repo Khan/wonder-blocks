@@ -9,12 +9,12 @@ import Button from "@khanacademy/wonder-blocks-button";
 import {Spring, Strut} from "@khanacademy/wonder-blocks-layout";
 import packageConfig from "../../packages/wonder-blocks-layout/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 
 type StoryComponentType = StoryObj<typeof Spring>;
 
 export default {
-    title: "Layout / Spring",
+    title: "Packages / Layout / Spring",
     component: Spring,
     parameters: {
         componentSubtitle: (
@@ -38,7 +38,7 @@ export const Default: StoryComponentType = {
         <View style={styles.row}>
             <Button>Hello, world!</Button>
             <Spring {...args} />
-            <Button color="destructive">Hello, world!</Button>
+            <Button actionType="destructive">Hello, world!</Button>
         </View>
     ),
 };
@@ -49,7 +49,7 @@ export const Simple: StoryComponentType = {
             <View style={styles.row}>
                 <Button>Hello, world!</Button>
                 <Spring />
-                <Button color="destructive">Hello, world!</Button>
+                <Button actionType="destructive">Hello, world!</Button>
             </View>
             <Strut size={16} />
             <View style={styles.row}>
@@ -66,7 +66,7 @@ export const WithStyle: StoryComponentType = () => (
         <View style={styles.row}>
             <Button>Hello, world!</Button>
             <Spring style={[styles.spring, styles.thick]} />
-            <Button color="destructive">Hello, world!</Button>
+            <Button actionType="destructive">Hello, world!</Button>
             <Spring style={[styles.spring, styles.thick]} />
             <Button>Hello, world!</Button>
         </View>

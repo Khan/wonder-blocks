@@ -57,7 +57,7 @@ type HydratableEffectOptions<TData extends ValidCacheData> = {
      * Changing this value after the first call is irrelevant as it only
      * affects the initial render behavior.
      */
-    clientBehavior?: typeof WhenClientSide[keyof typeof WhenClientSide];
+    clientBehavior?: (typeof WhenClientSide)[keyof typeof WhenClientSide];
     /**
      * When `true`, the effect will not be executed; otherwise, the effect will
      * be executed.

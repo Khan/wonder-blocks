@@ -4,9 +4,11 @@ import SeparatorItem from "./components/separator-item";
 import ActionMenu from "./components/action-menu";
 import SingleSelect from "./components/single-select";
 import MultiSelect from "./components/multi-select";
+import Combobox from "./components/combobox";
+import Listbox from "./components/listbox";
 
-import type {Labels} from "./components/multi-select";
-import type {SingleSelectLabels} from "./components/single-select";
+import type {LabelsValues} from "./components/multi-select";
+import type {SingleSelectLabelsValues} from "./components/single-select";
 
 export {
     ActionItem,
@@ -15,6 +17,8 @@ export {
     ActionMenu,
     SingleSelect,
     MultiSelect,
+    Combobox,
+    Listbox,
 };
 
-export type {Labels, SingleSelectLabels};
+export type {LabelsValues, SingleSelectLabelsValues};

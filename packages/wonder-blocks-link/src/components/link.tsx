@@ -1,6 +1,8 @@
 import * as React from "react";
-import {__RouterContext} from "react-router";
-import {Link as ReactRouterLink} from "react-router-dom";
+import {
+    Link as ReactRouterLink,
+    useInRouterContext,
+} from "react-router-dom-v5-compat";
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
@@ -28,18 +30,9 @@ type CommonProps = AriaProps & {
      */
     inline?: boolean;
     /**
-     * Kind of Link. Note: Secondary light Links are not supported.
-     */
-    kind?: "primary" | "secondary";
-    /**
      * Whether the button is on a dark/colored background.
      */
     light?: boolean;
-    /**
-     * Whether the link should change color once it's visited.
-     * secondary or primary (light) links are not allowed to be visitable.
-     */
-    visitable?: boolean;
     /**
      * Specifies the type of relationship between the current document and the
      * linked document. Should only be used when `href` is specified. This
@@ -130,6 +123,16 @@ type CommonProps = AriaProps & {
      * the default `externalIcon`.
      */
     endIcon?: React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>;
+
+    /**
+     * An optional prop that enables a
+     * [https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API](View
+     * Transition) for this navigation by wrapping the final state update in
+     * `document.startViewTransition()`.
+     *
+     * @see https://reactrouter.com/6.30.0/components/link#viewtransition
+     */
+    viewTransition?: boolean;
 };
 
 export type SharedProps =
@@ -197,95 +200,88 @@ const Link = React.forwardRef(function Link(
         onKeyUp,
         target = undefined,
         inline = false,
-        kind = "primary",
         light = false,
-        visitable = false,
+        viewTransition = false,
         ...sharedProps
     } = props;
 
-    const renderClickableBehavior = (router: any): React.ReactNode => {
-        const ClickableBehavior = getClickableBehavior(
-            href,
-            skipClientNav,
-            router,
-        );
+    const inRouterContext = useInRouterContext();
 
-        if (beforeNav) {
-            return (
-                <ClickableBehavior
-                    disabled={false}
-                    href={href}
-                    role="link"
-                    onClick={onClick}
-                    beforeNav={beforeNav}
-                    safeWithNav={safeWithNav}
-                    onKeyDown={onKeyDown}
-                    onKeyUp={onKeyUp}
-                >
-                    {(state, {...childrenProps}) => {
-                        return (
-                            <LinkCore
-                                {...sharedProps}
-                                {...state}
-                                {...childrenProps}
-                                skipClientNav={skipClientNav}
-                                href={href}
-                                target={target}
-                                tabIndex={tabIndex}
-                                inline={inline}
-                                kind={kind}
-                                light={light}
-                                visitable={visitable}
-                                ref={ref}
-                            >
-                                {children}
-                            </LinkCore>
-                        );
-                    }}
-                </ClickableBehavior>
-            );
-        } else {
-            return (
-                <ClickableBehavior
-                    disabled={false}
-                    href={href}
-                    role="link"
-                    onClick={onClick}
-                    safeWithNav={safeWithNav}
-                    target={target}
-                    onKeyDown={onKeyDown}
-                    onKeyUp={onKeyUp}
-                >
-                    {(state, {...childrenProps}) => {
-                        return (
-                            <LinkCore
-                                {...sharedProps}
-                                {...state}
-                                {...childrenProps}
-                                skipClientNav={skipClientNav}
-                                href={href}
-                                target={target}
-                                tabIndex={tabIndex}
-                                inline={inline}
-                                kind={kind}
-                                light={light}
-                                visitable={visitable}
-                                ref={ref}
-                            >
-                                {children}
-                            </LinkCore>
-                        );
-                    }}
-                </ClickableBehavior>
-            );
-        }
-    };
-
-    return (
-        <__RouterContext.Consumer>
-            {(router) => renderClickableBehavior(router)}
-        </__RouterContext.Consumer>
+    const ClickableBehavior = getClickableBehavior(
+        href,
+        skipClientNav,
+        inRouterContext,
     );
+
+    if (beforeNav) {
+        return (
+            <ClickableBehavior
+                disabled={false}
+                href={href}
+                role="link"
+                onClick={onClick}
+                beforeNav={beforeNav}
+                safeWithNav={safeWithNav}
+                onKeyDown={onKeyDown}
+                onKeyUp={onKeyUp}
+                viewTransition={viewTransition}
+            >
+                {(state, {...childrenProps}) => {
+                    return (
+                        <LinkCore
+                            {...sharedProps}
+                            {...state}
+                            {...childrenProps}
+                            skipClientNav={skipClientNav}
+                            href={href}
+                            target={target}
+                            tabIndex={tabIndex}
+                            inline={inline}
+                            light={light}
+                            ref={ref}
+                            viewTransition={viewTransition}
+                        >
+                            {children}
+                        </LinkCore>
+                    );
+                }}
+            </ClickableBehavior>
+        );
+    } else {
+        return (
+            <ClickableBehavior
+                disabled={false}
+                href={href}
+                role="link"
+                onClick={onClick}
+                safeWithNav={safeWithNav}
+                target={target}
+                onKeyDown={onKeyDown}
+                onKeyUp={onKeyUp}
+                viewTransition={viewTransition}
+            >
+                {(state, {...childrenProps}) => {
+                    return (
+                        <LinkCore
+                            {...sharedProps}
+                            {...state}
+                            {...childrenProps}
+                            skipClientNav={skipClientNav}
+                            href={href}
+                            target={target}
+                            tabIndex={tabIndex}
+                            inline={inline}
+                            light={light}
+                            ref={ref}
+                            viewTransition={viewTransition}
+                        >
+                            {children}
+                        </LinkCore>
+                    );
+                }}
+            </ClickableBehavior>
+        );
+    }
 });
 
 export default Link;

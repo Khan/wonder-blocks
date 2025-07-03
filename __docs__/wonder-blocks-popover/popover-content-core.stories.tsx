@@ -2,28 +2,21 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import type {Meta, StoryObj} from "@storybook/react";
-import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {
-    Body,
-    HeadingSmall,
-    LabelLarge,
-} from "@khanacademy/wonder-blocks-typography";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import {PopoverContentCore} from "@khanacademy/wonder-blocks-popover";
 import packageConfig from "../../packages/wonder-blocks-popover/package.json";
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
-// NOTE: We are reusing an existing Cell SB Story to test how Popovers can be
-// composed by Cells.
-import {ClickableDetailCell} from "../wonder-blocks-cell/detail-cell.stories";
 import popoverContentCoreArgtypes from "./popover-content-core.argtypes";
+import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 
 export default {
-    title: "Popover/PopoverContentCore",
+    title: "Packages / Popover / PopoverContentCore",
     component: PopoverContentCore,
     argTypes: popoverContentCoreArgtypes,
     parameters: {
@@ -67,7 +60,7 @@ const styles = StyleSheet.create({
     action: {
         backgroundColor: "transparent",
         border: "none",
-        color: color.white,
+        color: semanticColor.text.inverse,
         cursor: "pointer",
         margin: spacing.small_12,
         padding: spacing.xxSmall_6,
@@ -97,89 +90,31 @@ export const WithIcon: StoryComponentType = {
     render: (args) => <PopoverContentCore {...args} />,
 };
 
-// NOTE: Adding a wrapper to cast the component so Storybook doesn't complain.
-const ClickableDetailCellWrapper = ClickableDetailCell as React.ElementType;
-
 /**
- * Using DetailCell as the content
+ * Popovers can also benefit from other Wonder Blocks components. In this
+ * example, we are using the `DetailCell` component embedded as part of the
+ * popover contents.
  */
 export const WithDetailCell: StoryComponentType = {
     args: {
         // use the composed DetailCell component
-        children: <ClickableDetailCellWrapper {...ClickableDetailCell.args} />,
+        children: (
+            <DetailCell
+                title="Title for article item"
+                subtitle1="Subtitle for article item"
+                subtitle2="Subtitle for article item"
+                leftAccessory={
+                    <PhosphorIcon
+                        icon={IconMappings.playCircle}
+                        size="medium"
+                    />
+                }
+                rightAccessory={<PhosphorIcon icon={IconMappings.caretRight} />}
+                onClick={() => {}}
+                aria-label="Press to navigate to the article"
+            />
+        ),
         style: styles.popoverWithCell,
     },
     render: (args) => <PopoverContentCore {...args} />,
-};
-
-WithDetailCell.parameters = {
-    docs: {
-        description: {
-            story: "Popovers can also benefit from other Wonder Blocks components. In this example, we are using the DetailCell component embedded as part of the popover contents.",
-        },
-    },
-};
-
-/**
- * Dark custom popover
- */
-const CustomPopoverContent = (
-    <>
-        <HeadingSmall>Custom popover title</HeadingSmall>
-        <View style={styles.row}>
-            <Clickable style={styles.action} onClick={close} id="btn-1">
-                {() => (
-                    <>
-                        <PhosphorIcon
-                            icon={IconMappings.pencilSimple}
-                            color={color.gold}
-                            size="large"
-                        />
-                        <LabelLarge>Option 1</LabelLarge>
-                    </>
-                )}
-            </Clickable>
-            <Clickable style={styles.action} onClick={close} id="btn-2">
-                {() => (
-                    <>
-                        <PhosphorIcon
-                            icon={IconMappings.pencilSimple}
-                            color={color.green}
-                            size="large"
-                        />
-                        <LabelLarge>Option 2</LabelLarge>
-                    </>
-                )}
-            </Clickable>
-            <Clickable style={styles.action} onClick={close} id="btn-3">
-                {() => (
-                    <>
-                        <PhosphorIcon
-                            icon={IconMappings.pencilSimple}
-                            color={color.blue}
-                            size="large"
-                        />
-                        <LabelLarge>Option 3</LabelLarge>
-                    </>
-                )}
-            </Clickable>
-        </View>
-    </>
-);
-
-export const Dark: StoryComponentType = {
-    args: {
-        children: CustomPopoverContent,
-        color: "darkBlue",
-        style: styles.customPopover,
-    },
-    render: (args) => <PopoverContentCore {...args} />,
-};
-
-Dark.parameters = {
-    docs: {
-        description: {
-            story: "This component provides a flexible variant that can be used for example, for our Confidence Prompt in test prep and popovers that don't fit into other categories. If you want to use a different background, you can set `color` as part of `PopoverContentCore`.",
-        },
-    },
 };

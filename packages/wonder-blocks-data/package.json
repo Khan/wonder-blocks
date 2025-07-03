@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-data",
-  "version": "13.0.6",
+  "version": "14.1.4",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -10,19 +10,20 @@
   "module": "dist/es/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },
   "dependencies": {
-    "@babel/runtime": "^7.18.6",
-    "@khanacademy/wonder-blocks-core": "^6.3.1"
+    "@khanacademy/wonder-blocks-core": "workspace:*"
   },
   "peerDependencies": {
-    "@khanacademy/wonder-stuff-core": "^1.2.2",
-    "react": "16.14.0"
+    "@khanacademy/wonder-stuff-core": "catalog:",
+    "react": "catalog:"
   },
   "devDependencies": {
-    "@khanacademy/wb-dev-build-settings": "^1.0.0",
-    "@khanacademy/wonder-stuff-testing": "^3.0.1"
+    "@khanacademy/wb-dev-build-settings": "workspace:*",
+    "@khanacademy/wonder-stuff-testing": "catalog:",
+    "@khanacademy/wonder-blocks-testing-core": "workspace:*"
   },
   "author": "",
   "license": "MIT"

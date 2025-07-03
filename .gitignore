@@ -4,6 +4,11 @@ coverage-ts
 dist
 storybook-static
 *.tsbuildinfo
+utils/**/*.d.ts
 !.vscode
 .DS_Store
-yarn-error.log
+changeset-status.json
+# Pnpm errors
+pnpm-debug.log
+.swc/
+.turbo

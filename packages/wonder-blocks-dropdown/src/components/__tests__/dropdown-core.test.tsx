@@ -33,7 +33,7 @@ describe("DropdownCore", () => {
         const underTest = () =>
             render(
                 <div>
-                    <button data-test-id="external-button" />
+                    <button data-testid="external-button" />
                     <DropdownCore
                         initialFocusedIndex={0}
                         // mock the items
@@ -73,9 +73,7 @@ describe("DropdownCore", () => {
         expect(item).toHaveFocus();
     });
 
-    // TODO(FEI-5533): Key press events aren't working correctly with
-    // user-event v14. We need to investigate and fix this.
-    it.skip("handles basic keyboard navigation as expected", async () => {
+    it("handles basic keyboard navigation as expected", async () => {
         // Arrange
         const dummyOpener = <button />;
         const openChanged = jest.fn();
@@ -95,8 +93,8 @@ describe("DropdownCore", () => {
 
         // Act
         // navigate down two times
-        await userEvent.keyboard("{arrowdown}"); // 0 -> 1
-        await userEvent.keyboard("{arrowdown}"); // 1 -> 2
+        await userEvent.keyboard("{ArrowDown}"); // 0 -> 1
+        await userEvent.keyboard("{ArrowDown}"); // 1 -> 2
 
         // Assert
         expect(
@@ -104,9 +102,7 @@ describe("DropdownCore", () => {
         ).toHaveFocus();
     });
 
-    // TODO(FEI-5533): Key press events aren't working correctly with
-    // user-event v14. We need to investigate and fix this.
-    it.skip("keyboard works backwards as expected", async () => {
+    it("keyboard works backwards as expected", async () => {
         // Arrange
         render(
             <DropdownCore
@@ -124,13 +120,13 @@ describe("DropdownCore", () => {
 
         // Act
         // navigate down tree times
-        await userEvent.keyboard("{arrowdown}"); // 0 -> 1
-        await userEvent.keyboard("{arrowdown}"); // 1 -> 2
-        await userEvent.keyboard("{arrowdown}"); // 2 -> 0
+        await userEvent.keyboard("{ArrowDown}"); // 0 -> 1
+        await userEvent.keyboard("{ArrowDown}"); // 1 -> 2
+        await userEvent.keyboard("{ArrowDown}"); // 2 -> 0
 
         // navigate up back two times
-        await userEvent.keyboard("{arrowup}"); // 0 -> 2
-        await userEvent.keyboard("{arrowup}"); // 2 -> 1
+        await userEvent.keyboard("{ArrowUp}"); // 0 -> 2
+        await userEvent.keyboard("{ArrowUp}"); // 2 -> 1
 
         // Assert
         expect(
@@ -138,9 +134,7 @@ describe("DropdownCore", () => {
         ).toHaveFocus();
     });
 
-    // TODO(FEI-5533): Key press events aren't working correctly with
-    // user-event v14. We need to investigate and fix this.
-    it.skip("keyboard works backwards with the search field included", async () => {
+    it("keyboard works backwards with the search field included", async () => {
         // Arrange
         render(
             <DropdownCore
@@ -160,15 +154,15 @@ describe("DropdownCore", () => {
 
         // Act
         // navigate down four times
-        await userEvent.keyboard("{arrowdown}"); // 0 -> 1
-        await userEvent.keyboard("{arrowdown}"); // 1 -> 2
-        await userEvent.keyboard("{arrowdown}"); // 2 -> search field
-        await userEvent.keyboard("{arrowdown}"); // search field -> 0
+        await userEvent.keyboard("{ArrowDown}"); // 0 -> 1
+        await userEvent.keyboard("{ArrowDown}"); // 1 -> 2
+        await userEvent.keyboard("{ArrowDown}"); // 2 -> search field
+        await userEvent.keyboard("{ArrowDown}"); // search field -> 0
 
         // navigate up back three times
-        await userEvent.keyboard("{arrowup}"); // 0 -> search field
-        await userEvent.keyboard("{arrowup}"); // search field -> 2
-        await userEvent.keyboard("{arrowup}"); // 2 -> 1
+        await userEvent.keyboard("{ArrowUp}"); // 0 -> search field
+        await userEvent.keyboard("{ArrowUp}"); // search field -> 2
+        await userEvent.keyboard("{ArrowUp}"); // 2 -> 1
 
         // Assert
         expect(
@@ -179,7 +173,7 @@ describe("DropdownCore", () => {
     // NOTE(john): This fails after upgrading to user-event v14, it's not clear
     // what's wrong exactly, but tabbing no longer triggers the change, which
     // makes me think that the initial focus is different now.
-    it.skip("closes on tab as expected", async () => {
+    it("closes on tab as expected", async () => {
         // Arrange
         const handleOpenChangedMock = jest.fn();
 
@@ -204,9 +198,7 @@ describe("DropdownCore", () => {
         expect(handleOpenChangedMock).toHaveBeenNthCalledWith(1, false);
     });
 
-    // TODO(FEI-5533): Key press events aren't working correctly with
-    // user-event v14. We need to investigate and fix this.
-    it.skip("closes on escape as expected", async () => {
+    it("closes on escape as expected", async () => {
         // Arrange
         const handleOpenChangedMock = jest.fn();
 
@@ -225,7 +217,7 @@ describe("DropdownCore", () => {
 
         // Act
         // close the dropdown by pressing "Escape"
-        await userEvent.keyboard("{escape}");
+        await userEvent.keyboard("{Escape}");
 
         // Assert
         expect(handleOpenChangedMock).toHaveBeenNthCalledWith(1, false);
@@ -237,7 +229,7 @@ describe("DropdownCore", () => {
 
         const {container} = render(
             <div>
-                <button data-test-id="external-button" />
+                <button data-testid="external-button" />
                 <DropdownCore
                     initialFocusedIndex={0}
                     // mock the items
@@ -284,12 +276,10 @@ describe("DropdownCore", () => {
         expect(handleOpenChangedMock).toHaveBeenCalledTimes(0);
     });
 
-    // TODO(FEI-5533): Key press events aren't working correctly with
-    // user-event v14. We need to investigate and fix this.
-    it.skip("opens on down key as expected", async () => {
+    it("opens on down key as expected", async () => {
         // Arrange
         const handleOpenChangedMock = jest.fn();
-        const opener = <button data-test-id="opener" />;
+        const opener = <button data-testid="opener" />;
 
         render(
             <DropdownCore
@@ -308,7 +298,7 @@ describe("DropdownCore", () => {
         openerElement.focus();
 
         // Act
-        await userEvent.keyboard("{arrowdown}");
+        await userEvent.keyboard("{ArrowDown}");
 
         // Assert
         expect(handleOpenChangedMock).toHaveBeenNthCalledWith(1, true);
@@ -374,9 +364,7 @@ describe("DropdownCore", () => {
         expect(firstItem).toHaveFocus();
     });
 
-    // TODO(FEI-5533): Key press events aren't working correctly with
-    // user-event v14. We need to investigate and fix this.
-    it.skip("selects correct item when starting off at a different index", async () => {
+    it("selects correct item when starting off at a different index", async () => {
         // Arrange
         render(
             <DropdownCore
@@ -393,7 +381,7 @@ describe("DropdownCore", () => {
 
         // Act
         // navigate down
-        await userEvent.keyboard("{arrowdown}"); // 2 -> 0
+        await userEvent.keyboard("{ArrowDown}"); // 2 -> 0
 
         // Assert
         expect(
@@ -401,9 +389,7 @@ describe("DropdownCore", () => {
         ).toHaveFocus();
     });
 
-    // TODO(FEI-5533): Key press events aren't working correctly with
-    // user-event v14. We need to investigate and fix this.
-    it.skip("focuses correct item with clicking/pressing with initial focused of not 0", async () => {
+    it("focuses correct item with clicking/pressing with initial focused of not 0", async () => {
         // Arrange
         render(
             <DropdownCore
@@ -423,7 +409,7 @@ describe("DropdownCore", () => {
             await screen.findByRole("option", {name: "item 1"}),
         );
         // navigate down
-        await userEvent.keyboard("{arrowdown}"); // 1 -> 2
+        await userEvent.keyboard("{ArrowDown}"); // 1 -> 2
 
         // Assert
         expect(
@@ -431,9 +417,7 @@ describe("DropdownCore", () => {
         ).toHaveFocus();
     });
 
-    // TODO(FEI-5533): Key press events aren't working correctly with
-    // user-event v14. We need to investigate and fix this.
-    it.skip("focuses correct item with a disabled item", async () => {
+    it("focuses correct item with a disabled item", async () => {
         // Arrange
         render(
             <DropdownCore
@@ -470,14 +454,14 @@ describe("DropdownCore", () => {
                 role="listbox"
                 open={true}
                 // mock the opener elements
-                opener={<button data-test-id="opener" />}
+                opener={<button data-testid="opener" />}
                 onOpenChanged={jest.fn()}
             />,
         );
 
         // Act
         // navigate down
-        await userEvent.keyboard("{arrowdown}"); // 0 -> 2 (1 is disabled)
+        await userEvent.keyboard("{ArrowDown}"); // 0 -> 2 (1 is disabled)
 
         // Assert
         expect(
@@ -749,27 +733,79 @@ describe("DropdownCore", () => {
         });
     });
 
-    describe("a11y > Live region", () => {
-        it("should render a live region announcing the number of options", async () => {
+    describe("onOpenChanged", () => {
+        it("Should be triggered when the down key is pressed and the menu is closed", async () => {
             // Arrange
+            const onOpenMock = jest.fn();
 
-            // Act
-            const {container} = render(
+            render(
                 <DropdownCore
                     initialFocusedIndex={undefined}
                     onSearchTextChanged={jest.fn()}
                     // mock the items (3 options)
                     items={items}
                     role="listbox"
-                    open={true}
+                    open={false}
                     // mock the opener elements
                     opener={<button />}
-                    onOpenChanged={jest.fn()}
+                    onOpenChanged={onOpenMock}
                 />,
             );
+            // Act
+            // Press the button
+            const button = await screen.findByRole("button");
+            // NOTE: we need to use fireEvent here because await userEvent doesn't
+            // support keyUp/Down events and we use these handlers to override
+            // the default behavior of the button.
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.keyDown(button, {
+                keyCode: 40,
+            });
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.keyUp(button, {
+                keyCode: 40,
+            });
 
             // Assert
-            expect(container).toHaveTextContent("3 items");
+            expect(onOpenMock).toHaveBeenCalledTimes(1);
+            expect(onOpenMock).toHaveBeenCalledWith(true);
+        });
+
+        it("Should not be triggered when the dropdown is disabled and the down key is pressed and the menu is closed", async () => {
+            // Arrange
+            const onOpenMock = jest.fn();
+
+            render(
+                <DropdownCore
+                    initialFocusedIndex={undefined}
+                    onSearchTextChanged={jest.fn()}
+                    // mock the items (3 options)
+                    items={items}
+                    role="listbox"
+                    open={false}
+                    // mock the opener elements
+                    opener={<button />}
+                    onOpenChanged={onOpenMock}
+                    disabled={true}
+                />,
+            );
+            // Act
+            // Press the button
+            const button = await screen.findByRole("button");
+            // NOTE: we need to use fireEvent here because await userEvent doesn't
+            // support keyUp/Down events and we use these handlers to override
+            // the default behavior of the button.
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.keyDown(button, {
+                keyCode: 40,
+            });
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.keyUp(button, {
+                keyCode: 40,
+            });
+
+            // Assert
+            expect(onOpenMock).toHaveBeenCalledTimes(0);
         });
     });
 });

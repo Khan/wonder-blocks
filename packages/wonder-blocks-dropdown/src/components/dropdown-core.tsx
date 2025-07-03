@@ -7,23 +7,23 @@ import * as ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 import {VariableSizeList as List} from "react-window";
 
-import {fade} from "@khanacademy/wonder-blocks-color";
+import {semanticColor, border, sizing} from "@khanacademy/wonder-blocks-tokens";
 
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {addStyle, PropsFor, View} from "@khanacademy/wonder-blocks-core";
+import {PropsFor, View, keys} from "@khanacademy/wonder-blocks-core";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
-import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import type {WithActionSchedulerProps} from "@khanacademy/wonder-blocks-timing";
 import DropdownCoreVirtualized from "./dropdown-core-virtualized";
 import SeparatorItem from "./separator-item";
-import {defaultLabels, keyCodes} from "../util/constants";
+import {defaultLabels} from "../util/constants";
 import type {DropdownItem} from "../util/types";
 import DropdownPopper from "./dropdown-popper";
 import {debounce, getLabel, getStringForKey} from "../util/helpers";
 import OptionItem from "./option-item";
+import theme from "../theme";
 
 /**
  * The number of options to apply the virtualized list to.
@@ -37,9 +37,7 @@ import OptionItem from "./option-item";
  */
 const VIRTUALIZE_THRESHOLD = 125;
 
-const StyledSpan = addStyle("span");
-
-type Labels = {
+type LabelsValues = {
     /**
      * Label for describing the dismiss icon on the search filter.
      */
@@ -94,12 +92,7 @@ type DefaultProps = Readonly<{
     /**
      * The object containing the custom labels used inside this component.
      */
-    labels: Labels;
-    /**
-     * Whether to display the "light" version of this component instead, for
-     * use when the item is used on a dark background.
-     */
-    light: boolean;
+    labels: LabelsValues;
     /**
      * Used to determine if we can automatically select an item using the keyboard.
      */
@@ -170,6 +163,14 @@ type ExportProps = Readonly<{
      * top. The items will be filtered by the input.
      */
     isFilterable?: boolean;
+    /**
+     * Whether the dropdown and it's interactions should be disabled.
+     */
+    disabled?: boolean;
+    /**
+     * Unique identifier attached to the dropdown.
+     */
+    id?: string;
 
     // Optional props with defaults
     /**
@@ -203,12 +204,7 @@ type ExportProps = Readonly<{
     /**
      * The object containing the custom labels used inside this component.
      */
-    labels?: Labels;
-    /**
-     * Whether to display the "light" version of this component instead, for
-     * use when the item is used on a dark background.
-     */
-    light?: boolean;
+    labels?: LabelsValues;
     /**
      * Used to determine if we can automatically select an item using the keyboard.
      */
@@ -234,7 +230,7 @@ type State = Readonly<{
     /**
      * The object containing the custom labels used inside this component.
      */
-    labels: Labels;
+    labels: LabelsValues;
     /**
      * Because getDerivedStateFromProps doesn't store previous props (in the
      * spirit of performance), we store the previous items just to be able to
@@ -255,23 +251,10 @@ type State = Readonly<{
  * in overflow: auto containers.
  */
 class DropdownCore extends React.Component<Props, State> {
-    // Keeps track of the index of the focused item, out of a list of focusable items
-    // @ts-expect-error [FEI-5019] - TS2564 - Property 'focusedIndex' has no initializer and is not definitely assigned in the constructor.
-    focusedIndex: number;
-    // Keeps track of the index of the focused item in the context of all the
-    // items contained by this menu, whether focusable or not, used for figuring
-    // out focus correctly when the items have changed in terms of whether
-    // they're focusable or not
-    // @ts-expect-error [FEI-5019] - TS2564 - Property 'focusedOriginalIndex' has no initializer and is not definitely assigned in the constructor.
-    focusedOriginalIndex: number;
-    // Whether any items have been selected since the menu was opened
-    // @ts-expect-error [FEI-5019] - TS2564 - Property 'itemsClicked' has no initializer and is not definitely assigned in the constructor.
-    itemsClicked: boolean;
     popperElement: HTMLElement | null | undefined;
+
     // Keeps a reference of the virtualized list instance
-    virtualizedListRef: {
-        current: null | React.ElementRef<typeof List>;
-    };
+    virtualizedListRef: React.RefObject<List>;
 
     handleKeyDownDebounced: (key: string) => void;
 
@@ -304,7 +287,6 @@ class DropdownCore extends React.Component<Props, State> {
             noResults: defaultLabels.noResults,
             someResults: defaultLabels.someSelected,
         },
-        light: false,
         selectionType: "single",
     };
 
@@ -382,7 +364,7 @@ class DropdownCore extends React.Component<Props, State> {
     }
 
     componentDidUpdate(prevProps: Props) {
-        const {open} = this.props;
+        const {open, searchText} = this.props;
 
         if (prevProps.open !== open) {
             this.updateEventListeners();
@@ -397,7 +379,7 @@ class DropdownCore extends React.Component<Props, State> {
             // Very rarely do the set of focusable items change if the menu
             // hasn't been re-opened. This is for cases like a {Select all}
             // option that becomes disabled iff all the options are selected.
-            if (sameItemsFocusable) {
+            if (sameItemsFocusable || prevProps.searchText !== searchText) {
                 return;
             } else {
                 // If the set of items that was focusabled changed, it's very
@@ -412,7 +394,7 @@ class DropdownCore extends React.Component<Props, State> {
                     // Can't find the originally focused item, return focus to
                     // the first item that IS focusable
                     this.focusedIndex = 0;
-                    // Reset the knowlege that things had been clicked
+                    // Reset the knowledge that things had been clicked
                     this.itemsClicked = false;
                     this.scheduleToFocusCurrentItem();
                 } else {
@@ -432,6 +414,16 @@ class DropdownCore extends React.Component<Props, State> {
     componentWillUnmount() {
         this.removeEventListeners();
     }
+
+    // Keeps track of the index of the focused item, out of a list of focusable items
+    focusedIndex = -1;
+    // Keeps track of the index of the focused item in the context of all the
+    // items contained by this menu, whether focusable or not, used for figuring
+    // out focus correctly when the items have changed in terms of whether
+    // they're focusable or not
+    focusedOriginalIndex = -1;
+    // Whether any items have been selected since the menu was opened
+    itemsClicked = false;
 
     searchFieldRef: {
         current: null | HTMLInputElement;
@@ -492,6 +484,7 @@ class DropdownCore extends React.Component<Props, State> {
     handleInteract: (event: Event) => void = (event) => {
         const {open, onOpenChanged} = this.props;
         const target: Node = event.target as any;
+        // eslint-disable-next-line import/no-deprecated
         const thisElement = ReactDOM.findDOMNode(this);
         if (
             open &&
@@ -525,32 +518,67 @@ class DropdownCore extends React.Component<Props, State> {
     focusCurrentItem(onFocus?: (node: HTMLElement) => void) {
         const focusedItemRef = this.state.itemRefs[this.focusedIndex];
 
-        if (focusedItemRef) {
-            // force react-window to scroll to ensure the focused item is visible
-            if (this.virtualizedListRef.current) {
-                // Our focused index does not include disabled items, but the
-                // react-window index system does include the disabled items
-                // in the count.  So we need to use "originalIndex", which
-                // does account for disabled items.
-                this.virtualizedListRef.current.scrollToItem(
-                    focusedItemRef.originalIndex,
-                );
+        if (!focusedItemRef) {
+            return;
+        }
+
+        const {current: virtualizedList} = this.virtualizedListRef;
+        if (virtualizedList) {
+            // Our focused index does not include disabled items, but the
+            // react-window index system does include the disabled items
+            // in the count.  So we need to use "originalIndex", which
+            // does account for disabled items.
+            virtualizedList.scrollToItem(focusedItemRef.originalIndex);
+        }
+
+        const focusNode = () => {
+            // No point in doing work if we're not open.
+            if (!this.props.open) {
+                return;
             }
 
+            // We look the item up just to make sure we have the right
+            // information at the point this function runs.
+            const currentFocusedItemRef =
+                this.state.itemRefs[this.focusedIndex];
+
+            // eslint-disable-next-line import/no-deprecated
             const node = ReactDOM.findDOMNode(
-                focusedItemRef.ref.current,
+                currentFocusedItemRef.ref.current,
             ) as HTMLElement;
+
+            if (!node && this.shouldVirtualizeList()) {
+                // Wait for the next animation frame to focus the item,
+                // that way the virtualized list has time to render the
+                // item in the DOM. We do this in a recursive way as
+                // occasionally, one frame is not enough.
+                this.props.schedule.animationFrame(focusNode);
+                return;
+            }
+
+            // If the node doesn't exist and we're still mounted, then
+            // we need to schedule another focus attempt so that we run when
+            // the node *is* mounted.
             if (node) {
                 node.focus();
                 // Keep track of the original index of the newly focused item.
                 // To be used if the set of focusable items in the menu changes
-                this.focusedOriginalIndex = focusedItemRef.originalIndex;
+                this.focusedOriginalIndex = currentFocusedItemRef.originalIndex;
 
                 if (onFocus) {
                     // Call the callback with the node that was focused.
                     onFocus(node);
                 }
             }
+        };
+
+        // If we are virtualized, we need to make sure the scroll can occur
+        // before focus is updated. So, we schedule the focus to happen in an
+        // animation frame.
+        if (this.shouldVirtualizeList()) {
+            this.props.schedule.animationFrame(focusNode);
+        } else {
+            focusNode();
         }
     }
 
@@ -572,13 +600,16 @@ class DropdownCore extends React.Component<Props, State> {
     }
 
     focusPreviousItem(): void {
-        if (this.focusedIndex === 0) {
+        if (
+            this.focusedIndex === 0 ||
+            (this.isSearchFieldFocused() && !this.props.enableTypeAhead)
+        ) {
             // Move the focus to the search field if it is the first item.
             if (this.hasSearchField() && !this.isSearchFieldFocused()) {
                 return this.focusSearchField();
             }
             this.focusedIndex = this.state.itemRefs.length - 1;
-        } else {
+        } else if (!this.isSearchFieldFocused()) {
             this.focusedIndex -= 1;
         }
 
@@ -586,13 +617,16 @@ class DropdownCore extends React.Component<Props, State> {
     }
 
     focusNextItem(): void {
-        if (this.focusedIndex === this.state.itemRefs.length - 1) {
+        if (
+            this.focusedIndex === this.state.itemRefs.length - 1 ||
+            (this.isSearchFieldFocused() && !this.props.enableTypeAhead)
+        ) {
             // Move the focus to the search field if it is the last item.
             if (this.hasSearchField() && !this.isSearchFieldFocused()) {
                 return this.focusSearchField();
             }
             this.focusedIndex = 0;
-        } else {
+        } else if (!this.isSearchFieldFocused()) {
             this.focusedIndex += 1;
         }
 
@@ -611,19 +645,19 @@ class DropdownCore extends React.Component<Props, State> {
 
     handleKeyDown: (event: React.KeyboardEvent) => void = (event) => {
         const {enableTypeAhead, onOpenChanged, open, searchText} = this.props;
-        const keyCode = event.which || event.keyCode;
+        const key = event.key;
 
         // Listen for the keydown events if we are using ASCII characters.
-        if (enableTypeAhead && getStringForKey(event.key)) {
+        if (enableTypeAhead && getStringForKey(key)) {
             event.stopPropagation();
-            this.textSuggestion += event.key;
+            this.textSuggestion += key;
             // Trigger the filter logic only after the debounce is resolved.
             this.handleKeyDownDebounced(this.textSuggestion);
         }
 
         // If menu isn't open and user presses down, open the menu
         if (!open) {
-            if (keyCode === keyCodes.down) {
+            if (key === keys.down) {
                 event.preventDefault();
                 onOpenChanged(true);
                 return;
@@ -632,8 +666,8 @@ class DropdownCore extends React.Component<Props, State> {
         }
 
         // Handle all other key behavior
-        switch (keyCode) {
-            case keyCodes.tab:
+        switch (key) {
+            case keys.tab:
                 // When we show SearchField and that is focused and the
                 // searchText is entered at least one character, dismiss button
                 // is displayed. When user presses tab, we should move focus to
@@ -644,7 +678,7 @@ class DropdownCore extends React.Component<Props, State> {
                 this.restoreTabOrder();
                 onOpenChanged(false);
                 return;
-            case keyCodes.space:
+            case keys.space:
                 // When we display SearchField and the focus is on it, we should
                 // let the user type space.
                 if (this.isSearchFieldFocused()) {
@@ -653,11 +687,11 @@ class DropdownCore extends React.Component<Props, State> {
                 // Prevent space from scrolling down the page
                 event.preventDefault();
                 return;
-            case keyCodes.up:
+            case keys.up:
                 event.preventDefault();
                 this.focusPreviousItem();
                 return;
-            case keyCodes.down:
+            case keys.down:
                 event.preventDefault();
                 this.focusNextItem();
                 return;
@@ -667,9 +701,9 @@ class DropdownCore extends React.Component<Props, State> {
     // Some keys should be handled during the keyup event instead.
     handleKeyUp: (event: React.KeyboardEvent) => void = (event) => {
         const {onOpenChanged, open} = this.props;
-        const keyCode = event.which || event.keyCode;
-        switch (keyCode) {
-            case keyCodes.space:
+        const key = event.key;
+        switch (key) {
+            case keys.space:
                 // When we display SearchField and the focus is on it, we should
                 // let the user type space.
                 if (this.isSearchFieldFocused()) {
@@ -678,7 +712,7 @@ class DropdownCore extends React.Component<Props, State> {
                 // Prevent space from scrolling down the page
                 event.preventDefault();
                 return;
-            case keyCodes.escape:
+            case keys.escape:
                 // Close only the dropdown, not other elements that are
                 // listening for an escape press
                 if (open) {
@@ -779,12 +813,12 @@ class DropdownCore extends React.Component<Props, State> {
 
         if (numResults === 0) {
             return (
-                <LabelMedium
+                <BodyText
                     style={styles.noResult}
                     testId="dropdown-core-no-results"
                 >
                     {noResults}
-                </LabelMedium>
+                </BodyText>
             );
         }
         return null;
@@ -852,7 +886,7 @@ class DropdownCore extends React.Component<Props, State> {
                 },
                 // Only pass the ref if the item is focusable.
                 ref: focusable ? currentRef : null,
-                role: itemRole,
+                role: populatedProps.role || itemRole,
             });
         });
     }
@@ -870,6 +904,7 @@ class DropdownCore extends React.Component<Props, State> {
         const itemRole = this.getItemRole();
 
         return this.props.items.map((item, index) => {
+            const {populatedProps} = item;
             if (!SeparatorItem.isClassOf(item.component) && item.focusable) {
                 focusCounter += 1;
             }
@@ -878,12 +913,11 @@ class DropdownCore extends React.Component<Props, State> {
 
             return {
                 ...item,
-                role: itemRole,
-                ref: item.focusable
-                    ? this.state.itemRefs[focusIndex]
+                role: populatedProps.role || itemRole,
+                ref:
+                    item.focusable && this.state.itemRefs[focusIndex]
                         ? this.state.itemRefs[focusIndex].ref
-                        : null
-                    : null,
+                        : null,
                 onClick: () => {
                     this.handleItemClick(focusIndex, item);
                 },
@@ -940,9 +974,9 @@ class DropdownCore extends React.Component<Props, State> {
             "aria-required": ariaRequired,
             dropdownStyle,
             isFilterable,
-            light,
             openerElement,
             role,
+            id,
         } = this.props;
 
         // The dropdown width is at least the width of the opener.
@@ -960,7 +994,6 @@ class DropdownCore extends React.Component<Props, State> {
                 onMouseUp={this.handleDropdownMouseUp}
                 style={[
                     styles.dropdown,
-                    light && styles.light,
                     isReferenceHidden && styles.hidden,
                     dropdownStyle,
                 ]}
@@ -968,6 +1001,7 @@ class DropdownCore extends React.Component<Props, State> {
             >
                 {isFilterable && this.renderSearchField()}
                 <View
+                    id={id}
                     role={role}
                     style={[
                         styles.listboxOrMenu,
@@ -1016,35 +1050,16 @@ class DropdownCore extends React.Component<Props, State> {
         );
     }
 
-    renderLiveRegion(): React.ReactNode {
-        const {items, open} = this.props;
-        const {labels} = this.state;
-        const totalItems = items.length;
-
-        return (
-            <StyledSpan
-                aria-live="polite"
-                aria-atomic="true"
-                aria-relevant="additions text"
-                style={styles.srOnly}
-                data-test-id="dropdown-live-region"
-            >
-                {open && labels.someResults(totalItems)}
-            </StyledSpan>
-        );
-    }
-
     render(): React.ReactNode {
-        const {open, opener, style, className} = this.props;
+        const {open, opener, style, className, disabled} = this.props;
 
         return (
             <View
-                onKeyDown={this.handleKeyDown}
-                onKeyUp={this.handleKeyUp}
+                onKeyDown={!disabled ? this.handleKeyDown : undefined}
+                onKeyUp={!disabled ? this.handleKeyUp : undefined}
                 style={[styles.menuWrapper, style]}
                 className={className}
             >
-                {this.renderLiveRegion()}
                 {opener}
                 {open && this.renderDropdown()}
             </View>
@@ -1058,21 +1073,17 @@ const styles = StyleSheet.create({
     },
 
     dropdown: {
-        backgroundColor: color.white,
-        borderRadius: 4,
-        paddingTop: spacing.xxxSmall_4,
-        paddingBottom: spacing.xxxSmall_4,
-        border: `solid 1px ${color.offBlack16}`,
-        boxShadow: `0px 8px 8px 0px ${fade(color.offBlack, 0.1)}`,
+        backgroundColor: semanticColor.surface.primary,
+        borderRadius: theme.listbox.border.radius,
+        paddingBlock: theme.listbox.layout.padding.block,
+        paddingInline: theme.listbox.layout.padding.inline,
+        border: `solid ${border.width.thin} ${semanticColor.core.border.neutral.subtle}`,
+        // TODO(WB-1878): Move to elevation tokens.
+        boxShadow: theme.listbox.shadow.default,
         // We use a custom property to set the max height of the dropdown.
         // This comes from the maxHeight custom modifier.
         // @see ../util/popper-max-height-modifier.ts
         maxHeight: "var(--popper-max-height)",
-    },
-
-    light: {
-        // Pretty much just remove the border
-        border: "none",
     },
 
     listboxOrMenu: {
@@ -1085,14 +1096,14 @@ const styles = StyleSheet.create({
     },
 
     noResult: {
-        color: color.offBlack64,
+        color: semanticColor.core.foreground.neutral.default,
         alignSelf: "center",
-        marginTop: spacing.xxSmall_6,
+        marginBlockStart: sizing.size_060,
     },
 
     searchInputStyle: {
-        margin: spacing.xSmall_8,
-        marginTop: spacing.xxxSmall_4,
+        margin: sizing.size_080,
+        marginBlockStart: sizing.size_040,
         // Set `minHeight` to "auto" to stop the search field from having
         // a height of 0 and being cut off.
         minHeight: "auto",

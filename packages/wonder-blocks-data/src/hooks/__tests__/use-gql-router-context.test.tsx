@@ -1,5 +1,5 @@
 import * as React from "react";
-import {renderHook} from "@testing-library/react-hooks";
+import {renderHook} from "@testing-library/react";
 
 import {GqlRouterContext} from "../../util/gql-router-context";
 import {useGqlRouterContext} from "../use-gql-router-context";
@@ -9,14 +9,10 @@ describe("#useGqlRouterContext", () => {
         // Arrange
 
         // Act
-        const {
-            result: {error: result},
-        } = renderHook(() => useGqlRouterContext());
+        const underTest = () => renderHook(() => useGqlRouterContext());
 
         // Assert
-        expect(result).toMatchInlineSnapshot(
-            `[InternalGqlError: No GqlRouter]`,
-        );
+        expect(underTest).toThrowErrorMatchingInlineSnapshot(`"No GqlRouter"`);
     });
 
     it("should return an equivalent to the GqlRouterContext if no overrides given", () => {

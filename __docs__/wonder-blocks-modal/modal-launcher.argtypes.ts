@@ -1,8 +1,8 @@
-import type {InputType} from "@storybook/csf";
+import type {ArgTypes} from "@storybook/react";
 
 export default {
     modal: {
-        control: {type: null},
+        control: {type: undefined},
         description: `The modal to render. The modal will be rendered inside
             of a container whose parent is document.body. This allows us to
             use ModalLauncher within menus and other components that clip
@@ -39,7 +39,8 @@ export default {
         control: {type: "text"},
         description: `The selector for the element that will be focused
             when the dialog shows. When not set, the first tabbable element
-            within the dialog will be used.`,
+            within the dialog will be used, which usually is the dismiss button
+            (X).`,
         table: {
             type: {summary: "string"},
         },
@@ -85,4 +86,4 @@ export default {
             type: {summary: "() => mixed"},
         },
     },
-} satisfies Record<string, InputType>;
+} satisfies ArgTypes;

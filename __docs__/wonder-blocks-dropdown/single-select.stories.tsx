@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import planetIcon from "@phosphor-icons/core/regular/planet.svg";
@@ -6,34 +7,33 @@ import {action} from "@storybook/addon-actions";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {fade} from "@khanacademy/wonder-blocks-color";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 import Pill from "@khanacademy/wonder-blocks-pill";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {
-    Body,
-    HeadingLarge,
-    LabelMedium,
-} from "@khanacademy/wonder-blocks-typography";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 import {
     SingleSelect,
     OptionItem,
     SeparatorItem,
 } from "@khanacademy/wonder-blocks-dropdown";
 
-import type {SingleSelectLabels} from "@khanacademy/wonder-blocks-dropdown";
+import type {SingleSelectLabelsValues} from "@khanacademy/wonder-blocks-dropdown";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import singleSelectArgtypes from "./single-select.argtypes";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {defaultLabels} from "../../packages/wonder-blocks-dropdown/src/util/constants";
-import {allCountries, allProfilesWithPictures} from "./option-item-examples";
+import {
+    allCountries,
+    allProfilesWithPictures,
+    currencies,
+} from "./option-item-examples";
 import {OpenerProps} from "../../packages/wonder-blocks-dropdown/src/util/types";
+import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 
 type StoryComponentType = StoryObj<typeof SingleSelect>;
 type SingleSelectArgs = Partial<typeof SingleSelect>;
@@ -50,6 +50,14 @@ type SingleSelectArgs = Partial<typeof SingleSelect>;
  * performance when rendering these elements and is capable of handling many
  * hundreds of items without performance problems.
  *
+ * Make sure to provide a label for the field. This can be done by either:
+ * - (recommended) Using the **LabeledField** component to provide a label,
+ * description, and/or error message for the field
+ * - Using a `label` html tag with the `htmlFor` prop set to the unique id of
+ * the field
+ * - Using an `aria-label` attribute on the field
+ * - Using an `aria-labelledby` attribute on the field
+ *
  * ### Usage
  *
  * #### General usage
@@ -59,14 +67,14 @@ type SingleSelectArgs = Partial<typeof SingleSelect>;
  *
  * const [selectedValue, setSelectedValue] = React.useState("");
  *
- * <SingleSelect placeholder="Choose a fruit" onChange={setSelectedValue} selectedValue={selectedValue}>
+ * <SingleSelect aria-label="Fruit" placeholder="Choose a fruit" onChange={setSelectedValue} selectedValue={selectedValue}>
  *     <OptionItem label="Pear" value="pear" />
  *     <OptionItem label="Mango" value="mango" />
  * </SingleSelect>
  * ```
  */
 export default {
-    title: "Dropdown / SingleSelect",
+    title: "Packages / Dropdown / SingleSelect",
     component: SingleSelect as unknown as React.ComponentType<any>,
     subcomponents: {OptionItem, SeparatorItem},
     argTypes: {
@@ -80,15 +88,10 @@ export default {
         isFilterable: true,
         opened: false,
         disabled: false,
-        light: false,
+        "aria-label": "Fruit",
         placeholder: "Choose a fruit",
         selectedValue: "",
     },
-    decorators: [
-        (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
-            <View style={styles.example}>{Story()}</View>
-        ),
-    ],
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -96,14 +99,13 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        backgrounds: {
+            default: "offWhite",
+        },
     },
 } as Meta<typeof SingleSelect>;
 
 const styles = StyleSheet.create({
-    example: {
-        background: color.offWhite,
-        padding: spacing.medium_16,
-    },
     rowRight: {
         flexDirection: "row",
         justifyContent: "flex-end",
@@ -120,22 +122,22 @@ const styles = StyleSheet.create({
      * Custom opener styles
      */
     customOpener: {
-        borderLeft: `5px solid ${color.blue}`,
-        borderRadius: spacing.xxxSmall_4,
-        background: color.lightBlue,
-        color: color.white,
-        padding: spacing.medium_16,
+        borderLeft: `${border.width.thick} solid ${semanticColor.status.warning.foreground}`,
+        borderRadius: border.radius.radius_040,
+        background: semanticColor.status.warning.background,
+        color: semanticColor.text.primary,
+        padding: sizing.size_160,
     },
     focused: {
-        backgroundColor: fade(color.lightBlue, 0.8),
+        outlineColor: semanticColor.focus.outer,
+        outlineOffset: sizing.size_020,
     },
     hovered: {
         textDecoration: "underline",
-        color: color.offWhite,
         cursor: "pointer",
     },
     pressed: {
-        backgroundColor: color.blue,
+        color: semanticColor.status.warning.foreground,
     },
 
     fullBleed: {
@@ -153,22 +155,10 @@ const styles = StyleSheet.create({
     scrollableArea: {
         height: "200vh",
     },
-    /**
-     * Dark
-     */
-    darkBackgroundWrapper: {
-        flexDirection: "row",
-        justifyContent: "flex-end",
-        backgroundColor: color.darkBlue,
-        width: "100%",
-        height: 200,
-        paddingRight: spacing.medium_16,
-        paddingTop: spacing.medium_16,
-    },
     // AutoFocus
     icon: {
         position: "absolute",
-        right: spacing.medium_16,
+        right: sizing.size_160,
     },
 });
 
@@ -198,6 +188,7 @@ const Template = (args: any) => {
     return (
         <SingleSelect
             {...args}
+            aria-label={args["aria-label"]}
             onChange={setSelectedValue}
             selectedValue={selectedValue}
             opened={opened}
@@ -210,6 +201,47 @@ const Template = (args: any) => {
 
 export const Default: StoryComponentType = {
     render: Template,
+};
+
+/**
+ * The field can be used with the LabeledField component to provide a label,
+ * description, required indicator, and/or error message for the field.
+ *
+ * Using the field with the LabeledField component will ensure that the field
+ * has the relevant accessibility attributes set.
+ */
+export const WithLabeledField: StoryComponentType = {
+    render: function LabeledFieldStory(args) {
+        const [value, setValue] = React.useState(args.selectedValue || "");
+        const [errorMessage, setErrorMessage] = React.useState<
+            string | null | undefined
+        >();
+        return (
+            <LabeledField
+                label="Label"
+                field={
+                    <SingleSelect
+                        {...args}
+                        selectedValue={value}
+                        onChange={setValue}
+                        onValidate={setErrorMessage}
+                    >
+                        {optionItems}
+                    </SingleSelect>
+                }
+                description="Description"
+                required={true}
+                errorMessage={errorMessage}
+            />
+        );
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this is for documentation purposes and is
+            // covered by the LabeledField stories
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**
@@ -274,6 +306,7 @@ export const LongOptionLabels: StoryComponentType = {
 
         return (
             <SingleSelect
+                aria-label="Fruit"
                 onChange={setSelectedValue}
                 selectedValue={selectedValue}
                 opened={opened}
@@ -342,55 +375,193 @@ export const LongOptionLabels: StoryComponentType = {
 };
 
 /**
- * This select is disabled and cannot be interacted with.
+ * `SingleSelect` can be disabled by passing `disabled={true}`. This can be
+ * useful when you want to disable a control temporarily. It is also disabled
+ * when:
+ * - there are no items
+ * - there are items and they are all disabled
+ *
+ * Note: The `disabled` prop sets the `aria-disabled` attribute to `true`
+ * instead of setting the `disabled` attribute. This is so that the component
+ * remains focusable while communicating to screen readers that it is disabled.
  */
 export const Disabled: StoryComponentType = {
-    render: (args) => (
-        <SingleSelect
-            {...args}
-            placeholder="Choose a fruit"
-            onChange={() => {}}
-            selectedValue=""
-            disabled={true}
-        >
-            {items}
-        </SingleSelect>
+    render: () => (
+        <View style={{gap: sizing.size_320}}>
+            <LabeledField
+                label="Disabled prop is set to true"
+                field={
+                    <SingleSelect
+                        placeholder="Choose a fruit"
+                        onChange={() => {}}
+                        selectedValue=""
+                        disabled={true}
+                    >
+                        {items}
+                    </SingleSelect>
+                }
+            />
+            <LabeledField
+                label="No items"
+                field={
+                    <SingleSelect
+                        placeholder="Choose a fruit"
+                        onChange={() => {}}
+                    />
+                }
+            />
+            <LabeledField
+                label="All items are disabled"
+                field={
+                    <SingleSelect
+                        placeholder="Choose a fruit"
+                        onChange={() => {}}
+                    >
+                        <OptionItem label="Apple" value="1" disabled={true} />
+                        <OptionItem label="Orange" value="2" disabled={true} />
+                    </SingleSelect>
+                }
+            />
+        </View>
     ),
 };
 
-const ErrorWrapper = () => {
-    const [error, setError] = React.useState(true);
-    const [selectedValue, setSelectedValue] = React.useState("");
+const ControlledSingleSelect = (
+    storyArgs: PropsFor<typeof SingleSelect> & {label?: string},
+) => {
+    const {label, ...args} = storyArgs;
     const [opened, setOpened] = React.useState(false);
-
+    const [selectedValue, setSelectedValue] = React.useState(
+        args.selectedValue,
+    );
+    const [errorMessage, setErrorMessage] = React.useState<
+        null | string | void
+    >(null);
     return (
-        <>
-            <LabelMedium style={{marginBottom: spacing.xSmall_8}}>
-                Select any fruit other than lemon to clear the error!
-            </LabelMedium>
-            <SingleSelect
-                error={error}
-                onChange={(value) => {
-                    setSelectedValue(value);
-                    setError(value === "lemon");
-                }}
-                onToggle={setOpened}
-                opened={opened}
-                placeholder="Choose a fruit"
-                selectedValue={selectedValue}
-            >
-                {items}
-            </SingleSelect>
-        </>
+        <LabeledField
+            label={label || "SingleSelect"}
+            errorMessage={
+                errorMessage || (args.error && "Error from error prop")
+            }
+            field={
+                <SingleSelect
+                    {...args}
+                    opened={opened}
+                    onToggle={setOpened}
+                    selectedValue={selectedValue}
+                    onChange={setSelectedValue}
+                    placeholder="Choose a fruit"
+                    validate={(value) => {
+                        if (value === "lemon") {
+                            return "Pick another option!";
+                        }
+                    }}
+                    onValidate={setErrorMessage}
+                >
+                    {items}
+                </SingleSelect>
+            }
+        />
     );
 };
 
 /**
- * This select is in an error state. Selecting any option other than lemon will
- * clear the error state by updating the `error` prop to `false`.
+ * If the `error` prop is set to true, the field will have error styling and
+ * `aria-invalid` set to `true`.
+ *
+ * This is useful for scenarios where we want to show an error on a
+ * specific field after a form is submitted (server validation).
+ *
+ * Note: The `required` and `validate` props can also put the field in an
+ * error state.
  */
 export const Error: StoryComponentType = {
-    render: ErrorWrapper,
+    render: ControlledSingleSelect,
+    args: {
+        error: true,
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this is covered by variants story
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * A required field will have error styling and aria-invalid set to true if the
+ * select is left blank.
+ *
+ * When `required` is set to `true`, validation is triggered:
+ * - When a user tabs away from the select (opener's onBlur event)
+ * - When a user closes the dropdown without selecting a value
+ * (either by pressing escape, clicking away, or clicking on the opener).
+ *
+ * Validation errors are cleared when a valid value is selected. The component
+ * will set aria-invalid to "false" and call the onValidate prop with null.
+ *
+ */
+export const Required: StoryComponentType = {
+    render: ControlledSingleSelect,
+    args: {
+        required: "Custom required error message",
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * If a selected value fails validation, the field will have error styling.
+ *
+ * This is useful for scenarios where we want to show errors while a
+ * user is filling out a form (client validation).
+ *
+ * Note that we will internally set the correct `aria-invalid` attribute to the
+ * field:
+ * - aria-invalid="true" if there is an error.
+ * - aria-invalid="false" if there is no error.
+ *
+ * Validation is triggered:
+ * - On mount if the `value` prop is not empty and it is not required
+ * - When an option is selected
+ *
+ * Validation errors are cleared when a valid value is selected. The component
+ * will set aria-invalid to "false" and call the onValidate prop with null.
+ */
+export const ErrorFromValidation: StoryComponentType = {
+    render: (args: PropsFor<typeof SingleSelect>) => {
+        return (
+            <View style={{gap: sizing.size_240}}>
+                <ControlledSingleSelect
+                    {...args}
+                    label="Validation example (try picking lemon to trigger an error)"
+                    validate={(value) => {
+                        if (value === "lemon") {
+                            return "Pick another option!";
+                        }
+                    }}
+                >
+                    {items}
+                </ControlledSingleSelect>
+                <ControlledSingleSelect
+                    {...args}
+                    label="Validation example (on mount)"
+                    validate={(value) => {
+                        if (value === "lemon") {
+                            return "Pick another option!";
+                        }
+                    }}
+                    selectedValue="lemon"
+                >
+                    {items}
+                </ControlledSingleSelect>
+            </View>
+        );
+    },
 };
 
 /**
@@ -441,47 +612,12 @@ export const TwoWithText: StoryComponentType = {
     },
 };
 
-/**
- * "This single select is on a dark background and is also right-aligned.
- */
-export const Light: StoryComponentType = {
-    render: function Render(args: any) {
-        const [selectedValue, setSelectedValue] = React.useState("pear");
-
-        return (
-            <View style={styles.row}>
-                <View style={styles.darkBackgroundWrapper}>
-                    <SingleSelect
-                        alignment="right"
-                        light={true}
-                        onChange={setSelectedValue}
-                        placeholder="Choose a drink"
-                        selectedValue={selectedValue}
-                    >
-                        <OptionItem
-                            label="Regular milk tea with boba"
-                            value="regular"
-                        />
-                        <OptionItem
-                            label="Wintermelon milk tea with boba"
-                            value="wintermelon"
-                        />
-                        <OptionItem
-                            label="Taro milk tea, half sugar"
-                            value="taro"
-                        />
-                    </SingleSelect>
-                </View>
-            </View>
-        );
-    },
-};
-
 const optionItems = allCountries.map(([code, translatedName]) => (
     <OptionItem key={code} value={code} label={translatedName} />
 ));
 
 type Props = {
+    enableTypeAhead?: boolean;
     selectedValue?: string | null | undefined;
     opened?: boolean;
 };
@@ -495,6 +631,7 @@ const VirtualizedSingleSelect = function (props: Props): React.ReactElement {
     return (
         <View style={styles.wrapper}>
             <SingleSelect
+                aria-label="Country"
                 onChange={setSelectedValue}
                 isFilterable={true}
                 opened={opened}
@@ -503,6 +640,7 @@ const VirtualizedSingleSelect = function (props: Props): React.ReactElement {
                 selectedValue={selectedValue}
                 dropdownStyle={styles.fullBleed}
                 style={styles.fullBleed}
+                enableTypeAhead={props.enableTypeAhead}
             >
                 {optionItems}
             </SingleSelect>
@@ -516,9 +654,30 @@ const VirtualizedSingleSelect = function (props: Props): React.ReactElement {
  * option items. Note that this example shows how we can add custom styles to
  * the dropdown as well.
  */
+export const VirtualizedFilterableWithoutEnableTypeAhead: StoryComponentType = {
+    name: "Virtualized (isFilterable:true, enableTypeAhead:false)",
+    render: () => (
+        <VirtualizedSingleSelect enableTypeAhead={false} selectedValue={"ZW"} />
+    ),
+    parameters: {
+        chromatic: {
+            // we don't need screenshots because this story only tests behavior.
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * When there are many options, you could use a search filter in the
+ * SingleSelect. The search filter will be performed toward the labels of the
+ * option items. The enableTypeAhead will focus on the first dropdown item
+ * whose label starts with the search filter.
+ * Note that this example shows how we can add custom styles to the dropdown
+ * as well.
+ */
 export const VirtualizedFilterable: StoryComponentType = {
-    name: "Virtualized (isFilterable)",
-    render: () => <VirtualizedSingleSelect />,
+    name: "Virtualized (isFilterable:true, enableTypeAhead:true)",
+    render: () => <VirtualizedSingleSelect enableTypeAhead={true} />,
     parameters: {
         chromatic: {
             // we don't need screenshots because this story only tests behavior.
@@ -560,15 +719,14 @@ export const DropdownInModal: StoryComponentType = {
 
         const modalContent = (
             <View style={styles.scrollableArea}>
-                <View>
-                    <Body>
+                <View style={{gap: sizing.size_240}}>
+                    <BodyText>
                         Sometimes we want to include Dropdowns inside a Modal,
                         and these controls can be accessed only by scrolling
                         down. This example help us to demonstrate that
                         SingleSelect components can correctly be displayed
                         within the visible scrolling area.
-                    </Body>
-                    <Strut size={spacing.large_24} />
+                    </BodyText>
                     <SingleSelect
                         onChange={(selected) => setValue(selected)}
                         isFilterable={true}
@@ -618,6 +776,9 @@ export const DropdownInModal: StoryComponentType = {
  *
  * **Note:** If you need to use a custom ID for testing the opener, make sure to
  * pass the testId prop inside the opener component/element.
+ *
+ * **Accessibility:** When a custom opener is used, the following attributes are
+ * added automatically: `aria-expanded`, `aria-haspopup`, and `aria-controls`.
  */
 export const CustomOpener: StoryComponentType = {
     render: Template,
@@ -629,7 +790,8 @@ export const CustomOpener: StoryComponentType = {
             );
 
             return (
-                <HeadingLarge
+                <Heading
+                    size="xlarge"
                     onClick={() => {
                         // eslint-disable-next-line no-console
                         console.log("custom click!!!!!");
@@ -644,7 +806,7 @@ export const CustomOpener: StoryComponentType = {
                 >
                     {text}
                     {opened ? ": opened" : ""}
-                </HeadingLarge>
+                </Heading>
             );
         },
     } as SingleSelectArgs,
@@ -655,15 +817,15 @@ export const CustomOpener: StoryComponentType = {
  * Custom labels
  */
 const translatedItems = [
-    <OptionItem label="Banano" value="banano" />,
-    <OptionItem label="Fresa" value="fresa" disabled />,
-    <OptionItem label="Pera" value="pera" />,
-    <OptionItem label="Naranja" value="naranja" />,
-    <OptionItem label="Sandia" value="sandia" />,
-    <OptionItem label="Manzana" value="manzana" />,
-    <OptionItem label="Uva" value="uva" />,
-    <OptionItem label="Limon" value="limon" />,
-    <OptionItem label="Mango" value="mango" />,
+    <OptionItem label="Banano" value="banano" key={0} />,
+    <OptionItem label="Fresa" value="fresa" disabled key={1} />,
+    <OptionItem label="Pera" value="pera" key={2} />,
+    <OptionItem label="Naranja" value="naranja" key={3} />,
+    <OptionItem label="Sandia" value="sandia" key={4} />,
+    <OptionItem label="Manzana" value="manzana" key={5} />,
+    <OptionItem label="Uva" value="uva" key={6} />,
+    <OptionItem label="Limon" value="limon" key={7} />,
+    <OptionItem label="Mango" value="mango" key={8} />,
 ];
 
 /**
@@ -675,16 +837,17 @@ export const CustomLabels: StoryComponentType = {
         const [value, setValue] = React.useState<any>(null);
         const [opened, setOpened] = React.useState(true);
 
-        const translatedLabels: SingleSelectLabels = {
+        const translatedLabels: SingleSelectLabelsValues = {
             clearSearch: "Limpiar busqueda",
             filter: "Filtrar",
             noResults: "Sin resultados",
-            someResults: (numResults) => `${numResults} frutas`,
+            someResults: (numResults: number) => `${numResults} frutas`,
         };
 
         return (
             <View style={styles.wrapper}>
                 <SingleSelect
+                    aria-label="Fruta"
                     isFilterable={true}
                     onChange={setValue}
                     selectedValue={value}
@@ -719,8 +882,8 @@ const timeSlots = [
     "11:59 PM",
 ];
 
-const timeSlotOptions = timeSlots.map((timeSlot) => (
-    <OptionItem label={timeSlot} value={timeSlot} />
+const timeSlotOptions = timeSlots.map((timeSlot, index) => (
+    <OptionItem label={timeSlot} value={timeSlot} key={index} />
 ));
 
 /**
@@ -760,7 +923,7 @@ export const AutoFocusDisabled: StoryComponentType = {
                                 style={styles.fullBleed}
                             />
                             <PhosphorIcon
-                                color={color.blue}
+                                color={semanticColor.status.notice.foreground}
                                 icon={IconMappings.clockBold}
                                 size="small"
                                 style={styles.icon}
@@ -812,6 +975,7 @@ export const CustomOptionItems: StoryComponentType = {
         return (
             <View style={styles.wrapper}>
                 <SingleSelect
+                    aria-label="Profile"
                     placeholder="Select a profile"
                     onChange={handleChange}
                     selectedValue={selectedValue}
@@ -831,6 +995,59 @@ export const CustomOptionItems: StoryComponentType = {
                                 ) : undefined
                             }
                             subtitle2={user.email}
+                        />
+                    ))}
+                </SingleSelect>
+            </View>
+        );
+    },
+};
+
+/**
+ * This example illustrates how a JSX Element can appear as the label if
+ * `labelAsText` is undefined. Note that in this example, we define `labelAsText`
+ * on the OptionItems to ensure that filtering works correctly.
+ */
+export const CustomOptionItemWithNodeLabel: StoryComponentType = {
+    render: function Render() {
+        const [opened, setOpened] = React.useState(true);
+        const [selectedValue, setSelectedValue] = React.useState("");
+
+        const handleChange = (selectedValue: string) => {
+            setSelectedValue(selectedValue);
+        };
+
+        const handleToggle = (opened: boolean) => {
+            setOpened(opened);
+        };
+
+        return (
+            <View style={styles.wrapper}>
+                <SingleSelect
+                    aria-label="Currency"
+                    placeholder="Select your currency"
+                    onChange={handleChange}
+                    selectedValue={selectedValue}
+                    onToggle={handleToggle}
+                    opened={opened}
+                    showOpenerLabelAsText={false}
+                    isFilterable={true}
+                >
+                    {currencies.map((currency, index) => (
+                        <OptionItem
+                            key={index}
+                            value={String(index)}
+                            horizontalRule="full-width"
+                            label={
+                                <span>
+                                    <PhosphorIcon
+                                        icon={currency.icon}
+                                        size={"small"}
+                                    />
+                                    {currency.name}
+                                </span>
+                            }
+                            labelAsText={currency.name}
                         />
                     ))}
                 </SingleSelect>
@@ -867,6 +1084,7 @@ export const CustomOptionItemsVirtualized: StoryComponentType = {
 
         return (
             <SingleSelect
+                aria-label="Country"
                 placeholder="Select a country"
                 isFilterable={true}
                 onChange={handleChange}

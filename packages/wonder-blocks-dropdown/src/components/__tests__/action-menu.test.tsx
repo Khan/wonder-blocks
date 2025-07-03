@@ -1,6 +1,10 @@
+/* eslint-disable max-lines */
 import * as React from "react";
+import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
 import {render, screen} from "@testing-library/react";
 import {PointerEventsCheckLevel, userEvent} from "@testing-library/user-event";
+
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
 import ActionItem from "../action-item";
 import OptionItem from "../option-item";
@@ -37,9 +41,7 @@ describe("ActionMenu", () => {
         ).toBeInTheDocument();
     });
 
-    // TODO(FEI-5533): Key press events aren't working correctly with
-    // user-event v14. We need to investigate and fix this.
-    it.skip("opens the menu on enter", async () => {
+    it("opens the menu on enter", async () => {
         // Arrange
         render(
             <ActionMenu
@@ -56,7 +58,7 @@ describe("ActionMenu", () => {
 
         // Act
         await userEvent.tab();
-        await userEvent.keyboard("{enter}");
+        await userEvent.keyboard("{Enter}");
 
         // Assert
         expect(
@@ -64,9 +66,7 @@ describe("ActionMenu", () => {
         ).toBeInTheDocument();
     });
 
-    // TODO(FEI-5533): Key press events aren't working correctly with
-    // user-event v14. We need to investigate and fix this.
-    it.skip("closes itself on escape", async () => {
+    it("closes itself on escape", async () => {
         // Arrange
         render(
             <ActionMenu
@@ -82,18 +82,16 @@ describe("ActionMenu", () => {
         );
 
         await userEvent.tab();
-        await userEvent.keyboard("{enter}");
+        await userEvent.keyboard("{Enter}");
 
         // Act
-        await userEvent.keyboard("{escape}");
+        await userEvent.keyboard("{Escape}");
 
         // Assert
         expect(screen.queryByRole("menu")).not.toBeInTheDocument();
     });
 
-    // TODO(FEI-5533): Key press events aren't working correctly with
-    // user-event v14. We need to investigate and fix this.
-    it.skip("closes itself on tab", async () => {
+    it("closes itself on tab", async () => {
         // Arrange
         render(
             <ActionMenu
@@ -109,7 +107,7 @@ describe("ActionMenu", () => {
         );
 
         await userEvent.tab();
-        await userEvent.keyboard("{enter}");
+        await userEvent.keyboard("{Enter}");
 
         // Act
         await userEvent.tab();
@@ -143,29 +141,6 @@ describe("ActionMenu", () => {
 
         // Assert
         expect(screen.queryByRole("menu")).not.toBeInTheDocument();
-    });
-
-    it("updates the aria-expanded value when opening", async () => {
-        // Arrange
-        render(
-            <ActionMenu
-                menuText={"Action menu!"}
-                testId="openTest"
-                onChange={onChange}
-                selectedValues={[]}
-            >
-                <ActionItem label="Action" onClick={onClick} />
-                <SeparatorItem />
-                <OptionItem label="Toggle" value="toggle" onClick={onToggle} />
-            </ActionMenu>,
-        );
-
-        // Act
-        const opener = await screen.findByRole("button");
-        await userEvent.click(opener);
-
-        // Assert
-        expect(opener).toHaveAttribute("aria-expanded", "true");
     });
 
     it("triggers actions", async () => {
@@ -336,10 +311,9 @@ describe("ActionMenu", () => {
         // Arrange
         const showDeleteAction = false;
         render(
-            // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
             <ActionMenu menuText={"Action menu!"}>
                 <ActionItem label="Create" />
-                {showDeleteAction && <ActionItem label="Delete" />}
+                {(showDeleteAction as any) && <ActionItem label="Delete" />}
             </ActionMenu>,
         );
 
@@ -363,7 +337,7 @@ describe("ActionMenu", () => {
         const opener = await screen.findByRole("button");
 
         // Assert
-        expect(opener).toHaveAttribute("data-test-id", "some-test-id");
+        expect(opener).toHaveAttribute("data-testid", "some-test-id");
     });
 
     describe("Controlled component", () => {
@@ -393,7 +367,7 @@ describe("ActionMenu", () => {
                         <ActionItem label="Delete" />
                     </ActionMenu>
                     <button
-                        data-test-id="parent-button"
+                        data-testid="parent-button"
                         onClick={() => handleToggleMenu(true)}
                     />
                 </React.Fragment>
@@ -475,6 +449,71 @@ describe("ActionMenu", () => {
             ).toBeInTheDocument();
         });
 
+        it.each([{key: "{Enter}"}, {key: " "}])(
+            "should open the menu when pressing $key",
+            async ({key}) => {
+                // Arrange
+                render(
+                    <ActionMenu
+                        menuText=""
+                        testId="openTest"
+                        onChange={onChange}
+                        selectedValues={[]}
+                        opener={() => (
+                            <IconButton
+                                aria-label="Search"
+                                icon={magnifyingGlassIcon}
+                                onClick={jest.fn()}
+                            />
+                        )}
+                    >
+                        <ActionItem label="Action" onClick={onClick} />
+                    </ActionMenu>,
+                );
+
+                await userEvent.tab();
+
+                // Act
+                await userEvent.keyboard(key);
+
+                // Assert
+                expect(
+                    await screen.findByRole("menu", {hidden: true}),
+                ).toBeInTheDocument();
+            },
+        );
+
+        it("opens the menu when pressing {Space}", async () => {
+            // Arrange
+            render(
+                <ActionMenu
+                    menuText=""
+                    testId="openTest"
+                    onChange={onChange}
+                    selectedValues={[]}
+                    opener={() => (
+                        <IconButton
+                            aria-label="Search"
+                            icon={magnifyingGlassIcon}
+                            onClick={jest.fn()}
+                        />
+                    )}
+                >
+                    <ActionItem label="Action" onClick={onClick} />
+                </ActionMenu>,
+            );
+
+            await userEvent.tab();
+
+            // Act
+            await userEvent.keyboard(" ");
+
+            // Assert
+            expect(
+                await screen.findByRole("menu", {hidden: true}),
+            ).toBeInTheDocument();
+        });
+
         it("calls the custom onClick handler", async () => {
             // Arrange
             const onClickMock = jest.fn();
@@ -508,7 +547,7 @@ describe("ActionMenu", () => {
                     menuText="Action menu!"
                     opener={() => (
                         <button
-                            data-test-id="custom-opener"
+                            data-testid="custom-opener"
                             aria-label="Custom opener"
                         />
                     )}
@@ -522,7 +561,7 @@ describe("ActionMenu", () => {
             const opener = await screen.findByLabelText("Custom opener");
 
             // Assert
-            expect(opener).toHaveAttribute("data-test-id", "custom-opener");
+            expect(opener).toHaveAttribute("data-testid", "custom-opener");
         });
 
         it("verifies testId is not passed from the parent element", async () => {
@@ -543,10 +582,10 @@ describe("ActionMenu", () => {
             const opener = await screen.findByLabelText("Custom opener");
 
             // Assert
-            expect(opener).not.toHaveAttribute("data-test-id");
+            expect(opener).not.toHaveAttribute("data-testid");
         });
 
-        it("passes the menu text to the custom opener", async () => {
+        it("passes the menu content to the custom opener", async () => {
             // Arrange
             render(
                 <ActionMenu
@@ -555,10 +594,7 @@ describe("ActionMenu", () => {
                     onChange={onChange}
                     selectedValues={[]}
                     opener={({text}: any) => (
-                        <button
-                            onClick={jest.fn()}
-                            data-test-id="custom-opener"
-                        >
+                        <button onClick={jest.fn()} data-testid="custom-opener">
                             {text}
                         </button>
                     )}
@@ -573,6 +609,624 @@ describe("ActionMenu", () => {
 
             // Assert
             expect(opener).toHaveTextContent("Action menu!");
+        });
+    });
+
+    describe("With OptionItems", () => {
+        it("Should render option items with `role=menuitemcheckbox`", async () => {
+            // Arrange
+            render(
+                <ActionMenu
+                    menuText="Action menu!"
+                    testId="openTest"
+                    onChange={onChange}
+                >
+                    <OptionItem
+                        label="Toggle A"
+                        value="toggle-a"
+                        testId="toggle-a"
+                    />
+                    <OptionItem
+                        label="Toggle B"
+                        value="toggle-b"
+                        testId="toggle-b"
+                    />
+                </ActionMenu>,
+            );
+
+            // Act
+            // open the menu
+            const opener = await screen.findByRole("button");
+            await userEvent.click(opener);
+
+            // Assert
+            expect(
+                await screen.findAllByRole("menuitemcheckbox", {hidden: true}),
+            ).toHaveLength(2);
+        });
+
+        it("Should render non-selected option items with `aria-checked` set to `false`", async () => {
+            // Arrange
+            render(
+                <ActionMenu
+                    menuText="Action menu!"
+                    testId="openTest"
+                    onChange={onChange}
+                    selectedValues={[]}
+                >
+                    <OptionItem
+                        label="Toggle A"
+                        value="toggle-a"
+                        testId="toggle-a"
+                    />
+                    <OptionItem
+                        label="Toggle B"
+                        value="toggle-b"
+                        testId="toggle-b"
+                    />
+                </ActionMenu>,
+            );
+
+            // Act
+            // open the menu
+            const opener = await screen.findByRole("button");
+            await userEvent.click(opener);
+
+            // Assert
+            const menuItemCheckboxes = await screen.findAllByRole(
+                "menuitemcheckbox",
+                {
+                    hidden: true,
+                },
+            );
+            expect(menuItemCheckboxes.at(0)).toHaveAttribute(
+                "aria-checked",
+                "false",
+            );
+            expect(menuItemCheckboxes.at(1)).toHaveAttribute(
+                "aria-checked",
+                "false",
+            );
+        });
+
+        it("Should render selected option items with `aria-checked` set to `true`", async () => {
+            // Arrange
+            render(
+                <ActionMenu
+                    menuText="Action menu!"
+                    testId="openTest"
+                    onChange={onChange}
+                    selectedValues={["toggle-a"]}
+                >
+                    <OptionItem
+                        label="Toggle A"
+                        value="toggle-a"
+                        testId="toggle-a"
+                    />
+                    <OptionItem
+                        label="Toggle B"
+                        value="toggle-b"
+                        testId="toggle-b"
+                    />
+                </ActionMenu>,
+            );
+
+            // Act
+            // open the menu
+            const opener = await screen.findByRole("button");
+            await userEvent.click(opener);
+
+            // Assert
+            const menuItemCheckboxes = await screen.findAllByRole(
+                "menuitemcheckbox",
+                {
+                    hidden: true,
+                },
+            );
+            expect(menuItemCheckboxes.at(0)).toHaveAttribute(
+                "aria-checked",
+                "true",
+            );
+        });
+
+        it("Should not use `aria-selected` attribute on selected and non-selected options", async () => {
+            // Arrange
+            render(
+                <ActionMenu
+                    menuText="Action menu!"
+                    testId="openTest"
+                    onChange={onChange}
+                    selectedValues={["toggle-a"]}
+                >
+                    <OptionItem
+                        label="Toggle A"
+                        value="toggle-a"
+                        testId="toggle-a"
+                    />
+                    <OptionItem
+                        label="Toggle B"
+                        value="toggle-b"
+                        testId="toggle-b"
+                    />
+                </ActionMenu>,
+            );
+
+            // Act
+            // open the menu
+            const opener = await screen.findByRole("button");
+            await userEvent.click(opener);
+
+            // Assert
+            const menuItemCheckboxes = await screen.findAllByRole(
+                "menuitemcheckbox",
+                {
+                    hidden: true,
+                },
+            );
+            expect(menuItemCheckboxes.at(0)).not.toHaveAttribute(
+                "aria-selected",
+            );
+            expect(menuItemCheckboxes.at(1)).not.toHaveAttribute(
+                "aria-selected",
+            );
+        });
+
+        it("Should render action items with `role=menuitem` and option items with `role=menuitemcheckbox`", async () => {
+            // Arrange
+            render(
+                <ActionMenu
+                    menuText="Action menu!"
+                    testId="openTest"
+                    onChange={onChange}
+                >
+                    <ActionItem label="Action" />
+                    <OptionItem
+                        label="Toggle A"
+                        value="toggle-a"
+                        testId="toggle-a"
+                    />
+                </ActionMenu>,
+            );
+
+            // Act
+            // open the menu
+            const opener = await screen.findByRole("button");
+            await userEvent.click(opener);
+
+            // Assert
+            expect(
+                await screen.findAllByRole("menuitem", {hidden: true}),
+            ).toHaveLength(1);
+            expect(
+                await screen.findAllByRole("menuitemcheckbox", {hidden: true}),
+            ).toHaveLength(1);
+        });
+
+        describe("With Virtualization", () => {
+            it("Should render option items with `role=menuitemcheckbox` when there are many options", async () => {
+                // Arrange
+                render(
+                    <ActionMenu
+                        menuText="Action menu!"
+                        testId="openTest"
+                        onChange={onChange}
+                    >
+                        {[...new Array(126)].map((_, i) => (
+                            <OptionItem
+                                label={`Toggle ${i}`}
+                                key={i}
+                                value={`toggle-${i}`}
+                            />
+                        ))}
+                    </ActionMenu>,
+                );
+
+                // Act
+                // open the menu
+                const opener = await screen.findByRole("button");
+                await userEvent.click(opener);
+
+                // Assert
+                // Note there are less than the option items amount because they are
+                // virtualized
+                expect(
+                    await screen.findAllByRole("menuitemcheckbox", {
+                        hidden: true,
+                    }),
+                ).toHaveLength(14);
+                expect(
+                    screen.queryAllByRole("menuitem", {
+                        hidden: true,
+                    }),
+                ).toHaveLength(0);
+            });
+
+            it("Should render selected option items with `aria-checked=true` when there are many options", async () => {
+                // Arrange
+                render(
+                    <ActionMenu
+                        menuText="Action menu!"
+                        testId="openTest"
+                        onChange={onChange}
+                        selectedValues={["toggle-0"]}
+                    >
+                        {[...new Array(126)].map((_, i) => (
+                            <OptionItem
+                                label={`Toggle ${i}`}
+                                key={i}
+                                value={`toggle-${i}`}
+                            />
+                        ))}
+                    </ActionMenu>,
+                );
+
+                // Act
+                // open the menu
+                const opener = await screen.findByRole("button");
+                await userEvent.click(opener);
+
+                // Assert
+                const menuItemCheckboxes = await screen.findAllByRole(
+                    "menuitemcheckbox",
+                    {
+                        hidden: true,
+                    },
+                );
+                expect(menuItemCheckboxes.at(0)).toHaveAttribute(
+                    "aria-checked",
+                    "true",
+                );
+            });
+
+            it("Should render non-selected option items with `aria-checked=false` when there are many options", async () => {
+                // Arrange
+                render(
+                    <ActionMenu
+                        menuText="Action menu!"
+                        testId="openTest"
+                        onChange={onChange}
+                        selectedValues={[]}
+                    >
+                        {[...new Array(126)].map((_, i) => (
+                            <OptionItem
+                                label={`Toggle ${i}`}
+                                key={i}
+                                value={`toggle-${i}`}
+                            />
+                        ))}
+                    </ActionMenu>,
+                );
+
+                // Act
+                // open the menu
+                const opener = await screen.findByRole("button");
+                await userEvent.click(opener);
+
+                // Assert
+                const menuItemCheckboxes = await screen.findAllByRole(
+                    "menuitemcheckbox",
+                    {
+                        hidden: true,
+                    },
+                );
+                expect(menuItemCheckboxes.at(0)).toHaveAttribute(
+                    "aria-checked",
+                    "false",
+                );
+            });
+
+            it("Should not use `aria-selected` attribute on selected and non-selected options", async () => {
+                // Arrange
+                render(
+                    <ActionMenu
+                        menuText="Action menu!"
+                        testId="openTest"
+                        onChange={onChange}
+                        selectedValues={["toggle-0"]}
+                    >
+                        {[...new Array(126)].map((_, i) => (
+                            <OptionItem
+                                label={`Toggle ${i}`}
+                                key={i}
+                                value={`toggle-${i}`}
+                            />
+                        ))}
+                    </ActionMenu>,
+                );
+
+                // Act
+                // open the menu
+                const opener = await screen.findByRole("button");
+                await userEvent.click(opener);
+
+                // Assert
+                const menuItemCheckboxes = await screen.findAllByRole(
+                    "menuitemcheckbox",
+                    {
+                        hidden: true,
+                    },
+                );
+                expect(menuItemCheckboxes.at(0)).not.toHaveAttribute(
+                    "aria-selected",
+                );
+                expect(menuItemCheckboxes.at(1)).not.toHaveAttribute(
+                    "aria-selected",
+                );
+            });
+        });
+    });
+
+    describe("Ids", () => {
+        it("Should auto-generate an id for the opener if `id` prop is not provided", async () => {
+            // Arrange
+            render(
+                <ActionMenu menuText={"Action menu!"}>
+                    <ActionItem label="Create" />
+                </ActionMenu>,
+            );
+
+            // Act
+            const opener = await screen.findByRole("button");
+
+            // Assert
+            // Expect autogenerated id
+            expect(opener).toHaveAttribute("id", expect.any(String));
+        });
+
+        it("Should use the `id` prop if provided", async () => {
+            // Arrange
+            const id = "test-id";
+            render(
+                <ActionMenu menuText={"Action menu!"} id={id}>
+                    <ActionItem label="Create" />
+                </ActionMenu>,
+            );
+
+            // Act
+            const opener = await screen.findByRole("button");
+
+            // Assert
+            expect(opener).toHaveAttribute("id", id);
+        });
+
+        it("Should auto-generate an id for the dropdown if `dropdownId` prop is not provided", async () => {
+            // Arrange
+            render(
+                <ActionMenu menuText={"Action menu!"}>
+                    <ActionItem label="Create" />
+                </ActionMenu>,
+            );
+
+            // Act
+            // Open the dropdown
+            const opener = await screen.findByRole("button");
+            await userEvent.click(opener);
+
+            // Assert
+            expect(
+                await screen.findByRole("menu", {hidden: true}),
+            ).toHaveAttribute("id", expect.any(String));
+        });
+
+        it("Should use the `dropdownId` prop if provided", async () => {
+            // Arrange
+            const dropdownId = "test-id";
+            render(
+                <ActionMenu menuText={"Action menu!"} dropdownId={dropdownId}>
+                    <ActionItem label="Create" />
+                </ActionMenu>,
+            );
+
+            // Act
+            // Open the dropdown
+            const opener = await screen.findByRole("button");
+            await userEvent.click(opener);
+
+            // Assert
+            expect(
+                await screen.findByRole("menu", {hidden: true}),
+            ).toHaveAttribute("id", dropdownId);
+        });
+    });
+
+    describe("a11y > aria-controls", () => {
+        it("Should set the `aria-controls` attribute on the default opener to the provided dropdownId prop", async () => {
+            // Arrange
+            const dropdownId = "test-id";
+            render(
+                <ActionMenu menuText={"Action menu!"} dropdownId={dropdownId}>
+                    <ActionItem label="Create" />
+                </ActionMenu>,
+            );
+
+            // Act
+            const opener = await screen.findByRole("button");
+            await userEvent.click(opener);
+            const dropdown = await screen.findByRole("menu", {hidden: true});
+
+            // Assert
+            expect(opener).toHaveAttribute("aria-controls", dropdown.id);
+            expect(opener).toHaveAttribute("aria-controls", dropdownId);
+        });
+
+        it("Should set the `aria-controls` attribute on the default opener to the auto-generated dropdownId", async () => {
+            // Arrange
+            render(
+                <ActionMenu menuText={"Action menu!"}>
+                    <ActionItem label="Create" />
+                </ActionMenu>,
+            );
+
+            // Act
+            const opener = await screen.findByRole("button");
+            await userEvent.click(opener);
+            const dropdown = await screen.findByRole("menu", {hidden: true});
+
+            // Assert
+            expect(opener).toHaveAttribute("aria-controls", dropdown.id);
+            expect(dropdown.id).toBeString();
+        });
+
+        it("Should set the `aria-controls` attribute on the custom opener to the provided dropdownId prop", async () => {
+            // Arrange
+            const dropdownId = "test-id";
+            render(
+                <ActionMenu
+                    menuText={"Action menu!"}
+                    dropdownId={dropdownId}
+                    opener={() => (
+                        <button aria-label="Search" onClick={jest.fn()} />
+                    )}
+                >
+                    <ActionItem label="Action" onClick={onClick} />
+                </ActionMenu>,
+            );
+
+            // Act
+            const opener = await screen.findByLabelText("Search");
+            await userEvent.click(opener);
+            const dropdown = await screen.findByRole("menu", {hidden: true});
+
+            // Assert
+            expect(opener).toHaveAttribute("aria-controls", dropdown.id);
+            expect(dropdown.id).toBe(dropdownId);
+        });
+
+        it("Should set the `aria-controls` attribute on the custom opener to the auto-generated dropdownId", async () => {
+            // Arrange
+            render(
+                <ActionMenu
+                    menuText={"Action menu!"}
+                    opener={() => (
+                        <button aria-label="Search" onClick={jest.fn()} />
+                    )}
+                >
+                    <ActionItem label="Action" onClick={onClick} />
+                </ActionMenu>,
+            );
+
+            // Act
+            const opener = await screen.findByLabelText("Search");
+            await userEvent.click(opener);
+            const dropdown = await screen.findByRole("menu", {hidden: true});
+
+            // Assert
+            expect(opener).toHaveAttribute("aria-controls", dropdown.id);
+            expect(dropdown.id).toBeString();
+        });
+    });
+
+    describe("a11y > aria-haspopup", () => {
+        it("should have aria-haspopup set on the opener", async () => {
+            // Arrange
+            render(
+                <ActionMenu menuText={"Action menu!"} onChange={onChange}>
+                    <ActionItem label="Action" onClick={onClick} />
+                </ActionMenu>,
+            );
+
+            // Act
+            const opener = await screen.findByRole("button");
+
+            // Assert
+            expect(opener).toHaveAttribute("aria-haspopup", "menu");
+        });
+
+        it("should have aria-haspopup set on the custom opener", async () => {
+            // Arrange
+            render(
+                <ActionMenu
+                    menuText={"Action menu!"}
+                    onChange={onChange}
+                    opener={() => (
+                        <button aria-label="Search" onClick={jest.fn()} />
+                    )}
+                >
+                    <ActionItem label="Action" onClick={onClick} />
+                </ActionMenu>,
+            );
+
+            // Act
+            const opener = await screen.findByLabelText("Search");
+
+            // Assert
+            expect(opener).toHaveAttribute("aria-haspopup", "menu");
+        });
+    });
+
+    describe("a11y > aria-expanded", () => {
+        it("should have aria-expanded=false when closed", async () => {
+            // Arrange
+            render(
+                <ActionMenu menuText={"Action menu!"} onChange={onChange}>
+                    <ActionItem label="Action" onClick={onClick} />
+                </ActionMenu>,
+            );
+
+            // Act
+            const opener = await screen.findByRole("button");
+
+            // Assert
+            expect(opener).toHaveAttribute("aria-expanded", "false");
+        });
+
+        it("updates the aria-expanded value when opening", async () => {
+            // Arrange
+            render(
+                <ActionMenu menuText={"Action menu!"} onChange={onChange}>
+                    <ActionItem label="Action" onClick={onClick} />
+                </ActionMenu>,
+            );
+
+            // Act
+            const opener = await screen.findByRole("button");
+            await userEvent.click(opener);
+
+            // Assert
+            expect(opener).toHaveAttribute("aria-expanded", "true");
+        });
+
+        it("should have aria-expanded=false when closed and using a custom opener", async () => {
+            // Arrange
+            render(
+                <ActionMenu
+                    menuText={"Action menu!"}
+                    onChange={onChange}
+                    opener={() => (
+                        <button aria-label="Search" onClick={jest.fn()} />
+                    )}
+                >
+                    <ActionItem label="Action" onClick={onClick} />
+                </ActionMenu>,
+            );
+
+            // Act
+            const opener = await screen.findByLabelText("Search");
+
+            // Assert
+            expect(opener).toHaveAttribute("aria-expanded", "false");
+        });
+
+        it("updates the aria-expanded value when opening and using a custom opener", async () => {
+            // Arrange
+            render(
+                <ActionMenu
+                    menuText={"Action menu!"}
+                    onChange={onChange}
+                    opener={() => (
+                        <button aria-label="Search" onClick={jest.fn()} />
+                    )}
+                >
+                    <ActionItem label="Action" onClick={onClick} />
+                </ActionMenu>,
+            );
+
+            // Act
+            const opener = await screen.findByLabelText("Search");
+            await userEvent.click(opener);
+
+            // Assert
+            expect(opener).toHaveAttribute("aria-expanded", "true");
         });
     });
 });

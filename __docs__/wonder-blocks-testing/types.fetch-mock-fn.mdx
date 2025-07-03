@@ -1,0 +1,17 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta
+    title="Packages / Testing / Mocking / Types / FetchMockFn"
+/>
+
+# FetchMockFn
+
+```ts
+type FetchMockFn = {|
+    (input: RequestInfo, init?: RequestOptions): Promise<Response>,
+    mockOperation: FetchMockOperationFn,
+    mockOperationOnce: FetchMockOperationFn,
+|};
+```
+
+This type represents the mocking API for `fetch()`. It is the type of the function returned by the <a href="./?path=/docs/packages-testing-mocking-exports-mockfetch--docs">`mockFetch()`</a>, which is both a drop in replacement for a `fetch()`-like method, but also exposes the mocking API for configuration additional mocks.

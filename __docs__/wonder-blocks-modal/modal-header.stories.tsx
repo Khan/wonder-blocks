@@ -8,7 +8,7 @@ import {
 } from "@khanacademy/wonder-blocks-breadcrumbs";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
-import {Body} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {
     ModalDialog,
@@ -17,7 +17,7 @@ import {
 } from "@khanacademy/wonder-blocks-modal";
 import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import ModalHeaderArgtypes from "./modal-header.argtypes";
 
 const customViewports = {
@@ -46,12 +46,11 @@ const customViewports = {
 
 const longBody = (
     <>
-        <Body>
+        <BodyText>
             {`Let's make this body content long in order
 to test scroll overflow.`}
-        </Body>
-        <br />
-        <Body>
+        </BodyText>
+        <BodyText>
             {`Lorem ipsum dolor sit amet, consectetur
 adipiscing elit, sed do eiusmod tempor incididunt
 ut labore et dolore magna aliqua. Ut enim ad minim
@@ -62,9 +61,8 @@ esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident,
 sunt in culpa qui officia deserunt mollit anim id
 est.`}
-        </Body>
-        <br />
-        <Body>
+        </BodyText>
+        <BodyText>
             {`Lorem ipsum dolor sit amet, consectetur
 adipiscing elit, sed do eiusmod tempor incididunt
 ut labore et dolore magna aliqua. Ut enim ad minim
@@ -75,9 +73,8 @@ esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident,
 sunt in culpa qui officia deserunt mollit anim id
 est.`}
-        </Body>
-        <br />
-        <Body>
+        </BodyText>
+        <BodyText>
             {`Lorem ipsum dolor sit amet, consectetur
 adipiscing elit, sed do eiusmod tempor incididunt
 ut labore et dolore magna aliqua. Ut enim ad minim
@@ -88,7 +85,7 @@ esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident,
 sunt in culpa qui officia deserunt mollit anim id
 est.`}
-        </Body>
+        </BodyText>
     </>
 );
 
@@ -106,8 +103,8 @@ est.`}
  * - If there is a custom Dialog implementation (e.g. `TwoPaneDialog`), the
  *   ModalHeader doesn’t have to have the `titleId` prop however this is
  *   recommended. It should match the `aria-labelledby` prop of the
- *   [ModalDialog](/#modaldialog) component. If you want to see an example of
- *   how to generate this ID, check [IDProvider](/#idprovider).
+ *   [ModalDialog](/#modaldialog) component. Identifiers can be generated with
+ *   the `useId` React hook.
  *
  * ### Implementation notes
  *
@@ -117,8 +114,6 @@ est.`}
  * - Add a title (required).
  * - Optionally add a subtitle or breadcrumbs.
  * - We encourage you to add `titleId` (see Accessibility notes).
- * - If the `ModalPanel` has a dark background, make sure to set `light` to
- *   `false`.
  * - If you need to create e2e tests, make sure to pass a `testId` prop and
  *   add a sufix to scope the testId to this component: e.g.
  *   `some-random-id-ModalHeader`. This scope will also be passed to the title
@@ -131,12 +126,11 @@ est.`}
  *      title="This is a modal title."
  *      subtitle="subtitle"
  *      titleId="uniqueTitleId"
- *      light={false}
  *  />
  * ```
  */
 export default {
-    title: "Modal/Building Blocks/ModalHeader",
+    title: "Packages / Modal / Building Blocks / ModalHeader",
     component: ModalHeader,
     decorators: [
         (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
@@ -165,7 +159,9 @@ export default {
             defaultViewport: "desktop",
         },
         chromatic: {
-            viewports: [320, 640, 1024],
+            // We already have screenshots of other stories in
+            // one-pane-dialog.stories.tsx
+            disableSnapshot: true,
         },
     },
     argTypes: ModalHeaderArgtypes,
@@ -190,30 +186,6 @@ export const Default: StoryComponentType = {
 };
 
 /**
- * This is `<ModalHeader>` when `light` is set to false. This should only be
- * false if the `light` prop on the encompassing `<ModalPanel>` is also false .
- * Note that the close button is not visible on the header if the panel is
- * light.
- */
-export const Dark: StoryComponentType = {
-    render: () => (
-        <ModalDialog aria-labelledby="modal-title-2" style={styles.dialog}>
-            <ModalPanel
-                header={
-                    <ModalHeader
-                        title="Modal Title"
-                        titleId="modal-title-2"
-                        light={false}
-                    />
-                }
-                content={longBody}
-                light={false}
-            />
-        </ModalDialog>
-    ),
-};
-
-/**
  * This is `<ModalHeader>` with a subtitle, which can be done by passing a
  * string into the `subtitle` prop.
  */
@@ -235,32 +207,8 @@ export const WithSubtitle: StoryComponentType = {
 };
 
 /**
- * This is `<ModalHeader>` with a subtitle when it also has `light` set to
- * false.
- */
-export const WithSubtitleDark: StoryComponentType = {
-    render: () => (
-        <ModalDialog aria-labelledby="modal-title-4" style={styles.dialog}>
-            <ModalPanel
-                header={
-                    <ModalHeader
-                        title="Modal Title"
-                        titleId="modal-title-4"
-                        subtitle="This is what a subtitle looks like."
-                        light={false}
-                    />
-                }
-                content={longBody}
-                light={false}
-            />
-        </ModalDialog>
-    ),
-};
-
-/**
  * This is `<ModalHeader>` with breadcrumbs, which can be done by passing a
- * Wonder Blocks `<Breadcrumbs>` element into the `breadcrumbs` prop. Note that
- * `breadcrumbs` currently do not work when `light` is false.
+ * Wonder Blocks `<Breadcrumbs>` element into the `breadcrumbs` prop.
  */
 export const WithBreadcrumbs: StoryComponentType = {
     render: () => (
@@ -273,10 +221,10 @@ export const WithBreadcrumbs: StoryComponentType = {
                         breadcrumbs={
                             <Breadcrumbs>
                                 <BreadcrumbsItem>
-                                    <Link href="">Course</Link>
+                                    <Link href="#course">Course</Link>
                                 </BreadcrumbsItem>
                                 <BreadcrumbsItem>
-                                    <Link href="">Unit</Link>
+                                    <Link href="#unit">Unit</Link>
                                 </BreadcrumbsItem>
                                 <BreadcrumbsItem>Lesson</BreadcrumbsItem>
                             </Breadcrumbs>

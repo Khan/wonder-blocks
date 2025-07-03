@@ -14,16 +14,8 @@ jest.mock("../../util/active-tracker");
 
 describe("TooltipAnchor", () => {
     beforeEach(async () => {
-        // @ts-expect-error [FEI-5019] - TS2339 - Property 'mockReset' does not exist on type '{ <K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions | undefined): void; (type: string, listener: EventListenerOrEventListenerObject, options?: boolean | ... 1 more ... | undefined): void; }'.
-        if (typeof document.addEventListener.mockReset === "function") {
-            // @ts-expect-error [FEI-5019] - TS2339 - Property 'mockRestore' does not exist on type '{ <K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions | undefined): void; (type: string, listener: EventListenerOrEventListenerObject, options?: boolean | ... 1 more ... | undefined): void; }'.
-            document.addEventListener.mockRestore();
-        }
-        // @ts-expect-error [FEI-5019] - TS2339 - Property 'mockReset' does not exist on type '{ <K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions | undefined): void; (type: string, listener: EventListenerOrEventListenerObject, options?: boolean | ... 1 more ... | undefined): void; }'.
-        if (typeof document.removeEventListener.mockReset === "function") {
-            // @ts-expect-error [FEI-5019] - TS2339 - Property 'mockRestore' does not exist on type '{ <K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions | undefined): void; (type: string, listener: EventListenerOrEventListenerObject, options?: boolean | ... 1 more ... | undefined): void; }'.
-            document.removeEventListener.mockRestore();
-        }
+        jest.spyOn(document, "addEventListener").mockRestore();
+        jest.spyOn(document, "removeEventListener").mockRestore();
         jest.clearAllTimers();
         jest.useFakeTimers();
 
@@ -48,7 +40,11 @@ describe("TooltipAnchor", () => {
 
         // Act
         render(
-            <TooltipAnchor anchorRef={() => {}} onActiveChanged={() => {}}>
+            <TooltipAnchor
+                anchorRef={() => {}}
+                onActiveChanged={() => {}}
+                aria-describedby="ignore-this"
+            >
                 Anchor text
             </TooltipAnchor>,
         );
@@ -80,7 +76,11 @@ describe("TooltipAnchor", () => {
         );
         removeEventListenerSpy.mockClear();
         const wrapper = render(
-            <TooltipAnchor anchorRef={() => {}} onActiveChanged={() => {}}>
+            <TooltipAnchor
+                anchorRef={() => {}}
+                onActiveChanged={() => {}}
+                aria-describedby="ignore-this"
+            >
                 Anchor text
             </TooltipAnchor>,
         );
@@ -116,6 +116,7 @@ describe("TooltipAnchor", () => {
                 forceAnchorFocusivity={true}
                 anchorRef={anchorRef}
                 onActiveChanged={() => {}}
+                aria-describedby="ignore-this"
             >
                 <View id="portal">This is the anchor</View>
             </TooltipAnchor>,
@@ -136,6 +137,7 @@ describe("TooltipAnchor", () => {
                     forceAnchorFocusivity={true}
                     anchorRef={jest.fn()}
                     onActiveChanged={() => {}}
+                    aria-describedby="ignore-this"
                 >
                     <View id="portal">This is the anchor</View>
                 </TooltipAnchor>,
@@ -155,6 +157,7 @@ describe("TooltipAnchor", () => {
                     forceAnchorFocusivity={true}
                     anchorRef={jest.fn()}
                     onActiveChanged={() => {}}
+                    aria-describedby="ignore-this"
                 >
                     <View tabIndex={-1}>This is the anchor</View>
                 </TooltipAnchor>,
@@ -176,6 +179,7 @@ describe("TooltipAnchor", () => {
                     forceAnchorFocusivity={false}
                     anchorRef={jest.fn()}
                     onActiveChanged={() => {}}
+                    aria-describedby="ignore-this"
                 >
                     <View>This is the anchor</View>
                 </TooltipAnchor>,
@@ -195,6 +199,7 @@ describe("TooltipAnchor", () => {
                     forceAnchorFocusivity={props.force}
                     anchorRef={jest.fn()}
                     onActiveChanged={() => {}}
+                    aria-describedby="ignore-this"
                 >
                     <View>This is the anchor</View>
                 </TooltipAnchor>
@@ -221,6 +226,7 @@ describe("TooltipAnchor", () => {
                     forceAnchorFocusivity={props.force}
                     anchorRef={jest.fn()}
                     onActiveChanged={() => {}}
+                    aria-describedby="ignore-this"
                 >
                     <View tabIndex={-1}>This is the anchor</View>
                 </TooltipAnchor>
@@ -262,6 +268,7 @@ describe("TooltipAnchor", () => {
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
+                    aria-describedby="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -304,6 +311,7 @@ describe("TooltipAnchor", () => {
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
+                    aria-describedby="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -322,7 +330,7 @@ describe("TooltipAnchor", () => {
         test("active state was not stolen, active is set to false with delay", async () => {
             // Arrange
             const ue = userEvent.setup({
-                advanceTimers: jest.advanceTimersByTime,
+                advanceTimers: jest.advanceTimersByTimeAsync,
             });
             const timeoutSpy = jest.spyOn(global, "setTimeout");
             let activeState = false;
@@ -333,6 +341,7 @@ describe("TooltipAnchor", () => {
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
+                    aria-describedby="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -363,7 +372,7 @@ describe("TooltipAnchor", () => {
         test("active state was not stolen, gives up active state", async () => {
             // Arrange
             const ue = userEvent.setup({
-                advanceTimers: jest.advanceTimersByTime,
+                advanceTimers: jest.advanceTimersByTimeAsync,
             });
             const timeoutSpy = jest.spyOn(global, "setTimeout");
             const {default: ActiveTracker} = await import(
@@ -379,6 +388,7 @@ describe("TooltipAnchor", () => {
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
+                    aria-describedby="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -409,7 +419,7 @@ describe("TooltipAnchor", () => {
         test("active state was stolen, active is set to false immediately", async () => {
             // Arrange
             const ue = userEvent.setup({
-                advanceTimers: jest.advanceTimersByTime,
+                advanceTimers: jest.advanceTimersByTimeAsync,
             });
             const timeoutSpy = jest.spyOn(global, "setTimeout");
             let activeState = false;
@@ -420,6 +430,7 @@ describe("TooltipAnchor", () => {
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
+                    aria-describedby="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -462,6 +473,7 @@ describe("TooltipAnchor", () => {
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
+                    aria-describedby="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -496,6 +508,7 @@ describe("TooltipAnchor", () => {
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
+                    aria-describedby="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -548,6 +561,7 @@ describe("TooltipAnchor", () => {
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
+                    aria-describedby="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -589,6 +603,7 @@ describe("TooltipAnchor", () => {
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
+                    aria-describedby="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -606,7 +621,7 @@ describe("TooltipAnchor", () => {
         test("active state was not stolen, active is set to false with delay", async () => {
             // Arrange
             const ue = userEvent.setup({
-                advanceTimers: jest.advanceTimersByTime,
+                advanceTimers: jest.advanceTimersByTimeAsync,
             });
             const timeoutSpy = jest.spyOn(global, "setTimeout");
             let activeState = false;
@@ -617,6 +632,7 @@ describe("TooltipAnchor", () => {
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
+                    aria-describedby="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -646,7 +662,7 @@ describe("TooltipAnchor", () => {
         test("active state was not stolen, gives up active state", async () => {
             // Arrange
             const ue = userEvent.setup({
-                advanceTimers: jest.advanceTimersByTime,
+                advanceTimers: jest.advanceTimersByTimeAsync,
             });
             const timeoutSpy = jest.spyOn(global, "setTimeout");
             const {default: ActiveTracker} = await import(
@@ -662,6 +678,7 @@ describe("TooltipAnchor", () => {
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
+                    aria-describedby="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -691,7 +708,7 @@ describe("TooltipAnchor", () => {
         test("active state was stolen, active is set to false immediately", async () => {
             // Arrange
             const ue = userEvent.setup({
-                advanceTimers: jest.advanceTimersByTime,
+                advanceTimers: jest.advanceTimersByTimeAsync,
             });
             const timeoutSpy = jest.spyOn(global, "setTimeout");
             let activeState = false;
@@ -702,6 +719,7 @@ describe("TooltipAnchor", () => {
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
+                    aria-describedby="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -742,6 +760,7 @@ describe("TooltipAnchor", () => {
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
+                    aria-describedby="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -774,6 +793,7 @@ describe("TooltipAnchor", () => {
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
+                    aria-describedby="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -811,7 +831,11 @@ describe("TooltipAnchor", () => {
             const timeoutSpy = jest.spyOn(global, "setTimeout");
             const spy = jest.spyOn(document, "addEventListener");
             render(
-                <TooltipAnchor anchorRef={jest.fn()} onActiveChanged={() => {}}>
+                <TooltipAnchor
+                    anchorRef={jest.fn()}
+                    onActiveChanged={() => {}}
+                    aria-describedby="tooltip-description"
+                >
                     Anchor Text
                 </TooltipAnchor>,
             );
@@ -837,7 +861,11 @@ describe("TooltipAnchor", () => {
             const timeoutSpy = jest.spyOn(global, "setTimeout");
             const spy = jest.spyOn(document, "addEventListener");
             render(
-                <TooltipAnchor anchorRef={jest.fn()} onActiveChanged={() => {}}>
+                <TooltipAnchor
+                    anchorRef={jest.fn()}
+                    onActiveChanged={() => {}}
+                    aria-describedby="tooltip-description"
+                >
                     Anchor Text
                 </TooltipAnchor>,
             );
@@ -868,7 +896,11 @@ describe("TooltipAnchor", () => {
             const timeoutSpy = jest.spyOn(global, "setTimeout");
             const spy = jest.spyOn(document, "removeEventListener");
             render(
-                <TooltipAnchor anchorRef={jest.fn()} onActiveChanged={() => {}}>
+                <TooltipAnchor
+                    anchorRef={jest.fn()}
+                    onActiveChanged={() => {}}
+                    aria-describedby="tooltip-description"
+                >
                     Anchor Text
                 </TooltipAnchor>,
             );
@@ -904,7 +936,11 @@ describe("TooltipAnchor", () => {
 
             const spy = jest.spyOn(document, "removeEventListener");
             const {unmount} = render(
-                <TooltipAnchor anchorRef={jest.fn()} onActiveChanged={() => {}}>
+                <TooltipAnchor
+                    anchorRef={jest.fn()}
+                    onActiveChanged={() => {}}
+                    aria-describedby="tooltip-description"
+                >
                     Anchor Text
                 </TooltipAnchor>,
             );
@@ -938,6 +974,7 @@ describe("TooltipAnchor", () => {
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
+                    aria-describedby="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -970,7 +1007,11 @@ describe("TooltipAnchor", () => {
             });
             const timeoutSpy = jest.spyOn(global, "setTimeout");
             render(
-                <TooltipAnchor anchorRef={jest.fn()} onActiveChanged={() => {}}>
+                <TooltipAnchor
+                    anchorRef={jest.fn()}
+                    onActiveChanged={() => {}}
+                    aria-describedby="tooltip-description"
+                >
                     Anchor Text
                 </TooltipAnchor>,
             );

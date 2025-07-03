@@ -9,10 +9,10 @@ import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import packageConfig from "../../packages/wonder-blocks-layout/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 
 export default {
-    title: "Layout / Strut",
+    title: "Packages / Layout / Strut",
     component: Strut,
     parameters: {
         componentSubtitle: (
@@ -38,7 +38,7 @@ export const Default: StoryComponentType = {
         <View style={styles.row}>
             <Button>Hello, world!</Button>
             <Strut {...args} />
-            <Button color="destructive">Hello, world!</Button>
+            <Button actionType="destructive">Hello, world!</Button>
         </View>
     ),
     args: {
@@ -56,9 +56,9 @@ export const Simple: StoryComponentType = {
             <View style={styles.row}>
                 <Button>Hello, world!</Button>
                 <Strut size={smallSize} />
-                <Button color="destructive">Hello, world!</Button>
+                <Button actionType="destructive">Hello, world!</Button>
                 <Strut size={largeSize} />
-                <Button color="destructive">Hello, world!</Button>
+                <Button actionType="destructive">Hello, world!</Button>
                 <Strut size={smallSize} />
                 <Button>Hello, world!</Button>
             </View>
@@ -80,9 +80,9 @@ export const WithStyle: StoryComponentType = () => (
         <View style={styles.row}>
             <Button>Hello, world!</Button>
             <Strut size={smallSize} style={[styles.strut, styles.thick]} />
-            <Button color="destructive">Hello, world!</Button>
+            <Button actionType="destructive">Hello, world!</Button>
             <Strut size={largeSize} style={[styles.strut, styles.thick]} />
-            <Button color="destructive">Hello, world!</Button>
+            <Button actionType="destructive">Hello, world!</Button>
             <Strut size={smallSize} style={[styles.strut, styles.thick]} />
             <Button>Hello, world!</Button>
         </View>

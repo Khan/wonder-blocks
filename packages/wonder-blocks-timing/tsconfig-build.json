@@ -3,9 +3,9 @@
     "extends": "../tsconfig-shared.json",
     "compilerOptions": {
         "outDir": "./dist",
-        "rootDir": "src",
+        "rootDir": "src"
     },
     "references": [
-        {"path": "../wonder-blocks-button/tsconfig-build.json"},
+        {"path": "../wonder-blocks-testing-core/tsconfig-build.json"},
     ]
 }

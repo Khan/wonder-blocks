@@ -1,5 +1,6 @@
 import * as React from "react";
-import {MemoryRouter, Route, Switch} from "react-router-dom";
+import {MemoryRouter} from "react-router-dom";
+import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
 import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
@@ -29,14 +30,17 @@ describe("Link", () => {
             // Arrange
             render(
                 <MemoryRouter>
-                    <div>
-                        <Link href="/foo">Click me!</Link>
-                        <Switch>
-                            <Route path="/foo">
-                                <div id="foo">Hello, world!</div>
-                            </Route>
-                        </Switch>
-                    </div>
+                    <CompatRouter>
+                        <div>
+                            <Link href="/foo">Click me!</Link>
+                            <Routes>
+                                <Route
+                                    path="/foo"
+                                    element={<div id="foo">Hello, world!</div>}
+                                />
+                            </Routes>
+                        </div>
+                    </CompatRouter>
                 </MemoryRouter>,
             );
 
@@ -54,14 +58,17 @@ describe("Link", () => {
             // Arrange
             render(
                 <MemoryRouter>
-                    <div>
-                        <Link href="/">Click me!</Link>
-                        <Switch>
-                            <Route path="/foo">
-                                <div id="foo">Hello, world!</div>
-                            </Route>
-                        </Switch>
-                    </div>
+                    <CompatRouter>
+                        <div>
+                            <Link href="/">Click me!</Link>
+                            <Routes>
+                                <Route
+                                    path="/foo"
+                                    element={<div id="foo">Hello, world!</div>}
+                                />
+                            </Routes>
+                        </div>
+                    </CompatRouter>
                 </MemoryRouter>,
             );
 
@@ -80,16 +87,22 @@ describe("Link", () => {
             // Arrange
             render(
                 <MemoryRouter>
-                    <div>
-                        <Link href="/foo" beforeNav={() => Promise.resolve()}>
-                            Click me!
-                        </Link>
-                        <Switch>
-                            <Route path="/foo">
-                                <div id="foo">Hello, world!</div>
-                            </Route>
-                        </Switch>
-                    </div>
+                    <CompatRouter>
+                        <div>
+                            <Link
+                                href="/foo"
+                                beforeNav={() => Promise.resolve()}
+                            >
+                                Click me!
+                            </Link>
+                            <Routes>
+                                <Route
+                                    path="/foo"
+                                    element={<div id="foo">Hello, world!</div>}
+                                />
+                            </Routes>
+                        </div>
+                    </CompatRouter>
                 </MemoryRouter>,
             );
 
@@ -108,16 +121,22 @@ describe("Link", () => {
             // Arrange
             render(
                 <MemoryRouter>
-                    <div>
-                        <Link href="/foo" beforeNav={() => Promise.resolve()}>
-                            Click me!
-                        </Link>
-                        <Switch>
-                            <Route path="/foo">
-                                <div id="foo">Hello, world!</div>
-                            </Route>
-                        </Switch>
-                    </div>
+                    <CompatRouter>
+                        <div>
+                            <Link
+                                href="/foo"
+                                beforeNav={() => Promise.resolve()}
+                            >
+                                Click me!
+                            </Link>
+                            <Routes>
+                                <Route
+                                    path="/foo"
+                                    element={<div id="foo">Hello, world!</div>}
+                                />
+                            </Routes>
+                        </div>
+                    </CompatRouter>
                 </MemoryRouter>,
             );
 
@@ -133,16 +152,22 @@ describe("Link", () => {
             // Arrange
             render(
                 <MemoryRouter>
-                    <div>
-                        <Link href="/foo" beforeNav={() => Promise.reject()}>
-                            Click me!
-                        </Link>
-                        <Switch>
-                            <Route path="/foo">
-                                <div id="foo">Hello, world!</div>
-                            </Route>
-                        </Switch>
-                    </div>
+                    <CompatRouter>
+                        <div>
+                            <Link
+                                href="/foo"
+                                beforeNav={() => Promise.reject()}
+                            >
+                                Click me!
+                            </Link>
+                            <Routes>
+                                <Route
+                                    path="/foo"
+                                    element={<div id="foo">Hello, world!</div>}
+                                />
+                            </Routes>
+                        </div>
+                    </CompatRouter>
                 </MemoryRouter>,
             );
 
@@ -159,20 +184,23 @@ describe("Link", () => {
             const safeWithNavMock = jest.fn();
             render(
                 <MemoryRouter>
-                    <div>
-                        <Link
-                            href="/foo"
-                            beforeNav={() => Promise.resolve()}
-                            safeWithNav={safeWithNavMock}
-                        >
-                            Click me!
-                        </Link>
-                        <Switch>
-                            <Route path="/foo">
-                                <div id="foo">Hello, world!</div>
-                            </Route>
-                        </Switch>
-                    </div>
+                    <CompatRouter>
+                        <div>
+                            <Link
+                                href="/foo"
+                                beforeNav={() => Promise.resolve()}
+                                safeWithNav={safeWithNavMock}
+                            >
+                                Click me!
+                            </Link>
+                            <Routes>
+                                <Route
+                                    path="/foo"
+                                    element={<div id="foo">Hello, world!</div>}
+                                />
+                            </Routes>
+                        </div>
+                    </CompatRouter>
                 </MemoryRouter>,
             );
 
@@ -194,20 +222,23 @@ describe("Link", () => {
             const safeWithNavMock = jest.fn();
             render(
                 <MemoryRouter>
-                    <div>
-                        <Link
-                            href="/foo"
-                            beforeNav={() => Promise.resolve()}
-                            safeWithNav={safeWithNavMock}
-                        >
-                            Click me!
-                        </Link>
-                        <Switch>
-                            <Route path="/foo">
-                                <div id="foo">Hello, world!</div>
-                            </Route>
-                        </Switch>
-                    </div>
+                    <CompatRouter>
+                        <div>
+                            <Link
+                                href="/foo"
+                                beforeNav={() => Promise.resolve()}
+                                safeWithNav={safeWithNavMock}
+                            >
+                                Click me!
+                            </Link>
+                            <Routes>
+                                <Route
+                                    path="/foo"
+                                    element={<div id="foo">Hello, world!</div>}
+                                />
+                            </Routes>
+                        </div>
+                    </CompatRouter>
                 </MemoryRouter>,
             );
 
@@ -555,5 +586,20 @@ describe("Link", () => {
             // Assert
             expect(icon).toHaveStyle({maskImage: "url(plus-bold.svg)"});
         });
+    });
+
+    test("should have title attribute", () => {
+        // Arrange
+        render(
+            <Link href="https://www.khanacademy.org/" title="Click me!">
+                Click me!
+            </Link>,
+        );
+
+        // Act
+        const link = screen.getByRole("link");
+
+        // Assert
+        expect(link).toHaveAttribute("title", "Click me!");
     });
 });

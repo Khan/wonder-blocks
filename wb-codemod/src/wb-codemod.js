@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable import/no-commonjs */
@@ -29,7 +30,6 @@ async function run(transformFileName, filePaths, options) {
             dry: options.dryRun || false,
             print: options.print || false,
             verbose: 2,
-            babel: true,
             extensions: "js,jsx,ts,tsx",
             parser: "tsx",
             runInBand: !!options.dryRun,

@@ -1,0 +1,33 @@
+{
+  "name": "@khanacademy/wonder-blocks-testing-core",
+  "version": "3.0.1",
+  "design": "v1",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "",
+  "main": "dist/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "@khanacademy/wonder-stuff-core": "catalog:",
+    "@storybook/addon-actions": "^8.5.2",
+    "aphrodite": "catalog:",
+    "node-fetch": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-router-dom": "catalog:",
+    "react-router-dom-v5-compat": "catalog:"
+  },
+  "devDependencies": {
+    "@khanacademy/wb-dev-build-settings": "workspace:*",
+    "@khanacademy/wonder-stuff-testing": "catalog:"
+  },
+  "author": "",
+  "license": "MIT"
+}

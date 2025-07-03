@@ -45,7 +45,7 @@ describe("#gqlRequestMatchesMock", () => {
         expect(result).toBe(false);
     });
 
-    it.each([{foo: "bar"}, {foo: "baz", anExtra: "property"}, null])(
+    it.each([{foo: undefined}, {foo: "baz", anExtra: "property"}, null])(
         "should return false if variables don't match",
         (variables: any) => {
             // Arrange
@@ -158,6 +158,7 @@ describe("#gqlRequestMatchesMock", () => {
             },
             {
                 foo: "bar",
+                baz: undefined,
             },
             {my: "context"},
         );

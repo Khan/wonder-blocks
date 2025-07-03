@@ -1,7 +1,12 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
-import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import {
+    Id,
+    type AriaProps,
+    type StyleType,
+} from "@khanacademy/wonder-blocks-core";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import DropdownOpener from "./dropdown-opener";
 import ActionItem from "./action-item";
 import OptionItem from "./option-item";
@@ -72,6 +77,19 @@ type Props = AriaProps &
          * element to access pointer event state.
          */
         opener?: (openerProps: OpenerProps) => React.ReactElement<any>;
+        /**
+         * Unique identifier attached to the menu dropdown. If used, we need to
+         * guarantee that the ID is unique within everything rendered on a page.
+         * If one is not provided, one is auto-generated. It is used for the
+         * opener's `aria-controls` attribute for screenreaders.
+         */
+        dropdownId?: string;
+        /**
+         * Unique identifier attached to the field control. If used, we need to
+         * guarantee that the ID is unique within everything rendered on a page.
+         * If one is not provided, one is auto-generated.
+         */
+        id?: string;
     }>;
 
 type State = Readonly<{
@@ -203,14 +221,18 @@ export default class ActionMenu extends React.Component<Props, State> {
                 };
                 // @ts-expect-error [FEI-5019] - TS2345 - Argument of type 'ReactChild | ReactFragment | ReactPortal' is not assignable to parameter of type 'ReactElement<any, string | JSXElementConstructor<any>>'.
             } else if (OptionItem.isClassOf(item)) {
+                const selected = selectedValues
+                    ? selectedValues.includes(value)
+                    : false;
                 return {
                     ...itemObject,
                     populatedProps: {
                         onToggle: this.handleOptionSelected,
-                        selected: selectedValues
-                            ? selectedValues.includes(value)
-                            : false,
+                        selected,
                         variant: "check",
+                        role: "menuitemcheckbox",
+                        "aria-checked": selected,
+                        "aria-selected": undefined,
                     },
                 };
             } else {
@@ -220,6 +242,7 @@ export default class ActionMenu extends React.Component<Props, State> {
     }
 
     handleOpenerRef: (node?: any) => void = (node) => {
+        // eslint-disable-next-line import/no-deprecated
         this.openerElement = ReactDOM.findDOMNode(node) as HTMLElement;
     };
 
@@ -229,68 +252,85 @@ export default class ActionMenu extends React.Component<Props, State> {
 
     renderOpener(
         numItems: number,
+        dropdownId: string,
     ): React.ReactElement<React.ComponentProps<typeof DropdownOpener>> {
-        const {disabled, menuText, opener, testId} = this.props;
+        const {disabled, menuText, opener, testId, id} = this.props;
 
         return (
-            <DropdownOpener
-                onClick={this.handleClick}
-                disabled={numItems === 0 || disabled}
-                text={menuText}
-                ref={this.handleOpenerRef}
-                testId={opener ? undefined : testId}
-                opened={this.state.opened}
-            >
-                {opener
-                    ? opener
-                    : (openerProps) => {
-                          const {
-                              // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                              text,
-                              opened,
-                              ...eventState
-                          } = openerProps;
-                          return (
-                              <ActionMenuOpenerCore
-                                  {...eventState}
-                                  disabled={disabled}
-                                  opened={!!opened}
-                                  testId={testId}
-                              >
-                                  {menuText}
-                              </ActionMenuOpenerCore>
-                          );
-                      }}
-            </DropdownOpener>
+            <Id id={id}>
+                {(uniqueOpenerId) => (
+                    <DropdownOpener
+                        id={uniqueOpenerId}
+                        aria-controls={dropdownId}
+                        aria-haspopup="menu"
+                        onClick={this.handleClick}
+                        disabled={numItems === 0 || disabled}
+                        text={menuText}
+                        ref={this.handleOpenerRef}
+                        testId={opener ? undefined : testId}
+                        opened={this.state.opened}
+                        role="button"
+                    >
+                        {opener
+                            ? opener
+                            : (openerProps) => {
+                                  const {
+                                      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                                      text,
+                                      opened,
+                                      ...eventState
+                                  } = openerProps;
+                                  return (
+                                      <ActionMenuOpenerCore
+                                          {...eventState}
+                                          disabled={disabled}
+                                          opened={!!opened}
+                                          testId={testId}
+                                      >
+                                          {menuText}
+                                      </ActionMenuOpenerCore>
+                                  );
+                              }}
+                    </DropdownOpener>
+                )}
+            </Id>
         );
     }
 
     render(): React.ReactNode {
-        const {alignment, dropdownStyle, style, className} = this.props;
+        const {alignment, dropdownStyle, style, className, dropdownId} =
+            this.props;
 
         const items = this.getMenuItems();
-        const dropdownOpener = this.renderOpener(items.length);
 
         return (
-            <DropdownCore
-                role="menu"
-                style={style}
-                className={className}
-                opener={dropdownOpener}
-                alignment={alignment}
-                open={this.state.opened}
-                items={items}
-                openerElement={this.openerElement}
-                onOpenChanged={this.handleOpenChanged}
-                dropdownStyle={[styles.menuTopSpace, dropdownStyle]}
-            />
+            <Id id={dropdownId}>
+                {(uniqueDropdownId) => (
+                    <DropdownCore
+                        id={uniqueDropdownId}
+                        role="menu"
+                        style={style}
+                        className={className}
+                        opener={this.renderOpener(
+                            items.length,
+                            uniqueDropdownId,
+                        )}
+                        alignment={alignment}
+                        open={this.state.opened}
+                        items={items}
+                        openerElement={this.openerElement}
+                        onOpenChanged={this.handleOpenChanged}
+                        dropdownStyle={[styles.menuTopSpace, dropdownStyle]}
+                    />
+                )}
+            </Id>
         );
     }
 }
 
 const styles = StyleSheet.create({
     caret: {
-        marginLeft: 4,
+        marginInlineStart: sizing.size_040,
     },
     // The design calls for additional offset around the opener.
     opener: {
@@ -301,6 +341,6 @@ const styles = StyleSheet.create({
     },
     // This is to adjust the space between the menu and the opener.
     menuTopSpace: {
-        top: -4,
+        top: `calc(-1 * ${sizing.size_040})`,
     },
 });

@@ -34,6 +34,29 @@ describe("RadioGroup", () => {
         );
     };
 
+    describe("a11y", () => {
+        it("should associate the label with the fieldset", async () => {
+            // Arrange, Act
+            render(
+                <RadioGroup
+                    label="Test label"
+                    groupName="test"
+                    onChange={() => {}}
+                    selectedValue="a"
+                >
+                    <Choice label="a" value="a" aria-labelledby="test-a" />
+                    <Choice label="b" value="b" aria-labelledby="test-b" />
+                    <Choice label="c" value="c" aria-labelledby="test-c" />
+                </RadioGroup>,
+            );
+
+            const fieldset = screen.getByRole("group", {name: /test label/i});
+
+            // Assert
+            expect(fieldset).toBeInTheDocument();
+        });
+    });
+
     describe("behavior", () => {
         it("selects only one item at a time", async () => {
             // Arrange, Act

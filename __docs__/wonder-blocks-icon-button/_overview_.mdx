@@ -1,0 +1,40 @@
+import {Meta, Canvas} from "@storybook/blocks";
+import * as IconButtonStories from "./icon-button.stories";
+import * as ActivityIconButtonStories from "./activity-icon-button.stories";
+import * as ConversationIconButtonStories from "./conversation-icon-button.stories";
+
+<Meta title="Packages / IconButton / Overview" />
+
+# IconButton
+
+The `wonder-blocks-icon-button` package provides a set of icon button components
+that allow you to create buttons with icons. These buttons are designed to be
+accessible and easy to use, with support for keyboard navigation and screen
+readers.
+
+For more details about each type of IconButton, refer to the docs for that
+component!
+
+## IconButton
+
+A button whose contents are an icon. This is a simple button that can be used to
+trigger actions or navigate to other pages. It uses a flat design, our most
+common design pattern that can be used across different experiences.
+
+<Canvas of={IconButtonStories.Kinds} />
+
+## ActivityIconButton
+
+An icon button that is used for actions in the context of learner activities. It
+uses a "chonky" design, which is a more playful and engaging design that is
+suitable for learner activities.
+
+<Canvas of={ActivityIconButtonStories.Kinds} />
+
+## ConversationIconButton
+
+An icon button that is used in the context of conversations, such as sending a
+message or performing an action related to a conversation. This is useful in
+chat widgets, like the one used in Khanmigo.
+
+<Canvas of={ConversationIconButtonStories.Kinds} />

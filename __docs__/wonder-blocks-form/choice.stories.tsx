@@ -3,7 +3,6 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import {
@@ -12,11 +11,11 @@ import {
     RadioGroup,
 } from "@khanacademy/wonder-blocks-form";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 
 export default {
-    title: "Form / Choice",
+    title: "Packages / Form / Choice",
     component: Choice,
     parameters: {
         componentSubtitle: (
@@ -54,9 +53,8 @@ const ChoiceWrapper = (args: any) => {
                 <Choice label="Extra cheese" value="cheese-checkbox" />
                 <Choice label="Green pepper" value="pepper-checkbox" />
                 <Choice label="Mushroom" value="mushroom-checkbox" />
-                <Choice {...args} />
+                <Choice aria-label="Pineapple" value="pineapple" {...args} />
             </CheckboxGroup>
-            <Strut size={spacing.xLarge_32} />
             <RadioGroup
                 label="Pizza order"
                 description="Choose only one topping."
@@ -64,16 +62,37 @@ const ChoiceWrapper = (args: any) => {
                 onChange={setSelectedValue}
                 selectedValue={selectedValue}
             >
-                <Choice label="Pepperoni" value="pepperoni-radio" />
                 <Choice
+                    aria-label="Only Pepperoni"
+                    label="Pepperoni"
+                    value="pepperoni-radio"
+                />
+                <Choice
+                    aria-label="Only Sausage"
                     label="Sausage"
                     value="sausage-radio"
                     description="Imported from Italy"
                 />
-                <Choice label="Extra cheese" value="cheese-radio" />
-                <Choice label="Green pepper" value="pepper-radio" />
-                <Choice label="Mushroom" value="mushroom-radio" />
-                <Choice {...args} />
+                <Choice
+                    aria-label="Only extra cheese"
+                    label="Extra cheese"
+                    value="cheese-radio"
+                />
+                <Choice
+                    aria-label="Only green pepper"
+                    label="Green pepper"
+                    value="pepper-radio"
+                />
+                <Choice
+                    aria-label="Only mushroom"
+                    label="Mushroom"
+                    value="mushroom-radio"
+                />
+                <Choice
+                    aria-label="Only Pineapple"
+                    value="only-pineapple"
+                    {...args}
+                />
             </RadioGroup>
         </View>
     );
@@ -83,7 +102,6 @@ export const Default: StoryComponentType = {
     render: (args) => <ChoiceWrapper {...args} />,
     args: {
         label: "Pineapple (Control)",
-        value: "pineapple",
         description: "Does in fact belong on pizzas",
     },
 };
@@ -91,5 +109,6 @@ export const Default: StoryComponentType = {
 const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
+        gap: spacing.xLarge_32,
     },
 });

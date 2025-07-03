@@ -10,7 +10,7 @@ import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import packageConfig from "../../packages/wonder-blocks-switch/package.json";
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 
 import SwitchArgtypes from "./switch.argtypes";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
@@ -18,7 +18,7 @@ import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 type StoryComponentType = StoryObj<typeof Switch>;
 
 export default {
-    title: "Switch / Best Practices",
+    title: "Packages / Switch / Best Practices",
     component: Switch,
     parameters: {
         componentSubtitle: (
@@ -144,6 +144,7 @@ export const WithTooltip: StoryComponentType = (() => {
         <View>
             <Tooltip content={tooltipContent} placement="right">
                 <Switch
+                    aria-label="Tooltip example"
                     checked={checked}
                     onChange={setChecked}
                     icon={<PhosphorIcon icon={IconMappings.lightbulbBold} />}

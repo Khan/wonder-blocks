@@ -23,7 +23,7 @@ type Props = AriaProps & {
     testId?: string;
 };
 
-const StyledListItem = addStyle("li");
+const StyledLi = addStyle("li");
 const StyledSvg = addStyle("svg");
 
 /**
@@ -54,15 +54,15 @@ const BreadcrumbsItem = React.forwardRef(function BreadcrumbsItem(
     };
 
     return (
-        <StyledListItem
+        <StyledLi
             {...otherProps}
             style={styles.item}
-            data-test-id={testId}
+            data-testid={testId}
             ref={ref}
         >
             {children}
             {showSeparator && _renderSeparator()}
-        </StyledListItem>
+        </StyledLi>
     );
 });
 

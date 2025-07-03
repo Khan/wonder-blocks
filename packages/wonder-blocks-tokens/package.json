@@ -1,23 +1,33 @@
 {
-    "name": "@khanacademy/wonder-blocks-tokens",
-    "version": "1.1.0",
-    "description": "Core primitive design tokens for Web Wonder Blocks",
-    "main": "dist/index.js",
-    "module": "dist/es/index.js",
-    "types": "dist/index.d.ts",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+  "name": "@khanacademy/wonder-blocks-tokens",
+  "version": "11.3.0",
+  "description": "Core primitive design tokens for Web Wonder Blocks",
+  "exports": {
+    ".": {
+      "import": "./dist/es/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
     },
-    "author": "",
-    "license": "MIT",
-    "publishConfig": {
-        "access": "public"
-    },
-    "dependencies": {
-        "@khanacademy/wonder-blocks-color": "^3.0.0",
-        "@khanacademy/wonder-blocks-spacing": "^4.0.1"
-    },
-    "devDependencies": {
-        "@khanacademy/wb-dev-build-settings": "^1.0.0"
-    }
+    "./styles.css": "./dist/css/index.css"
+  },
+  "main": "dist/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build:css": "node -r @swc-node/register ./src/build/generate-css-variables.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
+  },
+  "author": "",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@khanacademy/wonder-blocks-theming": "workspace:*"
+  },
+  "devDependencies": {
+    "@khanacademy/wb-dev-build-settings": "workspace:*"
+  },
+  "bin": "./bin/cli.js"
 }

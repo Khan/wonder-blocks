@@ -78,18 +78,18 @@ export default class PopoverDialog extends React.Component<Props> {
             showTail,
             "aria-describedby": ariaDescribedby,
             "aria-labelledby": ariaLabelledBy,
+            "aria-label": ariaLabel,
         } = this.props;
 
         const contentProps = children.props as any;
 
         // extract the background color from the popover content
-        const color: keyof typeof tokens.color = contentProps.emphasized
-            ? "blue"
-            : contentProps.color;
+        const color: keyof typeof tokens.color = contentProps.color;
 
         return (
             <React.Fragment>
                 <View
+                    aria-label={ariaLabel}
                     aria-describedby={ariaDescribedby}
                     aria-labelledby={ariaLabelledBy}
                     id={id}

@@ -17,7 +17,7 @@ import {
     SingleSelect,
 } from "@khanacademy/wonder-blocks-dropdown";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-accordion/package.json";
 
 import AccordionArgtypes from "./accordion.argtypes";
@@ -52,7 +52,7 @@ import AccordionArgtypes from "./accordion.argtypes";
  * ```
  */
 export default {
-    title: "Accordion / Accordion",
+    title: "Packages / Accordion / Accordion",
     component: Accordion,
     parameters: {
         componentSubtitle: (
@@ -422,7 +422,7 @@ WithAnimation.parameters = {
 
 /**
  * An Accordion with custom styles. The custom styles in this example
- * include a pink border and extra padding.
+ * include a purple border and extra padding.
  * Note that the Accordion's border is different than the AccordionSection
  * border styles. Passing custom styles here will not affect the sections'
  * styles. If you want to change the corner kind of a single section,
@@ -433,7 +433,7 @@ WithAnimation.parameters = {
 export const WithStyle: StoryComponentType = {
     render: () => {
         const customStyles = {
-            border: `2px solid ${tokens.color.pink}`,
+            border: `2px solid ${tokens.color.purple}`,
             padding: tokens.spacing.xLarge_32,
         };
 
@@ -464,7 +464,7 @@ export const SingleSection: StoryComponentType = {
         return (
             <Accordion>
                 {[
-                    <AccordionSection header="First section">
+                    <AccordionSection header="First section" key={0}>
                         This is the information present in the first section
                     </AccordionSection>,
                 ]}
@@ -506,13 +506,13 @@ export const LongSections: StoryComponentType = {
                             >
                                 <View>
                                     <img
-                                        src="/logo.svg"
+                                        src="logo.svg"
                                         width="100%"
                                         alt="Wonder Blocks logo"
                                     />
                                     <Strut size={tokens.spacing.xLarge_32} />
                                     <img
-                                        src="/logo.svg"
+                                        src="logo.svg"
                                         width="100%"
                                         alt="Wonder Blocks logo"
                                     />
@@ -611,6 +611,10 @@ export const BackgroundColorExample: StoryComponentType = {
     render: () => {
         const accordionSectionStyle = {
             backgroundColor: tokens.color.fadedBlue,
+            // NOTE: This border color uses the opacity token to match the
+            // background color. By default, the border color is
+            // `fadedOffBlack16`, which is the HEX value of `offBlack16`.
+            borderColor: tokens.color.offBlack16,
         };
 
         const sections = [

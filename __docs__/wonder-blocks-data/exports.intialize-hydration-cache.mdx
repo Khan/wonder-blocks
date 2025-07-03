@@ -1,0 +1,24 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta
+    title="Packages / Data / Exports / initializeHydrationCache()"
+/>
+
+# initializeHydrationCache()
+
+```ts
+initializeHydrationCache(sourceCache: ResponseCache): void;
+```
+
+| Argument     | TypeScript Type | Default    | Description                                                          |
+| ------------ | --------------- | ---------- | -------------------------------------------------------------------- |
+| `sourceData` | `ResponseCache` | _Required_ | The source cache that will be used to initialize the response cache. |
+
+Wonder Blocks Data caches data in its response cache for hydration. This cache can be initialized with data using the `initializeHydrationCache` method.
+The `initializeHydrationCache` method can only be called when the hydration cache is empty.
+
+Usually, the data to be passed to `v` will be obtained by calling <a href="./?path=/docs/packages-data-exports-fetchtrackedrequests--docs">`fetchTrackedRequests`</a> after tracking data requests (see <a href="./?path=/docs/packages-data-exports-trackdata--docs">`TrackData`</a>) during server-side rendering.
+
+Combine with <a href="./?path=/docs/packages-data-exports-purgehydrationcache--docs">`purgeHydrationCache`</a> to support your testing needs.
+
+More details about server-side rendering with Wonder Blocks Data can be found in the <a href="./?path=/docs/packages-data-server-side-rendering-and-hydration--docs">relevant overview section</a>.

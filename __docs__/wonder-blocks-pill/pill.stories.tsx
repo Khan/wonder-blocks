@@ -1,8 +1,7 @@
 import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
-import {expect} from "@storybook/jest";
 
-import {within, userEvent} from "@storybook/testing-library";
+// import {expect, within} from "@storybook/test";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
 import Pill from "@khanacademy/wonder-blocks-pill";
@@ -19,14 +18,14 @@ import type {
     PillSize,
 } from "../../packages/wonder-blocks-pill/src/components/pill";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-search-field/package.json";
 
 import PillArgtypes from "./pill.argtypes";
 
 export default {
     component: Pill,
-    title: "Pill",
+    title: "Packages / Pill",
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -34,6 +33,10 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // These stories are being tested in pill-variants.stories.tsx
+            disableSnapshot: true,
+        },
     },
     argTypes: PillArgtypes,
 } as Meta<typeof Pill>;
@@ -109,6 +112,8 @@ Inline.parameters = {
             if necessary.`,
         },
     },
+    // This story presents some context that is not present in the other stories
+    chromatic: {disableSnapshot: false},
 };
 
 /**
@@ -155,7 +160,7 @@ export const Variants: StoryComponentType = {
             <View style={directionStyle}>
                 <View style={{flexDirection: "row"}}>
                     {sizes.map((size) => (
-                        <View>
+                        <View key={size}>
                             {kinds.map((kind) => (
                                 <View
                                     key={kind}
@@ -178,7 +183,7 @@ export const Variants: StoryComponentType = {
                 </View>
                 <View style={{flexDirection: "row"}}>
                     {sizes.map((size) => (
-                        <View>
+                        <View key={size}>
                             {kinds.map((kind) => (
                                 <View
                                     key={kind}
@@ -205,154 +210,11 @@ export const Variants: StoryComponentType = {
     },
 };
 
-// Test visual styles
-Variants.play = async ({canvasElement}) => {
-    const canvas = within(canvasElement);
-
-    // Define non-clickable pills
-    const neutralSmall = canvas.getByTestId("neutral-small-test-id");
-    const accentSmall = canvas.getByTestId("accent-small-test-id");
-    const infoSmall = canvas.getByTestId("info-small-test-id");
-    const successSmall = canvas.getByTestId("success-small-test-id");
-    const warningSmall = canvas.getByTestId("warning-small-test-id");
-    const criticalSmall = canvas.getByTestId("critical-small-test-id");
-    const neutralMedium = canvas.getByTestId("neutral-medium-test-id");
-    const neutralLarge = canvas.getByTestId("neutral-large-test-id");
-    const accentLarge = canvas.getByTestId("accent-large-test-id");
-    const infoLarge = canvas.getByTestId("info-large-test-id");
-    const successLarge = canvas.getByTestId("success-large-test-id");
-    const warningLarge = canvas.getByTestId("warning-large-test-id");
-    const criticalLarge = canvas.getByTestId("critical-large-test-id");
-
-    // Define clickable pills
-    const neutralMediumClickable = canvas.getByTestId(
-        "neutral-medium-clickable-test-id",
-    );
-    const accentMediumClickable = canvas.getByTestId(
-        "accent-medium-clickable-test-id",
-    );
-    const infoMediumClickable = canvas.getByTestId(
-        "info-medium-clickable-test-id",
-    );
-    const successMediumClickable = canvas.getByTestId(
-        "success-medium-clickable-test-id",
-    );
-    const warningMediumClickable = canvas.getByTestId(
-        "warning-medium-clickable-test-id",
-    );
-    const criticalMediumClickable = canvas.getByTestId(
-        "critical-medium-clickable-test-id",
-    );
-
-    // Test non-clickable pill styles
-    await expect(neutralSmall).toHaveStyle({
-        backgroundColor: tokens.color.offBlack8,
-        color: tokens.color.offBlack,
-        fontSize: 12,
-    });
-
-    await expect(accentSmall).toHaveStyle({
-        backgroundColor: tokens.color.blue,
-        color: tokens.color.white,
-        fontSize: 12,
-    });
-
-    await expect(infoSmall).toHaveStyle({
-        backgroundColor: tokens.color.fadedBlue16,
-        color: tokens.color.offBlack,
-        fontSize: 12,
-    });
-
-    await expect(successSmall).toHaveStyle({
-        backgroundColor: tokens.color.fadedGreen16,
-        color: tokens.color.offBlack,
-        fontSize: 12,
-    });
-
-    await expect(warningSmall).toHaveStyle({
-        backgroundColor: tokens.color.fadedGold16,
-        color: tokens.color.offBlack,
-        fontSize: 12,
-    });
-
-    await expect(criticalSmall).toHaveStyle({
-        backgroundColor: tokens.color.fadedRed16,
-        color: tokens.color.offBlack,
-        fontSize: 12,
-    });
-
-    await expect(neutralMedium).toHaveStyle({
-        backgroundColor: tokens.color.offBlack8,
-        color: tokens.color.offBlack,
-        fontSize: 14,
-    });
-
-    await expect(neutralLarge).toHaveStyle({
-        backgroundColor: tokens.color.offBlack8,
-        color: tokens.color.offBlack,
-        fontSize: 16,
-    });
-
-    await expect(accentLarge).toHaveStyle({
-        backgroundColor: tokens.color.blue,
-        color: tokens.color.white,
-        fontSize: 16,
-    });
-
-    await expect(infoLarge).toHaveStyle({
-        backgroundColor: tokens.color.fadedBlue16,
-        color: tokens.color.offBlack,
-        fontSize: 16,
-    });
-
-    await expect(successLarge).toHaveStyle({
-        backgroundColor: tokens.color.fadedGreen16,
-        color: tokens.color.offBlack,
-        fontSize: 16,
-    });
-
-    await expect(warningLarge).toHaveStyle({
-        backgroundColor: tokens.color.fadedGold16,
-        color: tokens.color.offBlack,
-        fontSize: 16,
-    });
-
-    await expect(criticalLarge).toHaveStyle({
-        backgroundColor: tokens.color.fadedRed16,
-        color: tokens.color.offBlack,
-        fontSize: 16,
-    });
-
-    // Test clickable pill styles
-    await neutralMediumClickable.focus();
-    let computedStyle = getComputedStyle(neutralMediumClickable, ":hover");
-    await expect(computedStyle.outline).toBe("rgb(24, 101, 242) solid 2px");
-
-    await userEvent.tab();
-    computedStyle = getComputedStyle(accentMediumClickable, ":hover");
-    await expect(computedStyle.outline).toBe("rgb(24, 101, 242) solid 2px");
-
-    await userEvent.tab();
-    computedStyle = getComputedStyle(infoMediumClickable, ":hover");
-    await expect(computedStyle.outline).toBe("rgb(24, 101, 242) solid 2px");
-
-    await userEvent.tab();
-    computedStyle = getComputedStyle(successMediumClickable, ":hover");
-    await expect(computedStyle.outline).toBe("rgb(24, 101, 242) solid 2px");
-
-    await userEvent.tab();
-    computedStyle = getComputedStyle(warningMediumClickable, ":hover");
-    await expect(computedStyle.outline).toBe("rgb(24, 101, 242) solid 2px");
-
-    await userEvent.tab();
-    computedStyle = getComputedStyle(criticalMediumClickable, ":hover");
-    await expect(computedStyle.outline).toBe("rgb(217, 41, 22) solid 2px");
-};
-
 export const WithTypography: StoryComponentType = () => (
     <Pill size="large">
         <BodySerif>
-            This is a {<Link href="#">link</Link>} inside the text of a pill.
+            This is a {<Link href="#link">link example</Link>} inside the text
+            of a pill.
         </BodySerif>
     </Pill>
 );
@@ -367,22 +229,23 @@ WithTypography.parameters = {
                 the text, as is shown here.`,
         },
     },
+    chromatic: {disableSnapshot: false},
 };
 
 export const WithStyle: StoryComponentType = () => {
     const customStyle = {
-        backgroundColor: tokens.color.offBlack,
-        color: tokens.color.white,
+        backgroundColor: tokens.semanticColor.surface.inverse,
+        color: tokens.semanticColor.text.inverse,
         paddingLeft: tokens.spacing.xxLarge_48,
         paddingRight: tokens.spacing.xxLarge_48,
 
         ":hover": {
-            outlineColor: tokens.color.offBlack,
+            outlineColor: tokens.semanticColor.core.border.neutral.default,
         },
 
         ":active": {
-            outlineColor: tokens.color.offBlack64,
-            backgroundColor: tokens.color.offBlack64,
+            outlineColor: tokens.semanticColor.core.border.neutral.subtle,
+            backgroundColor: tokens.semanticColor.surface.overlay,
         },
     };
 
@@ -409,6 +272,7 @@ WithStyle.parameters = {
                 it new color.`,
         },
     },
+    chromatic: {disableSnapshot: false},
 };
 
 export const InList: StoryComponentType = () => {

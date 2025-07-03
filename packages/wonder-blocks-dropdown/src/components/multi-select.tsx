@@ -1,8 +1,13 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import {
+    Id,
+    type AriaProps,
+    type StyleType,
+} from "@khanacademy/wonder-blocks-core";
 
+import {announceMessage} from "@khanacademy/wonder-blocks-announcer";
 import ActionItem from "./action-item";
 import DropdownCore from "./dropdown-core";
 import DropdownOpener from "./dropdown-opener";
@@ -18,11 +23,13 @@ import OptionItem from "./option-item";
 import type {
     DropdownItem,
     OpenerProps,
+    OptionItemComponent,
     OptionItemComponentArray,
 } from "../util/types";
-import {getLabel} from "../util/helpers";
+import {getLabel, getSelectOpenerLabel} from "../util/helpers";
+import {useSelectValidation} from "../hooks/use-select-validation";
 
-export type Labels = {
+export type LabelsValues = {
     /**
      * Label for describing the dismiss icon on the search filter.
      */
@@ -32,7 +39,7 @@ export type Labels = {
      */
     filter: string;
     /**
-     * Label for when the filter returns no results.
+     * Value for when the filter returns no results.
      */
     noResults: string;
     /**
@@ -42,18 +49,17 @@ export type Labels = {
     /**
      * Label for the "select none" shortcut option
      */
-
     selectNoneLabel: string;
     /**
-     * Label for the opening component when there are no items selected.
+     * Value for the opening component when there are no items selected.
      */
     noneSelected: string;
     /**
-     * Label for the opening component when there are some items selected.
+     * Value for the opening component when there are some items selected.
      */
     someSelected: (numOptions: number) => string;
     /**
-     * Label for the opening component when all the items have been selected.
+     * Value for the opening component when all the items have been selected.
      */
     allSelected: string;
 };
@@ -63,29 +69,31 @@ type DefaultProps = Readonly<{
      * Whether this dropdown should be left-aligned or right-aligned with the
      * opener component. Defaults to left-aligned.
      */
-    alignment: "left" | "right";
+    alignment?: "left" | "right";
     /**
      * Whether this component is disabled. A disabled dropdown may not be opened
      * and does not support interaction. Defaults to false.
      */
-    disabled: boolean;
+    disabled?: boolean;
     /**
      * Whether this component is in an error state. Defaults to false.
      */
-    error: boolean;
-    /**
-     * Whether to display the "light" version of this component instead, for
-     * use when the component is used on a dark background.
-     */
-    light: boolean;
+    error?: boolean;
     /**
      * The values of the items that are currently selected.
      */
-    selectedValues: Array<string>;
+    selectedValues?: Array<string>;
     /**
      * Whether to display shortcuts for Select All and Select None.
      */
-    shortcuts: boolean;
+    shortcuts?: boolean;
+    /**
+     * When false, the SelectOpener can show a Node as a value. When true, the
+     * SelectOpener will use a string as a value. If using custom OptionItems, a
+     * plain text label can be provided with the `labelAsText` prop.
+     * Defaults to true.
+     */
+    showOpenerLabelAsText?: boolean;
 }>;
 
 type Props = AriaProps &
@@ -122,9 +130,9 @@ type Props = AriaProps &
          */
         isFilterable?: boolean;
         /**
-         * The object containing the custom labels used inside this component.
+         * The object containing the custom labels and placeholder values used inside this component.
          */
-        labels?: Labels;
+        labels?: LabelsValues;
         /**
          * Callback for when the selection changes. Parameter is an updated array of
          * the values that are now selected.
@@ -157,34 +165,49 @@ type Props = AriaProps &
          * Test ID used for e2e testing.
          */
         testId?: string;
+        /**
+         * Unique identifier attached to the listbox dropdown. If used, we need to
+         * guarantee that the ID is unique within everything rendered on a page.
+         * If one is not provided, one is auto-generated. It is used for the
+         * opener's `aria-controls` attribute for screenreaders.
+         */
+        dropdownId?: string;
+        /**
+         * Whether this field is required to continue, or the error message to
+         * render if this field is left blank.
+         *
+         * This can be a boolean or a string.
+         *
+         * String:
+         * Please pass in a translated string to use as the error message that will
+         * render if the user leaves this field blank. If this field is required,
+         * and a string is not passed in, a default untranslated string will render
+         * upon error.
+         * Note: The string will not be used if a `validate` prop is passed in.
+         *
+         * Example message: i18n._("A password is required to log in.")
+         *
+         * Boolean:
+         * True/false indicating whether this field is required. Please do not pass
+         * in `true` if possible - pass in the error string instead.
+         * If `true` is passed, and a `validate` prop is not passed, that means
+         * there is no corresponding message and the default untranlsated message
+         * will be used.
+         */
+        required?: boolean | string;
+        /**
+         * Provide a validation for the field value.
+         * Return a string error message or null | void for a valid input.
+         *
+         * Use this for errors that are shown to the user while they are filling out
+         * a form.
+         */
+        validate?: (value: string[]) => string | null | void;
+        /**
+         * Called right after the field is validated.
+         */
+        onValidate?: (errorMessage?: string | null | undefined) => unknown;
     }>;
-
-type State = Readonly<{
-    /**
-     * Whether or not the dropdown is open.
-     */
-    open: boolean;
-    /**
-     * The text input to filter the items by their label. Defaults to an empty
-     * string.
-     */
-    searchText: string;
-    /**
-     * The selected values that are set when the dropdown is opened. We use
-     * this to move the selected items to the top when the dropdown is
-     * re-opened.
-     */
-    lastSelectedValues: Array<string>;
-    /**
-     * The object containing the custom labels used inside this component.
-     */
-    labels: Labels;
-    /**
-     * The DOM reference to the opener element. This is mainly used to set focus
-     * to this element, and also to pass the reference to Popper.js.
-     */
-    openerElement?: HTMLElement;
-}>;
 
 /**
  * A dropdown that consists of multiple selection items. This select allows
@@ -194,80 +217,127 @@ type State = Readonly<{
  * The multi select stays open until closed by the user. The onChange callback
  * happens every time there is a change in the selection of the items.
  *
+ * Make sure to provide a label for the field. This can be done by either:
+ * - (recommended) Using the **LabeledField** component to provide a label,
+ * description, and/or error message for the field
+ * - Using a `label` html tag with the `htmlFor` prop set to the unique id of
+ * the field
+ * - Using an `aria-label` attribute on the field
+ * - Using an `aria-labelledby` attribute on the field
+ *
  * ## Usage
  *
  * ```jsx
  * import {OptionItem, MultiSelect} from "@khanacademy/wonder-blocks-dropdown";
  *
- * <MultiSelect onChange={setSelectedValues} selectedValues={selectedValues}>
+ * <MultiSelect aria-label="Fruits" onChange={setSelectedValues} selectedValues={selectedValues}>
  *  <OptionItem value="pear">Pear</OptionItem>
  *  <OptionItem value="mango">Mango</OptionItem>
  * </MultiSelect>
  * ```
  */
-export default class MultiSelect extends React.Component<Props, State> {
-    labels: Labels;
+const MultiSelect = (props: Props) => {
+    const {
+        id,
+        opener,
+        testId,
+        alignment = "left",
+        dropdownStyle,
+        implicitAllEnabled,
+        isFilterable,
+        labels: propLabels,
+        onChange,
+        onToggle,
+        opened,
+        selectedValues = [],
+        shortcuts = false,
+        style,
+        className,
+        "aria-label": ariaLabel,
+        "aria-invalid": ariaInvalid,
+        "aria-required": ariaRequired,
+        disabled = false,
+        error = false,
+        children,
+        dropdownId,
+        showOpenerLabelAsText = true,
+        validate,
+        onValidate,
+        required,
+        ...sharedProps
+    } = props;
 
-    static defaultProps: DefaultProps = {
-        alignment: "left",
-        disabled: false,
-        error: false,
-        light: false,
-        shortcuts: false,
-        selectedValues: [],
+    // Merge custom labels with the default ones
+    const labels = React.useMemo(() => {
+        return {...defaultLabels, ...propLabels};
+    }, [propLabels]);
+
+    // Whether or not the dropdown is open.
+    const [open, setOpen] = React.useState(false);
+
+    // The text input to filter the items by their label. Defaults to an empty
+    // string.
+    const [searchText, setSearchText] = React.useState("");
+
+    // The selected values that are set when the dropdown is opened. We use this
+    // to move the selected items to the top when the dropdown is re-opened.
+    const [lastSelectedValues, setLastSelectedValues] = React.useState<
+        string[]
+    >([]);
+
+    // The DOM reference to the opener element. This is mainly used to set focus
+    // to this element, and also to pass the reference to Popper.js.
+    const [openerElement, setOpenerElement] = React.useState<HTMLElement>();
+
+    const {
+        errorMessage,
+        onOpenerBlurValidation,
+        onDropdownClosedValidation,
+        onSelectionValidation,
+        onSelectedValuesChangeValidation,
+    } = useSelectValidation({
+        value: selectedValues,
+        disabled,
+        validate,
+        onValidate,
+        required,
+        open,
+    });
+
+    const hasError = error || !!errorMessage;
+
+    React.useEffect(() => {
+        // Used to sync the `opened` state when this component acts as a controlled component
+        if (disabled) {
+            // open should always be false if select is disabled
+            setOpen(false);
+        } else if (typeof opened === "boolean") {
+            setOpen(opened);
+        }
+    }, [disabled, opened]);
+
+    const handleOpenChanged = (opened: boolean) => {
+        setOpen(opened);
+        setSearchText("");
+        setLastSelectedValues(selectedValues);
+
+        if (onToggle) {
+            onToggle(opened);
+        }
+
+        // Handle validation when it is closed
+        if (!opened) {
+            if (lastSelectedValues !== selectedValues) {
+                // If lastSelectedValues is not the same as selectedValues, trigger selection validation
+                onSelectionValidation(selectedValues);
+            } else {
+                // If there are no changes to the selected values, trigger closed validation
+                onDropdownClosedValidation();
+            }
+        }
     };
 
-    constructor(props: Props) {
-        super(props);
-
-        this.state = {
-            open: false,
-            searchText: "",
-            lastSelectedValues: [],
-            // merge custom labels with the default ones
-            labels: {...defaultLabels, ...props.labels},
-        };
-        // merge custom labels with the default ones
-        this.labels = {...defaultLabels, ...props.labels};
-    }
-
-    /**
-     * Used to sync the `opened` state when this component acts as a controlled
-     * component
-     */
-    static getDerivedStateFromProps(
-        props: Props,
-        state: State,
-    ): Partial<State> | null {
-        return {
-            open: typeof props.opened === "boolean" ? props.opened : state.open,
-        };
-    }
-
-    componentDidUpdate(prevProps: Props) {
-        if (this.props.labels !== prevProps.labels) {
-            // eslint-disable-next-line react/no-did-update-set-state
-            this.setState({
-                labels: {...this.state.labels, ...this.props.labels},
-            });
-        }
-    }
-
-    handleOpenChanged: (opened: boolean) => void = (opened) => {
-        this.setState({
-            open: opened,
-            searchText: "",
-            lastSelectedValues: this.props.selectedValues,
-        });
-
-        if (this.props.onToggle) {
-            this.props.onToggle(opened);
-        }
-    };
-
-    handleToggle: (selectedValue: string) => void = (selectedValue) => {
-        const {onChange, selectedValues} = this.props;
-
+    const handleToggle = (selectedValue: string) => {
         if (selectedValues.includes(selectedValue)) {
             const index = selectedValues.indexOf(selectedValue);
             const updatedSelection = [
@@ -279,10 +349,11 @@ export default class MultiSelect extends React.Component<Props, State> {
             // Item was newly selected
             onChange([...selectedValues, selectedValue]);
         }
+        // Handle validation when the selected values change
+        onSelectedValuesChangeValidation();
     };
 
-    handleSelectAll: () => void = () => {
-        const {children, onChange} = this.props;
+    const handleSelectAll = () => {
         const allChildren = React.Children.toArray(
             children,
         ) as Array<React.ReactElement>;
@@ -291,61 +362,67 @@ export default class MultiSelect extends React.Component<Props, State> {
             .filter((option) => !!option && !option.props.disabled)
             .map((option) => option.props.value);
         onChange(selected);
+        onSelectedValuesChangeValidation();
     };
 
-    handleSelectNone: () => void = () => {
-        const {onChange} = this.props;
+    const handleSelectNone = () => {
         onChange([]);
+        onSelectedValuesChangeValidation();
     };
 
-    getMenuText(children: OptionItemComponentArray): string {
-        const {implicitAllEnabled, selectedValues} = this.props;
-        const {noneSelected, someSelected, allSelected} = this.state.labels;
-        const numSelectedAll = children.filter(
-            (option) => !option.props.disabled,
-        ).length;
+    const getMenuTextOrNode = React.useCallback(
+        (children: OptionItemComponentArray): string | JSX.Element => {
+            const {noneSelected, someSelected, allSelected} = labels;
+            const numSelectedAll = children.filter(
+                (option) => !option.props.disabled,
+            ).length;
 
-        // When implicit all enabled, use `labels.allSelected` when no selection
-        // otherwise, use the `labels.noneSelected` value
-        const noSelectionText = implicitAllEnabled ? allSelected : noneSelected;
+            // When implicit all enabled, use `labels.allSelected` when no selection
+            // otherwise, use the `labels.noneSelected` value
+            const noSelectionText = implicitAllEnabled
+                ? allSelected
+                : noneSelected;
 
-        switch (selectedValues.length) {
-            case 0:
-                return noSelectionText;
-            case 1:
-                // If there is one item selected, we display its label. If for
-                // some reason we can't find the selected item, we use the
-                // display text for the case where nothing is selected.
-                const selectedItem = children.find(
-                    (option) => option.props.value === selectedValues[0],
-                );
+            switch (selectedValues.length) {
+                case 0:
+                    return noSelectionText;
+                case 1:
+                    // If there is one item selected, we display its label. If for
+                    // some reason we can't find the selected item, we use the
+                    // display text for the case where nothing is selected.
+                    const selectedItem = children.find(
+                        (option) => option.props.value === selectedValues[0],
+                    );
 
-                if (selectedItem) {
-                    const selectedLabel = getLabel(selectedItem?.props);
-                    if (selectedLabel) {
-                        return selectedLabel;
-                        // If the label is a ReactNode and `labelAsText` is not set,
-                        // we fallback to, the default label for the case where only
-                        // one item is selected.
-                    } else {
-                        return someSelected(1);
+                    if (selectedItem) {
+                        const selectedLabel = getSelectOpenerLabel(
+                            showOpenerLabelAsText,
+                            selectedItem?.props,
+                        );
+                        if (selectedLabel) {
+                            return selectedLabel;
+                            // If the label is a ReactNode and `labelAsText` is not set,
+                            // we fallback to, the default label for the case where only
+                            // one item is selected.
+                        } else {
+                            return someSelected(1);
+                        }
                     }
-                }
+                    return noSelectionText;
+                case numSelectedAll:
+                    return allSelected;
+                default:
+                    return someSelected(selectedValues.length);
+            }
+        },
+        [implicitAllEnabled, labels, selectedValues, showOpenerLabelAsText],
+    );
 
-                return noSelectionText;
-            case numSelectedAll:
-                return allSelected;
-            default:
-                return someSelected(selectedValues.length);
-        }
-    }
-
-    getShortcuts(numOptions: number): DropdownItem[] {
-        const {selectedValues, shortcuts} = this.props;
-        const {selectAllLabel, selectNoneLabel} = this.state.labels;
+    const getShortcuts = (numOptions: number): DropdownItem[] => {
+        const {selectAllLabel, selectNoneLabel} = labels;
 
         // When there's search text input to filter, shortcuts should be hidden
-        if (shortcuts && !this.state.searchText) {
+        if (shortcuts && !searchText) {
             const selectAllDisabled = numOptions === selectedValues.length;
             const selectAll = {
                 component: (
@@ -353,7 +430,7 @@ export default class MultiSelect extends React.Component<Props, State> {
                         disabled={selectAllDisabled}
                         label={selectAllLabel(numOptions)}
                         indent={true}
-                        onClick={this.handleSelectAll}
+                        onClick={handleSelectAll}
                     />
                 ),
                 focusable: !selectAllDisabled,
@@ -367,7 +444,7 @@ export default class MultiSelect extends React.Component<Props, State> {
                         disabled={selectNoneDisabled}
                         label={selectNoneLabel}
                         indent={true}
-                        onClick={this.handleSelectNone}
+                        onClick={handleSelectNone}
                     />
                 ),
                 focusable: !selectNoneDisabled,
@@ -384,17 +461,16 @@ export default class MultiSelect extends React.Component<Props, State> {
         } else {
             return [];
         }
-    }
+    };
 
-    getMenuItems(children: OptionItemComponentArray): DropdownItem[] {
-        const {isFilterable} = this.props;
+    const getMenuItems = (
+        children: OptionItemComponentArray,
+    ): DropdownItem[] => {
         // If it's not filterable, no need to do any extra besides mapping the
         // option items to dropdown items.
         if (!isFilterable) {
-            return children.map(this.mapOptionItemToDropdownItem);
+            return children.map(mapOptionItemToDropdownItem);
         }
-
-        const {searchText, lastSelectedValues} = this.state;
 
         const lowercasedSearchText = searchText.toLowerCase();
 
@@ -406,12 +482,8 @@ export default class MultiSelect extends React.Component<Props, State> {
                     -1,
         );
 
-        const lastSelectedChildren: React.ReactElement<
-            React.ComponentProps<typeof OptionItem>
-        >[] = [];
-        const restOfTheChildren: React.ReactElement<
-            React.ComponentProps<typeof OptionItem>
-        >[] = [];
+        const lastSelectedChildren: OptionItemComponentArray = [];
+        const restOfTheChildren: OptionItemComponentArray = [];
         for (const child of filteredChildren) {
             if (lastSelectedValues.includes(child.props.value)) {
                 lastSelectedChildren.push(child);
@@ -421,7 +493,7 @@ export default class MultiSelect extends React.Component<Props, State> {
         }
 
         const lastSelectedItems = lastSelectedChildren.map(
-            this.mapOptionItemToDropdownItem,
+            mapOptionItemToDropdownItem,
         );
 
         // We want to add SeparatorItem in between last selected items and the
@@ -436,176 +508,204 @@ export default class MultiSelect extends React.Component<Props, State> {
 
         return [
             ...lastSelectedItems,
-            ...restOfTheChildren.map(this.mapOptionItemToDropdownItem),
+            ...restOfTheChildren.map(mapOptionItemToDropdownItem),
         ];
-    }
+    };
 
-    mapOptionItemToDropdownItem: (
-        option: React.ReactElement<React.ComponentProps<typeof OptionItem>>,
-    ) => DropdownItem = (
-        option: React.ReactElement<React.ComponentProps<typeof OptionItem>>,
+    const mapOptionItemToDropdownItem = (
+        option: OptionItemComponent,
     ): DropdownItem => {
-        const {selectedValues} = this.props;
         const {disabled, value} = option.props;
         return {
             component: option,
             focusable: !disabled,
             populatedProps: {
-                onToggle: this.handleToggle,
+                onToggle: handleToggle,
                 selected: selectedValues.includes(value),
                 variant: "checkbox",
             },
         };
     };
 
-    handleOpenerRef: (node?: any) => void = (node: any) => {
+    const handleOpenerRef = (node?: any) => {
+        // eslint-disable-next-line import/no-deprecated
         const openerElement = ReactDOM.findDOMNode(node) as HTMLElement;
-        this.setState({openerElement});
+        setOpenerElement(openerElement);
     };
 
-    handleSearchTextChanged: (searchText: string) => void = (
-        searchText: string,
-    ) => {
-        this.setState({searchText});
+    const handleSearchTextChanged = (searchText: string) => {
+        setSearchText(searchText);
     };
 
-    handleClick: (e: React.SyntheticEvent) => void = (
-        e: React.SyntheticEvent,
-    ) => {
-        this.handleOpenChanged(!this.state.open);
+    const handleClick = (e: React.SyntheticEvent) => {
+        handleOpenChanged(!open);
     };
 
-    renderOpener(
+    const handleAnnouncement = (message: string) => {
+        announceMessage({
+            message,
+        });
+    };
+
+    const maybeGetOpenerStringValue = React.useCallback(
+        (
+            children: OptionItemComponentArray,
+            openerContent: string | JSX.Element,
+        ) => {
+            let openerStringValue;
+            if (selectedValues.length === 1) {
+                const selectedItem = children.find(
+                    (option) => option.props.value === selectedValues[0],
+                );
+                openerStringValue = selectedItem
+                    ? getLabel(selectedItem?.props)
+                    : undefined;
+            } else if (typeof openerContent === "string") {
+                openerStringValue = openerContent;
+            }
+            return openerStringValue;
+        },
+        [selectedValues],
+    );
+
+    React.useEffect(() => {
+        const optionItems = React.Children.toArray(
+            children,
+        ) as OptionItemComponentArray;
+        const openerContent = getMenuTextOrNode(optionItems);
+        const openerStringValue = maybeGetOpenerStringValue(
+            optionItems,
+            openerContent,
+        );
+
+        if (openerStringValue) {
+            // opener value changed, so let's announce it
+            handleAnnouncement(openerStringValue);
+        }
+    }, [children, getMenuTextOrNode, maybeGetOpenerStringValue]);
+
+    const renderOpener = (
         allChildren: React.ReactElement<
             React.ComponentProps<typeof OptionItem>
         >[],
+        isDisabled: boolean,
+        dropdownId: string,
     ):
         | React.ReactElement<React.ComponentProps<typeof DropdownOpener>>
-        | React.ReactElement<React.ComponentProps<typeof SelectOpener>> {
-        const {
-            disabled,
-            id,
-            light,
-            opener,
-            testId,
-            // the following props are being included here to avoid
-            // passing them down to the opener as part of sharedProps
-            /* eslint-disable @typescript-eslint/no-unused-vars */
-            alignment,
-            dropdownStyle,
-            implicitAllEnabled,
-            isFilterable,
-            labels,
-            onChange,
-            onToggle,
-            opened,
-            selectedValues,
-            shortcuts,
-            style,
-            className,
-            "aria-invalid": ariaInvalid,
-            "aria-required": ariaRequired,
-            /* eslint-enable @typescript-eslint/no-unused-vars */
-            ...sharedProps
-        } = this.props;
-        const {noneSelected} = this.state.labels;
+        | React.ReactElement<React.ComponentProps<typeof SelectOpener>> => {
+        const {noneSelected} = labels;
 
-        const menuText = this.getMenuText(allChildren);
-        const numOptions = allChildren.filter(
-            (option) => !option.props.disabled,
-        ).length;
+        const openerContent = getMenuTextOrNode(allChildren);
 
-        const dropdownOpener = opener ? (
-            <DropdownOpener
-                onClick={this.handleClick}
-                disabled={numOptions === 0 || disabled}
-                ref={this.handleOpenerRef}
-                text={menuText}
-                opened={this.state.open}
-            >
-                {opener}
-            </DropdownOpener>
-        ) : (
-            <SelectOpener
-                {...sharedProps}
-                disabled={numOptions === 0 || disabled}
-                id={id}
-                isPlaceholder={menuText === noneSelected}
-                light={light}
-                onOpenChanged={this.handleOpenChanged}
-                open={this.state.open}
-                ref={this.handleOpenerRef}
-                testId={testId}
-            >
-                {menuText}
-            </SelectOpener>
+        const dropdownOpener = (
+            <Id id={id}>
+                {(uniqueOpenerId) => {
+                    return opener ? (
+                        <DropdownOpener
+                            id={uniqueOpenerId}
+                            error={hasError}
+                            aria-label={ariaLabel}
+                            aria-controls={dropdownId}
+                            aria-haspopup="listbox"
+                            onClick={handleClick}
+                            onBlur={onOpenerBlurValidation}
+                            disabled={isDisabled}
+                            ref={handleOpenerRef}
+                            role="combobox"
+                            text={openerContent}
+                            opened={open}
+                        >
+                            {opener}
+                        </DropdownOpener>
+                    ) : (
+                        <SelectOpener
+                            {...sharedProps}
+                            error={hasError}
+                            disabled={isDisabled}
+                            id={uniqueOpenerId}
+                            aria-label={ariaLabel}
+                            aria-controls={dropdownId}
+                            isPlaceholder={openerContent === noneSelected}
+                            onOpenChanged={handleOpenChanged}
+                            onBlur={onOpenerBlurValidation}
+                            open={open}
+                            ref={handleOpenerRef}
+                            testId={testId}
+                        >
+                            {openerContent}
+                        </SelectOpener>
+                    );
+                }}
+            </Id>
         );
 
         return dropdownOpener;
-    }
+    };
 
-    render(): React.ReactNode {
-        const {
-            alignment,
-            light,
-            style,
-            className,
-            dropdownStyle,
-            children,
-            isFilterable,
-            "aria-invalid": ariaInvalid,
-            "aria-required": ariaRequired,
-        } = this.props;
-        const {open, searchText} = this.state;
-        const {clearSearch, filter, noResults, someSelected} =
-            this.state.labels;
+    const {clearSearch, filter, noResults, someSelected} = labels;
 
-        const allChildren = (
-            React.Children.toArray(children) as Array<
-                React.ReactElement<React.ComponentProps<typeof OptionItem>>
-            >
-        ).filter(Boolean);
-        const numEnabledOptions = allChildren.filter(
-            (option) => !option.props.disabled,
-        ).length;
-        const filteredItems = this.getMenuItems(allChildren);
-        const opener = this.renderOpener(allChildren);
+    const allChildren = (
+        React.Children.toArray(children) as Array<
+            React.ReactElement<React.ComponentProps<typeof OptionItem>>
+        >
+    ).filter(Boolean);
+    const numEnabledOptions = allChildren.filter(
+        (option) => !option.props.disabled,
+    ).length;
+    const filteredItems = getMenuItems(allChildren);
+    const isDisabled = numEnabledOptions === 0 || disabled;
 
-        return (
-            <DropdownCore
-                role="listbox"
-                alignment={alignment}
-                dropdownStyle={[
-                    isFilterable && filterableDropdownStyle,
-                    selectDropdownStyle,
-                    dropdownStyle,
-                ]}
-                isFilterable={isFilterable}
-                items={[
-                    ...this.getShortcuts(numEnabledOptions),
-                    ...filteredItems,
-                ]}
-                light={light}
-                onOpenChanged={this.handleOpenChanged}
-                open={open}
-                opener={opener}
-                openerElement={this.state.openerElement}
-                selectionType="multi"
-                style={style}
-                className={className}
-                onSearchTextChanged={
-                    isFilterable ? this.handleSearchTextChanged : undefined
-                }
-                searchText={isFilterable ? searchText : ""}
-                labels={{
-                    clearSearch,
-                    filter,
-                    noResults,
-                    someResults: someSelected,
-                }}
-                aria-invalid={ariaInvalid}
-                aria-required={ariaRequired}
-            />
-        );
-    }
-}
+    React.useEffect(() => {
+        if (open) {
+            handleAnnouncement(someSelected(filteredItems.length));
+        }
+    }, [filteredItems.length, someSelected, open]);
+
+    return (
+        <Id id={dropdownId}>
+            {(uniqueDropdownId) => (
+                <DropdownCore
+                    id={uniqueDropdownId}
+                    role="listbox"
+                    alignment={alignment}
+                    dropdownStyle={[
+                        isFilterable && filterableDropdownStyle,
+                        selectDropdownStyle,
+                        dropdownStyle,
+                    ]}
+                    isFilterable={isFilterable}
+                    items={[
+                        ...getShortcuts(numEnabledOptions),
+                        ...filteredItems,
+                    ]}
+                    onOpenChanged={handleOpenChanged}
+                    open={open}
+                    opener={renderOpener(
+                        allChildren,
+                        isDisabled,
+                        uniqueDropdownId,
+                    )}
+                    openerElement={openerElement}
+                    selectionType="multi"
+                    style={style}
+                    className={className}
+                    onSearchTextChanged={
+                        isFilterable ? handleSearchTextChanged : undefined
+                    }
+                    searchText={isFilterable ? searchText : ""}
+                    labels={{
+                        clearSearch,
+                        filter,
+                        noResults,
+                        someResults: someSelected,
+                    }}
+                    aria-invalid={ariaInvalid}
+                    aria-required={ariaRequired}
+                    disabled={isDisabled}
+                />
+            )}
+        </Id>
+    );
+};
+
+export default MultiSelect;

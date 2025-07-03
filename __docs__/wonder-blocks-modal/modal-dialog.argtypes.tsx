@@ -2,7 +2,7 @@ import {ArgTypes} from "@storybook/react";
 
 const argTypes: ArgTypes = {
     children: {
-        control: {type: null},
+        control: {type: undefined},
         description: "The dialog content.",
         table: {
             type: {summary: "React.Node"},
@@ -14,14 +14,14 @@ const argTypes: ArgTypes = {
         },
     },
     above: {
-        control: {type: null},
+        control: {type: undefined},
         description: `When set, provides a component that can render content
             above the top of the modal; when not set, no additional content is
             shown above the modal. This prop is passed down to the ModalDialog.`,
         table: {type: {summary: "React.Node"}},
     },
     below: {
-        control: {type: null},
+        control: {type: undefined},
         description: `When set, provides a component that can render content
             below the bottom of the modal; when not set, no additional content is
             shown below the modal. This prop is passed down to the ModalDialog.`,

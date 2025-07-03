@@ -18,7 +18,7 @@ describe("TooltipBubble", () => {
                 right: undefined,
                 transform: "translate3d(50, 0, 0)",
             },
-        } as const);
+        }) as const;
 
     test("updates reference to bubble container", async () => {
         // Arrange

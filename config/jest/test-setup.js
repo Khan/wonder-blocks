@@ -1,16 +1,28 @@
 const {StyleSheetTestUtils} = require("aphrodite");
-const {configure} = require("@testing-library/react");
 
 const {
     mockRequestAnimationFrame,
 } = require("../../utils/testing/mock-request-animation-frame");
-
-configure({
-    testIdAttribute: "data-test-id",
-});
+const {TextEncoder, TextDecoder} = require("util");
 
 StyleSheetTestUtils.suppressStyleInjection();
 
+
+const attachShims = (targetWindow) => {
+    if (!targetWindow.TextEncoder) {
+        targetWindow.TextEncoder = TextEncoder;
+    }
+    if (!targetWindow.TextDecoder) {
+        targetWindow.TextDecoder = TextDecoder;
+    }
+};
+
+const resetWindow = () => {
+    attachShims(globalThis);
+};
+resetWindow();
+
 beforeEach(() => {
+    resetWindow();
     mockRequestAnimationFrame();
 });

@@ -1,123 +1,63 @@
 import * as React from "react";
+import {StyleSheet} from "aphrodite";
 
-import type {PhosphorIconAsset} from "@khanacademy/wonder-blocks-icon";
-import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import {Link} from "react-router-dom";
-import IconButtonCore from "./icon-button-core";
-import ThemedIconButton from "../themes/themed-icon-button";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
-export type IconButtonSize = "xsmall" | "small" | "medium";
+import type {
+    IconButtonActionType,
+    IconButtonKind,
+    IconButtonProps,
+    IconButtonRef,
+    IconButtonSize,
+} from "../util/icon-button.types";
 
-export type SharedProps = Partial<Omit<AriaProps, "aria-disabled">> & {
-    /**
-     * A Phosphor icon asset (imported as a static SVG file).
-     */
-    icon: PhosphorIconAsset;
-    /**
-     * The color of the icon button, either blue or red.
-     */
-    color?: "default" | "destructive";
-    /**
-     * The kind of the icon button, either primary, secondary, or tertiary.
-     *
-     * In default state:
-     * - Primary icon buttons are color: props.color
-     * - Secondary buttons are offBlack
-     * - Tertiary buttons are offBlack64
-     *
-     * In the hover/focus/press states, all variants have a border.
-     */
-    kind?: "primary" | "secondary" | "tertiary";
-    /**
-     * Whether the icon button is on a dark/colored background.
-     */
-    light?: boolean;
-    /**
-     * Whether the icon button is disabled.
-     */
-    disabled?: boolean;
-    /**
-     * Test ID used for e2e testing.
-     */
-    testId?: string;
-    /**
-     * Size of the icon button.
-     * One of `xsmall` (16 icon, 20 target), `small` (24, 32), or `medium (24, 40).
-     * Defaults to `medium`.
-     */
-    size?: IconButtonSize;
-    /**
-     * Optional custom styles.
-     */
-    style?: StyleType;
-    // TODO(yejia): use this if ADR #47 has been implemented
-    /*
-    style?: Style<Exact<{
-        width?: number | string
-        position: Position,
-        ...MarginStyles,
-        ...FlexItemStyles,
-    }>>,
-    */
+import iconButtonTheme from "../theme/index";
+import {IconButtonUnstyled} from "./icon-button-unstyled";
 
-    /**
-     * Adds CSS classes to the IconButton.
-     */
-    className?: string;
-    // NOTE(jeresig): Currently React Docgen (used by Styleguidist) doesn't
-    // support ... inside of an exact object type. Thus we had to move the
-    // following propers into this SharedProps, even though they should be
-    // external. Once that's fixed we can split them back apart.
+const theme = iconButtonTheme.iconButton;
 
-    /**
-     * URL to navigate to.
-     *
-     * Note: Either href or onClick must be defined
-     */
-    href?: string;
-    // TODO(WB-1262): only allow this prop when `href` is also set.
-    /**
-     * A target destination window for a link to open in.
-     */
-    target?: "_blank";
-    /**
-     * Specifies the type of relationship between the current document and the
-     * linked document. Should only be used when `href` is specified. This
-     * defaults to "noopener noreferrer" when `target="_blank"`, but can be
-     * overridden by setting this prop to something else.
-     */
-    rel?: string;
-    /**
-     * Set the tabindex attribute on the rendered element.
-     */
-    tabIndex?: number;
-    /**
-     * Whether to avoid using client-side navigation.
-     *
-     * If the URL passed to href is local to the client-side, e.g.
-     * /math/algebra/eval-exprs, then it tries to use react-router-dom's Link
-     * component which handles the client-side navigation. You can set
-     * `skipClientNav` to true avoid using client-side nav entirely.
-     *
-     * NOTE: All URLs containing a protocol are considered external, e.g.
-     * https://khanacademy.org/math/algebra/eval-exprs will trigger a full
-     * page reload.
-     */
-    skipClientNav?: boolean;
-    /**
-     * Function to call when button is clicked.
-     *
-     * This callback should be used for things like marking BigBingo
-     * conversions. It should NOT be used to redirect to a different URL or to
-     * prevent navigation via e.preventDefault(). The event passed to this
-     * handler will have its preventDefault() and stopPropagation() methods
-     * stubbed out.
-     *
-     * Note: onClick is optional if href is present, but must be defined if
-     * href is not
-     */
-    onClick?: (e: React.SyntheticEvent) => unknown;
-};
+/**
+ * Returns the phosphor icon component based on the size. This is necessary
+ * so we can cast the icon to the correct type.
+ */
+function IconChooser({
+    icon,
+    size,
+}: {
+    icon: IconButtonProps["icon"];
+    size: IconButtonSize;
+}) {
+    // We set the icon size based on the theme object. This is necessary
+    // because the icon size could change based on the theme.
+    const iconStyle = {
+        width: theme.icon.sizing[size],
+        height: theme.icon.sizing[size],
+    };
+
+    switch (size) {
+        case "small":
+            return (
+                <PhosphorIcon
+                    size="small"
+                    color="currentColor"
+                    icon={icon as PhosphorBold | PhosphorFill}
+                    style={iconStyle}
+                />
+            );
+        case "medium":
+        default:
+            return (
+                <PhosphorIcon
+                    size="medium"
+                    color="currentColor"
+                    icon={icon as PhosphorRegular | PhosphorFill}
+                    style={iconStyle}
+                />
+            );
+    }
+}
 
 /**
  * An `IconButton` is a button whose contents are an SVG image.
@@ -159,61 +99,170 @@ export type SharedProps = Partial<Omit<AriaProps, "aria-disabled">> & {
  * ```
  */
 export const IconButton: React.ForwardRefExoticComponent<
-    SharedProps &
-        React.RefAttributes<typeof Link | HTMLButtonElement | HTMLAnchorElement>
-> = React.forwardRef<
-    typeof Link | HTMLButtonElement | HTMLAnchorElement,
-    SharedProps
->(function IconButton(props: SharedProps, ref) {
+    IconButtonProps & React.RefAttributes<IconButtonRef>
+> = React.forwardRef<IconButtonRef, IconButtonProps>(function IconButton(
+    props: IconButtonProps,
+    ref,
+) {
     const {
-        color = "default",
+        actionType = "progressive",
         disabled = false,
-        href,
+        icon,
         kind = "primary",
-        light = false,
         size = "medium",
-        skipClientNav,
-        tabIndex,
-        target,
-        ...sharedProps
+        style,
+        type = "button",
+        ...restProps
     } = props;
 
-    function handleKeyDown(e: React.KeyboardEvent) {
-        const keyCode = e.key;
-        // Prevent default behavior for space and enter keys on
-        // buttons. We let the browser handle the default behavior
-        // for links, which is to activate the link on `Enter`.
-        if (!href && (keyCode === "Enter" || keyCode === "Space")) {
-            e.preventDefault();
-        }
-    }
+    const [pressed, setPressed] = React.useState(false);
 
-    function handleKeyUp(e: React.KeyboardEvent) {
-        const keyCode = e.key;
-        if (!href && (keyCode === "Enter" || keyCode === "Space")) {
-            if (sharedProps.onClick) {
-                sharedProps.onClick(e);
-            }
-        }
-    }
+    const buttonStyles = _generateStyles(actionType, !!disabled, kind, size);
+
+    const styles = [
+        buttonStyles.default,
+        disabled && buttonStyles.disabled,
+        pressed && buttonStyles.pressed,
+        style,
+    ];
+
+    const handlePress = React.useCallback((isPressing: boolean) => {
+        setPressed(isPressing);
+    }, []);
 
     return (
-        <ThemedIconButton>
-            <IconButtonCore
-                {...sharedProps}
-                color={color}
-                disabled={disabled}
-                href={href}
-                kind={kind}
-                light={light}
-                ref={ref}
-                skipClientNav={skipClientNav}
-                size={size}
-                target={target}
-                tabIndex={tabIndex}
-                onKeyDown={handleKeyDown}
-                onKeyUp={handleKeyUp}
-            />
-        </ThemedIconButton>
+        <IconButtonUnstyled
+            {...restProps}
+            disabled={disabled}
+            onPress={handlePress}
+            ref={ref}
+            style={styles}
+            type={type}
+        >
+            <IconChooser size={size} icon={icon} />
+        </IconButtonUnstyled>
     );
 });
+
+const styles: Record<string, any> = {};
+
+const _generateStyles = (
+    actionType: IconButtonActionType = "progressive",
+    disabled: boolean,
+    kind: IconButtonKind,
+    size: IconButtonSize,
+) => {
+    const buttonType = `${actionType}-d_${disabled}-${kind}-${size}`;
+    if (styles[buttonType]) {
+        return styles[buttonType];
+    }
+
+    const borderWidthKind = theme.root.border.width[kind];
+    const outlineOffsetKind = theme.root.border.offset[kind];
+    const themeVariant = semanticColor.action[kind][actionType];
+    const disabledState = semanticColor.action[kind].disabled;
+
+    const disabledStatesStyles = {
+        borderColor: disabledState.border,
+        borderWidth: borderWidthKind.default,
+        background: disabledState.background,
+        color: disabledState.foreground,
+    };
+
+    const pressStyles = {
+        // primary
+        outline:
+            kind === "primary"
+                ? `${borderWidthKind.press} solid ${themeVariant.press.border}`
+                : "none",
+        outlineOffset: kind === "primary" ? outlineOffsetKind : undefined,
+        // secondary, tertiary
+        border:
+            kind !== "primary"
+                ? `${borderWidthKind.press} solid ${themeVariant.press.border}`
+                : "none",
+        background: themeVariant.press.background,
+        borderRadius: theme.root.border.radius.press,
+        color: themeVariant.press.foreground,
+        // Animation
+        transition: "border-radius 0.1s ease-in-out",
+    };
+
+    const newStyles = {
+        default: {
+            // Define button sizes per theme.
+            height: theme.root.sizing[size],
+            width: theme.root.sizing[size],
+            borderRadius: theme.root.border.radius.default,
+            // theming
+            borderStyle: "solid",
+            borderWidth: borderWidthKind.default,
+            borderColor: themeVariant.default.border,
+            background: themeVariant.default.background,
+            color: themeVariant.default.foreground,
+
+            /**
+             * States
+             *
+             * Defined in the following order: hover, active, focus.
+             *
+             * This is important as we want to give more priority to the
+             * :focus-visible styles.
+             */
+            ":hover": {
+                background: themeVariant.hover.background,
+                borderRadius: theme.root.border.radius.hover,
+                color: themeVariant.hover.foreground,
+                outline:
+                    kind === "primary"
+                        ? `${borderWidthKind.hover} solid ${themeVariant.hover.border}`
+                        : undefined,
+                outlineOffset:
+                    kind === "primary" ? outlineOffsetKind : undefined,
+                border:
+                    kind !== "primary"
+                        ? `${borderWidthKind.hover} solid ${themeVariant.hover.border}`
+                        : undefined,
+            },
+            // Allow hover styles on non-touch devices only. This prevents an
+            // issue with hover being sticky on touch devices (e.g. mobile).
+            ["@media not (hover: hover)"]: {
+                ":hover": {
+                    // reset hover styles on non-touch devices
+                    backgroundColor: "transparent",
+                },
+            },
+
+            ":active": pressStyles,
+
+            // :focus-visible -> Provide focus styles for keyboard users only.
+            ...focusStyles.focus,
+        },
+        disabled: {
+            cursor: "not-allowed",
+            ...disabledStatesStyles,
+            // NOTE: Even that browsers recommend to specify pseudo-classes in
+            // this order: link, visited, focus, hover, active, we need to
+            // specify focus after hover to override hover styles. By doing this
+            // we are able to reset the border/outline styles to the default
+            // ones (rest state).
+            // For order reference: https://css-tricks.com/snippets/css/link-pseudo-classes-in-order/
+            ":hover": {
+                ...disabledStatesStyles,
+                outline: "none",
+                borderRadius: theme.root.border.radius.default,
+            },
+            ":active": {
+                ...disabledStatesStyles,
+                outline: "none",
+                borderRadius: theme.root.border.radius.default,
+            },
+            ":focus-visible": disabledStatesStyles,
+        },
+        // Enable keyboard support for press styles.
+        pressed: pressStyles,
+    } as const;
+
+    styles[buttonType] = StyleSheet.create(newStyles);
+    return styles[buttonType];
+};

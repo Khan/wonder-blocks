@@ -47,7 +47,7 @@ describe("Test utils", () => {
             await promise;
 
             // Assert
-            expect(promise).resolves.toHaveProperty("type", "resize");
+            await expect(promise).resolves.toHaveProperty("type", "resize");
             window.removeEventListener("resize", handler);
         });
     });

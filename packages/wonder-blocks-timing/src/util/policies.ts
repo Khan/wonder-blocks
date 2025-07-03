@@ -1,9 +1,14 @@
-export const SchedulePolicy = {
-    Immediately: "schedule-immediately",
-    OnDemand: "schedule-on-demand",
-} as const;
+export enum SchedulePolicy {
+    Immediately = "schedule-immediately",
+    OnDemand = "schedule-on-demand",
+}
 
-export const ClearPolicy = {
-    Resolve: "resolve-on-clear",
-    Cancel: "cancel-on-clear",
-} as const;
+export enum ClearPolicy {
+    Resolve = "resolve-on-clear",
+    Cancel = "cancel-on-clear",
+}
+
+export enum ActionPolicy {
+    Reset = "reset",
+    Passive = "passive",
+}

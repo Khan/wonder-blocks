@@ -1,24 +1,22 @@
 import * as React from "react";
 
-import {IDProvider, StyleType} from "@khanacademy/wonder-blocks-core";
+import {Id, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import FieldHeading from "./field-heading";
-import TextField, {TextFieldType} from "./text-field";
+import TextField from "./text-field";
+import type {NumericInputProps} from "./text-field";
+import {OmitConstrained} from "../util/types";
 
 type WithForwardRef = {
     forwardedRef: React.ForwardedRef<HTMLInputElement>;
 };
 
-type Props = {
+type CommonProps = {
     /**
      * An optional unique identifier for the TextField.
      * If no id is specified, a unique id will be auto-generated.
      */
     id?: string;
-    /**
-     * Determines the type of input. Defaults to text.
-     */
-    type: TextFieldType;
     /**
      * Provide a label for the TextField.
      */
@@ -32,7 +30,15 @@ type Props = {
      */
     value: string;
     /**
-     * Makes a read-only input field that cannot be focused. Defaults to false.
+     * Whether the input should be disabled. Defaults to false.
+     * If the disabled prop is set to `true`, LabeledTextField will have disabled
+     * styling and will not be interactable.
+     *
+     * Note: The `disabled` prop sets the `aria-disabled` attribute to `true`
+     * instead of setting the `disabled` attribute. This is so that the component
+     * remains focusable while communicating to screen readers that it is disabled.
+     * This `disabled` prop will also set the `readonly` attribute to prevent
+     * typing in the field.
      */
     disabled: boolean;
     /**
@@ -92,10 +98,6 @@ type Props = {
      */
     placeholder?: string;
     /**
-     * Change the field’s sub-components to fit a dark background.
-     */
-    light: boolean;
-    /**
      * Custom styles for the container.
      *
      * Note: This style is passed to the field heading container
@@ -120,14 +122,26 @@ type Props = {
      * Specifies if the TextField allows autocomplete.
      */
     autoComplete?: string;
+    /**
+     * Provide a name for the TextField.
+     */
+    name?: string;
 };
 
+type OtherInputProps = CommonProps & {
+    /**
+     * Determines the type of input. Defaults to text.
+     */
+    type: "text" | "password" | "email" | "tel";
+};
+
+type FullNumericInputProps = NumericInputProps & CommonProps;
+type Props = OtherInputProps | FullNumericInputProps;
 type PropsWithForwardRef = Props & WithForwardRef;
 
 type DefaultProps = {
     type: PropsWithForwardRef["type"];
     disabled: PropsWithForwardRef["disabled"];
-    light: PropsWithForwardRef["light"];
 };
 
 type State = {
@@ -149,7 +163,6 @@ class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
     static defaultProps: DefaultProps = {
         type: "text",
         disabled: false,
-        light: false,
     };
 
     constructor(props: PropsWithForwardRef) {
@@ -206,17 +219,29 @@ class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
             onChange,
             onKeyDown,
             placeholder,
-            light,
             style,
             testId,
             readOnly,
             autoComplete,
             forwardedRef,
             ariaDescribedby,
+            name,
+            // NOTE: We are not using this prop, but we need to remove it from
+            // `otherProps` so it doesn't override the `handleValidate` function
+            // call. We use `otherProps` due to a limitation in TypeScript where
+            // we can't easily extract the props when using a discriminated
+            // union.
+            /* eslint-disable @typescript-eslint/no-unused-vars */
+            onValidate,
+            onFocus,
+            onBlur,
+            /* eslint-enable @typescript-eslint/no-unused-vars */
+            // numeric input props
+            ...otherProps
         } = this.props;
 
         return (
-            <IDProvider id={id} scope="labeled-text-field">
+            <Id id={id}>
                 {(uniqueId) => (
                     <FieldHeading
                         id={uniqueId}
@@ -229,9 +254,6 @@ class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
                                     ariaDescribedby
                                         ? ariaDescribedby
                                         : `${uniqueId}-error`
-                                }
-                                aria-invalid={
-                                    this.state.error ? "true" : "false"
                                 }
                                 aria-required={required ? "true" : "false"}
                                 required={required}
@@ -246,10 +268,11 @@ class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
                                 onKeyDown={onKeyDown}
                                 onFocus={this.handleFocus}
                                 onBlur={this.handleBlur}
-                                light={light}
                                 readOnly={readOnly}
                                 autoComplete={autoComplete}
                                 ref={forwardedRef}
+                                name={name}
+                                {...otherProps}
                             />
                         }
                         label={label}
@@ -258,12 +281,12 @@ class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
                         error={(!this.state.focused && this.state.error) || ""}
                     />
                 )}
-            </IDProvider>
+            </Id>
         );
     }
 }
 
-type ExportProps = Omit<
+type ExportProps = OmitConstrained<
     JSX.LibraryManagedAttributes<
         typeof LabeledTextField,
         React.ComponentProps<typeof LabeledTextField>
@@ -272,8 +295,12 @@ type ExportProps = Omit<
 >;
 
 /**
+ * **DEPRECATED**: Please use `LabeledField` with `TextField` instead.
+ *
  * A LabeledTextField is an element used to accept a single line of text
  * from the user paired with a label, description, and error field elements.
+ *
+ * @deprecated
  *
  * ### Usage
  *

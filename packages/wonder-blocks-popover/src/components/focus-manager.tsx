@@ -17,6 +17,13 @@ type Props = {
      * When not set, the first tabbable element within the dialog will be used.
      */
     initialFocusId?: string;
+    /**
+     * The delay in milliseconds before the initial focus is set.
+     * This is to ensure that any active event listeners have time to finish.
+     *
+     * Defaults to 0.
+     */
+    initialFocusDelay?: number;
 };
 
 /**
@@ -248,6 +255,7 @@ export default class FocusManager extends React.Component<Props> {
             return;
         }
 
+        // eslint-disable-next-line import/no-deprecated
         const rootNode: HTMLElement = ReactDOM.findDOMNode(node) as any;
 
         if (!rootNode) {
@@ -323,6 +331,7 @@ export default class FocusManager extends React.Component<Props> {
         const {children} = this.props;
 
         return (
+            // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions -- TODO(WB-1788): Address a11y error
             <div
                 ref={this.getComponentRootNode}
                 onClick={() => {
@@ -335,7 +344,10 @@ export default class FocusManager extends React.Component<Props> {
                     this.changeFocusabilityInsidePopover(false);
                 }}
             >
-                <InitialFocus initialFocusId={this.props.initialFocusId}>
+                <InitialFocus
+                    initialFocusId={this.props.initialFocusId}
+                    delay={this.props.initialFocusDelay}
+                >
                     {children}
                 </InitialFocus>
             </div>

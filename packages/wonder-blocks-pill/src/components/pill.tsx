@@ -3,17 +3,18 @@ import {StyleSheet} from "aphrodite";
 import type {StyleDeclaration} from "aphrodite";
 
 import Clickable from "@khanacademy/wonder-blocks-clickable";
-import {mix} from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {
-    Body,
-    LabelSmall,
-    LabelXSmall,
-} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 import type {ClickableRole} from "@khanacademy/wonder-blocks-clickable";
-import * as tokens from "@khanacademy/wonder-blocks-tokens";
+import {
+    semanticColor,
+    border,
+    color,
+    sizing,
+} from "@khanacademy/wonder-blocks-tokens";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 
 export type PillKind =
     | "neutral"
@@ -67,6 +68,10 @@ type Props = AriaProps & {
      */
     style?: StyleType;
     /**
+     * The tab index of the pill (clickable only).
+     */
+    tabIndex?: number;
+    /**
      * Optional test ID for e2e testing.
      */
     testId?: string;
@@ -83,19 +88,35 @@ const PillInner = (props: {
     }
 
     if (size === "small") {
-        return <LabelXSmall>{props.children}</LabelXSmall>;
+        return (
+            <BodyText size="xsmall" tag="span">
+                {props.children}
+            </BodyText>
+        );
     }
 
     if (size === "large") {
-        return <Body>{children}</Body>;
+        return <BodyText tag="span">{children}</BodyText>;
     }
 
-    return <LabelSmall>{children}</LabelSmall>;
+    return (
+        <BodyText size="small" tag="span">
+            {children}
+        </BodyText>
+    );
 };
 
 /**
  * A `Pill` component displays text in a rounded, colored container. This is
- * usually used to add label tags or indicate a status.
+ * usually used to add label tags.
+ *
+ * **Note:** Before using the `Pill` component, please see if a component from the
+ * [Badge Package](/?path=/docs/packages-badge-overview--docs&globals=theme:default)
+ * can be used instead.
+ *
+ * For example, prefer using the `StatusBadge` component instead of a `Pill` to
+ * indicate a status. Or, use the `Badge` component instead of a `Pill` with
+ * `kind="neutral"`.
  *
  * ### Usage
  *
@@ -117,7 +138,9 @@ const Pill = React.forwardRef(function Pill(
         role,
         onClick,
         style,
+        tabIndex,
         testId,
+        ...ariaProps
     } = props;
 
     let wrapperSizeStyle;
@@ -150,6 +173,8 @@ const Pill = React.forwardRef(function Pill(
                 style={[defaultStyles, colorStyles.clickableWrapper, style]}
                 testId={testId}
                 ref={ref as React.ForwardedRef<HTMLButtonElement>}
+                tabIndex={tabIndex}
+                {...ariaProps}
             >
                 {() => <PillInner size={size}>{children}</PillInner>}
             </Clickable>
@@ -163,6 +188,7 @@ const Pill = React.forwardRef(function Pill(
             style={[defaultStyles, style]}
             testId={testId}
             ref={ref as React.ForwardedRef<HTMLElement>}
+            {...ariaProps}
         >
             <PillInner size={size}>{children}</PillInner>
         </View>
@@ -175,25 +201,21 @@ const pillStyles = StyleSheet.create({
         width: "fit-content",
     },
     wrapperSmall: {
-        paddingLeft: tokens.spacing.xSmall_8,
-        paddingRight: tokens.spacing.xSmall_8,
-        borderRadius: tokens.spacing.xxSmall_6,
-        height: 20,
+        paddingInline: sizing.size_080,
+        borderRadius: border.radius.radius_040,
+        height: sizing.size_200,
     },
     wrapperMedium: {
-        paddingLeft: tokens.spacing.xSmall_8,
-        paddingRight: tokens.spacing.xSmall_8,
-        borderRadius: tokens.spacing.xxSmall_6,
+        paddingInline: sizing.size_080,
+        borderRadius: border.radius.radius_040,
         // Minimum tap area recommendation for a11y
-        height: tokens.spacing.large_24,
+        height: sizing.size_240,
     },
     wrapperLarge: {
-        paddingLeft: tokens.spacing.small_12,
-        paddingRight: tokens.spacing.small_12,
-        paddingTop: tokens.spacing.xxSmall_6,
-        paddingBottom: tokens.spacing.xxSmall_6,
-        borderRadius: tokens.spacing.large_24,
-        height: tokens.spacing.xLarge_32,
+        paddingInline: sizing.size_120,
+        paddingBlock: sizing.size_060,
+        borderRadius: border.radius.radius_240,
+        height: sizing.size_320,
     },
 });
 
@@ -206,72 +228,87 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
     }
 
     let backgroundColor;
+    let textColor;
 
     switch (kind) {
         case "accent":
-            backgroundColor = tokens.color.blue;
+            backgroundColor = semanticColor.core.background.instructive.default;
+            textColor = semanticColor.core.foreground.inverse.strong;
             break;
         case "info":
-            backgroundColor = tokens.color.fadedBlue16;
+            backgroundColor = semanticColor.feedback.info.subtle.background;
+            textColor = semanticColor.feedback.info.subtle.text;
             break;
         case "success":
-            backgroundColor = tokens.color.fadedGreen16;
+            backgroundColor = semanticColor.feedback.success.subtle.background;
+            textColor = semanticColor.feedback.success.subtle.text;
             break;
         case "warning":
-            backgroundColor = tokens.color.fadedGold16;
+            backgroundColor = semanticColor.feedback.warning.subtle.background;
+            textColor = semanticColor.feedback.warning.subtle.text;
             break;
         case "critical":
-            backgroundColor = tokens.color.fadedRed16;
+            backgroundColor = semanticColor.feedback.critical.subtle.background;
+            textColor = semanticColor.feedback.critical.subtle.text;
             break;
         case "transparent":
-            backgroundColor = "transparent";
+            backgroundColor = semanticColor.core.transparent;
+            textColor = semanticColor.core.foreground.neutral.strong;
             break;
         case "neutral":
         default:
-            backgroundColor = tokens.color.offBlack8;
+            // NOTE(WB-1950): Will remove use of status token once the `neutral` kind is removed in favour of Badge
+            backgroundColor = semanticColor.status.neutral.background;
+            textColor = semanticColor.core.foreground.neutral.strong;
     }
 
-    const activeColor =
-        kind === "neutral" || kind === "transparent"
-            ? tokens.color.offBlack16
-            : mix(tokens.color.offBlack32, backgroundColor);
+    const pressColor =
+        kind === "transparent" || kind === "neutral"
+            ? color.offBlack16 // NOTE(WB-1950): Neutral pills will be replaced with Badge and the transparent kind will be removed
+            : kind === "accent"
+              ? semanticColor.core.background.instructive.strong
+              : // NOTE(WB-1950): This will be simplified once we split this into Badge and Pill.
+                `color-mix(in srgb, ${color.offBlack32}, ${backgroundColor})`;
 
-    const textColor =
-        kind === "accent" ? tokens.color.white : tokens.color.offBlack;
-    const outlineColor =
-        kind === "critical" ? tokens.color.red : tokens.color.blue;
-    const activeOutlineColor =
-        kind === "critical" ? tokens.color.activeRed : tokens.color.activeBlue;
-
-    const outline =
-        kind === "transparent"
-            ? `1px solid ${tokens.color.offBlack16}`
-            : "none";
+    const theme = {
+        default: {
+            border:
+                kind === "transparent"
+                    ? `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`
+                    : "none",
+            background: backgroundColor,
+            foreground: textColor,
+        },
+        hover: {
+            border: semanticColor.core.border.instructive.default,
+        },
+        press: {
+            border: semanticColor.core.border.instructive.strong,
+            background: pressColor,
+        },
+    };
 
     const colorStyles: StyleDeclaration = {
         pill: {
-            backgroundColor: backgroundColor,
-            outline,
-            color: textColor,
+            backgroundColor: theme.default.background,
+            outline: theme.default.border,
+            color: theme.default.foreground,
             alignItems: "center",
             justifyContent: "center",
         },
         clickableWrapper: {
-            outline,
+            outline: theme.default.border,
 
             ":hover": {
-                outline: `2px solid ${outlineColor}`,
-                outlineOffset: tokens.spacing.xxxxSmall_2,
+                outline: `${border.width.medium} solid ${theme.hover.border}`,
+                outlineOffset: sizing.size_020,
             },
             ":active": {
-                backgroundColor: activeColor,
-                outline: `2px solid ${activeOutlineColor}`,
-                outlineOffset: tokens.spacing.xxxxSmall_2,
+                backgroundColor: theme.press.background,
+                outline: `${border.width.medium} solid ${theme.press.border}`,
+                outlineOffset: sizing.size_020,
             },
-            ":focus-visible": {
-                outline: `2px solid ${outlineColor}`,
-                outlineOffset: tokens.spacing.xxxxSmall_2,
-            },
+            ...focusStyles.focus,
         },
     };
 

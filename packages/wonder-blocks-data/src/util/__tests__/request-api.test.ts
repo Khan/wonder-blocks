@@ -1,5 +1,4 @@
 // eslint-disable-next-line import/no-unassigned-import
-import "jest-extended";
 import {jest as wsJest} from "@khanacademy/wonder-stuff-testing";
 import {Server} from "@khanacademy/wonder-blocks-core";
 import {RequestFulfillment} from "../request-fulfillment";

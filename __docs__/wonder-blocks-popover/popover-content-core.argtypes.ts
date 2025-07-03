@@ -1,7 +1,9 @@
+import type {ArgTypes} from "@storybook/react";
+
 export default {
     children: {
         control: {
-            type: null,
+            type: undefined,
         },
     },
-};
+} satisfies ArgTypes;

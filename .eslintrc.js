@@ -2,21 +2,14 @@
 module.exports = {
     extends: [
         "@khanacademy",
+        "@khanacademy/eslint-config/a11y",
         // This config includes rules from @testing-library/jest-dom as well
         "plugin:testing-library/react",
         // This config includes rules from storybook to enforce story best
         // practices
         "plugin:storybook/recommended",
     ],
-    plugins: [
-        "import",
-        "jest",
-        "jsdoc",
-        "promise",
-        "monorepo",
-        "react-hooks",
-        "@babel",
-    ],
+    plugins: ["import", "jest", "jsdoc", "promise", "monorepo", "react-hooks"],
     settings: {
         "import/resolver": {
             typescript: {
@@ -54,9 +47,25 @@ module.exports = {
             },
         },
         {
-            files: ["**/*.test.ts", "**/*.test.tsx"],
+            files: ["**/*.test.*"],
             rules: {
                 "no-undef": "off",
+                "import/no-deprecated": "off",
+                "@typescript-eslint/no-require-imports": "off",
+            },
+        },
+        {
+            files: ["**/*.stories.tsx"],
+            rules: {
+                "testing-library/no-await-sync-events": "off",
+            },
+        },
+        {
+            files: ["**/*.typestest.*"],
+            rules: {
+                "@typescript-eslint/no-unused-vars": "off",
+                "@typescript-eslint/no-require-imports": "off",
+                "@typescript-eslint/no-unused-expressions": "off",
             },
         },
     ],
@@ -197,6 +206,14 @@ module.exports = {
         "testing-library/render-result-naming-convention": "off",
         "testing-library/await-async-utils": "off",
         "testing-library/await-async-query": "off",
+
+        // @khanacademy
+        "@khanacademy/jest-await-async-matchers": [
+            "error",
+            {
+                matchers: ["toHaveNoA11yViolations"],
+            },
+        ],
 
         /**
          * TypeScript rules

@@ -8,12 +8,12 @@ import {
     BreadcrumbsItem,
 } from "@khanacademy/wonder-blocks-breadcrumbs";
 import packageConfig from "../../packages/wonder-blocks-breadcrumbs/package.json";
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 
 import BreadcrumbsArgTypes from "./breadcrumbs.argtypes";
 
 const meta: Meta<typeof Breadcrumbs> = {
-    title: "Breadcrumbs",
+    title: "Packages / Breadcrumbs",
     component: Breadcrumbs,
     argTypes: BreadcrumbsArgTypes,
     parameters: {
@@ -38,10 +38,10 @@ export const Default: StoryComponentType = {
     args: {
         children: [
             <BreadcrumbsItem>
-                <Link href="">Course</Link>
+                <Link href="#course">Course</Link>
             </BreadcrumbsItem>,
             <BreadcrumbsItem>
-                <Link href="">Unit</Link>
+                <Link href="#unit">Unit</Link>
             </BreadcrumbsItem>,
             <BreadcrumbsItem>Lesson</BreadcrumbsItem>,
         ],

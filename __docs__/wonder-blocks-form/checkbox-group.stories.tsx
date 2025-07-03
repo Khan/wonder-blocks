@@ -3,16 +3,16 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelLarge, LabelXSmall} from "@khanacademy/wonder-blocks-typography";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {Choice, CheckboxGroup} from "@khanacademy/wonder-blocks-form";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 
 export default {
-    title: "Form / CheckboxGroup",
+    title: "Packages / Form / CheckboxGroup",
     component: CheckboxGroup,
     parameters: {
         componentSubtitle: (
@@ -26,6 +26,15 @@ export default {
 
 type StoryComponentType = StoryObj<typeof CheckboxGroup>;
 
+/**
+ * `CheckboxGroup` is a component that groups multiple `Choice` components
+ * together. It is used to allow users to select multiple options from a list.
+ *
+ * Note that by using a `label` prop, the `CheckboxGroup` component will render
+ * a `legend` as the first child of the `fieldset` element. This is important to
+ * include as it ensures that Screen Readers can correctly identify and announce
+ * the group of checkboxes.
+ */
 export const Default: StoryComponentType = {
     render: (args) => {
         return (
@@ -155,7 +164,9 @@ export const RowStyling: StoryComponentType = () => {
 
     return (
         <View style={styles.wrapper}>
-            <LabelLarge style={styles.title}>Science</LabelLarge>
+            <BodyText weight="bold" style={styles.title}>
+                Science
+            </BodyText>
             <CheckboxGroup
                 groupName="science-classes"
                 onChange={setSelectedValues}
@@ -211,11 +222,15 @@ export const MultipleChoiceStyling: StoryComponentType = () => {
 
     return (
         <CheckboxGroup
-            label={<LabelLarge>Select all prime numbers</LabelLarge>}
+            label={
+                <BodyText weight="bold" tag="span">
+                    Select all prime numbers
+                </BodyText>
+            }
             description={
-                <LabelXSmall style={styles.description}>
+                <BodyText size="xsmall" tag="span" style={styles.description}>
                     Hint: There is at least one prime number
-                </LabelXSmall>
+                </BodyText>
             }
             groupName="science-classes"
             onChange={setSelectedValues}
@@ -320,7 +335,7 @@ const styles = StyleSheet.create({
     },
     title: {
         paddingBottom: spacing.xSmall_8,
-        borderBottom: `1px solid ${color.offBlack64}`,
+        borderBottom: `1px solid ${semanticColor.core.border.neutral.default}`,
     },
     // Multiple choice styling
     multipleChoice: {
@@ -330,7 +345,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     description: {
-        color: color.offBlack64,
+        color: semanticColor.text.secondary,
     },
     last: {
         borderBottom: "solid 1px #CCC",

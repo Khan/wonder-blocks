@@ -1,4 +1,4 @@
-import type {InputType} from "@storybook/csf";
+import type {ArgTypes} from "@storybook/react";
 
 import plusCircle from "@phosphor-icons/core/regular/plus-circle.svg";
 import plusCircleBold from "@phosphor-icons/core/bold/plus-circle-bold.svg";
@@ -12,6 +12,7 @@ import x from "@phosphor-icons/core/regular/x.svg";
 import xBold from "@phosphor-icons/core/bold/x-bold.svg";
 import checkCircle from "@phosphor-icons/core/regular/check-circle.svg";
 import checkCircleBold from "@phosphor-icons/core/bold/check-circle-bold.svg";
+import checkCircleFill from "@phosphor-icons/core/fill/check-circle-fill.svg";
 import check from "@phosphor-icons/core/regular/check.svg";
 import checkBold from "@phosphor-icons/core/bold/check-bold.svg";
 import caretDown from "@phosphor-icons/core/regular/caret-down.svg";
@@ -22,6 +23,7 @@ import caretLeft from "@phosphor-icons/core/regular/caret-left.svg";
 import caretLeftBold from "@phosphor-icons/core/bold/caret-left-bold.svg";
 import caretRight from "@phosphor-icons/core/regular/caret-right.svg";
 import caretRightBold from "@phosphor-icons/core/bold/caret-right-bold.svg";
+import dotsThreeBold from "@phosphor-icons/core/bold/dots-three-bold.svg";
 import minusCircle from "@phosphor-icons/core/regular/minus-circle.svg";
 import minusCircleBold from "@phosphor-icons/core/bold/minus-circle-bold.svg";
 import lightbulb from "@phosphor-icons/core/regular/lightbulb.svg";
@@ -47,6 +49,8 @@ import playBold from "@phosphor-icons/core/bold/play-bold.svg";
 import playCircle from "@phosphor-icons/core/regular/play-circle.svg";
 import playCircleBold from "@phosphor-icons/core/bold/play-circle-bold.svg";
 import gear from "@phosphor-icons/core/regular/gear.svg";
+import cookie from "@phosphor-icons/core/regular/cookie.svg";
+import iceCream from "@phosphor-icons/core/regular/ice-cream.svg";
 
 import {color} from "@khanacademy/wonder-blocks-tokens";
 
@@ -72,6 +76,8 @@ export const IconMappings = {
     checkBold,
     checkCircle,
     checkCircleBold,
+    checkCircleFill,
+    dotsThreeBold,
     x,
     xBold,
     xCircle,
@@ -101,6 +107,8 @@ export const IconMappings = {
     playCircle,
     playCircleBold,
     gear,
+    cookie,
+    iceCream,
 } as const;
 
 export default {
@@ -211,4 +219,4 @@ export default {
             },
         },
     },
-} satisfies Record<string, InputType>;
+} satisfies ArgTypes;

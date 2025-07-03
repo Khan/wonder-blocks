@@ -1,13 +1,23 @@
 {
   "name": "@khanacademy/wonder-blocks-dropdown",
-  "version": "5.1.8",
+  "version": "10.2.4",
   "design": "v1",
   "description": "Dropdown variants for Wonder Blocks.",
   "main": "dist/index.js",
   "module": "dist/es/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/es/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles.css": "./dist/css/vars.css"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:css": "pnpm exec wonder-blocks-tokens .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },
   "author": "",
   "license": "MIT",
@@ -15,32 +25,34 @@
     "access": "public"
   },
   "dependencies": {
-    "@babel/runtime": "^7.18.6",
-    "@khanacademy/wonder-blocks-cell": "^3.3.1",
-    "@khanacademy/wonder-blocks-clickable": "^4.1.2",
-    "@khanacademy/wonder-blocks-color": "^3.0.0",
-    "@khanacademy/wonder-blocks-core": "^6.3.1",
-    "@khanacademy/wonder-blocks-icon": "^4.0.1",
-    "@khanacademy/wonder-blocks-layout": "^2.0.28",
-    "@khanacademy/wonder-blocks-modal": "^4.2.6",
-    "@khanacademy/wonder-blocks-search-field": "^2.2.5",
-    "@khanacademy/wonder-blocks-timing": "^4.0.2",
-    "@khanacademy/wonder-blocks-tokens": "^1.1.0",
-    "@khanacademy/wonder-blocks-typography": "^2.1.10"
+    "@khanacademy/wonder-blocks-announcer": "workspace:*",
+    "@khanacademy/wonder-blocks-cell": "workspace:*",
+    "@khanacademy/wonder-blocks-clickable": "workspace:*",
+    "@khanacademy/wonder-blocks-core": "workspace:*",
+    "@khanacademy/wonder-blocks-form": "workspace:*",
+    "@khanacademy/wonder-blocks-icon": "workspace:*",
+    "@khanacademy/wonder-blocks-icon-button": "workspace:*",
+    "@khanacademy/wonder-blocks-modal": "workspace:*",
+    "@khanacademy/wonder-blocks-pill": "workspace:*",
+    "@khanacademy/wonder-blocks-search-field": "workspace:*",
+    "@khanacademy/wonder-blocks-styles": "workspace:*",
+    "@khanacademy/wonder-blocks-timing": "workspace:*",
+    "@khanacademy/wonder-blocks-tokens": "workspace:*",
+    "@khanacademy/wonder-blocks-typography": "workspace:*"
   },
   "peerDependencies": {
-    "@phosphor-icons/core": "^2.0.2",
-    "@popperjs/core": "^2.10.1",
-    "aphrodite": "^1.2.5",
-    "react": "16.14.0",
-    "react-dom": "16.14.0",
-    "react-popper": "^2.0.0",
-    "react-router": "5.2.1",
-    "react-router-dom": "5.3.0",
-    "react-window": "^1.8.5"
+    "@phosphor-icons/core": "catalog:",
+    "@popperjs/core": "catalog:",
+    "aphrodite": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-popper": "catalog:",
+    "react-router": "catalog:",
+    "react-router-dom": "catalog:",
+    "react-router-dom-v5-compat": "catalog:",
+    "react-window": "catalog:"
   },
   "devDependencies": {
-    "@khanacademy/wonder-blocks-button": "^6.2.10",
-    "@khanacademy/wb-dev-build-settings": "^1.0.0"
+    "@khanacademy/wb-dev-build-settings": "workspace:*"
   }
 }

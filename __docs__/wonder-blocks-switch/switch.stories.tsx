@@ -1,19 +1,16 @@
 import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
 import {StyleSheet} from "aphrodite";
-import {expect} from "@storybook/jest";
-import {userEvent, within} from "@storybook/testing-library";
+import {expect, userEvent, within} from "@storybook/test";
 import magnifyingGlassIcon from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";
 
 import Switch from "@khanacademy/wonder-blocks-switch";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
-import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import packageConfig from "../../packages/wonder-blocks-switch/package.json";
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 
 import SwitchArgtypes from "./switch.argtypes";
 
@@ -35,7 +32,7 @@ type StoryComponentType = StoryObj<typeof Switch>;
  *```
  */
 export default {
-    title: "Switch",
+    title: "Packages / Switch",
     component: Switch,
     parameters: {
         componentSubtitle: (
@@ -44,6 +41,11 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // These stories are being tested in
+            // switch-testing-snapshots.stories.tsx
+            disableSnapshot: true,
+        },
     },
     argTypes: SwitchArgtypes,
 } as Meta<typeof Switch>;
@@ -64,6 +66,7 @@ function ControlledDefaultSwitch(args: PropsFor<typeof Switch>) {
  */
 export const Default: StoryComponentType = {
     args: {
+        "aria-label": "Example",
         checked: false,
         onChange: () => {},
     },
@@ -83,46 +86,45 @@ export const Default: StoryComponentType = {
  * The `onChange` prop is optional in case the toggle will
  * be wrapped in a larger clickable component.
  */
-export const Controlled: StoryComponentType = () => {
-    const [checkedOne, setCheckedOne] = React.useState(false);
-    const [checkedTwo, setCheckedTwo] = React.useState(false);
+export const Controlled: StoryComponentType = {
+    render: function Render() {
+        const [checkedOne, setCheckedOne] = React.useState(false);
+        const [checkedTwo, setCheckedTwo] = React.useState(false);
 
-    return (
-        <View style={styles.column}>
-            <Switch checked={checkedOne} onChange={setCheckedOne} />
+        return (
+            <View style={styles.column}>
+                <Switch
+                    aria-label="Example"
+                    checked={checkedOne}
+                    onChange={setCheckedOne}
+                />
+                <Switch
+                    testId="test-switch"
+                    aria-label="test switch"
+                    checked={checkedTwo}
+                    onChange={setCheckedTwo}
+                    icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
+                />
+            </View>
+        );
+    },
+    play: async ({canvasElement}) => {
+        const canvas = within(canvasElement);
 
-            <Switch
-                testId="test-switch"
-                aria-label="test switch"
-                checked={checkedTwo}
-                onChange={setCheckedTwo}
-                icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
-            />
-        </View>
-    );
-};
+        const switchWithIcon = canvas.getByTestId("test-switch");
+        const switchInput = canvas.getByRole("switch", {name: "test switch"});
 
-Controlled.play = async ({canvasElement}) => {
-    const canvas = within(canvasElement);
+        await userEvent.tab();
+        await userEvent.tab();
 
-    const switchWithIcon = canvas.getByTestId("test-switch");
-    const switchInput = canvas.getByRole("switch", {name: "test switch"});
+        expect(switchInput).toHaveProperty("checked", false);
 
-    await userEvent.tab();
-    await userEvent.tab();
+        await userEvent.click(switchWithIcon);
+        // Wait for animations to finish
+        await new Promise((resolve) => setTimeout(resolve, 150));
 
-    expect(switchWithIcon).toHaveStyle(
-        "background-color: rgba(33, 36, 44, 0.5)",
-    );
-    expect(switchWithIcon).toHaveStyle("outline: 2px solid rgb(24, 101, 242)");
-    expect(switchInput).toHaveProperty("checked", false);
-
-    await userEvent.click(switchWithIcon);
-    // Wait for animations to finish
-    await new Promise((resolve) => setTimeout(resolve, 150));
-
-    expect(switchInput).toHaveProperty("checked", true);
-    expect(switchWithIcon).toHaveStyle("background-color: rgb(24, 101, 242)");
+        expect(switchInput).toHaveProperty("checked", true);
+    },
 };
 
 /**
@@ -133,14 +135,24 @@ Controlled.play = async ({canvasElement}) => {
 export const Disabled: StoryComponentType = {
     render: () => (
         <View style={styles.column}>
-            <Switch checked={false} disabled={true} />
-            <Switch checked={true} disabled={true} />
             <Switch
+                aria-label="Disabled example"
+                checked={false}
+                disabled={true}
+            />
+            <Switch
+                aria-label="Checked Disabled example"
+                checked={true}
+                disabled={true}
+            />
+            <Switch
+                aria-label="Disabled example"
                 checked={false}
                 disabled={true}
                 icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
             />
             <Switch
+                aria-label="Checked example"
                 checked={true}
                 disabled={true}
                 icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
@@ -158,11 +170,13 @@ export const WithIcon: StoryComponentType = {
         return (
             <View style={styles.column}>
                 <Switch
+                    aria-label="Example"
                     checked={false}
                     icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
                 />
 
                 <Switch
+                    aria-label="Checked example"
                     checked={true}
                     icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
                 />
@@ -171,67 +185,10 @@ export const WithIcon: StoryComponentType = {
     },
 };
 
-/**
- * The switch supports the `khanmigo` theme.
- */
-export const KhanmigoTheme = () => {
-    const [checkedOne, setCheckedOne] = React.useState(false);
-    const [checkedTwo, setCheckedTwo] = React.useState(false);
-
-    return (
-        <ThemeSwitcherContext.Provider value="khanmigo">
-            <View style={[styles.dark, styles.row]}>
-                <View style={styles.column}>
-                    <LabelMedium style={styles.textLight}>Default</LabelMedium>
-                    <Switch checked={checkedOne} onChange={setCheckedOne} />
-                    <Switch checked={true} />
-                    <Switch checked={false} disabled={true} />
-                    <Switch checked={true} disabled={true} />
-                </View>
-                <View style={styles.column}>
-                    <LabelMedium style={styles.textLight}>
-                        With Icon
-                    </LabelMedium>
-                    <Switch
-                        checked={checkedTwo}
-                        onChange={setCheckedTwo}
-                        icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
-                    />
-                    <Switch
-                        checked={true}
-                        icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
-                    />
-                    <Switch
-                        checked={false}
-                        disabled={true}
-                        icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
-                    />
-                    <Switch
-                        checked={true}
-                        disabled={true}
-                        icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
-                    />
-                </View>
-            </View>
-        </ThemeSwitcherContext.Provider>
-    );
-};
-
 const styles = StyleSheet.create({
     column: {
         flexDirection: "column",
         alignItems: "start",
-        gap: tokens.spacing.xSmall_8,
-    },
-    dark: {
-        backgroundColor: tokens.color.eggplant,
-        padding: tokens.spacing.xSmall_8,
-    },
-    row: {
-        flexDirection: "row",
-        gap: tokens.spacing.medium_16,
-    },
-    textLight: {
-        color: tokens.color.white,
+        gap: tokens.sizing.size_080,
     },
 });

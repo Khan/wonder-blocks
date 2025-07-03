@@ -1,21 +1,44 @@
 import {Meta, Source} from "@storybook/blocks";
 
-import TokenTable from "../../.storybook/components/token-table";
+import TokenTable from "../components/token-table";
 
+import Banner from "@khanacademy/wonder-blocks-banner";
 import {View} from "@khanacademy/wonder-blocks-core";
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
 
-<Meta title="Tokens / Color" />
+<Meta title="Packages / Tokens / Color (Deprecated)" />
 
-
-# Color
+# Color (deprecated)
 
 <ComponentInfo name={packageConfig.name} version={packageConfig.version} />
 
-The color palette containing all the global Wonder Blocks colors.
+The color palette containing all the primitive Wonder Blocks colors.
+
+<View style={{marginBottom: tokens.spacing.xLarge_32}}>
+    <Banner
+        kind="critical"
+        layout="full-width"
+        text="`color` is deprecated! We recommend using semantic colors whenever possible, but if you need a color that doesn't fit into any of the categories, please reach out to us!"
+        actions={[
+            {
+                type: "custom",
+                // NOTE: This is a hack to bypass a Storybook bug where the
+                // link doesn't work correctly with iframes.
+                node: (
+                    <a
+                        href="/?path=/docs/packages-tokens-semantic-color--docs"
+                        target="_blank"
+                    >
+                        Semantic Color tokens
+                    </a>
+                ),
+            },
+        ]}
+    />
+</View>
 
 ## Usage
 

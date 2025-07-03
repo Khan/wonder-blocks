@@ -1,28 +1,29 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {MemoryRouter, Route, Switch} from "react-router-dom";
+import {MemoryRouter} from "react-router-dom";
+import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {View} from "@khanacademy/wonder-blocks-core";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
+import {
+    border,
+    color,
+    semanticColor,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import packageConfig from "../../packages/wonder-blocks-cell/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import DetailCellArgTypes from "./detail-cell.argtypes";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
-    title: "Cell / DetailCell",
+    title: "Packages / Cell / DetailCell",
     component: DetailCell,
-    // TODO(FEI-5000):
-    argTypes: DetailCellArgTypes as any,
-    design: {
-        type: "figma",
-        url: "https://www.figma.com/file/VbVu3h2BpBhH80niq101MHHE/%F0%9F%92%A0-Main-Components?type=design&node-id=4337-2033&mode=design&t=h4nok7uwaPYDOkz6-4",
-    },
+    argTypes: DetailCellArgTypes,
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -63,185 +64,202 @@ export const DefaultDetailCell: StoryComponentType = {
         ),
         rightAccessory: <PhosphorIcon icon={IconMappings.caretRight} />,
     },
-};
-
-/**
- * Active detail cell example.
- */
-export const DetailCellActive: StoryComponentType = () => (
-    <DetailCell
-        title="Title for article item"
-        subtitle1="Subtitle for article item"
-        subtitle2="Subtitle for article item"
-        leftAccessory={
-            <PhosphorIcon icon={IconMappings.playCircle} size="medium" />
-        }
-        rightAccessory={
-            <PhosphorIcon icon={IconMappings.caretRightBold} size="small" />
-        }
-        active={true}
-    />
-);
-
-DetailCellActive.parameters = {
-    docs: {
-        description: {
-            story: "For more complex scenarios where we need to use more content such as subtitles, we provide a DetailCell component that can be used to cover these cases. The following example shows how to include a subtitle and use the active state.",
+    parameters: {
+        chromatic: {
+            // This is already covered in
+            // detail-cell-testing-snapshots.stories.tsx.
+            disableSnapshot: true,
         },
     },
 };
 
 /**
- * Disabled detail cell example.
+ * For more complex scenarios where we need to use more content such as
+ * subtitles, we provide a DetailCell component that can be used to cover these
+ * cases. The following example shows how to include a subtitle and use the
+ * active state.
  */
-export const DetailCellDisabled: StoryComponentType = () => (
-    <DetailCell
-        title="Title for article item"
-        subtitle1="Subtitle for article item"
-        subtitle2="Subtitle for article item"
-        leftAccessory={
-            <PhosphorIcon icon={IconMappings.playCircle} size="medium" />
-        }
-        rightAccessory={
-            <PhosphorIcon icon={IconMappings.caretRightBold} size="small" />
-        }
-        disabled={true}
-    />
-);
-
-DetailCellDisabled.parameters = {
-    docs: {
-        description: {
-            story: "For more complex scenarios where we need to use more content such as subtitles, we provide a DetailCell component that can be used to cover these cases. The following example shows how to include a subtitle and use the active state.",
+export const DetailCellActive: StoryComponentType = {
+    render: () => (
+        <DetailCell
+            title="Title for article item"
+            subtitle1="Subtitle for article item"
+            subtitle2="Subtitle for article item"
+            leftAccessory={
+                <PhosphorIcon icon={IconMappings.playCircle} size="medium" />
+            }
+            rightAccessory={
+                <PhosphorIcon icon={IconMappings.caretRightBold} size="small" />
+            }
+            active={true}
+        />
+    ),
+    parameters: {
+        chromatic: {
+            // This is already covered in
+            // detail-cell-testing-snapshots.stories.tsx.
+            disableSnapshot: true,
         },
     },
 };
 
 /**
- * Using custom styles.
+ * For more complex scenarios where we need to use more content such as
+ * subtitles, we provide a DetailCell component that can be used to cover these
+ * cases. The following example shows how to include a subtitle and use the
+ * active state.
  */
-export const DetailCellWithCustomStyles: StoryComponentType = () => (
-    <DetailCell
-        title="Title for article item"
-        contentStyle={{
-            alignSelf: "flex-start",
-        }}
-        leftAccessory={
-            <PhosphorIcon icon={IconMappings.caretLeftBold} size="small" />
-        }
-        leftAccessoryStyle={{
-            alignSelf: "flex-start",
-        }}
-        rightAccessory={
-            <PhosphorIcon icon={IconMappings.caretRightBold} size="small" />
-        }
-        rightAccessoryStyle={{
-            alignSelf: "flex-start",
-        }}
-        style={{
-            textAlign: "center",
-            minHeight: 88,
-        }}
-    />
-);
-
-DetailCellWithCustomStyles.parameters = {
-    docs: {
-        description: {
-            story: "Accessories and the main content container can also be customized to adapt to different sizes and alignments. In this example, we can see how a cell can be customized for both accessories and the content.",
+export const DetailCellDisabled: StoryComponentType = {
+    render: () => (
+        <DetailCell
+            title="Title for article item"
+            subtitle1="Subtitle for article item"
+            subtitle2="Subtitle for article item"
+            leftAccessory={
+                <PhosphorIcon icon={IconMappings.playCircle} size="medium" />
+            }
+            rightAccessory={
+                <PhosphorIcon icon={IconMappings.caretRightBold} size="small" />
+            }
+            disabled={true}
+        />
+    ),
+    parameters: {
+        chromatic: {
+            // This is already covered in
+            // detail-cell-testing-snapshots.stories.tsx.
+            disableSnapshot: true,
         },
     },
 };
 
-export const ClickableDetailCell: StoryComponentType = () => (
-    <DetailCell
-        title="Title for article item"
-        subtitle1="Subtitle for article item"
-        subtitle2="Subtitle for article item"
-        leftAccessory={
-            <PhosphorIcon icon={IconMappings.playCircle} size="medium" />
-        }
-        rightAccessory={<PhosphorIcon icon={IconMappings.caretRight} />}
-        onClick={() => {}}
-        aria-label="Press to navigate to the article"
-    />
-);
+/**
+ * Accessories and the main content container can also be customized to adapt to
+ * different sizes and alignments. In this example, we can see how a cell can be
+ * customized for both accessories and the content.
+ */
+export const DetailCellWithCustomStyles: StoryComponentType = {
+    render: () => (
+        <DetailCell
+            title="Title for article item"
+            contentStyle={{
+                alignSelf: "flex-start",
+            }}
+            leftAccessory={
+                <PhosphorIcon icon={IconMappings.caretLeftBold} size="small" />
+            }
+            leftAccessoryStyle={{
+                alignSelf: "flex-start",
+            }}
+            rightAccessory={
+                <PhosphorIcon icon={IconMappings.caretRightBold} size="small" />
+            }
+            rightAccessoryStyle={{
+                alignSelf: "flex-start",
+            }}
+            style={{
+                textAlign: "center",
+                minHeight: 88,
+            }}
+        />
+    ),
+};
 
-ClickableDetailCell.parameters = {
-    chromatic: {
-        // This only includes interactions with the clickable cell, so no need
-        // to capture screenshots.
-        disableSnapshot: true,
-    },
-    docs: {
-        description: {
-            story: "Cell components can also also be clickable. This is done by passing a `onClick` prop to the component.",
+/**
+ * Cell components can also also be clickable. This is done by passing a
+ * `onClick` prop to the component.
+ */
+export const ClickableDetailCell: StoryComponentType = {
+    render: () => (
+        <DetailCell
+            title="Title for article item"
+            subtitle1="Subtitle for article item"
+            subtitle2="Subtitle for article item"
+            leftAccessory={
+                <PhosphorIcon icon={IconMappings.playCircle} size="medium" />
+            }
+            rightAccessory={<PhosphorIcon icon={IconMappings.caretRight} />}
+            onClick={() => {}}
+            aria-label="Press to navigate to the article"
+        />
+    ),
+    parameters: {
+        chromatic: {
+            // This only includes interactions with the clickable cell, so no need
+            // to capture screenshots.
+            disableSnapshot: true,
         },
     },
 };
 
+/**
+ * Cells accept an `href` prop to be able to navigate to a different URL. Note
+ * that this will use client-side navigation if the Cell component is within a
+ * React-Router environment.
+ */
 export const DetailCellNavigation: StoryComponentType = {
     name: "Client-side navigation with DetailCell",
     render: () => (
         <MemoryRouter>
-            <View>
-                <DetailCell
-                    title="Data"
-                    subtitle2="Subtitle for article item"
-                    leftAccessory={
-                        <PhosphorIcon
-                            icon={IconMappings.playCircle}
-                            size="medium"
-                        />
-                    }
-                    rightAccessory={
-                        <PhosphorIcon icon={IconMappings.caretRight} />
-                    }
-                    href="/math/algebra"
-                    aria-label="Press to navigate to the article"
-                />
-                <DetailCell
-                    title="Geometry"
-                    subtitle2="Subtitle for article item"
-                    leftAccessory={
-                        <PhosphorIcon
-                            icon={IconMappings.playCircle}
-                            size="medium"
-                        />
-                    }
-                    rightAccessory={
-                        <PhosphorIcon icon={IconMappings.caretRight} />
-                    }
-                    href="/math/geometry"
-                    aria-label="Press to navigate to the article"
-                    horizontalRule="none"
-                />
-            </View>
+            <CompatRouter>
+                <View>
+                    <DetailCell
+                        title="Data"
+                        subtitle2="Subtitle for article item"
+                        leftAccessory={
+                            <PhosphorIcon
+                                icon={IconMappings.playCircle}
+                                size="medium"
+                            />
+                        }
+                        rightAccessory={
+                            <PhosphorIcon icon={IconMappings.caretRight} />
+                        }
+                        href="/math/algebra"
+                        aria-label="Press to navigate to the article"
+                    />
+                    <DetailCell
+                        title="Geometry"
+                        subtitle2="Subtitle for article item"
+                        leftAccessory={
+                            <PhosphorIcon
+                                icon={IconMappings.playCircle}
+                                size="medium"
+                            />
+                        }
+                        rightAccessory={
+                            <PhosphorIcon icon={IconMappings.caretRight} />
+                        }
+                        href="/math/geometry"
+                        aria-label="Press to navigate to the article"
+                        horizontalRule="none"
+                    />
+                </View>
 
-            <View style={styles.navigation}>
-                <Switch>
-                    <Route path="/math/algebra">
-                        Navigates to /math/algebra
-                    </Route>
-                    <Route path="/math/geometry">
-                        Navigates to /math/geometry
-                    </Route>
-                    <Route path="*">See navigation changes here</Route>
-                </Switch>
-            </View>
+                <View style={styles.navigation}>
+                    <Routes>
+                        <Route
+                            path="/math/algebra"
+                            element={<View>Navigates to /math/algebra</View>}
+                        />
+                        <Route
+                            path="/math/geometry"
+                            element={<View>Navigates to /math/geometry</View>}
+                        />
+                        <Route
+                            path="*"
+                            element={<View>See navigation changes here</View>}
+                        />
+                    </Routes>
+                </View>
+            </CompatRouter>
         </MemoryRouter>
     ),
-};
-
-DetailCellNavigation.parameters = {
-    chromatic: {
-        // This only includes interactions with the clickable cell, so no need
-        // to capture screenshots.
-        disableSnapshot: true,
-    },
-    docs: {
-        description: {
-            story: "Cells accept an `href` prop to be able to navigate to a different URL. Note that this will use client-side navigation if the Cell component is within a React-Router environment.",
+    parameters: {
+        chromatic: {
+            // This only includes interactions with the clickable cell, so no need
+            // to capture screenshots.
+            disableSnapshot: true,
         },
     },
 };
@@ -329,7 +347,7 @@ export const DetailCellsAsListItems: StoryComponentType = {
                         />
                     }
                     onClick={() => {}}
-                    style={{background: color.pink}}
+                    style={{background: color.fadedPurple24}}
                     horizontalRule="full-width"
                 />
             </View>
@@ -344,14 +362,101 @@ export const DetailCellsAsListItems: StoryComponentType = {
     },
 };
 
+/**
+ * Custom styling can be applied to the component using the `style` prop.
+ */
+export const CustomStyles = {
+    args: {
+        title: "Title for article item",
+        subtitle1: "Subtitle for article item",
+        subtitle2: "Subtitle for article item",
+        leftAccessory: (
+            <PhosphorIcon icon={IconMappings.playCircle} size="medium" />
+        ),
+        rightAccessory: (
+            <PhosphorIcon icon={IconMappings.checkCircleFill} size="medium" />
+        ),
+    },
+    render(args: PropsFor<typeof DetailCell>) {
+        return (
+            <View style={{gap: spacing.large_24}}>
+                Active
+                <DetailCell
+                    {...args}
+                    style={{
+                        borderRadius: border.radius.radius_120,
+                        ":active": {
+                            borderRadius: border.radius.radius_120,
+                        },
+                    }}
+                    active={true}
+                />
+                Pressed
+                <DetailCell
+                    {...args}
+                    style={{
+                        ":active": {
+                            borderRadius: border.radius.radius_120,
+                        },
+                    }}
+                />
+                Different content heights
+                <View
+                    style={{
+                        display: "grid",
+                        gridTemplateColumns: "1fr 1fr 1fr",
+                        gap: "16px",
+                    }}
+                >
+                    <DetailCell
+                        title="Title"
+                        subtitle1="Subtitle 1"
+                        subtitle2="Subtitle2"
+                        onClick={() => {}}
+                        style={[
+                            {
+                                border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
+                            },
+                        ]}
+                        horizontalRule={"none"}
+                    />
+                    <DetailCell
+                        title="Title"
+                        onClick={() => {}}
+                        style={[
+                            args.style,
+                            {
+                                border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
+                            },
+                        ]}
+                        horizontalRule={"none"}
+                    />
+                    <DetailCell
+                        title="Title"
+                        onClick={() => {}}
+                        style={[
+                            args.style,
+                            {
+                                border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
+                            },
+                        ]}
+                        horizontalRule={"none"}
+                    />
+                </View>
+            </View>
+        );
+    },
+    parameters: {pseudo: {active: true}},
+};
+
 const styles = StyleSheet.create({
     example: {
-        backgroundColor: color.offWhite,
+        backgroundColor: semanticColor.surface.secondary,
         padding: spacing.large_24,
         width: 376,
     },
     navigation: {
-        border: `1px dashed ${color.lightBlue}`,
+        border: `1px dashed ${color.purple}`,
         marginTop: spacing.large_24,
         padding: spacing.large_24,
     },

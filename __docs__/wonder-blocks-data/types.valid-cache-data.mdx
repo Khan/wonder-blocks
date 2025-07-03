@@ -1,0 +1,18 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta
+    title="Packages / Data / Types / ValidCacheData"
+/>
+
+# ValidCacheData
+
+```ts
+type ValidCacheData =
+    | string
+    | boolean
+    | number
+    | {...}
+    | Array<?ValidCacheData>;
+```
+
+This type represents the data that is allowed into the various caches provided and used by Wonder Blocks Data.

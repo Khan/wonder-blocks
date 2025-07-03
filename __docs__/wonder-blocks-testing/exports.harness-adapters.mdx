@@ -1,0 +1,216 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta
+    title="Packages / Testing / Test Harness / Exports / harnessAdapters"
+/>
+
+# harnessAdapters
+
+```ts
+/**
+ * The default adapters provided by Wonder Blocks.
+ */
+const DefaultAdapters = {
+    boundary: boundary.adapter,
+    css: css.adapter,
+    data: data.adapter,
+    portal: portal.adapter,
+    router: router.adapter,
+    renderState: renderState.adapter,
+};
+
+/**
+ * The default configurations to use with the `DefaultAdapters`.
+ */
+const DefaultConfigs: Configs<typeof DefaultAdapters> = {
+    boundary: boundary.defaultConfig,
+    css: css.defaultConfig,
+    data: data.defaultConfig,
+    portal: portal.defaultConfig,
+    router: router.defaultConfig,
+    renderState: renderState.defaultConfig,
+};
+```
+
+These are the adapters available for use with the test harness framework and their default configurations. The <a href="./?path=/docs/packages-testing-test-harness-exports-testharness--docs">`testHarness()`</a> and <a href="./?path=/docs/packages-testing-test-harness-exports-hookharness--docs">`hookHarness()`</a> methods are constructed using these.
+
+If you want to make your own test harness or hook harness using some of these defaults and some of your own, you can combine them into your call to <a href="./?path=/docs/packages-testing-test-harness-exports-maketestharness--docs">`makeTestHarness()`</a> or <a href="./?path=/docs/packages-testing-test-harness-exports-makehookharness--docs">`makeHookHarness()`</a>.
+
+There are four build-in adapters:
+
+-   [`boundary`](#boundary)
+-   [`css`](#css)
+-   [`data`](#data)
+-   [`portal`](#portal)
+-   [`router`](#router)
+-   [`renderState`](#renderState)
+
+## boundary
+
+The `boundary` adapter will wrap the harnessed component in an error boundary so that you can assert on error states. This is most useful when testing hooks that can throw errors, but is also useful for components that are expected to throw errors during rendering in certain circumstances.
+
+```ts
+type Config = (
+    error: Error | null | undefined,
+    errorInfo: ErrorInfo,
+) => React.ReactNode;
+```
+
+The configuration takes a function that returns a `React.ReactNode`. Usually, returning `null` is appropriate, but if you want to change what gets rendered when an error is caught, you can return something different.
+
+The function, when called, is given the error and error info object that React provides to the error boundary. Assigning a `jest.fn()` mock to the config is an easy way to capture this information and then assert on it, such as by asserting on the error argument or snapshotting it.
+
+## css
+
+The `css` adapter can be used to apply CSS classes and adhoc styles around the harnessed component.
+
+```ts
+type Config =
+    | string
+    | Array<string>
+    | CSSProperties
+    | {|
+          classes: Array<string>,
+          style: CSSProperties,
+      |};
+```
+
+The configuration for this adapter can be a class name, an array of class names, an Aphrodite-compatible CSS style object, or an object definining both an array of `classes` and a `style` object.
+
+The default configuration for this adapter is for it to not be used.
+
+## data
+
+The `data` adapter provides a convenient way to intercept Wonder Blocks Data requests. It renders one <a href="./?path=/docs/packages-data-exports-interceptrequests--docs">`InterceptRequests`</a> component per configured interceptor.
+
+```ts
+type Interceptor = React.ElementConfig<typeof InterceptRequests>["interceptor"];
+
+type Config = Interceptor | Array<Interceptor>;
+```
+
+The configuration is one or more interceptors, as defined by the `interceptor` prop of the <a href="./?path=/docs/packages-data-exports-interceptrequests--docs">`InterceptRequests`</a> component, which is effectively.
+
+The default configuration for this adapter is for there to be no interceptors.
+
+## portal
+
+The `portal` adapter ensures there is a mounting point in the DOM for components that rely on rendering with a React portal.
+
+```ts
+type Config = string;
+```
+
+The configuration is just a string providing the identifier to give the added element. The adapter will then render alongside the harnessed component, an empty `div` element with both the `id` and `data-testid` attributes set to the configuration value.
+
+The default configuration for this adapter is for it to not be used.
+
+## router
+
+The `router` adapter is useful for testing components that use React Router. It will render either a `MemoryRouter` or `StaticRouter`, depending on configuration. It may also optionally render a `Route` with suitable `path` match, depending on the configuration.
+
+```ts
+type Config =
+    | $ReadOnly<
+          | {|
+                /**
+                 * See MemoryRouter prop for initialEntries.
+                 */
+                initialEntries: MemoryRouterProps["initialEntries"],
+
+                /**
+                 * See MemoryRouter prop for initialIndex.
+                 */
+                initialIndex?: MemoryRouterProps["initialIndex"],
+
+                /**
+                 * See MemoryRouter prop for getUserConfirmation.
+                 */
+                getUserConfirmation?: MemoryRouterProps["getUserConfirmation"],
+
+                /**
+                 * A path match to use.
+                 *
+                 * When this is specified, the harnessed component will be
+                 * rendered inside a `Route` handler with this path.
+                 *
+                 * If the path matches the location, then the route will
+                 * render the component.
+                 *
+                 * If the path does not match the location, then the route
+                 * will not render the component.
+                 */
+                path?: string,
+            |}
+          | {|
+                /**
+                 * The location to use.
+                 */
+                location: string | Location,
+
+                /**
+                 * Force the use of a StaticRouter, instead of MemoryRouter.
+                 */
+                forceStatic: true,
+
+                /**
+                 * A path match to use.
+                 *
+                 * When this is specified, the harnessed component will be
+                 * rendered inside a `Route` handler with this path.
+                 *
+                 * If the path matches the location, then the route will
+                 * render the component.
+                 *
+                 * If the path does not match the location, then the route
+                 * will not render the component.
+                 */
+                path?: string,
+            |}
+          | {|
+                /**
+                 * The initial location to use.
+                 */
+                location: string | LocationShape,
+
+                /**
+                 * A path match to use.
+                 *
+                 * When this is specified, the harnessed component will be
+                 * rendered inside a `Route` handler with this path.
+                 *
+                 * If the path matches the location, then the route will
+                 * render the component.
+                 *
+                 * If the path does not match the location, then the route
+                 * will not render the component.
+                 */
+                path?: string,
+            |},
+      >
+    // The initial location to use.
+    | string;
+```
+
+There are four distinct shapes to the configuration:
+
+1. An object with `initialEntries` array (see `MemoryRouter` props), optional `initialIndex` and `getUserConfirmation` (see `MemoryRouter` props), and an optional `path` parameter if route matching is required.
+2. An object with `forceStatic` set to true, the location as a `string` or `Location` object, with an optional `path` parameter if route matching is required.
+3. An object specifying the location as a `string` or a `LocationShape` object, with an optional `path` parameter if route matching is required.
+4. A `string` specifying the location to use
+
+The first of these provides the most flexibility, basically supporting full configuration of a `MemoryRouter`, which supports history and navigation. The second configuration type is for scenarios where we absolutely do not want navigation, such as server-side rendering scenarios; it forces the use of a `StaticRouter` instance. The third type is for when you just need to render a single location with a matched route path. The fourth and final type allows you to just provide the location as a string.
+
+By default, the router adapter is configured with `{location: "/"}`.
+
+## renderState
+
+The `renderState` adapter ensures that the render state is being managed by rendering a `RenderStateRoot` component around the harnessed component.
+
+```ts
+type Config = true | null;
+```
+
+By default, this adapter is off as state changes occur when `RenderStateRoot` is used, and these may require tests to make accommodations, such as adding appropriate `act` or `waitFor` calls when using Testing Library.
+
+However, when off, any component or hook rendered during testing that requires render state will likely throw an error.

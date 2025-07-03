@@ -6,6 +6,12 @@ on:
     # draft".
     types: [edited, opened, synchronize, ready_for_review, reopened]
 
+# When a new revision is pushed to a PR, cancel all in-progress CI runs for that
+# PR. See https://docs.github.com/en/actions/using-jobs/using-concurrency
+concurrency:
+    group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+    cancel-in-progress: true
+
 # Our jobs run like this to minimize wasting resource cycles:
 #   1. Prime caches for primary configuration (ubuntu on node 16).
 #      This way the next two jobs can run in parallel but rely on this primed
@@ -23,9 +29,9 @@ jobs:
         os: [ubuntu-latest]
         node-version: [20.x]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install & cache node_modules
-        uses: Khan/actions@shared-node-cache-v0
+        uses: ./.github/actions/shared-node-cache
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -43,121 +49,24 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Get changed files
-        uses: Khan/actions@get-changed-files-v1
-        id: changed
-
-      - name: Filter out files that don't need a changeset
-        uses: Khan/actions@filter-files-v0
-        id: match
+      - uses: Khan/actions@check-for-changeset-v1
+        if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
         with:
-            changed-files: ${{ steps.changed.outputs.files }}
-            files: packages/ # Only look for changes in packages
-            globs: "!(**/__tests__/**), !(**/dist/*)" # Ignore test files
-            matchAllGlobs: true # All globs must match (disjunction is the default)
-            conjunctive: true # Only return files that match all of the above
-
-      - name: Verify changeset entries
-        uses: Khan/changeset-per-package@v1.0.2-pre
-        with:
-            changed_files: ${{ steps.match.outputs.filtered }}
+          exclude: .github/,.storybook/
+          exclude_extensions: .test.ts, .test.tsx, .stories.ts, .stories.tsx, .mdx
+          exclude_globs: "**/__tests__/*, **/__docs__/*"
 
   lint:
     name: Lint
     needs: prime_cache_primary
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node-version: [20.x]
-    steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Install & cache node_modules
-        uses: Khan/actions@shared-node-cache-v0
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Get All Changed Files
-        uses: Khan/actions@get-changed-files-v1
-        id: changed
-
-      - id: js-ts-files
-        name: Find .js, .ts changed files
-        uses: Khan/actions@filter-files-v0
-        with:
-          changed-files: ${{ steps.changed.outputs.files }}
-          extensions: '.js,.jsx,.ts,.tsx'
-
-      - id: eslint-reset
-        uses: Khan/actions@filter-files-v0
-        name: Files that would trigger a full eslint run
-        with:
-          changed-files: ${{ steps.changed.outputs.files }}
-          files: '.eslintrc.js,yarn.lock,.eslintignore'
-
-      - id: typecheck-reset
-        uses: Khan/actions@filter-files-v0
-        name: Files that would trigger a typecheck run
-        with:
-          changed-files: ${{ steps.changed.outputs.files }}
-          files: '.yarn.lock'
-
-      # Linting / type checking
-      - name: Eslint
-        uses: Khan/actions@full-or-limited-v0
-        with:
-          full-trigger: ${{ steps.eslint-reset.outputs.filtered }}
-          full: yarn lint:ci .
-          limited-trigger: ${{ steps.js-ts-files.outputs.filtered }}
-          limited: yarn lint:ci {}
-
-      - name: Typecheck
-        if: always() # always run this check until we update the eslint config
-        # if: steps.js-ts-files.outputs.filtered != '[]' || steps.typecheck-reset.outputs.filtered != '[]'
-        run: yarn typecheck
-
-      - name: Build .js bundles
-        run: yarn build
-
-      - name: Build .d.ts types
-        run: yarn build:types
-
-      - name: Check package.json files
-        run: node utils/publish/pre-publish-check-ci.js
+    uses: ./.github/workflows/node-ci-lint.yml
 
   test:
     name: Test
     needs: prime_cache_primary
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node-version: [20.x]
-        shard: ["1/2", "2/2"]
-    steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Install & cache node_modules
-        uses: Khan/actions@shared-node-cache-v0
-        with:
-          node-version: ${{ matrix.node-version }}
-      # Testing and coverage
-      - name: Run jest tests with coverage
-        run: yarn coverage:ci --shard ${{ matrix.shard }}
-      - name: Upload Coverage
-        uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage/coverage-final.json
+    uses: ./.github/workflows/node-ci-test.yml
+    secrets:
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   check_builds:
     name: Check build sizes
@@ -168,14 +77,14 @@ jobs:
         os: [ubuntu-latest]
         node-version: [20.x]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
 
       - name: Install & cache node_modules
-        uses: Khan/actions@shared-node-cache-v0
+        uses: ./.github/actions/shared-node-cache
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -215,8 +124,35 @@ jobs:
           REF=$(git rev-parse HEAD)
           git checkout main
           git checkout $REF
+
+      # Helper to get the URL of the current run, if we need it.
+      - name: Get workflow run URL
+        id: get-run-url
+        run: echo "run_url=https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_OUTPUT
+
+      # We need to see if any releases are in progress.
+      # We do not want to try and publish anything if a publish is
+      # pending. We fail here, but we make sure to update the
+      # PR comment later. This has to come after the checkout.
+      - name: Check for release
+        id: check-release
+        env:
+            GH_TOKEN: ${{ github.token }}
+        run: |
+            # Releases are triggered by merging "Version Packages" PRs.
+            # So we look for instances of the release.yml workflow, with
+            # a title containing "Version Packages", that are in progress.
+            release_count=$(gh run list --workflow release.yml --json status,displayTitle --jq '[.[] | select(.status == "in_progress" and ((.displayTitle | contains("Version Packages")) or (.displayTitle | contains("RELEASING:"))))] | length')
+            echo "release_count=$release_count" >> $GITHUB_OUTPUT
+            if [ "$release_count" -ne 0 ]; then
+              echo "Error: There are $release_count releases in progress."
+              exit 1
+            else
+              echo "No releases in progress."
+            fi
+
       - name: Use Node.js ${{ matrix.node-version }} & Install & cache node_modules
-        uses: Khan/actions@shared-node-cache-v0
+        uses: ./.github/actions/shared-node-cache
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -233,7 +169,9 @@ jobs:
       # Note: these two actions are locked to the latest version that were
       # published when @jeremy (Jeremy Wiebe) created the original job in Perseus.
       - name: Find existing comment
-        uses: peter-evans/find-comment@034abe94d3191f9c89d870519735beae326f2bdb
+        # Even if we're failing, we want to update the comments.
+        if: always()
+        uses: peter-evans/find-comment@3eae4d37986fb5a8592848f6a574fdf654e61f9e
         id: find-comment
         with:
           issue-number: ${{ github.event.pull_request.number }}
@@ -242,7 +180,7 @@ jobs:
 
       - name: Create or update npm snapshot comment - Success
         if: steps.publish-snapshot.outputs.npm_snapshot_tag != ''
-        uses: peter-evans/create-or-update-comment@67dcc547d311b736a8e6c5c236542148a47adc3d
+        uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043
         with:
           issue-number: ${{ github.event.pull_request.number }}
           comment-id: ${{ steps.find-comment.outputs.comment-id }}
@@ -252,20 +190,20 @@ jobs:
             🎉 Good news!! We've packaged up the latest commit from this PR (${{
             steps.short-sha.outputs.short_sha }}) and published all packages with changesets to npm.
 
-            You can install the packages in webapp by running:
+            You can install the packages in `frontend` by running:
             ```sh
-            ./services/static/dev/tools/deploy_wonder_blocks.js --tag="${{
+            ./dev/tools/deploy_wonder_blocks.js --tag="${{
             steps.publish-snapshot.outputs.npm_snapshot_tag }}"
             ```
 
             Packages can also be installed manually by running:
             ```sh
-            yarn add @khanacademy/wonder-blocks-<package-name>@${{
+            pnpm add @khanacademy/wonder-blocks-<package-name>@${{
             steps.publish-snapshot.outputs.npm_snapshot_tag }}
             ```
       - name: Create or update npm snapshot comment - Failure
         if: steps.publish-snapshot.outputs.npm_snapshot_tag == ''
-        uses: peter-evans/create-or-update-comment@67dcc547d311b736a8e6c5c236542148a47adc3d
+        uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043
         with:
           issue-number: ${{ github.event.pull_request.number }}
           comment-id: ${{ steps.find-comment.outputs.comment-id }}
@@ -274,3 +212,19 @@ jobs:
               ## npm Snapshot: **NOT** Published
               🤕 Oh noes!! We couldn't find any changesets in this PR (${{
               steps.short-sha.outputs.short_sha }}). As a result, we did **not** publish an npm snapshot for you.
+
+      - name: Create or update npm snapshot comment - failure, concurrent with release
+        if: failure() && steps.check-release.outputs.release_count != '0'
+        uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043
+        with:
+            issue-number: ${{ github.event.pull_request.number }}
+            comment-id: ${{ steps.find-comment.outputs.comment-id }}
+            edit-mode: replace
+            body: |
+                # npm Snapshot: **NOT** Published
+
+                🤕 Oh noes!! We couldn't publish an npm snapshot for you because
+                there is a release in progress. Please wait for the release to
+                finish, then retry this workflow.
+
+                [View the workflow run](${{ steps.get-run-url.outputs.run_url }})

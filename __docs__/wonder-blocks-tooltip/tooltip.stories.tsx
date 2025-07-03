@@ -2,29 +2,30 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {within, userEvent} from "@storybook/testing-library";
-import {expect} from "@storybook/jest";
+import {expect, within, userEvent} from "@storybook/test";
 
 import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
+import info from "@phosphor-icons/core/regular/info.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body} from "@khanacademy/wonder-blocks-typography";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import packageConfig from "../../packages/wonder-blocks-tooltip/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import TooltipArgTypes from "./tooltip.argtypes";
 
 type StoryComponentType = StoryObj<typeof Tooltip>;
 
 export default {
-    title: "Tooltip / Tooltip",
+    title: "Packages / Tooltip / Tooltip",
     component: Tooltip as unknown as React.ComponentType<any>,
     argTypes: TooltipArgTypes,
     args: {
@@ -42,9 +43,12 @@ export default {
         chromatic: {delay: 500},
     },
     decorators: [
-        (Story): React.ReactElement => (
-            <View style={styles.storyCanvas}>{Story()}</View>
-        ),
+        (Story, {parameters}): React.ReactElement =>
+            parameters.layout === "fullscreen" ? (
+                Story()
+            ) : (
+                <View style={styles.storyCanvas}>{Story()}</View>
+            ),
     ],
 } as Meta<typeof Tooltip>;
 
@@ -120,7 +124,7 @@ ComplexAnchorAndTitle.play = async ({canvasElement}) => {
 ComplexAnchorAndTitle.parameters = {
     docs: {
         description: {
-            story: "In this example, we're no longer forcing the anchor root to be focusable, since the text input can take focus. However, that needs a custom accessibility implementation too (for that, we should use `UniqueIDProvider`, but we'll cheat here and give our own identifier).",
+            story: "In this example, we're no longer forcing the anchor root to be focusable, since the text input can take focus. However, that needs a custom accessibility implementation too (for that, we should use `useId`, but we'll cheat here and give our own identifier).",
         },
     },
 };
@@ -252,6 +256,7 @@ export const TooltipOnButtons: StoryComponentType = () => {
                 <IconButton
                     icon={magnifyingGlass}
                     aria-label="search"
+                    kind="tertiary"
                     onClick={() => {}}
                 />
             </Tooltip>
@@ -309,7 +314,7 @@ export const WithStyle: StoryComponentType = () => {
         <View style={[styles.centered, styles.row]}>
             <Tooltip
                 contentStyle={{
-                    color: color.white,
+                    color: semanticColor.text.inverse,
                     padding: spacing.xLarge_32,
                 }}
                 content={`This is a styled tooltip.`}
@@ -333,23 +338,92 @@ WithStyle.parameters = {
     },
 };
 
-WithStyle.play = async ({canvasElement}) => {
-    const canvas = within(canvasElement.ownerDocument.body);
+/**
+ * Tooltip by default (and for performance reasons) only updates its position
+ * under the following conditions:
+ *
+ * 1. When the window is resized.
+ * 2. When the scroll position changes.
+ *
+ * However, there are cases where you might want the tooltip to update its
+ * position when the trigger element changes. This can be done by setting the
+ * `autoUpdate` prop to `true`.
+ */
+export const AutoUpdate: StoryComponentType = {
+    render: function Render() {
+        const [position, setPosition] = React.useState<{
+            x: number;
+            y: number;
+        } | null>(null);
+        return (
+            <View style={[styles.centered, styles.row, {position: "relative"}]}>
+                <Button
+                    onClick={() => {
+                        setPosition({
+                            x: Math.floor(Math.random() * 200),
+                            y: Math.floor(Math.random() * 200),
+                        });
+                    }}
+                >
+                    Click to update trigger position (randomly)
+                </Button>
 
-    // Get HTML elements
-    const tooltipContent = await canvas.findByTestId("test-tooltip-content");
-    const innerTooltipView =
-        // eslint-disable-next-line testing-library/no-node-access
-        (await canvas.findByRole("tooltip")).firstChild;
+                <Button
+                    onClick={() => {
+                        setPosition({
+                            x: 0,
+                            y: 0,
+                        });
+                    }}
+                >
+                    Click to update trigger position (fixed)
+                </Button>
+                <Tooltip
+                    content="This is a tooltip that auto-updates its position when the trigger element changes."
+                    opened={true}
+                    autoUpdate={true}
+                >
+                    <View
+                        style={[
+                            position && {
+                                position: "absolute",
+                                top: position.y,
+                                left: position.x,
+                            },
+                        ]}
+                    >
+                        Trigger element
+                    </View>
+                </Tooltip>
+            </View>
+        );
+    },
+    play: async ({canvasElement}) => {
+        // Arrange
+        const canvas = within(canvasElement.ownerDocument.body);
 
-    // Assert
-    await expect(innerTooltipView).toHaveStyle(
-        "background-color: rgb(11, 33, 73)",
-    );
-    await expect(tooltipContent).toHaveStyle({
-        padding: "32px",
-        color: "#fff",
-    });
+        // Get HTML elements
+        const tooltip = await canvas.findByRole("tooltip");
+        const initialLeft = tooltip.getBoundingClientRect().left;
+        const initialTop = tooltip.getBoundingClientRect().top;
+
+        // Act
+        await userEvent.click(
+            canvas.getByRole("button", {
+                name: /fixed/,
+            }),
+        );
+
+        // Wait for the tooltip to update its position
+        const newTooltip = await canvas.findByRole("tooltip");
+        const newLeft = newTooltip.getBoundingClientRect().left;
+        const newTop = newTooltip.getBoundingClientRect().top;
+
+        // Assert
+        // The tooltip should have updated its position
+        await expect(initialLeft).not.toEqual(newLeft);
+        await expect(initialTop).not.toEqual(newTop);
+    },
 };
 
 const styles = StyleSheet.create({
@@ -382,10 +456,101 @@ const styles = StyleSheet.create({
         height: "200vh",
     },
     block: {
-        border: `solid 1px ${color.lightBlue}`,
+        border: `solid 1px ${semanticColor.mastery.primary}`,
         width: spacing.xLarge_32,
         height: spacing.xLarge_32,
         alignItems: "center",
         justifyContent: "center",
     },
 });
+
+/**
+ * This story shows the behaviour of the tooltip when it is in the top corner
+ */
+export const InTopCorner = {
+    parameters: {
+        layout: "fullscreen",
+        chromatic: {
+            // Disabling snapshot since this is for testing purposes
+            disableSnapshot: true,
+        },
+    },
+    render: () => (
+        <View
+            style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+            }}
+        >
+            <Tooltip content="This is an example descriptor that's long with more content to see if it will display properly in different browsers">
+                <PhosphorIcon
+                    icon={info}
+                    size="small"
+                    aria-hidden
+                    style={{
+                        ":hover": {
+                            backgroundColor:
+                                semanticColor.status.critical.foreground,
+                        },
+                    }}
+                />
+            </Tooltip>
+        </View>
+    ),
+};
+
+/**
+ * If the Tooltip is placed near the edge of the viewport, default spacing of
+ * 12px is applied to provide spacing between the Tooltip and the viewport. This
+ * spacing value can be overridden using the `viewportPadding` prop.
+ */
+export const InCorners = {
+    parameters: {
+        layout: "fullscreen",
+        chromatic: {
+            // Disabling snapshot since this is for testing purposes
+            disableSnapshot: true,
+        },
+    },
+    render: (args: PropsFor<typeof Tooltip>) => {
+        const renderTooltip = () => {
+            return (
+                <Tooltip
+                    {...args}
+                    content="This is an example descriptor that's long with more content to see if it will display properly in different browsers"
+                >
+                    <Button>Open tooltip</Button>
+                </Tooltip>
+            );
+        };
+        return (
+            <View
+                style={{
+                    height: "100vh",
+                    width: "100vw",
+                    justifyContent: "space-between",
+                }}
+            >
+                <View
+                    style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                    }}
+                >
+                    {renderTooltip()}
+                    {renderTooltip()}
+                </View>
+                <View
+                    style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                    }}
+                >
+                    {renderTooltip()}
+                    {renderTooltip()}
+                </View>
+            </View>
+        );
+    },
+};

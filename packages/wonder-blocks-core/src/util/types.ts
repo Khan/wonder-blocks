@@ -102,11 +102,4 @@ export type TextViewSharedProps = {
 } & AriaProps &
     EventHandlers;
 
-/**
- * Interface implemented by types that can provide identifiers.
- */
-export interface IIdentifierFactory {
-    get(id: string): string;
-}
-
 export * from "./types.propsfor";

@@ -1,5 +1,10 @@
 import * as React from "react";
 import userCircleIcon from "@phosphor-icons/core/duotone/user-circle-duotone.svg";
+import chatBubbleIcon from "@phosphor-icons/core/regular/chats.svg";
+import bitcoinIcon from "@phosphor-icons/core/regular/currency-btc.svg";
+import euroIcon from "@phosphor-icons/core/regular/currency-eur.svg";
+import dollarIcon from "@phosphor-icons/core/regular/currency-dollar.svg";
+import yenIcon from "@phosphor-icons/core/regular/currency-jpy.svg";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 export const allCountries = [
@@ -301,3 +306,23 @@ export const allProfilesWithPictures = [
         picture: icon,
     },
 ];
+
+export const currencies = [
+    {name: "Bitcoin", icon: bitcoinIcon},
+    {name: "Dollars", icon: dollarIcon},
+    {name: "Yen", icon: yenIcon},
+    {name: "Euros", icon: euroIcon},
+];
+
+export const locales = [
+    "অসমীয়া",
+    "Azərbaycanca",
+    "čeština",
+    "dansk",
+    "Ελληνικά",
+    "ગુજરાતી",
+    "magyar",
+    "Bahasa Indonesia",
+];
+
+export const chatIcon = <PhosphorIcon icon={chatBubbleIcon} size={"small"} />;

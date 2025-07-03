@@ -4,9 +4,9 @@ import {StyleSheet} from "aphrodite";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import optionItemArgtypes, {AccessoryMappings} from "./option-item.argtypes";
@@ -23,12 +23,12 @@ const defaultArgs = {
 
 const styles = StyleSheet.create({
     example: {
-        background: color.offWhite,
-        padding: spacing.medium_16,
+        background: semanticColor.surface.secondary,
+        padding: sizing.size_160,
         width: 300,
     },
     items: {
-        background: color.white,
+        background: semanticColor.surface.primary,
     },
 });
 
@@ -48,14 +48,16 @@ const styles = StyleSheet.create({
  * ```
  */
 export default {
-    title: "Dropdown/OptionItem",
+    title: "Packages / Dropdown / OptionItem",
     component: OptionItem,
     argTypes: optionItemArgtypes,
     args: defaultArgs,
     decorators: [
         (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
             <View style={styles.example}>
-                <Story />
+                <div role="listbox" aria-label="Example">
+                    <Story />
+                </div>
             </View>
         ),
     ],
@@ -66,6 +68,10 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        // These stories are being tested in option-item-variants.stories.tsx
+        chromatic: {
+            disableSnapshot: true,
+        },
     },
 } as Meta<typeof OptionItem>;
 
@@ -140,4 +146,10 @@ export const HorizontalRule = {
             <OptionItem {...args} />
         </View>
     ),
+    parameters: {
+        chromatic: {
+            // Enabling to test how the horizontal rule looks.
+            disableSnapshot: false,
+        },
+    },
 };

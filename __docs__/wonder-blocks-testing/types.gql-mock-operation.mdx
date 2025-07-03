@@ -1,0 +1,21 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta
+    title="Packages / Testing / Mocking / Types / GqlMockOperation<>"
+/>
+
+# GqlMockOperation\<>
+
+```ts
+type GqlMockOperation<
+    TData: {...},
+    TVariables: {...},
+    TContext: GqlContext,
+> = {|
+    operation: GqlOperation<TData, TVariables>,
+    variables?: TVariables,
+    context?: TContext,
+|};
+```
+
+This defines the operation that a GraphQL mock will respond to. See <a href="./?path=/docs/packages-testing-mocking-exports-mockgqlfetch--docs">`mockGqlFetch`</a> for more details.

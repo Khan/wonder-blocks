@@ -25,15 +25,55 @@ const argTypes: ArgTypes = {
             not be opened and does not support interaction.`,
         table: {
             category: "States",
-            defaultValue: {summary: false},
+            defaultValue: {summary: "false"},
         },
     },
 
     error: {
-        description: "Whether this component is in an error state.",
+        description: `Whether this component is in an error state. Use this for
+            errors that are triggered by something external to the component
+            (example: an error after form submission).`,
         table: {
             category: "States",
-            defaultValue: {summary: false},
+            defaultValue: {summary: "false"},
+        },
+    },
+
+    required: {
+        description: `Whether this field is required to to continue, or the
+            error message to render if the select is left blank. Pass in a
+            message instead of "true" if possible.`,
+        table: {
+            category: "States",
+            type: {
+                summary: "boolean | string",
+            },
+        },
+        control: {
+            type: undefined,
+        },
+    },
+
+    validate: {
+        description: `Provide a validation for the selected value. Return a
+            string error message or null | void for a valid input.
+            \n Use this for errors that are shown to the user while they are
+            filling out a form.`,
+        table: {
+            category: "States",
+            type: {
+                summary: "(value: string) => ?string",
+            },
+        },
+    },
+
+    onValidate: {
+        description: "Called right after the field is validated.",
+        table: {
+            category: "Events",
+            type: {
+                summary: "(errorMessage: ?string) => mixed",
+            },
         },
     },
 
@@ -43,15 +83,6 @@ const argTypes: ArgTypes = {
             will be moved to the top when the dropdown is re-opened.`,
         table: {
             category: "States",
-        },
-    },
-
-    light: {
-        description: `Whether to display the "light" version of this component
-            instead, for use when the component is used on a dark background.`,
-        table: {
-            category: "States",
-            defaultValue: {summary: false},
         },
     },
 
@@ -117,8 +148,22 @@ const argTypes: ArgTypes = {
         control: {type: "text"},
         description: `Unique identifier attached to the field control. If used,
             we need to guarantee that the ID is unique within everything
-            rendered on a page. Used to match \`<label>\` with \`<button>\`
-            elements for screenreaders.`,
+            rendered on a page. If one is not provided, one is auto-generated.
+            Used to match \`<label>\` with \`<button>\` elements for
+            screenreaders.`,
+        table: {
+            type: {summary: "string"},
+        },
+        type: {name: "string", required: false},
+    },
+
+    dropdownId: {
+        control: {type: "text"},
+        description: `Unique identifier attached to the dropdown. If used,
+            we need to guarantee that the ID is unique within everything
+            rendered on a page. If one is not provided, one is auto-generated.
+            It is used for the opener's \`aria-controls\` attribute for
+            screenreaders.`,
         table: {
             type: {summary: "string"},
         },

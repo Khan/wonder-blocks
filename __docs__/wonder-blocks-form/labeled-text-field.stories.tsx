@@ -3,8 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Button from "@khanacademy/wonder-blocks-button";
 import Link from "@khanacademy/wonder-blocks-link";
@@ -12,11 +11,20 @@ import Link from "@khanacademy/wonder-blocks-link";
 import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import LabeledTextFieldArgTypes from "./labeled-text-field.argtypes";
+import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
+import TextField from "../../packages/wonder-blocks-form/src/components/text-field";
 
+/**
+ * ** DEPRECATED: Please use LabeledField with TextField instead. See [Migration
+ * story](#migration%20to%20labeled%20field) for more details. **
+ *
+ * A LabeledTextField is an element used to accept a single line of text from
+ * the user paired with a label, description, and error field elements.
+ */
 export default {
-    title: "Form / LabeledTextField",
+    title: "Packages / Form / LabeledTextField (Deprecated)",
     component: LabeledTextField,
     parameters: {
         componentSubtitle: (
@@ -40,7 +48,6 @@ export const Default: StoryComponentType = {
         value: "",
         disabled: false,
         required: false,
-        light: false,
         placeholder: "Placeholder",
         readOnly: false,
         autoComplete: "off",
@@ -50,6 +57,73 @@ export const Default: StoryComponentType = {
         onKeyDown: () => {},
         onFocus: () => {},
         onBlur: () => {},
+    },
+};
+
+/**
+ * Please use the **LabeledField** component with the **TextField** component
+ * instead of the `LabeledTextField` component.
+ *
+ * LabeledField is more flexible since it is decoupled from specific field
+ * components. It also allows use of everything supported by TextField since it
+ * is used directly.
+ *
+ * Note: Validation is now handled by the specific field component and an error
+ * message is passed into LabeledField. For TextField validation, it is preferred
+ * that validation occurs on blur once a user is done interacting with a field.
+ * This can be done using `instantValidation=false` on `TextField`, see TextField
+ * validation docs for more details!
+ *
+ * This example shows how LabeledTextField functionality can be mapped to
+ * LabeledField and TextField components.
+ */
+export const MigrationToLabeledField: StoryComponentType = {
+    render: function Story(args) {
+        const [labeledTextFieldValue, setLabeledTextFieldValue] =
+            React.useState("");
+        const [textFieldValue, setTextFieldValue] = React.useState("");
+        const [textFieldErrorMessage, setTextFieldErrorMessage] =
+            React.useState<string | null | undefined>("");
+
+        const description = "Enter text that is at least 5 characters long.";
+        const placeholder = "Placeholder";
+        const required = "Custom required message";
+        const validate = (value: string) => {
+            if (value.length < 5) {
+                return "Should be 5 or more characters";
+            }
+        };
+        return (
+            <View style={{gap: spacing.xxxLarge_64}}>
+                <LabeledTextField
+                    {...args}
+                    label="Using LabeledTextField"
+                    description={description}
+                    value={labeledTextFieldValue}
+                    onChange={setLabeledTextFieldValue}
+                    required={required}
+                    placeholder={placeholder}
+                    validate={validate}
+                />
+                <LabeledField
+                    label="Using LabeledField with TextField (recommended)"
+                    description={description}
+                    required={required}
+                    errorMessage={textFieldErrorMessage}
+                    field={
+                        <TextField
+                            {...args}
+                            value={textFieldValue}
+                            onChange={setTextFieldValue}
+                            placeholder={placeholder}
+                            validate={validate}
+                            onValidate={setTextFieldErrorMessage}
+                            instantValidation={false}
+                        />
+                    }
+                />
+            </View>
+        );
     },
 };
 
@@ -160,7 +234,12 @@ RequiredWithSpecifiedText.parameters = {
 };
 
 export const Number: StoryComponentType = () => {
-    const [value, setValue] = React.useState("18");
+    const [value, setValue] = React.useState("1234");
+    const [value2, setValue2] = React.useState("12");
+
+    const handleChange = (newValue: string) => {
+        setValue(newValue);
+    };
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
@@ -169,22 +248,46 @@ export const Number: StoryComponentType = () => {
     };
 
     return (
-        <LabeledTextField
-            label="Age"
-            type="number"
-            description="Please enter your age"
-            value={value}
-            onChange={setValue}
-            placeholder="Age"
-            onKeyDown={handleKeyDown}
-        />
+        <View style={styles.column}>
+            <LabeledTextField
+                label="Age"
+                id="tf-3"
+                description="Please enter your age"
+                type="number"
+                value={value}
+                placeholder="Number"
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+            />
+            <Strut size={spacing.small_12} />
+            <LabeledTextField
+                id="tf-3a"
+                label={`The following text field has a min of 0, a max of 15,
+                    and a step of 3`}
+                type="number"
+                value={value2}
+                placeholder="Number"
+                onChange={setValue2}
+                onKeyDown={handleKeyDown}
+                min={0}
+                max={15}
+                step={3}
+            />
+        </View>
     );
 };
 
 Number.parameters = {
     docs: {
         description: {
-            story: "An input field with type `number` will only take numeric characters as input.",
+            story: `An input field with type \`number\` will only take
+                numeric characters as input.\n\nNumber inputs have a few props
+                that other input types don't have - \`min\`, \`max\`, and
+                \`step\`. In this example, the first number input has no
+                restrictions, while the second number input has a minimum
+                value of 0, a maximum value of 15, and a step of 3. Observe
+                that using the arrow keys will automatically snap to the
+                step, and stop at the min and max values.`,
         },
     },
 };
@@ -267,7 +370,7 @@ Email.parameters = {
         description: {
             story: `An input field with type \`email\` will automatically
         validate an input on submit to ensure it's either formatted properly
-        or blank. \`TextField\` will run validation on blur if the
+        or blank. \`TextField\` will run validation on change if the
         \`validate\` prop is passed in, as in this example.`,
         },
     },
@@ -360,7 +463,7 @@ Telephone.parameters = {
     },
 };
 
-export const Error: StoryComponentType = () => {
+function ErrorRender() {
     const [value, setValue] = React.useState("khan");
 
     const validate = (value: string) => {
@@ -388,117 +491,31 @@ export const Error: StoryComponentType = () => {
             onKeyDown={handleKeyDown}
         />
     );
+}
+
+/**
+ * If an input value fails validation, `LabeledTextField` will have error
+ * styling.
+ *
+ * Note that we will internally set the correct `aria-invalid` attribute to the
+ * `input` element:
+ * - aria-invalid="true" if there is an error message.
+ * - aria-invalid="false" if there is no error message.
+ */
+export const Error: StoryComponentType = {
+    render: ErrorRender,
 };
 
-Error.parameters = {
-    docs: {
-        description: {
-            story: `If an input value fails validation,
-        \`TextField\` will have error styling.`,
-        },
-    },
-};
-
-export const Light: StoryComponentType = (args: any) => {
-    const [value, setValue] = React.useState("");
-
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === "Enter") {
-            event.currentTarget.blur();
-        }
-    };
-
-    return (
-        <View style={styles.darkBackground}>
-            <LabeledTextField
-                {...args}
-                label={
-                    <LabelMedium style={styles.whiteColor}>Name</LabelMedium>
-                }
-                description={
-                    <LabelSmall style={styles.offWhiteColor}>
-                        Please enter your name
-                    </LabelSmall>
-                }
-                value={value}
-                onChange={setValue}
-                placeholder="Name"
-                light={true}
-                onKeyDown={handleKeyDown}
-            />
-        </View>
-    );
-};
-
-Light.args = {
-    disabled: false,
-};
-
-Light.parameters = {
-    docs: {
-        description: {
-            story: `If the \`light\` prop is set to true, the
-        underlying \`TextField\` will have a light border when focused.
-        This is intended to be used on a dark background. There is also a
-        specific light styling for the error state, as seen in the
-        \`ErrorLight\` story.`,
-        },
-    },
-};
-
-export const ErrorLight: StoryComponentType = (args: any) => {
-    const [value, setValue] = React.useState("khan");
-
-    const validate = (value: string) => {
-        const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
-        if (!emailRegex.test(value)) {
-            return "Please enter a valid email";
-        }
-    };
-
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === "Enter") {
-            event.currentTarget.blur();
-        }
-    };
-
-    return (
-        <View style={styles.darkBackground}>
-            <LabeledTextField
-                {...args}
-                label={
-                    <LabelMedium style={styles.whiteColor}>Email</LabelMedium>
-                }
-                description={
-                    <LabelSmall style={styles.offWhiteColor}>
-                        Please provide your personal email
-                    </LabelSmall>
-                }
-                type="email"
-                value={value}
-                light={true}
-                onChange={setValue}
-                placeholder="Email"
-                validate={validate}
-                onKeyDown={handleKeyDown}
-            />
-        </View>
-    );
-};
-
-ErrorLight.args = {
-    disabled: false,
-};
-
-ErrorLight.parameters = {
-    docs: {
-        description: {
-            story: `If an input value fails validation and the
-        \`light\` prop is true, \`TextField\` will have light error styling.`,
-        },
-    },
-};
-
+/**
+ * If the disabled prop is set to `true`, LabeledTextField will have disabled styling
+ * and will not be interactable.
+ *
+ * Note: The `disabled` prop sets the `aria-disabled` attribute to `true`
+ * instead of setting the `disabled` attribute. This is so that the component
+ * remains focusable while communicating to screen readers that it is disabled.
+ * This `disabled` prop will also set the `readonly` attribute to prevent
+ * typing in the field.
+ */
 export const Disabled: StoryComponentType = () => (
     <LabeledTextField
         label="Name"
@@ -574,7 +591,7 @@ export const WithMarkup: StoryComponentType = {
                     <span>
                         Description with <strong>strong</strong> text and a{" "}
                         <Link href="/path/to/resource" inline={true}>
-                            link
+                            link example
                         </Link>
                     </span>
                 }
@@ -729,16 +746,6 @@ AutoComplete.parameters = {
 };
 
 const styles = StyleSheet.create({
-    darkBackground: {
-        background: color.darkBlue,
-        padding: `${spacing.medium_16}px`,
-    },
-    whiteColor: {
-        color: color.white,
-    },
-    offWhiteColor: {
-        color: color.white64,
-    },
     button: {
         maxWidth: 150,
     },

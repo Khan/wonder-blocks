@@ -7,11 +7,11 @@ import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-progress-spinner/package.json";
 
 export default {
-    title: "ProgressSpinner/CircularSpinner",
+    title: "Packages / ProgressSpinner / CircularSpinner",
     component: CircularSpinner,
     parameters: {
         componentSubtitle: (

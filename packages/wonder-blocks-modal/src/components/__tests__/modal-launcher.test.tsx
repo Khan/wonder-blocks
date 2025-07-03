@@ -1,6 +1,8 @@
 import * as React from "react";
 import {render, screen, waitFor} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
+import {MemoryRouter} from "react-router-dom";
+import {CompatRouter} from "react-router-dom-v5-compat";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
@@ -242,7 +244,7 @@ describe("ModalLauncher", () => {
         expect(onClose).not.toHaveBeenCalled();
     });
 
-    test("if modal is launched, move focus inside the modal", async () => {
+    test("if modal is launched, move focus to first focusable element inside dialog", async () => {
         // Arrange
         render(
             <ModalLauncher
@@ -263,15 +265,12 @@ describe("ModalLauncher", () => {
             </ModalLauncher>,
         );
 
-        const modalOpener = await screen.findByRole("button", {
-            name: "Open modal",
-        });
-        // force focus
-        modalOpener.focus();
+        // focus on the open modal button
+        await userEvent.tab();
 
         // Act
         // Launch the modal.
-        await userEvent.type(modalOpener, "{enter}");
+        await userEvent.keyboard("{enter}");
 
         // wait until the modal is open
         await screen.findByRole("dialog");
@@ -279,7 +278,7 @@ describe("ModalLauncher", () => {
         // Assert
         await waitFor(async () =>
             expect(
-                await screen.findByRole("button", {name: "Button in modal"}),
+                await screen.findByRole("button", {name: "Close modal"}),
             ).toHaveFocus(),
         );
     });
@@ -298,33 +297,39 @@ describe("ModalLauncher", () => {
             };
 
             return (
-                <View>
-                    <Button>Top of page (should not receive focus)</Button>
-                    <Button
-                        testId="launcher-button"
-                        onClick={() => handleOpen()}
-                    >
-                        Open modal
-                    </Button>
-                    <ModalLauncher
-                        onClose={() => handleClose()}
-                        opened={opened}
-                        modal={({closeModal}: any) => (
-                            <OnePaneDialog
-                                title="Regular modal"
-                                content={<View>Hello World</View>}
-                                footer={
-                                    <Button
-                                        testId="modal-close-button"
-                                        onClick={closeModal}
-                                    >
-                                        Close Modal
-                                    </Button>
-                                }
+                <MemoryRouter>
+                    <CompatRouter>
+                        <View>
+                            <Button>
+                                Top of page (should not receive focus)
+                            </Button>
+                            <Button
+                                testId="launcher-button"
+                                onClick={() => handleOpen()}
+                            >
+                                Open modal
+                            </Button>
+                            <ModalLauncher
+                                onClose={() => handleClose()}
+                                opened={opened}
+                                modal={({closeModal}: any) => (
+                                    <OnePaneDialog
+                                        title="Regular modal"
+                                        content={<View>Hello World</View>}
+                                        footer={
+                                            <Button
+                                                testId="modal-close-button"
+                                                onClick={closeModal}
+                                            >
+                                                Close Modal
+                                            </Button>
+                                        }
+                                    />
+                                )}
                             />
-                        )}
-                    />
-                </View>
+                        </View>
+                    </CompatRouter>
+                </MemoryRouter>
             );
         };
 
@@ -337,9 +342,8 @@ describe("ModalLauncher", () => {
 
         // Act
         // Close modal
-        const modalCloseButton = await screen.findByTestId(
-            "modal-close-button",
-        );
+        const modalCloseButton =
+            await screen.findByTestId("modal-close-button");
         await userEvent.click(modalCloseButton);
 
         // Assert
@@ -404,9 +408,8 @@ describe("ModalLauncher", () => {
 
         // Act
         // Close modal
-        const modalCloseButton = await screen.findByTestId(
-            "modal-close-button",
-        );
+        const modalCloseButton =
+            await screen.findByTestId("modal-close-button");
         await userEvent.click(modalCloseButton);
 
         // Assert

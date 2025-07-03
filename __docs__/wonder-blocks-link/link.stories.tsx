@@ -1,32 +1,41 @@
-/* eslint-disable max-lines */
-// We need to use fireEvent for mouseDown in these tests, none of the userEvent
-// alternatives work. Click includes mouseUp, which removes the pressed style.
-/* eslint-disable testing-library/prefer-user-event */
-import {expect} from "@storybook/jest";
 import * as React from "react";
-import {within, userEvent, fireEvent} from "@storybook/testing-library";
 import {StyleSheet} from "aphrodite";
-import {MemoryRouter, Route, Switch} from "react-router-dom";
+import {MemoryRouter} from "react-router-dom";
+import {
+    CompatRouter,
+    createMemoryRouter,
+    Outlet,
+    Route,
+    RouterProvider,
+    Routes,
+    useViewTransitionState,
+} from "react-router-dom-v5-compat";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    semanticColor,
+    sizing,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {
     Body,
+    HeadingMedium,
     HeadingSmall,
     LabelLarge,
 } from "@khanacademy/wonder-blocks-typography";
 import Link from "@khanacademy/wonder-blocks-link";
 import packageConfig from "../../packages/wonder-blocks-link/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import LinkArgTypes from "./link.argtypes";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
-    title: "Link",
+    title: "Packages / Link",
     component: Link,
     parameters: {
         componentSubtitle: (
@@ -35,949 +44,641 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // These stories are being tested in link-variants.stories.tsx
+            disableSnapshot: true,
+        },
     },
     argTypes: LinkArgTypes,
 } as Meta<typeof Link>;
 
-const activeBlue = "#1b50b3";
-const fadedBlue = "#b5cefb";
-
 type StoryComponentType = StoryObj<typeof Link>;
 
+/**
+ * By default the link uses a color that communicates the presence and meaning
+ * of interaction.
+ */
 export const Default: StoryComponentType = {
     args: {
         href: "/",
-        children: "Hello, world!",
+        children: "The quick brown fox jumps over the lazy dog.",
     },
 };
 
-export const Primary: StoryComponentType = () => (
-    <Link href="#">The quick brown fox jumps over the lazy dog.</Link>
-);
-
-Primary.parameters = {
-    docs: {
-        description: {
-            story: `Minimal link usage.
-            This links to the top of the page.`,
-        },
-    },
-};
-
-Primary.play = async ({canvasElement}) => {
-    const canvas = within(canvasElement);
-
-    const link = canvas.getByRole("link");
-
-    // Resting style
-    await expect(link).toHaveStyle(`color: ${color.blue}`);
-
-    // Hover style
-    await userEvent.hover(link);
-    // TODO(WB-1521): Expect the dashed 2px style.
-    // await expect(link).toHaveStyle(
-    //     `text-decoration: underline ${Color.blue} dashed 2px`,
-    // );
-    await expect(link).toHaveStyle(
-        `text-decoration: underline ${color.blue} solid`,
-    );
-
-    // Focus style with keyboard navigation
-    await userEvent.tab();
-    const computedStyle = getComputedStyle(link, ":focus-visible");
-    // rgb(24, 101, 242) is the same as Color.blue. `toBe` doesn't seem to
-    // compare different color formats, so hex was converted to RGB.
-    await expect(computedStyle.outline).toBe("rgb(24, 101, 242) solid 1px");
-
-    // Mousedown style
-    await fireEvent.mouseDown(link);
-    await expect(link).toHaveStyle(
-        `text-decoration: underline solid ${activeBlue}`,
-    );
-};
-
-export const Secondary: StoryComponentType = () => (
-    <Link href="#" kind="secondary">
-        The quick brown fox jumps over the lazy dog.
-    </Link>
-);
-
-Secondary.parameters = {
-    docs: {
-        description: {
-            story: `Minimal secondary link usage. A secondary link
-            has lighter text. This links to the top of the page.`,
-        },
-    },
-};
-
-Secondary.play = async ({canvasElement}) => {
-    const canvas = within(canvasElement);
-
-    const link = canvas.getByRole("link");
-
-    // Resting style
-    await expect(link).toHaveStyle(`color: ${color.offBlack64}`);
-
-    // Hover style
-    await userEvent.hover(link);
-    // TODO(WB-1521): Expect the dashed 2px style.
-    // await expect(link).toHaveStyle(
-    //     `text-decoration: underline ${Color.offBlack64} dashed 2px`,
-    // );
-    await expect(link).toHaveStyle(
-        `text-decoration: underline ${color.offBlack64} solid`,
-    );
-
-    // Focus style with keyboard navigation
-    await userEvent.tab();
-    const computedStyle = getComputedStyle(link, ":focus-visible");
-    // rgb(24, 101, 242) is the same as Color.blue. `toBe` doesn't seem to
-    // compare different color formats, so hex was converted to RGB.
-    await expect(computedStyle.outline).toBe("rgb(24, 101, 242) solid 1px");
-
-    // Mousedown style
-    await fireEvent.mouseDown(link);
-    await expect(link).toHaveStyle(
-        `text-decoration: underline solid ${color.offBlack}`,
-    );
-};
-
-export const Visitable: StoryComponentType = () => (
-    <Link href="#" visitable={true}>
-        The quick brown fox jumps over the lazy dog.
-    </Link>
-);
-
-Visitable.parameters = {
-    docs: {
-        description: {
-            story: `This is a visitable link. It changes color after
-            it has been clicked on to indicate that it's been visited before.
-            This link's \`visitable\` prop is set to true.
-            It links to the top of the page.`,
-        },
-    },
-};
-
-export const LightPrimary: StoryComponentType = () => (
-    <Link href="#" light={true}>
-        The quick brown fox jumps over the lazy dog.
-    </Link>
-);
-
-LightPrimary.parameters = {
-    docs: {
-        description: {
-            story: `Minimal link usage on a dark background. This
-            link has its \`light\` prop set to true. It links to the top
-            of the page.`,
-        },
-    },
-    backgrounds: {
-        default: "darkBlue",
-    },
-};
-
-LightPrimary.play = async ({canvasElement}) => {
-    const canvas = within(canvasElement);
-
-    const link = canvas.getByRole("link");
-
-    // Resting style
-    await expect(link).toHaveStyle(`color: ${color.white}`);
-
-    // Hover style
-    await userEvent.hover(link);
-    // TODO(WB-1521): Expect the dashed 2px style.
-    // await expect(link).toHaveStyle(
-    //     `text-decoration: underline ${Color.white} dashed 2px`,
-    // );
-    await expect(link).toHaveStyle(
-        `text-decoration: underline ${color.white} solid`,
-    );
-
-    // Focus style with keyboard navigation
-    await userEvent.tab();
-    const computedStyle = getComputedStyle(link, ":focus-visible");
-    // rgb(255, 255, 255) is the same as Color.white. `toBe` doesn't seem to
-    // compare different color formats, so hex was converted to RGB.
-    await expect(computedStyle.outline).toBe("rgb(255, 255, 255) solid 1px");
-
-    // Mousedown style
-    await fireEvent.mouseDown(link);
-    await expect(link).toHaveStyle(
-        `text-decoration: underline solid ${fadedBlue}`,
-    );
-};
-
-export const LightVisitable: StoryComponentType = () => (
-    <Link href="#" light={true} visitable={true}>
-        The quick brown fox jumps over the lazy dog.
-    </Link>
-);
-
-LightVisitable.parameters = {
-    backgrounds: {
-        default: "darkBlue",
-    },
-    docs: {
-        description: {
-            story: `This is a visitable link on a dark background.
-            It changes color after it has been clicked on to indicate
-            that it's been visited before. This link's \`visitable\` prop
-            is set to true. It links to the top of the page.`,
-        },
-    },
-};
-
-export const OpensInANewTab: StoryComponentType = () => (
-    <View>
-        <Link href="https://cat-bounce.com/" target="_blank">
-            This is a Primary link that opens in a new tab
+/**
+ * Minimal link usage on a dark background. This link has its `light` prop set
+ * to true. It links to the top of the page.
+ */
+export const LightPrimary: StoryComponentType = {
+    render: () => (
+        <Link href="#link" light={true}>
+            The quick brown fox jumps over the lazy dog.
         </Link>
-        <Link href="https://cat-bounce.com/" kind="secondary" target="_blank">
-            This is a Secondary link that opens in a new tab
-        </Link>
-    </View>
-);
-
-OpensInANewTab.parameters = {
-    docs: {
-        description: {
-            summary: `When a link is external and \`target="_blank"\`, the
-        external icon is automatically added to the end of the link. This
-        indicates that the link will open in a new tab.`,
+    ),
+    parameters: {
+        backgrounds: {
+            default: "darkBlue",
         },
     },
 };
 
-export const StartAndEndIcons: StoryComponentType = () => (
-    <View>
-        {/* Default (dark) */}
-        <View style={{padding: spacing.large_24}}>
-            <Link
-                href="#"
-                startIcon={<PhosphorIcon icon={IconMappings.plusCircleBold} />}
-                style={styles.standaloneLinkWrapper}
-            >
-                This link has a start icon
+/**
+ * When a link is external and target="_blank", the external icon is
+ * automatically added to the end of the link. This indicates that the link will
+ * open in a new tab.
+ */
+export const OpensInANewTab: StoryComponentType = {
+    render: () => (
+        <View>
+            <Link href="https://cat-bounce.com/" target="_blank">
+                This is a link that opens in a new tab
             </Link>
-            <Link
-                href="#"
-                endIcon={
-                    <PhosphorIcon icon={IconMappings.magnifyingGlassBold} />
-                }
-                kind="secondary"
-                style={styles.standaloneLinkWrapper}
-            >
-                This link has an end icon
-            </Link>
-            <Link
-                href="https://stuffonmycat.com/"
-                endIcon={<PhosphorIcon icon={IconMappings.infoBold} />}
-                target="_blank"
-                style={styles.standaloneLinkWrapper}
-            >
-                This external link has an end icon that is overrides the default
-                external icon
-            </Link>
-            <Link
-                href="#"
-                startIcon={<PhosphorIcon icon={IconMappings.caretLeftBold} />}
-                endIcon={<PhosphorIcon icon={IconMappings.caretRightBold} />}
-                kind="secondary"
-                style={styles.standaloneLinkWrapper}
-            >
-                This link has a start icon and an end icon
-            </Link>
-            <Link
-                href="#"
-                startIcon={<PhosphorIcon icon={IconMappings.caretLeftBold} />}
-                endIcon={<PhosphorIcon icon={IconMappings.caretRightBold} />}
-                style={styles.multiLine}
-            >
-                This is a multi-line link with start and end icons
-            </Link>
-            <Body>
-                This is an inline{" "}
+        </View>
+    ),
+};
+
+/**
+ * Link can take an optional `startIcon` and/or `endIcon`. If `target="_blank"`
+ * and an `endIcon` prop is passed in, then `endIcon` will override the default
+ * `externalIcon`.
+ */
+export const StartAndEndIcons: StoryComponentType = {
+    render: () => (
+        <View>
+            {/* Default (dark) */}
+            <View style={{padding: spacing.large_24}}>
                 <Link
-                    href="#"
-                    inline={true}
+                    href="#link"
+                    startIcon={
+                        <PhosphorIcon icon={IconMappings.plusCircleBold} />
+                    }
+                    style={styles.standaloneLinkWrapper}
+                >
+                    This link has a start icon
+                </Link>
+                <Link
+                    href="#link"
+                    endIcon={
+                        <PhosphorIcon icon={IconMappings.magnifyingGlassBold} />
+                    }
+                    style={styles.standaloneLinkWrapper}
+                >
+                    This link has an end icon
+                </Link>
+                <Link
+                    href="https://stuffonmycat.com/"
+                    endIcon={<PhosphorIcon icon={IconMappings.infoBold} />}
+                    target="_blank"
+                    style={styles.standaloneLinkWrapper}
+                >
+                    This external link has an end icon that is overrides the
+                    default external icon
+                </Link>
+                <Link
+                    href="#link"
                     startIcon={
                         <PhosphorIcon icon={IconMappings.caretLeftBold} />
                     }
-                >
-                    link with a start icon
-                </Link>{" "}
-                and an inline{" "}
-                <Link
-                    href="#"
-                    inline={true}
-                    target="_blank"
                     endIcon={
                         <PhosphorIcon icon={IconMappings.caretRightBold} />
                     }
+                    style={styles.standaloneLinkWrapper}
                 >
-                    link with an end icon
+                    This link has a start icon and an end icon
                 </Link>
-                .
-            </Body>
-        </View>
-        {/* Light */}
-        <View
-            style={{
-                backgroundColor: color.darkBlue,
-                padding: spacing.large_24,
-            }}
-        >
-            <Link
-                href="#"
-                startIcon={<PhosphorIcon icon={IconMappings.plusCircleBold} />}
-                light={true}
-                style={styles.standaloneLinkWrapper}
-            >
-                This link has a start icon
-            </Link>
-            <Link
-                href="#"
-                endIcon={
-                    <PhosphorIcon icon={IconMappings.magnifyingGlassBold} />
-                }
-                light={true}
-                style={styles.standaloneLinkWrapper}
-            >
-                This link has an end icon
-            </Link>
-            <Link
-                href="https://stuffonmycat.com/"
-                endIcon={<PhosphorIcon icon={IconMappings.infoBold} />}
-                target="_blank"
-                light={true}
-                style={styles.standaloneLinkWrapper}
-            >
-                This external link has an end icon that is overrides the default
-                external icon
-            </Link>
-            <Link
-                href="#"
-                startIcon={<PhosphorIcon icon={IconMappings.caretLeftBold} />}
-                endIcon={<PhosphorIcon icon={IconMappings.caretRightBold} />}
-                light={true}
-                style={styles.standaloneLinkWrapper}
-            >
-                This link has a start icon and an end icon
-            </Link>
-            <Link
-                href="#"
-                startIcon={<PhosphorIcon icon={IconMappings.caretLeftBold} />}
-                endIcon={<PhosphorIcon icon={IconMappings.caretRightBold} />}
-                light={true}
-                style={styles.multiLine}
-            >
-                This is a multi-line link with start and end icons
-            </Link>
-            <Body style={{color: color.white}}>
-                This is an inline{" "}
                 <Link
-                    href="#"
+                    href="#link"
                     startIcon={
                         <PhosphorIcon icon={IconMappings.caretLeftBold} />
                     }
-                    inline={true}
-                    light={true}
-                >
-                    link with a start icon
-                </Link>{" "}
-                and an inline{" "}
-                <Link
-                    href="#"
                     endIcon={
                         <PhosphorIcon icon={IconMappings.caretRightBold} />
                     }
-                    inline={true}
-                    light={true}
-                    target="_blank"
+                    style={styles.multiLine}
                 >
-                    link with an end icon
+                    This is a multi-line link with start and end icons
                 </Link>
-                .
-            </Body>
-        </View>
-    </View>
-);
-
-StartAndEndIcons.parameters = {
-    docs: {
-        description: {
-            summary: `Link can take an optional \`startIcon\` and/or \`endIcon\`. If
-        \`target="_blank"\` and an \`endIcon\` prop is passed in, then \`endIcon\` will
-        override the default \`externalIcon\`.`,
-        },
-    },
-};
-
-export const Inline: StoryComponentType = () => (
-    <Body>
-        This is an inline{" "}
-        <Link href="#" inline={true}>
-            Primary link
-        </Link>{" "}
-        and an inline{" "}
-        <Link
-            href="https://www.procatinator.com/"
-            inline={true}
-            target="_blank"
-        >
-            external Primary link
-        </Link>
-        , whereas this is an inline{" "}
-        <Link href="#" kind="secondary" inline={true}>
-            Secondary link
-        </Link>
-        , and an inline{" "}
-        <Link
-            href="https://www.procatinator.com/"
-            kind="secondary"
-            inline={true}
-            target="_blank"
-        >
-            external Secondary link
-        </Link>
-        , and this is an inline{" "}
-        <Link href="#" visitable={true} inline={true}>
-            Visitable link (Primary only)
-        </Link>{" "}
-        and an inline{" "}
-        <Link
-            href="https://www.procatinator.com/"
-            visitable={true}
-            inline={true}
-            target="_blank"
-        >
-            external Visitable link (Primary only)
-        </Link>
-        .
-    </Body>
-);
-
-Inline.parameters = {
-    docs: {
-        description: {
-            story: `Inline links include an underline to distinguish
-            them from the surrounding text. Make a link inline by setting the
-            \`inline\` prop to \`true\`. It is recommended to use inline
-            links within paragraphs and sentences.`,
-        },
-    },
-};
-
-Inline.play = async ({canvasElement}) => {
-    const canvas = within(canvasElement);
-
-    const primaryLink = canvas.getByRole("link", {name: "Primary link"});
-    const secondaryLink = canvas.getByRole("link", {name: "Secondary link"});
-
-    // Resting style
-    await expect(primaryLink).toHaveStyle(`color: ${color.blue}`);
-
-    // Hover style
-    await userEvent.hover(primaryLink);
-    // TODO(WB-1521): Expect the dashed 2px style.
-    // await expect(primaryLink).toHaveStyle(
-    //     `text-decoration: underline ${Color.blue} dashed 2px`,
-    // );
-    await expect(primaryLink).toHaveStyle(
-        `text-decoration: underline ${color.blue} solid`,
-    );
-
-    // Focus style with keyboard navigation
-    await userEvent.tab();
-    const primaryComputedStyle = getComputedStyle(
-        primaryLink,
-        ":focus-visible",
-    );
-    // rgb(24, 101, 242) is the same as Color.blue. `toBe` doesn't seem to
-    // compare different color formats, so hex was converted to RGB.
-    await expect(primaryComputedStyle.outline).toBe(
-        "rgb(24, 101, 242) solid 1px",
-    );
-
-    // Mousedown style
-    await fireEvent.mouseDown(primaryLink);
-    await expect(primaryLink).toHaveStyle(
-        `text-decoration: underline solid ${activeBlue}`,
-    );
-
-    /* *** Secondary link styles***  */
-
-    // Resting style
-    await expect(secondaryLink).toHaveStyle(`color: ${color.offBlack}`);
-
-    // Hover style
-    await userEvent.hover(secondaryLink);
-    // TODO(WB-1521): Expect the dashed 2px style.
-    // await expect(secondaryLink).toHaveStyle(
-    //     `text-decoration: underline ${Color.offBlack} dashed 2px`,
-    // );
-    await expect(secondaryLink).toHaveStyle(
-        `text-decoration: underline ${color.offBlack} solid`,
-    );
-
-    // Focus style with keyboard navigation
-    await userEvent.tab();
-    await userEvent.tab();
-    const secondaryComputedStyle = getComputedStyle(
-        secondaryLink,
-        ":focus-visible",
-    );
-    // rgb(24, 101, 242) is the same as Color.blue. `toBe` doesn't seem to
-    // compare different color formats, so hex was converted to RGB.
-    await expect(secondaryComputedStyle.outline).toBe(
-        "rgb(24, 101, 242) solid 1px",
-    );
-
-    // Mousedown style
-    await fireEvent.mouseDown(secondaryLink);
-    await expect(secondaryLink).toHaveStyle(
-        `text-decoration: underline solid ${activeBlue}`,
-    );
-};
-
-export const InlineLight: StoryComponentType = () => (
-    <Body style={{color: color.white}}>
-        This is an inline{" "}
-        <Link href="#" inline={true} light={true}>
-            Primary link
-        </Link>{" "}
-        and an{" "}
-        <Link
-            href="https://cat-bounce.com/"
-            inline={true}
-            light={true}
-            target="_blank"
-        >
-            external Primary link
-        </Link>
-        , whereas this is an inline{" "}
-        <Link href="#" visitable={true} inline={true} light={true}>
-            Visitable link (Primary only)
-        </Link>{" "}
-        and an{" "}
-        <Link
-            href="https://cat-bounce.com/"
-            visitable={true}
-            inline={true}
-            light={true}
-            target="_blank"
-        >
-            external Visitable link (Primary only)
-        </Link>
-        . Secondary light links are not supported.
-    </Body>
-);
-
-InlineLight.parameters = {
-    backgrounds: {
-        default: "darkBlue",
-    },
-    docs: {
-        description: {
-            story: `Inline links include an underline to distinguish
-            them from the surrounding text. If the link is on a
-            dark background, set the \`light\` prop to true for it to
-            be appropriately visible.\n\n**NOTE:** Secondary light links are
-            not supported.`,
-        },
-    },
-};
-
-InlineLight.play = async ({canvasElement}) => {
-    const canvas = within(canvasElement);
-
-    const primaryLink = canvas.getByRole("link", {name: "Primary link"});
-
-    // Resting style
-    await expect(primaryLink).toHaveStyle(`color: ${color.white}`);
-
-    // Hover style
-    await userEvent.hover(primaryLink);
-    // TODO(WB-1521): Expect the dashed 2px style.
-    // await expect(primaryLink).toHaveStyle(
-    //     `text-decoration: underline ${Color.white} dashed 2px`,
-    // );
-    await expect(primaryLink).toHaveStyle(
-        `text-decoration: underline ${color.white} solid`,
-    );
-
-    // Focus style with keyboard navigation
-    await userEvent.tab();
-    const computedStyle = getComputedStyle(primaryLink, ":focus-visible");
-    // rgb(255, 255, 255) is the same as Color.white. `toBe` doesn't seem to
-    // compare different color formats, so hex was converted to RGB.
-    await expect(computedStyle.outline).toBe("rgb(255, 255, 255) solid 1px");
-
-    // Mousedown style
-    await fireEvent.mouseDown(primaryLink);
-    await expect(primaryLink).toHaveStyle(
-        `text-decoration: underline solid ${fadedBlue}`,
-    );
-};
-
-export const Variants: StoryComponentType = () => (
-    <View>
-        {/* Default (dark) */}
-        <View style={{padding: spacing.large_24}}>
-            {/* Standalone */}
-            <View>
-                <View style={styles.standaloneLinkWrapper}>
-                    <Link href="#nonexistent-link">
-                        Standalone Primary Link
-                    </Link>
-                </View>
-                <View style={styles.standaloneLinkWrapper}>
-                    <Link href="https://cat-bounce.com/" target="_blank">
-                        Standalone External Primary Link
-                    </Link>
-                </View>
-                <View style={styles.standaloneLinkWrapper}>
-                    <Link href="#secondary-nonexistent-link" kind="secondary">
-                        Standalone Secondary Link
-                    </Link>
-                </View>
-                <View style={styles.standaloneLinkWrapper}>
+                <Body>
+                    This is an inline{" "}
                     <Link
-                        href="https://cat-bounce.com/"
-                        kind="secondary"
-                        target="_blank"
+                        href="#link"
+                        inline={true}
+                        startIcon={
+                            <PhosphorIcon icon={IconMappings.caretLeftBold} />
+                        }
                     >
-                        Standalone External Secondary Link
-                    </Link>
-                </View>
-                <View style={styles.standaloneLinkWrapper}>
-                    <Link href="#" visitable={true}>
-                        Standalone Visitable Link (Primary only)
-                    </Link>
-                </View>
-                <View style={styles.standaloneLinkWrapper}>
+                        link with a start icon
+                    </Link>{" "}
+                    and an inline{" "}
                     <Link
-                        href="https://cat-bounce.com/"
-                        visitable={true}
+                        href="#link"
+                        inline={true}
                         target="_blank"
+                        endIcon={
+                            <PhosphorIcon icon={IconMappings.caretRightBold} />
+                        }
                     >
-                        Standalone External Visitable Link (Primary only)
+                        link with an end icon
                     </Link>
-                </View>
+                    .
+                </Body>
             </View>
-            <Strut size={spacing.xSmall_8} />
-            {/* Inline */}
-            <Body>
-                This is an{" "}
-                <Link href="#" inline={true}>
-                    Inline Primary link
-                </Link>{" "}
-                and an{" "}
+            {/* Light */}
+            <View
+                style={{
+                    backgroundColor: semanticColor.surface.inverse,
+                    padding: spacing.large_24,
+                }}
+            >
                 <Link
-                    href="https://cat-bounce.com/"
-                    inline={true}
-                    target="_blank"
+                    href="#link"
+                    startIcon={
+                        <PhosphorIcon icon={IconMappings.plusCircleBold} />
+                    }
+                    light={true}
+                    style={styles.standaloneLinkWrapper}
                 >
-                    Inline External Primary link
+                    This link has a start icon
                 </Link>
-                , whereas this is an{" "}
-                <Link href="#" kind="secondary" inline={true}>
-                    Inline Secondary link
-                </Link>{" "}
-                and an{" "}
                 <Link
-                    href="https://cat-bounce.com/"
-                    kind="secondary"
-                    inline={true}
-                    target="_blank"
+                    href="#link"
+                    endIcon={
+                        <PhosphorIcon icon={IconMappings.magnifyingGlassBold} />
+                    }
+                    light={true}
+                    style={styles.standaloneLinkWrapper}
                 >
-                    Inline External Secondary link
+                    This link has an end icon
                 </Link>
-                , and this is an{" "}
-                <Link href="#" visitable={true} inline={true}>
-                    Inline Visitable link (Primary only)
-                </Link>{" "}
-                and an{" "}
                 <Link
-                    href="https://cat-bounce.com/"
-                    visitable={true}
-                    inline={true}
+                    href="https://stuffonmycat.com/"
+                    endIcon={<PhosphorIcon icon={IconMappings.infoBold} />}
                     target="_blank"
+                    light={true}
+                    style={styles.standaloneLinkWrapper}
                 >
-                    Inline External Visitable link (Primary only)
+                    This external link has an end icon that is overrides the
+                    default external icon
                 </Link>
-                .
-            </Body>
-        </View>
-        {/* Light */}
-        <View
-            style={{
-                backgroundColor: color.darkBlue,
-                padding: spacing.large_24,
-            }}
-        >
-            {/* Standalone */}
-            <View>
-                <View style={styles.standaloneLinkWrapper}>
-                    <Link href="#nonexistent-link" light={true}>
-                        Standalone Light Link (Primary only)
-                    </Link>
-                </View>
-                <View style={styles.standaloneLinkWrapper}>
+                <Link
+                    href="#link"
+                    startIcon={
+                        <PhosphorIcon icon={IconMappings.caretLeftBold} />
+                    }
+                    endIcon={
+                        <PhosphorIcon icon={IconMappings.caretRightBold} />
+                    }
+                    light={true}
+                    style={styles.standaloneLinkWrapper}
+                >
+                    This link has a start icon and an end icon
+                </Link>
+                <Link
+                    href="#link"
+                    startIcon={
+                        <PhosphorIcon icon={IconMappings.caretLeftBold} />
+                    }
+                    endIcon={
+                        <PhosphorIcon icon={IconMappings.caretRightBold} />
+                    }
+                    light={true}
+                    style={styles.multiLine}
+                >
+                    This is a multi-line link with start and end icons
+                </Link>
+                <Body style={{color: semanticColor.text.inverse}}>
+                    This is an inline{" "}
                     <Link
-                        href="https://cat-bounce.com/"
+                        href="#link"
+                        startIcon={
+                            <PhosphorIcon icon={IconMappings.caretLeftBold} />
+                        }
+                        inline={true}
+                        light={true}
+                    >
+                        link with a start icon
+                    </Link>{" "}
+                    and an inline{" "}
+                    <Link
+                        href="#link"
+                        endIcon={
+                            <PhosphorIcon icon={IconMappings.caretRightBold} />
+                        }
+                        inline={true}
                         light={true}
                         target="_blank"
                     >
-                        Standalone External Light Link (Primary only)
+                        link with an end icon
                     </Link>
-                </View>
-                <View style={styles.standaloneLinkWrapper}>
-                    <Link href="#" visitable={true} light={true}>
-                        Standalone Light Visitable Link (Primary only)
-                    </Link>
-                </View>
-                <View style={styles.standaloneLinkWrapper}>
-                    <Link
-                        href="https://cat-bounce.com/"
-                        visitable={true}
-                        light={true}
-                        target="_blank"
-                    >
-                        Standalone External Light Visitable Link (Primary only)
-                    </Link>
-                </View>
+                    .
+                </Body>
             </View>
-            <Strut size={spacing.xSmall_8} />
-            {/* Inline */}
-            <Body style={{color: color.white}}>
-                This is an{" "}
-                <Link href="#" inline={true} light={true}>
-                    Inline Primary link
-                </Link>{" "}
-                and an{" "}
-                <Link
-                    href="https://cat-bounce.com/"
-                    inline={true}
-                    light={true}
-                    target="_blank"
-                >
-                    Inline External Primary link
-                </Link>
-                , whereas this is an{" "}
-                <Link href="#" visitable={true} inline={true} light={true}>
-                    Inline Visitable link (Primary only)
-                </Link>{" "}
-                and an{" "}
-                <Link
-                    href="https://cat-bounce.com/"
-                    visitable={true}
-                    inline={true}
-                    light={true}
-                    target="_blank"
-                >
-                    Inline External Visitable link (Primary only)
-                </Link>
-                . Secondary light links are not supported.
-            </Body>
         </View>
-    </View>
-);
+    ),
+};
 
-Variants.parameters = {
-    docs: {
-        description: {
-            story: `By default, primary links are blue, secondary
-            links are gray, and visitable links turn purple after they've
-            been clicked on. Default inline links are underlined, and the
-            secondary kind is black to match surrounding text color.
-            Light standalone and inline links have the same colors - white
-            with visited visitable links being pink. Light inline links are
-            also underlined like default inline links. Light secondary links
-            are not supported and will result in an error.`,
+/**
+ * Inline links include an underline to distinguish them from the surrounding
+ * text. Make a link inline by setting the `inline` prop to `true`. It is
+ * recommended to use inline links within paragraphs and sentences.
+ */
+export const Inline: StoryComponentType = {
+    render: () => (
+        <Body style={{width: 530}}>
+            This is an inline{" "}
+            <Link href="#link" inline={true}>
+                regular link
+            </Link>
+            . In this sentence, there is also an inline{" "}
+            <Link
+                href="https://www.procatinator.com/"
+                inline={true}
+                target="_blank"
+            >
+                external link
+            </Link>
+            .
+        </Body>
+    ),
+    parameters: {
+        chromatic: {
+            // Re-enable snapshots for this story since it shows the links in
+            // the context of paragraphs.
+            disableSnapshot: false,
+        },
+        pseudo: {visited: true},
+    },
+};
+
+/**
+ * Inline links include an underline to distinguish them from the surrounding
+ * text. If the link is on a dark background, set the `light` prop to true for
+ * it to be appropriately visible.
+ *
+ * **NOTE:** Secondary light links are not supported.
+ */
+export const InlineLight: StoryComponentType = {
+    render: () => (
+        <Body style={{color: semanticColor.text.inverse, width: 530}}>
+            This is an inline{" "}
+            <Link href="#link" inline={true} light={true}>
+                regular link
+            </Link>
+            . In this sentence, there is also an inline{" "}
+            <Link
+                href="https://cat-bounce.com/"
+                inline={true}
+                light={true}
+                target="_blank"
+            >
+                external link
+            </Link>
+            .
+        </Body>
+    ),
+    parameters: {
+        backgrounds: {
+            default: "darkBlue",
+        },
+        chromatic: {
+            // Re-enable snapshots for this story since it shows the links in
+            // the context of paragraphs.
+            disableSnapshot: false,
+        },
+        pseudo: {visited: true},
+    },
+};
+
+/**
+ * Wonder Blocks Typography elements can be used with Links instead of plain
+ * text. We recommend that `Typography` is always the parent element of `Link`
+ * to avoid styling issues. Here, we have a `HeadingSmall` containing a `Link`
+ */
+export const WithTypography: StoryComponentType = {
+    render: () => (
+        <HeadingSmall>
+            <Link href="#nonexistent-link" id="typography-link">
+                Link inside a Heading element
+            </Link>
+        </HeadingSmall>
+    ),
+    parameters: {
+        chromatic: {
+            // Re-enable snapshots for this story since it's verifying that
+            // the styles on typography elements are applied
+            disableSnapshot: false,
         },
     },
 };
 
-export const WithTypography: StoryComponentType = () => (
-    <HeadingSmall>
-        <Link href="#nonexistent-link" id="typography-link">
-            Link inside a Heading element
+/**
+ * Link can take a `style` prop. Here, the Link has been given a style in which
+ * the `color` field has been set to `semanticColor.status.critical.foreground`.
+ */
+export const WithStyle: StoryComponentType = {
+    render: () => (
+        <Link href="#link" style={styles.customLink}>
+            This link has a style.
         </Link>
-    </HeadingSmall>
-);
-
-WithTypography.parameters = {
-    docs: {
-        description: {
-            story: `Wonder Blocks Typography elements can be used
-        with Links instead of plain text. We recommend that \`Typography\` is
-        always the parent element of \`Link\` to avoid styling issues. Here, we
-        have a \`HeadingSmall\` containing a \`Link\`.`,
+    ),
+    parameters: {
+        chromatic: {
+            // Re-enable snapshots for this story since it's verifying that
+            // custom styles are applied (one-off)
+            disableSnapshot: false,
         },
     },
 };
 
-WithTypography.play = async ({canvasElement}) => {
-    const canvas = within(canvasElement);
-
-    const heading = canvas.getByText("Link inside a Heading element");
-
-    // Confirm that the default font size and line height
-    // are successfully overridden by typography.
-    await expect(heading).toHaveStyle("font-size: 20px");
-    await expect(heading).toHaveStyle("lineHeight: 24px");
+/**
+ * If you want to navigate to an external URL and/or reload the window, make
+ * sure to use `href` and `skipClientNav={true}`, as shown in this example.
+ * **For navigation callbacks:** The `onClick`, `beforeNav`, and `safeWithNav`
+ * props can be used to run callbacks when navigating to the new URL. Which prop
+ * to use depends on the use case. See the [Button
+ * documentation](/story/button-navigation-callbacks--before-nav-callbacks&viewMode=docs)
+ * for details.
+ */
+export const Navigation: StoryComponentType = {
+    render: () => (
+        <MemoryRouter>
+            <CompatRouter>
+                <View>
+                    <View style={styles.row}>
+                        <Link
+                            href="/foo"
+                            style={styles.heading}
+                            onClick={() => {
+                                // eslint-disable-next-line no-console
+                                console.log("I'm still on the same page!");
+                            }}
+                        >
+                            <LabelLarge>Uses Client-side Nav</LabelLarge>
+                        </Link>
+                        <Link
+                            href="/iframe.html?id=link--default&viewMode=story"
+                            style={styles.heading}
+                            skipClientNav
+                        >
+                            <LabelLarge>Avoids Client-side Nav</LabelLarge>
+                        </Link>
+                    </View>
+                    <View style={styles.navigation}>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={
+                                    <View id="foo">
+                                        The first link does client-side
+                                        navigation here.
+                                    </View>
+                                }
+                            />
+                            <Route
+                                path="*"
+                                element={
+                                    <View>See navigation changes here</View>
+                                }
+                            />
+                        </Routes>
+                    </View>
+                </View>
+            </CompatRouter>
+        </MemoryRouter>
+    ),
 };
 
-export const WithStyle: StoryComponentType = () => (
-    <Link href="#" style={styles.pinkLink}>
-        This link has a style.
-    </Link>
-);
-
-WithStyle.parameters = {
-    docs: {
-        storyDescription: `Link can take a \`style\` prop. Here, the
-            Link has been given a style in which the \`color\` field has
-            been set to \`Colors.pink\`.`,
-    },
-};
-
-export const Navigation: StoryComponentType = () => (
-    <MemoryRouter>
+/**
+ * An example of a React Router root component.
+ */
+function Layout() {
+    return (
         <View>
             <View style={styles.row}>
-                <Link
-                    href="/foo"
-                    style={styles.heading}
-                    onClick={() => {
-                        // eslint-disable-next-line no-console
-                        console.log("I'm still on the same page!");
-                    }}
-                >
-                    <LabelLarge>Uses Client-side Nav</LabelLarge>
+                <Link href="/one" style={styles.heading} viewTransition>
+                    <LabelLarge>First Page</LabelLarge>
                 </Link>
-                <Link
-                    href="/iframe.html?id=link--default&viewMode=story"
-                    style={styles.heading}
-                    skipClientNav
-                >
-                    <LabelLarge>Avoids Client-side Nav</LabelLarge>
+                <Link href="/two" style={styles.heading} viewTransition>
+                    <LabelLarge>Second Page</LabelLarge>
                 </Link>
             </View>
-            <View style={styles.navigation}>
-                <Switch>
-                    <Route path="/foo">
-                        <View id="foo">
-                            The first link does client-side navigation here.
-                        </View>
-                    </Route>
-                    <Route path="*">See navigation changes here</Route>
-                </Switch>
+            <View style={[styles.navigation]}>
+                <Outlet />
             </View>
         </View>
-    </MemoryRouter>
-);
+    );
+}
 
-Navigation.parameters = {
-    docs: {
-        description: {
-            story: `If you want to navigate to an external URL
-            and/or reload the window, make sure to use \`href\` and
-            \`skipClientNav={true}\`, as shown in this example.
-            **For navigation callbacks:** The \`onClick\`, \`beforeNav\`, and
-            \`safeWithNav\` props can be used to run callbacks when navigating
-            to the new URL. Which prop to use depends on the use case. See the
-            [Button documentation](/story/button-navigation-callbacks--before-nav-callbacks&viewMode=docs)
-            for details.`,
+/**
+ * `Link` can be used with `viewTransition` to animate between pages. The
+ * `viewTransition` prop is a boolean that indicates whether the link should use
+ * the View Transition API. See the [View Transition API
+ * documentation](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API)
+ * for more information.
+ *
+ * This example uses the ReactRouter's `useViewTransitionState` hook to
+ * determine if the link is currently transitioning, then applies the
+ * `viewTransitionName` style to the link and the card. The `viewTransitionName`
+ * style is a CSS property that specifies the name of the transition. The
+ * transition name is used to match the elements that should be animated between
+ * the two pages.
+ *
+ * You can take a look at the code snippet below to see how this example works
+ * (click on the "Show code" button).
+ */
+export const ViewTransition: StoryComponentType = {
+    name: "ViewTransition",
+    // NOTE: This story is not a part of the main storybook. It is created this
+    // way to allow including the whole code snippet and avoid recreating the
+    // FirstPage and SecondPage components in the storybook's render cycle.
+    decorators: [
+        () => {
+            function FirstPage() {
+                const to = "/two";
+                const isTransitioning = useViewTransitionState(to);
+
+                return (
+                    <View
+                        style={[
+                            styles.card,
+                            {
+                                width: "fit-content",
+                                // 1️⃣ A transition name is only applied when
+                                // the link is clicked (transition starts)👇.
+                                viewTransitionName: isTransitioning
+                                    ? "card-expand"
+                                    : "none",
+                            },
+                        ]}
+                    >
+                        <Body>The first link opens the second tab.</Body>
+
+                        <Link
+                            href={to}
+                            viewTransition
+                            style={{
+                                viewTransitionName: isTransitioning
+                                    ? "card-link"
+                                    : "none",
+                            }}
+                            startIcon={
+                                <PhosphorIcon
+                                    icon={IconMappings.caretRightBold}
+                                />
+                            }
+                        >
+                            Go to second page
+                        </Link>
+                    </View>
+                );
+            }
+
+            function SecondPage() {
+                const to = "/one";
+                const isTransitioning = useViewTransitionState(to);
+
+                return (
+                    <View
+                        style={[
+                            styles.card,
+                            {
+                                // 2️⃣ This is how View Transitions connect
+                                // elements between pages (using the same
+                                // name)👇.
+                                viewTransitionName: isTransitioning
+                                    ? "card-expand"
+                                    : "none",
+                                // 3️⃣ Any CSS properties that change are
+                                // transitioned between states/pages 👇.
+                                width: 480,
+                                height: 400,
+                                justifyContent: "space-between",
+                                marginInline: "auto",
+                            },
+                        ]}
+                    >
+                        <HeadingMedium>This is the Detail page</HeadingMedium>
+                        <img
+                            src="./km-ready.svg"
+                            alt="detail screenshot"
+                            height={150}
+                        />
+                        <Link
+                            href={to}
+                            style={[
+                                {
+                                    // 4️⃣ We can assign different VT names in
+                                    // any page, so different DOM elements can
+                                    // have different transitions 👇.
+                                    viewTransitionName: isTransitioning
+                                        ? "card-link"
+                                        : "none",
+                                    alignSelf: "flex-end",
+                                },
+                            ]}
+                            viewTransition
+                            startIcon={
+                                <PhosphorIcon
+                                    icon={IconMappings.caretLeftBold}
+                                />
+                            }
+                        >
+                            Go back to first page
+                        </Link>
+                    </View>
+                );
+            }
+
+            const router = createMemoryRouter(
+                [
+                    {
+                        path: "/",
+                        element: <Layout />,
+                        children: [
+                            {path: "/one", element: <FirstPage />},
+                            {path: "/two", element: <SecondPage />},
+                        ],
+                    },
+                ],
+                {
+                    initialEntries: ["/", "/one"],
+                    initialIndex: 1,
+                },
+            );
+            return <RouterProvider router={router} />;
         },
-    },
+    ],
 };
 
-export const WithTitle: StoryComponentType = () => (
-    <Body>
-        <Link href="#" title="I am a title 😎">
-            This link has a title.
-        </Link>
-    </Body>
-);
-
-WithTitle.parameters = {
-    docs: {
-        description: {
-            story: `Link can take a title prop. Give a link a title by
-        setting the \`title\` prop to a string. Hover over the link to see its title.`,
-        },
-    },
+/**
+ * Link can take a title prop. Give a link a title by setting the `title` prop
+ * to a string. Hover over the link to see its title.
+ */
+export const WithTitle: StoryComponentType = {
+    render: () => (
+        <Body>
+            <Link href="#link" title="I am a title 😎">
+                This link has a title.
+            </Link>
+        </Body>
+    ),
 };
 
-WithTitle.play = async ({canvasElement}) => {
-    const canvas = within(canvasElement);
-
-    const link = canvas.getByRole("link");
-
-    // Confirm that the link has a title attribute
-    await expect(link).toHaveAttribute("title");
-};
-
-export const RightToLeftWithIcons: StoryComponentType = () => (
-    <View style={{padding: spacing.medium_16}}>
-        <View style={styles.rightToLeft}>
-            <Link
-                href="/"
-                startIcon={<PhosphorIcon icon={IconMappings.caretRightBold} />}
-            >
-                هذا الرابط مكتوب باللغة العربية
-            </Link>
-            <Strut size={spacing.medium_16} />
-            <Link
-                href="/"
-                endIcon={<PhosphorIcon icon={IconMappings.caretLeftBold} />}
-            >
-                هذا الرابط مكتوب باللغة العربية
-            </Link>
-            <Strut size={spacing.medium_16} />
-            <Link
-                href="/"
-                startIcon={<PhosphorIcon icon={IconMappings.caretRightBold} />}
-                endIcon={<PhosphorIcon icon={IconMappings.caretLeftBold} />}
-            >
-                هذا الرابط مكتوب باللغة العربية
-            </Link>
+/**
+ * When in the right-to-left direction, the `startIcon` and `endIcon` are
+ * flipped. This example has text in Arabic, a right-to-left language.
+ */
+export const RightToLeftWithIcons: StoryComponentType = {
+    render: () => (
+        <View style={{padding: spacing.medium_16}}>
+            <View style={styles.rightToLeft}>
+                <Link
+                    href="/"
+                    startIcon={
+                        <PhosphorIcon icon={IconMappings.caretRightBold} />
+                    }
+                >
+                    هذا الرابط مكتوب باللغة العربية
+                </Link>
+                <Strut size={spacing.medium_16} />
+                <Link
+                    href="/"
+                    endIcon={<PhosphorIcon icon={IconMappings.caretLeftBold} />}
+                >
+                    هذا الرابط مكتوب باللغة العربية
+                </Link>
+                <Strut size={spacing.medium_16} />
+                <Link
+                    href="/"
+                    startIcon={
+                        <PhosphorIcon icon={IconMappings.caretRightBold} />
+                    }
+                    endIcon={<PhosphorIcon icon={IconMappings.caretLeftBold} />}
+                >
+                    هذا الرابط مكتوب باللغة العربية
+                </Link>
+            </View>
         </View>
-    </View>
-);
-
-RightToLeftWithIcons.parameters = {
-    docs: {
-        description: {
-            story: `When in the right-to-left direction, the \`startIcon\`
-        and \`endIcon\` are flipped. This example has text in Arabic, a
-        right-to-left language.`,
+    ),
+    parameters: {
+        chromatic: {
+            // Re-enable snapshots for this story since it's RTL
+            disableSnapshot: false,
         },
     },
 };
 
 const styles = StyleSheet.create({
-    darkBackground: {
-        backgroundColor: color.darkBlue,
-        color: color.white,
-        padding: 10,
-    },
     heading: {
         marginRight: spacing.large_24,
     },
     navigation: {
-        border: `1px dashed ${color.lightBlue}`,
+        border: `1px dashed ${semanticColor.core.border.neutral.subtle}`,
         marginTop: spacing.large_24,
         padding: spacing.large_24,
     },
-    pinkLink: {
-        color: color.pink,
+    customLink: {
+        color: semanticColor.status.critical.foreground,
     },
     row: {
         flexDirection: "row",
@@ -998,5 +699,13 @@ const styles = StyleSheet.create({
         display: "inline-block",
         marginBottom: spacing.xSmall_8,
         maxWidth: "15%",
+    },
+    card: {
+        background: semanticColor.surface.secondary,
+        border: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
+        borderRadius: border.radius.radius_040,
+        width: "100%",
+        height: "100%",
+        padding: sizing.size_160,
     },
 });

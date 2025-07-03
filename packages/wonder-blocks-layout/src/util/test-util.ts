@@ -23,7 +23,7 @@ const queries = {
 } as const;
 
 export function checkQuery(
-    queryString: typeof queries[keyof typeof queries],
+    queryString: (typeof queries)[keyof typeof queries],
     width: number,
 ): boolean {
     return (
@@ -45,7 +45,7 @@ type MatchMedia = {
  * @param {MediaQuery} query
  */
 export function matchMedia(
-    query: typeof queries[keyof typeof queries],
+    query: (typeof queries)[keyof typeof queries],
 ): MatchMedia {
     const listeners = new Set<Listener>();
 

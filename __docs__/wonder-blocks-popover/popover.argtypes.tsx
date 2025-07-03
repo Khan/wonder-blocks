@@ -1,33 +1,24 @@
 import * as React from "react";
 
 // Reusable stories
-import {
-    Default,
-    Emphasized,
-    WithIcon,
-    WithIllustration,
-} from "./popover-content.stories";
+import {Default, WithIcon, WithIllustration} from "./popover-content.stories";
 import {
     WithIcon as CoreWithIcon,
     WithDetailCell as CoreWithDetailCell,
-    Dark as CoreDark,
 } from "./popover-content-core.stories";
 
 // NOTE: Casting to any to avoid type errors.
 const DefaultWrapper = Default as any;
-const EmphasizedWrapper = Emphasized as any;
 const WithIconWrapper = WithIcon as any;
 const WithIllustrationWrapper = WithIllustration as any;
 const CoreWithIconWrapper = CoreWithIcon as any;
 const CoreWithDetailCellWrapper = CoreWithDetailCell as any;
-const CoreDarkWrapper = CoreDark as any;
 
 // NOTE: We have to use the `render` method to fix a bug in Storybook where
 // reusable stories don't render properly with CSF v3.
 // See https://github.com/storybookjs/storybook/issues/15954#issuecomment-1835905271
 export const ContentMappings = {
     withTextOnly: DefaultWrapper.render({...Default.args}),
-    withEmphasis: EmphasizedWrapper.render({...Emphasized.args}),
     withIcon: WithIconWrapper.render({...WithIcon.args}),
     withIllustration: WithIllustrationWrapper.render({
         ...WithIllustration.args,
@@ -36,7 +27,6 @@ export const ContentMappings = {
     coreWithCell: CoreWithDetailCellWrapper.render({
         ...CoreWithDetailCell.args,
     }),
-    coreDark: CoreDarkWrapper.render({...CoreDark.args}),
 };
 
 export default {
@@ -64,10 +54,10 @@ export default {
     content: {
         description:
             `The content of the popover. You can either use ` +
-            `[PopoverContent](../?path=/docs/popover-popovercontent--docs) ` +
+            `[PopoverContent](../?path=/docs/packages-popover-popovercontent--docs) ` +
             `with one of the pre-defined variants, or include your own ` +
             `custom content using ` +
-            `[PopoverContentCore](../?path=/docs/popover-popovercontentcore--docs) ` +
+            `[PopoverContentCore](../?path=/docs/packages-popover-popovercontentcore--docs) ` +
             `directly.`,
         control: {type: "select"},
         defaultValue: ContentMappings.withTextOnly,
@@ -120,6 +110,41 @@ export default {
         description: `Whether to show the popover tail or not.`,
         control: {
             type: "boolean",
+        },
+    },
+    rootBoundary: {
+        description:
+            `Optional property to set what the root boundary is for the popper behavior. ` +
+            `This is set to "viewport" by default, causing the popper to be positioned based ` +
+            `on the user's viewport. If set to "document", it will position itself based ` +
+            `on where there is available room within the document body.`,
+        control: {
+            type: "select",
+            options: ["viewport", "document"],
+        },
+    },
+    portal: {
+        description:
+            `Optional property to enable the portal functionality of popover.` +
+            `This is very handy in cases where the Popover can't be easily` +
+            `injected into the DOM structure and requires portaling to` +
+            `the trigger location.` +
+            `Set to "true" by default.\n\n` +
+            `CAUTION: Turning off portal could cause some clipping issues` +
+            `especially around legacy code with usage of z-indexing,` +
+            `Use caution when turning this functionality off and ensure` +
+            `your content does not get clipped or hidden.`,
+        control: {
+            type: "boolean",
+        },
+    },
+    viewportPadding: {
+        description:
+            `If \`rootBoundary\` is \`viewport\`, this padding value is ` +
+            `used to provide spacing between the popper and the viewport. ` +
+            `If not provided, default spacing of 12px is applied.`,
+        control: {
+            type: "number",
         },
     },
 };

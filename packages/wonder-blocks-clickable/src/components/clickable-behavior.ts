@@ -1,4 +1,6 @@
 import * as React from "react";
+import {keys} from "@khanacademy/wonder-blocks-core";
+import {NavigateFunction} from "react-router-dom-v5-compat";
 
 // NOTE: Potentially add to this as more cases come up.
 export type ClickableRole =
@@ -8,6 +10,7 @@ export type ClickableRole =
     | "listbox"
     | "menu"
     | "menuitem"
+    | "menuitemcheckbox"
     | "option"
     | "radio"
     | "switch"
@@ -100,10 +103,10 @@ type CommonProps = Readonly<{
      */
     safeWithNav?: () => Promise<unknown>;
     /**
-     * Passed in by withRouter HOC.
+     * Passed in by an HOC in get-clickable-behavior.tsx.
      * @ignore
      */
-    history?: any;
+    navigate?: NavigateFunction;
     /**
      * A role that encapsulates how the clickable component should behave, which
      * affects which keyboard actions trigger the component. For example, a
@@ -131,6 +134,16 @@ type CommonProps = Readonly<{
      * Respond to a raw "mouseup" event.
      */
     onMouseUp?: (e: React.MouseEvent) => unknown;
+
+    /**
+     * An optional prop that enables a
+     * [https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API](View
+     * Transition) for this navigation by wrapping the final state update in
+     * `document.startViewTransition()`.
+     *
+     * @see https://reactrouter.com/6.30.0/components/link#viewtransition
+     */
+    viewTransition?: boolean;
 }>;
 
 type Props =
@@ -226,11 +239,6 @@ const disabledHandlers = {
     onTouchCancel: () => void 0,
     onKeyDown: () => void 0,
     onKeyUp: () => void 0,
-} as const;
-
-const keyCodes = {
-    enter: 13,
-    space: 32,
 } as const;
 
 const startState: ClickableState = {
@@ -357,7 +365,7 @@ export default class ClickableBehavior extends React.Component<
     navigateOrReset(shouldNavigate: boolean) {
         if (shouldNavigate) {
             const {
-                history,
+                navigate,
                 href,
                 skipClientNav,
                 target = undefined,
@@ -366,8 +374,13 @@ export default class ClickableBehavior extends React.Component<
                 if (target === "_blank") {
                     window.open(href, "_blank");
                     this.setState({waiting: false});
-                } else if (history && !skipClientNav) {
-                    history.push(href);
+                } else if (navigate && !skipClientNav) {
+                    // viewTransition needs to be set for enabling the
+                    // View Transition API.
+                    // @see https://remix.run/docs/en/main/hooks/use-navigate#options
+                    navigate(href, {
+                        viewTransition: this.props.viewTransition,
+                    });
                     this.setState({waiting: false});
                 } else {
                     window.location.assign(href);
@@ -384,9 +397,9 @@ export default class ClickableBehavior extends React.Component<
         safeWithNav: () => Promise<unknown>,
         shouldNavigate: boolean,
     ): Promise<void> {
-        const {skipClientNav, history} = this.props;
+        const {skipClientNav, navigate} = this.props;
 
-        if ((history && !skipClientNav) || this.props.target === "_blank") {
+        if ((navigate && !skipClientNav) || this.props.target === "_blank") {
             // client-side nav
             safeWithNav();
 
@@ -559,13 +572,12 @@ export default class ClickableBehavior extends React.Component<
         if (onKeyDown) {
             onKeyDown(e);
         }
-
-        const keyCode = e.which || e.keyCode;
+        const keyName = e.key;
         const {triggerOnEnter, triggerOnSpace} =
             getAppropriateTriggersForRole(role);
         if (
-            (triggerOnEnter && keyCode === keyCodes.enter) ||
-            (triggerOnSpace && keyCode === keyCodes.space)
+            (triggerOnEnter && keyName === keys.enter) ||
+            (triggerOnSpace && keyName === keys.space)
         ) {
             // This prevents space from scrolling down. It also prevents the
             // space and enter keys from triggering click events. We manually
@@ -573,7 +585,7 @@ export default class ClickableBehavior extends React.Component<
             // handleKeyUp instead.
             e.preventDefault();
             this.setState({pressed: true});
-        } else if (!triggerOnEnter && keyCode === keyCodes.enter) {
+        } else if (!triggerOnEnter && keyName === keys.enter) {
             // If the component isn't supposed to trigger on enter, we have to
             // keep track of the enter keydown to negate the onClick callback
             this.enterClick = true;
@@ -586,17 +598,17 @@ export default class ClickableBehavior extends React.Component<
             onKeyUp(e);
         }
 
-        const keyCode = e.which || e.keyCode;
+        const keyName = e.key;
         const {triggerOnEnter, triggerOnSpace} =
             getAppropriateTriggersForRole(role);
         if (
-            (triggerOnEnter && keyCode === keyCodes.enter) ||
-            (triggerOnSpace && keyCode === keyCodes.space)
+            (triggerOnEnter && keyName === keys.enter) ||
+            (triggerOnSpace && keyName === keys.space)
         ) {
             this.setState({pressed: false, focused: true});
 
             this.runCallbackAndMaybeNavigate(e);
-        } else if (!triggerOnEnter && keyCode === keyCodes.enter) {
+        } else if (!triggerOnEnter && keyName === keys.enter) {
             this.enterClick = false;
         }
     };

@@ -1,11 +1,10 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {Link} from "react-router-dom";
-import {__RouterContext} from "react-router";
+import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import {color} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 import getClickableBehavior from "../util/get-clickable-behavior";
 import type {ClickableRole, ClickableState} from "./clickable-behavior";
@@ -169,7 +168,7 @@ type Props =
           target?: never;
       });
 
-const StyledAnchor = addStyle("a");
+const StyledA = addStyle("a");
 const StyledButton = addStyle("button");
 const StyledLink = addStyle(Link);
 
@@ -215,14 +214,20 @@ const Clickable = React.forwardRef(function Clickable(
 ) {
     const getCorrectTag: (
         clickableState: ClickableState,
-        router: any,
+        inRouterContext: boolean,
         commonProps: {
             [key: string]: any;
         },
-    ) => React.ReactElement = (clickableState, router, commonProps) => {
+    ) => React.ReactElement = (
+        clickableState,
+        inRouterContext,
+        commonProps,
+    ) => {
         const activeHref = props.href && !props.disabled;
         const useClient =
-            router && !props.skipClientNav && isClientSideUrl(props.href || "");
+            inRouterContext &&
+            !props.skipClientNav &&
+            isClientSideUrl(props.href || "");
 
         // NOTE: checking this.props.href here is redundant, but TypeScript
         // needs it to refine this.props.href to a string.
@@ -241,7 +246,7 @@ const Clickable = React.forwardRef(function Clickable(
             );
         } else if (activeHref && !useClient) {
             return (
-                <StyledAnchor
+                <StyledA
                     {...commonProps}
                     href={props.href}
                     role={props.role}
@@ -250,7 +255,7 @@ const Clickable = React.forwardRef(function Clickable(
                     ref={ref as React.Ref<HTMLAnchorElement>}
                 >
                     {props.children(clickableState)}
-                </StyledAnchor>
+                </StyledA>
             );
         } else {
             return (
@@ -266,103 +271,94 @@ const Clickable = React.forwardRef(function Clickable(
         }
     };
 
-    const renderClickableBehavior: (router: any) => React.ReactNode = (
-        router: any,
-    ) => {
-        const {
-            href,
-            onClick,
-            skipClientNav,
-            beforeNav = undefined,
-            safeWithNav = undefined,
-            style,
-            target = undefined,
-            testId,
-            onFocus,
-            onKeyDown,
-            onKeyUp,
-            onMouseDown,
-            onMouseUp,
-            hideDefaultFocusRing,
-            light,
-            disabled,
-            tabIndex,
-            ...restProps
-        } = props;
-        const ClickableBehavior = getClickableBehavior(
-            href,
-            skipClientNav,
-            router,
-        );
-
-        const getStyle = (state: ClickableState): StyleType => [
-            styles.reset,
-            styles.link,
-            !hideDefaultFocusRing &&
-                state.focused &&
-                (light ? styles.focusedLight : styles.focused),
-            disabled && styles.disabled,
-            style,
-        ];
-
-        if (beforeNav) {
-            return (
-                <ClickableBehavior
-                    href={href}
-                    onClick={onClick}
-                    beforeNav={beforeNav}
-                    safeWithNav={safeWithNav}
-                    onFocus={onFocus}
-                    onKeyDown={onKeyDown}
-                    onKeyUp={onKeyUp}
-                    onMouseDown={onMouseDown}
-                    onMouseUp={onMouseUp}
-                    disabled={disabled}
-                    tabIndex={tabIndex}
-                >
-                    {(state, childrenProps) =>
-                        getCorrectTag(state, router, {
-                            ...restProps,
-                            "data-test-id": testId,
-                            style: getStyle(state),
-                            ...childrenProps,
-                        })
-                    }
-                </ClickableBehavior>
-            );
-        } else {
-            return (
-                <ClickableBehavior
-                    href={href}
-                    onClick={onClick}
-                    safeWithNav={safeWithNav}
-                    onFocus={onFocus}
-                    onKeyDown={onKeyDown}
-                    onKeyUp={onKeyUp}
-                    onMouseDown={onMouseDown}
-                    onMouseUp={onMouseUp}
-                    target={target}
-                    disabled={disabled}
-                    tabIndex={tabIndex}
-                >
-                    {(state, childrenProps) =>
-                        getCorrectTag(state, router, {
-                            ...restProps,
-                            "data-test-id": testId,
-                            style: getStyle(state),
-                            ...childrenProps,
-                        })
-                    }
-                </ClickableBehavior>
-            );
-        }
-    };
-
-    return (
-        <__RouterContext.Consumer>
-            {(router) => renderClickableBehavior(router)}
-        </__RouterContext.Consumer>
+    const inRouterContext = useInRouterContext();
+    const {
+        href,
+        onClick,
+        skipClientNav,
+        beforeNav = undefined,
+        safeWithNav = undefined,
+        style,
+        target = undefined,
+        testId,
+        onFocus,
+        onKeyDown,
+        onKeyUp,
+        onMouseDown,
+        onMouseUp,
+        hideDefaultFocusRing,
+        light,
+        disabled,
+        tabIndex,
+        ...restProps
+    } = props;
+    const ClickableBehavior = getClickableBehavior(
+        href,
+        skipClientNav,
+        inRouterContext,
     );
+
+    const getStyle = (state: ClickableState): StyleType => [
+        styles.reset,
+        styles.link,
+        !hideDefaultFocusRing &&
+            state.focused &&
+            (light ? styles.focusedLight : styles.focused),
+        disabled && styles.disabled,
+        style,
+    ];
+
+    if (beforeNav) {
+        return (
+            <ClickableBehavior
+                href={href}
+                onClick={onClick}
+                beforeNav={beforeNav}
+                safeWithNav={safeWithNav}
+                onFocus={onFocus}
+                onKeyDown={onKeyDown}
+                onKeyUp={onKeyUp}
+                onMouseDown={onMouseDown}
+                onMouseUp={onMouseUp}
+                disabled={disabled}
+                tabIndex={tabIndex}
+            >
+                {(state, childrenProps) =>
+                    getCorrectTag(state, inRouterContext, {
+                        ...restProps,
+                        "data-testid": testId,
+                        style: getStyle(state),
+                        ...childrenProps,
+                    })
+                }
+            </ClickableBehavior>
+        );
+    } else {
+        return (
+            <ClickableBehavior
+                href={href}
+                onClick={onClick}
+                safeWithNav={safeWithNav}
+                onFocus={onFocus}
+                onKeyDown={onKeyDown}
+                onKeyUp={onKeyUp}
+                onMouseDown={onMouseDown}
+                onMouseUp={onMouseUp}
+                target={target}
+                disabled={disabled}
+                tabIndex={tabIndex}
+            >
+                {(state, childrenProps) =>
+                    getCorrectTag(state, inRouterContext, {
+                        ...restProps,
+                        "data-testid": testId,
+                        style: getStyle(state),
+                        ...childrenProps,
+                    })
+                }
+            </ClickableBehavior>
+        );
+    }
 });
 
 Clickable.defaultProps = {
@@ -410,20 +406,21 @@ const styles = StyleSheet.create({
     },
     focused: {
         ":focus": {
-            outline: `solid 2px ${color.blue}`,
+            outline: `solid ${border.width.medium} ${semanticColor.focus.outer}`,
         },
     },
+    // TODO(WB-1852): Remove light variant.
     focusedLight: {
-        outline: `solid 2px ${color.white}`,
+        outline: `solid ${border.width.medium} ${semanticColor.core.border.inverse.strong}`,
     },
     disabled: {
-        color: color.offBlack32,
+        color: semanticColor.action.secondary.disabled.foreground,
         cursor: "not-allowed",
         ":focus": {
             outline: "none",
         },
         ":focus-visible": {
-            outline: `solid 2px ${color.blue}`,
+            outline: `solid ${border.width.medium} ${semanticColor.focus.outer}`,
         },
     },
 });

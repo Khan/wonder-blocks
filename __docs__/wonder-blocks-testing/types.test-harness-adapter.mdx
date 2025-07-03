@@ -1,0 +1,16 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta
+    title="Packages / Testing / Test Harness / Types / TestHarnessAdapter<>"
+/>
+
+# TestHarnessAdapter\<>
+
+```ts
+type TestHarnessAdapter<TConfig> = (
+    children: React.Node,
+    config: TConfig,
+) => React.Element<any>;
+```
+
+This type represents the signature of a an adapter function for use with the test harness framework methods, <a href="./?path=/docs/packages-testing-test-harness-exports-maketestharness--docs">`makeTestHarness()`</a> and <a href="./?path=/docs/packages-testing-test-harness-exports-makehookharness--docs">`makeHookHarness()`</a>.

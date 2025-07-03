@@ -3,7 +3,6 @@ import {render, screen, fireEvent} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
 import {StyleSheet} from "aphrodite";
-import {color} from "@khanacademy/wonder-blocks-tokens";
 import LabeledTextField from "../labeled-text-field";
 
 describe("LabeledTextField", () => {
@@ -59,12 +58,13 @@ describe("LabeledTextField", () => {
 
         // Act
         render(<LabeledTextField label="Label" value="" onChange={() => {}} />);
+        const input = await screen.findByRole("textbox");
+        const result = input.getAttribute("id");
 
         // Assert
-        // Since the generated id is unique, we cannot know what it will be.
-        // We only test if the id attribute starts with "uid-" and ends with "-field".
-        const input = await screen.findByRole("textbox");
-        expect(input.getAttribute("id")).toMatch(/uid-.*-field/);
+        // Since the generated id is unique, we cannot know what it will be. We
+        // only that it ends with "-field".
+        expect(result).toMatch(/.*-field/);
     });
 
     it("type prop is passed to input", async () => {
@@ -171,7 +171,7 @@ describe("LabeledTextField", () => {
 
         // Assert
         const input = await screen.findByRole("textbox");
-        expect(input).toBeDisabled();
+        expect(input).toHaveAttribute("aria-disabled", "true");
     });
 
     it("ariaDescribedby prop sets aria-describedby", async () => {
@@ -205,16 +205,14 @@ describe("LabeledTextField", () => {
                 // ariaDescribedby is not passed in
             />,
         );
+        const input = await screen.findByRole("textbox");
+        const result = input.getAttribute("aria-describedby");
 
         // Assert
         // Since the generated aria-describedby is unique,
         // we cannot know what it will be.
-        // We only test if the aria-describedby attribute starts with
-        // "uid-" and ends with "-error".
-        const input = await screen.findByRole("textbox");
-        expect(input.getAttribute("aria-describedby")).toMatch(
-            /^uid-.*-error$/,
-        );
+        // We only test if the aria-describedby attribute ends with "-error".
+        expect(result).toMatch(/^.*-error$/);
     });
 
     it("validate prop is called when input changes", async () => {
@@ -331,7 +329,7 @@ describe("LabeledTextField", () => {
 
         // Act
         const field = await screen.findByRole("textbox");
-        field.focus();
+        await userEvent.click(field);
 
         // Assert
         expect(handleFocus).toHaveBeenCalled();
@@ -379,8 +377,9 @@ describe("LabeledTextField", () => {
         expect(input).toBeInTheDocument();
     });
 
-    it("light prop is passed to textfield", async () => {
+    it("name prop is passed to input", async () => {
         // Arrange
+        const name = "test-name";
 
         // Act
         render(
@@ -388,17 +387,13 @@ describe("LabeledTextField", () => {
                 label="Label"
                 value=""
                 onChange={() => {}}
-                light={true}
+                name={name}
             />,
         );
 
-        const textField = await screen.findByRole("textbox");
-        textField.focus();
-
         // Assert
-        expect(textField).toHaveStyle({
-            boxShadow: `0px 0px 0px 1px ${color.blue}, 0px 0px 0px 2px ${color.white}`,
-        });
+        const input = await screen.findByRole("textbox");
+        expect(input).toHaveAttribute("name", name);
     });
 
     it("style prop is passed to fieldheading", async () => {
@@ -441,7 +436,7 @@ describe("LabeledTextField", () => {
 
         // Assert
         const input = await screen.findByRole("textbox");
-        expect(input).toHaveAttribute("data-test-id", `${testId}-field`);
+        expect(input).toHaveAttribute("data-testid", `${testId}-field`);
     });
 
     it("readOnly prop is passed to textfield", async () => {
@@ -479,6 +474,81 @@ describe("LabeledTextField", () => {
         // Assert
         const input = await screen.findByRole("textbox");
         expect(input).toHaveAttribute("autoComplete", autoComplete);
+    });
+
+    it("aria-invalid is set true if given an invalid input", async () => {
+        // Arrange
+        const handleValidate = jest.fn((errorMessage?: string | null) => {});
+
+        const validate = (value: string): string | null | undefined => {
+            if (value.length < 8) {
+                return "Password must be at least 8 characters long";
+            }
+        };
+
+        const TextFieldWrapper = () => {
+            const [value, setValue] = React.useState("LongerThan8Chars");
+
+            return (
+                <LabeledTextField
+                    label="Label"
+                    value={value}
+                    onChange={setValue}
+                    validate={validate}
+                    onValidate={handleValidate}
+                />
+            );
+        };
+
+        render(<TextFieldWrapper />);
+
+        // Act
+        // Select all text and replace it with the new value.
+        const textbox = await screen.findByRole("textbox");
+        await userEvent.click(textbox);
+        await userEvent.clear(textbox);
+        await userEvent.paste("Short");
+
+        // Assert
+        expect(textbox).toHaveAttribute("aria-invalid", "true");
+    });
+
+    it("aria-invalid is set false if given a valid input", async () => {
+        // Arrange
+        const handleValidate = jest.fn((errorMessage?: string | null) => {});
+
+        const validate = (value: string): string | null | undefined => {
+            if (value.length < 8) {
+                return "Password must be at least 8 characters long";
+            }
+        };
+
+        const TextFieldWrapper = () => {
+            const [value, setValue] = React.useState("Short");
+
+            return (
+                <LabeledTextField
+                    label="Label"
+                    value={value}
+                    onChange={setValue}
+                    validate={validate}
+                    onValidate={handleValidate}
+                />
+            );
+        };
+
+        render(<TextFieldWrapper />);
+
+        // Act
+        // Select all text and replace it with the new value.
+        const textbox = await screen.findByRole("textbox");
+        await userEvent.click(textbox);
+        await userEvent.clear(textbox);
+        await userEvent.paste("LongerThan8Chars");
+        const shortTextbox = await screen.findByRole("textbox");
+
+        // Assert
+        expect(shortTextbox).toHaveAttribute("aria-invalid", "false");
     });
 });
 
@@ -618,6 +688,47 @@ describe("Required LabeledTextField", () => {
         );
         textField.focus();
         await userEvent.type(textField, "a");
+        await userEvent.clear(textField);
+
+        // Act
+        textField.blur();
+
+        // Assert
+        expect(await screen.findByRole("alert")).toHaveTextContent(
+            errorMessage,
+        );
+    });
+
+    test("displays an error even when onValidate is set", async () => {
+        // Arrange
+        const errorMessage = "Empty string!";
+
+        const validate = (value: string): string | null | undefined => {
+            if (value === "") {
+                return errorMessage;
+            }
+        };
+
+        const TextFieldWrapper = () => {
+            const [value, setValue] = React.useState("initial");
+            return (
+                <LabeledTextField
+                    label="Label"
+                    value={value}
+                    onChange={setValue}
+                    validate={validate}
+                    onValidate={jest.fn()}
+                    testId="test-labeled-text-field"
+                />
+            );
+        };
+
+        render(<TextFieldWrapper />);
+
+        const textField = await screen.findByTestId(
+            "test-labeled-text-field-field",
+        );
+        textField.focus();
         await userEvent.clear(textField);
 
         // Act

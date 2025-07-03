@@ -36,7 +36,7 @@ describe("Checkbox", () => {
         const checkbox = screen.getByRole("checkbox");
 
         // Assert
-        expect(checkbox).toHaveAttribute("id", "uid-choice-1-main");
+        expect(checkbox).toHaveAttribute("id", expect.any(String));
     });
 
     test("clicking the checkbox triggers `onChange`", () => {
@@ -76,6 +76,25 @@ describe("Checkbox", () => {
             "Receive assignment reminders for Algebra",
         );
         checkboxLabel.click();
+
+        // Assert
+        expect(onChangeSpy).toHaveBeenCalled();
+    });
+
+    test("clicking the inputWrapper triggers `onChange`", () => {
+        // Arrange
+        const onChangeSpy = jest.fn();
+        render(
+            <Checkbox
+                label="Receive assignment reminders for Algebra"
+                checked={false}
+                onChange={onChangeSpy}
+            />,
+        );
+
+        // Act
+        const checkboxWrapper = screen.getByTestId("wb-checkbox-wrapper");
+        checkboxWrapper.click();
 
         // Assert
         expect(onChangeSpy).toHaveBeenCalled();

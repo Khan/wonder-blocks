@@ -1,7 +1,9 @@
 import * as React from "react";
+import type {ArgTypes} from "@storybook/react";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Pill from "@khanacademy/wonder-blocks-pill";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
+import type {ActionItem} from "@khanacademy/wonder-blocks-dropdown";
 
 const AccessoryMappings = {
     none: null,
@@ -22,13 +24,13 @@ export default {
         control: {type: "boolean"},
         description: "Whether or not the action item is disabled.",
         table: {
-            defaultValue: {summary: false},
+            defaultValue: {summary: "false"},
             type: {summary: "boolean"},
         },
         type: {name: "boolean", required: true},
     },
     onClick: {
-        control: {type: null},
+        control: {type: undefined},
         description:
             `Callback when the action item is clicked.\n\n` +
             `Note: \`onClick\` is optional if \`href\` is present, but must ` +
@@ -84,7 +86,11 @@ export default {
             defaultValue: {summary: "none"},
             type: {summary: `"none" | "inset" | "full-width"`},
         },
-        type: {name: `"none" | "inset" | "full-width"`, required: false},
+        type: {
+            name: "enum",
+            value: ["none", "inset", "full-width"],
+            required: false,
+        },
     },
     leftAccessory: {
         options: Object.keys(AccessoryMappings) as Array<React.ReactNode>,
@@ -94,7 +100,7 @@ export default {
         table: {
             type: {summary: "React.Node"},
         },
-        type: {name: "React.Node", required: false},
+        type: {name: "other", required: false, value: "React.Node"},
     },
     rightAccessory: {
         options: Object.keys(AccessoryMappings) as Array<React.ReactNode>,
@@ -104,6 +110,18 @@ export default {
         table: {
             type: {summary: "React.Node"},
         },
-        type: {name: "React.Node", required: false},
+        type: {name: "other", required: false, value: "React.Node"},
     },
-};
+    active: {
+        control: {type: "boolean"},
+        description:
+            `Optional; applies aria-current to the cell.\n\n` +
+            `This is used to indicate that the action item is currently active.`,
+        table: {
+            type: {summary: "boolean"},
+        },
+        type: {name: "boolean", required: false},
+    },
+} satisfies ArgTypes<
+    Omit<React.ComponentProps<typeof ActionItem>, "indent" | "role">
+>;

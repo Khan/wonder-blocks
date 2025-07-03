@@ -34,7 +34,7 @@ type Props<
      *
      * Default is `OnClientRender.ExecuteWhenNoSuccessResult`.
      */
-    clientBehavior?: typeof WhenClientSide[keyof typeof WhenClientSide];
+    clientBehavior?: (typeof WhenClientSide)[keyof typeof WhenClientSide];
     /**
      * When true, the children will be rendered with the existing result
      * until the pending load is completed. Otherwise, the children will be

@@ -26,18 +26,18 @@ const defaultTheme = {
         },
     },
     border: {
-        radius: tokens.border.radius.medium_4,
+        radius: tokens.border.radius.radius_040,
     },
 };
 
 const customTheme = mergeTheme(defaultTheme, {
     color: {
         bg: {
-            primary: tokens.color.pink,
+            primary: tokens.color.purple,
         },
     },
     border: {
-        radius: tokens.border.radius.large_6,
+        radius: tokens.border.radius.radius_080,
     },
 });
 

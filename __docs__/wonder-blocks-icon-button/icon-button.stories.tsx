@@ -1,5 +1,7 @@
 /* eslint-disable no-console */
 import * as React from "react";
+import {MemoryRouter} from "react-router-dom";
+import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
 import {StyleSheet} from "aphrodite";
 import {action} from "@storybook/addon-actions";
 import type {Meta, StoryObj} from "@storybook/react";
@@ -12,15 +14,15 @@ import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 import magnifyingGlassBold from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";
 import minusCircle from "@phosphor-icons/core/regular/minus-circle.svg";
 
-import {MemoryRouter, Route, Switch} from "react-router";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon-button/package.json";
 import IconButtonArgtypes from "./icon-button.argtypes";
+import TextField from "../../packages/wonder-blocks-form/src/components/text-field";
 
 /**
  * An `IconButton` is a button whose contents are an SVG image.
@@ -28,8 +30,7 @@ import IconButtonArgtypes from "./icon-button.argtypes";
  * To use, supply an `onClick` function, a Phosphor icon asset (see the
  * `Icon>PhosphorIcon` section) and an `aria-label` to describe the button
  * functionality. Optionally specify href (URL), clientSideNav, color (Wonder
- * Blocks Blue or Red), kind ("primary", "secondary", or "tertiary"), light
- * (whether the IconButton will be rendered on a dark background), disabled ,
+ * Blocks Blue or Red), kind ("primary", "secondary", or "tertiary"), disabled,
  * test ID, and custom styling.
  *
  * The size of an `IconButton` is based on how the `size` prop is defined (see
@@ -62,7 +63,7 @@ import IconButtonArgtypes from "./icon-button.argtypes";
  * ```
  */
 export default {
-    title: "IconButton",
+    title: "Packages / IconButton / IconButton",
     component: IconButton,
     decorators: [(Story): React.ReactElement => <View>{Story()}</View>],
     parameters: {
@@ -74,7 +75,7 @@ export default {
         ),
         chromatic: {
             // Disabling all snapshots because we are testing all the variants
-            // in `icon-button-variants.stories.tsx`.
+            // in `icon-button-testing-snapshots.stories.tsx`.
             disableSnapshot: true,
         },
         docs: {
@@ -84,6 +85,9 @@ export default {
         },
     },
     argTypes: IconButtonArgtypes,
+    args: {
+        "aria-label": "Search",
+    },
 } as Meta<typeof IconButton>;
 
 type StoryComponentType = StoryObj<typeof IconButton>;
@@ -95,7 +99,7 @@ type StoryComponentType = StoryObj<typeof IconButton>;
 export const Default: StoryComponentType = {
     args: {
         icon: magnifyingGlass,
-        color: "default",
+        actionType: "progressive",
         disabled: false,
         kind: "primary",
         size: "medium",
@@ -115,6 +119,7 @@ export const Default: StoryComponentType = {
  * - `xsmall` (16px icon with a 24px touch target).
  * - `small` (24px icon with a 32px touch target).
  * - `medium` (24px icon with a 40px touch target).
+ * - `large` (24px icon with a 48px touch target).
  */
 export const Sizes: StoryComponentType = {
     ...Default,
@@ -139,6 +144,10 @@ export const Sizes: StoryComponentType = {
                 <LabelMedium style={styles.label}>medium</LabelMedium>
                 <IconButton {...args} size="medium" />
             </View>
+            <View style={styles.row}>
+                <LabelMedium style={styles.label}>large</LabelMedium>
+                <IconButton {...args} size="large" />
+            </View>
         </View>
     ),
 };
@@ -147,7 +156,7 @@ export const Sizes: StoryComponentType = {
  * In this example, we have `primary`, `secondary`, `tertiary`,
  * and disabled `IconButton`s from left to right.
  */
-export const Variants: StoryComponentType = {
+export const Kinds: StoryComponentType = {
     render: () => {
         return (
             <View style={styles.row}>
@@ -180,92 +189,75 @@ export const Variants: StoryComponentType = {
 };
 
 /**
- * IconButton has a `color` that is either `default` (the default, as shown
- * above) or `destructive` (as can seen below):
+ * IconButton has an `actionType` prop that is either `progressive` (the default, as shown
+ * above), `destructive` or `neutral` (as can seen below):
  */
-export const WithColor: StoryComponentType = {
-    name: "Color",
-    render: () => (
-        <View style={styles.row}>
-            <IconButton
-                icon={minusCircle}
-                onClick={() => {}}
-                color="destructive"
-            />
-            <IconButton
-                icon={minusCircle}
-                onClick={() => {}}
-                kind="secondary"
-                color="destructive"
-            />
-            <IconButton
-                icon={minusCircle}
-                onClick={() => {}}
-                kind="tertiary"
-                color="destructive"
-            />
-            <IconButton
-                disabled={true}
-                icon={minusCircle}
-                aria-label="search"
-                onClick={(e) => console.log("Click!")}
-                color="destructive"
-            />
+export const WithActionType: StoryComponentType = {
+    name: "ActionType",
+    render: (args) => (
+        <View style={{gap: spacing.medium_16}}>
+            <View style={styles.row}>
+                <IconButton
+                    {...args}
+                    icon={minusCircle}
+                    onClick={() => {}}
+                    actionType="destructive"
+                />
+                <IconButton
+                    {...args}
+                    icon={minusCircle}
+                    onClick={() => {}}
+                    kind="secondary"
+                    actionType="destructive"
+                />
+                <IconButton
+                    {...args}
+                    icon={minusCircle}
+                    onClick={() => {}}
+                    kind="tertiary"
+                    actionType="destructive"
+                />
+                <IconButton
+                    {...args}
+                    disabled={true}
+                    icon={minusCircle}
+                    aria-label="search"
+                    onClick={(e) => console.log("Click!")}
+                    actionType="destructive"
+                />
+            </View>
+            <View style={styles.row}>
+                <IconButton
+                    {...args}
+                    icon={minusCircle}
+                    onClick={() => {}}
+                    actionType="neutral"
+                />
+                <IconButton
+                    {...args}
+                    icon={minusCircle}
+                    onClick={() => {}}
+                    kind="secondary"
+                    actionType="neutral"
+                />
+                <IconButton
+                    {...args}
+                    icon={minusCircle}
+                    onClick={() => {}}
+                    kind="tertiary"
+                    actionType="neutral"
+                />
+                <IconButton
+                    {...args}
+                    disabled={true}
+                    icon={minusCircle}
+                    aria-label="search"
+                    onClick={(e) => console.log("Click!")}
+                    actionType="neutral"
+                />
+            </View>
         </View>
     ),
-};
-
-/**
- * An `IconButton` on a dark background. Only the primary kind is allowed to have
- * the `light` prop set to true.
- */
-export const Light: StoryComponentType = {
-    render: () => {
-        return (
-            <View style={[styles.dark, styles.row]}>
-                <IconButton
-                    icon={magnifyingGlass}
-                    aria-label="search"
-                    light={true}
-                    onClick={(e) => console.log("Click!")}
-                />
-                <IconButton
-                    color="destructive"
-                    icon={magnifyingGlass}
-                    aria-label="search"
-                    light={true}
-                    onClick={(e) => console.log("Click!")}
-                />
-            </View>
-        );
-    },
-};
-
-/**
- * This is a disabled icon button with the `light` prop set to true.
- */
-export const DisabledLight: StoryComponentType = {
-    render: () => {
-        return (
-            <View style={[styles.dark, styles.row]}>
-                <IconButton
-                    disabled={true}
-                    icon={magnifyingGlass}
-                    aria-label="search"
-                    light={true}
-                    onClick={(e) => console.log("Click!")}
-                />
-                <IconButton
-                    color="destructive"
-                    disabled={true}
-                    icon={magnifyingGlass}
-                    aria-label="search"
-                    light={true}
-                    onClick={(e) => console.log("Click!")}
-                />
-            </View>
-        );
-    },
 };
 
 /**
@@ -318,42 +310,80 @@ export const WithRouter: StoryComponentType = {
     name: "Navigation with React Router",
     render: () => (
         <MemoryRouter>
-            <View style={styles.row}>
-                <IconButton
-                    href="/foo"
-                    icon={caretRight}
-                    onClick={() => console.log("Click!")}
-                    aria-label="Navigate to /foo using React Router"
-                />
-                <IconButton
-                    href="https://www.khanacademy.org"
-                    target="_blank"
-                    icon={externalLinkIcon}
-                    onClick={() => console.log("Click!")}
-                    aria-label="Skip client navigation"
-                    skipClientNav
-                />
-                <Switch>
-                    <Route path="/foo">
-                        <View id="foo">Hello, world!</View>
-                    </Route>
-                </Switch>
-            </View>
+            <CompatRouter>
+                <View style={styles.row}>
+                    <IconButton
+                        href="/foo"
+                        icon={caretRight}
+                        onClick={() => console.log("Click!")}
+                        aria-label="Navigate to /foo using React Router"
+                    />
+                    <IconButton
+                        href="https://www.khanacademy.org"
+                        target="_blank"
+                        icon={externalLinkIcon}
+                        onClick={() => console.log("Click!")}
+                        aria-label="Skip client navigation"
+                        skipClientNav
+                    />
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={<View id="foo">Hello, world!</View>}
+                        />
+                    </Routes>
+                </View>
+            </CompatRouter>
         </MemoryRouter>
     ),
 };
 
-const styles = StyleSheet.create({
-    dark: {
-        backgroundColor: color.darkBlue,
-        padding: spacing.medium_16,
+/**
+ * If the button is inside a form, you can use the `type="submit"` prop, so the
+ * form will be submitted on click or by pressing `Enter`.
+ */
+export const SubmittingForms: StoryComponentType = {
+    name: "Submitting forms",
+    render: () => (
+        <form
+            onSubmit={(e) => {
+                e.preventDefault();
+                console.log("form submitted");
+                action("form submitted")(e);
+            }}
+        >
+            <View style={styles.row}>
+                <LabelMedium tag="label" style={styles.row}>
+                    Search:{" "}
+                    <TextField
+                        id="foo"
+                        value="press the button"
+                        onChange={() => {}}
+                    />
+                </LabelMedium>
+                <IconButton
+                    icon={magnifyingGlass}
+                    aria-label="Search"
+                    type="submit"
+                />
+            </View>
+        </form>
+    ),
+    parameters: {
+        chromatic: {
+            // We are testing the form submission, not UI changes.
+            disableSnapshot: true,
+        },
     },
+};
+
+const styles = StyleSheet.create({
     arrowsWrapper: {
         flexDirection: "row",
-        justifyContent: "space-between",
-        width: spacing.xxxLarge_64,
+        gap: spacing.medium_16,
     },
     row: {
+        display: "flex",
         flexDirection: "row",
         gap: spacing.medium_16,
         alignItems: "center",

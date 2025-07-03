@@ -7,11 +7,13 @@ import magnifyingGlassPlus from "@phosphor-icons/core/regular/magnifying-glass-p
 import magnifyingGlassMinus from "@phosphor-icons/core/regular/magnifying-glass-minus.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Link from "@khanacademy/wonder-blocks-link";
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 
 const mobile = "@media (max-width: 1023px)";
 
@@ -19,7 +21,8 @@ const styles = StyleSheet.create({
     fillContent: {
         marginLeft: spacing.small_12,
         [mobile]: {
-            width: "100vw",
+            marginLeft: 0,
+            width: "100%",
         },
     },
     onlyDesktop: {
@@ -35,15 +38,48 @@ type Mappings = {
 
 export const leftContentMappings: Mappings = {
     none: null,
-    dismissButton: <IconButton icon={xIcon} kind="tertiary" />,
-    lightButton: <IconButton icon={xIcon} light={true} />,
-    hintButton: <IconButton icon={lightbulb} kind="primary" />,
+    dismissButton: (
+        <IconButton
+            aria-label="Dismiss"
+            icon={xIcon}
+            kind="tertiary"
+            actionType="neutral"
+        />
+    ),
+    hintButton: (
+        <IconButton aria-label="Hint" icon={lightbulb} kind="tertiary" />
+    ),
     multipleContent: (
         <>
-            <IconButton icon={magnifyingGlassMinus} kind="primary" />
+            <IconButton
+                aria-label="Zoom out"
+                icon={magnifyingGlassMinus}
+                kind="tertiary"
+            />
             <Strut size={spacing.medium_16} />
-            <IconButton icon={magnifyingGlassPlus} kind="primary" />
+            <IconButton
+                aria-label="Zoom in"
+                icon={magnifyingGlassPlus}
+                kind="tertiary"
+            />
         </>
+    ),
+    exitWithTitle: (
+        <View
+            style={{
+                flexDirection: "row",
+                gap: spacing.medium_16,
+                placeItems: "center",
+            }}
+        >
+            <Button startIcon={xIcon} kind="tertiary">
+                Exit
+            </Button>
+            |
+            <LabelLarge>
+                Algebra Test<sup>BETA</sup>
+            </LabelLarge>
+        </View>
     ),
 };
 
@@ -55,12 +91,12 @@ export const rightContentMappings: Mappings = {
     tertiaryButton: <Button kind="tertiary">Import...</Button>,
     nextVideoButton: <Button>Next Video</Button>,
     lightButton: (
-        <Button kind="secondary" light={true}>
+        <Button kind="secondary" style={actionStyles.inverse}>
             Go to Article
         </Button>
     ),
     link: (
-        <Link href="#">
+        <Link href="#exercise">
             <LabelLarge>Go to exercise</LabelLarge>
         </Link>
     ),

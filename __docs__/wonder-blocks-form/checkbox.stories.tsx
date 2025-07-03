@@ -3,16 +3,16 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {Checkbox, CheckboxGroup, Choice} from "@khanacademy/wonder-blocks-form";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing, spacing, font} from "@khanacademy/wonder-blocks-tokens";
 
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import Strut from "../../packages/wonder-blocks-layout/src/components/strut";
 
 export default {
-    title: "Form / Checkbox",
+    title: "Packages / Form / Checkbox",
     component: Checkbox,
     parameters: {
         componentSubtitle: (
@@ -21,6 +21,10 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // These stories are being tested in checkbox-variants.stories.tsx
+            disableSnapshot: true,
+        },
     },
 } as Meta<typeof Checkbox>;
 
@@ -30,14 +34,7 @@ export const Default: StoryComponentType = {
     args: {
         checked: false,
         onChange: () => {},
-    },
-};
-
-Default.parameters = {
-    chromatic: {
-        // We already have screenshots of another story that covers
-        // this and more cases.
-        disableSnapshot: true,
+        "aria-label": "Example",
     },
 };
 
@@ -51,15 +48,16 @@ export const Controlled: StoryComponentType = () => {
         setChecked(checked === false);
     };
 
-    return <Checkbox checked={checked} onChange={handleChange} />;
+    return (
+        <Checkbox
+            aria-label="Example"
+            checked={checked}
+            onChange={handleChange}
+        />
+    );
 };
 
 Controlled.parameters = {
-    chromatic: {
-        // Disabling because this doesn't test visuals, its for testing
-        // that `state` works as expected.
-        disableSnapshot: true,
-    },
     docs: {
         description: {
             story: `Use state to keep track of whether the checkbox
@@ -72,22 +70,23 @@ Controlled.parameters = {
 
 export const Indeterminate: StoryComponentType = () => {
     return (
-        <View style={styles.row}>
+        <View style={[styles.row, styles.gap]}>
             <Checkbox
+                aria-label="Default example"
                 checked={null}
                 disabled={false}
                 error={false}
                 onChange={() => {}}
             />
-            <Strut size={8} />
             <Checkbox
+                aria-label="Disabled example"
                 checked={undefined}
                 disabled={true}
                 error={false}
                 onChange={() => {}}
             />
-            <Strut size={8} />
             <Checkbox
+                aria-label="Error example"
                 checked={null}
                 disabled={false}
                 error={true}
@@ -181,41 +180,41 @@ IndeterminateWithGroup.parameters = {
 };
 
 export const Variants: StoryComponentType = () => (
-    <View style={styles.row}>
+    <View style={[styles.row, styles.gap_240]}>
         <Checkbox
+            aria-label="Default example"
             error={false}
             checked={false}
-            style={styles.marginRight}
             onChange={() => {}}
         />
         <Checkbox
+            aria-label="Checked example"
             error={false}
             checked={true}
-            style={styles.marginRight}
             onChange={() => {}}
         />
         <Checkbox
+            aria-label="Error example"
             error={true}
             checked={false}
-            style={styles.marginRight}
             onChange={() => {}}
         />
         <Checkbox
+            aria-label="Error checked example"
             error={true}
             checked={true}
-            style={styles.marginRight}
             onChange={() => {}}
         />
         <Checkbox
+            aria-label="Disabled example"
             disabled={true}
             checked={false}
-            style={styles.marginRight}
             onChange={() => {}}
         />
         <Checkbox
+            aria-label="Disabled checked example"
             disabled={true}
             checked={true}
-            style={styles.marginRight}
             onChange={() => {}}
         />
     </View>
@@ -235,19 +234,22 @@ export const VariantsControlled: StoryComponentType = () => {
     const [disabledChecked, disabledSetChecked] = React.useState(false);
 
     return (
-        <View style={styles.row}>
+        <View style={[styles.row, styles.gap_240]}>
             <Checkbox
+                aria-label="Checked example"
                 checked={defaultChecked}
                 onChange={defaultSetChecked}
                 style={styles.marginRight}
             />
             <Checkbox
+                aria-label="Error example"
                 error={true}
                 checked={errorChecked}
                 onChange={errorSetChecked}
                 style={styles.marginRight}
             />
             <Checkbox
+                aria-label="Disabled checked example"
                 checked={disabledChecked}
                 disabled={true}
                 onChange={disabledSetChecked}
@@ -258,11 +260,6 @@ export const VariantsControlled: StoryComponentType = () => {
 };
 
 VariantsControlled.parameters = {
-    chromatic: {
-        // Disabling because this doesn't test visuals, its for testing
-        // that `state` works as expected.
-        disableSnapshot: true,
-    },
     docs: {
         description: {
             story: `A demo of the different kinds of checkboxes
@@ -293,6 +290,39 @@ WithLabel.parameters = {
     },
 };
 
+export const WithStyledLabel: StoryComponentType = () => {
+    const [checked, setChecked] = React.useState(false);
+
+    const handleChange = () => {
+        setChecked(!checked);
+    };
+
+    return (
+        <Checkbox
+            label={
+                <BodyText
+                    weight="bold"
+                    tag="span"
+                    style={{lineHeight: font.body.lineHeight.small}}
+                >
+                    Receive assignment reminders for Algebra
+                </BodyText>
+            }
+            description="You will receive a reminder 24 hours before each deadline"
+            checked={checked}
+            onChange={() => handleChange()}
+        />
+    );
+};
+
+WithStyledLabel.parameters = {
+    docs: {
+        description: {
+            story: "The checkbox can have an optional label and description. This allows it to be used as a settings-like item. The user of this component is responsible for keeping track of checked state and providing an onChange callback.",
+        },
+    },
+};
+
 export const AdditionalClickTarget: StoryComponentType = () => {
     const [checked, setChecked] = React.useState(false);
     const headingText = "Functions";
@@ -305,9 +335,9 @@ export const AdditionalClickTarget: StoryComponentType = () => {
         <View style={styles.wrapper}>
             <View style={styles.topic}>
                 <label htmlFor="topic-123">
-                    <LabelMedium>{headingText}</LabelMedium>
+                    <BodyText tag="span">{headingText}</BodyText>
                 </label>
-                <LabelSmall>{descriptionText}</LabelSmall>
+                <BodyText size="small">{descriptionText}</BodyText>
             </View>
             <Checkbox checked={checked} id="topic-123" onChange={setChecked} />
         </View>
@@ -326,11 +356,11 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
     },
-    marginLeft: {
-        marginLeft: 16,
+    gap: {
+        gap: sizing.size_160,
     },
-    marginRight: {
-        marginRight: 16,
+    gap_240: {
+        gap: sizing.size_240,
     },
     wrapper: {
         flexDirection: "row",

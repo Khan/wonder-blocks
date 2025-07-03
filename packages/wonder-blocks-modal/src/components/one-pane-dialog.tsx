@@ -4,7 +4,7 @@ import {Breadcrumbs} from "@khanacademy/wonder-blocks-breadcrumbs";
 import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
-import {IDProvider} from "@khanacademy/wonder-blocks-core";
+import {Id} from "@khanacademy/wonder-blocks-core";
 import ModalDialog from "./modal-dialog";
 import ModalPanel from "./modal-panel";
 import ModalHeader from "./modal-header";
@@ -108,12 +108,12 @@ type DefaultProps = {
  *
  * ```jsx
  * import {OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
- * import {Body} from "@khanacademy/wonder-blocks-typography";
+ * import {BodyText} from "@khanacademy/wonder-blocks-typography";
  *
  * <OnePaneDialog
  *     title="Some title"
  *     content={
- *         <Body>
+ *         <BodyText>
  *             {`Lorem ipsum dolor sit amet, consectetur adipiscing
  *             elit, sed do eiusmod tempor incididunt ut labore et
  *             dolore magna aliqua. Ut enim ad minim veniam,
@@ -123,7 +123,7 @@ type DefaultProps = {
  *             cillum dolore eu fugiat nulla pariatur. Excepteur
  *             sint occaecat cupidatat non proident, sunt in culpa
  *             qui officia deserunt mollit anim id est.`}
- *         </Body>
+ *         </BodyText>
  *     }
  * />
  * ```
@@ -196,7 +196,7 @@ export default class OnePaneDialog extends React.Component<Props> {
         return (
             <MediaLayout styleSheets={styleSheets}>
                 {({styles}) => (
-                    <IDProvider id={titleId} scope="modal">
+                    <Id id={titleId}>
                         {(uniqueId) => (
                             <ModalDialog
                                 style={[styles.dialog, style]}
@@ -217,7 +217,7 @@ export default class OnePaneDialog extends React.Component<Props> {
                                 />
                             </ModalDialog>
                         )}
-                    </IDProvider>
+                    </Id>
                 )}
             </MediaLayout>
         );

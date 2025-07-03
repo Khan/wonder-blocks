@@ -1,13 +1,12 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {StyleSheet} from "aphrodite";
 
-import {color} from "@khanacademy/wonder-blocks-tokens";
 import {View} from "@khanacademy/wonder-blocks-core";
+
+import {StyleSheet} from "aphrodite";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {ModalLauncherPortalAttributeName} from "../util/constants";
-
 import {findFocusableNodes} from "../util/find-focusable-nodes";
-
 import type {ModalElement} from "../util/types";
 
 type Props = {
@@ -15,7 +14,8 @@ type Props = {
     onCloseModal: () => unknown;
     /**
      * The selector for the element that will be focused when the dialog shows.
-     * When not set, the first tabbable element within the dialog will be used.
+     * When not set, the first tabbable element within the dialog will be used,
+     * which usually is the dismiss button (X).
      */
     initialFocusId?: string;
     /**
@@ -36,6 +36,7 @@ type Props = {
  */
 export default class ModalBackdrop extends React.Component<Props> {
     componentDidMount() {
+        // eslint-disable-next-line import/no-deprecated
         const node: HTMLElement = ReactDOM.findDOMNode(this) as any;
         if (!node) {
             return;
@@ -67,6 +68,7 @@ export default class ModalBackdrop extends React.Component<Props> {
             return null;
         }
 
+        // eslint-disable-next-line import/no-deprecated
         return ReactDOM.findDOMNode(
             node.querySelector(`#${initialFocusId}`),
         ) as any;
@@ -93,6 +95,7 @@ export default class ModalBackdrop extends React.Component<Props> {
     _getDialogElement(node: HTMLElement): HTMLElement {
         // If no focusable elements are found,
         // the dialog content element itself will receive focus.
+        // eslint-disable-next-line import/no-deprecated
         const dialogElement: HTMLElement = ReactDOM.findDOMNode(
             node.querySelector('[role="dialog"]'),
         ) as any;
@@ -167,6 +170,6 @@ const styles = StyleSheet.create({
         //     now!
         overflow: "auto",
 
-        background: color.offBlack64,
+        background: semanticColor.surface.overlay,
     },
 });

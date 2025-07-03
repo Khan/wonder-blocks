@@ -2,7 +2,7 @@ import * as React from "react";
 import {render, screen, waitFor} from "@testing-library/react";
 
 import {GqlRouter, useGql} from "@khanacademy/wonder-blocks-data";
-import {RespondWith} from "../../respond-with";
+import {RespondWith} from "@khanacademy/wonder-blocks-testing-core";
 import {mockGqlFetch} from "../mock-gql-fetch";
 
 describe("integrating mockGqlFetch, RespondWith, GqlRouter and useGql", () => {
@@ -21,7 +21,7 @@ describe("integrating mockGqlFetch, RespondWith, GqlRouter and useGql", () => {
                 });
             }, [gqlFetch]);
 
-            return <div data-test-id="result">{result}</div>;
+            return <div data-testid="result">{result}</div>;
         };
 
         // Act
@@ -59,7 +59,7 @@ describe("integrating mockGqlFetch, RespondWith, GqlRouter and useGql", () => {
                 });
             }, [gqlFetch]);
 
-            return <div data-test-id="result">{result}</div>;
+            return <div data-testid="result">{result}</div>;
         };
 
         // Act
@@ -98,7 +98,7 @@ describe("integrating mockGqlFetch, RespondWith, GqlRouter and useGql", () => {
                 });
             }, [gqlFetch]);
 
-            return <div data-test-id="result">{result}</div>;
+            return <div data-testid="result">{result}</div>;
         };
 
         // Act
@@ -134,7 +134,7 @@ describe("integrating mockGqlFetch, RespondWith, GqlRouter and useGql", () => {
                 });
             }, [gqlFetch]);
 
-            return <div data-test-id="result">{result}</div>;
+            return <div data-testid="result">{result}</div>;
         };
 
         // Act
@@ -172,7 +172,7 @@ describe("integrating mockGqlFetch, RespondWith, GqlRouter and useGql", () => {
                 });
             }, [gqlFetch]);
 
-            return <div data-test-id="result">{result}</div>;
+            return <div data-testid="result">{result}</div>;
         };
 
         // Act
@@ -210,7 +210,7 @@ describe("integrating mockGqlFetch, RespondWith, GqlRouter and useGql", () => {
                 });
             }, [gqlFetch]);
 
-            return <div data-test-id="result">{result}</div>;
+            return <div data-testid="result">{result}</div>;
         };
 
         // Act
@@ -248,7 +248,7 @@ describe("integrating mockGqlFetch, RespondWith, GqlRouter and useGql", () => {
                 });
             }, [gqlFetch]);
 
-            return <div data-test-id="result">{result}</div>;
+            return <div data-testid="result">{result}</div>;
         };
 
         // Act

@@ -1,18 +1,17 @@
-import {expect} from "@storybook/jest";
 /* eslint-disable no-console */
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
+import {expect, userEvent, within} from "@storybook/test";
 import {useArgs} from "@storybook/preview-api";
 import {action} from "@storybook/addon-actions";
 
-import {userEvent, within} from "@storybook/testing-library";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Pill from "@khanacademy/wonder-blocks-pill";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {
     ActionItem,
     ActionMenu,
@@ -22,10 +21,14 @@ import {
 
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import actionMenuArgtypes from "./action-menu.argtypes";
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 
 import type {Item} from "../../packages/wonder-blocks-dropdown/src/util/types";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
+import Button from "@khanacademy/wonder-blocks-button";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 
 const actionItems: Array<Item> = [
     <ActionItem
@@ -98,7 +101,7 @@ const defaultArgs = {
  * ```
  */
 export default {
-    title: "Dropdown / ActionMenu",
+    title: "Packages / Dropdown / ActionMenu",
     // TODO(FEI-5000): Fix this type.
     component: ActionMenu as unknown as React.ComponentType<any>,
     subcomponents: {ActionItem},
@@ -123,8 +126,8 @@ export default {
 
 const styles = StyleSheet.create({
     example: {
-        background: color.offWhite,
-        padding: spacing.medium_16,
+        background: semanticColor.surface.secondary,
+        padding: sizing.size_160,
     },
     exampleExtended: {
         height: 300,
@@ -145,22 +148,19 @@ const styles = StyleSheet.create({
      * Custom opener styles
      */
     customOpener: {
-        borderLeft: `5px solid ${color.blue}`,
-        borderRadius: spacing.xxxSmall_4,
-        background: color.lightBlue,
-        color: color.white,
-        padding: spacing.medium_16,
+        borderLeft: `${border.width.thick} solid ${semanticColor.status.warning.foreground}`,
+        borderRadius: border.radius.radius_040,
+        background: semanticColor.status.warning.background,
+        color: semanticColor.text.primary,
+        padding: sizing.size_160,
     },
-    focused: {
-        color: color.offWhite,
-    },
+    focused: focusStyles.focus[":focus-visible"],
     hovered: {
         textDecoration: "underline",
-        color: color.offWhite,
         cursor: "pointer",
     },
     pressed: {
-        color: color.blue,
+        color: semanticColor.status.warning.foreground,
     },
 });
 
@@ -359,13 +359,17 @@ export const Controlled: StoryComponentType = {
  *
  * **Note:** If you need to use a custom ID for testing the opener, make sure to
  * pass the testId prop inside the opener component/element.
+ *
+ * **Accessibility:** When a custom opener is used, the following attributes are
+ * added automatically: `aria-expanded`, `aria-haspopup`, and `aria-controls`.
  */
 
 export const CustomOpener: StoryComponentType = {
     name: "With custom opener",
     args: {
         opener: ({focused, hovered, pressed, text}: any) => (
-            <LabelLarge
+            <BodyText
+                weight="bold"
                 onClick={() => {
                     console.log("custom click!!!!!");
                 }}
@@ -376,9 +380,10 @@ export const CustomOpener: StoryComponentType = {
                     hovered && styles.hovered,
                     pressed && styles.pressed,
                 ]}
+                role="button"
             >
                 {text}
-            </LabelLarge>
+            </BodyText>
         ),
     } as Partial<typeof ActionMenu>,
 };
@@ -466,7 +471,7 @@ export const CustomActionItems: StoryComponentType = {
             />,
             <ActionItem
                 key="4"
-                label={<LabelLarge>User profile</LabelLarge>}
+                label={<BodyText weight="bold">User profile</BodyText>}
                 horizontalRule="full-width"
                 leftAccessory={
                     <PhosphorIcon icon={IconMappings.info} size="medium" />
@@ -478,9 +483,9 @@ export const CustomActionItems: StoryComponentType = {
                 }
                 onClick={action("user profile clicked!")}
                 style={{
-                    [":hover [data-test-id=new-pill]" as any]: {
-                        backgroundColor: color.white,
-                        color: color.blue,
+                    [":hover [data-testid=new-pill]" as any]: {
+                        backgroundColor: semanticColor.surface.primary,
+                        color: semanticColor.status.notice.foreground,
                     },
                 }}
             />,
@@ -525,5 +530,95 @@ export const CustomActionItems: StoryComponentType = {
         // Assert
         const actionMenu = await canvas.findByRole("menu");
         expect(actionMenu).toBeInTheDocument();
+    },
+};
+
+/**
+ * This example shows how to use the ActionMenu with a modal. The modal is
+ * opened when the user presses the "Open modal" action item. This could be done
+ * by pressing `Enter`/`Space` when the opener is focused.
+ *
+ * Use the keyboard to navigate to the "Open modal" action item and press
+ * `Enter` or `Space` to open the modal.
+ *
+ * Then navigate on the modal by pressing Tab and `Shift` + `Tab`.
+ */
+export const OpeningModal: StoryComponentType = {
+    name: "Opening a Modal",
+    render: function Render(args) {
+        const [opened, setOpened] = React.useState(false);
+
+        return (
+            <>
+                <ActionMenu menuText="Betsy Appleseed" {...args}>
+                    <ActionItem
+                        key="1"
+                        label="Profile"
+                        href="http://khanacademy.org/profile"
+                        target="_blank"
+                        testId="profile"
+                    />
+                    <ActionItem
+                        key="2"
+                        label="Open modal"
+                        testId="modal"
+                        onClick={() => {
+                            console.log("open modal");
+                            setOpened(true);
+                        }}
+                    />
+                </ActionMenu>
+                <ModalLauncher
+                    onClose={() => {
+                        setOpened(false);
+                    }}
+                    opened={opened}
+                    modal={({closeModal}) => (
+                        <OnePaneDialog
+                            title="Are you sure?"
+                            content="This is just a test"
+                            style={{maxHeight: "fit-content"}}
+                            footer={
+                                <View
+                                    style={{
+                                        flexDirection: "row",
+                                        gap: sizing.size_160,
+                                    }}
+                                >
+                                    <Button
+                                        kind="tertiary"
+                                        onClick={closeModal}
+                                    >
+                                        Cancel
+                                    </Button>
+                                    <Button
+                                        actionType="destructive"
+                                        onClick={closeModal}
+                                    >
+                                        Delete
+                                    </Button>
+                                </View>
+                            }
+                        />
+                    )}
+                />
+            </>
+        );
+    },
+    args: {
+        opener: () => (
+            <IconButton
+                aria-label="Actions"
+                kind="tertiary"
+                actionType="neutral"
+                icon={IconMappings.dotsThreeBold}
+            />
+        ),
+    } as Partial<typeof ActionMenu>,
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test visuals.
+            disableSnapshot: true,
+        },
     },
 };

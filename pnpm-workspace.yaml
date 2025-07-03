@@ -1,0 +1,33 @@
+packages:
+    # All WB packages
+    - "packages/*"
+    # Required for building WB packages
+    - "build-settings"
+    # AST transforms
+    - "wb-codemod"
+catalog:
+    # Wonder Stuff
+    "@khanacademy/wonder-stuff-core": ^1.5.4
+    "@khanacademy/wonder-stuff-testing": ^3.0.5
+    # Icons library
+    "@phosphor-icons/core": ^2.0.2
+    # Positioning
+    "@popperjs/core": ^2.10.1
+    react-popper: ^2.3.0
+    # Styling
+    aphrodite: ^1.2.5
+    # Dates
+    temporal-polyfill: "^0.3.0"
+    # Testing/data
+    node-fetch: ^2.6.7
+    # React
+    "react": 18.2.0
+    "react-dom": 18.2.0
+    # React Router
+    react-router: 5.3.4
+    react-router-dom: 5.3.4
+    react-router-dom-v5-compat: ^6.30.0
+    # Virtualization
+    react-window: ^1.8.11
+    # Codemods
+    jscodeshift: ^17.3.0

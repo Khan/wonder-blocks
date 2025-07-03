@@ -2,11 +2,16 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {StyleDeclaration} from "aphrodite";
 
-import {useUniqueIdWithMock, View} from "@khanacademy/wonder-blocks-core";
-import * as tokens from "@khanacademy/wonder-blocks-tokens";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {
+    border,
+    semanticColor,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
+import {useId} from "react";
 import type {AccordionCornerKindType} from "./accordion";
 import AccordionSectionHeader from "./accordion-section-header";
 
@@ -203,14 +208,15 @@ const AccordionSection = React.forwardRef(function AccordionSection(
 
     const controlledMode = expanded !== undefined && onToggle;
 
-    const ids = useUniqueIdWithMock();
-    const sectionId = id ?? ids.get("accordion-section");
+    const uniqueSectionId = useId();
+    const sectionId = id ?? uniqueSectionId;
     // We need an ID for the header so that the content section's
     // aria-labelledby attribute can point to it.
-    const headerId = id ? `${id}-header` : ids.get("accordion-section-header");
+    const uniqueHeaderId = useId();
+    const headerId = id ? `${id}-header` : uniqueHeaderId;
     // We need an ID for the content section so that the opener's
     // aria-controls attribute can point to it.
-    const sectionContentUniqueId = ids.get("accordion-section-content");
+    const sectionContentUniqueId = useId();
 
     const sectionStyles = _generateStyles(
         cornerKind,
@@ -309,7 +315,7 @@ const styles = StyleSheet.create({
         // vertically stacked.
         position: "static",
         boxSizing: "border-box",
-        backgroundColor: tokens.color.white,
+        backgroundColor: semanticColor.surface.primary,
     },
     wrapperWithAnimation: {
         transition: "grid-template-rows 300ms",
@@ -332,7 +338,7 @@ const styles = StyleSheet.create({
         visibility: "visible",
     },
     stringContent: {
-        padding: tokens.spacing.medium_16,
+        padding: spacing.medium_16,
     },
 });
 
@@ -353,38 +359,40 @@ const _generateStyles = (
     let firstSectionStyle: StyleType = Object.freeze({});
     let lastSectionStyle: StyleType = Object.freeze({});
 
+    const borderStyle = `1px solid ${semanticColor.core.border.neutral.subtle}`;
+
     if (cornerKind === "square") {
         wrapperStyle = {
-            border: `1px solid ${tokens.color.offBlack16}`,
+            border: borderStyle,
             borderBottom: "none",
-            borderRadius: 0,
+            borderRadius: border.radius.radius_0,
         };
 
         if (isLastSection) {
             lastSectionStyle = {
-                borderBottom: `1px solid ${tokens.color.offBlack16}`,
+                borderBottom: borderStyle,
             };
         }
     }
 
     if (cornerKind === "rounded") {
         wrapperStyle = {
-            border: `1px solid ${tokens.color.offBlack16}`,
+            border: borderStyle,
             borderBottom: "none",
         };
 
         if (isFirstSection) {
             firstSectionStyle = {
-                borderStartStartRadius: tokens.spacing.small_12,
-                borderStartEndRadius: tokens.spacing.small_12,
+                borderStartStartRadius: spacing.small_12,
+                borderStartEndRadius: spacing.small_12,
             };
         }
 
         if (isLastSection) {
             lastSectionStyle = {
-                borderBottom: `1px solid ${tokens.color.offBlack16}`,
-                borderEndStartRadius: tokens.spacing.small_12,
-                borderEndEndRadius: tokens.spacing.small_12,
+                borderBottom: borderStyle,
+                borderEndStartRadius: spacing.small_12,
+                borderEndEndRadius: spacing.small_12,
             };
 
             contentWrapperStyle = {
@@ -393,17 +401,17 @@ const _generateStyles = (
                 // overflow out the corners. This issue can't be solved by
                 // putting `overflow: "hidden"` on the overall container
                 // because that cuts off the header's focus outline.
-                borderEndEndRadius: tokens.spacing.small_12,
-                borderEndStartRadius: tokens.spacing.small_12,
+                borderEndEndRadius: spacing.small_12,
+                borderEndStartRadius: spacing.small_12,
             };
         }
     }
 
     if (cornerKind === "rounded-per-section") {
         wrapperStyle = {
-            border: `1px solid ${tokens.color.offBlack16}`,
-            borderRadius: tokens.spacing.small_12,
-            marginBottom: tokens.spacing.medium_16,
+            border: borderStyle,
+            borderRadius: border.radius.radius_120,
+            marginBottom: spacing.medium_16,
         };
 
         contentWrapperStyle = {
@@ -411,8 +419,8 @@ const _generateStyles = (
             // so that the content doesn't overflow out the corners. We
             // can't put `overflow: "hidden"` on the overall container
             // because it cuts off the header's focus outline.
-            borderEndEndRadius: tokens.spacing.small_12,
-            borderEndStartRadius: tokens.spacing.small_12,
+            borderEndEndRadius: spacing.small_12,
+            borderEndStartRadius: spacing.small_12,
         };
     }
 

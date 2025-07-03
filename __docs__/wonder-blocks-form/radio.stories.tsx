@@ -3,9 +3,10 @@ import {StyleSheet} from "aphrodite";
 
 import type {Meta, StoryObj} from "@storybook/react";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 
 import Radio from "../../packages/wonder-blocks-form/src/components/radio";
@@ -13,7 +14,7 @@ import Radio from "../../packages/wonder-blocks-form/src/components/radio";
 type StoryComponentType = StoryObj<typeof Radio>;
 
 export default {
-    title: "Form / Radio (internal)",
+    title: "Packages / Form / Radio (internal)",
     component: Radio,
     parameters: {
         componentSubtitle: (
@@ -22,35 +23,29 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // These stories are being tested in radio-variants.stories.tsx
+            disableSnapshot: true,
+        },
     },
 } as Meta<typeof Radio>;
 
 export const Default: StoryComponentType = {
     args: {
+        "aria-label": "Example",
         checked: false,
         onChange: () => {},
     },
 };
 
-Default.parameters = {
-    chromatic: {
-        // We already have screenshots of another story that covers
-        // this and more cases.
-        disableSnapshot: true,
-    },
-};
-
 export const Controlled: StoryComponentType = () => {
     const [checked, setChecked] = React.useState(false);
-    return <Radio checked={checked} onChange={setChecked} />;
+    return (
+        <Radio aria-label="Example" checked={checked} onChange={setChecked} />
+    );
 };
 
 Controlled.parameters = {
-    chromatic: {
-        // Disabling because this doesn't test visuals, it tests
-        // that the `checked` state works as expected.
-        disableSnapshot: true,
-    },
     docs: {
         description: {
             story: `Use state to keep track of whether
@@ -63,27 +58,36 @@ Controlled.parameters = {
 
 export const Variants: StoryComponentType = () => (
     <View style={styles.row}>
-        <Radio checked={false} style={styles.marginRight} onChange={() => {}} />
-        <Radio checked={true} style={styles.marginRight} onChange={() => {}} />
+        <Radio aria-label="Example" checked={false} onChange={() => {}} />
         <Radio
-            error={true}
-            checked={false}
-            style={styles.marginRight}
+            aria-label="Checked Example"
+            checked={true}
             onChange={() => {}}
         />
         <Radio
+            aria-label="Error Example"
+            error={true}
+            checked={false}
+            onChange={() => {}}
+        />
+        <Radio
+            aria-label="Checked Error Example"
             error={true}
             checked={true}
-            style={styles.marginRight}
             onChange={() => {}}
         />
         <Radio
+            aria-label="Disabled Example"
             disabled={true}
             checked={false}
-            style={styles.marginRight}
             onChange={() => {}}
         />
-        <Radio disabled={true} checked={true} onChange={() => {}} />
+        <Radio
+            aria-label="Disabled Checked Example"
+            disabled={true}
+            checked={true}
+            onChange={() => {}}
+        />
     </View>
 );
 
@@ -132,9 +136,9 @@ export const AdditionalClickTarget: StoryComponentType = () => {
         <View style={styles.wrapper}>
             <View style={styles.topic}>
                 <label htmlFor="topic-123">
-                    <LabelMedium>{headingText}</LabelMedium>
+                    <BodyText tag="span">{headingText}</BodyText>
                 </label>
-                <LabelSmall>{descriptionText}</LabelSmall>
+                <BodyText size="small">{descriptionText}</BodyText>
             </View>
             <Radio checked={checked} id="topic-123" onChange={setChecked} />
         </View>
@@ -158,9 +162,7 @@ AdditionalClickTarget.parameters = {
 const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
-    },
-    marginRight: {
-        marginRight: 16,
+        gap: sizing.size_240,
     },
     wrapper: {
         flexDirection: "row",

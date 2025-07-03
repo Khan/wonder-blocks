@@ -1,8 +1,13 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import {
+    Id,
+    type AriaProps,
+    type StyleType,
+} from "@khanacademy/wonder-blocks-core";
 
+import {announceMessage} from "@khanacademy/wonder-blocks-announcer";
 import DropdownCore from "./dropdown-core";
 import DropdownOpener from "./dropdown-opener";
 import SelectOpener from "./select-opener";
@@ -18,11 +23,12 @@ import type {
     OpenerProps,
     OptionItemComponentArray,
 } from "../util/types";
-import {getLabel} from "../util/helpers";
+import {getLabel, getSelectOpenerLabel} from "../util/helpers";
+import {useSelectValidation} from "../hooks/use-select-validation";
 
-export type SingleSelectLabels = {
+export type SingleSelectLabelsValues = {
     /**
-     * Label for describing the dismiss icon on the search filter.
+     * Label to create an accessible name for the dismiss icon on the search filter.
      */
     clearSearch: string;
     /**
@@ -30,11 +36,11 @@ export type SingleSelectLabels = {
      */
     filter: string;
     /**
-     * Label for when the filter returns no results.
+     * Value for when the filter returns no results.
      */
     noResults: string;
     /**
-     * Label for the opening component when there are some items selected.
+     * Value for the opening component when there are some items selected.
      */
     someResults: (numOptions: number) => string;
 };
@@ -44,16 +50,16 @@ type DefaultProps = Readonly<{
      * Whether this dropdown should be left-aligned or right-aligned with the
      * opener component. Defaults to left-aligned.
      */
-    alignment: "left" | "right";
+    alignment?: "left" | "right";
     /**
      * Whether to auto focus an option. Defaults to true.
      */
-    autoFocus: boolean;
+    autoFocus?: boolean;
     /**
      * Whether this component is disabled. A disabled dropdown may not be opened
      * and does not support interaction. Defaults to false.
      */
-    disabled: boolean;
+    disabled?: boolean;
     /**
      * Whether to enable the type-ahead suggestions feature. Defaults to true.
      *
@@ -67,20 +73,22 @@ type DefaultProps = Readonly<{
      * some cases where it's not desirable (for example when using a `TextField`
      * as the opener element).
      */
-    enableTypeAhead: boolean;
+    enableTypeAhead?: boolean;
     /**
      * Whether or not the input in is an error state. Defaults to false.
      */
-    error: boolean;
+    error?: boolean;
     /**
-     * Whether to display the "light" version of this component instead, for
-     * use when the component is used on a dark background.
+     * The object containing the custom labels and placeholder values used inside this component.
      */
-    light: boolean;
+    labels?: SingleSelectLabelsValues;
     /**
-     * The object containing the custom labels used inside this component.
+     * When false, the SelectOpener can show a Node as a value. When true, the
+     * SelectOpener will use a string as a value. If using custom OptionItems, a
+     * plain text label can be provided with the `labelAsText` prop.
+     * Defaults to true.
      */
-    labels: SingleSelectLabels;
+    showOpenerLabelAsText?: boolean;
 }>;
 
 type Props = AriaProps &
@@ -116,7 +124,8 @@ type Props = AriaProps &
          */
         id?: string;
         /**
-         * Placeholder for the opening component when there are no items selected.
+         * Placeholder value for the opening component when there are no items selected.
+         * Note: a label is still necessary to describe the purpose of the select.
          */
         placeholder: string;
         /**
@@ -150,24 +159,49 @@ type Props = AriaProps &
          * top. The items will be filtered by the input.
          */
         isFilterable?: boolean;
+        /**
+         * Unique identifier attached to the listbox dropdown. If used, we need to
+         * guarantee that the ID is unique within everything rendered on a page.
+         * If one is not provided, one is auto-generated. It is used for the
+         * opener's `aria-controls` attribute for screenreaders.
+         */
+        dropdownId?: string;
+        /**
+         * Whether this field is required to continue, or the error message to
+         * render if this field is left blank.
+         *
+         * This can be a boolean or a string.
+         *
+         * String:
+         * Please pass in a translated string to use as the error message that will
+         * render if the user leaves this field blank. If this field is required,
+         * and a string is not passed in, a default untranslated string will render
+         * upon error.
+         * Note: The string will not be used if a `validate` prop is passed in.
+         *
+         * Example message: i18n._("A password is required to log in.")
+         *
+         * Boolean:
+         * True/false indicating whether this field is required. Please do not pass
+         * in `true` if possible - pass in the error string instead.
+         * If `true` is passed, and a `validate` prop is not passed, that means
+         * there is no corresponding message and the default untranlsated message
+         * will be used.
+         */
+        required?: boolean | string;
+        /**
+         * Provide a validation for the field value.
+         * Return a string error message or null | void for a valid input.
+         *
+         * Use this for errors that are shown to the user while they are filling out
+         * a form.
+         */
+        validate?: (value?: string | null) => string | null | void;
+        /**
+         * Called right after the field is validated.
+         */
+        onValidate?: (errorMessage?: string | null | undefined) => unknown;
     }>;
-
-type State = Readonly<{
-    /**
-     * Whether or not the dropdown is open.
-     */
-    open: boolean;
-    /**
-     * The text input to filter the items by their label. Defaults to an empty
-     * string.
-     */
-    searchText: string;
-    /**
-     * The DOM reference to the opener element. This is mainly used to set focus
-     * to this element, and also to pass the reference to Popper.js.
-     */
-    openerElement?: HTMLElement;
-}>;
 
 /**
  * The single select allows the selection of one item. Clients are responsible
@@ -175,6 +209,14 @@ type State = Readonly<{
  *
  * The single select dropdown closes after the selection of an item. If the same
  * item is selected, there is no callback.
+ *
+ * Make sure to provide a label for the field. This can be done by either:
+ * - (recommended) Using the **LabeledField** component to provide a label,
+ * description, and/or error message for the field
+ * - Using a `label` html tag with the `htmlFor` prop set to the unique id of
+ * the field
+ * - Using an `aria-label` attribute on the field
+ * - Using an `aria-labelledby` attribute on the field
  *
  * **NOTE:** If there are more than 125 items, the component automatically uses
  * [react-window](https://github.com/bvaughn/react-window) to improve
@@ -189,7 +231,7 @@ type State = Readonly<{
  *
  * const [selectedValue, setSelectedValue] = React.useState("");
  *
- * <SingleSelect placeholder="Choose a fruit" onChange={setSelectedValue} selectedValue={selectedValue}>
+ * <SingleSelect aria-label="Your Favorite Fruits" placeholder="Choose a fruit" onChange={setSelectedValue} selectedValue={selectedValue}>
  *     <OptionItem label="Pear" value="pear" />
  *     <OptionItem label="Mango" value="mango" />
  * </SingleSelect>
@@ -204,6 +246,7 @@ type State = Readonly<{
  * const fruitArray = ["Apple", "Banana", "Orange", "Mango", "Pear"];
  *
  * <SingleSelect
+ *     aria-label="Your Favorite Fruits"
  *     placeholder="Choose a fruit"
  *     onChange={setSelectedValue}
  *     selectedValue={selectedValue}
@@ -214,94 +257,124 @@ type State = Readonly<{
  * </SingleSelect>
  * ```
  */
-export default class SingleSelect extends React.Component<Props, State> {
-    selectedIndex: number;
-
-    static defaultProps: DefaultProps = {
-        alignment: "left",
-        autoFocus: true,
-        disabled: false,
-        enableTypeAhead: true,
-        error: false,
-        light: false,
-        labels: {
+const SingleSelect = (props: Props) => {
+    const selectedIndex = React.useRef(0);
+    const {
+        children,
+        error = false,
+        id,
+        opener,
+        placeholder,
+        selectedValue,
+        testId,
+        alignment = "left",
+        autoFocus = true,
+        dropdownStyle,
+        enableTypeAhead = true,
+        isFilterable,
+        labels = {
             clearSearch: defaultLabels.clearSearch,
             filter: defaultLabels.filter,
             noResults: defaultLabels.noResults,
             someResults: defaultLabels.someSelected,
         },
-    };
+        onChange,
+        onToggle,
+        opened,
+        style,
+        className,
+        "aria-label": ariaLabel,
+        "aria-invalid": ariaInvalid,
+        "aria-required": ariaRequired,
+        disabled = false,
+        dropdownId,
+        validate,
+        onValidate,
+        required,
+        showOpenerLabelAsText = true,
+        ...sharedProps
+    } = props;
 
-    constructor(props: Props) {
-        super(props);
+    // Whether or not the dropdown is open.
+    const [open, setOpen] = React.useState(false);
+    // The text input to filter the items by their label. Defaults to an empty string.
+    const [searchText, setSearchText] = React.useState("");
+    // The DOM reference to the opener element. This is mainly used to set focus
+    // to this element, and also to pass the reference to Popper.js.
+    const [openerElement, setOpenerElement] = React.useState<HTMLElement>();
+    const {
+        errorMessage,
+        onOpenerBlurValidation,
+        onDropdownClosedValidation,
+        onSelectionValidation,
+    } = useSelectValidation({
+        value: selectedValue,
+        disabled,
+        validate,
+        onValidate,
+        required,
+        open,
+    });
+    const hasError = error || !!errorMessage;
 
-        this.selectedIndex = 0;
+    React.useEffect(() => {
+        // Used to sync the `opened` state when this component acts as a controlled
+        if (disabled) {
+            // open should always be false if select is disabled
+            setOpen(false);
+        } else if (typeof opened === "boolean") {
+            setOpen(opened);
+        }
+    }, [disabled, opened]);
 
-        this.state = {
-            open: false,
-            searchText: "",
-        };
-    }
+    const handleOpenChanged = (opened: boolean) => {
+        setOpen(opened);
+        setSearchText("");
 
-    /**
-     * Used to sync the `opened` state when this component acts as a controlled
-     * component
-     */
-    static getDerivedStateFromProps(
-        props: Props,
-        state: State,
-    ): Partial<State> | null {
-        return {
-            open: typeof props.opened === "boolean" ? props.opened : state.open,
-        };
-    }
-
-    handleOpenChanged: (opened: boolean) => void = (opened) => {
-        this.setState({
-            open: opened,
-            searchText: "",
-        });
-
-        if (this.props.onToggle) {
-            this.props.onToggle(opened);
+        if (onToggle) {
+            onToggle(opened);
+        }
+        if (!opened) {
+            // If dropdown is closed, handle dropdown closed validation
+            onDropdownClosedValidation();
         }
     };
 
-    handleToggle: (selectedValue: string) => void = (selectedValue) => {
+    const handleToggle = (newSelectedValue: string) => {
         // Call callback if selection changed.
-        if (selectedValue !== this.props.selectedValue) {
-            this.props.onChange(selectedValue);
+        if (newSelectedValue !== selectedValue) {
+            onChange(newSelectedValue);
         }
 
         // Bring focus back to the opener element.
-        if (this.state.open && this.state.openerElement) {
-            this.state.openerElement.focus();
+        if (open && openerElement) {
+            openerElement.focus();
         }
 
-        this.setState({
-            open: false, // close the menu upon selection
-        });
+        setOpen(false); // close the menu upon selection
 
-        if (this.props.onToggle) {
-            this.props.onToggle(false);
+        if (onToggle) {
+            onToggle(false);
         }
+
+        // Validate when a value is selected
+        onSelectionValidation(newSelectedValue);
     };
 
-    mapOptionItemsToDropdownItems: (
+    const mapOptionItemsToDropdownItems = (
         children: OptionItemComponentArray,
-    ) => DropdownItem[] = (children) => {
+    ): DropdownItem[] => {
         // Figure out which index should receive focus when this select opens
         // Needs to exclude counting items that are disabled
         let indexCounter = 0;
-        this.selectedIndex = 0;
+        selectedIndex.current = 0;
 
         return children.map((option) => {
-            const {selectedValue} = this.props;
             const {disabled, value} = option.props;
             const selected = selectedValue === value;
 
             if (selected) {
-                this.selectedIndex = indexCounter;
+                selectedIndex.current = indexCounter;
             }
 
             if (!disabled) {
@@ -312,7 +385,7 @@ export default class SingleSelect extends React.Component<Props, State> {
                 component: option,
                 focusable: !disabled,
                 populatedProps: {
-                    onToggle: this.handleToggle,
+                    onToggle: handleToggle,
                     selected: selected,
                     variant: "check",
                 },
@@ -320,11 +393,9 @@ export default class SingleSelect extends React.Component<Props, State> {
         });
     };
 
-    filterChildren(
+    const filterChildren = (
         children: OptionItemComponentArray,
-    ): OptionItemComponentArray {
-        const {searchText} = this.state;
-
+    ): OptionItemComponentArray => {
         const lowercasedSearchText = searchText.toLowerCase();
 
         // Filter the children with the searchText if any.
@@ -334,157 +405,184 @@ export default class SingleSelect extends React.Component<Props, State> {
                 getLabel(props).toLowerCase().indexOf(lowercasedSearchText) >
                     -1,
         );
-    }
+    };
 
-    getMenuItems(children: OptionItemComponentArray): DropdownItem[] {
-        const {isFilterable} = this.props;
-
+    const getMenuItems = (
+        children: OptionItemComponentArray,
+    ): DropdownItem[] => {
         // If it's not filterable, no need to do any extra besides mapping the
         // option items to dropdown items.
-        return this.mapOptionItemsToDropdownItems(
-            isFilterable ? this.filterChildren(children) : children,
+        return mapOptionItemsToDropdownItems(
+            isFilterable ? filterChildren(children) : children,
         );
-    }
-
-    handleSearchTextChanged: (searchText: string) => void = (searchText) => {
-        this.setState({searchText});
     };
 
-    handleOpenerRef: (node?: any) => void = (node) => {
+    const handleSearchTextChanged = (searchText: string) => {
+        setSearchText(searchText);
+    };
+
+    const handleOpenerRef: (node?: any) => void = (node) => {
+        // eslint-disable-next-line import/no-deprecated
         const openerElement = ReactDOM.findDOMNode(node) as HTMLElement;
-        this.setState({openerElement});
+        setOpenerElement(openerElement);
     };
 
-    handleClick: (e: React.SyntheticEvent) => void = (e) => {
-        this.handleOpenChanged(!this.state.open);
+    const handleClick = (e: React.SyntheticEvent) => {
+        handleOpenChanged(!open);
     };
 
-    renderOpener(
-        numItems: number,
+    const handleAnnouncement = (message: string) => {
+        announceMessage({
+            message,
+        });
+    };
+
+    // Announce when selectedValue or children changes in the opener
+    React.useEffect(() => {
+        const optionItems = React.Children.toArray(
+            children,
+        ) as OptionItemComponentArray;
+        const selectedItem = optionItems.find(
+            (option) => option.props.value === selectedValue,
+        );
+        if (selectedItem) {
+            const label = getLabel(selectedItem.props);
+            if (label) {
+                handleAnnouncement(label);
+            }
+        }
+    }, [selectedValue, children]);
+
+    const renderOpener = (
+        isDisabled: boolean,
+        dropdownId: string,
     ):
         | React.ReactElement<React.ComponentProps<typeof DropdownOpener>>
-        | React.ReactElement<React.ComponentProps<typeof SelectOpener>> {
-        const {
-            children,
-            disabled,
-            error,
-            id,
-            light,
-            opener,
-            placeholder,
-            selectedValue,
-            testId,
-            // the following props are being included here to avoid
-            // passing them down to the opener as part of sharedProps
-            /* eslint-disable @typescript-eslint/no-unused-vars */
-            alignment,
-            autoFocus,
-            dropdownStyle,
-            enableTypeAhead,
-            isFilterable,
-            labels,
-            onChange,
-            onToggle,
-            opened,
-            style,
-            className,
-            "aria-invalid": ariaInvalid,
-            "aria-required": ariaRequired,
-            ...sharedProps
-        } = this.props;
-
+        | React.ReactElement<React.ComponentProps<typeof SelectOpener>> => {
         const items = React.Children.toArray(
             children,
         ) as OptionItemComponentArray;
         const selectedItem = items.find(
             (option) => option.props.value === selectedValue,
         );
-        // If nothing is selected, or if the selectedValue doesn't match any
-        // item in the menu, use the placeholder.
-        const menuText = selectedItem
-            ? getLabel(selectedItem.props)
-            : placeholder;
 
-        const dropdownOpener = opener ? (
-            <DropdownOpener
-                onClick={this.handleClick}
-                disabled={numItems === 0 || disabled}
-                ref={this.handleOpenerRef}
-                text={menuText}
-                opened={this.state.open}
-            >
-                {opener}
-            </DropdownOpener>
-        ) : (
-            <SelectOpener
-                {...sharedProps}
-                disabled={numItems === 0 || disabled}
-                id={id}
-                error={error}
-                isPlaceholder={!selectedItem}
-                light={light}
-                onOpenChanged={this.handleOpenChanged}
-                open={this.state.open}
-                ref={this.handleOpenerRef}
-                testId={testId}
-            >
-                {menuText}
-            </SelectOpener>
+        let menuContent;
+        if (selectedItem) {
+            menuContent = getSelectOpenerLabel(
+                showOpenerLabelAsText,
+                selectedItem.props,
+            );
+        } else {
+            // If nothing is selected, or if the selectedValue doesn't match any
+            // item in the menu, use the placeholder.
+            menuContent = placeholder;
+        }
+
+        const dropdownOpener = (
+            <Id id={id}>
+                {(uniqueOpenerId) => {
+                    return opener ? (
+                        <DropdownOpener
+                            id={uniqueOpenerId}
+                            aria-label={ariaLabel}
+                            aria-controls={dropdownId}
+                            aria-haspopup="listbox"
+                            onClick={handleClick}
+                            disabled={isDisabled}
+                            ref={handleOpenerRef}
+                            role="combobox"
+                            text={menuContent}
+                            opened={open}
+                            error={hasError}
+                            onBlur={onOpenerBlurValidation}
+                        >
+                            {opener}
+                        </DropdownOpener>
+                    ) : (
+                        <SelectOpener
+                            {...sharedProps}
+                            aria-label={ariaLabel}
+                            aria-controls={dropdownId}
+                            disabled={isDisabled}
+                            id={uniqueOpenerId}
+                            error={hasError}
+                            isPlaceholder={!selectedItem}
+                            onOpenChanged={handleOpenChanged}
+                            open={open}
+                            ref={handleOpenerRef}
+                            testId={testId}
+                            onBlur={onOpenerBlurValidation}
+                        >
+                            {menuContent}
+                        </SelectOpener>
+                    );
+                }}
+            </Id>
         );
+
         return dropdownOpener;
-    }
+    };
 
-    render(): React.ReactNode {
-        const {
-            alignment,
-            autoFocus,
-            children,
-            className,
-            dropdownStyle,
-            enableTypeAhead,
-            isFilterable,
-            labels,
-            light,
-            style,
-            "aria-invalid": ariaInvalid,
-            "aria-required": ariaRequired,
-        } = this.props;
-        const {searchText} = this.state;
-        const allChildren = React.Children.toArray(children).filter(Boolean);
-        // @ts-expect-error [FEI-5019] - TS2345 - Argument of type '(ReactChild | ReactFragment | ReactPortal)[]' is not assignable to parameter of type 'ReactElement<{}, string | JSXElementConstructor<any>>[]'.
-        const items = this.getMenuItems(allChildren);
-        const opener = this.renderOpener(allChildren.length);
+    const allChildren = (
+        React.Children.toArray(children) as Array<
+            React.ReactElement<React.ComponentProps<typeof OptionItem>>
+        >
+    ).filter(Boolean);
+    const numEnabledOptions = allChildren.filter(
+        (option) => !option.props.disabled,
+    ).length;
+    const items = getMenuItems(allChildren);
+    const isDisabled = numEnabledOptions === 0 || disabled;
 
-        return (
-            <DropdownCore
-                role="listbox"
-                selectionType="single"
-                alignment={alignment}
-                autoFocus={autoFocus}
-                enableTypeAhead={enableTypeAhead}
-                dropdownStyle={[
-                    isFilterable && filterableDropdownStyle,
-                    selectDropdownStyle,
-                    dropdownStyle,
-                ]}
-                initialFocusedIndex={this.selectedIndex}
-                items={items}
-                light={light}
-                onOpenChanged={this.handleOpenChanged}
-                open={this.state.open}
-                opener={opener}
-                openerElement={this.state.openerElement}
-                style={style}
-                className={className}
-                isFilterable={isFilterable}
-                onSearchTextChanged={
-                    isFilterable ? this.handleSearchTextChanged : undefined
-                }
-                searchText={isFilterable ? searchText : ""}
-                labels={labels}
-                aria-invalid={ariaInvalid}
-                aria-required={ariaRequired}
-            />
-        );
-    }
-}
+    // Extract out someResults. When we put labels in the dependency array,
+    // useEffect happens on every render (I think because labels is a new object)
+    // each time so it thinks it has changed
+    const {someResults} = labels;
+
+    // Announce in a screen reader when the number of filtered items changes
+    // when the dropdown is open
+    React.useEffect(() => {
+        if (open) {
+            handleAnnouncement(someResults(items.length));
+        }
+    }, [items.length, someResults, open]);
+
+    return (
+        <Id id={dropdownId}>
+            {(uniqueDropdownId) => (
+                <DropdownCore
+                    id={uniqueDropdownId}
+                    role="listbox"
+                    selectionType="single"
+                    alignment={alignment}
+                    autoFocus={autoFocus}
+                    enableTypeAhead={enableTypeAhead}
+                    dropdownStyle={[
+                        isFilterable && filterableDropdownStyle,
+                        selectDropdownStyle,
+                        dropdownStyle,
+                    ]}
+                    initialFocusedIndex={selectedIndex.current}
+                    items={items}
+                    onOpenChanged={handleOpenChanged}
+                    open={open}
+                    opener={renderOpener(isDisabled, uniqueDropdownId)}
+                    openerElement={openerElement}
+                    style={style}
+                    className={className}
+                    isFilterable={isFilterable}
+                    onSearchTextChanged={
+                        isFilterable ? handleSearchTextChanged : undefined
+                    }
+                    searchText={isFilterable ? searchText : ""}
+                    labels={labels}
+                    aria-invalid={ariaInvalid}
+                    aria-required={ariaRequired}
+                    disabled={isDisabled}
+                />
+            )}
+        </Id>
+    );
+};
+
+export default SingleSelect;

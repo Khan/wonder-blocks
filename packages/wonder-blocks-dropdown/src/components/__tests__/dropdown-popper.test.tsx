@@ -13,7 +13,7 @@ describe("DropdownPopper", () => {
         render(
             <DropdownPopper referenceElement={referenceElement}>
                 {() => (
-                    <div data-test-id="dropdown-container">
+                    <div data-testid="dropdown-container">
                         dropdown container
                     </div>
                 )}
@@ -35,7 +35,7 @@ describe("DropdownPopper", () => {
                 alignment="right"
             >
                 {() => (
-                    <div data-test-id="dropdown-container">
+                    <div data-testid="dropdown-container">
                         dropdown container
                     </div>
                 )}
@@ -63,7 +63,7 @@ describe("DropdownPopper", () => {
         render(
             <DropdownPopper referenceElement={referenceElement}>
                 {() => (
-                    <div data-test-id="dropdown-container">
+                    <div data-testid="dropdown-container">
                         dropdown container
                     </div>
                 )}

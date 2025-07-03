@@ -1,32 +1,41 @@
 {
   "name": "@khanacademy/wonder-blocks-labeled-field",
-  "version": "0.1.9",
+  "version": "3.1.0",
   "design": "v1",
   "description": "LabeledField handles accessibility and layout for associating labels with form components.",
+  "exports": {
+    ".": {
+      "import": "./dist/es/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles.css": "./dist/css/vars.css"
+  },
   "main": "dist/index.js",
   "module": "dist/es/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:css": "pnpm exec wonder-blocks-tokens .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },
   "author": "",
   "license": "MIT",
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
   },
-  "private": true,
   "dependencies": {
-    "@babel/runtime": "^7.18.6",
-    "@khanacademy/wonder-blocks-core": "^6.3.1",
-    "@khanacademy/wonder-blocks-layout": "^2.0.28",
-    "@khanacademy/wonder-blocks-tokens": "^1.1.0",
-    "@khanacademy/wonder-blocks-typography": "^2.1.10"
+    "@khanacademy/wonder-blocks-core": "workspace:*",
+    "@khanacademy/wonder-blocks-layout": "workspace:*",
+    "@khanacademy/wonder-blocks-tokens": "workspace:*",
+    "@khanacademy/wonder-blocks-typography": "workspace:*"
   },
   "peerDependencies": {
-    "aphrodite": "^1.2.5",
-    "react": "16.14.0"
+    "@phosphor-icons/core": "catalog:",
+    "aphrodite": "catalog:",
+    "react": "catalog:"
   },
   "devDependencies": {
-    "@khanacademy/wb-dev-build-settings": "^1.0.0"
+    "@khanacademy/wb-dev-build-settings": "workspace:*"
   }
 }

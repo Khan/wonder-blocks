@@ -125,36 +125,59 @@ describe("CellCore", () => {
         ).toBeInTheDocument();
     });
 
-    it("should pass an style to the top node", () => {
-        // Arrange
+    describe("aria-checked", () => {
+        it("should add aria-checked if aria-checked is set and it is a link", () => {
+            // Arrange
 
-        // Act
-        render(
-            <CellCore onClick={jest.fn()} rootStyle={{color: "blue"}}>
-                <div>cell core content</div>
-            </CellCore>,
-        );
+            // Act
+            const {container} = render(
+                <CellCore aria-checked={true} href="#">
+                    <div>cell core content</div>
+                </CellCore>,
+            );
 
-        // Assert
-        expect(screen.getByRole("button")).toHaveStyle("color: blue");
-    });
+            // Assert
+            // Verify that the root element has the aria-current attribute
+            // eslint-disable-next-line testing-library/no-node-access
+            expect(container.firstChild).toHaveAttribute(
+                "aria-checked",
+                "true",
+            );
+        });
 
-    it("should pass an style to the content container", () => {
-        // Arrange
+        it("should add aria-checked if aria-checked is set and it has an onClick handler", () => {
+            // Arrange
 
-        // Act
-        render(
-            <CellCore
-                onClick={jest.fn()}
-                contentStyle={{alignSelf: "flex-start"}}
-            >
-                <div>cell core content</div>
-            </CellCore>,
-        );
+            // Act
+            const {container} = render(
+                <CellCore aria-checked={true} onClick={jest.fn()}>
+                    <div>cell core content</div>
+                </CellCore>,
+            );
 
-        // Assert
-        const elem = screen.getByText("cell core content");
-        // eslint-disable-next-line testing-library/no-node-access
-        expect(elem.parentElement).toHaveStyle("align-self: flex-start");
+            // Assert
+            // Verify that the root element has the aria-current attribute
+            // eslint-disable-next-line testing-library/no-node-access
+            expect(container.firstChild).toHaveAttribute(
+                "aria-checked",
+                "true",
+            );
+        });
+
+        it("should not add aria-checked if it is not clickable", () => {
+            // Arrange
+
+            // Act
+            const {container} = render(
+                <CellCore aria-checked={true}>
+                    <div>cell core content</div>
+                </CellCore>,
+            );
+
+            // Assert
+            // Verify that the root element has the aria-current attribute
+            // eslint-disable-next-line testing-library/no-node-access
+            expect(container.firstChild).not.toHaveAttribute("aria-checked");
+        });
     });
 });

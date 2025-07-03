@@ -28,17 +28,33 @@ type Props = Partial<Omit<AriaProps, "aria-disabled">> & {
      */
     onClick: (e: React.SyntheticEvent) => unknown;
     /**
+     * Callback for when the opener is blurred.
+     */
+    onBlur?: (e: React.SyntheticEvent) => unknown;
+    /**
      * Test ID used for e2e testing.
      */
     testId?: string;
     /**
-     * Text for the opener that can be passed to the child as an argument.
+     * Content for the opener that can be passed to the child as an argument.
      */
     text: OptionLabel;
     /**
      * Whether the dropdown is opened.
      */
     opened: boolean;
+    /**
+     * The unique identifier for the opener.
+     */
+    id?: string;
+    /**
+     * If the dropdown has an error.
+     */
+    error?: boolean;
+    /**
+     * The role of the opener.
+     */
+    role: "combobox" | "button";
 };
 
 type DefaultProps = {
@@ -51,14 +67,25 @@ class DropdownOpener extends React.Component<Props> {
     };
 
     getTestIdFromProps: (childrenProps?: any) => string = (childrenProps) => {
-        return childrenProps.testId || childrenProps["data-test-id"];
+        return childrenProps.testId || childrenProps["data-testid"];
     };
 
     renderAnchorChildren(
         eventState: ClickableState,
         clickableChildrenProps: ChildrenProps,
     ): React.ReactElement {
-        const {disabled, testId, text, opened} = this.props;
+        const {
+            disabled,
+            testId,
+            text,
+            opened,
+            "aria-controls": ariaControls,
+            "aria-haspopup": ariaHasPopUp,
+            "aria-required": ariaRequired,
+            id,
+            role,
+            onBlur,
+        } = this.props;
         const renderedChildren = this.props.children({
             ...eventState,
             text,
@@ -67,9 +94,22 @@ class DropdownOpener extends React.Component<Props> {
         const childrenProps = renderedChildren.props;
         const childrenTestId = this.getTestIdFromProps(childrenProps);
 
+        // If custom opener has `aria-label`, prioritize that.
+        // If parent component has `aria-label`, fall back to that next.
+        const renderedAriaLabel =
+            childrenProps["aria-label"] ?? this.props["aria-label"];
+
         return React.cloneElement(renderedChildren, {
             ...clickableChildrenProps,
+            "aria-label": renderedAriaLabel ?? undefined,
+            "aria-invalid": this.props.error,
             disabled,
+            "aria-controls": ariaControls,
+            role,
+            id,
+            "aria-expanded": opened ? "true" : "false",
+            "aria-haspopup": ariaHasPopUp,
+            "aria-required": ariaRequired,
             onClick: childrenProps.onClick
                 ? (e: React.MouseEvent) => {
                       // This is done to avoid overriding a
@@ -81,7 +121,8 @@ class DropdownOpener extends React.Component<Props> {
                 : clickableChildrenProps.onClick,
             // try to get the testId from the child element
             // If it's not set, try to fallback to the parent's testId
-            "data-test-id": childrenTestId || testId,
+            "data-testid": childrenTestId || testId,
+            onBlur,
         });
     }
 

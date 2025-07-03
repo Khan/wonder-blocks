@@ -1,5 +1,5 @@
+import type {ArgTypes} from "@storybook/react";
 import * as React from "react";
-import type {InputType} from "@storybook/csf";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {LabelSmall, LabelXSmall} from "@khanacademy/wonder-blocks-typography";
@@ -29,7 +29,7 @@ export const AccessoryMappings = {
         </View>
     ) as React.ReactElement<React.ComponentProps<typeof View>>,
     withImage: (
-        <img src="./avatar.png" alt="ItemAvatar" width={48} height={48} />
+        <img src="avatar.png" alt="ItemAvatar" width={48} height={48} />
     ) as React.ReactElement<React.ComponentProps<"img">>,
 } as const;
 
@@ -121,20 +121,6 @@ export default {
             },
         },
     },
-    rootStyle: {
-        description:
-            `Optional custom styles applied to the top node.\n\n` +
-            `**NOTE:** This is the top node of the cell, not the cell ` +
-            `container. If possible, try to use this prop carefully and use ` +
-            `\`style\` instead.`,
-        control: {type: "object"},
-        table: {
-            category: "Styling",
-            type: {
-                summary: "StyleType",
-            },
-        },
-    },
     style: {
         description: "Optional custom styles.",
         control: {type: "object"},
@@ -205,11 +191,9 @@ export default {
     /**
      * Accessibility
      */
-    ariaLabel: {
+    "aria-label": {
         name: "aria-label",
-        control: {
-            type: "string",
-        },
+        control: {type: "text"},
         description: "Used to announce the cell's content to screen readers.",
         table: {
             category: "Accessibility",
@@ -219,16 +203,24 @@ export default {
             },
         },
     },
-    ariaSelected: {
+    "aria-selected": {
         name: "aria-selected",
-        control: {
-            type: "string",
-        },
+        control: {type: "boolean"},
         description: " Used to indicate the current element is selected",
         table: {
             category: "Accessibility",
             type: {
-                summary: "string",
+                summary: "boolean",
+            },
+        },
+    },
+    "aria-checked": {
+        name: "aria-checked",
+        control: {type: "boolean"},
+        table: {
+            category: "Accessibility",
+            type: {
+                summary: "boolean",
             },
         },
     },
@@ -243,6 +235,7 @@ export default {
             "listbox",
             "menu",
             "menuitem",
+            "menuitemcheckbox",
             "radio",
             "tab",
         ],
@@ -250,8 +243,8 @@ export default {
             category: "Accessibility",
             type: {
                 summary: "ClickableRole",
-                detail: `"button" | "link" | "checkbox" | "radio" | "listbox" | "option" | "menuitem" | "menu" | "tab"`,
+                detail: `"button" | "link" | "checkbox" | "radio" | "listbox" | "option" | "menuitem" | "menuitemcheckbox" | "menu" | "tab"`,
             },
         },
     },
-} satisfies Record<string, InputType>;
+} satisfies ArgTypes;

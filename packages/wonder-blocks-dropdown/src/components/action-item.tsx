@@ -2,14 +2,14 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {CompactCell} from "@khanacademy/wonder-blocks-cell";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import type {PropsFor, StyleType} from "@khanacademy/wonder-blocks-core";
 
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
-
-const {blue, white, offBlack} = color;
+import theme from "../theme";
 
 type CompactCellProps = PropsFor<typeof CompactCell>;
 
@@ -93,6 +93,11 @@ type ActionProps = {
      * Optional right accessory to display in the `ActionItem` element.
      */
     rightAccessory?: CompactCellProps["rightAccessory"];
+
+    /**
+     * Optional; applies aria-current to the cell.
+     */
+    active?: CompactCellProps["active"];
 };
 
 type DefaultProps = {
@@ -135,6 +140,7 @@ export default class ActionItem extends React.Component<ActionProps> {
             role,
             style,
             testId,
+            active,
         } = this.props;
 
         const defaultStyle = [
@@ -145,9 +151,9 @@ export default class ActionItem extends React.Component<ActionProps> {
 
         const labelComponent =
             typeof label === "string" ? (
-                <LabelMedium lang={lang} style={styles.label}>
+                <BodyText tag="div" lang={lang} style={styles.label}>
                     {label}
-                </LabelMedium>
+                </BodyText>
             ) : (
                 React.cloneElement(label, {
                     lang,
@@ -160,16 +166,16 @@ export default class ActionItem extends React.Component<ActionProps> {
             <CompactCell
                 disabled={disabled}
                 horizontalRule={horizontalRule}
-                rootStyle={defaultStyle}
                 leftAccessory={leftAccessory}
                 rightAccessory={rightAccessory}
-                style={[styles.shared, indent && styles.indent]}
+                style={[defaultStyle, styles.shared, indent && styles.indent]}
                 role={role}
                 testId={testId}
                 title={labelComponent}
                 href={href}
                 target={target}
                 onClick={onClick}
+                active={active}
             />
         );
     }
@@ -188,45 +194,35 @@ const styles = StyleSheet.create({
         ":focus": {
             // Override the default focus state for the cell element, so that it
             // can be added programmatically to the button element.
-            borderRadius: spacing.xxxSmall_4,
-            outline: `${spacing.xxxxSmall_2}px solid ${color.blue}`,
-            outlineOffset: -spacing.xxxxSmall_2,
-        },
-
-        // Overrides the default cell state for the button element.
-        [":hover[aria-disabled=false]" as any]: {
-            color: white,
-            background: blue,
-        },
-        // Allow hover styles on non-touch devices only. This prevents an
-        // issue with hover being sticky on touch devices (e.g. mobile).
-        ["@media not (hover: hover)" as any]: {
-            // Revert the hover styles to the default/resting state (mobile
-            // only).
-            [":hover[aria-disabled=false]" as any]: {
-                color: white,
-                background: offBlack,
+            borderRadius: theme.item.border.radius.default,
+            outline: focusStyles.focus[":focus-visible"].outline,
+            outlineOffset: `calc(${border.width.medium} * -1)`,
+            // We need to use a thicker box-shadow to ensure that the inner ring
+            // is visible when the cell is focused.
+            boxShadow: `inset 0 0 0 calc(${border.width.medium}*2) ${semanticColor.focus.inner}`,
+            // Hide the left bar indicator when focused, so the focus ring
+            // doesn't overlap with it.
+            // @see cell-core.tsx
+            [":after" as any]: {
+                content: "unset",
             },
-        },
-
-        // active and pressed states
-        [":active[aria-disabled=false]" as any]: {
-            color: color.fadedBlue,
-            background: color.activeBlue,
         },
     },
     shared: {
         minHeight: DROPDOWN_ITEM_HEIGHT,
-        height: DROPDOWN_ITEM_HEIGHT,
+        // Make sure that the item is always at least as tall as 40px.
+        paddingBlock: theme.item.layout.padding.block,
     },
 
     label: {
+        fontWeight: theme.item.font.weight,
+        lineHeight: sizing.size_200,
         whiteSpace: "nowrap",
         userSelect: "none",
     },
 
     indent: {
         // Cell's internal padding + checkbox width + checkbox margin
-        paddingLeft: spacing.medium_16 * 2,
+        paddingInlineStart: sizing.size_320,
     },
 });

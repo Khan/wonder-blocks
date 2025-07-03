@@ -1,5 +1,5 @@
+import type {ArgTypes} from "@storybook/react";
 import * as React from "react";
-import type {InputType} from "@storybook/csf";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {Spring, Strut} from "@khanacademy/wonder-blocks-layout";
@@ -11,27 +11,11 @@ type Mappings = Record<string, React.ReactNode>;
 const ActionsMappings: Mappings = {
     none: null,
     singleButton: <Button kind="primary">Continue</Button>,
-    emphasizedSingleButton: (
-        <Button kind="primary" light={true}>
-            Continue
-        </Button>
-    ),
     pagination: (
         <>
             <Button kind="tertiary">Previous</Button>
             <Strut size={spacing.medium_16} />
             <Button kind="primary">Next</Button>
-        </>
-    ),
-    emphasizedPagination: (
-        <>
-            <Button kind="tertiary" light={true}>
-                Previous
-            </Button>
-            <Strut size={spacing.medium_16} />
-            <Button kind="primary" light={true}>
-                Next
-            </Button>
         </>
     ),
     steps: (
@@ -41,22 +25,13 @@ const ActionsMappings: Mappings = {
             <Button kind="tertiary">Skip this step</Button>
         </>
     ),
-    emphasizedSteps: (
-        <>
-            <LabelLarge>Step 1 of 5</LabelLarge>
-            <Spring />
-            <Button kind="secondary" light={true}>
-                Skip this step
-            </Button>
-        </>
-    ),
 };
 
 const IconMappings: Mappings = {
     none: null,
-    logo: <img src="/logo.svg" width="100%" alt="Wonder Blocks logo" />,
+    logo: <img src="logo.svg" width="100%" alt="Wonder Blocks logo" />,
     itemAvatar: (
-        <img src="./avatar.png" alt="ItemAvatar" width={48} height={48} />
+        <img src="avatar.png" alt="ItemAvatar" width={48} height={48} />
     ),
 };
 
@@ -136,6 +111,11 @@ export default {
         options: Object.keys(IconMappings) as Array<React.ReactNode>,
         mapping: IconMappings,
     },
+    iconAlt: {
+        description:
+            "Alt text for the icon. This prop is only used if the `icon` prop is passed a url (instead of a svg or img element).",
+        type: "string",
+    },
     image: {
         description: `Decorate the popover with a full-bleed illustration. It cannot be used at the same time with icon.`,
         type: {
@@ -148,8 +128,4 @@ export default {
         options: Object.keys(ImageMappings) as Array<React.ReactNode>,
         mapping: ImageMappings,
     },
-    emphasized: {
-        description: `When true, changes the popover dialog background to blue; otherwise, the popover dialog background is not modified. It can be used only with Text-only popovers. It cannot be used with icon or image.`,
-        control: {type: "boolean"},
-    },
-} satisfies Record<string, InputType>;
+} satisfies ArgTypes;

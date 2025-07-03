@@ -1,0 +1,22 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta
+    title="Packages / Data / Types / RawScopedCache"
+/>
+
+# RawScopedCache
+
+```ts
+type RawScopedCache = {
+    [scope: string]: {
+        [id: string]: ValidCacheData,
+        ...
+    },
+    ...
+};
+
+```
+
+`RawScopedCache` describes a cache that has distinct scoped sections in its raw object form. This is the representation of the caches used internally by Wonder Blocks Data to support the scoping of requests when using hooks such as <a href="./?path=/docs/packages-data-exports-use-shared-cache--docs">`useSharedCache`</a>, <a href="./?path=/docs/packages-data-exports-use-cached-effect--docs">`useCachedEffect`</a>, and <a href="./?path=/docs/packages-data-exports-use-hydratable-effect--docs">`useHydratableEffect`</a>.
+
+See the section on <a href="./?path=/docs/packages-data-server-side-rendering-and-hydration--docs">server-side rendering</a> for more information.

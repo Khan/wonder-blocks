@@ -8,7 +8,7 @@ import {IconSize, PhosphorIconAsset} from "../types";
 
 // We use a span instead of an img because we want to use the mask-image CSS
 // property.
-const StyledIcon = addStyle("span");
+const StyledSpan = addStyle("span");
 
 type Props = Pick<AriaProps, "aria-hidden" | "aria-label" | "role"> & {
     /**
@@ -26,7 +26,8 @@ type Props = Pick<AriaProps, "aria-hidden" | "aria-label" | "role"> & {
     className?: string;
 
     /**
-     * The role of the icon.
+     * The role of the icon. Will default to `img` if an `aria-label` is
+     * provided.
      * @see https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA24
      */
     role?: "img";
@@ -89,6 +90,7 @@ export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
         style,
         testId,
         className,
+        role,
         ...sharedProps
     } = props;
 
@@ -97,7 +99,7 @@ export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
     const iconStyles = _generateStyles(color, pixelSize);
 
     return (
-        <StyledIcon
+        <StyledSpan
             {...sharedProps}
             className={classNames}
             style={[
@@ -111,8 +113,9 @@ export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
                 },
                 style,
             ]}
-            data-test-id={testId}
+            data-testid={testId}
             ref={ref}
+            role={(role ?? sharedProps["aria-label"]) ? "img" : undefined}
         />
     );
 });

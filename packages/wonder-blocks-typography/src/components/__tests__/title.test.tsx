@@ -14,4 +14,15 @@ describe("Title", () => {
         // Assert
         expect(ref.current).toBeInstanceOf(HTMLHeadingElement);
     });
+
+    describe("a11y", () => {
+        test("has no accessibility violations", async () => {
+            // Arrange
+            // Act
+            const {container} = render(<Title>Test title</Title>);
+
+            // Assert
+            await expect(container).toHaveNoA11yViolations();
+        });
+    });
 });

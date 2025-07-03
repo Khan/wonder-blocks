@@ -6,7 +6,6 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import {Text as WBText} from "@khanacademy/wonder-blocks-core";
-import type {IIdentifierFactory} from "@khanacademy/wonder-blocks-core";
 
 import ActiveTracker from "../util/active-tracker";
 import {
@@ -54,9 +53,12 @@ type Props = {
      */
     onActiveChanged: (active: boolean) => unknown;
     /**
-     * Optional unique id factory.
+     * Required aria-describedby id.
+     * This ID will reference the text in the tooltip bubble.
+     * It should only be set to `undefined` when the tooltip bubble
+     * is not visible.
      */
-    ids?: IIdentifierFactory;
+    "aria-describedby": string | undefined;
 };
 
 type DefaultProps = {
@@ -99,6 +101,7 @@ export default class TooltipAnchor
     }
 
     componentDidMount() {
+        // eslint-disable-next-line import/no-deprecated
         const anchorNode = ReactDOM.findDOMNode(this);
 
         // This should never happen, but we have this check here to make TypeScript
@@ -161,8 +164,6 @@ export default class TooltipAnchor
             document.removeEventListener("keyup", this._handleKeyUp);
         }
     }
-
-    static ariaContentId = "aria-content";
 
     activeStateStolen: () => void = () => {
         // Something wants the active state.
@@ -228,8 +229,20 @@ export default class TooltipAnchor
             // So, if active is stolen from us, we are changing active state,
             // or we are inactive and have a timer, clear the action.
             this._clearPendingAction();
-        } else if (active === this.state.active && !this._timeoutID) {
-            // Nothing to do if we're already active.
+        } else if (active === this.state.active) {
+            if (this._timeoutID) {
+                // Cancel pending action if the current `this.state.active` is
+                // already the value we want to set it to (ie. the `active` arg).
+                // This is okay to cancel because:
+                // - if the pending action was to set `this.state.active` to the
+                // same value, it is not needed because it already is up to date
+                // - if the pending action was to set `this.state.active` to the
+                // opposite value, it is not needed because there is a more recent
+                // event that triggered this function with an `active` arg that is
+                // the same value as the current state.
+                this._clearPendingAction();
+            }
+            // Nothing else to do if active state is up to date.
             return;
         }
 
@@ -308,22 +321,12 @@ export default class TooltipAnchor
         );
     }
 
-    _renderAccessibleChildren(ids: IIdentifierFactory): React.ReactNode {
+    render(): React.ReactNode {
+        const {"aria-describedby": ariaDescribedBy} = this.props;
         const anchorableChildren = this._renderAnchorableChildren();
 
         return React.cloneElement(anchorableChildren, {
-            "aria-describedby": ids.get(TooltipAnchor.ariaContentId),
+            "aria-describedby": ariaDescribedBy,
         });
-    }
-
-    render(): React.ReactNode {
-        // We need to make sure we can anchor on our content.
-        // If the content is just a string, we wrap it in a Text element
-        // so as not to affect styling or layout but still have an element
-        // to anchor to.
-        if (this.props.ids) {
-            return this._renderAccessibleChildren(this.props.ids);
-        }
-        return this._renderAnchorableChildren();
     }
 }

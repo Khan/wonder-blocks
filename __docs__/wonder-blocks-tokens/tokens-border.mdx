@@ -1,12 +1,12 @@
 import {Meta} from "@storybook/blocks";
 
-import TokenTable from "../../.storybook/components/token-table";
+import TokenTable from "../components/token-table";
 
 import Banner from "@khanacademy/wonder-blocks-banner";
 import {View} from "@khanacademy/wonder-blocks-core";
-import * as tokens from "@khanacademy/wonder-blocks-tokens";
+import {border, color, sizing} from "@khanacademy/wonder-blocks-tokens";
 
-<Meta title="Tokens / Border" />
+<Meta title="Packages / Tokens / Border" />
 
 export const baseColumns = (kind) => [
     {
@@ -16,6 +16,10 @@ export const baseColumns = (kind) => [
                 border.{kind}.{row.label}
             </code>
         ),
+    },
+    {
+        label: "CSS Variable",
+        cell: (row) => <code>{row.css}</code>,
     },
     {
         label: "Value",
@@ -28,7 +32,7 @@ export const baseColumns = (kind) => [
 The `border` tokens are used to define the border properties of an element. The
 border tokens are broken down into two categories: `radius` and `width`.
 
-<View style={{marginBottom: tokens.spacing.medium_16}}>
+<View style={{marginBottom: sizing.size_160}}>
     <Banner
         kind="info"
         text="We don't define border colors here, and instead we recommend you to rely on the `color` token primitives to build on top of that."
@@ -38,15 +42,14 @@ border tokens are broken down into two categories: `radius` and `width`.
 
 ## Usage
 
-
 ```ts
 import {border} from "@khanacademy/wonder-blocks-tokens";
 const styles = {
     borderedContainer: {
-        borderRadius: border.radius.small,
-        borderWidth: border.width.small,
+        borderRadius: border.radius.radius_040,
+        borderWidth: border.width.thin,
     },
-}
+};
 ```
 
 ## Tokens
@@ -61,10 +64,10 @@ const styles = {
             cell: (row) => (
                 <View
                     style={{
-                        backgroundColor: tokens.color.purple,
+                        backgroundColor: color.purple,
                         borderRadius: row.value,
-                        width: tokens.spacing.large_24,
-                        height: tokens.spacing.large_24,
+                        width: sizing.size_480,
+                        height: sizing.size_480,
                     }}
                 >
                     &nbsp;
@@ -72,7 +75,7 @@ const styles = {
             ),
         },
     ]}
-    tokens={tokens.border.radius}
+    tokens={border.radius}
 />
 
 ### Width
@@ -85,10 +88,10 @@ const styles = {
             cell: (row) => (
                 <View
                     style={{
-                        borderColor: tokens.color.purple,
+                        borderColor: color.purple,
                         borderWidth: row.value,
-                        width: tokens.spacing.large_24,
-                        height: tokens.spacing.large_24,
+                        width: sizing.size_480,
+                        height: sizing.size_480,
                     }}
                 >
                     &nbsp;
@@ -96,5 +99,5 @@ const styles = {
             ),
         },
     ]}
-    tokens={tokens.border.width}
+    tokens={border.width}
 />

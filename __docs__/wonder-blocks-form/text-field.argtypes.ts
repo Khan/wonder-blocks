@@ -1,9 +1,10 @@
-import type {InputType} from "@storybook/csf";
+import type {ArgTypes} from "@storybook/react";
 
 export default {
     id: {
-        description: "The unique identifier for the input.",
-        type: {name: "string", required: true},
+        description:
+            "An optional unique identifier for the TextField. If no id is specified, a unique id will be auto-generated.",
+        type: {name: "string"},
         table: {
             type: {
                 summary: "string",
@@ -69,23 +70,9 @@ export default {
     },
 
     disabled: {
-        description: "Makes a read-only input field that cannot be focused.",
-        table: {
-            type: {
-                summary: "boolean",
-            },
-            defaultValue: {
-                summary: "false",
-            },
-        },
-        control: {
-            type: "boolean",
-        },
-    },
-
-    light: {
-        description:
-            "Change the default focus ring color to fit a dark background.",
+        description: `Whether the input should be disabled. Defaults to false.
+            If the disabled prop is set to \`true\`, TextField will have disabled
+            styling and will not be interactable.`,
         table: {
             type: {
                 summary: "boolean",
@@ -109,7 +96,7 @@ export default {
             },
         },
         control: {
-            type: "null",
+            type: undefined,
         },
     },
 
@@ -160,14 +147,80 @@ export default {
 
     validate: {
         description:
-            "Provide a validation for the input value. Return a string error message or null | void for a valid input.",
+            "Provide a validation for the input value. Return a string error message or null | void for a valid input. \n Use this for errors that are shown to the user while they are filling out a form.",
         table: {
             type: {
                 summary: "(value: string) => ?string",
             },
         },
         control: {
-            type: "null",
+            type: undefined,
+        },
+    },
+
+    error: {
+        description:
+            "Whether this field is in an error state. \n Use this for errors that are triggered by something external to the component (example: an error after form submission).",
+        table: {
+            type: {
+                summary: "boolean",
+            },
+        },
+        control: {
+            type: "boolean",
+        },
+    },
+
+    instantValidation: {
+        description:
+            "If true, TextField is validated as the user types (onChange). If false, it is validated when the user's focus moves out of the field (onBlur). It is preferred that instantValidation is set to `false`, however, it defaults to `true` for backwards compatibility with existing implementations.",
+        table: {
+            type: {
+                summary: "boolean",
+            },
+        },
+        control: {
+            type: "boolean",
+        },
+    },
+
+    /**
+     * Number-specific props
+     */
+    min: {
+        description: "The minimum value for a number input.",
+        table: {
+            category: "Number",
+            type: {
+                summary: "number",
+            },
+        },
+        control: {
+            type: "number",
+        },
+    },
+    max: {
+        description: "The maximum value for a number input.",
+        table: {
+            category: "Number",
+            type: {
+                summary: "number",
+            },
+        },
+        control: {
+            type: "number",
+        },
+    },
+    step: {
+        description: "The step value for a number input.",
+        table: {
+            category: "Number",
+            type: {
+                summary: "number",
+            },
+        },
+        control: {
+            type: "number",
         },
     },
 
@@ -235,4 +288,4 @@ export default {
             },
         },
     },
-} satisfies Record<string, InputType>;
+} satisfies ArgTypes;

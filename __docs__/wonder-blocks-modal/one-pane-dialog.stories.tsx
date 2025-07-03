@@ -9,16 +9,16 @@ import {
 } from "@khanacademy/wonder-blocks-breadcrumbs";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Link from "@khanacademy/wonder-blocks-link";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
 import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import OnePaneDialogArgTypes from "./one-pane-dialog.argtypes";
+import {allModes} from "../../.storybook/modes";
 
 const customViewports = {
     phone: {
@@ -45,7 +45,7 @@ const customViewports = {
 } as const;
 
 export default {
-    title: "Modal/OnePaneDialog",
+    title: "Packages / Modal / OnePaneDialog",
     component: OnePaneDialog,
     decorators: [
         (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
@@ -75,7 +75,11 @@ export default {
             defaultViewport: "desktop",
         },
         chromatic: {
-            viewports: [320, 640, 1024],
+            modes: {
+                small: allModes.small,
+                large: allModes.large,
+                thunderblocks: allModes.themeThunderBlocks,
+            },
         },
     },
     argTypes: OnePaneDialogArgTypes,
@@ -93,7 +97,7 @@ export const Default: StoryComponentType = {
     ),
     args: {
         content: (
-            <Body>
+            <BodyText>
                 {`Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                 sed do eiusmod tempor incididunt ut labore et dolore magna
                 aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -102,7 +106,7 @@ export const Default: StoryComponentType = {
                 esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
                 occaecat cupidatat non proident, sunt in culpa qui officia
                 deserunt mollit anim id est.`}
-            </Body>
+            </BodyText>
         ),
         title: "Some title",
     },
@@ -114,7 +118,7 @@ export const Simple: StoryComponentType = () => (
             <OnePaneDialog
                 title="Hello, world! Here is an example of a long title that wraps to the next line."
                 content={
-                    <Body>
+                    <BodyText>
                         {`Lorem ipsum dolor sit amet, consectetur adipiscing
                             elit, sed do eiusmod tempor incididunt ut labore et
                             dolore magna aliqua. Ut enim ad minim veniam,
@@ -124,7 +128,7 @@ export const Simple: StoryComponentType = () => (
                             cillum dolore eu fugiat nulla pariatur. Excepteur
                             sint occaecat cupidatat non proident, sunt in culpa
                             qui officia deserunt mollit anim id est.`}
-                    </Body>
+                    </BodyText>
                 }
             />
         </View>
@@ -146,7 +150,7 @@ export const WithFooter: StoryComponentType = () => (
             <OnePaneDialog
                 title="Hello, world!"
                 content={
-                    <Body>
+                    <BodyText>
                         {`Lorem ipsum dolor sit amet, consectetur adipiscing
                             elit, sed do eiusmod tempor incididunt ut labore et
                             dolore magna aliqua. Ut enim ad minim veniam,
@@ -156,14 +160,13 @@ export const WithFooter: StoryComponentType = () => (
                             cillum dolore eu fugiat nulla pariatur. Excepteur
                             sint occaecat cupidatat non proident, sunt in culpa
                             qui officia deserunt mollit anim id est.`}
-                    </Body>
+                    </BodyText>
                 }
                 footer={
                     <View style={styles.footer}>
-                        <LabelLarge>Step 1 of 4</LabelLarge>
+                        <BodyText weight="bold">Step 1 of 4</BodyText>
                         <View style={styles.row}>
                             <Button kind="tertiary">Previous</Button>
-                            <Strut size={16} />
                             <Button kind="primary">Next</Button>
                         </View>
                     </View>
@@ -185,7 +188,7 @@ export const WithSubtitle: StoryComponentType = () => (
             <OnePaneDialog
                 title="Hello, world!"
                 content={
-                    <Body>
+                    <BodyText>
                         {`Lorem ipsum dolor sit amet, consectetur adipiscing
                             elit, sed do eiusmod tempor incididunt ut labore et
                             dolore magna aliqua. Ut enim ad minim veniam,
@@ -195,7 +198,7 @@ export const WithSubtitle: StoryComponentType = () => (
                             cillum dolore eu fugiat nulla pariatur. Excepteur
                             sint occaecat cupidatat non proident, sunt in culpa
                             qui officia deserunt mollit anim id est.`}
-                    </Body>
+                    </BodyText>
                 }
                 subtitle={
                     "Subtitle that provides additional context to the title"
@@ -217,7 +220,7 @@ export const WithBreadcrumbs: StoryComponentType = () => (
             <OnePaneDialog
                 title="Hello, world!"
                 content={
-                    <Body>
+                    <BodyText>
                         {`Lorem ipsum dolor sit amet, consectetur adipiscing
                             elit, sed do eiusmod tempor incididunt ut labore et
                             dolore magna aliqua. Ut enim ad minim veniam,
@@ -227,15 +230,15 @@ export const WithBreadcrumbs: StoryComponentType = () => (
                             cillum dolore eu fugiat nulla pariatur. Excepteur
                             sint occaecat cupidatat non proident, sunt in culpa
                             qui officia deserunt mollit anim id est.`}
-                    </Body>
+                    </BodyText>
                 }
                 breadcrumbs={
                     <Breadcrumbs>
                         <BreadcrumbsItem>
-                            <Link href="">Course</Link>
+                            <Link href="#course">Course</Link>
                         </BreadcrumbsItem>
                         <BreadcrumbsItem>
-                            <Link href="">Unit</Link>
+                            <Link href="#unit">Unit</Link>
                         </BreadcrumbsItem>
                         <BreadcrumbsItem>Lesson</BreadcrumbsItem>
                     </Breadcrumbs>
@@ -279,8 +282,8 @@ export const WithAboveAndBelow: StoryComponentType = () => {
                 <OnePaneDialog
                     title="Single-line title"
                     content={
-                        <View>
-                            <Body>
+                        <View style={{gap: sizing.size_160}}>
+                            <BodyText>
                                 {`Lorem ipsum dolor sit amet, consectetur
                             adipiscing elit, sed do eiusmod tempor incididunt
                             ut labore et dolore magna aliqua. Ut enim ad minim
@@ -291,9 +294,8 @@ export const WithAboveAndBelow: StoryComponentType = () => {
                             Excepteur sint occaecat cupidatat non proident,
                             sunt in culpa qui officia deserunt mollit anim id
                             est.`}
-                            </Body>
-                            <br />
-                            <Body>
+                            </BodyText>
+                            <BodyText>
                                 {`Lorem ipsum dolor sit amet, consectetur
                             adipiscing elit, sed do eiusmod tempor incididunt
                             ut labore et dolore magna aliqua. Ut enim ad minim
@@ -304,9 +306,8 @@ export const WithAboveAndBelow: StoryComponentType = () => {
                             Excepteur sint occaecat cupidatat non proident,
                             sunt in culpa qui officia deserunt mollit anim id
                             est.`}
-                            </Body>
-                            <br />
-                            <Body>
+                            </BodyText>
+                            <BodyText>
                                 {`Lorem ipsum dolor sit amet, consectetur
                             adipiscing elit, sed do eiusmod tempor incididunt
                             ut labore et dolore magna aliqua. Ut enim ad minim
@@ -317,7 +318,7 @@ export const WithAboveAndBelow: StoryComponentType = () => {
                             Excepteur sint occaecat cupidatat non proident,
                             sunt in culpa qui officia deserunt mollit anim id
                             est.`}
-                            </Body>
+                            </BodyText>
                         </View>
                     }
                     above={<View style={aboveStyle} />}
@@ -350,7 +351,7 @@ export const WithStyle: StoryComponentType = () => (
             <OnePaneDialog
                 title="Hello, world!"
                 content={
-                    <Body>
+                    <BodyText>
                         {`Lorem ipsum dolor sit amet, consectetur adipiscing
                             elit, sed do eiusmod tempor incididunt ut labore et
                             dolore magna aliqua. Ut enim ad minim veniam,
@@ -360,10 +361,10 @@ export const WithStyle: StoryComponentType = () => (
                             cillum dolore eu fugiat nulla pariatur. Excepteur
                             sint occaecat cupidatat non proident, sunt in culpa
                             qui officia deserunt mollit anim id est.`}
-                    </Body>
+                    </BodyText>
                 }
                 style={{
-                    color: color.blue,
+                    color: semanticColor.status.notice.foreground,
                     maxWidth: 1000,
                 }}
             />
@@ -384,7 +385,7 @@ WithStyle.parameters = {
 export const FlexibleModal: StoryComponentType = () => {
     const styles = StyleSheet.create({
         example: {
-            padding: spacing.xLarge_32,
+            padding: sizing.size_320,
             alignItems: "center",
         },
         row: {
@@ -418,19 +419,20 @@ export const FlexibleModal: StoryComponentType = () => {
                 title="Exercises"
                 content={
                     <View>
-                        <Body>This is the current question: {question}</Body>
+                        <BodyText>
+                            This is the current question: {question}
+                        </BodyText>
                     </View>
                 }
                 footer={
                     <View style={styles.footer}>
-                        <LabelLarge>
+                        <BodyText weight="bold">
                             Step {current + 1} of {total}
-                        </LabelLarge>
+                        </BodyText>
                         <View style={styles.row}>
                             <Button kind="tertiary" onClick={handlePrevButton}>
                                 Previous
                             </Button>
-                            <Strut size={16} />
                             <Button kind="primary" onClick={handleNextButton}>
                                 Next
                             </Button>
@@ -516,7 +518,7 @@ export const WithLauncher: StoryComponentType = () => {
         <OnePaneDialog
             title="Single-line title"
             content={
-                <Body>
+                <BodyText>
                     {`Lorem ipsum dolor sit amet, consectetur
                     adipiscing elit, sed do eiusmod tempor incididunt
                     ut labore et dolore magna aliqua. Ut enim ad minim
@@ -527,7 +529,7 @@ export const WithLauncher: StoryComponentType = () => {
                     Excepteur sint occaecat cupidatat non proident,
                     sunt in culpa qui officia deserunt mollit anim id
                     est.`}
-                </Body>
+                </BodyText>
             }
             footer={<Button onClick={closeModal}>Close</Button>}
         />
@@ -589,6 +591,7 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
         justifyContent: "flex-end",
+        gap: sizing.size_160,
     },
     footer: {
         alignItems: "center",

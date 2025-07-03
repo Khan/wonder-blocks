@@ -2,15 +2,17 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {Choice, RadioGroup} from "@khanacademy/wonder-blocks-form";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 
 export default {
-    title: "Form / RadioGroup",
+    title: "Packages / Form / RadioGroup",
     component: RadioGroup,
     parameters: {
         componentSubtitle: (
@@ -24,6 +26,15 @@ export default {
 
 type StoryComponentType = StoryObj<typeof RadioGroup>;
 
+/**
+ * `RadioGroup` is a component that groups multiple `Choice` components
+ * together. It is used to allow users to select a single option from a list.
+ *
+ * Note that by using a `label` prop, the `RadioGroup` component will render
+ * a `legend` as the first child of the `fieldset` element. This is important to
+ * include as it ensures that Screen Readers can correctly identify and announce
+ * the group of radio buttons.
+ */
 export const Default: StoryComponentType = {
     render: (args) => {
         return (
@@ -143,9 +154,9 @@ export const MultipleChoiceStyling: StoryComponentType = () => {
 
     return (
         <>
-            <LabelLarge style={styles.prompt}>
+            <BodyText weight="bold" tag="span" style={styles.prompt}>
                 Select your blood type
-            </LabelLarge>
+            </BodyText>
             <RadioGroup
                 groupName="science-classes"
                 onChange={setSelectedValue}
@@ -214,6 +225,37 @@ FiltersOutFalsyChildren.parameters = {
     chromatic: {
         // The unit tests already verify that false-y children aren't rendered.
         disableSnapshot: true,
+    },
+};
+
+/**
+ * There are specific situations where you might want to use a custom label
+ * component. This example demonstrates how to use a custom label component
+ * that can be passed in as a prop to the `RadioGroup` component.
+ */
+export const CustomLabel: StoryComponentType = {
+    ...Default,
+    args: {
+        style: {
+            // Adding an arbitrary width to the radio group to demonstrate how
+            // the custom label component expands to fill the available space.
+            width: 400,
+        },
+        label: (
+            <View
+                style={{
+                    border: `1px dashed ${semanticColor.core.border.neutral.default}`,
+                    padding: spacing.medium_16,
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                }}
+            >
+                <BodyText weight="bold" tag="span">
+                    Pokemon
+                </BodyText>
+                <BodyText tag="span">(optional)</BodyText>
+            </View>
+        ),
     },
 };
 

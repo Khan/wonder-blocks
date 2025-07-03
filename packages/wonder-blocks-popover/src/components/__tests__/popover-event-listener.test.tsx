@@ -27,7 +27,7 @@ describe("PopoverKeypressListener", () => {
         const onCloseMock = jest.fn();
         const contentRef: React.RefObject<PopoverContent> = React.createRef();
 
-        render(
+        const wrapper = render(
             <View>
                 <PopoverContent
                     ref={contentRef}
@@ -42,17 +42,10 @@ describe("PopoverKeypressListener", () => {
         );
 
         // Act
-        const event = new MouseEvent("click", {view: window, bubbles: true});
-        const node = document.body;
-        if (node) {
-            // First click is ignored by PopoverEventListener
-            // because it is triggered when opening the popover.
-            node.dispatchEvent(event);
-            node.dispatchEvent(event);
-        } else {
-            // Signal that body was never found
-            expect(node).not.toBe(null);
-        }
+        // First click is ignored by PopoverEventListener
+        // because it is triggered when opening the popover.
+        await userEvent.click(wrapper.container);
+        await userEvent.click(wrapper.container);
 
         // Assert
         expect(onCloseMock).toHaveBeenCalled();

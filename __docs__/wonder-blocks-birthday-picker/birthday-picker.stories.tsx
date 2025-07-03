@@ -6,14 +6,14 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import packageConfig from "../../packages/wonder-blocks-birthday-picker/package.json";
 import BirthdayPicker from "@khanacademy/wonder-blocks-birthday-picker";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 
 import ArgTypes from "./birthday-picker.argtypes";
 
 type StoryComponentType = StoryObj<typeof BirthdayPicker>;
 
 const meta: Meta<typeof BirthdayPicker> = {
-    title: "BirthdayPicker",
+    title: "Packages / BirthdayPicker",
     component: BirthdayPicker,
     argTypes: ArgTypes,
     parameters: {
@@ -31,6 +31,9 @@ const meta: Meta<typeof BirthdayPicker> = {
                 // See https://github.com/storybookjs/storybook/issues/12596
                 excludeDecorators: true,
             },
+        },
+        viewport: {
+            defaultViewport: "large",
         },
     },
     decorators: [(Story): React.ReactElement => <View>{Story()}</View>],
@@ -105,17 +108,18 @@ export const BirthdayPickerWithCustomLabels: StoryComponentType = {
     },
 };
 
+/**
+ * A BirthdayPicker can be disabled by passing the `disabled` prop. This will
+ * disable all the dropdown controls and prevent them from being interacted with.
+ *
+ * Note: The `disabled` prop sets the `aria-disabled` attribute to `true`
+ * instead of setting the `disabled` attribute. This is so that the component
+ * remains focusable while communicating to screen readers that it is disabled.
+ */
 export const DisabledBirthdayPicker: StoryComponentType = {
     args: {
         onChange: () => {},
         disabled: true,
-    },
-    parameters: {
-        docs: {
-            description: {
-                story: "A BirthdayPicker can be disabled by passing the `disabled` prop. This will disable all the dropdown controls and prevent them from being interacted with.",
-            },
-        },
     },
 };
 
@@ -132,6 +136,61 @@ export const BirthdayPickerWithYearAndMonthOnly: StoryComponentType = {
             description: {
                 story: "A BirthdayPicker can be configured to only show the year and month dropdowns. This can be useful when we want to display and collect a birthday that doesn't require the full DOB for privacy reasons.",
             },
+        },
+    },
+};
+
+export const BirthdayPickerVertical: StoryComponentType = {
+    args: {
+        style: {flexDirection: "column"},
+        dropdownStyle: {width: "100%"},
+        onChange: (date?: string | null) => {
+            // eslint-disable-next-line no-console
+            console.log("Date selected: ", date);
+        },
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: "A BirthdayPicker can be configured to render vertically instead of horizontally. This can be useful when we want to display the component in a narrow container.",
+            },
+        },
+    },
+};
+
+export const BirthdayPickerVerticalWithError: StoryComponentType = {
+    args: {
+        style: {flexDirection: "column"},
+        onChange: (date?: string | null) => {
+            // eslint-disable-next-line no-console
+            console.log("Date selected: ", date);
+        },
+        defaultValue: "2030-07-19",
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: "A vertical BirthdayPicker may have an error. It should show beneath all the dropdowns.",
+            },
+        },
+    },
+};
+
+export const BirthdayPickerMobile: StoryComponentType = {
+    args: {
+        onChange: (date?: string | null) => {
+            // eslint-disable-next-line no-console
+            console.log("Date selected: ", date);
+        },
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: "A BirthdayPicker will reflow on small screens to stack controls rather than position them side-by-side.",
+            },
+        },
+        viewport: {
+            defaultViewport: "small",
         },
     },
 };

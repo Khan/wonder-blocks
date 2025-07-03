@@ -1,21 +1,22 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {MemoryRouter, Route, Switch} from "react-router-dom";
+import {MemoryRouter} from "react-router-dom";
+import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import packageConfig from "../../packages/wonder-blocks-clickable/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import argTypes from "./clickable.argtypes";
 import Button from "@khanacademy/wonder-blocks-button";
 
 export default {
-    title: "Clickable / Clickable",
+    title: "Packages / Clickable / Clickable",
     component: Clickable,
     argTypes: argTypes,
     args: {
@@ -204,42 +205,50 @@ Disabled.parameters = {
 
 export const ClientSideNavigation: StoryComponentType = () => (
     <MemoryRouter>
-        <View>
-            <View style={styles.row}>
-                <Clickable
-                    href="/foo"
-                    style={styles.heading}
-                    onClick={() => {
-                        // eslint-disable-next-line no-console
-                        console.log("I'm still on the same page!");
-                    }}
-                >
-                    {(eventState) => (
-                        <LabelLarge>Uses Client-side Nav</LabelLarge>
-                    )}
-                </Clickable>
-                <Clickable
-                    href="/iframe.html?id=clickable-clickable--default&viewMode=story"
-                    style={styles.heading}
-                    skipClientNav
-                >
-                    {(eventState) => (
-                        <LabelLarge>Avoids Client-side Nav</LabelLarge>
-                    )}
-                </Clickable>
+        <CompatRouter>
+            <View>
+                <View style={styles.row}>
+                    <Clickable
+                        href="/foo"
+                        style={styles.heading}
+                        onClick={() => {
+                            // eslint-disable-next-line no-console
+                            console.log("I'm still on the same page!");
+                        }}
+                    >
+                        {(eventState) => (
+                            <LabelLarge>Uses Client-side Nav</LabelLarge>
+                        )}
+                    </Clickable>
+                    <Clickable
+                        href="/iframe.html?id=clickable-clickable--default&viewMode=story"
+                        style={styles.heading}
+                        skipClientNav
+                    >
+                        {(eventState) => (
+                            <LabelLarge>Avoids Client-side Nav</LabelLarge>
+                        )}
+                    </Clickable>
+                </View>
+                <View style={styles.navigation}>
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={
+                                <View id="foo">
+                                    The first clickable element does client-side
+                                    navigation here.
+                                </View>
+                            }
+                        />
+                        <Route
+                            path="*"
+                            element={<View>See navigation changes here</View>}
+                        />
+                    </Routes>
+                </View>
             </View>
-            <View style={styles.navigation}>
-                <Switch>
-                    <Route path="/foo">
-                        <View id="foo">
-                            The first clickable element does client-side
-                            navigation here.
-                        </View>
-                    </Route>
-                    <Route path="*">See navigation changes here</Route>
-                </Switch>
-            </View>
-        </View>
+        </CompatRouter>
     </MemoryRouter>
 );
 
@@ -305,6 +314,8 @@ Ref.parameters = {
     },
 };
 
+const progressive = semanticColor.action.secondary.progressive;
+
 const styles = StyleSheet.create({
     clickable: {
         borderWidth: 1,
@@ -312,21 +323,21 @@ const styles = StyleSheet.create({
     },
     hovered: {
         textDecoration: "underline",
-        backgroundColor: color.teal,
+        backgroundColor: progressive.hover.background,
     },
     pressed: {
-        color: color.blue,
+        color: progressive.press.foreground,
     },
     focused: {
-        outline: `solid 4px ${color.lightBlue}`,
+        outline: `solid 4px ${semanticColor.focus.outer}`,
     },
     centerText: {
         gap: spacing.medium_16,
         textAlign: "center",
     },
     dark: {
-        backgroundColor: color.darkBlue,
-        color: color.white,
+        backgroundColor: semanticColor.surface.inverse,
+        color: semanticColor.text.inverse,
         padding: spacing.xSmall_8,
     },
     row: {
@@ -337,13 +348,13 @@ const styles = StyleSheet.create({
         marginRight: spacing.large_24,
     },
     navigation: {
-        border: `1px dashed ${color.lightBlue}`,
+        border: `1px dashed ${semanticColor.core.border.neutral.subtle}`,
         marginTop: spacing.large_24,
         padding: spacing.large_24,
     },
     disabled: {
-        color: color.white,
-        backgroundColor: color.offBlack64,
+        color: semanticColor.text.inverse,
+        backgroundColor: semanticColor.surface.overlay,
     },
     button: {
         maxWidth: 150,

@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-pill",
-  "version": "2.1.1",
+  "version": "3.1.29",
   "design": "v1",
   "description": "Pill components for Wonder Blocks.",
   "main": "dist/index.js",
@@ -8,7 +8,8 @@
   "types": "dist/index.d.ts",
   "source": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },
   "author": "",
   "license": "MIT",
@@ -16,18 +17,18 @@
     "access": "public"
   },
   "dependencies": {
-    "@khanacademy/wonder-blocks-clickable": "^4.1.2",
-    "@khanacademy/wonder-blocks-color": "^3.0.0",
-    "@khanacademy/wonder-blocks-core": "^6.3.1",
-    "@khanacademy/wonder-blocks-link": "^6.0.10",
-    "@khanacademy/wonder-blocks-tokens": "^1.1.0",
-    "@khanacademy/wonder-blocks-typography": "^2.1.10"
+    "@khanacademy/wonder-blocks-clickable": "workspace:*",
+    "@khanacademy/wonder-blocks-core": "workspace:*",
+    "@khanacademy/wonder-blocks-link": "workspace:*",
+    "@khanacademy/wonder-blocks-styles": "workspace:*",
+    "@khanacademy/wonder-blocks-tokens": "workspace:*",
+    "@khanacademy/wonder-blocks-typography": "workspace:*"
   },
   "peerDependencies": {
-    "aphrodite": "^1.2.5",
-    "react": "16.14.0"
+    "aphrodite": "catalog:",
+    "react": "catalog:"
   },
   "devDependencies": {
-    "@khanacademy/wb-dev-build-settings": "^1.0.0"
+    "@khanacademy/wb-dev-build-settings": "workspace:*"
   }
 }

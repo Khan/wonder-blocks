@@ -18,7 +18,7 @@ import {
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon/package.json";
 import PhosphorIconArgtypes, {IconMappings} from "./phosphor-icon.argtypes";
 
@@ -48,7 +48,7 @@ import PhosphorIconArgtypes, {IconMappings} from "./phosphor-icon.argtypes";
  * respectively.
  */
 export default {
-    title: "Icon / PhosphorIcon",
+    title: "Packages / Icon / PhosphorIcon",
     component: PhosphorIcon,
     parameters: {
         componentSubtitle: (
@@ -81,6 +81,7 @@ export const Default: StoryComponentType = {
         icon: IconMappings.magnifyingGlassBold,
         size: "small",
         "aria-label": "Search",
+        role: "img",
     },
     parameters: {
         docs: {
@@ -156,26 +157,29 @@ type IconGroup = {
 const IconEntries = Object.entries(IconMappings);
 
 const groupIconsByNames = () => {
-    return IconEntries.reduce((acc, [name, icon]) => {
-        const isSmall = name.includes("Bold");
-        const key = name.replace("Bold", "");
+    return IconEntries.reduce(
+        (acc, [name, icon]) => {
+            const isSmall = name.includes("Bold");
+            const key = name.replace("Bold", "");
 
-        if (!acc[key]) {
-            if (isSmall) {
-                acc[key] = {small: icon as PhosphorBold, medium: null};
+            if (!acc[key]) {
+                if (isSmall) {
+                    acc[key] = {small: icon as PhosphorBold, medium: null};
+                } else {
+                    acc[key] = {small: null, medium: icon as PhosphorRegular};
+                }
             } else {
-                acc[key] = {small: null, medium: icon as PhosphorRegular};
+                if (isSmall) {
+                    acc[key].small = icon as PhosphorBold;
+                } else {
+                    acc[key].medium = icon as PhosphorRegular;
+                }
             }
-        } else {
-            if (isSmall) {
-                acc[key].small = icon as PhosphorBold;
-            } else {
-                acc[key].medium = icon as PhosphorRegular;
-            }
-        }
 
-        return acc;
-    }, {} as Record<string, IconGroup>);
+            return acc;
+        },
+        {} as Record<string, IconGroup>,
+    );
 };
 
 const StyledTable = addStyle("table");
@@ -350,7 +354,7 @@ const styles = StyleSheet.create({
     },
 
     tableCell: {
-        border: `${tokens.border.width.hairline}px solid ${tokens.color.offBlack}`,
+        border: `${tokens.border.width.thin} solid ${tokens.color.offBlack}`,
         padding: tokens.spacing.medium_16,
     },
     inline: {
@@ -370,6 +374,25 @@ export const DescriptiveIcon: StoryComponentType = {
         size: "small",
         role: "img",
         "aria-label": "Search",
+    },
+    parameters: {
+        chromatic: {
+            // This story is not meant to be visually tested, so we disable
+            // snapshots.
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * A decorative icon with `aria-hidden` set to `true` and no `aria-label` set.
+ * This hides the icon from screen readers since it is decorative.
+ */
+export const DecorativeIcon: StoryComponentType = {
+    args: {
+        icon: IconMappings.magnifyingGlassBold,
+        size: "small",
+        "aria-hidden": true,
     },
     parameters: {
         chromatic: {

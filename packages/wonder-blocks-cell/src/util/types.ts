@@ -31,6 +31,10 @@ export type AccessoryStyle = {
      * To horizontally align the accessory.
      */
     alignItems?: "flex-start" | "flex-end" | "center";
+    /**
+     * To set spacing between child elements.
+     */
+    gap?: number | string;
 };
 
 /**
@@ -100,13 +104,6 @@ export type CellProps = {
      */
     role?: ClickableRole;
     /**
-     * Optional custom styles applied to the top node.
-     *
-     * _NOTE:_ This is the top node of the cell, not the cell container. If
-     * possible, try to use this prop carefully and use `style` instead.
-     */
-    rootStyle?: StyleType;
-    /**
      * Optional custom styles applied to the cell container.
      */
     style?: StyleType;
@@ -138,6 +135,10 @@ export type CellProps = {
      */
     "aria-selected"?: AriaProps["aria-selected"];
     /**
+     * Used to indicate the current item is checked.
+     */
+    "aria-checked"?: AriaProps["aria-checked"];
+    /**
      * Optinal href which Cell should direct to, uses client-side routing
      * by default if react-router is present.
      */
@@ -149,4 +150,9 @@ export type CellProps = {
      * TODO(WB-1262): only allow this prop when `href` is also set.t
      */
     target?: "_blank";
+
+    /**
+     * Set the tabindex attribute on the rendered element.
+     */
+    tabIndex?: number;
 };

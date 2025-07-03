@@ -20,10 +20,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import {
-    UniqueIDProvider,
-    IIdentifierFactory,
-} from "@khanacademy/wonder-blocks-core";
+import {Id} from "@khanacademy/wonder-blocks-core";
 import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
@@ -46,6 +43,12 @@ type Props = AriaProps &
          * Optional title for the tooltip content.
          */
         title?: string | React.ReactElement<React.ComponentProps<Typography>>;
+
+        /**
+         * Whether the tooltip should update its position when the anchor
+         * element changes size or position. Defaults to false.
+         */
+        autoUpdate?: boolean;
         /**
          * The content to render in the tooltip.
          */
@@ -110,6 +113,12 @@ type Props = AriaProps &
          * Optional background color.
          */
         backgroundColor?: keyof typeof color;
+        /**
+         * If `rootBoundary` is `viewport`, this padding value is used to provide
+         * spacing between the popper and the viewport. If not provided, default
+         * spacing of 12px is applied.
+         */
+        viewportPadding?: number;
     }>;
 
 type State = Readonly<{
@@ -180,7 +189,6 @@ export default class Tooltip extends React.Component<Props, State> {
         active: false,
         activeBubble: false,
     };
-    static ariaContentId = "aria-content";
 
     _updateAnchorElement(ref?: Element | null) {
         if (ref && ref !== this.state.anchorElement) {
@@ -209,22 +217,18 @@ export default class Tooltip extends React.Component<Props, State> {
         }
     }
 
-    _renderPopper(ids?: IIdentifierFactory): React.ReactNode {
-        const {id, backgroundColor} = this.props;
-        const bubbleId = ids ? ids.get(Tooltip.ariaContentId) : id;
-        if (!bubbleId) {
-            throw new Error("Did not get an identifier factory nor a id prop");
-        }
-
-        const {placement} = this.props;
+    _renderPopper(ariaContentId: string): React.ReactNode {
+        const {backgroundColor, placement} = this.props;
         return (
             <TooltipPopper
                 anchorElement={this.state.anchorElement}
                 placement={placement}
+                autoUpdate={this.props.autoUpdate}
+                viewportPadding={this.props.viewportPadding}
             >
                 {(props) => (
                     <TooltipBubble
-                        id={bubbleId}
+                        id={ariaContentId}
                         style={props.style}
                         backgroundColor={backgroundColor}
                         tailOffset={props.tailOffset}
@@ -252,11 +256,20 @@ export default class Tooltip extends React.Component<Props, State> {
         );
     }
 
-    _renderTooltipAnchor(ids?: IIdentifierFactory): React.ReactNode {
-        const {children, forceAnchorFocusivity} = this.props;
+    _renderTooltipAnchor(uniqueId: string): React.ReactNode {
+        const {autoUpdate, children, forceAnchorFocusivity} = this.props;
         const {active, activeBubble} = this.state;
 
         const popperHost = this._getHost();
+
+        // Only render the popper if the anchor element is available so that we
+        // can position the popper correctly. If autoUpdate is false, we don't
+        // need to wait for the anchor element to render the popper.
+        const shouldAnchorExist = autoUpdate ? this.state.anchorElement : true;
+        const shouldBeVisible =
+            popperHost && (active || activeBubble) && shouldAnchorExist;
+
+        const ariaContentId = `${uniqueId}-aria-content`;
 
         // TODO(kevinb): update to use ReactPopper's React 16-friendly syntax
         return (
@@ -265,29 +278,25 @@ export default class Tooltip extends React.Component<Props, State> {
                     forceAnchorFocusivity={forceAnchorFocusivity}
                     anchorRef={(r) => this._updateAnchorElement(r)}
                     onActiveChanged={(active) => this.setState({active})}
-                    ids={ids}
+                    aria-describedby={
+                        shouldBeVisible ? ariaContentId : undefined
+                    }
                 >
                     {children}
                 </TooltipAnchor>
-                {popperHost &&
-                    (active || activeBubble) &&
-                    ReactDOM.createPortal(this._renderPopper(ids), popperHost)}
+                {shouldBeVisible &&
+                    ReactDOM.createPortal(
+                        this._renderPopper(ariaContentId),
+                        popperHost,
+                    )}
             </React.Fragment>
         );
     }
 
     render(): React.ReactNode {
         const {id} = this.props;
-        if (id) {
-            // Let's bypass the extra weight of an id provider since we don't
-            // need it.
-            return this._renderTooltipAnchor();
-        } else {
-            return (
-                <UniqueIDProvider scope="tooltip" mockOnFirstRender={true}>
-                    {(ids) => this._renderTooltipAnchor(ids)}
-                </UniqueIDProvider>
-            );
-        }
+        return (
+            <Id id={id}>{(uniqueId) => this._renderTooltipAnchor(uniqueId)}</Id>
+        );
     }
 }

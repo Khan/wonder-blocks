@@ -5,7 +5,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     HeadingSmall,
     LabelLarge,
@@ -40,20 +40,14 @@ type Props = AriaProps & {
      */
     subtitle?: string;
     /**
-     * The main title rendered in larger bold text.
+     * The main title rendered in larger bold text. It also supports rendering
+     * React nodes (use with caution).
      */
-    title?: string;
+    title?: string | React.ReactNode;
     /**
      * Test ID used for e2e testing.
      */
     testId?: string;
-};
-
-type DefaultProps = {
-    color: Props["color"];
-    leftContent: Props["leftContent"];
-    rightContent: Props["rightContent"];
-    size: Props["size"];
 };
 
 /**
@@ -73,125 +67,108 @@ type DefaultProps = {
  * />
  * ```
  */
-export default class Toolbar extends React.Component<Props> {
-    static defaultProps: DefaultProps = {
-        color: "light",
-        leftContent: null,
-        rightContent: null,
-        size: "medium",
-    };
+export default function Toolbar({
+    color = "light",
+    leftContent,
+    rightContent,
+    size = "medium",
+    subtitle,
+    title,
+}: Props): React.ReactElement {
+    const TitleComponent = subtitle ? LabelLarge : HeadingSmall;
 
-    render(): React.ReactNode {
-        const {color, leftContent, rightContent, size, subtitle, title} =
-            this.props;
+    return (
+        <View
+            style={[
+                sharedStyles.container,
+                !title
+                    ? sharedStyles.containerWithNoTitle
+                    : typeof title === "string"
+                      ? sharedStyles.containerWithTextTitle
+                      : sharedStyles.containerWithNodeTitle,
+                color === "dark" && sharedStyles.dark,
+                size === "small" && sharedStyles.small,
+            ]}
+        >
+            <View style={sharedStyles.leftColumn}>{leftContent}</View>
 
-        const TitleComponent = subtitle ? LabelLarge : HeadingSmall;
-
-        return (
-            <View
-                style={[
-                    sharedStyles.container,
-                    color === "dark" && sharedStyles.dark,
-                    size === "small" && sharedStyles.small,
-                ]}
-            >
-                <View
-                    style={[
-                        sharedStyles.column,
-                        sharedStyles.leftColumn,
-                        title ? sharedStyles.withTitle : null,
-                    ]}
-                >
-                    {leftContent}
-                </View>
-
-                {title && (
-                    <View
-                        style={[sharedStyles.column, sharedStyles.wideColumn]}
-                    >
-                        <View
-                            style={[sharedStyles.titles, sharedStyles.center]}
+            {title && typeof title === "string" && (
+                <View style={sharedStyles.titles}>
+                    <TitleComponent id="wb-toolbar-title">
+                        {title}
+                    </TitleComponent>
+                    {subtitle && (
+                        <LabelSmall
+                            style={color === "light" && sharedStyles.subtitle}
                         >
-                            <TitleComponent id="wb-toolbar-title">
-                                {title}
-                            </TitleComponent>
-                            {subtitle && (
-                                <LabelSmall
-                                    style={
-                                        color === "light" &&
-                                        sharedStyles.subtitle
-                                    }
-                                >
-                                    {subtitle}
-                                </LabelSmall>
-                            )}
-                        </View>
-                    </View>
-                )}
-
-                <View
-                    style={[
-                        sharedStyles.column,
-                        sharedStyles.rightColumn,
-                        title ? sharedStyles.withTitle : null,
-                    ]}
-                >
-                    {rightContent}
+                            {subtitle}
+                        </LabelSmall>
+                    )}
                 </View>
-            </View>
-        );
-    }
+            )}
+            {title && typeof title !== "string" && (
+                <View style={sharedStyles.titles}>{title}</View>
+            )}
+            {!title && (
+                <View style={leftContent ? sharedStyles.spacer : undefined} />
+            )}
+
+            <View style={sharedStyles.rightColumn}>{rightContent}</View>
+        </View>
+    );
 }
 
 const sharedStyles = StyleSheet.create({
     container: {
-        border: `1px solid ${color.offBlack16}`,
+        background: semanticColor.surface.primary,
+        border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
         flex: 1,
-        flexDirection: "row",
-        justifyContent: "space-between",
+        display: "grid",
+        alignItems: "center",
         minHeight: 66,
-        paddingLeft: spacing.medium_16,
-        paddingRight: spacing.medium_16,
+        paddingInline: spacing.medium_16,
         width: "100%",
+    },
+    containerWithTextTitle: {
+        gridTemplateColumns: "1fr minmax(auto, 67%) 1fr",
+    },
+    containerWithNodeTitle: {
+        gridTemplateColumns:
+            "minmax(max-content, 1fr) auto minmax(max-content, 1fr)",
+    },
+    containerWithNoTitle: {
+        gridTemplateColumns: "auto auto 1fr",
     },
     small: {
         minHeight: 50,
     },
+    // TODO(WB-1852): Remove light variant.
     dark: {
-        backgroundColor: color.darkBlue,
+        background: semanticColor.surface.inverse,
         boxShadow: `0 1px 0 0 ${color.white64}`,
-        color: "white",
-    },
-    column: {
-        justifyContent: "center",
-    },
-    withTitle: {
-        flex: 1,
-    },
-    wideColumn: {
-        flex: 1,
-        flexBasis: "50%",
+        color: semanticColor.text.inverse,
     },
     leftColumn: {
         alignItems: "center",
         flexDirection: "row",
-        // TODO(WB-1445): Find a way to replicate this behavior with
-        // rightContent.
-        flexShrink: 0,
         justifyContent: "flex-start",
     },
     rightColumn: {
         alignItems: "center",
         flexDirection: "row",
         justifyContent: "flex-end",
-    },
-    center: {
-        textAlign: "center",
+        flexGrow: 1,
     },
     subtitle: {
-        color: color.offBlack64,
+        color: semanticColor.text.secondary,
     },
     titles: {
         padding: spacing.small_12,
+        textAlign: "center",
+        justifySelf: "center",
+        maxWidth: "100%",
+    },
+    spacer: {
+        minWidth: spacing.small_12,
     },
 });

@@ -1,18 +1,17 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {__RouterContext} from "react-router";
 
-import type {AriaProps} from "@khanacademy/wonder-blocks-core";
+import {keys, type AriaProps} from "@khanacademy/wonder-blocks-core";
 
-import {mix} from "@khanacademy/wonder-blocks-color";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
-import * as tokens from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import caretDownIcon from "@phosphor-icons/core/bold/caret-down-bold.svg";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
 import {OptionLabel} from "../util/types";
+import theme from "../theme";
 
 const StyledButton = addStyle("button");
 
@@ -41,10 +40,9 @@ type SelectOpenerProps = AriaProps & {
      */
     isPlaceholder: boolean;
     /**
-     * Whether to display the "light" version of this component instead, for
-     * use when the item is used on a dark background.
+     * A label to expose on the opener, in the absence of an associated label element or `aria-labelledby`.
      */
-    light: boolean;
+    ariaLabel?: string;
     /**
      * Callback for when the SelectOpener is pressed.
      */
@@ -57,114 +55,143 @@ type SelectOpenerProps = AriaProps & {
      * Test ID used for e2e testing.
      */
     testId?: string;
+    /**
+     * Called when it is blurred
+     */
+    onBlur?: (e: React.SyntheticEvent) => unknown;
 };
 
 type DefaultProps = {
     disabled: SelectOpenerProps["disabled"];
     error: SelectOpenerProps["error"];
-    light: SelectOpenerProps["light"];
     isPlaceholder: SelectOpenerProps["isPlaceholder"];
+};
+
+type SelectOpenerState = {
+    /**
+     * We only keep track of the pressed state to apply styling for when the select
+     * opener is pressed using Enter/Space. Other states (active, hover, focus)
+     * are not tracked because we use css pseudo-classes to handle those styles
+     * instead. Note: `:active` styling is only applied on clicks across browsers,
+     * and not on keyboard interaction.
+     */
+    pressed: boolean;
 };
 
 /**
  * An opener that opens select boxes.
  */
-export default class SelectOpener extends React.Component<SelectOpenerProps> {
+export default class SelectOpener extends React.Component<
+    SelectOpenerProps,
+    SelectOpenerState
+> {
     static defaultProps: DefaultProps = {
         disabled: false,
         error: false,
-        light: false,
         isPlaceholder: false,
     };
+
+    constructor(props: SelectOpenerProps) {
+        super(props);
+
+        this.state = {
+            pressed: false,
+        };
+    }
 
     handleClick: (e: React.SyntheticEvent) => void = (e) => {
         const {open} = this.props;
         this.props.onOpenChanged(!open);
     };
 
-    renderClickableBehavior(router: any): React.ReactNode {
+    handleKeyDown: (e: React.KeyboardEvent) => void = (e) => {
+        const keyName = e.key;
+        // Prevent default behavior for Enter key. Without this, the select
+        // is only open while the Enter key is pressed.
+        // Prevent default behavior for Space key. Without this, Safari stays in
+        // active state visually
+        if (keyName === keys.enter || keyName === keys.space) {
+            this.setState({pressed: true});
+            e.preventDefault();
+        }
+    };
+
+    handleKeyUp: (e: React.KeyboardEvent) => void = (e) => {
+        const keyName = e.key;
+        // On key up for Enter and Space, trigger the click handler
+        if (keyName === keys.enter || keyName === keys.space) {
+            this.setState({pressed: false});
+            this.handleClick(e);
+        }
+    };
+
+    render(): React.ReactNode {
         const {
             children,
             disabled,
             error,
             id,
             isPlaceholder,
-            light,
             open,
             testId,
+            "aria-label": ariaLabel,
+            "aria-required": ariaRequired,
+            "aria-controls": ariaControls,
+            onBlur,
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             onOpenChanged,
             ...sharedProps
         } = this.props;
 
-        const ClickableBehavior = getClickableBehavior(router);
+        const stateStyles = _generateStyles(isPlaceholder, error);
+
+        const iconColor = disabled
+            ? semanticColor.core.foreground.disabled.default
+            : theme.opener.color.icon;
+
+        const style = [
+            styles.shared,
+            stateStyles.default,
+            disabled && stateStyles.disabled,
+            !disabled && this.state.pressed && stateStyles.press,
+        ];
 
         return (
-            <ClickableBehavior disabled={disabled} onClick={this.handleClick}>
-                {(state, childrenProps) => {
-                    const stateStyles = _generateStyles(
-                        light,
-                        isPlaceholder,
-                        error,
-                    );
-                    const {hovered, focused, pressed} = state;
-
-                    // The icon colors are kind of fickle. This is just logic
-                    // based on the zeplin design.
-                    const iconColor = light
-                        ? disabled || pressed
-                            ? "currentColor"
-                            : tokens.color.white
-                        : disabled
-                        ? tokens.color.offBlack32
-                        : tokens.color.offBlack64;
-
-                    const style = [
-                        styles.shared,
-                        stateStyles.default,
-                        disabled && stateStyles.disabled,
-                        !disabled &&
-                            (pressed
-                                ? stateStyles.active
-                                : (hovered || focused) && stateStyles.focus),
-                    ];
-
-                    return (
-                        <StyledButton
-                            {...sharedProps}
-                            aria-expanded={open ? "true" : "false"}
-                            aria-haspopup="listbox"
-                            data-test-id={testId}
-                            disabled={disabled}
-                            id={id}
-                            style={style}
-                            type="button"
-                            {...childrenProps}
-                        >
-                            <LabelMedium style={styles.text}>
-                                {/* Note(tamarab): Prevents unwanted vertical
-                                shift for empty selection */}
-                                {children || "\u00A0"}
-                            </LabelMedium>
-                            <PhosphorIcon
-                                icon={caretDownIcon}
-                                color={iconColor}
-                                size="small"
-                                style={styles.caret}
-                                aria-hidden="true"
-                            />
-                        </StyledButton>
-                    );
-                }}
-            </ClickableBehavior>
-        );
-    }
-
-    render(): React.ReactNode {
-        return (
-            <__RouterContext.Consumer>
-                {(router) => this.renderClickableBehavior(router)}
-            </__RouterContext.Consumer>
+            <StyledButton
+                {...sharedProps}
+                aria-disabled={disabled}
+                aria-expanded={open ? "true" : "false"}
+                aria-invalid={error}
+                aria-label={ariaLabel ?? undefined}
+                aria-required={ariaRequired}
+                aria-haspopup="listbox"
+                aria-controls={ariaControls}
+                data-testid={testId}
+                id={id}
+                role="combobox"
+                /* Note(marcysutton): type=button prevents form submits on click */
+                type="button"
+                style={style}
+                onClick={!disabled ? this.handleClick : undefined}
+                onKeyDown={!disabled ? this.handleKeyDown : undefined}
+                onKeyUp={!disabled ? this.handleKeyUp : undefined}
+                onBlur={onBlur}
+            >
+                <BodyText tag="span" style={styles.text}>
+                    {/* Note(tamarab): Prevents unwanted vertical
+                                shift for empty selection.
+                        Note2(marcysutton): aria-hidden prevents "space"
+                                from being read in VoiceOver. */}
+                    {children || <span aria-hidden="true">&nbsp;</span>}
+                </BodyText>
+                <PhosphorIcon
+                    icon={caretDownIcon}
+                    color={iconColor}
+                    size="small"
+                    style={styles.caret}
+                    aria-hidden="true"
+                />
+            </StyledButton>
         );
     }
 }
@@ -176,15 +203,15 @@ const styles = StyleSheet.create({
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "space-between",
-        color: tokens.color.offBlack,
+        color: semanticColor.text.primary,
         height: DROPDOWN_ITEM_HEIGHT,
         // This asymmetry arises from the Icon on the right side, which has
         // extra padding built in. To have the component look more balanced,
         // we need to take off some paddingRight here.
-        paddingLeft: tokens.spacing.medium_16,
-        paddingRight: tokens.spacing.small_12,
+        paddingInlineStart: theme.opener.layout.padding.inlineStart,
+        paddingInlineEnd: theme.opener.layout.padding.inlineEnd,
         borderWidth: 0,
-        borderRadius: tokens.border.radius.medium_4,
+        borderRadius: theme.opener.border.radius.rest,
         borderStyle: "solid",
         outline: "none",
         textDecoration: "none",
@@ -196,7 +223,7 @@ const styles = StyleSheet.create({
     },
 
     text: {
-        marginRight: tokens.spacing.xSmall_8,
+        marginInlineEnd: sizing.size_080,
         whiteSpace: "nowrap",
         userSelect: "none",
         overflow: "hidden",
@@ -208,94 +235,94 @@ const styles = StyleSheet.create({
     },
 });
 
-// These values are default padding (16 and 12) minus 1, because
-// changing the borderWidth to 2 messes up the button width
-// and causes it to move a couple pixels. This fixes that.
-const adjustedPaddingLeft = tokens.spacing.medium_16 - 1;
-const adjustedPaddingRight = tokens.spacing.small_12 - 1;
-
 const stateStyles: Record<string, any> = {};
 
-const _generateStyles = (
-    light: boolean,
-    placeholder: boolean,
-    error: boolean,
-) => {
+const _generateStyles = (placeholder: boolean, error: boolean) => {
     // "hash" the parameters
-    const styleKey = `${light}-${placeholder}-${error}`;
+    const styleKey = `${placeholder}-${error}`;
     if (stateStyles[styleKey]) {
         return stateStyles[styleKey];
     }
 
-    let newStyles: Record<string, any> = {};
-    if (light) {
-        newStyles = {
-            default: {
-                background: error ? tokens.color.fadedRed8 : "transparent",
-                color: placeholder ? tokens.color.white50 : tokens.color.white,
-                borderColor: error ? tokens.color.red : tokens.color.white50,
-                borderWidth: tokens.border.width.hairline,
+    // The color is based on the action color.
+    const actionType = error ? "destructive" : "progressive";
+    // NOTE: We are using the secondary action type for all the non-resting
+    // states as the opener is a bit different from a regular button in its
+    // resting/default state.
+    // TODO(WB-2007): Adopt design specs
+    const action = semanticColor.action.secondary[actionType];
+
+    const hoverStyling = {
+        borderColor: action.hover.border,
+        boxShadow: `inset 0 0 0 ${border.width.thin} ${action.hover.border}`,
+    };
+    const pressStyling = {
+        background: action.press.background,
+        color: placeholder
+            ? error
+                ? semanticColor.input.default.placeholder
+                : semanticColor.core.foreground.instructive.default
+            : semanticColor.input.default.foreground,
+        borderColor: action.press.border,
+        boxShadow: `inset 0 0 0 ${border.width.thin} ${action.press.border}`,
+        borderRadius: theme.opener.border.radius.press,
+    };
+
+    const currentState = error
+        ? semanticColor.input.error
+        : semanticColor.input.default;
+
+    const disabledStatesStyles = {
+        background: semanticColor.input.disabled.background,
+        borderColor: semanticColor.input.disabled.border,
+        borderWidth: border.width.thin,
+        borderRadius: theme.opener.border.radius.rest,
+        color: semanticColor.input.disabled.placeholder,
+    };
+
+    const newStyles = {
+        default: {
+            background: currentState.background,
+            borderColor: currentState.border,
+            borderWidth: error
+                ? theme.opener.border.width.error
+                : border.width.thin,
+            color: placeholder
+                ? semanticColor.core.foreground.neutral.subtle
+                : currentState.foreground,
+            cursor: "pointer",
+            ":hover": hoverStyling,
+            // Allow hover styles on non-touch devices only. This prevents an
+            // issue with hover being sticky on touch devices (e.g. mobile).
+            ["@media not (hover: hover)"]: {
+                ":hover": {
+                    borderColor: currentState.border,
+                    borderWidth: border.width.thin,
+                    paddingInlineStart: theme.opener.layout.padding.inlineStart,
+                    paddingInlineEnd: theme.opener.layout.padding.inlineEnd,
+                },
             },
-            focus: {
-                borderColor: error
-                    ? tokens.color.fadedRed8
-                    : tokens.color.white,
-                borderWidth: tokens.spacing.xxxxSmall_2,
-                paddingLeft: adjustedPaddingLeft,
-                paddingRight: adjustedPaddingRight,
+            ":active": pressStyling,
+            // :focus-visible -> Provide focus styles for keyboard users only.
+            ...focusStyles.focus,
+        },
+        disabled: {
+            ...disabledStatesStyles,
+            cursor: "not-allowed",
+            ":hover": {
+                ...disabledStatesStyles,
+                outline: "none",
+                boxShadow: "none",
             },
-            active: {
-                paddingLeft: adjustedPaddingLeft,
-                paddingRight: adjustedPaddingRight,
-                borderColor: error ? tokens.color.red : tokens.color.fadedBlue,
-                borderWidth: tokens.border.width.thin,
-                color: placeholder
-                    ? mix(tokens.color.white32, tokens.color.blue)
-                    : tokens.color.fadedBlue,
-                backgroundColor: error
-                    ? tokens.color.fadedRed
-                    : tokens.color.activeBlue,
+            ":active": {
+                ...disabledStatesStyles,
+                outline: "none",
+                boxShadow: "none",
             },
-            disabled: {
-                background: "transparent",
-                borderColor: mix(tokens.color.white32, tokens.color.blue),
-                color: mix(tokens.color.white32, tokens.color.blue),
-                cursor: "auto",
-            },
-        };
-    } else {
-        newStyles = {
-            default: {
-                background: error ? tokens.color.fadedRed8 : tokens.color.white,
-                borderColor: error ? tokens.color.red : tokens.color.offBlack16,
-                borderWidth: tokens.border.width.hairline,
-                color: placeholder
-                    ? tokens.color.offBlack64
-                    : tokens.color.offBlack,
-            },
-            focus: {
-                borderColor: error ? tokens.color.red : tokens.color.blue,
-                borderWidth: tokens.border.width.thin,
-                paddingLeft: adjustedPaddingLeft,
-                paddingRight: adjustedPaddingRight,
-            },
-            active: {
-                background: error
-                    ? tokens.color.fadedRed
-                    : tokens.color.fadedBlue,
-                borderColor: error ? tokens.color.red : tokens.color.activeBlue,
-                borderWidth: tokens.border.width.thin,
-                paddingLeft: adjustedPaddingLeft,
-                paddingRight: adjustedPaddingRight,
-            },
-            disabled: {
-                background: tokens.color.offWhite,
-                borderColor: tokens.color.offBlack16,
-                color: tokens.color.offBlack64,
-                cursor: "auto",
-            },
-        };
-    }
+            ":focus-visible": disabledStatesStyles,
+        },
+        press: pressStyling,
+    };
 
     stateStyles[styleKey] = StyleSheet.create(newStyles);
     return stateStyles[styleKey];

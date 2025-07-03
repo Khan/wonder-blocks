@@ -46,6 +46,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     env:
       CI: true
+      LANG: "en-US"
     strategy:
       fail-fast: false
       matrix:
@@ -62,34 +63,34 @@ jobs:
       testCount: ${{ steps.chromatic_publish.outputs.testCount }}
     steps:
     - name: Checking out latest commit
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         # This makes Actions fetch all Git history so that Chromatic can track
         # baselines with the correct commits.
         # see: https://www.chromatic.com/docs/branching-and-baselines
         fetch-depth: 0
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
 
     # Cache and install dependencies
     - name: Install & cache node_modules
-      uses: Khan/actions@shared-node-cache-v0
+      uses: ./.github/actions/shared-node-cache
       with:
         node-version: ${{ matrix.node-version }}
 
     # Build the project
     - name: Build
-      run: yarn build
+      run: pnpm build
     - name: Build Storybook
-      run: yarn build:storybook
+      run: pnpm build:storybook
 
     # (if) Run this step on non-dependabot PRs.
     - name: Publish to Chromatic for visual testing (review PRs only)
       id: chromatic_publish
       if: ${{ inputs.target == 'review' }}
-      uses: chromaui/action@v1
+      uses: chromaui/action@v11
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         projectToken: ${{ secrets.projectToken }}
@@ -99,10 +100,22 @@ jobs:
         # See: https://www.chromatic.com/docs/turbosnap
         onlyChanged: true
 
+    # TODO(WB-1936): Re-enable this check once the issue with Chromatic
+    # is resolved.
+    # Install Playwright browsers so Vitest browser mode can run story tests
+    # - name: Install playwright dependencies
+    #   if: ${{ inputs.target == 'review' }}
+    #   run: pnpm exec playwright install chromium --with-deps
+    # - name: Run Storybook tests
+    #   if: ${{ inputs.target == 'review' }}
+    #   run: pnpm test:storybook
+    #   env:
+    #     SB_URL: '${{ steps.chromatic_publish.outputs.storybookUrl }}'
+
     # (if) Run this step on dependabot or changesets PRs.
     - name: Skip Chromatic builds (dependabot or changesets PRs)
       if: ${{ inputs.target == 'bot' }}
-      uses: chromaui/action@v1
+      uses: chromaui/action@v11
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         projectToken: ${{ secrets.projectToken }}
@@ -115,7 +128,7 @@ jobs:
     # (if) Run this step on the main branch.
     - name: Auto-accept Chromatic build on main branch.
       if: ${{ inputs.target == 'main' }}
-      uses: chromaui/action@v1
+      uses: chromaui/action@v11
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         projectToken: ${{ secrets.projectToken }}

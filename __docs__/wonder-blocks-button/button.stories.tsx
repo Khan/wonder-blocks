@@ -1,9 +1,9 @@
 import * as React from "react";
-import {expect} from "@storybook/jest";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {MemoryRouter, Route, Switch} from "react-router-dom";
+import {MemoryRouter} from "react-router-dom";
+import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
 
 import type {StyleDeclaration} from "aphrodite";
 
@@ -11,45 +11,20 @@ import pencilSimple from "@phosphor-icons/core/regular/pencil-simple.svg";
 import pencilSimpleBold from "@phosphor-icons/core/bold/pencil-simple-bold.svg";
 import plus from "@phosphor-icons/core/regular/plus.svg";
 
-import {fireEvent, userEvent, within} from "@storybook/testing-library";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {
-    LabelMedium,
-    LabelLarge,
-    HeadingSmall,
-} from "@khanacademy/wonder-blocks-typography";
+import {LabelMedium, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import packageConfig from "../../packages/wonder-blocks-button/package.json";
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 
 import ButtonArgTypes from "./button.argtypes";
-import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
+import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 
-/**
- * Reusable button component.
- *
- * Consisting of a [`ClickableBehavior`](#clickablebehavior) surrounding a
- * `ButtonCore`. `ClickableBehavior` handles interactions and state changes.
- * `ButtonCore` is a stateless component which displays the different states the
- * `Button` can take.
- *
- * ### Usage
- *
- * ```tsx
- * import Button from "@khanacademy/wonder-blocks-button";
- *
- * <Button
- *     onClick={(e) => console.log("Hello, world!")}
- * >
- *     Hello, world!
- * </Button>
- * ```
- */
 export default {
-    title: "Button",
+    title: "Packages / Button / Button",
     component: Button,
     parameters: {
         componentSubtitle: (
@@ -69,9 +44,8 @@ export const Default: StoryComponentType = {
     args: {
         children: "Hello, world!",
         kind: "primary",
-        color: "default",
+        actionType: "progressive",
         size: "medium",
-        light: false,
         disabled: false,
         style: {maxWidth: 200},
         labelStyle: {},
@@ -81,55 +55,11 @@ export const Default: StoryComponentType = {
         },
     },
     parameters: {
-        design: {
-            type: "figma",
-            url: "https://www.figma.com/file/VbVu3h2BpBhH80niq101MHHE/%F0%9F%92%A0-Main-Components?type=design&node-id=389-0&mode=design",
-        },
         chromatic: {
-            // We already have screenshots of other stories that cover more of the button states
+            // We already have screenshots of other stories that cover more of
+            // the button states
             disableSnapshot: true,
         },
-    },
-};
-
-export const Tertiary: StoryComponentType = {
-    args: {
-        onClick: () => {},
-        kind: "tertiary",
-        testId: "test-button",
-        children: "Hello, world!",
-    },
-    play: async ({canvasElement}) => {
-        const canvas = within(canvasElement);
-
-        // Get HTML elements
-        const button = canvas.getByRole("button");
-        const computedStyleButton = getComputedStyle(button);
-        const innerLabel = canvas.getByTestId("test-button-inner-label");
-        const computedStyleLabel = getComputedStyle(innerLabel, ":after");
-
-        // Resting style
-        await expect(button).toHaveStyle(`color: ${color.blue}`);
-        await expect(button).toHaveTextContent("Hello, world!");
-
-        // Hover style
-        await userEvent.hover(button);
-        await expect(computedStyleLabel.height).toBe("2px");
-        await expect(computedStyleLabel.color).toBe("rgb(24, 101, 242)");
-
-        // Focus style
-        await fireEvent.focus(button);
-        await expect(computedStyleButton.outlineColor).toBe(
-            "rgb(24, 101, 242)",
-        );
-        await expect(computedStyleButton.outlineWidth).toBe("2px");
-
-        // Active (mouse down) style
-        // eslint-disable-next-line testing-library/prefer-user-event
-        await fireEvent.mouseDown(button);
-        await expect(innerLabel).toHaveStyle("color: rgb(27, 80, 179)");
-        await expect(computedStyleLabel.height).toBe("1px");
-        await expect(computedStyleLabel.color).toBe("rgb(27, 80, 179)");
     },
 };
 
@@ -138,6 +68,11 @@ export const styles: StyleDeclaration = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         marginBottom: spacing.xSmall_8,
+    },
+    rowWithGap: {
+        flexDirection: "row",
+        alignItems: "center",
+        gap: spacing.medium_16,
     },
     button: {
         marginRight: spacing.xSmall_8,
@@ -159,167 +94,143 @@ export const styles: StyleDeclaration = StyleSheet.create({
     },
 });
 
-export const Variants: StoryComponentType = () => (
-    <View style={{padding: spacing.medium_16, gap: spacing.medium_16}}>
-        <View style={{flexDirection: "row", gap: spacing.medium_16}}>
-            <Button onClick={() => {}}>Hello, world!</Button>
-            <Button onClick={() => {}} kind="secondary">
-                Hello, world!
-            </Button>
-            <Button onClick={() => {}} kind="tertiary">
-                Hello, world!
-            </Button>
-        </View>
-        <View style={{flexDirection: "row", gap: spacing.medium_16}}>
-            <Button onClick={() => {}} disabled={true}>
-                Hello, world!
-            </Button>
-            <Button onClick={() => {}} disabled={true} kind="secondary">
-                Hello, world!
-            </Button>
-            <Button onClick={() => {}} disabled={true} kind="tertiary">
-                Hello, world!
-            </Button>
-        </View>
-        <View style={{flexDirection: "row", gap: spacing.medium_16}}>
-            <Button onClick={() => {}} color="destructive">
-                Hello, world!
-            </Button>
-            <Button onClick={() => {}} kind="secondary" color="destructive">
-                Hello, world!
-            </Button>
-            <Button onClick={() => {}} kind="tertiary" color="destructive">
-                Hello, world!
-            </Button>
-        </View>
-    </View>
-);
-
-Variants.parameters = {
-    docs: {
-        description: {
-            story: "There are three kinds of buttons: `primary` (default), `secondary`, and `tertiary`.",
-        },
-    },
-};
-
-export const WithColor: StoryComponentType = {
-    name: "Color",
+/**
+ * There are three kinds of buttons: `primary` (default), `secondary`, and
+ * `tertiary`.
+ */
+export const Kinds: StoryComponentType = {
     render: () => (
-        <View style={styles.row}>
-            <Button
-                style={styles.button}
-                onClick={() => {}}
-                color="destructive"
-            >
-                Primary
-            </Button>
-            <Button
-                style={styles.button}
-                onClick={() => {}}
-                kind="secondary"
-                color="destructive"
-            >
-                Secondary
-            </Button>
-            <Button
-                style={styles.button}
-                onClick={() => {}}
-                kind="tertiary"
-                color="destructive"
-            >
-                Tertiary
-            </Button>
+        <View style={{padding: spacing.medium_16, gap: spacing.medium_16}}>
+            <View style={styles.rowWithGap}>
+                <Button onClick={() => {}}>Hello, world!</Button>
+                <Button onClick={() => {}} kind="secondary">
+                    Hello, world!
+                </Button>
+                <Button onClick={() => {}} kind="tertiary">
+                    Hello, world!
+                </Button>
+            </View>
+            <View style={styles.rowWithGap}>
+                <Button onClick={() => {}} disabled={true}>
+                    Hello, world!
+                </Button>
+                <Button onClick={() => {}} disabled={true} kind="secondary">
+                    Hello, world!
+                </Button>
+                <Button onClick={() => {}} disabled={true} kind="tertiary">
+                    Hello, world!
+                </Button>
+            </View>
+            <View style={styles.rowWithGap}>
+                <Button onClick={() => {}} actionType="destructive">
+                    Hello, world!
+                </Button>
+                <Button
+                    onClick={() => {}}
+                    kind="secondary"
+                    actionType="destructive"
+                >
+                    Hello, world!
+                </Button>
+                <Button
+                    onClick={() => {}}
+                    kind="tertiary"
+                    actionType="destructive"
+                >
+                    Hello, world!
+                </Button>
+            </View>
+            <View style={styles.rowWithGap}>
+                <Button onClick={() => {}} actionType="neutral">
+                    Hello, world!
+                </Button>
+                <Button
+                    onClick={() => {}}
+                    kind="secondary"
+                    actionType="neutral"
+                >
+                    Hello, world!
+                </Button>
+                <Button onClick={() => {}} kind="tertiary" actionType="neutral">
+                    Hello, world!
+                </Button>
+            </View>
         </View>
     ),
-};
-
-WithColor.parameters = {
-    docs: {
-        description: {
-            story: "Buttons have a `color` that is either `default` (the default, as shown above) or `destructive` (as can seen below):",
+    parameters: {
+        chromatic: {
+            // We already have screenshots of other stories that cover more of
+            // the button states
+            disableSnapshot: true,
         },
     },
-    chromatic: {
-        // NOTE: We already have screenshots of other stories that cover more of
-        // the button states (see Variants).
-        disableSnapshot: true,
-    },
 };
 
-export const Dark: StoryComponentType = () => (
-    <View style={{backgroundColor: color.darkBlue, padding: spacing.medium_16}}>
-        <View style={{flexDirection: "row"}}>
-            <Button onClick={() => {}} light={true}>
-                Hello, world!
-            </Button>
-            <Strut size={16} />
-            <Button onClick={() => {}} light={true} kind="secondary">
-                Hello, world!
-            </Button>
-            <Strut size={16} />
-            <Button onClick={() => {}} light={true} kind="tertiary">
-                Hello, world!
-            </Button>
+/**
+ * Buttons have an `actionType` prop that is either `progressive` (the default,
+ * as shown above), `destructive` or `neutral` (as can seen below):
+ */
+export const ActionType: StoryComponentType = {
+    name: "ActionType",
+    render: () => (
+        <View style={{gap: spacing.medium_16}}>
+            <View style={styles.row}>
+                <Button
+                    style={styles.button}
+                    onClick={() => {}}
+                    actionType="destructive"
+                >
+                    Primary
+                </Button>
+                <Button
+                    style={styles.button}
+                    onClick={() => {}}
+                    kind="secondary"
+                    actionType="destructive"
+                >
+                    Secondary
+                </Button>
+                <Button
+                    style={styles.button}
+                    onClick={() => {}}
+                    kind="tertiary"
+                    actionType="destructive"
+                >
+                    Tertiary
+                </Button>
+            </View>
+            <View style={styles.row}>
+                <Button
+                    style={styles.button}
+                    onClick={() => {}}
+                    actionType="neutral"
+                >
+                    Primary
+                </Button>
+                <Button
+                    style={styles.button}
+                    onClick={() => {}}
+                    kind="secondary"
+                    actionType="neutral"
+                >
+                    Secondary
+                </Button>
+                <Button
+                    style={styles.button}
+                    onClick={() => {}}
+                    kind="tertiary"
+                    actionType="neutral"
+                >
+                    Tertiary
+                </Button>
+            </View>
         </View>
-        <Strut size={16} />
-        <View style={{flexDirection: "row"}}>
-            <Button onClick={() => {}} light={true} disabled={true}>
-                Hello, world!
-            </Button>
-            <Strut size={16} />
-            <Button
-                onClick={() => {}}
-                light={true}
-                disabled={true}
-                kind="secondary"
-            >
-                Hello, world!
-            </Button>
-            <Strut size={16} />
-            <Button
-                onClick={() => {}}
-                light={true}
-                disabled={true}
-                kind="tertiary"
-            >
-                Hello, world!
-            </Button>
-        </View>
-        <Strut size={16} />
-        <View style={{flexDirection: "row"}}>
-            <Button onClick={() => {}} light={true} color="destructive">
-                Hello, world!
-            </Button>
-            <Strut size={16} />
-            <Button
-                onClick={() => {}}
-                light={true}
-                kind="secondary"
-                color="destructive"
-            >
-                Hello, world!
-            </Button>
-            <Strut size={16} />
-            <Button
-                onClick={() => {}}
-                light={true}
-                kind="tertiary"
-                color="destructive"
-            >
-                Hello, world!
-            </Button>
-        </View>
-    </View>
-);
-
-Dark.parameters = {
-    backgrounds: {
-        default: "darkBlue",
-    },
-    docs: {
-        description: {
-            story: "Buttons on a `darkBlue` background should set `light` to `true`.",
+    ),
+    parameters: {
+        chromatic: {
+            // NOTE: We already have screenshots of other stories that cover more of
+            // the button states (see Variants).
+            disableSnapshot: true,
         },
     },
 };
@@ -517,6 +428,11 @@ Size.parameters = {
             story: "Buttons have a size that's either `medium` (default), `small`, or `large`.",
         },
     },
+    chromatic: {
+        // We already have screenshots of other stories that cover more of
+        // the button states
+        disableSnapshot: true,
+    },
 };
 
 export const Spinner: StoryComponentType = () => (
@@ -624,19 +540,10 @@ export const CustomStyles = {
     },
     render: (args: any) => (
         <View style={{gap: spacing.medium_16}}>
-            <HeadingSmall>Wonder Blocks theme (default)</HeadingSmall>
             <View style={{flexDirection: "row", gap: spacing.medium_16}}>
                 <Button {...args} kind="primary" />
                 <Button {...args} kind="secondary" />
                 <Button {...args} kind="tertiary" />
-            </View>
-            <HeadingSmall>Khanmigo theme</HeadingSmall>
-            <View style={{flexDirection: "row", gap: spacing.medium_16}}>
-                <ThemeSwitcherContext.Provider value="khanmigo">
-                    <Button {...args} kind="primary" />
-                    <Button {...args} kind="secondary" />
-                    <Button {...args} kind="tertiary" />
-                </ThemeSwitcherContext.Provider>
             </View>
         </View>
     ),
@@ -652,7 +559,10 @@ export const SubmittingForms: StoryComponentType = {
             }}
         >
             <View>
-                Foo: <input id="foo" value="bar" />
+                <LabeledField
+                    label="Foo"
+                    field={<input id="foo" value="bar" onChange={() => {}} />}
+                />
                 <Button type="submit">Submit</Button>
             </View>
         </form>
@@ -679,22 +589,25 @@ export const PreventNavigation: StoryComponentType = {
     name: "Preventing navigation",
     render: () => (
         <MemoryRouter>
-            <View style={styles.row}>
-                <Button
-                    href="/foo"
-                    style={styles.button}
-                    onClick={(e) => {
-                        e.preventDefault();
-                    }}
-                >
-                    This button prevents navigation.
-                </Button>
-                <Switch>
-                    <Route path="/foo">
-                        <View id="foo">Hello, world!</View>
-                    </Route>
-                </Switch>
-            </View>
+            <CompatRouter>
+                <View style={styles.row}>
+                    <Button
+                        href="/foo"
+                        style={styles.button}
+                        onClick={(e) => {
+                            e.preventDefault();
+                        }}
+                    >
+                        This button prevents navigation.
+                    </Button>
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={<View id="foo">Hello, world!</View>}
+                        />
+                    </Routes>
+                </View>
+            </CompatRouter>
         </MemoryRouter>
     ),
 };
@@ -714,19 +627,22 @@ export const WithRouter: StoryComponentType = {
     name: "Navigation with React Router",
     render: () => (
         <MemoryRouter>
-            <View style={styles.row}>
-                <Button href="/foo" style={styles.button}>
-                    Uses Client-side Nav
-                </Button>
-                <Button href="/foo" style={styles.button} skipClientNav>
-                    Avoids Client-side Nav
-                </Button>
-                <Switch>
-                    <Route path="/foo">
-                        <View id="foo">Hello, world!</View>
-                    </Route>
-                </Switch>
-            </View>
+            <CompatRouter>
+                <View style={styles.row}>
+                    <Button href="/foo" style={styles.button}>
+                        Uses Client-side Nav
+                    </Button>
+                    <Button href="/foo" style={styles.button} skipClientNav>
+                        Avoids Client-side Nav
+                    </Button>
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={<View id="foo">Hello, world!</View>}
+                        />
+                    </Routes>
+                </View>
+            </CompatRouter>
         </MemoryRouter>
     ),
 };
@@ -739,32 +655,5 @@ WithRouter.parameters = {
     },
     chromatic: {
         disableSnapshot: true,
-    },
-};
-
-/**
- * Button supports theming via the `ThemeSwitcherContext`. This story shows the
- * button in the `khanmigo` theme using all the variants.
- *
- * **Note:** You can also use the "Theme" addon in the toolbar to switch themes.
- */
-export const KhanmigoTheme: StoryComponentType = {
-    render: () => {
-        const stories = [
-            Variants,
-            Dark,
-            Size,
-            IconExample,
-        ] as Array<React.ElementType>;
-
-        return (
-            <ThemeSwitcherContext.Provider value="khanmigo">
-                <View style={{gap: spacing.medium_16}}>
-                    {stories.map((Story, i) => (
-                        <Story key={i} />
-                    ))}
-                </View>
-            </ThemeSwitcherContext.Provider>
-        );
     },
 };

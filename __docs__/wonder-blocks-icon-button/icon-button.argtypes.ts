@@ -1,62 +1,16 @@
-import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
+import type {ArgTypes} from "@storybook/react";
+import iconButtonSharedArgtypes from "./icon-button-shared.argtypes";
 
 export default {
-    color: {
-        control: {
-            type: "select",
-        },
-        description: "Color of the icon button.",
-        options: ["default", "destructive"],
-        table: {
-            type: {
-                summary: `"default" | "destructive"`,
-            },
-            defaultValue: {
-                summary: `"default"`,
-            },
-        },
-    },
-    disabled: {
-        control: {
-            type: "boolean",
-        },
-        description: "Whether the icon button is disabled.",
-    },
-    icon: {
-        control: {
-            type: "select",
-        },
-        description: "A Phosphor icon asset (imported as a static SVG file).",
-        options: IconMappings,
-    },
-    kind: {
-        control: {
-            type: "select",
-        },
-        description: "The kind of the icon button.",
-        options: ["primary", "secondary", "tertiary"],
-        table: {
-            type: {
-                summary: `"primary" | "secondary" | "tertiary"`,
-            },
-            defaultValue: {
-                summary: `"primary"`,
-            },
-        },
-    },
+    ...iconButtonSharedArgtypes,
     size: {
         control: {
             type: "select",
         },
-        description: "The size of the icon button.",
-        options: ["xsmall", "small", "medium"],
         table: {
-            type: {
-                summary: `"xsmall" | "small" | "medium"`,
-            },
             defaultValue: {
                 summary: `"medium"`,
             },
         },
     },
-};
+} satisfies ArgTypes;
