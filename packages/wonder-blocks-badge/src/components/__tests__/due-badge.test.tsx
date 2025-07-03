@@ -67,33 +67,36 @@ describe("DueBadge", () => {
                 const {container} = render(
                     <DueBadge
                         label="Badge label"
-                        icon={<img src="/" alt="Example icon" />}
+                        showIcon={true}
+                        iconAriaLabel="Due"
                     />,
                 );
 
                 // Assert
                 await expect(container).toHaveNoA11yViolations();
             });
+        });
 
-            it("should not have violations if there is no label", async () => {
-                // Arrange
-                // Act
-                const {container} = render(
-                    <DueBadge icon={<img src="/" alt="Example icon" />} />,
-                );
+        it("should not have violations if there is no label", async () => {
+            // Arrange
+            // Act
+            const {container} = render(
+                <DueBadge showIcon={true} iconAriaLabel="Due" />,
+            );
 
-                // Assert
-                await expect(container).toHaveNoA11yViolations();
-            });
+            // Assert
+            await expect(container).toHaveNoA11yViolations();
+        });
 
-            it("should not have violations if there is no icon", async () => {
-                // Arrange
-                // Act
-                const {container} = render(<DueBadge label="Badge label" />);
+        it("should not have violations if there is no icon", async () => {
+            // Arrange
+            // Act
+            const {container} = render(
+                <DueBadge showIcon={false} label="Badge" />,
+            );
 
-                // Assert
-                await expect(container).toHaveNoA11yViolations();
-            });
+            // Assert
+            await expect(container).toHaveNoA11yViolations();
         });
     });
 });
