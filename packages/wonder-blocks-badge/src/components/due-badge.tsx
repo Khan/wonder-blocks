@@ -78,7 +78,8 @@ export {DueBadge};
 const styles = StyleSheet.create({
     dueBadge: {
         backgroundColor: semanticColor.learning.background.due.subtle,
-        borderColor: semanticColor.learning.background.due.subtle, // Border should be the same as the background
+        // Border should be the same as the background
+        borderColor: semanticColor.learning.background.due.subtle,
         color: semanticColor.learning.foreground.due.strong,
     },
     dueIcon: {
