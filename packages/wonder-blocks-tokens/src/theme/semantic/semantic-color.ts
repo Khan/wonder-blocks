@@ -797,6 +797,12 @@ export const semanticColor = {
                 icon: core.foreground.instructive.default,
                 text: core.foreground.instructive.strong,
             },
+            strong: {
+                background: core.background.neutral.strong,
+                border: core.border.neutral.strong,
+                text: core.foreground.inverse.strong,
+                icon: core.foreground.instructive.subtle,
+            },
         },
         success: {
             subtle: {
@@ -820,6 +826,12 @@ export const semanticColor = {
                 border: core.border.critical.subtle,
                 icon: core.foreground.critical.default,
                 text: core.foreground.critical.strong,
+            },
+        },
+        shared: {
+            actions: {
+                subdued: core.foreground.instructive.default,
+                strong: core.foreground.inverse.strong,
             },
         },
     },
