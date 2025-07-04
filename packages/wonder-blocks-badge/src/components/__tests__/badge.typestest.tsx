@@ -43,9 +43,15 @@ const icon = <PhosphorIcon icon={cookie} aria-label="Cookie" />;
 
 <DueBadge label="Badge label" />;
 
-<DueBadge label="Badge label" icon={icon} />;
+<DueBadge showIcon={true} iconAriaLabel="Due" />;
 
-<DueBadge icon={icon} />;
+// @ts-expect-error -- iconAriaLabel is required when showIcon is true and there is no label
+<DueBadge showIcon={true} />;
+
+// iconAriaLabel is not required if label is provided
+<DueBadge showIcon={true} label="Badge" />;
+
+<DueBadge showIcon={true} label="Badge" iconAriaLabel="Due" />;
 
 /**
  * GemBadge

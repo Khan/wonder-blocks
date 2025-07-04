@@ -22,6 +22,7 @@ export const iconArgType = {
 export const showIconArgType = {
     showIcon: {
         description: "Whether to show the icon. Defaults to `false`.",
+        control: {type: "boolean"},
     },
     iconAriaLabel: {
         description:
@@ -30,7 +31,6 @@ export const showIconArgType = {
 };
 
 export default {
-    ...iconArgType,
     label: {
         // Explicitly adding label prop description since description is not
         // auto-generated due to the union type
