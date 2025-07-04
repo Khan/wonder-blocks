@@ -152,7 +152,7 @@ const border = {
 const surface = {
     primary: color.white,
     secondary: color.offWhite,
-    emphasis: color.blue,
+    emphasis: color.fadedBlue16,
     inverse: color.darkBlue,
     overlay: color.offBlack64,
 };
