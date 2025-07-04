@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-tokens",
-  "version": "11.3.0",
+  "version": "11.3.1",
   "description": "Core primitive design tokens for Web Wonder Blocks",
   "exports": {
     ".": {

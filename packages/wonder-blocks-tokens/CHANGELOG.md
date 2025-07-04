@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 11.3.1
+
+### Patch Changes
+
+- 7cd0ebf: Update `surface.emphasis` value for the classic theme to `fadedBlue16`
+- 51b6e69: Update semantic color core background success strong token to use green 20 instead of green 10 for the Thunderblocks theme
+- 51b6e69: Update learning.foreground.progress.complete.strong to green 10
+
 ## 11.3.0
 
 ### Minor Changes
