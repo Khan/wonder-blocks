@@ -73,6 +73,7 @@ type Props = {
         label?: StyleType;
         description?: StyleType;
         error?: StyleType;
+        readOnlyMessage?: StyleType;
     };
     /**
      * A unique id to use as the base of the ids for the elements within the component.
@@ -280,10 +281,7 @@ export default function LabeledField(props: Props) {
     }
 
     function maybeRenderReadOnlyMessage() {
-        if (!readOnlyMessage || errorMessage) {
-            // Don't render the read only message if:
-            // - There is no read only message
-            // - There is an error message
+        if (!readOnlyMessage) {
             return null;
         }
 
@@ -292,6 +290,7 @@ export default function LabeledField(props: Props) {
                 style={[
                     styles.helperTextSection,
                     !!readOnlyMessage && styles.helperTextSectionWithContent,
+                    stylesProp?.readOnlyMessage,
                 ]}
                 id={readOnlyMessageId}
             >
@@ -318,8 +317,8 @@ export default function LabeledField(props: Props) {
             {renderLabel()}
             {maybeRenderDescription()}
             {renderField()}
-            {maybeRenderError()}
             {maybeRenderReadOnlyMessage()}
+            {maybeRenderError()}
         </View>
     );
 }

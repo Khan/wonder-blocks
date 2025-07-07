@@ -115,7 +115,6 @@ const scenarios = [
             description: "Helpful description text.",
             errorMessage: "Message about the error",
             required: "Custom required message",
-            readOnlyMessage: "Message about why it is read only",
         },
     },
     {
@@ -164,6 +163,30 @@ const scenarios = [
         },
     },
     {
+        name: "Custom styles with read only message",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            description: "Helpful description text.",
+            readOnlyMessage: "Message about the read only state",
+            required: "Custom required message",
+            styles: {
+                root: {
+                    padding: sizing.size_080,
+                },
+                label: {
+                    paddingBlockEnd: sizing.size_020,
+                },
+                description: {
+                    paddingBlockEnd: sizing.size_020,
+                },
+                readOnlyMessage: {
+                    paddingBlockStart: sizing.size_020,
+                },
+            },
+        },
+    },
+    {
         name: "With disabled field",
         props: {
             field: <TextField value="" onChange={() => {}} disabled />,
@@ -200,6 +223,17 @@ const scenarios = [
             description: "Helpful description text.",
             required: true,
             readOnlyMessage: longTextWithNoWordBreak,
+        },
+    },
+    {
+        name: "Readonly + Error State",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            description: "Helpful description text.",
+            errorMessage: "Message about the error",
+            required: "Custom required message",
+            readOnlyMessage: "Message about the read only state",
         },
     },
 ];
