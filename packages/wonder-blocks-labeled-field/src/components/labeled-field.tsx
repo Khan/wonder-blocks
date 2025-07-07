@@ -247,6 +247,7 @@ export default function LabeledField(props: Props) {
                             <BodyText
                                 style={[
                                     styles.textWordBreak,
+                                    styles.helperTextMessage,
                                     styles.errorMessage,
                                     styles.error,
                                 ]}
@@ -301,6 +302,7 @@ export default function LabeledField(props: Props) {
                 <BodyText
                     style={[
                         styles.textWordBreak,
+                        styles.helperTextMessage,
                         typographyStyles.BodyTextXSmallMediumWeight,
                     ]}
                 >
@@ -352,6 +354,9 @@ const styles = StyleSheet.create({
         paddingBlockStart:
             theme.root.layout.paddingBlockEnd.errorSectionWithContent,
     },
+    helperTextMessage: {
+        minWidth: sizing.size_0, // This enables the wrapping behaviour on the error message
+    },
     error: {
         color: theme.error.color.foreground,
     },
@@ -359,7 +364,6 @@ const styles = StyleSheet.create({
         marginTop: sizing.size_010, // This vertically aligns the icon with the text
     },
     errorMessage: {
-        minWidth: sizing.size_0, // This enables the wrapping behaviour on the error message
         fontSize: theme.error.font.size,
         fontWeight: theme.error.font.weight,
         lineHeight: theme.error.font.lineHeight,
