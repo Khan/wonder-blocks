@@ -202,6 +202,7 @@ export default function LabeledField(props: Props) {
                         styles.textWordBreak,
                         styles.description,
                         stylesProp?.description,
+                        isDisabled && styles.disabledDescription,
                     ]}
                     testId={testId && `${testId}-description`}
                     id={descriptionId}
@@ -345,6 +346,9 @@ const styles = StyleSheet.create({
         paddingBlockEnd: theme.root.layout.paddingBlockEnd.description,
         fontSize: theme.description.font.size,
         lineHeight: theme.description.font.lineHeight,
+    },
+    disabledDescription: {
+        color: theme.description.color.disabled.foreground,
     },
     helperTextSection: {
         flexDirection: "row",

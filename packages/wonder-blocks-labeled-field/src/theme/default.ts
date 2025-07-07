@@ -28,6 +28,9 @@ const theme = {
         },
         color: {
             foreground: semanticColor.core.foreground.neutral.default,
+            disabled: {
+                foreground: semanticColor.core.foreground.neutral.default,
+            },
         },
     },
     error: {
