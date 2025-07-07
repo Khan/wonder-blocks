@@ -48,6 +48,11 @@ const theme = {
             foreground: semanticColor.core.foreground.critical.subtle,
         },
     },
+    helperText: {
+        layout: {
+            gap: sizing.size_080,
+        },
+    },
 };
 
 export default theme;

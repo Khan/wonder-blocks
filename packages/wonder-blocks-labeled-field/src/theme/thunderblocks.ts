@@ -51,4 +51,9 @@ export default mergeTheme(defaultTheme, {
             foreground: semanticColor.core.foreground.critical.default,
         },
     },
+    helperText: {
+        layout: {
+            gap: sizing.size_040,
+        },
+    },
 });

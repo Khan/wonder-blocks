@@ -341,7 +341,7 @@ const styles = StyleSheet.create({
     },
     helperTextSection: {
         flexDirection: "row",
-        gap: sizing.size_080,
+        gap: theme.helperText.layout.gap,
     },
     helperTextSectionWithContent: {
         paddingBlockStart:
