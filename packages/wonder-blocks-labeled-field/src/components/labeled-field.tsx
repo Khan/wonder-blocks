@@ -82,6 +82,7 @@ type Props = {
      * - The description will have an id formatted as `${id}-description`
      * - The field will have an id formatted as `${id}-field`
      * - The error will have an id formatted as `${id}-error`
+     * - The read only message will have an id formatted as `${id}-read-only-message`
      *
      * If the `id` prop is not provided, a base unique id will be auto-generated.
      * This is important so that the different elements can be wired up together
@@ -98,6 +99,7 @@ type Props = {
      * - The description will have a testId formatted as `${testId}-description`
      * - The field will have a testId formatted as `${testId}-field`
      * - The error will have a testId formatted as `${testId}-error`
+     * - The read only message will have a testId formatted as `${testId}-read-only-message`
      */
     testId?: string;
     /**
@@ -267,8 +269,8 @@ export default function LabeledField(props: Props) {
         return React.cloneElement(field, {
             id: fieldId,
             "aria-describedby": [
-                errorMessage && errorId,
                 description && descriptionId,
+                errorMessage && errorId,
                 readOnlyMessage && readOnlyMessageId,
             ]
                 .filter(Boolean)
@@ -293,6 +295,7 @@ export default function LabeledField(props: Props) {
                     stylesProp?.readOnlyMessage,
                 ]}
                 id={readOnlyMessageId}
+                testId={testId && `${testId}-read-only-message`}
             >
                 <PhosphorIcon
                     icon={LockIcon}
