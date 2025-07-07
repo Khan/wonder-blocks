@@ -115,7 +115,7 @@ const scenarios = [
             description: "Helpful description text.",
             errorMessage: "Message about the error",
             required: "Custom required message",
-            readOnlyMessage: "Read Only",
+            readOnlyMessage: "Message about why it is read only",
         },
     },
     {
@@ -179,7 +179,7 @@ const scenarios = [
             label: "Name",
             description: "Helpful description text.",
             required: true,
-            readOnlyMessage: "Read Only",
+            readOnlyMessage: "Message about why it is read only",
         },
     },
     {

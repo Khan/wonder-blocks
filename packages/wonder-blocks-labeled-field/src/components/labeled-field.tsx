@@ -293,10 +293,10 @@ export default function LabeledField(props: Props) {
                     styles.helperTextSection,
                     !!readOnlyMessage && styles.helperTextSectionWithContent,
                 ]}
+                id={readOnlyMessageId}
             >
                 <PhosphorIcon
                     icon={LockIcon}
-                    role="img"
                     aria-label={labels.readOnlyAriaLabel}
                     color={semanticColor.core.foreground.neutral.subtle}
                 />

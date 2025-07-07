@@ -372,7 +372,7 @@ export const Fields: StoryComponentType = {
                 <AllFields
                     {...args}
                     textValue={"Value"}
-                    readOnlyMessage="Read Only"
+                    readOnlyMessage="Message about why it is read only"
                 />
             </View>
         );
