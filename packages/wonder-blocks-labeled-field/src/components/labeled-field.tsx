@@ -143,6 +143,7 @@ export default function LabeledField(props: Props) {
     const descriptionId = `${uniqueId}-description`;
     const fieldId = `${uniqueId}-field`;
     const errorId = `${uniqueId}-error`;
+    const readOnlyMessageId = `${uniqueId}-read-only-message`;
 
     const isRequired = !!required || !!field.props.required;
     const hasError = !!errorMessage || !!field.props.error;
@@ -265,6 +266,7 @@ export default function LabeledField(props: Props) {
             "aria-describedby": [
                 errorMessage && errorId,
                 description && descriptionId,
+                readOnlyMessage && readOnlyMessageId,
             ]
                 .filter(Boolean)
                 .join(" "),
