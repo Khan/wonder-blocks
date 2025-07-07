@@ -1,11 +1,14 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import WarningCircle from "@phosphor-icons/core/bold/warning-circle-bold.svg";
-
+import LockIcon from "@phosphor-icons/core/bold/lock-bold.svg";
+import {
+    styles as typographyStyles,
+    BodyText,
+} from "@khanacademy/wonder-blocks-typography";
 import {View, addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import theme from "../theme";
 
 type Props = {
@@ -55,6 +58,13 @@ type Props = {
      */
     errorMessage?: React.ReactNode;
     /**
+     * The helpful text message to display when the field is read only.
+     *
+     * Use the `labels.readOnlyAriaLabel` prop to set the `aria-label` for
+     * the read only icon.
+     */
+    readOnlyMessage?: React.ReactNode;
+    /**
      * Custom styles for the elements of LabeledField. Useful if there are
      * specific cases where spacing between elements needs to be customized.
      */
@@ -98,7 +108,8 @@ type Props = {
 };
 
 export type LabeledFieldLabels = {
-    errorIconAriaLabel: string;
+    errorIconAriaLabel?: string;
+    readOnlyAriaLabel?: string;
 };
 
 const defaultLabeledFieldLabels: LabeledFieldLabels = {
@@ -122,6 +133,7 @@ export default function LabeledField(props: Props) {
         testId,
         description,
         errorMessage,
+        readOnlyMessage,
         labels = defaultLabeledFieldLabels,
     } = props;
 
@@ -204,9 +216,9 @@ export default function LabeledField(props: Props) {
             <React.Fragment>
                 <View
                     style={[
-                        styles.errorSection,
+                        styles.helperTextSection,
                         errorMessage
-                            ? styles.errorSectionWithContent
+                            ? styles.helperTextSectionWithContent
                             : undefined,
                         stylesProp?.error,
                     ]}
@@ -262,12 +274,43 @@ export default function LabeledField(props: Props) {
         });
     }
 
+    function maybeRenderReadOnlyMessage() {
+        if (!readOnlyMessage) {
+            return null;
+        }
+
+        return (
+            <View
+                style={[
+                    styles.helperTextSection,
+                    !!readOnlyMessage && styles.helperTextSectionWithContent,
+                ]}
+            >
+                <PhosphorIcon
+                    icon={LockIcon}
+                    role="img"
+                    aria-label={labels.readOnlyAriaLabel}
+                    color={semanticColor.core.foreground.neutral.subtle}
+                />
+                <BodyText
+                    style={[
+                        styles.textWordBreak,
+                        typographyStyles.BodyTextXSmallMediumWeight,
+                    ]}
+                >
+                    {readOnlyMessage}
+                </BodyText>
+            </View>
+        );
+    }
+
     return (
         <View style={stylesProp?.root}>
             {renderLabel()}
             {maybeRenderDescription()}
             {renderField()}
             {maybeRenderError()}
+            {maybeRenderReadOnlyMessage()}
         </View>
     );
 }
@@ -295,11 +338,11 @@ const styles = StyleSheet.create({
         fontSize: theme.description.font.size,
         lineHeight: theme.description.font.lineHeight,
     },
-    errorSection: {
+    helperTextSection: {
         flexDirection: "row",
         gap: sizing.size_080,
     },
-    errorSectionWithContent: {
+    helperTextSectionWithContent: {
         paddingBlockStart:
             theme.root.layout.paddingBlockEnd.errorSectionWithContent,
     },

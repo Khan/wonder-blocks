@@ -171,6 +171,16 @@ const scenarios = [
             required: true,
         },
     },
+    {
+        name: "With read only message",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            description: "Helpful description text.",
+            required: true,
+            readOnlyMessage: "Read Only",
+        },
+    },
 ];
 
 /**

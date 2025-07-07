@@ -382,7 +382,11 @@ export const Fields: StoryComponentType = {
                 <Heading>Disabled</Heading>
                 <AllFields {...args} disabled />
                 <Heading>Read Only</Heading>
-                <AllFields {...args} readOnly={true} textValue={"Value"} />
+                <AllFields
+                    {...args}
+                    textValue={"Value"}
+                    readOnlyMessage="Read Only"
+                />
             </View>
         );
     },
