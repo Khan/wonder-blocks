@@ -93,11 +93,9 @@ describe("LabeledField", () => {
         expect(screen.getByText(readOnlyMessage)).toBeInTheDocument();
     });
 
-    it("LabeledField does not render the read only message text if there is an error message", () => {
+    it("LabeledField renders the read only message text if there is an error message", () => {
         // Arrange
         const readOnlyMessage = "Read only message";
-
-        // Act
         render(
             <LabeledField
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
@@ -108,8 +106,31 @@ describe("LabeledField", () => {
             defaultOptions,
         );
 
+        // Act
+        const readOnlyMessageEl = screen.getByText(readOnlyMessage);
+
         // Assert
-        expect(screen.queryByText(readOnlyMessage)).not.toBeInTheDocument();
+        expect(readOnlyMessageEl).toBeInTheDocument();
+    });
+
+    it("LabeledField renders the error message text if there is also a read only message", () => {
+        // Arrange
+        const readOnlyMessage = "Read only message";
+        render(
+            <LabeledField
+                field={<TextField id="tf-1" value="" onChange={() => {}} />}
+                label="Label"
+                readOnlyMessage={readOnlyMessage}
+                errorMessage="Error message"
+            />,
+            defaultOptions,
+        );
+
+        // Act
+        const errorMessageEl = screen.getByText(errorMessage);
+
+        // Assert
+        expect(errorMessageEl).toBeInTheDocument();
     });
 
     it("LabeledField adds testId to label", () => {
