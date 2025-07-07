@@ -157,6 +157,12 @@ const surface = {
     overlay: color.offBlack64,
 };
 
+const sharedFeedbackStrongTokens = {
+    background: core.background.neutral.strong,
+    border: core.border.neutral.strong,
+    text: core.foreground.inverse.strong,
+};
+
 /**
  * TODO(WB-1941): Remove text once we have migrated to the new core.foreground
  * tokens.
@@ -793,9 +799,7 @@ export const semanticColor = {
                 text: core.foreground.instructive.strong,
             },
             strong: {
-                background: core.background.neutral.strong,
-                border: core.border.neutral.strong,
-                text: core.foreground.inverse.strong,
+                ...sharedFeedbackStrongTokens,
                 icon: core.foreground.instructive.subtle,
             },
         },
@@ -806,6 +810,10 @@ export const semanticColor = {
                 icon: core.foreground.success.default,
                 text: core.foreground.success.strong,
             },
+            strong: {
+                ...sharedFeedbackStrongTokens,
+                icon: core.foreground.success.subtle,
+            },
         },
         warning: {
             subtle: {
@@ -813,6 +821,10 @@ export const semanticColor = {
                 border: core.border.warning.default,
                 icon: core.foreground.warning.default,
                 text: core.foreground.warning.strong,
+            },
+            strong: {
+                ...sharedFeedbackStrongTokens,
+                icon: core.foreground.warning.subtle,
             },
         },
         critical: {
@@ -822,11 +834,9 @@ export const semanticColor = {
                 icon: core.foreground.critical.default,
                 text: core.foreground.critical.strong,
             },
-        },
-        shared: {
-            actions: {
-                subdued: core.foreground.instructive.default,
-                strong: core.foreground.inverse.strong,
+            strong: {
+                ...sharedFeedbackStrongTokens,
+                icon: core.foreground.critical.subtle,
             },
         },
     },
