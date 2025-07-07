@@ -9,7 +9,7 @@ export default mergeTheme(defaultTheme, {
                 labelWithDescription: sizing.size_100,
                 labelWithNoDescription: sizing.size_100,
                 description: sizing.size_100,
-                errorSectionWithContent: sizing.size_100,
+                helperTextSectionWithContent: sizing.size_100,
             },
         },
     },

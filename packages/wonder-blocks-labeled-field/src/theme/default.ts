@@ -7,7 +7,7 @@ const theme = {
                 labelWithDescription: sizing.size_040,
                 labelWithNoDescription: sizing.size_120,
                 description: sizing.size_120,
-                errorSectionWithContent: sizing.size_120,
+                helperTextSectionWithContent: sizing.size_120,
             },
         },
     },

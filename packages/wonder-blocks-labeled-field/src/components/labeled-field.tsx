@@ -356,7 +356,7 @@ const styles = StyleSheet.create({
     },
     helperTextSectionWithContent: {
         paddingBlockStart:
-            theme.root.layout.paddingBlockEnd.errorSectionWithContent,
+            theme.root.layout.paddingBlockEnd.helperTextSectionWithContent,
     },
     helperTextMessage: {
         minWidth: sizing.size_0, // This enables the wrapping behaviour on the error message
