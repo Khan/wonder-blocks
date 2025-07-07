@@ -76,7 +76,6 @@ const AllFields = (
         shouldValidateInStory?: boolean;
         showSubmitButtonInStory?: boolean;
         disabled?: boolean;
-        readOnly?: boolean;
         textValue?: string;
     },
 ) => {
@@ -84,7 +83,6 @@ const AllFields = (
         shouldValidateInStory,
         showSubmitButtonInStory,
         disabled,
-        readOnly,
         textValue,
         ...args
     } = storyArgs;
@@ -245,7 +243,6 @@ const AllFields = (
                         }
                         instantValidation={false}
                         disabled={disabled}
-                        readOnly={readOnly}
                     />
                 }
             />
@@ -265,86 +262,76 @@ const AllFields = (
                         }
                         instantValidation={false}
                         disabled={disabled}
-                        readOnly={readOnly}
                     />
                 }
             />
 
-            {/* SingleSelect does not support readonly state */}
-            {!readOnly && (
-                <LabeledField
-                    {...args}
-                    errorMessage={singleSelectErrorMessage}
-                    label="Single Select"
-                    description={selectDescription}
-                    field={
-                        <SingleSelect
-                            // ref={singleSelectRef} // TODO(WB-1841) once SingleSelect supports ref
-                            placeholder="Choose a fruit"
-                            selectedValue={singleSelectValue}
-                            onChange={setSingleSelectValue}
-                            onValidate={setSingleSelectErrorMessage}
-                            validate={singleSelectValidate}
-                            disabled={disabled}
-                        >
-                            <OptionItem label="Mango" value="mango" />
-                            <OptionItem label="Strawberry" value="strawberry" />
-                            <OptionItem label="Banana" value="banana" />
-                        </SingleSelect>
-                    }
-                />
-            )}
+            <LabeledField
+                {...args}
+                errorMessage={singleSelectErrorMessage}
+                label="Single Select"
+                description={selectDescription}
+                field={
+                    <SingleSelect
+                        // ref={singleSelectRef} // TODO(WB-1841) once SingleSelect supports ref
+                        placeholder="Choose a fruit"
+                        selectedValue={singleSelectValue}
+                        onChange={setSingleSelectValue}
+                        onValidate={setSingleSelectErrorMessage}
+                        validate={singleSelectValidate}
+                        disabled={disabled}
+                    >
+                        <OptionItem label="Mango" value="mango" />
+                        <OptionItem label="Strawberry" value="strawberry" />
+                        <OptionItem label="Banana" value="banana" />
+                    </SingleSelect>
+                }
+            />
 
-            {/* MultiSelect does not support readonly state */}
-            {!readOnly && (
-                <LabeledField
-                    {...args}
-                    errorMessage={multiSelectErrorMessage}
-                    label="Multi Select"
-                    description={selectDescription}
-                    field={
-                        <MultiSelect
-                            // ref={multiSelectRef} // TODO(WB-1841) once MultiSelect supports ref
-                            selectedValues={multiSelectValue}
-                            onChange={setMultiSelectValue}
-                            onValidate={setMultiSelectErrorMessage}
-                            validate={
-                                shouldValidateInStory
-                                    ? multiSelectValidate
-                                    : undefined
-                            }
-                            disabled={disabled}
-                        >
-                            <OptionItem label="Mango" value="mango" />
-                            <OptionItem label="Strawberry" value="strawberry" />
-                            <OptionItem label="Banana" value="banana" />
-                        </MultiSelect>
-                    }
-                />
-            )}
+            <LabeledField
+                {...args}
+                errorMessage={multiSelectErrorMessage}
+                label="Multi Select"
+                description={selectDescription}
+                field={
+                    <MultiSelect
+                        // ref={multiSelectRef} // TODO(WB-1841) once MultiSelect supports ref
+                        selectedValues={multiSelectValue}
+                        onChange={setMultiSelectValue}
+                        onValidate={setMultiSelectErrorMessage}
+                        validate={
+                            shouldValidateInStory
+                                ? multiSelectValidate
+                                : undefined
+                        }
+                        disabled={disabled}
+                    >
+                        <OptionItem label="Mango" value="mango" />
+                        <OptionItem label="Strawberry" value="strawberry" />
+                        <OptionItem label="Banana" value="banana" />
+                    </MultiSelect>
+                }
+            />
 
-            {/* SearchField does not support readonly state */}
-            {!readOnly && (
-                <LabeledField
-                    {...args}
-                    errorMessage={searchErrorMessage}
-                    label="Search"
-                    description={textDescription}
-                    field={
-                        <SearchField
-                            ref={searchRef}
-                            value={searchValue}
-                            onChange={setSearchValue}
-                            validate={
-                                shouldValidateInStory ? textValidate : undefined
-                            }
-                            onValidate={setSearchErrorMessage}
-                            instantValidation={false}
-                            disabled={disabled}
-                        />
-                    }
-                />
-            )}
+            <LabeledField
+                {...args}
+                errorMessage={searchErrorMessage}
+                label="Search"
+                description={textDescription}
+                field={
+                    <SearchField
+                        ref={searchRef}
+                        value={searchValue}
+                        onChange={setSearchValue}
+                        validate={
+                            shouldValidateInStory ? textValidate : undefined
+                        }
+                        onValidate={setSearchErrorMessage}
+                        instantValidation={false}
+                        disabled={disabled}
+                    />
+                }
+            />
 
             {showSubmitButtonInStory && <Button type="submit">Submit</Button>}
         </StyledForm>
