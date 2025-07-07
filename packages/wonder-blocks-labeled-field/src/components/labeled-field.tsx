@@ -276,7 +276,10 @@ export default function LabeledField(props: Props) {
     }
 
     function maybeRenderReadOnlyMessage() {
-        if (!readOnlyMessage) {
+        if (!readOnlyMessage || errorMessage) {
+            // Don't render the read only message if:
+            // - There is no read only message
+            // - There is an error message
             return null;
         }
 
