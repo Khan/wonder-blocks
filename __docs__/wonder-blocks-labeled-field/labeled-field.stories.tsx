@@ -522,6 +522,11 @@ export const Custom = {
                 <b>Error</b> <i>using</i> <u>JSX</u>
             </span>
         ),
+        readOnlyMessage: (
+            <span>
+                <b>Read</b> <i>only</i> <u>message</u>
+            </span>
+        ),
     },
 };
 
