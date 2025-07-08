@@ -55,6 +55,9 @@ type Props = {
      * Note: Since the error icon has an aria-label, screen readers will
      * prefix the error message with "Error:" (or the value provided to the
      * errorIconAriaLabel in the `labels` prop)
+     *
+     * If both `errorMessage` and `readOnlyMessage` are provided, the `readOnlyMessage`
+     * is displayed first.
      */
     errorMessage?: React.ReactNode;
     /**
@@ -62,6 +65,9 @@ type Props = {
      *
      * Use the `labels.readOnlyAriaLabel` prop to set the `aria-label` for
      * the read only icon.
+     *
+     * If both `errorMessage` and `readOnlyMessage` are provided, the `readOnlyMessage`
+     * is displayed first.
      */
     readOnlyMessage?: React.ReactNode;
     /**
