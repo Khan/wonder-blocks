@@ -64,19 +64,47 @@ export const Default: StoryComponentType = {
         field: <TextField value="" onChange={() => {}} />,
         label: "Name",
         description: "Helpful description text.",
-        errorMessage: "Message about the error",
         required: "Custom required message",
     },
 };
 
+/**
+ * Consider the following when providing helper text:
+ * - If providing an error message for the field, use the `errorMessage` prop
+ * - If providing a message related to the read only state for the field, use
+ *   the `readOnlyMessage` prop
+ *
+ * For all other kinds of helper text, the following props are available:
+ * - `elementBeforeFieldStart`
+ * - `elementBeforeFieldEnd`
+ * - `elementAfterFieldStart`
+ * - `elementAfterFieldEnd`
+ *
+ * When any of these props are used, the field's `aria-describedby` attribute
+ * will include the id of the element for the corresponding prop.
+ */
 export const HelperText: StoryComponentType = {
+    render: (args) => {
+        return (
+            <View style={{gap: sizing.size_240}}>
+                <Heading>A field with an error message</Heading>
+                <LabeledField {...args} errorMessage="Error message" />
+                <Heading>A field with a read only message</Heading>
+                <LabeledField {...args} readOnlyMessage="Read only message" />
+                <Heading>A field with customizable helper text</Heading>
+                <LabeledField
+                    {...args}
+                    elementBeforeFieldStart="Start helper text"
+                    elementBeforeFieldEnd="End helper text"
+                    elementAfterFieldStart="Start helper text"
+                    elementAfterFieldEnd="End helper text"
+                />
+            </View>
+        );
+    },
     args: {
         field: <TextField value="" onChange={() => {}} />,
         label: "Name",
-        elementBeforeFieldStart: "Start Helper Text",
-        elementBeforeFieldEnd: "End Helper Text",
-        elementAfterFieldStart: "Start Helper Text",
-        elementAfterFieldEnd: "End Helper Text",
     },
 };
 

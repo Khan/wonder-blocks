@@ -126,6 +126,9 @@ type Props = {
 
     /**
      * The element to display before the field at the start of the row.
+     *
+     * This is commonly used for a description for the field. Prefer using this
+     * prop to provide more information about a field instead of tooltips.
      */
     elementBeforeFieldStart?: React.ReactNode;
     /**
@@ -134,6 +137,9 @@ type Props = {
     elementBeforeFieldEnd?: React.ReactNode;
     /**
      * The element to display after the field at the start of the row.
+     *
+     * For error messages or messages related to the read only state, use the
+     * `errorMessage` or `readOnlyMessage` props instead.
      */
     elementAfterFieldStart?: React.ReactNode;
     /**
