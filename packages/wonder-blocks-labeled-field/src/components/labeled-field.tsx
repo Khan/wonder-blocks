@@ -217,9 +217,9 @@ export default function LabeledField(props: Props) {
                         description
                             ? styles.labelWithDescription
                             : styles.labelWithNoDescription,
-                        stylesProp?.label,
-                        hasError ? styles.errorStyling : undefined,
+                        hasError ? styles.labelWithError : undefined,
                         isDisabled && styles.disabledStyling,
+                        stylesProp?.label,
                     ]}
                     tag="label"
                     htmlFor={fieldId}
@@ -476,6 +476,9 @@ const styles = StyleSheet.create({
     labelWithNoDescription: {
         paddingBlockEnd:
             theme.root.layout.paddingBlockEnd.labelWithNoDescription,
+    },
+    labelWithError: {
+        color: theme.label.color.error.foreground,
     },
     disabledStyling: {
         color: semanticColor.core.foreground.disabled.strong,
