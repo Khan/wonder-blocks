@@ -263,27 +263,25 @@ const scenarios = [
         },
     },
     {
-        name: "Helper text after field end with error message",
+        name: "elementAfterFieldEnd with errorMessage",
         props: {
             field: <TextField value="" onChange={() => {}} />,
             label: "Name",
-            description: "Helpful description text.",
             elementAfterFieldEnd: "End Helper Text",
             errorMessage: "Message about the error",
         },
     },
     {
-        name: "After field end element with long error message",
+        name: "elementAfterFieldEnd with long errorMessage",
         props: {
             field: <TextField value="" onChange={() => {}} />,
             label: "Name",
-            description: "Helpful description text.",
             elementAfterFieldEnd: "End Helper Text",
             errorMessage: reallyLongText,
         },
     },
     {
-        name: "After field end element with long error message and no word break",
+        name: "elementAfterFieldEnd with long errorMessage and no word break",
         props: {
             field: <TextField value="" onChange={() => {}} />,
             label: "Name",
@@ -293,7 +291,7 @@ const scenarios = [
         },
     },
     {
-        name: "Long error message and long element after field end",
+        name: "Long elementAfterFieldEnd and long errorMssage",
         props: {
             field: <TextField value="" onChange={() => {}} />,
             label: "Name",
@@ -303,7 +301,7 @@ const scenarios = [
         },
     },
     {
-        name: "Long error message and long element after field end with no word break",
+        name: "Long elementAfterFieldEnd and long errorMssage with no word break",
         props: {
             field: <TextField value="" onChange={() => {}} />,
             label: "Name",
@@ -314,7 +312,7 @@ const scenarios = [
     },
 
     {
-        name: "Helper text after field end with read only message",
+        name: "elementAfterFieldEnd with readOnlyMessage",
         props: {
             field: <TextField value="" onChange={() => {}} />,
             label: "Name",
@@ -324,7 +322,7 @@ const scenarios = [
         },
     },
     {
-        name: "After field end element with long read only message",
+        name: "elementAfterFieldEnd with long readOnlyMessage",
         props: {
             field: <TextField value="" onChange={() => {}} />,
             label: "Name",
@@ -334,7 +332,7 @@ const scenarios = [
         },
     },
     {
-        name: "After field end element with long read only message and no word break",
+        name: "elementAfterFieldEnd with long readOnlyMessage and no word break",
         props: {
             field: <TextField value="" onChange={() => {}} />,
             label: "Name",
@@ -344,7 +342,7 @@ const scenarios = [
         },
     },
     {
-        name: "Long read only message and long element after field end",
+        name: "Long readOnlyMessage and long elementAfterFieldEnd",
         props: {
             field: <TextField value="" onChange={() => {}} />,
             label: "Name",
@@ -354,7 +352,7 @@ const scenarios = [
         },
     },
     {
-        name: "Long read only message and long element after field end with no word break",
+        name: "Long readOnlyMessage and long elementAfterFieldEnd with no word break",
         props: {
             field: <TextField value="" onChange={() => {}} />,
             label: "Name",
@@ -364,7 +362,7 @@ const scenarios = [
         },
     },
     {
-        name: "Helper text before field start",
+        name: "elementBeforeFieldStart",
         props: {
             field: <TextField value="" onChange={() => {}} />,
             label: "Name",
@@ -372,7 +370,7 @@ const scenarios = [
         },
     },
     {
-        name: "Helper text before field end",
+        name: "elementBeforeFieldEnd",
         props: {
             field: <TextField value="" onChange={() => {}} />,
             label: "Name",
@@ -380,7 +378,7 @@ const scenarios = [
         },
     },
     {
-        name: "Helper text after field start",
+        name: "elementAfterFieldStart",
         props: {
             field: <TextField value="" onChange={() => {}} />,
             label: "Name",
@@ -388,7 +386,7 @@ const scenarios = [
         },
     },
     {
-        name: "Helper text after field end",
+        name: "elementAfterFieldEnd",
         props: {
             field: <TextField value="" onChange={() => {}} />,
             label: "Name",
@@ -396,7 +394,7 @@ const scenarios = [
         },
     },
     {
-        name: "Helper text before and after field start and end",
+        name: "All helper text",
         props: {
             field: <TextField value="" onChange={() => {}} />,
             label: "Name",
@@ -407,7 +405,7 @@ const scenarios = [
         },
     },
     {
-        name: "Helper text with long text",
+        name: "All helper text with long text",
         props: {
             field: <TextField value="" onChange={() => {}} />,
             label: "Name",
@@ -418,7 +416,7 @@ const scenarios = [
         },
     },
     {
-        name: "Helper text with long text and no word break",
+        name: "All helper text with long text and no word break",
         props: {
             field: <TextField value="" onChange={() => {}} />,
             label: "Name",
