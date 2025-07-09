@@ -436,7 +436,7 @@ const styles = StyleSheet.create({
         fontWeight: theme.error.font.weight,
     },
     errorIcon: {
-        marginTop: sizing.size_010, // This vertically aligns the icon with the text
+        marginBlockStart: sizing.size_010, // This vertically aligns the icon with the text
         color: theme.error.color.foreground,
     },
     required: {
