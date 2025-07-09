@@ -297,7 +297,7 @@ export default function LabeledField(props: Props) {
             <View
                 style={[
                     styles.helperTextSection,
-                    !!readOnlyMessage && styles.helperTextSectionWithContent,
+                    styles.helperTextSectionWithContent,
                     stylesProp?.readOnlyMessage,
                 ]}
                 id={readOnlyMessageId}
@@ -367,7 +367,7 @@ const styles = StyleSheet.create({
             theme.root.layout.paddingBlockEnd.helperTextSectionWithContent,
     },
     helperTextMessage: {
-        minWidth: sizing.size_0, // This enables the wrapping behaviour on the error message
+        minWidth: sizing.size_0, // This enables the wrapping behaviour on the helper message
     },
     error: {
         color: theme.error.color.foreground,
