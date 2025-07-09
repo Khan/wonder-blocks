@@ -18,21 +18,6 @@ export default mergeTheme(defaultTheme, {
             error: {
                 foreground: semanticColor.core.foreground.critical.default,
             },
-            disabled: {
-                foreground: semanticColor.core.foreground.disabled.strong,
-            },
-        },
-    },
-    description: {
-        font: {
-            size: font.body.size.xsmall,
-            lineHeight: font.body.lineHeight.xsmall,
-        },
-        color: {
-            foreground: semanticColor.core.foreground.neutral.strong,
-            disabled: {
-                foreground: semanticColor.core.foreground.disabled.strong,
-            },
         },
     },
     error: {
@@ -57,6 +42,9 @@ export default mergeTheme(defaultTheme, {
         font: {
             size: font.body.size.xsmall,
             lineHeight: font.body.lineHeight.xsmall,
+        },
+        color: {
+            foreground: semanticColor.core.foreground.neutral.strong,
         },
     },
 });

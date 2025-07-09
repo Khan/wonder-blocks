@@ -204,7 +204,7 @@ export default function LabeledField(props: Props) {
                 style={[
                     styles.textWordBreak,
                     styles.required,
-                    isDisabled && styles.disabledLabel,
+                    isDisabled && styles.disabledStyling,
                 ]}
                 aria-hidden={true}
             >
@@ -224,7 +224,7 @@ export default function LabeledField(props: Props) {
                             : styles.labelWithNoDescription,
                         stylesProp?.label,
                         hasError ? styles.error : undefined,
-                        isDisabled && styles.disabledLabel,
+                        isDisabled && styles.disabledStyling,
                     ]}
                     tag="label"
                     htmlFor={fieldId}
@@ -249,9 +249,10 @@ export default function LabeledField(props: Props) {
                 <BodyText
                     style={[
                         styles.textWordBreak,
-                        styles.description,
+                        styles.beforeHelperText,
+                        styles.helperTextMessage,
                         stylesProp?.description,
-                        isDisabled && styles.disabledDescription,
+                        isDisabled && styles.disabledStyling,
                     ]}
                     testId={testId && `${testId}-description`}
                     id={descriptionId}
@@ -367,9 +368,10 @@ export default function LabeledField(props: Props) {
         return (
             <BodyText
                 style={[
-                    styles.description,
+                    styles.beforeHelperText,
                     styles.helperTextMessage,
                     styles.textWordBreak,
+                    isDisabled && styles.disabledStyling,
                     stylesProp?.elementBeforeFieldStart,
                 ]}
                 tag="div"
@@ -388,9 +390,10 @@ export default function LabeledField(props: Props) {
         return (
             <BodyText
                 style={[
-                    styles.description,
+                    styles.beforeHelperText,
                     styles.helperTextMessage,
                     styles.textWordBreak,
+                    isDisabled && styles.disabledStyling,
                     stylesProp?.elementBeforeFieldEnd,
                 ]}
                 tag="div"
@@ -412,6 +415,7 @@ export default function LabeledField(props: Props) {
                     styles.helperTextSectionWithContent,
                     styles.helperTextMessage,
                     styles.textWordBreak,
+                    isDisabled && styles.disabledStyling,
                     stylesProp?.elementAfterFieldStart,
                 ]}
                 tag="div"
@@ -434,6 +438,7 @@ export default function LabeledField(props: Props) {
                     styles.helperTextMessage,
                     styles.textWordBreak,
                     hasError && styles.error,
+                    isDisabled && styles.disabledStyling,
                     stylesProp?.elementAfterFieldEnd,
                 ]}
                 tag="div"
@@ -477,9 +482,6 @@ const styles = StyleSheet.create({
     label: {
         color: semanticColor.core.foreground.neutral.strong,
     },
-    disabledLabel: {
-        color: theme.label.color.disabled.foreground,
-    },
     labelWithDescription: {
         paddingBlockEnd: theme.root.layout.paddingBlockEnd.labelWithDescription,
     },
@@ -487,14 +489,8 @@ const styles = StyleSheet.create({
         paddingBlockEnd:
             theme.root.layout.paddingBlockEnd.labelWithNoDescription,
     },
-    description: {
-        color: theme.description.color.foreground,
-        paddingBlockEnd: theme.root.layout.paddingBlockEnd.description,
-        fontSize: theme.description.font.size,
-        lineHeight: theme.description.font.lineHeight,
-    },
-    disabledDescription: {
-        color: theme.description.color.disabled.foreground,
+    disabledStyling: {
+        color: semanticColor.core.foreground.disabled.strong,
     },
     helperTextSection: {
         flexDirection: "row",
@@ -505,6 +501,7 @@ const styles = StyleSheet.create({
             theme.root.layout.paddingBlockEnd.helperTextSectionWithContent,
     },
     helperTextMessage: {
+        color: theme.helperText.color.foreground,
         fontSize: theme.helperText.font.size,
         lineHeight: theme.helperText.font.lineHeight,
         marginBlockStart: theme.helperText.layout.marginBlockStart,
@@ -531,5 +528,8 @@ const styles = StyleSheet.create({
     },
     beforeHelperTextContainer: {
         alignItems: "flex-end",
+    },
+    beforeHelperText: {
+        paddingBlockEnd: theme.root.layout.paddingBlockEnd.description,
     },
 });

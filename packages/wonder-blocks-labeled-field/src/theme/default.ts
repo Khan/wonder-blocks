@@ -16,21 +16,6 @@ const theme = {
             error: {
                 foreground: semanticColor.core.foreground.neutral.strong,
             },
-            disabled: {
-                foreground: semanticColor.core.foreground.neutral.strong,
-            },
-        },
-    },
-    description: {
-        font: {
-            size: font.body.size.small,
-            lineHeight: font.body.lineHeight.small,
-        },
-        color: {
-            foreground: semanticColor.core.foreground.neutral.default,
-            disabled: {
-                foreground: semanticColor.core.foreground.neutral.default,
-            },
         },
     },
     error: {
@@ -54,6 +39,9 @@ const theme = {
         font: {
             size: font.body.size.small,
             lineHeight: font.body.lineHeight.small,
+        },
+        color: {
+            foreground: semanticColor.core.foreground.neutral.default,
         },
     },
 };
