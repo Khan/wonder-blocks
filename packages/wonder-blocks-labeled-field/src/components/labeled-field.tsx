@@ -201,11 +201,7 @@ export default function LabeledField(props: Props) {
     function renderLabel(): React.ReactNode {
         const requiredIcon = (
             <StyledSpan
-                style={[
-                    styles.textWordBreak,
-                    styles.required,
-                    isDisabled && styles.disabledStyling,
-                ]}
+                style={[styles.required, isDisabled && styles.disabledStyling]}
                 aria-hidden={true}
             >
                 {" "}
@@ -217,7 +213,6 @@ export default function LabeledField(props: Props) {
             <React.Fragment>
                 <BodyText
                     style={[
-                        styles.textWordBreak,
                         styles.label,
                         description
                             ? styles.labelWithDescription
@@ -248,7 +243,6 @@ export default function LabeledField(props: Props) {
             <React.Fragment>
                 <BodyText
                     style={[
-                        styles.textWordBreak,
                         styles.beforeHelperText,
                         styles.helperTextMessage,
                         stylesProp?.description,
@@ -269,9 +263,7 @@ export default function LabeledField(props: Props) {
                 <View
                     style={[
                         styles.helperTextSection,
-                        errorMessage
-                            ? styles.helperTextSectionWithContent
-                            : undefined,
+                        errorMessage ? styles.afterHelperText : undefined,
                         stylesProp?.error,
                     ]}
                     id={errorId}
@@ -297,7 +289,6 @@ export default function LabeledField(props: Props) {
                             />
                             <BodyText
                                 style={[
-                                    styles.textWordBreak,
                                     styles.helperTextMessage,
                                     styles.errorStyling,
                                 ]}
@@ -341,7 +332,7 @@ export default function LabeledField(props: Props) {
             <View
                 style={[
                     styles.helperTextSection,
-                    styles.helperTextSectionWithContent,
+                    styles.afterHelperText,
                     stylesProp?.readOnlyMessage,
                 ]}
                 id={readOnlyMessageId}
@@ -352,9 +343,7 @@ export default function LabeledField(props: Props) {
                     aria-label={labels.readOnlyAriaLabel}
                     color={semanticColor.core.foreground.neutral.subtle}
                 />
-                <BodyText
-                    style={[styles.textWordBreak, styles.helperTextMessage]}
-                >
+                <BodyText style={styles.helperTextMessage}>
                     {readOnlyMessage}
                 </BodyText>
             </View>
@@ -370,7 +359,6 @@ export default function LabeledField(props: Props) {
                 style={[
                     styles.beforeHelperText,
                     styles.helperTextMessage,
-                    styles.textWordBreak,
                     isDisabled && styles.disabledStyling,
                     stylesProp?.elementBeforeFieldStart,
                 ]}
@@ -392,7 +380,6 @@ export default function LabeledField(props: Props) {
                 style={[
                     styles.beforeHelperText,
                     styles.helperTextMessage,
-                    styles.textWordBreak,
                     isDisabled && styles.disabledStyling,
                     stylesProp?.elementBeforeFieldEnd,
                 ]}
@@ -412,9 +399,8 @@ export default function LabeledField(props: Props) {
         return (
             <BodyText
                 style={[
-                    styles.helperTextSectionWithContent,
+                    styles.afterHelperText,
                     styles.helperTextMessage,
-                    styles.textWordBreak,
                     isDisabled && styles.disabledStyling,
                     stylesProp?.elementAfterFieldStart,
                 ]}
@@ -434,9 +420,8 @@ export default function LabeledField(props: Props) {
         return (
             <BodyText
                 style={[
-                    styles.helperTextSectionWithContent,
+                    styles.afterHelperText,
                     styles.helperTextMessage,
-                    styles.textWordBreak,
                     hasError && styles.errorStyling,
                     isDisabled && styles.disabledStyling,
                     stylesProp?.elementAfterFieldEnd,
@@ -481,6 +466,7 @@ export default function LabeledField(props: Props) {
 const styles = StyleSheet.create({
     label: {
         color: semanticColor.core.foreground.neutral.strong,
+        overflowWrap: "break-word",
     },
     labelWithDescription: {
         paddingBlockEnd: theme.root.layout.paddingBlockEnd.labelWithDescription,
@@ -496,11 +482,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         gap: theme.helperText.layout.gap,
     },
-    helperTextSectionWithContent: {
-        paddingBlockStart:
-            theme.root.layout.paddingBlockEnd.helperTextSectionWithContent,
-    },
     helperTextMessage: {
+        overflowWrap: "break-word",
         color: theme.helperText.color.foreground,
         fontSize: theme.helperText.font.size,
         lineHeight: theme.helperText.font.lineHeight,
@@ -518,9 +501,6 @@ const styles = StyleSheet.create({
     required: {
         color: theme.requiredIndicator.color.foreground,
     },
-    textWordBreak: {
-        overflowWrap: "break-word",
-    },
     helperTextContainer: {
         flexDirection: "row",
         justifyContent: "space-between",
@@ -531,5 +511,9 @@ const styles = StyleSheet.create({
     },
     beforeHelperText: {
         paddingBlockEnd: theme.root.layout.paddingBlockEnd.description,
+    },
+    afterHelperText: {
+        paddingBlockStart:
+            theme.root.layout.paddingBlockEnd.helperTextSectionWithContent,
     },
 });
