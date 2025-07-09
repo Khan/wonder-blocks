@@ -86,6 +86,7 @@ type Props = {
      * - The field will have an id formatted as `${id}-field`
      * - The error will have an id formatted as `${id}-error`
      * - The read only message will have an id formatted as `${id}-read-only-message`
+     * - The `elementAfterFieldEnd` will have an id formatted as `${id}-element-after-field-end`
      *
      * If the `id` prop is not provided, a base unique id will be auto-generated.
      * This is important so that the different elements can be wired up together
@@ -103,6 +104,7 @@ type Props = {
      * - The field will have a testId formatted as `${testId}-field`
      * - The error will have a testId formatted as `${testId}-error`
      * - The read only message will have a testId formatted as `${testId}-read-only-message`
+     * - The `elementAfterFieldEnd` will have a testId formatted as `${testId}-element-after-field-end`
      */
     testId?: string;
     /**
@@ -156,6 +158,7 @@ export default function LabeledField(props: Props) {
     const fieldId = `${uniqueId}-field`;
     const errorId = `${uniqueId}-error`;
     const readOnlyMessageId = `${uniqueId}-read-only-message`;
+    const elementAfterFieldEndId = `${uniqueId}-element-after-field-end`;
 
     const isRequired = !!required || !!field.props.required;
     const hasError = !!errorMessage || !!field.props.error;
@@ -281,6 +284,7 @@ export default function LabeledField(props: Props) {
                 description && descriptionId,
                 errorMessage && errorId,
                 readOnlyMessage && readOnlyMessageId,
+                elementAfterFieldEnd && elementAfterFieldEndId,
             ]
                 .filter(Boolean)
                 .join(" "),
@@ -338,6 +342,8 @@ export default function LabeledField(props: Props) {
                             styles.textWordBreak,
                         ]}
                         tag="div"
+                        id={elementAfterFieldEndId}
+                        testId={testId && `${testId}-element-after-field-end`}
                     >
                         {elementAfterFieldEnd}
                     </BodyText>

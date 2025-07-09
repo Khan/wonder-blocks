@@ -17,6 +17,7 @@ describe("LabeledField", () => {
     const errorMessage = "Error message";
     const testId = "test-id";
     const readOnlyMessage = "Read only message";
+    const elementAfterFieldEnd = "End helper text";
 
     const getLabel = () => screen.getByText(label);
     const getDescription = () => screen.getByText(description);
@@ -24,6 +25,8 @@ describe("LabeledField", () => {
     const getError = () => screen.getByTestId("test-id-error");
     const getReadOnlyMessage = () =>
         screen.getByTestId("test-id-read-only-message");
+    const getElementAfterFieldEnd = () =>
+        screen.getByText(elementAfterFieldEnd);
 
     it("LabeledField renders the label text", () => {
         // Arrange
@@ -217,6 +220,26 @@ describe("LabeledField", () => {
         expect(readOnlyMessage).toBeInTheDocument();
     });
 
+    it("LabeledField adds testId to elementAfterFieldEnd", () => {
+        // Arrange
+        const testId = "testid";
+        render(
+            <LabeledField
+                field={<TextField value="" onChange={() => {}} />}
+                label="Label"
+                elementAfterFieldEnd="Helper text"
+                testId={testId}
+            />,
+            defaultOptions,
+        );
+
+        // Assert
+        const elementAfterFieldEnd = screen.getByTestId(
+            `${testId}-element-after-field-end`,
+        );
+        expect(elementAfterFieldEnd).toBeInTheDocument();
+    });
+
     describe("Labels prop", () => {
         it("should use the errorIconAriaLabel for the error icon aria label", () => {
             // Arrange
@@ -297,6 +320,11 @@ describe("LabeledField", () => {
                     `${id}-read-only-message`,
                     getReadOnlyMessage,
                 ],
+                [
+                    "elementAfterFieldEnd",
+                    `${id}-element-after-field-end`,
+                    getElementAfterFieldEnd,
+                ],
             ])(
                 "should have the id for the %s element set to %s",
                 (
@@ -314,6 +342,7 @@ describe("LabeledField", () => {
                             errorMessage={errorMessage}
                             testId={testId}
                             readOnlyMessage={readOnlyMessage}
+                            elementAfterFieldEnd={elementAfterFieldEnd}
                         />,
                         defaultOptions,
                     );
@@ -332,6 +361,11 @@ describe("LabeledField", () => {
                 ["field", "-field", getField],
                 ["error", "-error", getError],
                 ["read only message", "-read-only-message", getReadOnlyMessage],
+                [
+                    "elementAfterFieldEnd",
+                    "-element-after-field-end",
+                    getElementAfterFieldEnd,
+                ],
             ])(
                 "should have an auto-generated id for the %s element that ends with %s",
                 (
@@ -348,6 +382,7 @@ describe("LabeledField", () => {
                             errorMessage={errorMessage}
                             testId={testId}
                             readOnlyMessage={readOnlyMessage}
+                            elementAfterFieldEnd={elementAfterFieldEnd}
                         />,
                         defaultOptions,
                     );
@@ -372,6 +407,11 @@ describe("LabeledField", () => {
                     `${testId}-read-only-message`,
                     getReadOnlyMessage,
                 ],
+                [
+                    "elementAfterFieldEnd",
+                    `${testId}-element-after-field-end`,
+                    getElementAfterFieldEnd,
+                ],
             ])(
                 "should use the testId prop to set the %s element's data-testid attribute to %s",
                 (
@@ -388,6 +428,7 @@ describe("LabeledField", () => {
                             description={description}
                             errorMessage={errorMessage}
                             readOnlyMessage={readOnlyMessage}
+                            elementAfterFieldEnd={elementAfterFieldEnd}
                         />,
                         defaultOptions,
                     );
@@ -437,6 +478,7 @@ describe("LabeledField", () => {
                         return el;
                     },
                 ],
+                ["elementAfterFieldEnd", getElementAfterFieldEnd],
             ])(
                 "should not set the data-testid attribute on the %s element if the testId prop is not set",
                 (
@@ -451,6 +493,7 @@ describe("LabeledField", () => {
                             description={description}
                             errorMessage={errorMessage}
                             readOnlyMessage={readOnlyMessage}
+                            elementAfterFieldEnd={elementAfterFieldEnd}
                         />,
                         defaultOptions,
                     );
@@ -680,6 +723,7 @@ describe("LabeledField", () => {
                         errorMessage={errorMessage}
                         description={description}
                         id={id}
+                        elementAfterFieldEnd="End helper text"
                     />,
                     defaultOptions,
                 );
@@ -690,7 +734,48 @@ describe("LabeledField", () => {
                 // Assert
                 expect(field).toHaveAttribute(
                     "aria-describedby",
-                    `${id}-description ${id}-error ${id}-read-only-message`,
+                    `${id}-description ${id}-error ${id}-read-only-message ${id}-element-after-field-end`,
+                );
+            });
+
+            it("Should have no aria-describedby values on the field if there is no helper text for the field", () => {
+                // Arrange
+                render(
+                    <LabeledField
+                        field={<TextField value="" onChange={() => {}} />}
+                        label="Label"
+                    />,
+                    defaultOptions,
+                );
+
+                // Act
+                const field = screen.getByRole("textbox");
+
+                // Assert
+                expect(field).toHaveAttribute("aria-describedby", "");
+            });
+
+            it("Should set aria-describedby on the field to the id of the elementAfterFieldEnd", () => {
+                // Arrange
+                const elementAfterFieldEnd = "Helper text";
+                render(
+                    <LabeledField
+                        field={<TextField value="" onChange={() => {}} />}
+                        label="Label"
+                        elementAfterFieldEnd={elementAfterFieldEnd}
+                    />,
+                    defaultOptions,
+                );
+
+                // Act
+                const elementAfterFieldEndEl =
+                    screen.getByText(elementAfterFieldEnd);
+                const field = screen.getByRole("textbox");
+
+                // Assert
+                expect(field).toHaveAttribute(
+                    "aria-describedby",
+                    elementAfterFieldEndEl.id,
                 );
             });
         });
@@ -948,6 +1033,28 @@ describe("LabeledField", () => {
 
             // Assert
             expect(field).toHaveAttribute("readOnly");
+        });
+    });
+
+    describe("Helper text", () => {
+        it("Should render the elementAfterFieldEnd prop if it is provided", () => {
+            // Arrange
+            const elementAfterFieldEnd = "Helper text";
+            render(
+                <LabeledField
+                    field={<TextField value="" onChange={() => {}} />}
+                    label="Label"
+                    elementAfterFieldEnd={elementAfterFieldEnd}
+                />,
+                defaultOptions,
+            );
+
+            // Act
+            const elementAfterFieldEndEl =
+                screen.getByText(elementAfterFieldEnd);
+
+            // Assert
+            expect(elementAfterFieldEndEl).toBeInTheDocument();
         });
     });
 });
