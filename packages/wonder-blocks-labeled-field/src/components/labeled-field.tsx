@@ -324,6 +324,28 @@ export default function LabeledField(props: Props) {
         );
     }
 
+    function maybeRenderElementAfterFieldEnd() {
+        if (!elementAfterFieldEnd) {
+            return null;
+        }
+        return (
+            <BodyText
+                style={[
+                    styles.helperTextSectionWithContent,
+                    styles.helperTextMessage,
+                    styles.textWordBreak,
+                    hasError && styles.error,
+                    stylesProp?.elementAfterFieldEnd,
+                ]}
+                tag="div"
+                id={elementAfterFieldEndId}
+                testId={testId && `${testId}-element-after-field-end`}
+            >
+                {elementAfterFieldEnd}
+            </BodyText>
+        );
+    }
+
     return (
         <View style={stylesProp?.root}>
             {renderLabel()}
@@ -334,22 +356,7 @@ export default function LabeledField(props: Props) {
                     {maybeRenderReadOnlyMessage()}
                     {maybeRenderError()}
                 </View>
-                {elementAfterFieldEnd && (
-                    <BodyText
-                        style={[
-                            styles.helperTextSectionWithContent,
-                            styles.helperTextMessage,
-                            styles.textWordBreak,
-                            hasError && styles.error,
-                            stylesProp?.elementAfterFieldEnd,
-                        ]}
-                        tag="div"
-                        id={elementAfterFieldEndId}
-                        testId={testId && `${testId}-element-after-field-end`}
-                    >
-                        {elementAfterFieldEnd}
-                    </BodyText>
-                )}
+                {maybeRenderElementAfterFieldEnd()}
             </View>
         </View>
     );
