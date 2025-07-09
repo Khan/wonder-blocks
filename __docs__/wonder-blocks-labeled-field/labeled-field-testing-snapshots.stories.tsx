@@ -440,12 +440,13 @@ const scenarios = [
     {
         name: "All helper text with field in error state",
         props: {
-            field: <TextField value="" onChange={() => {}} error={true} />,
+            field: <TextField value="" onChange={() => {}} />,
             label: "Name",
             elementBeforeFieldStart: "Start helper text",
             elementBeforeFieldEnd: "End helper text",
             elementAfterFieldStart: "Start helper text",
             elementAfterFieldEnd: "End helper text",
+            errorMessage: "Message about the error",
         },
     },
 ];
