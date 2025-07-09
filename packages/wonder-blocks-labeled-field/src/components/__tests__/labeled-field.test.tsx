@@ -859,104 +859,34 @@ describe("LabeledField", () => {
                 expect(field).toHaveAttribute("aria-describedby", "");
             });
 
-            it("Should set aria-describedby on the field to the id of the elementBeforeFieldStart", () => {
-                // Arrange
-                const elementBeforeFieldStart = "Helper text";
-                render(
-                    <LabeledField
-                        field={<TextField value="" onChange={() => {}} />}
-                        label="Label"
-                        elementBeforeFieldStart={elementBeforeFieldStart}
-                    />,
-                    defaultOptions,
-                );
+            it.each([
+                "elementBeforeFieldStart",
+                "elementBeforeFieldEnd",
+                "elementAfterFieldStart",
+                "elementAfterFieldEnd",
+            ])(
+                "Should set aria-describedby on the field to the id of the %s",
+                (propName) => {
+                    // Arrange
+                    const propValue = "Helper text";
+                    const props = {[propName]: propValue};
+                    render(
+                        <LabeledField
+                            field={<TextField value="" onChange={() => {}} />}
+                            label="Label"
+                            {...props}
+                        />,
+                        defaultOptions,
+                    );
 
-                // Act
-                const elementBeforeFieldStartEl = screen.getByText(
-                    elementBeforeFieldStart,
-                );
-                const field = screen.getByRole("textbox");
+                    // Act
+                    const el = screen.getByText(propValue);
+                    const field = screen.getByRole("textbox");
 
-                // Assert
-                expect(field).toHaveAttribute(
-                    "aria-describedby",
-                    elementBeforeFieldStartEl.id,
-                );
-            });
-
-            it("Should set aria-describedby on the field to the id of the elementBeforeFieldEnd", () => {
-                // Arrange
-                const elementBeforeFieldEnd = "Helper text";
-                render(
-                    <LabeledField
-                        field={<TextField value="" onChange={() => {}} />}
-                        label="Label"
-                        elementBeforeFieldEnd={elementBeforeFieldEnd}
-                    />,
-                    defaultOptions,
-                );
-
-                // Act
-                const elementBeforeFieldEndEl = screen.getByText(
-                    elementBeforeFieldEnd,
-                );
-                const field = screen.getByRole("textbox");
-
-                // Assert
-                expect(field).toHaveAttribute(
-                    "aria-describedby",
-                    elementBeforeFieldEndEl.id,
-                );
-            });
-
-            it("Should set aria-describedby on the field to the id of the elementAfterFieldStart", () => {
-                // Arrange
-                const elementAfterFieldStart = "Helper text";
-                render(
-                    <LabeledField
-                        field={<TextField value="" onChange={() => {}} />}
-                        label="Label"
-                        elementAfterFieldStart={elementAfterFieldStart}
-                    />,
-                    defaultOptions,
-                );
-
-                // Act
-                const elementAfterFieldStartEl = screen.getByText(
-                    elementAfterFieldStart,
-                );
-                const field = screen.getByRole("textbox");
-
-                // Assert
-                expect(field).toHaveAttribute(
-                    "aria-describedby",
-                    elementAfterFieldStartEl.id,
-                );
-            });
-
-            it("Should set aria-describedby on the field to the id of the elementAfterFieldEnd", () => {
-                // Arrange
-                const elementAfterFieldEnd = "Helper text";
-                render(
-                    <LabeledField
-                        field={<TextField value="" onChange={() => {}} />}
-                        label="Label"
-                        elementAfterFieldEnd={elementAfterFieldEnd}
-                    />,
-                    defaultOptions,
-                );
-
-                // Act
-                const elementAfterFieldEndEl =
-                    screen.getByText(elementAfterFieldEnd);
-                const field = screen.getByRole("textbox");
-
-                // Assert
-                expect(field).toHaveAttribute(
-                    "aria-describedby",
-                    elementAfterFieldEndEl.id,
-                );
-            });
+                    // Assert
+                    expect(field).toHaveAttribute("aria-describedby", el.id);
+                },
+            );
         });
     });
 
