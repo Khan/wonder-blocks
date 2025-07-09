@@ -245,15 +245,6 @@ const scenarios = [
         },
     },
     {
-        name: "Helper text after field end",
-        props: {
-            field: <TextField value="" onChange={() => {}} />,
-            label: "Name",
-            description: "Helpful description text.",
-            elementAfterFieldEnd: "End Helper Text",
-        },
-    },
-    {
         name: "Helper text after field end with error message",
         props: {
             field: <TextField value="" onChange={() => {}} />,
@@ -355,40 +346,56 @@ const scenarios = [
         },
     },
     {
+        name: "Helper text before field start",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            elementBeforeFieldStart: "Start helper text",
+        },
+    },
+
+    {
         name: "Helper text after field start",
         props: {
             field: <TextField value="" onChange={() => {}} />,
             label: "Name",
-            description: "Helpful description text.",
             elementAfterFieldStart: "Start helper text",
         },
     },
     {
-        name: "Helper text after field start and end",
+        name: "Helper text after field end",
         props: {
             field: <TextField value="" onChange={() => {}} />,
             label: "Name",
-            description: "Helpful description text.",
+            elementAfterFieldEnd: "End helper text",
+        },
+    },
+    {
+        name: "Helper text before and after field start and end",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            elementBeforeFieldStart: "Start helper text",
             elementAfterFieldStart: "Start helper text",
             elementAfterFieldEnd: "End helper text",
         },
     },
     {
-        name: "Helper text after field start and end with long text",
+        name: "Helper text with long text",
         props: {
             field: <TextField value="" onChange={() => {}} />,
             label: "Name",
-            description: "Helpful description text.",
+            elementBeforeFieldStart: reallyLongText,
             elementAfterFieldStart: reallyLongText,
             elementAfterFieldEnd: reallyLongText,
         },
     },
     {
-        name: "Helper text after field start and end with long text and no word break",
+        name: "Helper text with long text and no word break",
         props: {
             field: <TextField value="" onChange={() => {}} />,
             label: "Name",
-            description: "Helpful description text.",
+            elementBeforeFieldStart: reallyLongTextWithNoWordBreak,
             elementAfterFieldStart: reallyLongTextWithNoWordBreak,
             elementAfterFieldEnd: reallyLongTextWithNoWordBreak,
         },

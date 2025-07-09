@@ -77,6 +77,7 @@ type Props = {
         description?: StyleType;
         error?: StyleType;
         readOnlyMessage?: StyleType;
+        elementBeforeFieldStart?: StyleType;
         elementAfterFieldStart?: StyleType;
         elementAfterFieldEnd?: StyleType;
     };
@@ -88,6 +89,7 @@ type Props = {
      * - The field will have an id formatted as `${id}-field`
      * - The error will have an id formatted as `${id}-error`
      * - The read only message will have an id formatted as `${id}-read-only-message`
+     * - The `elementBeforeFieldStart` will have an id formatted as `${id}-element-before-field-start`
      * - The `elementAfterFieldStart` will have an id formatted as `${id}-element-after-field-start`
      * - The `elementAfterFieldEnd` will have an id formatted as `${id}-element-after-field-end`
      *
@@ -107,6 +109,7 @@ type Props = {
      * - The field will have a testId formatted as `${testId}-field`
      * - The error will have a testId formatted as `${testId}-error`
      * - The read only message will have a testId formatted as `${testId}-read-only-message`
+     * - The `elementBeforeFieldStart` will have a testId formatted as `${testId}-element-before-field-start`
      * - The `elementAfterFieldStart` will have a testId formatted as `${testId}-element-after-field-start`
      * - The `elementAfterFieldEnd` will have a testId formatted as `${testId}-element-after-field-end`
      */
@@ -118,6 +121,10 @@ type Props = {
      */
     labels?: LabeledFieldLabels;
 
+    /**
+     * The element to display before the field at the start of the row.
+     */
+    elementBeforeFieldStart?: React.ReactNode;
     /**
      * The element to display after the field at the start of the row.
      */
@@ -156,6 +163,7 @@ export default function LabeledField(props: Props) {
         errorMessage,
         readOnlyMessage,
         labels = defaultLabeledFieldLabels,
+        elementBeforeFieldStart,
         elementAfterFieldStart,
         elementAfterFieldEnd,
     } = props;
@@ -167,6 +175,7 @@ export default function LabeledField(props: Props) {
     const fieldId = `${uniqueId}-field`;
     const errorId = `${uniqueId}-error`;
     const readOnlyMessageId = `${uniqueId}-read-only-message`;
+    const elementBeforeFieldStartId = `${uniqueId}-element-before-field-start`;
     const elementAfterFieldStartId = `${uniqueId}-element-after-field-start`;
     const elementAfterFieldEndId = `${uniqueId}-element-after-field-end`;
 
@@ -293,6 +302,7 @@ export default function LabeledField(props: Props) {
                 description && descriptionId,
                 errorMessage && errorId,
                 readOnlyMessage && readOnlyMessageId,
+                elementBeforeFieldStart && elementBeforeFieldStartId,
                 elementAfterFieldStart && elementAfterFieldStartId,
                 elementAfterFieldEnd && elementAfterFieldEndId,
             ]
@@ -331,6 +341,27 @@ export default function LabeledField(props: Props) {
                     {readOnlyMessage}
                 </BodyText>
             </View>
+        );
+    }
+
+    function maybeRenderElementBeforeFieldStart() {
+        if (!elementBeforeFieldStart) {
+            return null;
+        }
+        return (
+            <BodyText
+                style={[
+                    styles.description,
+                    styles.helperTextMessage,
+                    styles.textWordBreak,
+                    stylesProp?.elementBeforeFieldStart,
+                ]}
+                tag="div"
+                id={elementBeforeFieldStartId}
+                testId={testId && `${testId}-element-before-field-start`}
+            >
+                {elementBeforeFieldStart}
+            </BodyText>
         );
     }
 
@@ -380,9 +411,14 @@ export default function LabeledField(props: Props) {
     return (
         <View style={stylesProp?.root}>
             {renderLabel()}
-            {maybeRenderDescription()}
+            <View style={styles.helperTextContainer}>
+                <View>
+                    {maybeRenderDescription()}
+                    {maybeRenderElementBeforeFieldStart()}
+                </View>
+            </View>
             {renderField()}
-            <View style={styles.afterField}>
+            <View style={styles.helperTextContainer}>
                 <View>
                     {maybeRenderReadOnlyMessage()}
                     {maybeRenderError()}
@@ -445,7 +481,7 @@ const styles = StyleSheet.create({
     textWordBreak: {
         overflowWrap: "break-word",
     },
-    afterField: {
+    helperTextContainer: {
         flexDirection: "row",
         justifyContent: "space-between",
         gap: sizing.size_040,
