@@ -19,6 +19,7 @@ describe("LabeledField", () => {
     const testId = "test-id";
     const readOnlyMessage = "Read only message";
     const elementBeforeFieldStart = "Before field start helper text";
+    const elementBeforeFieldEnd = "Before field end helper text";
     const elementAfterFieldStart = "After field start helper text";
     const elementAfterFieldEnd = "After field end helper text";
 
@@ -30,6 +31,8 @@ describe("LabeledField", () => {
         screen.getByTestId("test-id-read-only-message");
     const getElementBeforeFieldStart = () =>
         screen.getByText(elementBeforeFieldStart);
+    const getElementBeforeFieldEnd = () =>
+        screen.getByText(elementBeforeFieldEnd);
     const getElementAfterFieldStart = () =>
         screen.getByText(elementAfterFieldStart);
     const getElementAfterFieldEnd = () =>
@@ -247,6 +250,26 @@ describe("LabeledField", () => {
         expect(elementBeforeFieldStart).toBeInTheDocument();
     });
 
+    it("LabeledField adds testId to elementBeforeFieldEnd", () => {
+        // Arrange
+        const testId = "testid";
+        render(
+            <LabeledField
+                field={<TextField value="" onChange={() => {}} />}
+                label="Label"
+                elementBeforeFieldEnd="Helper text"
+                testId={testId}
+            />,
+            defaultOptions,
+        );
+
+        // Assert
+        const elementBeforeFieldEnd = screen.getByTestId(
+            `${testId}-element-before-field-end`,
+        );
+        expect(elementBeforeFieldEnd).toBeInTheDocument();
+    });
+
     it("LabeledField adds testId to elementAfterFieldStart", () => {
         // Arrange
         const testId = "testid";
@@ -373,6 +396,11 @@ describe("LabeledField", () => {
                     getElementBeforeFieldStart,
                 ],
                 [
+                    "elementBeforeFieldEnd",
+                    `${id}-element-before-field-end`,
+                    getElementBeforeFieldEnd,
+                ],
+                [
                     "elementAfterFieldStart",
                     `${id}-element-after-field-start`,
                     getElementAfterFieldStart,
@@ -400,6 +428,7 @@ describe("LabeledField", () => {
                             testId={testId}
                             readOnlyMessage={readOnlyMessage}
                             elementBeforeFieldStart={elementBeforeFieldStart}
+                            elementBeforeFieldEnd={elementBeforeFieldEnd}
                             elementAfterFieldStart={elementAfterFieldStart}
                             elementAfterFieldEnd={elementAfterFieldEnd}
                         />,
@@ -424,6 +453,11 @@ describe("LabeledField", () => {
                     "elementBeforeFieldStart",
                     "-element-before-field-start",
                     getElementBeforeFieldStart,
+                ],
+                [
+                    "elementBeforeFieldEnd",
+                    "-element-before-field-end",
+                    getElementBeforeFieldEnd,
                 ],
                 [
                     "elementAfterFieldStart",
@@ -452,6 +486,7 @@ describe("LabeledField", () => {
                             testId={testId}
                             readOnlyMessage={readOnlyMessage}
                             elementBeforeFieldStart={elementBeforeFieldStart}
+                            elementBeforeFieldEnd={elementBeforeFieldEnd}
                             elementAfterFieldStart={elementAfterFieldStart}
                             elementAfterFieldEnd={elementAfterFieldEnd}
                         />,
@@ -484,6 +519,11 @@ describe("LabeledField", () => {
                     getElementBeforeFieldStart,
                 ],
                 [
+                    "elementBeforeFieldEnd",
+                    `${testId}-element-before-field-end`,
+                    getElementBeforeFieldEnd,
+                ],
+                [
                     "elementAfterFieldStart",
                     `${testId}-element-after-field-start`,
                     getElementAfterFieldStart,
@@ -510,6 +550,7 @@ describe("LabeledField", () => {
                             errorMessage={errorMessage}
                             readOnlyMessage={readOnlyMessage}
                             elementBeforeFieldStart={elementBeforeFieldStart}
+                            elementBeforeFieldEnd={elementBeforeFieldEnd}
                             elementAfterFieldStart={elementAfterFieldStart}
                             elementAfterFieldEnd={elementAfterFieldEnd}
                         />,
@@ -562,6 +603,7 @@ describe("LabeledField", () => {
                     },
                 ],
                 ["elementBeforeFieldStart", getElementBeforeFieldStart],
+                ["elementBeforeFieldEnd", getElementBeforeFieldEnd],
                 ["elementAfterFieldStart", getElementAfterFieldStart],
                 ["elementAfterFieldEnd", getElementAfterFieldEnd],
             ])(
@@ -579,6 +621,7 @@ describe("LabeledField", () => {
                             errorMessage={errorMessage}
                             readOnlyMessage={readOnlyMessage}
                             elementBeforeFieldStart={elementBeforeFieldStart}
+                            elementBeforeFieldEnd={elementBeforeFieldEnd}
                             elementAfterFieldStart={elementAfterFieldStart}
                             elementAfterFieldEnd={elementAfterFieldEnd}
                         />,
@@ -661,6 +704,7 @@ describe("LabeledField", () => {
                         field={<TextField value="" onChange={() => {}} />}
                         label="Label"
                         elementBeforeFieldStart="Start helper text"
+                        elementBeforeFieldEnd="End helper text"
                         elementAfterFieldStart="Start helper text"
                         elementAfterFieldEnd="End helper text"
                     />,
@@ -828,6 +872,7 @@ describe("LabeledField", () => {
                         description={description}
                         id={id}
                         elementBeforeFieldStart="Start helper text"
+                        elementBeforeFieldEnd="End helper text"
                         elementAfterFieldStart="Start helper text"
                         elementAfterFieldEnd="End helper text"
                     />,
@@ -840,7 +885,15 @@ describe("LabeledField", () => {
                 // Assert
                 expect(field).toHaveAttribute(
                     "aria-describedby",
-                    `${id}-description ${id}-error ${id}-read-only-message ${id}-element-before-field-start ${id}-element-after-field-start ${id}-element-after-field-end`,
+                    [
+                        `${id}-description`,
+                        `${id}-error`,
+                        `${id}-read-only-message`,
+                        `${id}-element-before-field-start`,
+                        `${id}-element-before-field-end`,
+                        `${id}-element-after-field-start`,
+                        `${id}-element-after-field-end`,
+                    ].join(" "),
                 );
             });
 
@@ -883,6 +936,31 @@ describe("LabeledField", () => {
                 expect(field).toHaveAttribute(
                     "aria-describedby",
                     elementBeforeFieldStartEl.id,
+                );
+            });
+
+            it("Should set aria-describedby on the field to the id of the elementBeforeFieldEnd", () => {
+                // Arrange
+                const elementBeforeFieldEnd = "Helper text";
+                render(
+                    <LabeledField
+                        field={<TextField value="" onChange={() => {}} />}
+                        label="Label"
+                        elementBeforeFieldEnd={elementBeforeFieldEnd}
+                    />,
+                    defaultOptions,
+                );
+
+                // Act
+                const elementBeforeFieldEndEl = screen.getByText(
+                    elementBeforeFieldEnd,
+                );
+                const field = screen.getByRole("textbox");
+
+                // Assert
+                expect(field).toHaveAttribute(
+                    "aria-describedby",
+                    elementBeforeFieldEndEl.id,
                 );
             });
 
@@ -1212,6 +1290,27 @@ describe("LabeledField", () => {
 
             // Assert
             expect(elementBeforeFieldStartEl).toBeInTheDocument();
+        });
+
+        it("Should render the elementBeforeFieldEnd prop if it is provided", () => {
+            // Arrange
+            const elementBeforeFieldEnd = "Helper text";
+            render(
+                <LabeledField
+                    field={<TextField value="" onChange={() => {}} />}
+                    label="Label"
+                    elementBeforeFieldEnd={elementBeforeFieldEnd}
+                />,
+                defaultOptions,
+            );
+
+            // Act
+            const elementBeforeFieldEndEl = screen.getByText(
+                elementBeforeFieldEnd,
+            );
+
+            // Assert
+            expect(elementBeforeFieldEndEl).toBeInTheDocument();
         });
 
         it("Should render the elementAfterFieldStart prop if it is provided", () => {

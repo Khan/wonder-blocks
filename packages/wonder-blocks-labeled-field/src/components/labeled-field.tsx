@@ -78,6 +78,7 @@ type Props = {
         error?: StyleType;
         readOnlyMessage?: StyleType;
         elementBeforeFieldStart?: StyleType;
+        elementBeforeFieldEnd?: StyleType;
         elementAfterFieldStart?: StyleType;
         elementAfterFieldEnd?: StyleType;
     };
@@ -90,6 +91,7 @@ type Props = {
      * - The error will have an id formatted as `${id}-error`
      * - The read only message will have an id formatted as `${id}-read-only-message`
      * - The `elementBeforeFieldStart` will have an id formatted as `${id}-element-before-field-start`
+     * - The `elementBeforeFieldEnd` will have an id formatted as `${id}-element-before-field-end`
      * - The `elementAfterFieldStart` will have an id formatted as `${id}-element-after-field-start`
      * - The `elementAfterFieldEnd` will have an id formatted as `${id}-element-after-field-end`
      *
@@ -110,6 +112,7 @@ type Props = {
      * - The error will have a testId formatted as `${testId}-error`
      * - The read only message will have a testId formatted as `${testId}-read-only-message`
      * - The `elementBeforeFieldStart` will have a testId formatted as `${testId}-element-before-field-start`
+     * - The `elementBeforeFieldEnd` will have a testId formatted as `${testId}-element-before-field-end`
      * - The `elementAfterFieldStart` will have a testId formatted as `${testId}-element-after-field-start`
      * - The `elementAfterFieldEnd` will have a testId formatted as `${testId}-element-after-field-end`
      */
@@ -125,6 +128,10 @@ type Props = {
      * The element to display before the field at the start of the row.
      */
     elementBeforeFieldStart?: React.ReactNode;
+    /**
+     * The element to display before the field at the end of the row.
+     */
+    elementBeforeFieldEnd?: React.ReactNode;
     /**
      * The element to display after the field at the start of the row.
      */
@@ -164,6 +171,7 @@ export default function LabeledField(props: Props) {
         readOnlyMessage,
         labels = defaultLabeledFieldLabels,
         elementBeforeFieldStart,
+        elementBeforeFieldEnd,
         elementAfterFieldStart,
         elementAfterFieldEnd,
     } = props;
@@ -176,6 +184,7 @@ export default function LabeledField(props: Props) {
     const errorId = `${uniqueId}-error`;
     const readOnlyMessageId = `${uniqueId}-read-only-message`;
     const elementBeforeFieldStartId = `${uniqueId}-element-before-field-start`;
+    const elementBeforeFieldEndId = `${uniqueId}-element-before-field-end`;
     const elementAfterFieldStartId = `${uniqueId}-element-after-field-start`;
     const elementAfterFieldEndId = `${uniqueId}-element-after-field-end`;
 
@@ -303,6 +312,7 @@ export default function LabeledField(props: Props) {
                 errorMessage && errorId,
                 readOnlyMessage && readOnlyMessageId,
                 elementBeforeFieldStart && elementBeforeFieldStartId,
+                elementBeforeFieldEnd && elementBeforeFieldEndId,
                 elementAfterFieldStart && elementAfterFieldStartId,
                 elementAfterFieldEnd && elementAfterFieldEndId,
             ]
@@ -365,6 +375,27 @@ export default function LabeledField(props: Props) {
         );
     }
 
+    function maybeRenderElementBeforeFieldEnd() {
+        if (!elementBeforeFieldEnd) {
+            return null;
+        }
+        return (
+            <BodyText
+                style={[
+                    styles.description,
+                    styles.helperTextMessage,
+                    styles.textWordBreak,
+                    stylesProp?.elementBeforeFieldEnd,
+                ]}
+                tag="div"
+                id={elementBeforeFieldEndId}
+                testId={testId && `${testId}-element-before-field-end`}
+            >
+                {elementBeforeFieldEnd}
+            </BodyText>
+        );
+    }
+
     function maybeRenderElementAfterFieldStart() {
         if (!elementAfterFieldStart) {
             return null;
@@ -411,11 +442,17 @@ export default function LabeledField(props: Props) {
     return (
         <View style={stylesProp?.root}>
             {renderLabel()}
-            <View style={styles.helperTextContainer}>
+            <View
+                style={[
+                    styles.helperTextContainer,
+                    styles.beforeHelperTextContainer,
+                ]}
+            >
                 <View>
                     {maybeRenderDescription()}
                     {maybeRenderElementBeforeFieldStart()}
                 </View>
+                {maybeRenderElementBeforeFieldEnd()}
             </View>
             {renderField()}
             <View style={styles.helperTextContainer}>
@@ -485,5 +522,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         gap: sizing.size_040,
+    },
+    beforeHelperTextContainer: {
+        alignItems: "flex-end",
     },
 });

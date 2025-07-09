@@ -146,6 +146,16 @@ const scenarios = [
                     <b>Read</b> <i>only </i> <u>message</u>
                 </span>
             ),
+            elementBeforeFieldStart: (
+                <span>
+                    <b>Start</b> <i>helper</i> <u>text</u>
+                </span>
+            ),
+            elementBeforeFieldEnd: (
+                <span>
+                    <b>End</b> <i>helper</i> <u>text</u>
+                </span>
+            ),
             elementAfterFieldStart: (
                 <span>
                     <b>Start</b> <i>helper</i> <u>text</u>
@@ -167,6 +177,8 @@ const scenarios = [
             errorMessage: "Message about the error",
             required: "Custom required message",
             readOnlyMessage: "Message about the read only state",
+            elementBeforeFieldStart: "Start helper text",
+            elementBeforeFieldEnd: "End helper text",
             elementAfterFieldStart: "Start helper text",
             elementAfterFieldEnd: "End helper text",
             styles: {
@@ -184,6 +196,12 @@ const scenarios = [
                 },
                 readOnlyMessage: {
                     paddingBlockStart: sizing.size_020,
+                },
+                elementBeforeFieldStart: {
+                    paddingBlockEnd: sizing.size_020,
+                },
+                elementBeforeFieldEnd: {
+                    paddingBlockEnd: sizing.size_020,
                 },
                 elementAfterFieldStart: {
                     paddingBlockStart: sizing.size_020,
@@ -353,7 +371,14 @@ const scenarios = [
             elementBeforeFieldStart: "Start helper text",
         },
     },
-
+    {
+        name: "Helper text before field end",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            elementBeforeFieldEnd: "End helper text",
+        },
+    },
     {
         name: "Helper text after field start",
         props: {
@@ -376,6 +401,7 @@ const scenarios = [
             field: <TextField value="" onChange={() => {}} />,
             label: "Name",
             elementBeforeFieldStart: "Start helper text",
+            elementBeforeFieldEnd: "End helper text",
             elementAfterFieldStart: "Start helper text",
             elementAfterFieldEnd: "End helper text",
         },
@@ -386,6 +412,7 @@ const scenarios = [
             field: <TextField value="" onChange={() => {}} />,
             label: "Name",
             elementBeforeFieldStart: reallyLongText,
+            elementBeforeFieldEnd: reallyLongText,
             elementAfterFieldStart: reallyLongText,
             elementAfterFieldEnd: reallyLongText,
         },
@@ -396,6 +423,7 @@ const scenarios = [
             field: <TextField value="" onChange={() => {}} />,
             label: "Name",
             elementBeforeFieldStart: reallyLongTextWithNoWordBreak,
+            elementBeforeFieldEnd: reallyLongTextWithNoWordBreak,
             elementAfterFieldStart: reallyLongTextWithNoWordBreak,
             elementAfterFieldEnd: reallyLongTextWithNoWordBreak,
         },
