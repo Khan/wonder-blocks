@@ -6,9 +6,8 @@ const theme = {
             paddingBlockEnd: {
                 labelWithDescription: sizing.size_040,
                 labelWithNoDescription: sizing.size_120,
-                description: sizing.size_120,
-                helperTextSectionWithContent: sizing.size_120,
             },
+            spacingBetweenHelperText: sizing.size_120,
         },
     },
     label: {

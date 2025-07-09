@@ -243,7 +243,7 @@ export default function LabeledField(props: Props) {
             <React.Fragment>
                 <BodyText
                     style={[
-                        styles.beforeHelperText,
+                        styles.spacingUnderHelperText,
                         styles.helperTextMessage,
                         stylesProp?.description,
                         isDisabled && styles.disabledStyling,
@@ -263,7 +263,9 @@ export default function LabeledField(props: Props) {
                 <View
                     style={[
                         styles.helperTextSection,
-                        errorMessage ? styles.afterHelperText : undefined,
+                        errorMessage
+                            ? styles.spacingAboveHelperText
+                            : undefined,
                         stylesProp?.error,
                     ]}
                     id={errorId}
@@ -332,7 +334,7 @@ export default function LabeledField(props: Props) {
             <View
                 style={[
                     styles.helperTextSection,
-                    styles.afterHelperText,
+                    styles.spacingAboveHelperText,
                     stylesProp?.readOnlyMessage,
                 ]}
                 id={readOnlyMessageId}
@@ -357,7 +359,7 @@ export default function LabeledField(props: Props) {
         return (
             <BodyText
                 style={[
-                    styles.beforeHelperText,
+                    styles.spacingUnderHelperText,
                     styles.helperTextMessage,
                     isDisabled && styles.disabledStyling,
                     stylesProp?.elementBeforeFieldStart,
@@ -378,7 +380,7 @@ export default function LabeledField(props: Props) {
         return (
             <BodyText
                 style={[
-                    styles.beforeHelperText,
+                    styles.spacingUnderHelperText,
                     styles.helperTextMessage,
                     isDisabled && styles.disabledStyling,
                     stylesProp?.elementBeforeFieldEnd,
@@ -399,7 +401,7 @@ export default function LabeledField(props: Props) {
         return (
             <BodyText
                 style={[
-                    styles.afterHelperText,
+                    styles.spacingAboveHelperText,
                     styles.helperTextMessage,
                     isDisabled && styles.disabledStyling,
                     stylesProp?.elementAfterFieldStart,
@@ -420,7 +422,7 @@ export default function LabeledField(props: Props) {
         return (
             <BodyText
                 style={[
-                    styles.afterHelperText,
+                    styles.spacingAboveHelperText,
                     styles.helperTextMessage,
                     hasError && styles.errorStyling,
                     isDisabled && styles.disabledStyling,
@@ -509,11 +511,10 @@ const styles = StyleSheet.create({
     beforeHelperTextContainer: {
         alignItems: "flex-end",
     },
-    beforeHelperText: {
-        paddingBlockEnd: theme.root.layout.paddingBlockEnd.description,
+    spacingUnderHelperText: {
+        paddingBlockEnd: theme.root.layout.spacingBetweenHelperText,
     },
-    afterHelperText: {
-        paddingBlockStart:
-            theme.root.layout.paddingBlockEnd.helperTextSectionWithContent,
+    spacingAboveHelperText: {
+        paddingBlockStart: theme.root.layout.spacingBetweenHelperText,
     },
 });
