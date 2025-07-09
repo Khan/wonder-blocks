@@ -223,7 +223,7 @@ export default function LabeledField(props: Props) {
                             ? styles.labelWithDescription
                             : styles.labelWithNoDescription,
                         stylesProp?.label,
-                        hasError ? styles.error : undefined,
+                        hasError ? styles.errorStyling : undefined,
                         isDisabled && styles.disabledStyling,
                     ]}
                     tag="label"
@@ -299,7 +299,7 @@ export default function LabeledField(props: Props) {
                                 style={[
                                     styles.textWordBreak,
                                     styles.helperTextMessage,
-                                    styles.error,
+                                    styles.errorStyling,
                                 ]}
                             >
                                 {errorMessage}
@@ -437,7 +437,7 @@ export default function LabeledField(props: Props) {
                     styles.helperTextSectionWithContent,
                     styles.helperTextMessage,
                     styles.textWordBreak,
-                    hasError && styles.error,
+                    hasError && styles.errorStyling,
                     isDisabled && styles.disabledStyling,
                     stylesProp?.elementAfterFieldEnd,
                 ]}
@@ -507,7 +507,7 @@ const styles = StyleSheet.create({
         marginBlockStart: theme.helperText.layout.marginBlockStart,
         minWidth: sizing.size_0, // This enables the wrapping behaviour on the helper message
     },
-    error: {
+    errorStyling: {
         color: theme.error.color.foreground,
         fontWeight: theme.error.font.weight,
     },
