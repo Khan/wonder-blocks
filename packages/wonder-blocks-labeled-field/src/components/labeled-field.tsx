@@ -218,7 +218,7 @@ export default function LabeledField(props: Props) {
                             ? styles.labelWithDescription
                             : styles.labelWithNoDescription,
                         hasError ? styles.labelWithError : undefined,
-                        isDisabled && styles.disabledStyling,
+                        isDisabled && styles.labelWithDisabled,
                         stylesProp?.label,
                     ]}
                     tag="label"
@@ -479,6 +479,9 @@ const styles = StyleSheet.create({
     },
     labelWithError: {
         color: theme.label.color.error.foreground,
+    },
+    labelWithDisabled: {
+        color: theme.label.color.disabled.foreground,
     },
     disabledStyling: {
         color: semanticColor.core.foreground.disabled.strong,

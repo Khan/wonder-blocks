@@ -17,6 +17,9 @@ export default mergeTheme(defaultTheme, {
             error: {
                 foreground: semanticColor.core.foreground.critical.default,
             },
+            disabled: {
+                foreground: semanticColor.core.foreground.disabled.strong,
+            },
         },
     },
     error: {
