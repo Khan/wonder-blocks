@@ -69,6 +69,15 @@ export const Default: StoryComponentType = {
     },
 };
 
+export const HelperText: StoryComponentType = {
+    args: {
+        field: <TextField value="" onChange={() => {}} />,
+        label: "Name",
+        description: "Helpful description text.",
+        elementAfterFieldEnd: "End Helper Text",
+    },
+};
+
 const StyledForm = addStyle("form");
 
 const AllFields = (

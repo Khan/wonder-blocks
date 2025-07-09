@@ -111,6 +111,11 @@ type Props = {
      * This is useful for internationalization. Defaults to English.
      */
     labels?: LabeledFieldLabels;
+
+    /**
+     * The element to display after the field at the end of the row.
+     */
+    elementAfterFieldEnd?: React.ReactNode;
 };
 
 export type LabeledFieldLabels = {
@@ -141,6 +146,7 @@ export default function LabeledField(props: Props) {
         errorMessage,
         readOnlyMessage,
         labels = defaultLabeledFieldLabels,
+        elementAfterFieldEnd,
     } = props;
 
     const generatedUniqueId = React.useId();
@@ -319,8 +325,24 @@ export default function LabeledField(props: Props) {
             {renderLabel()}
             {maybeRenderDescription()}
             {renderField()}
-            {maybeRenderReadOnlyMessage()}
-            {maybeRenderError()}
+            <View style={styles.afterField}>
+                <View>
+                    {maybeRenderReadOnlyMessage()}
+                    {maybeRenderError()}
+                </View>
+                {elementAfterFieldEnd && (
+                    <BodyText
+                        style={[
+                            styles.helperTextSectionWithContent,
+                            styles.helperTextMessage,
+                            styles.textWordBreak,
+                        ]}
+                        tag="div"
+                    >
+                        {elementAfterFieldEnd}
+                    </BodyText>
+                )}
+            </View>
         </View>
     );
 }
@@ -379,5 +401,10 @@ const styles = StyleSheet.create({
     },
     textWordBreak: {
         overflowWrap: "break-word",
+    },
+    afterField: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        gap: sizing.size_040,
     },
 });

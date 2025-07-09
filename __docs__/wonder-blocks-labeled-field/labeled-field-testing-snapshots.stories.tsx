@@ -11,6 +11,8 @@ import {TextField} from "@khanacademy/wonder-blocks-form";
 import {
     longText,
     longTextWithNoWordBreak,
+    reallyLongText,
+    reallyLongTextWithNoWordBreak,
 } from "../components/text-for-testing";
 
 export default {
@@ -141,6 +143,11 @@ const scenarios = [
                     <b>Read</b> <i>only </i> <u>message</u>
                 </span>
             ),
+            elementAfterFieldEnd: (
+                <span>
+                    <b>End</b> <i>helper</i> <u>text</u>
+                </span>
+            ),
         },
     },
     {
@@ -219,6 +226,116 @@ const scenarios = [
             errorMessage: "Message about the error",
             required: "Custom required message",
             readOnlyMessage: "Message about the read only state",
+        },
+    },
+    {
+        name: "Helper text after field end",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            description: "Helpful description text.",
+            elementAfterFieldEnd: "End Helper Text",
+        },
+    },
+    {
+        name: "Helper text after field end with error message",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            description: "Helpful description text.",
+            elementAfterFieldEnd: "End Helper Text",
+            errorMessage: "Message about the error",
+        },
+    },
+    {
+        name: "After field end element with long error message",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            description: "Helpful description text.",
+            elementAfterFieldEnd: "End Helper Text",
+            errorMessage: reallyLongText,
+        },
+    },
+    {
+        name: "After field end element with long error message and no word break",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            description: "Helpful description text.",
+            elementAfterFieldEnd: "End Helper Text",
+            errorMessage: reallyLongTextWithNoWordBreak,
+        },
+    },
+    {
+        name: "Long error message and long element after field end",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            description: "Helpful description text.",
+            errorMessage: reallyLongText,
+            elementAfterFieldEnd: reallyLongText,
+        },
+    },
+    {
+        name: "Long error message and long element after field end with no word break",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            description: "Helpful description text.",
+            errorMessage: reallyLongTextWithNoWordBreak,
+            elementAfterFieldEnd: reallyLongTextWithNoWordBreak,
+        },
+    },
+
+    {
+        name: "Helper text after field end with read only message",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            description: "Helpful description text.",
+            elementAfterFieldEnd: "End Helper Text",
+            readOnlyMessage: "Message about the read only state",
+        },
+    },
+    {
+        name: "After field end element with long read only message",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            description: "Helpful description text.",
+            elementAfterFieldEnd: "End Helper Text",
+            readOnlyMessage: reallyLongText,
+        },
+    },
+    {
+        name: "After field end element with long read only message and no word break",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            description: "Helpful description text.",
+            elementAfterFieldEnd: "End Helper Text",
+            readOnlyMessage: reallyLongTextWithNoWordBreak,
+        },
+    },
+    {
+        name: "Long read only message and long element after field end",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            description: "Helpful description text.",
+            readOnlyMessage: reallyLongText,
+            elementAfterFieldEnd: reallyLongText,
+        },
+    },
+    {
+        name: "Long read only message and long element after field end with no word break",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            description: "Helpful description text.",
+            readOnlyMessage: reallyLongTextWithNoWordBreak,
+            elementAfterFieldEnd: reallyLongTextWithNoWordBreak,
         },
     },
 ];
