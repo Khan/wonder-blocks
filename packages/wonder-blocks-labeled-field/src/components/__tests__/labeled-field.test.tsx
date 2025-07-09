@@ -394,61 +394,6 @@ describe("LabeledField", () => {
 
         describe("testId", () => {
             it.each([
-                {propName: "label", testIdPostfix: "-label"},
-                {propName: "description", testIdPostfix: "-description"},
-                {propName: "errorMessage", testIdPostfix: "-error"},
-                {
-                    propName: "readOnlyMessage",
-                    testIdPostfix: "-read-only-message",
-                },
-                {
-                    propName: "elementBeforeFieldStart",
-                    testIdPostfix: "-element-before-field-start",
-                },
-                {
-                    propName: "elementBeforeFieldEnd",
-                    testIdPostfix: "-element-before-field-end",
-                },
-                {
-                    propName: "elementAfterFieldStart",
-                    testIdPostfix: "-element-after-field-start",
-                },
-                {
-                    propName: "elementAfterFieldEnd",
-                    testIdPostfix: "-element-after-field-end",
-                },
-            ])(
-                "Should have a testId for $propName",
-                ({propName, testIdPostfix}) => {
-                    // Arrange
-                    const testId = "testid";
-                    const props = {[propName]: "Value"};
-                    // Act
-                    render(
-                        <LabeledField
-                            field={
-                                <TextField
-                                    id="tf-1"
-                                    value=""
-                                    onChange={() => {}}
-                                />
-                            }
-                            label="Label"
-                            {...props}
-                            testId={testId}
-                        />,
-                        defaultOptions,
-                    );
-
-                    // Assert
-                    const label = screen.getByTestId(
-                        `${testId}${testIdPostfix}`,
-                    );
-                    expect(label).toBeInTheDocument();
-                },
-            );
-
-            it.each([
                 ["label", `${testId}-label`, getLabel],
                 ["description", `${testId}-description`, getDescription],
                 ["field", `${testId}-field`, getField],
