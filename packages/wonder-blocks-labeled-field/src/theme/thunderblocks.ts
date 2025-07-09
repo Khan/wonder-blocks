@@ -40,13 +40,7 @@ export default mergeTheme(defaultTheme, {
             foreground: semanticColor.core.foreground.critical.default,
         },
         font: {
-            size: font.body.size.xsmall,
             weight: font.weight.bold,
-            lineHeight: font.body.lineHeight.xsmall,
-        },
-        layout: {
-            // This aligns the error message with the error icon
-            marginBlockStart: sizing.size_010,
         },
     },
     requiredIndicator: {
@@ -57,6 +51,12 @@ export default mergeTheme(defaultTheme, {
     helperText: {
         layout: {
             gap: sizing.size_040,
+            // This aligns the error message with the error icon
+            marginBlockStart: sizing.size_010,
+        },
+        font: {
+            size: font.body.size.xsmall,
+            lineHeight: font.body.lineHeight.xsmall,
         },
     },
 });

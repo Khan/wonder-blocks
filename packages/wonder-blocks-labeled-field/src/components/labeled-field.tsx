@@ -2,10 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import WarningCircle from "@phosphor-icons/core/bold/warning-circle-bold.svg";
 import LockIcon from "@phosphor-icons/core/bold/lock-bold.svg";
-import {
-    styles as typographyStyles,
-    BodyText,
-} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {View, addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -309,11 +306,7 @@ export default function LabeledField(props: Props) {
                     color={semanticColor.core.foreground.neutral.subtle}
                 />
                 <BodyText
-                    style={[
-                        styles.textWordBreak,
-                        styles.helperTextMessage,
-                        typographyStyles.BodyTextXSmallMediumWeight,
-                    ]}
+                    style={[styles.textWordBreak, styles.helperTextMessage]}
                 >
                     {readOnlyMessage}
                 </BodyText>
@@ -367,6 +360,9 @@ const styles = StyleSheet.create({
             theme.root.layout.paddingBlockEnd.helperTextSectionWithContent,
     },
     helperTextMessage: {
+        fontSize: theme.helperText.font.size,
+        lineHeight: theme.helperText.font.lineHeight,
+        marginBlockStart: theme.helperText.layout.marginBlockStart,
         minWidth: sizing.size_0, // This enables the wrapping behaviour on the helper message
     },
     error: {
@@ -376,10 +372,7 @@ const styles = StyleSheet.create({
         marginTop: sizing.size_010, // This vertically aligns the icon with the text
     },
     errorMessage: {
-        fontSize: theme.error.font.size,
         fontWeight: theme.error.font.weight,
-        lineHeight: theme.error.font.lineHeight,
-        marginBlockStart: theme.error.layout.marginBlockStart,
     },
     required: {
         color: theme.requiredIndicator.color.foreground,

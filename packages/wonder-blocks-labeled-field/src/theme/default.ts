@@ -38,12 +38,7 @@ const theme = {
             foreground: semanticColor.core.foreground.critical.subtle,
         },
         font: {
-            size: font.body.size.small,
             weight: font.weight.regular,
-            lineHeight: font.body.lineHeight.small,
-        },
-        layout: {
-            marginBlockStart: sizing.size_0,
         },
     },
     requiredIndicator: {
@@ -54,6 +49,11 @@ const theme = {
     helperText: {
         layout: {
             gap: sizing.size_080,
+            marginBlockStart: sizing.size_0,
+        },
+        font: {
+            size: font.body.size.small,
+            lineHeight: font.body.lineHeight.small,
         },
     },
 };
