@@ -77,6 +77,7 @@ type Props = {
         description?: StyleType;
         error?: StyleType;
         readOnlyMessage?: StyleType;
+        elementAfterFieldStart?: StyleType;
         elementAfterFieldEnd?: StyleType;
     };
     /**
@@ -87,6 +88,7 @@ type Props = {
      * - The field will have an id formatted as `${id}-field`
      * - The error will have an id formatted as `${id}-error`
      * - The read only message will have an id formatted as `${id}-read-only-message`
+     * - The `elementAfterFieldStart` will have an id formatted as `${id}-element-after-field-start`
      * - The `elementAfterFieldEnd` will have an id formatted as `${id}-element-after-field-end`
      *
      * If the `id` prop is not provided, a base unique id will be auto-generated.
@@ -105,6 +107,7 @@ type Props = {
      * - The field will have a testId formatted as `${testId}-field`
      * - The error will have a testId formatted as `${testId}-error`
      * - The read only message will have a testId formatted as `${testId}-read-only-message`
+     * - The `elementAfterFieldStart` will have a testId formatted as `${testId}-element-after-field-start`
      * - The `elementAfterFieldEnd` will have a testId formatted as `${testId}-element-after-field-end`
      */
     testId?: string;
@@ -115,6 +118,10 @@ type Props = {
      */
     labels?: LabeledFieldLabels;
 
+    /**
+     * The element to display after the field at the start of the row.
+     */
+    elementAfterFieldStart?: React.ReactNode;
     /**
      * The element to display after the field at the end of the row.
      */
@@ -149,6 +156,7 @@ export default function LabeledField(props: Props) {
         errorMessage,
         readOnlyMessage,
         labels = defaultLabeledFieldLabels,
+        elementAfterFieldStart,
         elementAfterFieldEnd,
     } = props;
 
@@ -159,6 +167,7 @@ export default function LabeledField(props: Props) {
     const fieldId = `${uniqueId}-field`;
     const errorId = `${uniqueId}-error`;
     const readOnlyMessageId = `${uniqueId}-read-only-message`;
+    const elementAfterFieldStartId = `${uniqueId}-element-after-field-start`;
     const elementAfterFieldEndId = `${uniqueId}-element-after-field-end`;
 
     const isRequired = !!required || !!field.props.required;
@@ -284,6 +293,7 @@ export default function LabeledField(props: Props) {
                 description && descriptionId,
                 errorMessage && errorId,
                 readOnlyMessage && readOnlyMessageId,
+                elementAfterFieldStart && elementAfterFieldStartId,
                 elementAfterFieldEnd && elementAfterFieldEndId,
             ]
                 .filter(Boolean)
@@ -324,6 +334,27 @@ export default function LabeledField(props: Props) {
         );
     }
 
+    function maybeRenderElementAfterFieldStart() {
+        if (!elementAfterFieldStart) {
+            return null;
+        }
+        return (
+            <BodyText
+                style={[
+                    styles.helperTextSectionWithContent,
+                    styles.helperTextMessage,
+                    styles.textWordBreak,
+                    stylesProp?.elementAfterFieldStart,
+                ]}
+                tag="div"
+                id={elementAfterFieldStartId}
+                testId={testId && `${testId}-element-after-field-start`}
+            >
+                {elementAfterFieldStart}
+            </BodyText>
+        );
+    }
+
     function maybeRenderElementAfterFieldEnd() {
         if (!elementAfterFieldEnd) {
             return null;
@@ -355,6 +386,7 @@ export default function LabeledField(props: Props) {
                 <View>
                     {maybeRenderReadOnlyMessage()}
                     {maybeRenderError()}
+                    {maybeRenderElementAfterFieldStart()}
                 </View>
                 {maybeRenderElementAfterFieldEnd()}
             </View>

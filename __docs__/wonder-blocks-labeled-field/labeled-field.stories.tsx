@@ -74,6 +74,7 @@ export const HelperText: StoryComponentType = {
         field: <TextField value="" onChange={() => {}} />,
         label: "Name",
         description: "Helpful description text.",
+        elementAfterFieldStart: "Start Helper Text",
         elementAfterFieldEnd: "End Helper Text",
     },
 };
@@ -536,6 +537,11 @@ export const Custom = {
                 <b>Read</b> <i>only</i> <u>message</u>
             </span>
         ),
+        elementAfterFieldStart: (
+            <span>
+                <b>Start</b> <i>helper</i> <u>text</u>
+            </span>
+        ),
         elementAfterFieldEnd: (
             <span>
                 <b>End</b> <i>helper</i> <u>text</u>
@@ -560,6 +566,7 @@ export const CustomStyles = {
         errorMessage: "Message about the error",
         required: "Custom required message",
         readOnlyMessage: "Read only message",
+        elementAfterFieldStart: "Start helper text",
         elementAfterFieldEnd: "End helper text",
         styles: {
             root: {
@@ -575,6 +582,9 @@ export const CustomStyles = {
                 paddingBlockStart: sizing.size_020,
             },
             readOnlyMessage: {
+                paddingBlockStart: sizing.size_020,
+            },
+            elementAfterFieldStart: {
                 paddingBlockStart: sizing.size_020,
             },
             elementAfterFieldEnd: {
