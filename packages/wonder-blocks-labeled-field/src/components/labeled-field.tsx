@@ -262,7 +262,7 @@ export default function LabeledField(props: Props) {
             <React.Fragment>
                 <View
                     style={[
-                        styles.helperTextSection,
+                        styles.helperTextWithIcon,
                         errorMessage
                             ? styles.spacingAboveHelperText
                             : undefined,
@@ -333,7 +333,7 @@ export default function LabeledField(props: Props) {
         return (
             <View
                 style={[
-                    styles.helperTextSection,
+                    styles.helperTextWithIcon,
                     styles.spacingAboveHelperText,
                     stylesProp?.readOnlyMessage,
                 ]}
@@ -480,7 +480,7 @@ const styles = StyleSheet.create({
     disabledStyling: {
         color: semanticColor.core.foreground.disabled.strong,
     },
-    helperTextSection: {
+    helperTextWithIcon: {
         flexDirection: "row",
         gap: theme.helperText.layout.gap,
     },
