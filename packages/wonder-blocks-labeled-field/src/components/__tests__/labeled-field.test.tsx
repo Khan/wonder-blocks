@@ -200,167 +200,6 @@ describe("LabeledField", () => {
         },
     );
 
-    it("LabeledField adds testId to label", () => {
-        // Arrange
-        const testId = "testid";
-
-        // Act
-        render(
-            <LabeledField
-                field={<TextField id="tf-1" value="" onChange={() => {}} />}
-                label="Label"
-                testId={testId}
-            />,
-            defaultOptions,
-        );
-
-        // Assert
-        const label = screen.getByTestId(`${testId}-label`);
-        expect(label).toBeInTheDocument();
-    });
-
-    it("LabeledField adds testId to description", () => {
-        // Arrange
-        const testId = "testid";
-
-        // Act
-        render(
-            <LabeledField
-                field={<TextField id="tf-1" value="" onChange={() => {}} />}
-                label="Label"
-                description="Description"
-                testId={testId}
-            />,
-            defaultOptions,
-        );
-
-        // Assert
-        const description = screen.getByTestId(`${testId}-description`);
-        expect(description).toBeInTheDocument();
-    });
-
-    it("LabeledField adds testId to error", () => {
-        // Arrange
-        const testId = "testid";
-
-        // Act
-        render(
-            <LabeledField
-                field={<TextField id="tf-1" value="" onChange={() => {}} />}
-                label="Label"
-                errorMessage="Error"
-                testId={testId}
-            />,
-            defaultOptions,
-        );
-
-        // Assert
-        const error = screen.getByTestId(`${testId}-error`);
-        expect(error).toBeInTheDocument();
-    });
-
-    it("LabeledField adds testId to read only message", () => {
-        // Arrange
-        const testId = "testid";
-
-        // Act
-        render(
-            <LabeledField
-                field={<TextField id="tf-1" value="" onChange={() => {}} />}
-                label="Label"
-                readOnlyMessage="Read only message"
-                testId={testId}
-            />,
-            defaultOptions,
-        );
-
-        // Assert
-        const readOnlyMessage = screen.getByTestId(
-            `${testId}-read-only-message`,
-        );
-        expect(readOnlyMessage).toBeInTheDocument();
-    });
-
-    it("LabeledField adds testId to elementBeforeFieldStart", () => {
-        // Arrange
-        const testId = "testid";
-        render(
-            <LabeledField
-                field={<TextField value="" onChange={() => {}} />}
-                label="Label"
-                elementBeforeFieldStart="Helper text"
-                testId={testId}
-            />,
-            defaultOptions,
-        );
-
-        // Assert
-        const elementBeforeFieldStart = screen.getByTestId(
-            `${testId}-element-before-field-start`,
-        );
-        expect(elementBeforeFieldStart).toBeInTheDocument();
-    });
-
-    it("LabeledField adds testId to elementBeforeFieldEnd", () => {
-        // Arrange
-        const testId = "testid";
-        render(
-            <LabeledField
-                field={<TextField value="" onChange={() => {}} />}
-                label="Label"
-                elementBeforeFieldEnd="Helper text"
-                testId={testId}
-            />,
-            defaultOptions,
-        );
-
-        // Assert
-        const elementBeforeFieldEnd = screen.getByTestId(
-            `${testId}-element-before-field-end`,
-        );
-        expect(elementBeforeFieldEnd).toBeInTheDocument();
-    });
-
-    it("LabeledField adds testId to elementAfterFieldStart", () => {
-        // Arrange
-        const testId = "testid";
-        render(
-            <LabeledField
-                field={<TextField value="" onChange={() => {}} />}
-                label="Label"
-                elementAfterFieldStart="Helper text"
-                testId={testId}
-            />,
-            defaultOptions,
-        );
-
-        // Assert
-        const elementAfterFieldStart = screen.getByTestId(
-            `${testId}-element-after-field-start`,
-        );
-        expect(elementAfterFieldStart).toBeInTheDocument();
-    });
-
-    it("LabeledField adds testId to elementAfterFieldEnd", () => {
-        // Arrange
-        const testId = "testid";
-        render(
-            <LabeledField
-                field={<TextField value="" onChange={() => {}} />}
-                label="Label"
-                elementAfterFieldEnd="Helper text"
-                testId={testId}
-            />,
-            defaultOptions,
-        );
-
-        // Assert
-        const elementAfterFieldEnd = screen.getByTestId(
-            `${testId}-element-after-field-end`,
-        );
-        expect(elementAfterFieldEnd).toBeInTheDocument();
-    });
-
     describe("Labels prop", () => {
         it("should use the errorIconAriaLabel for the error icon aria label", () => {
             // Arrange
@@ -554,6 +393,61 @@ describe("LabeledField", () => {
         });
 
         describe("testId", () => {
+            it.each([
+                {propName: "label", testIdPostfix: "-label"},
+                {propName: "description", testIdPostfix: "-description"},
+                {propName: "errorMessage", testIdPostfix: "-error"},
+                {
+                    propName: "readOnlyMessage",
+                    testIdPostfix: "-read-only-message",
+                },
+                {
+                    propName: "elementBeforeFieldStart",
+                    testIdPostfix: "-element-before-field-start",
+                },
+                {
+                    propName: "elementBeforeFieldEnd",
+                    testIdPostfix: "-element-before-field-end",
+                },
+                {
+                    propName: "elementAfterFieldStart",
+                    testIdPostfix: "-element-after-field-start",
+                },
+                {
+                    propName: "elementAfterFieldEnd",
+                    testIdPostfix: "-element-after-field-end",
+                },
+            ])(
+                "Should have a testId for $propName",
+                ({propName, testIdPostfix}) => {
+                    // Arrange
+                    const testId = "testid";
+                    const props = {[propName]: "Value"};
+                    // Act
+                    render(
+                        <LabeledField
+                            field={
+                                <TextField
+                                    id="tf-1"
+                                    value=""
+                                    onChange={() => {}}
+                                />
+                            }
+                            label="Label"
+                            {...props}
+                            testId={testId}
+                        />,
+                        defaultOptions,
+                    );
+
+                    // Assert
+                    const label = screen.getByTestId(
+                        `${testId}${testIdPostfix}`,
+                    );
+                    expect(label).toBeInTheDocument();
+                },
+            );
+
             it.each([
                 ["label", `${testId}-label`, getLabel],
                 ["description", `${testId}-description`, getDescription],
