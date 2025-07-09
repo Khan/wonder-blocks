@@ -536,6 +536,11 @@ export const Custom = {
                 <b>Read</b> <i>only</i> <u>message</u>
             </span>
         ),
+        elementAfterFieldEnd: (
+            <span>
+                <b>End</b> <i>helper</i> <u>text</u>
+            </span>
+        ),
     },
 };
 
@@ -554,6 +559,7 @@ export const CustomStyles = {
         description: "Helpful description text.",
         errorMessage: "Message about the error",
         required: "Custom required message",
+        elementAfterFieldEnd: "End helper text",
         styles: {
             root: {
                 padding: sizing.size_080,
@@ -565,6 +571,9 @@ export const CustomStyles = {
                 paddingBlockEnd: sizing.size_020,
             },
             error: {
+                paddingBlockStart: sizing.size_020,
+            },
+            elementAfterFieldEnd: {
                 paddingBlockStart: sizing.size_020,
             },
         },

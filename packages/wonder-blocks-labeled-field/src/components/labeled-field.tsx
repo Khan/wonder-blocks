@@ -77,6 +77,7 @@ type Props = {
         description?: StyleType;
         error?: StyleType;
         readOnlyMessage?: StyleType;
+        elementAfterFieldEnd?: StyleType;
     };
     /**
      * A unique id to use as the base of the ids for the elements within the component.
@@ -340,6 +341,7 @@ export default function LabeledField(props: Props) {
                             styles.helperTextSectionWithContent,
                             styles.helperTextMessage,
                             styles.textWordBreak,
+                            stylesProp?.elementAfterFieldEnd,
                         ]}
                         tag="div"
                         id={elementAfterFieldEndId}
