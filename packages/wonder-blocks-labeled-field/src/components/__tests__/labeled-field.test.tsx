@@ -109,7 +109,7 @@ describe("LabeledField", () => {
         expect(screen.getByText(readOnlyMessage)).toBeInTheDocument();
     });
 
-    it("LabeledField renders the read only message text if there is an error message", () => {
+    it("LabeledField renders the read only message text if there is an error message and elementAfterFieldStart is provided", () => {
         // Arrange
         const readOnlyMessage = "Read only message";
         render(
@@ -118,6 +118,7 @@ describe("LabeledField", () => {
                 label="Label"
                 readOnlyMessage={readOnlyMessage}
                 errorMessage="Error message"
+                elementAfterFieldStart="After field start helper text"
             />,
             defaultOptions,
         );
@@ -129,7 +130,7 @@ describe("LabeledField", () => {
         expect(readOnlyMessageEl).toBeInTheDocument();
     });
 
-    it("LabeledField renders the error message text if there is also a read only message", () => {
+    it("LabeledField renders the error message text if there is also a read only message and elementAfterFieldStart is provided", () => {
         // Arrange
         const readOnlyMessage = "Read only message";
         render(
@@ -138,6 +139,7 @@ describe("LabeledField", () => {
                 label="Label"
                 readOnlyMessage={readOnlyMessage}
                 errorMessage="Error message"
+                elementAfterFieldStart="After field start helper text"
             />,
             defaultOptions,
         );
@@ -148,6 +150,55 @@ describe("LabeledField", () => {
         // Assert
         expect(errorMessageEl).toBeInTheDocument();
     });
+
+    it("LabeledField renders elementAfterFieldStart if there is also a read only message and an error message", () => {
+        // Arrange
+        const elementAfterFieldStart = "After field start helper text";
+        render(
+            <LabeledField
+                field={<TextField id="tf-1" value="" onChange={() => {}} />}
+                label="Label"
+                readOnlyMessage="Read only message"
+                errorMessage="Error message"
+                elementAfterFieldStart={elementAfterFieldStart}
+            />,
+            defaultOptions,
+        );
+
+        // Act
+        const elementAfterFieldEndEl = screen.getByText(elementAfterFieldStart);
+
+        // Assert
+        expect(elementAfterFieldEndEl).toBeInTheDocument();
+    });
+
+    it.each([
+        "elementBeforeFieldStart",
+        "elementAfterFieldStart",
+        "elementBeforeFieldEnd",
+        "elementAfterFieldEnd",
+    ])(
+        "HelperText: Should render the %s prop if it is provided",
+        (propName) => {
+            // Arrange
+            const propValue = "Helper text";
+            const props = {[propName]: propValue};
+            render(
+                <LabeledField
+                    field={<TextField value="" onChange={() => {}} />}
+                    label="Label"
+                    {...props}
+                />,
+                defaultOptions,
+            );
+
+            // Act
+            const element = screen.getByText(propValue);
+
+            // Assert
+            expect(element).toBeInTheDocument();
+        },
+    );
 
     it("LabeledField adds testId to label", () => {
         // Arrange
@@ -1267,91 +1318,6 @@ describe("LabeledField", () => {
 
             // Assert
             expect(field).toHaveAttribute("readOnly");
-        });
-    });
-
-    describe("Helper text", () => {
-        it("Should render the elementBeforeFieldStart prop if it is provided", () => {
-            // Arrange
-            const elementBeforeFieldStart = "Helper text";
-            render(
-                <LabeledField
-                    field={<TextField value="" onChange={() => {}} />}
-                    label="Label"
-                    elementBeforeFieldStart={elementBeforeFieldStart}
-                />,
-                defaultOptions,
-            );
-
-            // Act
-            const elementBeforeFieldStartEl = screen.getByText(
-                elementBeforeFieldStart,
-            );
-
-            // Assert
-            expect(elementBeforeFieldStartEl).toBeInTheDocument();
-        });
-
-        it("Should render the elementBeforeFieldEnd prop if it is provided", () => {
-            // Arrange
-            const elementBeforeFieldEnd = "Helper text";
-            render(
-                <LabeledField
-                    field={<TextField value="" onChange={() => {}} />}
-                    label="Label"
-                    elementBeforeFieldEnd={elementBeforeFieldEnd}
-                />,
-                defaultOptions,
-            );
-
-            // Act
-            const elementBeforeFieldEndEl = screen.getByText(
-                elementBeforeFieldEnd,
-            );
-
-            // Assert
-            expect(elementBeforeFieldEndEl).toBeInTheDocument();
-        });
-
-        it("Should render the elementAfterFieldStart prop if it is provided", () => {
-            // Arrange
-            const elementAfterFieldStart = "Helper text";
-            render(
-                <LabeledField
-                    field={<TextField value="" onChange={() => {}} />}
-                    label="Label"
-                    elementAfterFieldStart={elementAfterFieldStart}
-                />,
-                defaultOptions,
-            );
-
-            // Act
-            const elementAfterFieldStartEl = screen.getByText(
-                elementAfterFieldStart,
-            );
-
-            // Assert
-            expect(elementAfterFieldStartEl).toBeInTheDocument();
-        });
-
-        it("Should render the elementAfterFieldEnd prop if it is provided", () => {
-            // Arrange
-            const elementAfterFieldEnd = "Helper text";
-            render(
-                <LabeledField
-                    field={<TextField value="" onChange={() => {}} />}
-                    label="Label"
-                    elementAfterFieldEnd={elementAfterFieldEnd}
-                />,
-                defaultOptions,
-            );
-
-            // Act
-            const elementAfterFieldEndEl =
-                screen.getByText(elementAfterFieldEnd);
-
-            // Assert
-            expect(elementAfterFieldEndEl).toBeInTheDocument();
         });
     });
 });
