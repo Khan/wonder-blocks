@@ -426,6 +426,28 @@ const scenarios = [
             elementAfterFieldEnd: reallyLongTextWithNoWordBreak,
         },
     },
+    {
+        name: "All helper text with field in disabled state",
+        props: {
+            field: <TextField value="" onChange={() => {}} disabled={true} />,
+            label: "Name",
+            elementBeforeFieldStart: "Start helper text",
+            elementBeforeFieldEnd: "End helper text",
+            elementAfterFieldStart: "Start helper text",
+            elementAfterFieldEnd: "End helper text",
+        },
+    },
+    {
+        name: "All helper text with field in error state",
+        props: {
+            field: <TextField value="" onChange={() => {}} error={true} />,
+            label: "Name",
+            elementBeforeFieldStart: "Start helper text",
+            elementBeforeFieldEnd: "End helper text",
+            elementAfterFieldStart: "Start helper text",
+            elementAfterFieldEnd: "End helper text",
+        },
+    },
 ];
 
 /**
