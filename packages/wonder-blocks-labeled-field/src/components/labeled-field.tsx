@@ -190,7 +190,7 @@ export default function LabeledField(props: Props) {
                             ? styles.labelWithDescription
                             : styles.labelWithNoDescription,
                         stylesProp?.label,
-                        hasError ? styles.labelWithError : undefined,
+                        hasError ? styles.error : undefined,
                         isDisabled && styles.disabledLabel,
                     ]}
                     tag="label"
@@ -257,7 +257,7 @@ export default function LabeledField(props: Props) {
                         <>
                             <PhosphorIcon
                                 icon={WarningCircle}
-                                style={[styles.errorIcon, styles.error]}
+                                style={[styles.errorIcon]}
                                 role="img"
                                 aria-label={labels.errorIconAriaLabel}
                             />
@@ -265,7 +265,6 @@ export default function LabeledField(props: Props) {
                                 style={[
                                     styles.textWordBreak,
                                     styles.helperTextMessage,
-                                    styles.errorMessage,
                                     styles.error,
                                 ]}
                             >
@@ -341,6 +340,7 @@ export default function LabeledField(props: Props) {
                             styles.helperTextSectionWithContent,
                             styles.helperTextMessage,
                             styles.textWordBreak,
+                            hasError && styles.error,
                             stylesProp?.elementAfterFieldEnd,
                         ]}
                         tag="div"
@@ -358,9 +358,6 @@ export default function LabeledField(props: Props) {
 const styles = StyleSheet.create({
     label: {
         color: semanticColor.core.foreground.neutral.strong,
-    },
-    labelWithError: {
-        color: theme.label.color.error.foreground,
     },
     disabledLabel: {
         color: theme.label.color.disabled.foreground,
@@ -397,12 +394,11 @@ const styles = StyleSheet.create({
     },
     error: {
         color: theme.error.color.foreground,
+        fontWeight: theme.error.font.weight,
     },
     errorIcon: {
         marginTop: sizing.size_010, // This vertically aligns the icon with the text
-    },
-    errorMessage: {
-        fontWeight: theme.error.font.weight,
+        color: theme.error.color.foreground,
     },
     required: {
         color: theme.requiredIndicator.color.foreground,

@@ -159,6 +159,7 @@ const scenarios = [
             errorMessage: "Message about the error",
             required: "Custom required message",
             readOnlyMessage: "Message about the read only state",
+            elementAfterFieldEnd: "End helper text",
             styles: {
                 root: {
                     padding: sizing.size_080,
@@ -173,6 +174,9 @@ const scenarios = [
                     paddingBlockStart: sizing.size_020,
                 },
                 readOnlyMessage: {
+                    paddingBlockStart: sizing.size_020,
+                },
+                elementAfterFieldEnd: {
                     paddingBlockStart: sizing.size_020,
                 },
             },
