@@ -777,12 +777,12 @@ describe("LabeledField", () => {
                     "aria-describedby",
                     [
                         `${id}-description`,
-                        `${id}-error`,
-                        `${id}-read-only-message`,
                         `${id}-element-before-field-start`,
                         `${id}-element-before-field-end`,
                         `${id}-element-after-field-start`,
                         `${id}-element-after-field-end`,
+                        `${id}-read-only-message`,
+                        `${id}-error`,
                     ].join(" "),
                 );
             });

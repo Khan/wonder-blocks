@@ -309,12 +309,12 @@ export default function LabeledField(props: Props) {
             id: fieldId,
             "aria-describedby": [
                 description && descriptionId,
-                errorMessage && errorId,
-                readOnlyMessage && readOnlyMessageId,
                 elementBeforeFieldStart && elementBeforeFieldStartId,
                 elementBeforeFieldEnd && elementBeforeFieldEndId,
                 elementAfterFieldStart && elementAfterFieldStartId,
                 elementAfterFieldEnd && elementAfterFieldEndId,
+                readOnlyMessage && readOnlyMessageId,
+                errorMessage && errorId,
             ]
                 .filter(Boolean)
                 .join(" "),
@@ -455,9 +455,9 @@ export default function LabeledField(props: Props) {
             {renderField()}
             <View style={styles.helperTextContainer}>
                 <View>
+                    {maybeRenderElementAfterFieldStart()}
                     {maybeRenderReadOnlyMessage()}
                     {maybeRenderError()}
-                    {maybeRenderElementAfterFieldStart()}
                 </View>
                 {maybeRenderElementAfterFieldEnd()}
             </View>
