@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 11.4.0
+
+### Minor Changes
+
+- 4d207b1: Add new semanticColor tokens for feedback
+
 ## 11.3.1
 
 ### Patch Changes

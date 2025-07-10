@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-birthday-picker",
-  "version": "4.0.24",
+  "version": "4.0.25",
   "design": "v1",
   "publishConfig": {
     "access": "public"
