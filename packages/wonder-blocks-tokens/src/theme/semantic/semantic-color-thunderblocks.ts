@@ -167,6 +167,12 @@ const text = {
     inverse: core.foreground.inverse.strong,
 };
 
+const sharedFeedbackStrongTokens = {
+    background: core.background.neutral.strong,
+    border: core.border.neutral.strong,
+    text: core.foreground.inverse.strong,
+};
+
 export const semanticColor = mergeTheme(defaultSemanticColor, {
     action: {
         primary: {
@@ -589,6 +595,10 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                 icon: core.foreground.instructive.default,
                 text: core.foreground.instructive.strong,
             },
+            strong: {
+                ...sharedFeedbackStrongTokens,
+                icon: core.foreground.instructive.subtle,
+            },
         },
         success: {
             subtle: {
@@ -596,6 +606,10 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                 border: core.border.success.subtle,
                 icon: core.foreground.success.default,
                 text: core.foreground.success.strong,
+            },
+            strong: {
+                ...sharedFeedbackStrongTokens,
+                icon: core.foreground.success.subtle,
             },
         },
         warning: {
@@ -605,6 +619,10 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                 icon: core.foreground.warning.default,
                 text: core.foreground.warning.strong,
             },
+            strong: {
+                ...sharedFeedbackStrongTokens,
+                icon: core.foreground.warning.subtle,
+            },
         },
         critical: {
             subtle: {
@@ -612,6 +630,10 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                 border: core.border.critical.subtle,
                 icon: core.foreground.critical.default,
                 text: core.foreground.critical.strong,
+            },
+            strong: {
+                ...sharedFeedbackStrongTokens,
+                icon: core.foreground.critical.subtle,
             },
         },
     },
