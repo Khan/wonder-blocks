@@ -31,7 +31,7 @@ export default {
 export const Props = {
     args: {
         label: "Label",
-        field: <TextField value="Value" onChange={() => {}} />,
+        field: <TextField value="Field" onChange={() => {}} />,
         helperTextAbove: <HelperText message="Helper text above" />,
         helperTextBelow: <HelperText message="Helper text below" />,
     },
@@ -42,48 +42,50 @@ export const Props = {
 export const ErrorMessage = {
     args: {
         label: "Label",
-        field: <TextField value="Value" onChange={() => {}} error={true} />, // <-- NOTE: need to explicitly pass in error={true}
-        helperTextAbove: <HelperText message="Helper text" />,
-        helperTextBelow: <ErrorHelperText message="Helper text" show={true} />, // <-- NOTE: ErrorHelperText has a mandatory show prop so that even when it is not visible, the aria-live region can still be there. This is needed for it work more nicely with SRs
+        field: <TextField value="Field" onChange={() => {}} error={true} />, // <-- NOTE: need to explicitly pass in error={true}
+        helperTextAbove: <HelperText message="Helper text above" />,
+        helperTextBelow: (
+            <ErrorHelperText message="Error helper text below" show={true} />
+        ), // <-- NOTE: ErrorHelperText has a mandatory show prop so that even when it is not visible, the aria-live region can still be there. This is needed for it work more nicely with SRs
     },
 };
 
 export const ReadOnlyMessage = {
     args: {
         label: "Label",
-        field: <TextField value="Value" onChange={() => {}} readOnly={true} />, // <-- NOTE:need to explicitly pass in readOnly={true}
-        helperTextAbove: <HelperText message="Helper text" />,
-        helperTextBelow: <ReadOnlyHelperText message="Helper text" />,
+        field: <TextField value="Field" onChange={() => {}} readOnly={true} />, // <-- NOTE:need to explicitly pass in readOnly={true}
+        helperTextAbove: <HelperText message="Helper text above" />,
+        helperTextBelow: <ReadOnlyHelperText message="Helper text below" />,
     },
 };
 
 export const AnyMessageBelow = {
     args: {
         label: "Label",
-        field: <TextField value="Value" onChange={() => {}} />,
-        helperTextAbove: <HelperText message="Helper text" />,
-        helperTextBelow: <HelperText message="Helper text under field" />,
+        field: <TextField value="Field" onChange={() => {}} />,
+        helperTextAbove: <HelperText message="Helper text above" />,
+        helperTextBelow: <HelperText message="Helper text below" />,
     },
 };
 
 export const HelperTextInCorners = {
     args: {
         label: "Label",
-        field: <TextField value="Value" onChange={() => {}} />,
+        field: <TextField value="Field" onChange={() => {}} />,
         helperTextAbove: (
             <View
                 style={{flexDirection: "row", justifyContent: "space-between"}}
             >
-                <HelperText message="Above start helper text" />
-                <HelperText message="Above end helper text" />
+                <HelperText message="Helper text above - start" />
+                <HelperText message="Helper text above - end" />
             </View>
         ),
         helperTextBelow: (
             <View
                 style={{flexDirection: "row", justifyContent: "space-between"}}
             >
-                <HelperText message="Below start helper text" />
-                <HelperText message="Below end helper text" />
+                <HelperText message="Helper text below - start" />
+                <HelperText message="Helper text below - end" />
             </View>
         ),
     },
@@ -93,11 +95,14 @@ export const ErrorAndBelowDescription = {
     args: {
         label: "Label",
         field: <TextField value="Value" onChange={() => {}} error={true} />,
-        helperTextAbove: <HelperText message="Helper text" />,
+        helperTextAbove: <HelperText message="Helper text above" />,
         helperTextBelow: (
             <View style={{gap: sizing.size_040}}>
-                <HelperText message="Helper text under field" />
-                <ErrorHelperText message="Error helper text" show={true} />
+                <HelperText message="Helper text below" />
+                <ErrorHelperText
+                    message="Error helper text below"
+                    show={true}
+                />
             </View>
         ),
     },
@@ -107,14 +112,17 @@ export const ErrorAndBelowDescriptionWithCount = {
     args: {
         label: "Label",
         field: <TextField value="Value" onChange={() => {}} error={true} />,
-        helperTextAbove: <HelperText message="Helper text" />,
+        helperTextAbove: <HelperText message="Helper text above" />,
         helperTextBelow: (
             <View
                 style={{flexDirection: "row", justifyContent: "space-between"}}
             >
                 <View style={{gap: sizing.size_040}}>
-                    <HelperText message="Helper text under field" />
-                    <ErrorHelperText message="Error helper text" show={true} />
+                    <HelperText message="Helper text below" />
+                    <ErrorHelperText
+                        message="Error helper text below"
+                        show={true}
+                    />
                 </View>
                 {/* NOTE:If we want this to be red when there is an error, consumers will have to do this manually. Unless we make all helper text red if there's an error */}
                 <HelperText message="1/3" />
@@ -127,14 +135,17 @@ export const DisabledStyling = {
     args: {
         label: "Label",
         field: <TextField value="Value" onChange={() => {}} disabled={true} />,
-        helperTextAbove: <HelperText message="Helper text" />,
+        helperTextAbove: <HelperText message="Helper text above" />,
         helperTextBelow: (
             <View
                 style={{flexDirection: "row", justifyContent: "space-between"}}
             >
                 <View style={{gap: sizing.size_040}}>
-                    <HelperText message="Helper text under field" />
-                    <ErrorHelperText message="Error helper text" show={true} />
+                    <HelperText message="Helper text below" />
+                    <ErrorHelperText
+                        message="Error helper text below"
+                        show={true}
+                    />
                 </View>
                 <HelperText message="1/3" />
             </View>
