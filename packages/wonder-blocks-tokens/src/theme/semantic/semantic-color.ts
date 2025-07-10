@@ -157,6 +157,12 @@ const surface = {
     overlay: color.offBlack64,
 };
 
+const sharedFeedbackStrongTokens = {
+    background: core.background.neutral.strong,
+    border: core.border.neutral.strong,
+    text: core.foreground.inverse.strong,
+};
+
 /**
  * TODO(WB-1941): Remove text once we have migrated to the new core.foreground
  * tokens.
@@ -797,6 +803,10 @@ export const semanticColor = {
                 icon: core.foreground.instructive.default,
                 text: core.foreground.instructive.strong,
             },
+            strong: {
+                ...sharedFeedbackStrongTokens,
+                icon: core.foreground.instructive.subtle,
+            },
         },
         success: {
             subtle: {
@@ -804,6 +814,10 @@ export const semanticColor = {
                 border: core.border.success.subtle,
                 icon: core.foreground.success.default,
                 text: core.foreground.success.strong,
+            },
+            strong: {
+                ...sharedFeedbackStrongTokens,
+                icon: core.foreground.success.subtle,
             },
         },
         warning: {
@@ -813,6 +827,10 @@ export const semanticColor = {
                 icon: core.foreground.warning.default,
                 text: core.foreground.warning.strong,
             },
+            strong: {
+                ...sharedFeedbackStrongTokens,
+                icon: core.foreground.warning.subtle,
+            },
         },
         critical: {
             subtle: {
@@ -820,6 +838,10 @@ export const semanticColor = {
                 border: core.border.critical.subtle,
                 icon: core.foreground.critical.default,
                 text: core.foreground.critical.strong,
+            },
+            strong: {
+                ...sharedFeedbackStrongTokens,
+                icon: core.foreground.critical.subtle,
             },
         },
     },
