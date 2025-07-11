@@ -132,23 +132,124 @@ class Announcer {
             });
         }
     }
+
+    /**
+     * Ensures live regions exist inside the modal container when in modal context
+     */
+    ensureModalLiveRegions() {
+        // Find the modal container (element with aria-modal="true")
+        const modalContainer = document.querySelector('[aria-modal="true"]');
+
+        if (!modalContainer) {
+            // If no modal found, fall back to regular behavior
+            return;
+        }
+
+        // Check if modal-specific live regions already exist
+        const modalAnnouncerId = `${this.topLevelId}-modal`;
+        const existingModalAnnouncer = modalContainer.querySelector(
+            `#${modalAnnouncerId}`,
+        );
+
+        if (existingModalAnnouncer) {
+            // Modal regions already exist, just reattach references
+            this.reattachModalNodes(existingModalAnnouncer as HTMLElement);
+            return;
+        }
+
+        // Create live regions inside the modal
+        const modalNode = document.createElement("div");
+        modalNode.id = modalAnnouncerId;
+        modalNode.setAttribute("data-testid", modalAnnouncerId);
+        Object.assign(modalNode.style, srOnly);
+
+        // Create assertive regions for modal
+        const aWrapper = createRegionWrapper("assertive");
+        const modalAssertiveRegions = createDuplicateRegions(
+            aWrapper,
+            "assertive",
+            this.regionFactory.count,
+            this.dictionary,
+        );
+        // Update IDs and dictionary for modal context
+        this.updateRegionsForModal(modalAssertiveRegions, "assertive");
+        modalNode.appendChild(aWrapper);
+
+        // Create polite regions for modal
+        const pWrapper = createRegionWrapper("polite");
+        const modalPoliteRegions = createDuplicateRegions(
+            pWrapper,
+            "polite",
+            this.regionFactory.count,
+            this.dictionary,
+        );
+        // Update IDs and dictionary for modal context
+        this.updateRegionsForModal(modalPoliteRegions, "polite");
+        modalNode.appendChild(pWrapper);
+
+        modalContainer.appendChild(modalNode);
+    }
+
+    /**
+     * Reattach modal-specific live region references
+     */
+    reattachModalNodes(modalNode: HTMLElement) {
+        const regions = Array.from(
+            modalNode.querySelectorAll<HTMLElement>("[id^='wbARegion-modal-']"),
+        );
+        regions.forEach((region) => {
+            this.dictionary.set(region.id, {
+                id: region.id,
+                levelIndex: parseInt(region.id.charAt(region.id.length - 1)),
+                level: region.getAttribute("aria-live") as PolitenessLevel,
+                element: region,
+            });
+        });
+    }
+
+    /**
+     * Update region IDs and dictionary entries for modal context
+     */
+    updateRegionsForModal(regions: HTMLElement[], level: PolitenessLevel) {
+        regions.forEach((region, index) => {
+            const oldId = region.id;
+            const newId = `wbARegion-modal-${level}${index}`;
+
+            // Update the element's ID and test ID
+            region.id = newId;
+            region.setAttribute("data-testid", newId);
+
+            // Remove old dictionary entry
+            this.dictionary.delete(oldId);
+
+            // Add new dictionary entry
+            this.dictionary.set(newId, {
+                id: newId,
+                levelIndex: index,
+                level: level,
+                element: region,
+            });
+        });
+    }
     /**
      * Announce a live region message for a given level
      * @param {string} message The message to be announced
      * @param {string} level Politeness level: should it interrupt?
+     * @param {boolean} inModalContext Optional flag for whether to announce from modal context
      * @param {number} debounceThreshold Optional duration to wait before appending another message (defaults to 250ms)
      * @returns {Promise<string>} Promise that resolves with an IDREF for targeted element or empty string if it failed
      */
     announce(
         message: string,
         level: PolitenessLevel,
+        inModalContext: boolean,
         debounceThreshold?: number,
     ): Promise<string> {
         // if callers specify a different wait threshold, update our debounce fn
         if (debounceThreshold !== undefined) {
             this.updateWaitThreshold(debounceThreshold);
         }
-        return this.debounced(this, message, level);
+        return this.debounced(this, message, level, inModalContext);
     }
     /**
      * Override the default debounce wait threshold
@@ -165,19 +266,38 @@ class Announcer {
      * @param {Announcer} context Pass the correct `this` arg to the callback
      * @param {sting} message The live region message to append
      * @param {string} level The politeness level for whether to interrupt
+     * @param {boolean} inModalContext Whether to announce from modal context
      */
     processAnnouncement(
         context: Announcer,
         message: string,
         level: PolitenessLevel,
+        inModalContext: boolean,
     ) {
         if (!context.node) {
             context.reattachNodes();
         }
 
+        // Handle modal context - create live regions inside the modal
+        if (inModalContext) {
+            context.ensureModalLiveRegions();
+        }
+
         // Filter region elements to the selected level
+        // In modal context, prefer modal-specific regions
         const regions: RegionDef[] = [...context.dictionary.values()].filter(
-            (entry: RegionDef) => entry.level === level,
+            (entry: RegionDef) => {
+                const isModalRegion = entry.id.includes("modal");
+                const isCorrectLevel = entry.level === level;
+
+                if (inModalContext) {
+                    // Only use modal regions when in modal context
+                    return isModalRegion && isCorrectLevel;
+                } else {
+                    // Only use non-modal regions when not in modal context
+                    return !isModalRegion && isCorrectLevel;
+                }
+            },
         );
 
         const newIndex = context.appendMessage(message, level, regions);

@@ -103,7 +103,7 @@ describe("Announcer class", () => {
             expect(announcer.regionFactory.pIndex).toBe(0);
 
             // Act
-            announcer.announce("a thing", "polite");
+            announcer.announce("a thing", "polite", false);
 
             // // Assert
             jest.advanceTimersByTime(500);
@@ -120,7 +120,7 @@ describe("Announcer class", () => {
             expect(announcer.regionFactory.pIndex).toBe(0);
 
             // Act
-            announcer.announce("a nice thing", "polite");
+            announcer.announce("a nice thing", "polite", false);
 
             // Assert
             jest.advanceTimersByTime(500);
@@ -131,7 +131,7 @@ describe("Announcer class", () => {
                     .textContent,
             ).toBe("a nice thing");
 
-            announcer.announce("another nice thing", "polite");
+            announcer.announce("another nice thing", "polite", false);
 
             // Assert
             jest.advanceTimersByTime(500);
@@ -148,7 +148,7 @@ describe("Announcer class", () => {
             expect(announcer.regionFactory.pIndex).toBe(0);
 
             // Act
-            const idRef = announcer.announce("another thing", "polite");
+            const idRef = announcer.announce("another thing", "polite", false);
 
             // Assert
             jest.advanceTimersByTime(500);
@@ -162,8 +162,8 @@ describe("Announcer class", () => {
 
             // Act
             // The second call will win out in the trailing edge implementation
-            announcer.announce("a thing", "polite", waitThreshold);
-            announcer.announce("two things", "polite", waitThreshold);
+            announcer.announce("a thing", "polite", false, waitThreshold);
+            announcer.announce("two things", "polite", false, waitThreshold);
 
             // Assert
             jest.advanceTimersByTime(1010);
@@ -205,7 +205,7 @@ describe("Announcer class", () => {
             const announcer = Announcer.getInstance();
 
             // Act
-            announcer.announce("One Fish", "polite", 0);
+            announcer.announce("One Fish", "polite", false, 0);
             jest.advanceTimersByTime(5);
             expect(screen.getByText("One Fish")).toBeInTheDocument();
 
