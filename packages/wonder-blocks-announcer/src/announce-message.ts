@@ -4,6 +4,7 @@ import Announcer from "./announcer";
 export type AnnounceMessageProps = {
     message: string;
     level?: PolitenessLevel;
+    inModalContext?: boolean;
     debounceThreshold?: number;
     initialTimeout?: number;
 };
@@ -12,6 +13,7 @@ export type AnnounceMessageProps = {
  * Method to announce screen reader messages in ARIA Live Regions.
  * @param {string} message The message to announce.
  * @param {PolitenessLevel} level Polite or assertive announcements
+ * @param {boolean} inModalContext  Optional flag for injecting Announcer messages into a modal
  * @param {number} debounceThreshold Optional duration to wait before announcing another message. Defaults to 250ms.
  * @param {number} initialTimeout Optional duration to wait before the first announcement. Useful for Safari and automated testing.
  * @returns {Promise<string>} Promise that resolves with an IDREF for targeted live region element or an empty string
@@ -19,6 +21,7 @@ export type AnnounceMessageProps = {
 export function announceMessage({
     message,
     level = "polite",
+    inModalContext = false,
     debounceThreshold,
     initialTimeout = 150,
 }: AnnounceMessageProps): Promise<string> {
@@ -29,12 +32,18 @@ export function announceMessage({
                 const result = announcer.announce(
                     message,
                     level,
+                    inModalContext,
                     debounceThreshold,
                 );
                 resolve(result);
             }, initialTimeout);
         });
     } else {
-        return announcer.announce(message, level, debounceThreshold);
+        return announcer.announce(
+            message,
+            level,
+            inModalContext,
+            debounceThreshold,
+        );
     }
 }

@@ -171,4 +171,216 @@ describe("Announcer.announceMessage", () => {
             expect(screen.queryByText(message1)).not.toBeInTheDocument();
         });
     });
+
+    // eslint-disable-next-line testing-library/no-node-access
+    describe("modal context", () => {
+        beforeEach(() => {
+            // Create a mock modal element with aria-modal="true"
+            const modalElement = document.createElement("div");
+            modalElement.setAttribute("aria-modal", "true");
+            modalElement.setAttribute("role", "dialog");
+            modalElement.setAttribute("data-testid", "test-modal");
+            document.body.appendChild(modalElement);
+        });
+
+        afterEach(() => {
+            const announcer = Announcer.getInstance();
+            jest.advanceTimersByTime(REMOVAL_TIMEOUT_DELAY);
+            announcer.reset();
+
+            // Clean up the modal element
+            // eslint-disable-next-line testing-library/no-node-access
+            const modalElement = document.querySelector('[aria-modal="true"]');
+            if (modalElement) {
+                modalElement.remove();
+            }
+        });
+
+        test("creates modal-specific live regions when inModalContext is true", async () => {
+            // ARRANGE
+            const message = "Modal announcement";
+
+            // ACT
+            const announcement = announceMessage({
+                message,
+                inModalContext: true,
+                initialTimeout: 0,
+                debounceThreshold: 0,
+            });
+
+            jest.advanceTimersByTime(250);
+
+            // ASSERT
+            const modalElement = document.querySelector('[aria-modal="true"]');
+            expect(modalElement).toBeInTheDocument();
+
+            // Check that modal-specific live regions were created
+            const modalAnnouncer =
+                modalElement?.querySelector("#wbAnnounce-modal");
+            expect(modalAnnouncer).toBeInTheDocument();
+
+            // Check that modal-specific regions have correct IDs
+            const modalPoliteRegion = modalElement?.querySelector(
+                "#wbARegion-modal-polite1",
+            );
+            expect(modalPoliteRegion).toBeInTheDocument();
+            expect(modalPoliteRegion).toHaveAttribute("aria-live", "polite");
+
+            // Check that the message was announced in the modal region
+            await waitFor(() => {
+                expect(modalPoliteRegion).toHaveTextContent(message);
+            });
+
+            // Check that the announcement returns the correct modal region ID
+            await expect(announcement).resolves.toBe("wbARegion-modal-polite1");
+        });
+
+        test("creates modal-specific assertive regions", async () => {
+            // ARRANGE
+            const message = "Urgent modal announcement";
+
+            // ACT
+            const announcement = announceMessage({
+                message,
+                level: "assertive",
+                inModalContext: true,
+                initialTimeout: 0,
+                debounceThreshold: 0,
+            });
+
+            jest.advanceTimersByTime(250);
+
+            // ASSERT
+            const modalElement = document.querySelector('[aria-modal="true"]');
+            const modalAssertiveRegion = modalElement?.querySelector(
+                "#wbARegion-modal-assertive1",
+            );
+            expect(modalAssertiveRegion).toBeInTheDocument();
+            expect(modalAssertiveRegion).toHaveAttribute(
+                "aria-live",
+                "assertive",
+            );
+
+            await waitFor(() => {
+                expect(modalAssertiveRegion).toHaveTextContent(message);
+            });
+
+            await expect(announcement).resolves.toBe(
+                "wbARegion-modal-assertive1",
+            );
+        });
+
+        test("alternates between modal regions for multiple messages", async () => {
+            // ARRANGE
+            const firstMessage = "First modal message";
+            const secondMessage = "Second modal message";
+
+            // ACT
+            announceMessage({
+                message: firstMessage,
+                inModalContext: true,
+                initialTimeout: 0,
+                debounceThreshold: 0,
+            });
+
+            jest.advanceTimersByTime(250);
+
+            announceMessage({
+                message: secondMessage,
+                inModalContext: true,
+                initialTimeout: 0,
+                debounceThreshold: 0,
+            });
+
+            jest.advanceTimersByTime(250);
+
+            // ASSERT
+            const modalElement = document.querySelector('[aria-modal="true"]');
+            const modalRegion0 = modalElement?.querySelector(
+                "#wbARegion-modal-polite0",
+            );
+            const modalRegion1 = modalElement?.querySelector(
+                "#wbARegion-modal-polite1",
+            );
+
+            // First message should be in region 1
+            expect(modalRegion1).toHaveTextContent(firstMessage);
+            // Second message should be in region 0 (alternated)
+            expect(modalRegion0).toHaveTextContent(secondMessage);
+        });
+
+        test("falls back to regular behavior when no modal is present", async () => {
+            // ARRANGE
+            const message = "No modal present";
+
+            // Remove the modal element to simulate no modal present
+            const modalElement = document.querySelector('[aria-modal="true"]');
+            modalElement?.remove();
+
+            // ACT
+            const announcement = announceMessage({
+                message,
+                inModalContext: true,
+                initialTimeout: 0,
+                debounceThreshold: 0,
+            });
+
+            jest.advanceTimersByTime(250);
+
+            // ASSERT
+            // Should fall back to regular live regions
+            const regularRegion = screen.queryByTestId("wbARegion-polite1");
+            expect(regularRegion).toHaveTextContent(message);
+
+            await expect(announcement).resolves.toBe("wbARegion-polite1");
+        });
+
+        test("reuses existing modal regions on subsequent calls", async () => {
+            // ARRANGE
+            const firstMessage = "First message";
+            const secondMessage = "Second message";
+
+            // ACT - First call creates modal regions
+            announceMessage({
+                message: firstMessage,
+                inModalContext: true,
+                initialTimeout: 0,
+                debounceThreshold: 0,
+            });
+
+            jest.advanceTimersByTime(250);
+
+            // Get reference to modal announcer after first call
+            const modalElement = document.querySelector('[aria-modal="true"]');
+            const modalAnnouncer =
+                modalElement?.querySelector("#wbAnnounce-modal");
+
+            // ACT - Second call should reuse existing regions
+            announceMessage({
+                message: secondMessage,
+                inModalContext: true,
+                initialTimeout: 0,
+                debounceThreshold: 0,
+            });
+
+            jest.advanceTimersByTime(250);
+
+            // ASSERT
+            // Should still be the same modal announcer element
+            const modalAnnouncerAfter =
+                modalElement?.querySelector("#wbAnnounce-modal");
+            expect(modalAnnouncerAfter).toBe(modalAnnouncer);
+
+            // Should have both messages in different regions
+            const modalRegion0 = modalElement?.querySelector(
+                "#wbARegion-modal-polite0",
+            );
+            const modalRegion1 = modalElement?.querySelector(
+                "#wbARegion-modal-polite1",
+            );
+
+            expect(modalRegion1).toHaveTextContent(firstMessage);
+            expect(modalRegion0).toHaveTextContent(secondMessage);
+        });
+    });
 });
