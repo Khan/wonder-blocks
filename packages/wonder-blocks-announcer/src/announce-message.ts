@@ -18,7 +18,7 @@ export type AnnounceMessageProps = {
  */
 export function announceMessage({
     message,
-    level = "polite", // TODO: decide whether to allow other roles, i.e. role=`timer`
+    level = "polite",
     debounceThreshold,
     initialTimeout = 150,
 }: AnnounceMessageProps): Promise<string> {
