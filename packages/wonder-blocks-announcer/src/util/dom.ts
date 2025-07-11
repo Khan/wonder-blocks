@@ -48,7 +48,6 @@ export function createRegion(
     role = "log",
 ) {
     const region = document.createElement("div");
-    // TODO: test combinations of attrs
     region.setAttribute("role", role);
     region.setAttribute("aria-live", level);
     region.classList.add("wbARegion");
