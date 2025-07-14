@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 11.4.1
+
+### Patch Changes
+
+- 03415d1: Update css variable tokens for LabeledField
+
 ## 11.4.0
 
 ### Minor Changes
