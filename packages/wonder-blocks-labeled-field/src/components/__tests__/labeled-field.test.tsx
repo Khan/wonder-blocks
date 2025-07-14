@@ -690,7 +690,7 @@ describe("LabeledField", () => {
                 // Assert
                 expect(field).toHaveAttribute(
                     "aria-describedby",
-                    `${id}-description ${id}-error ${id}-read-only-message`,
+                    `${id}-description ${id}-read-only-message ${id}-error`,
                 );
             });
         });

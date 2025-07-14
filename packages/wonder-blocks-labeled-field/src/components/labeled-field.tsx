@@ -273,8 +273,8 @@ export default function LabeledField(props: Props) {
             id: fieldId,
             "aria-describedby": [
                 description && descriptionId,
-                errorMessage && errorId,
                 readOnlyMessage && readOnlyMessageId,
+                errorMessage && errorId,
             ]
                 .filter(Boolean)
                 .join(" "),
