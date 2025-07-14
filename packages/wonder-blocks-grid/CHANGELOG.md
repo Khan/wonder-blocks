@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-grid
 
+## 3.1.28
+
+### Patch Changes
+
+- Updated dependencies [03415d1]
+    - @khanacademy/wonder-blocks-tokens@11.4.1
+    - @khanacademy/wonder-blocks-layout@3.1.28
+
 ## 3.1.27
 
 ### Patch Changes

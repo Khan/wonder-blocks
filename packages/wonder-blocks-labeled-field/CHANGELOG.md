@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-labeled-field
 
+## 3.2.0
+
+### Minor Changes
+
+- 03415d1: `LabeledField`: Adds `readOnlyMessage` prop for helpful text related to why a field is read only. Also updates disabled styling for the description and the spacing between the error icon and text for TB.
+
+### Patch Changes
+
+- Updated dependencies [03415d1]
+    - @khanacademy/wonder-blocks-tokens@11.4.1
+    - @khanacademy/wonder-blocks-layout@3.1.28
+    - @khanacademy/wonder-blocks-typography@4.2.13
+
 ## 3.1.2
 
 ### Patch Changes
