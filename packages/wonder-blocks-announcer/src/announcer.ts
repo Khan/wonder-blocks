@@ -3,6 +3,7 @@ import type {
     RegionFactory,
     RegionDictionary,
     RegionDef,
+    LayerContext,
 } from "./util/announcer.types";
 
 import {
@@ -23,11 +24,11 @@ class Announcer {
     private targetElement: HTMLElement;
     topLevelId: string = `wbAnnounce`;
     node: HTMLElement | null = null;
-    regionFactory: RegionFactory = {
-        count: 2,
-        aIndex: 0,
-        pIndex: 0,
-    };
+    regionFactory: RegionFactory = new Map([
+        ["document", {count: 2, aIndex: 0, pIndex: 0}],
+        ["modal", {count: 2, aIndex: 0, pIndex: 0}],
+    ]);
+    layer: LayerContext;
     dictionary: RegionDictionary = new Map();
     waitThreshold: number = DEFAULT_WAIT_THRESHOLD;
     lastExecutionTime = 0;
@@ -38,6 +39,7 @@ class Announcer {
 
     private constructor(targetElement: HTMLElement = document.body) {
         this.targetElement = targetElement;
+        this.layer = "document";
 
         if (typeof document !== "undefined") {
             // Check if our top level element already exists
@@ -84,27 +86,39 @@ class Announcer {
 
         Object.assign(this.node.style, srOnly);
 
+        this.initRegionsForLayer(false, this.node, this.targetElement);
+    }
+
+    initRegionsForLayer(
+        isModalContext: boolean,
+        nodeRef: HTMLElement,
+        targetElement: HTMLElement,
+    ) {
+        const layerId: LayerContext = isModalContext ? "modal" : "document";
+
         // For each level, we create at least two live region elements.
         // This is to work around AT occasionally dropping messages.
         const aWrapper = createRegionWrapper("assertive");
         createDuplicateRegions(
             aWrapper,
             "assertive",
-            this.regionFactory.count,
+            this.regionFactory.get(layerId)?.count || 2,
+            layerId,
             this.dictionary,
         );
-        this.node?.appendChild(aWrapper);
+        nodeRef.appendChild(aWrapper);
 
         const pWrapper = createRegionWrapper("polite");
         createDuplicateRegions(
             pWrapper,
             "polite",
-            this.regionFactory.count,
+            this.regionFactory.get(layerId)?.count || 2,
+            layerId,
             this.dictionary,
         );
-        this.node.appendChild(pWrapper);
+        nodeRef.appendChild(pWrapper);
 
-        this.targetElement.append(this.node);
+        targetElement.append(nodeRef);
     }
     /**
      * Recover in the event regions get lost
@@ -126,6 +140,7 @@ class Announcer {
                     levelIndex: parseInt(
                         region.id.charAt(region.id.length - 1),
                     ),
+                    layerId: "document",
                     level: region.getAttribute("aria-live") as PolitenessLevel,
                     element: region,
                 });
@@ -138,7 +153,9 @@ class Announcer {
      */
     ensureModalLiveRegions() {
         // Find the modal container (element with aria-modal="true")
-        const modalContainer = document.querySelector('[aria-modal="true"]');
+        const modalContainer = document.querySelector<HTMLElement>(
+            '[aria-modal="true"]',
+        );
 
         if (!modalContainer) {
             // If no modal found, fall back to regular behavior
@@ -163,31 +180,7 @@ class Announcer {
         modalNode.setAttribute("data-testid", modalAnnouncerId);
         Object.assign(modalNode.style, srOnly);
 
-        // Create assertive regions for modal
-        const aWrapper = createRegionWrapper("assertive");
-        const modalAssertiveRegions = createDuplicateRegions(
-            aWrapper,
-            "assertive",
-            this.regionFactory.count,
-            this.dictionary,
-        );
-        // Update IDs and dictionary for modal context
-        this.updateRegionsForModal(modalAssertiveRegions, "assertive");
-        modalNode.appendChild(aWrapper);
-
-        // Create polite regions for modal
-        const pWrapper = createRegionWrapper("polite");
-        const modalPoliteRegions = createDuplicateRegions(
-            pWrapper,
-            "polite",
-            this.regionFactory.count,
-            this.dictionary,
-        );
-        // Update IDs and dictionary for modal context
-        this.updateRegionsForModal(modalPoliteRegions, "polite");
-        modalNode.appendChild(pWrapper);
-
-        modalContainer.appendChild(modalNode);
+        this.initRegionsForLayer(true, modalNode, modalContainer);
     }
 
     /**
@@ -203,6 +196,7 @@ class Announcer {
                 levelIndex: parseInt(region.id.charAt(region.id.length - 1)),
                 level: region.getAttribute("aria-live") as PolitenessLevel,
                 element: region,
+                layerId: "modal",
             });
         });
     }
@@ -227,6 +221,7 @@ class Announcer {
                 id: newId,
                 levelIndex: index,
                 level: level,
+                layerId: "modal",
                 element: region,
             });
         });
@@ -249,7 +244,11 @@ class Announcer {
         if (debounceThreshold !== undefined) {
             this.updateWaitThreshold(debounceThreshold);
         }
-        return this.debounced(this, message, level, inModalContext);
+
+        // Convert boolean inModalContext to LayerContext
+        const layerId: LayerContext = inModalContext ? "modal" : "document";
+
+        return this.debounced(this, message, level, layerId);
     }
     /**
      * Override the default debounce wait threshold
@@ -266,50 +265,59 @@ class Announcer {
      * @param {Announcer} context Pass the correct `this` arg to the callback
      * @param {sting} message The live region message to append
      * @param {string} level The politeness level for whether to interrupt
-     * @param {boolean} inModalContext Whether to announce from modal context
+     * @param {LayerContext} layerId Identifier for modal or document context
      */
     processAnnouncement(
         context: Announcer,
         message: string,
         level: PolitenessLevel,
-        inModalContext: boolean,
+        layerId: LayerContext,
     ) {
         if (!context.node) {
             context.reattachNodes();
         }
 
+        let targetLayerId = layerId;
+
         // Handle modal context - create live regions inside the modal
-        if (inModalContext) {
+        if (layerId === "modal") {
             context.ensureModalLiveRegions();
+
+            // Check if modal regions were actually created
+            const modalRegions = [...context.dictionary.values()].filter(
+                (entry: RegionDef) => entry.layerId === "modal",
+            );
+
+            // If no modal regions exist, fall back to document layer
+            if (modalRegions.length === 0) {
+                targetLayerId = "document";
+            }
         }
 
-        // Filter region elements to the selected level
-        // In modal context, prefer modal-specific regions
+        // Filter region elements to the selected level and layer
         const regions: RegionDef[] = [...context.dictionary.values()].filter(
-            (entry: RegionDef) => {
-                const isModalRegion = entry.id.includes("modal");
-                const isCorrectLevel = entry.level === level;
-
-                if (inModalContext) {
-                    // Only use modal regions when in modal context
-                    return isModalRegion && isCorrectLevel;
-                } else {
-                    // Only use non-modal regions when not in modal context
-                    return !isModalRegion && isCorrectLevel;
-                }
-            },
+            (entry: RegionDef) =>
+                entry.level === level && entry.layerId === targetLayerId,
         );
 
-        const newIndex = context.appendMessage(message, level, regions);
+        const newIndex = context.appendMessage(
+            message,
+            level,
+            regions,
+            targetLayerId,
+        );
 
-        // overwrite central index for the given level
-        if (level === "assertive") {
-            context.regionFactory.aIndex = newIndex;
-        } else {
-            context.regionFactory.pIndex = newIndex;
+        // Update the central index for the given level and layer
+        const layerFactory = context.regionFactory.get(targetLayerId);
+        if (layerFactory) {
+            if (level === "assertive") {
+                layerFactory.aIndex = newIndex;
+            } else {
+                layerFactory.pIndex = newIndex;
+            }
         }
 
-        return regions[newIndex].id || "";
+        return regions[newIndex]?.id || "";
     }
 
     /**
@@ -336,25 +344,32 @@ class Announcer {
      * @param {string} message The message to be appended
      * @param {string} level Which level to alternate
      * @param {RegionDef[]} regionList Filtered dictionary of regions for level
+     * @param {LayerContext} layerId The layer context (modal or document)
+     * @param {number} debounceThreshold How long to wait before removing the message
      * @returns {number} Index of targeted region for updating central register
      */
     appendMessage(
         message: string,
         level: PolitenessLevel, // level
         regionList: RegionDef[], // list of relevant elements
+        layerId: LayerContext, // layer context
         debounceThreshold: number = DEFAULT_WAIT_THRESHOLD,
     ): number {
+        // Get the layer factory for the current layer
+        const layerFactory = this.regionFactory.get(layerId);
+        if (!layerFactory) {
+            throw new Error(`Layer factory not found for layer: ${layerId}`);
+        }
+
         // Starting index for a given level
         let index =
-            level === "assertive"
-                ? this.regionFactory.aIndex
-                : this.regionFactory.pIndex;
+            level === "assertive" ? layerFactory.aIndex : layerFactory.pIndex;
 
         // empty region at the previous index
         regionList[index].element.replaceChildren();
 
         // overwrite index passed in to update locally
-        index = alternateIndex(index, this.regionFactory.count);
+        index = alternateIndex(index, layerFactory.count);
 
         // create element for new message
         const messageEl = document.createElement("p");
@@ -375,8 +390,10 @@ class Announcer {
      * Useful for testing.
      **/
     reset() {
-        this.regionFactory.aIndex = 0;
-        this.regionFactory.pIndex = 0;
+        this.regionFactory.forEach((value, key) => {
+            value.aIndex = 0;
+            value.pIndex = 0;
+        });
 
         this.clear();
     }

@@ -5,17 +5,25 @@ PolitenessLevel: The two options for ARIA Live Regions:
 */
 export type PolitenessLevel = "polite" | "assertive";
 
+export type LayerContext = "modal" | "document";
+
 /*
-RegionFactory: A config for creating duplicate region elements.
+LayerFactory: A config for creating duplicate region elements for a specific layer.
 - Count is the total number for each level.
 - aIndex references the index of the last-used assertive log element.
 - pIndex references the index of the last-used polite log element.
 */
-export type RegionFactory = {
+export type LayerFactory = {
     count: number;
     aIndex: number;
     pIndex: number;
 };
+
+/*
+RegionFactory: A config for creating duplicate region elements across layers.
+Maps each layer context to its own factory configuration.
+*/
+export type RegionFactory = Map<LayerContext, LayerFactory>;
 
 /*
 RegionDef: A type for Announcer dictionary entries for fast lookup.
@@ -23,12 +31,14 @@ RegionDef: A type for Announcer dictionary entries for fast lookup.
 - level: the politeness level (polite or assertive)
 - levelIndex: the index of the region at a particular level
 - element: an element reference for a live region.
+- layerId: string for modal or document context
 */
 export type RegionDef = {
     id: string;
     level: PolitenessLevel;
     levelIndex: number;
     element: HTMLElement;
+    layerId: LayerContext;
 };
 
 /*
