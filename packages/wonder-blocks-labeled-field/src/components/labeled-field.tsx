@@ -1,11 +1,11 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import WarningCircle from "@phosphor-icons/core/bold/warning-circle-bold.svg";
-
+import LockIcon from "@phosphor-icons/core/bold/lock-bold.svg";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {View, addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import theme from "../theme";
 
 type Props = {
@@ -52,8 +52,21 @@ type Props = {
      * Note: Since the error icon has an aria-label, screen readers will
      * prefix the error message with "Error:" (or the value provided to the
      * errorIconAriaLabel in the `labels` prop)
+     *
+     * If both `errorMessage` and `readOnlyMessage` are provided, the `readOnlyMessage`
+     * is displayed first.
      */
     errorMessage?: React.ReactNode;
+    /**
+     * The helpful text message to display when the field is read only.
+     *
+     * Use the `labels.readOnlyIconAriaLabel` prop to set the `aria-label` for
+     * the read only icon.
+     *
+     * If both `errorMessage` and `readOnlyMessage` are provided, the `readOnlyMessage`
+     * is displayed first.
+     */
+    readOnlyMessage?: React.ReactNode;
     /**
      * Custom styles for the elements of LabeledField. Useful if there are
      * specific cases where spacing between elements needs to be customized.
@@ -63,6 +76,7 @@ type Props = {
         label?: StyleType;
         description?: StyleType;
         error?: StyleType;
+        readOnlyMessage?: StyleType;
     };
     /**
      * A unique id to use as the base of the ids for the elements within the component.
@@ -71,6 +85,7 @@ type Props = {
      * - The description will have an id formatted as `${id}-description`
      * - The field will have an id formatted as `${id}-field`
      * - The error will have an id formatted as `${id}-error`
+     * - The read only message will have an id formatted as `${id}-read-only-message`
      *
      * If the `id` prop is not provided, a base unique id will be auto-generated.
      * This is important so that the different elements can be wired up together
@@ -87,18 +102,20 @@ type Props = {
      * - The description will have a testId formatted as `${testId}-description`
      * - The field will have a testId formatted as `${testId}-field`
      * - The error will have a testId formatted as `${testId}-error`
+     * - The read only message will have a testId formatted as `${testId}-read-only-message`
      */
     testId?: string;
     /**
      * The object containing the custom labels used inside this component.
      *
-     * This is useful for internationalization. Defaults to English.
+     * This is useful for internationalization.
      */
     labels?: LabeledFieldLabels;
 };
 
 export type LabeledFieldLabels = {
-    errorIconAriaLabel: string;
+    errorIconAriaLabel?: string;
+    readOnlyIconAriaLabel?: string;
 };
 
 const defaultLabeledFieldLabels: LabeledFieldLabels = {
@@ -122,6 +139,7 @@ export default function LabeledField(props: Props) {
         testId,
         description,
         errorMessage,
+        readOnlyMessage,
         labels = defaultLabeledFieldLabels,
     } = props;
 
@@ -131,6 +149,7 @@ export default function LabeledField(props: Props) {
     const descriptionId = `${uniqueId}-description`;
     const fieldId = `${uniqueId}-field`;
     const errorId = `${uniqueId}-error`;
+    const readOnlyMessageId = `${uniqueId}-read-only-message`;
 
     const isRequired = !!required || !!field.props.required;
     const hasError = !!errorMessage || !!field.props.error;
@@ -189,6 +208,7 @@ export default function LabeledField(props: Props) {
                         styles.textWordBreak,
                         styles.description,
                         stylesProp?.description,
+                        isDisabled && styles.disabledDescription,
                     ]}
                     testId={testId && `${testId}-description`}
                     id={descriptionId}
@@ -204,9 +224,9 @@ export default function LabeledField(props: Props) {
             <React.Fragment>
                 <View
                     style={[
-                        styles.errorSection,
+                        styles.helperTextSection,
                         errorMessage
-                            ? styles.errorSectionWithContent
+                            ? styles.helperTextSectionWithContent
                             : undefined,
                         stylesProp?.error,
                     ]}
@@ -234,6 +254,7 @@ export default function LabeledField(props: Props) {
                             <BodyText
                                 style={[
                                     styles.textWordBreak,
+                                    styles.helperTextMessage,
                                     styles.errorMessage,
                                     styles.error,
                                 ]}
@@ -251,15 +272,46 @@ export default function LabeledField(props: Props) {
         return React.cloneElement(field, {
             id: fieldId,
             "aria-describedby": [
-                errorMessage && errorId,
                 description && descriptionId,
+                readOnlyMessage && readOnlyMessageId,
+                errorMessage && errorId,
             ]
                 .filter(Boolean)
                 .join(" "),
             required: required || field.props.required,
             error: hasError,
             testId: testId ? `${testId}-field` : undefined,
+            readOnly: readOnlyMessage || field.props.readOnly,
         });
+    }
+
+    function maybeRenderReadOnlyMessage() {
+        if (!readOnlyMessage) {
+            return null;
+        }
+
+        return (
+            <View
+                style={[
+                    styles.helperTextSection,
+                    styles.helperTextSectionWithContent,
+                    stylesProp?.readOnlyMessage,
+                ]}
+                id={readOnlyMessageId}
+                testId={testId && `${testId}-read-only-message`}
+            >
+                <PhosphorIcon
+                    icon={LockIcon}
+                    aria-label={labels.readOnlyIconAriaLabel}
+                    color={semanticColor.core.foreground.neutral.subtle}
+                />
+                <BodyText
+                    style={[styles.textWordBreak, styles.helperTextMessage]}
+                >
+                    {readOnlyMessage}
+                </BodyText>
+            </View>
+        );
     }
 
     return (
@@ -267,6 +319,7 @@ export default function LabeledField(props: Props) {
             {renderLabel()}
             {maybeRenderDescription()}
             {renderField()}
+            {maybeRenderReadOnlyMessage()}
             {maybeRenderError()}
         </View>
     );
@@ -295,13 +348,22 @@ const styles = StyleSheet.create({
         fontSize: theme.description.font.size,
         lineHeight: theme.description.font.lineHeight,
     },
-    errorSection: {
-        flexDirection: "row",
-        gap: sizing.size_080,
+    disabledDescription: {
+        color: theme.description.color.disabled.foreground,
     },
-    errorSectionWithContent: {
+    helperTextSection: {
+        flexDirection: "row",
+        gap: theme.helperText.layout.gap,
+    },
+    helperTextSectionWithContent: {
         paddingBlockStart:
-            theme.root.layout.paddingBlockEnd.errorSectionWithContent,
+            theme.root.layout.paddingBlockEnd.helperTextSectionWithContent,
+    },
+    helperTextMessage: {
+        fontSize: theme.helperText.font.size,
+        lineHeight: theme.helperText.font.lineHeight,
+        marginBlockStart: theme.helperText.layout.marginBlockStart,
+        minWidth: sizing.size_0, // This enables the wrapping behaviour on the helper message
     },
     error: {
         color: theme.error.color.foreground,
@@ -310,11 +372,7 @@ const styles = StyleSheet.create({
         marginTop: sizing.size_010, // This vertically aligns the icon with the text
     },
     errorMessage: {
-        minWidth: sizing.size_0, // This enables the wrapping behaviour on the error message
-        fontSize: theme.error.font.size,
         fontWeight: theme.error.font.weight,
-        lineHeight: theme.error.font.lineHeight,
-        marginBlockStart: theme.error.layout.marginBlockStart,
     },
     required: {
         color: theme.requiredIndicator.color.foreground,

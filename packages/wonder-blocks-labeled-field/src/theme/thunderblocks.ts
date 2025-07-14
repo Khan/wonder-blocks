@@ -9,7 +9,7 @@ export default mergeTheme(defaultTheme, {
                 labelWithDescription: sizing.size_100,
                 labelWithNoDescription: sizing.size_100,
                 description: sizing.size_100,
-                errorSectionWithContent: sizing.size_100,
+                helperTextSectionWithContent: sizing.size_100,
             },
         },
     },
@@ -19,7 +19,7 @@ export default mergeTheme(defaultTheme, {
                 foreground: semanticColor.core.foreground.critical.default,
             },
             disabled: {
-                foreground: semanticColor.core.foreground.disabled.subtle,
+                foreground: semanticColor.core.foreground.disabled.strong,
             },
         },
     },
@@ -30,6 +30,9 @@ export default mergeTheme(defaultTheme, {
         },
         color: {
             foreground: semanticColor.core.foreground.neutral.strong,
+            disabled: {
+                foreground: semanticColor.core.foreground.disabled.strong,
+            },
         },
     },
     error: {
@@ -37,18 +40,23 @@ export default mergeTheme(defaultTheme, {
             foreground: semanticColor.core.foreground.critical.default,
         },
         font: {
-            size: font.body.size.xsmall,
             weight: font.weight.bold,
-            lineHeight: font.body.lineHeight.xsmall,
-        },
-        layout: {
-            // This aligns the error message with the error icon
-            marginBlockStart: sizing.size_010,
         },
     },
     requiredIndicator: {
         color: {
             foreground: semanticColor.core.foreground.critical.default,
+        },
+    },
+    helperText: {
+        layout: {
+            gap: sizing.size_040,
+            // This aligns the error message with the error icon
+            marginBlockStart: sizing.size_010,
+        },
+        font: {
+            size: font.body.size.xsmall,
+            lineHeight: font.body.lineHeight.xsmall,
         },
     },
 });

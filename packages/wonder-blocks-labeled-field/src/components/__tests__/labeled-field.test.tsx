@@ -16,11 +16,14 @@ describe("LabeledField", () => {
     const description = "Description of the field";
     const errorMessage = "Error message";
     const testId = "test-id";
+    const readOnlyMessage = "Read only message";
 
     const getLabel = () => screen.getByText(label);
     const getDescription = () => screen.getByText(description);
     const getField = () => screen.getByRole("textbox");
     const getError = () => screen.getByTestId("test-id-error");
+    const getReadOnlyMessage = () =>
+        screen.getByTestId("test-id-read-only-message");
 
     it("LabeledField renders the label text", () => {
         // Arrange
@@ -73,6 +76,64 @@ describe("LabeledField", () => {
 
         // Assert
         expect(screen.getByText(errorMessage)).toBeInTheDocument();
+    });
+
+    it("LabeledField renders the read only message text", () => {
+        // Arrange
+        const readOnlyMessage = "Read only message";
+
+        // Act
+        render(
+            <LabeledField
+                field={<TextField id="tf-1" value="" onChange={() => {}} />}
+                label="Label"
+                readOnlyMessage={readOnlyMessage}
+            />,
+            defaultOptions,
+        );
+
+        // Assert
+        expect(screen.getByText(readOnlyMessage)).toBeInTheDocument();
+    });
+
+    it("LabeledField renders the read only message text even if there is an error message", () => {
+        // Arrange
+        const readOnlyMessage = "Read only message";
+        render(
+            <LabeledField
+                field={<TextField id="tf-1" value="" onChange={() => {}} />}
+                label="Label"
+                readOnlyMessage={readOnlyMessage}
+                errorMessage="Error message"
+            />,
+            defaultOptions,
+        );
+
+        // Act
+        const readOnlyMessageEl = screen.getByText(readOnlyMessage);
+
+        // Assert
+        expect(readOnlyMessageEl).toBeInTheDocument();
+    });
+
+    it("LabeledField renders the error message text if there is also a read only message", () => {
+        // Arrange
+        const readOnlyMessage = "Read only message";
+        render(
+            <LabeledField
+                field={<TextField id="tf-1" value="" onChange={() => {}} />}
+                label="Label"
+                readOnlyMessage={readOnlyMessage}
+                errorMessage="Error message"
+            />,
+            defaultOptions,
+        );
+
+        // Act
+        const errorMessageEl = screen.getByText(errorMessage);
+
+        // Assert
+        expect(errorMessageEl).toBeInTheDocument();
     });
 
     it("LabeledField adds testId to label", () => {
@@ -134,6 +195,28 @@ describe("LabeledField", () => {
         expect(error).toBeInTheDocument();
     });
 
+    it("LabeledField adds testId to read only message", () => {
+        // Arrange
+        const testId = "testid";
+
+        // Act
+        render(
+            <LabeledField
+                field={<TextField id="tf-1" value="" onChange={() => {}} />}
+                label="Label"
+                readOnlyMessage="Read only message"
+                testId={testId}
+            />,
+            defaultOptions,
+        );
+
+        // Assert
+        const readOnlyMessage = screen.getByTestId(
+            `${testId}-read-only-message`,
+        );
+        expect(readOnlyMessage).toBeInTheDocument();
+    });
+
     describe("Labels prop", () => {
         it("should use the errorIconAriaLabel for the error icon aria label", () => {
             // Arrange
@@ -175,6 +258,31 @@ describe("LabeledField", () => {
             // Assert
             expect(errorIcon).toHaveAttribute("aria-label", "Error:");
         });
+
+        it("Should set an aria-label on the read only icon if provided", () => {
+            // Arrange
+            const readOnlyIconAriaLabel = "Aria label for read only icon";
+            render(
+                <LabeledField
+                    field={<TextField value="" onChange={() => {}} />}
+                    label="Label"
+                    readOnlyMessage="Read only message"
+                    labels={{readOnlyIconAriaLabel}}
+                />,
+                defaultOptions,
+            );
+
+            // Act
+            const readOnlyIcon = screen.getByRole("img", {
+                name: readOnlyIconAriaLabel,
+            });
+
+            // Assert
+            expect(readOnlyIcon).toHaveAttribute(
+                "aria-label",
+                readOnlyIconAriaLabel,
+            );
+        });
     });
 
     describe("Attributes", () => {
@@ -184,6 +292,11 @@ describe("LabeledField", () => {
                 ["description", `${id}-description`, getDescription],
                 ["field", `${id}-field`, getField],
                 ["error", `${id}-error`, getError],
+                [
+                    "read only message",
+                    `${id}-read-only-message`,
+                    getReadOnlyMessage,
+                ],
             ])(
                 "should have the id for the %s element set to %s",
                 (
@@ -200,6 +313,7 @@ describe("LabeledField", () => {
                             description={description}
                             errorMessage={errorMessage}
                             testId={testId}
+                            readOnlyMessage={readOnlyMessage}
                         />,
                         defaultOptions,
                     );
@@ -217,6 +331,7 @@ describe("LabeledField", () => {
                 ["description", "-description", getDescription],
                 ["field", "-field", getField],
                 ["error", "-error", getError],
+                ["read only message", "-read-only-message", getReadOnlyMessage],
             ])(
                 "should have an auto-generated id for the %s element that ends with %s",
                 (
@@ -232,6 +347,7 @@ describe("LabeledField", () => {
                             description={description}
                             errorMessage={errorMessage}
                             testId={testId}
+                            readOnlyMessage={readOnlyMessage}
                         />,
                         defaultOptions,
                     );
@@ -251,6 +367,11 @@ describe("LabeledField", () => {
                 ["description", `${testId}-description`, getDescription],
                 ["field", `${testId}-field`, getField],
                 ["error", `${testId}-error`, getError],
+                [
+                    "read only message",
+                    `${testId}-read-only-message`,
+                    getReadOnlyMessage,
+                ],
             ])(
                 "should use the testId prop to set the %s element's data-testid attribute to %s",
                 (
@@ -266,6 +387,7 @@ describe("LabeledField", () => {
                             label={label}
                             description={description}
                             errorMessage={errorMessage}
+                            readOnlyMessage={readOnlyMessage}
                         />,
                         defaultOptions,
                     );
@@ -298,6 +420,23 @@ describe("LabeledField", () => {
                         return el;
                     },
                 ],
+                [
+                    "read only message",
+                    () => {
+                        // In order to get the read error message section (icon + message)
+                        // without using testId, we get the parent of the read error
+                        // text
+                        const el =
+                            // eslint-disable-next-line testing-library/no-node-access
+                            screen.getByText(readOnlyMessage).parentElement;
+                        if (!el) {
+                            throw Error(
+                                "Read only message section in LabeledField not found",
+                            );
+                        }
+                        return el;
+                    },
+                ],
             ])(
                 "should not set the data-testid attribute on the %s element if the testId prop is not set",
                 (
@@ -311,6 +450,7 @@ describe("LabeledField", () => {
                             label={label}
                             description={description}
                             errorMessage={errorMessage}
+                            readOnlyMessage={readOnlyMessage}
                         />,
                         defaultOptions,
                     );
@@ -361,6 +501,23 @@ describe("LabeledField", () => {
                     />,
                     defaultOptions,
                 );
+                // Act
+
+                // Assert
+                await expect(container).toHaveNoA11yViolations();
+            });
+
+            it("should have no accessibility violations if the readOnlyMessage prop is set", async () => {
+                // Arrange
+                const {container} = render(
+                    <LabeledField
+                        field={<TextField value="" onChange={() => {}} />}
+                        label="Label"
+                        readOnlyMessage="Read only message"
+                    />,
+                    defaultOptions,
+                );
+
                 // Act
 
                 // Assert
@@ -481,6 +638,60 @@ describe("LabeledField", () => {
 
                 // Assert
                 expect(errorSectionEl).toHaveAttribute("aria-atomic", "true");
+            });
+
+            it("Should set aria-describedby on the field to the id of the read only message", () => {
+                // Arrange
+                const readOnlyMessage = "Read only message";
+                render(
+                    <LabeledField
+                        field={<TextField value="" onChange={() => {}} />}
+                        label="Label"
+                        readOnlyMessage={readOnlyMessage}
+                        testId="labeled-field"
+                    />,
+                    defaultOptions,
+                );
+
+                // Act
+                const readOnlyMessageEl = screen.getByTestId(
+                    "labeled-field-read-only-message",
+                );
+                const inputEl = screen.getByRole("textbox");
+
+                // Assert
+                expect(inputEl).toHaveAttribute(
+                    "aria-describedby",
+                    readOnlyMessageEl.id,
+                );
+            });
+
+            it("Should support multiple aria-describedby attributes on the field", () => {
+                // Arrange
+                const readOnlyMessage = "Read only message";
+                const errorMessage = "Error message";
+                const description = "Description of the field";
+                const id = "example-id";
+                render(
+                    <LabeledField
+                        field={<TextField value="" onChange={() => {}} />}
+                        label="Label"
+                        readOnlyMessage={readOnlyMessage}
+                        errorMessage={errorMessage}
+                        description={description}
+                        id={id}
+                    />,
+                    defaultOptions,
+                );
+
+                // Act
+                const field = screen.getByRole("textbox");
+
+                // Assert
+                expect(field).toHaveAttribute(
+                    "aria-describedby",
+                    `${id}-description ${id}-read-only-message ${id}-error`,
+                );
             });
         });
     });
@@ -683,6 +894,60 @@ describe("LabeledField", () => {
 
             // Assert
             await screen.findByText(requiredMessage);
+        });
+    });
+
+    describe("Read Only", () => {
+        it("Should set the readOnly prop on the field if the readOnlyMessage prop is set", () => {
+            // Arrange
+            render(
+                <LabeledField
+                    field={<TextField value="" onChange={() => {}} />}
+                    label="Label"
+                    readOnlyMessage="Read only message"
+                />,
+                defaultOptions,
+            );
+
+            // Act
+            const field = screen.getByRole("textbox");
+
+            // Assert
+            expect(field).toHaveAttribute("readOnly");
+        });
+
+        it("Should not set the readOnly prop on the field if the readOnlyMessage prop is not set", () => {
+            // Arrange
+            render(
+                <LabeledField
+                    field={<TextField value="" onChange={() => {}} />}
+                    label="Label"
+                />,
+                defaultOptions,
+            );
+
+            // Act
+            const field = screen.getByRole("textbox");
+
+            // Assert
+            expect(field).not.toHaveAttribute("readOnly");
+        });
+
+        it("Should persist the readOnly attribute on the field if it is set on the field", () => {
+            // Arrange
+            render(
+                <LabeledField
+                    field={<TextField value="" onChange={() => {}} readOnly />}
+                    label="Label"
+                />,
+                defaultOptions,
+            );
+
+            // Act
+            const field = screen.getByRole("textbox");
+
+            // Assert
+            expect(field).toHaveAttribute("readOnly");
         });
     });
 });

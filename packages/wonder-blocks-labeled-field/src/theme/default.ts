@@ -7,7 +7,7 @@ const theme = {
                 labelWithDescription: sizing.size_040,
                 labelWithNoDescription: sizing.size_120,
                 description: sizing.size_120,
-                errorSectionWithContent: sizing.size_120,
+                helperTextSectionWithContent: sizing.size_120,
             },
         },
     },
@@ -28,6 +28,9 @@ const theme = {
         },
         color: {
             foreground: semanticColor.core.foreground.neutral.default,
+            disabled: {
+                foreground: semanticColor.core.foreground.neutral.default,
+            },
         },
     },
     error: {
@@ -35,17 +38,22 @@ const theme = {
             foreground: semanticColor.core.foreground.critical.subtle,
         },
         font: {
-            size: font.body.size.small,
             weight: font.weight.regular,
-            lineHeight: font.body.lineHeight.small,
-        },
-        layout: {
-            marginBlockStart: sizing.size_0,
         },
     },
     requiredIndicator: {
         color: {
             foreground: semanticColor.core.foreground.critical.subtle,
+        },
+    },
+    helperText: {
+        layout: {
+            gap: sizing.size_080,
+            marginBlockStart: sizing.size_0,
+        },
+        font: {
+            size: font.body.size.small,
+            lineHeight: font.body.lineHeight.small,
         },
     },
 };

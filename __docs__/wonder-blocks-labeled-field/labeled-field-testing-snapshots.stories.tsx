@@ -136,6 +136,11 @@ const scenarios = [
                     <b>Error</b> <i>using</i> <u>JSX</u>
                 </span>
             ),
+            readOnlyMessage: (
+                <span>
+                    <b>Read</b> <i>only </i> <u>message</u>
+                </span>
+            ),
         },
     },
     {
@@ -146,6 +151,7 @@ const scenarios = [
             description: "Helpful description text.",
             errorMessage: "Message about the error",
             required: "Custom required message",
+            readOnlyMessage: "Message about the read only state",
             styles: {
                 root: {
                     padding: sizing.size_080,
@@ -159,6 +165,9 @@ const scenarios = [
                 error: {
                     paddingBlockStart: sizing.size_020,
                 },
+                readOnlyMessage: {
+                    paddingBlockStart: sizing.size_020,
+                },
             },
         },
     },
@@ -169,6 +178,47 @@ const scenarios = [
             label: "Name",
             description: "Helpful description text.",
             required: true,
+        },
+    },
+    {
+        name: "With read only message",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            description: "Helpful description text.",
+            required: true,
+            readOnlyMessage: "Message about why it is read only",
+        },
+    },
+    {
+        name: "With long read only message",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            description: "Helpful description text.",
+            required: true,
+            readOnlyMessage: longText,
+        },
+    },
+    {
+        name: "With long read only message and no word break",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            description: "Helpful description text.",
+            required: true,
+            readOnlyMessage: longTextWithNoWordBreak,
+        },
+    },
+    {
+        name: "Readonly + Error State",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            description: "Helpful description text.",
+            errorMessage: "Message about the error",
+            required: "Custom required message",
+            readOnlyMessage: "Message about the read only state",
         },
     },
 ];
