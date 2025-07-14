@@ -38,6 +38,7 @@ describe("Announcer utility functions", () => {
                     wrapper,
                     politenessLevel as PolitenessLevel,
                     2,
+                    "document",
                     dictionary,
                 );
 
@@ -60,6 +61,7 @@ describe("Announcer utility functions", () => {
                 const region = createRegion(
                     politenessLevel as PolitenessLevel,
                     0,
+                    "document",
                     dictionary,
                 );
 
@@ -72,7 +74,13 @@ describe("Announcer utility functions", () => {
 
         test("it allows the role to be overridden", () => {
             const dictionary = new Map();
-            const region = createRegion("polite", 0, dictionary, "timer");
+            const region = createRegion(
+                "polite",
+                0,
+                "document",
+                dictionary,
+                "timer",
+            );
 
             expect(region.getAttribute("aria-live")).toBe("polite");
             expect(region.getAttribute("role")).toBe("timer");

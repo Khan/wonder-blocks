@@ -55,6 +55,7 @@ describe("Announcer class", () => {
                 "polite",
                 element1 as HTMLElement,
                 element2 as HTMLElement,
+                "document",
             );
 
             // ACT
@@ -62,6 +63,7 @@ describe("Announcer class", () => {
                 "Saved by the bell!",
                 "polite",
                 regionList,
+                "document",
             );
 
             // ASSERT
@@ -76,6 +78,7 @@ describe("Announcer class", () => {
                 "assertive",
                 element1 as HTMLElement,
                 element2 as HTMLElement,
+                "document",
             );
 
             // ACT
@@ -83,6 +86,7 @@ describe("Announcer class", () => {
                 "Saved by the bell!",
                 "assertive",
                 regionList,
+                "document",
             );
 
             // ASSERT
@@ -100,14 +104,14 @@ describe("Announcer class", () => {
         test("a single message", async () => {
             // Arrange
             const announcer = Announcer.getInstance();
-            expect(announcer.regionFactory.pIndex).toBe(0);
+            expect(announcer.regionFactory.get("document")?.pIndex).toBe(0);
 
             // Act
             announcer.announce("a thing", "polite", false);
 
             // // Assert
             jest.advanceTimersByTime(500);
-            expect(announcer.regionFactory.pIndex).toBe(1);
+            expect(announcer.regionFactory.get("document")?.pIndex).toBe(1);
             expect(
                 announcer.dictionary.get("wbARegion-polite1")?.element
                     .textContent,
@@ -117,14 +121,14 @@ describe("Announcer class", () => {
         test("two messages", async () => {
             // Arrange
             const announcer = Announcer.getInstance();
-            expect(announcer.regionFactory.pIndex).toBe(0);
+            expect(announcer.regionFactory.get("document")?.pIndex).toBe(0);
 
             // Act
             announcer.announce("a nice thing", "polite", false);
 
             // Assert
             jest.advanceTimersByTime(500);
-            expect(announcer.regionFactory.pIndex).toBe(1);
+            expect(announcer.regionFactory.get("document")?.pIndex).toBe(1);
 
             expect(
                 announcer.dictionary.get("wbARegion-polite1")?.element
@@ -135,7 +139,7 @@ describe("Announcer class", () => {
 
             // Assert
             jest.advanceTimersByTime(500);
-            expect(announcer.regionFactory.pIndex).toBe(0);
+            expect(announcer.regionFactory.get("document")?.pIndex).toBe(0);
             expect(
                 announcer.dictionary.get("wbARegion-polite0")?.element
                     .textContent,
@@ -145,7 +149,7 @@ describe("Announcer class", () => {
         test("returning an IDREF", async () => {
             // Arrange
             const announcer = Announcer.getInstance();
-            expect(announcer.regionFactory.pIndex).toBe(0);
+            expect(announcer.regionFactory.get("document")?.pIndex).toBe(0);
 
             // Act
             const idRef = announcer.announce("another thing", "polite", false);
@@ -183,7 +187,7 @@ describe("Announcer class", () => {
         test("clearing by IDREF", async () => {
             // Arrange
             const announcer = Announcer.getInstance();
-            expect(announcer.regionFactory.pIndex).toBe(0);
+            expect(announcer.regionFactory.get("document")?.pIndex).toBe(0);
 
             // Act
             const idRef = "wbARegion-polite0";
