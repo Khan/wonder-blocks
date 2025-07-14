@@ -96,7 +96,7 @@ describe("LabeledField", () => {
         expect(screen.getByText(readOnlyMessage)).toBeInTheDocument();
     });
 
-    it("LabeledField renders the read only message text if there is an error message", () => {
+    it("LabeledField renders the read only message text even if there is an error message", () => {
         // Arrange
         const readOnlyMessage = "Read only message";
         render(
