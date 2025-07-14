@@ -1,4 +1,8 @@
-import type {PolitenessLevel, RegionDictionary} from "./announcer.types";
+import type {
+    PolitenessLevel,
+    RegionDictionary,
+    LayerContext,
+} from "./announcer.types";
 
 /**
  * Create a wrapper element to group regions for a given level
@@ -16,6 +20,7 @@ export function createRegionWrapper(level: PolitenessLevel) {
  * @param {HTMLElement} wrapper Parent DOM element reference to append into
  * @param {string} level Politeness level for grouping
  * @param {number} regionCount Number of regions to create
+ * @param {LayerContext} layerId Name of layer: modal or document
  * @param {RegionDictionary} dictionary Reference to Announcer dictionary
  * @returns {HTMLElement[]} Array of region elements
  */
@@ -23,10 +28,11 @@ export function createDuplicateRegions(
     wrapper: HTMLElement,
     level: PolitenessLevel,
     regionCount: number,
+    layerId: LayerContext,
     dictionary: RegionDictionary,
 ): HTMLElement[] {
     const result = new Array(regionCount).fill(0).map((el, i) => {
-        const region = createRegion(level, i, dictionary);
+        const region = createRegion(level, i, layerId, dictionary);
         wrapper.appendChild(region);
         return region;
     });
@@ -37,6 +43,7 @@ export function createDuplicateRegions(
  * Create live region element for a given level
  * @param {string} level Politeness level for grouping
  * @param {number} index Incrementor for duplicate regions
+ * @param {LayerContext} layerId Page or modal layer
  * @param {RegionDef} dictionary Reference to Announcer dictionary to update
  * @param {string} role Role attribute for live regions, defaults to log
  * @returns {HTMLElement} DOM element reference for live region
@@ -44,6 +51,7 @@ export function createDuplicateRegions(
 export function createRegion(
     level: PolitenessLevel,
     index: number,
+    layerId: LayerContext,
     dictionary: RegionDictionary,
     role = "log",
 ) {
@@ -51,7 +59,9 @@ export function createRegion(
     region.setAttribute("role", role);
     region.setAttribute("aria-live", level);
     region.classList.add("wbARegion");
-    const id = `wbARegion-${level}${index}`;
+    // Omit "document" from page-level ids, but include "modal"
+    const layerNameForId = layerId === "modal" ? `${layerId}-` : "";
+    const id = `wbARegion-${layerNameForId}${level}${index}`;
     region.id = id;
     region.setAttribute("data-testid", id);
     dictionary.set(id, {
@@ -59,6 +69,7 @@ export function createRegion(
         levelIndex: index,
         level,
         element: region,
+        layerId,
     });
     return region;
 }
