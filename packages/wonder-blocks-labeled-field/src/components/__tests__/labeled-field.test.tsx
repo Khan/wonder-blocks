@@ -261,26 +261,26 @@ describe("LabeledField", () => {
 
         it("Should set an aria-label on the read only icon if provided", () => {
             // Arrange
-            const readOnlyAriaLabel = "Aria label for read only icon";
+            const readOnlyIconAriaLabel = "Aria label for read only icon";
             render(
                 <LabeledField
                     field={<TextField value="" onChange={() => {}} />}
                     label="Label"
                     readOnlyMessage="Read only message"
-                    labels={{readOnlyAriaLabel}}
+                    labels={{readOnlyIconAriaLabel}}
                 />,
                 defaultOptions,
             );
 
             // Act
             const readOnlyIcon = screen.getByRole("img", {
-                name: readOnlyAriaLabel,
+                name: readOnlyIconAriaLabel,
             });
 
             // Assert
             expect(readOnlyIcon).toHaveAttribute(
                 "aria-label",
-                readOnlyAriaLabel,
+                readOnlyIconAriaLabel,
             );
         });
     });

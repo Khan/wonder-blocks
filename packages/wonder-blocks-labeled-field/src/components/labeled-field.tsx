@@ -60,7 +60,7 @@ type Props = {
     /**
      * The helpful text message to display when the field is read only.
      *
-     * Use the `labels.readOnlyAriaLabel` prop to set the `aria-label` for
+     * Use the `labels.readOnlyIconAriaLabel` prop to set the `aria-label` for
      * the read only icon.
      *
      * If both `errorMessage` and `readOnlyMessage` are provided, the `readOnlyMessage`
@@ -108,14 +108,14 @@ type Props = {
     /**
      * The object containing the custom labels used inside this component.
      *
-     * This is useful for internationalization. Defaults to English.
+     * This is useful for internationalization.
      */
     labels?: LabeledFieldLabels;
 };
 
 export type LabeledFieldLabels = {
     errorIconAriaLabel?: string;
-    readOnlyAriaLabel?: string;
+    readOnlyIconAriaLabel?: string;
 };
 
 const defaultLabeledFieldLabels: LabeledFieldLabels = {
@@ -302,7 +302,7 @@ export default function LabeledField(props: Props) {
             >
                 <PhosphorIcon
                     icon={LockIcon}
-                    aria-label={labels.readOnlyAriaLabel}
+                    aria-label={labels.readOnlyIconAriaLabel}
                     color={semanticColor.core.foreground.neutral.subtle}
                 />
                 <BodyText
