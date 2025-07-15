@@ -8,9 +8,8 @@ export default mergeTheme(defaultTheme, {
             paddingBlockEnd: {
                 labelWithDescription: sizing.size_100,
                 labelWithNoDescription: sizing.size_100,
-                description: sizing.size_100,
-                helperTextSectionWithContent: sizing.size_100,
             },
+            spacingBetweenHelperText: sizing.size_100,
         },
     },
     label: {
@@ -24,10 +23,6 @@ export default mergeTheme(defaultTheme, {
         },
     },
     description: {
-        font: {
-            size: font.body.size.xsmall,
-            lineHeight: font.body.lineHeight.xsmall,
-        },
         color: {
             foreground: semanticColor.core.foreground.neutral.strong,
             disabled: {

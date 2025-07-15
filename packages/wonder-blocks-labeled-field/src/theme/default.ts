@@ -6,9 +6,8 @@ const theme = {
             paddingBlockEnd: {
                 labelWithDescription: sizing.size_040,
                 labelWithNoDescription: sizing.size_120,
-                description: sizing.size_120,
-                helperTextSectionWithContent: sizing.size_120,
             },
+            spacingBetweenHelperText: sizing.size_120,
         },
     },
     label: {
@@ -22,10 +21,6 @@ const theme = {
         },
     },
     description: {
-        font: {
-            size: font.body.size.small,
-            lineHeight: font.body.lineHeight.small,
-        },
         color: {
             foreground: semanticColor.core.foreground.neutral.default,
             disabled: {

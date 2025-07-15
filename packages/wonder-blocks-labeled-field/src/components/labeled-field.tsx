@@ -166,11 +166,7 @@ export default function LabeledField(props: Props) {
     function renderLabel(): React.ReactNode {
         const requiredIcon = (
             <StyledSpan
-                style={[
-                    styles.textWordBreak,
-                    styles.required,
-                    isDisabled && styles.disabledLabel,
-                ]}
+                style={[styles.required, isDisabled && styles.disabledLabel]}
                 aria-hidden={true}
             >
                 {" "}
@@ -182,7 +178,6 @@ export default function LabeledField(props: Props) {
             <React.Fragment>
                 <BodyText
                     style={[
-                        styles.textWordBreak,
                         styles.label,
                         description
                             ? styles.labelWithDescription
@@ -213,7 +208,7 @@ export default function LabeledField(props: Props) {
             <React.Fragment>
                 <BodyText
                     style={[
-                        styles.textWordBreak,
+                        styles.helperTextMessage,
                         styles.description,
                         stylesProp?.description,
                         isDisabled && styles.disabledDescription,
@@ -261,7 +256,6 @@ export default function LabeledField(props: Props) {
                             />
                             <BodyText
                                 style={[
-                                    styles.textWordBreak,
                                     styles.helperTextMessage,
                                     styles.errorMessage,
                                     styles.error,
@@ -315,9 +309,7 @@ export default function LabeledField(props: Props) {
                     color={semanticColor.core.foreground.neutral.subtle}
                     style={styles.helperTextIcon}
                 />
-                <BodyText
-                    style={[styles.textWordBreak, styles.helperTextMessage]}
-                >
+                <BodyText style={[styles.helperTextMessage]}>
                     {readOnlyMessage}
                 </BodyText>
             </View>
@@ -336,9 +328,8 @@ export default function LabeledField(props: Props) {
                 style={[
                     styles.spacingAboveHelperText,
                     isDisabled && styles.disabledHelperTextMessage,
-                    stylesProp?.additionalHelperMessage,
-                    styles.textWordBreak,
                     styles.helperTextMessage,
+                    stylesProp?.additionalHelperMessage,
                 ]}
                 tag="div"
             >
@@ -362,6 +353,7 @@ export default function LabeledField(props: Props) {
 const styles = StyleSheet.create({
     label: {
         color: semanticColor.core.foreground.neutral.strong,
+        overflowWrap: "break-word",
     },
     labelWithError: {
         color: theme.label.color.error.foreground,
@@ -378,9 +370,7 @@ const styles = StyleSheet.create({
     },
     description: {
         color: theme.description.color.foreground,
-        paddingBlockEnd: theme.root.layout.paddingBlockEnd.description,
-        fontSize: theme.description.font.size,
-        lineHeight: theme.description.font.lineHeight,
+        paddingBlockEnd: theme.root.layout.spacingBetweenHelperText,
     },
     disabledDescription: {
         color: theme.description.color.disabled.foreground,
@@ -390,14 +380,14 @@ const styles = StyleSheet.create({
         gap: theme.helperText.layout.gap,
     },
     spacingAboveHelperText: {
-        paddingBlockStart:
-            theme.root.layout.paddingBlockEnd.helperTextSectionWithContent,
+        paddingBlockStart: theme.root.layout.spacingBetweenHelperText,
     },
     helperTextMessage: {
         fontSize: theme.helperText.font.size,
         lineHeight: theme.helperText.font.lineHeight,
         marginBlockStart: theme.helperText.layout.marginBlockStart,
         minWidth: sizing.size_0, // This enables the wrapping behaviour on the helper message
+        overflowWrap: "break-word",
     },
     disabledHelperTextMessage: {
         color: theme.helperText.color.disabled.foreground,
@@ -413,8 +403,5 @@ const styles = StyleSheet.create({
     },
     required: {
         color: theme.requiredIndicator.color.foreground,
-    },
-    textWordBreak: {
-        overflowWrap: "break-word",
     },
 });
