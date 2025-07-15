@@ -185,16 +185,17 @@ const scenarios = [
     {
         name: "With disabled field",
         props: {
-            field: <TextField value="" onChange={() => {}} disabled />,
+            field: <TextField value="Value" onChange={() => {}} disabled />,
             label: "Name",
             description: "Helpful description text.",
+            additionalHelperMessage: "Additional helper message",
             required: true,
         },
     },
     {
         name: "All properties disabled",
         props: {
-            field: <TextField value="" onChange={() => {}} disabled />,
+            field: <TextField value="Value" onChange={() => {}} disabled />,
             label: "Name",
             description: "Helpful description text.",
             errorMessage: "Message about the error",
@@ -206,7 +207,7 @@ const scenarios = [
     {
         name: "All properties disabled without error",
         props: {
-            field: <TextField value="" onChange={() => {}} disabled />,
+            field: <TextField value="Value" onChange={() => {}} disabled />,
             label: "Name",
             description: "Helpful description text.",
             required: "Custom required message",

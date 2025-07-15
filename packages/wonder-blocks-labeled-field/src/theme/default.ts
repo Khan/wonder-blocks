@@ -20,14 +20,6 @@ const theme = {
             },
         },
     },
-    description: {
-        color: {
-            foreground: semanticColor.core.foreground.neutral.default,
-            disabled: {
-                foreground: semanticColor.core.foreground.neutral.default,
-            },
-        },
-    },
     error: {
         color: {
             foreground: semanticColor.core.foreground.critical.subtle,
@@ -51,8 +43,11 @@ const theme = {
             lineHeight: font.body.lineHeight.small,
         },
         color: {
+            default: {
+                foreground: semanticColor.core.foreground.neutral.default,
+            },
             disabled: {
-                foreground: semanticColor.core.foreground.neutral.strong,
+                foreground: semanticColor.core.foreground.neutral.default,
             },
         },
     },

@@ -208,10 +208,10 @@ export default function LabeledField(props: Props) {
             <React.Fragment>
                 <BodyText
                     style={[
-                        styles.helperTextMessage,
-                        styles.description,
+                        styles.helperText,
+                        styles.spacingBelowHelperText,
+                        isDisabled && styles.disabledHelperText,
                         stylesProp?.description,
-                        isDisabled && styles.disabledDescription,
                     ]}
                     testId={testId && `${testId}-description`}
                     id={descriptionId}
@@ -256,7 +256,7 @@ export default function LabeledField(props: Props) {
                             />
                             <BodyText
                                 style={[
-                                    styles.helperTextMessage,
+                                    styles.helperText,
                                     styles.errorMessage,
                                     styles.error,
                                 ]}
@@ -308,9 +308,7 @@ export default function LabeledField(props: Props) {
                     aria-label={labels.readOnlyIconAriaLabel}
                     color={semanticColor.core.foreground.neutral.subtle}
                 />
-                <BodyText style={[styles.helperTextMessage]}>
-                    {readOnlyMessage}
-                </BodyText>
+                <BodyText style={styles.helperText}>{readOnlyMessage}</BodyText>
             </View>
         );
     }
@@ -325,9 +323,9 @@ export default function LabeledField(props: Props) {
                 id={additionalHelperMessageId}
                 testId={testId && `${testId}-additional-helper-message`}
                 style={[
-                    styles.helperTextMessage,
+                    styles.helperText,
                     styles.spacingAboveHelperText,
-                    isDisabled && styles.disabledHelperTextMessage,
+                    isDisabled && styles.disabledHelperText,
                     stylesProp?.additionalHelperMessage,
                 ]}
                 tag="div"
@@ -367,13 +365,6 @@ const styles = StyleSheet.create({
         paddingBlockEnd:
             theme.root.layout.paddingBlockEnd.labelWithNoDescription,
     },
-    description: {
-        color: theme.description.color.foreground,
-        paddingBlockEnd: theme.root.layout.spacingBetweenHelperText,
-    },
-    disabledDescription: {
-        color: theme.description.color.disabled.foreground,
-    },
     helperTextWithIcon: {
         flexDirection: "row",
         gap: theme.helperText.layout.gap,
@@ -381,14 +372,18 @@ const styles = StyleSheet.create({
     spacingAboveHelperText: {
         paddingBlockStart: theme.root.layout.spacingBetweenHelperText,
     },
-    helperTextMessage: {
+    spacingBelowHelperText: {
+        paddingBlockEnd: theme.root.layout.spacingBetweenHelperText,
+    },
+    helperText: {
+        color: theme.helperText.color.default.foreground,
         fontSize: theme.helperText.font.size,
         lineHeight: theme.helperText.font.lineHeight,
         marginBlockStart: theme.helperText.layout.marginBlockStart,
         minWidth: sizing.size_0, // This enables the wrapping behaviour on the helper message
         overflowWrap: "break-word",
     },
-    disabledHelperTextMessage: {
+    disabledHelperText: {
         color: theme.helperText.color.disabled.foreground,
     },
     error: {

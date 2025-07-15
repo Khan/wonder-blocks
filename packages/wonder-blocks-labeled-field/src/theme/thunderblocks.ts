@@ -22,14 +22,6 @@ export default mergeTheme(defaultTheme, {
             },
         },
     },
-    description: {
-        color: {
-            foreground: semanticColor.core.foreground.neutral.strong,
-            disabled: {
-                foreground: semanticColor.core.foreground.disabled.strong,
-            },
-        },
-    },
     error: {
         color: {
             foreground: semanticColor.core.foreground.critical.default,
@@ -54,6 +46,9 @@ export default mergeTheme(defaultTheme, {
             lineHeight: font.body.lineHeight.xsmall,
         },
         color: {
+            default: {
+                foreground: semanticColor.core.foreground.neutral.strong,
+            },
             disabled: {
                 foreground: semanticColor.core.foreground.disabled.strong,
             },
