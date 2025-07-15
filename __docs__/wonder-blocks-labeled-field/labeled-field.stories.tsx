@@ -69,6 +69,50 @@ export const Default: StoryComponentType = {
     },
 };
 
+/**
+ * Consider the following when providing helper text:
+ * - If providing an error message for the field, use the `errorMessage` prop
+ * - If providing a message related to the read only state for the field, use
+ *   the `readOnlyMessage` prop
+ * - For any other helper text, use the `additionalHelperMessage` prop
+ *
+ * If all of these props are used, they will all be shown.
+ *
+ * When any of these props are used, the field's `aria-describedby` attribute
+ * will include the id of the element for the corresponding prop.
+ */
+export const HelperText: StoryComponentType = {
+    render: (args) => {
+        return (
+            <View style={{gap: sizing.size_240}}>
+                <Heading>A field with an error message</Heading>
+                <LabeledField {...args} errorMessage="Error message" />
+                <Heading>A field with a read only message</Heading>
+                <LabeledField {...args} readOnlyMessage="Read only message" />
+                <Heading>A field with an additional helper message</Heading>
+                <LabeledField
+                    {...args}
+                    additionalHelperMessage="Additional helper message"
+                />
+                <Heading>
+                    A field with an error, readonly, and additional helper
+                    message
+                </Heading>
+                <LabeledField
+                    {...args}
+                    errorMessage="Error message"
+                    readOnlyMessage="Read only message"
+                    additionalHelperMessage="Additional helper message"
+                />
+            </View>
+        );
+    },
+    args: {
+        field: <TextField value="" onChange={() => {}} />,
+        label: "Name",
+    },
+};
+
 const StyledForm = addStyle("form");
 
 const AllFields = (
@@ -527,6 +571,11 @@ export const Custom = {
                 <b>Read</b> <i>only</i> <u>message</u>
             </span>
         ),
+        additionalHelperMessage: (
+            <span>
+                <b>Additional</b> <i>helper</i> <u>message</u>
+            </span>
+        ),
     },
 };
 
@@ -544,6 +593,7 @@ export const CustomStyles = {
         label: "Name",
         description: "Helpful description text.",
         errorMessage: "Message about the error",
+        additionalHelperMessage: "Additional helper message",
         required: "Custom required message",
         styles: {
             root: {
@@ -556,6 +606,9 @@ export const CustomStyles = {
                 paddingBlockEnd: sizing.size_020,
             },
             error: {
+                paddingBlockStart: sizing.size_020,
+            },
+            additionalHelperMessage: {
                 paddingBlockStart: sizing.size_020,
             },
         },

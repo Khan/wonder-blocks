@@ -115,6 +115,31 @@ const scenarios = [
             description: "Helpful description text.",
             errorMessage: "Message about the error",
             required: "Custom required message",
+            additionalHelperMessage: "Additional helper message",
+            readOnlyMessage: "Read only message",
+        },
+    },
+    {
+        name: "All properties disabled",
+        props: {
+            field: <TextField value="" onChange={() => {}} disabled />,
+            label: "Name",
+            description: "Helpful description text.",
+            errorMessage: "Message about the error",
+            required: "Custom required message",
+            additionalHelperMessage: "Additional helper message",
+            readOnlyMessage: "Read only message",
+        },
+    },
+    {
+        name: "All properties disabled without error",
+        props: {
+            field: <TextField value="" onChange={() => {}} disabled />,
+            label: "Name",
+            description: "Helpful description text.",
+            required: "Custom required message",
+            additionalHelperMessage: "Additional helper message",
+            readOnlyMessage: "Read only message",
         },
     },
     {
@@ -141,6 +166,11 @@ const scenarios = [
                     <b>Read</b> <i>only </i> <u>message</u>
                 </span>
             ),
+            additionalHelperMessage: (
+                <span>
+                    <b>Additional</b> <i>helper</i> <u>message</u>
+                </span>
+            ),
         },
     },
     {
@@ -152,6 +182,7 @@ const scenarios = [
             errorMessage: "Message about the error",
             required: "Custom required message",
             readOnlyMessage: "Message about the read only state",
+            additionalHelperMessage: "Additional helper message",
             styles: {
                 root: {
                     padding: sizing.size_080,
@@ -166,6 +197,9 @@ const scenarios = [
                     paddingBlockStart: sizing.size_020,
                 },
                 readOnlyMessage: {
+                    paddingBlockStart: sizing.size_020,
+                },
+                additionalHelperMessage: {
                     paddingBlockStart: sizing.size_020,
                 },
             },
