@@ -17,6 +17,7 @@ describe("LabeledField", () => {
     const errorMessage = "Error message";
     const testId = "test-id";
     const readOnlyMessage = "Read only message";
+    const additionalHelperMessage = "Additional helper message";
 
     const getLabel = () => screen.getByText(label);
     const getDescription = () => screen.getByText(description);
@@ -24,6 +25,8 @@ describe("LabeledField", () => {
     const getError = () => screen.getByTestId("test-id-error");
     const getReadOnlyMessage = () =>
         screen.getByTestId("test-id-read-only-message");
+    const getAdditionalHelperMessage = () =>
+        screen.getByText(additionalHelperMessage);
 
     it("LabeledField renders the label text", () => {
         // Arrange
@@ -96,7 +99,7 @@ describe("LabeledField", () => {
         expect(screen.getByText(readOnlyMessage)).toBeInTheDocument();
     });
 
-    it("LabeledField renders the read only message text even if there is an error message", () => {
+    it("LabeledField renders the read only message text even if there is an error message and additional helper message", () => {
         // Arrange
         const readOnlyMessage = "Read only message";
         render(
@@ -105,6 +108,7 @@ describe("LabeledField", () => {
                 label="Label"
                 readOnlyMessage={readOnlyMessage}
                 errorMessage="Error message"
+                additionalHelperMessage="Additional helper message"
             />,
             defaultOptions,
         );
@@ -116,15 +120,16 @@ describe("LabeledField", () => {
         expect(readOnlyMessageEl).toBeInTheDocument();
     });
 
-    it("LabeledField renders the error message text if there is also a read only message", () => {
+    it("LabeledField renders the error message text if there is also a read only message and additional helper message", () => {
         // Arrange
-        const readOnlyMessage = "Read only message";
+        const errorMessage = "Error message";
         render(
             <LabeledField
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label="Label"
-                readOnlyMessage={readOnlyMessage}
-                errorMessage="Error message"
+                readOnlyMessage="Read only message"
+                errorMessage={errorMessage}
+                additionalHelperMessage="Additional helper message"
             />,
             defaultOptions,
         );
@@ -136,85 +141,48 @@ describe("LabeledField", () => {
         expect(errorMessageEl).toBeInTheDocument();
     });
 
-    it("LabeledField adds testId to label", () => {
+    it("renders the additional helper message text", () => {
         // Arrange
-        const testId = "testid";
-
-        // Act
+        const additionalHelperMessage = "Additional helper message";
         render(
             <LabeledField
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label="Label"
-                testId={testId}
+                additionalHelperMessage={additionalHelperMessage}
             />,
             defaultOptions,
         );
 
-        // Assert
-        const label = screen.getByTestId(`${testId}-label`);
-        expect(label).toBeInTheDocument();
-    });
-
-    it("LabeledField adds testId to description", () => {
-        // Arrange
-        const testId = "testid";
-
         // Act
-        render(
-            <LabeledField
-                field={<TextField id="tf-1" value="" onChange={() => {}} />}
-                label="Label"
-                description="Description"
-                testId={testId}
-            />,
-            defaultOptions,
+        const additionalHelperMessageEl = screen.getByText(
+            additionalHelperMessage,
         );
 
         // Assert
-        const description = screen.getByTestId(`${testId}-description`);
-        expect(description).toBeInTheDocument();
+        expect(additionalHelperMessageEl).toBeInTheDocument();
     });
 
-    it("LabeledField adds testId to error", () => {
+    it("renders the additional helper message text even if there is an error message and read only message", () => {
         // Arrange
-        const testId = "testid";
-
-        // Act
+        const additionalHelperMessage = "Additional helper message";
         render(
             <LabeledField
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label="Label"
-                errorMessage="Error"
-                testId={testId}
-            />,
-            defaultOptions,
-        );
-
-        // Assert
-        const error = screen.getByTestId(`${testId}-error`);
-        expect(error).toBeInTheDocument();
-    });
-
-    it("LabeledField adds testId to read only message", () => {
-        // Arrange
-        const testId = "testid";
-
-        // Act
-        render(
-            <LabeledField
-                field={<TextField id="tf-1" value="" onChange={() => {}} />}
-                label="Label"
+                additionalHelperMessage={additionalHelperMessage}
+                errorMessage="Error message"
                 readOnlyMessage="Read only message"
-                testId={testId}
             />,
             defaultOptions,
         );
 
-        // Assert
-        const readOnlyMessage = screen.getByTestId(
-            `${testId}-read-only-message`,
+        // Act
+        const additionalHelperMessageEl = screen.getByText(
+            additionalHelperMessage,
         );
-        expect(readOnlyMessage).toBeInTheDocument();
+
+        // Assert
+        expect(additionalHelperMessageEl).toBeInTheDocument();
     });
 
     describe("Labels prop", () => {
@@ -297,6 +265,11 @@ describe("LabeledField", () => {
                     `${id}-read-only-message`,
                     getReadOnlyMessage,
                 ],
+                [
+                    "additional helper message",
+                    `${id}-additional-helper-message`,
+                    getAdditionalHelperMessage,
+                ],
             ])(
                 "should have the id for the %s element set to %s",
                 (
@@ -314,6 +287,7 @@ describe("LabeledField", () => {
                             errorMessage={errorMessage}
                             testId={testId}
                             readOnlyMessage={readOnlyMessage}
+                            additionalHelperMessage={additionalHelperMessage}
                         />,
                         defaultOptions,
                     );
@@ -332,6 +306,11 @@ describe("LabeledField", () => {
                 ["field", "-field", getField],
                 ["error", "-error", getError],
                 ["read only message", "-read-only-message", getReadOnlyMessage],
+                [
+                    "additional helper message",
+                    "-additional-helper-message",
+                    getAdditionalHelperMessage,
+                ],
             ])(
                 "should have an auto-generated id for the %s element that ends with %s",
                 (
@@ -348,6 +327,7 @@ describe("LabeledField", () => {
                             errorMessage={errorMessage}
                             testId={testId}
                             readOnlyMessage={readOnlyMessage}
+                            additionalHelperMessage={additionalHelperMessage}
                         />,
                         defaultOptions,
                     );
@@ -372,6 +352,11 @@ describe("LabeledField", () => {
                     `${testId}-read-only-message`,
                     getReadOnlyMessage,
                 ],
+                [
+                    "additional helper message",
+                    `${testId}-additional-helper-message`,
+                    getAdditionalHelperMessage,
+                ],
             ])(
                 "should use the testId prop to set the %s element's data-testid attribute to %s",
                 (
@@ -388,6 +373,7 @@ describe("LabeledField", () => {
                             description={description}
                             errorMessage={errorMessage}
                             readOnlyMessage={readOnlyMessage}
+                            additionalHelperMessage={additionalHelperMessage}
                         />,
                         defaultOptions,
                     );
@@ -423,8 +409,8 @@ describe("LabeledField", () => {
                 [
                     "read only message",
                     () => {
-                        // In order to get the read error message section (icon + message)
-                        // without using testId, we get the parent of the read error
+                        // In order to get the read read only message section (icon + message)
+                        // without using testId, we get the parent of the read only
                         // text
                         const el =
                             // eslint-disable-next-line testing-library/no-node-access
@@ -437,6 +423,7 @@ describe("LabeledField", () => {
                         return el;
                     },
                 ],
+                ["additional helper message", getAdditionalHelperMessage],
             ])(
                 "should not set the data-testid attribute on the %s element if the testId prop is not set",
                 (
@@ -451,6 +438,7 @@ describe("LabeledField", () => {
                             description={description}
                             errorMessage={errorMessage}
                             readOnlyMessage={readOnlyMessage}
+                            additionalHelperMessage={additionalHelperMessage}
                         />,
                         defaultOptions,
                     );
@@ -507,18 +495,20 @@ describe("LabeledField", () => {
                 await expect(container).toHaveNoA11yViolations();
             });
 
-            it("should have no accessibility violations if the readOnlyMessage prop is set", async () => {
+            it("should have no accessibility violations if the helper text props are set", async () => {
                 // Arrange
+                // Act
                 const {container} = render(
                     <LabeledField
                         field={<TextField value="" onChange={() => {}} />}
                         label="Label"
+                        description="Description for the field"
                         readOnlyMessage="Read only message"
+                        additionalHelperMessage="Additional helper message"
+                        errorMessage="Error message"
                     />,
                     defaultOptions,
                 );
-
-                // Act
 
                 // Assert
                 await expect(container).toHaveNoA11yViolations();
@@ -666,6 +656,31 @@ describe("LabeledField", () => {
                 );
             });
 
+            it("Should set aria-describedby on the field to the id of the additional helper message", () => {
+                // Arrange
+                const additionalHelperMessage = "Additional helper message";
+                render(
+                    <LabeledField
+                        field={<TextField value="" onChange={() => {}} />}
+                        label="Label"
+                        additionalHelperMessage={additionalHelperMessage}
+                    />,
+                    defaultOptions,
+                );
+
+                // Act
+                const additionalHelperMessageEl = screen.getByText(
+                    additionalHelperMessage,
+                );
+                const inputEl = screen.getByRole("textbox");
+
+                // Assert
+                expect(inputEl).toHaveAttribute(
+                    "aria-describedby",
+                    additionalHelperMessageEl.id,
+                );
+            });
+
             it("Should support multiple aria-describedby attributes on the field", () => {
                 // Arrange
                 const readOnlyMessage = "Read only message";
@@ -679,6 +694,7 @@ describe("LabeledField", () => {
                         readOnlyMessage={readOnlyMessage}
                         errorMessage={errorMessage}
                         description={description}
+                        additionalHelperMessage="Additional helper message"
                         id={id}
                     />,
                     defaultOptions,
@@ -690,8 +706,30 @@ describe("LabeledField", () => {
                 // Assert
                 expect(field).toHaveAttribute(
                     "aria-describedby",
-                    `${id}-description ${id}-read-only-message ${id}-error`,
+                    [
+                        `${id}-description`,
+                        `${id}-additional-helper-message`,
+                        `${id}-read-only-message`,
+                        `${id}-error`,
+                    ].join(" "),
                 );
+            });
+
+            it("Should have no aria-describedby values on the field if there is no helper text for the field", () => {
+                // Arrange
+                render(
+                    <LabeledField
+                        field={<TextField value="" onChange={() => {}} />}
+                        label="Label"
+                    />,
+                    defaultOptions,
+                );
+
+                // Act
+                const field = screen.getByRole("textbox");
+
+                // Assert
+                expect(field).toHaveAttribute("aria-describedby", "");
             });
         });
     });

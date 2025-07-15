@@ -6,11 +6,10 @@ export default mergeTheme(defaultTheme, {
     root: {
         layout: {
             paddingBlockEnd: {
-                labelWithDescription: sizing.size_100,
-                labelWithNoDescription: sizing.size_100,
-                description: sizing.size_100,
-                helperTextSectionWithContent: sizing.size_100,
+                labelWithDescription: sizing.size_040,
+                labelWithNoDescription: sizing.size_080,
             },
+            spacingBetweenHelperText: sizing.size_080,
         },
     },
     label: {
@@ -18,18 +17,6 @@ export default mergeTheme(defaultTheme, {
             error: {
                 foreground: semanticColor.core.foreground.critical.default,
             },
-            disabled: {
-                foreground: semanticColor.core.foreground.disabled.strong,
-            },
-        },
-    },
-    description: {
-        font: {
-            size: font.body.size.xsmall,
-            lineHeight: font.body.lineHeight.xsmall,
-        },
-        color: {
-            foreground: semanticColor.core.foreground.neutral.strong,
             disabled: {
                 foreground: semanticColor.core.foreground.disabled.strong,
             },
@@ -57,6 +44,14 @@ export default mergeTheme(defaultTheme, {
         font: {
             size: font.body.size.xsmall,
             lineHeight: font.body.lineHeight.xsmall,
+        },
+        color: {
+            default: {
+                foreground: semanticColor.core.foreground.neutral.strong,
+            },
+            disabled: {
+                foreground: semanticColor.core.foreground.disabled.strong,
+            },
         },
     },
 });

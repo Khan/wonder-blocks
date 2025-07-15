@@ -68,6 +68,10 @@ type Props = {
      */
     readOnlyMessage?: React.ReactNode;
     /**
+     * Additional helper text placed under the field.
+     */
+    additionalHelperMessage?: React.ReactNode;
+    /**
      * Custom styles for the elements of LabeledField. Useful if there are
      * specific cases where spacing between elements needs to be customized.
      */
@@ -77,6 +81,7 @@ type Props = {
         description?: StyleType;
         error?: StyleType;
         readOnlyMessage?: StyleType;
+        additionalHelperMessage?: StyleType;
     };
     /**
      * A unique id to use as the base of the ids for the elements within the component.
@@ -86,6 +91,7 @@ type Props = {
      * - The field will have an id formatted as `${id}-field`
      * - The error will have an id formatted as `${id}-error`
      * - The read only message will have an id formatted as `${id}-read-only-message`
+     * - The additional helper message will have an id formatted as `${id}-additional-helper-message`
      *
      * If the `id` prop is not provided, a base unique id will be auto-generated.
      * This is important so that the different elements can be wired up together
@@ -103,6 +109,7 @@ type Props = {
      * - The field will have a testId formatted as `${testId}-field`
      * - The error will have a testId formatted as `${testId}-error`
      * - The read only message will have a testId formatted as `${testId}-read-only-message`
+     * - The additional helper message will have a testId formatted as `${testId}-additional-helper-message`
      */
     testId?: string;
     /**
@@ -140,6 +147,7 @@ export default function LabeledField(props: Props) {
         description,
         errorMessage,
         readOnlyMessage,
+        additionalHelperMessage,
         labels = defaultLabeledFieldLabels,
     } = props;
 
@@ -150,7 +158,7 @@ export default function LabeledField(props: Props) {
     const fieldId = `${uniqueId}-field`;
     const errorId = `${uniqueId}-error`;
     const readOnlyMessageId = `${uniqueId}-read-only-message`;
-
+    const additionalHelperMessageId = `${uniqueId}-additional-helper-message`;
     const isRequired = !!required || !!field.props.required;
     const hasError = !!errorMessage || !!field.props.error;
     const isDisabled = !!field.props.disabled;
@@ -158,11 +166,7 @@ export default function LabeledField(props: Props) {
     function renderLabel(): React.ReactNode {
         const requiredIcon = (
             <StyledSpan
-                style={[
-                    styles.textWordBreak,
-                    styles.required,
-                    isDisabled && styles.disabledLabel,
-                ]}
+                style={[styles.required, isDisabled && styles.disabledLabel]}
                 aria-hidden={true}
             >
                 {" "}
@@ -174,7 +178,6 @@ export default function LabeledField(props: Props) {
             <React.Fragment>
                 <BodyText
                     style={[
-                        styles.textWordBreak,
                         styles.label,
                         description
                             ? styles.labelWithDescription
@@ -205,10 +208,10 @@ export default function LabeledField(props: Props) {
             <React.Fragment>
                 <BodyText
                     style={[
-                        styles.textWordBreak,
-                        styles.description,
+                        styles.helperText,
+                        styles.spacingBelowHelperText,
+                        isDisabled && styles.disabledHelperText,
                         stylesProp?.description,
-                        isDisabled && styles.disabledDescription,
                     ]}
                     testId={testId && `${testId}-description`}
                     id={descriptionId}
@@ -224,9 +227,9 @@ export default function LabeledField(props: Props) {
             <React.Fragment>
                 <View
                     style={[
-                        styles.helperTextSection,
+                        styles.helperTextWithIcon,
                         errorMessage
-                            ? styles.helperTextSectionWithContent
+                            ? styles.spacingAboveHelperText
                             : undefined,
                         stylesProp?.error,
                     ]}
@@ -253,8 +256,7 @@ export default function LabeledField(props: Props) {
                             />
                             <BodyText
                                 style={[
-                                    styles.textWordBreak,
-                                    styles.helperTextMessage,
+                                    styles.helperText,
                                     styles.errorMessage,
                                     styles.error,
                                 ]}
@@ -273,6 +275,7 @@ export default function LabeledField(props: Props) {
             id: fieldId,
             "aria-describedby": [
                 description && descriptionId,
+                additionalHelperMessage && additionalHelperMessageId,
                 readOnlyMessage && readOnlyMessageId,
                 errorMessage && errorId,
             ]
@@ -293,8 +296,8 @@ export default function LabeledField(props: Props) {
         return (
             <View
                 style={[
-                    styles.helperTextSection,
-                    styles.helperTextSectionWithContent,
+                    styles.helperTextWithIcon,
+                    styles.spacingAboveHelperText,
                     stylesProp?.readOnlyMessage,
                 ]}
                 id={readOnlyMessageId}
@@ -305,12 +308,30 @@ export default function LabeledField(props: Props) {
                     aria-label={labels.readOnlyIconAriaLabel}
                     color={semanticColor.core.foreground.neutral.subtle}
                 />
-                <BodyText
-                    style={[styles.textWordBreak, styles.helperTextMessage]}
-                >
-                    {readOnlyMessage}
-                </BodyText>
+                <BodyText style={styles.helperText}>{readOnlyMessage}</BodyText>
             </View>
+        );
+    }
+
+    function maybeRenderAdditionalHelperMessage() {
+        if (!additionalHelperMessage) {
+            return null;
+        }
+
+        return (
+            <BodyText
+                id={additionalHelperMessageId}
+                testId={testId && `${testId}-additional-helper-message`}
+                style={[
+                    styles.helperText,
+                    styles.spacingAboveHelperText,
+                    isDisabled && styles.disabledHelperText,
+                    stylesProp?.additionalHelperMessage,
+                ]}
+                tag="div"
+            >
+                {additionalHelperMessage}
+            </BodyText>
         );
     }
 
@@ -319,6 +340,7 @@ export default function LabeledField(props: Props) {
             {renderLabel()}
             {maybeRenderDescription()}
             {renderField()}
+            {maybeRenderAdditionalHelperMessage()}
             {maybeRenderReadOnlyMessage()}
             {maybeRenderError()}
         </View>
@@ -328,6 +350,7 @@ export default function LabeledField(props: Props) {
 const styles = StyleSheet.create({
     label: {
         color: semanticColor.core.foreground.neutral.strong,
+        overflowWrap: "break-word",
     },
     labelWithError: {
         color: theme.label.color.error.foreground,
@@ -342,28 +365,26 @@ const styles = StyleSheet.create({
         paddingBlockEnd:
             theme.root.layout.paddingBlockEnd.labelWithNoDescription,
     },
-    description: {
-        color: theme.description.color.foreground,
-        paddingBlockEnd: theme.root.layout.paddingBlockEnd.description,
-        fontSize: theme.description.font.size,
-        lineHeight: theme.description.font.lineHeight,
-    },
-    disabledDescription: {
-        color: theme.description.color.disabled.foreground,
-    },
-    helperTextSection: {
+    helperTextWithIcon: {
         flexDirection: "row",
         gap: theme.helperText.layout.gap,
     },
-    helperTextSectionWithContent: {
-        paddingBlockStart:
-            theme.root.layout.paddingBlockEnd.helperTextSectionWithContent,
+    spacingAboveHelperText: {
+        paddingBlockStart: theme.root.layout.spacingBetweenHelperText,
     },
-    helperTextMessage: {
+    spacingBelowHelperText: {
+        paddingBlockEnd: theme.root.layout.spacingBetweenHelperText,
+    },
+    helperText: {
+        color: theme.helperText.color.default.foreground,
         fontSize: theme.helperText.font.size,
         lineHeight: theme.helperText.font.lineHeight,
         marginBlockStart: theme.helperText.layout.marginBlockStart,
         minWidth: sizing.size_0, // This enables the wrapping behaviour on the helper message
+        overflowWrap: "break-word",
+    },
+    disabledHelperText: {
+        color: theme.helperText.color.disabled.foreground,
     },
     error: {
         color: theme.error.color.foreground,
@@ -376,8 +397,5 @@ const styles = StyleSheet.create({
     },
     required: {
         color: theme.requiredIndicator.color.foreground,
-    },
-    textWordBreak: {
-        overflowWrap: "break-word",
     },
 });
