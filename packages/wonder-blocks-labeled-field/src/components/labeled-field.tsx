@@ -68,6 +68,10 @@ type Props = {
      */
     readOnlyMessage?: React.ReactNode;
     /**
+     * Additional helper text placed under the field.
+     */
+    additionalHelperMessage?: React.ReactNode;
+    /**
      * Custom styles for the elements of LabeledField. Useful if there are
      * specific cases where spacing between elements needs to be customized.
      */
@@ -77,6 +81,7 @@ type Props = {
         description?: StyleType;
         error?: StyleType;
         readOnlyMessage?: StyleType;
+        additionalHelperMessage?: StyleType;
     };
     /**
      * A unique id to use as the base of the ids for the elements within the component.
@@ -86,6 +91,7 @@ type Props = {
      * - The field will have an id formatted as `${id}-field`
      * - The error will have an id formatted as `${id}-error`
      * - The read only message will have an id formatted as `${id}-read-only-message`
+     * - The additional helper message will have an id formatted as `${id}-additional-helper-message`
      *
      * If the `id` prop is not provided, a base unique id will be auto-generated.
      * This is important so that the different elements can be wired up together
@@ -103,6 +109,7 @@ type Props = {
      * - The field will have a testId formatted as `${testId}-field`
      * - The error will have a testId formatted as `${testId}-error`
      * - The read only message will have a testId formatted as `${testId}-read-only-message`
+     * - The additional helper message will have a testId formatted as `${testId}-additional-helper-message`
      */
     testId?: string;
     /**
@@ -140,6 +147,7 @@ export default function LabeledField(props: Props) {
         description,
         errorMessage,
         readOnlyMessage,
+        additionalHelperMessage,
         labels = defaultLabeledFieldLabels,
     } = props;
 
@@ -150,7 +158,7 @@ export default function LabeledField(props: Props) {
     const fieldId = `${uniqueId}-field`;
     const errorId = `${uniqueId}-error`;
     const readOnlyMessageId = `${uniqueId}-read-only-message`;
-
+    const additionalHelperMessageId = `${uniqueId}-additional-helper-message`;
     const isRequired = !!required || !!field.props.required;
     const hasError = !!errorMessage || !!field.props.error;
     const isDisabled = !!field.props.disabled;
@@ -273,6 +281,7 @@ export default function LabeledField(props: Props) {
             id: fieldId,
             "aria-describedby": [
                 description && descriptionId,
+                additionalHelperMessage && additionalHelperMessageId,
                 readOnlyMessage && readOnlyMessageId,
                 errorMessage && errorId,
             ]
@@ -314,11 +323,36 @@ export default function LabeledField(props: Props) {
         );
     }
 
+    function maybeRenderAdditionalHelperMessage() {
+        if (!additionalHelperMessage) {
+            return null;
+        }
+
+        return (
+            <View
+                style={[
+                    styles.helperTextSection,
+                    styles.helperTextSectionWithContent,
+                    stylesProp?.additionalHelperMessage,
+                ]}
+                id={additionalHelperMessageId}
+                testId={testId && `${testId}-additional-helper-message`}
+            >
+                <BodyText
+                    style={[styles.textWordBreak, styles.helperTextMessage]}
+                >
+                    {additionalHelperMessage}
+                </BodyText>
+            </View>
+        );
+    }
+
     return (
         <View style={stylesProp?.root}>
             {renderLabel()}
             {maybeRenderDescription()}
             {renderField()}
+            {maybeRenderAdditionalHelperMessage()}
             {maybeRenderReadOnlyMessage()}
             {maybeRenderError()}
         </View>
