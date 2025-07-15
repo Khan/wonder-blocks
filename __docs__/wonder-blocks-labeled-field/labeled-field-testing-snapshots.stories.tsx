@@ -288,10 +288,10 @@ const scenarios = [
 export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
     const [textFieldValue, setTextFieldValue] = React.useState("");
     return (
-        <View style={{width: "300px"}}>
+        <View>
             <ScenariosLayout
                 scenarios={scenarios}
-                styles={{root: {alignItems: "stretch", gap: sizing.size_400}}}
+                styles={{root: {alignItems: "stretch"}}}
             >
                 {(props) => (
                     <LabeledField
