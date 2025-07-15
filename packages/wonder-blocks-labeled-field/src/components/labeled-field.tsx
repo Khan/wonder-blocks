@@ -232,9 +232,9 @@ export default function LabeledField(props: Props) {
             <React.Fragment>
                 <View
                     style={[
-                        styles.helperTextSection,
+                        styles.helperTextWithIcon,
                         errorMessage
-                            ? styles.helperTextSectionWithContent
+                            ? styles.spacingAboveHelperText
                             : undefined,
                         stylesProp?.error,
                     ]}
@@ -302,8 +302,8 @@ export default function LabeledField(props: Props) {
         return (
             <View
                 style={[
-                    styles.helperTextSection,
-                    styles.helperTextSectionWithContent,
+                    styles.helperTextWithIcon,
+                    styles.spacingAboveHelperText,
                     stylesProp?.readOnlyMessage,
                 ]}
                 id={readOnlyMessageId}
@@ -329,22 +329,20 @@ export default function LabeledField(props: Props) {
         }
 
         return (
-            <View
-                style={[
-                    styles.helperTextSection,
-                    styles.helperTextSectionWithContent,
-                    isDisabled && styles.disabledHelperTextMessage,
-                    stylesProp?.additionalHelperMessage,
-                ]}
+            <BodyText
                 id={additionalHelperMessageId}
                 testId={testId && `${testId}-additional-helper-message`}
+                style={[
+                    styles.spacingAboveHelperText,
+                    isDisabled && styles.disabledHelperTextMessage,
+                    stylesProp?.additionalHelperMessage,
+                    styles.textWordBreak,
+                    styles.helperTextMessage,
+                ]}
+                tag="div"
             >
-                <BodyText
-                    style={[styles.textWordBreak, styles.helperTextMessage]}
-                >
-                    {additionalHelperMessage}
-                </BodyText>
-            </View>
+                {additionalHelperMessage}
+            </BodyText>
         );
     }
 
@@ -386,11 +384,11 @@ const styles = StyleSheet.create({
     disabledDescription: {
         color: theme.description.color.disabled.foreground,
     },
-    helperTextSection: {
+    helperTextWithIcon: {
         flexDirection: "row",
         gap: theme.helperText.layout.gap,
     },
-    helperTextSectionWithContent: {
+    spacingAboveHelperText: {
         paddingBlockStart:
             theme.root.layout.paddingBlockEnd.helperTextSectionWithContent,
     },
