@@ -325,9 +325,9 @@ export default function LabeledField(props: Props) {
                 id={additionalHelperMessageId}
                 testId={testId && `${testId}-additional-helper-message`}
                 style={[
+                    styles.helperTextMessage,
                     styles.spacingAboveHelperText,
                     isDisabled && styles.disabledHelperTextMessage,
-                    styles.helperTextMessage,
                     stylesProp?.additionalHelperMessage,
                 ]}
                 tag="div"
