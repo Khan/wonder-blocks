@@ -250,7 +250,7 @@ export default function LabeledField(props: Props) {
                         <>
                             <PhosphorIcon
                                 icon={WarningCircle}
-                                style={[styles.helperTextIcon, styles.error]}
+                                style={[styles.errorIcon, styles.error]}
                                 role="img"
                                 aria-label={labels.errorIconAriaLabel}
                             />
@@ -307,7 +307,6 @@ export default function LabeledField(props: Props) {
                     icon={LockIcon}
                     aria-label={labels.readOnlyIconAriaLabel}
                     color={semanticColor.core.foreground.neutral.subtle}
-                    style={styles.helperTextIcon}
                 />
                 <BodyText style={[styles.helperTextMessage]}>
                     {readOnlyMessage}
@@ -395,7 +394,7 @@ const styles = StyleSheet.create({
     error: {
         color: theme.error.color.foreground,
     },
-    helperTextIcon: {
+    errorIcon: {
         marginTop: sizing.size_010, // This vertically aligns the icon with the text
     },
     errorMessage: {
