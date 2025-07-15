@@ -6,10 +6,10 @@ export default mergeTheme(defaultTheme, {
     root: {
         layout: {
             paddingBlockEnd: {
-                labelWithDescription: sizing.size_100,
-                labelWithNoDescription: sizing.size_100,
+                labelWithDescription: sizing.size_040,
+                labelWithNoDescription: sizing.size_080,
             },
-            spacingBetweenHelperText: sizing.size_100,
+            spacingBetweenHelperText: sizing.size_080,
         },
     },
     label: {
