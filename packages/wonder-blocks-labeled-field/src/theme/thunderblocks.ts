@@ -58,5 +58,10 @@ export default mergeTheme(defaultTheme, {
             size: font.body.size.xsmall,
             lineHeight: font.body.lineHeight.xsmall,
         },
+        color: {
+            disabled: {
+                foreground: semanticColor.core.foreground.disabled.strong,
+            },
+        },
     },
 });

@@ -333,6 +333,7 @@ export default function LabeledField(props: Props) {
                 style={[
                     styles.helperTextSection,
                     styles.helperTextSectionWithContent,
+                    isDisabled && styles.disabledHelperTextMessage,
                     stylesProp?.additionalHelperMessage,
                 ]}
                 id={additionalHelperMessageId}
@@ -398,6 +399,9 @@ const styles = StyleSheet.create({
         lineHeight: theme.helperText.font.lineHeight,
         marginBlockStart: theme.helperText.layout.marginBlockStart,
         minWidth: sizing.size_0, // This enables the wrapping behaviour on the helper message
+    },
+    disabledHelperTextMessage: {
+        color: theme.helperText.color.disabled.foreground,
     },
     error: {
         color: theme.error.color.foreground,

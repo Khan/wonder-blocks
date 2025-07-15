@@ -55,6 +55,11 @@ const theme = {
             size: font.body.size.small,
             lineHeight: font.body.lineHeight.small,
         },
+        color: {
+            disabled: {
+                foreground: semanticColor.core.foreground.neutral.strong,
+            },
+        },
     },
 };
 
