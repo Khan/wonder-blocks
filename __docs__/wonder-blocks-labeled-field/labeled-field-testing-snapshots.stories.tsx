@@ -120,29 +120,6 @@ const scenarios = [
         },
     },
     {
-        name: "All properties disabled",
-        props: {
-            field: <TextField value="" onChange={() => {}} disabled />,
-            label: "Name",
-            description: "Helpful description text.",
-            errorMessage: "Message about the error",
-            required: "Custom required message",
-            additionalHelperMessage: "Additional helper message",
-            readOnlyMessage: "Read only message",
-        },
-    },
-    {
-        name: "All properties disabled without error",
-        props: {
-            field: <TextField value="" onChange={() => {}} disabled />,
-            label: "Name",
-            description: "Helpful description text.",
-            required: "Custom required message",
-            additionalHelperMessage: "Additional helper message",
-            readOnlyMessage: "Read only message",
-        },
-    },
-    {
         name: "Custom ReactNode elements",
         props: {
             label: (
@@ -215,6 +192,29 @@ const scenarios = [
         },
     },
     {
+        name: "All properties disabled",
+        props: {
+            field: <TextField value="" onChange={() => {}} disabled />,
+            label: "Name",
+            description: "Helpful description text.",
+            errorMessage: "Message about the error",
+            required: "Custom required message",
+            additionalHelperMessage: "Additional helper message",
+            readOnlyMessage: "Read only message",
+        },
+    },
+    {
+        name: "All properties disabled without error",
+        props: {
+            field: <TextField value="" onChange={() => {}} disabled />,
+            label: "Name",
+            description: "Helpful description text.",
+            required: "Custom required message",
+            additionalHelperMessage: "Additional helper message",
+            readOnlyMessage: "Read only message",
+        },
+    },
+    {
         name: "With read only message",
         props: {
             field: <TextField value="" onChange={() => {}} />,
@@ -255,6 +255,30 @@ const scenarios = [
             readOnlyMessage: "Message about the read only state",
         },
     },
+    {
+        name: "Additional helper message",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            additionalHelperMessage: "Additional helper message",
+        },
+    },
+    {
+        name: "Long additional helper message",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            additionalHelperMessage: longText,
+        },
+    },
+    {
+        name: "Long additional helper message and no word break",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            additionalHelperMessage: longTextWithNoWordBreak,
+        },
+    },
 ];
 
 /**
@@ -264,10 +288,10 @@ const scenarios = [
 export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
     const [textFieldValue, setTextFieldValue] = React.useState("");
     return (
-        <View style={{gap: sizing.size_240}}>
+        <View style={{width: "300px"}}>
             <ScenariosLayout
                 scenarios={scenarios}
-                styles={{root: {alignItems: "stretch"}}}
+                styles={{root: {alignItems: "stretch", gap: sizing.size_400}}}
             >
                 {(props) => (
                     <LabeledField
