@@ -131,7 +131,7 @@ const AllFields = (
         showSubmitButtonInStory?: boolean;
         disabled?: boolean;
         textValue?: string;
-        required?: boolean;
+        required?: boolean | string; // Used for the field component's required prop
     },
 ) => {
     const {
@@ -298,6 +298,7 @@ const AllFields = (
                         }
                         instantValidation={false}
                         disabled={disabled}
+                        required={args.required}
                     />
                 }
             />
@@ -317,6 +318,7 @@ const AllFields = (
                         }
                         instantValidation={false}
                         disabled={disabled}
+                        required={args.required}
                     />
                 }
             />
@@ -335,6 +337,7 @@ const AllFields = (
                         onValidate={setSingleSelectErrorMessage}
                         validate={singleSelectValidate}
                         disabled={disabled}
+                        required={args.required}
                     >
                         <OptionItem label="Mango" value="mango" />
                         <OptionItem label="Strawberry" value="strawberry" />
@@ -360,6 +363,7 @@ const AllFields = (
                                 : undefined
                         }
                         disabled={disabled}
+                        required={args.required}
                     >
                         <OptionItem label="Mango" value="mango" />
                         <OptionItem label="Strawberry" value="strawberry" />
@@ -466,7 +470,9 @@ export const Required: AllFieldsStoryComponentType = {
         description: "Helpful description text.",
         showSubmitButtonInStory: true,
     },
-    render: AllFields,
+    render: (args) => (
+        <AllFields {...args} required="Custom required error message" />
+    ),
 };
 
 /**
