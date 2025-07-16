@@ -253,6 +253,7 @@ export default function LabeledField(props: Props) {
         return React.cloneElement(field, {
             id: fieldId,
             "aria-describedby": [
+                contextLabel && contextLabelId,
                 description && descriptionId,
                 additionalHelperMessage && additionalHelperMessageId,
                 readOnlyMessage && readOnlyMessageId,
