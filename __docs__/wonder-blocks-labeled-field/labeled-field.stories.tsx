@@ -64,6 +64,7 @@ export const Default: StoryComponentType = {
         field: <TextField value="" onChange={() => {}} />,
         label: "Name",
         description: "Helpful description text.",
+        contextLabel: "Context label",
     },
 };
 
@@ -469,6 +470,7 @@ export const Required: AllFieldsStoryComponentType = {
     args: {
         description: "Helpful description text.",
         showSubmitButtonInStory: true,
+        contextLabel: "required",
     },
     render: (args) => (
         <AllFields {...args} required="Custom required error message" />
@@ -590,6 +592,11 @@ export const Custom = {
                 <b>Additional</b> <i>helper</i> <u>message</u>
             </span>
         ),
+        contextLabel: (
+            <span>
+                <b>Context</b> <i>label</i>
+            </span>
+        ),
     },
 };
 
@@ -608,6 +615,7 @@ export const CustomStyles = {
         description: "Helpful description text.",
         errorMessage: "Message about the error",
         additionalHelperMessage: "Additional helper message",
+        contextLabel: "Context label",
         styles: {
             root: {
                 padding: sizing.size_080,
@@ -623,6 +631,9 @@ export const CustomStyles = {
             },
             additionalHelperMessage: {
                 paddingBlockStart: sizing.size_020,
+            },
+            contextLabel: {
+                paddingInlineEnd: sizing.size_200,
             },
         },
     },
