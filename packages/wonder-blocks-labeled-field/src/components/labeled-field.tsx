@@ -149,25 +149,27 @@ export default function LabeledField(props: Props) {
 
     function renderLabel(): React.ReactNode {
         return (
-            <BodyText
-                style={[
-                    styles.label,
-                    description
-                        ? styles.labelWithDescription
-                        : styles.labelWithNoDescription,
-                    hasError ? styles.labelWithError : undefined,
-                    isDisabled && styles.disabledLabel,
-                    stylesProp?.label,
-                ]}
-                tag="label"
-                htmlFor={fieldId}
-                testId={testId && `${testId}-label`}
-                id={labelId}
-                weight="semi"
-            >
-                {label}
+            <View style={styles.labelContainer}>
                 <BodyText
-                    tag="span"
+                    style={[
+                        styles.label,
+                        description
+                            ? styles.labelWithDescription
+                            : styles.labelWithNoDescription,
+                        hasError ? styles.labelWithError : undefined,
+                        isDisabled && styles.disabledLabel,
+                        stylesProp?.label,
+                    ]}
+                    tag="label"
+                    htmlFor={fieldId}
+                    testId={testId && `${testId}-label`}
+                    id={labelId}
+                    weight="semi"
+                >
+                    {label}
+                </BodyText>
+                <BodyText
+                    tag="div"
                     id={contextLabelId}
                     testId={testId && `${testId}-context-label`}
                     style={[
@@ -178,7 +180,7 @@ export default function LabeledField(props: Props) {
                 >
                     {contextLabel}
                 </BodyText>
-            </BodyText>
+            </View>
         );
     }
 
@@ -188,68 +190,62 @@ export default function LabeledField(props: Props) {
         }
 
         return (
-            <React.Fragment>
-                <BodyText
-                    style={[
-                        styles.helperText,
-                        styles.spacingBelowHelperText,
-                        isDisabled && styles.disabledHelperText,
-                        stylesProp?.description,
-                    ]}
-                    testId={testId && `${testId}-description`}
-                    id={descriptionId}
-                >
-                    {description}
-                </BodyText>
-            </React.Fragment>
+            <BodyText
+                style={[
+                    styles.helperText,
+                    styles.spacingBelowHelperText,
+                    isDisabled && styles.disabledHelperText,
+                    stylesProp?.description,
+                ]}
+                testId={testId && `${testId}-description`}
+                id={descriptionId}
+            >
+                {description}
+            </BodyText>
         );
     }
 
     function maybeRenderError(): React.ReactNode | null | undefined {
         return (
-            <React.Fragment>
-                <View
-                    style={[
-                        styles.helperTextWithIcon,
-                        errorMessage
-                            ? styles.spacingAboveHelperText
-                            : undefined,
-                        stylesProp?.error,
-                    ]}
-                    id={errorId}
-                    testId={testId && `${testId}-error`}
-                    // We use aria-live="assertive" for the error so that it is
-                    // immediately announced and the user can address the issue
-                    // before submitting the form. We use aria-live=assertive
-                    // instead of role=alert because Safari + VoiceOver would
-                    // not read out the error when focused on if the element
-                    // referenced by the aria-describedby had role="alert".
-                    aria-live="assertive"
-                    // We add aria-atomic=true so that any updates to the error
-                    // is announced
-                    aria-atomic="true"
-                >
-                    {errorMessage && (
-                        <>
-                            <PhosphorIcon
-                                icon={WarningCircle}
-                                style={[styles.errorIcon, styles.error]}
-                                role="img"
-                                aria-label={labels.errorIconAriaLabel}
-                            />
-                            <BodyText
-                                style={[
-                                    styles.helperText,
-                                    styles.errorMessage,
-                                    styles.error,
-                                ]}
-                            >
-                                {errorMessage}
-                            </BodyText>
-                        </>
-                    )}
-                </View>
-            </React.Fragment>
+            <View
+                style={[
+                    styles.helperTextWithIcon,
+                    errorMessage ? styles.spacingAboveHelperText : undefined,
+                    stylesProp?.error,
+                ]}
+                id={errorId}
+                testId={testId && `${testId}-error`}
+                // We use aria-live="assertive" for the error so that it is
+                // immediately announced and the user can address the issue
+                // before submitting the form. We use aria-live=assertive
+                // instead of role=alert because Safari + VoiceOver would
+                // not read out the error when focused on if the element
+                // referenced by the aria-describedby had role="alert".
+                aria-live="assertive"
+                // We add aria-atomic=true so that any updates to the error
+                // is announced
+                aria-atomic="true"
+            >
+                {errorMessage && (
+                    <>
+                        <PhosphorIcon
+                            icon={WarningCircle}
+                            style={[styles.errorIcon, styles.error]}
+                            role="img"
+                            aria-label={labels.errorIconAriaLabel}
+                        />
+                        <BodyText
+                            style={[
+                                styles.helperText,
+                                styles.errorMessage,
+                                styles.error,
+                            ]}
+                        >
+                            {errorMessage}
+                        </BodyText>
+                    </>
+                )}
+            </View>
         );
     }
 
@@ -330,13 +326,15 @@ export default function LabeledField(props: Props) {
 }
 
 const styles = StyleSheet.create({
-    label: {
-        color: semanticColor.core.foreground.neutral.strong,
-        overflowWrap: "break-word",
+    labelContainer: {
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
         gap: theme.root.layout.spacingBetweenHelperText,
+    },
+    label: {
+        color: semanticColor.core.foreground.neutral.strong,
+        overflowWrap: "break-word",
     },
     contextLabel: {
         // Make the line height match the label so the context label is aligned
