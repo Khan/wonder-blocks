@@ -319,6 +319,22 @@ const scenarios = [
             contextLabel: longTextWithNoWordBreak,
         },
     },
+    {
+        name: "With long label and short context label",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: longText,
+            contextLabel: "Context",
+        },
+    },
+    {
+        name: "With long label with no word break and short context label",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: longTextWithNoWordBreak,
+            contextLabel: "Context",
+        },
+    },
 ];
 
 /**

@@ -336,11 +336,14 @@ const styles = StyleSheet.create({
     label: {
         color: semanticColor.core.foreground.neutral.strong,
         overflowWrap: "break-word",
+        minWidth: sizing.size_0, // This enables the wrapping behaviour
     },
     contextLabel: {
         // Make the line height match the label so the context label is aligned
         // with the label
         lineHeight: font.body.lineHeight.medium,
+        flexShrink: 0,
+        maxWidth: "50%",
     },
     labelWithError: {
         color: theme.label.color.error.foreground,
