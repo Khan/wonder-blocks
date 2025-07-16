@@ -78,7 +78,6 @@ const scenarios = [
     {
         name: "With long text",
         props: {
-            required: true,
             label: longText,
             errorMessage: longText,
             description: longText,
@@ -94,7 +93,6 @@ const scenarios = [
     {
         name: "With long text and no word break",
         props: {
-            required: true,
             label: longTextWithNoWordBreak,
             errorMessage: longTextWithNoWordBreak,
             description: longTextWithNoWordBreak,
@@ -114,7 +112,6 @@ const scenarios = [
             label: "Name",
             description: "Helpful description text.",
             errorMessage: "Message about the error",
-            required: "Custom required message",
             additionalHelperMessage: "Additional helper message",
             readOnlyMessage: "Read only message",
         },
@@ -157,7 +154,6 @@ const scenarios = [
             label: "Name",
             description: "Helpful description text.",
             errorMessage: "Message about the error",
-            required: "Custom required message",
             readOnlyMessage: "Message about the read only state",
             additionalHelperMessage: "Additional helper message",
             styles: {
@@ -189,7 +185,6 @@ const scenarios = [
             label: "Name",
             description: "Helpful description text.",
             additionalHelperMessage: "Additional helper message",
-            required: true,
         },
     },
     {
@@ -199,7 +194,6 @@ const scenarios = [
             label: "Name",
             description: "Helpful description text.",
             errorMessage: "Message about the error",
-            required: "Custom required message",
             additionalHelperMessage: "Additional helper message",
             readOnlyMessage: "Read only message",
         },
@@ -210,7 +204,6 @@ const scenarios = [
             field: <TextField value="Value" onChange={() => {}} disabled />,
             label: "Name",
             description: "Helpful description text.",
-            required: "Custom required message",
             additionalHelperMessage: "Additional helper message",
             readOnlyMessage: "Read only message",
         },
@@ -221,7 +214,6 @@ const scenarios = [
             field: <TextField value="" onChange={() => {}} />,
             label: "Name",
             description: "Helpful description text.",
-            required: true,
             readOnlyMessage: "Message about why it is read only",
         },
     },
@@ -231,7 +223,6 @@ const scenarios = [
             field: <TextField value="" onChange={() => {}} />,
             label: "Name",
             description: "Helpful description text.",
-            required: true,
             readOnlyMessage: longText,
         },
     },
@@ -241,7 +232,6 @@ const scenarios = [
             field: <TextField value="" onChange={() => {}} />,
             label: "Name",
             description: "Helpful description text.",
-            required: true,
             readOnlyMessage: longTextWithNoWordBreak,
         },
     },
@@ -252,7 +242,6 @@ const scenarios = [
             label: "Name",
             description: "Helpful description text.",
             errorMessage: "Message about the error",
-            required: "Custom required message",
             readOnlyMessage: "Message about the read only state",
         },
     },
