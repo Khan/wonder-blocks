@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import WarningCircle from "@phosphor-icons/core/bold/warning-circle-bold.svg";
 import LockIcon from "@phosphor-icons/core/bold/lock-bold.svg";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
-import {View, addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
+import {View, StyleType} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import theme from "../theme";
