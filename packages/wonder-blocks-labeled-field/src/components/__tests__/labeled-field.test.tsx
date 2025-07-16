@@ -735,45 +735,6 @@ describe("LabeledField", () => {
     });
 
     describe("Field", () => {
-        it.each([
-            {
-                required: true,
-                ariaRequired: "true",
-            },
-            {
-                required: false,
-                ariaRequired: "false",
-            },
-            {
-                required: undefined,
-                ariaRequired: "false",
-            },
-            {
-                required: "Custom required message",
-                ariaRequired: "true",
-            },
-        ])(
-            "should set aria-required to $ariaRequired on the field if LabeledField has the required set to $required",
-            ({required, ariaRequired}) => {
-                // Arrange
-                // Act
-                render(
-                    <LabeledField
-                        field={<TextField value="" onChange={() => {}} />}
-                        required={required}
-                        label="Label"
-                    />,
-                    defaultOptions,
-                );
-
-                // Assert
-                expect(screen.getByRole("textbox")).toHaveAttribute(
-                    "aria-required",
-                    ariaRequired,
-                );
-            },
-        );
-
         it("should set aria-invalid on the field if LabeledField has the errorMessage prop", () => {
             // Arrange
             // Act
@@ -794,51 +755,6 @@ describe("LabeledField", () => {
         });
 
         describe("Using props set on field", () => {
-            it("should set the required indicator if the field has the required prop set", async () => {
-                // Arrange
-                // Act
-                render(
-                    <LabeledField
-                        field={
-                            <TextField
-                                value=""
-                                onChange={() => {}}
-                                required="Required msg"
-                            />
-                        }
-                        label="Label"
-                    />,
-                    defaultOptions,
-                );
-
-                // Assert
-                await screen.findByLabelText("Label *");
-            });
-
-            it("should still set the field as required if it is set on the field and not LabeledField", () => {
-                // Arrange
-                // Act
-                render(
-                    <LabeledField
-                        field={
-                            <TextField
-                                value=""
-                                onChange={() => {}}
-                                required="Required msg"
-                            />
-                        }
-                        label="Label"
-                    />,
-                    defaultOptions,
-                );
-
-                // Assert
-                expect(screen.getByRole("textbox")).toHaveAttribute(
-                    "aria-required",
-                    "true",
-                );
-            });
-
             it("should still use the field's error prop if it is not set on LabeledField", () => {
                 // Arrange
                 // Act
@@ -862,76 +778,6 @@ describe("LabeledField", () => {
                     "true",
                 );
             });
-        });
-    });
-
-    describe("Custom required message", () => {
-        it("should show the custom required message if it is set on the field", async () => {
-            // Arrange
-            const requiredMessage = "Custom required message";
-
-            const ControlledLabeledFieldWithTextField = () => {
-                const [value, setValue] = React.useState("T");
-                const [errorMessage, setErrorMessage] = React.useState<
-                    string | null
-                >();
-                return (
-                    <LabeledField
-                        field={
-                            <TextField
-                                value={value}
-                                onChange={setValue}
-                                onValidate={setErrorMessage}
-                                required={requiredMessage}
-                            />
-                        }
-                        label="Label"
-                        errorMessage={errorMessage}
-                    />
-                );
-            };
-            render(<ControlledLabeledFieldWithTextField />, defaultOptions);
-            const field = await screen.findByRole("textbox");
-
-            // Act
-            await userEvent.type(field, "{backspace}");
-
-            // Assert
-            await screen.findByText(requiredMessage);
-        });
-
-        it("should show the custom required message if it is set on LabeledField", async () => {
-            // Arrange
-            const requiredMessage = "Custom required message";
-
-            const ControlledLabeledFieldWithTextField = () => {
-                const [value, setValue] = React.useState("T");
-                const [errorMessage, setErrorMessage] = React.useState<
-                    string | null
-                >();
-                return (
-                    <LabeledField
-                        field={
-                            <TextField
-                                value={value}
-                                onChange={setValue}
-                                onValidate={setErrorMessage}
-                            />
-                        }
-                        required={requiredMessage}
-                        label="Label"
-                        errorMessage={errorMessage}
-                    />
-                );
-            };
-            render(<ControlledLabeledFieldWithTextField />, defaultOptions);
-            const field = await screen.findByRole("textbox");
-
-            // Act
-            await userEvent.type(field, "{backspace}");
-
-            // Assert
-            await screen.findByText(requiredMessage);
         });
     });
 

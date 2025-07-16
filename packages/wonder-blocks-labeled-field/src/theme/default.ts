@@ -28,11 +28,6 @@ const theme = {
             weight: font.weight.regular,
         },
     },
-    requiredIndicator: {
-        color: {
-            foreground: semanticColor.core.foreground.critical.subtle,
-        },
-    },
     helperText: {
         layout: {
             gap: sizing.size_080,
