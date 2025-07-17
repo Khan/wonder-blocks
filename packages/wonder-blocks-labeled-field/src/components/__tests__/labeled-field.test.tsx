@@ -17,6 +17,7 @@ describe("LabeledField", () => {
     const testId = "test-id";
     const readOnlyMessage = "Read only message";
     const additionalHelperMessage = "Additional helper message";
+    const contextLabel = "Context label";
 
     const getLabel = () => screen.getByText(label);
     const getDescription = () => screen.getByText(description);
@@ -26,6 +27,7 @@ describe("LabeledField", () => {
         screen.getByTestId("test-id-read-only-message");
     const getAdditionalHelperMessage = () =>
         screen.getByText(additionalHelperMessage);
+    const getContextLabel = () => screen.getByText(contextLabel);
 
     it("LabeledField renders the label text", () => {
         // Arrange
@@ -184,6 +186,24 @@ describe("LabeledField", () => {
         expect(additionalHelperMessageEl).toBeInTheDocument();
     });
 
+    it("renders the context label", () => {
+        // Arrange
+        render(
+            <LabeledField
+                field={<TextField value="" onChange={() => {}} />}
+                label="Label"
+                contextLabel={contextLabel}
+            />,
+            defaultOptions,
+        );
+
+        // Act
+        const contextLabelEl = screen.getByText(contextLabel);
+
+        // Assert
+        expect(contextLabelEl).toBeInTheDocument();
+    });
+
     describe("Labels prop", () => {
         it("should use the errorIconAriaLabel for the error icon aria label", () => {
             // Arrange
@@ -269,6 +289,7 @@ describe("LabeledField", () => {
                     `${id}-additional-helper-message`,
                     getAdditionalHelperMessage,
                 ],
+                ["context label", `${id}-context-label`, getContextLabel],
             ])(
                 "should have the id for the %s element set to %s",
                 (
@@ -287,6 +308,7 @@ describe("LabeledField", () => {
                             testId={testId}
                             readOnlyMessage={readOnlyMessage}
                             additionalHelperMessage={additionalHelperMessage}
+                            contextLabel={contextLabel}
                         />,
                         defaultOptions,
                     );
@@ -310,6 +332,7 @@ describe("LabeledField", () => {
                     "-additional-helper-message",
                     getAdditionalHelperMessage,
                 ],
+                ["context label", "-context-label", getContextLabel],
             ])(
                 "should have an auto-generated id for the %s element that ends with %s",
                 (
@@ -327,6 +350,7 @@ describe("LabeledField", () => {
                             testId={testId}
                             readOnlyMessage={readOnlyMessage}
                             additionalHelperMessage={additionalHelperMessage}
+                            contextLabel={contextLabel}
                         />,
                         defaultOptions,
                     );
@@ -356,6 +380,7 @@ describe("LabeledField", () => {
                     `${testId}-additional-helper-message`,
                     getAdditionalHelperMessage,
                 ],
+                ["context label", `${testId}-context-label`, getContextLabel],
             ])(
                 "should use the testId prop to set the %s element's data-testid attribute to %s",
                 (
@@ -373,6 +398,7 @@ describe("LabeledField", () => {
                             errorMessage={errorMessage}
                             readOnlyMessage={readOnlyMessage}
                             additionalHelperMessage={additionalHelperMessage}
+                            contextLabel={contextLabel}
                         />,
                         defaultOptions,
                     );
@@ -423,6 +449,7 @@ describe("LabeledField", () => {
                     },
                 ],
                 ["additional helper message", getAdditionalHelperMessage],
+                ["context label", getContextLabel],
             ])(
                 "should not set the data-testid attribute on the %s element if the testId prop is not set",
                 (
@@ -438,6 +465,7 @@ describe("LabeledField", () => {
                             errorMessage={errorMessage}
                             readOnlyMessage={readOnlyMessage}
                             additionalHelperMessage={additionalHelperMessage}
+                            contextLabel={contextLabel}
                         />,
                         defaultOptions,
                     );
@@ -680,12 +708,35 @@ describe("LabeledField", () => {
                 );
             });
 
+            it("Should set aria-describedby on the field to the id of the context label", () => {
+                // Arrange
+                render(
+                    <LabeledField
+                        field={<TextField value="" onChange={() => {}} />}
+                        label="Label"
+                        contextLabel={contextLabel}
+                    />,
+                    defaultOptions,
+                );
+
+                // Act
+                const contextLabelEl = screen.getByText(contextLabel);
+                const inputEl = screen.getByRole("textbox");
+
+                // Assert
+                expect(inputEl).toHaveAttribute(
+                    "aria-describedby",
+                    contextLabelEl.id,
+                );
+            });
+
             it("Should support multiple aria-describedby attributes on the field", () => {
                 // Arrange
                 const readOnlyMessage = "Read only message";
                 const errorMessage = "Error message";
                 const description = "Description of the field";
                 const id = "example-id";
+                const contextLabel = "Context label";
                 render(
                     <LabeledField
                         field={<TextField value="" onChange={() => {}} />}
@@ -695,6 +746,7 @@ describe("LabeledField", () => {
                         description={description}
                         additionalHelperMessage="Additional helper message"
                         id={id}
+                        contextLabel={contextLabel}
                     />,
                     defaultOptions,
                 );
@@ -706,6 +758,7 @@ describe("LabeledField", () => {
                 expect(field).toHaveAttribute(
                     "aria-describedby",
                     [
+                        `${id}-context-label`,
                         `${id}-description`,
                         `${id}-additional-helper-message`,
                         `${id}-read-only-message`,
