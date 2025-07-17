@@ -122,10 +122,9 @@ type RenderProps = {
     title: React.ReactNode | string;
 };
 /**
- * A more flexible modal variant: no header, optional title, optional footer.
- *
- * The content of the dialog itself is fully customizable, but the
- * left/right/top/bottom padding is fixed.
+ * A more flexible modal variant with fewer layout constraints. It can receive
+ * a custom background (image or color), a main title heading optionally as a
+ * content slot, and an optional footer.
  *
  * One of the following is required for labeling the dialog:
  * - title content (React node or string)
