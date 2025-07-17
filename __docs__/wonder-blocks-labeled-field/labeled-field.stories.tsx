@@ -418,6 +418,7 @@ const AllFields = (
 export const Fields: StoryComponentType = {
     args: {
         description: "Helpful description text.",
+        contextLabel: "Context label",
     },
     render: (args) => {
         return (
