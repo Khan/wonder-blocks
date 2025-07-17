@@ -211,6 +211,7 @@ export const WithLabeledField: StoryComponentType = {
                 }
                 description="Description"
                 errorMessage={errorMessage}
+                contextLabel="required"
             />
         );
     },
