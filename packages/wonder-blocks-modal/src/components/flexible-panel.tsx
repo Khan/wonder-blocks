@@ -106,8 +106,6 @@ type Props = {
  *
  * If you are creating a custom Dialog, make sure to follow these guidelines:
  * - Make sure to add this component inside the [ModalDialog](/#modaldialog).
- * - If needed, you can also add a [FlexibleHeader](/#Flexibleheader) using the
- *   `header` prop. Same goes for [FlexibleFooter](/#Flexiblefooter).
  * - If you need to create e2e tests, make sure to pass a `testId` prop. This
  *   will be passed down to this component using a sufix: e.g.
  *   `some-random-id-FlexiblePanel`. This scope will be propagated to the
