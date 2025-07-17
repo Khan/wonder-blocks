@@ -5,13 +5,48 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {StyleSheet} from "aphrodite";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {Heading} from "@khanacademy/wonder-blocks-typography";
 import ModalContent from "./modal-content";
-import FlexibleHeader from "./flexible-header";
 import FlexibleFooter from "./flexible-footer";
 import CloseButton from "./close-button";
 import theme from "../theme";
 
+export type BackgroundStyles = {
+    /**
+     * The background color of the panel. Defaults to semanticColor.surface.primary.
+     */
+    backgroundColor?: string;
+    /**
+     * The background image URL or gradient.
+     */
+    backgroundImage?: string;
+    /**
+     * How the background image should be repeated.
+     */
+    backgroundRepeat?: "repeat" | "no-repeat" | "repeat-x" | "repeat-y";
+    /**
+     * How the background image should be positioned.
+     */
+    backgroundPosition?: string;
+    /**
+     * How the background image should be sized.
+     */
+    backgroundSize?: string;
+    /**
+     * How the background image should fit within its container.
+     */
+    objectFit?: "fill" | "contain" | "cover" | "none" | "scale-down";
+};
+
 type Props = {
+    /**
+     * The main heading of the FlexiblePanel. Used to label the dialog.
+     */
+    mainHeadingContent?: React.ReactNode | string;
+    /**
+     * Optional id reference for the main heading to label the parent dialog via aria-labelledby.
+     */
+    titleId?: string;
     /**
      * The main contents of the FlexiblePanel. All other parts of the panel
      * are positioned around it.
@@ -20,11 +55,10 @@ type Props = {
         | React.ReactElement<PropsFor<typeof ModalContent>>
         | React.ReactNode;
     /**
-     * The modal header to show at the top of the panel.
+     * The optional background styles for the panel.
+     * If not provided, defaults to semanticColor.surface.primary background color.
      */
-    header?:
-        | React.ReactElement<PropsFor<typeof FlexibleHeader>>
-        | React.ReactNode;
+    backgroundStyles?: BackgroundStyles;
     /**
      * A footer to show beneath the contents.
      */
@@ -82,15 +116,25 @@ type Props = {
  * ```
  */
 export default function FlexiblePanel({
+    backgroundStyles,
     closeButtonVisible = true,
     scrollOverflow = true,
     content,
+    titleId,
+    mainHeadingContent,
     footer,
-    header,
     onClose,
     style,
     testId,
 }: Props) {
+    const renderMainHeading = () => {
+        if (typeof mainHeadingContent === "string") {
+            return <Heading id={titleId}>{mainHeadingContent}</Heading>;
+        } else {
+            // apply an ID to the heading content for aria-labelledby
+            return <div id={titleId}>{mainHeadingContent}</div>;
+        }
+    };
     const renderMainContent = React.useCallback((): React.ReactNode => {
         const mainContent = ModalContent.isComponentOf(content) ? (
             (content as React.ReactElement<PropsFor<typeof ModalContent>>)
@@ -113,11 +157,21 @@ export default function FlexiblePanel({
         });
     }, [content, footer, scrollOverflow]);
 
+    const mainHeading = renderMainHeading();
     const mainContent = renderMainContent();
+
+    const defaultBackgroundStyle = {
+        backgroundColor: semanticColor.surface.primary,
+    };
+
+    const combinedBackgroundStyles = {
+        ...defaultBackgroundStyle,
+        ...backgroundStyles,
+    };
 
     return (
         <View
-            style={[styles.wrapper, style]}
+            style={[styles.wrapper, combinedBackgroundStyles, style]}
             testId={testId && `${testId}-panel`}
         >
             {closeButtonVisible && (
@@ -127,7 +181,7 @@ export default function FlexiblePanel({
                     testId={testId && `${testId}-close`}
                 />
             )}
-            {header}
+            {mainHeading}
             {mainContent}
             {!footer || FlexibleFooter.isComponentOf(footer) ? (
                 footer
@@ -147,7 +201,6 @@ const styles = StyleSheet.create({
     wrapper: {
         flex: "1 1 auto",
         flexDirection: "column",
-        background: semanticColor.surface.primary,
         boxSizing: "border-box",
         overflow: "hidden",
         height: "100%",

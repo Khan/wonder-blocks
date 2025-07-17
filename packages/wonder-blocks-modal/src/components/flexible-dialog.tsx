@@ -1,23 +1,27 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {Breadcrumbs} from "@khanacademy/wonder-blocks-breadcrumbs";
-import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {Id} from "@khanacademy/wonder-blocks-core";
+import {breakpoint} from "@khanacademy/wonder-blocks-tokens";
 import ModalDialog from "./modal-dialog";
-import FlexiblePanel from "./flexible-panel";
-import FlexibleHeader from "./flexible-header";
+import FlexiblePanel, {BackgroundStyles} from "./flexible-panel";
 
-type Common = {
+type Props = {
     /**
-     * The content of the modal, appearing between the titlebar and footer.
+     * The main heading of the modal, for labeling the dialog.
+     * If a string, an ID will be generated for the heading for aria-labelleby on the dialog.
+     */
+    mainHeadingContent: React.ReactNode | string;
+    /**
+     * An optional id parameter for the main heading. If one is not provided,
+     * an ID will be generated.
+     */
+    titleId?: string;
+    /**
+     * The content of the modal.
      */
     content: React.ReactNode;
-    /**
-     * The title of the modal, appearing in the titlebar.
-     */
-    title: string;
     /**
      * The content of the modal's footer. A great place for buttons!
      *
@@ -25,6 +29,11 @@ type Common = {
      * provide a container element with 100% width.
      */
     footer?: React.ReactNode;
+    /**
+     * The background styles for the modal panel.
+     * If not provided, defaults to semanticColor.surface.primary background color.
+     */
+    backgroundStyles?: BackgroundStyles;
     /**
      * Called when the close button is clicked.
      *
@@ -67,40 +76,24 @@ type Common = {
      */
     testId?: string;
     /**
-     * An optional id parameter for the title. If one is
-     * not provided, a unique id will be generated.
+     * The accessible name of the modal.
+     * This is useful when there is no main heading in the dialog. But a visible
+     * heading with an id is preferred for automatic matching with aria-labelledby.
      */
-    titleId?: string;
+    "aria-label"?: string;
     /**
      * The ID of the content describing this dialog, if applicable.
      */
     "aria-describedby"?: string;
 };
 
-type WithSubtitle = Common & {
-    /**
-     * The subtitle of the modal, appearing in the titlebar, below the title.
-     */
-    subtitle: string;
-};
-
-type WithBreadcrumbs = Common & {
-    /**
-     * Adds a breadcrumb-trail, appearing in the FlexibleHeader, above the title.
-     */
-    breadcrumbs: React.ReactElement<React.ComponentProps<typeof Breadcrumbs>>;
-};
-
-type Props = Common | WithSubtitle | WithBreadcrumbs;
-
 type DefaultProps = {
     closeButtonVisible: Props["closeButtonVisible"];
 };
 
 /**
- * This is the new flexible layout for modal experiences.
+ * A more flexible modal variant with fewer requirements: no header, optional footer.
  *
- * The FlexibleHeader is required, but the ModalFooter is optional.
  * The content of the dialog itself is fully customizable, but the
  * left/right/top/bottom padding is fixed.
  *
@@ -111,8 +104,8 @@ type DefaultProps = {
  * import {BodyText} from "@khanacademy/wonder-blocks-typography";
  *
  * <FlexibleDialog
- *     title="Some title"
  *     content={
+ *         <Heading size="xxlarge" id="main-heading">Select mission</Heading>
  *         <BodyText>
  *             {`Lorem ipsum dolor sit amet, consectetur adipiscing
  *             elit, sed do eiusmod tempor incididunt ut labore et
@@ -133,55 +126,11 @@ export default class FlexibleDialog extends React.Component<Props> {
         closeButtonVisible: true,
     };
 
-    renderHeader(
-        uniqueId: string,
-    ): React.ReactElement<React.ComponentProps<typeof FlexibleHeader>> {
-        const {
-            title,
-            // @ts-expect-error [FEI-5019] - TS2339 - Property 'breadcrumbs' does not exist on type 'Readonly<Props> & Readonly<{ children?: ReactNode; }>'.
-            breadcrumbs = undefined,
-            // @ts-expect-error [FEI-5019] - TS2339 - Property 'subtitle' does not exist on type 'Readonly<Props> & Readonly<{ children?: ReactNode; }>'.
-            subtitle = undefined,
-            testId,
-        } = this.props;
-
-        if (breadcrumbs) {
-            return (
-                <FlexibleHeader
-                    title={title}
-                    breadcrumbs={
-                        breadcrumbs as React.ReactElement<
-                            React.ComponentProps<typeof Breadcrumbs>
-                        >
-                    }
-                    titleId={uniqueId}
-                    testId={testId && `${testId}-header`}
-                />
-            );
-        } else if (subtitle) {
-            return (
-                <FlexibleHeader
-                    title={title}
-                    subtitle={subtitle as string}
-                    titleId={uniqueId}
-                    testId={testId && `${testId}-header`}
-                />
-            );
-        } else {
-            return (
-                <FlexibleHeader
-                    title={title}
-                    titleId={uniqueId}
-                    testId={testId && `${testId}-header`}
-                />
-            );
-        }
-    }
-
     render(): React.ReactNode {
         const {
             onClose,
             footer,
+            mainHeadingContent,
             content,
             above,
             below,
@@ -190,55 +139,51 @@ export default class FlexibleDialog extends React.Component<Props> {
             testId,
             titleId,
             role,
+            backgroundStyles,
+            "aria-label": ariaLabel,
             "aria-describedby": ariaDescribedBy,
         } = this.props;
 
         return (
-            <MediaLayout styleSheets={styleSheets}>
-                {({styles}) => (
-                    <Id id={titleId}>
-                        {(uniqueId) => (
-                            <ModalDialog
-                                style={[styles.dialog, style]}
-                                above={above}
-                                below={below}
-                                testId={testId}
-                                aria-labelledby={uniqueId}
-                                aria-describedby={ariaDescribedBy}
-                                role={role}
-                            >
-                                <FlexiblePanel
-                                    onClose={onClose}
-                                    header={this.renderHeader(uniqueId)}
-                                    content={content}
-                                    footer={footer}
-                                    closeButtonVisible={closeButtonVisible}
-                                    testId={testId}
-                                />
-                            </ModalDialog>
-                        )}
-                    </Id>
+            <Id id={titleId}>
+                {(uniqueId) => (
+                    <ModalDialog
+                        style={[componentStyles.dialog, style]}
+                        above={above}
+                        below={below}
+                        testId={testId}
+                        aria-label={ariaLabel}
+                        aria-labelledby={uniqueId}
+                        aria-describedby={ariaDescribedBy}
+                        role={role}
+                    >
+                        <FlexiblePanel
+                            backgroundStyles={backgroundStyles}
+                            onClose={onClose}
+                            mainHeadingContent={mainHeadingContent}
+                            content={content}
+                            footer={footer}
+                            closeButtonVisible={closeButtonVisible}
+                            testId={testId}
+                        />
+                    </ModalDialog>
                 )}
-            </MediaLayout>
+            </Id>
         );
     }
 }
 
-const styleSheets = {
-    small: StyleSheet.create({
-        dialog: {
+const componentStyles = StyleSheet.create({
+    dialog: {
+        width: "93.75%",
+        maxWidth: 576,
+        height: "81.25%",
+        maxHeight: 624,
+
+        [breakpoint.mediaQuery.sm]: {
             width: "100%",
             height: "100%",
             overflow: "hidden",
         },
-    }),
-
-    mdOrLarger: StyleSheet.create({
-        dialog: {
-            width: "93.75%",
-            maxWidth: 576,
-            height: "81.25%",
-            maxHeight: 624,
-        },
-    }),
-} as const;
+    },
+});

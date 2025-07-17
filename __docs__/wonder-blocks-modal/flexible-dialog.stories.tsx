@@ -3,15 +3,10 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {
-    Breadcrumbs,
-    BreadcrumbsItem,
-} from "@khanacademy/wonder-blocks-breadcrumbs";
-import Button from "@khanacademy/wonder-blocks-button";
+import Button, {ActivityButton} from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Link from "@khanacademy/wonder-blocks-link";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {BodyText} from "@khanacademy/wonder-blocks-typography";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 
 import {ModalLauncher, FlexibleDialog} from "@khanacademy/wonder-blocks-modal";
 import packageConfig from "../../packages/wonder-blocks-modal/package.json";
@@ -19,6 +14,9 @@ import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 import ComponentInfo from "../components/component-info";
 import FlexibleDialogArgTypes from "./flexible-dialog.argtypes";
 import {allModes} from "../../.storybook/modes";
+
+import celebrationBg from "../../static/celebration_bg.svg";
+import celebrationChest from "../../static/celebration-chest.svg";
 
 const customViewports = {
     phone: {
@@ -97,8 +95,10 @@ export const Default: StoryComponentType = {
     ),
     args: {
         content: (
-            <BodyText>
-                {`Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            <>
+                <Heading>Some title</Heading>
+                <BodyText>
+                    {`Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                 sed do eiusmod tempor incididunt ut labore et dolore magna
                 aliqua. Ut enim ad minim veniam, quis nostrud exercitation
                 ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -106,40 +106,70 @@ export const Default: StoryComponentType = {
                 esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
                 occaecat cupidatat non proident, sunt in culpa qui officia
                 deserunt mollit anim id est.`}
-            </BodyText>
+                </BodyText>
+            </>
         ),
-        title: "Some title",
     },
 };
 
-export const Simple: StoryComponentType = () => (
+const celebrationBgStyle = {
+    backgroundColor: "#FCE6F7", // fallback color
+    backgroundImage: `url(${celebrationBg})`,
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+} as const;
+
+export const CelebrationModal: StoryComponentType = () => (
     <View style={styles.previewSizer}>
         <View style={styles.modalPositioner}>
             <FlexibleDialog
-                title="Hello, world! Here is an example of a long title that wraps to the next line."
+                style={styles.celebrationModal}
+                backgroundStyles={celebrationBgStyle}
                 content={
-                    <BodyText>
-                        {`Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat. Duis aute irure
-                            dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur
-                            sint occaecat cupidatat non proident, sunt in culpa
-                            qui officia deserunt mollit anim id est.`}
-                    </BodyText>
+                    <View style={styles.centered}>
+                        <img src={celebrationChest} width="280px" alt="" />
+                        <Heading
+                            size="xxlarge"
+                            weight="bold"
+                            id="gem-challenge-completed-modal-heading"
+                            tag="h2"
+                        >
+                            Congrats Rainier McCheddarton!
+                        </Heading>
+                        <Heading
+                            size="large"
+                            weight="bold"
+                            style={{
+                                marginBlock: sizing.size_240,
+                                textAlign: "center",
+                            }}
+                        >
+                            Your class, Advanced Calculus, reached 1500 of 1500
+                            gems
+                        </Heading>
+                        <ActivityButton
+                            kind="primary"
+                            styles={{
+                                root: {
+                                    marginBlockStart: 20,
+                                    alignSelf: "center",
+                                },
+                            }}
+                            onClick={() => {}}
+                        >
+                            Continue
+                        </ActivityButton>
+                    </View>
                 }
             />
         </View>
     </View>
 );
 
-Simple.parameters = {
+CelebrationModal.parameters = {
     docs: {
         description: {
-            story: `This is the most basic FlexibleDialog, with just
-            the title and content.`,
+            story: `A FlexibleDialog with full-bleed background image and custom contents.`,
         },
     },
 };
@@ -148,10 +178,11 @@ export const WithFooter: StoryComponentType = () => (
     <View style={styles.previewSizer}>
         <View style={styles.modalPositioner}>
             <FlexibleDialog
-                title="Hello, world!"
                 content={
-                    <BodyText>
-                        {`Lorem ipsum dolor sit amet, consectetur adipiscing
+                    <>
+                        <Heading>Hello, world!</Heading>
+                        <BodyText>
+                            {`Lorem ipsum dolor sit amet, consectetur adipiscing
                             elit, sed do eiusmod tempor incididunt ut labore et
                             dolore magna aliqua. Ut enim ad minim veniam,
                             quis nostrud exercitation ullamco laboris nisi ut
@@ -160,7 +191,8 @@ export const WithFooter: StoryComponentType = () => (
                             cillum dolore eu fugiat nulla pariatur. Excepteur
                             sint occaecat cupidatat non proident, sunt in culpa
                             qui officia deserunt mollit anim id est.`}
-                    </BodyText>
+                        </BodyText>
+                    </>
                 }
                 footer={
                     <View style={styles.footer}>
@@ -179,81 +211,6 @@ export const WithFooter: StoryComponentType = () => (
 WithFooter.parameters = {
     docs: {
         description: {story: `This FlexibleDialog includes a custom footer.`},
-    },
-};
-
-export const WithSubtitle: StoryComponentType = () => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
-            <FlexibleDialog
-                title="Hello, world!"
-                content={
-                    <BodyText>
-                        {`Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat. Duis aute irure
-                            dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur
-                            sint occaecat cupidatat non proident, sunt in culpa
-                            qui officia deserunt mollit anim id est.`}
-                    </BodyText>
-                }
-                subtitle={
-                    "Subtitle that provides additional context to the title"
-                }
-            />
-        </View>
-    </View>
-);
-
-WithSubtitle.parameters = {
-    docs: {
-        description: {story: `This FlexibleDialog includes a custom subtitle.`},
-    },
-};
-
-export const WithBreadcrumbs: StoryComponentType = () => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
-            <FlexibleDialog
-                title="Hello, world!"
-                content={
-                    <BodyText>
-                        {`Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat. Duis aute irure
-                            dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur
-                            sint occaecat cupidatat non proident, sunt in culpa
-                            qui officia deserunt mollit anim id est.`}
-                    </BodyText>
-                }
-                breadcrumbs={
-                    <Breadcrumbs>
-                        <BreadcrumbsItem>
-                            <Link href="#course">Course</Link>
-                        </BreadcrumbsItem>
-                        <BreadcrumbsItem>
-                            <Link href="#unit">Unit</Link>
-                        </BreadcrumbsItem>
-                        <BreadcrumbsItem>Lesson</BreadcrumbsItem>
-                    </Breadcrumbs>
-                }
-            />
-        </View>
-    </View>
-);
-
-WithBreadcrumbs.parameters = {
-    docs: {
-        description: {
-            story: `This FlexibleDialog includes a custom Breadcrumbs
-            element.`,
-        },
     },
 };
 
@@ -280,9 +237,9 @@ export const WithAboveAndBelow: StoryComponentType = () => {
         <View style={styles.previewSizer}>
             <View style={styles.modalPositioner}>
                 <FlexibleDialog
-                    title="Single-line title"
                     content={
                         <View style={{gap: sizing.size_160}}>
+                            <Heading>Single-line title</Heading>
                             <BodyText>
                                 {`Lorem ipsum dolor sit amet, consectetur
                             adipiscing elit, sed do eiusmod tempor incididunt
@@ -349,10 +306,11 @@ export const WithStyle: StoryComponentType = () => (
     <View style={styles.previewSizer}>
         <View style={styles.modalPositioner}>
             <FlexibleDialog
-                title="Hello, world!"
                 content={
-                    <BodyText>
-                        {`Lorem ipsum dolor sit amet, consectetur adipiscing
+                    <>
+                        <Heading>Hello, world!</Heading>
+                        <BodyText>
+                            {`Lorem ipsum dolor sit amet, consectetur adipiscing
                             elit, sed do eiusmod tempor incididunt ut labore et
                             dolore magna aliqua. Ut enim ad minim veniam,
                             quis nostrud exercitation ullamco laboris nisi ut
@@ -361,7 +319,8 @@ export const WithStyle: StoryComponentType = () => (
                             cillum dolore eu fugiat nulla pariatur. Excepteur
                             sint occaecat cupidatat non proident, sunt in culpa
                             qui officia deserunt mollit anim id est.`}
-                    </BodyText>
+                        </BodyText>
+                    </>
                 }
                 style={{
                     color: semanticColor.status.notice.foreground,
@@ -382,7 +341,7 @@ WithStyle.parameters = {
     },
 };
 
-export const FlexibleModal: StoryComponentType = () => {
+export const MultiStepModal: StoryComponentType = () => {
     const styles = StyleSheet.create({
         example: {
             padding: sizing.size_320,
@@ -391,12 +350,6 @@ export const FlexibleModal: StoryComponentType = () => {
         row: {
             flexDirection: "row",
             justifyContent: "flex-end",
-        },
-        footer: {
-            alignItems: "center",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            width: "100%",
         },
     });
 
@@ -416,28 +369,34 @@ export const FlexibleModal: StoryComponentType = () => {
 
         return (
             <FlexibleDialog
-                title="Exercises"
                 content={
-                    <View>
-                        <BodyText>
-                            This is the current question: {question}
-                        </BodyText>
-                    </View>
-                }
-                footer={
-                    <View style={styles.footer}>
-                        <BodyText weight="bold">
-                            Step {current + 1} of {total}
-                        </BodyText>
-                        <View style={styles.row}>
-                            <Button kind="tertiary" onClick={handlePrevButton}>
-                                Previous
-                            </Button>
-                            <Button kind="primary" onClick={handleNextButton}>
-                                Next
-                            </Button>
+                    <>
+                        <View>
+                            <Heading id="heading-1">Exercises</Heading>
+                            <BodyText>
+                                This is the current question: {question}
+                            </BodyText>
                         </View>
-                    </View>
+                        <View style={styles.footer}>
+                            <BodyText weight="bold">
+                                Step {current + 1} of {total}
+                            </BodyText>
+                            <View style={styles.row}>
+                                <Button
+                                    kind="tertiary"
+                                    onClick={handlePrevButton}
+                                >
+                                    Previous
+                                </Button>
+                                <Button
+                                    kind="primary"
+                                    onClick={handleNextButton}
+                                >
+                                    Next
+                                </Button>
+                            </View>
+                        </View>
+                    </>
                 }
             />
         );
@@ -475,7 +434,7 @@ export const FlexibleModal: StoryComponentType = () => {
                 }
             >
                 {({openModal}) => (
-                    <Button onClick={openModal}>Open flexible modal</Button>
+                    <Button onClick={openModal}>Open multi-step modal</Button>
                 )}
             </ModalLauncher>
         );
@@ -494,7 +453,7 @@ export const FlexibleModal: StoryComponentType = () => {
     );
 };
 
-FlexibleModal.parameters = {
+MultiStepModal.parameters = {
     chromatic: {
         // This example is behavior based, not visual.
         disableSnapshot: true,
@@ -516,10 +475,11 @@ export const WithLauncher: StoryComponentType = () => {
 
     const MyModal = ({closeModal}: MyModalProps): React.ReactElement => (
         <FlexibleDialog
-            title="Single-line title"
             content={
-                <BodyText>
-                    {`Lorem ipsum dolor sit amet, consectetur
+                <>
+                    <Heading>Single-line title</Heading>
+                    <BodyText>
+                        {`Lorem ipsum dolor sit amet, consectetur
                     adipiscing elit, sed do eiusmod tempor incididunt
                     ut labore et dolore magna aliqua. Ut enim ad minim
                     veniam, quis nostrud exercitation ullamco laboris
@@ -529,9 +489,12 @@ export const WithLauncher: StoryComponentType = () => {
                     Excepteur sint occaecat cupidatat non proident,
                     sunt in culpa qui officia deserunt mollit anim id
                     est.`}
-                </BodyText>
+                    </BodyText>
+                    <View>
+                        <Button onClick={closeModal}>Close</Button>
+                    </View>
+                </>
             }
-            footer={<Button onClick={closeModal}>Close</Button>}
         />
     );
 
@@ -584,6 +547,12 @@ const styles = StyleSheet.create({
         top: 0,
         bottom: 0,
     },
+    centered: {
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 0,
+        textAlign: "center",
+    },
     previewSizer: {
         minHeight: 600,
         width: "100%",
@@ -598,5 +567,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         width: "100%",
+    },
+    celebrationModal: {
+        maxWidth: 1024,
     },
 });
