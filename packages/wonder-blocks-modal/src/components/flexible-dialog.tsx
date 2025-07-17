@@ -1,27 +1,63 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {PropsFor, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {Id} from "@khanacademy/wonder-blocks-core";
 import {breakpoint} from "@khanacademy/wonder-blocks-tokens";
+import {Heading} from "@khanacademy/wonder-blocks-typography";
 import ModalDialog from "./modal-dialog";
 import FlexiblePanel, {BackgroundStyles} from "./flexible-panel";
 
-type Props = {
+/**
+ * The visible title content for the dialog. An ID will be automatically applied
+ * for aria-labelledby on the dialog to the heading content or a div wrapper.
+ */
+type TitleOnly = {
+    title: React.ReactNode;
+    "aria-label"?: never;
+    "aria-labelledby"?: never;
+};
+/**
+ * The optional accessible name of the modal.
+ * This is useful when there is no main heading in the dialog. A visible
+ * heading with an id is preferred for automatic matching with aria-labelledby.
+ */
+type AriaLabelOnly = {
+    title?: never;
+    "aria-label": string;
+    "aria-labelledby"?: never;
+};
+/**
+ * The optional ID of the content describing this dialog, if applicable.
+ */
+type AriaLabelledByOnly = {
+    title?: never;
+    "aria-label"?: never;
+    "aria-labelledby": string;
+};
+/**
+ * One of the labeling methods is required:
+ */
+type AccessibleLabelProps = TitleOnly | AriaLabelOnly | AriaLabelledByOnly;
+
+type Props = AccessibleLabelProps & {
     /**
      * The main heading of the modal, for labeling the dialog.
-     * If a string, an ID will be generated for the heading for aria-labelleby on the dialog.
+     * If string content, an ID will be generated for the heading for aria-labelledby on the dialog.
+     * If a node, an ID will be applied to a DIV wrapping the node.
      */
-    mainHeadingContent: React.ReactNode | string;
+    title?: React.ReactNode | string;
     /**
      * An optional id parameter for the main heading. If one is not provided,
      * an ID will be generated.
      */
     titleId?: string;
     /**
-     * The content of the modal.
+     * The content of the modal. Supports a render prop for placing the title in a slot.
      */
-    content: React.ReactNode;
+    content:
+        | React.ReactElement<PropsFor<typeof FlexiblePanel>>
+        | ((slots: RenderProps) => React.ReactNode);
     /**
      * The content of the modal's footer. A great place for buttons!
      *
@@ -75,27 +111,21 @@ type Props = {
      * Test ID used for e2e testing. This ID will be passed down to the Dialog.
      */
     testId?: string;
-    /**
-     * The accessible name of the modal.
-     * This is useful when there is no main heading in the dialog. But a visible
-     * heading with an id is preferred for automatic matching with aria-labelledby.
-     */
-    "aria-label"?: string;
-    /**
-     * The ID of the content describing this dialog, if applicable.
-     */
-    "aria-describedby"?: string;
 };
 
-type DefaultProps = {
-    closeButtonVisible: Props["closeButtonVisible"];
+type RenderProps = {
+    title: React.ReactNode | string;
 };
-
 /**
- * A more flexible modal variant with fewer requirements: no header, optional footer.
+ * A more flexible modal variant: no header, optional title, optional footer.
  *
  * The content of the dialog itself is fully customizable, but the
  * left/right/top/bottom padding is fixed.
+ *
+ * One of the following is required for labeling the dialog:
+ * - title content (React node or string)
+ * - aria-label (string)
+ * - aria-labelledby (string ID reference)
  *
  * ### Usage
  *
@@ -104,8 +134,8 @@ type DefaultProps = {
  * import {BodyText} from "@khanacademy/wonder-blocks-typography";
  *
  * <FlexibleDialog
+ *     title={<Heading size="xxlarge" id="main-heading">Select mission</Heading>}
  *     content={
- *         <Heading size="xxlarge" id="main-heading">Select mission</Heading>
  *         <BodyText>
  *             {`Lorem ipsum dolor sit amet, consectetur adipiscing
  *             elit, sed do eiusmod tempor incididunt ut labore et
@@ -121,57 +151,58 @@ type DefaultProps = {
  * />
  * ```
  */
-export default class FlexibleDialog extends React.Component<Props> {
-    static defaultProps: DefaultProps = {
-        closeButtonVisible: true,
-    };
+const FlexibleDialog = ({
+    onClose,
+    footer,
+    title,
+    content,
+    above,
+    below,
+    style,
+    closeButtonVisible = true,
+    testId,
+    titleId,
+    role,
+    backgroundStyles,
+    ...accessibilityProps
+}: Props): React.ReactElement => {
+    return (
+        <Id id={titleId}>
+            {(uniqueId) => {
+                const headingId = titleId || uniqueId;
 
-    render(): React.ReactNode {
-        const {
-            onClose,
-            footer,
-            mainHeadingContent,
-            content,
-            above,
-            below,
-            style,
-            closeButtonVisible,
-            testId,
-            titleId,
-            role,
-            backgroundStyles,
-            "aria-label": ariaLabel,
-            "aria-describedby": ariaDescribedBy,
-        } = this.props;
+                const renderedTitle =
+                    title == null ? null : typeof title === "string" ? (
+                        <Heading id={headingId}>{title}</Heading>
+                    ) : (
+                        <div id={headingId}>{title}</div>
+                    );
 
-        return (
-            <Id id={titleId}>
-                {(uniqueId) => (
+                return (
                     <ModalDialog
                         style={[componentStyles.dialog, style]}
                         above={above}
                         below={below}
                         testId={testId}
-                        aria-label={ariaLabel}
+                        aria-label={accessibilityProps["aria-label"]}
                         aria-labelledby={uniqueId}
-                        aria-describedby={ariaDescribedBy}
                         role={role}
                     >
                         <FlexiblePanel
                             backgroundStyles={backgroundStyles}
                             onClose={onClose}
-                            mainHeadingContent={mainHeadingContent}
+                            title={renderedTitle}
                             content={content}
                             footer={footer}
                             closeButtonVisible={closeButtonVisible}
                             testId={testId}
                         />
                     </ModalDialog>
-                )}
-            </Id>
-        );
-    }
-}
+                );
+            }}
+        </Id>
+    );
+};
 
 const componentStyles = StyleSheet.create({
     dialog: {
@@ -187,3 +218,5 @@ const componentStyles = StyleSheet.create({
         },
     },
 });
+
+export default FlexibleDialog;

@@ -5,7 +5,6 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {StyleSheet} from "aphrodite";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
-import {Heading} from "@khanacademy/wonder-blocks-typography";
 import ModalContent from "./modal-content";
 import FlexibleFooter from "./flexible-footer";
 import CloseButton from "./close-button";
@@ -38,11 +37,15 @@ export type BackgroundStyles = {
     objectFit?: "fill" | "contain" | "cover" | "none" | "scale-down";
 };
 
+type RenderProps = {
+    title: React.ReactNode | string;
+};
+
 type Props = {
     /**
      * The main heading of the FlexiblePanel. Used to label the dialog.
      */
-    mainHeadingContent?: React.ReactNode | string;
+    title?: React.ReactNode | string;
     /**
      * Optional id reference for the main heading to label the parent dialog via aria-labelledby.
      */
@@ -53,6 +56,7 @@ type Props = {
      */
     content:
         | React.ReactElement<PropsFor<typeof ModalContent>>
+        | ((slots: RenderProps) => React.ReactNode)
         | React.ReactNode;
     /**
      * The optional background styles for the panel.
@@ -121,25 +125,26 @@ export default function FlexiblePanel({
     scrollOverflow = true,
     content,
     titleId,
-    mainHeadingContent,
+    title,
     footer,
     onClose,
     style,
     testId,
 }: Props) {
-    const renderMainHeading = () => {
-        if (typeof mainHeadingContent === "string") {
-            return <Heading id={titleId}>{mainHeadingContent}</Heading>;
-        } else {
-            // apply an ID to the heading content for aria-labelledby
-            return <div id={titleId}>{mainHeadingContent}</div>;
-        }
-    };
     const renderMainContent = React.useCallback((): React.ReactNode => {
-        const mainContent = ModalContent.isComponentOf(content) ? (
-            (content as React.ReactElement<PropsFor<typeof ModalContent>>)
+        const contentNode =
+            typeof content === "function" ? (
+                content({title})
+            ) : (
+                <>
+                    {title}
+                    {content}
+                </>
+            );
+        const mainContent = ModalContent.isComponentOf(contentNode) ? (
+            (contentNode as React.ReactElement<PropsFor<typeof ModalContent>>)
         ) : (
-            <ModalContent>{content}</ModalContent>
+            <ModalContent>{contentNode}</ModalContent>
         );
 
         if (!mainContent) {
@@ -155,9 +160,8 @@ export default function FlexiblePanel({
             // know about things being positioned around it.
             style: [!!footer && styles.hasFooter, mainContent.props.style],
         });
-    }, [content, footer, scrollOverflow]);
+    }, [title, content, footer, scrollOverflow]);
 
-    const mainHeading = renderMainHeading();
     const mainContent = renderMainContent();
 
     const defaultBackgroundStyle = {
@@ -181,7 +185,6 @@ export default function FlexiblePanel({
                     testId={testId && `${testId}-close`}
                 />
             )}
-            {mainHeading}
             {mainContent}
             {!footer || FlexibleFooter.isComponentOf(footer) ? (
                 footer

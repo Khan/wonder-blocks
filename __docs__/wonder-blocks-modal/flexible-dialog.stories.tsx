@@ -123,19 +123,22 @@ export const CelebrationModal: StoryComponentType = () => (
     <View style={styles.previewSizer}>
         <View style={styles.modalPositioner}>
             <FlexibleDialog
+                title={
+                    <Heading
+                        size="xxlarge"
+                        weight="bold"
+                        id="gem-challenge-completed-modal-heading"
+                        tag="h2"
+                    >
+                        Congrats Rainier McCheddarton!
+                    </Heading>
+                }
                 style={styles.celebrationModal}
                 backgroundStyles={celebrationBgStyle}
-                content={
+                content={({title}) => (
                     <View style={styles.centered}>
                         <img src={celebrationChest} width="280px" alt="" />
-                        <Heading
-                            size="xxlarge"
-                            weight="bold"
-                            id="gem-challenge-completed-modal-heading"
-                            tag="h2"
-                        >
-                            Congrats Rainier McCheddarton!
-                        </Heading>
+                        {title}
                         <Heading
                             size="large"
                             weight="bold"
@@ -160,7 +163,7 @@ export const CelebrationModal: StoryComponentType = () => (
                             Continue
                         </ActivityButton>
                     </View>
-                }
+                )}
             />
         </View>
     </View>
@@ -178,9 +181,9 @@ export const WithFooter: StoryComponentType = () => (
     <View style={styles.previewSizer}>
         <View style={styles.modalPositioner}>
             <FlexibleDialog
+                title={<Heading>Hello, world!</Heading>}
                 content={
                     <>
-                        <Heading>Hello, world!</Heading>
                         <BodyText>
                             {`Lorem ipsum dolor sit amet, consectetur adipiscing
                             elit, sed do eiusmod tempor incididunt ut labore et
@@ -237,9 +240,10 @@ export const WithAboveAndBelow: StoryComponentType = () => {
         <View style={styles.previewSizer}>
             <View style={styles.modalPositioner}>
                 <FlexibleDialog
-                    content={
+                    title={<Heading>Single-line title</Heading>}
+                    content={({title}) => (
                         <View style={{gap: sizing.size_160}}>
-                            <Heading>Single-line title</Heading>
+                            {title}
                             <BodyText>
                                 {`Lorem ipsum dolor sit amet, consectetur
                             adipiscing elit, sed do eiusmod tempor incididunt
@@ -277,7 +281,7 @@ export const WithAboveAndBelow: StoryComponentType = () => {
                             est.`}
                             </BodyText>
                         </View>
-                    }
+                    )}
                     above={<View style={aboveStyle} />}
                     below={<View style={belowStyle} />}
                 />
@@ -306,9 +310,9 @@ export const WithStyle: StoryComponentType = () => (
     <View style={styles.previewSizer}>
         <View style={styles.modalPositioner}>
             <FlexibleDialog
+                title={<Heading>Hello, world!</Heading>}
                 content={
                     <>
-                        <Heading>Hello, world!</Heading>
                         <BodyText>
                             {`Lorem ipsum dolor sit amet, consectetur adipiscing
                             elit, sed do eiusmod tempor incididunt ut labore et
@@ -369,10 +373,11 @@ export const MultiStepModal: StoryComponentType = () => {
 
         return (
             <FlexibleDialog
-                content={
+                title={<Heading id="heading-1">Exercises</Heading>}
+                content={({title}) => (
                     <>
                         <View>
-                            <Heading id="heading-1">Exercises</Heading>
+                            {title}
                             <BodyText>
                                 This is the current question: {question}
                             </BodyText>
@@ -397,7 +402,7 @@ export const MultiStepModal: StoryComponentType = () => {
                             </View>
                         </View>
                     </>
-                }
+                )}
             />
         );
     };
@@ -475,9 +480,9 @@ export const WithLauncher: StoryComponentType = () => {
 
     const MyModal = ({closeModal}: MyModalProps): React.ReactElement => (
         <FlexibleDialog
+            title={<Heading>Single-line title</Heading>}
             content={
                 <>
-                    <Heading>Single-line title</Heading>
                     <BodyText>
                         {`Lorem ipsum dolor sit amet, consectetur
                     adipiscing elit, sed do eiusmod tempor incididunt
