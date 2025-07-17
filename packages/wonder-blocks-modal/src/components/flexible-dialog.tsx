@@ -2,7 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {PropsFor, StyleType} from "@khanacademy/wonder-blocks-core";
 
-import {Id} from "@khanacademy/wonder-blocks-core";
+import {Id, View} from "@khanacademy/wonder-blocks-core";
 import {breakpoint} from "@khanacademy/wonder-blocks-tokens";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 import ModalDialog from "./modal-dialog";
@@ -35,6 +35,7 @@ type AriaLabelledByOnly = {
     "aria-label"?: never;
     "aria-labelledby": string;
 };
+
 /**
  * One of the labeling methods is required:
  */
@@ -111,6 +112,10 @@ type Props = AccessibleLabelProps & {
      * Test ID used for e2e testing. This ID will be passed down to the Dialog.
      */
     testId?: string;
+    /**
+     * The ID of the content describing this dialog, if applicable.
+     */
+    "aria-describedby"?: string;
 };
 
 type RenderProps = {
@@ -175,7 +180,9 @@ const FlexibleDialog = ({
                     title == null ? null : typeof title === "string" ? (
                         <Heading id={headingId}>{title}</Heading>
                     ) : (
-                        <div id={headingId}>{title}</div>
+                        <View id={headingId} testId="title-heading-wrapper">
+                            {title}
+                        </View>
                     );
 
                 return (
@@ -186,6 +193,9 @@ const FlexibleDialog = ({
                         testId={testId}
                         aria-label={accessibilityProps["aria-label"]}
                         aria-labelledby={uniqueId}
+                        aria-describedby={
+                            accessibilityProps["aria-describedby"]
+                        }
                         role={role}
                     >
                         <FlexiblePanel
