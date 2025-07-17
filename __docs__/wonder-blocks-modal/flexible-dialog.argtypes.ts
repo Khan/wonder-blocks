@@ -1,56 +1,73 @@
 import type {ArgTypes} from "@storybook/react";
 
 export default {
-    content: {
-        control: {type: undefined},
-        description: `The content of the modal, appearing between the
-            titlebar and footer.`,
-        table: {type: {summary: "React.Node"}},
-        type: {name: "other", value: "React.Node", required: true},
-    },
-
     title: {
         control: {type: "text"},
-        description: "The title of the modal, appearing in the titlebar.",
-        table: {type: {summary: "string"}},
-        type: {name: "string", required: true},
+        description: `The main heading of the modal, for labeling the dialog.
+            If string content, an ID will be generated for the heading for aria-labelledby on the dialog.
+            If a node, an ID will be applied to a DIV wrapping the node.
+            Required unless using aria-label or aria-labelledby.`,
+        table: {type: {summary: "React.ReactNode | string"}},
+    },
+
+    content: {
+        control: {type: undefined},
+        description: `The content of the modal. Supports a render prop for placing the title in a slot.
+            Can be either a FlexiblePanel element or a render function that receives the title as a slot.`,
+        table: {
+            type: {
+                summary:
+                    "React.ReactElement<FlexiblePanel> | ((slots: {title: React.ReactNode}) => React.ReactNode)",
+            },
+        },
+        type: {
+            name: "other",
+            value: "React.ReactElement<FlexiblePanel> | ((slots: {title: React.ReactNode}) => React.ReactNode)",
+            required: true,
+        },
+    },
+
+    backgroundStyles: {
+        control: {type: "object"},
+        description: `The background styles for the modal panel.
+            Supports backgroundColor, backgroundImage, backgroundRepeat,
+            backgroundPosition, backgroundSize, and objectFit.
+            Defaults to semanticColor.surface.primary background color.`,
+        table: {
+            type: {
+                summary: "BackgroundStyles",
+                detail: `{
+    backgroundColor?: string;
+    backgroundImage?: string;
+    backgroundRepeat?: "repeat" | "no-repeat" | "repeat-x" | "repeat-y";
+    backgroundPosition?: string;
+    backgroundSize?: string;
+    objectFit?: "fill" | "contain" | "cover" | "none" | "scale-down";
+}`,
+            },
+        },
     },
 
     footer: {
         control: {type: undefined},
-        description: `The content of the modal's footer.
-            A great place for buttons! Content is right-aligned by default.
-            To control alignment yourself, provide a container element
-            with 100% width.`,
-        table: {type: {summary: "React.Node"}},
-    },
-
-    breadcrumbs: {
-        control: {type: undefined},
-        description: `Adds a breadcrumb-trail, appearing in the ModalHeader,
-            above the title.`,
-        table: {type: {summary: "React.Element<Breadcrumbs>"}},
-    },
-
-    subtitle: {
-        control: {type: "text"},
-        description: `The subtitle of the modal, appearing in the titlebar,
-            below the title.`,
-        table: {type: {summary: "string"}},
+        description: `The content of the modal's footer. A great place for buttons!
+            Content is right-aligned by default. To control alignment yourself,
+            provide a container element with 100% width.`,
+        table: {type: {summary: "React.ReactNode"}},
     },
 
     onClose: {
-        description: `Called when the button is clicked.
+        description: `Called when the close button is clicked.
             If you're using \`ModalLauncher\`, you probably shouldn't use this
             prop! Instead, to listen for when the modal closes, add an
             \`onClose\` handler to the \`ModalLauncher\`.  Doing so will
             result in a console.warn().`,
-        table: {type: {summary: "() => mixed"}},
+        table: {type: {summary: "() => unknown"}},
     },
 
     closeButtonVisible: {
         control: {type: "boolean"},
-        defaultValue: "true",
+        defaultValue: true,
         description: `When true, the close button is shown; otherwise,
             the close button is not shown.`,
         table: {
@@ -63,28 +80,26 @@ export default {
         control: {type: undefined},
         description: `When set, provides a component that can render
             content above the top of the modal; when not set, no additional
-            content is shown above the modal. This prop is passed down to
-            the ModalDialog.`,
-        table: {type: {summary: "React.Node"}},
+            content is shown above the modal.`,
+        table: {type: {summary: "React.ReactNode"}},
     },
 
     below: {
         control: {type: undefined},
         description: `When set, provides a component that will render
             content below the bottom of the modal; when not set, no additional
-            content is shown below the modal. This prop is passed down to
-            the ModalDialog. NOTE: Devs can customize this content by
-            rendering the component assigned to this prop with custom styles,
-            such as by wrapping it in a View.`,
-        table: {type: {summary: "React.Node"}},
+            content is shown below the modal.
+            NOTE: Devs can customize this content by rendering the component
+            assigned to this prop with custom styles, such as by wrapping it in a View.`,
+        table: {type: {summary: "React.ReactNode"}},
     },
 
     role: {
         control: {type: "select"},
         defaultValue: "dialog",
         description: `When set, overrides the default role value. Default
-            role is "dialog" Roles other than dialog and alertdialog aren't
-            appropriate for this component`,
+            role is "dialog". Roles other than dialog and alertdialog aren't
+            appropriate for this component.`,
         options: ["dialog", "alertdialog"],
         table: {
             defaultValue: {summary: "dialog"},
@@ -107,15 +122,30 @@ export default {
 
     titleId: {
         control: {type: "text"},
-        description: `An optional id parameter for the title. If one is
-            not provided, a unique id will be generated.`,
+        description: `An optional id parameter for the main heading. If one is
+            not provided, an ID will be generated.`,
+        table: {type: {summary: "string"}},
+    },
+
+    "aria-label": {
+        control: {type: "text"},
+        description: `The accessible name of the modal.
+            This is useful when there is no main heading in the dialog.
+            Cannot be used with title or aria-labelledby.`,
+        table: {type: {summary: "string"}},
+    },
+
+    "aria-labelledby": {
+        control: {type: "text"},
+        description: `The ID reference for labeling the dialog.
+            Cannot be used with title or aria-label.`,
         table: {type: {summary: "string"}},
     },
 
     "aria-describedby": {
         control: {type: "text"},
         description:
-            "The ID of the content describing this dialog, if applicable",
+            "The ID of the content describing this dialog, if applicable.",
         table: {type: {summary: "string"}},
     },
 } satisfies ArgTypes;
