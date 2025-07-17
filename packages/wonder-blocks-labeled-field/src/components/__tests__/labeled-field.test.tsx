@@ -3,7 +3,6 @@ import {render, screen, within} from "@testing-library/react";
 
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
-import {userEvent} from "@testing-library/user-event";
 import LabeledField from "../labeled-field";
 
 const defaultOptions = {
