@@ -20,10 +20,17 @@ export default {
             },
         },
     },
-    required: {
+    readOnlyMessage: {
         table: {
             type: {
-                summary: "string | boolean",
+                summary: "string | ReactNode",
+            },
+        },
+    },
+    additionalHelperMessage: {
+        table: {
+            type: {
+                summary: "string | ReactNode",
             },
         },
     },

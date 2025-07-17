@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import WarningCircle from "@phosphor-icons/core/bold/warning-circle-bold.svg";
 import LockIcon from "@phosphor-icons/core/bold/lock-bold.svg";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
-import {View, addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
+import {View, StyleType} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import theme from "../theme";
@@ -21,30 +21,6 @@ type Props = {
      * The text for the description element.
      */
     description?: React.ReactNode;
-    /**
-     * Whether this field is required to to continue, or the error message to
-     * render if this field is left blank. This is passed into the field
-     * component.
-     *
-     * This can be a boolean or a string.
-     *
-     * String:
-     * Please pass in a translated string to use as the error message that will
-     * render if the user leaves this field blank. If this field is required,
-     * and a string is not passed in, a default untranslated string will render
-     * upon error.
-     * Note: The string will not be used if a `validate` prop is passed in.
-     *
-     * Example message: i18n._("A password is required to log in.")
-     *
-     * Boolean:
-     * True/false indicating whether this field is required. Please do not pass
-     * in `true` if possible - pass in the error string instead.
-     * If `true` is passed, and a `validate` prop is not passed, that means
-     * there is no corresponding message and the default untranlsated message
-     * will be used.
-     */
-    required?: boolean | string;
     /**
      * The message for the error element. If there is a message, it will also
      * set the `error` prop on the `field` component.
@@ -129,12 +105,11 @@ const defaultLabeledFieldLabels: LabeledFieldLabels = {
     errorIconAriaLabel: "Error:",
 };
 
-const StyledSpan = addStyle("span");
-
 /**
- * A LabeledField is an element that provides a label, required indicator,
- * description, and error to present better context and hints to any type of
- * form field component.
+ * A LabeledField is an element that provides a label, context label, and
+ * helper text to present more information about any type of form field
+ * component. Helper text includes a description, error message, read only
+ * message, and any additional helper message.
  */
 export default function LabeledField(props: Props) {
     const {
@@ -142,7 +117,6 @@ export default function LabeledField(props: Props) {
         styles: stylesProp,
         label,
         id,
-        required,
         testId,
         description,
         errorMessage,
@@ -159,21 +133,10 @@ export default function LabeledField(props: Props) {
     const errorId = `${uniqueId}-error`;
     const readOnlyMessageId = `${uniqueId}-read-only-message`;
     const additionalHelperMessageId = `${uniqueId}-additional-helper-message`;
-    const isRequired = !!required || !!field.props.required;
     const hasError = !!errorMessage || !!field.props.error;
     const isDisabled = !!field.props.disabled;
 
     function renderLabel(): React.ReactNode {
-        const requiredIcon = (
-            <StyledSpan
-                style={[styles.required, isDisabled && styles.disabledLabel]}
-                aria-hidden={true}
-            >
-                {" "}
-                *
-            </StyledSpan>
-        );
-
         return (
             <React.Fragment>
                 <BodyText
@@ -193,7 +156,6 @@ export default function LabeledField(props: Props) {
                     weight="semi"
                 >
                     {label}
-                    {isRequired && requiredIcon}
                 </BodyText>
             </React.Fragment>
         );
@@ -281,7 +243,6 @@ export default function LabeledField(props: Props) {
             ]
                 .filter(Boolean)
                 .join(" "),
-            required: required || field.props.required,
             error: hasError,
             testId: testId ? `${testId}-field` : undefined,
             readOnly: readOnlyMessage || field.props.readOnly,
@@ -394,8 +355,5 @@ const styles = StyleSheet.create({
     },
     errorMessage: {
         fontWeight: theme.error.font.weight,
-    },
-    required: {
-        color: theme.requiredIndicator.color.foreground,
     },
 });

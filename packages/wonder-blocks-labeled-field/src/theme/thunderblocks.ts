@@ -30,11 +30,6 @@ export default mergeTheme(defaultTheme, {
             weight: font.weight.bold,
         },
     },
-    requiredIndicator: {
-        color: {
-            foreground: semanticColor.core.foreground.critical.default,
-        },
-    },
     helperText: {
         layout: {
             gap: sizing.size_040,

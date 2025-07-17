@@ -225,12 +225,12 @@ export const WithLabeledField: StoryComponentType = {
                         selectedValue={value}
                         onChange={setValue}
                         onValidate={setErrorMessage}
+                        required={true}
                     >
                         {optionItems}
                     </SingleSelect>
                 }
                 description="Description"
-                required={true}
                 errorMessage={errorMessage}
             />
         );

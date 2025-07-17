@@ -18,8 +18,10 @@ import {allModes} from "../../.storybook/modes";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 
 /**
- * The `LabeledField` component provides common elements for a form field such
- * as the label, required indicator, description, and error message.
+ * A LabeledField is an element that provides a label, context label, and
+ * helper text to present more information about any type of form field
+ * component. Helper text includes a description, error message, read only
+ * message, and any additional helper message.
  *
  * It is highly recommended that all form fields should be used with the
  * `LabeledField` component so that our form fields are consistent and accessible.
@@ -30,10 +32,6 @@ import {Heading} from "@khanacademy/wonder-blocks-typography";
  * explicitly on the field
  * - Setting the `readOnlyMessage` prop will also auto-populate the `readOnly`
  * prop on the form field component
- * - If the `required` prop is set on `LabeledField`, it will be passed onto the
- * `field` prop component so it doesn't need to be set explicitly. If the `required`
- * prop is set on the `field` component, it will also get set for `LabeledField`
- * so that the required indicator is shown
  * - For TextField and TextArea, it is highly recommended that they are
  * configured with `instantValidation=false` so that validation happens on blur.
  * See Validation docs for those components for more details!
@@ -66,7 +64,6 @@ export const Default: StoryComponentType = {
         field: <TextField value="" onChange={() => {}} />,
         label: "Name",
         description: "Helpful description text.",
-        required: "Custom required message",
     },
 };
 
@@ -134,6 +131,7 @@ const AllFields = (
         showSubmitButtonInStory?: boolean;
         disabled?: boolean;
         textValue?: string;
+        required?: boolean | string; // Used for the field component's required prop
     },
 ) => {
     const {
@@ -300,6 +298,7 @@ const AllFields = (
                         }
                         instantValidation={false}
                         disabled={disabled}
+                        required={args.required}
                     />
                 }
             />
@@ -319,6 +318,7 @@ const AllFields = (
                         }
                         instantValidation={false}
                         disabled={disabled}
+                        required={args.required}
                     />
                 }
             />
@@ -337,6 +337,7 @@ const AllFields = (
                         onValidate={setSingleSelectErrorMessage}
                         validate={singleSelectValidate}
                         disabled={disabled}
+                        required={args.required}
                     >
                         <OptionItem label="Mango" value="mango" />
                         <OptionItem label="Strawberry" value="strawberry" />
@@ -362,6 +363,7 @@ const AllFields = (
                                 : undefined
                         }
                         disabled={disabled}
+                        required={args.required}
                     >
                         <OptionItem label="Mango" value="mango" />
                         <OptionItem label="Strawberry" value="strawberry" />
@@ -409,7 +411,7 @@ const AllFields = (
  * is an error message.
  *
  * Because of this, LabeledField works best with field components that accept
- * `error` and `required` props since these props will get auto-populated by
+ * `error` and `readOnly` props since these props will get auto-populated by
  * LabeledField.
  */
 export const Fields: StoryComponentType = {
@@ -449,13 +451,12 @@ export const Fields: StoryComponentType = {
 
 /**
  * If it is mandatory for a user to fill out a field, it can be marked as
- * required.
+ * required by:
+ * - using the `contextLabel` prop for a "required" label on the `LabeledField`
+ * component for the field
+ * - providing a `required` prop on the `field` component
  *
- * LabeledField will auto-populate the `required` prop for the field
- * component and validation is handled by the specific field components. See
- * docs for each component for more details on validation logic.
- *
- * If LabeledField's `required` prop is used and the field's `onValidate` prop
+ * If field's `required` prop is used and the field's `onValidate` prop
  * sets LabeledField's `errorMessage` prop, the error message for the required
  * field will be shown.
  *
@@ -467,10 +468,11 @@ export const Fields: StoryComponentType = {
 export const Required: AllFieldsStoryComponentType = {
     args: {
         description: "Helpful description text.",
-        required: "Custom required error message",
         showSubmitButtonInStory: true,
     },
-    render: AllFields,
+    render: (args) => (
+        <AllFields {...args} required="Custom required error message" />
+    ),
 };
 
 /**
@@ -540,7 +542,7 @@ export const ChangingErrors: StoryComponentType = {
  * - MultiSelect
  *
  * This is recommended because LabeledField will inject WB specific props:
- * `required`, `error`, and `testId`. The `field` component should handle these
+ * `readOnly`, `error`, and `testId`. The `field` component should handle these
  * props accordingly. This is helpful because for example, if LabeledField has
  * an error message, the field should also be in an error state. If the `field`
  * component doesn't support these props, there will be console warnings.
@@ -550,7 +552,6 @@ export const WithNonWb = {
         label: "Label",
         description: "Description",
         errorMessage: "Error message",
-        required: true,
         field: <input type="text" />,
     },
 };
@@ -607,7 +608,6 @@ export const CustomStyles = {
         description: "Helpful description text.",
         errorMessage: "Message about the error",
         additionalHelperMessage: "Additional helper message",
-        required: "Custom required message",
         styles: {
             root: {
                 padding: sizing.size_080,
