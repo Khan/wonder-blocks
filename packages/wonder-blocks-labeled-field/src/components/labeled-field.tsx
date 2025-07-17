@@ -147,7 +147,7 @@ export default function LabeledField(props: Props) {
     const hasError = !!errorMessage || !!field.props.error;
     const isDisabled = !!field.props.disabled;
 
-    function renderLabel(): React.ReactNode {
+    function renderLabelAndContextLabel(): React.ReactNode {
         return (
             <View style={styles.labelContainer}>
                 <BodyText
@@ -175,6 +175,8 @@ export default function LabeledField(props: Props) {
                     style={[
                         styles.helperText,
                         styles.contextLabel,
+                        isDisabled && styles.disabledHelperText,
+                        hasError ? styles.labelWithError : undefined,
                         stylesProp?.contextLabel,
                     ]}
                 >
@@ -316,7 +318,7 @@ export default function LabeledField(props: Props) {
 
     return (
         <View style={stylesProp?.root}>
-            {renderLabel()}
+            {renderLabelAndContextLabel()}
             {maybeRenderDescription()}
             {renderField()}
             {maybeRenderAdditionalHelperMessage()}
@@ -342,11 +344,11 @@ const styles = StyleSheet.create({
         // Make the line height match the label so the context label is aligned
         // with the label
         lineHeight: font.body.lineHeight.medium,
-        flexShrink: 0,
-        maxWidth: "50%",
+        maxWidth: "30%",
     },
     labelWithError: {
         color: theme.label.color.error.foreground,
+        fontWeight: theme.error.font.weight,
     },
     disabledLabel: {
         color: theme.label.color.disabled.foreground,

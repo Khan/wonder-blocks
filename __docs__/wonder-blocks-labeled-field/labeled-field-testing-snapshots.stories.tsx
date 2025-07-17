@@ -58,6 +58,7 @@ const scenarios = [
                     validate={() => "Message about the error"}
                 />
             ),
+            contextLabel: "Context label",
         },
     },
     {
@@ -195,6 +196,7 @@ const scenarios = [
             label: "Name",
             description: "Helpful description text.",
             additionalHelperMessage: "Additional helper message",
+            contextLabel: "Context label",
         },
     },
     {
@@ -206,6 +208,7 @@ const scenarios = [
             errorMessage: "Message about the error",
             additionalHelperMessage: "Additional helper message",
             readOnlyMessage: "Read only message",
+            contextLabel: "Context label",
         },
     },
     {
@@ -216,6 +219,7 @@ const scenarios = [
             description: "Helpful description text.",
             additionalHelperMessage: "Additional helper message",
             readOnlyMessage: "Read only message",
+            contextLabel: "Context label",
         },
     },
     {
@@ -288,22 +292,6 @@ const scenarios = [
         },
     },
     {
-        name: "With long context label",
-        props: {
-            field: <TextField value="" onChange={() => {}} />,
-            label: "Name",
-            contextLabel: longText,
-        },
-    },
-    {
-        name: "With long context label and no word break",
-        props: {
-            field: <TextField value="" onChange={() => {}} />,
-            label: "Name",
-            contextLabel: longTextWithNoWordBreak,
-        },
-    },
-    {
         name: "With long label and long context label",
         props: {
             field: <TextField value="" onChange={() => {}} />,
@@ -333,6 +321,22 @@ const scenarios = [
             field: <TextField value="" onChange={() => {}} />,
             label: longTextWithNoWordBreak,
             contextLabel: "Context",
+        },
+    },
+    {
+        name: "With short label and long context label",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            contextLabel: longText,
+        },
+    },
+    {
+        name: "With short label and long context label and no word break",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            contextLabel: longTextWithNoWordBreak,
         },
     },
 ];
