@@ -37,6 +37,11 @@ type Props = {
      */
     testId?: string;
     /**
+     * The accessible name of dialog.
+     * See WCAG 2.1: 4.1.2 Name, Role, Value
+     */
+    "aria-label"?: string;
+    /**
      * The ID of the title labelling this dialog. Required.
      * See WCAG 2.1: 4.1.2 Name, Role, Value
      */
@@ -68,6 +73,7 @@ const ModalDialog = React.forwardRef(function ModalDialog(
         style,
         children,
         testId,
+        "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledBy,
         "aria-describedby": ariaDescribedBy,
     } = props;
@@ -78,6 +84,7 @@ const ModalDialog = React.forwardRef(function ModalDialog(
             <View
                 role={role}
                 aria-modal="true"
+                aria-label={ariaLabel}
                 aria-labelledby={ariaLabelledBy}
                 aria-describedby={ariaDescribedBy}
                 ref={ref}
