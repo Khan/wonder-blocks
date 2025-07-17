@@ -12,17 +12,18 @@ export default {
 
     content: {
         control: {type: undefined},
-        description: `The content of the modal. Supports a render prop for placing the title in a slot.
-            Can be either a FlexiblePanel element or a render function that receives the title as a slot.`,
+        description: `The content of the modal. Can be either a React node or a render function
+            that receives the title as a slot. Using the render function allows you to control
+            where the title appears in your content layout.`,
         table: {
             type: {
                 summary:
-                    "React.ReactElement<FlexiblePanel> | ((slots: {title: React.ReactNode}) => React.ReactNode)",
+                    "React.ReactNode | ((slots: {title: React.ReactNode}) => React.ReactNode)",
             },
         },
         type: {
             name: "other",
-            value: "React.ReactElement<FlexiblePanel> | ((slots: {title: React.ReactNode}) => React.ReactNode)",
+            value: "React.ReactNode | ((slots: {title: React.ReactNode}) => React.ReactNode)",
             required: true,
         },
     },
