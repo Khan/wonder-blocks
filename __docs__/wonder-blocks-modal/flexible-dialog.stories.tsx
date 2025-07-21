@@ -3,22 +3,20 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {
-    Breadcrumbs,
-    BreadcrumbsItem,
-} from "@khanacademy/wonder-blocks-breadcrumbs";
-import Button from "@khanacademy/wonder-blocks-button";
+import Button, {ActivityButton} from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Link from "@khanacademy/wonder-blocks-link";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {BodyText} from "@khanacademy/wonder-blocks-typography";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 
-import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
+import {ModalLauncher, FlexibleDialog} from "@khanacademy/wonder-blocks-modal";
 import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 
 import ComponentInfo from "../components/component-info";
-import OnePaneDialogArgTypes from "./one-pane-dialog.argtypes";
+import FlexibleDialogArgTypes from "./flexible-dialog.argtypes";
 import {allModes} from "../../.storybook/modes";
+
+import celebrationBg from "../../static/celebration_bg.svg";
+import celebrationChest from "../../static/celebration-chest.svg";
 
 const customViewports = {
     phone: {
@@ -45,8 +43,8 @@ const customViewports = {
 } as const;
 
 export default {
-    title: "Packages / Modal / OnePaneDialog",
-    component: OnePaneDialog,
+    title: "Packages / Modal / FlexibleDialog",
+    component: FlexibleDialog,
     decorators: [
         (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
             <View style={styles.example}>
@@ -82,23 +80,25 @@ export default {
             },
         },
     },
-    argTypes: OnePaneDialogArgTypes,
-} as Meta<typeof OnePaneDialog>;
+    argTypes: FlexibleDialogArgTypes,
+} as Meta<typeof FlexibleDialog>;
 
-type StoryComponentType = StoryObj<typeof OnePaneDialog>;
+type StoryComponentType = StoryObj<typeof FlexibleDialog>;
 
 export const Default: StoryComponentType = {
     render: (args) => (
         <View style={styles.previewSizer}>
             <View style={styles.modalPositioner}>
-                <OnePaneDialog {...args} />
+                <FlexibleDialog {...args} />
             </View>
         </View>
     ),
     args: {
         content: (
-            <BodyText>
-                {`Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            <>
+                <Heading>Some title</Heading>
+                <BodyText>
+                    {`Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                 sed do eiusmod tempor incididunt ut labore et dolore magna
                 aliqua. Ut enim ad minim veniam, quis nostrud exercitation
                 ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -106,153 +106,73 @@ export const Default: StoryComponentType = {
                 esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
                 occaecat cupidatat non proident, sunt in culpa qui officia
                 deserunt mollit anim id est.`}
-            </BodyText>
+                </BodyText>
+            </>
         ),
-        title: "Some title",
     },
 };
 
-export const Simple: StoryComponentType = () => (
+const celebrationBgStyle = {
+    backgroundColor: "#FCE6F7", // fallback color
+    backgroundImage: `url(${celebrationBg})`,
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+} as const;
+
+export const CelebrationModal: StoryComponentType = () => (
     <View style={styles.previewSizer}>
         <View style={styles.modalPositioner}>
-            <OnePaneDialog
-                title="Hello, world! Here is an example of a long title that wraps to the next line."
-                content={
-                    <BodyText>
-                        {`Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat. Duis aute irure
-                            dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur
-                            sint occaecat cupidatat non proident, sunt in culpa
-                            qui officia deserunt mollit anim id est.`}
-                    </BodyText>
+            <FlexibleDialog
+                title={
+                    <Heading
+                        size="xxlarge"
+                        weight="bold"
+                        id="gem-challenge-completed-modal-heading"
+                        tag="h2"
+                    >
+                        Congrats Rainier McCheddarton!
+                    </Heading>
                 }
-            />
-        </View>
-    </View>
-);
-
-Simple.parameters = {
-    docs: {
-        description: {
-            story: `This is the most basic OnePaneDialog, with just
-            the title and content.`,
-        },
-    },
-};
-
-export const WithFooter: StoryComponentType = () => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
-            <OnePaneDialog
-                title="Hello, world!"
-                content={
-                    <BodyText>
-                        {`Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat. Duis aute irure
-                            dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur
-                            sint occaecat cupidatat non proident, sunt in culpa
-                            qui officia deserunt mollit anim id est.`}
-                    </BodyText>
-                }
-                footer={
-                    <View style={styles.footer}>
-                        <BodyText weight="bold">Step 1 of 4</BodyText>
-                        <View style={styles.row}>
-                            <Button kind="tertiary">Previous</Button>
-                            <Button kind="primary">Next</Button>
-                        </View>
+                style={styles.celebrationModal}
+                backgroundStyles={celebrationBgStyle}
+                content={({title}) => (
+                    <View style={styles.centered}>
+                        <img src={celebrationChest} width="280px" alt="" />
+                        {title}
+                        <Heading
+                            size="large"
+                            weight="bold"
+                            style={{
+                                marginBlock: sizing.size_240,
+                                textAlign: "center",
+                            }}
+                        >
+                            Your class, Advanced Calculus, reached 1500 of 1500
+                            gems
+                        </Heading>
+                        <ActivityButton
+                            kind="primary"
+                            styles={{
+                                root: {
+                                    marginBlockStart: 20,
+                                    alignSelf: "center",
+                                },
+                            }}
+                            onClick={() => {}}
+                        >
+                            Continue
+                        </ActivityButton>
                     </View>
-                }
+                )}
             />
         </View>
     </View>
 );
 
-WithFooter.parameters = {
-    docs: {
-        description: {story: `This OnePaneDialog includes a custom footer.`},
-    },
-};
-
-export const WithSubtitle: StoryComponentType = () => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
-            <OnePaneDialog
-                title="Hello, world!"
-                content={
-                    <BodyText>
-                        {`Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat. Duis aute irure
-                            dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur
-                            sint occaecat cupidatat non proident, sunt in culpa
-                            qui officia deserunt mollit anim id est.`}
-                    </BodyText>
-                }
-                subtitle={
-                    "Subtitle that provides additional context to the title"
-                }
-            />
-        </View>
-    </View>
-);
-
-WithSubtitle.parameters = {
-    docs: {
-        description: {story: `This OnePaneDialog includes a custom subtitle.`},
-    },
-};
-
-export const WithBreadcrumbs: StoryComponentType = () => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
-            <OnePaneDialog
-                title="Hello, world!"
-                content={
-                    <BodyText>
-                        {`Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat. Duis aute irure
-                            dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur
-                            sint occaecat cupidatat non proident, sunt in culpa
-                            qui officia deserunt mollit anim id est.`}
-                    </BodyText>
-                }
-                breadcrumbs={
-                    <Breadcrumbs>
-                        <BreadcrumbsItem>
-                            <Link href="#course">Course</Link>
-                        </BreadcrumbsItem>
-                        <BreadcrumbsItem>
-                            <Link href="#unit">Unit</Link>
-                        </BreadcrumbsItem>
-                        <BreadcrumbsItem>Lesson</BreadcrumbsItem>
-                    </Breadcrumbs>
-                }
-            />
-        </View>
-    </View>
-);
-
-WithBreadcrumbs.parameters = {
+CelebrationModal.parameters = {
     docs: {
         description: {
-            story: `This OnePaneDialog includes a custom Breadcrumbs
-            element.`,
+            story: `A FlexibleDialog with full-bleed background image and custom contents.`,
         },
     },
 };
@@ -279,10 +199,11 @@ export const WithAboveAndBelow: StoryComponentType = () => {
     return (
         <View style={styles.previewSizer}>
             <View style={styles.modalPositioner}>
-                <OnePaneDialog
-                    title="Single-line title"
-                    content={
+                <FlexibleDialog
+                    title={<Heading>Single-line title</Heading>}
+                    content={({title}) => (
                         <View style={{gap: sizing.size_160}}>
+                            {title}
                             <BodyText>
                                 {`Lorem ipsum dolor sit amet, consectetur
                             adipiscing elit, sed do eiusmod tempor incididunt
@@ -320,7 +241,7 @@ export const WithAboveAndBelow: StoryComponentType = () => {
                             est.`}
                             </BodyText>
                         </View>
-                    }
+                    )}
                     above={<View style={aboveStyle} />}
                     below={<View style={belowStyle} />}
                 />
@@ -348,11 +269,12 @@ WithAboveAndBelow.parameters = {
 export const WithStyle: StoryComponentType = () => (
     <View style={styles.previewSizer}>
         <View style={styles.modalPositioner}>
-            <OnePaneDialog
-                title="Hello, world!"
+            <FlexibleDialog
+                title={<Heading>Hello, world!</Heading>}
                 content={
-                    <BodyText>
-                        {`Lorem ipsum dolor sit amet, consectetur adipiscing
+                    <>
+                        <BodyText>
+                            {`Lorem ipsum dolor sit amet, consectetur adipiscing
                             elit, sed do eiusmod tempor incididunt ut labore et
                             dolore magna aliqua. Ut enim ad minim veniam,
                             quis nostrud exercitation ullamco laboris nisi ut
@@ -361,7 +283,8 @@ export const WithStyle: StoryComponentType = () => (
                             cillum dolore eu fugiat nulla pariatur. Excepteur
                             sint occaecat cupidatat non proident, sunt in culpa
                             qui officia deserunt mollit anim id est.`}
-                    </BodyText>
+                        </BodyText>
+                    </>
                 }
                 style={{
                     color: semanticColor.status.notice.foreground,
@@ -375,7 +298,7 @@ export const WithStyle: StoryComponentType = () => (
 WithStyle.parameters = {
     docs: {
         description: {
-            story: `A OnePaneDialog can have custom styles via the
+            story: `A FlexibleDialog can have custom styles via the
             \`style\` prop. Here, the modal has a \`maxWidth: 1000\` and
             \`color: Color.blue\` in its custom styles.`,
         },
@@ -391,12 +314,6 @@ export const MultiStepModal: StoryComponentType = () => {
         row: {
             flexDirection: "row",
             justifyContent: "flex-end",
-        },
-        footer: {
-            alignItems: "center",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            width: "100%",
         },
     });
 
@@ -415,30 +332,37 @@ export const MultiStepModal: StoryComponentType = () => {
             props;
 
         return (
-            <OnePaneDialog
-                title="Exercises"
-                content={
-                    <View>
-                        <BodyText>
-                            This is the current question: {question}
-                        </BodyText>
-                    </View>
-                }
-                footer={
-                    <View style={styles.footer}>
-                        <BodyText weight="bold">
-                            Step {current + 1} of {total}
-                        </BodyText>
-                        <View style={styles.row}>
-                            <Button kind="tertiary" onClick={handlePrevButton}>
-                                Previous
-                            </Button>
-                            <Button kind="primary" onClick={handleNextButton}>
-                                Next
-                            </Button>
+            <FlexibleDialog
+                title={<Heading id="heading-1">Exercises</Heading>}
+                content={({title}) => (
+                    <>
+                        <View>
+                            {title}
+                            <BodyText>
+                                This is the current question: {question}
+                            </BodyText>
                         </View>
-                    </View>
-                }
+                        <View style={styles.footer}>
+                            <BodyText weight="bold">
+                                Step {current + 1} of {total}
+                            </BodyText>
+                            <View style={styles.row}>
+                                <Button
+                                    kind="tertiary"
+                                    onClick={handlePrevButton}
+                                >
+                                    Previous
+                                </Button>
+                                <Button
+                                    kind="primary"
+                                    onClick={handleNextButton}
+                                >
+                                    Next
+                                </Button>
+                            </View>
+                        </View>
+                    </>
+                )}
             />
         );
     };
@@ -515,11 +439,12 @@ export const WithLauncher: StoryComponentType = () => {
     };
 
     const MyModal = ({closeModal}: MyModalProps): React.ReactElement => (
-        <OnePaneDialog
-            title="Single-line title"
+        <FlexibleDialog
+            title={<Heading>Single-line title</Heading>}
             content={
-                <BodyText>
-                    {`Lorem ipsum dolor sit amet, consectetur
+                <>
+                    <BodyText>
+                        {`Lorem ipsum dolor sit amet, consectetur
                     adipiscing elit, sed do eiusmod tempor incididunt
                     ut labore et dolore magna aliqua. Ut enim ad minim
                     veniam, quis nostrud exercitation ullamco laboris
@@ -529,9 +454,12 @@ export const WithLauncher: StoryComponentType = () => {
                     Excepteur sint occaecat cupidatat non proident,
                     sunt in culpa qui officia deserunt mollit anim id
                     est.`}
-                </BodyText>
+                    </BodyText>
+                    <View>
+                        <Button onClick={closeModal}>Close</Button>
+                    </View>
+                </>
             }
-            footer={<Button onClick={closeModal}>Close</Button>}
         />
     );
 
@@ -555,7 +483,7 @@ WithLauncher.parameters = {
             story: `A modal can be launched using a launcher. Here,
             the launcher is a \`<Button>\` element whose \`onClick\` function
             opens the modal. The modal passed into the \`modal\` prop of
-            the \`<ModalLauncher>\` element is a \`<OnePaneDialog>\`.
+            the \`<ModalLauncher>\` element is a \`<FlexibleDialog>\`.
             To turn an element into a launcher, wrap the element in a
             \`<ModalLauncher>\` element.`,
         },
@@ -584,6 +512,12 @@ const styles = StyleSheet.create({
         top: 0,
         bottom: 0,
     },
+    centered: {
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 0,
+        textAlign: "center",
+    },
     previewSizer: {
         minHeight: 600,
         width: "100%",
@@ -598,5 +532,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         width: "100%",
+    },
+    celebrationModal: {
+        maxWidth: 1024,
     },
 });
