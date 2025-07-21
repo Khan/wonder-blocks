@@ -20,6 +20,13 @@ const theme = {
             },
         },
     },
+    contextLabel: {
+        color: {
+            error: {
+                foreground: semanticColor.core.foreground.neutral.default,
+            },
+        },
+    },
     error: {
         color: {
             foreground: semanticColor.core.foreground.critical.subtle,

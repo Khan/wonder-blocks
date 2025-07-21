@@ -153,10 +153,10 @@ export default function LabeledField(props: Props) {
                 <BodyText
                     style={[
                         styles.label,
+                        hasError ? styles.labelWithError : undefined,
                         description
                             ? styles.labelWithDescription
                             : styles.labelWithNoDescription,
-                        hasError ? styles.labelWithError : undefined,
                         isDisabled && styles.disabledLabel,
                         stylesProp?.label,
                     ]}
@@ -176,7 +176,7 @@ export default function LabeledField(props: Props) {
                         styles.helperText,
                         styles.contextLabel,
                         isDisabled && styles.disabledHelperText,
-                        hasError ? styles.labelWithError : undefined,
+                        hasError ? styles.contextLabelWithError : undefined,
                         stylesProp?.contextLabel,
                     ]}
                 >
@@ -348,6 +348,10 @@ const styles = StyleSheet.create({
     },
     labelWithError: {
         color: theme.label.color.error.foreground,
+        fontWeight: theme.error.font.weight,
+    },
+    contextLabelWithError: {
+        color: theme.contextLabel.color.error.foreground,
         fontWeight: theme.error.font.weight,
     },
     disabledLabel: {
