@@ -109,6 +109,7 @@ export const MigrationToLabeledField: StoryComponentType = {
                     label="Using LabeledField with TextField (recommended)"
                     description={description}
                     errorMessage={textFieldErrorMessage}
+                    contextLabel="required"
                     field={
                         <TextField
                             {...args}
