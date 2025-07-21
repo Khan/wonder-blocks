@@ -12,10 +12,10 @@ import FlexiblePanel, {BackgroundStyles} from "./flexible-panel";
  * The visible title content for the dialog. An ID will be automatically applied
  * for aria-labelledby on the dialog to the heading content or a div wrapper.
  */
-type TitleOnly = {
+type TitleAndAriaLabelledBy = {
     title: React.ReactNode;
     "aria-label"?: never;
-    "aria-labelledby"?: never;
+    "aria-labelledby"?: string;
 };
 /**
  * The optional accessible name of the modal.
@@ -39,7 +39,10 @@ type AriaLabelledByOnly = {
 /**
  * One of the labeling methods is required:
  */
-type AccessibleLabelProps = TitleOnly | AriaLabelOnly | AriaLabelledByOnly;
+type AccessibleLabelProps =
+    | TitleAndAriaLabelledBy
+    | AriaLabelOnly
+    | AriaLabelledByOnly;
 
 type Props = AccessibleLabelProps & {
     /**

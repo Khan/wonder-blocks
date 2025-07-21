@@ -216,6 +216,23 @@ describe("FlexibleDialog", () => {
             expect(dialog).toHaveAccessibleName("Mystery missionz");
         });
 
+        it("binds aria-labelledby to a title with its own id", () => {
+            // Arrange
+            render(
+                <FlexibleDialog
+                    title={<Heading id="a-heading">Mystery mission 2</Heading>}
+                    aria-labelledby="a-heading"
+                    content={<p id="description">cool dialog</p>}
+                />,
+            );
+
+            // Act
+            const dialog = screen.getByRole("dialog");
+
+            // Assert
+            expect(dialog).toHaveAccessibleName("Mystery mission 2");
+        });
+
         it("applies aria-describedby to the modal", () => {
             // Arrange
             render(
