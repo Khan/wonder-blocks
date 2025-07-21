@@ -60,13 +60,6 @@ type Props = AccessibleLabelProps & {
         | React.ReactElement<PropsFor<typeof FlexiblePanel>>
         | ((slots: RenderProps) => React.ReactNode);
     /**
-     * The content of the modal's footer. A great place for buttons!
-     *
-     * Content is right-aligned by default. To control alignment yourself,
-     * provide a container element with 100% width.
-     */
-    footer?: React.ReactNode;
-    /**
      * The background styles for the modal panel.
      * If not provided, defaults to semanticColor.surface.primary background color.
      */
@@ -123,8 +116,8 @@ type RenderProps = {
 };
 /**
  * A more flexible modal variant with fewer layout constraints. It can receive
- * a custom background (image or color), a main title heading optionally as a
- * content slot, and an optional footer.
+ * a custom background (image or color), a title for the main heading, and that
+ * title can optionally render in the content area through a render prop.
  *
  * One of the following is required for labeling the dialog:
  * - title content (React node or string)
@@ -157,7 +150,6 @@ type RenderProps = {
  */
 const FlexibleDialog = ({
     onClose,
-    footer,
     title,
     content,
     above,
@@ -202,7 +194,6 @@ const FlexibleDialog = ({
                             onClose={onClose}
                             title={renderedTitle}
                             content={content}
-                            footer={footer}
                             closeButtonVisible={closeButtonVisible}
                             testId={testId}
                         />

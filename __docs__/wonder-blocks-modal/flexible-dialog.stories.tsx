@@ -177,46 +177,6 @@ CelebrationModal.parameters = {
     },
 };
 
-export const WithFooter: StoryComponentType = () => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
-            <FlexibleDialog
-                title={<Heading>Hello, world!</Heading>}
-                content={
-                    <>
-                        <BodyText>
-                            {`Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat. Duis aute irure
-                            dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur
-                            sint occaecat cupidatat non proident, sunt in culpa
-                            qui officia deserunt mollit anim id est.`}
-                        </BodyText>
-                    </>
-                }
-                footer={
-                    <View style={styles.footer}>
-                        <BodyText weight="bold">Step 1 of 4</BodyText>
-                        <View style={styles.row}>
-                            <Button kind="tertiary">Previous</Button>
-                            <Button kind="primary">Next</Button>
-                        </View>
-                    </View>
-                }
-            />
-        </View>
-    </View>
-);
-
-WithFooter.parameters = {
-    docs: {
-        description: {story: `This FlexibleDialog includes a custom footer.`},
-    },
-};
-
 export const WithAboveAndBelow: StoryComponentType = () => {
     const aboveStyle = {
         background: "url(./modal-above.png)",

@@ -9,7 +9,7 @@ describe("FlexibleDialog", () => {
         // Arrange
         render(
             <FlexibleDialog
-                title="Dialog with multi-step footer"
+                title="Dialog with content"
                 content={<div>dummy content</div>}
                 testId="flexible-dialog-example"
             />,
@@ -29,7 +29,7 @@ describe("FlexibleDialog", () => {
         // Arrange
         render(
             <FlexibleDialog
-                title="Dialog with multi-step footer"
+                title="Dialog with content"
                 content={<div>dummy content</div>}
                 testId="flexible-dialog-example"
                 role="alertdialog"

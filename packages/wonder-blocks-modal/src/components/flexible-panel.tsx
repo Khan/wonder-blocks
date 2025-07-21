@@ -6,7 +6,6 @@ import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {StyleSheet} from "aphrodite";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import ModalContent from "./modal-content";
-import FlexibleFooter from "./flexible-footer";
 import CloseButton from "./close-button";
 import theme from "../theme";
 
@@ -64,12 +63,6 @@ type Props = {
      */
     backgroundStyles?: BackgroundStyles;
     /**
-     * A footer to show beneath the contents.
-     */
-    footer?:
-        | React.ReactElement<PropsFor<typeof FlexibleFooter>>
-        | React.ReactNode;
-    /**
      * When true, the close button is shown; otherwise, the close button is not shown.
      */
     closeButtonVisible: boolean;
@@ -105,16 +98,16 @@ type Props = {
  * **Implementation notes:**
  *
  * If you are creating a custom Dialog, make sure to follow these guidelines:
- * - Make sure to add this component inside the [ModalDialog](/#modaldialog).
+ * - Make sure to add this component inside the [FlexibleDialog](/#flexibledialog).
  * - If you need to create e2e tests, make sure to pass a `testId` prop. This
  *   will be passed down to this component using a sufix: e.g.
  *   `some-random-id-FlexiblePanel`. This scope will be propagated to the
  *   CloseButton element as well: e.g. `some-random-id-CloseButton`.
  *
  * ```js
- * <ModalDialog>
+ * <FlexibleDialog>
  *      <FlexiblePanel content={"custom content goes here"} />
- * </ModalDialog>
+ * </FlexibleDialog>
  * ```
  */
 export default function FlexiblePanel({
@@ -124,7 +117,6 @@ export default function FlexiblePanel({
     content,
     titleId,
     title,
-    footer,
     onClose,
     style,
     testId,
@@ -153,12 +145,12 @@ export default function FlexiblePanel({
             // Pass the scrollOverflow and header in to the main content
             scrollOverflow,
             // We override the styling of the main content to help position
-            // it if there is a footer or close button being
+            // it if there is a close button being
             // shown. We have to do this here as the ModalContent doesn't
             // know about things being positioned around it.
-            style: [!!footer && styles.hasFooter, mainContent.props.style],
+            style: [mainContent.props.style],
         });
-    }, [title, content, footer, scrollOverflow]);
+    }, [title, content, scrollOverflow]);
 
     const mainContent = renderMainContent();
 
@@ -184,11 +176,6 @@ export default function FlexiblePanel({
                 />
             )}
             {mainContent}
-            {!footer || FlexibleFooter.isComponentOf(footer) ? (
-                footer
-            ) : (
-                <FlexibleFooter>{footer}</FlexibleFooter>
-            )}
         </View>
     );
 }
@@ -220,10 +207,5 @@ const styles = StyleSheet.create({
         // programmatic focus. This is a workaround to make sure the focus
         // outline is visible when this control is focused.
         ":focus": focusStyles.focus[":focus-visible"],
-    },
-
-    hasFooter: {
-        // The space between the content and the footer
-        paddingBlockEnd: theme.panel.layout.gap.default,
     },
 });
