@@ -1,12 +1,13 @@
 import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
+import {StyleSheet} from "aphrodite";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-labeled-field/package.json";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {TextArea, TextField} from "@khanacademy/wonder-blocks-form";
 import LabeledFieldArgTypes from "./labeled-field.argtypes";
 import {addStyle, PropsFor, View} from "@khanacademy/wonder-blocks-core";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {
     MultiSelect,
     OptionItem,
@@ -624,6 +625,15 @@ export const Custom = {
     },
 };
 
+const styles = StyleSheet.create({
+    customStyle: {
+        border: `${border.width.medium} solid ${semanticColor.core.border.instructive.subtle}`,
+    },
+    alternativeCustomStyle: {
+        border: `${border.width.medium} solid ${semanticColor.core.border.neutral.subtle}`,
+    },
+});
+
 /**
  * Custom styles can be set for the elements in LabeledField using the `styles`
  * prop.
@@ -638,27 +648,19 @@ export const CustomStyles = {
         label: "Name",
         description: "Helpful description text.",
         errorMessage: "Message about the error",
+        readOnlyMessage: "Message about why it is read only",
         additionalHelperMessage: "Additional helper message",
         contextLabel: "Context label",
         styles: {
             root: {
-                padding: sizing.size_080,
+                outline: `${border.width.thin} dashed ${semanticColor.core.border.neutral.default}`,
             },
-            label: {
-                paddingBlockEnd: sizing.size_020,
-            },
-            description: {
-                paddingBlockEnd: sizing.size_020,
-            },
-            error: {
-                paddingBlockStart: sizing.size_020,
-            },
-            additionalHelperMessage: {
-                paddingBlockStart: sizing.size_020,
-            },
-            contextLabel: {
-                paddingInlineEnd: sizing.size_200,
-            },
+            label: styles.customStyle,
+            contextLabel: styles.customStyle,
+            description: styles.alternativeCustomStyle,
+            additionalHelperMessage: styles.customStyle,
+            readOnlyMessage: styles.alternativeCustomStyle,
+            error: styles.customStyle,
         },
     },
 };
