@@ -124,6 +124,29 @@ export const HelperText: StoryComponentType = {
     },
 };
 
+/**
+ * The `contextLabel` prop can be used to show a translated "required" or
+ * "optional" label for the field.
+ *
+ * See the [Required](#required) docs for more information on required form
+ * validation in fields!
+ */
+export const ContextLabel: StoryComponentType = {
+    args: {
+        field: <TextField value="" onChange={() => {}} />,
+        label: "Label",
+    },
+    render: (args) => {
+        return (
+            <View style={{gap: sizing.size_240}}>
+                <LabeledField {...args} contextLabel="Context label" />
+                <LabeledField {...args} contextLabel="required" />
+                <LabeledField {...args} contextLabel="optional" />
+            </View>
+        );
+    },
+};
+
 const StyledForm = addStyle("form");
 
 const AllFields = (
