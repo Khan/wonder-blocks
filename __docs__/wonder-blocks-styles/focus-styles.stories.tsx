@@ -85,7 +85,10 @@ export const Focus: Story = {
                         icon={info}
                         style={[
                             focusStyles.focus,
-                            {color: semanticColor.text.inverse},
+                            {
+                                color: semanticColor.core.foreground.inverse
+                                    .strong,
+                            },
                         ]}
                     />
                 </View>
@@ -125,7 +128,10 @@ export const Scenarios: Story = {
                             icon={info}
                             style={[
                                 focusStyles.focus,
-                                {color: semanticColor.text.inverse},
+                                {
+                                    color: semanticColor.core.foreground.inverse
+                                        .strong,
+                                },
                             ]}
                         />
                     ),
