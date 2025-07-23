@@ -98,13 +98,36 @@ describe("FocusTrap", () => {
         ).toHaveFocus();
     });
 
-    it("does not move focus to hidden elements", async () => {
+    it("does not move focus to elements with display: none", async () => {
         // Arrange
         render(
             <FocusTrap>
                 <Button>button 1</Button>
                 <Button>button 2</Button>
                 <Button id="hidden-element" style={{display: "none"}}>
+                    button 3
+                </Button>
+            </FocusTrap>,
+        );
+
+        // Initial focused element
+        const firstButton = screen.getByRole("button", {name: /button 1/i});
+        firstButton.focus();
+
+        // Act
+        await userEvent.tab({shift: true});
+
+        // Assert
+        expect(screen.getByRole("button", {name: /button 2/i})).toHaveFocus();
+    });
+
+    it("does not move focus to elements with visibility: hidden", async () => {
+        // Arrange
+        render(
+            <FocusTrap>
+                <Button>button 1</Button>
+                <Button>button 2</Button>
+                <Button id="hidden-element" style={{visibility: "hidden"}}>
                     button 3
                 </Button>
             </FocusTrap>,
