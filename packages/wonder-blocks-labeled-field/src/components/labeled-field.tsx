@@ -378,7 +378,6 @@ const styles = StyleSheet.create({
         color: theme.helperText.color.default.foreground,
         fontSize: theme.helperText.font.size,
         lineHeight: theme.helperText.font.lineHeight,
-        marginBlockStart: theme.helperText.layout.marginBlockStart,
         minWidth: sizing.size_0, // This enables the wrapping behaviour on the helper message
         overflowWrap: "break-word",
     },
@@ -393,5 +392,7 @@ const styles = StyleSheet.create({
     },
     errorMessage: {
         fontWeight: theme.error.font.weight,
+        // This aligns the helper text with the icon
+        marginBlockStart: theme.helperText.layout.marginBlockStart,
     },
 });
