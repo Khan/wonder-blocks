@@ -125,7 +125,10 @@ const AccordionSectionHeader = React.forwardRef(function AccordionSectionHeader(
                         {collapsible && (
                             <PhosphorIcon
                                 icon={caretDown}
-                                color={semanticColor.icon.primary}
+                                color={
+                                    semanticColor.core.foreground.neutral
+                                        .default
+                                }
                                 size="small"
                                 style={[
                                     animated && styles.iconWithAnimation,

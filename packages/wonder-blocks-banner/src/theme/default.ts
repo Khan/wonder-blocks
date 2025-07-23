@@ -32,10 +32,10 @@ const theme = {
     },
     icon: {
         color: {
-            info: semanticColor.icon.primary,
-            success: semanticColor.icon.primary,
-            warning: semanticColor.icon.primary,
-            critical: semanticColor.icon.primary,
+            info: semanticColor.core.foreground.neutral.default,
+            success: semanticColor.core.foreground.neutral.default,
+            warning: semanticColor.core.foreground.neutral.default,
+            critical: semanticColor.core.foreground.neutral.default,
         },
         sizing: {
             height: sizing.size_240,
