@@ -1,7 +1,7 @@
 import * as React from "react";
 import wonderBlocksTheme from "./wonder-blocks-theme";
-import {Decorator} from "@storybook/react";
-import {DocsContainer} from "@storybook/blocks";
+import {Decorator} from "@storybook/react-vite";
+import {DocsContainer} from "@storybook/addon-docs/blocks";
 import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {initAnnouncer} from "@khanacademy/wonder-blocks-announcer";
@@ -11,7 +11,7 @@ import {
     ThemeSwitcher,
     THEME_DATA_ATTRIBUTE,
 } from "@khanacademy/wonder-blocks-theming";
-import {Preview} from "@storybook/react";
+import {Preview} from "@storybook/react-vite";
 
 // Import the Wonder Blocks CSS variables
 import "@khanacademy/wonder-blocks-tokens/styles.css";
@@ -74,29 +74,32 @@ function DocsContainerWithTheme({children, context, ...props}) {
     );
 }
 
-const parameters = {
+const parameters: Preview["parameters"] = {
     // Enable the RenderStateRoot decorator by default.
     enableRenderStateRootDecorator: true,
     backgrounds: {
-        default: "light",
-        values: [
-            {
+        options: {
+            light: {
                 name: "light",
                 value: semanticColor.surface.primary,
             },
-            {
+            darkBlue: {
                 name: "darkBlue",
                 value: semanticColor.surface.inverse,
             },
-            {
+            khanmigo: {
                 name: "khanmigo",
                 value: semanticColor.khanmigo.primary,
             },
-            {
+            offWhite: {
                 name: "offWhite",
                 value: semanticColor.surface.secondary,
             },
-        ],
+        },
+    },
+    initialGlobals: {
+        // 👇 Set the initial background color
+        backgrounds: {value: "light"},
     },
     // https://storybook.js.org/docs/react/configure/story-layout
     layout: "padded",

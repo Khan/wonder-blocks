@@ -1,5 +1,5 @@
 import * as React from "react";
-import {StoryObj} from "@storybook/react";
+import {StoryObj} from "@storybook/react-vite";
 import {StreakBadge} from "@khanacademy/wonder-blocks-badge";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-badge/package.json";
