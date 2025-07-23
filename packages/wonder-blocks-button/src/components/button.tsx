@@ -58,12 +58,13 @@ const Button = React.forwardRef(function Button(
     );
 
     const extraClickableProps = beforeNav ? {beforeNav} : {target};
+    const role = href ? "link" : "button";
 
     return (
         <ClickableBehavior
             disabled={spinner || disabled}
             href={href}
-            role={href ? "link" : "button"}
+            role={role}
             type={type}
             onClick={onClick}
             safeWithNav={safeWithNav}
@@ -82,6 +83,7 @@ const Button = React.forwardRef(function Button(
                     size={size}
                     skipClientNav={skipClientNav}
                     href={href}
+                    role={role}
                     target={target}
                     type={type}
                     tabIndex={tabIndex}
