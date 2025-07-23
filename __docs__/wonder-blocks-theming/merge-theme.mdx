@@ -4,8 +4,6 @@ import Banner from "@khanacademy/wonder-blocks-banner";
 import {mergeTheme} from "@khanacademy/wonder-blocks-theming";
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
 
-import {ButtonWithCustomTheme} from "./theme-examples";
-
 <Meta title="Packages / Theming / mergeTheme" />
 
 # `mergeTheme`
@@ -20,7 +18,6 @@ function mergeTheme<T>(sourceTheme: T, targetTheme: T): T;
 
 <Banner
     kind="info"
-    layout="full-width"
     text="Note that the first argument will define the
 interface/contract that the second arg needs to follow."
 />
@@ -52,26 +49,4 @@ const buttonCustomTheme = mergeTheme(buttonDefaultTheme, {
         radius: tokens.border.radius.large_6,
     },
 });
-```
-
-Then the resulting themed button will be:
-
-<ButtonWithCustomTheme />
-
-And this is the resulting theme object:
-
-```js
-{
-    color: {
-        bg: {
-            primary: tokens.color.gold, // 👈 overridden
-        },
-        text: {
-            light: tokens.color.white, // from the default theme
-        },
-    },
-    border: {
-        radius: tokens.border.radius.medium_4, // 👈 overridden
-    },
-}
 ```
