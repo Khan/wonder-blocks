@@ -28,6 +28,8 @@ import {Heading} from "@khanacademy/wonder-blocks-typography";
  * - If the `errorMessage` prop is set on `LabeledField`, the `error` prop on the
  * form field component will be auto-populated so it doesn't need to be set
  * explicitly on the field
+ * - Setting the `readOnlyMessage` prop will also auto-populate the `readOnly`
+ * prop on the form field component
  * - If the `required` prop is set on `LabeledField`, it will be passed onto the
  * `field` prop component so it doesn't need to be set explicitly. If the `required`
  * prop is set on the `field` component, it will also get set for `LabeledField`
@@ -64,8 +66,63 @@ export const Default: StoryComponentType = {
         field: <TextField value="" onChange={() => {}} />,
         label: "Name",
         description: "Helpful description text.",
-        errorMessage: "Message about the error",
         required: "Custom required message",
+    },
+};
+
+/**
+ * Consider the following when providing helper text:
+ * - Use the `description` prop for the main helper text for a field
+ * - If providing an error message for the field, use the `errorMessage` prop
+ * - If providing a message related to the read only state for the field, use
+ *   the `readOnlyMessage` prop
+ * - For any other helper text, use the `additionalHelperMessage` prop
+ *
+ * If all of these props are used, they will all be shown. It us up to the
+ * consuming application to manage when the helper text is shown.
+ *
+ * When any of these props are used, the field's `aria-describedby` attribute
+ * will include the id of the element for the corresponding prop.
+ */
+export const HelperText: StoryComponentType = {
+    render: (args) => {
+        return (
+            <View style={{gap: sizing.size_240}}>
+                <Heading>A field with an error message</Heading>
+                <LabeledField
+                    {...args}
+                    description="Helpful description text"
+                    errorMessage="Error message"
+                />
+                <Heading>A field with a read only message</Heading>
+                <LabeledField
+                    {...args}
+                    description="Helpful description text"
+                    readOnlyMessage="Read only message"
+                />
+                <Heading>A field with an additional helper message</Heading>
+                <LabeledField
+                    {...args}
+                    description="Helpful description text"
+                    additionalHelperMessage="Additional helper message"
+                />
+                <Heading>
+                    A field with an error, readonly, and additional helper
+                    message
+                </Heading>
+                <LabeledField
+                    {...args}
+                    description="Helpful description text"
+                    errorMessage="Error message"
+                    readOnlyMessage="Read only message"
+                    additionalHelperMessage="Additional helper message"
+                />
+            </View>
+        );
+    },
+    args: {
+        field: <TextField value="" onChange={() => {}} />,
+        label: "Name",
     },
 };
 
@@ -527,6 +584,11 @@ export const Custom = {
                 <b>Read</b> <i>only</i> <u>message</u>
             </span>
         ),
+        additionalHelperMessage: (
+            <span>
+                <b>Additional</b> <i>helper</i> <u>message</u>
+            </span>
+        ),
     },
 };
 
@@ -544,6 +606,7 @@ export const CustomStyles = {
         label: "Name",
         description: "Helpful description text.",
         errorMessage: "Message about the error",
+        additionalHelperMessage: "Additional helper message",
         required: "Custom required message",
         styles: {
             root: {
@@ -556,6 +619,9 @@ export const CustomStyles = {
                 paddingBlockEnd: sizing.size_020,
             },
             error: {
+                paddingBlockStart: sizing.size_020,
+            },
+            additionalHelperMessage: {
                 paddingBlockStart: sizing.size_020,
             },
         },

@@ -115,6 +115,8 @@ const scenarios = [
             description: "Helpful description text.",
             errorMessage: "Message about the error",
             required: "Custom required message",
+            additionalHelperMessage: "Additional helper message",
+            readOnlyMessage: "Read only message",
         },
     },
     {
@@ -141,6 +143,11 @@ const scenarios = [
                     <b>Read</b> <i>only </i> <u>message</u>
                 </span>
             ),
+            additionalHelperMessage: (
+                <span>
+                    <b>Additional</b> <i>helper</i> <u>message</u>
+                </span>
+            ),
         },
     },
     {
@@ -152,6 +159,7 @@ const scenarios = [
             errorMessage: "Message about the error",
             required: "Custom required message",
             readOnlyMessage: "Message about the read only state",
+            additionalHelperMessage: "Additional helper message",
             styles: {
                 root: {
                     padding: sizing.size_080,
@@ -168,16 +176,43 @@ const scenarios = [
                 readOnlyMessage: {
                     paddingBlockStart: sizing.size_020,
                 },
+                additionalHelperMessage: {
+                    paddingBlockStart: sizing.size_020,
+                },
             },
         },
     },
     {
         name: "With disabled field",
         props: {
-            field: <TextField value="" onChange={() => {}} disabled />,
+            field: <TextField value="Value" onChange={() => {}} disabled />,
             label: "Name",
             description: "Helpful description text.",
+            additionalHelperMessage: "Additional helper message",
             required: true,
+        },
+    },
+    {
+        name: "All properties disabled",
+        props: {
+            field: <TextField value="Value" onChange={() => {}} disabled />,
+            label: "Name",
+            description: "Helpful description text.",
+            errorMessage: "Message about the error",
+            required: "Custom required message",
+            additionalHelperMessage: "Additional helper message",
+            readOnlyMessage: "Read only message",
+        },
+    },
+    {
+        name: "All properties disabled without error",
+        props: {
+            field: <TextField value="Value" onChange={() => {}} disabled />,
+            label: "Name",
+            description: "Helpful description text.",
+            required: "Custom required message",
+            additionalHelperMessage: "Additional helper message",
+            readOnlyMessage: "Read only message",
         },
     },
     {
@@ -221,6 +256,30 @@ const scenarios = [
             readOnlyMessage: "Message about the read only state",
         },
     },
+    {
+        name: "Additional helper message",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            additionalHelperMessage: "Additional helper message",
+        },
+    },
+    {
+        name: "Long additional helper message",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            additionalHelperMessage: longText,
+        },
+    },
+    {
+        name: "Long additional helper message and no word break",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            additionalHelperMessage: longTextWithNoWordBreak,
+        },
+    },
 ];
 
 /**
@@ -230,7 +289,7 @@ const scenarios = [
 export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
     const [textFieldValue, setTextFieldValue] = React.useState("");
     return (
-        <View style={{gap: sizing.size_240}}>
+        <View>
             <ScenariosLayout
                 scenarios={scenarios}
                 styles={{root: {alignItems: "stretch"}}}
