@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
         color: semanticColor.core.foreground.neutral.strong,
     },
     description: {
-        color: semanticColor.text.secondary,
+        color: semanticColor.core.foreground.neutral.default,
     },
     error: {
         color: semanticColor.status.critical.foreground,

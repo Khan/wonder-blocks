@@ -160,7 +160,7 @@ const sharedStyles = StyleSheet.create({
         flexGrow: 1,
     },
     subtitle: {
-        color: semanticColor.text.secondary,
+        color: semanticColor.core.foreground.neutral.default,
     },
     titles: {
         padding: spacing.small_12,
