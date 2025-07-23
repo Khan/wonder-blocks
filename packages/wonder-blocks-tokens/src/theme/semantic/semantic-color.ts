@@ -136,19 +136,6 @@ const core = {
     },
 };
 
-/**
- * TODO(WB-1941): Remove border once we have migrated to the new core.border
- * tokens.
- */
-const border = {
-    primary: color.fadedOffBlack16,
-    subtle: color.fadedOffBlack8,
-    strong: color.fadedOffBlack50,
-    inverse: color.white,
-    progressive: color.blue,
-    destructive: color.red,
-};
-
 const surface = {
     primary: color.white,
     secondary: color.offWhite,
@@ -746,14 +733,6 @@ export const semanticColor = {
      * dark backgrounds in light mode.
      */
     text,
-    /**
-     * Borders define structure for elements. Generally borders for component
-     * elements would use -Primary, rows and layout elements use -Subtle and
-     * -Strong for when 3:1 contrast is a priority (ex. form elements)
-     *
-     * @deprecated Use `core.border` tokens instead.
-     */
-    border: border,
 
     focus: {
         outer: color.blue,
