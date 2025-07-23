@@ -19,10 +19,6 @@ export const allModes = {
     themeThunderBlocks: {
         theme: "thunderblocks",
     },
-    // NOTE: This will go away when we consolidate the ThunderBlocks theme.
-    themeKhanmigo: {
-        theme: "khanmigo",
-    },
     // NOTE: This will go away when we fully remove the light variants.
     dark: {
         background: "darkBlue",
