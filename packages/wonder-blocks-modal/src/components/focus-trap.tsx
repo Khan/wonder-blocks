@@ -87,6 +87,12 @@ export default class FocusTrap extends React.Component<Props> {
         // Get the list of available focusable elements within the modal.
         const focusableNodes = Array.from(
             modalRootAsHtmlEl.querySelectorAll(FOCUSABLE_ELEMENTS),
+        ).filter((element) =>
+            element.checkVisibility === undefined
+                ? // checkVisibility is not implemented in jsdom, so just assume
+                  // the element is visible
+                  true
+                : element.checkVisibility(),
         );
 
         const nodeIndex = !isLast ? focusableNodes.length - 1 : 0;
