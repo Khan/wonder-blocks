@@ -7,9 +7,17 @@ import {Choice, RadioGroup} from "@khanacademy/wonder-blocks-form";
 
 import FocusTrap from "../focus-trap";
 
+// jsdom's Element does not implement checkVisibility, so we assign a placeholder
+// to it here, then mock the implementation in the tests.
+Element.prototype.checkVisibility = () => true;
+
 describe("FocusTrap", () => {
-    it("Focus should move to the first focusable element", async () => {
+    it("moves focus to the first focusable element", async () => {
         // Arrange
+        jest.spyOn(Element.prototype, "checkVisibility").mockImplementation(
+            () => true,
+        );
+
         render(
             <>
                 <FocusTrap>
@@ -37,7 +45,7 @@ describe("FocusTrap", () => {
         );
 
         // Initial focused element
-        const firstRadioButton = await screen.findByRole("radio", {
+        const firstRadioButton = screen.getByRole("radio", {
             name: /first option/i,
         });
         firstRadioButton.focus();
@@ -53,8 +61,12 @@ describe("FocusTrap", () => {
         expect(firstRadioButton).toHaveFocus();
     });
 
-    it("Focus should move to the last focusable element", async () => {
+    it("moves focus to the last focusable element", async () => {
         // Arrange
+        jest.spyOn(Element.prototype, "checkVisibility").mockImplementation(
+            () => true,
+        );
+
         render(
             <>
                 <FocusTrap>
@@ -82,7 +94,7 @@ describe("FocusTrap", () => {
         );
 
         // Initial focused element
-        const firstRadioButton = await screen.findByRole("radio", {
+        const firstRadioButton = screen.getByRole("radio", {
             name: /first option/i,
         });
         firstRadioButton.focus();
@@ -94,7 +106,37 @@ describe("FocusTrap", () => {
         // Assert
         // Redirect focus to the button.
         expect(
-            await screen.findByRole("button", {name: "A focusable button"}),
+            screen.getByRole("button", {name: "A focusable button"}),
         ).toHaveFocus();
+    });
+
+    it("does not move focus to hidden elements", async () => {
+        // Arrange
+        jest.spyOn(Element.prototype, "checkVisibility").mockImplementation(
+            function (this: Element) {
+                if (this.id === "hidden-element") {
+                    return false;
+                }
+                return true;
+            },
+        );
+
+        render(
+            <FocusTrap>
+                <Button>button 1</Button>
+                <Button>button 2</Button>
+                <Button id="hidden-element">button 3</Button>
+            </FocusTrap>,
+        );
+
+        // Initial focused element
+        const firstButton = screen.getByRole("button", {name: /button 1/i});
+        firstButton.focus();
+
+        // Act
+        await userEvent.tab({shift: true});
+
+        // Assert
+        expect(screen.getByRole("button", {name: /button 2/i})).toHaveFocus();
     });
 });
