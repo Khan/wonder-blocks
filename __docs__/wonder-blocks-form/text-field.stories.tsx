@@ -86,10 +86,10 @@ export const WithLabeledField: StoryComponentType = {
                         value={value}
                         onChange={setValue}
                         onValidate={setErrorMessage}
+                        required={true}
                     />
                 }
                 description="Description"
-                required={true}
                 errorMessage={errorMessage}
             />
         );
