@@ -7,17 +7,9 @@ import {Choice, RadioGroup} from "@khanacademy/wonder-blocks-form";
 
 import FocusTrap from "../focus-trap";
 
-// jsdom's Element does not implement checkVisibility, so we assign a placeholder
-// to it here, then mock the implementation in the tests.
-Element.prototype.checkVisibility = () => true;
-
 describe("FocusTrap", () => {
     it("moves focus to the first focusable element", async () => {
         // Arrange
-        jest.spyOn(Element.prototype, "checkVisibility").mockImplementation(
-            () => true,
-        );
-
         render(
             <>
                 <FocusTrap>
@@ -63,10 +55,6 @@ describe("FocusTrap", () => {
 
     it("moves focus to the last focusable element", async () => {
         // Arrange
-        jest.spyOn(Element.prototype, "checkVisibility").mockImplementation(
-            () => true,
-        );
-
         render(
             <>
                 <FocusTrap>
@@ -112,20 +100,13 @@ describe("FocusTrap", () => {
 
     it("does not move focus to hidden elements", async () => {
         // Arrange
-        jest.spyOn(Element.prototype, "checkVisibility").mockImplementation(
-            function (this: Element) {
-                if (this.id === "hidden-element") {
-                    return false;
-                }
-                return true;
-            },
-        );
-
         render(
             <FocusTrap>
                 <Button>button 1</Button>
                 <Button>button 2</Button>
-                <Button id="hidden-element">button 3</Button>
+                <Button id="hidden-element" style={{display: "none"}}>
+                    button 3
+                </Button>
             </FocusTrap>,
         );
 
