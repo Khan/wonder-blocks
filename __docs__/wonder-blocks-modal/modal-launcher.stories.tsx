@@ -427,6 +427,42 @@ WithInitialFocusId.parameters = {
     },
 };
 
+export const WithLastButtonHidden: StoryComponentType = () => {
+    const modalLastButtonHidden = () => (
+        <OnePaneDialog
+            title="Single-line title"
+            content={
+                <View style={{gap: sizing.size_240}}>
+                    <Button>Button 1</Button>
+                    <Button style={{display: "none"}}>Button 2</Button>
+                </View>
+            }
+        />
+    );
+
+    return (
+        <ModalLauncher modal={modalLastButtonHidden}>
+            {({openModal}) => (
+                <Button onClick={openModal}>
+                    Open modal with last button hidden
+                </Button>
+            )}
+        </ModalLauncher>
+    );
+};
+
+WithLastButtonHidden.parameters = {
+    chromatic: {
+        // All the examples for ModalLauncher are behavior based, not visual.
+        disableSnapshot: true,
+    },
+    docs: {
+        description: {
+            story: `Verifying that the focus trap works when the last button is hidden.`,
+        },
+    },
+};
+
 /**
  * Focus trap navigation
  */
