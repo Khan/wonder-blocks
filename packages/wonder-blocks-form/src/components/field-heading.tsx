@@ -5,6 +5,7 @@ import {View, addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import theme from "../theme";
 
 type Props = {
     /**
@@ -139,7 +140,7 @@ const styles = StyleSheet.create({
         color: semanticColor.core.foreground.neutral.strong,
     },
     description: {
-        color: semanticColor.core.foreground.neutral.default,
+        color: theme.description.color.foreground,
     },
     error: {
         color: semanticColor.status.critical.foreground,
