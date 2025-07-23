@@ -63,8 +63,7 @@ const Button = React.forwardRef(function Button(
         <ClickableBehavior
             disabled={spinner || disabled}
             href={href}
-            // TODO(WB-1940): Use `link` when `href` is defined.
-            role="button"
+            role={href ? "link" : "button"}
             type={type}
             onClick={onClick}
             safeWithNav={safeWithNav}
