@@ -1,12 +1,13 @@
 import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
+import {StyleSheet} from "aphrodite";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-labeled-field/package.json";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {TextArea, TextField} from "@khanacademy/wonder-blocks-form";
 import LabeledFieldArgTypes from "./labeled-field.argtypes";
 import {addStyle, PropsFor, View} from "@khanacademy/wonder-blocks-core";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {
     MultiSelect,
     OptionItem,
@@ -64,6 +65,7 @@ export const Default: StoryComponentType = {
         field: <TextField value="" onChange={() => {}} />,
         label: "Name",
         description: "Helpful description text.",
+        contextLabel: "Context label",
     },
 };
 
@@ -120,6 +122,29 @@ export const HelperText: StoryComponentType = {
     args: {
         field: <TextField value="" onChange={() => {}} />,
         label: "Name",
+    },
+};
+
+/**
+ * The `contextLabel` prop can be used to show a translated "required" or
+ * "optional" label for the field.
+ *
+ * See the [Required](#required) docs for more information on required form
+ * validation in fields!
+ */
+export const ContextLabel: StoryComponentType = {
+    args: {
+        field: <TextField value="" onChange={() => {}} />,
+        label: "Label",
+    },
+    render: (args) => {
+        return (
+            <View style={{gap: sizing.size_240}}>
+                <LabeledField {...args} contextLabel="Context label" />
+                <LabeledField {...args} contextLabel="required" />
+                <LabeledField {...args} contextLabel="optional" />
+            </View>
+        );
     },
 };
 
@@ -417,6 +442,7 @@ const AllFields = (
 export const Fields: StoryComponentType = {
     args: {
         description: "Helpful description text.",
+        contextLabel: "Context label",
     },
     render: (args) => {
         return (
@@ -469,6 +495,7 @@ export const Required: AllFieldsStoryComponentType = {
     args: {
         description: "Helpful description text.",
         showSubmitButtonInStory: true,
+        contextLabel: "required",
     },
     render: (args) => (
         <AllFields {...args} required="Custom required error message" />
@@ -590,8 +617,22 @@ export const Custom = {
                 <b>Additional</b> <i>helper</i> <u>message</u>
             </span>
         ),
+        contextLabel: (
+            <span>
+                <b>Context</b> <i>label</i>
+            </span>
+        ),
     },
 };
+
+const styles = StyleSheet.create({
+    customStyle: {
+        border: `${border.width.medium} solid ${semanticColor.core.border.instructive.subtle}`,
+    },
+    alternativeCustomStyle: {
+        border: `${border.width.medium} solid ${semanticColor.core.border.neutral.subtle}`,
+    },
+});
 
 /**
  * Custom styles can be set for the elements in LabeledField using the `styles`
@@ -607,23 +648,19 @@ export const CustomStyles = {
         label: "Name",
         description: "Helpful description text.",
         errorMessage: "Message about the error",
+        readOnlyMessage: "Message about why it is read only",
         additionalHelperMessage: "Additional helper message",
+        contextLabel: "Context label",
         styles: {
             root: {
-                padding: sizing.size_080,
+                outline: `${border.width.thin} dashed ${semanticColor.core.border.neutral.default}`,
             },
-            label: {
-                paddingBlockEnd: sizing.size_020,
-            },
-            description: {
-                paddingBlockEnd: sizing.size_020,
-            },
-            error: {
-                paddingBlockStart: sizing.size_020,
-            },
-            additionalHelperMessage: {
-                paddingBlockStart: sizing.size_020,
-            },
+            label: styles.customStyle,
+            contextLabel: styles.customStyle,
+            description: styles.alternativeCustomStyle,
+            additionalHelperMessage: styles.customStyle,
+            readOnlyMessage: styles.alternativeCustomStyle,
+            error: styles.customStyle,
         },
     },
 };

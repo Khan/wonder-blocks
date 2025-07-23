@@ -22,6 +22,13 @@ export default mergeTheme(defaultTheme, {
             },
         },
     },
+    contextLabel: {
+        color: {
+            error: {
+                foreground: semanticColor.core.foreground.critical.default,
+            },
+        },
+    },
     error: {
         color: {
             foreground: semanticColor.core.foreground.critical.default,
