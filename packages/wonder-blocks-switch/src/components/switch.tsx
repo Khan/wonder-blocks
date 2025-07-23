@@ -61,8 +61,8 @@ const baseStyles = {
                 activeOn: semanticColor.core.background.instructive.strong,
             },
             slider: {
-                on: semanticColor.icon.inverse,
-                off: semanticColor.icon.inverse,
+                on: semanticColor.core.foreground.inverse.strong,
+                off: semanticColor.core.foreground.inverse.strong,
             },
             icon: {
                 on: semanticColor.icon.action,
