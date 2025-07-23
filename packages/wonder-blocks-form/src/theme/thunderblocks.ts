@@ -14,7 +14,7 @@ export default mergeTheme(defaultTheme, {
     },
     description: {
         color: {
-            foreground: semanticColor.core.foreground.neutral.strong,
+            foreground: semanticColor.core.foreground.neutral.subtle,
         },
     },
     field: {
