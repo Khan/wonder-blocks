@@ -160,12 +160,13 @@ export const ActivityButton = React.forwardRef(function ActivityButton(
     );
 
     const extraClickableProps = beforeNav ? {beforeNav} : {target};
+    const role = href ? "link" : "button";
 
     return (
         <ClickableBehavior
             disabled={disabled}
             href={href}
-            role={href ? "link" : "button"}
+            role={role}
             type={type}
             onClick={onClick}
             safeWithNav={safeWithNav}
@@ -181,6 +182,7 @@ export const ActivityButton = React.forwardRef(function ActivityButton(
                     kind={kind}
                     skipClientNav={skipClientNav}
                     href={href}
+                    role={role}
                     target={target}
                     type={type}
                     tabIndex={tabIndex}

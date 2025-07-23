@@ -39,7 +39,7 @@ describe("Button", () => {
         );
 
         // Act
-        const button = await screen.findByRole("button");
+        const button = await screen.findByRole("link");
         await userEvent.click(button);
 
         // Assert
@@ -67,7 +67,7 @@ describe("Button", () => {
         );
 
         // Act
-        const button = await screen.findByRole("button");
+        const button = await screen.findByRole("link");
         await userEvent.click(button);
 
         // Assert
@@ -100,7 +100,7 @@ describe("Button", () => {
         );
 
         // Act
-        const button = await screen.findByRole("button");
+        const button = await screen.findByRole("link");
         await userEvent.click(button);
 
         // Assert
@@ -128,7 +128,7 @@ describe("Button", () => {
         );
 
         // Act
-        await userEvent.click(await screen.findByRole("button"));
+        await userEvent.click(await screen.findByRole("link"));
 
         // Assert
         await waitFor(async () => {
@@ -164,7 +164,7 @@ describe("Button", () => {
         );
 
         // Act
-        await userEvent.click(await screen.findByRole("button"));
+        await userEvent.click(await screen.findByRole("link"));
 
         // Assert
         await waitFor(() => {
@@ -196,7 +196,7 @@ describe("Button", () => {
         );
 
         // Act
-        const button = await screen.findByRole("button");
+        const button = await screen.findByRole("link");
         await userEvent.click(button);
 
         // Assert
@@ -230,7 +230,7 @@ describe("Button", () => {
         );
 
         // Act
-        await userEvent.click(await screen.findByRole("button"));
+        await userEvent.click(await screen.findByRole("link"));
 
         // Assert
         await waitFor(() => {
@@ -264,7 +264,7 @@ describe("Button", () => {
         );
 
         // Act
-        const button = await screen.findByRole("button");
+        const button = await screen.findByRole("link");
         await userEvent.click(button);
 
         // Assert
@@ -298,7 +298,7 @@ describe("Button", () => {
         );
 
         // Act
-        const button = await screen.findByRole("button");
+        const button = await screen.findByRole("link");
         await userEvent.click(button);
 
         // Assert
@@ -333,7 +333,7 @@ describe("Button", () => {
         );
 
         // Act
-        const button = await screen.findByRole("button");
+        const button = await screen.findByRole("link");
         await userEvent.click(button);
 
         // Assert
@@ -365,7 +365,7 @@ describe("Button", () => {
         );
 
         // Act
-        const button = await screen.findByRole("button");
+        const button = await screen.findByRole("link");
         await userEvent.click(button);
 
         // Assert
@@ -401,7 +401,7 @@ describe("Button", () => {
         );
 
         // Act
-        await userEvent.click(await screen.findByRole("button"));
+        await userEvent.click(await screen.findByRole("link"));
 
         // Assert
         await waitFor(() => {
@@ -432,7 +432,7 @@ describe("Button", () => {
             );
 
             // Act
-            const button = await screen.findByRole("button");
+            const button = await screen.findByRole("link");
             await userEvent.type(button, "{space}");
 
             // Assert
@@ -460,7 +460,7 @@ describe("Button", () => {
             );
 
             // Act
-            const button = await screen.findByRole("button");
+            const button = await screen.findByRole("link");
             await userEvent.type(button, "{enter}");
 
             // Assert
@@ -493,7 +493,7 @@ describe("Button", () => {
             );
 
             // Act
-            const button = await screen.findByRole("button");
+            const button = await screen.findByRole("link");
             await userEvent.type(button, "{enter}");
 
             // Assert
@@ -524,7 +524,7 @@ describe("Button", () => {
             );
 
             // Act
-            const button = await screen.findByRole("button");
+            const button = await screen.findByRole("link");
             await userEvent.type(button, "{enter}");
 
             // Assert
@@ -561,7 +561,7 @@ describe("Button", () => {
             );
 
             // Act
-            const button = await screen.findByRole("button");
+            const button = await screen.findByRole("link");
             await userEvent.type(button, "{enter}");
 
             // Assert
@@ -594,7 +594,7 @@ describe("Button", () => {
             );
 
             // Act
-            const button = await screen.findByRole("button");
+            const button = await screen.findByRole("link");
             await userEvent.type(button, "{enter}");
 
             // Assert
@@ -630,7 +630,7 @@ describe("Button", () => {
             );
 
             // Act
-            const button = await screen.findByRole("button");
+            const button = await screen.findByRole("link");
             await userEvent.type(button, "{enter}");
 
             // Assert
