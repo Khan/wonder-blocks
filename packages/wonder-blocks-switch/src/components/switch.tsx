@@ -68,7 +68,7 @@ const baseStyles = {
                 on: semanticColor.icon.action,
                 disabledOn: semanticColor.core.border.instructive.subtle,
                 off: semanticColor.core.border.neutral.default,
-                disabledOff: semanticColor.icon.disabled,
+                disabledOff: semanticColor.core.foreground.disabled.default,
             },
         },
     },
