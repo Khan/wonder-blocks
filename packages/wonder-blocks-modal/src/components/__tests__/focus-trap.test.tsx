@@ -111,8 +111,7 @@ describe("FocusTrap", () => {
         );
 
         // Initial focused element
-        const firstButton = screen.getByRole("button", {name: /button 1/i});
-        firstButton.focus();
+        screen.getByRole("button", {name: /button 1/i}).focus();
 
         // Act
         await userEvent.tab({shift: true});
@@ -134,8 +133,7 @@ describe("FocusTrap", () => {
         );
 
         // Initial focused element
-        const firstButton = screen.getByRole("button", {name: /button 1/i});
-        firstButton.focus();
+        screen.getByRole("button", {name: /button 1/i}).focus();
 
         // Act
         await userEvent.tab({shift: true});
