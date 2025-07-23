@@ -150,19 +150,6 @@ const sharedFeedbackStrongTokens = {
     text: core.foreground.inverse.strong,
 };
 
-/**
- * TODO(WB-1941): Remove text once we have migrated to the new core.foreground
- * tokens.
- *
- * @deprecated Use `core.foreground` tokens instead.
- */
-const text = {
-    primary: core.foreground.neutral.strong,
-    secondary: core.foreground.neutral.default,
-    disabled: core.foreground.inverse.subtle,
-    inverse: core.foreground.inverse.strong,
-};
-
 export const semanticColor = {
     /**
      * Our core colors are used for the most common elements in our UI. They
@@ -728,11 +715,6 @@ export const semanticColor = {
      * areas of the UI.
      */
     surface,
-    /**
-     * For all type to ensure contrast for legibility. Inverse text applies for
-     * dark backgrounds in light mode.
-     */
-    text,
 
     focus: {
         outer: color.blue,
