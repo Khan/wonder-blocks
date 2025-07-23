@@ -65,7 +65,7 @@ const baseStyles = {
                 off: semanticColor.core.foreground.inverse.strong,
             },
             icon: {
-                on: semanticColor.icon.action,
+                on: semanticColor.core.foreground.instructive.subtle,
                 disabledOn: semanticColor.core.border.instructive.subtle,
                 off: semanticColor.core.border.neutral.default,
                 disabledOff: semanticColor.core.foreground.disabled.default,
