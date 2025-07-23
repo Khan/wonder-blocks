@@ -136,7 +136,7 @@ export default class FieldHeading extends React.Component<Props> {
 
 const styles = StyleSheet.create({
     label: {
-        color: semanticColor.text.primary,
+        color: semanticColor.core.foreground.neutral.strong,
     },
     description: {
         color: semanticColor.text.secondary,

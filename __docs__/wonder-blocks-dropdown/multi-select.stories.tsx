@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
         borderLeft: `${border.width.thick} solid ${semanticColor.status.warning.foreground}`,
         borderRadius: border.radius.radius_040,
         background: semanticColor.status.warning.background,
-        color: semanticColor.text.primary,
+        color: semanticColor.core.foreground.neutral.strong,
         padding: sizing.size_160,
     },
     focused: focusStyles.focus[":focus-visible"],
