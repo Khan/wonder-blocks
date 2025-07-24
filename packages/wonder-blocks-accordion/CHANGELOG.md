@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-accordion
 
+## 3.1.32
+
+### Patch Changes
+
+- eafcfa3: Replaces `semanticColor.icon` with `semanticColor.core.foreground` tokens
+- Updated dependencies [eafcfa3]
+- Updated dependencies [956f8bd]
+- Updated dependencies [eafcfa3]
+- Updated dependencies [b42b694]
+- Updated dependencies [956f8bd]
+    - @khanacademy/wonder-blocks-tokens@12.0.0
+    - @khanacademy/wonder-blocks-clickable@7.1.18
+    - @khanacademy/wonder-blocks-icon@5.2.12
+    - @khanacademy/wonder-blocks-typography@4.2.14
+
 ## 3.1.31
 
 ### Patch Changes

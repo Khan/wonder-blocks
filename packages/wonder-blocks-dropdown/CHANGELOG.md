@@ -1,5 +1,31 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.2.8
+
+### Patch Changes
+
+- 956f8bd: Replaces instances of `semanticColor.text` with `semanticColor.core.foreground`
+- Updated dependencies [956f8bd]
+- Updated dependencies [eafcfa3]
+- Updated dependencies [eafcfa3]
+- Updated dependencies [fc6e4b7]
+- Updated dependencies [956f8bd]
+- Updated dependencies [956f8bd]
+- Updated dependencies [eafcfa3]
+- Updated dependencies [b42b694]
+- Updated dependencies [956f8bd]
+    - @khanacademy/wonder-blocks-form@7.2.5
+    - @khanacademy/wonder-blocks-tokens@12.0.0
+    - @khanacademy/wonder-blocks-search-field@5.1.35
+    - @khanacademy/wonder-blocks-modal@8.1.7
+    - @khanacademy/wonder-blocks-styles@0.2.25
+    - @khanacademy/wonder-blocks-cell@5.0.6
+    - @khanacademy/wonder-blocks-clickable@7.1.18
+    - @khanacademy/wonder-blocks-icon@5.2.12
+    - @khanacademy/wonder-blocks-icon-button@10.3.13
+    - @khanacademy/wonder-blocks-pill@3.1.33
+    - @khanacademy/wonder-blocks-typography@4.2.14
+
 ## 10.2.7
 
 ### Patch Changes

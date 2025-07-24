@@ -1,5 +1,22 @@
 # @khanacademy/wonder-blocks-banner
 
+## 4.2.10
+
+### Patch Changes
+
+- eafcfa3: Replaces `semanticColor.icon` with `semanticColor.core.foreground` tokens
+- Updated dependencies [eafcfa3]
+- Updated dependencies [956f8bd]
+- Updated dependencies [eafcfa3]
+- Updated dependencies [b42b694]
+- Updated dependencies [956f8bd]
+    - @khanacademy/wonder-blocks-tokens@12.0.0
+    - @khanacademy/wonder-blocks-button@10.2.14
+    - @khanacademy/wonder-blocks-icon@5.2.12
+    - @khanacademy/wonder-blocks-icon-button@10.3.13
+    - @khanacademy/wonder-blocks-link@9.1.18
+    - @khanacademy/wonder-blocks-typography@4.2.14
+
 ## 4.2.9
 
 ### Patch Changes

@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 12.0.0
+
+### Major Changes
+
+- 956f8bd: Removes semanticColor.text category now that we use semanticColor.core.foreground.
+- eafcfa3: Removes `semanticColor.icon` category (in favor of `semanticColor.core.foreground`)
+- b42b694: Removes semanticColor.border category as it is deprecated (core.border is the replacement)
+
+### Patch Changes
+
+- eafcfa3: Updates CSS variables for banner and form packages
+- 956f8bd: Update form component-level tokens
+- Updated dependencies [0f16c2e]
+    - @khanacademy/wonder-blocks-theming@4.0.0
+
 ## 11.4.1
 
 ### Patch Changes
