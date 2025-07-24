@@ -362,7 +362,8 @@ export const AllBadgesScenarios: StoryComponentType = {
                                         backgroundColor:
                                             semanticColor.surface.inverse,
                                         borderColor:
-                                            semanticColor.border.inverse,
+                                            semanticColor.core.border.inverse
+                                                .strong,
                                         color: semanticColor.text.inverse,
                                     },
                                     icon: {color: semanticColor.icon.inverse},

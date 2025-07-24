@@ -91,7 +91,7 @@ const badgeTokens = {
         color: {
             background: semanticColor.surface.secondary,
             foreground: semanticColor.text.primary,
-            border: semanticColor.border.subtle,
+            border: semanticColor.core.border.neutral.subtle,
         },
     },
     icon: {
