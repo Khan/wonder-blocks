@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-form
 
+## 7.3.0
+
+### Minor Changes
+
+- e934f20: Add onPaste prop to TextArea and TextField
+
 ## 7.2.5
 
 ### Patch Changes
