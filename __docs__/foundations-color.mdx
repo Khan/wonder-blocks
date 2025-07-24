@@ -176,14 +176,14 @@ all interactive elements regardless of the state (disabled, error, etc).
 - `outer`: The outer ring of the focus state.
 - `inner`: The inner ring of the focus state.
 
-<ColorGroup colors={semanticColor.focus} group="focus" />
+<Canvas of={SemanticColorStories.Focus} layout="fullscreen" />
 
 ### Surface
 
 For background colors. Overlays act as supplementary surfaces that mask areas of
 the UI.
 
-<ColorGroup colors={semanticColor.surface} group="surface" />
+<Canvas of={SemanticColorStories.Surface} layout="fullscreen" />
 
 ### Input
 
@@ -192,9 +192,7 @@ interaction. This includes text inputs, checkboxes, radio buttons, and
 selects. These colors are used to communicate the state of the input and its
 validity.
 
-<View style={styles.gridCompact}>
-    <ActionColorGroup category={semanticColor.input} group="input" />
-</View>
+<Canvas of={SemanticColorStories.Input} layout="fullscreen" />
 
 ### Learning
 
@@ -206,87 +204,37 @@ such as practice and mastery, among others.
 For MathJax elements, these colors are used to render mathematical expressions
 in the UI.
 
-<ColorGroup
-    colors={semanticColor.learning.math.foreground}
-    group="learning.math.foreground"
-/>
+<Canvas of={SemanticColorStories.LearningMath} layout="fullscreen" />
 
 #### Border
 
-<View style={styles.gridCompact}>
-    <ActionColorGroup
-        category={semanticColor.learning.border}
-        group="learning.border"
-        includeExample={false}
-    />
-</View>
+<Canvas of={SemanticColorStories.LearningBorder} layout="fullscreen" />
 
 #### Background
 
-<View style={styles.gridCompact}>
-    <ActionColorGroup
-        category={{
-            gems: semanticColor.learning.background.gems,
-            streaks: semanticColor.learning.background.streaks,
-            due: semanticColor.learning.background.due,
-        }}
-        group="learning.background"
-        includeExample={false}
-    />
-</View>
+<Canvas of={SemanticColorStories.LearningBackground} layout="fullscreen" />
 
-<View style={styles.gridCompact}>
-    <ActionColorGroup
-        category={semanticColor.learning.background.progress}
-        group="learning.background.progress"
-        includeExample={false}
-    />
-</View>
 
 #### Foreground
 
-<View style={styles.gridCompact}>
-    <ActionColorGroup
-        category={{
-            gems: semanticColor.learning.foreground.gems,
-            streaks: semanticColor.learning.foreground.streaks,
-            due: semanticColor.learning.foreground.due,
-        }}
-        group="learning.foreground"
-        includeExample={false}
-    />
-</View>
-
-<View style={styles.gridCompact}>
-    <ActionColorGroup
-        category={semanticColor.learning.foreground.progress}
-        group="learning.foreground.progress"
-        includeExample={false}
-    />
-</View>
+<Canvas of={SemanticColorStories.LearningForeground} layout="fullscreen" />
 
 #### Shadow
 
-<View style={styles.gridCompact}>
-    <ActionColorGroup
-        category={semanticColor.learning.shadow.progress}
-        group="learning.shadow.progress"
-        includeExample={false}
-    />
-</View>
+<Canvas of={SemanticColorStories.LearningShadow} layout="fullscreen" />
 
 ### Khanmigo
 
 Colors to be used exclusively for Khanmigo or to communicate a relationship to
 it.
 
-<ColorGroup colors={semanticColor.khanmigo} group="khanmigo" />
+<Canvas of={SemanticColorStories.Khanmigo} layout="fullscreen" />
 
 ### Mastery
 
 Standalone colors used only for communicating mastery.
 
-<ColorGroup colors={semanticColor.mastery} group="mastery" />
+<Canvas of={SemanticColorStories.Mastery} layout="fullscreen" />
 
 ## Accessibility
 
