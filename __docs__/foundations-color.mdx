@@ -1,4 +1,4 @@
-import {Meta, ColorPalette, ColorItem} from "@storybook/blocks";
+import {Meta, ColorPalette, ColorItem, Canvas} from "@storybook/blocks";
 import {StyleSheet} from "aphrodite";
 
 import Banner from "@khanacademy/wonder-blocks-banner";
@@ -6,6 +6,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
 import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import * as SemanticColorStories from "./wonder-blocks-tokens/semantic-color.stories"
 
 import {ColorGroup, ActionColorGroup} from "./components/color";
 
@@ -88,13 +89,7 @@ would use `core.border.neutral.subtle`, `core.border.neutral.default` for when
 3:1 contrast is a priority (ex. form elements) and `core.border.neutral.strong`
 for 4.5:1 contrast.
 
-<View style={styles.gridCompact}>
-    <ActionColorGroup
-        category={semanticColor.core.border}
-        group="core.border"
-        includeExample={false}
-    />
-</View>
+<Canvas of={SemanticColorStories.CoreBorder} layout="fullscreen" />
 
 #### Background
 
@@ -102,13 +97,7 @@ Background colors are used to define the background of elements. This includes
 the background of components like buttons, banners, and other elements that
 require a background color.
 
-<View style={styles.gridCompact}>
-    <ActionColorGroup
-        category={semanticColor.core.background}
-        group="core.background"
-        includeExample={false}
-    />
-</View>
+<Canvas of={SemanticColorStories.CoreBackground} layout="fullscreen" />
 
 #### Foreground
 
