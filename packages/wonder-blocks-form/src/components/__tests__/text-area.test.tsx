@@ -608,6 +608,49 @@ describe("TextArea", () => {
             // Assert
             expect(handleOnBlur).toHaveBeenCalledOnce();
         });
+
+        it("should call the onPaste prop when text is pasted into the textarea", async () => {
+            // Arrange
+            const handleOnPaste = jest.fn();
+            render(
+                <TextArea
+                    value=""
+                    onChange={() => {}}
+                    onPaste={handleOnPaste}
+                />,
+                defaultOptions,
+            );
+
+            // Act
+            const textArea = await screen.findByRole("textbox");
+            textArea.focus();
+            await userEvent.paste("test");
+
+            // Assert
+            expect(handleOnPaste).toHaveBeenCalledOnce();
+        });
+
+        it("should not call the onPaste prop when text is pasted into the textarea and it is disabled", async () => {
+            // Arrange
+            const handleOnPaste = jest.fn();
+            render(
+                <TextArea
+                    value=""
+                    onChange={() => {}}
+                    onPaste={handleOnPaste}
+                    disabled={true}
+                />,
+                defaultOptions,
+            );
+
+            // Act
+            const textArea = await screen.findByRole("textbox");
+            textArea.focus();
+            await userEvent.paste("test");
+
+            // Assert
+            expect(handleOnPaste).not.toHaveBeenCalled();
+        });
     });
 
     describe("Accessibility", () => {

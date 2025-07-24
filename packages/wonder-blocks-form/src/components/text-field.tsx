@@ -82,6 +82,10 @@ type CommonProps = AriaProps & {
      */
     onBlur?: (event: React.FocusEvent<HTMLInputElement>) => unknown;
     /**
+     * Called when text is pasted into the element.
+     */
+    onPaste?: React.ClipboardEventHandler<HTMLInputElement>;
+    /**
      * Provide hints or examples of what to enter.
      */
     placeholder?: string;
@@ -189,6 +193,7 @@ const TextField = (props: PropsWithForwardRef) => {
         onChange,
         onFocus,
         onBlur,
+        onPaste,
         // Should only include Aria related props
         ...otherProps
     } = props;
@@ -247,6 +252,7 @@ const TextField = (props: PropsWithForwardRef) => {
                     onKeyDown={disabled ? undefined : onKeyDown}
                     onFocus={handleFocus} // TextField can be focused if disabled
                     onBlur={handleBlur} // TextField can be blurred if disabled
+                    onPaste={disabled ? undefined : onPaste}
                     data-testid={testId}
                     readOnly={readOnly || disabled} // Set readOnly also if it is disabled, otherwise users can type in the field
                     autoFocus={autoFocus}
