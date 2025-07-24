@@ -34,10 +34,19 @@ import {
     ActionTertiaryDisabled,
     Status,
 } from "./semantic-color-groups.stories";
+import {allModes} from "../../.storybook/modes";
 
 export default {
     title: "Packages/Tokens/Semantic Colors",
     tags: ["!autodocs", "!dev"],
+    parameters: {
+        chromatic: {
+            modes: {
+                default: allModes.themeDefault,
+                thunderblocks: allModes.themeThunderBlocks,
+            },
+        },
+    },
 };
 
 /**
