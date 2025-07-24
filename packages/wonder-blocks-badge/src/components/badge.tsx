@@ -100,7 +100,7 @@ const badgeTokens = {
             height: sizing.size_160,
         },
         color: {
-            foreground: semanticColor.icon.primary,
+            foreground: semanticColor.core.foreground.neutral.default,
         },
     },
 };

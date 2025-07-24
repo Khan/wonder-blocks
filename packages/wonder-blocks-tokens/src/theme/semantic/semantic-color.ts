@@ -720,19 +720,7 @@ export const semanticColor = {
         outer: color.blue,
         inner: color.white,
     },
-    /**
-     * Default icon colors that change in context (like actions).
-     *
-     * @deprecated Use `core.foreground` tokens instead.
-     */
-    icon: {
-        primary: color.fadedOffBlack72,
-        secondary: color.offBlack,
-        inverse: color.white,
-        action: color.blue,
-        destructive: color.red,
-        disabled: color.fadedOffBlack32,
-    },
+
     link: {
         rest: core.foreground.instructive.subtle,
         hover: core.foreground.instructive.subtle,

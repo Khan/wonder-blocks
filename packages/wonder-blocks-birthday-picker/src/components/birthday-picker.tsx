@@ -338,7 +338,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                     <PhosphorIcon
                         size="small"
                         icon={infoIcon}
-                        color={semanticColor.icon.destructive}
+                        color={semanticColor.core.foreground.critical.subtle}
                         aria-hidden="true"
                     />
                     <Strut size={spacing.xxxSmall_4} />

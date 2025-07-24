@@ -204,7 +204,7 @@ export const CustomStyles: StoryComponentType = {
                         borderColor: semanticColor.core.border.inverse.strong,
                         color: semanticColor.core.foreground.inverse.strong,
                     },
-                    icon: {color: semanticColor.icon.inverse},
+                    icon: {color: semanticColor.core.foreground.inverse.strong},
                     label: {
                         fontWeight: font.weight.medium,
                     },
