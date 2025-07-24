@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-theming
 
+## 4.0.0
+
+### Major Changes
+
+- 0f16c2e: Remove most of deprecated APIs that use React Context in favor of CSS variables + custom tooling
+
 ## 3.4.0
 
 ### Minor Changes

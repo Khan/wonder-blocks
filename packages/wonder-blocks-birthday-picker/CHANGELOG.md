@@ -1,5 +1,22 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 4.0.27
+
+### Patch Changes
+
+- eafcfa3: Replaces `semanticColor.icon` with `semanticColor.core.foreground` tokens
+- Updated dependencies [eafcfa3]
+- Updated dependencies [956f8bd]
+- Updated dependencies [956f8bd]
+- Updated dependencies [eafcfa3]
+- Updated dependencies [b42b694]
+- Updated dependencies [956f8bd]
+    - @khanacademy/wonder-blocks-tokens@12.0.0
+    - @khanacademy/wonder-blocks-dropdown@10.2.8
+    - @khanacademy/wonder-blocks-icon@5.2.12
+    - @khanacademy/wonder-blocks-layout@3.1.29
+    - @khanacademy/wonder-blocks-typography@4.2.14
+
 ## 4.0.26
 
 ### Patch Changes

@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-styles
 
+## 0.2.25
+
+### Patch Changes
+
+- 956f8bd: Replaces instances of `semanticColor.text` with `semanticColor.core.foreground`
+- Updated dependencies [eafcfa3]
+- Updated dependencies [956f8bd]
+- Updated dependencies [eafcfa3]
+- Updated dependencies [b42b694]
+- Updated dependencies [956f8bd]
+    - @khanacademy/wonder-blocks-tokens@12.0.0
+
 ## 0.2.24
 
 ### Patch Changes
