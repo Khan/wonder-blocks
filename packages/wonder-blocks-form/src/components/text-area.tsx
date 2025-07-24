@@ -127,6 +127,11 @@ type TextAreaProps = AriaProps & {
      */
     onBlur?: React.FocusEventHandler<HTMLTextAreaElement>;
     /**
+     * Called when text is pasted into the element.
+     * @param event The paste event
+     */
+    onPaste?: React.ClipboardEventHandler<HTMLTextAreaElement>;
+    /**
      * Provide a validation for the textarea value.
      * Return a string error message or null | void for a valid input.
      *
@@ -223,6 +228,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             onKeyUp,
             onFocus,
             onBlur,
+            onPaste,
             validate,
             onValidate,
             required,
@@ -301,6 +307,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                     onKeyUp={disabled ? undefined : onKeyUp}
                     onFocus={onFocus} // TextArea can be focused on if it is disabled
                     onBlur={handleBlur} // TextArea can be blurred if it is disabled
+                    onPaste={disabled ? undefined : onPaste}
                     required={!!required}
                     {...otherProps}
                     aria-invalid={hasError}
