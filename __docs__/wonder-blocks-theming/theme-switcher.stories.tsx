@@ -28,10 +28,8 @@ export const Default: Story = (() => {
     const [theme, setTheme] = React.useState<SupportedThemes>("default");
 
     const changeTheme = () => {
-        // NOTE: Right now, this is just a placeholder, meaning that no visual
-        // changes are expected.
-        // TODO(WB-1896): Update this to use the `thunderblocks` theme.
-        const newTheme = theme === "khanmigo" ? "default" : "khanmigo";
+        const newTheme =
+            theme === "thunderblocks" ? "default" : "thunderblocks";
         setTheme(newTheme);
     };
 
