@@ -232,12 +232,12 @@ const preview: Preview = {
                     {
                         value: "default",
                         icon: "circlehollow",
-                        title: "Wonder Blocks (default)",
+                        title: "Legacy (Classic Wonder Blocks)",
                     },
                     {
                         value: "thunderblocks",
                         icon: "lightning",
-                        title: "Thunder Blocks (Classroom)",
+                        title: "Shape Your Learning (Thunder Blocks)",
                     },
                 ],
                 // Change title based on selected value
