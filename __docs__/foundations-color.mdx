@@ -124,13 +124,7 @@ important for ensuring that the text and icons are legible and accessible.
     ]}
 />
 
-<View style={styles.gridCompact}>
-    <ActionColorGroup
-        category={semanticColor.core.foreground}
-        group="core.foreground"
-        includeExample={false}
-    />
-</View>
+<Canvas of={SemanticColorStories.CoreForeground} layout="fullscreen" />
 
 ### Feedback
 
@@ -157,68 +151,22 @@ and include an icon or label to provide more context and clarity."
     ]}
 />
 
+
 #### Info
 
-##### Subtle
-
-<ColorGroup
-    colors={semanticColor.feedback.info.subtle}
-    group="feedback.info.subtle"
-/>
-
-##### Strong
-
-<ColorGroup
-    colors={semanticColor.feedback.info.strong}
-    group="feedback.info.strong"
-/>
+<Canvas of={SemanticColorStories.FeedbackInfo} layout="fullscreen" />
 
 #### Success
 
-##### Subtle
-
-<ColorGroup
-    colors={semanticColor.feedback.success.subtle}
-    group="feedback.success.subtle"
-/>
-
-##### Strong
-
-<ColorGroup
-    colors={semanticColor.feedback.success.strong}
-    group="feedback.success.strong"
-/>
+<Canvas of={SemanticColorStories.FeedbackSuccess} layout="fullscreen" />
 
 #### Warning
 
-##### Subtle
-
-<ColorGroup
-    colors={semanticColor.feedback.warning.subtle}
-    group="feedback.warning.subtle"
-/>
-
-##### Strong
-
-<ColorGroup
-    colors={semanticColor.feedback.warning.strong}
-    group="feedback.warning.strong"
-/>
+<Canvas of={SemanticColorStories.FeedbackWarning} layout="fullscreen" />
 
 #### Critical
 
-##### Subtle
-
-<ColorGroup
-    colors={semanticColor.feedback.critical.subtle}
-    group="feedback.critical.subtle"
-/>
-##### Strong
-
-<ColorGroup
-    colors={semanticColor.feedback.critical.strong}
-    group="feedback.critical.strong"
-/>
+<Canvas of={SemanticColorStories.FeedbackCritical} layout="fullscreen" />
 
 ### Focus
 

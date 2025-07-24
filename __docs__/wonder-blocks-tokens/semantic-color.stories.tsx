@@ -50,6 +50,25 @@ export const SemanticColors = {
                 <CoreBackground />
                 <Heading tag="h3">Foreground</Heading>
                 <CoreForeground />
+                <Heading tag="h2" size="large">
+                    Feedback
+                </Heading>
+                <Heading tag="h3" size="medium">
+                    Info
+                </Heading>
+                <FeedbackInfo />
+                <Heading tag="h3" size="medium">
+                    Success
+                </Heading>
+                <FeedbackSuccess />
+                <Heading tag="h3" size="medium">
+                    Warning
+                </Heading>
+                <FeedbackWarning />
+                <Heading tag="h3" size="medium">
+                    Critical
+                </Heading>
+                <FeedbackCritical />
             </View>
         );
     },
@@ -82,6 +101,42 @@ export const CoreForeground = () => {
         <ColorGroupStory
             category={semanticColor.core.foreground}
             group="core.foreground"
+        />
+    );
+};
+
+export const FeedbackInfo = () => {
+    return (
+        <ColorGroupStory
+            category={semanticColor.feedback.info}
+            group="feedback.info"
+        />
+    );
+};
+
+export const FeedbackSuccess = () => {
+    return (
+        <ColorGroupStory
+            category={semanticColor.feedback.success}
+            group="feedback.success"
+        />
+    );
+};
+
+export const FeedbackWarning = () => {
+    return (
+        <ColorGroupStory
+            category={semanticColor.feedback.warning}
+            group="feedback.warning"
+        />
+    );
+};
+
+export const FeedbackCritical = () => {
+    return (
+        <ColorGroupStory
+            category={semanticColor.feedback.critical}
+            group="feedback.critical"
         />
     );
 };
