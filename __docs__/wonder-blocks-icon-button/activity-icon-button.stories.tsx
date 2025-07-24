@@ -62,29 +62,6 @@ export const Default: StoryComponentType = {
     },
 };
 
-function TogglingActivityIconButton() {
-    const [isOn, setIsOn] = React.useState(false);
-
-    return (
-        <>
-            <ActivityIconButton
-                icon={IconMappings.arrowUp}
-                kind="secondary"
-                aria-label="toggle"
-                onClick={() => {
-                    setIsOn(!isOn);
-                }}
-                actionType={isOn ? "progressive" : "neutral"}
-            />
-            {isOn && <button autoFocus>focus grabber</button>}
-        </>
-    );
-}
-
-export const Toggling: StoryComponentType = {
-    render: TogglingActivityIconButton,
-};
-
 /**
  * In this example, we have `primary`, `secondary`, `tertiary` and `disabled`
  * `ActivityIconButton`s from left to right.
