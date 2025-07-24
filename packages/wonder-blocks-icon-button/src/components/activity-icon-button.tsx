@@ -1,5 +1,5 @@
 import * as React from "react";
-import {CSSProperties, StyleSheet} from "aphrodite";
+import {CSSProperties, StyleSheet, type StyleDeclaration} from "aphrodite";
 import {Link} from "react-router-dom-v5-compat";
 
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -87,7 +87,17 @@ export const ActivityIconButton: React.ForwardRefExoticComponent<
 
     const [pressed, setPressed] = React.useState(false);
 
-    const buttonStyles = _generateStyles(actionType, !!disabled, kind);
+    const latestButtonStyles = _generateStyles(actionType, !!disabled, kind);
+    // we only want to update the button styles the render cycle after they
+    // are generated, so that they have time to be applied to the DOM.
+    // if we render with the latest button styles before they're applied to
+    // the DOM, if the transition property is set, the button will animate
+    // from a browser default state to the correct styles, which leads to a
+    // very confusing visual effect.
+    const [buttonStyles, setButtonStyles] = React.useState(latestButtonStyles);
+    React.useLayoutEffect(() => {
+        setButtonStyles(latestButtonStyles);
+    }, [latestButtonStyles]);
 
     const styles = [
         buttonStyles.button,
@@ -194,7 +204,7 @@ const theme = {
     },
 };
 
-const styles: Record<string, any> = {};
+const styles: Record<string, StyleDeclaration> = {};
 
 const _generateStyles = (
     actionType: ActivityIconButtonActionType = "progressive",
