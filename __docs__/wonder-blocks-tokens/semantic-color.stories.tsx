@@ -1,35 +1,48 @@
-import {StyleSheet} from "aphrodite";
 import * as React from "react";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {ActionColorGroup, ColorGroup} from "../components/color";
-import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {View} from "@khanacademy/wonder-blocks-core";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
+import {
+    CoreBorder,
+    CoreBackground,
+    CoreForeground,
+    FeedbackInfo,
+    FeedbackSuccess,
+    FeedbackWarning,
+    FeedbackCritical,
+    Focus,
+    Surface,
+    Input,
+    LearningMath,
+    LearningBorder,
+    LearningBackground,
+    LearningForeground,
+    LearningShadow,
+    Khanmigo,
+    Mastery,
+    ActionPrimaryProgressive,
+    ActionPrimaryDestructive,
+    ActionPrimaryNeutral,
+    ActionPrimaryDisabled,
+    ActionSecondaryProgressive,
+    ActionSecondaryDestructive,
+    ActionSecondaryNeutral,
+    ActionSecondaryDisabled,
+    ActionTertiaryProgressive,
+    ActionTertiaryDestructive,
+    ActionTertiaryNeutral,
+    ActionTertiaryDisabled,
+    Status,
+} from "./semantic-color-groups.stories";
 
 export default {
-    title: "Packages/Tokens/Testing/SemanticColors",
-    parameters: {
-        chromatic: {
-            disableSnapshot: true,
-        },
-    },
+    title: "Packages/Tokens/Semantic Colors",
+    tags: ["!autodocs", "!dev"],
 };
 
-const ColorGroupStory = ({
-    category,
-    group,
-    includeExample = false,
-}: PropsFor<typeof ActionColorGroup>) => {
-    return (
-        <View style={styles.gridCompact}>
-            <ActionColorGroup
-                category={category}
-                group={group}
-                includeExample={includeExample}
-            />
-        </View>
-    );
-};
-
+/**
+ * All the semantic colors for visual regression testing.
+ */
 export const SemanticColors = {
     render: () => {
         return (
@@ -82,9 +95,21 @@ export const SemanticColors = {
                 <Heading tag="h2" size="large">
                     Learning
                 </Heading>
+                <Heading tag="h3" size="medium">
+                    Math
+                </Heading>
                 <LearningMath />
+                <Heading tag="h3" size="medium">
+                    Border
+                </Heading>
                 <LearningBorder />
+                <Heading tag="h3" size="medium">
+                    Background
+                </Heading>
                 <LearningBackground />
+                <Heading tag="h3" size="medium">
+                    Foreground
+                </Heading>
                 <LearningForeground />
                 <LearningShadow />
                 <Heading tag="h2" size="large">
@@ -95,6 +120,73 @@ export const SemanticColors = {
                     Mastery
                 </Heading>
                 <Mastery />
+                <Heading tag="h2" size="large">
+                    Deprecated
+                </Heading>
+                <Heading tag="h3" size="medium">
+                    Action
+                </Heading>
+                <Heading tag="h4" size="medium">
+                    Primary
+                </Heading>
+                <Heading tag="h5" size="small">
+                    Progressive
+                </Heading>
+                <ActionPrimaryProgressive />
+                <Heading tag="h5" size="small">
+                    Destructive
+                </Heading>
+                <ActionPrimaryDestructive />
+                <Heading tag="h5" size="small">
+                    Neutral
+                </Heading>
+                <ActionPrimaryNeutral />
+                <Heading tag="h5" size="small">
+                    Disabled
+                </Heading>
+                <ActionPrimaryDisabled />
+                <Heading tag="h4" size="medium">
+                    Secondary
+                </Heading>
+                <Heading tag="h5" size="small">
+                    Progressive
+                </Heading>
+                <ActionSecondaryProgressive />
+                <Heading tag="h5" size="small">
+                    Destructive
+                </Heading>
+                <ActionSecondaryDestructive />
+                <Heading tag="h5" size="small">
+                    Neutral
+                </Heading>
+                <ActionSecondaryNeutral />
+                <Heading tag="h5" size="small">
+                    Disabled
+                </Heading>
+                <ActionSecondaryDisabled />
+                <Heading tag="h4" size="medium">
+                    Tertiary
+                </Heading>
+                <Heading tag="h5" size="small">
+                    Progressive
+                </Heading>
+                <ActionTertiaryProgressive />
+                <Heading tag="h5" size="small">
+                    Destructive
+                </Heading>
+                <ActionTertiaryDestructive />
+                <Heading tag="h5" size="small">
+                    Neutral
+                </Heading>
+                <ActionTertiaryNeutral />
+                <Heading tag="h5" size="small">
+                    Disabled
+                </Heading>
+                <ActionTertiaryDisabled />
+                <Heading tag="h3" size="large">
+                    Status
+                </Heading>
+                <Status />
             </View>
         );
     },
@@ -104,174 +196,3 @@ export const SemanticColors = {
         },
     },
 };
-export const CoreBorder = () => {
-    return (
-        <ColorGroupStory
-            category={semanticColor.core.border}
-            group="core.border"
-        />
-    );
-};
-
-export const CoreBackground = () => {
-    return (
-        <ColorGroupStory
-            category={semanticColor.core.background}
-            group="core.background"
-        />
-    );
-};
-
-export const CoreForeground = () => {
-    return (
-        <ColorGroupStory
-            category={semanticColor.core.foreground}
-            group="core.foreground"
-        />
-    );
-};
-
-export const FeedbackInfo = () => {
-    return (
-        <ColorGroupStory
-            category={semanticColor.feedback.info}
-            group="feedback.info"
-        />
-    );
-};
-
-export const FeedbackSuccess = () => {
-    return (
-        <ColorGroupStory
-            category={semanticColor.feedback.success}
-            group="feedback.success"
-        />
-    );
-};
-
-export const FeedbackWarning = () => {
-    return (
-        <ColorGroupStory
-            category={semanticColor.feedback.warning}
-            group="feedback.warning"
-        />
-    );
-};
-
-export const FeedbackCritical = () => {
-    return (
-        <ColorGroupStory
-            category={semanticColor.feedback.critical}
-            group="feedback.critical"
-        />
-    );
-};
-
-export const Focus = () => {
-    return <ColorGroup colors={semanticColor.focus} group="focus" />;
-};
-
-export const Surface = () => {
-    return <ColorGroup colors={semanticColor.surface} group="surface" />;
-};
-
-export const Input = () => {
-    return (
-        <ColorGroupStory
-            category={semanticColor.input}
-            group="input"
-            includeExample={true}
-        />
-    );
-};
-
-export const LearningMath = () => {
-    return (
-        <ColorGroup
-            colors={semanticColor.learning.math.foreground}
-            group="learning.math.foreground"
-        />
-    );
-};
-
-export const LearningBorder = () => {
-    return (
-        <ColorGroupStory
-            category={semanticColor.learning.border}
-            group="learning.border"
-        />
-    );
-};
-
-export const LearningBackground = () => {
-    return (
-        <>
-            <ColorGroupStory
-                category={{
-                    gems: semanticColor.learning.background.gems,
-                    streaks: semanticColor.learning.background.streaks,
-                    due: semanticColor.learning.background.due,
-                }}
-                group="learning.background"
-            />
-            <ColorGroupStory
-                category={semanticColor.learning.background.progress}
-                group="learning.background.progress"
-            />
-        </>
-    );
-};
-
-export const LearningForeground = () => {
-    return (
-        <>
-            <ColorGroupStory
-                category={{
-                    gems: semanticColor.learning.foreground.gems,
-                    streaks: semanticColor.learning.foreground.streaks,
-                    due: semanticColor.learning.foreground.due,
-                }}
-                group="learning.foreground"
-            />
-            <ColorGroupStory
-                category={semanticColor.learning.foreground.progress}
-                group="learning.foreground.progress"
-            />
-        </>
-    );
-};
-
-export const LearningShadow = () => {
-    return (
-        <ColorGroupStory
-            category={semanticColor.learning.shadow.progress}
-            group="learning.shadow.progress"
-        />
-    );
-};
-
-export const Khanmigo = () => {
-    return <ColorGroup colors={semanticColor.khanmigo} group="khanmigo" />;
-};
-
-export const Mastery = () => {
-    return <ColorGroup colors={semanticColor.mastery} group="mastery" />;
-};
-const styles = StyleSheet.create({
-    grid: {
-        display: "grid",
-        gridTemplateColumns: "repeat(2, minmax(100px, auto))",
-    },
-    gridSmall: {
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fill, 160px)",
-    },
-    gridCompact: {
-        display: "grid",
-        gridTemplateColumns: "repeat(3, minmax(100px, auto))",
-    },
-
-    banner: {
-        marginBottom: sizing.size_320,
-    },
-});

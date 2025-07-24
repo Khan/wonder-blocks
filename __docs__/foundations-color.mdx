@@ -6,7 +6,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
 import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
-import * as SemanticColorStories from "./wonder-blocks-tokens/semantic-color.stories"
+import * as SemanticColorGroups from "./wonder-blocks-tokens/semantic-color-groups.stories"
 
 import {ColorGroup, ActionColorGroup} from "./components/color";
 
@@ -89,7 +89,7 @@ would use `core.border.neutral.subtle`, `core.border.neutral.default` for when
 3:1 contrast is a priority (ex. form elements) and `core.border.neutral.strong`
 for 4.5:1 contrast.
 
-<Canvas of={SemanticColorStories.CoreBorder} layout="fullscreen" />
+<Canvas of={SemanticColorGroups.CoreBorder} layout="fullscreen" />
 
 #### Background
 
@@ -97,7 +97,7 @@ Background colors are used to define the background of elements. This includes
 the background of components like buttons, banners, and other elements that
 require a background color.
 
-<Canvas of={SemanticColorStories.CoreBackground} layout="fullscreen" />
+<Canvas of={SemanticColorGroups.CoreBackground} layout="fullscreen" />
 
 #### Foreground
 
@@ -124,7 +124,7 @@ important for ensuring that the text and icons are legible and accessible.
     ]}
 />
 
-<Canvas of={SemanticColorStories.CoreForeground} layout="fullscreen" />
+<Canvas of={SemanticColorGroups.CoreForeground} layout="fullscreen" />
 
 ### Feedback
 
@@ -154,19 +154,19 @@ and include an icon or label to provide more context and clarity."
 
 #### Info
 
-<Canvas of={SemanticColorStories.FeedbackInfo} layout="fullscreen" />
+<Canvas of={SemanticColorGroups.FeedbackInfo} layout="fullscreen" />
 
 #### Success
 
-<Canvas of={SemanticColorStories.FeedbackSuccess} layout="fullscreen" />
+<Canvas of={SemanticColorGroups.FeedbackSuccess} layout="fullscreen" />
 
 #### Warning
 
-<Canvas of={SemanticColorStories.FeedbackWarning} layout="fullscreen" />
+<Canvas of={SemanticColorGroups.FeedbackWarning} layout="fullscreen" />
 
 #### Critical
 
-<Canvas of={SemanticColorStories.FeedbackCritical} layout="fullscreen" />
+<Canvas of={SemanticColorGroups.FeedbackCritical} layout="fullscreen" />
 
 ### Focus
 
@@ -176,14 +176,14 @@ all interactive elements regardless of the state (disabled, error, etc).
 - `outer`: The outer ring of the focus state.
 - `inner`: The inner ring of the focus state.
 
-<Canvas of={SemanticColorStories.Focus} layout="fullscreen" />
+<Canvas of={SemanticColorGroups.Focus} layout="fullscreen" />
 
 ### Surface
 
 For background colors. Overlays act as supplementary surfaces that mask areas of
 the UI.
 
-<Canvas of={SemanticColorStories.Surface} layout="fullscreen" />
+<Canvas of={SemanticColorGroups.Surface} layout="fullscreen" />
 
 ### Input
 
@@ -192,7 +192,7 @@ interaction. This includes text inputs, checkboxes, radio buttons, and
 selects. These colors are used to communicate the state of the input and its
 validity.
 
-<Canvas of={SemanticColorStories.Input} layout="fullscreen" />
+<Canvas of={SemanticColorGroups.Input} layout="fullscreen" />
 
 ### Learning
 
@@ -204,37 +204,37 @@ such as practice and mastery, among others.
 For MathJax elements, these colors are used to render mathematical expressions
 in the UI.
 
-<Canvas of={SemanticColorStories.LearningMath} layout="fullscreen" />
+<Canvas of={SemanticColorGroups.LearningMath} layout="fullscreen" />
 
 #### Border
 
-<Canvas of={SemanticColorStories.LearningBorder} layout="fullscreen" />
+<Canvas of={SemanticColorGroups.LearningBorder} layout="fullscreen" />
 
 #### Background
 
-<Canvas of={SemanticColorStories.LearningBackground} layout="fullscreen" />
+<Canvas of={SemanticColorGroups.LearningBackground} layout="fullscreen" />
 
 
 #### Foreground
 
-<Canvas of={SemanticColorStories.LearningForeground} layout="fullscreen" />
+<Canvas of={SemanticColorGroups.LearningForeground} layout="fullscreen" />
 
 #### Shadow
 
-<Canvas of={SemanticColorStories.LearningShadow} layout="fullscreen" />
+<Canvas of={SemanticColorGroups.LearningShadow} layout="fullscreen" />
 
 ### Khanmigo
 
 Colors to be used exclusively for Khanmigo or to communicate a relationship to
 it.
 
-<Canvas of={SemanticColorStories.Khanmigo} layout="fullscreen" />
+<Canvas of={SemanticColorGroups.Khanmigo} layout="fullscreen" />
 
 ### Mastery
 
 Standalone colors used only for communicating mastery.
 
-<Canvas of={SemanticColorStories.Mastery} layout="fullscreen" />
+<Canvas of={SemanticColorGroups.Mastery} layout="fullscreen" />
 
 ## Accessibility
 
@@ -275,119 +275,60 @@ Communicates strong emphasis and primary actions.
 
 ##### Progressive
 
-<View style={styles.gridCompact}>
-    <ActionColorGroup
-        category={semanticColor.action.primary.progressive}
-        group="action.primary.progressive"
-    />
-</View>
+<Canvas of={SemanticColorGroups.ActionPrimaryProgressive} layout="fullscreen" />
 
 ##### Destructive
 
-<View style={styles.gridCompact}>
-    <ActionColorGroup
-        category={semanticColor.action.primary.destructive}
-        group="action.primary.destructive"
-    />
-</View>
+<Canvas of={SemanticColorGroups.ActionPrimaryDestructive} layout="fullscreen" />
 
 ##### Neutral
 
-<View style={styles.gridCompact}>
-    <ActionColorGroup
-        category={semanticColor.action.primary.neutral}
-        group="action.primary.neutral"
-    />
-</View>
+<Canvas of={SemanticColorGroups.ActionPrimaryNeutral} layout="fullscreen" />
 
-#### Disabled
+##### Disabled
 
-<ColorGroup
-    colors={semanticColor.action.primary.disabled}
-    group="action.primary.disabled"
-    variant="compact"
-    style={styles.gridCompact}
-/>
+<Canvas of={SemanticColorGroups.ActionPrimaryDisabled} layout="fullscreen" />
 
 #### Secondary
 
 Communicates secondary actions and less emphasis.
 
-#### Progressive
+##### Progressive
 
-<View style={styles.gridCompact}>
-    <ActionColorGroup
-        category={semanticColor.action.secondary.progressive}
-        group="action.secondary.progressive"
-    />
-</View>
+<Canvas of={SemanticColorGroups.ActionSecondaryProgressive} layout="fullscreen" />
 
-#### Destructive
+##### Destructive
 
-<View style={styles.gridCompact}>
-    <ActionColorGroup
-        category={semanticColor.action.secondary.destructive}
-        group="action.secondary.destructive"
-    />
-</View>
+<Canvas of={SemanticColorGroups.ActionSecondaryDestructive} layout="fullscreen" />
 
 ##### Neutral
 
-<View style={styles.gridCompact}>
-    <ActionColorGroup
-        category={semanticColor.action.secondary.neutral}
-        group="action.secondary.neutral"
-    />
-</View>
+<Canvas of={SemanticColorGroups.ActionSecondaryNeutral} layout="fullscreen" />
 
-#### Disabled
+##### Disabled
 
-<ColorGroup
-    colors={semanticColor.action.secondary.disabled}
-    group="action.secondary.disabled"
-    variant="compact"
-    style={styles.gridCompact}
-/>
+<Canvas of={SemanticColorGroups.ActionSecondaryDisabled} layout="fullscreen" />
 
 #### Tertiary
 
 Communicates tertiary actions that have the lowest hierarchy.
 
-#### Progressive
+##### Progressive
 
-<View style={styles.gridCompact}>
-    <ActionColorGroup
-        category={semanticColor.action.tertiary.progressive}
-        group="action.tertiary.progressive"
-    />
-</View>
+<Canvas of={SemanticColorGroups.ActionTertiaryProgressive} layout="fullscreen" />
 
-#### Destructive
+##### Destructive
 
-<View style={styles.gridCompact}>
-    <ActionColorGroup
-        category={semanticColor.action.tertiary.destructive}
-        group="action.tertiary.destructive"
-    />
-</View>
+<Canvas of={SemanticColorGroups.ActionTertiaryDestructive} layout="fullscreen" />
 
 ##### Neutral
 
-<View style={styles.gridCompact}>
-    <ActionColorGroup
-        category={semanticColor.action.tertiary.neutral}
-        group="action.tertiary.neutral"
-    />
-</View>
+<Canvas of={SemanticColorGroups.ActionTertiaryNeutral} layout="fullscreen" />
 
-#### Disabled
+##### Disabled
 
-<ColorGroup
-    colors={semanticColor.action.tertiary.disabled}
-    group="action.tertiary.disabled"
-    variant="compact"
-    style={styles.gridCompact}
-/>
+<Canvas of={SemanticColorGroups.ActionTertiaryDisabled} layout="fullscreen" />
+
 
 ### Status (deprecated)
 
@@ -419,13 +360,4 @@ and include an icon or label to provide more context and clarity."
     ]}
 />
 
-<View style={styles.grid}>
-    <ColorGroup
-        colors={semanticColor.status.critical}
-        group="status.critical"
-    />
-    <ColorGroup colors={semanticColor.status.warning} group="status.warning" />
-    <ColorGroup colors={semanticColor.status.success} group="status.success" />
-    <ColorGroup colors={semanticColor.status.notice} group="status.notice" />
-    <ColorGroup colors={semanticColor.status.neutral} group="status.neutral" />
-</View>
+<Canvas of={SemanticColorGroups.Status} layout="fullscreen" />
