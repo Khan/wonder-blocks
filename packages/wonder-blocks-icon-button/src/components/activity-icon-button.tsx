@@ -87,7 +87,7 @@ export const ActivityIconButton: React.ForwardRefExoticComponent<
 
     const [pressed, setPressed] = React.useState(false);
 
-    const latestButtonStyles = _generateStyles(actionType, !!disabled, kind);
+    const latestButtonStyles = _generateStyles(actionType, kind);
     // we only want to update the button styles the render cycle after they
     // are generated, so that they have time to be applied to the DOM.
     // if we render with the latest button styles before they're applied to
@@ -208,10 +208,9 @@ const styles: Record<string, StyleDeclaration> = {};
 
 const _generateStyles = (
     actionType: ActivityIconButtonActionType = "progressive",
-    disabled: boolean,
     kind: IconButtonKind,
 ) => {
-    const buttonType = `${actionType}-d_${disabled}-${kind}`;
+    const buttonType = `${actionType}-${kind}`;
     if (styles[buttonType]) {
         return styles[buttonType];
     }
