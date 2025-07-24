@@ -90,7 +90,7 @@ const badgeTokens = {
         },
         color: {
             background: semanticColor.surface.secondary,
-            foreground: semanticColor.text.primary,
+            foreground: semanticColor.core.foreground.neutral.strong,
             border: semanticColor.core.border.neutral.subtle,
         },
     },

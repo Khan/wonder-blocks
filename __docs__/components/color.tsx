@@ -260,7 +260,7 @@ const styles = StyleSheet.create({
     },
     code: {
         alignSelf: "flex-start",
-        color: semanticColor.text.primary,
+        color: semanticColor.core.foreground.neutral.strong,
         display: "inline-flex",
         backgroundColor: semanticColor.surface.secondary,
         border: `1px solid ${color.offBlack16}`,

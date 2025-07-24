@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "space-between",
-        color: semanticColor.text.primary,
+        color: semanticColor.core.foreground.neutral.strong,
         height: DROPDOWN_ITEM_HEIGHT,
         // This asymmetry arises from the Icon on the right side, which has
         // extra padding built in. To have the component look more balanced,

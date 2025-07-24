@@ -3,6 +3,7 @@ import {StyleSheet} from "aphrodite";
 import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import type {StyleDeclaration} from "aphrodite";
+import theme from "../theme";
 
 const styles: StyleDeclaration = StyleSheet.create({
     fieldset: {
@@ -22,7 +23,7 @@ const styles: StyleDeclaration = StyleSheet.create({
 
     description: {
         marginTop: spacing.xxxSmall_4,
-        color: semanticColor.text.secondary,
+        color: theme.description.color.foreground,
     },
 
     error: {

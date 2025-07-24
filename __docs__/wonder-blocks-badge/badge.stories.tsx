@@ -202,7 +202,7 @@ export const CustomStyles: StoryComponentType = {
                     root: {
                         backgroundColor: semanticColor.surface.inverse,
                         borderColor: semanticColor.core.border.inverse.strong,
-                        color: semanticColor.text.inverse,
+                        color: semanticColor.core.foreground.inverse.strong,
                     },
                     icon: {color: semanticColor.icon.inverse},
                     label: {

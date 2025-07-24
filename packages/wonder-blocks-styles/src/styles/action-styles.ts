@@ -16,11 +16,11 @@ export const inverse = {
     // already includes a border.
     ":not([aria-disabled=true])": {
         borderColor: semanticColor.core.border.inverse.strong,
-        color: semanticColor.text.inverse,
+        color: semanticColor.core.foreground.inverse.strong,
     },
 
     ":hover:not([aria-disabled=true])": {
-        color: semanticColor.text.inverse,
+        color: semanticColor.core.foreground.inverse.strong,
         // Overriding borderColor only to preserve the visual integrity of the
         // button, as there might be some cases where the interactive element
         // already includes a border.

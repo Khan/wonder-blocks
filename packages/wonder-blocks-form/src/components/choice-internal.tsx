@@ -12,6 +12,7 @@ import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import CheckboxCore from "./checkbox-core";
 import RadioCore from "./radio-core";
+import theme from "../theme";
 
 type Props = AriaProps & {
     /** Whether this choice is checked. */
@@ -189,7 +190,7 @@ const styles = StyleSheet.create({
         // 16 for icon + 8 for spacing strut
         marginLeft: spacing.medium_16 + spacing.xSmall_8,
         marginTop: spacing.xxxSmall_4,
-        color: semanticColor.text.secondary,
+        color: theme.description.color.foreground,
     },
 });
 
