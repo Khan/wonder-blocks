@@ -6,11 +6,10 @@ export default mergeTheme(defaultTheme, {
     root: {
         layout: {
             paddingBlockEnd: {
-                labelWithDescription: sizing.size_100,
-                labelWithNoDescription: sizing.size_100,
-                description: sizing.size_100,
-                helperTextSectionWithContent: sizing.size_100,
+                labelWithDescription: sizing.size_040,
+                labelWithNoDescription: sizing.size_080,
             },
+            spacingBetweenHelperText: sizing.size_080,
         },
     },
     label: {
@@ -23,15 +22,10 @@ export default mergeTheme(defaultTheme, {
             },
         },
     },
-    description: {
-        font: {
-            size: font.body.size.xsmall,
-            lineHeight: font.body.lineHeight.xsmall,
-        },
+    contextLabel: {
         color: {
-            foreground: semanticColor.core.foreground.neutral.strong,
-            disabled: {
-                foreground: semanticColor.core.foreground.disabled.strong,
+            error: {
+                foreground: semanticColor.core.foreground.critical.default,
             },
         },
     },
@@ -42,21 +36,26 @@ export default mergeTheme(defaultTheme, {
         font: {
             weight: font.weight.bold,
         },
-    },
-    requiredIndicator: {
-        color: {
-            foreground: semanticColor.core.foreground.critical.default,
+        layout: {
+            // This aligns the error message with the error icon
+            marginBlockStart: sizing.size_010,
         },
     },
     helperText: {
         layout: {
             gap: sizing.size_040,
-            // This aligns the error message with the error icon
-            marginBlockStart: sizing.size_010,
         },
         font: {
             size: font.body.size.xsmall,
             lineHeight: font.body.lineHeight.xsmall,
+        },
+        color: {
+            default: {
+                foreground: semanticColor.core.foreground.neutral.strong,
+            },
+            disabled: {
+                foreground: semanticColor.core.foreground.disabled.strong,
+            },
         },
     },
 });

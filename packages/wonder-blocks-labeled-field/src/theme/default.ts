@@ -6,9 +6,8 @@ const theme = {
             paddingBlockEnd: {
                 labelWithDescription: sizing.size_040,
                 labelWithNoDescription: sizing.size_120,
-                description: sizing.size_120,
-                helperTextSectionWithContent: sizing.size_120,
             },
+            spacingBetweenHelperText: sizing.size_120,
         },
     },
     label: {
@@ -21,14 +20,9 @@ const theme = {
             },
         },
     },
-    description: {
-        font: {
-            size: font.body.size.small,
-            lineHeight: font.body.lineHeight.small,
-        },
+    contextLabel: {
         color: {
-            foreground: semanticColor.core.foreground.neutral.default,
-            disabled: {
+            error: {
                 foreground: semanticColor.core.foreground.neutral.default,
             },
         },
@@ -40,20 +34,25 @@ const theme = {
         font: {
             weight: font.weight.regular,
         },
-    },
-    requiredIndicator: {
-        color: {
-            foreground: semanticColor.core.foreground.critical.subtle,
+        layout: {
+            marginBlockStart: sizing.size_0,
         },
     },
     helperText: {
         layout: {
             gap: sizing.size_080,
-            marginBlockStart: sizing.size_0,
         },
         font: {
             size: font.body.size.small,
             lineHeight: font.body.lineHeight.small,
+        },
+        color: {
+            default: {
+                foreground: semanticColor.core.foreground.neutral.default,
+            },
+            disabled: {
+                foreground: semanticColor.core.foreground.neutral.default,
+            },
         },
     },
 };

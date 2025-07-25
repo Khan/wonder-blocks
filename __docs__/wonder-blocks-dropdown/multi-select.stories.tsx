@@ -204,13 +204,14 @@ export const WithLabeledField: StoryComponentType = {
                         selectedValues={value}
                         onChange={setValue}
                         onValidate={setErrorMessage}
+                        required={true}
                     >
                         {optionItems}
                     </MultiSelect>
                 }
                 description="Description"
-                required={true}
                 errorMessage={errorMessage}
+                contextLabel="required"
             />
         );
     },
