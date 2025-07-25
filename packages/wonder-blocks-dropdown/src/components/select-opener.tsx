@@ -266,10 +266,13 @@ const styles = StyleSheet.create({
         background: semanticColor.input.disabled.background,
         border: `${border.width.thin} solid ${semanticColor.input.disabled.border}`,
         color: semanticColor.input.disabled.foreground,
+        cursor: "not-allowed",
         "::placeholder": {
             color: semanticColor.input.disabled.placeholder,
         },
-        cursor: "not-allowed",
+        ":active": {
+            boxShadow: "none",
+        },
     },
     press: pressStyling,
     placeholder: {

@@ -52,6 +52,10 @@ const columns = [
         name: "With selection",
         props: {selectedValue: "1"},
     },
+    {
+        name: "With selection + Disabled",
+        props: {selectedValue: "1", disabled: true},
+    },
 ];
 
 export const StateSheetStory: Story = {
