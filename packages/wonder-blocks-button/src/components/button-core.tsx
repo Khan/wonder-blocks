@@ -352,7 +352,7 @@ export const _generateStyles = (
                           }
                         : undefined),
                 },
-            },
+            } satisfies CSSProperties,
 
             ":active": pressStyles,
 
