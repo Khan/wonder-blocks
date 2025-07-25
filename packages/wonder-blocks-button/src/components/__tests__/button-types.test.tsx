@@ -80,6 +80,33 @@ describe("Button types", () => {
                 // Assert
                 expect(button).toHaveAttribute("data-testid", testId);
             });
+
+            it("should set the button role when not using href", () => {
+                // Arrange
+                render(<Component onClick={() => {}}>Label</Component>);
+
+                // Act
+                const button = screen.getByRole("button");
+
+                // Assert
+                expect(button).toBeInTheDocument();
+            });
+
+            it("should set the link role when using href", () => {
+                // Arrange
+                const href = "https://example.com";
+                render(
+                    <Component href={href} onClick={() => {}}>
+                        Label
+                    </Component>,
+                );
+
+                // Act
+                const button = screen.getByRole("link");
+
+                // Assert
+                expect(button).toBeInTheDocument();
+            });
         });
 
         describe("Accessibility", () => {
