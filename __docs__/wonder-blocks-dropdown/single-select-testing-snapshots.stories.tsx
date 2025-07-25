@@ -33,7 +33,7 @@ export default {
 
 type Story = StoryObj<typeof SingleSelect>;
 
-const rows = [{name: "Default", props: {}}];
+const rows = [{name: "Default", props: {"aria-label": "Example"}}];
 
 const columns = [
     {
