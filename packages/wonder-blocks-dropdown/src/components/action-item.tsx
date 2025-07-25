@@ -1,23 +1,23 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {CompactCell} from "@khanacademy/wonder-blocks-cell";
+import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
-import type {PropsFor, StyleType} from "@khanacademy/wonder-blocks-core";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
 import theme from "../theme";
 
-type CompactCellProps = PropsFor<typeof CompactCell>;
+import type {CellProps} from "../util/types";
 
 type ActionProps = {
     /**
      * Display text of the action item.
      */
-    label: string | CompactCellProps["title"];
+    label: string | CellProps["title"];
     /**
      * Whether this action item is disabled.
      */
@@ -82,22 +82,32 @@ type ActionProps = {
      * Adds a horizontal rule at the bottom of the cell that can be used to
      * separate items within ActionMenu instances. Defaults to `none`.
      */
-    horizontalRule?: CompactCellProps["horizontalRule"];
+    horizontalRule?: CellProps["horizontalRule"];
 
     /**
      * Optional left accessory to display in the `ActionItem` element.
      */
-    leftAccessory?: CompactCellProps["leftAccessory"];
+    leftAccessory?: CellProps["leftAccessory"];
 
     /**
      * Optional right accessory to display in the `ActionItem` element.
      */
-    rightAccessory?: CompactCellProps["rightAccessory"];
+    rightAccessory?: CellProps["rightAccessory"];
+
+    /**
+     * Optional subtitle to display before the label.
+     */
+    subtitle1?: CellProps["subtitle1"];
+
+    /**
+     * Optional subtitle to display after the label.
+     */
+    subtitle2?: CellProps["subtitle2"];
 
     /**
      * Optional; applies aria-current to the cell.
      */
-    active?: CompactCellProps["active"];
+    active?: CellProps["active"];
 };
 
 type DefaultProps = {
@@ -139,6 +149,8 @@ export default class ActionItem extends React.Component<ActionProps> {
             onClick,
             role,
             style,
+            subtitle1,
+            subtitle2,
             testId,
             active,
         } = this.props;
@@ -163,7 +175,7 @@ export default class ActionItem extends React.Component<ActionProps> {
             );
 
         return (
-            <CompactCell
+            <DetailCell
                 disabled={disabled}
                 horizontalRule={horizontalRule}
                 leftAccessory={leftAccessory}
@@ -171,7 +183,9 @@ export default class ActionItem extends React.Component<ActionProps> {
                 style={[defaultStyle, styles.shared, indent && styles.indent]}
                 role={role}
                 testId={testId}
+                subtitle1={subtitle1}
                 title={labelComponent}
+                subtitle2={subtitle2}
                 href={href}
                 target={target}
                 onClick={onClick}

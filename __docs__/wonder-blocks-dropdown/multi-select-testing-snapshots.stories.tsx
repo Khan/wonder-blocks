@@ -32,7 +32,7 @@ export default {
 
 type Story = StoryObj<typeof MultiSelect>;
 
-const rows = [{name: "Default", props: {}}];
+const rows = [{name: "Default", props: {"aria-label": "Example"}}];
 
 const columns = [
     {
@@ -58,6 +58,10 @@ const columns = [
     {
         name: "With selection (All selected)",
         props: {selectedValues: ["1", "2", "3"]},
+    },
+    {
+        name: "With selection (All selected) + Disabled",
+        props: {selectedValues: ["1", "2", "3"], disabled: true},
     },
 ];
 

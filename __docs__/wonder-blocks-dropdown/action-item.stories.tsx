@@ -120,15 +120,17 @@ export const Disabled = {
 };
 
 /**
- * ActionItem can have more complex content, such as icons.
+ * ActionItem can have more complex content, such as icons and subtitles.
  *
- * This can be done by passing in a `leftAccessory` and/or `rightAccessory`
- * prop. These can be any React node, and internally use the WB Cell component
- * to render.
+ * This can be done by passing in a `subtitle1`, `subtitle2`, `leftAccessory`
+ * and/or `rightAccessory` props. These can be any React node, and internally
+ * use the WB `DetailCell` component to render.
  */
 export const CustomActionItem = {
     args: {
         label: "Action Item",
+        subtitle1: "Subtitle 1",
+        subtitle2: "Subtitle 2",
         onClick: () => {},
         leftAccessory: (
             <PhosphorIcon icon={IconMappings.calendar} size="medium" />

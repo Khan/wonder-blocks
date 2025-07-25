@@ -430,8 +430,13 @@ const locales = [
  * ActionMenu can be used with custom action items. This is useful when you
  * want to use more rich action items, such as the ones used in context menus.
  *
- * ActionItem internally uses the `CompactCell` component, which is a component
- * that allows you to pass left and right accessories.
+ * ActionItem internally uses the `DetailCell` component, which is a component
+ * that allows you to pass:
+ *
+ * - `subtitle1`: a subtitle before the label
+ * - `subtitle2`: a subtitle after the label
+ * - `leftAccessory`: An accessory at the start of the item.
+ * - `rightAccessory`: An accessory at the end of the item.
  */
 export const CustomActionItems: StoryComponentType = {
     args: {
@@ -444,6 +449,7 @@ export const CustomActionItems: StoryComponentType = {
                 leftAccessory={
                     <PhosphorIcon icon={IconMappings.calendar} size="medium" />
                 }
+                subtitle2="Click to set a date"
                 onClick={action("Set date clicked")}
             />,
             <ActionItem
@@ -458,6 +464,7 @@ export const CustomActionItems: StoryComponentType = {
                         size="medium"
                     />
                 }
+                subtitle2="Edit this item"
                 onClick={action("Edit clicked!")}
             />,
             <ActionItem
@@ -467,6 +474,7 @@ export const CustomActionItems: StoryComponentType = {
                 leftAccessory={
                     <PhosphorIcon icon={IconMappings.gear} size="medium" />
                 }
+                subtitle2="Change your preferences"
                 onClick={action("preferences clicked!")}
             />,
             <ActionItem
@@ -481,6 +489,7 @@ export const CustomActionItems: StoryComponentType = {
                         New
                     </Pill>
                 }
+                subtitle2="View your profile"
                 onClick={action("user profile clicked!")}
                 style={{
                     [":hover [data-testid=new-pill]" as any]: {
@@ -492,6 +501,7 @@ export const CustomActionItems: StoryComponentType = {
             <OptionItem
                 key="5"
                 label="Show homework assignments"
+                subtitle2="Click to show homework assignments"
                 value="homework"
                 onClick={() => console.log(`Show homework assignments toggled`)}
             />,

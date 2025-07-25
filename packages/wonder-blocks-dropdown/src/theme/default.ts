@@ -27,7 +27,6 @@ export default {
             },
             radius: {
                 rest: border.radius.radius_040,
-                press: border.radius.radius_040,
             },
         },
         color: {

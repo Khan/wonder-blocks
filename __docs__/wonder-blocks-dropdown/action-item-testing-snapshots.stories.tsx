@@ -30,6 +30,8 @@ const columns = [
             rightAccessory: (
                 <PhosphorIcon icon={IconMappings.caretRight} size="medium" />
             ),
+            subtitle1: "Subtitle 1",
+            subtitle2: "Subtitle 2",
         },
     },
 ];

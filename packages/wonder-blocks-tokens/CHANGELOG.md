@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 12.0.1
+
+### Patch Changes
+
+- 9aad939: Updates CSS variables for the wb-form package
+
 ## 12.0.0
 
 ### Major Changes

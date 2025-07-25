@@ -1,5 +1,27 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.3.0
+
+### Minor Changes
+
+- 40c0068: Adds `subtitle1` and `subtitle2` to `ActionItem` to support more flexible custom items (using `DetailCell` internally).
+
+### Patch Changes
+
+- 9aad939: Updates SelectOpener to match design specs
+- Updated dependencies [9aad939]
+    - @khanacademy/wonder-blocks-tokens@12.0.1
+    - @khanacademy/wonder-blocks-cell@5.0.7
+    - @khanacademy/wonder-blocks-clickable@7.1.19
+    - @khanacademy/wonder-blocks-form@7.3.1
+    - @khanacademy/wonder-blocks-icon@5.2.13
+    - @khanacademy/wonder-blocks-icon-button@10.3.14
+    - @khanacademy/wonder-blocks-modal@8.1.8
+    - @khanacademy/wonder-blocks-pill@3.1.34
+    - @khanacademy/wonder-blocks-search-field@5.1.37
+    - @khanacademy/wonder-blocks-styles@0.2.26
+    - @khanacademy/wonder-blocks-typography@4.2.15
+
 ## 10.2.9
 
 ### Patch Changes

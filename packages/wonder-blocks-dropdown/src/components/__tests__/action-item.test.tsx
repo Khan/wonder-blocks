@@ -106,4 +106,24 @@ describe("ActionItem", () => {
             "true",
         );
     });
+
+    it("should allow passing subtitle1", () => {
+        // Arrange
+
+        // Act
+        render(<ActionItem label="ActionItem" subtitle1={"Subtitle 1"} />);
+
+        // Assert
+        expect(screen.getByText("Subtitle 1")).toBeInTheDocument();
+    });
+
+    it("should allow passing subtitle2", () => {
+        // Arrange
+
+        // Act
+        render(<ActionItem label="ActionItem" subtitle2={"Subtitle 2"} />);
+
+        // Assert
+        expect(screen.getByText("Subtitle 2")).toBeInTheDocument();
+    });
 });
