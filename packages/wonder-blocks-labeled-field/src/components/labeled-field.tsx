@@ -168,20 +168,22 @@ export default function LabeledField(props: Props) {
                 >
                     {label}
                 </BodyText>
-                <BodyText
-                    tag="div"
-                    id={contextLabelId}
-                    testId={testId && `${testId}-context-label`}
-                    style={[
-                        styles.helperText,
-                        styles.contextLabel,
-                        isDisabled && styles.disabledHelperText,
-                        hasError ? styles.contextLabelWithError : undefined,
-                        stylesProp?.contextLabel,
-                    ]}
-                >
-                    {contextLabel}
-                </BodyText>
+                {contextLabel && (
+                    <BodyText
+                        tag="div"
+                        id={contextLabelId}
+                        testId={testId && `${testId}-context-label`}
+                        style={[
+                            styles.helperText,
+                            styles.contextLabel,
+                            isDisabled && styles.disabledHelperText,
+                            hasError ? styles.contextLabelWithError : undefined,
+                            stylesProp?.contextLabel,
+                        ]}
+                    >
+                        {contextLabel}
+                    </BodyText>
+                )}
             </View>
         );
     }
@@ -344,7 +346,11 @@ const styles = StyleSheet.create({
         // Make the line height match the label so the context label is aligned
         // with the label
         lineHeight: font.body.lineHeight.medium,
+        // At most, the context label will take up 30% of the width of the
+        // LabeledField
         maxWidth: "30%",
+        // This prevents the context label from shrinking to fit the label
+        flexShrink: 0,
     },
     labelWithError: {
         color: theme.label.color.error.foreground,
