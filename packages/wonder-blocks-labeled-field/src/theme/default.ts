@@ -34,11 +34,13 @@ const theme = {
         font: {
             weight: font.weight.regular,
         },
+        layout: {
+            marginBlockStart: sizing.size_0,
+        },
     },
     helperText: {
         layout: {
             gap: sizing.size_080,
-            marginBlockStart: sizing.size_0,
         },
         font: {
             size: font.body.size.small,

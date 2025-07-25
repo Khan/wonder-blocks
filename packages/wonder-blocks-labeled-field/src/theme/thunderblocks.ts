@@ -36,12 +36,14 @@ export default mergeTheme(defaultTheme, {
         font: {
             weight: font.weight.bold,
         },
+        layout: {
+            // This aligns the error message with the error icon
+            marginBlockStart: sizing.size_010,
+        },
     },
     helperText: {
         layout: {
             gap: sizing.size_040,
-            // This aligns the error message with the error icon
-            marginBlockStart: sizing.size_010,
         },
         font: {
             size: font.body.size.xsmall,

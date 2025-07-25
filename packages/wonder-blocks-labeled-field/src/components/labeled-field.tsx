@@ -393,6 +393,6 @@ const styles = StyleSheet.create({
     errorMessage: {
         fontWeight: theme.error.font.weight,
         // This aligns the helper text with the icon
-        marginBlockStart: theme.helperText.layout.marginBlockStart,
+        marginBlockStart: theme.error.layout.marginBlockStart,
     },
 });
