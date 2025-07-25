@@ -1,5 +1,5 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
+import {CSSProperties, StyleSheet} from "aphrodite";
 
 import {LabelLarge, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -33,8 +33,6 @@ const ButtonCore: React.ForwardRefExoticComponent<
         skipClientNav,
         actionType,
         disabled: disabledProp,
-        focused,
-        hovered,
         href = undefined,
         kind = "primary",
         labelStyle,
@@ -61,9 +59,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
         endIcon && sharedStyles.withEndIcon,
         buttonStyles.default,
         disabled && buttonStyles.disabled,
-        // apply focus effect only to default and secondary buttons
-        !disabled &&
-            (pressed ? buttonStyles.pressed : focused && buttonStyles.focused),
+        !disabled && pressed && buttonStyles.pressed,
         size === "small" && sharedStyles.small,
         size === "large" && sharedStyles.large,
     ];
@@ -78,12 +74,6 @@ const ButtonCore: React.ForwardRefExoticComponent<
                 size === "large" && sharedStyles.largeText,
                 labelStyle,
                 spinner && sharedStyles.hiddenText,
-                // apply press/hover effects on the label
-                kind === "tertiary" &&
-                    !disabled &&
-                    (pressed
-                        ? [buttonStyles.hover, buttonStyles.active]
-                        : hovered && buttonStyles.hover),
             ]}
             testId={testId ? `${testId}-inner-label` : undefined}
         >
@@ -136,7 +126,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
                 <View
                     testId={testId ? `${testId}-end-icon-wrapper` : undefined}
                     style={[
-                        styles.endIcon,
+                        sharedStyles.endIcon,
                         sharedStyles.iconWrapper,
                         sharedStyles.endIconWrapper,
                         kind === "tertiary" &&
@@ -236,14 +226,16 @@ const sharedStyles = StyleSheet.create({
     },
 });
 
-const styles: Record<string, any> = {};
+type ButtonStylesKey = "default" | "pressed" | "disabled";
+
+const styles: Record<string, Record<ButtonStylesKey, object>> = {};
 
 // export for testing only
 export const _generateStyles = (
     actionType: ButtonActionType = "progressive",
     kind: ButtonKind,
     size: ButtonSize,
-) => {
+): Record<ButtonStylesKey, object> => {
     const buttonType = `${actionType}-${kind}-${size}`;
 
     if (styles[buttonType]) {
@@ -306,7 +298,7 @@ export const _generateStyles = (
             : undefined),
     };
 
-    const newStyles = {
+    const newStyles: Record<ButtonStylesKey, CSSProperties> = {
         default: {
             borderRadius: theme.root.border.radius.default,
             paddingInline: paddingInline,
@@ -329,40 +321,38 @@ export const _generateStyles = (
              */
             // :focus-visible -> Provide focus styles for keyboard users only.
 
-            ":hover": {
-                // shared
-                background: themeVariant.hover.background,
-                borderRadius: theme.root.border.radius.hover,
-                color: themeVariant.hover.foreground,
-                ...(kind === "primary"
-                    ? {
-                          outline: `${borderWidthKind.hover} solid ${themeVariant.hover.border}`,
-                          outlineOffset: outlineOffsetKind,
-                      }
-                    : undefined),
-                ...(kind !== "primary"
-                    ? {
-                          borderColor: themeVariant.hover.border,
-                          boxShadow: `inset 0 0 0 ${borderWidthKind.hover} ${themeVariant.hover.border}`,
-                      }
-                    : undefined),
-
-                // tertiary-specific styles
-                ...(kind === "tertiary"
-                    ? {
-                          textUnderlineOffset: theme.root.font.offset.default,
-                          textDecoration: `${theme.root.font.decoration.hover} ${theme.root.sizing.underline.hover}`,
-                      }
-                    : undefined),
-            },
             // Allow hover styles on non-touch devices only. This prevents an
             // issue with hover being sticky on touch devices (e.g. mobile).
-            ["@media not (hover: hover)"]: {
+            // @ts-expect-error - TS2353 - aphrodite doesn't recognize this, but it's valid and works
+            ["@media (hover: hover)"]: {
                 ":hover": {
-                    // reset hover styles on non-touch devices
-                    backgroundColor: "transparent",
+                    // shared
+                    background: themeVariant.hover.background,
+                    borderRadius: theme.root.border.radius.hover,
+                    color: themeVariant.hover.foreground,
+                    ...(kind === "primary"
+                        ? {
+                              outline: `${borderWidthKind.hover} solid ${themeVariant.hover.border}`,
+                              outlineOffset: outlineOffsetKind,
+                          }
+                        : undefined),
+                    ...(kind !== "primary"
+                        ? {
+                              borderColor: themeVariant.hover.border,
+                              boxShadow: `inset 0 0 0 ${borderWidthKind.hover} ${themeVariant.hover.border}`,
+                          }
+                        : undefined),
+
+                    // tertiary-specific styles
+                    ...(kind === "tertiary"
+                        ? {
+                              textUnderlineOffset:
+                                  theme.root.font.offset.default,
+                              textDecoration: `${theme.root.font.decoration.hover} ${theme.root.sizing.underline.hover}`,
+                          }
+                        : undefined),
                 },
-            },
+            } satisfies CSSProperties,
 
             ":active": pressStyles,
 
@@ -397,8 +387,14 @@ export const _generateStyles = (
             ":active": disabledStatesOverrides,
             ":focus-visible": disabledStatesStyles,
         },
-    } as const;
+    };
 
-    styles[buttonType] = StyleSheet.create(newStyles);
+    // aphrodite v1 doesn't support generics, so we need to cast the result
+    // to the correct type. we can trust this cast because we typed the input
+    // correctly above, and aphrodite will return whatever keys we passed in.
+    styles[buttonType] = StyleSheet.create(newStyles) as Record<
+        ButtonStylesKey,
+        object
+    >;
     return styles[buttonType];
 };
