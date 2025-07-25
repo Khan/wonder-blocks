@@ -59,6 +59,10 @@ const columns = [
         name: "With selection (All selected)",
         props: {selectedValues: ["1", "2", "3"]},
     },
+    {
+        name: "With selection (All selected) + Disabled",
+        props: {selectedValues: ["1", "2", "3"], disabled: true},
+    },
 ];
 
 export const StateSheetStory: Story = {
