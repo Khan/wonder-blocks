@@ -1,5 +1,35 @@
 # @khanacademy/wonder-blocks-modal
 
+## 8.1.7
+
+### Patch Changes
+
+- fc6e4b7: Do not try to focus hidden elements in FocusTrap
+- Updated dependencies [eafcfa3]
+- Updated dependencies [956f8bd]
+- Updated dependencies [956f8bd]
+- Updated dependencies [eafcfa3]
+- Updated dependencies [b42b694]
+- Updated dependencies [956f8bd]
+    - @khanacademy/wonder-blocks-tokens@12.0.0
+    - @khanacademy/wonder-blocks-styles@0.2.25
+    - @khanacademy/wonder-blocks-breadcrumbs@3.1.29
+    - @khanacademy/wonder-blocks-icon-button@10.3.13
+    - @khanacademy/wonder-blocks-layout@3.1.29
+    - @khanacademy/wonder-blocks-typography@4.2.14
+
+## 8.1.6
+
+### Patch Changes
+
+- Updated dependencies [03415d1]
+    - @khanacademy/wonder-blocks-tokens@11.4.1
+    - @khanacademy/wonder-blocks-breadcrumbs@3.1.28
+    - @khanacademy/wonder-blocks-icon-button@10.3.12
+    - @khanacademy/wonder-blocks-layout@3.1.28
+    - @khanacademy/wonder-blocks-styles@0.2.24
+    - @khanacademy/wonder-blocks-typography@4.2.13
+
 ## 8.1.5
 
 ### Patch Changes

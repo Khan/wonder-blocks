@@ -1,5 +1,33 @@
 # @khanacademy/wonder-blocks-badge
 
+## 1.0.3
+
+### Patch Changes
+
+- eafcfa3: Replaces `semanticColor.icon` with `semanticColor.core.foreground` tokens
+- b42b694: Updates CSS variables for badge
+- 956f8bd: Replaces instances of `semanticColor.text` with `semanticColor.core.foreground`
+- Updated dependencies [eafcfa3]
+- Updated dependencies [956f8bd]
+- Updated dependencies [956f8bd]
+- Updated dependencies [eafcfa3]
+- Updated dependencies [b42b694]
+- Updated dependencies [956f8bd]
+    - @khanacademy/wonder-blocks-tokens@12.0.0
+    - @khanacademy/wonder-blocks-styles@0.2.25
+    - @khanacademy/wonder-blocks-icon@5.2.12
+    - @khanacademy/wonder-blocks-typography@4.2.14
+
+## 1.0.2
+
+### Patch Changes
+
+- Updated dependencies [03415d1]
+    - @khanacademy/wonder-blocks-tokens@11.4.1
+    - @khanacademy/wonder-blocks-icon@5.2.11
+    - @khanacademy/wonder-blocks-styles@0.2.24
+    - @khanacademy/wonder-blocks-typography@4.2.13
+
 ## 1.0.1
 
 ### Patch Changes

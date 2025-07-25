@@ -5,6 +5,7 @@ import {View, addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import theme from "../theme";
 
 type Props = {
     /**
@@ -136,10 +137,10 @@ export default class FieldHeading extends React.Component<Props> {
 
 const styles = StyleSheet.create({
     label: {
-        color: semanticColor.text.primary,
+        color: semanticColor.core.foreground.neutral.strong,
     },
     description: {
-        color: semanticColor.text.secondary,
+        color: theme.description.color.foreground,
     },
     error: {
         color: semanticColor.status.critical.foreground,

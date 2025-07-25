@@ -207,8 +207,8 @@ const SearchField: React.ForwardRefExoticComponent<
                         size="small"
                         color={
                             disabled
-                                ? semanticColor.icon.disabled
-                                : semanticColor.icon.primary
+                                ? semanticColor.core.foreground.disabled.default
+                                : semanticColor.core.foreground.neutral.default
                         }
                         style={styles.searchIcon}
                         aria-hidden="true"

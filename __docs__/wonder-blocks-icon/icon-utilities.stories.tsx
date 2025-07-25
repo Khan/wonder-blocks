@@ -41,7 +41,7 @@ export const UseImageRoleAttributesWithLabel: StoryComponentType = {
                     height: sizing.size_320,
                 }}
                 viewBox="0 0 256 256"
-                fill={semanticColor.icon.primary}
+                fill={semanticColor.core.foreground.neutral.default}
                 xmlns="http://www.w3.org/2000/svg"
             >
                 <title>Crown</title>
@@ -66,7 +66,7 @@ export const UseImageRoleAttributesWithNoLabel: StoryComponentType = {
                     height: sizing.size_320,
                 }}
                 viewBox="0 0 256 256"
-                fill={semanticColor.icon.primary}
+                fill={semanticColor.core.foreground.neutral.default}
                 xmlns="http://www.w3.org/2000/svg"
             >
                 <title>Crown</title>

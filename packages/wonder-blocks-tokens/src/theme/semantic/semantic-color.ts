@@ -136,19 +136,6 @@ const core = {
     },
 };
 
-/**
- * TODO(WB-1941): Remove border once we have migrated to the new core.border
- * tokens.
- */
-const border = {
-    primary: color.fadedOffBlack16,
-    subtle: color.fadedOffBlack8,
-    strong: color.fadedOffBlack50,
-    inverse: color.white,
-    progressive: color.blue,
-    destructive: color.red,
-};
-
 const surface = {
     primary: color.white,
     secondary: color.offWhite,
@@ -161,19 +148,6 @@ const sharedFeedbackStrongTokens = {
     background: core.background.neutral.strong,
     border: core.border.neutral.strong,
     text: core.foreground.inverse.strong,
-};
-
-/**
- * TODO(WB-1941): Remove text once we have migrated to the new core.foreground
- * tokens.
- *
- * @deprecated Use `core.foreground` tokens instead.
- */
-const text = {
-    primary: core.foreground.neutral.strong,
-    secondary: core.foreground.neutral.default,
-    disabled: core.foreground.inverse.subtle,
-    inverse: core.foreground.inverse.strong,
 };
 
 export const semanticColor = {
@@ -741,37 +715,12 @@ export const semanticColor = {
      * areas of the UI.
      */
     surface,
-    /**
-     * For all type to ensure contrast for legibility. Inverse text applies for
-     * dark backgrounds in light mode.
-     */
-    text,
-    /**
-     * Borders define structure for elements. Generally borders for component
-     * elements would use -Primary, rows and layout elements use -Subtle and
-     * -Strong for when 3:1 contrast is a priority (ex. form elements)
-     *
-     * @deprecated Use `core.border` tokens instead.
-     */
-    border: border,
 
     focus: {
         outer: color.blue,
         inner: color.white,
     },
-    /**
-     * Default icon colors that change in context (like actions).
-     *
-     * @deprecated Use `core.foreground` tokens instead.
-     */
-    icon: {
-        primary: color.fadedOffBlack72,
-        secondary: color.offBlack,
-        inverse: color.white,
-        action: color.blue,
-        destructive: color.red,
-        disabled: color.fadedOffBlack32,
-    },
+
     link: {
         rest: core.foreground.instructive.subtle,
         hover: core.foreground.instructive.subtle,

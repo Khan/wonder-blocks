@@ -246,7 +246,11 @@ export const StartAndEndIcons: StoryComponentType = {
                 >
                     This is a multi-line link with start and end icons
                 </Link>
-                <Body style={{color: semanticColor.text.inverse}}>
+                <Body
+                    style={{
+                        color: semanticColor.core.foreground.inverse.strong,
+                    }}
+                >
                     This is an inline{" "}
                     <Link
                         href="#link"
@@ -319,7 +323,12 @@ export const Inline: StoryComponentType = {
  */
 export const InlineLight: StoryComponentType = {
     render: () => (
-        <Body style={{color: semanticColor.text.inverse, width: 530}}>
+        <Body
+            style={{
+                color: semanticColor.core.foreground.inverse.strong,
+                width: 530,
+            }}
+        >
             This is an inline{" "}
             <Link href="#link" inline={true} light={true}>
                 regular link

@@ -136,35 +136,12 @@ const core = {
     },
 };
 
-/**
- * TODO(WB-1941): Remove border once we have migrated to the new core.border
- * tokens.
- */
-const border = {
-    subtle: color.gray_60,
-    // TODO(WB-1941): Change to the new core.border structure and use
-    // neutral.default instead of primary.
-    // primary: color.fadedOffBlack16,
-    primary: color.gray_30,
-    strong: color.gray_20,
-    inverse: color.white_100,
-    progressive: color.blue_30,
-    destructive: color.red_30,
-};
-
 const surface = {
     primary: color.white_100,
     secondary: color.blue_90,
     emphasis: color.blue_70,
     inverse: color.gray_05,
     overlay: color.black_50,
-};
-
-const text = {
-    primary: core.foreground.neutral.strong,
-    secondary: core.foreground.neutral.subtle,
-    disabled: core.foreground.inverse.subtle,
-    inverse: core.foreground.inverse.strong,
 };
 
 const sharedFeedbackStrongTokens = {
@@ -180,51 +157,51 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                 default: {
                     border: core.border.instructive.default,
                     background: core.background.instructive.default,
-                    foreground: text.inverse,
+                    foreground: core.foreground.inverse.strong,
                 },
                 hover: {
                     border: core.border.instructive.strong,
                     background: core.background.instructive.strong,
-                    foreground: text.inverse,
+                    foreground: core.foreground.inverse.strong,
                 },
                 press: {
                     border: core.border.instructive.strong,
                     background: core.background.instructive.strong,
-                    foreground: text.inverse,
+                    foreground: core.foreground.inverse.strong,
                 },
             },
             destructive: {
                 default: {
                     border: core.border.critical.default,
                     background: core.background.critical.default,
-                    foreground: text.inverse,
+                    foreground: core.foreground.inverse.strong,
                 },
                 hover: {
                     border: core.border.critical.strong,
                     background: core.background.critical.strong,
-                    foreground: text.inverse,
+                    foreground: core.foreground.inverse.strong,
                 },
                 press: {
                     border: core.border.critical.strong,
                     background: core.background.critical.strong,
-                    foreground: text.inverse,
+                    foreground: core.foreground.inverse.strong,
                 },
             },
             neutral: {
                 default: {
                     border: core.border.neutral.default,
                     background: core.background.neutral.default,
-                    foreground: text.inverse,
+                    foreground: core.foreground.inverse.strong,
                 },
                 hover: {
                     border: core.border.neutral.strong,
                     background: core.background.neutral.strong,
-                    foreground: text.inverse,
+                    foreground: core.foreground.inverse.strong,
                 },
                 press: {
                     border: core.border.neutral.strong,
                     background: core.background.neutral.strong,
-                    foreground: text.inverse,
+                    foreground: core.foreground.inverse.strong,
                 },
             },
 
@@ -572,8 +549,6 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
     },
 
     surface,
-    text,
-    border,
 
     focus: {
         outer: color.blue_30,

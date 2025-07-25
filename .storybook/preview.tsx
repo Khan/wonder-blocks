@@ -89,10 +89,6 @@ const parameters = {
                 value: semanticColor.surface.inverse,
             },
             {
-                name: "khanmigo",
-                value: semanticColor.khanmigo.primary,
-            },
-            {
                 name: "offWhite",
                 value: semanticColor.surface.secondary,
             },
@@ -237,11 +233,6 @@ const preview: Preview = {
                         value: "default",
                         icon: "circlehollow",
                         title: "Wonder Blocks (default)",
-                    },
-                    {
-                        value: "khanmigo",
-                        icon: "comment",
-                        title: "Khanmigo",
                     },
                     {
                         value: "thunderblocks",

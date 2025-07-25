@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     },
     label: {
         paddingBlockEnd: sizing.size_080,
-        color: semanticColor.text.secondary,
+        color: semanticColor.core.foreground.neutral.default,
     },
     content: {
         maxWidth: "100%",

@@ -1,5 +1,31 @@
 # @khanacademy/wonder-blocks-switch
 
+## 3.3.11
+
+### Patch Changes
+
+- eafcfa3: Replaces `semanticColor.icon` with `semanticColor.core.foreground` tokens
+- Updated dependencies [eafcfa3]
+- Updated dependencies [0f16c2e]
+- Updated dependencies [956f8bd]
+- Updated dependencies [956f8bd]
+- Updated dependencies [eafcfa3]
+- Updated dependencies [b42b694]
+- Updated dependencies [956f8bd]
+    - @khanacademy/wonder-blocks-tokens@12.0.0
+    - @khanacademy/wonder-blocks-theming@4.0.0
+    - @khanacademy/wonder-blocks-styles@0.2.25
+    - @khanacademy/wonder-blocks-icon@5.2.12
+
+## 3.3.10
+
+### Patch Changes
+
+- Updated dependencies [03415d1]
+    - @khanacademy/wonder-blocks-tokens@11.4.1
+    - @khanacademy/wonder-blocks-icon@5.2.11
+    - @khanacademy/wonder-blocks-styles@0.2.24
+
 ## 3.3.9
 
 ### Patch Changes

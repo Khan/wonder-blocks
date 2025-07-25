@@ -1,4 +1,4 @@
-import {border, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 export default {
     choice: {
@@ -7,6 +7,11 @@ export default {
                 padding: sizing.size_0,
                 margin: sizing.size_0,
             },
+        },
+    },
+    description: {
+        color: {
+            foreground: semanticColor.core.foreground.neutral.default,
         },
     },
     field: {

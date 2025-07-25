@@ -881,7 +881,7 @@ const styles = StyleSheet.create({
         border: "none",
         maxWidth: 250,
         "::placeholder": {
-            color: semanticColor.text.secondary,
+            color: semanticColor.core.foreground.neutral.default,
         },
     },
     button: {

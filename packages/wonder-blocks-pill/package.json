@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-pill",
-  "version": "3.1.31",
+  "version": "3.1.33",
   "design": "v1",
   "description": "Pill components for Wonder Blocks.",
   "main": "dist/index.js",

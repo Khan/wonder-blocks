@@ -61,14 +61,14 @@ const baseStyles = {
                 activeOn: semanticColor.core.background.instructive.strong,
             },
             slider: {
-                on: semanticColor.icon.inverse,
-                off: semanticColor.icon.inverse,
+                on: semanticColor.core.foreground.inverse.strong,
+                off: semanticColor.core.foreground.inverse.strong,
             },
             icon: {
-                on: semanticColor.icon.action,
+                on: semanticColor.core.foreground.instructive.subtle,
                 disabledOn: semanticColor.core.border.instructive.subtle,
                 off: semanticColor.core.border.neutral.default,
-                disabledOff: semanticColor.icon.disabled,
+                disabledOff: semanticColor.core.foreground.disabled.default,
             },
         },
     },

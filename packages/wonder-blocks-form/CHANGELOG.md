@@ -1,5 +1,39 @@
 # @khanacademy/wonder-blocks-form
 
+## 7.3.0
+
+### Minor Changes
+
+- e934f20: Add onPaste prop to TextArea and TextField
+
+## 7.2.5
+
+### Patch Changes
+
+- 956f8bd: Updates CSS variables for the form package
+- 956f8bd: Replaces instances of `semanticColor.text` with `semanticColor.core.foreground`
+- Updated dependencies [eafcfa3]
+- Updated dependencies [956f8bd]
+- Updated dependencies [eafcfa3]
+- Updated dependencies [b42b694]
+- Updated dependencies [956f8bd]
+    - @khanacademy/wonder-blocks-tokens@12.0.0
+    - @khanacademy/wonder-blocks-clickable@7.1.18
+    - @khanacademy/wonder-blocks-icon@5.2.12
+    - @khanacademy/wonder-blocks-layout@3.1.29
+    - @khanacademy/wonder-blocks-typography@4.2.14
+
+## 7.2.4
+
+### Patch Changes
+
+- Updated dependencies [03415d1]
+    - @khanacademy/wonder-blocks-tokens@11.4.1
+    - @khanacademy/wonder-blocks-clickable@7.1.17
+    - @khanacademy/wonder-blocks-icon@5.2.11
+    - @khanacademy/wonder-blocks-layout@3.1.28
+    - @khanacademy/wonder-blocks-typography@4.2.13
+
 ## 7.2.3
 
 ### Patch Changes

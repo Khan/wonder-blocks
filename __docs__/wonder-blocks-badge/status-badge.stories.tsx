@@ -190,7 +190,10 @@ export const CustomIcons: StoryComponentType = {
                                     <PhosphorIcon
                                         icon={singleColoredIcon}
                                         aria-label="Crown"
-                                        color={semanticColor.icon.primary}
+                                        color={
+                                            semanticColor.core.foreground
+                                                .neutral.default
+                                        }
                                     />
                                 }
                                 label="Custom Icon"

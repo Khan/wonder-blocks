@@ -345,7 +345,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     description: {
-        color: semanticColor.text.secondary,
+        color: semanticColor.core.foreground.neutral.default,
     },
     last: {
         borderBottom: "solid 1px #CCC",

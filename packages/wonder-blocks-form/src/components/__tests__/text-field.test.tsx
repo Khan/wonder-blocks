@@ -405,6 +405,43 @@ describe("TextField", () => {
         expect(handleOnKeyDown).toHaveReturnedWith("Enter");
     });
 
+    it("onPaste is called when text is pasted into the input", async () => {
+        // Arrange
+        const handleOnPaste = jest.fn();
+        render(
+            <TextField value="" onChange={() => {}} onPaste={handleOnPaste} />,
+        );
+
+        // Act
+        const textbox = await screen.findByRole("textbox");
+        textbox.focus();
+        await userEvent.paste("test");
+
+        // Assert
+        expect(handleOnPaste).toHaveBeenCalledOnce();
+    });
+
+    it("onPaste is not called when text is pasted into the input and it is disabled", async () => {
+        // Arrange
+        const handleOnPaste = jest.fn();
+        render(
+            <TextField
+                value=""
+                onChange={() => {}}
+                onPaste={handleOnPaste}
+                disabled={true}
+            />,
+        );
+
+        // Act
+        const textbox = await screen.findByRole("textbox");
+        textbox.focus();
+        await userEvent.paste("test");
+
+        // Assert
+        expect(handleOnPaste).not.toHaveBeenCalled();
+    });
+
     it("placeholder prop is passed to the input element", async () => {
         // Arrange
         const placeholder = "Placeholder";
