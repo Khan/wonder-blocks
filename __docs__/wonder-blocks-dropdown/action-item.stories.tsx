@@ -129,6 +129,8 @@ export const Disabled = {
 export const CustomActionItem = {
     args: {
         label: "Action Item",
+        subtitle1: "Subtitle 1",
+        subtitle2: "Subtitle 2",
         onClick: () => {},
         leftAccessory: (
             <PhosphorIcon icon={IconMappings.calendar} size="medium" />

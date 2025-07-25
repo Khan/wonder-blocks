@@ -444,6 +444,7 @@ export const CustomActionItems: StoryComponentType = {
                 leftAccessory={
                     <PhosphorIcon icon={IconMappings.calendar} size="medium" />
                 }
+                subtitle2="Click to set a date"
                 onClick={action("Set date clicked")}
             />,
             <ActionItem
@@ -458,6 +459,7 @@ export const CustomActionItems: StoryComponentType = {
                         size="medium"
                     />
                 }
+                subtitle2="Edit this item"
                 onClick={action("Edit clicked!")}
             />,
             <ActionItem
@@ -467,6 +469,7 @@ export const CustomActionItems: StoryComponentType = {
                 leftAccessory={
                     <PhosphorIcon icon={IconMappings.gear} size="medium" />
                 }
+                subtitle2="Change your preferences"
                 onClick={action("preferences clicked!")}
             />,
             <ActionItem
@@ -481,6 +484,7 @@ export const CustomActionItems: StoryComponentType = {
                         New
                     </Pill>
                 }
+                subtitle2="View your profile"
                 onClick={action("user profile clicked!")}
                 style={{
                     [":hover [data-testid=new-pill]" as any]: {
@@ -492,6 +496,7 @@ export const CustomActionItems: StoryComponentType = {
             <OptionItem
                 key="5"
                 label="Show homework assignments"
+                subtitle1="Click to show homework assignments"
                 value="homework"
                 onClick={() => console.log(`Show homework assignments toggled`)}
             />,
