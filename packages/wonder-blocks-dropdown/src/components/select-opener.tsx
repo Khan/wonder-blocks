@@ -196,11 +196,9 @@ export default class SelectOpener extends React.Component<
     }
 }
 
-const pressStyling = {
-    // Use box shadow to make the border in the press state look thicker
-    // without changing the border
-    boxShadow: `0 0 0 ${border.width.thin} ${semanticColor.input.default.border}`,
-};
+// Use box shadow to make the border in the press state look thicker without
+// changing the border
+const PRESS_SHADOW = `0 0 0 ${border.width.thin} ${semanticColor.input.default.border}`;
 
 const styles = StyleSheet.create({
     // TODO: Dedupe with Button styles
@@ -250,9 +248,11 @@ const styles = StyleSheet.create({
             color: semanticColor.input.default.placeholder,
         },
         cursor: "pointer",
-        ":active": pressStyling,
         // :focus-visible -> Provide focus styles for keyboard users only.
         ...focusStyles.focus,
+        ":active": {
+            boxShadow: PRESS_SHADOW,
+        },
     },
     error: {
         background: semanticColor.input.error.background,
@@ -274,7 +274,14 @@ const styles = StyleSheet.create({
             boxShadow: "none",
         },
     },
-    press: pressStyling,
+    press: {
+        boxShadow: PRESS_SHADOW,
+        ":focus-visible": {
+            // We merge the focus styles with the press styles
+            // so that the focus ring is visible when the button is pressed.
+            boxShadow: `${PRESS_SHADOW}, ${focusStyles.focus[":focus-visible"].boxShadow}`,
+        },
+    },
     placeholder: {
         color: semanticColor.input.default.placeholder,
     },
