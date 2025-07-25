@@ -265,7 +265,7 @@ const styles = StyleSheet.create({
     disabled: {
         background: semanticColor.input.disabled.background,
         border: `${border.width.thin} solid ${semanticColor.input.disabled.border}`,
-        color: semanticColor.input.disabled.placeholder,
+        color: semanticColor.input.disabled.foreground,
         "::placeholder": {
             color: semanticColor.input.disabled.placeholder,
         },
