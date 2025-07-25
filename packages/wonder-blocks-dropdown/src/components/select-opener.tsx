@@ -244,9 +244,6 @@ const styles = StyleSheet.create({
         background: semanticColor.input.default.background,
         border: `${border.width.thin} solid ${semanticColor.input.default.border}`,
         color: semanticColor.input.default.foreground,
-        "::placeholder": {
-            color: semanticColor.input.default.placeholder,
-        },
         cursor: "pointer",
         // :focus-visible -> Provide focus styles for keyboard users only.
         ...focusStyles.focus,
@@ -258,18 +255,12 @@ const styles = StyleSheet.create({
         background: semanticColor.input.error.background,
         border: `${theme.opener.border.width.error} solid ${semanticColor.input.error.border}`,
         color: semanticColor.input.error.foreground,
-        "::placeholder": {
-            color: semanticColor.input.default.placeholder,
-        },
     },
     disabled: {
         background: semanticColor.input.disabled.background,
         border: `${border.width.thin} solid ${semanticColor.input.disabled.border}`,
         color: semanticColor.input.disabled.foreground,
         cursor: "not-allowed",
-        "::placeholder": {
-            color: semanticColor.input.disabled.placeholder,
-        },
         ":active": {
             boxShadow: "none",
         },
