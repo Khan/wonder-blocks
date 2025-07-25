@@ -237,7 +237,7 @@ const preview: Preview = {
                     {
                         value: "thunderblocks",
                         icon: "lightning",
-                        title: "Thunder Blocks (Classroom)",
+                        title: "Shape Your Learning (Thunder Blocks)",
                     },
                 ],
                 // Change title based on selected value
