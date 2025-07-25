@@ -277,8 +277,8 @@ const styles = StyleSheet.create({
     press: {
         boxShadow: PRESS_SHADOW,
         ":focus-visible": {
-            // We merge the focus styles with the press styles
-            // so that the focus ring is visible when the button is pressed.
+            // We merge the focus styles with the press styles so that the focus
+            // ring is visible when the button is pressed.
             boxShadow: `${PRESS_SHADOW}, ${focusStyles.focus[":focus-visible"].boxShadow}`,
         },
     },
