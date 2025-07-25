@@ -232,7 +232,7 @@ const preview: Preview = {
                     {
                         value: "default",
                         icon: "circlehollow",
-                        title: "Legacy (Classic Wonder Blocks)",
+                        title: "Wonder Blocks (default)",
                     },
                     {
                         value: "thunderblocks",
