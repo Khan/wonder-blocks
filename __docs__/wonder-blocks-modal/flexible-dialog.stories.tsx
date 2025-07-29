@@ -112,169 +112,122 @@ export const Default: StoryComponentType = {
     },
 };
 
-const celebrationBgStyle = {
-    backgroundColor: "#FCE6F7", // fallback color
+/**
+ * A FlexibleDialog with full-bleed background image and custom contents.
+ */
+const modalBgStyle = {
+    backgroundColor: semanticColor.core.background.critical.subtle, // fallback color
     backgroundImage: `url(${celebrationBg})`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
 } as const;
 
-export const CelebrationModal: StoryComponentType = () => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
-            <FlexibleDialog
-                title={
-                    <Heading
-                        size="xxlarge"
-                        weight="bold"
-                        id="gem-challenge-completed-modal-heading"
-                        tag="h2"
-                    >
-                        Congrats Rainier McCheddarton!
-                    </Heading>
-                }
-                style={styles.celebrationModal}
-                backgroundStyles={celebrationBgStyle}
-                content={({title}) => (
-                    <View style={styles.centered}>
-                        <img src={celebrationChest} width="280px" alt="" />
-                        {title}
-                        <Heading
-                            size="large"
-                            weight="bold"
-                            style={{
-                                marginBlock: sizing.size_240,
-                                textAlign: "center",
-                            }}
-                        >
-                            Your class, Advanced Calculus, reached 1500 of 1500
-                            gems
-                        </Heading>
-                        <ActivityButton
-                            kind="primary"
-                            styles={{
-                                root: {
-                                    marginBlockStart: 20,
-                                    alignSelf: "center",
-                                },
-                            }}
-                            onClick={() => {}}
-                        >
-                            Continue
-                        </ActivityButton>
-                    </View>
-                )}
-            />
-        </View>
-    </View>
-);
-
-CelebrationModal.parameters = {
-    docs: {
-        description: {
-            story: `A FlexibleDialog with full-bleed background image and custom contents.`,
-        },
-    },
-};
-
-export const WithAboveAndBelow: StoryComponentType = () => {
-    const aboveStyle = {
-        background: "url(./modal-above.png)",
-        width: 874,
-        height: 551,
-        position: "absolute",
-        top: 40,
-        left: -140,
-    } as const;
-
-    const belowStyle = {
-        background: "url(./modal-below.png)",
-        width: 868,
-        height: 521,
-        position: "absolute",
-        top: -100,
-        left: -300,
-    } as const;
-
-    return (
+export const WithBackgroundImage: StoryComponentType = {
+    render: () => (
         <View style={styles.previewSizer}>
             <View style={styles.modalPositioner}>
                 <FlexibleDialog
-                    title={<Heading>Single-line title</Heading>}
+                    title={
+                        <Heading
+                            size="xxlarge"
+                            weight="bold"
+                            id="gem-challenge-completed-modal-heading"
+                            tag="h2"
+                        >
+                            Congrats Rainier McCheddarton!
+                        </Heading>
+                    }
+                    styles={{
+                        root: styles.modalWithBg,
+                        panel: modalBgStyle,
+                    }}
                     content={({title}) => (
-                        <View style={{gap: sizing.size_160}}>
+                        <View style={styles.centered}>
+                            <img src={celebrationChest} width="280px" alt="" />
                             {title}
-                            <BodyText>
-                                {`Lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua. Ut enim ad minim
-                            veniam, quis nostrud exercitation ullamco laboris
-                            nisi ut aliquip ex ea commodo consequat. Duis aute
-                            irure dolor in reprehenderit in voluptate velit
-                            esse cillum dolore eu fugiat nulla pariatur.
-                            Excepteur sint occaecat cupidatat non proident,
-                            sunt in culpa qui officia deserunt mollit anim id
-                            est.`}
-                            </BodyText>
-                            <BodyText>
-                                {`Lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua. Ut enim ad minim
-                            veniam, quis nostrud exercitation ullamco laboris
-                            nisi ut aliquip ex ea commodo consequat. Duis aute
-                            irure dolor in reprehenderit in voluptate velit
-                            esse cillum dolore eu fugiat nulla pariatur.
-                            Excepteur sint occaecat cupidatat non proident,
-                            sunt in culpa qui officia deserunt mollit anim id
-                            est.`}
-                            </BodyText>
-                            <BodyText>
-                                {`Lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua. Ut enim ad minim
-                            veniam, quis nostrud exercitation ullamco laboris
-                            nisi ut aliquip ex ea commodo consequat. Duis aute
-                            irure dolor in reprehenderit in voluptate velit
-                            esse cillum dolore eu fugiat nulla pariatur.
-                            Excepteur sint occaecat cupidatat non proident,
-                            sunt in culpa qui officia deserunt mollit anim id
-                            est.`}
-                            </BodyText>
+                            <Heading
+                                size="large"
+                                weight="bold"
+                                style={{
+                                    marginBlock: sizing.size_240,
+                                    textAlign: "center",
+                                }}
+                            >
+                                Your class, Advanced Calculus, reached 1500 of
+                                1500 gems
+                            </Heading>
+                            <ActivityButton
+                                kind="primary"
+                                styles={{
+                                    root: {
+                                        marginBlockStart: 20,
+                                        alignSelf: "center",
+                                    },
+                                }}
+                                onClick={() => {}}
+                            >
+                                Continue
+                            </ActivityButton>
                         </View>
                     )}
-                    above={<View style={aboveStyle} />}
-                    below={<View style={belowStyle} />}
                 />
             </View>
         </View>
-    );
+    ),
 };
 
-WithAboveAndBelow.parameters = {
-    docs: {
-        description: {
-            story: `The element passed into the \`above\` prop is
-            rendered in front of the modal. The element passed into the
-            \`below\` prop is rendered behind the modal. In this example,
-            a \`<View>\` element with a background image of a person and an
-            orange blob is passed into the \`below\` prop. A \`<View>\`
-            element with a background image of an arc and a blue semicircle
-            is passed into the \`above\` prop. This results in the person's
-            head and the orange blob peeking out from behind the modal, and
-            the arc and semicircle going over the front of the modal.`,
-        },
-    },
+/**
+ *
+ * A FlexibleDialog can have a movable title via the
+  `content` and its `title` render prop, so it doesn't have to be the first
+  element. It will also label the dialog as its accessible name.
+ */
+export const WithTitleRenderProp: StoryComponentType = {
+    render: () => (
+        <View style={styles.previewSizer}>
+            <View style={styles.modalPositioner}>
+                <FlexibleDialog
+                    title={<Heading tag="h2">Hey, Bagley!</Heading>}
+                    content={({title}) => (
+                        <View>
+                            <img src={celebrationChest} alt="" />
+                            {title}
+                            <Heading
+                                size="large"
+                                weight="bold"
+                                tag="h3"
+                                style={{
+                                    marginBlock: sizing.size_240,
+                                    textAlign: "center",
+                                }}
+                            >
+                                Your class, Advanced Calculus, reached 1500 of
+                                1500 gems
+                            </Heading>
+                        </View>
+                    )}
+                />
+            </View>
+        </View>
+    ),
 };
 
-export const WithStyle: StoryComponentType = () => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
-            <FlexibleDialog
-                title={<Heading>Hello, world!</Heading>}
-                content={
-                    <>
-                        <BodyText>
-                            {`Lorem ipsum dolor sit amet, consectetur adipiscing
+/**
+ *
+ * A FlexibleDialog can have custom styles via the
+  `style` prop. Here, the modal has a `maxWidth: 1000` and
+  `color: Color.blue` in its custom styles.
+ */
+export const WithStyle: StoryComponentType = {
+    render: () => (
+        <View style={styles.previewSizer}>
+            <View style={styles.modalPositioner}>
+                <FlexibleDialog
+                    title={<Heading>Hello, world!</Heading>}
+                    content={
+                        <>
+                            <BodyText>
+                                {`Lorem ipsum dolor sit amet, consectetur adipiscing
                             elit, sed do eiusmod tempor incididunt ut labore et
                             dolore magna aliqua. Ut enim ad minim veniam,
                             quis nostrud exercitation ullamco laboris nisi ut
@@ -283,156 +236,30 @@ export const WithStyle: StoryComponentType = () => (
                             cillum dolore eu fugiat nulla pariatur. Excepteur
                             sint occaecat cupidatat non proident, sunt in culpa
                             qui officia deserunt mollit anim id est.`}
-                        </BodyText>
-                    </>
-                }
-                style={{
-                    color: semanticColor.status.notice.foreground,
-                    maxWidth: 1000,
-                }}
-            />
-        </View>
-    </View>
-);
-
-WithStyle.parameters = {
-    docs: {
-        description: {
-            story: `A FlexibleDialog can have custom styles via the
-            \`style\` prop. Here, the modal has a \`maxWidth: 1000\` and
-            \`color: Color.blue\` in its custom styles.`,
-        },
-    },
-};
-
-export const MultiStepModal: StoryComponentType = () => {
-    const styles = StyleSheet.create({
-        example: {
-            padding: sizing.size_320,
-            alignItems: "center",
-        },
-        row: {
-            flexDirection: "row",
-            justifyContent: "flex-end",
-        },
-    });
-
-    type ExerciseModalProps = {
-        current: number;
-        handleNextButton: () => unknown;
-        handlePrevButton: () => unknown;
-        question: string;
-        total: number;
-    };
-
-    const ExerciseModal = function (
-        props: ExerciseModalProps,
-    ): React.ReactElement {
-        const {current, handleNextButton, handlePrevButton, question, total} =
-            props;
-
-        return (
-            <FlexibleDialog
-                title={<Heading id="heading-1">Exercises</Heading>}
-                content={({title}) => (
-                    <>
-                        <View>
-                            {title}
-                            <BodyText>
-                                This is the current question: {question}
                             </BodyText>
-                        </View>
-                        <View style={styles.footer}>
-                            <BodyText weight="bold">
-                                Step {current + 1} of {total}
-                            </BodyText>
-                            <View style={styles.row}>
-                                <Button
-                                    kind="tertiary"
-                                    onClick={handlePrevButton}
-                                >
-                                    Previous
-                                </Button>
-                                <Button
-                                    kind="primary"
-                                    onClick={handleNextButton}
-                                >
-                                    Next
-                                </Button>
-                            </View>
-                        </View>
-                    </>
-                )}
-            />
-        );
-    };
-
-    type ExerciseContainerProps = {
-        questions: Array<string>;
-    };
-
-    const ExerciseContainer = function (
-        props: ExerciseContainerProps,
-    ): React.ReactElement {
-        const [currentQuestion, setCurrentQuestion] = React.useState(0);
-
-        const handleNextButton = () => {
-            setCurrentQuestion(
-                Math.min(currentQuestion + 1, props.questions.length - 1),
-            );
-        };
-
-        const handlePrevButton = () => {
-            setCurrentQuestion(Math.max(0, currentQuestion - 1));
-        };
-
-        return (
-            <ModalLauncher
-                modal={
-                    <ExerciseModal
-                        question={props.questions[currentQuestion]}
-                        current={currentQuestion}
-                        total={props.questions.length}
-                        handlePrevButton={handlePrevButton}
-                        handleNextButton={handleNextButton}
-                    />
-                }
-            >
-                {({openModal}) => (
-                    <Button onClick={openModal}>Open multi-step modal</Button>
-                )}
-            </ModalLauncher>
-        );
-    };
-
-    return (
-        <View style={styles.example}>
-            <ExerciseContainer
-                questions={[
-                    "First question",
-                    "Second question",
-                    "Last question",
-                ]}
-            />
+                        </>
+                    }
+                    styles={{
+                        root: {
+                            color: semanticColor.status.notice.foreground,
+                            maxWidth: 1000,
+                        },
+                    }}
+                />
+            </View>
         </View>
-    );
+    ),
 };
 
-MultiStepModal.parameters = {
-    chromatic: {
-        // This example is behavior based, not visual.
-        disableSnapshot: true,
-    },
-    docs: {
-        description: {
-            story: `This example illustrates how we can update the
-            Modal's contents by wrapping it into a new component/container.
-            \`Modal\` is built in a way that provides great flexibility and
-            makes it work with different variations and/or layouts.`,
-        },
-    },
-};
-
+/**
+ *
+ * A modal can be launched using a launcher. Here,
+   the launcher is a `<Button>` element whose `onClick` function
+   opens the modal. The modal passed into the `modal` prop of
+   the `<ModalLauncher>` element is a `<FlexibleDialog>`.
+   To turn an element into a launcher, wrap the element in a
+   `<ModalLauncher>` element.
+ */
 export const WithLauncher: StoryComponentType = () => {
     type MyModalProps = {
         closeModal: () => void;
@@ -455,7 +282,7 @@ export const WithLauncher: StoryComponentType = () => {
                     sunt in culpa qui officia deserunt mollit anim id
                     est.`}
                     </BodyText>
-                    <View>
+                    <View style={styles.launcherButton}>
                         <Button onClick={closeModal}>Close</Button>
                     </View>
                 </>
@@ -477,16 +304,6 @@ WithLauncher.parameters = {
         // Don't take screenshots of this story since it would only show a
         // button and not the actual modal.
         disableSnapshot: true,
-    },
-    docs: {
-        description: {
-            story: `A modal can be launched using a launcher. Here,
-            the launcher is a \`<Button>\` element whose \`onClick\` function
-            opens the modal. The modal passed into the \`modal\` prop of
-            the \`<ModalLauncher>\` element is a \`<FlexibleDialog>\`.
-            To turn an element into a launcher, wrap the element in a
-            \`<ModalLauncher>\` element.`,
-        },
     },
 };
 
@@ -519,7 +336,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
     },
     previewSizer: {
-        minHeight: 600,
+        minHeight: "calc(100vh - 1.6rem)",
         width: "100%",
     },
     row: {
@@ -533,7 +350,10 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         width: "100%",
     },
-    celebrationModal: {
+    modalWithBg: {
         maxWidth: 1024,
+    },
+    launcherButton: {
+        marginTop: "auto",
     },
 });

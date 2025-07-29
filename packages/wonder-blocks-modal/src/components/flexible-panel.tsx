@@ -9,33 +9,6 @@ import ModalContent from "./modal-content";
 import CloseButton from "./close-button";
 import theme from "../theme";
 
-export type BackgroundStyles = {
-    /**
-     * The background color of the panel. Defaults to semanticColor.surface.primary.
-     */
-    backgroundColor?: string;
-    /**
-     * The background image URL or gradient.
-     */
-    backgroundImage?: string;
-    /**
-     * How the background image should be repeated.
-     */
-    backgroundRepeat?: "repeat" | "no-repeat" | "repeat-x" | "repeat-y";
-    /**
-     * How the background image should be positioned.
-     */
-    backgroundPosition?: string;
-    /**
-     * How the background image should be sized.
-     */
-    backgroundSize?: string;
-    /**
-     * How the background image should fit within its container.
-     */
-    objectFit?: "fill" | "contain" | "cover" | "none" | "scale-down";
-};
-
 type RenderProps = {
     title: React.ReactNode | string;
 };
@@ -46,10 +19,6 @@ type Props = {
      */
     title?: React.ReactNode | string;
     /**
-     * Optional id reference for the main heading to label the parent dialog via aria-labelledby.
-     */
-    titleId?: string;
-    /**
      * The main contents of the FlexiblePanel. All other parts of the panel
      * are positioned around it.
      */
@@ -58,23 +27,16 @@ type Props = {
         | ((slots: RenderProps) => React.ReactNode)
         | React.ReactNode;
     /**
-     * The optional background styles for the panel.
-     * If not provided, defaults to semanticColor.surface.primary background color.
-     */
-    backgroundStyles?: BackgroundStyles;
-    /**
      * When true, the close button is shown; otherwise, the close button is not shown.
      */
     closeButtonVisible: boolean;
     /**
-     * Should the contents of the panel become scrollable should they
-     * become too tall?
+     * Any optional styling to apply to the root (panel background) and close button.
      */
-    scrollOverflow: boolean;
-    /**
-     * Any optional styling to apply to the panel.
-     */
-    style?: StyleType;
+    styles?: {
+        root?: StyleType;
+        closeButton?: StyleType;
+    };
     /**
      * Called when the close button is clicked.
      *
@@ -87,7 +49,7 @@ type Props = {
      * Test ID used for e2e testing.
      *
      * In this case, this `testId` comes from the `testId` prop defined in the
-     * Dialog variant (e.g. OnePaneDialog).
+     * Dialog variant (e.g. FlexibleDialog).
      */
     testId?: string;
 };
@@ -111,14 +73,11 @@ type Props = {
  * ```
  */
 export default function FlexiblePanel({
-    backgroundStyles,
     closeButtonVisible = true,
-    scrollOverflow = true,
     content,
-    titleId,
     title,
     onClose,
-    style,
+    styles,
     testId,
 }: Props) {
     const renderMainContent = React.useCallback((): React.ReactNode => {
@@ -136,21 +95,18 @@ export default function FlexiblePanel({
         ) : (
             <ModalContent>{contentNode}</ModalContent>
         );
-
         if (!mainContent) {
             return mainContent;
         }
 
         return React.cloneElement(mainContent, {
-            // Pass the scrollOverflow and header in to the main content
-            scrollOverflow,
             // We override the styling of the main content to help position
             // it if there is a close button being
             // shown. We have to do this here as the ModalContent doesn't
             // know about things being positioned around it.
             style: [mainContent.props.style],
         });
-    }, [title, content, scrollOverflow]);
+    }, [title, content]);
 
     const mainContent = renderMainContent();
 
@@ -160,18 +116,18 @@ export default function FlexiblePanel({
 
     const combinedBackgroundStyles = {
         ...defaultBackgroundStyle,
-        ...backgroundStyles,
+        ...styles?.root,
     };
 
     return (
         <View
-            style={[styles.wrapper, combinedBackgroundStyles, style]}
+            style={[componentStyles.wrapper, combinedBackgroundStyles]}
             testId={testId && `${testId}-panel`}
         >
             {closeButtonVisible && (
                 <CloseButton
                     onClick={onClose}
-                    style={[styles.closeButton]}
+                    style={[componentStyles.closeButton, styles?.closeButton]}
                     testId={testId && `${testId}-close`}
                 />
             )}
@@ -185,7 +141,7 @@ FlexiblePanel.defaultProps = {
     scrollOverflow: true,
 };
 
-const styles = StyleSheet.create({
+const componentStyles = StyleSheet.create({
     wrapper: {
         flex: "1 1 auto",
         flexDirection: "column",

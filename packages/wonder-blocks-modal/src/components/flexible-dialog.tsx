@@ -6,7 +6,7 @@ import {Id, View} from "@khanacademy/wonder-blocks-core";
 import {breakpoint} from "@khanacademy/wonder-blocks-tokens";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 import ModalDialog from "./modal-dialog";
-import FlexiblePanel, {BackgroundStyles} from "./flexible-panel";
+import FlexiblePanel from "./flexible-panel";
 
 /**
  * The visible title content for the dialog. An ID will be automatically applied
@@ -63,11 +63,6 @@ type Props = AccessibleLabelProps & {
         | React.ReactElement<PropsFor<typeof FlexiblePanel>>
         | ((slots: RenderProps) => React.ReactNode);
     /**
-     * The background styles for the modal panel.
-     * If not provided, defaults to semanticColor.surface.primary background color.
-     */
-    backgroundStyles?: BackgroundStyles;
-    /**
      * Called when the close button is clicked.
      *
      * If you're using `ModalLauncher`, you probably shouldn't use this prop!
@@ -80,21 +75,6 @@ type Props = AccessibleLabelProps & {
      */
     closeButtonVisible?: boolean;
     /**
-     * When set, provides a component that can render content above the top of the modal;
-     * when not set, no additional content is shown above the modal.
-     * This prop is passed down to the ModalDialog.
-     */
-    above?: React.ReactNode;
-    /**
-     * When set, provides a component that will render content below the bottom of the modal;
-     * when not set, no additional content is shown below the modal.
-     * This prop is passed down to the ModalDialog.
-     *
-     * NOTE: Devs can customize this content by rendering the component assigned to this prop with custom styles,
-     * such as by wrapping it in a View.
-     */
-    below?: React.ReactNode;
-    /**
      * When set, overrides the default role value. Default role is "dialog"
      * Roles other than dialog and alertdialog aren't appropriate for this
      * component
@@ -103,7 +83,11 @@ type Props = AccessibleLabelProps & {
     /**
      * Optional custom styles.
      */
-    style?: StyleType;
+    styles?: {
+        root?: StyleType;
+        panel?: StyleType;
+        closeButton?: StyleType;
+    };
     /**
      * Test ID used for e2e testing. This ID will be passed down to the Dialog.
      */
@@ -155,14 +139,11 @@ const FlexibleDialog = ({
     onClose,
     title,
     content,
-    above,
-    below,
-    style,
+    styles,
     closeButtonVisible = true,
     testId,
     titleId,
     role,
-    backgroundStyles,
     ...accessibilityProps
 }: Props): React.ReactElement => {
     return (
@@ -181,9 +162,7 @@ const FlexibleDialog = ({
 
                 return (
                     <ModalDialog
-                        style={[componentStyles.dialog, style]}
-                        above={above}
-                        below={below}
+                        style={[componentStyles.dialog, styles?.root]}
                         testId={testId}
                         aria-label={accessibilityProps["aria-label"]}
                         aria-labelledby={uniqueId}
@@ -193,7 +172,7 @@ const FlexibleDialog = ({
                         role={role}
                     >
                         <FlexiblePanel
-                            backgroundStyles={backgroundStyles}
+                            styles={{root: styles?.panel}}
                             onClose={onClose}
                             title={renderedTitle}
                             content={content}
@@ -212,7 +191,6 @@ const componentStyles = StyleSheet.create({
         width: "93.75%",
         maxWidth: 576,
         height: "81.25%",
-        maxHeight: 624,
 
         [breakpoint.mediaQuery.sm]: {
             width: "100%",
