@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-button
 
+## 10.2.16
+
+### Patch Changes
+
+- 5146e82: Fix mobile hover reset for Button
+- cbaaf0a: ButtonCore: Prevent `focused` and `hovered` props from being applied to the underlying button element
+
 ## 10.2.15
 
 ### Patch Changes

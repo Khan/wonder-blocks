@@ -33,6 +33,10 @@ const ButtonCore: React.ForwardRefExoticComponent<
         skipClientNav,
         actionType,
         disabled: disabledProp,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars -- make sure it is not included in restProps
+        focused,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars -- make sure it is not included in restProps
+        hovered,
         href = undefined,
         kind = "primary",
         labelStyle,
