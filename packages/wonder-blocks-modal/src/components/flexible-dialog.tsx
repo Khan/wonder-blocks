@@ -2,7 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {PropsFor, StyleType} from "@khanacademy/wonder-blocks-core";
 
-import {Id, View} from "@khanacademy/wonder-blocks-core";
+import {Id} from "@khanacademy/wonder-blocks-core";
 import {breakpoint} from "@khanacademy/wonder-blocks-tokens";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 import ModalDialog from "./modal-dialog";
@@ -50,7 +50,7 @@ type Props = AccessibleLabelProps & {
      * If string content, an ID will be generated for the heading for aria-labelledby on the dialog.
      * If a node, an ID will be applied to a DIV wrapping the node.
      */
-    title?: React.ReactNode | string;
+    title?: React.ReactElement | string;
     /**
      * An optional id parameter for the main heading. If one is not provided,
      * an ID will be generated.
@@ -155,9 +155,11 @@ const FlexibleDialog = ({
                     title == null ? null : typeof title === "string" ? (
                         <Heading id={headingId}>{title}</Heading>
                     ) : (
-                        <View id={headingId} testId="title-heading-wrapper">
-                            {title}
-                        </View>
+                        // Augment heading element with ID/testId
+                        React.cloneElement(title, {
+                            id: headingId,
+                            testId: "title-heading-wrapper",
+                        })
                     );
 
                 return (

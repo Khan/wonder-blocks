@@ -124,7 +124,7 @@ describe("FlexibleDialog", () => {
             expect(dialog).toHaveAccessibleName("Mystery mission");
         });
 
-        it("applies titleId to wrapper of title component", () => {
+        it("applies titleId to title component", () => {
             // Arrange
             render(
                 <FlexibleDialog
@@ -135,31 +135,10 @@ describe("FlexibleDialog", () => {
             );
 
             // Act
-            const headingWrapper = screen.getByTestId("title-heading-wrapper");
+            const heading = screen.getByTestId("title-heading-wrapper");
 
             // Assert
-            expect(headingWrapper).toHaveAttribute("id", "heading-1");
-        });
-
-        it("applies wrapper DIV around title component", () => {
-            // Arrange
-            render(
-                <FlexibleDialog
-                    title={<Heading>Mystery mission</Heading>}
-                    titleId="heading-1"
-                    content={<p id="description">cool dialog</p>}
-                />,
-            );
-
-            // Act
-            const headingWrapper = screen.getByTestId("title-heading-wrapper");
-
-            // Assert
-            expect(
-                within(headingWrapper).getByRole("heading", {
-                    name: "Mystery mission",
-                }),
-            ).toBeInTheDocument();
+            expect(heading).toHaveAttribute("id", "heading-1");
         });
 
         it("applies title component in a content slot as the accessible name for a modal", () => {
