@@ -229,4 +229,17 @@ describe("FlexibleDialog", () => {
             expect(modal).toHaveAccessibleDescription(/cool dialog/i);
         });
     });
+
+    it("has no accessibility violations", async () => {
+        // Arrange
+        render(
+            <FlexibleDialog title="A title" content={<p>Some content</p>} />,
+        );
+
+        // Act
+        const modal = screen.getByRole("dialog");
+
+        // Assert
+        await expect(modal).toHaveNoA11yViolations();
+    });
 });
