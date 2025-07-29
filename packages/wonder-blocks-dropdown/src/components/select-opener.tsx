@@ -143,17 +143,17 @@ export default class SelectOpener extends React.Component<
             ...sharedProps
         } = this.props;
 
-        const stateStyles = _generateStyles(isPlaceholder, error);
-
         const iconColor = disabled
             ? semanticColor.core.foreground.disabled.default
             : theme.opener.color.icon;
 
         const style = [
             styles.shared,
-            stateStyles.default,
-            disabled && stateStyles.disabled,
-            !disabled && this.state.pressed && stateStyles.press,
+            styles.default,
+            disabled && styles.disabled,
+            error && styles.error,
+            isPlaceholder && styles.placeholder,
+            !disabled && this.state.pressed && styles.press,
         ];
 
         return (
@@ -196,6 +196,10 @@ export default class SelectOpener extends React.Component<
     }
 }
 
+// Use box shadow to make the border in the press state look thicker without
+// changing the border
+const PRESS_SHADOW = `0 0 0 ${border.width.thin} ${semanticColor.input.default.border}`;
+
 const styles = StyleSheet.create({
     // TODO: Dedupe with Button styles
     shared: {
@@ -231,99 +235,45 @@ const styles = StyleSheet.create({
     },
 
     caret: {
-        minWidth: 16,
+        minWidth: sizing.size_160,
+    },
+    /**
+     * Theming
+     */
+    default: {
+        background: semanticColor.input.default.background,
+        border: `${border.width.thin} solid ${semanticColor.input.default.border}`,
+        color: semanticColor.input.default.foreground,
+        cursor: "pointer",
+        // :focus-visible -> Provide focus styles for keyboard users only.
+        ...focusStyles.focus,
+        ":active": {
+            boxShadow: PRESS_SHADOW,
+        },
+    },
+    error: {
+        background: semanticColor.input.error.background,
+        border: `${theme.opener.border.width.error} solid ${semanticColor.input.error.border}`,
+        color: semanticColor.input.error.foreground,
+    },
+    disabled: {
+        background: semanticColor.input.disabled.background,
+        border: `${border.width.thin} solid ${semanticColor.input.disabled.border}`,
+        color: semanticColor.input.disabled.foreground,
+        cursor: "not-allowed",
+        ":active": {
+            boxShadow: "none",
+        },
+    },
+    press: {
+        boxShadow: PRESS_SHADOW,
+        ":focus-visible": {
+            // We merge the focus styles with the press styles so that the focus
+            // ring is visible when the button is pressed.
+            boxShadow: `${PRESS_SHADOW}, ${focusStyles.focus[":focus-visible"].boxShadow}`,
+        },
+    },
+    placeholder: {
+        color: semanticColor.input.default.placeholder,
     },
 });
-
-const stateStyles: Record<string, any> = {};
-
-const _generateStyles = (placeholder: boolean, error: boolean) => {
-    // "hash" the parameters
-    const styleKey = `${placeholder}-${error}`;
-    if (stateStyles[styleKey]) {
-        return stateStyles[styleKey];
-    }
-
-    // The color is based on the action color.
-    const actionType = error ? "destructive" : "progressive";
-    // NOTE: We are using the secondary action type for all the non-resting
-    // states as the opener is a bit different from a regular button in its
-    // resting/default state.
-    // TODO(WB-2007): Adopt design specs
-    const action = semanticColor.action.secondary[actionType];
-
-    const hoverStyling = {
-        borderColor: action.hover.border,
-        boxShadow: `inset 0 0 0 ${border.width.thin} ${action.hover.border}`,
-    };
-    const pressStyling = {
-        background: action.press.background,
-        color: placeholder
-            ? error
-                ? semanticColor.input.default.placeholder
-                : semanticColor.core.foreground.instructive.default
-            : semanticColor.input.default.foreground,
-        borderColor: action.press.border,
-        boxShadow: `inset 0 0 0 ${border.width.thin} ${action.press.border}`,
-        borderRadius: theme.opener.border.radius.press,
-    };
-
-    const currentState = error
-        ? semanticColor.input.error
-        : semanticColor.input.default;
-
-    const disabledStatesStyles = {
-        background: semanticColor.input.disabled.background,
-        borderColor: semanticColor.input.disabled.border,
-        borderWidth: border.width.thin,
-        borderRadius: theme.opener.border.radius.rest,
-        color: semanticColor.input.disabled.placeholder,
-    };
-
-    const newStyles = {
-        default: {
-            background: currentState.background,
-            borderColor: currentState.border,
-            borderWidth: error
-                ? theme.opener.border.width.error
-                : border.width.thin,
-            color: placeholder
-                ? semanticColor.core.foreground.neutral.subtle
-                : currentState.foreground,
-            cursor: "pointer",
-            ":hover": hoverStyling,
-            // Allow hover styles on non-touch devices only. This prevents an
-            // issue with hover being sticky on touch devices (e.g. mobile).
-            ["@media not (hover: hover)"]: {
-                ":hover": {
-                    borderColor: currentState.border,
-                    borderWidth: border.width.thin,
-                    paddingInlineStart: theme.opener.layout.padding.inlineStart,
-                    paddingInlineEnd: theme.opener.layout.padding.inlineEnd,
-                },
-            },
-            ":active": pressStyling,
-            // :focus-visible -> Provide focus styles for keyboard users only.
-            ...focusStyles.focus,
-        },
-        disabled: {
-            ...disabledStatesStyles,
-            cursor: "not-allowed",
-            ":hover": {
-                ...disabledStatesStyles,
-                outline: "none",
-                boxShadow: "none",
-            },
-            ":active": {
-                ...disabledStatesStyles,
-                outline: "none",
-                boxShadow: "none",
-            },
-            ":focus-visible": disabledStatesStyles,
-        },
-        press: pressStyling,
-    };
-
-    stateStyles[styleKey] = StyleSheet.create(newStyles);
-    return stateStyles[styleKey];
-};

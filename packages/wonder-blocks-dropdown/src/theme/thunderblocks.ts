@@ -30,7 +30,6 @@ export default mergeTheme(defaultTheme, {
             },
             radius: {
                 rest: border.radius.radius_080,
-                press: border.radius.radius_080,
             },
         },
         color: {

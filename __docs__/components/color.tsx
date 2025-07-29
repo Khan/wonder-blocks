@@ -27,7 +27,7 @@ type Props = {
     /**
      * The type of color group to display.
      */
-    variant: Variant;
+    variant?: Variant;
     /**
      * The group name to use as a prefix for the color names.
      */
