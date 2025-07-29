@@ -192,12 +192,15 @@ const componentStyles = StyleSheet.create({
     dialog: {
         width: "93.75%",
         maxWidth: 576,
-        height: "81.25%",
+        height: "auto",
+        maxHeight: "100vh",
+        position: "relative",
+        overflow: "auto", // Prevent dialog from scrolling with background
 
         [breakpoint.mediaQuery.sm]: {
             width: "100%",
-            height: "100%",
-            overflow: "hidden",
+            height: "100vh",
+            maxHeight: "100vh",
         },
     },
 });

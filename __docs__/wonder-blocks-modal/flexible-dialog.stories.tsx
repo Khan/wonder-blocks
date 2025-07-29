@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
@@ -94,9 +93,9 @@ export const Default: StoryComponentType = {
         </View>
     ),
     args: {
+        title: <Heading id="main-heading">Some title</Heading>,
         content: (
             <>
-                <Heading>Some title</Heading>
                 <BodyText>
                     {`Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                 sed do eiusmod tempor incididunt ut labore et dolore magna
@@ -129,7 +128,7 @@ export const WithBackgroundImage: StoryComponentType = {
                 <FlexibleDialog
                     title={
                         <Heading
-                            size="xxlarge"
+                            size="xlarge"
                             weight="bold"
                             id="gem-challenge-completed-modal-heading"
                             tag="h2"
@@ -143,7 +142,11 @@ export const WithBackgroundImage: StoryComponentType = {
                     }}
                     content={({title}) => (
                         <View style={styles.centered}>
-                            <img src={celebrationChest} width="280px" alt="" />
+                            <img
+                                src={celebrationChest}
+                                style={{maxWidth: "240px"}}
+                                alt=""
+                            />
                             {title}
                             <Heading
                                 size="large"
@@ -214,6 +217,51 @@ export const WithTitleRenderProp: StoryComponentType = {
 
 /**
  *
+ * A FlexibleDialog can have an aria-label as its accessible name.
+ */
+export const WithAriaLabel: StoryComponentType = {
+    render: () => (
+        <View style={styles.previewSizer}>
+            <View style={styles.modalPositioner}>
+                <FlexibleDialog
+                    aria-label="Catz are the best"
+                    content={
+                        <View>
+                            <BodyText>This is some text</BodyText>
+                        </View>
+                    }
+                />
+            </View>
+        </View>
+    ),
+};
+
+/**
+ *
+ * A FlexibleDialog can have an aria-label as its accessible name.
+ */
+export const WithAriaLabelledby: StoryComponentType = {
+    render: () => (
+        <View style={styles.previewSizer}>
+            <View style={styles.modalPositioner}>
+                <FlexibleDialog
+                    aria-labelledby="main-heading"
+                    content={
+                        <View>
+                            <Heading id="main-heading">
+                                Dogz are the best
+                            </Heading>
+                            <BodyText>This is some text</BodyText>
+                        </View>
+                    }
+                />
+            </View>
+        </View>
+    ),
+};
+
+/**
+ *
  * A FlexibleDialog can have custom styles via the
   `style` prop. Here, the modal has a `maxWidth: 1000` and
   `color: Color.blue` in its custom styles.
@@ -245,6 +293,114 @@ export const WithStyle: StoryComponentType = {
                             maxWidth: 1000,
                         },
                     }}
+                />
+            </View>
+        </View>
+    ),
+};
+
+/**
+ *
+ * A FlexibleDialog will adjust with long contents, instead of fixing its height.
+ */
+export const WithLongContents: StoryComponentType = {
+    render: () => (
+        <View style={styles.previewSizer}>
+            <View style={styles.modalPositioner}>
+                <FlexibleDialog
+                    title={<Heading>Hello, world!</Heading>}
+                    content={
+                        <>
+                            <BodyText>
+                                {`Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut
+                            aliquip ex ea commodo consequat. Duis aute irure
+                            dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. Excepteur
+                            sint occaecat cupidatat non proident, sunt in culpa
+                            qui officia deserunt mollit anim id est.`}
+                            </BodyText>
+                            <BodyText>
+                                {`Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut
+                            aliquip ex ea commodo consequat. Duis aute irure
+                            dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. Excepteur
+                            sint occaecat cupidatat non proident, sunt in culpa
+                            qui officia deserunt mollit anim id est.`}
+                            </BodyText>
+                            <BodyText>
+                                {`Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut
+                            aliquip ex ea commodo consequat. Duis aute irure
+                            dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. Excepteur
+                            sint occaecat cupidatat non proident, sunt in culpa
+                            qui officia deserunt mollit anim id est.`}
+                            </BodyText>
+                            <BodyText>
+                                {`Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut
+                            aliquip ex ea commodo consequat. Duis aute irure
+                            dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. Excepteur
+                            sint occaecat cupidatat non proident, sunt in culpa
+                            qui officia deserunt mollit anim id est.`}
+                            </BodyText>
+                            <BodyText>
+                                {`Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut
+                            aliquip ex ea commodo consequat. Duis aute irure
+                            dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. Excepteur
+                            sint occaecat cupidatat non proident, sunt in culpa
+                            qui officia deserunt mollit anim id est.`}
+                            </BodyText>
+                            <BodyText>
+                                {`Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut
+                            aliquip ex ea commodo consequat. Duis aute irure
+                            dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. Excepteur
+                            sint occaecat cupidatat non proident, sunt in culpa
+                            qui officia deserunt mollit anim id est.`}
+                            </BodyText>
+                            <BodyText>
+                                {`Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut
+                            aliquip ex ea commodo consequat. Duis aute irure
+                            dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. Excepteur
+                            sint occaecat cupidatat non proident, sunt in culpa
+                            qui officia deserunt mollit anim id est.`}
+                            </BodyText>
+                            <BodyText>
+                                {`Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut
+                            aliquip ex ea commodo consequat. Duis aute irure
+                            dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. Excepteur
+                            sint occaecat cupidatat non proident, sunt in culpa
+                            qui officia deserunt mollit anim id est.`}
+                            </BodyText>
+                        </>
+                    }
                 />
             </View>
         </View>
