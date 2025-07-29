@@ -2,55 +2,23 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {PropsFor, StyleType} from "@khanacademy/wonder-blocks-core";
 
-import {Id} from "@khanacademy/wonder-blocks-core";
 import {breakpoint} from "@khanacademy/wonder-blocks-tokens";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 import ModalDialog from "./modal-dialog";
 import FlexiblePanel from "./flexible-panel";
 
-/**
- * The visible title content for the dialog. An ID will be automatically applied
- * for aria-labelledby on the dialog to the heading content or a div wrapper.
- */
-type TitleAndAriaLabelledBy = {
-    title: React.ReactNode;
-    "aria-label"?: never;
-    "aria-labelledby"?: string;
-};
-/**
- * The optional accessible name of the modal.
- * This is useful when there is no main heading in the dialog. A visible
- * heading with an id is preferred for automatic matching with aria-labelledby.
- */
-type AriaLabelOnly = {
-    title?: never;
-    "aria-label": string;
-    "aria-labelledby"?: never;
-};
-/**
- * The optional ID of the content describing this dialog, if applicable.
- */
-type AriaLabelledByOnly = {
-    title?: never;
-    "aria-label"?: never;
-    "aria-labelledby": string;
-};
+// One of these three props is required for labeling the dialog:
+// `title`, `aria-label`, or `aria-labelledby`.
+type AccessibleDialogProps =
+    | {
+          title: React.ReactElement | string;
+          "aria-label"?: never;
+          "aria-labelledby"?: string;
+      }
+    | {title?: never; "aria-label": string; "aria-labelledby"?: never}
+    | {title?: never; "aria-label"?: never; "aria-labelledby": string};
 
-/**
- * One of the labeling methods is required:
- */
-type AccessibleLabelProps =
-    | TitleAndAriaLabelledBy
-    | AriaLabelOnly
-    | AriaLabelledByOnly;
-
-type Props = AccessibleLabelProps & {
-    /**
-     * The main heading of the modal, for labeling the dialog.
-     * If string content, an ID will be generated for the heading for aria-labelledby on the dialog.
-     * If a node, an ID will be applied to a DIV wrapping the node.
-     */
-    title?: React.ReactElement | string;
+type Props = AccessibleDialogProps & {
     /**
      * An optional id parameter for the main heading. If one is not provided,
      * an ID will be generated.
@@ -107,7 +75,7 @@ type RenderProps = {
  * title can optionally render in the content area through a render prop.
  *
  * One of the following is required for labeling the dialog:
- * - title content (React node or string)
+ * - title content (React element or string)
  * - aria-label (string)
  * - aria-labelledby (string ID reference)
  *
@@ -146,45 +114,38 @@ const FlexibleDialog = ({
     role,
     ...accessibilityProps
 }: Props): React.ReactElement => {
+    const uniqueId = React.useId();
+    const headingId = titleId ?? uniqueId;
+
+    const renderedTitle =
+        title == null ? null : typeof title === "string" ? (
+            <Heading id={headingId}>{title}</Heading>
+        ) : (
+            // Augment heading element with ID/testId
+            React.cloneElement(title, {
+                id: headingId,
+                testId: "title-heading-wrapper",
+            })
+        );
+
     return (
-        <Id id={titleId}>
-            {(uniqueId) => {
-                const headingId = titleId || uniqueId;
-
-                const renderedTitle =
-                    title == null ? null : typeof title === "string" ? (
-                        <Heading id={headingId}>{title}</Heading>
-                    ) : (
-                        // Augment heading element with ID/testId
-                        React.cloneElement(title, {
-                            id: headingId,
-                            testId: "title-heading-wrapper",
-                        })
-                    );
-
-                return (
-                    <ModalDialog
-                        style={[componentStyles.dialog, styles?.root]}
-                        testId={testId}
-                        aria-label={accessibilityProps["aria-label"]}
-                        aria-labelledby={uniqueId}
-                        aria-describedby={
-                            accessibilityProps["aria-describedby"]
-                        }
-                        role={role}
-                    >
-                        <FlexiblePanel
-                            styles={{root: styles?.panel}}
-                            onClose={onClose}
-                            title={renderedTitle}
-                            content={content}
-                            closeButtonVisible={closeButtonVisible}
-                            testId={testId}
-                        />
-                    </ModalDialog>
-                );
-            }}
-        </Id>
+        <ModalDialog
+            style={[componentStyles.dialog, styles?.root]}
+            testId={testId}
+            aria-label={accessibilityProps["aria-label"]}
+            aria-labelledby={headingId}
+            aria-describedby={accessibilityProps["aria-describedby"]}
+            role={role}
+        >
+            <FlexiblePanel
+                styles={{root: styles?.panel}}
+                onClose={onClose}
+                title={renderedTitle}
+                content={content}
+                closeButtonVisible={closeButtonVisible}
+                testId={testId}
+            />
+        </ModalDialog>
     );
 };
 
