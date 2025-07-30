@@ -64,6 +64,17 @@ describe("Button", () => {
             // Assert
             expect(button).not.toHaveAttribute("role", "button");
         });
+
+        test("allow other explicit roles", () => {
+            // Arrange
+            render(<Button role="tab">Tab</Button>);
+
+            // Act
+            const tab = screen.getByRole("tab");
+
+            // Assert
+            expect(tab).toHaveAttribute("role");
+        });
     });
 
     test("client-side navigation", async () => {

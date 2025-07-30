@@ -150,8 +150,8 @@ const ButtonCore: React.ForwardRefExoticComponent<
     return (
         <ButtonUnstyled
             {...restProps}
-            // Let buttons and links have their implicit roles
-            role={undefined}
+            // Let buttons and links have their implicit roles, while allowing other roles to be passed in
+            role={restProps.role}
             disabled={disabled}
             href={href}
             id={id}
