@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {PropsFor, StyleType} from "@khanacademy/wonder-blocks-core";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {breakpoint} from "@khanacademy/wonder-blocks-tokens";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
@@ -27,9 +27,7 @@ type Props = AccessibleDialogProps & {
     /**
      * The content of the modal. Supports a render prop for placing the title in a slot.
      */
-    content:
-        | React.ReactElement<PropsFor<typeof FlexiblePanel>>
-        | ((slots: RenderProps) => React.ReactNode);
+    content: React.ReactElement | ((slots: RenderProps) => React.ReactElement);
     /**
      * Called when the close button is clicked.
      *
