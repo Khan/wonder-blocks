@@ -1,5 +1,28 @@
 # @khanacademy/wonder-blocks-labeled-field
 
+## 4.0.0
+
+### Major Changes
+
+- 3c3d8fb: LabeledField: Remove `required` prop. The upcoming `contextLabel` prop should be used instead for visual labels indicating if a field is required or optional. Field components will need to have their `required` prop set explicitly
+
+### Minor Changes
+
+- 98f4272: LabeledField: Add `contextLabel` prop
+- b3dd28f: LabeledField: Adds `additionalHelperMessage` prop
+
+### Patch Changes
+
+- 311220d: LabeledField: Minor styling updates to handle text wrapping scenarios
+- e559ab0: LabeledField: Update spacing
+- Updated dependencies [e559ab0]
+- Updated dependencies [98f4272]
+- Updated dependencies [b3dd28f]
+- Updated dependencies [3c3d8fb]
+    - @khanacademy/wonder-blocks-tokens@12.0.2
+    - @khanacademy/wonder-blocks-layout@3.1.31
+    - @khanacademy/wonder-blocks-typography@4.2.16
+
 ## 3.2.2
 
 ### Patch Changes
