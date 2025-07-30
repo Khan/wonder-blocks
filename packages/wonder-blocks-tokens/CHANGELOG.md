@@ -1,5 +1,14 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 12.0.2
+
+### Patch Changes
+
+- e559ab0: Update LabeledField css variables
+- 98f4272: Update LabeledField component css variables
+- b3dd28f: Update LabeledField component theme tokens
+- 3c3d8fb: Update LabeledField component theme css variables (required tokens are no longer needed)
+
 ## 12.0.1
 
 ### Patch Changes
