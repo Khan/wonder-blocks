@@ -65,3 +65,14 @@ import FlexibleDialog from "../flexible-dialog";
         closeButton: {display: "flex"},
     }}
 />;
+
+// Expected errors
+
+// @ts-expect-error -- title, aria-label, or aria-labelledby are required
+<FlexibleDialog content={<p>Some content</p>} />;
+
+// @ts-expect-error -- content is required
+<FlexibleDialog title="A thing" />;
+
+// @ts-expect-error -- content cannot be a boolean value
+<FlexibleDialog content={false} />;
