@@ -1,12 +1,13 @@
 import * as React from "react";
 import {Meta} from "@storybook/react";
+import {StyleSheet} from "aphrodite";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import packageConfig from "../../packages/wonder-blocks-labeled-field/package.json";
 import ComponentInfo from "../components/component-info";
 import {allModes} from "../../.storybook/modes";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {ScenariosLayout} from "../components/scenarios-layout";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {
     longText,
@@ -31,6 +32,15 @@ export default {
         },
     },
 } as Meta<typeof LabeledField>;
+
+const styles = StyleSheet.create({
+    customStyle: {
+        border: `${border.width.medium} solid ${semanticColor.core.border.instructive.subtle}`,
+    },
+    alternativeCustomStyle: {
+        border: `${border.width.medium} solid ${semanticColor.core.border.neutral.subtle}`,
+    },
+});
 
 const scenarios = [
     {
@@ -58,6 +68,7 @@ const scenarios = [
                     validate={() => "Message about the error"}
                 />
             ),
+            contextLabel: "Context label",
         },
     },
     {
@@ -78,7 +89,6 @@ const scenarios = [
     {
         name: "With long text",
         props: {
-            required: true,
             label: longText,
             errorMessage: longText,
             description: longText,
@@ -94,7 +104,6 @@ const scenarios = [
     {
         name: "With long text and no word break",
         props: {
-            required: true,
             label: longTextWithNoWordBreak,
             errorMessage: longTextWithNoWordBreak,
             description: longTextWithNoWordBreak,
@@ -114,7 +123,9 @@ const scenarios = [
             label: "Name",
             description: "Helpful description text.",
             errorMessage: "Message about the error",
-            required: "Custom required message",
+            additionalHelperMessage: "Additional helper message",
+            readOnlyMessage: "Read only message",
+            contextLabel: "Context label",
         },
     },
     {
@@ -141,6 +152,16 @@ const scenarios = [
                     <b>Read</b> <i>only </i> <u>message</u>
                 </span>
             ),
+            additionalHelperMessage: (
+                <span>
+                    <b>Additional</b> <i>helper</i> <u>message</u>
+                </span>
+            ),
+            contextLabel: (
+                <span>
+                    <b>Context</b> <i>label</i> <u>example</u>
+                </span>
+            ),
         },
     },
     {
@@ -150,34 +171,53 @@ const scenarios = [
             label: "Name",
             description: "Helpful description text.",
             errorMessage: "Message about the error",
-            required: "Custom required message",
             readOnlyMessage: "Message about the read only state",
+            additionalHelperMessage: "Additional helper message",
+            contextLabel: "Context label",
             styles: {
                 root: {
-                    padding: sizing.size_080,
+                    outline: `${border.width.thin} dashed ${semanticColor.core.border.neutral.default}`,
                 },
-                label: {
-                    paddingBlockEnd: sizing.size_020,
-                },
-                description: {
-                    paddingBlockEnd: sizing.size_020,
-                },
-                error: {
-                    paddingBlockStart: sizing.size_020,
-                },
-                readOnlyMessage: {
-                    paddingBlockStart: sizing.size_020,
-                },
+                label: styles.customStyle,
+                contextLabel: styles.customStyle,
+                description: styles.alternativeCustomStyle,
+                additionalHelperMessage: styles.customStyle,
+                readOnlyMessage: styles.alternativeCustomStyle,
+                error: styles.customStyle,
             },
         },
     },
     {
         name: "With disabled field",
         props: {
-            field: <TextField value="" onChange={() => {}} disabled />,
+            field: <TextField value="Value" onChange={() => {}} disabled />,
             label: "Name",
             description: "Helpful description text.",
-            required: true,
+            additionalHelperMessage: "Additional helper message",
+            contextLabel: "Context label",
+        },
+    },
+    {
+        name: "All properties disabled",
+        props: {
+            field: <TextField value="Value" onChange={() => {}} disabled />,
+            label: "Name",
+            description: "Helpful description text.",
+            errorMessage: "Message about the error",
+            additionalHelperMessage: "Additional helper message",
+            readOnlyMessage: "Read only message",
+            contextLabel: "Context label",
+        },
+    },
+    {
+        name: "All properties disabled without error",
+        props: {
+            field: <TextField value="Value" onChange={() => {}} disabled />,
+            label: "Name",
+            description: "Helpful description text.",
+            additionalHelperMessage: "Additional helper message",
+            readOnlyMessage: "Read only message",
+            contextLabel: "Context label",
         },
     },
     {
@@ -186,7 +226,6 @@ const scenarios = [
             field: <TextField value="" onChange={() => {}} />,
             label: "Name",
             description: "Helpful description text.",
-            required: true,
             readOnlyMessage: "Message about why it is read only",
         },
     },
@@ -196,7 +235,6 @@ const scenarios = [
             field: <TextField value="" onChange={() => {}} />,
             label: "Name",
             description: "Helpful description text.",
-            required: true,
             readOnlyMessage: longText,
         },
     },
@@ -206,7 +244,6 @@ const scenarios = [
             field: <TextField value="" onChange={() => {}} />,
             label: "Name",
             description: "Helpful description text.",
-            required: true,
             readOnlyMessage: longTextWithNoWordBreak,
         },
     },
@@ -217,8 +254,87 @@ const scenarios = [
             label: "Name",
             description: "Helpful description text.",
             errorMessage: "Message about the error",
-            required: "Custom required message",
             readOnlyMessage: "Message about the read only state",
+        },
+    },
+    {
+        name: "Additional helper message",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            additionalHelperMessage: "Additional helper message",
+        },
+    },
+    {
+        name: "Long additional helper message",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            additionalHelperMessage: longText,
+        },
+    },
+    {
+        name: "Long additional helper message and no word break",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            additionalHelperMessage: longTextWithNoWordBreak,
+        },
+    },
+    {
+        name: "With context label",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            contextLabel: "Context label",
+        },
+    },
+    {
+        name: "With long label and long context label",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: longText,
+            contextLabel: longText,
+        },
+    },
+    {
+        name: "With long label and long context label and no word break",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: longTextWithNoWordBreak,
+            contextLabel: longTextWithNoWordBreak,
+        },
+    },
+    {
+        name: "With long label and short context label",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: longText,
+            contextLabel: "Context",
+        },
+    },
+    {
+        name: "With long label with no word break and short context label",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: longTextWithNoWordBreak,
+            contextLabel: "Context",
+        },
+    },
+    {
+        name: "With short label and long context label",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            contextLabel: longText,
+        },
+    },
+    {
+        name: "With short label and long context label and no word break",
+        props: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Name",
+            contextLabel: longTextWithNoWordBreak,
         },
     },
 ];
@@ -230,7 +346,7 @@ const scenarios = [
 export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
     const [textFieldValue, setTextFieldValue] = React.useState("");
     return (
-        <View style={{gap: sizing.size_240}}>
+        <View style={{maxWidth: "475px"}}>
             <ScenariosLayout
                 scenarios={scenarios}
                 styles={{root: {alignItems: "stretch"}}}
