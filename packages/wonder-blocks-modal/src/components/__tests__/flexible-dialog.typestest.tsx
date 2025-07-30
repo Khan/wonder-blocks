@@ -23,6 +23,12 @@ import FlexibleDialog from "../flexible-dialog";
     content={({title}) => <div>{title}</div>}
 />;
 
+// Using title render prop and strings with fragment
+<FlexibleDialog title={"A heading"} content={({title}) => <>{title}</>} />;
+
+// Using aria-label and string with fragment
+<FlexibleDialog aria-label={"A heading"} content={<>Some text</>} />;
+
 // Using titleId prop
 <FlexibleDialog
     titleId="bert-reynolds"

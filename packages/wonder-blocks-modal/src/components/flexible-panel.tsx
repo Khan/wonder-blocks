@@ -24,8 +24,8 @@ type Props = {
      */
     content:
         | React.ReactElement<PropsFor<typeof ModalContent>>
-        | ((slots: RenderProps) => React.ReactNode)
-        | React.ReactNode;
+        | ((slots: RenderProps) => React.ReactElement)
+        | React.ReactElement;
     /**
      * When true, the close button is shown; otherwise, the close button is not shown.
      */
@@ -80,7 +80,7 @@ export default function FlexiblePanel({
     styles,
     testId,
 }: Props) {
-    const renderMainContent = React.useCallback((): React.ReactNode => {
+    const renderMainContent = React.useCallback((): React.ReactElement => {
         const contentNode =
             typeof content === "function" ? (
                 content({title})
