@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-modal
 
+## 8.2.0
+
+### Minor Changes
+
+- 72e9eed: Add new FlexibleModal variant for more flexible implementations
+
 ## 8.1.9
 
 ### Patch Changes
