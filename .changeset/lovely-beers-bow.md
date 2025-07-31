@@ -1,5 +1,5 @@
 ---
-"@khanacademy/wonder-blocks-button": patch
+"@khanacademy/wonder-blocks-button": major
 ---
 
-Sets `role="link"` in Button when the `href` prop is included.
+Uses built-in `link` role in Button when the `href` prop is included. Removes bolted-on `button` and `link` roles when redundant.
