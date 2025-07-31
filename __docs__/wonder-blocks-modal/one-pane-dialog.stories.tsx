@@ -382,7 +382,7 @@ WithStyle.parameters = {
     },
 };
 
-export const FlexibleModal: StoryComponentType = () => {
+export const MultiStepModal: StoryComponentType = () => {
     const styles = StyleSheet.create({
         example: {
             padding: sizing.size_320,
@@ -475,7 +475,7 @@ export const FlexibleModal: StoryComponentType = () => {
                 }
             >
                 {({openModal}) => (
-                    <Button onClick={openModal}>Open flexible modal</Button>
+                    <Button onClick={openModal}>Open multi-step modal</Button>
                 )}
             </ModalLauncher>
         );
@@ -494,7 +494,7 @@ export const FlexibleModal: StoryComponentType = () => {
     );
 };
 
-FlexibleModal.parameters = {
+MultiStepModal.parameters = {
     chromatic: {
         // This example is behavior based, not visual.
         disableSnapshot: true,
