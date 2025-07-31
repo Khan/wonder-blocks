@@ -148,6 +148,7 @@ export const ActivityButton = React.forwardRef(function ActivityButton(
         rel,
         kind = "primary",
         disabled = false,
+        role,
         ...sharedButtonCoreProps
     } = props;
 
@@ -160,13 +161,17 @@ export const ActivityButton = React.forwardRef(function ActivityButton(
     );
 
     const extraClickableProps = beforeNav ? {beforeNav} : {target};
-    const role = href ? "link" : "button";
+    // Invoke link or button clickable behavior
+    const roleForEvents = href ? "link" : "button";
+    // prevent redundant roles for links and buttons, while allowing other roles like `tab` or `menuitem`
+    const renderedRole =
+        role === "link" || role === "button" ? undefined : role;
 
     return (
         <ClickableBehavior
             disabled={disabled}
             href={href}
-            role={role}
+            role={roleForEvents}
             type={type}
             onClick={onClick}
             safeWithNav={safeWithNav}
@@ -182,7 +187,7 @@ export const ActivityButton = React.forwardRef(function ActivityButton(
                     kind={kind}
                     skipClientNav={skipClientNav}
                     href={href}
-                    role={role}
+                    role={renderedRole}
                     target={target}
                     type={type}
                     tabIndex={tabIndex}
