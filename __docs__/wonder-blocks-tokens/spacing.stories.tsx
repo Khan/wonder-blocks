@@ -65,7 +65,7 @@ import * as tokens from "@khanacademy/wonder-blocks-tokens";
  * ```
  */
 export default {
-    title: "Tokens / Deprecated / Spacing (deprecated)",
+    title: "Packages /Tokens / Deprecated / Spacing (deprecated)",
     parameters: {
         docs: {
             // Use a custom page so the SB <Primary> component is not rendered

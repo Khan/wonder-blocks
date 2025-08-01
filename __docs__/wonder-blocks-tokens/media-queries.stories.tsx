@@ -11,7 +11,7 @@ import * as tokens from "@khanacademy/wonder-blocks-tokens";
  * used for min-width, max-width, width, etc.
  */
 export default {
-    title: "Tokens / Media Query Breakpoints",
+    title: "Packages /Tokens / Media Query Breakpoints",
     parameters: {
         docs: {
             // Use a custom page so the SB <Primary> component is not rendered

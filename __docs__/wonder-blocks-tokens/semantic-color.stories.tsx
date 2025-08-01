@@ -35,7 +35,7 @@ import {flattenNestedTokens} from "../components/tokens-util";
  * ```
  */
 export default {
-    title: "Tokens / Semantic Color",
+    title: "Packages / Tokens / Semantic Color",
     parameters: {
         docs: {
             // Use a custom page so the SB <Primary> component is not rendered

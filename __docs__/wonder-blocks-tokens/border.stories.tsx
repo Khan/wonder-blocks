@@ -26,7 +26,7 @@ import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
  * ```
  */
 export default {
-    title: "Tokens / Border",
+    title: "Packages /Tokens / Border",
     parameters: {
         docs: {
             // Use a custom page so the SB <Primary> component is not rendered

@@ -33,7 +33,7 @@ import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
  * ```
  */
 export default {
-    title: "Tokens / Typography",
+    title: "Packages / Tokens / Typography",
     parameters: {
         docs: {
             // Use a custom page so the SB <Primary> component is not rendered
