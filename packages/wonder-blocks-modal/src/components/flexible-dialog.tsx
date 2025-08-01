@@ -136,7 +136,7 @@ const FlexibleDialog = ({
             role={role}
         >
             <FlexiblePanel
-                styles={{root: styles?.panel}}
+                styles={{panel: styles?.panel}}
                 onClose={onClose}
                 title={renderedTitle}
                 content={content}
@@ -155,6 +155,7 @@ const componentStyles = StyleSheet.create({
         maxHeight: "100vh",
         position: "relative",
         overflow: "auto", // Prevent dialog from scrolling with background
+        flexDirection: "column",
 
         [breakpoint.mediaQuery.sm]: {
             width: "100%",

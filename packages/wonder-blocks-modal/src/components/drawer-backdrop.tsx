@@ -51,6 +51,14 @@ const DrawerBackdrop = ({
     const [mousePressedOutside, setMousePressedOutside] = React.useState(false);
     const backdropRef = React.useRef<HTMLDivElement>(null);
 
+    const alignmentStyles: Record<
+        DrawerAlignment,
+        ReturnType<typeof StyleSheet.create>["drawerPositioner"]
+    > = {
+        "inset-inline-start": styles.insetInlineStartAligned,
+        "inset-inline-end": styles.insetInlineEndAligned,
+        "inset-block-end": styles.insetBlockEndAligned,
+    } as const;
 
     /**
      * Returns an element specified by the user
