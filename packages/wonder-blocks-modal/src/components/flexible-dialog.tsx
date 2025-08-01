@@ -1,11 +1,12 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import {View} from "@khanacademy/wonder-blocks-core";
 
-import {breakpoint} from "@khanacademy/wonder-blocks-tokens";
+import {breakpoint, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
-import ModalDialog from "./modal-dialog";
 import FlexiblePanel from "./flexible-panel";
+import theme from "../theme";
 
 // One of these three props is required for labeling the dialog:
 // `title`, `aria-label`, or `aria-labelledby`.
@@ -55,7 +56,7 @@ type Props = AccessibleDialogProps & {
         closeButton?: StyleType;
     };
     /**
-     * Test ID used for e2e testing. This ID will be passed down to the Dialog.
+     * Test ID used for e2e testing.
      */
     testId?: string;
     /**
@@ -67,8 +68,9 @@ type Props = AccessibleDialogProps & {
 type RenderProps = {
     title: React.ReactNode | string;
 };
+
 /**
- * A more flexible modal variant with fewer layout constraints. It can receive
+ * A flexible modal variant with fewer layout constraints. It can receive
  * a custom background (image or color), a title for the main heading, and that
  * title can optionally render in the content area through a render prop.
  *
@@ -101,17 +103,22 @@ type RenderProps = {
  * />
  * ```
  */
-const FlexibleDialog = ({
-    onClose,
-    title,
-    content,
-    styles,
-    closeButtonVisible = true,
-    testId,
-    titleId,
-    role,
-    ...accessibilityProps
-}: Props): React.ReactElement => {
+const FlexibleDialog = React.forwardRef(function FlexibleDialog(
+    props: Props,
+    ref: React.ForwardedRef<HTMLDivElement>,
+): React.ReactElement {
+    const {
+        onClose,
+        title,
+        content,
+        styles,
+        closeButtonVisible = true,
+        testId,
+        titleId,
+        role = "dialog",
+        ...accessibilityProps
+    } = props;
+
     const uniqueId = React.useId();
     const headingId = titleId ?? uniqueId;
 
@@ -127,27 +134,52 @@ const FlexibleDialog = ({
         );
 
     return (
-        <ModalDialog
-            style={[componentStyles.dialog, styles?.root]}
-            testId={testId}
-            aria-label={accessibilityProps["aria-label"]}
-            aria-labelledby={headingId}
-            aria-describedby={accessibilityProps["aria-describedby"]}
-            role={role}
-        >
-            <FlexiblePanel
-                styles={{panel: styles?.panel}}
-                onClose={onClose}
-                title={renderedTitle}
-                content={content}
-                closeButtonVisible={closeButtonVisible}
+        <View style={[componentStyles.wrapper, styles?.root]}>
+            <View
+                role={role}
+                aria-modal="true"
+                aria-label={accessibilityProps["aria-label"]}
+                aria-labelledby={headingId}
+                aria-describedby={accessibilityProps["aria-describedby"]}
+                ref={ref}
+                style={[componentStyles.dialog]}
                 testId={testId}
-            />
-        </ModalDialog>
+            >
+                <FlexiblePanel
+                    styles={{
+                        panel: styles?.panel,
+                        closeButton: styles?.closeButton,
+                    }}
+                    onClose={onClose}
+                    title={renderedTitle}
+                    content={content}
+                    closeButtonVisible={closeButtonVisible}
+                    testId={testId}
+                />
+            </View>
+        </View>
     );
-};
+});
+
+const small = "@media (max-width: 767px)" as any;
 
 const componentStyles = StyleSheet.create({
+    wrapper: {
+        // Allows propagating the text color to all the children.
+        color: semanticColor.core.foreground.neutral.strong,
+        flexDirection: "row",
+        alignItems: "stretch",
+        width: "100%",
+        height: "100%",
+        position: "relative",
+        boxShadow: theme.dialog.shadow.default,
+        borderRadius: theme.root.border.radius,
+        [small]: {
+            padding: theme.dialog.layout.padding,
+            flexDirection: "column",
+        },
+    },
+
     dialog: {
         width: "93.75%",
         maxWidth: 576,
@@ -155,7 +187,7 @@ const componentStyles = StyleSheet.create({
         maxHeight: "100vh",
         position: "relative",
         overflow: "auto", // Prevent dialog from scrolling with background
-        flexDirection: "column",
+        borderRadius: theme.root.border.radius,
 
         [breakpoint.mediaQuery.sm]: {
             width: "100%",
