@@ -88,7 +88,7 @@ const ModalDialog = React.forwardRef(function ModalDialog(
                 aria-labelledby={ariaLabelledBy}
                 aria-describedby={ariaDescribedBy}
                 ref={ref}
-                style={[styles.dialog, style]}
+                style={styles.dialog}
                 testId={testId}
             >
                 {children}
