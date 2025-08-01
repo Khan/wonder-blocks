@@ -4,7 +4,6 @@ import {Meta} from "@storybook/react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import TokenTable from "../components/token-table";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {themeModes} from "../../.storybook/modes";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
 
@@ -41,9 +40,6 @@ export default {
                     <Stories title="Tokens" />
                 </>
             ),
-        },
-        chromatic: {
-            modes: themeModes,
         },
         componentSubtitle: (
             <ComponentInfo
