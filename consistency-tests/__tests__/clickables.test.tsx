@@ -37,7 +37,7 @@ const IconButtonWrapper = (props: any) => <IconButton {...props} icon={plus} />;
 
 describe.each`
     Component           | name             | role
-    ${Button}           | ${"Button"}      | ${"button"}
+    ${Button}           | ${"Button"}      | ${"link"}
     ${ClickableWrapper} | ${"Clickable"}   | ${"link"}
     ${CompactCell}      | ${"CompactCell"} | ${"link"}
     ${DetailCell}       | ${"DetailCell"}  | ${"link"}

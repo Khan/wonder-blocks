@@ -46,6 +46,7 @@ const Button = React.forwardRef(function Button(
         size = "medium",
         disabled = false,
         spinner = false,
+        role,
         ...sharedButtonCoreProps
     } = props;
 
@@ -58,13 +59,17 @@ const Button = React.forwardRef(function Button(
     );
 
     const extraClickableProps = beforeNav ? {beforeNav} : {target};
+    // Invoke link or button clickable behavior
+    const roleForEvents = href ? "link" : "button";
+    // prevent redundant roles for links and buttons, while allowing other roles like `tab` or `menuitem`
+    const renderedRole =
+        role === "link" || role === "button" ? undefined : role;
 
     return (
         <ClickableBehavior
             disabled={spinner || disabled}
             href={href}
-            // TODO(WB-1940): Use `link` when `href` is defined.
-            role="button"
+            role={roleForEvents}
             type={type}
             onClick={onClick}
             safeWithNav={safeWithNav}
@@ -83,6 +88,7 @@ const Button = React.forwardRef(function Button(
                     size={size}
                     skipClientNav={skipClientNav}
                     href={href}
+                    role={renderedRole}
                     target={target}
                     type={type}
                     tabIndex={tabIndex}

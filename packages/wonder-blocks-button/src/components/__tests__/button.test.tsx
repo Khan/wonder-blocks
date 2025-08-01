@@ -20,6 +20,63 @@ describe("Button", () => {
         window.location = location;
     });
 
+    describe("attributes", () => {
+        test("no explicit role for anchor with href", () => {
+            // Arrange
+            render(<Button href="/">Text</Button>);
+
+            // Act
+            const link = screen.getByRole("link");
+
+            // Assert
+            expect(link).not.toHaveAttribute("role");
+        });
+
+        test("no explicit link role for anchor with href", () => {
+            // Arrange
+            render(<Button href="/">Text</Button>);
+
+            // Act
+            const link = screen.getByRole("link");
+
+            // Assert
+            expect(link).not.toHaveAttribute("role", "link");
+        });
+
+        test("no explicit role for button", () => {
+            // Arrange
+            render(<Button>Text</Button>);
+
+            // Act
+            const button = screen.getByRole("button");
+
+            // Assert
+            expect(button).not.toHaveAttribute("role");
+        });
+
+        test("no explicit button role for button element", () => {
+            // Arrange
+            render(<Button>Text</Button>);
+
+            // Act
+            const button = screen.getByRole("button");
+
+            // Assert
+            expect(button).not.toHaveAttribute("role", "button");
+        });
+
+        test("allow other explicit roles", () => {
+            // Arrange
+            render(<Button role="tab">Tab</Button>);
+
+            // Act
+            const tab = screen.getByRole("tab");
+
+            // Assert
+            expect(tab).toHaveAttribute("role");
+        });
+    });
+
     test("client-side navigation", async () => {
         // Arrange
         render(
@@ -39,8 +96,8 @@ describe("Button", () => {
         );
 
         // Act
-        const button = await screen.findByRole("button");
-        await userEvent.click(button);
+        const linkButton = await screen.findByRole("link");
+        await userEvent.click(linkButton);
 
         // Assert
         expect(await screen.findByText("Hello, world!")).toBeInTheDocument();
@@ -67,8 +124,8 @@ describe("Button", () => {
         );
 
         // Act
-        const button = await screen.findByRole("button");
-        await userEvent.click(button);
+        const linkButton = await screen.findByRole("link");
+        await userEvent.click(linkButton);
 
         // Assert
         expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
@@ -100,8 +157,8 @@ describe("Button", () => {
         );
 
         // Act
-        const button = await screen.findByRole("button");
-        await userEvent.click(button);
+        const linkButton = await screen.findByRole("link");
+        await userEvent.click(linkButton);
 
         // Assert
         expect(safeWithNavMock).not.toHaveBeenCalled();
@@ -128,7 +185,7 @@ describe("Button", () => {
         );
 
         // Act
-        await userEvent.click(await screen.findByRole("button"));
+        await userEvent.click(await screen.findByRole("link"));
 
         // Assert
         await waitFor(async () => {
@@ -164,7 +221,7 @@ describe("Button", () => {
         );
 
         // Act
-        await userEvent.click(await screen.findByRole("button"));
+        await userEvent.click(await screen.findByRole("link"));
 
         // Assert
         await waitFor(() => {
@@ -196,8 +253,8 @@ describe("Button", () => {
         );
 
         // Act
-        const button = await screen.findByRole("button");
-        await userEvent.click(button);
+        const linkButton = await screen.findByRole("link");
+        await userEvent.click(linkButton);
 
         // Assert
         // TODO(juan): Find a way to use a more accessible query.
@@ -230,7 +287,7 @@ describe("Button", () => {
         );
 
         // Act
-        await userEvent.click(await screen.findByRole("button"));
+        await userEvent.click(await screen.findByRole("link"));
 
         // Assert
         await waitFor(() => {
@@ -264,8 +321,8 @@ describe("Button", () => {
         );
 
         // Act
-        const button = await screen.findByRole("button");
-        await userEvent.click(button);
+        const linkButton = await screen.findByRole("link");
+        await userEvent.click(linkButton);
 
         // Assert
         expect(await screen.findByTestId("button-spinner")).toBeInTheDocument();
@@ -298,8 +355,8 @@ describe("Button", () => {
         );
 
         // Act
-        const button = await screen.findByRole("button");
-        await userEvent.click(button);
+        const linkButton = await screen.findByRole("link");
+        await userEvent.click(linkButton);
 
         // Assert
         await waitFor(() => {
@@ -333,8 +390,8 @@ describe("Button", () => {
         );
 
         // Act
-        const button = await screen.findByRole("button");
-        await userEvent.click(button);
+        const linkButton = await screen.findByRole("link");
+        await userEvent.click(linkButton);
 
         // Assert
         expect(window.location.assign).toHaveBeenCalledWith("/foo");
@@ -365,8 +422,8 @@ describe("Button", () => {
         );
 
         // Act
-        const button = await screen.findByRole("button");
-        await userEvent.click(button);
+        const linkButton = await screen.findByRole("link");
+        await userEvent.click(linkButton);
 
         // Assert
         expect(safeWithNavMock).toHaveBeenCalled();
@@ -401,7 +458,7 @@ describe("Button", () => {
         );
 
         // Act
-        await userEvent.click(await screen.findByRole("button"));
+        await userEvent.click(await screen.findByRole("link"));
 
         // Assert
         await waitFor(() => {
@@ -432,8 +489,8 @@ describe("Button", () => {
             );
 
             // Act
-            const button = await screen.findByRole("button");
-            await userEvent.type(button, "{space}");
+            const linkButton = await screen.findByRole("link");
+            await userEvent.type(linkButton, "{space}");
 
             // Assert
             expect(
@@ -460,8 +517,8 @@ describe("Button", () => {
             );
 
             // Act
-            const button = await screen.findByRole("button");
-            await userEvent.type(button, "{enter}");
+            const linkButton = await screen.findByRole("link");
+            await userEvent.type(linkButton, "{enter}");
 
             // Assert
             expect(
@@ -493,8 +550,8 @@ describe("Button", () => {
             );
 
             // Act
-            const button = await screen.findByRole("button");
-            await userEvent.type(button, "{enter}");
+            const linkButton = await screen.findByRole("link");
+            await userEvent.type(linkButton, "{enter}");
 
             // Assert
             expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
@@ -524,8 +581,8 @@ describe("Button", () => {
             );
 
             // Act
-            const button = await screen.findByRole("button");
-            await userEvent.type(button, "{enter}");
+            const linkButton = await screen.findByRole("link");
+            await userEvent.type(linkButton, "{enter}");
 
             // Assert
             await waitFor(async () => {
@@ -561,8 +618,8 @@ describe("Button", () => {
             );
 
             // Act
-            const button = await screen.findByRole("button");
-            await userEvent.type(button, "{enter}");
+            const linkButton = await screen.findByRole("link");
+            await userEvent.type(linkButton, "{enter}");
 
             // Assert
             expect(window.location.assign).toHaveBeenCalledWith("/foo");
@@ -594,8 +651,8 @@ describe("Button", () => {
             );
 
             // Act
-            const button = await screen.findByRole("button");
-            await userEvent.type(button, "{enter}");
+            const linkButton = await screen.findByRole("link");
+            await userEvent.type(linkButton, "{enter}");
 
             // Assert
             await waitFor(() => {
@@ -630,8 +687,8 @@ describe("Button", () => {
             );
 
             // Act
-            const button = await screen.findByRole("button");
-            await userEvent.type(button, "{enter}");
+            const linkButton = await screen.findByRole("link");
+            await userEvent.type(linkButton, "{enter}");
 
             // Assert
             await waitFor(() => {
