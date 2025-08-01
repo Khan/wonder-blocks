@@ -4,6 +4,7 @@ import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {
+    font,
     color,
     spacing,
     semanticColor,
@@ -19,6 +20,7 @@ import type {
 } from "@khanacademy/wonder-blocks-clickable";
 import type {StyleDeclaration} from "aphrodite";
 import type {SharedProps} from "./link";
+import theme from "../theme";
 
 type Props = SharedProps &
     ChildrenProps &
@@ -156,6 +158,8 @@ const linkContentStyles = StyleSheet.create({
 
 const sharedStyles = StyleSheet.create({
     shared: {
+        fontFamily: font.family.sans,
+        fontWeight: theme.root.font.weight,
         cursor: "pointer",
         textDecoration: "none",
         outline: "none",
@@ -167,7 +171,7 @@ const sharedStyles = StyleSheet.create({
  * The object that contains the default and inverse colors for the link
  * component.
  */
-const theme = {
+const states = {
     color: {
         // Primary link color
         default: {
@@ -209,7 +213,7 @@ const _generateStyles = (inline: boolean, light: boolean) => {
         return styles[buttonType];
     }
 
-    const variant = light ? theme.color.inverse : theme.color.default;
+    const variant = light ? states.color.inverse : states.color.default;
 
     const focusStyling = {
         outline: `${border.width.thin} solid ${variant.focus.border}`,
