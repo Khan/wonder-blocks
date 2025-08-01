@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-button
 
+## 11.0.0
+
+### Major Changes
+
+- e287342: Uses built-in `link` role in Button when the `href` prop is included. Removes bolted-on `button` and `link` roles when redundant.
+
 ## 10.2.17
 
 ### Patch Changes
