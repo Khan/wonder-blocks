@@ -22,12 +22,18 @@ type Props = {
      * Test ID used for e2e testing.
      */
     testId?: string;
-
+    /**
+     * Positioning of the drawer. Uses logical properties to support
+     * different writing modes:
+     * - `inline-block-start` / left in Left-To-Right
+     * - `inline-block-end` / right in Left-To-Right
+     * - `inset-block-end` / bottom
+     */
     alignment: DrawerAlignment;
 };
 
 /**
- * A private component used by ModalLauncher. This is the fixed-position
+ * A private component used by DrawerLauncher. This is the fixed-position
  * container element that gets mounted outside the DOM. It overlays the modal
  * content (provided as `children`) over the content, with a gray backdrop
  * behind it.
@@ -36,7 +42,7 @@ type Props = {
  * and adding an `onClose` prop that will call `onCloseModal`. If an
  * `onClose` prop is already provided, the two are merged.
  */
-export default class ModalBackdrop extends React.Component<Props> {
+export default class DrawerBackdrop extends React.Component<Props> {
     componentDidMount() {
         // eslint-disable-next-line import/no-deprecated
         const node: HTMLElement = ReactDOM.findDOMNode(this) as any;
@@ -159,9 +165,6 @@ const styles = StyleSheet.create({
         width: "100%",
         height: "100%",
 
-        alignItems: "center",
-        justifyContent: "center",
-
         // If the modal ends up being too big for the viewport (e.g., the min
         // height is triggered), add another scrollbar specifically for
         // scrolling modal content.
@@ -173,5 +176,17 @@ const styles = StyleSheet.create({
         overflow: "auto",
 
         background: semanticColor.surface.overlay,
+    },
+    inlineBlockStartAligned: {
+        alignItems: "flex-start",
+        justifyContent: "center",
+    },
+    inlineBlockEndAligned: {
+        alignItems: "flex-end",
+        justifyContent: "center",
+    },
+    insetBlockEndAligned: {
+        alignItems: "center",
+        justifyContent: "flex-end",
     },
 });

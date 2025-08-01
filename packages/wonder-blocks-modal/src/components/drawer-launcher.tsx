@@ -26,7 +26,13 @@ type Props = Readonly<{
      * respond to user intearction, like `onClick`.
      */
     modal: ModalElement | ((props: {closeModal: () => void}) => ModalElement);
-
+    /**
+     * Positioning of the drawer. Uses logical properties to support
+     * different writing modes:
+     * - `inline-block-start` / left in Left-To-Right
+     * - `inline-block-end` / right in Left-To-Right
+     * - `inset-block-end` / bottom
+     */
     alignment: DrawerAlignment;
     /**
      * Enables the backdrop to dismiss the modal on click/tap
