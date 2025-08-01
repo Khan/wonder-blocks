@@ -11,6 +11,48 @@ import * as tokens from "@khanacademy/wonder-blocks-tokens";
  * All the available spacing values that can be used for margin, padding, width,
  * height, border-width, etc.
  *
+ * Note: `spacing` is deprecated! We recommend using [sizing tokens](../?path=/docs/packages-tokens-sizing--docs)
+ * instead.
+ *
+ * ## Migrating from `spacing` to `sizing`
+ *
+ * In the past, we had a `spacing` object that contained all the sizing tokens
+ * define in pixels. This object has been deprecated in favor of the `sizing`
+ * object, which now uses `rem` units. If you were using `spacing` before, you
+ * can easily migrate to `sizing` by replacing the following tokens:
+ *
+ * ```ts
+ * // Before
+ * import {spacing} from "@khanacademy/wonder-blocks-tokens";
+ *
+ * {
+ *     padding: `${spacing.medium_16}px ${spacing.large_24}px`,
+ * }
+ *
+ * // After
+ * import {sizing} from "@khanacademy/wonder-blocks-tokens";
+ *
+ * // Now you don't need to add the unit here as it's already included in the token
+ * {
+ *     padding: `${sizing.size_160} ${sizing.size_240}`,
+ * }
+ * ```
+
+ * The mapping of the tokens is as follows:
+ *
+ * | Spacing (old)         | Sizing (new)      |
+ * | --------------------- | ----------------- |
+ * | `spacing.xxxxSmall_2` | `sizing.size_020` |
+ * | `spacing.xxxSmall_4`  | `sizing.size_040` |
+ * | `spacing.xxSmall_6`   | `sizing.size_060` |
+ * | `spacing.xSmall_8`    | `sizing.size_080` |
+ * | `spacing.small_12`    | `sizing.size_120` |
+ * | `spacing.medium_16`   | `sizing.size_160` |
+ * | `spacing.large_24`    | `sizing.size_240` |
+ * | `spacing.xLarge_32`   | `sizing.size_320` |
+ * | `spacing.xxLarge_48`  | `sizing.size_480` |
+ * | `spacing.xxxLarge_64` | `sizing.size_640` |
+ *
  * ## Usage
  *
  * You can use these sizes directly by importing `spacing` from the
@@ -23,7 +65,7 @@ import * as tokens from "@khanacademy/wonder-blocks-tokens";
  * ```
  */
 export default {
-    title: "Tokens / Deprecated / Spacing",
+    title: "Tokens / Deprecated / Spacing (deprecated)",
     parameters: {
         docs: {
             // Use a custom page so the SB <Primary> component is not rendered

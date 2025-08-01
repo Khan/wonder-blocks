@@ -25,7 +25,7 @@ import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
  * ```
  */
 export default {
-    title: "Tokens / Deprecated / Color",
+    title: "Tokens / Deprecated / Color (deprecated)",
     parameters: {
         docs: {
             // Use a custom page so the SB <Primary> component is not rendered
