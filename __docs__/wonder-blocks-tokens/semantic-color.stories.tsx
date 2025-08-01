@@ -8,6 +8,7 @@ import {themeModes} from "../../.storybook/modes";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
 import {flattenNestedTokens} from "../components/tokens-util";
+import {Code} from "../components/code";
 
 /**
  * The color palette containing all the semantic Wonder Blocks colors.
@@ -71,11 +72,11 @@ export const SemanticColors = () => (
         columns={[
             {
                 label: "Token",
-                cell: (row: Row) => <code>semanticColor.{row.label}</code>,
+                cell: (row: Row) => <Code>semanticColor.{row.label}</Code>,
             },
             {
                 label: "CSS Variable",
-                cell: (row) => <code>{row.css}</code>,
+                cell: (row) => <Code>{row.css}</Code>,
             },
             {
                 label: "Value",

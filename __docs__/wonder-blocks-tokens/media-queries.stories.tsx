@@ -5,6 +5,7 @@ import TokenTable from "../components/token-table";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
+import {Code} from "../components/code";
 
 /**
  * All the available media query breakpoint values and pure widths that can be
@@ -59,7 +60,7 @@ export const BreakpointMediaQueries = () => (
             {
                 label: "Media Query Token",
                 cell: (row: Row) => (
-                    <code>breakpoint.mediaQuery.{row.label}</code>
+                    <Code>breakpoint.mediaQuery.{row.label}</Code>
                 ),
             },
             {
@@ -92,7 +93,7 @@ export const BreakpointWidths = () => (
         columns={[
             {
                 label: "Width Token",
-                cell: (row: Row) => <code>breakpoint.width.{row.label}</code>,
+                cell: (row: Row) => <Code>breakpoint.width.{row.label}</Code>,
             },
             {
                 label: "Value (px)",

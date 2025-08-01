@@ -6,6 +6,7 @@ import TokenTable from "../components/token-table";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
+import {Code} from "../components/code";
 
 /**
  * All the available sizing values that can be used for margin, padding, width,
@@ -60,11 +61,11 @@ export const Sizing = () => (
         columns={[
             {
                 label: "Token",
-                cell: (row: Row) => <code>sizing.{row.label}</code>,
+                cell: (row: Row) => <Code>sizing.{row.label}</Code>,
             },
             {
                 label: "CSS Variable",
-                cell: (row) => <code>{row.css}</code>,
+                cell: (row) => <Code>{row.css}</Code>,
             },
             {
                 label: "Base unit multiplier",

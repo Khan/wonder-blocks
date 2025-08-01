@@ -6,6 +6,7 @@ import TokenTable from "../components/token-table";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
+import {Code} from "../components/code";
 
 /**
  * The `border` tokens are used to define the border properties of an element.
@@ -56,14 +57,14 @@ const baseColumns = (kind: string) => [
     {
         label: "Token",
         cell: (row: Row) => (
-            <code>
+            <Code>
                 border.{kind}.{row.label}
-            </code>
+            </Code>
         ),
     },
     {
         label: "CSS Variable",
-        cell: (row: Row) => <code>{row.css}</code>,
+        cell: (row: Row) => <Code>{row.css}</Code>,
     },
     {
         label: "Value",

@@ -6,6 +6,7 @@ import TokenTable from "../components/token-table";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
+import {Code} from "../components/code";
 
 /**
  * All the available spacing values that can be used for margin, padding, width,
@@ -97,7 +98,7 @@ export const Spacing = () => (
         columns={[
             {
                 label: "Token",
-                cell: (row: Row) => <code>spacing.{row.label}</code>,
+                cell: (row: Row) => <Code>spacing.{row.label}</Code>,
             },
             {
                 label: "Value",

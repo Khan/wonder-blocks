@@ -6,6 +6,7 @@ import TokenTable from "../components/token-table";
 import {semanticColor, sizing, color} from "@khanacademy/wonder-blocks-tokens";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
+import {Code} from "../components/code";
 
 /**
  * The color palette containing all the primitive Wonder Blocks colors.
@@ -59,7 +60,7 @@ export const Default = {
             columns={[
                 {
                     label: "Token",
-                    cell: (row: Row) => <code>color.{row.label}</code>,
+                    cell: (row: Row) => <Code>color.{row.label}</Code>,
                 },
                 {
                     label: "Value",

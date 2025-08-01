@@ -7,6 +7,7 @@ import * as tokens from "@khanacademy/wonder-blocks-tokens";
 import {themeModes} from "../../.storybook/modes";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
+import {Code} from "../components/code";
 
 /**
  * Text sizes, weights and font families used across Wonder Blocks.
@@ -66,13 +67,13 @@ const sampleTextLower = "abcdefghijklmnopqrstuvwxyz";
 
 type Row = {label: string; css: string; value: string};
 
-const baseColumns = (property) => [
+const baseColumns = (property: string) => [
     {
         label: "Token",
-        cell: (row) => (
-            <code>
+        cell: (row: Row) => (
+            <Code>
                 font.{property}.{row.label}
-            </code>
+            </Code>
         ),
     },
     {
