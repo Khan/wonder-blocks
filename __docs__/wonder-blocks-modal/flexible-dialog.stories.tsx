@@ -292,6 +292,9 @@ export const WithStyle: StoryComponentType = {
                             color: semanticColor.status.notice.foreground,
                             maxWidth: 1000,
                         },
+                        panel: {
+                            backgroundColor: "red",
+                        },
                     }}
                 />
             </View>

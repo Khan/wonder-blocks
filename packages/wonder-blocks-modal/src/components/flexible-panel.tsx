@@ -34,7 +34,7 @@ type Props = {
      * Any optional styling to apply to the root (panel background) and close button.
      */
     styles?: {
-        root?: StyleType;
+        panel?: StyleType;
         closeButton?: StyleType;
     };
     /**
@@ -116,7 +116,7 @@ export default function FlexiblePanel({
 
     const combinedBackgroundStyles = {
         ...defaultBackgroundStyle,
-        ...styles?.root,
+        ...styles?.panel,
     };
 
     return (

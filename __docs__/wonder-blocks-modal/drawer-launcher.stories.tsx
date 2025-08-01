@@ -14,7 +14,7 @@ import {FlexibleDialog, DrawerLauncher} from "@khanacademy/wonder-blocks-modal";
 import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 
 import type {ModalElement} from "../../packages/wonder-blocks-modal/src/util/types";
-import DrawerLauncherArgTypes from "./modal-launcher.argtypes";
+import DrawerLauncherArgTypes from "./drawer-launcher.argtypes";
 
 import ComponentInfo from "../components/component-info";
 import {allModes} from "../../.storybook/modes";
@@ -47,6 +47,10 @@ const customViewports = {
 const DefaultModal = (): ModalElement => (
     <FlexibleDialog
         title="Single-line title"
+        styles={{
+            root: styles.fullHeightDialogRoot,
+            panel: styles.fullHeightDialog,
+        }}
         content={
             <View>
                 <BodyText>
@@ -483,5 +487,9 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
         gap: sizing.size_160,
+    },
+    fullHeightDialogRoot: {
+        height: "100vh",
+        borderRadius: "unset",
     },
 });
