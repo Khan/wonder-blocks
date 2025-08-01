@@ -38,10 +38,9 @@ export default {
                     <Title />
                     <Subtitle />
                     <Description />
-                    <Stories />
+                    <Stories title="Tokens" />
                 </>
             ),
-            toc: false,
         },
         chromatic: {
             modes: themeModes,

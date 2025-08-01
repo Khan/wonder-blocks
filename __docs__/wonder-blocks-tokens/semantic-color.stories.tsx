@@ -46,7 +46,7 @@ export default {
                     <Title />
                     <Subtitle />
                     <Description />
-                    <Stories />
+                    <Stories title="Tokens" />
                 </>
             ),
             toc: false,
@@ -66,7 +66,7 @@ export default {
 
 type Row = {label: string; css: string; value: string};
 
-export const Tokens = () => (
+export const SemanticColors = () => (
     <TokenTable
         columns={[
             {
