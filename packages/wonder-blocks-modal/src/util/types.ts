@@ -11,3 +11,13 @@ import * as React from "react";
  * NOTE(kevinb): we include `| null` here because that's what React.FC<> returns.
  */
 export type ModalElement = React.ReactElement | null;
+
+/**
+ * The position of the modal, with support for RTL (Right-to-Left).
+ * Inset-inline-start is left-aligned in LTR, inset-inline-end is right-aligned,
+ * Inset-block-end is bottom-aligned, and center (veritcal and horizontal) is the default.
+ */
+export type DrawerAlignment =
+    | "inset-inline-start"
+    | "inset-inline-end"
+    | "inset-block-end";
