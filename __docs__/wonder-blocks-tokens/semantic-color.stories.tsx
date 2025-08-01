@@ -72,7 +72,7 @@ export const SemanticColors = () => (
         columns={[
             {
                 label: "Token",
-                cell: (row: Row) => <Code>semanticColor.{row.label}</Code>,
+                cell: (row: Row) => <Code>{`semanticColor.${row.label}`}</Code>,
             },
             {
                 label: "CSS Variable",

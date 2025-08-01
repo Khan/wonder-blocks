@@ -60,7 +60,7 @@ export const BreakpointMediaQueries = () => (
             {
                 label: "Media Query Token",
                 cell: (row: Row) => (
-                    <Code>breakpoint.mediaQuery.{row.label}</Code>
+                    <Code>{`breakpoint.mediaQuery.${row.label}`}</Code>
                 ),
             },
             {
@@ -93,7 +93,9 @@ export const BreakpointWidths = () => (
         columns={[
             {
                 label: "Width Token",
-                cell: (row: Row) => <Code>breakpoint.width.{row.label}</Code>,
+                cell: (row: Row) => (
+                    <Code>{`breakpoint.width.${row.label}`}</Code>
+                ),
             },
             {
                 label: "Value (px)",

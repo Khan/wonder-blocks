@@ -70,11 +70,7 @@ type Row = {label: string; css: string; value: string};
 const baseColumns = (property: string) => [
     {
         label: "Token",
-        cell: (row: Row) => (
-            <Code>
-                font.{property}.{row.label}
-            </Code>
-        ),
+        cell: (row: Row) => <Code>{`font.${property}.${row.label}`}</Code>,
     },
     {
         label: "Value",

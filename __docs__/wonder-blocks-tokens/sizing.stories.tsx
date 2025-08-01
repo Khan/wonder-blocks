@@ -61,7 +61,7 @@ export const Sizing = () => (
         columns={[
             {
                 label: "Token",
-                cell: (row: Row) => <Code>sizing.{row.label}</Code>,
+                cell: (row: Row) => <Code>{`sizing.${row.label}`}</Code>,
             },
             {
                 label: "CSS Variable",

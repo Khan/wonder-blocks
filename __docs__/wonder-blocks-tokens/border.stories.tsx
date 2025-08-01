@@ -56,11 +56,7 @@ type Row = {label: string; css: string; value: string};
 const baseColumns = (kind: string) => [
     {
         label: "Token",
-        cell: (row: Row) => (
-            <Code>
-                border.{kind}.{row.label}
-            </Code>
-        ),
+        cell: (row: Row) => <Code>{`border.${kind}.${row.label}`}</Code>,
     },
     {
         label: "CSS Variable",
