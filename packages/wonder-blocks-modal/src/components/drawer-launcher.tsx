@@ -4,6 +4,7 @@ import {StyleSheet} from "aphrodite";
 
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
 import type {WithActionSchedulerProps} from "@khanacademy/wonder-blocks-timing";
+import {zindexModal} from "../../../wonder-blocks-styles/src/styles/constants"; //"@khanacademy/wonder-blocks-styles";
 
 import FocusTrap from "./focus-trap";
 import DrawerBackdrop from "./drawer-backdrop";
@@ -244,12 +245,7 @@ function DrawerLauncherKeypressListener({onClose}: {onClose: () => unknown}) {
 
 const styles = StyleSheet.create({
     container: {
-        // This z-index is copied from the Khan Academy webapp.
-        //
-        // TODO(mdr): Should we keep this in a constants file somewhere? Or
-        //     not hardcode it at all, and provide it to Wonder Blocks via
-        //     configuration?
-        zIndex: 1080,
+        zIndex: zindexModal,
     },
 });
 
