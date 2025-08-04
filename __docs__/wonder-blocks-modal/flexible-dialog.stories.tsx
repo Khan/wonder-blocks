@@ -137,7 +137,6 @@ export const WithBackgroundImage: StoryComponentType = {
                         </Heading>
                     }
                     styles={{
-                        root: styles.modalWithBg,
                         panel: modalBgStyle,
                     }}
                     content={({title}) => (
@@ -508,9 +507,6 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         width: "100%",
-    },
-    modalWithBg: {
-        maxWidth: 1024,
     },
     launcherButton: {
         marginTop: "auto",
