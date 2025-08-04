@@ -134,7 +134,7 @@ const FlexibleDialog = React.forwardRef(function FlexibleDialog(
         );
 
     return (
-        <View style={[componentStyles.wrapper, styles?.root]}>
+        <View style={[componentStyles.dialog, styles?.root]}>
             <View
                 role={role}
                 aria-modal="true"
@@ -142,7 +142,6 @@ const FlexibleDialog = React.forwardRef(function FlexibleDialog(
                 aria-labelledby={headingId}
                 aria-describedby={accessibilityProps["aria-describedby"]}
                 ref={ref}
-                style={[componentStyles.dialog]}
                 testId={testId}
             >
                 <FlexiblePanel
@@ -161,33 +160,19 @@ const FlexibleDialog = React.forwardRef(function FlexibleDialog(
     );
 });
 
-const small = "@media (max-width: 767px)" as any;
-
 const componentStyles = StyleSheet.create({
-    wrapper: {
+    dialog: {
+        borderRadius: theme.root.border.radius,
+        boxShadow: theme.dialog.shadow.default,
         // Allows propagating the text color to all the children.
         color: semanticColor.core.foreground.neutral.strong,
         flexDirection: "row",
-        alignItems: "stretch",
-        width: "100%",
-        height: "100%",
-        position: "relative",
-        boxShadow: theme.dialog.shadow.default,
-        borderRadius: theme.root.border.radius,
-        [small]: {
-            padding: theme.dialog.layout.padding,
-            flexDirection: "column",
-        },
-    },
-
-    dialog: {
-        width: "93.75%",
-        maxWidth: 576,
         height: "auto",
         maxHeight: "100vh",
-        position: "relative",
+        maxWidth: 576,
         overflow: "auto", // Prevent dialog from scrolling with background
-        borderRadius: theme.root.border.radius,
+        position: "relative",
+        width: "93.75%",
 
         [breakpoint.mediaQuery.sm]: {
             width: "100%",
