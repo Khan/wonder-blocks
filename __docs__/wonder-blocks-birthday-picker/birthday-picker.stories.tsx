@@ -194,3 +194,18 @@ export const BirthdayPickerMobile: StoryComponentType = {
         },
     },
 };
+
+/**
+ * A BirthdayPicker can be configured to render the month names in a different
+ * locale. This can be useful when we want to display the component in a
+ * different language.
+ *
+ * If no locale is provided, the browser's `navigator.language` value will be
+ * used.
+ */
+export const Locale: StoryComponentType = {
+    args: {
+        locale: "es",
+        defaultValue: "2021-01-19",
+    },
+};

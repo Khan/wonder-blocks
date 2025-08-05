@@ -651,4 +651,20 @@ describe("BirthdayPicker", () => {
             expect(onChange).toHaveBeenCalledWith(`${lastYear}-07-05`);
         });
     });
+
+    describe("locale", () => {
+        it("renders the month names in the correct locale", async () => {
+            // Arrange
+            render(
+                <BirthdayPicker
+                    locale="es"
+                    onChange={() => {}}
+                    defaultValue="2021-01-19"
+                />,
+            );
+
+            // Assert (January in Spanish is "ene")
+            await screen.findByText("ene");
+        });
+    });
 });
