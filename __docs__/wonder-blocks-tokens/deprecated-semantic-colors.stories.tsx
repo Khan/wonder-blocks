@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     },
 });
 
+const valuePrefix = "semanticColor.";
 const ColorGroupStory = ({
     category,
     group,
@@ -63,6 +64,7 @@ const ColorGroupStory = ({
                 category={category}
                 group={group}
                 includeExample={includeExample}
+                valuePrefix={valuePrefix}
             />
         </View>
     );
@@ -193,22 +195,27 @@ export const Status = () => {
             <ColorGroup
                 colors={semanticColor.status.critical}
                 group="status.critical"
+                valuePrefix={valuePrefix}
             />
             <ColorGroup
                 colors={semanticColor.status.warning}
                 group="status.warning"
+                valuePrefix={valuePrefix}
             />
             <ColorGroup
                 colors={semanticColor.status.success}
                 group="status.success"
+                valuePrefix={valuePrefix}
             />
             <ColorGroup
                 colors={semanticColor.status.notice}
                 group="status.notice"
+                valuePrefix={valuePrefix}
             />
             <ColorGroup
                 colors={semanticColor.status.neutral}
                 group="status.neutral"
+                valuePrefix={valuePrefix}
             />
         </View>
     );

@@ -14,6 +14,8 @@ export default {
     tags: ["!dev", "!autodocs"],
 };
 
+const valuePrefix = "semanticColor.";
+
 const ColorGroupStory = ({
     category,
     group,
@@ -25,6 +27,7 @@ const ColorGroupStory = ({
                 category={category}
                 group={group}
                 includeExample={includeExample}
+                valuePrefix={valuePrefix}
             />
         </View>
     );
@@ -94,11 +97,23 @@ export const FeedbackCritical = () => {
 };
 
 export const Focus = () => {
-    return <ColorGroup colors={semanticColor.focus} group="focus" />;
+    return (
+        <ColorGroup
+            colors={semanticColor.focus}
+            group="focus"
+            valuePrefix={valuePrefix}
+        />
+    );
 };
 
 export const Surface = () => {
-    return <ColorGroup colors={semanticColor.surface} group="surface" />;
+    return (
+        <ColorGroup
+            colors={semanticColor.surface}
+            group="surface"
+            valuePrefix={valuePrefix}
+        />
+    );
 };
 
 export const Input = () => {
@@ -177,11 +192,23 @@ export const LearningShadow = () => {
 };
 
 export const Khanmigo = () => {
-    return <ColorGroup colors={semanticColor.khanmigo} group="khanmigo" />;
+    return (
+        <ColorGroup
+            colors={semanticColor.khanmigo}
+            group="khanmigo"
+            valuePrefix={valuePrefix}
+        />
+    );
 };
 
 export const Mastery = () => {
-    return <ColorGroup colors={semanticColor.mastery} group="mastery" />;
+    return (
+        <ColorGroup
+            colors={semanticColor.mastery}
+            group="mastery"
+            valuePrefix={valuePrefix}
+        />
+    );
 };
 
 const styles = StyleSheet.create({

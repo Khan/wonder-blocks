@@ -37,6 +37,10 @@ type Props = {
      * Custom styles for the component.
      */
     style?: StyleType;
+    /**
+     * The prefix to use for the color value.
+     */
+    valuePrefix?: string;
 };
 
 export function ColorGroup({
@@ -44,6 +48,7 @@ export function ColorGroup({
     group,
     style,
     variant = "semantic",
+    valuePrefix,
 }: Props) {
     return (
         <View style={[styles.group, style]}>
@@ -53,6 +58,7 @@ export function ColorGroup({
                     name={group + "." + name}
                     value={value}
                     variant={variant}
+                    valuePrefix={valuePrefix}
                 />
             ))}
         </View>
@@ -63,9 +69,10 @@ type ColorProps = {
     name: string;
     value: string;
     variant: Variant;
+    valuePrefix?: string;
 };
 
-function Color({name, value, variant}: ColorProps) {
+function Color({name, value, variant, valuePrefix}: ColorProps) {
     function renderInfo() {
         const rawValue = maybeGetCssVariableInfo(value).value;
 
@@ -145,7 +152,7 @@ function Color({name, value, variant}: ColorProps) {
 
             <View style={styles.info}>{renderInfo()}</View>
             <View style={styles.copyButtonContainer}>
-                <CopyButton value={name} kind="tertiary" />
+                <CopyButton value={`${valuePrefix}${name}`} kind="tertiary" />
             </View>
         </View>
     );
@@ -165,12 +172,17 @@ type ActionColorGroupProps = {
      * This is useful for showing how the color looks in a UI context.
      */
     includeExample?: boolean;
+    /**
+     * The prefix to use for the color value.
+     */
+    valuePrefix?: string;
 };
 
 export function ActionColorGroup({
     category,
     group,
     includeExample = true,
+    valuePrefix,
 }: ActionColorGroupProps) {
     return Object.entries(category).map(([state, colorGroup], index) => (
         <View style={styles.actionGroup} key={index}>
@@ -180,6 +192,7 @@ export function ActionColorGroup({
                 colors={colorGroup}
                 group={group + "." + state}
                 variant="compact"
+                valuePrefix={valuePrefix}
             />
         </View>
     ));
