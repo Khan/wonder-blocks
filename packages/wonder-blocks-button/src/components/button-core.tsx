@@ -1,7 +1,7 @@
 import * as React from "react";
 import {CSSProperties, StyleSheet} from "aphrodite";
 
-import {LabelLarge, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 
@@ -68,10 +68,11 @@ const ButtonCore: React.ForwardRefExoticComponent<
         size === "large" && sharedStyles.large,
     ];
 
-    const Label = size === "small" ? LabelSmall : LabelLarge;
-
     const label = (
-        <Label
+        <BodyText
+            size={size === "small" ? "small" : undefined}
+            weight={size === "large" ? "bold" : undefined}
+            tag="span"
             style={[
                 sharedStyles.text,
                 size === "small" && sharedStyles.smallText,
@@ -82,7 +83,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
             testId={testId ? `${testId}-inner-label` : undefined}
         >
             {children}
-        </Label>
+        </BodyText>
     );
 
     const sizeMapping = {
