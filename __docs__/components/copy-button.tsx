@@ -3,12 +3,17 @@ import CopyIcon from "@phosphor-icons/core/bold/copy-bold.svg";
 import CheckIcon from "@phosphor-icons/core/bold/check-bold.svg";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {announceMessage} from "@khanacademy/wonder-blocks-announcer";
+import {IconButtonProps} from "../../packages/wonder-blocks-icon-button/src/util/icon-button.types";
+import {StyleType} from "@khanacademy/wonder-blocks-core";
 
 type Props = {
     value: string;
+    kind?: IconButtonProps["kind"];
+    style?: StyleType;
 };
 
 export const CopyButton = (props: Props) => {
+    const {kind = "tertiary", style} = props;
     const [showCheckmark, setShowCheckmark] = React.useState(false);
 
     const handleClick = () => {
@@ -29,9 +34,10 @@ export const CopyButton = (props: Props) => {
             onClick={handleClick}
             icon={showCheckmark ? CheckIcon : CopyIcon}
             size="xsmall"
-            kind="tertiary"
+            kind={kind}
             actionType="neutral"
             aria-label={`Copy to clipboard: ${props.value}`}
+            style={style}
         />
     );
 };

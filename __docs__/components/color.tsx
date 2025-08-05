@@ -13,9 +13,11 @@ import {
     color,
     font,
     semanticColor,
+    sizing,
     spacing,
 } from "@khanacademy/wonder-blocks-tokens";
 import {getTokenName, maybeGetCssVariableInfo} from "./tokens-util";
+import {CopyButton} from "./copy-button";
 
 type Variant = "primitive" | "semantic" | "compact";
 
@@ -75,16 +77,9 @@ function Color({name, value, variant}: ColorProps) {
                     <LabelLarge style={styles.capitalized}>
                         {tokenName.at(tokenName.length - 1)}
                     </LabelLarge>
-                    <LabelSmall
-                        style={{
-                            fontStyle: "italic",
-                        }}
-                    >
-                        {name}
-                    </LabelSmall>
+                    <LabelSmall>{name}</LabelSmall>
 
                     <Footnote>
-                        Primitive:{" "}
                         <em>{getTokenName(color, rawValue) || rawValue}</em>
                     </Footnote>
                 </View>
@@ -107,7 +102,14 @@ function Color({name, value, variant}: ColorProps) {
         }
 
         return (
-            <>
+            <View
+                style={{
+                    paddingInlineEnd: sizing.size_120,
+                    paddingBlockEnd: sizing.size_080,
+                    paddingBlockStart: sizing.size_040,
+                    paddingInlineStart: sizing.size_040,
+                }}
+            >
                 <LabelSmall
                     style={{
                         fontWeight: font.weight.bold,
@@ -115,14 +117,10 @@ function Color({name, value, variant}: ColorProps) {
                 >
                     {name}
                 </LabelSmall>
-                <Caption>
-                    Primitive:{" "}
+                <Footnote>
                     <em>{getTokenName(color, rawValue) || rawValue}</em>
-                </Caption>
-                <LabelSmall>
-                    Reference: <Footnote style={styles.code}>{value}</Footnote>
-                </LabelSmall>
-            </>
+                </Footnote>
+            </View>
         );
     }
 
@@ -147,6 +145,9 @@ function Color({name, value, variant}: ColorProps) {
             </View>
 
             <View style={styles.info}>{renderInfo()}</View>
+            <View style={styles.copyButtonContainer}>
+                <CopyButton value={name} kind="tertiary" />
+            </View>
         </View>
     );
 }
@@ -269,5 +270,10 @@ const styles = StyleSheet.create({
     },
     capitalized: {
         textTransform: "capitalize",
+    },
+    copyButtonContainer: {
+        position: "absolute",
+        insetBlockEnd: sizing.size_040,
+        insetInlineEnd: sizing.size_040,
     },
 });

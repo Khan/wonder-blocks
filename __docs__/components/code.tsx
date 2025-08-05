@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         gap: sizing.size_040,
     },
     code: {
-        backgroundColor: semanticColor.core.background.neutral.subtle,
+        backgroundColor: semanticColor.surface.secondary,
         padding: sizing.size_040,
         fontSize: font.body.size.xsmall,
     },
