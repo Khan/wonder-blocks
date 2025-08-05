@@ -4,7 +4,6 @@ import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {
-    font,
     color,
     spacing,
     semanticColor,
@@ -159,7 +158,7 @@ const linkContentStyles = StyleSheet.create({
 
 const sharedStyles = StyleSheet.create({
     shared: {
-        fontFamily: font.family.sans,
+        fontFamily: theme.root.font.family,
         fontWeight: theme.root.font.weight,
         cursor: "pointer",
         textDecoration: "none",
