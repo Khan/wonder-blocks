@@ -10,6 +10,7 @@ import {
     semanticColor,
     border,
 } from "@khanacademy/wonder-blocks-tokens";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import externalLinkIcon from "@phosphor-icons/core/bold/arrow-square-out-bold.svg";
@@ -216,7 +217,7 @@ const _generateStyles = (inline: boolean, light: boolean) => {
     const variant = light ? states.color.inverse : states.color.default;
 
     const focusStyling = {
-        outline: `${border.width.thin} solid ${variant.focus.border}`,
+        ...focusStyles.focus[":focus-visible"],
         borderRadius: border.radius.radius_040,
         outlineOffset: border.width.medium,
     };
@@ -224,23 +225,16 @@ const _generateStyles = (inline: boolean, light: boolean) => {
     const pressStyling = {
         color: variant.press.foreground,
         textDecoration: "underline currentcolor solid",
-        // TODO(WB-1521): Update the underline offset to be 4px after
-        // the Link audit.
-        // textUnderlineOffset: 4,
+        textUnderlineOffset: theme.root.border.offset,
     };
 
     const newStyles: StyleDeclaration = {
         rest: {
             color: variant.rest.foreground,
             ":hover": {
-                // TODO(WB-1521): Update text decoration to the 1px dashed
-                // underline after the Link audit.
-                // textDecoration: "underline currentcolor dashed 2px",
                 textDecoration: "underline currentcolor solid",
                 color: variant.hover.foreground,
-                // TODO(WB-1521): Update the underline offset to be 4px after
-                // the Link audit.
-                // textUnderlineOffset: 4,
+                textUnderlineOffset: theme.root.border.offset,
             },
             // Focus styles only show up with keyboard navigation.
             // Mouse users don't see focus styles.
@@ -248,14 +242,8 @@ const _generateStyles = (inline: boolean, light: boolean) => {
             ":active": pressStyling,
         },
         restInline: {
-            // TODO(WB-1521): Update text decoration to the 1px dashed
-            // underline after the Link audit.
-            // textDecoration: "underline currentcolor solid 1px",
             textDecoration: "underline currentcolor solid",
-            // TODO(WB-1521): Update the underline offset to be 4px after
-            // the Link audit.
-            // textUnderlineOffset: 4,
-            textUnderlineOffset: border.width.medium,
+            textUnderlineOffset: theme.root.border.offset,
         },
         focus: focusStyling,
         press: pressStyling,
