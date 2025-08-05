@@ -10,7 +10,7 @@ export default mergeTheme(defaultTheme, {
             weight: font.weight.bold,
         },
         border: {
-            offset: border.width.thick,
+            offset: border.offset.thick,
         },
     },
 });

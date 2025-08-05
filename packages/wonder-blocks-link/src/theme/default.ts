@@ -7,7 +7,7 @@ export default {
             weight: "inherit",
         },
         border: {
-            offset: border.width.medium,
+            offset: border.offset.medium,
         },
     },
 };
