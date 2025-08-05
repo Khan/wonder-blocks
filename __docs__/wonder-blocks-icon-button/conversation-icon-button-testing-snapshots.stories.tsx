@@ -5,7 +5,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 import paperPlaneIcon from "@phosphor-icons/core/fill/paper-plane-tilt-fill.svg";
 import {ConversationIconButton} from "@khanacademy/wonder-blocks-icon-button";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
-import {allModes} from "../../.storybook/modes";
+import {themeModes} from "../../.storybook/modes";
 
 /**
  * The following stories are used to generate the pseudo states for the
@@ -23,10 +23,7 @@ export default {
     },
     parameters: {
         chromatic: {
-            modes: {
-                default: allModes.themeDefault,
-                thunderblocks: allModes.themeThunderBlocks,
-            },
+            modes: themeModes,
         },
     },
 } as Meta;
