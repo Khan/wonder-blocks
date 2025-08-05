@@ -77,7 +77,8 @@ export const Sizing = () => (
             },
             {
                 label: "Pixels (equivalent)",
-                cell: (row) => parseFloat(row.value.replace("rem", "") * 10),
+                cell: (row) =>
+                    `${parseFloat(row.value.replace("rem", "")) * 10}px`,
             },
             {
                 label: "Example",
