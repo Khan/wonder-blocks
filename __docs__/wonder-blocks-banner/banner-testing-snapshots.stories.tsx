@@ -2,7 +2,7 @@ import * as React from "react";
 import {action} from "@storybook/addon-actions";
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {allModes} from "../../.storybook/modes";
+import {themeModes} from "../../.storybook/modes";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
@@ -25,10 +25,7 @@ export default {
     title: "Packages / Banner / Testing / Snapshots / Banner",
     parameters: {
         chromatic: {
-            modes: {
-                default: allModes.themeDefault,
-                thunderblocks: allModes.themeThunderBlocks,
-            },
+            modes: themeModes,
         },
     },
     tags: ["!autodocs"],

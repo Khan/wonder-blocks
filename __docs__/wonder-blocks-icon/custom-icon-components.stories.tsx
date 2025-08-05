@@ -5,7 +5,7 @@ import packageConfig from "../../packages/wonder-blocks-icon/package.json";
 import {GemIcon, Icon, StreakIcon} from "@khanacademy/wonder-blocks-icon";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {allModes} from "../../.storybook/modes";
+import {themeModes} from "../../.storybook/modes";
 
 /**
  * Custom icon components that render an inline svg. Use with the `Icon`
@@ -25,10 +25,7 @@ export default {
         ),
         chromatic: {
             disableSnapshot: true,
-            modes: {
-                default: allModes.themeDefault,
-                thunderblocks: allModes.themeThunderBlocks,
-            },
+            modes: themeModes,
         },
     },
     component: GemIcon,

@@ -5,7 +5,7 @@ import packageConfig from "../../packages/wonder-blocks-badge/package.json";
 import {DueBadge} from "@khanacademy/wonder-blocks-badge";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import badgeArgtypes, {showIconArgType} from "./badge.argtypes";
-import {allModes} from "../../.storybook/modes";
+import {themeModes} from "../../.storybook/modes";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 export default {
@@ -25,10 +25,7 @@ export default {
         chromatic: {
             // Disable snapshots since they're covered by the testing snapshots
             disableSnapshot: true,
-            modes: {
-                default: allModes.themeDefault,
-                thunderblocks: allModes.themeThunderBlocks,
-            },
+            modes: themeModes,
         },
     },
     render: (args: PropsFor<typeof DueBadge>) => {

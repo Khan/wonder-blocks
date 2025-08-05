@@ -3,7 +3,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
-import {allModes} from "../../.storybook/modes";
+import {themeModes} from "../../.storybook/modes";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 import {ScenariosLayout} from "../components/scenarios-layout";
 import {
@@ -20,10 +20,7 @@ export default {
     title: "Packages / Form / Testing / Snapshots / TextField",
     parameters: {
         chromatic: {
-            modes: {
-                default: allModes.themeDefault,
-                thunderblocks: allModes.themeThunderBlocks,
-            },
+            modes: themeModes,
         },
     },
     tags: ["!autodocs"],

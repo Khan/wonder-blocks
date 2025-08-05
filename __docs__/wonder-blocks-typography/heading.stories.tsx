@@ -17,7 +17,7 @@ import {
     Title,
 } from "@khanacademy/wonder-blocks-typography";
 import {font, spacing, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {allModes} from "../../.storybook/modes";
+import {themeModes} from "../../.storybook/modes";
 
 /**
 New component for Thunderblocks headings.
@@ -119,10 +119,7 @@ export const Default: StoryObj<typeof Heading> = {
 export const SizesAndWeights = {
     parameters: {
         chromatic: {
-            modes: {
-                default: allModes.themeDefault,
-                thunderblocks: allModes.themeThunderBlocks,
-            },
+            modes: themeModes,
         },
     },
     render: () => (

@@ -6,7 +6,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 import Radio from "../../packages/wonder-blocks-form/src/components/radio";
 
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
-import {allModes} from "../../.storybook/modes";
+import {themeModes} from "../../.storybook/modes";
 
 const rows = [
     {name: "Unchecked", props: {checked: false}},
@@ -43,10 +43,7 @@ const meta = {
     },
     parameters: {
         chromatic: {
-            modes: {
-                default: allModes.themeDefault,
-                thunderblocks: allModes.themeThunderBlocks,
-            },
+            modes: themeModes,
         },
     },
     tags: ["!autodocs"],
