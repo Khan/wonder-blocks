@@ -3,7 +3,6 @@ import {StyleSheet} from "aphrodite";
 
 import {StyleType, View} from "@khanacademy/wonder-blocks-core";
 import {
-    Caption,
     Footnote,
     LabelLarge,
     LabelSmall,
