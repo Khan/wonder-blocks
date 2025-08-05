@@ -213,13 +213,8 @@ export const Variants: StoryComponentType = {
 export const WithTypography: StoryComponentType = () => (
     <Pill size="large">
         <BodySerif>
-            This is a{" "}
-            {
-                <Link href="#link" style={{fontFamily: "inherit"}}>
-                    link example
-                </Link>
-            }{" "}
-            inside the text of a pill.
+            This is a {<Link href="#link">link example</Link>} inside the text
+            of a pill.
         </BodySerif>
     </Pill>
 );
