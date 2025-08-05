@@ -30,7 +30,7 @@
     "@khanacademy/wonder-blocks-icon": "workspace:*",
     "@khanacademy/wonder-blocks-tokens": "workspace:*",
     "@khanacademy/wonder-blocks-typography": "workspace:*",
-    "@khanacademy/wonder-blocks-styles": "workspace*"
+    "@khanacademy/wonder-blocks-styles": "workspace:*"
   },
   "peerDependencies": {
     "@phosphor-icons/core": "catalog:",
