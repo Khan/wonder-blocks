@@ -24,13 +24,15 @@ type Props = Readonly<{
      * provided to this callback can be called to close the modal.
      *
      * Note: Don't call `closeModal` while rendering! It should be used to
-     * respond to user intearction, like `onClick`.
+     * respond to user interaction, like `onClick`.
      */
     modal:
         | ModalElement
         | ((props: {
               closeModal: () => void;
               alignment: DrawerAlignment;
+              animated?: boolean;
+              timingDuration?: number;
           }) => ModalElement);
     /**
      * Positioning of the drawer. Uses logical properties to support
@@ -48,9 +50,9 @@ type Props = Readonly<{
      */
     timingDuration?: number;
     /**
-     * Whether to include animation in the `FlexibleDialog` component. This should be
-     * false if the user has `prefers-reduced-motion` opted in. Defaults to
-     * `false`.
+     * Whether to include animation in the `DrawerLauncher` and child components.
+     * This should be false if the user has `prefers-reduced-motion` opted in.
+     * Defaults to `true`.
      */
     animated?: boolean;
     /**
@@ -105,6 +107,8 @@ type Props = Readonly<{
     children?: (arg1: {
         openModal: () => unknown;
         alignment?: DrawerAlignment;
+        animated?: boolean;
+        timingDuration?: number;
     }) => React.ReactNode;
 }> &
     WithActionSchedulerProps;
@@ -125,6 +129,8 @@ function DrawerLauncher(props: Props) {
         children,
         schedule,
         alignment,
+        animated = true,
+        timingDuration,
     } = props;
 
     // State for uncontrolled mode
@@ -209,10 +215,12 @@ function DrawerLauncher(props: Props) {
             return modal({
                 closeModal: handleCloseModal,
                 alignment: alignment,
+                animated: animated,
+                timingDuration: timingDuration,
             });
         }
         return modal;
-    }, [modal, handleCloseModal, alignment]);
+    }, [modal, handleCloseModal, alignment, animated, timingDuration]);
 
     const renderedChildren = children ? children({openModal}) : null;
 
@@ -229,6 +237,7 @@ function DrawerLauncher(props: Props) {
                     <FocusTrap style={styles.container}>
                         <DrawerBackdrop
                             alignment={alignment}
+                            animated={animated}
                             initialFocusId={initialFocusId}
                             testId={testId}
                             onCloseModal={
