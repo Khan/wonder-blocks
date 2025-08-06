@@ -65,6 +65,11 @@ type Props = {
      * Additional styles applied to the dropdowns.
      */
     dropdownStyle?: StyleType;
+    /**
+     * The locale to use for the month names. If not provided, the browser's
+     * `navigator.language` value will be used.
+     */
+    locale?: string;
 };
 
 type State = {
@@ -355,9 +360,12 @@ export default class BirthdayPicker extends React.Component<Props, State> {
     }
 
     monthsShort(): string[] {
-        const format = new Intl.DateTimeFormat(navigator.language, {
-            month: "short",
-        }).format;
+        const format = new Intl.DateTimeFormat(
+            this.props.locale || navigator.language,
+            {
+                month: "short",
+            },
+        ).format;
         return [...Array(12).keys()].map((m) =>
             // TODO: use Temporal.PlainDate.from() once the linter lets
             // format() accept a Temporal object
