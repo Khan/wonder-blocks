@@ -666,5 +666,20 @@ describe("BirthdayPicker", () => {
             // Assert (January in Spanish is "ene")
             await screen.findByText("ene");
         });
+
+        it("renders the month name in english if the locale is not supported", async () => {
+            // Arrange
+            render(
+                <BirthdayPicker locale="invalid-locale" onChange={() => {}} />,
+            );
+
+            // Act - open the month dropdown
+            await userEvent.click(
+                await screen.findByTestId("birthday-picker-month"),
+            );
+
+            // Assert
+            await screen.findByText("Jan");
+        });
     });
 });
