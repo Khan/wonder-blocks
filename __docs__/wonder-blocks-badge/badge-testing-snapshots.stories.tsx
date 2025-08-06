@@ -28,7 +28,7 @@ import {Heading, HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import singleColoredIcon from "../components/single-colored-icon.svg";
 import {multiColoredIcon} from "../components/icons-for-testing";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
-import {allModes} from "../../.storybook/modes";
+import {themeModes} from "../../.storybook/modes";
 
 /**
  * Badges are visual indicators used to display concise information, such as
@@ -44,10 +44,7 @@ export default {
             />
         ),
         chromatic: {
-            modes: {
-                default: allModes.themeDefault,
-                thunderblocks: allModes.themeThunderBlocks,
-            },
+            modes: themeModes,
         },
     },
 } as Meta<typeof Badge>;

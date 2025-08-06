@@ -2,7 +2,7 @@ import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
-import {allModes} from "../../.storybook/modes";
+import {themeModes} from "../../.storybook/modes";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 
 /**
@@ -13,10 +13,7 @@ export default {
     title: "Packages / Dropdown / Testing / Snapshots / MultiSelect",
     parameters: {
         chromatic: {
-            modes: {
-                default: allModes.themeDefault,
-                thunderblocks: allModes.themeThunderBlocks,
-            },
+            modes: themeModes,
         },
     },
     args: {
