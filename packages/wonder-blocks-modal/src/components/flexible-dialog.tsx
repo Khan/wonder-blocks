@@ -3,7 +3,11 @@ import {StyleSheet} from "aphrodite";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {View} from "@khanacademy/wonder-blocks-core";
 
-import {breakpoint, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    breakpoint,
+    semanticColor,
+} from "@khanacademy/wonder-blocks-tokens";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 import FlexiblePanel from "./flexible-panel";
 import theme from "../theme";
@@ -144,7 +148,13 @@ const FlexibleDialog = React.forwardRef(function FlexibleDialog(
         );
 
     return (
-        <View style={[componentStyles.dialog, styles?.root]}>
+        <View
+            style={[
+                componentStyles.dialog,
+                alignment && componentStyles[alignment],
+                styles?.root,
+            ]}
+        >
             <View
                 role={role}
                 aria-modal="true"
@@ -170,6 +180,39 @@ const FlexibleDialog = React.forwardRef(function FlexibleDialog(
     );
 });
 
+const keyframes = {
+    slideInFromStart: {
+        "0%": {
+            transform: "translate3d(-100%, 0, 0)",
+            opacity: 0,
+        },
+        "100%": {
+            transform: "translate3d(0, 0, 0)",
+            opacity: 1,
+        },
+    },
+    slideInFromEnd: {
+        "0%": {
+            transform: "translate3d(100%, 0, 0)",
+            opacity: 0,
+        },
+        "100%": {
+            transform: "translate3d(0, 0, 0)",
+            opacity: 1,
+        },
+    },
+    slideInFromBottom: {
+        "0%": {
+            transform: "translate3d(0, 100%, 0)",
+            opacity: 0,
+        },
+        "100%": {
+            transform: "translate3d(0, 0, 0)",
+            opacity: 1,
+        },
+    },
+} as const;
+
 const componentStyles = StyleSheet.create({
     dialog: {
         borderRadius: theme.root.border.radius,
@@ -183,12 +226,45 @@ const componentStyles = StyleSheet.create({
         overflow: "auto", // Prevent dialog from scrolling with background
         position: "relative",
         width: "93.75%",
+        willChange: "transform, opacity",
 
         [breakpoint.mediaQuery.sm]: {
             width: "100%",
             height: "100vh",
             maxHeight: "100vh",
         },
+    },
+    inlineStart: {
+        // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
+        animationName: keyframes.slideInFromStart,
+        animationDuration: "300ms",
+        animationTimingFunction: "linear",
+        animationFillMode: "forwards",
+        borderLeftRadius: border.radius.radius_0,
+        borderTopRadius: border.radius.radius_0,
+        // borderRadius: "0 8px 8px 0",
+    },
+    inlineEnd: {
+        // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
+        animationName: keyframes.slideInFromEnd,
+        animationDuration: "300ms",
+        animationTimingFunction: "linear",
+        animationFillMode: "forwards",
+        borderBottomRadius: border.radius.radius_0,
+        borderRightRadius: border.radius.radius_0,
+        // borderRadius: "8px 0 0 8px",
+    },
+    blockEnd: {
+        // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
+        animationName: keyframes.slideInFromBottom,
+        animationDuration: "300ms",
+        animationTimingFunction: "linear",
+        animationFillMode: "forwards",
+        borderBottomRadius: border.radius.radius_0,
+        borderLeftRadius: border.radius.radius_0,
+        borderRightRadius: border.radius.radius_080,
+        borderTopRadius: border.radius.radius_080,
+        // borderRadius: "8px 8px 0 0",
     },
 });
 
