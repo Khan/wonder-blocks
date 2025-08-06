@@ -13,10 +13,7 @@ import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 import {FlexibleDialog, DrawerLauncher} from "@khanacademy/wonder-blocks-modal";
 import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 
-import type {
-    DrawerAlignment,
-    ModalElement,
-} from "../../packages/wonder-blocks-modal/src/util/types";
+import type {ModalElement} from "../../packages/wonder-blocks-modal/src/util/types";
 import DrawerLauncherArgTypes from "./drawer-launcher.argtypes";
 
 import ComponentInfo from "../components/component-info";
@@ -47,16 +44,8 @@ const customViewports = {
     },
 } as const;
 
-const DefaultModal = ({
-    alignment,
-    animated,
-}: {
-    alignment: DrawerAlignment;
-    animated?: boolean;
-}): ModalElement => (
+const DefaultModal = (): ModalElement => (
     <FlexibleDialog
-        animated={animated}
-        alignment={alignment}
         title="Single-line title"
         styles={{
             root: styles.fullHeightDialogRoot,
@@ -292,6 +281,9 @@ WithBackdropDismissDisabled.parameters = {
     modal from a dropdown must be done programatically.
  */
 export const TriggeringProgrammatically: StoryComponentType = {
+    args: {
+        alignment: "inlineEnd",
+    },
     render: (args) => {
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const [opened, setOpened] = React.useState(false);
@@ -317,7 +309,6 @@ export const TriggeringProgrammatically: StoryComponentType = {
                     modal={({closeModal}) => (
                         <FlexibleDialog
                             title="Triggered from action menu"
-                            alignment={args.alignment}
                             content={
                                 <View>
                                     <Heading size="xxlarge">
@@ -364,6 +355,9 @@ TriggeringProgrammatically.parameters = {
     is on the page body, and the `closedFocusId` did not work.
  */
 export const WithClosedFocusId: StoryComponentType = {
+    args: {
+        alignment: "inlineEnd",
+    },
     render: (args) => {
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const [opened, setOpened] = React.useState(false);
@@ -416,6 +410,9 @@ WithClosedFocusId.parameters = {
     since its ID is passed into the `initialFocusId` prop.
  */
 export const WithInitialFocusId: StoryComponentType = {
+    args: {
+        alignment: "inlineEnd",
+    },
     render: (args) => {
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const [value, setValue] = React.useState("Previously stored value");
@@ -423,9 +420,8 @@ export const WithInitialFocusId: StoryComponentType = {
         const [value2, setValue2] = React.useState("");
 
         // @ts-expect-error [FEI-5019] - TS7031 - Binding element 'closeModal' implicitly has an 'any' type.
-        const modalInitialFocus = ({closeModal, alignment}) => (
+        const modalInitialFocus = ({closeModal}) => (
             <FlexibleDialog
-                alignment={alignment}
                 title="Single-line title"
                 content={
                     <View>
@@ -467,7 +463,7 @@ export const WithInitialFocusId: StoryComponentType = {
                 modal={modalInitialFocus}
                 initialFocusId="text-field-to-be-focused-field"
             >
-                {({openModal, alignment}) => (
+                {({openModal}) => (
                     <Button onClick={openModal}>
                         Open modal with initial focus
                     </Button>
@@ -487,9 +483,8 @@ WithInitialFocusId.parameters = {
 /**
  * Focus trap navigation
  */
-const SubModal = ({alignment}: {alignment: DrawerAlignment}) => (
+const SubModal = () => (
     <FlexibleDialog
-        alignment={alignment}
         title="Submodal"
         content={
             <View style={{gap: sizing.size_160}}>
@@ -526,14 +521,16 @@ const SubModal = ({alignment}: {alignment: DrawerAlignment}) => (
     modals are open.
  */
 export const FocusTrap: StoryComponentType = {
+    args: {
+        alignment: "inlineEnd",
+    },
     render: (args) => {
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const [selectedValue, setSelectedValue] = React.useState<any>(null);
 
         // @ts-expect-error [FEI-5019] - TS7031 - Binding element 'closeModal' implicitly has an 'any' type.
-        const modalInitialFocus = ({closeModal, alignment}) => (
+        const modalInitialFocus = ({closeModal}) => (
             <FlexibleDialog
-                alignment={alignment}
                 title="Testing the focus trap on multiple modals"
                 closeButtonVisible={false}
                 content={
