@@ -34,6 +34,18 @@ type Props = AccessibleDialogProps & {
      */
     alignment?: DrawerAlignment;
     /**
+     * Optional number of milliseconds for slide-in animation. Defaults to 400ms.
+     *
+     * Turned off when `animated` option is `false` for reduced-motion preferences.
+     */
+    timingDuration?: number;
+    /**
+     * Whether to include animation in the `FlexibleDialog` component. This should be
+     * false if the user has `prefers-reduced-motion` opted in. Defaults to
+     * `false`.
+     */
+    animated?: boolean;
+    /**
      * An optional id parameter for the main heading. If one is not provided,
      * an ID will be generated.
      */
@@ -130,11 +142,18 @@ const FlexibleDialog = React.forwardRef(function FlexibleDialog(
         titleId,
         role = "dialog",
         alignment,
+        animated = true,
+        timingDuration = 400,
         ...accessibilityProps
     } = props;
 
     const uniqueId = React.useId();
     const headingId = titleId ?? uniqueId;
+
+    const componentStyles = React.useMemo(
+        () => getComponentStyles({animated, timingDuration}),
+        [animated, timingDuration],
+    );
 
     const renderedTitle =
         title == null ? null : typeof title === "string" ? (
@@ -213,59 +232,64 @@ const keyframes = {
     },
 } as const;
 
-const componentStyles = StyleSheet.create({
-    dialog: {
-        borderRadius: theme.root.border.radius,
-        boxShadow: theme.dialog.shadow.default,
-        // Allows propagating the text color to all the children.
-        color: semanticColor.core.foreground.neutral.strong,
-        flexDirection: "row",
-        height: "auto",
-        maxHeight: "100vh",
-        maxWidth: 576,
-        overflow: "auto", // Prevent dialog from scrolling with background
-        position: "relative",
-        width: "93.75%",
-        willChange: "transform, opacity",
-
-        [breakpoint.mediaQuery.sm]: {
-            width: "100%",
-            height: "100vh",
+const getComponentStyles = ({
+    animated,
+    timingDuration,
+}: {
+    animated: boolean;
+    timingDuration: number;
+}) => {
+    return StyleSheet.create({
+        dialog: {
+            borderRadius: theme.root.border.radius,
+            boxShadow: theme.dialog.shadow.default,
+            // Allows propagating the text color to all the children.
+            color: semanticColor.core.foreground.neutral.strong,
+            flexDirection: "row",
+            height: "auto",
             maxHeight: "100vh",
+            maxWidth: 576,
+            overflow: "auto", // Prevent dialog from scrolling with background
+            position: "relative",
+            width: "93.75%",
+            willChange: "transform, opacity",
+
+            [breakpoint.mediaQuery.sm]: {
+                width: "100%",
+                height: "100vh",
+                maxHeight: "100vh",
+            },
         },
-    },
-    inlineStart: {
-        // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
-        animationName: keyframes.slideInFromStart,
-        animationDuration: "300ms",
-        animationTimingFunction: "linear",
-        animationFillMode: "forwards",
-        borderLeftRadius: border.radius.radius_0,
-        borderTopRadius: border.radius.radius_0,
-        // borderRadius: "0 8px 8px 0",
-    },
-    inlineEnd: {
-        // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
-        animationName: keyframes.slideInFromEnd,
-        animationDuration: "300ms",
-        animationTimingFunction: "linear",
-        animationFillMode: "forwards",
-        borderBottomRadius: border.radius.radius_0,
-        borderRightRadius: border.radius.radius_0,
-        // borderRadius: "8px 0 0 8px",
-    },
-    blockEnd: {
-        // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
-        animationName: keyframes.slideInFromBottom,
-        animationDuration: "300ms",
-        animationTimingFunction: "linear",
-        animationFillMode: "forwards",
-        borderBottomRadius: border.radius.radius_0,
-        borderLeftRadius: border.radius.radius_0,
-        borderRightRadius: border.radius.radius_080,
-        borderTopRadius: border.radius.radius_080,
-        // borderRadius: "8px 8px 0 0",
-    },
-});
+        inlineStart: {
+            // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
+            animationName: animated && keyframes.slideInFromStart,
+            animationDuration: `${timingDuration}ms`,
+            animationTimingFunction: "linear",
+            animationFillMode: "forwards",
+            borderLeftRadius: border.radius.radius_0,
+            borderTopRadius: border.radius.radius_0,
+        },
+        inlineEnd: {
+            // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
+            animationName: animated && keyframes.slideInFromEnd,
+            animationDuration: `${timingDuration}ms`,
+            animationTimingFunction: "linear",
+            animationFillMode: "forwards",
+            borderBottomRadius: border.radius.radius_0,
+            borderRightRadius: border.radius.radius_0,
+        },
+        blockEnd: {
+            // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
+            animationName: animated && keyframes.slideInFromBottom,
+            animationDuration: `${timingDuration}ms`,
+            animationTimingFunction: "linear",
+            animationFillMode: "forwards",
+            borderBottomRadius: border.radius.radius_0,
+            borderLeftRadius: border.radius.radius_0,
+            borderRightRadius: border.radius.radius_080,
+            borderTopRadius: border.radius.radius_080,
+        },
+    });
+};
 
 export default FlexibleDialog;

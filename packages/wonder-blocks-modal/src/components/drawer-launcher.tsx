@@ -41,6 +41,19 @@ type Props = Readonly<{
      */
     alignment: DrawerAlignment;
     /**
+     * Optional number of milliseconds for slide-in animation. Defaults to 400ms.
+     * Used to ensure timing of focused elements after modals are opened.
+     *
+     * Turned off when `animated` option is `false` for reduced-motion preferences.
+     */
+    timingDuration?: number;
+    /**
+     * Whether to include animation in the `FlexibleDialog` component. This should be
+     * false if the user has `prefers-reduced-motion` opted in. Defaults to
+     * `false`.
+     */
+    animated?: boolean;
+    /**
      * Enables the backdrop to dismiss the modal on click/tap
      */
     backdropDismissEnabled?: boolean;
