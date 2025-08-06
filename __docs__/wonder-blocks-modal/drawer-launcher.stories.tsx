@@ -49,10 +49,13 @@ const customViewports = {
 
 const DefaultModal = ({
     alignment,
+    animated,
 }: {
     alignment: DrawerAlignment;
+    animated?: boolean;
 }): ModalElement => (
     <FlexibleDialog
+        animated={animated}
         alignment={alignment}
         title="Single-line title"
         styles={{
@@ -114,9 +117,6 @@ export default {
                 large: allModes.large,
             },
         },
-        args: {
-            alignment: "inlineEnd",
-        },
     },
     argTypes: DrawerLauncherArgTypes,
 } as Meta<typeof DrawerLauncher>;
@@ -124,6 +124,9 @@ export default {
 type StoryComponentType = StoryObj<typeof DrawerLauncher>;
 
 export const Default: StoryComponentType = {
+    args: {
+        alignment: "inlineEnd",
+    },
     render: (args) => (
         <DrawerLauncher {...args} modal={DefaultModal}>
             {({openModal}) => (
@@ -142,13 +145,13 @@ Default.parameters = {
 
 /**
  *
- *  This is a basic modal launcher. Its child, the
-    button, has access to the `openModal` function via the
-    function-as-child pattern. It passes this into its `onClick`
-    function, which causes the modal to launch when the button
-    is clicked.
+ * An inlineStart-aligned drawer. Uses the `alignment` prop to slide in from the
+ * left in LTR writing mode and right in RTL writing mode.
  */
-export const Simple: StoryComponentType = {
+export const InlineStartAligned: StoryComponentType = {
+    args: {
+        alignment: "inlineStart",
+    },
     render: (args) => (
         <DrawerLauncher modal={DefaultModal} alignment={args.alignment}>
             {({openModal}) => (
@@ -158,7 +161,86 @@ export const Simple: StoryComponentType = {
     ),
 };
 
-Simple.parameters = {
+InlineStartAligned.parameters = {
+    chromatic: {
+        // All the examples for DrawerLauncher are behavior based, not visual.
+        disableSnapshot: true,
+    },
+};
+/**
+ *
+ * An inlineEnd-aligned drawer. Uses the `alignment` prop to slide in from the
+ * right in LTR writing mode and left in RTL writing mode.
+ */
+export const InlineEndAligned: StoryComponentType = {
+    args: {
+        alignment: "inlineEnd",
+    },
+    render: (args) => (
+        <DrawerLauncher modal={DefaultModal} alignment={args.alignment}>
+            {({openModal}) => (
+                <Button onClick={openModal}>Click me to open the modal</Button>
+            )}
+        </DrawerLauncher>
+    ),
+};
+
+InlineEndAligned.parameters = {
+    chromatic: {
+        // All the examples for DrawerLauncher are behavior based, not visual.
+        disableSnapshot: true,
+    },
+};
+
+/**
+ *
+ * An blockEnd-aligned drawer. Uses the `alignment` prop to slide in from the
+ * bottom in all writing modes, and a `timingDuration` of 400 milliseconds to
+ * allow more time for animating-in vertically.
+ */
+export const BlockEndAligned: StoryComponentType = {
+    args: {
+        alignment: "blockEnd",
+        timingDuration: 400,
+    },
+    render: (args) => (
+        <DrawerLauncher modal={DefaultModal} alignment={args.alignment}>
+            {({openModal}) => (
+                <Button onClick={openModal}>Click me to open the modal</Button>
+            )}
+        </DrawerLauncher>
+    ),
+};
+
+BlockEndAligned.parameters = {
+    chromatic: {
+        // All the examples for DrawerLauncher are behavior based, not visual.
+        disableSnapshot: true,
+    },
+};
+
+/**
+ *
+ * A drawer with `animated` set to false for reducing motion
+ */
+export const WithNoAnimation: StoryComponentType = {
+    args: {
+        alignment: "inlineStart",
+    },
+    render: (args) => (
+        <DrawerLauncher
+            modal={DefaultModal}
+            animated={false}
+            alignment={args.alignment}
+        >
+            {({openModal}) => (
+                <Button onClick={openModal}>Click me to open the modal</Button>
+            )}
+        </DrawerLauncher>
+    ),
+};
+
+WithNoAnimation.parameters = {
     chromatic: {
         // All the examples for DrawerLauncher are behavior based, not visual.
         disableSnapshot: true,
@@ -173,6 +255,9 @@ Simple.parameters = {
     `<DrawerLauncher>` element to false.
  */
 export const WithBackdropDismissDisabled: StoryComponentType = {
+    args: {
+        alignment: "inlineEnd",
+    },
     render: (args) => (
         <DrawerLauncher
             modal={DefaultModal}
