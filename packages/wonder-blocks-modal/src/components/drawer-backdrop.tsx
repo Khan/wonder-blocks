@@ -35,6 +35,12 @@ type Props = {
      * Note: animations are automatically disabled for reduced-motion preferences.
      */
     timingDuration?: number;
+    /**
+     * Whether to include animation in the `DrawerBackdrop` component.
+     * This should be false if the user has `prefers-reduced-motion` opted in.
+     * Defaults to `true`.
+     */
+    animated?: boolean;
 };
 
 /**
@@ -53,10 +59,15 @@ const DrawerBackdrop = ({
     initialFocusId,
     onCloseModal,
     alignment,
+    animated,
     timingDuration = 400,
 }: Props) => {
     const [mousePressedOutside, setMousePressedOutside] = React.useState(false);
     const backdropRef = React.useRef<HTMLDivElement>(null);
+
+    // If dialog opens with animation, handle focus management after specified duration.
+    // If no animation, immediately handle focus management.
+    const computedTimingDuration = animated ? timingDuration : 0;
 
     /**
      * Returns an element specified by the user
@@ -131,13 +142,13 @@ const DrawerBackdrop = ({
         if (firstFocusableElement) {
             setTimeout(() => {
                 firstFocusableElement.focus();
-            }, timingDuration + 1);
+            }, computedTimingDuration);
         }
     }, [
         getInitialFocusElement,
         getFirstFocusableElement,
         getDialogElement,
-        timingDuration,
+        computedTimingDuration,
     ]);
 
     /**

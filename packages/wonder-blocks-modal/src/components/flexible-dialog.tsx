@@ -42,7 +42,7 @@ type Props = AccessibleDialogProps & {
     /**
      * Whether to include animation in the `FlexibleDialog` component. This should be
      * false if the user has `prefers-reduced-motion` opted in. Defaults to
-     * `false`.
+     * `true`.
      */
     animated?: boolean;
     /**
