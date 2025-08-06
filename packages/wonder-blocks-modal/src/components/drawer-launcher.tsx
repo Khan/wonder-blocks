@@ -26,13 +26,18 @@ type Props = Readonly<{
      * Note: Don't call `closeModal` while rendering! It should be used to
      * respond to user intearction, like `onClick`.
      */
-    modal: ModalElement | ((props: {closeModal: () => void}) => ModalElement);
+    modal:
+        | ModalElement
+        | ((props: {
+              closeModal: () => void;
+              alignment: DrawerAlignment;
+          }) => ModalElement);
     /**
      * Positioning of the drawer. Uses logical properties to support
      * different writing modes:
-     * - `inline-block-start` / left in Left-To-Right
-     * - `inline-block-end` / right in Left-To-Right
-     * - `inset-block-end` / bottom
+     * - `inlineStart` / left in Left-To-Right
+     * - `inlineEnd` / right in Left-To-Right
+     * - `blockEnd` / bottom
      */
     alignment: DrawerAlignment;
     /**
@@ -84,7 +89,10 @@ type Props = Readonly<{
      * WARNING: This props should only be used when using the component as a
      * controlled component.
      */
-    children?: (arg1: {openModal: () => unknown}) => React.ReactNode;
+    children?: (arg1: {
+        openModal: () => unknown;
+        alignment?: DrawerAlignment;
+    }) => React.ReactNode;
 }> &
     WithActionSchedulerProps;
 
@@ -103,6 +111,7 @@ function DrawerLauncher(props: Props) {
         onClose,
         children,
         schedule,
+        alignment,
     } = props;
 
     // State for uncontrolled mode
@@ -184,10 +193,13 @@ function DrawerLauncher(props: Props) {
 
     const renderModal = React.useCallback(() => {
         if (typeof modal === "function") {
-            return modal({closeModal: handleCloseModal});
+            return modal({
+                closeModal: handleCloseModal,
+                alignment: alignment,
+            });
         }
         return modal;
-    }, [modal, handleCloseModal]);
+    }, [modal, handleCloseModal, alignment]);
 
     const renderedChildren = children ? children({openModal}) : null;
 
@@ -203,7 +215,7 @@ function DrawerLauncher(props: Props) {
                 ReactDOM.createPortal(
                     <FocusTrap style={styles.container}>
                         <DrawerBackdrop
-                            alignment={props.alignment}
+                            alignment={alignment}
                             initialFocusId={initialFocusId}
                             testId={testId}
                             onCloseModal={
