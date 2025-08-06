@@ -29,6 +29,12 @@ type Props = {
      * - `blockEnd` / bottom
      */
     alignment: DrawerAlignment;
+    /**
+     * Optional number of milliseconds for slide-in animation. Defaults to 400ms.
+     *
+     * Note: animations are automatically disabled for reduced-motion preferences.
+     */
+    timingDuration?: number;
 };
 
 /**
@@ -47,11 +53,10 @@ const DrawerBackdrop = ({
     initialFocusId,
     onCloseModal,
     alignment,
+    timingDuration = 400,
 }: Props) => {
     const [mousePressedOutside, setMousePressedOutside] = React.useState(false);
     const backdropRef = React.useRef<HTMLDivElement>(null);
-
-    const timingDuration = 400;
 
     /**
      * Returns an element specified by the user
@@ -126,9 +131,14 @@ const DrawerBackdrop = ({
         if (firstFocusableElement) {
             setTimeout(() => {
                 firstFocusableElement.focus();
-            }, 0);
+            }, timingDuration + 1);
         }
-    }, [getInitialFocusElement, getFirstFocusableElement, getDialogElement]);
+    }, [
+        getInitialFocusElement,
+        getFirstFocusableElement,
+        getDialogElement,
+        timingDuration,
+    ]);
 
     /**
      * When the user clicks on the gray backdrop area (i.e., the click came
@@ -172,20 +182,10 @@ const styles = StyleSheet.create({
         position: "fixed",
         left: 0,
         top: 0,
-
         width: "100%",
         height: "100%",
-
-        // If the modal ends up being too big for the viewport (e.g., the min
-        // height is triggered), add another scrollbar specifically for
-        // scrolling modal content.
-        //
-        // TODO(mdr): The specified behavior is that the modal should scroll
-        //     with the rest of the page, rather than separately, if overflow
-        //     turns out to be necessary. That sounds hard to do; punting for
-        //     now!
-        overflow: "auto",
-
+        display: "flex",
+        overflow: "hidden",
         background: semanticColor.surface.overlay,
     },
     inlineStart: {
