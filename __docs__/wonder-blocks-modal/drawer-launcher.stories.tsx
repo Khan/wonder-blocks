@@ -8,7 +8,7 @@ import {ActionMenu, ActionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {RadioGroup, Choice} from "@khanacademy/wonder-blocks-form";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
-import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {FlexibleDialog, DrawerLauncher} from "@khanacademy/wonder-blocks-modal";
 import packageConfig from "../../packages/wonder-blocks-modal/package.json";
@@ -19,6 +19,7 @@ import DrawerLauncherArgTypes from "./drawer-launcher.argtypes";
 import ComponentInfo from "../components/component-info";
 import {allModes} from "../../.storybook/modes";
 import TextField from "../../packages/wonder-blocks-form/src/components/text-field";
+import {reallyLongText} from "../components/text-for-testing";
 
 const customViewports = {
     phone: {
@@ -53,18 +54,7 @@ const DefaultModal = (): ModalElement => (
         }}
         content={
             <View>
-                <BodyText>
-                    {`Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit, sed do eiusmod tempor incididunt
-                    ut labore et dolore magna aliqua. Ut enim ad minim
-                    veniam, quis nostrud exercitation ullamco laboris
-                    nisi ut aliquip ex ea commodo consequat. Duis aute
-                    irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur.
-                    Excepteur sint occaecat cupidatat non proident,
-                    sunt in culpa qui officia deserunt mollit anim id
-                    est.`}
-                </BodyText>
+                <BodyText>{reallyLongText}</BodyText>
             </View>
         }
     />
@@ -104,6 +94,7 @@ export default {
             modes: {
                 small: allModes.small,
                 large: allModes.large,
+                thunderblocks: allModes.themeThunderBlocks,
             },
         },
     },
@@ -238,6 +229,57 @@ WithNoAnimation.parameters = {
 
 /**
  *
+ * A launcher with a really long FlexibleDialog, for testing overflow styles.
+ */
+export const WithReallyLongContent: StoryComponentType = {
+    args: {
+        alignment: "inlineEnd",
+    },
+    render: (args) => {
+        type CloseModalProps = {
+            closeModal: () => void;
+        };
+        const longModal = ({closeModal}: CloseModalProps) => (
+            <FlexibleDialog
+                title="Really long content area"
+                content={
+                    <View>
+                        <BodyText>{reallyLongText}</BodyText>
+                        <BodyText>{reallyLongText}</BodyText>
+                        <BodyText>{reallyLongText}</BodyText>
+                        <BodyText>{reallyLongText}</BodyText>
+                        <BodyText>{reallyLongText}</BodyText>
+                        <BodyText>{reallyLongText}</BodyText>
+                        <BodyText>{reallyLongText}</BodyText>
+                        <BodyText>{reallyLongText}</BodyText>
+                        <BodyText>{reallyLongText}</BodyText>
+                        <BodyText>{reallyLongText}</BodyText>
+                        <BodyText>{reallyLongText}</BodyText>
+                    </View>
+                }
+            />
+        );
+        return (
+            <DrawerLauncher alignment={args.alignment} modal={longModal}>
+                {({openModal}) => (
+                    <Button onClick={openModal}>
+                        Click me to open the modal
+                    </Button>
+                )}
+            </DrawerLauncher>
+        );
+    },
+};
+
+WithReallyLongContent.parameters = {
+    chromatic: {
+        // All the examples for DrawerLauncher are behavior based, not visual.
+        disableSnapshot: true,
+    },
+};
+
+/**
+ *
  *  This is an example in which the modal _cannot_
     be dismissed by clicking in in the backdrop. This is done by
     setting the `backdropDismissEnabled` prop on the
@@ -311,9 +353,7 @@ export const TriggeringProgrammatically: StoryComponentType = {
                             title="Triggered from action menu"
                             content={
                                 <View>
-                                    <Heading size="xxlarge">
-                                        Hello, world
-                                    </Heading>
+                                    <BodyText>Hello, world</BodyText>
                                 </View>
                             }
                         />
