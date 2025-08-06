@@ -7,6 +7,7 @@ import {breakpoint, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 import FlexiblePanel from "./flexible-panel";
 import theme from "../theme";
+import {DrawerAlignment} from "../util/types";
 
 // One of these three props is required for labeling the dialog:
 // `title`, `aria-label`, or `aria-labelledby`.
@@ -20,6 +21,14 @@ type AccessibleDialogProps =
     | {title?: never; "aria-label"?: never; "aria-labelledby": string};
 
 type Props = AccessibleDialogProps & {
+    /**
+     * Optional alignment for the dialog when used in a DrawerLauncher.
+     * Uses logical properties to support different writing modes:
+     * - `inlineStart` / left in Left-To-Right
+     * - `inlineEnd` / right in Left-To-Right
+     * - `blockEnd` / bottom
+     */
+    alignment?: DrawerAlignment;
     /**
      * An optional id parameter for the main heading. If one is not provided,
      * an ID will be generated.
@@ -116,6 +125,7 @@ const FlexibleDialog = React.forwardRef(function FlexibleDialog(
         testId,
         titleId,
         role = "dialog",
+        alignment,
         ...accessibilityProps
     } = props;
 

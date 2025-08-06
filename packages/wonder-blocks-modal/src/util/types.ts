@@ -13,11 +13,9 @@ import * as React from "react";
 export type ModalElement = React.ReactElement | null;
 
 /**
- * The position of the modal, with support for RTL (Right-to-Left).
- * Inset-inline-start is left-aligned in LTR, inset-inline-end is right-aligned,
- * Inset-block-end is bottom-aligned, and center (veritcal and horizontal) is the default.
+ * The position of the modal, with logical support for RTL (Right-to-Left).
+ * `inlineStart` is left-aligned in LTR,
+ * `inlineEnd` is right-aligned in LTR,
+ * `blockEnd` is bottom-aligned.
  */
-export type DrawerAlignment =
-    | "inset-inline-start"
-    | "inset-inline-end"
-    | "inset-block-end";
+export type DrawerAlignment = "inlineStart" | "inlineEnd" | "blockEnd";
