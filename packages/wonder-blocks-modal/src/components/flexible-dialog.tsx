@@ -1,11 +1,13 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import {View} from "@khanacademy/wonder-blocks-core";
 
-import {breakpoint} from "@khanacademy/wonder-blocks-tokens";
+import {breakpoint, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
-import ModalDialog from "./modal-dialog";
 import FlexiblePanel from "./flexible-panel";
+import theme from "../theme";
+import {DrawerAlignment} from "../util/types";
 
 // One of these three props is required for labeling the dialog:
 // `title`, `aria-label`, or `aria-labelledby`.
@@ -19,6 +21,30 @@ type AccessibleDialogProps =
     | {title?: never; "aria-label"?: never; "aria-labelledby": string};
 
 type Props = AccessibleDialogProps & {
+    /**
+     * Optional alignment for the dialog when used in a DrawerLauncher.
+     * Uses logical properties to support different writing modes:
+     * - `inlineStart` / left in Left-To-Right
+     * - `inlineEnd` / right in Left-To-Right
+     * - `blockEnd` / bottom
+     */
+    alignment?: DrawerAlignment;
+    /**
+     * Optional number of milliseconds for slide-in animation. Defaults to 400ms.
+     *
+     * Turned off when `animated` option is `false` for reduced-motion preferences.
+     */
+    timingDuration?: number;
+    /**
+     * Whether to include animation in the `FlexibleDialog` component. This should be
+     * false if the user has `prefers-reduced-motion` opted in. Defaults to
+     * `true`.
+     */
+    animated?: boolean;
+    /**
+     * Whether the dialog is exiting. Used to trigger exit animations.
+     */
+    isExiting?: boolean;
     /**
      * An optional id parameter for the main heading. If one is not provided,
      * an ID will be generated.
@@ -55,7 +81,7 @@ type Props = AccessibleDialogProps & {
         closeButton?: StyleType;
     };
     /**
-     * Test ID used for e2e testing. This ID will be passed down to the Dialog.
+     * Test ID used for e2e testing.
      */
     testId?: string;
     /**
@@ -67,8 +93,9 @@ type Props = AccessibleDialogProps & {
 type RenderProps = {
     title: React.ReactNode | string;
 };
+
 /**
- * A more flexible modal variant with fewer layout constraints. It can receive
+ * A flexible modal variant with fewer layout constraints. It can receive
  * a custom background (image or color), a title for the main heading, and that
  * title can optionally render in the content area through a render prop.
  *
@@ -101,19 +128,33 @@ type RenderProps = {
  * />
  * ```
  */
-const FlexibleDialog = ({
-    onClose,
-    title,
-    content,
-    styles,
-    closeButtonVisible = true,
-    testId,
-    titleId,
-    role,
-    ...accessibilityProps
-}: Props): React.ReactElement => {
+const FlexibleDialog = React.forwardRef(function FlexibleDialog(
+    props: Props,
+    ref: React.ForwardedRef<HTMLDivElement>,
+): React.ReactElement {
+    const {
+        onClose,
+        title,
+        content,
+        styles,
+        closeButtonVisible = true,
+        testId,
+        titleId,
+        role = "dialog",
+        alignment,
+        animated = true,
+        timingDuration = 400,
+        isExiting,
+        ...accessibilityProps
+    } = props;
+
     const uniqueId = React.useId();
     const headingId = titleId ?? uniqueId;
+
+    const componentStyles = React.useMemo(
+        () => getComponentStyles({animated, timingDuration, isExiting}),
+        [animated, timingDuration, isExiting],
+    );
 
     const renderedTitle =
         title == null ? null : typeof title === "string" ? (
@@ -127,41 +168,165 @@ const FlexibleDialog = ({
         );
 
     return (
-        <ModalDialog
-            style={[componentStyles.dialog, styles?.root]}
-            testId={testId}
-            aria-label={accessibilityProps["aria-label"]}
-            aria-labelledby={headingId}
-            aria-describedby={accessibilityProps["aria-describedby"]}
-            role={role}
+        <View
+            style={[
+                componentStyles.dialog,
+                alignment && componentStyles[alignment],
+                styles?.root,
+            ]}
         >
-            <FlexiblePanel
-                styles={{root: styles?.panel}}
-                onClose={onClose}
-                title={renderedTitle}
-                content={content}
-                closeButtonVisible={closeButtonVisible}
+            <View
+                role={role}
+                aria-modal="true"
+                aria-label={accessibilityProps["aria-label"]}
+                aria-labelledby={headingId}
+                aria-describedby={accessibilityProps["aria-describedby"]}
+                ref={ref}
                 testId={testId}
-            />
-        </ModalDialog>
+            >
+                <FlexiblePanel
+                    styles={{
+                        panel: styles?.panel,
+                        closeButton: styles?.closeButton,
+                    }}
+                    onClose={onClose}
+                    title={renderedTitle}
+                    content={content}
+                    closeButtonVisible={closeButtonVisible}
+                    testId={testId}
+                />
+            </View>
+        </View>
     );
-};
+});
 
-const componentStyles = StyleSheet.create({
-    dialog: {
-        width: "93.75%",
-        maxWidth: 576,
-        height: "auto",
-        maxHeight: "100vh",
-        position: "relative",
-        overflow: "auto", // Prevent dialog from scrolling with background
-
-        [breakpoint.mediaQuery.sm]: {
-            width: "100%",
-            height: "100vh",
-            maxHeight: "100vh",
+const keyframes = {
+    slideInFromStart: {
+        "0%": {
+            transform: "translate3d(-100%, 0, 0)",
+            opacity: 0,
+        },
+        "100%": {
+            transform: "translate3d(0, 0, 0)",
+            opacity: 1,
         },
     },
-});
+    slideOutToStart: {
+        "0%": {
+            transform: "translate3d(0, 0, 0)",
+            opacity: 1,
+        },
+        "100%": {
+            transform: "translate3d(-100%, 0, 0)",
+            opacity: 0,
+        },
+    },
+    slideInFromEnd: {
+        "0%": {
+            transform: "translate3d(100%, 0, 0)",
+            opacity: 0,
+        },
+        "100%": {
+            transform: "translate3d(0, 0, 0)",
+            opacity: 1,
+        },
+    },
+    slideOutToEnd: {
+        "0%": {
+            transform: "translate3d(0, 0, 0)",
+            opacity: 1,
+        },
+        "100%": {
+            transform: "translate3d(100%, 0, 0)",
+            opacity: 0,
+        },
+    },
+    slideInFromBottom: {
+        "0%": {
+            transform: "translate3d(0, 100%, 0)",
+            opacity: 0,
+        },
+        "100%": {
+            transform: "translate3d(0, 0, 0)",
+            opacity: 1,
+        },
+    },
+    slideOutToBottom: {
+        "0%": {
+            transform: "translate3d(0, 0, 0)",
+            opacity: 1,
+        },
+        "100%": {
+            transform: "translate3d(0, 100%, 0)",
+            opacity: 0,
+        },
+    },
+} as const;
+
+const getComponentStyles = ({
+    animated,
+    timingDuration,
+    isExiting,
+}: {
+    animated: boolean;
+    timingDuration: number;
+    isExiting?: boolean;
+}) => {
+    return StyleSheet.create({
+        dialog: {
+            borderRadius: theme.root.border.radius,
+            boxShadow: theme.dialog.shadow.default,
+            // Allows propagating the text color to all the children.
+            color: semanticColor.core.foreground.neutral.strong,
+            flexDirection: "row",
+            height: "auto",
+            maxHeight: "100vh",
+            maxWidth: 576,
+            overflow: "auto", // Prevent dialog from scrolling with background
+            position: "relative",
+            width: "93.75%",
+            willChange: "transform, opacity",
+
+            [breakpoint.mediaQuery.sm]: {
+                width: "100%",
+                height: "100vh",
+                maxHeight: "100vh",
+            },
+        },
+        inlineStart: {
+            // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
+            animationName:
+                animated &&
+                (isExiting
+                    ? keyframes.slideOutToStart
+                    : keyframes.slideInFromStart),
+            animationDuration: `${timingDuration}ms`,
+            animationTimingFunction: "linear",
+            animationFillMode: "forwards",
+        },
+        inlineEnd: {
+            // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
+            animationName:
+                animated &&
+                (isExiting
+                    ? keyframes.slideOutToEnd
+                    : keyframes.slideInFromEnd),
+            animationDuration: `${timingDuration}ms`,
+            animationTimingFunction: "linear",
+            animationFillMode: "forwards",
+        },
+        blockEnd: {
+            // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
+            animationName:
+                animated &&
+                (isExiting
+                    ? keyframes.slideOutToBottom
+                    : keyframes.slideInFromBottom),
+            animationDuration: `${timingDuration}ms`,
+            animationTimingFunction: "linear",
+            animationFillMode: "forwards",
+        },
+    });
+};
 
 export default FlexibleDialog;
