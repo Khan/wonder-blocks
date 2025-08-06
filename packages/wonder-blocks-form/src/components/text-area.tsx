@@ -180,11 +180,6 @@ type TextAreaProps = AriaProps & {
      * will be used.
      */
     required?: boolean | string;
-    /**
-     * Specifies the resizing behaviour for the textarea. Defaults to both
-     * behaviour. For more details, see the [CSS resize property values MDN docs](https://developer.mozilla.org/en-US/docs/Web/CSS/resize#values)
-     */
-    resizeType?: "horizontal" | "vertical" | "both" | "none";
 };
 
 const StyledTextarea = addStyle("textarea");
@@ -232,7 +227,6 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             validate,
             onValidate,
             required,
-            resizeType,
             rootStyle,
             error,
             instantValidation = true,
@@ -281,7 +275,6 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                     style={[
                         styles.textarea,
                         typographyStyles.BodyTextMediumMediumWeight,
-                        resizeType && resizeStyles[resizeType],
                         styles.default,
                         disabled && styles.disabled,
                         hasError && styles.error,
@@ -361,21 +354,6 @@ const styles = StyleSheet.create({
         "::placeholder": {
             color: semanticColor.input.default.placeholder,
         },
-    },
-});
-
-const resizeStyles = StyleSheet.create({
-    both: {
-        resize: "both",
-    },
-    none: {
-        resize: "none",
-    },
-    horizontal: {
-        resize: "horizontal",
-    },
-    vertical: {
-        resize: "vertical",
     },
 });
 
