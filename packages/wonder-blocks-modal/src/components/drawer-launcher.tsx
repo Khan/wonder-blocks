@@ -11,6 +11,7 @@ import DrawerBackdrop from "./drawer-backdrop";
 import ScrollDisabler from "./scroll-disabler";
 import type {DrawerAlignment, ModalElement} from "../util/types";
 import ModalContext from "./modal-context";
+import FlexibleDialog from "./flexible-dialog";
 
 type Props = Readonly<{
     /**
@@ -33,6 +34,7 @@ type Props = Readonly<{
               alignment: DrawerAlignment;
               animated?: boolean;
               timingDuration?: number;
+              isExiting?: boolean;
           }) => ModalElement);
     /**
      * Positioning of the drawer. Uses logical properties to support
@@ -116,8 +118,11 @@ type Props = Readonly<{
 const defaultProps = {
     backdropDismissEnabled: true,
 } as const;
-
-function DrawerLauncher(props: Props) {
+/**
+ *
+ * Some docs for testing.
+ */
+const DrawerLauncher = (props: Props) => {
     const {
         modal,
         backdropDismissEnabled = defaultProps.backdropDismissEnabled,
@@ -130,11 +135,13 @@ function DrawerLauncher(props: Props) {
         schedule,
         alignment,
         animated = true,
-        timingDuration,
+        timingDuration = 400,
     } = props;
 
     // State for uncontrolled mode
     const [uncontrolledOpened, setUncontrolledOpened] = React.useState(false);
+    // State to track exit animation
+    const [isExiting, setIsExiting] = React.useState(false);
 
     // Ref to store the last focused element
     const lastElementFocusedOutsideModalRef = React.useRef<HTMLElement | null>(
@@ -197,13 +204,26 @@ function DrawerLauncher(props: Props) {
     }, [closedFocusId, schedule]);
 
     const handleCloseModal = React.useCallback(() => {
-        if (typeof controlledOpened === "boolean") {
-            onClose?.();
+        if (animated) {
+            setIsExiting(true);
+            setTimeout(() => {
+                if (typeof controlledOpened === "boolean") {
+                    onClose?.();
+                } else {
+                    setUncontrolledOpened(false);
+                }
+                setIsExiting(false);
+                returnFocus();
+            }, timingDuration + 1);
         } else {
-            setUncontrolledOpened(false);
+            if (typeof controlledOpened === "boolean") {
+                onClose?.();
+            } else {
+                setUncontrolledOpened(false);
+            }
+            returnFocus();
         }
-        returnFocus();
-    }, [controlledOpened, onClose, returnFocus]);
+    }, [controlledOpened, onClose, returnFocus, animated, timingDuration]);
 
     const openModal = React.useCallback(() => {
         saveLastElementFocused();
@@ -212,17 +232,54 @@ function DrawerLauncher(props: Props) {
 
     const renderModal = React.useCallback(() => {
         if (typeof modal === "function") {
-            return modal({
+            const renderedModal = modal({
                 closeModal: handleCloseModal,
-                alignment: alignment,
-                animated: animated,
-                timingDuration: timingDuration,
+                alignment,
+                animated,
+                timingDuration,
+            });
+
+            // If the rendered modal is a FlexibleDialog, inject the isExiting prop
+            if (renderedModal && renderedModal.type === FlexibleDialog) {
+                return React.cloneElement(renderedModal, {
+                    isExiting,
+                    alignment,
+                    animated,
+                    timingDuration,
+                    ...renderedModal.props,
+                });
+            }
+            return renderedModal;
+        }
+
+        // If the modal is a FlexibleDialog element, inject the isExiting prop
+        if (modal && modal.type === FlexibleDialog) {
+            return React.cloneElement(modal, {
+                isExiting,
+                alignment,
+                animated,
+                timingDuration,
+                ...modal.props,
             });
         }
         return modal;
-    }, [modal, handleCloseModal, alignment, animated, timingDuration]);
+    }, [
+        modal,
+        handleCloseModal,
+        alignment,
+        animated,
+        timingDuration,
+        isExiting,
+    ]);
 
-    const renderedChildren = children ? children({openModal}) : null;
+    const renderedChildren = children
+        ? children({
+              openModal,
+              alignment,
+              animated,
+              timingDuration,
+          })
+        : null;
 
     const body = document.body;
     if (!body) {
@@ -232,7 +289,7 @@ function DrawerLauncher(props: Props) {
     return (
         <ModalContext.Provider value={{closeModal: handleCloseModal}}>
             {renderedChildren}
-            {opened &&
+            {(opened || isExiting) &&
                 ReactDOM.createPortal(
                     <FocusTrap style={styles.container}>
                         <DrawerBackdrop
@@ -257,7 +314,7 @@ function DrawerLauncher(props: Props) {
             {opened && <ScrollDisabler />}
         </ModalContext.Provider>
     );
-}
+};
 
 /** A component that, when mounted, calls `onClose` when Escape is pressed. */
 function DrawerLauncherKeypressListener({onClose}: {onClose: () => unknown}) {
@@ -283,4 +340,39 @@ const styles = StyleSheet.create({
     },
 });
 
+/**
+ * A drawer modal launcher intended for the FlexibleDialog component. It can
+ * align a dialog on the left (inlineStart), right (inlineEnd), or bottom of
+ * the screen.
+ * - Slide animations can be turned off with the `animated` prop.
+ * - Timing of animations can be fine-tuned with the `timingDuration` prop, used on
+ * enter and exit animations. It is also used to coordinate timing of focus management
+ * on open and close.
+ *
+ * ### Usage
+ *
+ * ```jsx
+ * import {DrawerLauncher} from "@khanacademy/wonder-blocks-modal";
+ * import {FlexibleDialog} from "@khanacademy/wonder-blocks-modal";
+ * import {BodyText} from "@khanacademy/wonder-blocks-typography";
+ *
+ * <DrawerLauncher
+ *      onClose={handleClose}
+ *      opened={opened}
+ *      alignment="inlineStart"
+ *      modal={({closeModal}) => (
+ *          <FlexibleDialog
+ *              title="Assign Mastery Mission"
+ *              content={
+ *                  <View>
+ *                      <BodyText>
+ *                          Hello, world
+ *                      </BodyText>
+ *                  </View>
+ *              }
+ *          />
+ *      )}
+ * />
+ * ```
+ */
 export default withActionScheduler(DrawerLauncher);

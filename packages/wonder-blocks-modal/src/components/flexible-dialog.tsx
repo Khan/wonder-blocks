@@ -3,11 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {View} from "@khanacademy/wonder-blocks-core";
 
-import {
-    border,
-    breakpoint,
-    semanticColor,
-} from "@khanacademy/wonder-blocks-tokens";
+import {breakpoint, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 import FlexiblePanel from "./flexible-panel";
 import theme from "../theme";
@@ -45,6 +41,10 @@ type Props = AccessibleDialogProps & {
      * `true`.
      */
     animated?: boolean;
+    /**
+     * Whether the dialog is exiting. Used to trigger exit animations.
+     */
+    isExiting?: boolean;
     /**
      * An optional id parameter for the main heading. If one is not provided,
      * an ID will be generated.
@@ -144,6 +144,7 @@ const FlexibleDialog = React.forwardRef(function FlexibleDialog(
         alignment,
         animated = true,
         timingDuration = 400,
+        isExiting,
         ...accessibilityProps
     } = props;
 
@@ -151,8 +152,8 @@ const FlexibleDialog = React.forwardRef(function FlexibleDialog(
     const headingId = titleId ?? uniqueId;
 
     const componentStyles = React.useMemo(
-        () => getComponentStyles({animated, timingDuration}),
-        [animated, timingDuration],
+        () => getComponentStyles({animated, timingDuration, isExiting}),
+        [animated, timingDuration, isExiting],
     );
 
     const renderedTitle =
@@ -210,6 +211,16 @@ const keyframes = {
             opacity: 1,
         },
     },
+    slideOutToStart: {
+        "0%": {
+            transform: "translate3d(0, 0, 0)",
+            opacity: 1,
+        },
+        "100%": {
+            transform: "translate3d(-100%, 0, 0)",
+            opacity: 0,
+        },
+    },
     slideInFromEnd: {
         "0%": {
             transform: "translate3d(100%, 0, 0)",
@@ -218,6 +229,16 @@ const keyframes = {
         "100%": {
             transform: "translate3d(0, 0, 0)",
             opacity: 1,
+        },
+    },
+    slideOutToEnd: {
+        "0%": {
+            transform: "translate3d(0, 0, 0)",
+            opacity: 1,
+        },
+        "100%": {
+            transform: "translate3d(100%, 0, 0)",
+            opacity: 0,
         },
     },
     slideInFromBottom: {
@@ -230,14 +251,26 @@ const keyframes = {
             opacity: 1,
         },
     },
+    slideOutToBottom: {
+        "0%": {
+            transform: "translate3d(0, 0, 0)",
+            opacity: 1,
+        },
+        "100%": {
+            transform: "translate3d(0, 100%, 0)",
+            opacity: 0,
+        },
+    },
 } as const;
 
 const getComponentStyles = ({
     animated,
     timingDuration,
+    isExiting,
 }: {
     animated: boolean;
     timingDuration: number;
+    isExiting?: boolean;
 }) => {
     return StyleSheet.create({
         dialog: {
@@ -262,32 +295,36 @@ const getComponentStyles = ({
         },
         inlineStart: {
             // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
-            animationName: animated && keyframes.slideInFromStart,
+            animationName:
+                animated &&
+                (isExiting
+                    ? keyframes.slideOutToStart
+                    : keyframes.slideInFromStart),
             animationDuration: `${timingDuration}ms`,
             animationTimingFunction: "linear",
             animationFillMode: "forwards",
-            borderLeftRadius: border.radius.radius_0,
-            borderTopRadius: border.radius.radius_0,
         },
         inlineEnd: {
             // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
-            animationName: animated && keyframes.slideInFromEnd,
+            animationName:
+                animated &&
+                (isExiting
+                    ? keyframes.slideOutToEnd
+                    : keyframes.slideInFromEnd),
             animationDuration: `${timingDuration}ms`,
             animationTimingFunction: "linear",
             animationFillMode: "forwards",
-            borderBottomRadius: border.radius.radius_0,
-            borderRightRadius: border.radius.radius_0,
         },
         blockEnd: {
             // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
-            animationName: animated && keyframes.slideInFromBottom,
+            animationName:
+                animated &&
+                (isExiting
+                    ? keyframes.slideOutToBottom
+                    : keyframes.slideInFromBottom),
             animationDuration: `${timingDuration}ms`,
             animationTimingFunction: "linear",
             animationFillMode: "forwards",
-            borderBottomRadius: border.radius.radius_0,
-            borderLeftRadius: border.radius.radius_0,
-            borderRightRadius: border.radius.radius_080,
-            borderTopRadius: border.radius.radius_080,
         },
     });
 };
