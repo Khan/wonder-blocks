@@ -24,9 +24,9 @@ type Props = {
     /**
      * Positioning of the drawer. Uses logical properties to support
      * different writing modes:
-     * - `inline-block-start` / left in Left-To-Right
-     * - `inline-block-end` / right in Left-To-Right
-     * - `inset-block-end` / bottom
+     * - `inlineStart` / left in Left-To-Right
+     * - `inlineEnd` / right in Left-To-Right
+     * - `blockEnd` / bottom
      */
     alignment: DrawerAlignment;
 };
@@ -51,14 +51,7 @@ const DrawerBackdrop = ({
     const [mousePressedOutside, setMousePressedOutside] = React.useState(false);
     const backdropRef = React.useRef<HTMLDivElement>(null);
 
-    const alignmentStyles: Record<
-        DrawerAlignment,
-        ReturnType<typeof StyleSheet.create>["drawerPositioner"]
-    > = {
-        "inset-inline-start": styles.insetInlineStartAligned,
-        "inset-inline-end": styles.insetInlineEndAligned,
-        "inset-block-end": styles.insetBlockEndAligned,
-    } as const;
+    const timingDuration = 400;
 
     /**
      * Returns an element specified by the user
@@ -163,7 +156,7 @@ const DrawerBackdrop = ({
     return (
         <View
             ref={backdropRef}
-            style={[styles.drawerPositioner, alignmentStyles[alignment]]}
+            style={[styles.drawerPositioner, styles[alignment]]}
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
             testId={testId}
@@ -195,15 +188,15 @@ const styles = StyleSheet.create({
 
         background: semanticColor.surface.overlay,
     },
-    insetInlineStartAligned: {
+    inlineStart: {
         alignItems: "flex-start",
-        justifyContent: "center",
+        justifyContent: "flex-start",
     },
-    insetInlineEndAligned: {
+    inlineEnd: {
         alignItems: "flex-end",
-        justifyContent: "center",
+        justifyContent: "flex-start",
     },
-    insetBlockEndAligned: {
+    blockEnd: {
         alignItems: "center",
         justifyContent: "flex-end",
     },

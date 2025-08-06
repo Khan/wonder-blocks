@@ -13,7 +13,10 @@ import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 import {FlexibleDialog, DrawerLauncher} from "@khanacademy/wonder-blocks-modal";
 import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 
-import type {ModalElement} from "../../packages/wonder-blocks-modal/src/util/types";
+import type {
+    DrawerAlignment,
+    ModalElement,
+} from "../../packages/wonder-blocks-modal/src/util/types";
 import DrawerLauncherArgTypes from "./drawer-launcher.argtypes";
 
 import ComponentInfo from "../components/component-info";
@@ -44,8 +47,13 @@ const customViewports = {
     },
 } as const;
 
-const DefaultModal = (): ModalElement => (
+const DefaultModal = ({
+    alignment,
+}: {
+    alignment: DrawerAlignment;
+}): ModalElement => (
     <FlexibleDialog
+        alignment={alignment}
         title="Single-line title"
         styles={{
             root: styles.fullHeightDialogRoot,
@@ -106,6 +114,9 @@ export default {
                 large: allModes.large,
             },
         },
+        args: {
+            alignment: "inlineEnd",
+        },
     },
     argTypes: DrawerLauncherArgTypes,
 } as Meta<typeof DrawerLauncher>;
@@ -137,13 +148,15 @@ Default.parameters = {
     function, which causes the modal to launch when the button
     is clicked.
  */
-export const Simple: StoryComponentType = () => (
-    <DrawerLauncher modal={DefaultModal} alignment="inset-block-end">
-        {({openModal}) => (
-            <Button onClick={openModal}>Click me to open the modal</Button>
-        )}
-    </DrawerLauncher>
-);
+export const Simple: StoryComponentType = {
+    render: (args) => (
+        <DrawerLauncher modal={DefaultModal} alignment={args.alignment}>
+            {({openModal}) => (
+                <Button onClick={openModal}>Click me to open the modal</Button>
+            )}
+        </DrawerLauncher>
+    ),
+};
 
 Simple.parameters = {
     chromatic: {
@@ -159,17 +172,19 @@ Simple.parameters = {
     setting the `backdropDismissEnabled` prop on the
     `<DrawerLauncher>` element to false.
  */
-export const WithBackdropDismissDisabled: StoryComponentType = () => (
-    <DrawerLauncher
-        modal={DefaultModal}
-        backdropDismissEnabled={false}
-        alignment="inset-block-end"
-    >
-        {({openModal}) => (
-            <Button onClick={openModal}>Click me to open the modal</Button>
-        )}
-    </DrawerLauncher>
-);
+export const WithBackdropDismissDisabled: StoryComponentType = {
+    render: (args) => (
+        <DrawerLauncher
+            modal={DefaultModal}
+            backdropDismissEnabled={false}
+            alignment={args.alignment}
+        >
+            {({openModal}) => (
+                <Button onClick={openModal}>Click me to open the modal</Button>
+            )}
+        </DrawerLauncher>
+    ),
+};
 
 WithBackdropDismissDisabled.parameters = {
     chromatic: {
@@ -191,41 +206,47 @@ WithBackdropDismissDisabled.parameters = {
     (it can only have `Item` elements as children), so launching a
     modal from a dropdown must be done programatically.
  */
-export const TriggeringProgrammatically: StoryComponentType = () => {
-    const [opened, setOpened] = React.useState(false);
+export const TriggeringProgrammatically: StoryComponentType = {
+    render: (args) => {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const [opened, setOpened] = React.useState(false);
 
-    const handleOpen = () => {
-        setOpened(true);
-    };
+        const handleOpen = () => {
+            setOpened(true);
+        };
 
-    const handleClose = () => {
-        setOpened(false);
-    };
+        const handleClose = () => {
+            setOpened(false);
+        };
 
-    return (
-        <View>
-            <ActionMenu menuText="actions">
-                <ActionItem label="Open modal" onClick={handleOpen} />
-            </ActionMenu>
+        return (
+            <View>
+                <ActionMenu menuText="actions">
+                    <ActionItem label="Open modal" onClick={handleOpen} />
+                </ActionMenu>
 
-            <DrawerLauncher
-                onClose={handleClose}
-                opened={opened}
-                alignment="inset-block-end"
-                modal={({closeModal}) => (
-                    <FlexibleDialog
-                        title="Triggered from action menu"
-                        content={
-                            <View>
-                                <Heading size="xxlarge">Hello, world</Heading>
-                            </View>
-                        }
-                    />
-                )}
-                // Note that this modal launcher has no children.
-            />
-        </View>
-    );
+                <DrawerLauncher
+                    onClose={handleClose}
+                    opened={opened}
+                    alignment={args.alignment}
+                    modal={({closeModal}) => (
+                        <FlexibleDialog
+                            title="Triggered from action menu"
+                            alignment={args.alignment}
+                            content={
+                                <View>
+                                    <Heading size="xxlarge">
+                                        Hello, world
+                                    </Heading>
+                                </View>
+                            }
+                        />
+                    )}
+                    // Note that this modal launcher has no children.
+                />
+            </View>
+        );
+    },
 };
 
 TriggeringProgrammatically.parameters = {
@@ -257,33 +278,39 @@ TriggeringProgrammatically.parameters = {
     labeled "Top of page (should not receieve focus)," then the focus
     is on the page body, and the `closedFocusId` did not work.
  */
-export const WithClosedFocusId: StoryComponentType = () => {
-    const [opened, setOpened] = React.useState(false);
+export const WithClosedFocusId: StoryComponentType = {
+    render: (args) => {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const [opened, setOpened] = React.useState(false);
 
-    const handleOpen = () => {
-        setOpened(true);
-    };
+        const handleOpen = () => {
+            setOpened(true);
+        };
 
-    const handleClose = () => {
-        setOpened(false);
-    };
+        const handleClose = () => {
+            setOpened(false);
+        };
 
-    return (
-        <View style={{gap: 20}}>
-            <Button>Top of page (should not receive focus)</Button>
-            <Button id="button-to-focus-on">Focus here after close</Button>
-            <ActionMenu menuText="actions">
-                <ActionItem label="Open modal" onClick={() => handleOpen()} />
-            </ActionMenu>
-            <DrawerLauncher
-                alignment="inset-block-end"
-                onClose={() => handleClose()}
-                opened={opened}
-                closedFocusId="button-to-focus-on"
-                modal={DefaultModal}
-            />
-        </View>
-    );
+        return (
+            <View style={{gap: 20}}>
+                <Button>Top of page (should not receive focus)</Button>
+                <Button id="button-to-focus-on">Focus here after close</Button>
+                <ActionMenu menuText="actions">
+                    <ActionItem
+                        label="Open modal"
+                        onClick={() => handleOpen()}
+                    />
+                </ActionMenu>
+                <DrawerLauncher
+                    alignment={args.alignment}
+                    onClose={() => handleClose()}
+                    opened={opened}
+                    closedFocusId="button-to-focus-on"
+                    modal={DefaultModal}
+                />
+            </View>
+        );
+    },
 };
 
 WithClosedFocusId.parameters = {
@@ -303,58 +330,66 @@ WithClosedFocusId.parameters = {
     by default, but the bottom text field receives focus instead
     since its ID is passed into the `initialFocusId` prop.
  */
-export const WithInitialFocusId: StoryComponentType = () => {
-    const [value, setValue] = React.useState("Previously stored value");
-    const [value2, setValue2] = React.useState("");
+export const WithInitialFocusId: StoryComponentType = {
+    render: (args) => {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const [value, setValue] = React.useState("Previously stored value");
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const [value2, setValue2] = React.useState("");
 
-    // @ts-expect-error [FEI-5019] - TS7031 - Binding element 'closeModal' implicitly has an 'any' type.
-    const modalInitialFocus = ({closeModal}) => (
-        <FlexibleDialog
-            title="Single-line title"
-            content={
-                <View>
-                    <View style={{gap: sizing.size_240}}>
-                        <LabeledField
-                            label="Label"
-                            field={
-                                <TextField value={value} onChange={setValue} />
-                            }
-                        />
-                        <LabeledField
-                            label="Label 2"
-                            field={
-                                <TextField
-                                    value={value2}
-                                    onChange={setValue2}
-                                    id="text-field-to-be-focused"
-                                />
-                            }
-                        />
+        // @ts-expect-error [FEI-5019] - TS7031 - Binding element 'closeModal' implicitly has an 'any' type.
+        const modalInitialFocus = ({closeModal, alignment}) => (
+            <FlexibleDialog
+                alignment={alignment}
+                title="Single-line title"
+                content={
+                    <View>
+                        <View style={{gap: sizing.size_240}}>
+                            <LabeledField
+                                label="Label"
+                                field={
+                                    <TextField
+                                        value={value}
+                                        onChange={setValue}
+                                    />
+                                }
+                            />
+                            <LabeledField
+                                label="Label 2"
+                                field={
+                                    <TextField
+                                        value={value2}
+                                        onChange={setValue2}
+                                        id="text-field-to-be-focused"
+                                    />
+                                }
+                            />
+                        </View>
+                        <View style={styles.row}>
+                            <Button kind="tertiary" onClick={closeModal}>
+                                Cancel
+                            </Button>
+                            <Button onClick={closeModal}>Submit</Button>
+                        </View>
                     </View>
-                    <View style={styles.row}>
-                        <Button kind="tertiary" onClick={closeModal}>
-                            Cancel
-                        </Button>
-                        <Button onClick={closeModal}>Submit</Button>
-                    </View>
-                </View>
-            }
-        />
-    );
+                }
+            />
+        );
 
-    return (
-        <DrawerLauncher
-            alignment="inset-block-end"
-            modal={modalInitialFocus}
-            initialFocusId="text-field-to-be-focused-field"
-        >
-            {({openModal}) => (
-                <Button onClick={openModal}>
-                    Open modal with initial focus
-                </Button>
-            )}
-        </DrawerLauncher>
-    );
+        return (
+            <DrawerLauncher
+                alignment={args.alignment}
+                modal={modalInitialFocus}
+                initialFocusId="text-field-to-be-focused-field"
+            >
+                {({openModal, alignment}) => (
+                    <Button onClick={openModal}>
+                        Open modal with initial focus
+                    </Button>
+                )}
+            </DrawerLauncher>
+        );
+    },
 };
 
 WithInitialFocusId.parameters = {
@@ -367,8 +402,9 @@ WithInitialFocusId.parameters = {
 /**
  * Focus trap navigation
  */
-const SubModal = () => (
+const SubModal = ({alignment}: {alignment: DrawerAlignment}) => (
     <FlexibleDialog
+        alignment={alignment}
         title="Submodal"
         content={
             <View style={{gap: sizing.size_160}}>
@@ -404,70 +440,85 @@ const SubModal = () => (
     first modal so we can test how the focus trap works when multiple
     modals are open.
  */
-export const FocusTrap: StoryComponentType = () => {
-    const [selectedValue, setSelectedValue] = React.useState<any>(null);
+export const FocusTrap: StoryComponentType = {
+    render: (args) => {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const [selectedValue, setSelectedValue] = React.useState<any>(null);
 
-    // @ts-expect-error [FEI-5019] - TS7031 - Binding element 'closeModal' implicitly has an 'any' type.
-    const modalInitialFocus = ({closeModal}) => (
-        <FlexibleDialog
-            title="Testing the focus trap on multiple modals"
-            closeButtonVisible={false}
-            content={
-                <View>
-                    <View style={{gap: sizing.size_240}}>
-                        <BodyText id="focus-trap-story-body-text">
-                            This modal demonstrates how the focus trap works
-                            with form elements (or focusable elements). Also
-                            demonstrates how the focus trap is moved to the next
-                            modal when it is opened (focus/tap on the `Open
-                            another modal` button).
-                        </BodyText>
-                        <RadioGroup
-                            label="A RadioGroup component inside a modal"
-                            description="Some description"
-                            groupName="some-group-name"
-                            onChange={setSelectedValue}
-                            selectedValue={selectedValue ?? ""}
-                        >
-                            <Choice
-                                label="Choice 1"
-                                value="some-choice-value"
-                            />
-                            <Choice
-                                label="Choice 2"
-                                value="some-choice-value-2"
-                            />
-                        </RadioGroup>
+        // @ts-expect-error [FEI-5019] - TS7031 - Binding element 'closeModal' implicitly has an 'any' type.
+        const modalInitialFocus = ({closeModal, alignment}) => (
+            <FlexibleDialog
+                alignment={alignment}
+                title="Testing the focus trap on multiple modals"
+                closeButtonVisible={false}
+                content={
+                    <View>
+                        <View style={{gap: sizing.size_240}}>
+                            <BodyText id="focus-trap-story-body-text">
+                                This modal demonstrates how the focus trap works
+                                with form elements (or focusable elements). Also
+                                demonstrates how the focus trap is moved to the
+                                next modal when it is opened (focus/tap on the
+                                `Open another modal` button).
+                            </BodyText>
+                            <RadioGroup
+                                label="A RadioGroup component inside a modal"
+                                description="Some description"
+                                groupName="some-group-name"
+                                onChange={setSelectedValue}
+                                selectedValue={selectedValue ?? ""}
+                            >
+                                <Choice
+                                    label="Choice 1"
+                                    value="some-choice-value"
+                                />
+                                <Choice
+                                    label="Choice 2"
+                                    value="some-choice-value-2"
+                                />
+                            </RadioGroup>
+                        </View>
+                        <View style={styles.row}>
+                            <DrawerLauncher
+                                modal={SubModal}
+                                alignment={args.alignment}
+                            >
+                                {({openModal, alignment}) => (
+                                    <Button
+                                        kind="secondary"
+                                        onClick={openModal}
+                                    >
+                                        Open another modal
+                                    </Button>
+                                )}
+                            </DrawerLauncher>
+
+                            <Button
+                                onClick={closeModal}
+                                disabled={!selectedValue}
+                            >
+                                Next
+                            </Button>
+                        </View>
                     </View>
-                    <View style={styles.row}>
-                        <DrawerLauncher
-                            modal={SubModal}
-                            alignment="inset-block-end"
-                        >
-                            {({openModal}) => (
-                                <Button kind="secondary" onClick={openModal}>
-                                    Open another modal
-                                </Button>
-                            )}
-                        </DrawerLauncher>
+                }
+                aria-describedby="focus-trap-story-body-text"
+            />
+        );
 
-                        <Button onClick={closeModal} disabled={!selectedValue}>
-                            Next
-                        </Button>
-                    </View>
-                </View>
-            }
-            aria-describedby="focus-trap-story-body-text"
-        />
-    );
-
-    return (
-        <DrawerLauncher modal={modalInitialFocus} alignment="inset-block-end">
-            {({openModal}) => (
-                <Button onClick={openModal}>Open modal with RadioGroup</Button>
-            )}
-        </DrawerLauncher>
-    );
+        return (
+            <DrawerLauncher
+                modal={modalInitialFocus}
+                alignment={args.alignment}
+            >
+                {({openModal}) => (
+                    <Button onClick={openModal}>
+                        Open modal with RadioGroup
+                    </Button>
+                )}
+            </DrawerLauncher>
+        );
+    },
 };
 
 FocusTrap.storyName = "Navigation with focus trap";

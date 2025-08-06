@@ -3,8 +3,7 @@ import type {ArgTypes} from "@storybook/react";
 export default {
     alignment: {
         control: "radio",
-        options: ["inset-inline-start", "inset-inline-end", "inset-block-end"],
-        defaultValue: "inset-inline-start",
+        options: ["inlineStart", "inlineEnd", "blockEnd"],
         description: "Position of the drawer (supports RTL)",
     },
     modal: {
