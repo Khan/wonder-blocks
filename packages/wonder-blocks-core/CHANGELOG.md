@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-core
 
+## 12.4.0
+
+### Minor Changes
+
+- 1334e74: Adding dir to View's type to support RTL usage.
+
 ## 12.3.0
 
 ### Minor Changes
