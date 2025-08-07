@@ -89,6 +89,10 @@ export type TextViewSharedProps = {
      * Optional CSS classes for the entire dropdown component.
      */
     className?: string;
+    /**
+     * The text direction for the element.
+     */
+    dir?: "ltr" | "rtl" | "auto";
 
     htmlFor?: string;
     tabIndex?: number;

@@ -57,17 +57,19 @@ type Props = TextViewSharedProps & {
  * import {View} from "@khanacademy/wonder-blocks-core";
  *
  * <View>This is a View!</View>
+ * <View dir="rtl">This is a right-to-left View!</View>
  * ```
  */
 
 const View: React.ForwardRefExoticComponent<
     Props & React.RefAttributes<HTMLElement>
 > = React.forwardRef<HTMLElement, Props>(function View(props, ref) {
-    const {testId, tag = "div", ...restProps} = props;
+    const {testId, tag = "div", dir, ...restProps} = props;
     const commonProps = {
         ...restProps,
         // Note: this matches the default test id that Testing Library uses!
         "data-testid": testId,
+        dir,
     } as const;
 
     const StyledTag = useMemo(() => addStyle(tag, styles.default), [tag]);
