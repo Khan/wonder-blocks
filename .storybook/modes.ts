@@ -29,3 +29,8 @@ export const allModes = {
         direction: "rtl",
     },
 };
+
+export const themeModes = {
+    default: allModes.themeDefault,
+    thunderblocks: allModes.themeThunderBlocks,
+};

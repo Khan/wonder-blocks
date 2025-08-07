@@ -129,16 +129,20 @@ const withThemeSwitcher: Decorator = (
     Story,
     {globals: {theme}, parameters: {enableRenderStateRootDecorator}},
 ) => {
+    // Keep track of the theme locally so we can re-render the story after the
+    // attribute is updated.
+    const [localTheme, setLocalTheme] = React.useState(null);
     React.useEffect(() => {
         if (theme) {
             // Switch the body class based on the theme.
             document.body.setAttribute(THEME_DATA_ATTRIBUTE, theme);
+            setLocalTheme(theme);
         }
     }, [theme]);
 
     if (enableRenderStateRootDecorator) {
         return (
-            <RenderStateRoot>
+            <RenderStateRoot key={localTheme}>
                 <ThemeSwitcherContext.Provider value={theme}>
                     <ThemeSwitcher theme={theme}>
                         <Story />
@@ -149,7 +153,7 @@ const withThemeSwitcher: Decorator = (
     }
 
     return (
-        <ThemeSwitcherContext.Provider value={theme}>
+        <ThemeSwitcherContext.Provider value={theme} key={localTheme}>
             <ThemeSwitcher theme={theme}>
                 <Story />
             </ThemeSwitcher>

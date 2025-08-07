@@ -14,6 +14,8 @@ export default {
     tags: ["!dev", "!autodocs"],
 };
 
+const valuePrefix = "semanticColor.";
+
 const ColorGroupStory = ({
     category,
     group,
@@ -25,6 +27,7 @@ const ColorGroupStory = ({
                 category={category}
                 group={group}
                 includeExample={includeExample}
+                valuePrefix={valuePrefix}
             />
         </View>
     );
@@ -94,11 +97,23 @@ export const FeedbackCritical = () => {
 };
 
 export const Focus = () => {
-    return <ColorGroup colors={semanticColor.focus} group="focus" />;
+    return (
+        <ColorGroup
+            colors={semanticColor.focus}
+            group="focus"
+            valuePrefix={valuePrefix}
+        />
+    );
 };
 
 export const Surface = () => {
-    return <ColorGroup colors={semanticColor.surface} group="surface" />;
+    return (
+        <ColorGroup
+            colors={semanticColor.surface}
+            group="surface"
+            valuePrefix={valuePrefix}
+        />
+    );
 };
 
 export const Input = () => {
@@ -177,160 +192,22 @@ export const LearningShadow = () => {
 };
 
 export const Khanmigo = () => {
-    return <ColorGroup colors={semanticColor.khanmigo} group="khanmigo" />;
+    return (
+        <ColorGroup
+            colors={semanticColor.khanmigo}
+            group="khanmigo"
+            valuePrefix={valuePrefix}
+        />
+    );
 };
 
 export const Mastery = () => {
-    return <ColorGroup colors={semanticColor.mastery} group="mastery" />;
-};
-
-export const ActionPrimaryProgressive = () => {
-    return (
-        <ColorGroupStory
-            category={semanticColor.action.primary.progressive}
-            group="action.primary.progressive"
-            includeExample={true}
-        />
-    );
-};
-
-export const ActionPrimaryDestructive = () => {
-    return (
-        <ColorGroupStory
-            category={semanticColor.action.primary.destructive}
-            group="action.primary.destructive"
-            includeExample={true}
-        />
-    );
-};
-
-export const ActionPrimaryNeutral = () => {
-    return (
-        <ColorGroupStory
-            category={semanticColor.action.primary.neutral}
-            group="action.primary.neutral"
-            includeExample={true}
-        />
-    );
-};
-
-export const ActionPrimaryDisabled = () => {
     return (
         <ColorGroup
-            colors={semanticColor.action.primary.disabled}
-            group="action.primary.disabled"
-            variant="compact"
-            style={styles.gridCompact}
+            colors={semanticColor.mastery}
+            group="mastery"
+            valuePrefix={valuePrefix}
         />
-    );
-};
-
-export const ActionSecondaryProgressive = () => {
-    return (
-        <ColorGroupStory
-            category={semanticColor.action.secondary.progressive}
-            group="action.secondary.progressive"
-            includeExample={true}
-        />
-    );
-};
-
-export const ActionSecondaryDestructive = () => {
-    return (
-        <ColorGroupStory
-            category={semanticColor.action.secondary.destructive}
-            group="action.secondary.destructive"
-            includeExample={true}
-        />
-    );
-};
-
-export const ActionSecondaryNeutral = () => {
-    return (
-        <ColorGroupStory
-            category={semanticColor.action.secondary.neutral}
-            group="action.secondary.neutral"
-            includeExample={true}
-        />
-    );
-};
-
-export const ActionSecondaryDisabled = () => {
-    return (
-        <ColorGroup
-            colors={semanticColor.action.secondary.disabled}
-            group="action.secondary.disabled"
-            variant="compact"
-            style={styles.gridCompact}
-        />
-    );
-};
-
-export const ActionTertiaryProgressive = () => {
-    return (
-        <ColorGroupStory
-            category={semanticColor.action.tertiary.progressive}
-            group="action.tertiary.progressive"
-            includeExample={true}
-        />
-    );
-};
-
-export const ActionTertiaryDestructive = () => {
-    return (
-        <ColorGroupStory
-            category={semanticColor.action.tertiary.destructive}
-            group="action.tertiary.destructive"
-            includeExample={true}
-        />
-    );
-};
-
-export const ActionTertiaryNeutral = () => {
-    return (
-        <ColorGroupStory
-            category={semanticColor.action.tertiary.neutral}
-            group="action.tertiary.neutral"
-            includeExample={true}
-        />
-    );
-};
-
-export const ActionTertiaryDisabled = () => {
-    return (
-        <ColorGroup
-            colors={semanticColor.action.tertiary.disabled}
-            group="action.tertiary.disabled"
-            variant="compact"
-            style={styles.gridCompact}
-        />
-    );
-};
-
-export const Status = () => {
-    return (
-        <View style={styles.grid}>
-            <ColorGroup
-                colors={semanticColor.status.critical}
-                group="status.critical"
-            />
-            <ColorGroup
-                colors={semanticColor.status.warning}
-                group="status.warning"
-            />
-            <ColorGroup
-                colors={semanticColor.status.success}
-                group="status.success"
-            />
-            <ColorGroup
-                colors={semanticColor.status.notice}
-                group="status.notice"
-            />
-            <ColorGroup
-                colors={semanticColor.status.neutral}
-                group="status.neutral"
-            />
-        </View>
     );
 };
 

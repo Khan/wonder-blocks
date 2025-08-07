@@ -3,7 +3,6 @@ import {StyleSheet} from "aphrodite";
 
 import {StyleType, View} from "@khanacademy/wonder-blocks-core";
 import {
-    Caption,
     Footnote,
     LabelLarge,
     LabelSmall,
@@ -13,9 +12,11 @@ import {
     color,
     font,
     semanticColor,
+    sizing,
     spacing,
 } from "@khanacademy/wonder-blocks-tokens";
 import {getTokenName, maybeGetCssVariableInfo} from "./tokens-util";
+import {CopyButton} from "./copy-button";
 
 type Variant = "primitive" | "semantic" | "compact";
 
@@ -36,6 +37,10 @@ type Props = {
      * Custom styles for the component.
      */
     style?: StyleType;
+    /**
+     * The prefix to use for the color value.
+     */
+    valuePrefix?: string;
 };
 
 export function ColorGroup({
@@ -43,6 +48,7 @@ export function ColorGroup({
     group,
     style,
     variant = "semantic",
+    valuePrefix,
 }: Props) {
     return (
         <View style={[styles.group, style]}>
@@ -52,6 +58,7 @@ export function ColorGroup({
                     name={group + "." + name}
                     value={value}
                     variant={variant}
+                    valuePrefix={valuePrefix}
                 />
             ))}
         </View>
@@ -62,9 +69,10 @@ type ColorProps = {
     name: string;
     value: string;
     variant: Variant;
+    valuePrefix?: string;
 };
 
-function Color({name, value, variant}: ColorProps) {
+function Color({name, value, variant, valuePrefix}: ColorProps) {
     function renderInfo() {
         const rawValue = maybeGetCssVariableInfo(value).value;
 
@@ -75,16 +83,9 @@ function Color({name, value, variant}: ColorProps) {
                     <LabelLarge style={styles.capitalized}>
                         {tokenName.at(tokenName.length - 1)}
                     </LabelLarge>
-                    <LabelSmall
-                        style={{
-                            fontStyle: "italic",
-                        }}
-                    >
-                        {name}
-                    </LabelSmall>
+                    <LabelSmall>{name}</LabelSmall>
 
                     <Footnote>
-                        Primitive:{" "}
                         <em>{getTokenName(color, rawValue) || rawValue}</em>
                     </Footnote>
                 </View>
@@ -107,7 +108,14 @@ function Color({name, value, variant}: ColorProps) {
         }
 
         return (
-            <>
+            <View
+                style={{
+                    paddingInlineEnd: sizing.size_120,
+                    paddingBlockEnd: sizing.size_080,
+                    paddingBlockStart: sizing.size_040,
+                    paddingInlineStart: sizing.size_040,
+                }}
+            >
                 <LabelSmall
                     style={{
                         fontWeight: font.weight.bold,
@@ -115,14 +123,10 @@ function Color({name, value, variant}: ColorProps) {
                 >
                     {name}
                 </LabelSmall>
-                <Caption>
-                    Primitive:{" "}
+                <Footnote>
                     <em>{getTokenName(color, rawValue) || rawValue}</em>
-                </Caption>
-                <LabelSmall>
-                    Reference: <Footnote style={styles.code}>{value}</Footnote>
-                </LabelSmall>
-            </>
+                </Footnote>
+            </View>
         );
     }
 
@@ -147,6 +151,9 @@ function Color({name, value, variant}: ColorProps) {
             </View>
 
             <View style={styles.info}>{renderInfo()}</View>
+            <View style={styles.copyButtonContainer}>
+                <CopyButton value={`${valuePrefix}${name}`} kind="tertiary" />
+            </View>
         </View>
     );
 }
@@ -165,12 +172,17 @@ type ActionColorGroupProps = {
      * This is useful for showing how the color looks in a UI context.
      */
     includeExample?: boolean;
+    /**
+     * The prefix to use for the color value.
+     */
+    valuePrefix?: string;
 };
 
 export function ActionColorGroup({
     category,
     group,
     includeExample = true,
+    valuePrefix,
 }: ActionColorGroupProps) {
     return Object.entries(category).map(([state, colorGroup], index) => (
         <View style={styles.actionGroup} key={index}>
@@ -180,6 +192,7 @@ export function ActionColorGroup({
                 colors={colorGroup}
                 group={group + "." + state}
                 variant="compact"
+                valuePrefix={valuePrefix}
             />
         </View>
     ));
@@ -269,5 +282,10 @@ const styles = StyleSheet.create({
     },
     capitalized: {
         textTransform: "capitalize",
+    },
+    copyButtonContainer: {
+        position: "absolute",
+        insetBlockEnd: sizing.size_040,
+        insetInlineEnd: sizing.size_040,
     },
 });
