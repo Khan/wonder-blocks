@@ -22,6 +22,10 @@ To install Wonder Blocks, you need to run the following commands:
 
 Installs project dependencies
 
+#### `pnpm dev`
+
+Builds all the packages and watches for changes
+
 #### `pnpm start`
 
 Runs the docs in dev mode
