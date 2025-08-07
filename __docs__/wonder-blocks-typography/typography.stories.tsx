@@ -316,37 +316,36 @@ export const NotoForNonLatin: StoryObj<any> = () => {
                 ))}
             </SingleSelect>
             <View>
-                {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
                 <Title dir={dir}>{text}</Title>
-                {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
+
                 <HeadingLarge dir={dir}>{text}</HeadingLarge>
-                {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
+
                 <HeadingMedium dir={dir}>{text}</HeadingMedium>
-                {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
+
                 <HeadingSmall dir={dir}>{text}</HeadingSmall>
-                {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
+
                 <HeadingXSmall dir={dir}>{text}</HeadingXSmall>
-                {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
+
                 <BodySerifBlock dir={dir}>{text}</BodySerifBlock>
-                {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
+
                 <BodySerif dir={dir}>{text}</BodySerif>
-                {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
+
                 <BodyMonospace dir={dir}>{text}</BodyMonospace>
-                {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
+
                 <Body dir={dir}>{text}</Body>
-                {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
+
                 <LabelLarge dir={dir}>{text}</LabelLarge>
-                {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
+
                 <LabelMedium dir={dir}>{text}</LabelMedium>
-                {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
+
                 <LabelSmall dir={dir}>{text}</LabelSmall>
-                {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
+
                 <LabelXSmall dir={dir}>{text}</LabelXSmall>
-                {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
+
                 <Tagline dir={dir}>{text}</Tagline>
-                {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
+
                 <Caption dir={dir}>{text}</Caption>
-                {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
+
                 <Footnote dir={dir}>{text}</Footnote>
             </View>
         </View>

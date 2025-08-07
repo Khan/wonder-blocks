@@ -14,6 +14,19 @@ export default {
         },
     },
 
+    dir: {
+        description: "The text direction for the element.",
+        control: {
+            type: "select",
+            options: ["ltr", "rtl", "auto"],
+        },
+        table: {
+            type: {
+                summary: '"ltr" | "rtl" | "auto"',
+            },
+        },
+    },
+
     id: {
         description: "An optional id attribute.",
         table: {
