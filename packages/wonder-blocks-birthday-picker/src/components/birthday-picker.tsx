@@ -361,7 +361,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
 
     monthsShort(): string[] {
         const format = new Intl.DateTimeFormat(
-            this.props.locale || navigator.language,
+            this.props.locale ?? navigator.language,
             {
                 month: "short",
             },
