@@ -7,7 +7,7 @@ import {
     addStyle,
     View,
 } from "@khanacademy/wonder-blocks-core";
-import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {border, font, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 import {useId} from "react";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
@@ -213,7 +213,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             name,
             className,
             autoFocus,
-            rows,
+            rows = 2,
             spellCheck,
             wrap,
             minLength,
@@ -279,6 +279,14 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                         disabled && styles.disabled,
                         hasError && styles.error,
                         readOnly && styles.readOnly,
+                        rows && {
+                            // Calculate the size of x number of rows, including
+                            // padding and border. We do this because the `row`
+                            // attribute is not used when `field-sizing` is also
+                            // used.
+                            // Min height = (number of rows * line height) + (2 * vertical padding) + (2 * border width)
+                            minHeight: `calc((${rows} * ${font.body.lineHeight.medium}) + (2 * ${theme.field.layout.paddingBlock}) + (2 * ${border.width.thin}))`,
+                        },
                         style,
                     ]}
                     value={value}
@@ -289,7 +297,6 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                     autoComplete={autoComplete}
                     name={name}
                     autoFocus={autoFocus}
-                    rows={rows}
                     spellCheck={spellCheck}
                     wrap={wrap}
                     minLength={minLength}
@@ -316,8 +323,11 @@ const styles = StyleSheet.create({
         boxSizing: "border-box",
         paddingInline: theme.field.layout.paddingInline,
         paddingBlock: theme.field.layout.paddingBlock,
-        // This minHeight is equivalent to when the textarea has one row
-        minHeight: theme.field.sizing.height,
+        // Disable the resize control
+        resize: "none",
+        // For browsers that support field-sizing, set it to content so that
+        // the textarea can grow to fit the content
+        ["fieldSizing" as any]: "content",
     },
     readOnly: {
         background: semanticColor.input.readOnly.background,
