@@ -206,10 +206,11 @@ const DrawerLauncher = (props: Props) => {
 
     const handleCloseModal = React.useCallback(() => {
         if (animated) {
+            // If component is animated, allow time for exit animations
             setIsExiting(true);
             setTimeout(() => {
+                setIsExiting(false);
                 if (typeof controlledOpened === "boolean") {
-                    setIsExiting(false);
                     onClose?.();
                 } else {
                     setUncontrolledOpened(false);
@@ -218,6 +219,7 @@ const DrawerLauncher = (props: Props) => {
                 returnFocus();
             }, timingDuration);
         } else {
+            // For non-animated case, cleanup immediately
             if (typeof controlledOpened === "boolean") {
                 onClose?.();
             } else {
@@ -293,29 +295,37 @@ const DrawerLauncher = (props: Props) => {
     return (
         <ModalContext.Provider value={{closeModal: handleCloseModal}}>
             {renderedChildren}
-            {(opened || isExiting) &&
-                ReactDOM.createPortal(
-                    <FocusTrap style={styles.container}>
-                        <DrawerBackdrop
-                            alignment={alignment}
-                            animated={animated}
-                            initialFocusId={initialFocusId}
-                            testId={testId}
-                            onCloseModal={
-                                backdropDismissEnabled
-                                    ? handleCloseModal
-                                    : () => {}
-                            }
-                        >
-                            {renderModal()}
-                        </DrawerBackdrop>
-                    </FocusTrap>,
-                    body,
-                )}
-            {(opened || isExiting) && (
-                <DrawerLauncherKeypressListener onClose={handleCloseModal} />
+            {/* Only render when opened (and not exiting) or when animating out */}
+            {(opened && !isExiting) || (opened && isExiting && animated)
+                ? ReactDOM.createPortal(
+                      <FocusTrap style={styles.container}>
+                          <DrawerBackdrop
+                              alignment={alignment}
+                              animated={animated}
+                              initialFocusId={initialFocusId}
+                              testId={testId}
+                              isExiting={isExiting}
+                              onCloseModal={
+                                  backdropDismissEnabled
+                                      ? handleCloseModal
+                                      : () => {}
+                              }
+                          >
+                              {renderModal()}
+                          </DrawerBackdrop>
+                      </FocusTrap>,
+                      body,
+                  )
+                : null}
+            {/* Only keep event listeners while actually open */}
+            {opened && !isExiting && (
+                <>
+                    <DrawerLauncherKeypressListener
+                        onClose={handleCloseModal}
+                    />
+                    <ScrollDisabler />
+                </>
             )}
-            {(opened || isExiting) && <ScrollDisabler />}
         </ModalContext.Provider>
     );
 };

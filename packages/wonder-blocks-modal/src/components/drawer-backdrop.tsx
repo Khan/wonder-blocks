@@ -41,6 +41,10 @@ type Props = {
      * Defaults to `true`.
      */
     animated?: boolean;
+    /**
+     * Whether the drawer is exiting. Used to trigger exit animations.
+     */
+    isExiting?: boolean;
 };
 
 /**
@@ -61,6 +65,7 @@ const DrawerBackdrop = ({
     alignment,
     animated,
     timingDuration = 400,
+    isExiting = false,
 }: Props) => {
     const [mousePressedOutside, setMousePressedOutside] = React.useState(false);
     const backdropRef = React.useRef<HTMLDivElement>(null);
@@ -158,7 +163,9 @@ const DrawerBackdrop = ({
      */
     const handleMouseDown = (e: React.SyntheticEvent) => {
         // Confirm that it is the backdrop that is being clicked, not the child
-        setMousePressedOutside(e.target === e.currentTarget);
+        if (e.target === e.currentTarget) {
+            setMousePressedOutside(true);
+        }
     };
 
     const handleMouseUp = (e: React.SyntheticEvent) => {
@@ -177,7 +184,11 @@ const DrawerBackdrop = ({
     return (
         <View
             ref={backdropRef}
-            style={[styles.drawerPositioner, styles[alignment]]}
+            style={[
+                styles.drawerPositioner,
+                styles[alignment],
+                animated && (isExiting ? styles.fadeOut : styles.fadeIn),
+            ]}
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
             testId={testId}
@@ -187,6 +198,25 @@ const DrawerBackdrop = ({
         </View>
     );
 };
+
+const keyframes = {
+    fadeIn: {
+        "0%": {
+            opacity: 0,
+        },
+        "100%": {
+            opacity: 1,
+        },
+    },
+    fadeOut: {
+        "0%": {
+            opacity: 1,
+        },
+        "100%": {
+            opacity: 0,
+        },
+    },
+} as const;
 
 const styles = StyleSheet.create({
     drawerPositioner: {
@@ -210,6 +240,20 @@ const styles = StyleSheet.create({
     blockEnd: {
         alignItems: "center",
         justifyContent: "flex-end",
+    },
+    fadeIn: {
+        // @ts-expect-error [FEI-5019] - `animationName` expects a string not an object
+        animationName: keyframes.fadeIn,
+        animationDuration: "400ms",
+        animationTimingFunction: "linear",
+        animationFillMode: "forwards",
+    },
+    fadeOut: {
+        // @ts-expect-error [FEI-5019] - `animationName` expects a string not an object
+        animationName: keyframes.fadeOut,
+        animationDuration: "400ms",
+        animationTimingFunction: "linear",
+        animationFillMode: "forwards",
     },
 });
 

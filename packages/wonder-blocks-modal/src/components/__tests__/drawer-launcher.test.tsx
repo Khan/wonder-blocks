@@ -631,5 +631,221 @@ describe("DrawerLauncher", () => {
                 {timeout: 200}, // A bit longer than animation duration
             );
         });
+
+        test("Uncontrolled modal is removed from DOM after closing", async () => {
+            // Arrange
+            render(
+                <DrawerLauncher
+                    alignment="inlineEnd"
+                    animated={false}
+                    modal={
+                        <FlexibleDialog
+                            title="Animation test"
+                            content={<div data-testid="modal-content" />}
+                        />
+                    }
+                    onClose={() => {}}
+                >
+                    {({openModal}: any) => <button onClick={openModal} />}
+                </DrawerLauncher>,
+            );
+
+            // Act
+            // Launch the modal.
+            await userEvent.click(await screen.findByRole("button"));
+
+            // Verify modal is in the DOM and scroll is disabled
+            const dialog = await screen.findByRole("dialog");
+            expect(dialog).toBeInTheDocument();
+
+            const closeButton = await screen.findByRole("button", {
+                name: "Close modal",
+            });
+            await userEvent.click(closeButton);
+
+            // Assert - with no animation, removal should be immediate
+            await expect(dialog).not.toBeInTheDocument();
+        });
+
+        test("Scroll is re-enabled after closing uncontrolled modal", async () => {
+            // Arrange
+            render(
+                <DrawerLauncher
+                    alignment="inlineEnd"
+                    animated={false}
+                    modal={
+                        <FlexibleDialog
+                            title="Animation test"
+                            content={<div data-testid="modal-content" />}
+                        />
+                    }
+                    onClose={() => {}}
+                >
+                    {({openModal}: any) => <button onClick={openModal} />}
+                </DrawerLauncher>,
+            );
+
+            // Act
+            // Launch the modal.
+            await userEvent.click(await screen.findByRole("button"));
+
+            expect(document.body).toHaveStyle("overflow: hidden");
+
+            const closeButton = await screen.findByRole("button", {
+                name: "Close modal",
+            });
+            await userEvent.click(closeButton);
+
+            // Assert - with no animation, removal should be immediate
+            await expect(document.body).not.toHaveStyle("overflow: hidden");
+        });
+
+        test("Controlled modal is removed from DOM after closing", async () => {
+            // Arrange
+            const TestComponent = () => {
+                const [opened, setOpened] = React.useState(true);
+                return (
+                    <DrawerLauncher
+                        alignment="inlineEnd"
+                        animated={false}
+                        modal={
+                            <FlexibleDialog
+                                title="Animation test"
+                                content={<div data-testid="modal-content" />}
+                            />
+                        }
+                        opened={opened}
+                        onClose={() => setOpened(false)}
+                    />
+                );
+            };
+
+            render(<TestComponent />);
+
+            // Act
+            const closeButton = await screen.findByRole("button", {
+                name: "Close modal",
+            });
+            await userEvent.click(closeButton);
+
+            // Assert - with no animation, removal should be immediate
+            expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+        });
+
+        test("Scroll is re-enabled after closing controlled modal", async () => {
+            // Arrange
+            const TestComponent = () => {
+                const [opened, setOpened] = React.useState(true);
+                return (
+                    <DrawerLauncher
+                        alignment="inlineEnd"
+                        animated={false}
+                        modal={
+                            <FlexibleDialog
+                                title="Animation test"
+                                content={<div data-testid="modal-content" />}
+                            />
+                        }
+                        opened={opened}
+                        onClose={() => setOpened(false)}
+                    />
+                );
+            };
+
+            // Act
+            render(<TestComponent />);
+
+            // Assert
+            expect(document.body).toHaveStyle("overflow: hidden");
+
+            const closeButton = await screen.findByRole("button", {
+                name: "Close modal",
+            });
+            await userEvent.click(closeButton);
+
+            // Assert - with no animation, removal should be immediate
+            expect(document.body).not.toHaveStyle("overflow: hidden");
+        });
+
+        test("Controlled modal is removed from DOM after animation", async () => {
+            // Arrange
+            const TestComponent = () => {
+                const [opened, setOpened] = React.useState(true);
+                return (
+                    <DrawerLauncher
+                        alignment="inlineEnd"
+                        animated={true}
+                        timingDuration={100} // Short duration for test
+                        modal={
+                            <FlexibleDialog
+                                title="Animation test"
+                                content={<div data-testid="modal-content" />}
+                            />
+                        }
+                        opened={opened}
+                        onClose={() => setOpened(false)}
+                    />
+                );
+            };
+
+            render(<TestComponent />);
+
+            // Act
+            const closeButton = await screen.findByRole("button", {
+                name: "Close modal",
+            });
+            await userEvent.click(closeButton);
+
+            // Assert - with animation, need to wait for cleanup
+            await waitFor(
+                () => {
+                    expect(
+                        screen.queryByRole("dialog"),
+                    ).not.toBeInTheDocument();
+                },
+                {timeout: 200}, // A bit longer than animation duration
+            );
+        });
+
+        test("Scroll is re-enabled after animated close of controlled modal", async () => {
+            // Arrange
+            const TestComponent = () => {
+                const [opened, setOpened] = React.useState(true);
+                return (
+                    <DrawerLauncher
+                        alignment="inlineEnd"
+                        animated={true}
+                        timingDuration={100} // Short duration for test
+                        modal={
+                            <FlexibleDialog
+                                title="Animation test"
+                                content={<div data-testid="modal-content" />}
+                            />
+                        }
+                        opened={opened}
+                        onClose={() => setOpened(false)}
+                    />
+                );
+            };
+
+            render(<TestComponent />);
+
+            // Verify modal is in the DOM and scroll is disabled
+            expect(document.body).toHaveStyle("overflow: hidden");
+
+            // Act
+            const closeButton = await screen.findByRole("button", {
+                name: "Close modal",
+            });
+            await userEvent.click(closeButton);
+
+            // Assert - with animation, need to wait for cleanup
+            await waitFor(
+                () => {
+                    expect(document.body).not.toHaveStyle("overflow: hidden");
+                },
+                {timeout: 200},
+            );
+        });
     });
 });
