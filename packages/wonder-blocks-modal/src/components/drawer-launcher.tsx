@@ -115,8 +115,12 @@ type Props = Readonly<{
 }> &
     WithActionSchedulerProps;
 
+// Set a default timing duration for animations and focus management. Also used for tests.
+export const DEFAULT_TIMING_DURATION = 400;
+
 const defaultProps = {
     backdropDismissEnabled: true,
+    defaultTimingDuration: DEFAULT_TIMING_DURATION,
 } as const;
 /**
  *
@@ -135,7 +139,7 @@ const DrawerLauncher = (props: Props) => {
         schedule,
         alignment,
         animated = true,
-        timingDuration = 400,
+        timingDuration = defaultProps.defaultTimingDuration,
     } = props;
 
     // State for uncontrolled mode
@@ -237,28 +241,29 @@ const DrawerLauncher = (props: Props) => {
                 alignment,
                 animated,
                 timingDuration,
+                isExiting,
             });
 
-            // If the rendered modal is a FlexibleDialog, inject the isExiting prop
+            // If the rendered modal is a FlexibleDialog, only inject animation props
             if (renderedModal && renderedModal.type === FlexibleDialog) {
                 return React.cloneElement(renderedModal, {
-                    isExiting,
                     alignment,
                     animated,
                     timingDuration,
+                    isExiting,
                     ...renderedModal.props,
                 });
             }
             return renderedModal;
         }
 
-        // If the modal is a FlexibleDialog element, inject the isExiting prop
+        // If the modal is a FlexibleDialog element, only inject animation props
         if (modal && modal.type === FlexibleDialog) {
             return React.cloneElement(modal, {
-                isExiting,
                 alignment,
                 animated,
                 timingDuration,
+                isExiting,
                 ...modal.props,
             });
         }
