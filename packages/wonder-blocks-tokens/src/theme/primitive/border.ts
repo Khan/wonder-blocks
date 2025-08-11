@@ -24,8 +24,4 @@ export const border = {
         medium: remToPx(sizing.size_020),
         thick: remToPx(sizing.size_040),
     },
-    offset: {
-        medium: remToPx(sizing.size_020),
-        thick: remToPx(sizing.size_040),
-    },
 };

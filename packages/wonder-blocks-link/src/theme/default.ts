@@ -1,13 +1,13 @@
-import {border} from "@khanacademy/wonder-blocks-tokens";
+import {font} from "@khanacademy/wonder-blocks-tokens";
 
 export default {
     root: {
         font: {
             family: "inherit",
             weight: "inherit",
-        },
-        border: {
-            offset: border.offset.medium,
+            textDecoration: {
+                offset: font.textDecoration.offset.medium,
+            },
         },
     },
 };

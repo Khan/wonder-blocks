@@ -1,6 +1,6 @@
 import {mergeTheme} from "@khanacademy/wonder-blocks-theming";
 
-import {border, font} from "@khanacademy/wonder-blocks-tokens";
+import {font} from "@khanacademy/wonder-blocks-tokens";
 import defaultTheme from "./default";
 
 export default mergeTheme(defaultTheme, {
@@ -8,9 +8,9 @@ export default mergeTheme(defaultTheme, {
         font: {
             family: font.family.sans,
             weight: font.weight.bold,
-        },
-        border: {
-            offset: border.offset.thick,
+            textDecoration: {
+                offset: font.textDecoration.offset.thick,
+            },
         },
     },
 });

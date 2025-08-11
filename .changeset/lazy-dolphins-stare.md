@@ -3,4 +3,4 @@
 "@khanacademy/wonder-blocks-tokens": minor
 ---
 
-Add font theming to Link with border offset and component-level font tokens
+Add font theming to Link with textDecoration offset, font family, and font weight tokens

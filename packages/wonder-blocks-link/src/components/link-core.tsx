@@ -224,7 +224,7 @@ const _generateStyles = (inline: boolean, light: boolean) => {
     const pressStyling = {
         color: variant.press.foreground,
         textDecoration: "underline currentcolor solid",
-        textUnderlineOffset: theme.root.border.offset,
+        textUnderlineOffset: theme.root.font.textDecoration.offset,
     };
 
     const newStyles: StyleDeclaration = {
@@ -233,7 +233,7 @@ const _generateStyles = (inline: boolean, light: boolean) => {
             ":hover": {
                 textDecoration: "underline currentcolor solid",
                 color: variant.hover.foreground,
-                textUnderlineOffset: theme.root.border.offset,
+                textUnderlineOffset: theme.root.font.textDecoration.offset,
             },
             // Focus styles only show up with keyboard navigation.
             // Mouse users don't see focus styles.
@@ -242,7 +242,7 @@ const _generateStyles = (inline: boolean, light: boolean) => {
         },
         restInline: {
             textDecoration: "underline currentcolor solid",
-            textUnderlineOffset: theme.root.border.offset,
+            textUnderlineOffset: theme.root.font.textDecoration.offset,
         },
         focus: focusStyling,
         press: pressStyling,

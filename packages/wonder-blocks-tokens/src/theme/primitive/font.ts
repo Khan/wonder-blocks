@@ -1,4 +1,5 @@
 import {sizing} from "./sizing";
+import {remToPx} from "../../util/sizing-utils";
 
 export const fontFamily = {
     sans: 'Lato, "Noto Sans", sans-serif',
@@ -76,6 +77,12 @@ export const font = {
             large: sizing.size_280, // HeadingMedium
             xlarge: sizing.size_320, // HeadingLarge
             xxlarge: sizing.size_400, // Title
+        },
+    },
+    textDecoration: {
+        offset: {
+            medium: remToPx(sizing.size_020),
+            thick: remToPx(sizing.size_040),
         },
     },
 };
