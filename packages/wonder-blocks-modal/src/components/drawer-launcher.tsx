@@ -122,10 +122,7 @@ const defaultProps = {
     backdropDismissEnabled: true,
     defaultTimingDuration: DEFAULT_TIMING_DURATION,
 } as const;
-/**
- *
- * Some docs for testing.
- */
+
 const DrawerLauncher = (props: Props) => {
     const {
         modal,
@@ -366,6 +363,7 @@ const styles = StyleSheet.create({
  * <DrawerLauncher
  *      onClose={handleClose}
  *      opened={opened}
+ *      animated={animated}
  *      alignment="inlineStart"
  *      modal={({closeModal}) => (
  *          <FlexibleDialog
