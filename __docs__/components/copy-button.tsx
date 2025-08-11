@@ -18,7 +18,7 @@ export const CopyButton = (props: Props) => {
 
     const handleClick = () => {
         navigator.clipboard.writeText(props.value);
-        // eslint-disable-next-line no-console -- intentionally log. Once we have toasts, we can replace this with a toast notification.
+        // eslint-disable-next-line no-console -- intentionally log. TODO(WB-2055): Once we have toasts, we can replace this with a toast notification.
         console.log("Copied to clipboard:", props.value);
         announceMessage({message: `Copied to clipboard: ${props.value}`});
 

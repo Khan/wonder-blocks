@@ -11,7 +11,7 @@ import {Code} from "../components/code";
 /**
  * The color palette containing all the primitive Wonder Blocks colors.
  *
- * `color` is deprecated! We recommend using [semantic colors](/?path=/docs/packages-tokens-semantic-color--docs) whenever possible,
+ * `color` is deprecated! We recommend using [semantic colors](?path=/docs/packages-tokens-semantic-color--docs) whenever possible,
  * but if you need a color that doesn't fit into any of the categories, please
  * reach out to your designer or the Wonder Blocks team!
  *
