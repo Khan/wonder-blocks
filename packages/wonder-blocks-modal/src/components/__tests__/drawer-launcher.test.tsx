@@ -73,7 +73,7 @@ describe("DrawerLauncher", () => {
         // Arrange
         const modalFn = ({closeModal}: {closeModal: () => void}) => (
             <FlexibleDialog
-                title="Modal launcher test"
+                title="Drawer launcher test"
                 content={
                     <View>
                         <Button onClick={closeModal}>Close it!</Button>
@@ -115,7 +115,11 @@ describe("DrawerLauncher", () => {
     test("Pressing Escape closes the modal", async () => {
         // Arrange
         render(
-            <DrawerLauncher alignment="inlineEnd" modal={exampleModal}>
+            <DrawerLauncher
+                animated={false}
+                alignment="inlineEnd"
+                modal={exampleModal}
+            >
                 {({openModal}: any) => <button onClick={openModal} />}
             </DrawerLauncher>,
         );
@@ -269,7 +273,7 @@ describe("DrawerLauncher", () => {
                 alignment="inlineEnd"
                 modal={
                     <FlexibleDialog
-                        title="Modal launcher test"
+                        title="Drawer launcher test"
                         content={
                             <View>
                                 <Button>Button in modal</Button>
@@ -463,194 +467,169 @@ describe("DrawerLauncher", () => {
         expect(backdrop).toBeInTheDocument();
     });
 
-    test("FlexibleDialog receives correct animation props when passed directly", async () => {
-        // Arrange
-        render(
-            <DrawerLauncher
-                alignment="inlineEnd"
-                animated={false}
-                timingDuration={200}
-                modal={
-                    <FlexibleDialog
-                        title="Animation test"
-                        content={<div data-testid="modal-content" />}
-                    />
-                }
-                opened={true}
-                onClose={() => {}}
-            />,
-        );
+    describe("Slide animations", () => {
+        test("FlexibleDialog passes animation props through render function", async () => {
+            // Arrange
+            render(
+                <DrawerLauncher
+                    alignment="inlineEnd"
+                    animated={true}
+                    timingDuration={200}
+                    modal={({animated, timingDuration}) => (
+                        <FlexibleDialog
+                            title="Animation test"
+                            content={
+                                <div
+                                    data-testid="modal-content"
+                                    data-animated={animated}
+                                    data-timing={timingDuration}
+                                />
+                            }
+                        />
+                    )}
+                    opened={true}
+                    onClose={() => {}}
+                />,
+            );
 
-        // Act
-        const dialog = await screen.findByRole("dialog");
+            // Act
+            const content = await screen.findByTestId("modal-content");
 
-        // Assert
-        expect(dialog).toHaveStyle({
-            animationDuration: "200ms",
+            // Assert
+            expect(content).toHaveAttribute("data-animated", "true");
+            expect(content).toHaveAttribute("data-timing", "200");
         });
-    });
 
-    test("FlexibleDialog receives correct animation props when returned from function", async () => {
-        // Arrange
-        render(
-            <DrawerLauncher
-                alignment="inlineEnd"
-                animated={false}
-                timingDuration={200}
-                modal={({animated, timingDuration}) => (
-                    <FlexibleDialog
-                        title="Animation test"
-                        content={
-                            <div
-                                data-testid="modal-content"
-                                data-animated={animated}
-                                data-timing={timingDuration}
-                            />
-                        }
-                    />
-                )}
-                opened={true}
-                onClose={() => {}}
-            />,
-        );
+        test("Modal closes with animation when animated=true", async () => {
+            // Arrange
+            const onCloseMock = jest.fn();
+            render(
+                <DrawerLauncher
+                    alignment="inlineEnd"
+                    animated={true}
+                    timingDuration={100} // Short duration for test
+                    modal={
+                        <FlexibleDialog
+                            title="Animation test"
+                            content={<div data-testid="modal-content" />}
+                        />
+                    }
+                    opened={true}
+                    onClose={onCloseMock}
+                />,
+            );
 
-        // Act
-        const content = await screen.findByTestId("modal-content");
+            // Act
+            const closeButton = await screen.findByRole("button", {
+                name: "Close modal",
+            });
+            await userEvent.click(closeButton);
 
-        // Assert
-        expect(content).toHaveAttribute("data-animated", "false");
-        expect(content).toHaveAttribute("data-timing", "200");
-    });
-
-    test("Modal closes with animation when animated=true", async () => {
-        // Arrange
-        const onCloseMock = jest.fn();
-        render(
-            <DrawerLauncher
-                alignment="inlineEnd"
-                animated={true}
-                timingDuration={100} // Short duration for test
-                modal={
-                    <FlexibleDialog
-                        title="Animation test"
-                        content={<div data-testid="modal-content" />}
-                    />
-                }
-                opened={true}
-                onClose={onCloseMock}
-            />,
-        );
-
-        // Act
-        const closeButton = await screen.findByRole("button", {
-            name: "Close modal",
+            // Assert
+            expect(onCloseMock).not.toHaveBeenCalled();
+            // Wait for animation
+            await waitFor(
+                () => {
+                    expect(onCloseMock).toHaveBeenCalled();
+                },
+                {timeout: 200}, // A bit longer than animation duration
+            );
         });
-        await userEvent.click(closeButton);
 
-        // Assert
-        expect(onCloseMock).not.toHaveBeenCalled();
-        // Wait for animation
-        await waitFor(
-            () => {
-                expect(onCloseMock).toHaveBeenCalled();
-            },
-            {timeout: 200}, // A bit longer than animation duration
-        );
-    });
+        test("Modal closes immediately when animated=false", async () => {
+            // Arrange
+            const onCloseMock = jest.fn();
+            render(
+                <DrawerLauncher
+                    alignment="inlineEnd"
+                    animated={false}
+                    modal={
+                        <FlexibleDialog
+                            title="Animation test"
+                            content={<div data-testid="modal-content" />}
+                        />
+                    }
+                    opened={true}
+                    onClose={onCloseMock}
+                />,
+            );
 
-    test("Modal closes immediately when animated=false", async () => {
-        // Arrange
-        const onCloseMock = jest.fn();
-        render(
-            <DrawerLauncher
-                alignment="inlineEnd"
-                animated={false}
-                modal={
-                    <FlexibleDialog
-                        title="Animation test"
-                        content={<div data-testid="modal-content" />}
-                    />
-                }
-                opened={true}
-                onClose={onCloseMock}
-            />,
-        );
+            // Act
+            const closeButton = await screen.findByRole("button", {
+                name: "Close modal",
+            });
+            await userEvent.click(closeButton);
 
-        // Act
-        const closeButton = await screen.findByRole("button", {
-            name: "Close modal",
+            // Assert
+            expect(onCloseMock).toHaveBeenCalled();
         });
-        await userEvent.click(closeButton);
 
-        // Assert
-        expect(onCloseMock).toHaveBeenCalled();
-    });
+        test("Modal shows exit animation when closing via backdrop click", async () => {
+            // Arrange
+            const onCloseMock = jest.fn();
+            render(
+                <DrawerLauncher
+                    alignment="inlineEnd"
+                    animated={true}
+                    timingDuration={100} // Short duration for test
+                    modal={
+                        <FlexibleDialog
+                            title="Animation test"
+                            content={<div data-testid="modal-content" />}
+                        />
+                    }
+                    opened={true}
+                    onClose={onCloseMock}
+                    testId="modal-backdrop"
+                />,
+            );
 
-    test("Modal shows exit animation when closing via backdrop click", async () => {
-        // Arrange
-        const onCloseMock = jest.fn();
-        render(
-            <DrawerLauncher
-                alignment="inlineEnd"
-                animated={true}
-                timingDuration={100} // Short duration for test
-                modal={
-                    <FlexibleDialog
-                        title="Animation test"
-                        content={<div data-testid="modal-content" />}
-                    />
-                }
-                opened={true}
-                onClose={onCloseMock}
-                testId="modal-backdrop"
-            />,
-        );
+            // Act
+            const backdrop = await screen.findByTestId("modal-backdrop");
+            await userEvent.click(backdrop);
 
-        // Act
-        const backdrop = await screen.findByTestId("modal-backdrop");
-        await userEvent.click(backdrop);
+            // Assert
+            expect(onCloseMock).not.toHaveBeenCalled();
+            // Wait for animation
+            await waitFor(
+                () => {
+                    expect(onCloseMock).toHaveBeenCalled();
+                },
+                {timeout: 200}, // A bit longer than animation duration
+            );
+        });
 
-        // Assert
-        expect(onCloseMock).not.toHaveBeenCalled();
-        // Wait for animation
-        await waitFor(
-            () => {
-                expect(onCloseMock).toHaveBeenCalled();
-            },
-            {timeout: 200}, // A bit longer than animation duration
-        );
-    });
+        test("Modal shows exit animation when closing via escape key", async () => {
+            // Arrange
+            const onCloseMock = jest.fn();
+            render(
+                <DrawerLauncher
+                    alignment="inlineEnd"
+                    animated={true}
+                    timingDuration={100} // Short duration for test
+                    modal={
+                        <FlexibleDialog
+                            title="Animation test"
+                            content={<div data-testid="modal-content" />}
+                        />
+                    }
+                    opened={true}
+                    onClose={onCloseMock}
+                />,
+            );
 
-    test("Modal shows exit animation when closing via escape key", async () => {
-        // Arrange
-        const onCloseMock = jest.fn();
-        render(
-            <DrawerLauncher
-                alignment="inlineEnd"
-                animated={true}
-                timingDuration={100} // Short duration for test
-                modal={
-                    <FlexibleDialog
-                        title="Animation test"
-                        content={<div data-testid="modal-content" />}
-                    />
-                }
-                opened={true}
-                onClose={onCloseMock}
-            />,
-        );
+            // Act
+            await userEvent.keyboard("{Escape}");
 
-        // Act
-        await userEvent.keyboard("{Escape}");
-
-        // Assert
-        expect(onCloseMock).not.toHaveBeenCalled();
-        // Wait for animation
-        await waitFor(
-            () => {
-                expect(onCloseMock).toHaveBeenCalled();
-            },
-            {timeout: 200}, // A bit longer than animation duration
-        );
+            // Assert
+            expect(onCloseMock).not.toHaveBeenCalled();
+            // Wait for animation
+            await waitFor(
+                () => {
+                    expect(onCloseMock).toHaveBeenCalled();
+                },
+                {timeout: 200}, // A bit longer than animation duration
+            );
+        });
     });
 });

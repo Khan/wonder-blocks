@@ -212,18 +212,20 @@ const DrawerLauncher = (props: Props) => {
             setIsExiting(true);
             setTimeout(() => {
                 if (typeof controlledOpened === "boolean") {
+                    setIsExiting(false);
                     onClose?.();
                 } else {
                     setUncontrolledOpened(false);
+                    onClose?.();
                 }
-                setIsExiting(false);
                 returnFocus();
-            }, timingDuration + 1);
+            }, timingDuration);
         } else {
             if (typeof controlledOpened === "boolean") {
                 onClose?.();
             } else {
                 setUncontrolledOpened(false);
+                onClose?.();
             }
             returnFocus();
         }
@@ -313,10 +315,10 @@ const DrawerLauncher = (props: Props) => {
                     </FocusTrap>,
                     body,
                 )}
-            {opened && (
+            {(opened || isExiting) && (
                 <DrawerLauncherKeypressListener onClose={handleCloseModal} />
             )}
-            {opened && <ScrollDisabler />}
+            {(opened || isExiting) && <ScrollDisabler />}
         </ModalContext.Provider>
     );
 };
