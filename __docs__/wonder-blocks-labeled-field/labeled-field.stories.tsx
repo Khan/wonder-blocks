@@ -15,7 +15,7 @@ import {
 } from "@khanacademy/wonder-blocks-dropdown";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
 import Button from "@khanacademy/wonder-blocks-button";
-import {allModes} from "../../.storybook/modes";
+import {themeModes} from "../../.storybook/modes";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 
 /**
@@ -467,10 +467,7 @@ export const Fields: StoryComponentType = {
             // Keep snapshots enabled for this story because it shows all the fields
             // with LabeledField
             disableSnapshot: false,
-            modes: {
-                default: allModes.themeDefault,
-                thunderblocks: allModes.themeThunderBlocks,
-            },
+            modes: themeModes,
         },
     },
 };

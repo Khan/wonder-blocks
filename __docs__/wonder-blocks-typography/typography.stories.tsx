@@ -30,7 +30,7 @@ import packageConfig from "../../packages/wonder-blocks-typography/package.json"
 
 import ComponentInfo from "../components/component-info";
 import TypographyArgTypes from "./typography.argtypes";
-import {allModes} from "../../.storybook/modes";
+import {themeModes} from "../../.storybook/modes";
 
 // NOTE: Only for testing purposes.
 // eslint-disable-next-line import/no-unassigned-import
@@ -111,10 +111,7 @@ out in their respective styles.
 export const ClassicTypographyElements: StoryObj<any> = {
     parameters: {
         chromatic: {
-            modes: {
-                default: allModes.themeDefault,
-                thunderblocks: allModes.themeThunderBlocks,
-            },
+            modes: themeModes,
         },
     },
     render: () => (
@@ -456,10 +453,7 @@ export const TypographyStyles: StoryObj = {
     },
     parameters: {
         chromatic: {
-            modes: {
-                default: allModes.themeDefault,
-                thunderblocks: allModes.themeThunderBlocks,
-            },
+            modes: themeModes,
         },
     },
 };
