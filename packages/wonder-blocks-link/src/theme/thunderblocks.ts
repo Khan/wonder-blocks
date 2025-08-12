@@ -9,7 +9,7 @@ export default mergeTheme(defaultTheme, {
             family: font.family.sans,
             weight: font.weight.bold,
             textDecoration: {
-                offset: font.textDecoration.offset.thick,
+                underlineOffset: font.textDecoration.underlineOffset.thick,
             },
         },
     },

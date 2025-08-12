@@ -80,7 +80,7 @@ export const font = {
         },
     },
     textDecoration: {
-        offset: {
+        underlineOffset: {
             medium: remToPx(sizing.size_020),
             thick: remToPx(sizing.size_040),
         },
