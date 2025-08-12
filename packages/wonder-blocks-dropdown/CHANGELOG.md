@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.3.4
+
+### Patch Changes
+
+- 490a2bd: Ensure openers in MultiSelect and SingleSelect set aria-required
+
 ## 10.3.3
 
 ### Patch Changes
