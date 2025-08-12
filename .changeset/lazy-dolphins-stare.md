@@ -4,4 +4,4 @@
 "@khanacademy/wonder-blocks-breadcrumbs": minor
 ---
 
-Add font theming to Link with textDecoration offset, font family, and font weight tokens
+Add font theming to Link with textDecoration underlineOffset and thickness, font family, and font weight tokens

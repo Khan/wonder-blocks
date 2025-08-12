@@ -8,6 +8,7 @@ import {
     spacing,
     semanticColor,
     border,
+    font,
 } from "@khanacademy/wonder-blocks-tokens";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
@@ -227,7 +228,7 @@ const _generateStyles = (inline: boolean, light: boolean) => {
     const pressStyling = {
         color: variant.press.foreground,
         textDecoration: "underline currentcolor solid",
-        textUnderlineOffset: theme.root.font.textDecoration.offset,
+        textUnderlineOffset: font.textDecoration.underlineOffset,
     };
 
     const newStyles: StyleDeclaration = {
@@ -236,7 +237,7 @@ const _generateStyles = (inline: boolean, light: boolean) => {
             ":hover": {
                 textDecoration: "underline currentcolor solid",
                 color: variant.hover.foreground,
-                textUnderlineOffset: theme.root.font.textDecoration.offset,
+                textUnderlineOffset: font.textDecoration.underlineOffset,
             },
             // Focus styles only show up with keyboard navigation.
             // Mouse users don't see focus styles.
@@ -245,8 +246,8 @@ const _generateStyles = (inline: boolean, light: boolean) => {
         },
         restInline: {
             textDecoration: "underline currentcolor solid",
-            textDecorationThickness: theme.root.font.textDecoration.thickness,
-            textUnderlineOffset: theme.root.font.textDecoration.offset,
+            textDecorationThickness: font.textDecoration.thickness,
+            textUnderlineOffset: font.textDecoration.underlineOffset,
         },
         focus: focusStyling,
         press: pressStyling,

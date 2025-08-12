@@ -79,7 +79,7 @@ export const font = {
         },
     },
     textDecoration: {
-        offset: sizing.size_020,
+        underlineOffset: sizing.size_020,
         thickness: sizing.size_010,
     },
 };
