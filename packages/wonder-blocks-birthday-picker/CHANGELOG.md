@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 4.1.0
+
+### Minor Changes
+
+- c808484: Adds a `locale` prop to `BirthdayPicker` to better support i18n. Defaults to `navigator.language` if not provided
+
 ## 4.0.32
 
 ### Patch Changes
