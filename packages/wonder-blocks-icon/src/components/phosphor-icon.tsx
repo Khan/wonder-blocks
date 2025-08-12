@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
-import {viewportPixelsForSize, viewportRemsForSize} from "../util/icon-util";
+import {viewportPixelsForSize} from "../util/icon-util";
 import {IconSize, PhosphorIconAsset} from "../types";
 
 // We use a span instead of an img because we want to use the mask-image CSS
@@ -52,14 +52,6 @@ type Props = Pick<AriaProps, "aria-hidden" | "aria-label" | "role"> & {
      * - `string`: an import referencing an arbitrary SVG file.
      */
     icon: PhosphorIconAsset | string;
-    /**
-     * Optional sizing unit for width and height: pixels or REMs.
-     *
-     * Defaults to px for backwards compatibility.
-     *
-     * A REM unit will scale with the user's font-size, so it is preferred.
-     */
-    sizingUnit?: "px" | "rem";
 };
 
 /**
@@ -99,16 +91,12 @@ export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
         testId,
         className,
         role,
-        sizingUnit = "px",
         ...sharedProps
     } = props;
 
-    const iconSize =
-        sizingUnit === "rem"
-            ? viewportRemsForSize(size)
-            : viewportPixelsForSize(size);
+    const pixelSize = viewportPixelsForSize(size);
     const classNames = `${className ?? ""}`;
-    const iconStyles = _generateStyles(color, iconSize);
+    const iconStyles = _generateStyles(color, pixelSize);
 
     return (
         <StyledSpan
@@ -137,7 +125,7 @@ const dynamicStyles: Record<string, any> = {};
 /**
  * Generates the visual styles for the icon.
  */
-const _generateStyles = (color: string, size: string | number) => {
+const _generateStyles = (color: string, size: number) => {
     const iconStyle = `${color}-${size}`;
     // The styles are cached to avoid creating a new object on every render.
     if (styles[iconStyle]) {
