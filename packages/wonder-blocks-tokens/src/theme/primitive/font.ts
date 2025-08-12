@@ -1,5 +1,4 @@
 import {sizing} from "./sizing";
-import {remToPx} from "../../util/sizing-utils";
 
 export const fontFamily = {
     sans: 'Lato, "Noto Sans", sans-serif',
@@ -80,9 +79,7 @@ export const font = {
         },
     },
     textDecoration: {
-        underlineOffset: {
-            medium: remToPx(sizing.size_020),
-            thick: remToPx(sizing.size_040),
-        },
+        offset: sizing.size_020,
+        thickness: sizing.size_010,
     },
 };

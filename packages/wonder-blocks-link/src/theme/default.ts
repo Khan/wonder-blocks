@@ -6,7 +6,8 @@ export default {
             family: "inherit",
             weight: "inherit",
             textDecoration: {
-                underlineOffset: font.textDecoration.underlineOffset.medium,
+                thickness: font.textDecoration.thickness,
+                offset: font.textDecoration.offset,
             },
         },
     },
