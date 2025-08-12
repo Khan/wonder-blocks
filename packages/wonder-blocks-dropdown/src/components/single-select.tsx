@@ -453,6 +453,10 @@ const SingleSelect = (props: Props) => {
         }
     }, [selectedValue, children]);
 
+    // If aria-required was supplied, use that. Otherwise, convert `required` to a boolean
+    // and apply that value to aria-required.
+    const computedRequired = ariaRequired ?? !!required;
+
     const renderOpener = (
         isDisabled: boolean,
         dropdownId: string,
@@ -486,6 +490,7 @@ const SingleSelect = (props: Props) => {
                             id={uniqueOpenerId}
                             aria-label={ariaLabel}
                             aria-controls={dropdownId}
+                            aria-required={computedRequired}
                             aria-haspopup="listbox"
                             onClick={handleClick}
                             disabled={isDisabled}
@@ -503,6 +508,7 @@ const SingleSelect = (props: Props) => {
                             {...sharedProps}
                             aria-label={ariaLabel}
                             aria-controls={dropdownId}
+                            aria-required={computedRequired}
                             disabled={isDisabled}
                             id={uniqueOpenerId}
                             error={hasError}

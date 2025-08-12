@@ -584,6 +584,10 @@ const MultiSelect = (props: Props) => {
         }
     }, [children, getMenuTextOrNode, maybeGetOpenerStringValue]);
 
+    // If aria-required was supplied, use that. Otherwise, convert `required` to a boolean
+    // and apply that value to aria-required.
+    const computedRequired = ariaRequired ?? !!required;
+
     const renderOpener = (
         allChildren: React.ReactElement<
             React.ComponentProps<typeof OptionItem>
@@ -606,6 +610,7 @@ const MultiSelect = (props: Props) => {
                             error={hasError}
                             aria-label={ariaLabel}
                             aria-controls={dropdownId}
+                            aria-required={computedRequired}
                             aria-haspopup="listbox"
                             onClick={handleClick}
                             onBlur={onOpenerBlurValidation}
@@ -625,6 +630,7 @@ const MultiSelect = (props: Props) => {
                             id={uniqueOpenerId}
                             aria-label={ariaLabel}
                             aria-controls={dropdownId}
+                            aria-required={computedRequired}
                             isPlaceholder={openerContent === noneSelected}
                             onOpenChanged={handleOpenChanged}
                             onBlur={onOpenerBlurValidation}
@@ -660,7 +666,6 @@ const MultiSelect = (props: Props) => {
             handleAnnouncement(someSelected(filteredItems.length));
         }
     }, [filteredItems.length, someSelected, open]);
-
     return (
         <Id id={dropdownId}>
             {(uniqueDropdownId) => (
@@ -700,7 +705,7 @@ const MultiSelect = (props: Props) => {
                         someResults: someSelected,
                     }}
                     aria-invalid={ariaInvalid}
-                    aria-required={ariaRequired}
+                    aria-required={computedRequired}
                     disabled={isDisabled}
                 />
             )}

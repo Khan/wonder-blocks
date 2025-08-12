@@ -2902,6 +2902,20 @@ describe("MultiSelect", () => {
                     );
                 });
 
+                it("should have aria-required", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    doRender(
+                        <ControlledMultiSelect required={requiredMessage} />,
+                    );
+
+                    // Assert
+                    expect(screen.getByRole("combobox")).toHaveAttribute(
+                        "aria-required",
+                        "true",
+                    );
+                });
+
                 it("should call onValidate prop with a custom opener", async () => {
                     // Arrange
                     const requiredMessage = "Required field";
@@ -2951,6 +2965,28 @@ describe("MultiSelect", () => {
                     // Assert
                     expect(screen.getByLabelText("Search")).toHaveAttribute(
                         "aria-invalid",
+                        "true",
+                    );
+                });
+
+                it("should put aria-required on a custom opener", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    doRender(
+                        <ControlledMultiSelect
+                            opener={() => (
+                                <button
+                                    aria-label="Search"
+                                    onClick={jest.fn()}
+                                />
+                            )}
+                            required={requiredMessage}
+                        />,
+                    );
+                    // Act
+                    // Assert
+                    expect(screen.getByLabelText("Search")).toHaveAttribute(
+                        "aria-required",
                         "true",
                     );
                 });
