@@ -57,7 +57,7 @@ type Props = Pick<AriaProps, "aria-hidden" | "aria-label" | "role"> & {
      *
      * Defaults to px for backwards compatibility.
      *
-     * REM units will scale with the user's font-size, and it is preferred.
+     * A REM unit will scale with the user's font-size, so it is preferred.
      */
     sizingUnit?: "px" | "rem";
 };
