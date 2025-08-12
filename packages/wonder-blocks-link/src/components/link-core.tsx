@@ -217,7 +217,7 @@ const _generateStyles = (inline: boolean, light: boolean) => {
 
     const focusStyling = {
         ...focusStyles.focus[":focus-visible"],
-        borderRadius: border.radius.radius_040,
+        borderRadius: border.radius.radius_010,
         outlineOffset: border.width.medium,
     };
 
