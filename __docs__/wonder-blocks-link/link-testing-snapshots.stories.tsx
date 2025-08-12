@@ -22,7 +22,7 @@ const generateCells = (rtl: boolean = false) => [
     {
         name: "Primary",
         props: {
-            children: rtl ? rtlText : "This is a Link",
+            children: rtl ? rtlText : "This is my Link",
         },
     },
     {
@@ -61,10 +61,6 @@ type Story = StoryObj<typeof Link>;
  */
 const meta = {
     title: "Packages / Link / Testing / Snapshots / Link",
-    args: {
-        children: "This is a Link",
-        href: "https://www.khanacademy.org",
-    },
     parameters: {
         chromatic: {
             modes: {
