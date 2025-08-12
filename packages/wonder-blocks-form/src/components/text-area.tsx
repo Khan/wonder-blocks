@@ -373,6 +373,8 @@ const styles = StyleSheet.create({
         paddingBlock: theme.field.layout.paddingBlock,
         // Disable the resize control
         resize: "none",
+        // Set max height to 6 rows of text + padding + border
+        maxHeight: `calc((6 * ${font.body.lineHeight.medium}) + (2 * ${theme.field.layout.paddingBlock}) + (2 * ${border.width.thin}))`,
     },
     fieldSizing: {
         // For browsers that support field-sizing, set it to content so that
