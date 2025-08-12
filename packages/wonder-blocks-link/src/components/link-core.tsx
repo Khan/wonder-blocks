@@ -81,6 +81,7 @@ const LinkCore = React.forwardRef(function LinkCore(
         <PhosphorIcon
             icon={externalLinkIcon}
             size="small"
+            sizingUnit="rem"
             style={[linkContentStyles.endIcon, linkContentStyles.centered]}
             testId="external-icon"
         />
@@ -92,6 +93,7 @@ const LinkCore = React.forwardRef(function LinkCore(
     if (startIcon) {
         startIconElement = React.cloneElement(startIcon, {
             style: [linkContentStyles.startIcon, linkContentStyles.centered],
+            sizingUnit: "rem",
             testId: "start-icon",
             "aria-hidden": "true",
             ...startIcon.props,
@@ -103,6 +105,7 @@ const LinkCore = React.forwardRef(function LinkCore(
     if (endIcon) {
         endIconElement = React.cloneElement(endIcon, {
             style: [linkContentStyles.endIcon, linkContentStyles.centered],
+            sizingUnit: "rem",
             testId: "end-icon",
             "aria-hidden": "true",
             ...endIcon.props,
