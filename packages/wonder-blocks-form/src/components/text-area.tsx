@@ -6,6 +6,7 @@ import {
     StyleType,
     addStyle,
     View,
+    useOnMountEffect,
 } from "@khanacademy/wonder-blocks-core";
 import {border, font, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
@@ -244,6 +245,14 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                 instantValidation,
             });
 
+        const textAreaContainerRef = React.useRef<HTMLDivElement>(null);
+        // Keep track of the textarea height for browsers that don't support
+        // field-sizing.
+        const [height, setHeight] = React.useState(0);
+        const [supportsFieldSizing] = React.useState(
+            CSS.supports("field-sizing", "content"),
+        );
+
         const hasError = error || !!errorMessage;
 
         const generatedUniqueId = useId();
@@ -255,6 +264,12 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             const newValue = event.target.value;
             onChangeValidation(newValue);
             onChange(newValue);
+
+            if (!supportsFieldSizing && event.target.scrollHeight !== height) {
+                // When the value changes, update the height if field-sizing is
+                // not supported
+                setHeight(event.target.scrollHeight);
+            }
         };
 
         const handleBlur = (event: React.FocusEvent<HTMLTextAreaElement>) => {
@@ -265,8 +280,32 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             }
         };
 
+        useOnMountEffect(() => {
+            // We use a ref to the container to get the child textarea element
+            // so that consumers can pass in a ref to the textarea element
+            // directly.
+            const ref = textAreaContainerRef.current?.children[0];
+
+            if (!supportsFieldSizing && ref && window?.ResizeObserver) {
+                const observer = new window.ResizeObserver(([entry]) => {
+                    if (entry) {
+                        setHeight(entry.target.scrollHeight);
+                    }
+                });
+
+                observer.observe(ref);
+
+                return () => {
+                    observer.disconnect();
+                };
+            }
+        });
+
         return (
-            <View style={[{width: "100%"}, rootStyle]}>
+            <View
+                style={[{width: "100%"}, rootStyle]}
+                ref={textAreaContainerRef}
+            >
                 <StyledTextarea
                     id={uniqueId}
                     data-testid={testId}
@@ -287,6 +326,13 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                             // Min height = (number of rows * line height) + (2 * vertical padding) + (2 * border width)
                             minHeight: `calc((${rows} * ${font.body.lineHeight.medium}) + (2 * ${theme.field.layout.paddingBlock}) + (2 * ${border.width.thin}))`,
                         },
+                        supportsFieldSizing
+                            ? styles.fieldSizing
+                            : {
+                                  // Dynamically set the height if field-sizing is
+                                  // not supported
+                                  height: `${height}px`,
+                              },
                         style,
                     ]}
                     value={value}
@@ -325,6 +371,8 @@ const styles = StyleSheet.create({
         paddingBlock: theme.field.layout.paddingBlock,
         // Disable the resize control
         resize: "none",
+    },
+    fieldSizing: {
         // For browsers that support field-sizing, set it to content so that
         // the textarea can grow to fit the content
         ["fieldSizing" as any]: "content",
