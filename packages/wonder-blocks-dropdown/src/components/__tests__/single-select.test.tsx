@@ -2300,6 +2300,20 @@ describe("SingleSelect", () => {
                     );
                 });
 
+                it("should have aria-required", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    doRender(
+                        <ControlledSingleSelect required={requiredMessage} />,
+                    );
+
+                    // Assert
+                    expect(screen.getByRole("combobox")).toHaveAttribute(
+                        "aria-required",
+                        "true",
+                    );
+                });
+
                 it("should call onValidate prop with a custom opener", async () => {
                     // Arrange
                     const requiredMessage = "Required field";
@@ -2349,6 +2363,29 @@ describe("SingleSelect", () => {
                     // Assert
                     expect(screen.getByLabelText("Search")).toHaveAttribute(
                         "aria-invalid",
+                        "true",
+                    );
+                });
+
+                it("should put aria-required on a custom opener", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    doRender(
+                        <ControlledSingleSelect
+                            opener={() => (
+                                <button
+                                    aria-label="Search"
+                                    onClick={jest.fn()}
+                                />
+                            )}
+                            required={requiredMessage}
+                        />,
+                    );
+
+                    // Act
+                    // Assert
+                    expect(screen.getByLabelText("Search")).toHaveAttribute(
+                        "aria-required",
                         "true",
                     );
                 });
