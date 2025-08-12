@@ -332,6 +332,8 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                                   // Dynamically set the height if field-sizing is
                                   // not supported
                                   height: `${height}px`,
+                                  // Hide overflow to make sure scrollbar isn't shown
+                                  overflow: "hidden",
                               },
                         style,
                     ]}
