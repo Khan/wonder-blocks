@@ -79,7 +79,7 @@ const kinds = ["info", "success", "warning", "critical"] as const;
 export const Default = {
     args: {
         label: "Badge",
-        icon: "cookie",
+        icon: "cookieBold",
     },
     render: (
         args: Omit<PropsFor<typeof StatusBadge>, "icon"> & {icon: string},
@@ -101,7 +101,7 @@ export const Default = {
  */
 export const Kinds = {
     args: {
-        icon: "cookie",
+        icon: "cookieBold",
     },
     render(args: Omit<PropsFor<typeof StatusBadge>, "icon"> & {icon: string}) {
         return (
@@ -142,7 +142,7 @@ export const LabelOnly: StoryComponentType = {
  */
 export const IconOnly: StoryComponentType = {
     args: {
-        icon: "cookie",
+        icon: "cookieBold",
     },
 };
 

@@ -64,7 +64,7 @@ type StoryComponentType = StoryObj<
 export const Default = {
     args: {
         label: "Badge",
-        icon: "cookie",
+        icon: "cookieBold",
     },
 };
 
@@ -82,7 +82,7 @@ export const LabelOnly: StoryComponentType = {
  */
 export const IconOnly: StoryComponentType = {
     args: {
-        icon: "cookie",
+        icon: "cookieBold",
     },
 };
 
@@ -180,7 +180,7 @@ export const CustomIcons: StoryComponentType = {
 export const CustomStyles: StoryComponentType = {
     args: {
         label: "Badge",
-        icon: "cookie",
+        icon: "cookieBold",
     },
     render: (args) => {
         return (
@@ -219,7 +219,7 @@ export const CustomStyles: StoryComponentType = {
 export const Tag: StoryComponentType = {
     args: {
         label: "Badge",
-        icon: "cookie",
+        icon: "cookieBold",
         tag: "strong",
     },
 };
@@ -252,7 +252,7 @@ export const BadgeWithTooltip: StoryComponentType = {
     },
     args: {
         label: "Badge",
-        icon: "cookie",
+        icon: "cookieBold",
     },
 };
 
@@ -264,6 +264,6 @@ export const BadgeWithTooltip: StoryComponentType = {
 export const BadgeTruncation: StoryComponentType = {
     args: {
         label: "Badge with a long label that should be truncated",
-        icon: "cookie",
+        icon: "cookieBold",
     },
 };
