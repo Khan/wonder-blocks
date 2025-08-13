@@ -206,6 +206,15 @@ type TextAreaProps = AriaProps & {
 const StyledTextarea = addStyle("textarea");
 
 /**
+ * Calculate the height of x number of rows, including padding and border.
+ *
+ * Height = (number of rows * line height) + (2 * vertical padding) + (2 * border width)
+ */
+function getHeightForNumberOfRows(rows: number) {
+    return `calc((${rows} * ${font.body.lineHeight.medium}) + (2 * ${theme.field.layout.paddingBlock}) + (2 * ${border.width.thin}))`;
+}
+
+/**
  * A TextArea is an element used to accept text from the user.
  *
  * Make sure to provide a label for the field. This can be done by either:
@@ -354,11 +363,15 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                       ? styles.fieldSizing
                       : {
                             // Dynamically set the height if field-sizing is
-                            // not supported
-                            height: `calc(${height}px + 2px)`,
+                            // not supported. We account for the border width
+                            // so the scrollbar is not shown.
+                            height: `calc(${height}px + (2 * ${border.width.thin}))`,
                         },
                   {
-                      maxHeight: `calc(${Math.max(maxRows, rows)} * ${font.body.lineHeight.medium} + (2 * ${theme.field.layout.paddingBlock}) + (2 * ${border.width.thin}))`,
+                      // Set the max height so the textarea can't grow infinitely
+                      maxHeight: getHeightForNumberOfRows(
+                          Math.max(maxRows, rows),
+                      ),
                   },
               ]
             : [];
@@ -381,12 +394,9 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                         hasError && styles.error,
                         readOnly && styles.readOnly,
                         rows && {
-                            // Calculate the size of x number of rows, including
-                            // padding and border. We do this because the `row`
-                            // attribute is not used when `field-sizing` is also
-                            // used.
-                            // Min height = (number of rows * line height) + (2 * vertical padding) + (2 * border width)
-                            minHeight: `calc((${rows} * ${font.body.lineHeight.medium}) + (2 * ${theme.field.layout.paddingBlock}) + (2 * ${border.width.thin}))`,
+                            // Set the min height to the height of the number of rows
+                            // This is because `rows` is not applied when `field-sizing` is also used.
+                            minHeight: getHeightForNumberOfRows(rows),
                         },
                         ...autoResizeStyles,
                         style,
@@ -432,10 +442,6 @@ const styles = StyleSheet.create({
         // For browsers that support field-sizing, set it to content so that
         // the textarea can grow to fit the content
         ["fieldSizing" as any]: "content",
-    },
-    sixRowsMaxHeight: {
-        // Set max height to 6 rows of text + padding + border
-        maxHeight: `calc((6 * ${font.body.lineHeight.medium}) + (2 * ${theme.field.layout.paddingBlock}) + (2 * ${border.width.thin}))`,
     },
     readOnly: {
         background: semanticColor.input.readOnly.background,
