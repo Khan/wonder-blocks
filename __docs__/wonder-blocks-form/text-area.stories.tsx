@@ -434,11 +434,6 @@ export const Required: StoryComponentType = {
 
 /**
  * The number of rows to use by default can be specified using the `rows` prop.
- * This will be ignored if:
- * - the height is set on the textarea using CSS
- *
- * It is often helpful to set the initial number of rows based on how much
- * content we expect from the user.
  */
 export const Rows: StoryComponentType = {
     args: {

@@ -358,6 +358,8 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                                   // not supported
                                   height: `calc(${height}px + 2px)`,
                               },
+                        // If the number of rows is <= 6, set the max height to 6 rows. Otherwise, there is no max height set.
+                        rows <= 6 && styles.sixRowsMaxHeight,
                         style,
                     ]}
                     value={value}
@@ -396,13 +398,15 @@ const styles = StyleSheet.create({
         paddingBlock: theme.field.layout.paddingBlock,
         // Disable the resize control
         resize: "none",
-        // Set max height to 6 rows of text + padding + border
-        maxHeight: `calc((6 * ${font.body.lineHeight.medium}) + (2 * ${theme.field.layout.paddingBlock}) + (2 * ${border.width.thin}))`,
     },
     fieldSizing: {
         // For browsers that support field-sizing, set it to content so that
         // the textarea can grow to fit the content
         ["fieldSizing" as any]: "content",
+    },
+    sixRowsMaxHeight: {
+        // Set max height to 6 rows of text + padding + border
+        maxHeight: `calc((6 * ${font.body.lineHeight.medium}) + (2 * ${theme.field.layout.paddingBlock}) + (2 * ${border.width.thin}))`,
     },
     readOnly: {
         background: semanticColor.input.readOnly.background,
