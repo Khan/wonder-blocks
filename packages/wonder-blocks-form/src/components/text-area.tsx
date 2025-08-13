@@ -181,6 +181,22 @@ type TextAreaProps = AriaProps & {
      * will be used.
      */
     required?: boolean | string;
+
+    /**
+     * Whether the textarea should automatically resize to fit the content.
+     * If `true`, the textarea will resize to fit the content. If `false`,
+     * the textarea will not change in size and the textarea will be scrollable if
+     * content exceeds the height of the textarea.
+     *
+     * Defaults to `true`.
+     *
+     * Note: When `autoResize` is `true` and `rows` is set to a value <= 6, the
+     * textarea will become scrollable after 6 rows. This is to prevent the
+     * textarea from becoming too tall by default. If `rows > 6`, the textarea
+     * will have no max height set. In both cases, the maxHeight can be
+     * overridden using the `style` prop.
+     */
+    autoResize?: boolean;
 };
 
 const StyledTextarea = addStyle("textarea");
@@ -230,6 +246,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             required,
             rootStyle,
             error,
+            autoResize = true,
             instantValidation = true,
             // Should only include aria related props
             ...otherProps
@@ -326,6 +343,20 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             }
         });
 
+        const autoResizeStyles = autoResize
+            ? [
+                  supportsFieldSizing
+                      ? styles.fieldSizing
+                      : {
+                            // Dynamically set the height if field-sizing is
+                            // not supported
+                            height: `calc(${height}px + 2px)`,
+                        },
+                  // If the number of rows is <= 6, set the max height to 6 rows. Otherwise, there is no max height set.
+                  rows <= 6 && styles.sixRowsMaxHeight,
+              ]
+            : [];
+
         return (
             <View
                 style={[{width: "100%"}, rootStyle]}
@@ -351,15 +382,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                             // Min height = (number of rows * line height) + (2 * vertical padding) + (2 * border width)
                             minHeight: `calc((${rows} * ${font.body.lineHeight.medium}) + (2 * ${theme.field.layout.paddingBlock}) + (2 * ${border.width.thin}))`,
                         },
-                        supportsFieldSizing
-                            ? styles.fieldSizing
-                            : {
-                                  // Dynamically set the height if field-sizing is
-                                  // not supported
-                                  height: `calc(${height}px + 2px)`,
-                              },
-                        // If the number of rows is <= 6, set the max height to 6 rows. Otherwise, there is no max height set.
-                        rows <= 6 && styles.sixRowsMaxHeight,
+                        ...autoResizeStyles,
                         style,
                     ]}
                     value={value}
