@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-link
 
+## 9.2.0
+
+### Minor Changes
+
+- 4aad557: Add font theming to Link and Breadcrumbs with links
+
+### Patch Changes
+
+- Updated dependencies [4aad557]
+    - @khanacademy/wonder-blocks-tokens@12.1.0
+    - @khanacademy/wonder-blocks-clickable@7.1.22
+    - @khanacademy/wonder-blocks-icon@5.2.16
+    - @khanacademy/wonder-blocks-styles@0.2.28
+    - @khanacademy/wonder-blocks-typography@4.2.18
+
 ## 9.1.21
 
 ### Patch Changes

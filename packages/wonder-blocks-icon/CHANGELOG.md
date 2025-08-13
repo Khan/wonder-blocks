@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-icon
 
+## 5.2.16
+
+### Patch Changes
+
+- Updated dependencies [4aad557]
+    - @khanacademy/wonder-blocks-tokens@12.1.0
+
 ## 5.2.15
 
 ### Patch Changes

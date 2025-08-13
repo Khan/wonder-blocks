@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-modal
 
+## 8.2.2
+
+### Patch Changes
+
+- Updated dependencies [4aad557]
+- Updated dependencies [4aad557]
+    - @khanacademy/wonder-blocks-breadcrumbs@3.2.0
+    - @khanacademy/wonder-blocks-tokens@12.1.0
+    - @khanacademy/wonder-blocks-icon-button@10.3.17
+    - @khanacademy/wonder-blocks-layout@3.1.33
+    - @khanacademy/wonder-blocks-styles@0.2.28
+    - @khanacademy/wonder-blocks-typography@4.2.18
+
 ## 8.2.1
 
 ### Patch Changes

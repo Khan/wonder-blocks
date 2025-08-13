@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-cell",
-  "version": "5.0.9",
+  "version": "5.0.10",
   "design": "v1",
   "publishConfig": {
     "access": "public"
