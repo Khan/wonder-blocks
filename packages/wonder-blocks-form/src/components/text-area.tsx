@@ -73,15 +73,6 @@ type TextAreaProps = AriaProps & {
      */
     autoFocus?: boolean;
     /**
-     * The number of visible lines of text for the textarea. Defaults to 2.
-     *
-     * If `autoResize` is `true`, `rows` is the starting number of rows and more
-     * content increases the number of rows, up until the `maxRows` prop value
-     * is reached. If `autoResize` is `false`, the textarea will be scrollable
-     * with the number of rows set by the `rows` prop.
-     */
-    rows?: number;
-    /**
      * Determines if the textarea should be checked for spelling by the browser/OS.
      * By default, it is enabled. It will be checked for spelling when you try
      * to edit it (ie. once the textarea is focused). For more details, see the
@@ -183,7 +174,15 @@ type TextAreaProps = AriaProps & {
      * will be used.
      */
     required?: boolean | string;
-
+    /**
+     * The number of visible lines of text for the textarea. Defaults to 2.
+     *
+     * If `autoResize` is `true`, `rows` is the starting number of rows and more
+     * content increases the number of rows, up until the `maxRows` prop value
+     * is reached. If `autoResize` is `false`, the textarea will be scrollable
+     * with the number of rows set by the `rows` prop.
+     */
+    rows?: number;
     /**
      * Whether the textarea should automatically resize to fit the content.
      * If `true`, the textarea will resize to fit the content. If `false`,
