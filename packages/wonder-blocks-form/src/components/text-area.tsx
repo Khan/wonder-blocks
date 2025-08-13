@@ -258,6 +258,29 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
         const generatedUniqueId = useId();
         const uniqueId = id ?? generatedUniqueId;
 
+        const getTextAreaHeight = (textArea: HTMLTextAreaElement) => {
+            // Save the original style properties
+            const originalHeight = textArea.style.height;
+            const originalOverflow = textArea.style.overflow;
+
+            // Force the textarea to shrink by setting height to 0 and hiding overflow
+            textArea.style.setProperty("height", "0px", "important");
+            textArea.style.setProperty("overflow", "hidden", "important");
+            // Now get the actual scrollHeight needed for the content
+            const newHeight = textArea.scrollHeight;
+
+            // Restore the original styles (remove !important)
+            textArea.style.removeProperty("height");
+            textArea.style.removeProperty("overflow");
+            if (originalHeight) {
+                textArea.style.height = originalHeight;
+            }
+            if (originalOverflow) {
+                textArea.style.overflow = originalOverflow;
+            }
+            return newHeight;
+        };
+
         const handleChange = (
             event: React.ChangeEvent<HTMLTextAreaElement>,
         ) => {
@@ -265,10 +288,8 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             onChangeValidation(newValue);
             onChange(newValue);
 
-            if (!supportsFieldSizing && event.target.scrollHeight !== height) {
-                // When the value changes, update the height if field-sizing is
-                // not supported
-                setHeight(event.target.scrollHeight);
+            if (!supportsFieldSizing) {
+                setHeight(getTextAreaHeight(event.target));
             }
         };
 
@@ -289,7 +310,11 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             if (!supportsFieldSizing && ref && window?.ResizeObserver) {
                 const observer = new window.ResizeObserver(([entry]) => {
                     if (entry) {
-                        setHeight(entry.target.scrollHeight);
+                        setHeight(
+                            getTextAreaHeight(
+                                entry.target as HTMLTextAreaElement,
+                            ),
+                        );
                     }
                 });
 
