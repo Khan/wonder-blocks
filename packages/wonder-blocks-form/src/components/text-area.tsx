@@ -73,10 +73,12 @@ type TextAreaProps = AriaProps & {
      */
     autoFocus?: boolean;
     /**
-     * The number of visible lines of text for the textarea.
-     * By default, 2 rows are shown.
-     * `rows` is ignored if a height is applied to the textarea using CSS.
-     * The number of rows can change if the resize control is used by the user.
+     * The number of visible lines of text for the textarea. Defaults to 2.
+     *
+     * If `autoResize` is `true`, `rows` is the starting number of rows and more
+     * content increases the number of rows, up until the `maxRows` prop value
+     * is reached. If `autoResize` is `false`, the textarea will be scrollable
+     * with the number of rows set by the `rows` prop.
      */
     rows?: number;
     /**
