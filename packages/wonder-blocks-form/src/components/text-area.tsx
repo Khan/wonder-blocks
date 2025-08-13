@@ -438,6 +438,7 @@ const styles = StyleSheet.create({
         paddingBlock: theme.field.layout.paddingBlock,
         // Disable the resize control
         resize: "none",
+        minWidth: "28rem",
     },
     fieldSizing: {
         // For browsers that support field-sizing, set it to content so that
