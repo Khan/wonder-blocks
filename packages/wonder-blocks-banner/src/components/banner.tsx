@@ -97,7 +97,9 @@ type Props = {
      */
     layout: BannerLayout;
     /**
-     * Text on the banner (LabelSmall) or a node if you want something different.
+     * Text on the banner or a node if you want something different. For the
+     * best results, use the default styles provided by the Banner component and
+     * avoid using typography components for the `text` prop.
      */
     text: string | React.ReactNode;
     /**
