@@ -190,13 +190,17 @@ type TextAreaProps = AriaProps & {
      *
      * Defaults to `true`.
      *
-     * Note: When `autoResize` is `true` and `rows` is set to a value <= 6, the
-     * textarea will become scrollable after 6 rows. This is to prevent the
-     * textarea from becoming too tall by default. If `rows > 6`, the textarea
-     * will have no max height set. In both cases, the maxHeight can be
-     * overridden using the `style` prop.
+     * See related `maxRows` prop for setting the max height for the textarea.
      */
     autoResize?: boolean;
+    /**
+     * The maximum number of rows to show when `autoResize` is `true` to prevent
+     * the textarea from becoming too tall. The textarea will become scrollable
+     * if content exceeds the max number of rows.
+     *
+     * Defaults to 6. If `rows` > `maxRows`, `rows` will be used for `maxRows`.
+     */
+    maxRows?: number;
 };
 
 const StyledTextarea = addStyle("textarea");
@@ -247,6 +251,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             rootStyle,
             error,
             autoResize = true,
+            maxRows = 6,
             instantValidation = true,
             // Should only include aria related props
             ...otherProps
@@ -352,8 +357,9 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                             // not supported
                             height: `calc(${height}px + 2px)`,
                         },
-                  // If the number of rows is <= 6, set the max height to 6 rows. Otherwise, there is no max height set.
-                  rows <= 6 && styles.sixRowsMaxHeight,
+                  {
+                      maxHeight: `calc(${Math.max(maxRows, rows)} * ${font.body.lineHeight.medium} + (2 * ${theme.field.layout.paddingBlock}) + (2 * ${border.width.thin}))`,
+                  },
               ]
             : [];
 
