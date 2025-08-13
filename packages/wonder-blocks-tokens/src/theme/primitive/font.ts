@@ -78,4 +78,8 @@ export const font = {
             xxlarge: sizing.size_400, // Title
         },
     },
+    textDecoration: {
+        underlineOffset: sizing.size_020,
+        thickness: sizing.size_010,
+    },
 };
