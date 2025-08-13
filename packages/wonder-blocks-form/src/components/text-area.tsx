@@ -331,7 +331,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                             : {
                                   // Dynamically set the height if field-sizing is
                                   // not supported
-                                  height: `${height}px`,
+                                  height: `calc(${height}px + 2px)`,
                               },
                         style,
                     ]}
