@@ -7,7 +7,6 @@ import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import Banner from "@khanacademy/wonder-blocks-banner";
 
 import BannerArgTypes from "./banner.argtypes";
@@ -274,7 +273,7 @@ export const WithInlineLinks: StoryComponentType = {
             />
             <Banner
                 text={
-                    <LabelSmall>
+                    <>
                         Use inline links in the body of the text instead. Click{" "}
                         {
                             <Link href="#link" inline={true}>
@@ -282,7 +281,7 @@ export const WithInlineLinks: StoryComponentType = {
                             </Link>
                         }{" "}
                         to go to some other page.
-                    </LabelSmall>
+                    </>
                 }
                 kind="success"
                 layout="floating"

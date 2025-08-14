@@ -11,7 +11,6 @@ import Banner from "@khanacademy/wonder-blocks-banner";
 import {longText, reallyLongText} from "../components/text-for-testing";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {ScenariosLayout} from "../components/scenarios-layout";
-import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import Link from "@khanacademy/wonder-blocks-link";
 import Button from "@khanacademy/wonder-blocks-button";
 import crownIcon from "../wonder-blocks-icon/icons/crown.svg";
@@ -79,13 +78,13 @@ const stateSheetRows = [
                 },
             ],
             text: (
-                <BodyText size="small">
+                <>
                     Example text with an{" "}
                     <Link href="/" inline={true}>
                         Inline Link
                     </Link>
                     .
-                </BodyText>
+                </>
             ),
         },
     },
@@ -247,13 +246,13 @@ const scenarios = [
         name: "With inline link",
         props: {
             text: (
-                <BodyText size="small">
+                <>
                     Example text with an{" "}
                     <Link href="/" inline={true}>
                         Inline Link
                     </Link>
                     .
-                </BodyText>
+                </>
             ),
         },
     },
