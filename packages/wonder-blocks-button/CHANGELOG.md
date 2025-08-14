@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-button
 
+## 11.0.2
+
+### Patch Changes
+
+- 4aad557: Update ButtonCore to use BodyText component internally for text
+- Updated dependencies [4aad557]
+    - @khanacademy/wonder-blocks-tokens@12.1.0
+    - @khanacademy/wonder-blocks-clickable@7.1.22
+    - @khanacademy/wonder-blocks-icon@5.2.16
+    - @khanacademy/wonder-blocks-progress-spinner@3.1.33
+    - @khanacademy/wonder-blocks-styles@0.2.28
+    - @khanacademy/wonder-blocks-typography@4.2.18
+
 ## 11.0.1
 
 ### Patch Changes

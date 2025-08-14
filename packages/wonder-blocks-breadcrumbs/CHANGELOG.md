@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-breadcrumbs
 
+## 3.2.0
+
+### Minor Changes
+
+- 4aad557: Add font theming to Link and Breadcrumbs with links
+
+### Patch Changes
+
+- Updated dependencies [4aad557]
+    - @khanacademy/wonder-blocks-tokens@12.1.0
+
 ## 3.1.32
 
 ### Patch Changes

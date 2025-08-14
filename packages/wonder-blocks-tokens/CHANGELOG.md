@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 12.1.0
+
+### Minor Changes
+
+- 4aad557: Add new font tokens for Links: textDecoration underlineOffset and thickness, font family, and font weight
+
 ## 12.0.2
 
 ### Patch Changes
