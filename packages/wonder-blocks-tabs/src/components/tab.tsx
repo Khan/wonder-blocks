@@ -102,6 +102,7 @@ export const styles = StyleSheet.create({
         marginBlockStart: sizing.size_080,
         marginBlockEnd: bottomSpacing,
         position: "relative",
+        color: semanticColor.core.foreground.neutral.subtle,
         ...focusStyles.focus,
         // Using :after styling to apply the hover/pressed underline styling
         // instead of box-shadow because we use box-shadow for the focus outline.

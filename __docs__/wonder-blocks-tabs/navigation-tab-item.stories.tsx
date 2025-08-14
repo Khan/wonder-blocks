@@ -5,7 +5,7 @@ import packageConfig from "../../packages/wonder-blocks-tabs/package.json";
 import {NavigationTabItem} from "@khanacademy/wonder-blocks-tabs";
 import Link from "@khanacademy/wonder-blocks-link";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import argTypes from "./navigation-tab-item.argtypes";
 
 const StyledUl = addStyle("ul", {
@@ -65,7 +65,13 @@ export const CustomStyle: StoryComponentType = {
     args: {
         children: <Link href="#link">Navigation tab item</Link>,
         style: {
-            backgroundColor: semanticColor.surface.secondary,
+            border: `${border.width.medium} dashed ${semanticColor.core.border.neutral.subtle}`,
+        },
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because it's covered by scenarios
+            disableSnapshot: true,
         },
     },
 };

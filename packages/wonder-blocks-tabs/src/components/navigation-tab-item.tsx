@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     link: {
         display: "flex",
         margin: 0,
-        color: semanticColor.core.foreground.neutral.strong,
+        color: semanticColor.core.foreground.neutral.subtle,
         paddingInline: 0,
         position: "relative",
         whiteSpace: "nowrap",
