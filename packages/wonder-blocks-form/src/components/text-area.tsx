@@ -212,7 +212,7 @@ const StyledTextarea = addStyle("textarea");
  * Height = (number of rows * line height) + (2 * vertical padding) + (2 * border width)
  */
 function getHeightForNumberOfRows(rows: number) {
-    return `calc(${rows}lh + (2 * ${theme.field.layout.paddingBlock}) + (2 * ${border.width.thin}))`;
+    return `calc((${rows} * ${font.body.lineHeight.medium}) + (2 * ${theme.field.layout.paddingBlock}) + (2 * ${border.width.thin}))`;
 }
 
 /**
