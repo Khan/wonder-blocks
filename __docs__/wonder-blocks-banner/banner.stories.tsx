@@ -570,6 +570,20 @@ export const WithCustomIcon: StoryComponentType = {
 };
 
 /**
+ * When `icon="none"`, no icon is displayed.
+ *
+ * For accessibility, make sure important information about the kind is still
+ * conveyed to the user so that color alone isn't used to convey meaning.
+ */
+export const WithNoIcon: StoryComponentType = {
+    args: {
+        icon: "none",
+        text: "Success! Here is an example with no icon.",
+        kind: "success",
+    },
+};
+
+/**
  * When in the right-to-left direction, the banner is mirrored. This example has
  * text in Urdu, which is a right-to-left language.
  */

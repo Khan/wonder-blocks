@@ -32,6 +32,8 @@ const dismissMappings = {
     },
 } as const;
 
+const iconMappingsWithNone = {...IconMappings, none: "none"};
+
 export default {
     kind: {
         control: {type: "select"},
@@ -104,11 +106,11 @@ export default {
     },
     icon: {
         control: {type: "select"},
-        options: Object.keys(IconMappings),
-        mapping: IconMappings,
+        options: Object.keys(iconMappingsWithNone),
+        mapping: iconMappingsWithNone,
         table: {
             type: {
-                summary: "PhosphorIconAsset | string",
+                summary: "PhosphorIconAsset | string | `none`",
             },
         },
     },
