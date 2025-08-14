@@ -75,7 +75,7 @@ export const StateSheetStory: StoryComponentType = {
                 name: "Label with icon",
                 props: {
                     label: "Badge",
-                    icon: <PhosphorIcon icon={IconMappings.cookie} />,
+                    icon: <PhosphorIcon icon={IconMappings.cookieBold} />,
                 },
             },
             {
@@ -83,7 +83,7 @@ export const StateSheetStory: StoryComponentType = {
                 props: {
                     icon: (
                         <PhosphorIcon
-                            icon={IconMappings.cookie}
+                            icon={IconMappings.cookieBold}
                             aria-label="Cookie"
                         />
                     ),
@@ -184,7 +184,7 @@ export const Scenarios: StoryComponentType = {
                 name: "Long label with icon",
                 props: {
                     label: longText,
-                    icon: <PhosphorIcon icon={IconMappings.cookie} />,
+                    icon: <PhosphorIcon icon={IconMappings.cookieBold} />,
                 },
             },
             {
@@ -197,7 +197,7 @@ export const Scenarios: StoryComponentType = {
                 name: "Long label with no word break with icon",
                 props: {
                     label: longTextWithNoWordBreak,
-                    icon: <PhosphorIcon icon={IconMappings.cookie} />,
+                    icon: <PhosphorIcon icon={IconMappings.cookieBold} />,
                 },
             },
         ];
@@ -303,7 +303,7 @@ export const AllBadgesScenarios: StoryComponentType = {
             )),
         ].map((component) =>
             React.cloneElement(component, {
-                icon: <PhosphorIcon icon={IconMappings.cookie} />,
+                icon: <PhosphorIcon icon={IconMappings.cookieBold} />,
             }),
         );
 

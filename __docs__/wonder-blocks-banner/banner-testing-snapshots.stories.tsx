@@ -125,7 +125,7 @@ export const AllVariantsStory: StoryComponentType = {
                         <Banner
                             {...props}
                             text={`Custom Icon. ${longText}`}
-                            icon={IconMappings.cookie}
+                            icon={IconMappings.cookieBold}
                         />
                         <Banner
                             {...props}
@@ -260,7 +260,7 @@ const scenarios = [
     {
         name: "With custom Phosphor icon",
         props: {
-            icon: IconMappings.cookie,
+            icon: IconMappings.cookieBold,
         },
     },
     {
