@@ -226,6 +226,12 @@ export const AutoResize: StoryComponentType = {
             </View>
         );
     },
+    parameters: {
+        chromatic: {
+            // Disabling because it is covered by scenarios
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**

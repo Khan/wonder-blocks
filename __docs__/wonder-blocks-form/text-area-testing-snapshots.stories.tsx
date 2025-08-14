@@ -1,6 +1,7 @@
 import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
 
+import {StyleSheet} from "aphrodite";
 import {TextArea} from "@khanacademy/wonder-blocks-form";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {themeModes} from "../../.storybook/modes";
@@ -9,6 +10,8 @@ import {ScenariosLayout} from "../components/scenarios-layout";
 import {
     longText,
     longTextWithNoWordBreak,
+    reallyLongText,
+    repeatText,
 } from "../components/text-for-testing";
 import {AllVariants} from "../components/all-variants";
 
@@ -29,6 +32,12 @@ export default {
 type Story = StoryObj<typeof TextArea>;
 
 const rows = [{name: "Default", props: {}}];
+
+const styles = StyleSheet.create({
+    fixedWidth: {
+        width: "500px",
+    },
+});
 
 const columns = [
     {
@@ -143,6 +152,62 @@ export const Scenarios: Story = {
             {
                 name: "With Placeholder (long, no word breaks)",
                 props: {placeholder: longTextWithNoWordBreak},
+            },
+            {
+                name: "With rows = 10",
+                props: {rows: 10},
+            },
+            {
+                name: "With rows = 10 and value",
+                props: {rows: 10, value: repeatText(longText, 3)},
+            },
+            {
+                name: "Empty and auto resize is false",
+                props: {autoResize: false, style: styles.fixedWidth},
+            },
+            {
+                name: "With value and auto resize is false",
+                props: {
+                    autoResize: false,
+                    style: styles.fixedWidth,
+                    value: repeatText(longText, 3),
+                },
+            },
+            {
+                name: "Auto resize is true with default maxRows of 6",
+                props: {
+                    autoResize: true,
+                    value: repeatText(reallyLongText, 3),
+                    style: styles.fixedWidth,
+                },
+            },
+            {
+                name: "Auto resize is true with maxRows = 10",
+                props: {
+                    autoResize: true,
+                    value: repeatText(reallyLongText, 3),
+                    maxRows: 10,
+                    style: styles.fixedWidth,
+                },
+            },
+            {
+                name: "Auto resize is true with rows = 30",
+                props: {
+                    autoResize: true,
+                    value: repeatText(reallyLongText, 3),
+                    rows: 30,
+                    style: styles.fixedWidth,
+                },
+            },
+            {
+                name: "Auto-resize is true with rows = 4 and maxRows = 2 (rows > maxRows)",
+                props: {
+                    autoResize: true,
+                    value: repeatText(reallyLongText, 3),
+                    rows: 4,
+                    maxRows: 2,
+                    style: styles.fixedWidth,
+                },
             },
         ];
         return (
