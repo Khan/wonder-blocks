@@ -127,8 +127,13 @@ type Props = {
      * It supports the following types:
      * - `PhosphorIconAsset`: a reference to a Phosphor SVG asset.
      * - `string`: an import referencing an arbitrary SVG file.
+     * - `"none"`: no icon is displayed.
+     *
+     * Note: When using `icon="none"`, make sure important information is
+     * conveyed in the text of the banner, since color should not be the only
+     * way to convey status information.
      */
-    icon?: PhosphorIconAsset | string;
+    icon?: PhosphorIconAsset | string | "none";
     /**
      * Custom styles for the elements in the Banner component.
      * - `root`: Styles the root element
@@ -291,13 +296,15 @@ const Banner = (props: Props): React.ReactElement => {
             testId={testId}
         >
             <View style={styles.containerInner}>
-                <PhosphorIcon
-                    icon={icon || valuesForKind.icon}
-                    style={[styles.icon, bannerIconKindStyle]}
-                    aria-label={kind}
-                    testId="banner-kind-icon"
-                    role="img"
-                />
+                {icon !== "none" && (
+                    <PhosphorIcon
+                        icon={icon || valuesForKind.icon}
+                        style={[styles.icon, bannerIconKindStyle]}
+                        aria-label={kind}
+                        testId="banner-kind-icon"
+                        role="img"
+                    />
+                )}
                 <View style={styles.labelAndButtonsContainer}>
                     <View style={styles.labelContainer}>
                         {/* We use a div here since text can be a React node with other elements */}
