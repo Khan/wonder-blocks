@@ -342,7 +342,7 @@ const styles = StyleSheet.create({
     disabled: {
         background: semanticColor.surface.primary,
         borderRadius: theme.root.border.radius.default,
-        color: semanticColor.core.foreground.inverse.subtle,
+        color: semanticColor.core.foreground.disabled.subtle,
         ":hover": {
             background: semanticColor.surface.primary,
             cursor: "not-allowed",

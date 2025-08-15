@@ -133,7 +133,7 @@ export const Kinds: StoryComponentType = {
  */
 export const Layouts: StoryComponentType = () => {
     const borderStyle = {
-        border: `${border.width.medium} solid ${semanticColor.core.border.inverse.strong}`,
+        border: `${border.width.medium} solid ${semanticColor.core.border.knockout.default}`,
     } as const;
     const floatingContainerStyle = {padding: sizing.size_080} as const;
 

@@ -77,7 +77,7 @@ export default {
         sizing: {
             height: sizing.size_020,
         },
-        shadow: `inset 0px -1px 0px ${semanticColor.core.border.inverse.default}`,
+        shadow: `inset 0px -1px 0px ${semanticColor.core.border.neutral.subtle}`,
     },
     title: {
         font: {

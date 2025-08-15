@@ -234,12 +234,12 @@ export const CompactCellWithCustomStyles: StoryComponentType = {
             rightAccessory={
                 <PhosphorIcon
                     icon={IconMappings.calendar}
-                    color={semanticColor.core.foreground.inverse.strong}
+                    color={semanticColor.core.foreground.knockout.default}
                 />
             }
             style={{
                 background: semanticColor.surface.inverse,
-                color: semanticColor.core.foreground.inverse.strong,
+                color: semanticColor.core.foreground.knockout.default,
             }}
             onClick={() => {}}
         />

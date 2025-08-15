@@ -233,7 +233,7 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
     switch (kind) {
         case "accent":
             backgroundColor = semanticColor.core.background.instructive.default;
-            textColor = semanticColor.core.foreground.inverse.strong;
+            textColor = semanticColor.core.foreground.knockout.default;
             break;
         case "info":
             backgroundColor = semanticColor.feedback.info.subtle.background;

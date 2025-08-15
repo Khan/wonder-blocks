@@ -193,13 +193,10 @@ const states = {
         // TODO(WB-1852): Remove light variant.
         inverse: {
             rest: {
-                foreground: semanticColor.core.foreground.inverse.strong,
+                foreground: semanticColor.core.foreground.knockout.default,
             },
             hover: {
-                foreground: semanticColor.core.foreground.inverse.strong,
-            },
-            focus: {
-                border: semanticColor.core.border.inverse.strong,
+                foreground: semanticColor.core.foreground.knockout.default,
             },
             press: {
                 foreground: color.fadedBlue,
