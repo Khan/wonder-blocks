@@ -331,7 +331,7 @@ export const semanticColor = {
             disabled: {
                 border: core.border.disabled.strong,
                 background: core.border.disabled.strong,
-                foreground: core.foreground.knockout.default, // TODO check this is okay
+                foreground: core.foreground.knockout.default,
             },
         },
 
