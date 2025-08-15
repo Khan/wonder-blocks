@@ -40,7 +40,7 @@ type Props = {
      * This should be false if the user has `prefers-reduced-motion` opted in.
      * Defaults to `true`.
      */
-    animated?: boolean;
+    animated: boolean;
     /**
      * Whether the drawer is exiting. Used to trigger exit animations.
      */
