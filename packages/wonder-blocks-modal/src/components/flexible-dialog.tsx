@@ -19,14 +19,6 @@ type AccessibleDialogProps =
     | {title?: never; "aria-label": string; "aria-labelledby"?: never}
     | {title?: never; "aria-label"?: never; "aria-labelledby": string};
 
-export type FlexibleDialogStyles = {
-    root?: StyleType;
-    dialog?: StyleType;
-    panel?: StyleType;
-    closeButton?: StyleType;
-    alignment?: StyleType;
-};
-
 type Props = AccessibleDialogProps & {
     /**
      * An optional id parameter for the main heading. If one is not provided,
@@ -67,6 +59,15 @@ type Props = AccessibleDialogProps & {
      * The ID of the content describing this dialog, if applicable.
      */
     "aria-describedby"?: string;
+};
+
+// Style contract for DrawerLauncher with FlexibleDialog
+export type FlexibleDialogStyles = {
+    root?: StyleType;
+    dialog?: StyleType;
+    panel?: StyleType;
+    closeButton?: StyleType;
+    alignment?: StyleType;
 };
 
 type RenderProps = {
