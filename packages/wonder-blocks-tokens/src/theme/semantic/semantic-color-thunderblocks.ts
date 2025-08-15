@@ -48,6 +48,11 @@ const core = {
         },
     },
     background: {
+        base: {
+            subtle: color.blue_90,
+            default: color.white_100,
+            strong: color.blue_70,
+        },
         instructive: {
             subtle: color.blue_80,
             default: color.blue_30,
@@ -77,6 +82,9 @@ const core = {
             subtle: transparent,
             default: color.gray_80,
             strong: color.gray_70,
+        },
+        overlay: {
+            default: color.black_50,
         },
     },
 
