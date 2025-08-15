@@ -80,6 +80,41 @@ export default function FlexiblePanel({
     styles,
     testId,
 }: Props) {
+    const panelRef = React.useRef<HTMLButtonElement>(null);
+    const [isRtl, setIsRtl] = React.useState(false);
+
+    React.useEffect(() => {
+        if (!panelRef.current) {
+            return;
+        }
+
+        // Initial check for writing mode (RTL or LTR)
+        const rtlParent = panelRef.current.closest("[dir=rtl]");
+        setIsRtl(!!rtlParent);
+
+        // Set up observer to watch `dir` attribute
+        const observer = new MutationObserver((mutations) => {
+            for (const mutation of mutations) {
+                if (
+                    mutation.type === "attributes" &&
+                    mutation.attributeName === "dir"
+                ) {
+                    const newRtlParent = panelRef.current?.closest("[dir=rtl]");
+                    setIsRtl(!!newRtlParent);
+                }
+            }
+        });
+
+        // Start observing document root for `dir` changes after initial render
+        observer.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ["dir"],
+            subtree: true,
+        });
+
+        return () => observer.disconnect();
+    }, []);
+
     const renderMainContent = React.useCallback((): React.ReactElement => {
         const contentNode =
             typeof content === "function" ? (
@@ -100,10 +135,6 @@ export default function FlexiblePanel({
         }
 
         return React.cloneElement(mainContent, {
-            // We override the styling of the main content to help position
-            // it if there is a close button being
-            // shown. We have to do this here as the ModalContent doesn't
-            // know about things being positioned around it.
             style: [mainContent.props.style],
         });
     }, [title, content]);
@@ -119,10 +150,13 @@ export default function FlexiblePanel({
         ...styles?.panel,
     };
 
+    const componentStyles = getComponentStyles({isRtl});
+
     return (
         <View
             style={[componentStyles.wrapper, combinedBackgroundStyles]}
             testId={testId && `${testId}-panel`}
+            ref={panelRef}
         >
             {closeButtonVisible && (
                 <CloseButton
@@ -141,27 +175,32 @@ FlexiblePanel.defaultProps = {
     scrollOverflow: true,
 };
 
-const componentStyles = StyleSheet.create({
-    wrapper: {
-        flex: "1 1 auto",
-        flexDirection: "column",
-        boxSizing: "border-box",
-        overflow: "hidden",
-        height: "100%",
-        width: "100%",
-    },
+const getComponentStyles = ({isRtl}: {isRtl: boolean}) => {
+    return StyleSheet.create({
+        wrapper: {
+            flex: "1 1 auto",
+            flexDirection: "column",
+            boxSizing: "border-box",
+            overflow: "hidden",
+            height: "100%",
+            width: "100%",
+        },
 
-    closeButton: {
-        position: "absolute",
-        right: theme.closeButton.layout.gapRight,
-        top: theme.closeButton.layout.gapTop,
-        // This is to allow the button to be tab-ordered before the modal
-        // content but still be above the header and content.
-        zIndex: 1,
+        closeButton: {
+            position: "absolute",
+            // If writing direction is RTL, position the button on the left side
+            left: isRtl ? theme.closeButton.layout.gapRight : "unset",
+            // If writing direction is LTR, position the button on the right side
+            right: !isRtl ? theme.closeButton.layout.gapRight : "unset",
+            top: theme.closeButton.layout.gapTop,
+            // This is to allow the button to be tab-ordered before the modal
+            // content but still be above the header and content.
+            zIndex: 1,
 
-        // NOTE: IconButton uses :focus-visible, which is not supported for
-        // programmatic focus. This is a workaround to make sure the focus
-        // outline is visible when this control is focused.
-        ":focus": focusStyles.focus[":focus-visible"],
-    },
-});
+            // NOTE: IconButton uses :focus-visible, which is not supported for
+            // programmatic focus. This is a workaround to make sure the focus
+            // outline is visible when this control is focused.
+            ":focus": focusStyles.focus[":focus-visible"],
+        },
+    });
+};
