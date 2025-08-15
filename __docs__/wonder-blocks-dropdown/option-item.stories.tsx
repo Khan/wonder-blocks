@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         width: 300,
     },
     items: {
-        background: semanticColor.surface.primary,
+        background: semanticColor.core.background.base.default,
     },
 });
 

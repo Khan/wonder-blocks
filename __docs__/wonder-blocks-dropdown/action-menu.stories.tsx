@@ -493,7 +493,8 @@ export const CustomActionItems: StoryComponentType = {
                 onClick={action("user profile clicked!")}
                 style={{
                     [":hover [data-testid=new-pill]" as any]: {
-                        backgroundColor: semanticColor.surface.primary,
+                        backgroundColor:
+                            semanticColor.core.background.base.default,
                         color: semanticColor.status.notice.foreground,
                     },
                 }}

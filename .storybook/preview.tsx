@@ -82,7 +82,7 @@ const parameters = {
         values: [
             {
                 name: "light",
-                value: semanticColor.surface.primary,
+                value: semanticColor.core.background.base.default,
             },
             {
                 name: "darkBlue",

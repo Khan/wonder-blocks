@@ -161,7 +161,7 @@ export const HeaderWithNavigationTabsExample: StoryComponentType = {
                 width: "100vw",
             },
             headerStyle: {
-                backgroundColor: semanticColor.surface.primary,
+                backgroundColor: semanticColor.core.background.base.default,
                 display: "flex",
                 alignItems: "center",
                 flexWrap: "wrap",

@@ -702,7 +702,7 @@ const styles = StyleSheet.create({
         maxWidth: "100%",
         flexWrap: "wrap",
         // The following styles are to emulate the input styles
-        background: semanticColor.surface.primary,
+        background: semanticColor.core.background.base.default,
         borderRadius: theme.opener.border.radius.rest,
         border: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
         paddingInline: theme.opener.layout.padding.inline,
@@ -742,7 +742,7 @@ const styles = StyleSheet.create({
      * Listbox custom styles
      */
     listbox: {
-        backgroundColor: semanticColor.surface.primary,
+        backgroundColor: semanticColor.core.background.base.default,
         borderRadius: theme.listbox.border.radius,
         border: `solid ${border.width.thin} ${semanticColor.core.border.neutral.subtle}`,
         // TODO(WB-1878): Move to elevation tokens.

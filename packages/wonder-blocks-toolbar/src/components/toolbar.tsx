@@ -120,7 +120,7 @@ export default function Toolbar({
 
 const sharedStyles = StyleSheet.create({
     container: {
-        background: semanticColor.surface.primary,
+        background: semanticColor.core.background.base.default,
         border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
         flex: 1,
         display: "grid",

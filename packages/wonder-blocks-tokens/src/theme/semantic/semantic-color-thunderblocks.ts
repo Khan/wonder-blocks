@@ -735,7 +735,7 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
     input: {
         default: {
             border: core.border.neutral.default,
-            background: surface.primary,
+            background: core.background.base.default,
             foreground: core.foreground.neutral.strong,
             placeholder: core.foreground.neutral.subtle,
         },

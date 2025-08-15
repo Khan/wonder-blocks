@@ -315,7 +315,7 @@ const styles = StyleSheet.create({
         // vertically stacked.
         position: "static",
         boxSizing: "border-box",
-        backgroundColor: semanticColor.surface.primary,
+        backgroundColor: semanticColor.core.background.base.default,
     },
     wrapperWithAnimation: {
         transition: "grid-template-rows 300ms",
