@@ -87,8 +87,6 @@ export const SemanticColors = () => (
                 cell: (row) => (
                     <View
                         style={{
-                            background:
-                                semanticColor.core.background.neutral.subtle,
                             padding: sizing.size_060,
                         }}
                     >
