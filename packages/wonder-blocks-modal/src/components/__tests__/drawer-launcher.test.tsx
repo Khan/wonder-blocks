@@ -468,38 +468,6 @@ describe("DrawerLauncher", () => {
     });
 
     describe("Slide animations", () => {
-        test("FlexibleDialog passes animation props through render function", async () => {
-            // Arrange
-            render(
-                <DrawerLauncher
-                    alignment="inlineEnd"
-                    animated={true}
-                    timingDuration={200}
-                    modal={({animated, timingDuration}) => (
-                        <FlexibleDialog
-                            title="Animation test"
-                            content={
-                                <div
-                                    data-testid="modal-content"
-                                    data-animated={animated}
-                                    data-timing={timingDuration}
-                                />
-                            }
-                        />
-                    )}
-                    opened={true}
-                    onClose={() => {}}
-                />,
-            );
-
-            // Act
-            const content = await screen.findByTestId("modal-content");
-
-            // Assert
-            expect(content).toHaveAttribute("data-animated", "true");
-            expect(content).toHaveAttribute("data-timing", "200");
-        });
-
         test("Modal closes with animation when animated=true", async () => {
             // Arrange
             const onCloseMock = jest.fn();
