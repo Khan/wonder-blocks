@@ -38,10 +38,8 @@ const core = {
             default: color.gray_70,
             strong: color.gray_60,
         },
-        inverse: {
-            subtle: color.gray_60,
-            default: color.gray_90,
-            strong: color.white_100,
+        knockout: {
+            default: color.white_100,
         },
     },
     background: {
@@ -111,10 +109,8 @@ const core = {
             default: color.gray_50,
             strong: color.gray_40,
         },
-        inverse: {
-            subtle: color.gray_60,
-            default: color.gray_90,
-            strong: color.white_100,
+        knockout: {
+            default: color.white_100,
         },
     },
     shadow: {
@@ -147,7 +143,7 @@ const surface = {
 const sharedFeedbackStrongTokens = {
     background: core.background.neutral.strong,
     border: core.border.neutral.strong,
-    text: core.foreground.inverse.strong,
+    text: core.foreground.knockout.default,
 };
 
 export const semanticColor = mergeTheme(defaultSemanticColor, {
@@ -157,51 +153,51 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                 default: {
                     border: core.border.instructive.default,
                     background: core.background.instructive.default,
-                    foreground: core.foreground.inverse.strong,
+                    foreground: core.foreground.knockout.default,
                 },
                 hover: {
                     border: core.border.instructive.strong,
                     background: core.background.instructive.strong,
-                    foreground: core.foreground.inverse.strong,
+                    foreground: core.foreground.knockout.default,
                 },
                 press: {
                     border: core.border.instructive.strong,
                     background: core.background.instructive.strong,
-                    foreground: core.foreground.inverse.strong,
+                    foreground: core.foreground.knockout.default,
                 },
             },
             destructive: {
                 default: {
                     border: core.border.critical.default,
                     background: core.background.critical.default,
-                    foreground: core.foreground.inverse.strong,
+                    foreground: core.foreground.knockout.default,
                 },
                 hover: {
                     border: core.border.critical.strong,
                     background: core.background.critical.strong,
-                    foreground: core.foreground.inverse.strong,
+                    foreground: core.foreground.knockout.default,
                 },
                 press: {
                     border: core.border.critical.strong,
                     background: core.background.critical.strong,
-                    foreground: core.foreground.inverse.strong,
+                    foreground: core.foreground.knockout.default,
                 },
             },
             neutral: {
                 default: {
                     border: core.border.neutral.default,
                     background: core.background.neutral.default,
-                    foreground: core.foreground.inverse.strong,
+                    foreground: core.foreground.knockout.default,
                 },
                 hover: {
                     border: core.border.neutral.strong,
                     background: core.background.neutral.strong,
-                    foreground: core.foreground.inverse.strong,
+                    foreground: core.foreground.knockout.default,
                 },
                 press: {
                     border: core.border.neutral.strong,
                     background: core.background.neutral.strong,
-                    foreground: core.foreground.inverse.strong,
+                    foreground: core.foreground.knockout.default,
                 },
             },
 
@@ -381,10 +377,10 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
             },
             foreground: {
                 primary: {
-                    rest: core.foreground.inverse.strong,
-                    hover: core.foreground.inverse.strong,
-                    press: core.foreground.inverse.strong,
-                    selected: core.foreground.inverse.strong,
+                    rest: core.foreground.knockout.default,
+                    hover: core.foreground.knockout.default,
+                    press: core.foreground.knockout.default,
+                    selected: core.foreground.knockout.default,
                 },
                 secondary: {
                     rest: core.foreground.instructive.default,
@@ -463,10 +459,10 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
             },
             foreground: {
                 primary: {
-                    rest: core.foreground.inverse.strong,
-                    hover: core.foreground.inverse.strong,
-                    press: core.foreground.inverse.strong,
-                    selected: core.foreground.inverse.strong,
+                    rest: core.foreground.knockout.default,
+                    hover: core.foreground.knockout.default,
+                    press: core.foreground.knockout.default,
+                    selected: core.foreground.knockout.default,
                 },
                 secondary: {
                     rest: core.foreground.neutral.subtle,
@@ -558,7 +554,7 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
         rest: core.foreground.instructive.default,
         hover: core.foreground.instructive.strong,
         press: core.foreground.instructive.strong,
-        disabled: core.foreground.inverse.subtle,
+        disabled: core.foreground.disabled.subtle,
     },
     core,
     feedback: {
@@ -728,7 +724,7 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
         checked: {
             border: core.border.instructive.default,
             background: core.background.instructive.default,
-            foreground: core.foreground.inverse.strong,
+            foreground: core.foreground.knockout.default,
         },
         disabled: {
             border: core.border.disabled.default,
