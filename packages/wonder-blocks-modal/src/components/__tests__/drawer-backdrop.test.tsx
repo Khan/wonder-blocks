@@ -247,8 +247,6 @@ describe("DrawerBackdrop", () => {
 
     test("When not animated, it focuses the close button immediately", async () => {
         // Arrange
-        jest.useFakeTimers();
-
         render(
             <DrawerBackdrop
                 alignment="inlineStart"
@@ -264,11 +262,8 @@ describe("DrawerBackdrop", () => {
             name: "Close modal",
         });
 
-        // Assert
-        // Should focus immediately without waiting
-        expect(closeButton).toHaveFocus();
-
-        jest.useRealTimers();
+        // Assert - focus happens on next tick (timeout 0)
+        await waitFor(() => expect(closeButton).toHaveFocus());
     });
 
     test("When animated, it focuses the close button after timingDuration", async () => {
@@ -295,11 +290,14 @@ describe("DrawerBackdrop", () => {
         // Should not be focused immediately
         expect(closeButton).not.toHaveFocus();
 
-        // Advance timers by the timing duration
-        jest.advanceTimersByTime(customTimingDuration);
+        // Advance timers to just before the duration
+        jest.advanceTimersByTime(customTimingDuration - 1);
+        expect(closeButton).not.toHaveFocus();
+
+        // Advance the remaining time
+        jest.advanceTimersByTime(1);
 
         // Assert
-        // Now it should be focused
         expect(closeButton).toHaveFocus();
 
         jest.useRealTimers();

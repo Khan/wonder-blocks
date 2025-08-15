@@ -140,6 +140,13 @@ const DrawerLauncher = (props: Props) => {
     // State to track exit animation
     const [isExiting, setIsExiting] = React.useState(false);
 
+    const launcherRef = React.useRef<HTMLDivElement>(null);
+
+    // Get Language direction from closest parent with dir attribute
+    const [direction, setDirection] = React.useState<string | undefined>(
+        undefined,
+    );
+
     // Ref to store the last focused element
     const lastElementFocusedOutsideModalRef = React.useRef<HTMLElement | null>(
         null,
@@ -231,24 +238,30 @@ const DrawerLauncher = (props: Props) => {
         setUncontrolledOpened(true);
     }, [saveLastElementFocused]);
 
-    const styles = getComponentStyles({
+    // Find the closest RTL context when the component mounts
+    React.useEffect(() => {
+        const rtlParent = launcherRef.current?.closest('[dir="rtl"]');
+        setDirection(rtlParent ? "rtl" : undefined);
+    }, []);
+
+    const componentStyles = getComponentStyles({
+        direction,
         alignment,
         animated,
-        timingDuration,
         isExiting,
+        timingDuration,
     });
 
     const renderModal = React.useCallback(() => {
         // Compose the props we need to pass in to various modals
         const composedProps = {
             styles: {
-                root: styles.dialogRoot,
-                dialog: styles.dialog,
-                alignment: styles[alignment],
+                root: componentStyles.dialogRoot,
+                dialog: componentStyles.dialog,
+                alignment: componentStyles[alignment],
             },
         };
         if (typeof modal === "function") {
-            // console.log("if", composedProps);
             const renderedModal = modal({
                 closeModal: handleCloseModal,
                 ...composedProps,
@@ -272,7 +285,7 @@ const DrawerLauncher = (props: Props) => {
             });
         }
         return modal;
-    }, [alignment, styles, modal, handleCloseModal]);
+    }, [alignment, componentStyles, modal, handleCloseModal]);
 
     const renderedChildren = children
         ? children({
@@ -287,26 +300,27 @@ const DrawerLauncher = (props: Props) => {
 
     return (
         <ModalContext.Provider value={{closeModal: handleCloseModal}}>
-            {renderedChildren}
-            {/* Only render when opened (and not exiting) or when animating out */}
+            <div ref={launcherRef}>{renderedChildren}</div>
             {(opened && !isExiting) || (opened && isExiting && animated)
                 ? ReactDOM.createPortal(
-                      <FocusTrap style={styles.container}>
-                          <DrawerBackdrop
-                              alignment={alignment}
-                              animated={animated}
-                              initialFocusId={initialFocusId}
-                              testId={testId}
-                              isExiting={isExiting}
-                              onCloseModal={
-                                  backdropDismissEnabled
-                                      ? handleCloseModal
-                                      : () => {}
-                              }
-                          >
-                              {renderModal()}
-                          </DrawerBackdrop>
-                      </FocusTrap>,
+                      <div dir={direction}>
+                          <FocusTrap style={componentStyles.container}>
+                              <DrawerBackdrop
+                                  alignment={alignment}
+                                  animated={animated}
+                                  initialFocusId={initialFocusId}
+                                  testId={testId}
+                                  isExiting={isExiting}
+                                  onCloseModal={
+                                      backdropDismissEnabled
+                                          ? handleCloseModal
+                                          : () => {}
+                                  }
+                              >
+                                  {renderModal()}
+                              </DrawerBackdrop>
+                          </FocusTrap>
+                      </div>,
                       body,
                   )
                 : null}
@@ -341,81 +355,73 @@ function DrawerLauncherKeypressListener({onClose}: {onClose: () => unknown}) {
     return null;
 }
 
-const keyframes = {
-    slideInFromStart: {
+const getTransformValue = (
+    direction: string | undefined = "ltr",
+    alignment: DrawerAlignment,
+    percentage: number,
+): string => {
+    if (alignment === "blockEnd") {
+        return `translate3d(0, ${percentage}%, 0)`;
+    }
+
+    // For inlineEnd, we need to reverse the direction compared to inlineStart
+    const directionMultiplier =
+        direction === "rtl"
+            ? alignment === "inlineEnd"
+                ? -1
+                : 1
+            : alignment === "inlineEnd"
+              ? 1
+              : -1;
+
+    return `translate3d(${directionMultiplier * percentage}%, 0, 0)`;
+};
+
+const createKeyframes = (
+    direction: string | undefined,
+    alignment: DrawerAlignment,
+) => ({
+    slideIn: {
         "0%": {
-            transform: "translate3d(-100%, 0, 0)",
+            transform: getTransformValue(direction, alignment, 100),
             opacity: 0,
         },
         "100%": {
-            transform: "translate3d(0, 0, 0)",
+            transform: getTransformValue(direction, alignment, 0),
             opacity: 1,
         },
     },
-    slideOutToStart: {
+    slideOut: {
         "0%": {
-            transform: "translate3d(0, 0, 0)",
+            transform: getTransformValue(direction, alignment, 0),
             opacity: 1,
         },
         "100%": {
-            transform: "translate3d(-100%, 0, 0)",
+            transform: getTransformValue(direction, alignment, 100),
             opacity: 0,
         },
     },
-    slideInFromEnd: {
-        "0%": {
-            transform: "translate3d(100%, 0, 0)",
-            opacity: 0,
-        },
-        "100%": {
-            transform: "translate3d(0, 0, 0)",
-            opacity: 1,
-        },
-    },
-    slideOutToEnd: {
-        "0%": {
-            transform: "translate3d(0, 0, 0)",
-            opacity: 1,
-        },
-        "100%": {
-            transform: "translate3d(100%, 0, 0)",
-            opacity: 0,
-        },
-    },
-    slideInFromBottom: {
-        "0%": {
-            transform: "translate3d(0, 100%, 0)",
-            opacity: 0,
-        },
-        "100%": {
-            transform: "translate3d(0, 0, 0)",
-            opacity: 1,
-        },
-    },
-    slideOutToBottom: {
-        "0%": {
-            transform: "translate3d(0, 0, 0)",
-            opacity: 1,
-        },
-        "100%": {
-            transform: "translate3d(0, 100%, 0)",
-            opacity: 0,
-        },
-    },
-} as const;
+});
 
 const getComponentStyles = ({
     alignment,
+    direction,
     animated,
     isExiting,
     timingDuration,
 }: {
     alignment: DrawerAlignment | undefined;
+    direction: string | undefined;
     animated: boolean;
     timingDuration: number;
     isExiting?: boolean;
-}) =>
-    StyleSheet.create({
+}) => {
+    // Generate keyframes for the current alignment and RTL state
+    const alignmentKeyframes = alignment
+        ? createKeyframes(direction, alignment)
+        : null;
+
+    return StyleSheet.create({
         container: {
             zIndex: zindexModal,
         },
@@ -427,7 +433,7 @@ const getComponentStyles = ({
             maxWidth: breakpoint.width.smMax,
             width: "100%",
 
-            // Unset minimums on small screens
+            // Unset minimums on smaller screens
             [breakpoint.mediaQuery.smOrSmaller]: {
                 minWidth: "unset",
                 maxWidth: "unset",
@@ -440,34 +446,37 @@ const getComponentStyles = ({
             minWidth: "unset",
         },
         inlineStart: {
-            // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
+            // @ts-expect-error [FEI-5019] - `animationName` expects a string not an object
             animationName:
                 animated &&
+                alignmentKeyframes &&
                 (isExiting
-                    ? keyframes.slideOutToStart
-                    : keyframes.slideInFromStart),
+                    ? alignmentKeyframes.slideOut
+                    : alignmentKeyframes.slideIn),
             animationDuration: `${timingDuration}ms`,
             animationTimingFunction: "linear",
             animationFillMode: "forwards",
         },
         inlineEnd: {
-            // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
+            // @ts-expect-error [FEI-5019] - `animationName` expects a string not an object
             animationName:
                 animated &&
+                alignmentKeyframes &&
                 (isExiting
-                    ? keyframes.slideOutToEnd
-                    : keyframes.slideInFromEnd),
+                    ? alignmentKeyframes.slideOut
+                    : alignmentKeyframes.slideIn),
             animationDuration: `${timingDuration}ms`,
             animationTimingFunction: "linear",
             animationFillMode: "forwards",
         },
         blockEnd: {
-            // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
+            // @ts-expect-error [FEI-5019] - `animationName` expects a string not an object
             animationName:
                 animated &&
+                alignmentKeyframes &&
                 (isExiting
-                    ? keyframes.slideOutToBottom
-                    : keyframes.slideInFromBottom),
+                    ? alignmentKeyframes.slideOut
+                    : alignmentKeyframes.slideIn),
             animationDuration: `${timingDuration}ms`,
             animationTimingFunction: "linear",
             animationFillMode: "forwards",
@@ -476,11 +485,11 @@ const getComponentStyles = ({
             maxWidth: "unset",
 
             [breakpoint.mediaQuery.smOrSmaller]: {
-                // override combined styles and breakpoints
                 height: "auto",
             },
         },
     });
+};
 
 /**
  * A drawer modal launcher intended for the FlexibleDialog component. It can
