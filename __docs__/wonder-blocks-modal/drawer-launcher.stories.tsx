@@ -48,10 +48,6 @@ const customViewports = {
 const DefaultModal = (): ModalElement => (
     <FlexibleDialog
         title="Single-line title"
-        styles={{
-            root: styles.fullHeightDialogRoot,
-            panel: styles.fullHeightDialog,
-        }}
         content={
             <View>
                 <BodyText>{reallyLongText}</BodyText>
@@ -227,6 +223,42 @@ WithNoAnimation.parameters = {
     },
 };
 
+/**
+ *
+ * An drawer with less content. Uses the `alignment` prop to slide in from the
+ * right in LTR writing mode and left in RTL writing mode.
+ */
+export const WithShortContent: StoryComponentType = {
+    args: {
+        alignment: "inlineEnd",
+    },
+    render: (args) => (
+        <DrawerLauncher
+            modal={
+                <FlexibleDialog
+                    title="Single-line title"
+                    content={
+                        <View>
+                            <BodyText>Short contents</BodyText>
+                        </View>
+                    }
+                />
+            }
+            alignment={args.alignment}
+        >
+            {({openModal}) => (
+                <Button onClick={openModal}>Click me to open the modal</Button>
+            )}
+        </DrawerLauncher>
+    ),
+};
+
+WithShortContent.parameters = {
+    chromatic: {
+        // All the examples for DrawerLauncher are behavior based, not visual.
+        disableSnapshot: true,
+    },
+};
 /**
  *
  * A launcher with a really long FlexibleDialog, for testing overflow styles.
@@ -605,7 +637,7 @@ export const FocusTrap: StoryComponentType = {
                                 modal={SubModal}
                                 alignment={args.alignment}
                             >
-                                {({openModal, alignment}) => (
+                                {({openModal}) => (
                                     <Button
                                         kind="secondary"
                                         onClick={openModal}
@@ -660,9 +692,5 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
         gap: sizing.size_160,
-    },
-    fullHeightDialogRoot: {
-        height: "100vh",
-        borderRadius: "unset",
     },
 });
