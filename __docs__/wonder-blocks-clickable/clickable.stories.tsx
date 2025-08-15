@@ -337,7 +337,7 @@ const styles = StyleSheet.create({
     },
     dark: {
         backgroundColor: semanticColor.surface.inverse,
-        color: semanticColor.core.foreground.inverse.strong,
+        color: semanticColor.core.foreground.knockout.default,
         padding: spacing.xSmall_8,
     },
     row: {
@@ -353,7 +353,7 @@ const styles = StyleSheet.create({
         padding: spacing.large_24,
     },
     disabled: {
-        color: semanticColor.core.foreground.inverse.strong,
+        color: semanticColor.core.foreground.knockout.default,
         backgroundColor: semanticColor.surface.overlay,
     },
     button: {

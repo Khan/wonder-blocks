@@ -28,6 +28,9 @@ export default {
                 foreground: semanticColor.core.foreground.instructive.default,
                 border: semanticColor.core.border.instructive.default,
             },
+            disabled: {
+                foreground: semanticColor.core.foreground.disabled.default,
+            },
         },
         layout: {
             gap: {
@@ -77,7 +80,7 @@ export default {
         sizing: {
             height: sizing.size_020,
         },
-        shadow: `inset 0px -1px 0px ${semanticColor.core.border.inverse.default}`,
+        shadow: `inset 0px -1px 0px ${semanticColor.core.border.neutral.subtle}`,
     },
     title: {
         font: {

@@ -248,7 +248,7 @@ export const StartAndEndIcons: StoryComponentType = {
                 </Link>
                 <Body
                     style={{
-                        color: semanticColor.core.foreground.inverse.strong,
+                        color: semanticColor.core.foreground.knockout.default,
                     }}
                 >
                     This is an inline{" "}
@@ -325,7 +325,7 @@ export const InlineLight: StoryComponentType = {
     render: () => (
         <Body
             style={{
-                color: semanticColor.core.foreground.inverse.strong,
+                color: semanticColor.core.foreground.knockout.default,
                 width: 530,
             }}
         >

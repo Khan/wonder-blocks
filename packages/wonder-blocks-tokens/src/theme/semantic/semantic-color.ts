@@ -46,6 +46,9 @@ const core = {
             default: color.fadedOffBlack8,
             strong: color.white,
         },
+        knockout: {
+            default: color.white,
+        },
     },
     background: {
         instructive: {
@@ -119,6 +122,9 @@ const core = {
             default: color.offWhite,
             strong: color.white,
         },
+        knockout: {
+            default: color.white,
+        },
     },
     shadow: {
         transparent: color.offBlack16,
@@ -147,7 +153,7 @@ const surface = {
 const sharedFeedbackStrongTokens = {
     background: core.background.neutral.strong,
     border: core.border.neutral.strong,
-    text: core.foreground.inverse.strong,
+    text: core.foreground.knockout.default,
 };
 
 export const semanticColor = {
@@ -283,34 +289,34 @@ export const semanticColor = {
                 default: {
                     border: core.transparent,
                     background: core.background.instructive.default,
-                    foreground: core.foreground.inverse.strong,
+                    foreground: core.foreground.knockout.default,
                 },
                 hover: {
                     border: core.border.instructive.default,
                     background: core.background.instructive.default,
-                    foreground: core.foreground.inverse.strong,
+                    foreground: core.foreground.knockout.default,
                 },
                 press: {
                     border: core.border.instructive.strong,
                     background: core.background.instructive.strong,
-                    foreground: core.foreground.inverse.strong,
+                    foreground: core.foreground.knockout.default,
                 },
             },
             destructive: {
                 default: {
                     border: core.transparent,
                     background: core.background.critical.default,
-                    foreground: core.foreground.inverse.strong,
+                    foreground: core.foreground.knockout.default,
                 },
                 hover: {
                     border: core.border.critical.default,
                     background: core.background.critical.default,
-                    foreground: core.foreground.inverse.strong,
+                    foreground: core.foreground.knockout.default,
                 },
                 press: {
                     border: core.border.critical.strong,
                     background: core.background.critical.strong,
-                    foreground: core.foreground.inverse.strong,
+                    foreground: core.foreground.knockout.default,
                 },
             },
 
@@ -318,24 +324,24 @@ export const semanticColor = {
                 default: {
                     border: core.transparent,
                     background: core.background.neutral.default,
-                    foreground: core.foreground.inverse.strong,
+                    foreground: core.foreground.knockout.default,
                 },
                 hover: {
                     border: core.border.neutral.default,
                     background: core.background.neutral.default,
-                    foreground: core.foreground.inverse.strong,
+                    foreground: core.foreground.knockout.default,
                 },
                 press: {
                     border: core.border.neutral.strong,
                     background: core.background.neutral.strong,
-                    foreground: core.foreground.inverse.strong,
+                    foreground: core.foreground.knockout.default,
                 },
             },
 
             disabled: {
                 border: core.border.disabled.strong,
                 background: core.border.disabled.strong,
-                foreground: core.foreground.inverse.default,
+                foreground: core.foreground.knockout.default,
             },
         },
 
@@ -507,10 +513,10 @@ export const semanticColor = {
             },
             foreground: {
                 primary: {
-                    rest: core.foreground.inverse.strong,
-                    hover: core.foreground.inverse.strong,
-                    press: core.foreground.inverse.strong,
-                    selected: core.foreground.inverse.strong,
+                    rest: core.foreground.knockout.default,
+                    hover: core.foreground.knockout.default,
+                    press: core.foreground.knockout.default,
+                    selected: core.foreground.knockout.default,
                 },
                 secondary: {
                     rest: core.foreground.instructive.default,
@@ -589,10 +595,10 @@ export const semanticColor = {
             },
             foreground: {
                 primary: {
-                    rest: core.foreground.inverse.strong,
-                    hover: core.foreground.inverse.strong,
-                    press: core.foreground.inverse.strong,
-                    selected: core.foreground.inverse.strong,
+                    rest: core.foreground.knockout.default,
+                    hover: core.foreground.knockout.default,
+                    press: core.foreground.knockout.default,
+                    selected: core.foreground.knockout.default,
                 },
                 secondary: {
                     rest: core.foreground.neutral.subtle,
@@ -665,7 +671,7 @@ export const semanticColor = {
         checked: {
             border: core.border.instructive.default,
             background: core.background.instructive.default,
-            foreground: core.foreground.inverse.strong,
+            foreground: core.foreground.knockout.default,
         },
         disabled: {
             border: core.border.disabled.default,
@@ -725,7 +731,7 @@ export const semanticColor = {
         rest: core.foreground.instructive.subtle,
         hover: core.foreground.instructive.subtle,
         press: core.foreground.instructive.default,
-        disabled: core.foreground.inverse.subtle,
+        disabled: core.foreground.disabled.default,
     },
     /**
      * Colors to be used exclusively for Khanmigo or to communicate a

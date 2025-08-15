@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     action: {
         backgroundColor: "transparent",
         border: "none",
-        color: semanticColor.core.foreground.inverse.strong,
+        color: semanticColor.core.foreground.knockout.default,
         cursor: "pointer",
         margin: spacing.small_12,
         padding: spacing.xxSmall_6,

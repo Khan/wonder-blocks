@@ -198,10 +198,12 @@ export const CustomStyles: StoryComponentType = {
                 styles={{
                     root: {
                         backgroundColor: semanticColor.surface.inverse,
-                        borderColor: semanticColor.core.border.inverse.strong,
-                        color: semanticColor.core.foreground.inverse.strong,
+                        borderColor: semanticColor.core.border.knockout.default,
+                        color: semanticColor.core.foreground.knockout.default,
                     },
-                    icon: {color: semanticColor.core.foreground.inverse.strong},
+                    icon: {
+                        color: semanticColor.core.foreground.knockout.default,
+                    },
                     label: {
                         fontWeight: font.weight.medium,
                     },

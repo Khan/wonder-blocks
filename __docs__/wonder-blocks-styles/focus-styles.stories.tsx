@@ -86,8 +86,8 @@ export const Focus: Story = {
                         style={[
                             focusStyles.focus,
                             {
-                                color: semanticColor.core.foreground.inverse
-                                    .strong,
+                                color: semanticColor.core.foreground.knockout
+                                    .default,
                             },
                         ]}
                     />
@@ -129,8 +129,8 @@ export const Scenarios: Story = {
                             style={[
                                 focusStyles.focus,
                                 {
-                                    color: semanticColor.core.foreground.inverse
-                                        .strong,
+                                    color: semanticColor.core.foreground
+                                        .knockout.default,
                                 },
                             ]}
                         />
