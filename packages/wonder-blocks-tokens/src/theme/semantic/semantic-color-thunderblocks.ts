@@ -38,6 +38,11 @@ const core = {
             default: color.gray_70,
             strong: color.gray_60,
         },
+        inverse: {
+            subtle: color.gray_60,
+            default: color.gray_90,
+            strong: color.white_100,
+        },
         knockout: {
             default: color.white_100,
         },
@@ -108,6 +113,11 @@ const core = {
             subtle: color.gray_60,
             default: color.gray_50,
             strong: color.gray_40,
+        },
+        inverse: {
+            subtle: color.gray_60,
+            default: color.gray_90,
+            strong: color.white_100,
         },
         knockout: {
             default: color.white_100,

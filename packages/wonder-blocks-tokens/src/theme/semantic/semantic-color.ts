@@ -41,6 +41,11 @@ const core = {
             default: color.fadedOffBlack16,
             strong: color.fadedOffBlack32,
         },
+        inverse: {
+            subtle: color.fadedOffBlack16,
+            default: color.fadedOffBlack8,
+            strong: color.white,
+        },
         knockout: {
             default: color.white,
         },
@@ -111,6 +116,11 @@ const core = {
             subtle: color.fadedOffBlack16,
             default: color.fadedOffBlack32,
             strong: color.fadedOffBlack50,
+        },
+        inverse: {
+            subtle: color.fadedOffBlack32,
+            default: color.offWhite,
+            strong: color.white,
         },
         knockout: {
             default: color.white,
