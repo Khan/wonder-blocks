@@ -28,6 +28,9 @@ export default {
                 foreground: semanticColor.core.foreground.instructive.default,
                 border: semanticColor.core.border.instructive.default,
             },
+            disabled: {
+                foreground: semanticColor.core.foreground.disabled.default,
+            },
         },
         layout: {
             gap: {
