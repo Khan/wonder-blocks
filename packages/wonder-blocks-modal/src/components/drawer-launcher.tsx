@@ -4,6 +4,7 @@ import {StyleSheet} from "aphrodite";
 
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
 import type {WithActionSchedulerProps} from "@khanacademy/wonder-blocks-timing";
+import {breakpoint} from "@khanacademy/wonder-blocks-tokens";
 import {zindexModal} from "../../../wonder-blocks-styles/src/styles/constants"; //"@khanacademy/wonder-blocks-styles";
 
 import FocusTrap from "./focus-trap";
@@ -11,7 +12,7 @@ import DrawerBackdrop from "./drawer-backdrop";
 import ScrollDisabler from "./scroll-disabler";
 import type {DrawerAlignment, ModalElement} from "../util/types";
 import ModalContext from "./modal-context";
-import FlexibleDialog from "./flexible-dialog";
+import FlexibleDialog, {type FlexibleDialogStyles} from "./flexible-dialog";
 
 type Props = Readonly<{
     /**
@@ -31,10 +32,7 @@ type Props = Readonly<{
         | ModalElement
         | ((props: {
               closeModal: () => void;
-              alignment: DrawerAlignment;
-              animated?: boolean;
-              timingDuration?: number;
-              isExiting?: boolean;
+              styles?: FlexibleDialogStyles;
           }) => ModalElement);
     /**
      * Positioning of the drawer. Uses logical properties to support
@@ -108,9 +106,7 @@ type Props = Readonly<{
      */
     children?: (arg1: {
         openModal: () => unknown;
-        alignment?: DrawerAlignment;
-        animated?: boolean;
-        timingDuration?: number;
+        styles?: FlexibleDialogStyles;
     }) => React.ReactNode;
 }> &
     WithActionSchedulerProps;
@@ -235,55 +231,52 @@ const DrawerLauncher = (props: Props) => {
         setUncontrolledOpened(true);
     }, [saveLastElementFocused]);
 
+    const styles = getComponentStyles({
+        alignment,
+        animated,
+        timingDuration,
+        isExiting,
+    });
+
     const renderModal = React.useCallback(() => {
+        // Compose the props we need to pass in to various modals
+        const composedProps = {
+            styles: {
+                root: styles.dialogRoot,
+                dialog: styles.dialog,
+                alignment: styles[alignment],
+            },
+        };
         if (typeof modal === "function") {
+            // console.log("if", composedProps);
             const renderedModal = modal({
                 closeModal: handleCloseModal,
-                alignment,
-                animated,
-                timingDuration,
-                isExiting,
+                ...composedProps,
             });
 
-            // If the rendered modal is a FlexibleDialog, only inject animation props
+            // If the rendered modal is a FlexibleDialog, inject animation props
             if (renderedModal && renderedModal.type === FlexibleDialog) {
                 return React.cloneElement(renderedModal, {
-                    alignment,
-                    animated,
-                    timingDuration,
-                    isExiting,
+                    ...composedProps,
                     ...renderedModal.props,
                 });
             }
             return renderedModal;
         }
 
-        // If the modal is a FlexibleDialog element, only inject animation props
+        // If the modal is a FlexibleDialog element, inject animation props
         if (modal && modal.type === FlexibleDialog) {
             return React.cloneElement(modal, {
-                alignment,
-                animated,
-                timingDuration,
-                isExiting,
+                ...composedProps,
                 ...modal.props,
             });
         }
         return modal;
-    }, [
-        modal,
-        handleCloseModal,
-        alignment,
-        animated,
-        timingDuration,
-        isExiting,
-    ]);
+    }, [alignment, styles, modal, handleCloseModal]);
 
     const renderedChildren = children
         ? children({
               openModal,
-              alignment,
-              animated,
-              timingDuration,
           })
         : null;
 
@@ -348,11 +341,146 @@ function DrawerLauncherKeypressListener({onClose}: {onClose: () => unknown}) {
     return null;
 }
 
-const styles = StyleSheet.create({
-    container: {
-        zIndex: zindexModal,
+const keyframes = {
+    slideInFromStart: {
+        "0%": {
+            transform: "translate3d(-100%, 0, 0)",
+            opacity: 0,
+        },
+        "100%": {
+            transform: "translate3d(0, 0, 0)",
+            opacity: 1,
+        },
     },
-});
+    slideOutToStart: {
+        "0%": {
+            transform: "translate3d(0, 0, 0)",
+            opacity: 1,
+        },
+        "100%": {
+            transform: "translate3d(-100%, 0, 0)",
+            opacity: 0,
+        },
+    },
+    slideInFromEnd: {
+        "0%": {
+            transform: "translate3d(100%, 0, 0)",
+            opacity: 0,
+        },
+        "100%": {
+            transform: "translate3d(0, 0, 0)",
+            opacity: 1,
+        },
+    },
+    slideOutToEnd: {
+        "0%": {
+            transform: "translate3d(0, 0, 0)",
+            opacity: 1,
+        },
+        "100%": {
+            transform: "translate3d(100%, 0, 0)",
+            opacity: 0,
+        },
+    },
+    slideInFromBottom: {
+        "0%": {
+            transform: "translate3d(0, 100%, 0)",
+            opacity: 0,
+        },
+        "100%": {
+            transform: "translate3d(0, 0, 0)",
+            opacity: 1,
+        },
+    },
+    slideOutToBottom: {
+        "0%": {
+            transform: "translate3d(0, 0, 0)",
+            opacity: 1,
+        },
+        "100%": {
+            transform: "translate3d(0, 100%, 0)",
+            opacity: 0,
+        },
+    },
+} as const;
+
+const getComponentStyles = ({
+    alignment,
+    animated,
+    isExiting,
+    timingDuration,
+}: {
+    alignment: DrawerAlignment | undefined;
+    animated: boolean;
+    timingDuration: number;
+    isExiting?: boolean;
+}) =>
+    StyleSheet.create({
+        container: {
+            zIndex: zindexModal,
+        },
+        dialogRoot: {
+            height: "100%",
+            minHeight: "100vh",
+            // Use common widths for mininum/maximum
+            minWidth: breakpoint.width.xsMax,
+            maxWidth: breakpoint.width.smMax,
+            width: "100%",
+
+            // Unset minimums on small screens
+            [breakpoint.mediaQuery.smOrSmaller]: {
+                minWidth: "unset",
+                maxWidth: "unset",
+            },
+        },
+        dialog: {
+            // Override the minHeight and minWidth on View
+            // And allow BlockEnd content to provide its own height
+            minHeight: alignment === "blockEnd" ? "unset" : "100vh",
+            minWidth: "unset",
+        },
+        inlineStart: {
+            // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
+            animationName:
+                animated &&
+                (isExiting
+                    ? keyframes.slideOutToStart
+                    : keyframes.slideInFromStart),
+            animationDuration: `${timingDuration}ms`,
+            animationTimingFunction: "linear",
+            animationFillMode: "forwards",
+        },
+        inlineEnd: {
+            // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
+            animationName:
+                animated &&
+                (isExiting
+                    ? keyframes.slideOutToEnd
+                    : keyframes.slideInFromEnd),
+            animationDuration: `${timingDuration}ms`,
+            animationTimingFunction: "linear",
+            animationFillMode: "forwards",
+        },
+        blockEnd: {
+            // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
+            animationName:
+                animated &&
+                (isExiting
+                    ? keyframes.slideOutToBottom
+                    : keyframes.slideInFromBottom),
+            animationDuration: `${timingDuration}ms`,
+            animationTimingFunction: "linear",
+            animationFillMode: "forwards",
+            height: "auto",
+            minHeight: "unset",
+            maxWidth: "unset",
+
+            [breakpoint.mediaQuery.smOrSmaller]: {
+                // override combined styles and breakpoints
+                height: "auto",
+            },
+        },
+    });
 
 /**
  * A drawer modal launcher intended for the FlexibleDialog component. It can
