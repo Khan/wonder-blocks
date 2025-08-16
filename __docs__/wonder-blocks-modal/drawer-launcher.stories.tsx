@@ -75,7 +75,37 @@ export default {
         ),
         docs: {
             description: {
-                component: null,
+                component: `A drawer modal launcher intended for the FlexibleDialog component. It can align a dialog on the left (inlineStart), right (inlineEnd), or bottom of the screen.
+
+- Slide animations can be turned off with the \`animated\` prop.
+- Timing of animations can be fine-tuned with the \`timingDuration\` prop, used on enter and exit animations. It is also used to coordinate timing of focus management on open and close.
+
+### Usage
+
+\`\`\`jsx
+import {DrawerLauncher} from "@khanacademy/wonder-blocks-modal";
+import {FlexibleDialog} from "@khanacademy/wonder-blocks-modal";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
+
+<DrawerLauncher
+     onClose={handleClose}
+     opened={opened}
+     animated={animated}
+     alignment="inlineStart"
+     modal={({closeModal}) => (
+         <FlexibleDialog
+             title="Assign Mastery Mission"
+             content={
+                 <View>
+                     <BodyText>
+                         Hello, world
+                     </BodyText>
+                 </View>
+             }
+         />
+     )}
+/>
+\`\`\``,
             },
             source: {
                 // See https://github.com/storybookjs/storybook/issues/12596
