@@ -104,9 +104,7 @@ describe("ModalLauncher", () => {
         expect(onCloseMock).toHaveBeenCalled();
     });
 
-    // TODO(FEI-5533): Key press events aren't working correctly with
-    // user-event v14. We need to investigate and fix this.
-    test.skip("Pressing Escape closes the modal", async () => {
+    test("Pressing Escape closes the modal", async () => {
         // Arrange
         render(
             <ModalLauncher modal={exampleModal}>
@@ -122,7 +120,7 @@ describe("ModalLauncher", () => {
 
         // Act
         // Simulate an Escape keypress.
-        await userEvent.keyboard("{esc}");
+        await userEvent.keyboard("{Escape}");
 
         // Assert
         // Confirm that the modal is no longer mounted.
