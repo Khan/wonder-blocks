@@ -19,7 +19,13 @@ const exampleModal = (
 );
 
 describe("DrawerLauncher", () => {
-    window.scrollTo = jest.fn();
+    beforeEach(() => {
+        jest.spyOn(window, "scrollTo").mockImplementation(() => {});
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
 
     test("Children can launch the modal", async () => {
         // Arrange
