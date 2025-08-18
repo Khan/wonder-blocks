@@ -264,17 +264,17 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
             neutral: {
                 default: {
                     border: core.border.neutral.subtle,
-                    background: core.background.neutral.subtle,
+                    background: core.background.base.default,
                     foreground: core.foreground.neutral.default,
                 },
                 hover: {
                     border: core.border.neutral.strong,
-                    background: core.background.neutral.subtle,
+                    background: core.background.base.default,
                     foreground: core.foreground.neutral.strong,
                 },
                 press: {
                     border: core.border.neutral.strong,
-                    background: core.background.neutral.subtle,
+                    background: core.background.base.default,
                     foreground: core.foreground.neutral.strong,
                 },
             },
@@ -443,10 +443,10 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                     selected: core.background.neutral.default,
                 },
                 secondary: {
-                    rest: core.background.neutral.subtle,
-                    hover: core.background.neutral.subtle,
-                    press: core.background.neutral.subtle,
-                    selected: core.background.neutral.subtle,
+                    rest: core.background.base.default,
+                    hover: core.background.base.default,
+                    press: core.background.base.default,
+                    selected: core.background.base.default,
                 },
                 tertiary: {
                     rest: core.transparent,
@@ -746,13 +746,13 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
         },
         disabled: {
             border: core.border.disabled.default,
-            background: core.background.neutral.subtle,
+            background: core.background.base.default,
             foreground: core.foreground.disabled.default,
             placeholder: core.foreground.disabled.subtle,
         },
         error: {
             border: core.border.critical.default,
-            background: core.background.neutral.subtle,
+            background: core.background.base.default,
             foreground: core.foreground.neutral.strong,
         },
         readOnly: {
