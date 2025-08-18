@@ -144,7 +144,7 @@ const sharedStyles = StyleSheet.create({
     },
     // TODO(WB-1852): Remove light variant.
     dark: {
-        background: semanticColor.surface.inverse,
+        background: color.darkBlue,
         boxShadow: `0 1px 0 0 ${color.white64}`,
         color: semanticColor.core.foreground.knockout.default,
     },

@@ -190,7 +190,8 @@ export default {
                     <View
                         {...props}
                         style={{
-                            background: semanticColor.surface.inverse,
+                            background:
+                                semanticColor.core.background.neutral.strong,
                             padding: spacing.medium_16,
                             gap: spacing.medium_16,
                         }}

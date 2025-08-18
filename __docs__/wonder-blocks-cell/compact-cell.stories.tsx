@@ -238,7 +238,7 @@ export const CompactCellWithCustomStyles: StoryComponentType = {
                 />
             }
             style={{
-                background: semanticColor.surface.inverse,
+                background: semanticColor.core.background.neutral.strong,
                 color: semanticColor.core.foreground.knockout.default,
             }}
             onClick={() => {}}

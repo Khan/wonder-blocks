@@ -186,7 +186,8 @@ export const StartAndEndIcons: StoryComponentType = {
             {/* Light */}
             <View
                 style={{
-                    backgroundColor: semanticColor.surface.inverse,
+                    backgroundColor:
+                        semanticColor.core.background.neutral.strong,
                     padding: spacing.large_24,
                 }}
             >

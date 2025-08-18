@@ -336,7 +336,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
     },
     dark: {
-        backgroundColor: semanticColor.surface.inverse,
+        backgroundColor: semanticColor.core.background.neutral.strong,
         color: semanticColor.core.foreground.knockout.default,
         padding: spacing.xSmall_8,
     },
