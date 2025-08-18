@@ -245,7 +245,8 @@ export const WithStyle: StoryComponentType = () => {
 
         ":active": {
             outlineColor: tokens.semanticColor.core.border.neutral.subtle,
-            backgroundColor: tokens.semanticColor.surface.overlay,
+            backgroundColor:
+                tokens.semanticColor.core.background.neutral.default,
         },
     };
 
