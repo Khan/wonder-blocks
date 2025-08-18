@@ -89,8 +89,8 @@ const parameters = {
                 value: semanticColor.surface.inverse,
             },
             {
-                name: "offWhite",
-                value: semanticColor.surface.secondary,
+                name: "offWhite", // TODO(WB-2050): rename to subtle
+                value: semanticColor.core.background.base.subtle,
             },
         ],
     },

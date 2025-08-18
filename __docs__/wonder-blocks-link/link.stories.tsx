@@ -710,7 +710,7 @@ const styles = StyleSheet.create({
         maxWidth: "15%",
     },
     card: {
-        background: semanticColor.surface.secondary,
+        background: semanticColor.core.background.base.subtle,
         border: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
         borderRadius: border.radius.radius_040,
         width: "100%",

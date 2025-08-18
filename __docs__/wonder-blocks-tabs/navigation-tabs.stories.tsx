@@ -156,7 +156,7 @@ export const HeaderWithNavigationTabsExample: StoryComponentType = {
         const headerVerticalSpacing = sizing.size_120;
         const styles = StyleSheet.create({
             pageStyle: {
-                backgroundColor: semanticColor.surface.secondary,
+                backgroundColor: semanticColor.core.background.base.subtle,
                 height: "100vh",
                 width: "100vw",
             },

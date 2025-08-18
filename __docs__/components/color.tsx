@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
         maxWidth: "100%",
         width: "100%",
 
-        backgroundColor: semanticColor.surface.secondary,
+        backgroundColor: semanticColor.core.background.base.subtle,
         border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
         borderRadius: border.radius.radius_040,
     },
@@ -275,7 +275,7 @@ const styles = StyleSheet.create({
         alignSelf: "flex-start",
         color: semanticColor.core.foreground.neutral.strong,
         display: "inline-flex",
-        backgroundColor: semanticColor.surface.secondary,
+        backgroundColor: semanticColor.core.background.base.subtle,
         border: `1px solid ${color.offBlack16}`,
         padding: spacing.xxxxSmall_2,
         borderRadius: border.radius.radius_040,

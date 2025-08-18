@@ -29,7 +29,7 @@ import {Code} from "../components/code";
  * import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
  *
  * const styles = {
- *     background: semanticColor.surface.secondary,
+ *     background: semanticColor.core.background.base.subtle,
  *     border: semanticColor.core.border.neutral.default,
  *     color: semanticColor.core.foreground.neutral.strong,
  * };
