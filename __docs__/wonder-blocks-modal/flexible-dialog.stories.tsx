@@ -274,7 +274,8 @@ export const WithStyle: StoryComponentType = {
                             maxWidth: 1000,
                         },
                         panel: {
-                            backgroundColor: "red",
+                            backgroundColor:
+                                semanticColor.status.notice.background,
                         },
                     }}
                 />

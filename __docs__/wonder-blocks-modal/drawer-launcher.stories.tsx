@@ -539,11 +539,11 @@ export const WithInitialFocusId: StoryComponentType = {
                             />
                             <LabeledField
                                 label="Label 2"
+                                id="field-to-be-focused"
                                 field={
                                     <TextField
                                         value={value2}
                                         onChange={setValue2}
-                                        id="text-field-to-be-focused"
                                     />
                                 }
                             />
@@ -563,7 +563,7 @@ export const WithInitialFocusId: StoryComponentType = {
             <DrawerLauncher
                 alignment={args.alignment}
                 modal={modalInitialFocus}
-                initialFocusId="text-field-to-be-focused-field"
+                initialFocusId="field-to-be-focused-field"
             >
                 {({openModal}) => (
                     <Button onClick={openModal}>
@@ -722,5 +722,6 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
         gap: sizing.size_160,
+        paddingBlockStart: sizing.size_160,
     },
 });

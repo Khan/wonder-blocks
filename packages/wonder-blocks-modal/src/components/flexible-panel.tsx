@@ -81,39 +81,6 @@ export default function FlexiblePanel({
     testId,
 }: Props) {
     const panelRef = React.useRef<HTMLButtonElement>(null);
-    const [isRtl, setIsRtl] = React.useState(false);
-
-    React.useEffect(() => {
-        if (!panelRef.current) {
-            return;
-        }
-
-        // Initial check for writing mode (RTL or LTR)
-        const rtlParent = panelRef.current.closest("[dir=rtl]");
-        setIsRtl(!!rtlParent);
-
-        // Set up observer to watch `dir` attribute
-        const observer = new MutationObserver((mutations) => {
-            for (const mutation of mutations) {
-                if (
-                    mutation.type === "attributes" &&
-                    mutation.attributeName === "dir"
-                ) {
-                    const newRtlParent = panelRef.current?.closest("[dir=rtl]");
-                    setIsRtl(!!newRtlParent);
-                }
-            }
-        });
-
-        // Start observing document root for `dir` changes after initial render
-        observer.observe(document.documentElement, {
-            attributes: true,
-            attributeFilter: ["dir"],
-            subtree: true,
-        });
-
-        return () => observer.disconnect();
-    }, []);
 
     const renderMainContent = React.useCallback((): React.ReactElement => {
         const contentNode =
@@ -150,6 +117,7 @@ export default function FlexiblePanel({
         ...styles?.panel,
     };
 
+    const isRtl = !!panelRef.current?.closest("[dir=rtl]");
     const componentStyles = getComponentStyles({isRtl});
 
     return (
@@ -189,9 +157,13 @@ const getComponentStyles = ({isRtl}: {isRtl: boolean}) => {
         closeButton: {
             position: "absolute",
             // If writing direction is RTL, position the button on the left side
-            left: isRtl ? theme.closeButton.layout.gapRight : "unset",
+            insetInlineStart: isRtl
+                ? theme.closeButton.layout.gapRight
+                : "unset",
             // If writing direction is LTR, position the button on the right side
-            right: !isRtl ? theme.closeButton.layout.gapRight : "unset",
+            insetInlineEnd: !isRtl
+                ? theme.closeButton.layout.gapRight
+                : "unset",
             top: theme.closeButton.layout.gapTop,
             // This is to allow the button to be tab-ordered before the modal
             // content but still be above the header and content.

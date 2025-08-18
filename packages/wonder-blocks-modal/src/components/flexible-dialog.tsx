@@ -181,7 +181,7 @@ const componentStyles = StyleSheet.create({
         height: "auto",
         maxHeight: "100vh",
 
-        [breakpoint.mediaQuery.smOrSmaller]: {
+        [breakpoint.mediaQuery.sm]: {
             width: "100%",
             height: "100vh",
             maxHeight: "100vh",
