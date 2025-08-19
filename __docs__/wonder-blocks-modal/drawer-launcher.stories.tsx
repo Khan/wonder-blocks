@@ -339,6 +339,47 @@ WithReallyLongContent.parameters = {
         disableSnapshot: true,
     },
 };
+/**
+ *
+ * An drawer with customized dialog dimensions.
+ */
+export const WithCustomDimensions: StoryComponentType = {
+    args: {
+        alignment: "inlineEnd",
+    },
+    render: (args) => (
+        <DrawerLauncher
+            modal={
+                <FlexibleDialog
+                    styles={{
+                        root: {
+                            minWidth: "unset",
+                            width: "unset",
+                        },
+                    }}
+                    title="Single-line title"
+                    content={
+                        <View>
+                            <BodyText>Short contents</BodyText>
+                        </View>
+                    }
+                />
+            }
+            alignment={args.alignment}
+        >
+            {({openModal}) => (
+                <Button onClick={openModal}>Click me to open the modal</Button>
+            )}
+        </DrawerLauncher>
+    ),
+};
+
+WithCustomDimensions.parameters = {
+    chromatic: {
+        // All the examples for DrawerLauncher are behavior based, not visual.
+        disableSnapshot: true,
+    },
+};
 
 /**
  *

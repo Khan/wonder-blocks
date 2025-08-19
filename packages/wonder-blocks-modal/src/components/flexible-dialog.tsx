@@ -67,7 +67,6 @@ export type FlexibleDialogStyles = {
     dialog?: StyleType;
     panel?: StyleType;
     closeButton?: StyleType;
-    alignment?: StyleType;
 };
 
 type RenderProps = {
@@ -139,7 +138,7 @@ const FlexibleDialog = React.forwardRef(function FlexibleDialog(
         );
 
     return (
-        <View style={[componentStyles.root, styles?.root, styles?.alignment]}>
+        <View style={[componentStyles.root, styles?.root]}>
             <View
                 role={role}
                 aria-modal="true"
@@ -176,15 +175,15 @@ const componentStyles = StyleSheet.create({
         willChange: "transform, opacity",
 
         // Default widths/heights for FlexibleDialog alone
-        width: "93.75%",
-        maxWidth: 576,
         height: "auto",
         maxHeight: "100vh",
+        maxWidth: 576,
+        width: "93.75%",
 
         [breakpoint.mediaQuery.sm]: {
-            width: "100%",
             height: "100vh",
             maxHeight: "100vh",
+            width: "100%",
         },
     },
 });

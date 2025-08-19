@@ -111,6 +111,41 @@ export const InlineEnd: StoryComponentType = {
 };
 
 /**
+ * InlineEnd drawer
+ */
+export const InlineEndCustomStyle: StoryComponentType = {
+    render: () => (
+        <DrawerLauncher
+            modal={
+                <FlexibleDialog
+                    title="Single-line title"
+                    styles={{
+                        root: {
+                            minWidth: "320px",
+                            width: "unset",
+                        },
+                    }}
+                    content={
+                        <View>
+                            <BodyText>
+                                Some text that doesn’t fill the screen
+                            </BodyText>
+                        </View>
+                    }
+                />
+            }
+            alignment="inlineEnd"
+            opened={true}
+            animated={false}
+            onClose={() => {}}
+        />
+    ),
+    parameters: {
+        docs: {disable: true},
+    },
+};
+
+/**
  * BlockEnd drawer
  */
 export const BlockEnd: StoryComponentType = {

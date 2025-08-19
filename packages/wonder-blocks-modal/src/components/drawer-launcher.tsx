@@ -253,38 +253,50 @@ const DrawerLauncher = (props: Props) => {
     });
 
     const renderModal = React.useCallback(() => {
-        // Compose the props we need to pass in to various modals
-        const composedProps = {
-            styles: {
-                root: componentStyles.dialogRoot,
-                dialog: componentStyles.dialog,
-                alignment: componentStyles[alignment],
-            },
+        // Base styles that include drawer positioning and alignment
+        const drawerStyles: FlexibleDialogStyles = {
+            root: [componentStyles.dialogRoot, componentStyles[alignment]],
+            dialog: componentStyles.dialog,
         };
+
+        // Helper to clone FlexibleDialog with merged styles
+        const cloneFlexibleDialog = (
+            modalElement: React.ReactElement,
+            additionalProps: any = {},
+        ) => {
+            const userStyles = modalElement.props.styles;
+            const mergedStyles: FlexibleDialogStyles = {
+                ...drawerStyles,
+                ...userStyles,
+                // Ensure root styles are properly combined as arrays
+                root: userStyles?.root
+                    ? [drawerStyles.root, userStyles.root]
+                    : drawerStyles.root,
+            };
+
+            return React.cloneElement(modalElement, {
+                ...modalElement.props,
+                ...additionalProps,
+                styles: mergedStyles,
+            });
+        };
+
+        // Handle function-based modals
         if (typeof modal === "function") {
             const renderedModal = modal({
                 closeModal: handleCloseModal,
-                ...composedProps,
+                styles: drawerStyles,
             });
 
-            // If the rendered modal is a FlexibleDialog, inject animation props
-            if (renderedModal && renderedModal.type === FlexibleDialog) {
-                return React.cloneElement(renderedModal, {
-                    ...composedProps,
-                    ...renderedModal.props,
-                });
-            }
-            return renderedModal;
+            return renderedModal?.type === FlexibleDialog
+                ? cloneFlexibleDialog(renderedModal)
+                : renderedModal;
         }
 
-        // If the modal is a FlexibleDialog element, inject animation props
-        if (modal && modal.type === FlexibleDialog) {
-            return React.cloneElement(modal, {
-                ...composedProps,
-                ...modal.props,
-            });
-        }
-        return modal;
+        // Handle element-based modals
+        return modal?.type === FlexibleDialog
+            ? cloneFlexibleDialog(modal)
+            : modal;
     }, [alignment, componentStyles, modal, handleCloseModal]);
 
     const renderedChildren = children
