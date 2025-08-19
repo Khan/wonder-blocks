@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-banner
 
+## 4.3.0
+
+### Minor Changes
+
+- 0e48cb5: Banner: Adds support for hiding the icon by setting the `icon` prop to `none`
+
+### Patch Changes
+
+- 0e1bb54: Banner: Update jsdocs for `text` prop to encourage using the default typography styles provided by the component
+
 ## 4.2.16
 
 ### Patch Changes

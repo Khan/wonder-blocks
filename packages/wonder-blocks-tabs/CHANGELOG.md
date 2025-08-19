@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tabs
 
+## 0.3.26
+
+### Patch Changes
+
+- ca69125: Update font color in Tabs and NavigationTabs to `core.foreground.neutral.subtle`
+
 ## 0.3.25
 
 ### Patch Changes
