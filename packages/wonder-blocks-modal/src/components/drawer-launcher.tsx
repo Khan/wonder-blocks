@@ -5,7 +5,7 @@ import {StyleSheet} from "aphrodite";
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
 import type {WithActionSchedulerProps} from "@khanacademy/wonder-blocks-timing";
 import {breakpoint} from "@khanacademy/wonder-blocks-tokens";
-import {zindexModal} from "../../../wonder-blocks-styles/src/styles/constants"; //"@khanacademy/wonder-blocks-styles";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import FocusTrap from "./focus-trap";
 import DrawerBackdrop from "./drawer-backdrop";
@@ -42,6 +42,15 @@ type Props = Readonly<{
      * - `blockEnd` / bottom
      */
     alignment: DrawerAlignment;
+    /**
+     * Optional styles for the DrawerLauncher.
+     *
+     * This can be used to style the container that holds the focus trap, modal
+     * dialog, and scrollable region.
+     */
+    styles?: {
+        container?: StyleType;
+    };
     /**
      * Optional number of milliseconds for slide-in animation. Defaults to 400ms.
      * Used to ensure timing of focused elements after modals are opened.
@@ -131,6 +140,7 @@ const DrawerLauncher = (props: Props) => {
         children,
         schedule,
         alignment,
+        styles,
         animated = true,
         timingDuration = defaultProps.defaultTimingDuration,
     } = props;
@@ -316,7 +326,7 @@ const DrawerLauncher = (props: Props) => {
             {(opened && !isExiting) || (opened && isExiting && animated)
                 ? ReactDOM.createPortal(
                       <div dir={direction}>
-                          <FocusTrap style={componentStyles.container}>
+                          <FocusTrap style={styles?.container}>
                               <DrawerBackdrop
                                   alignment={alignment}
                                   animated={animated}
@@ -434,9 +444,6 @@ const getComponentStyles = ({
         : null;
 
     return StyleSheet.create({
-        container: {
-            zIndex: zindexModal,
-        },
         dialogRoot: {
             height: "100%",
             minHeight: "100vh",
