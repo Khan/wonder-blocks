@@ -5,7 +5,7 @@ import {StyleSheet} from "aphrodite";
 
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {NavigationTabItem} from "@khanacademy/wonder-blocks-tabs";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 import Link from "@khanacademy/wonder-blocks-link";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -303,11 +303,24 @@ export const Scenarios: Story = {
                     ),
                 },
             },
+            {
+                name: "With custom style",
+                props: {
+                    children: <Link href="#link">NavigationTabItem</Link>,
+                    style: {
+                        border: `${border.width.medium} dashed ${semanticColor.core.border.neutral.subtle}`,
+                    },
+                },
+            },
         ];
 
         return (
             <ScenariosLayout scenarios={scenarios}>
-                {(props) => <NavigationTabItem {...props} />}
+                {(props) => (
+                    <ul style={{margin: 0, padding: 0}}>
+                        <NavigationTabItem {...props} />
+                    </ul>
+                )}
             </ScenariosLayout>
         );
     },
