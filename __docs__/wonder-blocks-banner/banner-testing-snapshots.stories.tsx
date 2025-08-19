@@ -268,6 +268,12 @@ const scenarios = [
             icon: crownIcon,
         },
     },
+    {
+        name: "With no icon",
+        props: {
+            icon: "none",
+        },
+    },
 ];
 
 export const Scenarios: StoryComponentType = {
