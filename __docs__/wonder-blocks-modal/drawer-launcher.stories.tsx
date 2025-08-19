@@ -255,8 +255,9 @@ WithNoAnimation.parameters = {
 
 /**
  *
- * An drawer with less content. Uses the `alignment` prop to slide in from the
- * right in LTR writing mode and left in RTL writing mode.
+ * An drawer with short content for style testing.
+ *
+ * Note: this component likely isn't the best choice for short content in the wild.
  */
 export const WithShortContent: StoryComponentType = {
     args: {
