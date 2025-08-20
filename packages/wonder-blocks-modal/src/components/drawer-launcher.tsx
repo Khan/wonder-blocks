@@ -9,12 +9,28 @@ import FocusTrap from "./focus-trap";
 import DrawerBackdrop from "./drawer-backdrop";
 import ScrollDisabler from "./scroll-disabler";
 import type {DrawerAlignment, ModalElement} from "../util/types";
+import {DrawerContext} from "../util/drawer-context";
 import ModalContext from "./modal-context";
-import DrawerDialog, {type DrawerDialogStyles} from "./drawer-dialog";
+import type {DrawerDialogStyles} from "./drawer-dialog";
+
+/**
+ * A more restrictive type for DrawerLauncher that encourages the use of DrawerDialog.
+ * While we still allow ModalElement for backwards compatibility, the type documentation
+ * and runtime warnings encourage proper usage.
+ */
+type DrawerModalElement = ModalElement;
+
+/**
+ * Function type that should return a DrawerDialog for proper drawer functionality
+ */
+type DrawerModalFunction = (props: {
+    closeModal: () => void;
+    styles?: DrawerDialogStyles;
+}) => DrawerModalElement;
 
 type Props = Readonly<{
     /**
-     * The modal to render.
+     * The modal to render. Should be a DrawerDialog for proper drawer functionality.
      *
      * The modal will be rendered inside of a container whose parent is
      * document.body. This allows us to use DrawerLauncher within menus and
@@ -25,13 +41,12 @@ type Props = Readonly<{
      *
      * Note: Don't call `closeModal` while rendering! It should be used to
      * respond to user interaction, like `onClick`.
+     *
+     * IMPORTANT: DrawerLauncher is designed specifically for DrawerDialog.
+     * Using other modal types may result in incorrect animations, positioning,
+     * and styling behavior.
      */
-    modal:
-        | ModalElement
-        | ((props: {
-              closeModal: () => void;
-              styles?: DrawerDialogStyles;
-          }) => ModalElement);
+    modal: DrawerModalElement | DrawerModalFunction;
     /**
      * Positioning of the drawer. Uses logical properties to support
      * different writing modes:
@@ -111,10 +126,7 @@ type Props = Readonly<{
      * WARNING: This props should only be used when using the component as a
      * controlled component.
      */
-    children?: (arg1: {
-        openModal: () => unknown;
-        styles?: DrawerDialogStyles;
-    }) => React.ReactNode;
+    children?: (arg1: {openModal: () => unknown}) => React.ReactNode;
 }> &
     WithActionSchedulerProps;
 
@@ -147,13 +159,6 @@ const DrawerLauncher = (props: Props) => {
     const [uncontrolledOpened, setUncontrolledOpened] = React.useState(false);
     // State to track exit animation
     const [isExiting, setIsExiting] = React.useState(false);
-
-    const launcherRef = React.useRef<HTMLDivElement>(null);
-
-    // Get Language direction from closest parent with dir attribute
-    const [direction, setDirection] = React.useState<string | undefined>(
-        undefined,
-    );
 
     // Ref to store the last focused element
     const lastElementFocusedOutsideModalRef = React.useRef<HTMLElement | null>(
@@ -246,28 +251,12 @@ const DrawerLauncher = (props: Props) => {
         setUncontrolledOpened(true);
     }, [saveLastElementFocused]);
 
-    // Find the closest RTL context when the component mounts
-    React.useEffect(() => {
-        const rtlParent = launcherRef.current?.closest('[dir="rtl"]');
-        setDirection(rtlParent ? "rtl" : undefined);
-    }, []);
-
     const renderModal = React.useCallback(() => {
         const drawerDialogProps = {
             alignment,
-            direction,
             animated,
             isExiting,
-        };
-        // Helper to clone DrawerDialog with merged styles
-        const cloneDrawerDialog = (
-            modalElement: React.ReactElement,
-            additionalProps: any = {},
-        ) => {
-            return React.cloneElement(modalElement, {
-                ...modalElement.props,
-                ...additionalProps,
-            });
+            timingDuration,
         };
 
         // Handle function-based modals
@@ -277,25 +266,37 @@ const DrawerLauncher = (props: Props) => {
                 ...drawerDialogProps,
             });
 
-            const result =
-                renderedModal?.type === DrawerDialog
-                    ? cloneDrawerDialog(renderedModal, drawerDialogProps)
-                    : renderedModal;
-            console.log(
-                "function based",
-                renderedModal?.type === DrawerDialog,
-                result,
+            if (!renderedModal) {
+                return null;
+            }
+
+            // Wrap in context provider so nested DrawerDialog components can access props
+            return (
+                <DrawerContext.Provider value={drawerDialogProps}>
+                    {renderedModal}
+                </DrawerContext.Provider>
             );
-            return result;
         }
 
-        console.log("element based", modal);
-
         // Handle element-based modals
-        return modal?.type === DrawerDialog
-            ? cloneDrawerDialog(modal, drawerDialogProps)
-            : modal;
-    }, [alignment, animated, isExiting, direction, modal, handleCloseModal]);
+        if (!modal) {
+            return null;
+        }
+
+        // Wrap in context provider so nested DrawerDialog components can access props
+        return (
+            <DrawerContext.Provider value={drawerDialogProps}>
+                {modal}
+            </DrawerContext.Provider>
+        );
+    }, [
+        alignment,
+        animated,
+        isExiting,
+        modal,
+        handleCloseModal,
+        timingDuration,
+    ]);
 
     const renderedChildren = children
         ? children({
@@ -310,28 +311,25 @@ const DrawerLauncher = (props: Props) => {
 
     return (
         <ModalContext.Provider value={{closeModal: handleCloseModal}}>
-            <div ref={launcherRef}>{renderedChildren}</div>
+            {renderedChildren}
             {(opened && !isExiting) || (opened && isExiting && animated)
                 ? ReactDOM.createPortal(
-                      <div dir={direction}>
-                          {/* Allow optional styling of container */}
-                          <FocusTrap style={styles?.container}>
-                              <DrawerBackdrop
-                                  alignment={alignment}
-                                  animated={animated}
-                                  initialFocusId={initialFocusId}
-                                  testId={testId}
-                                  isExiting={isExiting}
-                                  onCloseModal={
-                                      backdropDismissEnabled
-                                          ? handleCloseModal
-                                          : () => {}
-                                  }
-                              >
-                                  {renderModal()}
-                              </DrawerBackdrop>
-                          </FocusTrap>
-                      </div>,
+                      <FocusTrap style={styles?.container}>
+                          <DrawerBackdrop
+                              alignment={alignment}
+                              animated={animated}
+                              initialFocusId={initialFocusId}
+                              testId={testId}
+                              isExiting={isExiting}
+                              onCloseModal={
+                                  backdropDismissEnabled
+                                      ? handleCloseModal
+                                      : () => {}
+                              }
+                          >
+                              {renderModal()}
+                          </DrawerBackdrop>
+                      </FocusTrap>,
                       body,
                   )
                 : null}
@@ -367,9 +365,13 @@ function DrawerLauncherKeypressListener({onClose}: {onClose: () => unknown}) {
 }
 
 /**
- * A drawer modal launcher intended for the DrawerDialog component. It can
+ * A drawer modal launcher intended specifically for the DrawerDialog component. It can
  * align a dialog on the left (inlineStart), right (inlineEnd), or bottom of
  * the screen.
+ *
+ * **IMPORTANT**: This component should ONLY be used with DrawerDialog. Using other
+ * modal components may result in incorrect animations, positioning, and styling.
+ *
  * - Slide animations can be turned off with the `animated` prop.
  * - Timing of animations can be fine-tuned with the `timingDuration` prop, used on
  * enter and exit animations. It is also used to coordinate timing of focus management
@@ -378,8 +380,7 @@ function DrawerLauncherKeypressListener({onClose}: {onClose: () => unknown}) {
  * ### Usage
  *
  * ```jsx
- * import {DrawerLauncher} from "@khanacademy/wonder-blocks-modal";
- * import {DrawerDialog} from "@khanacademy/wonder-blocks-modal";
+ * import {DrawerLauncher, DrawerDialog} from "@khanacademy/wonder-blocks-modal";
  * import {BodyText} from "@khanacademy/wonder-blocks-typography";
  *
  * <DrawerLauncher

@@ -6,6 +6,8 @@ import type {DrawerAlignment} from "../util/types";
 import {DEFAULT_TIMING_DURATION} from "./drawer-launcher";
 import FlexibleDialog from "./flexible-dialog";
 import theme from "../theme";
+import {useDirectionDetection} from "../hooks/use-direction-detection";
+import {useDrawerContext} from "../util/drawer-context";
 
 // One of these three props is required for labeling the dialog:
 // `title`, `aria-label`, or `aria-labelledby`.
@@ -36,12 +38,6 @@ type Props = AccessibleDialogProps & {
      * - `blockEnd` / bottom
      */
     alignment?: DrawerAlignment;
-    /**
-     * Writing direction for the page: right-to-left (rtl) or left-to-right (ltr).
-     * This is used to determine the direction of the slide-in animation.
-     * Defaults to "ltr".
-     */
-    direction?: "rtl" | "ltr"; // Use a hook instead?
     /**
      * Optional number of milliseconds for slide-in animation. Defaults to 400ms.
      * Used to ensure timing of focused elements after modals are opened.
@@ -142,32 +138,54 @@ const DrawerDialog = React.forwardRef(function DrawerDialog(
     props: Props,
     ref: React.ForwardedRef<HTMLDivElement>,
 ): React.ReactElement {
+    // Get drawer props from context (for nested components)
+    const contextProps = useDrawerContext();
+
     const {
         styles,
-        alignment,
-        direction = "ltr",
-        animated = true,
-        isExiting,
-        timingDuration = DEFAULT_TIMING_DURATION,
+        alignment: propAlignment,
+        animated: propAnimated,
+        isExiting: propIsExiting,
+        timingDuration: propTimingDuration,
     } = props;
 
+    // Merge context props with explicit props (props take precedence)
+    const alignment = propAlignment ?? contextProps.alignment;
+    const animated = propAnimated ?? contextProps.animated ?? true;
+    const isExiting = propIsExiting ?? contextProps.isExiting;
+    const timingDuration =
+        propTimingDuration ??
+        contextProps.timingDuration ??
+        DEFAULT_TIMING_DURATION;
+
+    // Detect text direction from DOM
+    const direction = useDirectionDetection();
+    const isRtl = direction === "rtl";
+
     const componentStyles = getComponentStyles({
-        direction,
         alignment,
+        isRtl,
         animated,
         isExiting,
         timingDuration,
     });
 
-    console.log(direction, alignment, animated, isExiting, timingDuration);
+    const alignmentStyles =
+        (alignment && componentStyles[alignment]) || componentStyles.inlineEnd;
 
     return (
         <FlexibleDialog
             {...props}
             ref={ref}
             styles={{
-                root: [componentStyles.root, styles?.root],
-                dialog: [componentStyles.dialog, styles?.dialog],
+                root: [
+                    componentStyles.root,
+                    alignmentStyles,
+                    styles?.root,
+                ].filter(Boolean),
+                dialog: [componentStyles.dialog, styles?.dialog].filter(
+                    Boolean,
+                ),
                 panel: styles?.panel,
                 closeButton: styles?.closeButton,
             }}
@@ -176,7 +194,7 @@ const DrawerDialog = React.forwardRef(function DrawerDialog(
 });
 
 const getTransformValue = (
-    direction: string | undefined = "ltr",
+    isRtl: boolean,
     alignment: DrawerAlignment,
     percentage: number,
 ): string => {
@@ -185,39 +203,35 @@ const getTransformValue = (
     }
 
     // For inlineEnd, we need to reverse the direction compared to inlineStart
-    const directionMultiplier =
-        direction === "rtl"
-            ? alignment === "inlineEnd"
-                ? -1
-                : 1
-            : alignment === "inlineEnd"
-              ? 1
-              : -1;
+    const directionMultiplier = isRtl
+        ? alignment === "inlineEnd"
+            ? -1
+            : 1
+        : alignment === "inlineEnd"
+          ? 1
+          : -1;
 
     return `translate3d(${directionMultiplier * percentage}%, 0, 0)`;
 };
 
-const createKeyframes = (
-    direction: string | undefined,
-    alignment: DrawerAlignment,
-) => ({
+const createKeyframes = (isRtl: boolean, alignment: DrawerAlignment) => ({
     slideIn: {
         "0%": {
-            transform: getTransformValue(direction, alignment, 100),
+            transform: getTransformValue(isRtl, alignment, 100),
             opacity: 0,
         },
         "100%": {
-            transform: getTransformValue(direction, alignment, 0),
+            transform: getTransformValue(isRtl, alignment, 0),
             opacity: 1,
         },
     },
     slideOut: {
         "0%": {
-            transform: getTransformValue(direction, alignment, 0),
+            transform: getTransformValue(isRtl, alignment, 0),
             opacity: 1,
         },
         "100%": {
-            transform: getTransformValue(direction, alignment, 100),
+            transform: getTransformValue(isRtl, alignment, 100),
             opacity: 0,
         },
     },
@@ -225,20 +239,20 @@ const createKeyframes = (
 
 const getComponentStyles = ({
     alignment,
-    direction,
+    isRtl,
     animated,
     isExiting,
     timingDuration,
 }: {
     alignment: DrawerAlignment | undefined;
-    direction: string | undefined;
+    isRtl: boolean;
     animated: boolean;
     timingDuration: number;
     isExiting?: boolean;
 }) => {
     // Generate keyframes for the current alignment and RTL state
     const alignmentKeyframes = alignment
-        ? createKeyframes(direction, alignment)
+        ? createKeyframes(isRtl, alignment)
         : null;
 
     return StyleSheet.create({
@@ -316,5 +330,7 @@ const getComponentStyles = ({
         },
     });
 };
+
+DrawerDialog.displayName = "DrawerDialog";
 
 export default DrawerDialog;

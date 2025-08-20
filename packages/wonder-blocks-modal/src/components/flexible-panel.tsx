@@ -117,9 +117,6 @@ export default function FlexiblePanel({
         ...styles?.panel,
     };
 
-    const isRtl = !!panelRef.current?.closest("[dir=rtl]");
-    const componentStyles = getComponentStyles({isRtl});
-
     return (
         <View
             style={[componentStyles.wrapper, combinedBackgroundStyles]}
@@ -143,36 +140,28 @@ FlexiblePanel.defaultProps = {
     scrollOverflow: true,
 };
 
-const getComponentStyles = ({isRtl}: {isRtl: boolean}) => {
-    return StyleSheet.create({
-        wrapper: {
-            flex: "1 1 auto",
-            flexDirection: "column",
-            boxSizing: "border-box",
-            overflow: "hidden",
-            height: "100%",
-            width: "100%",
-        },
+const componentStyles = StyleSheet.create({
+    wrapper: {
+        flex: "1 1 auto",
+        flexDirection: "column",
+        boxSizing: "border-box",
+        overflow: "hidden",
+        height: "100%",
+        width: "100%",
+    },
 
-        closeButton: {
-            position: "absolute",
-            // If writing direction is RTL, position the button on the left side
-            insetInlineStart: isRtl
-                ? theme.closeButton.layout.gapRight
-                : "unset",
-            // If writing direction is LTR, position the button on the right side
-            insetInlineEnd: !isRtl
-                ? theme.closeButton.layout.gapRight
-                : "unset",
-            top: theme.closeButton.layout.gapTop,
-            // This is to allow the button to be tab-ordered before the modal
-            // content but still be above the header and content.
-            zIndex: 1,
+    closeButton: {
+        position: "absolute",
+        // insetInlineEnd supports both RTL and LTR layouts
+        insetInlineEnd: theme.closeButton.layout.gapRight,
+        top: theme.closeButton.layout.gapTop,
+        // This is to allow the button to be tab-ordered before the modal
+        // content but still be above the header and content.
+        zIndex: 1,
 
-            // NOTE: IconButton uses :focus-visible, which is not supported for
-            // programmatic focus. This is a workaround to make sure the focus
-            // outline is visible when this control is focused.
-            ":focus": focusStyles.focus[":focus-visible"],
-        },
-    });
-};
+        // NOTE: IconButton uses :focus-visible, which is not supported for
+        // programmatic focus. This is a workaround to make sure the focus
+        // outline is visible when this control is focused.
+        ":focus": focusStyles.focus[":focus-visible"],
+    },
+});

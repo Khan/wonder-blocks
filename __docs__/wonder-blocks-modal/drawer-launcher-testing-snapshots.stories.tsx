@@ -55,7 +55,6 @@ export default {
                 default: allModes.themeDefault,
                 "default rtl": allModes["themeDefault rtl"],
                 small: allModes.small,
-                large: allModes.large,
                 thunderblocks: allModes.themeThunderBlocks,
             },
         },
