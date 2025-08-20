@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 12.2.0
+
+### Minor Changes
+
+- 5a02279: Add semantic color core background base and overlay tokens
+- aa6ad92: Adds `foreground.knockout.default` and `border.knockout.default` semantic core colors. Tokens that were previously using `foreground.inverse.*` and `border.inverse.*` have been updated to use the knockout token or other core tokens
+
+### Patch Changes
+
+- aa6ad92: Add themed component tokens for Cell for it's disabled state
+
 ## 12.1.0
 
 ### Minor Changes

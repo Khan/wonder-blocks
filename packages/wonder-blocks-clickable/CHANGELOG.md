@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 7.1.23
+
+### Patch Changes
+
+- aa6ad92: Move away from using `foreground.inverse` and `border.inverse` tokens in favour of the new knockout tokens
+- Updated dependencies [5a02279]
+- Updated dependencies [aa6ad92]
+- Updated dependencies [aa6ad92]
+    - @khanacademy/wonder-blocks-tokens@12.2.0
+
 ## 7.1.22
 
 ### Patch Changes

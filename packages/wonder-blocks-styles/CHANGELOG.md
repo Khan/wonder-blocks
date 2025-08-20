@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-styles
 
+## 0.2.29
+
+### Patch Changes
+
+- aa6ad92: Move away from using `foreground.inverse` and `border.inverse` tokens in favour of the new knockout tokens
+- Updated dependencies [5a02279]
+- Updated dependencies [aa6ad92]
+- Updated dependencies [aa6ad92]
+    - @khanacademy/wonder-blocks-tokens@12.2.0
+
 ## 0.2.28
 
 ### Patch Changes
