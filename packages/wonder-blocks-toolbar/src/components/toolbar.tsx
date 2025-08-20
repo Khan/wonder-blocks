@@ -146,7 +146,7 @@ const sharedStyles = StyleSheet.create({
     dark: {
         background: semanticColor.surface.inverse,
         boxShadow: `0 1px 0 0 ${color.white64}`,
-        color: semanticColor.core.foreground.inverse.strong,
+        color: semanticColor.core.foreground.knockout.default,
     },
     leftColumn: {
         alignItems: "center",

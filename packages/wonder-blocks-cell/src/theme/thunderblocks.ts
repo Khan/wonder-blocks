@@ -26,6 +26,9 @@ export default mergeTheme(defaultTheme, {
                 foreground: semanticColor.core.foreground.neutral.strong,
                 border: semanticColor.core.transparent,
             },
+            disabled: {
+                foreground: semanticColor.core.foreground.disabled.subtle,
+            },
         },
         layout: {
             gap: {

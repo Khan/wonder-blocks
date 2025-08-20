@@ -235,7 +235,7 @@ WithTypography.parameters = {
 export const WithStyle: StoryComponentType = () => {
     const customStyle = {
         backgroundColor: tokens.semanticColor.surface.inverse,
-        color: tokens.semanticColor.core.foreground.inverse.strong,
+        color: tokens.semanticColor.core.foreground.knockout.default,
         paddingLeft: tokens.spacing.xxLarge_48,
         paddingRight: tokens.spacing.xxLarge_48,
 
