@@ -51,6 +51,11 @@ const core = {
         },
     },
     background: {
+        base: {
+            subtle: color.offWhite,
+            default: color.white,
+            strong: color.fadedBlue16,
+        },
         instructive: {
             subtle: color.fadedBlue8,
             default: color.blue,
@@ -80,6 +85,9 @@ const core = {
             subtle: transparent,
             default: color.fadedOffBlack8,
             strong: color.fadedOffBlack16,
+        },
+        overlay: {
+            default: color.offBlack50,
         },
     },
 
