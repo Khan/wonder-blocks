@@ -340,6 +340,62 @@ WithReallyLongContent.parameters = {
         disableSnapshot: true,
     },
 };
+
+const NestedFlexibleDialogComponent = ({titleText}: {titleText: string}) => {
+    return (
+        <FlexibleDialog
+            title={titleText}
+            content={({title: titleElement}) => (
+                <View style={styles.nestedModalContent}>
+                    {titleElement}
+                    <BodyText size="small">
+                        Testing out nested modal content
+                    </BodyText>
+                </View>
+            )}
+        />
+    );
+};
+
+/**
+ *
+ * A launcher with nested dialogs, for testing a real-world implementation.
+ * This demonstrates that DrawerLauncher styles are properly applied to FlexibleDialog
+ * even when there are nested components in between. The modal should receive the
+ * proper alignment animation and full-height styles.
+ */
+export const WithNestedDialogs: StoryComponentType = {
+    args: {
+        alignment: "inlineEnd",
+    },
+    render: (args) => {
+        const renderNestedModal = ({closeModal}: {closeModal: () => void}) => {
+            return (
+                <NestedFlexibleDialogComponent titleText="Nested FlexibleDialog" />
+            );
+        };
+
+        return (
+            <DrawerLauncher
+                alignment={args.alignment}
+                modal={renderNestedModal}
+            >
+                {({openModal}) => (
+                    <Button onClick={openModal}>
+                        Click me to open the modal
+                    </Button>
+                )}
+            </DrawerLauncher>
+        );
+    },
+};
+
+WithNestedDialogs.parameters = {
+    chromatic: {
+        // All the examples for DrawerLauncher are behavior based, not visual.
+        disableSnapshot: true,
+    },
+};
 /**
  *
  * An drawer with customized dialog dimensions.
