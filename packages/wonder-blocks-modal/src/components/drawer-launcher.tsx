@@ -1,10 +1,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {StyleSheet} from "aphrodite";
 
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
 import type {WithActionSchedulerProps} from "@khanacademy/wonder-blocks-timing";
-import {breakpoint} from "@khanacademy/wonder-blocks-tokens";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import FocusTrap from "./focus-trap";
@@ -12,7 +10,7 @@ import DrawerBackdrop from "./drawer-backdrop";
 import ScrollDisabler from "./scroll-disabler";
 import type {DrawerAlignment, ModalElement} from "../util/types";
 import ModalContext from "./modal-context";
-import FlexibleDialog, {type FlexibleDialogStyles} from "./flexible-dialog";
+import DrawerDialog, {type DrawerDialogStyles} from "./drawer-dialog";
 
 type Props = Readonly<{
     /**
@@ -32,7 +30,7 @@ type Props = Readonly<{
         | ModalElement
         | ((props: {
               closeModal: () => void;
-              styles?: FlexibleDialogStyles;
+              styles?: DrawerDialogStyles;
           }) => ModalElement);
     /**
      * Positioning of the drawer. Uses logical properties to support
@@ -115,7 +113,7 @@ type Props = Readonly<{
      */
     children?: (arg1: {
         openModal: () => unknown;
-        styles?: FlexibleDialogStyles;
+        styles?: DrawerDialogStyles;
     }) => React.ReactNode;
 }> &
     WithActionSchedulerProps;
@@ -254,40 +252,21 @@ const DrawerLauncher = (props: Props) => {
         setDirection(rtlParent ? "rtl" : undefined);
     }, []);
 
-    const componentStyles = getComponentStyles({
-        direction,
-        alignment,
-        animated,
-        isExiting,
-        timingDuration,
-    });
-
     const renderModal = React.useCallback(() => {
-        // Base styles that include drawer positioning and alignment
-        const drawerStyles: FlexibleDialogStyles = {
-            root: [componentStyles.dialogRoot, componentStyles[alignment]],
-            dialog: componentStyles.dialog,
+        const drawerDialogProps = {
+            alignment,
+            direction,
+            animated,
+            isExiting,
         };
-
-        // Helper to clone FlexibleDialog with merged styles
-        const cloneFlexibleDialog = (
+        // Helper to clone DrawerDialog with merged styles
+        const cloneDrawerDialog = (
             modalElement: React.ReactElement,
             additionalProps: any = {},
         ) => {
-            const userStyles = modalElement.props.styles;
-            const mergedStyles: FlexibleDialogStyles = {
-                ...drawerStyles,
-                ...userStyles,
-                // Ensure root styles are properly combined as arrays
-                root: userStyles?.root
-                    ? [drawerStyles.root, userStyles.root]
-                    : drawerStyles.root,
-            };
-
             return React.cloneElement(modalElement, {
                 ...modalElement.props,
                 ...additionalProps,
-                styles: mergedStyles,
             });
         };
 
@@ -295,19 +274,28 @@ const DrawerLauncher = (props: Props) => {
         if (typeof modal === "function") {
             const renderedModal = modal({
                 closeModal: handleCloseModal,
-                styles: drawerStyles,
+                ...drawerDialogProps,
             });
 
-            return renderedModal?.type === FlexibleDialog
-                ? cloneFlexibleDialog(renderedModal)
-                : renderedModal;
+            const result =
+                renderedModal?.type === DrawerDialog
+                    ? cloneDrawerDialog(renderedModal, drawerDialogProps)
+                    : renderedModal;
+            console.log(
+                "function based",
+                renderedModal?.type === DrawerDialog,
+                result,
+            );
+            return result;
         }
 
+        console.log("element based", modal);
+
         // Handle element-based modals
-        return modal?.type === FlexibleDialog
-            ? cloneFlexibleDialog(modal)
+        return modal?.type === DrawerDialog
+            ? cloneDrawerDialog(modal, drawerDialogProps)
             : modal;
-    }, [alignment, componentStyles, modal, handleCloseModal]);
+    }, [alignment, animated, isExiting, direction, modal, handleCloseModal]);
 
     const renderedChildren = children
         ? children({
@@ -326,6 +314,7 @@ const DrawerLauncher = (props: Props) => {
             {(opened && !isExiting) || (opened && isExiting && animated)
                 ? ReactDOM.createPortal(
                       <div dir={direction}>
+                          {/* Allow optional styling of container */}
                           <FocusTrap style={styles?.container}>
                               <DrawerBackdrop
                                   alignment={alignment}
@@ -377,141 +366,8 @@ function DrawerLauncherKeypressListener({onClose}: {onClose: () => unknown}) {
     return null;
 }
 
-const getTransformValue = (
-    direction: string | undefined = "ltr",
-    alignment: DrawerAlignment,
-    percentage: number,
-): string => {
-    if (alignment === "blockEnd") {
-        return `translate3d(0, ${percentage}%, 0)`;
-    }
-
-    // For inlineEnd, we need to reverse the direction compared to inlineStart
-    const directionMultiplier =
-        direction === "rtl"
-            ? alignment === "inlineEnd"
-                ? -1
-                : 1
-            : alignment === "inlineEnd"
-              ? 1
-              : -1;
-
-    return `translate3d(${directionMultiplier * percentage}%, 0, 0)`;
-};
-
-const createKeyframes = (
-    direction: string | undefined,
-    alignment: DrawerAlignment,
-) => ({
-    slideIn: {
-        "0%": {
-            transform: getTransformValue(direction, alignment, 100),
-            opacity: 0,
-        },
-        "100%": {
-            transform: getTransformValue(direction, alignment, 0),
-            opacity: 1,
-        },
-    },
-    slideOut: {
-        "0%": {
-            transform: getTransformValue(direction, alignment, 0),
-            opacity: 1,
-        },
-        "100%": {
-            transform: getTransformValue(direction, alignment, 100),
-            opacity: 0,
-        },
-    },
-});
-
-const getComponentStyles = ({
-    alignment,
-    direction,
-    animated,
-    isExiting,
-    timingDuration,
-}: {
-    alignment: DrawerAlignment | undefined;
-    direction: string | undefined;
-    animated: boolean;
-    timingDuration: number;
-    isExiting?: boolean;
-}) => {
-    // Generate keyframes for the current alignment and RTL state
-    const alignmentKeyframes = alignment
-        ? createKeyframes(direction, alignment)
-        : null;
-
-    return StyleSheet.create({
-        dialogRoot: {
-            height: "100%",
-            minHeight: "100vh",
-            // Use common widths for mininum/maximum
-            minWidth: breakpoint.width.xsMax,
-            maxWidth: breakpoint.width.smMax,
-            width: "100%",
-
-            // Unset minimums on smaller screens
-            [breakpoint.mediaQuery.smOrSmaller]: {
-                minWidth: "unset",
-                maxWidth: "unset",
-            },
-        },
-        dialog: {
-            // Override the minHeight and minWidth on View
-            // And allow BlockEnd content to provide its own height
-            minHeight: alignment === "blockEnd" ? "unset" : "100vh",
-            minWidth: "unset",
-        },
-        inlineStart: {
-            // @ts-expect-error [FEI-5019] - `animationName` expects a string not an object
-            animationName:
-                animated &&
-                alignmentKeyframes &&
-                (isExiting
-                    ? alignmentKeyframes.slideOut
-                    : alignmentKeyframes.slideIn),
-            animationDuration: `${timingDuration}ms`,
-            animationTimingFunction: "linear",
-            animationFillMode: "forwards",
-        },
-        inlineEnd: {
-            // @ts-expect-error [FEI-5019] - `animationName` expects a string not an object
-            animationName:
-                animated &&
-                alignmentKeyframes &&
-                (isExiting
-                    ? alignmentKeyframes.slideOut
-                    : alignmentKeyframes.slideIn),
-            animationDuration: `${timingDuration}ms`,
-            animationTimingFunction: "linear",
-            animationFillMode: "forwards",
-        },
-        blockEnd: {
-            // @ts-expect-error [FEI-5019] - `animationName` expects a string not an object
-            animationName:
-                animated &&
-                alignmentKeyframes &&
-                (isExiting
-                    ? alignmentKeyframes.slideOut
-                    : alignmentKeyframes.slideIn),
-            animationDuration: `${timingDuration}ms`,
-            animationTimingFunction: "linear",
-            animationFillMode: "forwards",
-            height: "auto",
-            minHeight: "unset",
-            maxWidth: "unset",
-
-            [breakpoint.mediaQuery.smOrSmaller]: {
-                height: "auto",
-            },
-        },
-    });
-};
-
 /**
- * A drawer modal launcher intended for the FlexibleDialog component. It can
+ * A drawer modal launcher intended for the DrawerDialog component. It can
  * align a dialog on the left (inlineStart), right (inlineEnd), or bottom of
  * the screen.
  * - Slide animations can be turned off with the `animated` prop.
@@ -523,7 +379,7 @@ const getComponentStyles = ({
  *
  * ```jsx
  * import {DrawerLauncher} from "@khanacademy/wonder-blocks-modal";
- * import {FlexibleDialog} from "@khanacademy/wonder-blocks-modal";
+ * import {DrawerDialog} from "@khanacademy/wonder-blocks-modal";
  * import {BodyText} from "@khanacademy/wonder-blocks-typography";
  *
  * <DrawerLauncher
@@ -532,7 +388,7 @@ const getComponentStyles = ({
  *      animated={animated}
  *      alignment="inlineStart"
  *      modal={({closeModal}) => (
- *          <FlexibleDialog
+ *          <DrawerDialog
  *              title="Assign Mastery Mission"
  *              content={
  *                  <View>

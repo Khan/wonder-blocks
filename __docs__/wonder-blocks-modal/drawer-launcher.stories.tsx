@@ -10,7 +10,7 @@ import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
-import {FlexibleDialog, DrawerLauncher} from "@khanacademy/wonder-blocks-modal";
+import {DrawerDialog, DrawerLauncher} from "@khanacademy/wonder-blocks-modal";
 import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 
 import type {ModalElement} from "../../packages/wonder-blocks-modal/src/util/types";
@@ -46,7 +46,7 @@ const customViewports = {
 } as const;
 
 const DefaultModal = (): ModalElement => (
-    <FlexibleDialog
+    <DrawerDialog
         title="Single-line title"
         content={
             <View>
@@ -75,7 +75,7 @@ export default {
         ),
         docs: {
             description: {
-                component: `A drawer modal launcher intended for the FlexibleDialog component. It can align a dialog on the left (inlineStart), right (inlineEnd), or bottom of the screen.
+                component: `A drawer modal launcher intended for the DrawerDialog component. It can align a dialog on the left (inlineStart), right (inlineEnd), or bottom of the screen.
 
 - Slide animations can be turned off with the \`animated\` prop.
 - Timing of animations can be fine-tuned with the \`timingDuration\` prop, used on enter and exit animations. It is also used to coordinate timing of focus management on open and close.
@@ -84,7 +84,7 @@ export default {
 
 \`\`\`jsx
 import {DrawerLauncher} from "@khanacademy/wonder-blocks-modal";
-import {FlexibleDialog} from "@khanacademy/wonder-blocks-modal";
+import {DrawerDialog} from "@khanacademy/wonder-blocks-modal";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 <DrawerLauncher
@@ -93,7 +93,7 @@ import {BodyText} from "@khanacademy/wonder-blocks-typography";
      animated={animated}
      alignment="inlineStart"
      modal={({closeModal}) => (
-         <FlexibleDialog
+         <DrawerDialog
              title="Assign Mastery Mission"
              content={
                  <View>
@@ -266,7 +266,7 @@ export const WithShortContent: StoryComponentType = {
     render: (args) => (
         <DrawerLauncher
             modal={
-                <FlexibleDialog
+                <DrawerDialog
                     title="Single-line title"
                     content={
                         <View>
@@ -292,7 +292,7 @@ WithShortContent.parameters = {
 };
 /**
  *
- * A launcher with a really long FlexibleDialog, for testing overflow styles.
+ * A launcher with a really long DrawerDialog, for testing overflow styles.
  */
 export const WithReallyLongContent: StoryComponentType = {
     args: {
@@ -303,7 +303,7 @@ export const WithReallyLongContent: StoryComponentType = {
             closeModal: () => void;
         };
         const longModal = ({closeModal}: CloseModalProps) => (
-            <FlexibleDialog
+            <DrawerDialog
                 title="Really long content area"
                 content={
                     <View>
@@ -341,9 +341,9 @@ WithReallyLongContent.parameters = {
     },
 };
 
-const NestedFlexibleDialogComponent = ({titleText}: {titleText: string}) => {
+const NestedDrawerDialogComponent = ({titleText}: {titleText: string}) => {
     return (
-        <FlexibleDialog
+        <DrawerDialog
             title={titleText}
             content={({title: titleElement}) => (
                 <View style={styles.nestedModalContent}>
@@ -360,7 +360,7 @@ const NestedFlexibleDialogComponent = ({titleText}: {titleText: string}) => {
 /**
  *
  * A launcher with nested dialogs, for testing a real-world implementation.
- * This demonstrates that DrawerLauncher styles are properly applied to FlexibleDialog
+ * This demonstrates that DrawerLauncher styles are properly applied to DrawerDialog
  * even when there are nested components in between. The modal should receive the
  * proper alignment animation and full-height styles.
  */
@@ -371,7 +371,7 @@ export const WithNestedDialogs: StoryComponentType = {
     render: (args) => {
         const renderNestedModal = ({closeModal}: {closeModal: () => void}) => {
             return (
-                <NestedFlexibleDialogComponent titleText="Nested FlexibleDialog" />
+                <NestedDrawerDialogComponent titleText="Nested DrawerDialog" />
             );
         };
 
@@ -407,7 +407,7 @@ export const WithCustomDimensions: StoryComponentType = {
     render: (args) => (
         <DrawerLauncher
             modal={
-                <FlexibleDialog
+                <DrawerDialog
                     styles={{
                         root: {
                             minWidth: "unset",
@@ -509,7 +509,7 @@ export const TriggeringProgrammatically: StoryComponentType = {
                     opened={opened}
                     alignment={args.alignment}
                     modal={({closeModal}) => (
-                        <FlexibleDialog
+                        <DrawerDialog
                             title="Triggered from action menu"
                             content={
                                 <View>
@@ -621,7 +621,7 @@ export const WithInitialFocusId: StoryComponentType = {
 
         // @ts-expect-error [FEI-5019] - TS7031 - Binding element 'closeModal' implicitly has an 'any' type.
         const modalInitialFocus = ({closeModal}) => (
-            <FlexibleDialog
+            <DrawerDialog
                 title="Single-line title"
                 content={
                     <View>
@@ -684,7 +684,7 @@ WithInitialFocusId.parameters = {
  * Focus trap navigation
  */
 const SubModal = () => (
-    <FlexibleDialog
+    <DrawerDialog
         title="Submodal"
         content={
             <View style={{gap: sizing.size_160}}>
@@ -730,7 +730,7 @@ export const FocusTrap: StoryComponentType = {
 
         // @ts-expect-error [FEI-5019] - TS7031 - Binding element 'closeModal' implicitly has an 'any' type.
         const modalInitialFocus = ({closeModal}) => (
-            <FlexibleDialog
+            <DrawerDialog
                 title="Testing the focus trap on multiple modals"
                 closeButtonVisible={false}
                 content={
