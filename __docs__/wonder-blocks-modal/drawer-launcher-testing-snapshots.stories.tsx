@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
-import {FlexibleDialog, DrawerLauncher} from "@khanacademy/wonder-blocks-modal";
+import {DrawerDialog, DrawerLauncher} from "@khanacademy/wonder-blocks-modal";
 
 import type {ModalElement} from "../../packages/wonder-blocks-modal/src/util/types";
 
@@ -36,7 +36,7 @@ const customViewports = {
 } as const;
 
 const DefaultModal = (): ModalElement => (
-    <FlexibleDialog
+    <DrawerDialog
         title="Single-line title"
         content={
             <View>
@@ -116,7 +116,7 @@ export const InlineEndCustomStyle: StoryComponentType = {
     render: () => (
         <DrawerLauncher
             modal={
-                <FlexibleDialog
+                <DrawerDialog
                     title="Single-line title"
                     styles={{
                         root: {
