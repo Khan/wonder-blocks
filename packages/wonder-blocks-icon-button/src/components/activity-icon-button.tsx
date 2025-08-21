@@ -3,7 +3,7 @@ import {CSSProperties, StyleSheet} from "aphrodite";
 import {Link} from "react-router-dom-v5-compat";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon, PhosphorIconAsset} from "@khanacademy/wonder-blocks-icon";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
@@ -36,7 +36,7 @@ type LabelOnly = {
     label: string;
 };
 
-type Props = BaseIconButtonProps &
+type Props = Omit<BaseIconButtonProps, "icon"> &
     (AriaLabelOnly | LabelOnly) & {
         /**
          * The action type of the button. This determines the visual style of the
@@ -46,6 +46,11 @@ type Props = BaseIconButtonProps &
          * - `neutral` is used for buttons that indicate a neutral action.
          */
         actionType?: ActivityIconButtonActionType;
+
+        /**
+         * A Phosphor icon asset (imported as a static SVG file), or an element.
+         */
+        icon: PhosphorIconAsset | React.ReactElement;
     };
 
 /**
@@ -108,6 +113,16 @@ export const ActivityIconButton: React.ForwardRefExoticComponent<
 
     const hasVisibleLabel = label !== undefined && label !== "";
 
+    const iconElement = React.useMemo(() => {
+        if (typeof icon === "string") {
+            return (
+                <PhosphorIcon size="medium" color="currentColor" icon={icon} />
+            );
+        }
+
+        return icon;
+    }, [icon]);
+
     return (
         <IconButtonUnstyled
             {...restProps}
@@ -121,11 +136,7 @@ export const ActivityIconButton: React.ForwardRefExoticComponent<
             <>
                 {/* NOTE: Using a regular className to be able to use descendant selectors to account for the hover and press states */}
                 <View style={chonkyStyles} className="chonky">
-                    <PhosphorIcon
-                        size="medium"
-                        color="currentColor"
-                        icon={icon}
-                    />
+                    {iconElement}
                 </View>
                 {hasVisibleLabel && (
                     <BodyText
