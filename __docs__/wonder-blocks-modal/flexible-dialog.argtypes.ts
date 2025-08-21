@@ -43,12 +43,15 @@ export default {
             type: {summary: `"dialog" | "alertdialog"`},
         },
     },
-
-    style: {
-        control: {type: "object"},
-        table: {type: {summary: "StyleType"}},
+    styles: {
+        control: {type: undefined},
+        table: {
+            type: {
+                summary:
+                    "{root?: StyleType, dialog?: StyleType, panel?: StyleType, closeButton?: StyleType}",
+            },
+        },
     },
-
     testId: {
         control: {type: "text"},
         table: {type: {summary: "string"}},
@@ -62,11 +65,15 @@ export default {
     "aria-label": {
         control: {type: "text"},
         table: {type: {summary: "string"}},
+        description:
+            "An accessible name for the dialog if there is no main heading.",
     },
 
     "aria-labelledby": {
         control: {type: "text"},
         table: {type: {summary: "string"}},
+        description:
+            "An ID reference of the main heading element to create the dialog's accessible name.",
     },
 
     "aria-describedby": {
