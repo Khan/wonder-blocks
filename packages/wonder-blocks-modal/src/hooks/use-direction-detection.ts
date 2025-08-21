@@ -21,16 +21,17 @@ interface DirectionDetectionOptions {
  * detect the direction from the document element.
  *
  * This hook performs DOM queries on each render and does not use state or
- * observers, making it stable for Storybook and other environments.
+ * observers, making it stable and predictable.
  *
  * @param elementRef - Optional ref to the element to start searching from.
+ *                     If provided, searches up the DOM tree from this element.
  *                     If not provided, uses document-level detection.
  * @param options - Configuration options for direction detection
  * @returns The detected direction ("ltr" or "rtl")
  *
  * @example
  * ```tsx
- * // With element ref
+ * // With element ref - searches up DOM tree from the element
  * const MyComponent = () => {
  *     const ref = React.useRef<HTMLDivElement>(null);
  *     const direction = useDirectionDetection(ref);
@@ -42,7 +43,7 @@ interface DirectionDetectionOptions {
  *     );
  * };
  *
- * // Without element ref (document-level detection)
+ * // Without element ref - uses document.documentElement.dir
  * const MyOtherComponent = () => {
  *     const direction = useDirectionDetection();
  *     return <div>Page direction is: {direction}</div>;
@@ -50,7 +51,7 @@ interface DirectionDetectionOptions {
  *
  * // With explicit direction (e.g., from RequestInfo)
  * const MyRTLComponent = ({requestInfo}) => {
- *     const direction = useDirectionDetection(null, {
+ *     const direction = useDirectionDetection(undefined, {
  *         direction: requestInfo.isRTL ? "rtl" : "ltr"
  *     });
  *     return <div>Explicit direction: {direction}</div>;
@@ -79,26 +80,6 @@ export function useDirectionDetection(
         }
     }
 
-    // Search more broadly in the DOM for dir attributes (helpful for portaled content)
-    // Use specific selectors to find story containers
-    const storySelectors = [
-        "[data-story][dir]",
-        ".sb-show-main[dir]",
-        ".docs-story[dir]",
-        "main[dir]",
-    ];
-
-    // Check specific story containers first
-    for (const selector of storySelectors) {
-        const element = document.querySelector(selector);
-        if (element) {
-            const dirValue = element.getAttribute("dir");
-            if (dirValue === "rtl") {
-                return "rtl";
-            }
-        }
-    }
-
     // Fall back to document-level detection
     const documentDir = document.documentElement.getAttribute("dir");
     if (documentDir === "rtl") {
@@ -110,11 +91,11 @@ export function useDirectionDetection(
 }
 
 /**
- * Simplified version that just returns the current direction without a ref.
+ * Simplified version that returns the document-level direction.
  * Useful for detecting the overall page direction.
  *
- * This function performs a direct DOM query on each render and does not use
- * state or observers.
+ * This function reads from document.documentElement.dir on each render
+ * and does not use state or observers.
  *
  * @param options - Configuration options
  * @returns The detected direction ("ltr" or "rtl")
