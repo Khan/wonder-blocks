@@ -16,9 +16,8 @@ interface DirectionDetectionOptions {
 }
 
 /**
- * Hook for detecting the text direction (LTR/RTL) by looking up the DOM tree
- * for the nearest `dir` attribute. If no elementRef is provided, it will
- * detect the direction from the document element.
+ * Hook for detecting the text direction (LTR/RTL). Supports both element-specific
+ * and document-level direction detection.
  *
  * This hook performs DOM queries on each render and does not use state or
  * observers, making it stable and predictable.
@@ -31,7 +30,7 @@ interface DirectionDetectionOptions {
  *
  * @example
  * ```tsx
- * // With element ref - searches up DOM tree from the element
+ * // Element-specific detection - searches up DOM tree from the element
  * const MyComponent = () => {
  *     const ref = React.useRef<HTMLDivElement>(null);
  *     const direction = useDirectionDetection(ref);
@@ -43,7 +42,7 @@ interface DirectionDetectionOptions {
  *     );
  * };
  *
- * // Without element ref - uses document.documentElement.dir
+ * // Document-level detection - uses document.documentElement.dir
  * const MyOtherComponent = () => {
  *     const direction = useDirectionDetection();
  *     return <div>Page direction is: {direction}</div>;
@@ -88,29 +87,4 @@ export function useDirectionDetection(
 
     // Fall back to default
     return defaultDirection;
-}
-
-/**
- * Simplified version that returns the document-level direction.
- * Useful for detecting the overall page direction.
- *
- * This function reads from document.documentElement.dir on each render
- * and does not use state or observers.
- *
- * @param options - Configuration options
- * @returns The detected direction ("ltr" or "rtl")
- */
-export function usePageDirection(
-    options: DirectionDetectionOptions = {},
-): Direction {
-    const {direction: explicitDirection, defaultDirection = "ltr"} = options;
-
-    // If explicit direction is provided, use it
-    if (explicitDirection) {
-        return explicitDirection;
-    }
-
-    // Check document element direction
-    const documentDir = document.documentElement.getAttribute("dir");
-    return documentDir === "rtl" ? "rtl" : defaultDirection;
 }
