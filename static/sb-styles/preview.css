@@ -12,6 +12,8 @@ html {
 
 .sbdocs.sbdocs-wrapper {
     padding: 0 2rem 3.2rem 2rem;
+    /* create stacking context for docs so modals sit on top without z-index */
+    position: relative;
     gap: 2.4rem;
 }
 
