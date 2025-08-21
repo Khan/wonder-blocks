@@ -149,6 +149,9 @@ export const ActivityButton = React.forwardRef(function ActivityButton(
         kind = "primary",
         disabled = false,
         role,
+        onMouseDown,
+        onMouseUp,
+        onMouseLeave,
         ...sharedButtonCoreProps
     } = props;
 
@@ -176,26 +179,53 @@ export const ActivityButton = React.forwardRef(function ActivityButton(
             onClick={onClick}
             safeWithNav={safeWithNav}
             rel={rel}
+            onMouseDown={onMouseDown}
+            onMouseUp={onMouseUp}
             {...extraClickableProps}
         >
-            {(state: ClickableState, restChildProps: ChildrenProps) => (
-                <ActivityButtonCore
-                    {...sharedButtonCoreProps}
-                    {...state}
-                    {...restChildProps}
-                    disabled={disabled}
-                    kind={kind}
-                    skipClientNav={skipClientNav}
-                    href={href}
-                    role={renderedRole}
-                    target={target}
-                    type={type}
-                    tabIndex={tabIndex}
-                    ref={ref}
-                >
-                    {children}
-                </ActivityButtonCore>
-            )}
+            {(state: ClickableState, restChildProps: ChildrenProps) => {
+                // Wrap onMouseLeave to call custom handler before internal handler
+                // Only call custom handler if button is not disabled and handler exists
+                const wrappedOnMouseLeave =
+                    onMouseLeave && !disabled
+                        ? () => {
+                              // Create a synthetic event for the custom handler
+                              const syntheticEvent = new MouseEvent(
+                                  "mouseleave",
+                                  {
+                                      bubbles: true,
+                                      cancelable: true,
+                                  },
+                              ) as unknown as React.MouseEvent;
+                              onMouseLeave(syntheticEvent);
+                              restChildProps.onMouseLeave();
+                          }
+                        : restChildProps.onMouseLeave;
+
+                const modifiedChildProps = {
+                    ...restChildProps,
+                    onMouseLeave: wrappedOnMouseLeave,
+                };
+
+                return (
+                    <ActivityButtonCore
+                        {...sharedButtonCoreProps}
+                        {...state}
+                        {...modifiedChildProps}
+                        disabled={disabled}
+                        kind={kind}
+                        skipClientNav={skipClientNav}
+                        href={href}
+                        role={renderedRole}
+                        target={target}
+                        type={type}
+                        tabIndex={tabIndex}
+                        ref={ref}
+                    >
+                        {children}
+                    </ActivityButtonCore>
+                );
+            }}
         </ClickableBehavior>
     );
 });
