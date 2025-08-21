@@ -6,14 +6,11 @@ import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {ActionMenu, ActionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {RadioGroup, Choice} from "@khanacademy/wonder-blocks-form";
-import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
-import {BodyText, Title} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {DrawerDialog, DrawerLauncher} from "@khanacademy/wonder-blocks-modal";
-import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 
-import ComponentInfo from "../components/component-info";
 import {allModes} from "../../.storybook/modes";
 import {reallyLongText} from "../components/text-for-testing";
 import DrawerDialogArgTypes from "./drawer-dialog.argtypes";
@@ -29,16 +26,10 @@ import DrawerDialogArgTypes from "./drawer-dialog.argtypes";
  * via React Context, eliminating the need for manual prop passing in nested components.
  */
 export default {
-    title: "Packages / Modal / DrawerDialog",
+    title: "Packages / Modal / DrawerLauncher / DrawerDialog",
     component: DrawerDialog,
     parameters: {
         componentSubtitle: "Modal dialog designed for DrawerLauncher",
-        docs: {
-            description: {
-                component:
-                    "A drawer modal dialog that slides in from the specified alignment (inline start/end or block end). Automatically integrates with DrawerLauncher for proper animations and positioning.",
-            },
-        },
         chromatic: {
             // Drawer stories are behavior-based, disable visual regression testing
             disableSnapshot: true,

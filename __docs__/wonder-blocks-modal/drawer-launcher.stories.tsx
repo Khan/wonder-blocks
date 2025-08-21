@@ -57,7 +57,7 @@ const DefaultModal = (): ModalElement => (
 );
 
 export default {
-    title: "Packages / Modal / DrawerLauncher",
+    title: "Packages / Modal / DrawerLauncher / DrawerLauncher",
     component: DrawerLauncher,
     decorators: [
         (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
