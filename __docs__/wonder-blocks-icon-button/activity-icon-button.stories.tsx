@@ -234,7 +234,7 @@ export const WithCustomIcon: StoryComponentType = {
                 <ActivityIconButton
                     icon={
                         <Icon size="medium">
-                            <img alt="Khanmigo" src={khanmigoIcon} />
+                            <img alt="" src={khanmigoIcon} />
                         </Icon>
                     }
                     onClick={(e) => action("clicked")(e)}

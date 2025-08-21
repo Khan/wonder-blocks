@@ -10,6 +10,8 @@ import {ScenariosLayout} from "../components/scenarios-layout";
 import {longTextWithNoWordBreak} from "../components/text-for-testing";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {Icon} from "@khanacademy/wonder-blocks-icon";
+import khanmigoIcon from "./images/mini-khanmigo.svg";
 
 /**
  * The following stories are used to generate the pseudo states for the
@@ -165,6 +167,21 @@ export const Scenarios: Story = {
                                 aria-label="Send"
                             />
                         </View>
+                    ),
+                },
+            },
+            {
+                name: "With custom icon",
+                props: {
+                    children: (
+                        <ActivityIconButton
+                            icon={
+                                <Icon size="medium">
+                                    <img alt="" src={khanmigoIcon} />
+                                </Icon>
+                            }
+                            aria-label="Khanmigo"
+                        />
                     ),
                 },
             },
