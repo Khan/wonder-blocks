@@ -9,14 +9,34 @@ import FocusTrap from "./focus-trap";
 import DrawerBackdrop from "./drawer-backdrop";
 import ScrollDisabler from "./scroll-disabler";
 import type {DrawerAlignment, ModalElement} from "../util/types";
-import {DrawerContext} from "../util/drawer-context";
+import {
+    DrawerContext,
+    DEFAULT_DRAWER_TIMING_DURATION_MS,
+    DEFAULT_DRAWER_ANIMATED,
+    DEFAULT_DRAWER_BACKDROP_DISMISS_ENABLED,
+    DEFAULT_DRAWER_IS_EXITING,
+} from "../util/drawer-context";
 import ModalContext from "./modal-context";
 import type {DrawerDialogStyles} from "./drawer-dialog";
 
 /**
+ * Re-exported centralized default values for the drawer system.
+ *
+ * These constants provide the default behavior for all drawer components
+ * and can be imported by consumers who need to reference or override defaults.
+ */
+export {
+    DEFAULT_DRAWER_TIMING_DURATION_MS,
+    DEFAULT_DRAWER_ANIMATED,
+    DEFAULT_DRAWER_BACKDROP_DISMISS_ENABLED,
+    DEFAULT_DRAWER_IS_EXITING,
+};
+
+/** @deprecated Use DEFAULT_DRAWER_TIMING_DURATION_MS instead. */
+export const DEFAULT_TIMING_DURATION_MS = DEFAULT_DRAWER_TIMING_DURATION_MS;
+
+/**
  * A more restrictive type for DrawerLauncher that encourages the use of DrawerDialog.
- * While we still allow ModalElement for backwards compatibility, the type documentation
- * and runtime warnings encourage proper usage.
  */
 type DrawerModalElement = ModalElement;
 
@@ -144,12 +164,9 @@ type UncontrolledProps = BaseProps & {
  */
 type Props = ControlledProps | UncontrolledProps;
 
-// Set a default timing duration for animations and focus management. Also used for tests.
-export const DEFAULT_TIMING_DURATION = 400;
-
 const defaultProps = {
-    backdropDismissEnabled: true,
-    defaultTimingDuration: DEFAULT_TIMING_DURATION,
+    backdropDismissEnabled: DEFAULT_DRAWER_BACKDROP_DISMISS_ENABLED,
+    defaultTimingDuration: DEFAULT_DRAWER_TIMING_DURATION_MS,
 } as const;
 
 const DrawerLauncher = (props: Props) => {
@@ -165,7 +182,7 @@ const DrawerLauncher = (props: Props) => {
         schedule,
         alignment,
         styles,
-        animated = true,
+        animated = DEFAULT_DRAWER_ANIMATED,
         timingDuration = defaultProps.defaultTimingDuration,
     } = props;
 
@@ -247,14 +264,18 @@ const DrawerLauncher = (props: Props) => {
         setUncontrolledOpened(true);
     }, [saveLastElementFocused]);
 
-    const renderModal = React.useCallback(() => {
-        const drawerDialogProps = {
+    // Memoize drawerDialogProps to prevent unnecessary re-renders of DrawerContext consumers
+    const drawerDialogProps = React.useMemo(
+        () => ({
             alignment,
             animated,
             isExiting,
             timingDuration,
-        };
+        }),
+        [alignment, animated, isExiting, timingDuration],
+    );
 
+    const renderModal = React.useCallback(() => {
         // Handle function-based modals
         if (typeof modal === "function") {
             const renderedModal = modal({
@@ -266,12 +287,7 @@ const DrawerLauncher = (props: Props) => {
                 return null;
             }
 
-            // Wrap in context provider so nested DrawerDialog components can access props
-            return (
-                <DrawerContext.Provider value={drawerDialogProps}>
-                    {renderedModal}
-                </DrawerContext.Provider>
-            );
+            return renderedModal;
         }
 
         // Handle element-based modals
@@ -279,20 +295,8 @@ const DrawerLauncher = (props: Props) => {
             return null;
         }
 
-        // Wrap in context provider so nested DrawerDialog components can access props
-        return (
-            <DrawerContext.Provider value={drawerDialogProps}>
-                {modal}
-            </DrawerContext.Provider>
-        );
-    }, [
-        alignment,
-        animated,
-        isExiting,
-        modal,
-        handleCloseModal,
-        timingDuration,
-    ]);
+        return modal;
+    }, [drawerDialogProps, modal, handleCloseModal]);
 
     const renderedChildren = children
         ? children({
@@ -310,22 +314,21 @@ const DrawerLauncher = (props: Props) => {
             {renderedChildren}
             {(opened && !isExiting) || (opened && isExiting && animated)
                 ? ReactDOM.createPortal(
-                      <FocusTrap style={styles?.container}>
-                          <DrawerBackdrop
-                              alignment={alignment}
-                              animated={animated}
-                              initialFocusId={initialFocusId}
-                              testId={testId}
-                              isExiting={isExiting}
-                              onCloseModal={
-                                  backdropDismissEnabled
-                                      ? handleCloseModal
-                                      : () => {}
-                              }
-                          >
-                              {renderModal()}
-                          </DrawerBackdrop>
-                      </FocusTrap>,
+                      <DrawerContext.Provider value={drawerDialogProps}>
+                          <FocusTrap style={styles?.container}>
+                              <DrawerBackdrop
+                                  initialFocusId={initialFocusId}
+                                  testId={testId}
+                                  onCloseModal={
+                                      backdropDismissEnabled
+                                          ? handleCloseModal
+                                          : () => {}
+                                  }
+                              >
+                                  {renderModal()}
+                              </DrawerBackdrop>
+                          </FocusTrap>
+                      </DrawerContext.Provider>,
                       body,
                   )
                 : null}

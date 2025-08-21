@@ -11,7 +11,6 @@ import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {DrawerDialog, DrawerLauncher} from "@khanacademy/wonder-blocks-modal";
 
-import {allModes} from "../../.storybook/modes";
 import {reallyLongText} from "../components/text-for-testing";
 import DrawerDialogArgTypes from "./drawer-dialog.argtypes";
 
@@ -143,10 +142,10 @@ export const WithFormContent: StoryComponentType = {
 };
 
 /**
- * Drawer positioned at the bottom of the screen (block end).
- * Useful for mobile-friendly interfaces and action sheets.
+ * Drawer with action-focused content layout. Demonstrates a common
+ * pattern for presenting multiple action options to the user.
  */
-export const BottomDrawer: StoryComponentType = {
+export const WithActionList: StoryComponentType = {
     render: () => (
         <DrawerLauncher
             alignment="blockEnd"
@@ -170,9 +169,7 @@ export const BottomDrawer: StoryComponentType = {
                 />
             }
         >
-            {({openModal}) => (
-                <Button onClick={openModal}>Open Bottom Drawer</Button>
-            )}
+            {({openModal}) => <Button onClick={openModal}>Show Actions</Button>}
         </DrawerLauncher>
     ),
 };
@@ -190,6 +187,7 @@ export const WithRenderProp: StoryComponentType = {
                     title="Render Prop Example"
                     content={({title}) => (
                         <View style={styles.content}>
+                            <BodyText size="xsmall">Eyebrow</BodyText>
                             {title}
                             <BodyText style={styles.section}>
                                 This content uses a render prop to customize how
@@ -263,6 +261,11 @@ export const WithScrollableContent: StoryComponentType = {
                             <BodyText>{reallyLongText}</BodyText>
                             <BodyText>{reallyLongText}</BodyText>
                             <BodyText>{reallyLongText}</BodyText>
+                            <BodyText>{reallyLongText}</BodyText>
+                            <BodyText>{reallyLongText}</BodyText>
+                            <BodyText>{reallyLongText}</BodyText>
+                            <BodyText>{reallyLongText}</BodyText>
+                            <BodyText>{reallyLongText}</BodyText>
                         </View>
                     }
                 />
@@ -272,124 +275,5 @@ export const WithScrollableContent: StoryComponentType = {
                 <Button onClick={openModal}>Open Long Content</Button>
             )}
         </DrawerLauncher>
-    ),
-};
-
-/**
- * Drawer nested inside wrapper components. Demonstrates how the
- * context-based prop passing works with nested component structures.
- */
-export const WithNestedComponents: StoryComponentType = {
-    render: () => {
-        const NestedWrapper = ({children}: {children: React.ReactNode}) => (
-            <View style={{padding: spacing.small_12}}>{children}</View>
-        );
-
-        return (
-            <DrawerLauncher
-                alignment="blockEnd"
-                modal={
-                    <NestedWrapper>
-                        <DrawerDialog
-                            title="Nested Dialog"
-                            content={
-                                <View style={styles.content}>
-                                    <BodyText>
-                                        This drawer is nested inside wrapper
-                                        components but still receives the proper
-                                        alignment and animation props via React
-                                        Context.
-                                    </BodyText>
-                                </View>
-                            }
-                        />
-                    </NestedWrapper>
-                }
-            >
-                {({openModal}) => (
-                    <Button onClick={openModal}>Open Nested Drawer</Button>
-                )}
-            </DrawerLauncher>
-        );
-    },
-};
-
-/**
- * Shows all drawer alignment options side by side for comparison.
- */
-export const AllAlignments: StoryComponentType = {
-    parameters: {
-        chromatic: {
-            disableSnapshot: false,
-            modes: {
-                large: allModes.large,
-                medium: allModes.medium,
-            },
-        },
-    },
-    render: () => (
-        <View
-            style={{display: "flex", gap: spacing.medium_16, flexWrap: "wrap"}}
-        >
-            <DrawerLauncher
-                alignment="inlineStart"
-                modal={
-                    <DrawerDialog
-                        title="Inline Start"
-                        content={
-                            <View style={styles.content}>
-                                <BodyText>
-                                    Slides in from inline start (left in LTR)
-                                </BodyText>
-                            </View>
-                        }
-                    />
-                }
-            >
-                {({openModal}) => (
-                    <Button onClick={openModal}>Inline Start</Button>
-                )}
-            </DrawerLauncher>
-
-            <DrawerLauncher
-                alignment="inlineEnd"
-                modal={
-                    <DrawerDialog
-                        title="Inline End"
-                        content={
-                            <View style={styles.content}>
-                                <BodyText>
-                                    Slides in from inline end (right in LTR)
-                                </BodyText>
-                            </View>
-                        }
-                    />
-                }
-            >
-                {({openModal}) => (
-                    <Button onClick={openModal}>Inline End</Button>
-                )}
-            </DrawerLauncher>
-
-            <DrawerLauncher
-                alignment="blockEnd"
-                modal={
-                    <DrawerDialog
-                        title="Block End"
-                        content={
-                            <View style={styles.content}>
-                                <BodyText>
-                                    Slides in from block end (bottom)
-                                </BodyText>
-                            </View>
-                        }
-                    />
-                }
-            >
-                {({openModal}) => (
-                    <Button onClick={openModal}>Block End</Button>
-                )}
-            </DrawerLauncher>
-        </View>
     ),
 };

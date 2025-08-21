@@ -25,7 +25,6 @@ describe("DrawerDialog - Alignment Prop Passing", () => {
             content={
                 <BodyText>Test content for {alignment} alignment</BodyText>
             }
-            alignment={alignment}
             testId={testId}
         />
     );

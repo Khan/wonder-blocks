@@ -41,42 +41,6 @@ export default {
         },
     },
 
-    // Layout and positioning
-    alignment: {
-        control: "radio",
-        options: ["inlineStart", "inlineEnd", "blockEnd"],
-        table: {
-            type: {summary: "DrawerAlignment"},
-        },
-        description:
-            "Position where drawer slides in from. Usually inherited from DrawerLauncher context.",
-    },
-
-    // Animation props
-    animated: {
-        control: {type: "boolean"},
-        defaultValue: true,
-        table: {
-            defaultValue: {summary: "true"},
-            type: {summary: "boolean"},
-        },
-    },
-    timingDuration: {
-        control: {type: "number"},
-        defaultValue: 400,
-        table: {
-            defaultValue: {summary: "400"},
-            type: {summary: "number"},
-        },
-    },
-    isExiting: {
-        control: {type: "boolean"},
-        table: {
-            type: {summary: "boolean"},
-        },
-        description: "Internal prop for exit animations",
-    },
-
     // Interaction props
     onClose: {
         table: {

@@ -6,7 +6,8 @@ import {StyleSheet} from "aphrodite";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {ModalLauncherPortalAttributeName} from "../util/constants";
 import {findFocusableNodes} from "../util/find-focusable-nodes";
-import type {DrawerAlignment, ModalElement} from "../util/types";
+import type {ModalElement} from "../util/types";
+import {useDrawerContext} from "../util/drawer-context";
 
 type Props = {
     children: ModalElement;
@@ -21,30 +22,6 @@ type Props = {
      * Test ID used for e2e testing.
      */
     testId?: string;
-    /**
-     * Positioning of the drawer. Uses logical properties to support
-     * different writing modes:
-     * - `inlineStart` / left in Left-To-Right
-     * - `inlineEnd` / right in Left-To-Right
-     * - `blockEnd` / bottom
-     */
-    alignment: DrawerAlignment;
-    /**
-     * Optional number of milliseconds for slide-in animation. Defaults to 400ms.
-     *
-     * Note: animations are automatically disabled for reduced-motion preferences.
-     */
-    timingDuration?: number;
-    /**
-     * Whether to include animation in the `DrawerBackdrop` component.
-     * This should be false if the user has `prefers-reduced-motion` opted in.
-     * Defaults to `true`.
-     */
-    animated: boolean;
-    /**
-     * Whether the drawer is exiting. Used to trigger exit animations.
-     */
-    isExiting?: boolean;
 };
 
 /**
@@ -62,11 +39,9 @@ const DrawerBackdrop = ({
     testId,
     initialFocusId,
     onCloseModal,
-    alignment,
-    animated,
-    timingDuration = 400,
-    isExiting = false,
 }: Props) => {
+    // Get drawer configuration from context
+    const {alignment, animated, timingDuration, isExiting} = useDrawerContext();
     const [mousePressedOutside, setMousePressedOutside] = React.useState(false);
     const backdropRef = React.useRef<HTMLDivElement>(null);
 
@@ -186,9 +161,9 @@ const DrawerBackdrop = ({
             ref={backdropRef}
             style={[
                 styles.drawerPositioner,
-                styles[alignment],
+                alignment && styles[alignment],
                 animated && (isExiting ? styles.fadeOut : styles.fadeIn),
-            ]}
+            ].filter(Boolean)}
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
             testId={testId}

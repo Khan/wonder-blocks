@@ -3,10 +3,30 @@ import {render, screen, fireEvent, waitFor} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
 import DrawerBackdrop from "../drawer-backdrop";
-import FlexibleDialog from "../flexible-dialog";
+import DrawerDialog from "../drawer-dialog";
+import {DrawerContext} from "../../util/drawer-context";
+import type {DrawerContextProps} from "../../util/drawer-context";
+import type {ModalElement} from "../../util/types";
+
+// Helper to render DrawerBackdrop with context
+const renderDrawerBackdrop = (
+    contextProps: DrawerContextProps,
+    backdropProps: {
+        children: ModalElement;
+        onCloseModal: () => void;
+        initialFocusId?: string;
+        testId?: string;
+    },
+) => {
+    return render(
+        <DrawerContext.Provider value={contextProps}>
+            <DrawerBackdrop {...backdropProps} />
+        </DrawerContext.Provider>,
+    );
+};
 
 const exampleModal = (
-    <FlexibleDialog
+    <DrawerDialog
         content={<div data-testid="example-modal-content" />}
         title="Title"
         testId="example-modal-test-id"
@@ -14,7 +34,7 @@ const exampleModal = (
 );
 
 const exampleModalWithButtons = (
-    <FlexibleDialog
+    <DrawerDialog
         content={
             <div>
                 <button>first focusable button</button>
@@ -31,15 +51,16 @@ describe("DrawerBackdrop", () => {
         // Arrange
         const onCloseModal = jest.fn();
 
-        render(
-            <DrawerBackdrop
-                alignment="inlineStart"
-                animated={false}
-                onCloseModal={onCloseModal}
-                testId="modal-backdrop-test-id"
-            >
-                {exampleModal}
-            </DrawerBackdrop>,
+        renderDrawerBackdrop(
+            {
+                alignment: "inlineStart",
+                animated: false,
+            },
+            {
+                onCloseModal,
+                testId: "modal-backdrop-test-id",
+                children: exampleModal,
+            },
         );
 
         const backdrop = await screen.findByTestId("modal-backdrop-test-id");
@@ -55,14 +76,15 @@ describe("DrawerBackdrop", () => {
         // Arrange
         const onCloseModal = jest.fn();
 
-        render(
-            <DrawerBackdrop
-                alignment="inlineStart"
-                animated={false}
-                onCloseModal={onCloseModal}
-            >
-                {exampleModal}
-            </DrawerBackdrop>,
+        renderDrawerBackdrop(
+            {
+                alignment: "inlineStart",
+                animated: false,
+            },
+            {
+                onCloseModal,
+                children: exampleModal,
+            },
         );
 
         // Act
@@ -78,15 +100,16 @@ describe("DrawerBackdrop", () => {
         // Arrange
         const onCloseModal = jest.fn();
 
-        render(
-            <DrawerBackdrop
-                alignment="inlineStart"
-                animated={false}
-                onCloseModal={onCloseModal}
-                testId="modal-backdrop-test-id"
-            >
-                {exampleModal}
-            </DrawerBackdrop>,
+        renderDrawerBackdrop(
+            {
+                alignment: "inlineStart",
+                animated: false,
+            },
+            {
+                onCloseModal,
+                testId: "modal-backdrop-test-id",
+                children: exampleModal,
+            },
         );
 
         const panel = await screen.findByTestId("example-modal-test-id");
@@ -108,15 +131,16 @@ describe("DrawerBackdrop", () => {
         // Arrange
         const onCloseModal = jest.fn();
 
-        render(
-            <DrawerBackdrop
-                alignment="inlineStart"
-                animated={false}
-                onCloseModal={onCloseModal}
-                testId="modal-backdrop-test-id"
-            >
-                {exampleModal}
-            </DrawerBackdrop>,
+        renderDrawerBackdrop(
+            {
+                alignment: "inlineStart",
+                animated: false,
+            },
+            {
+                onCloseModal,
+                testId: "modal-backdrop-test-id",
+                children: exampleModal,
+            },
         );
 
         const panel = await screen.findByTestId("example-modal-test-id");
@@ -138,23 +162,28 @@ describe("DrawerBackdrop", () => {
         // Arrange
         const initialFocusId = "initial-focus";
 
-        render(
-            <DrawerBackdrop
-                alignment="inlineStart"
-                animated={false}
-                initialFocusId={initialFocusId}
-                onCloseModal={() => {}}
-            >
-                <FlexibleDialog
-                    content={
-                        <div data-modal-content>
-                            <input type="text" />
-                            <button id="initial-focus">Initial focus</button>
-                        </div>
-                    }
-                    title="Title"
-                />
-            </DrawerBackdrop>,
+        renderDrawerBackdrop(
+            {
+                alignment: "inlineStart",
+                animated: false,
+            },
+            {
+                initialFocusId,
+                onCloseModal: () => {},
+                children: (
+                    <DrawerDialog
+                        content={
+                            <div data-modal-content>
+                                <input type="text" />
+                                <button id="initial-focus">
+                                    Initial focus
+                                </button>
+                            </div>
+                        }
+                        title="Title"
+                    />
+                ),
+            },
         );
 
         // Act
@@ -171,15 +200,16 @@ describe("DrawerBackdrop", () => {
         // This element does not exist in the DOM
         const initialFocusId = "unknown-node";
 
-        const {container} = render(
-            <DrawerBackdrop
-                alignment="inlineStart"
-                animated={false}
-                initialFocusId={initialFocusId}
-                onCloseModal={() => {}}
-            >
-                {exampleModalWithButtons}
-            </DrawerBackdrop>,
+        const {container} = renderDrawerBackdrop(
+            {
+                alignment: "inlineStart",
+                animated: false,
+            },
+            {
+                initialFocusId,
+                onCloseModal: () => {},
+                children: exampleModalWithButtons,
+            },
         );
 
         // Act
@@ -201,14 +231,15 @@ describe("DrawerBackdrop", () => {
 
     test("If no initialFocusId is set, we focus the dismiss button in the modal", async () => {
         // Arrange
-        render(
-            <DrawerBackdrop
-                alignment="inlineStart"
-                animated={false}
-                onCloseModal={() => {}}
-            >
-                {exampleModalWithButtons}
-            </DrawerBackdrop>,
+        renderDrawerBackdrop(
+            {
+                alignment: "inlineStart",
+                animated: false,
+            },
+            {
+                onCloseModal: () => {},
+                children: exampleModalWithButtons,
+            },
         );
 
         // Act
@@ -222,20 +253,23 @@ describe("DrawerBackdrop", () => {
 
     test("If there are no focusable elements, we focus the Dialog instead", async () => {
         // Arrange
-        render(
-            <DrawerBackdrop
-                alignment="inlineStart"
-                animated={false}
-                onCloseModal={() => {}}
-            >
-                <FlexibleDialog
-                    content={<div data-testid="example-modal-content" />}
-                    title="Title"
-                    testId="example-modal-test-id"
-                    // Ensure that there are no focusable elements
-                    closeButtonVisible={false}
-                />
-            </DrawerBackdrop>,
+        renderDrawerBackdrop(
+            {
+                alignment: "inlineStart",
+                animated: false,
+            },
+            {
+                onCloseModal: () => {},
+                children: (
+                    <DrawerDialog
+                        content={<div data-testid="example-modal-content" />}
+                        title="Title"
+                        testId="example-modal-test-id"
+                        // Ensure that there are no focusable elements
+                        closeButtonVisible={false}
+                    />
+                ),
+            },
         );
 
         // Act
@@ -247,14 +281,15 @@ describe("DrawerBackdrop", () => {
 
     test("When not animated, it focuses the close button immediately", async () => {
         // Arrange
-        render(
-            <DrawerBackdrop
-                alignment="inlineStart"
-                animated={false}
-                onCloseModal={() => {}}
-            >
-                {exampleModalWithButtons}
-            </DrawerBackdrop>,
+        renderDrawerBackdrop(
+            {
+                alignment: "inlineStart",
+                animated: false,
+            },
+            {
+                onCloseModal: () => {},
+                children: exampleModalWithButtons,
+            },
         );
 
         // Act
@@ -271,15 +306,16 @@ describe("DrawerBackdrop", () => {
         jest.useFakeTimers();
         const customTimingDuration = 500;
 
-        render(
-            <DrawerBackdrop
-                alignment="inlineStart"
-                animated={true}
-                timingDuration={customTimingDuration}
-                onCloseModal={() => {}}
-            >
-                {exampleModalWithButtons}
-            </DrawerBackdrop>,
+        renderDrawerBackdrop(
+            {
+                alignment: "inlineStart",
+                animated: true,
+                timingDuration: customTimingDuration,
+            },
+            {
+                onCloseModal: () => {},
+                children: exampleModalWithButtons,
+            },
         );
 
         // Act

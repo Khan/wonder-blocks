@@ -3,11 +3,15 @@ import {StyleSheet} from "aphrodite";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {breakpoint, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import type {DrawerAlignment} from "../util/types";
-import {DEFAULT_TIMING_DURATION} from "./drawer-launcher";
+import {
+    useDrawerContext,
+    DEFAULT_DRAWER_ANIMATED,
+    DEFAULT_DRAWER_IS_EXITING,
+    DEFAULT_DRAWER_TIMING_DURATION_MS,
+} from "../util/drawer-context";
 import FlexibleDialog from "./flexible-dialog";
 import theme from "../theme";
 import {useDirectionDetection} from "../hooks/use-direction-detection";
-import {useDrawerContext} from "../util/drawer-context";
 
 // One of these three props is required for labeling the dialog:
 // `title`, `aria-label`, or `aria-labelledby`.
@@ -31,36 +35,11 @@ type Props = AccessibleDialogProps & {
      */
     content: React.ReactElement | ((slots: RenderProps) => React.ReactElement);
     /**
-     * Positioning of the drawer. Uses logical properties to support
-     * different writing modes:
-     * - `inlineStart` / left in Left-To-Right
-     * - `inlineEnd` / right in Left-To-Right
-     * - `blockEnd` / bottom
-     */
-    alignment?: DrawerAlignment;
-    /**
-     * Optional number of milliseconds for slide-in animation. Defaults to 400ms.
-     * Used to ensure timing of focused elements after modals are opened.
-     *
-     * Turned off when `animated` option is `false` for reduced-motion preferences.
-     */
-    timingDuration?: number;
-    /**
-     * Optional flag to determine whether the dialog is closing, to fine-tune animations.
-     */
-    isExiting?: boolean; // should this be in this layer?
-    /**
-     * Whether to include animation in the `DrawerLauncher` and child components.
-     * This should be false if the user has `prefers-reduced-motion` opted in.
-     * Defaults to `true`.
-     */
-    animated?: boolean;
-    /**
      * Called when the close button is clicked.
      *
-     * If you're using `ModalLauncher`, you probably shouldn't use this prop!
+     * If you're using `DrawerLauncher`, you probably shouldn't use this prop!
      * Instead, to listen for when the modal closes, add an `onClose` handler
-     * to the `ModalLauncher`.  Doing so will result in a console.warn().
+     * to the `DrawerLauncher`.
      */
     onClose?: () => unknown;
     /**
@@ -138,25 +117,15 @@ const DrawerDialog = React.forwardRef(function DrawerDialog(
     props: Props,
     ref: React.ForwardedRef<HTMLDivElement>,
 ): React.ReactElement {
-    // Get drawer props from context (for nested components)
+    // Get drawer props from context
     const contextProps = useDrawerContext();
-
-    const {
-        styles,
-        alignment: propAlignment,
-        animated: propAnimated,
-        isExiting: propIsExiting,
-        timingDuration: propTimingDuration,
-    } = props;
-
-    // Merge context props with explicit props (props take precedence)
-    const alignment = propAlignment ?? contextProps.alignment;
-    const animated = propAnimated ?? contextProps.animated ?? true;
-    const isExiting = propIsExiting ?? contextProps.isExiting;
+    const alignment = contextProps.alignment;
+    const animated = contextProps.animated ?? DEFAULT_DRAWER_ANIMATED;
+    const isExiting = contextProps.isExiting ?? DEFAULT_DRAWER_IS_EXITING;
     const timingDuration =
-        propTimingDuration ??
-        contextProps.timingDuration ??
-        DEFAULT_TIMING_DURATION;
+        contextProps.timingDuration ?? DEFAULT_DRAWER_TIMING_DURATION_MS;
+
+    const {styles} = props;
 
     // Detect text direction from DOM
     const direction = useDirectionDetection();
