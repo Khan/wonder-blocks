@@ -28,7 +28,10 @@ type DrawerModalFunction = (props: {
     styles?: DrawerDialogStyles;
 }) => DrawerModalElement;
 
-type Props = Readonly<{
+/**
+ * Base props shared between controlled and uncontrolled modes
+ */
+type BaseProps = Readonly<{
     /**
      * The modal to render. Should be a DrawerDialog for proper drawer functionality.
      *
@@ -97,38 +100,49 @@ type Props = Readonly<{
      * Test ID used for e2e testing. It's set on the DrawerBackdrop
      */
     testId?: string;
+}> &
+    WithActionSchedulerProps;
 
+/**
+ * Controlled component mode: `opened` and `onClose` are required, `children` is forbidden
+ */
+type ControlledProps = BaseProps & {
     /**
      * Renders the modal when true, renders nothing when false.
      *
      * Using this prop makes the component behave as a controlled component.
      * The parent is responsible for managing the opening/closing of the modal
-     * when using this prop.  `onClose` should always be used and `children`
-     * should never be used with this prop.  Not doing so will result in an
-     * error being thrown.
+     * when using this prop. `onClose` is required and `children` is forbidden.
      */
-    opened?: boolean;
-
+    opened: boolean;
     /**
-     * If the parent needs to be notified when the modal is closed, use this
-     * prop. You probably want to use this instead of `onClose` on the modals
-     * themselves, since this will capture a more complete set of close events.
-     *
      * Called when the modal needs to notify the parent component that it should
-     * be closed.
-     *
-     * This prop must be used when the component is being used as a controlled
-     * component.
+     * be closed. Required when using `opened` prop (controlled mode).
+     */
+    onClose: () => unknown;
+    children?: never;
+};
+
+/**
+ * Uncontrolled component mode: `children` is required, `opened` is forbidden
+ */
+type UncontrolledProps = BaseProps & {
+    /**
+     * Render prop that provides `openModal` function to trigger the modal.
+     * Required when not using `opened` prop (uncontrolled mode).
+     */
+    children: (arg1: {openModal: () => unknown}) => React.ReactNode;
+    /**
+     * Optional callback when the modal is closed in uncontrolled mode.
      */
     onClose?: () => unknown;
+    opened?: never;
+};
 
-    /**
-     * WARNING: This props should only be used when using the component as a
-     * controlled component.
-     */
-    children?: (arg1: {openModal: () => unknown}) => React.ReactNode;
-}> &
-    WithActionSchedulerProps;
+/**
+ * DrawerLauncher props - enforces proper controlled/uncontrolled usage at the type level
+ */
+type Props = ControlledProps | UncontrolledProps;
 
 // Set a default timing duration for animations and focus management. Also used for tests.
 export const DEFAULT_TIMING_DURATION = 400;
@@ -170,24 +184,6 @@ const DrawerLauncher = (props: Props) => {
         typeof controlledOpened === "boolean"
             ? controlledOpened
             : uncontrolledOpened;
-
-    // Validation warnings
-    React.useEffect(() => {
-        if (process.env.NODE_ENV !== "production") {
-            if (typeof controlledOpened === "boolean" && children) {
-                // eslint-disable-next-line no-console
-                console.warn("'children' and 'opened' can't be used together");
-            }
-            if (typeof controlledOpened === "boolean" && !onClose) {
-                // eslint-disable-next-line no-console
-                console.warn("'onClose' should be used with 'opened'");
-            }
-            if (typeof controlledOpened !== "boolean" && !children) {
-                // eslint-disable-next-line no-console
-                console.warn("either 'children' or 'opened' must be set");
-            }
-        }
-    }, [controlledOpened, children, onClose]);
 
     const saveLastElementFocused = React.useCallback(() => {
         lastElementFocusedOutsideModalRef.current =
@@ -403,4 +399,7 @@ function DrawerLauncherKeypressListener({onClose}: {onClose: () => unknown}) {
  * />
  * ```
  */
+
+DrawerLauncher.displayName = "DrawerLauncher";
+
 export default withActionScheduler(DrawerLauncher);

@@ -192,63 +192,6 @@ describe("DrawerLauncher", () => {
         expect(document.body).not.toHaveStyle("overflow: hidden");
     });
 
-    test("using `opened` and `children` should warn", async () => {
-        // Arrange
-        jest.spyOn(console, "warn").mockImplementation(() => {});
-
-        // Act
-        render(
-            <DrawerLauncher
-                alignment="inlineEnd"
-                modal={exampleModal}
-                opened={false}
-                onClose={() => {}}
-            >
-                {({openModal}: any) => <button onClick={openModal} />}
-            </DrawerLauncher>,
-        );
-
-        // Assert
-        // eslint-disable-next-line no-console
-        expect(console.warn).toHaveBeenCalledWith(
-            "'children' and 'opened' can't be used together",
-        );
-    });
-
-    test("using `opened` without `onClose` should throw", async () => {
-        // Arrange
-        jest.spyOn(console, "warn").mockImplementation(() => {});
-
-        // Act
-        render(
-            <DrawerLauncher
-                alignment="inlineEnd"
-                modal={exampleModal}
-                opened={false}
-            />,
-        );
-
-        // Assert
-        // eslint-disable-next-line no-console
-        expect(console.warn).toHaveBeenCalledWith(
-            "'onClose' should be used with 'opened'",
-        );
-    });
-
-    test("using neither `opened` nor `children` should throw", async () => {
-        // Arrange
-        jest.spyOn(console, "warn").mockImplementation(() => {});
-
-        // Act
-        render(<DrawerLauncher alignment="inlineEnd" modal={exampleModal} />);
-
-        // Assert
-        // eslint-disable-next-line no-console
-        expect(console.warn).toHaveBeenCalledWith(
-            "either 'children' or 'opened' must be set",
-        );
-    });
-
     test("If backdropDismissEnabled set to false, clicking the backdrop does not trigger `onClose`", async () => {
         // Arrange
         const onClose = jest.fn();
