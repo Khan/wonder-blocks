@@ -1,5 +1,5 @@
 import * as React from "react";
-import {render, screen, fireEvent} from "@testing-library/react";
+import {render, screen} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
 import {ActivityButton} from "../activity-button";
@@ -66,40 +66,54 @@ describe("ActivityButton", () => {
         describe("onMouseDown", () => {
             test("should call onMouseDown handler when mouse is pressed down", async () => {
                 // Arrange
-                const user = userEvent.setup();
                 const onMouseDown = jest.fn();
                 render(
                     <ActivityButton onMouseDown={onMouseDown}>
                         Test Button
-                    </ActivityButton>
+                    </ActivityButton>,
                 );
 
                 // Act
                 const button = screen.getByRole("button");
-                await user.pointer({target: button, keys: '[MouseLeft>]'});
+                await userEvent.pointer({target: button, keys: "[MouseLeft>]"});
 
                 // Assert
                 expect(onMouseDown).toHaveBeenCalledTimes(1);
+            });
+
+            test("should call onMouseDown handler with correct event object", async () => {
+                // Arrange
+                const onMouseDown = jest.fn();
+                render(
+                    <ActivityButton onMouseDown={onMouseDown}>
+                        Test Button
+                    </ActivityButton>,
+                );
+
+                // Act
+                const button = screen.getByRole("button");
+                await userEvent.pointer({target: button, keys: "[MouseLeft>]"});
+
+                // Assert
                 expect(onMouseDown).toHaveBeenCalledWith(
                     expect.objectContaining({
                         type: "mousedown",
-                    })
+                    }),
                 );
             });
 
             test("should not call onMouseDown when button is disabled", async () => {
                 // Arrange
-                const user = userEvent.setup();
                 const onMouseDown = jest.fn();
                 render(
                     <ActivityButton disabled onMouseDown={onMouseDown}>
                         Test Button
-                    </ActivityButton>
+                    </ActivityButton>,
                 );
 
                 // Act
                 const button = screen.getByRole("button");
-                await user.pointer({target: button, keys: '[MouseLeft>]'});
+                await userEvent.pointer({target: button, keys: "[MouseLeft>]"});
 
                 // Assert
                 expect(onMouseDown).not.toHaveBeenCalled();
@@ -107,17 +121,16 @@ describe("ActivityButton", () => {
 
             test("should work with links (href)", async () => {
                 // Arrange
-                const user = userEvent.setup();
                 const onMouseDown = jest.fn();
                 render(
                     <ActivityButton href="/test" onMouseDown={onMouseDown}>
                         Test Link
-                    </ActivityButton>
+                    </ActivityButton>,
                 );
 
                 // Act
                 const link = screen.getByRole("link");
-                await user.pointer({target: link, keys: '[MouseLeft>]'});
+                await userEvent.pointer({target: link, keys: "[MouseLeft>]"});
 
                 // Assert
                 expect(onMouseDown).toHaveBeenCalledTimes(1);
@@ -127,40 +140,63 @@ describe("ActivityButton", () => {
         describe("onMouseUp", () => {
             test("should call onMouseUp handler when mouse is released", async () => {
                 // Arrange
-                const user = userEvent.setup();
                 const onMouseUp = jest.fn();
                 render(
                     <ActivityButton onMouseUp={onMouseUp}>
                         Test Button
-                    </ActivityButton>
+                    </ActivityButton>,
                 );
 
                 // Act
                 const button = screen.getByRole("button");
-                await user.pointer({target: button, keys: '[MouseLeft>][/MouseLeft]'});
+                await userEvent.pointer({
+                    target: button,
+                    keys: "[MouseLeft>][/MouseLeft]",
+                });
 
                 // Assert
                 expect(onMouseUp).toHaveBeenCalledTimes(1);
+            });
+
+            test("should call onMouseUp handler with correct event object", async () => {
+                // Arrange
+                const onMouseUp = jest.fn();
+                render(
+                    <ActivityButton onMouseUp={onMouseUp}>
+                        Test Button
+                    </ActivityButton>,
+                );
+
+                // Act
+                const button = screen.getByRole("button");
+                await userEvent.pointer({
+                    target: button,
+                    keys: "[MouseLeft>][/MouseLeft]",
+                });
+
+                // Assert
                 expect(onMouseUp).toHaveBeenCalledWith(
                     expect.objectContaining({
                         type: "mouseup",
-                    })
+                    }),
                 );
             });
 
             test("should not call onMouseUp when button is disabled", async () => {
                 // Arrange
-                const user = userEvent.setup();
                 const onMouseUp = jest.fn();
                 render(
                     <ActivityButton disabled onMouseUp={onMouseUp}>
                         Test Button
-                    </ActivityButton>
+                    </ActivityButton>,
                 );
 
                 // Act
                 const button = screen.getByRole("button");
-                await user.pointer({target: button, keys: '[MouseLeft>][/MouseLeft]'});
+                await userEvent.pointer({
+                    target: button,
+                    keys: "[MouseLeft>][/MouseLeft]",
+                });
 
                 // Assert
                 expect(onMouseUp).not.toHaveBeenCalled();
@@ -168,60 +204,77 @@ describe("ActivityButton", () => {
         });
 
         describe("onMouseLeave", () => {
-            test("should call onMouseLeave handler when mouse leaves button", () => {
+            test("should call onMouseLeave handler when mouse leaves button", async () => {
                 // Arrange
                 const onMouseLeave = jest.fn();
                 render(
                     <ActivityButton onMouseLeave={onMouseLeave}>
                         Test Button
-                    </ActivityButton>
+                    </ActivityButton>,
                 );
 
                 // Act
                 const button = screen.getByRole("button");
-                fireEvent.mouseEnter(button);
-                fireEvent.mouseLeave(button);
+                await userEvent.hover(button);
+                await userEvent.unhover(button);
 
                 // Assert
                 expect(onMouseLeave).toHaveBeenCalledTimes(1);
+            });
+
+            test("should call onMouseLeave handler with correct event object", async () => {
+                // Arrange
+                const onMouseLeave = jest.fn();
+                render(
+                    <ActivityButton onMouseLeave={onMouseLeave}>
+                        Test Button
+                    </ActivityButton>,
+                );
+
+                // Act
+                const button = screen.getByRole("button");
+                await userEvent.hover(button);
+                await userEvent.unhover(button);
+
+                // Assert
                 expect(onMouseLeave).toHaveBeenCalledWith(
                     expect.objectContaining({
                         type: "mouseleave",
-                    })
+                    }),
                 );
             });
 
-            test("should not call onMouseLeave when button is disabled", () => {
+            test("should not call onMouseLeave when button is disabled", async () => {
                 // Arrange
                 const onMouseLeave = jest.fn();
                 render(
                     <ActivityButton disabled onMouseLeave={onMouseLeave}>
                         Test Button
-                    </ActivityButton>
+                    </ActivityButton>,
                 );
 
                 // Act
                 const button = screen.getByRole("button");
-                fireEvent.mouseEnter(button);
-                fireEvent.mouseLeave(button);
+                await userEvent.hover(button);
+                await userEvent.unhover(button);
 
                 // Assert
                 expect(onMouseLeave).not.toHaveBeenCalled();
             });
 
-            test("should work with links (href)", () => {
+            test("should work with links (href)", async () => {
                 // Arrange
                 const onMouseLeave = jest.fn();
                 render(
                     <ActivityButton href="/test" onMouseLeave={onMouseLeave}>
                         Test Link
-                    </ActivityButton>
+                    </ActivityButton>,
                 );
 
                 // Act
                 const link = screen.getByRole("link");
-                fireEvent.mouseEnter(link);
-                fireEvent.mouseLeave(link);
+                await userEvent.hover(link);
+                await userEvent.unhover(link);
 
                 // Assert
                 expect(onMouseLeave).toHaveBeenCalledTimes(1);
@@ -231,55 +284,66 @@ describe("ActivityButton", () => {
         describe("combined mouse events", () => {
             test("should call all mouse event handlers in correct sequence", async () => {
                 // Arrange
-                const user = userEvent.setup();
                 const onMouseDown = jest.fn();
                 const onMouseUp = jest.fn();
                 const onMouseLeave = jest.fn();
                 const callOrder: string[] = [];
-                
-                onMouseDown.mockImplementation(() => callOrder.push('mousedown'));
-                onMouseUp.mockImplementation(() => callOrder.push('mouseup'));
-                onMouseLeave.mockImplementation(() => callOrder.push('mouseleave'));
+
+                onMouseDown.mockImplementation(() =>
+                    callOrder.push("mousedown"),
+                );
+                onMouseUp.mockImplementation(() => callOrder.push("mouseup"));
+                onMouseLeave.mockImplementation(() =>
+                    callOrder.push("mouseleave"),
+                );
 
                 render(
-                    <ActivityButton 
+                    <ActivityButton
                         onMouseDown={onMouseDown}
                         onMouseUp={onMouseUp}
                         onMouseLeave={onMouseLeave}
                     >
                         Test Button
-                    </ActivityButton>
+                    </ActivityButton>,
                 );
 
                 // Act
                 const button = screen.getByRole("button");
-                await user.hover(button);
-                await user.pointer({target: button, keys: '[MouseLeft>][/MouseLeft]'});
-                await user.unhover(button);
+                await userEvent.hover(button);
+                await userEvent.pointer({
+                    target: button,
+                    keys: "[MouseLeft>][/MouseLeft]",
+                });
+                await userEvent.unhover(button);
 
                 // Assert
-                expect(callOrder).toEqual(['mousedown', 'mouseup', 'mouseleave']);
+                expect(callOrder).toEqual([
+                    "mousedown",
+                    "mouseup",
+                    "mouseleave",
+                ]);
             });
 
-            test("should work independently - only provided handlers are called", () => {
+            test("should work independently when only some handlers are provided", async () => {
                 // Arrange
                 const onMouseDown = jest.fn();
                 render(
                     <ActivityButton onMouseDown={onMouseDown}>
                         Test Button
-                    </ActivityButton>
+                    </ActivityButton>,
                 );
 
                 // Act
                 const button = screen.getByRole("button");
-                fireEvent.mouseEnter(button);
-                fireEvent.mouseDown(button);
-                fireEvent.mouseUp(button);
-                fireEvent.mouseLeave(button);
+                await userEvent.hover(button);
+                await userEvent.pointer({
+                    target: button,
+                    keys: "[MouseLeft>][/MouseLeft]",
+                });
+                await userEvent.unhover(button);
 
                 // Assert
                 expect(onMouseDown).toHaveBeenCalledTimes(1);
-                // No errors should be thrown for missing handlers
             });
         });
     });
