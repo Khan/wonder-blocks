@@ -12,3 +12,7 @@ changeset-status.json
 pnpm-debug.log
 .swc/
 .turbo
+
+# If you run `pnpm storybook doctor`, it creates this file, but definitely
+# doesn't need to be checked in.
+doctor-storybook.log

@@ -1,5 +1,5 @@
 import * as React from "react";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 // NOTE: Radio is an internal component and should not be used directly. Use
 // RadioGroup instead. This import is only used for visual testing in Chromatic.

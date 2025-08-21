@@ -3,8 +3,8 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import planetIcon from "@phosphor-icons/core/regular/planet.svg";
 
-import {action} from "@storybook/addon-actions";
-import type {Meta, StoryObj} from "@storybook/react";
+import {action} from "storybook/actions";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
@@ -92,6 +92,11 @@ export default {
         placeholder: "Choose a fruit",
         selectedValue: "",
     },
+    globals: {
+        backgrounds: {
+            value: "offWhite",
+        },
+    },
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -99,9 +104,6 @@ export default {
                 version={packageConfig.version}
             />
         ),
-        backgrounds: {
-            default: "offWhite",
-        },
     },
 } as Meta<typeof SingleSelect>;
 

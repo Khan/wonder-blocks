@@ -1,4 +1,4 @@
-import type {ArgTypes} from "@storybook/react";
+import type {ArgTypes} from "@storybook/react-vite";
 import iconButtonSharedArgtypes from "./icon-button-shared.argtypes";
 
 export default {
