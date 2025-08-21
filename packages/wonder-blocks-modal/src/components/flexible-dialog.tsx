@@ -78,6 +78,9 @@ type RenderProps = {
  * a custom background (image or color), a title for the main heading, and that
  * title can optionally render in the content area through a render prop.
  *
+ * It can be used directly with `ModalLauncher`. In a `DrawerLauncher`, use
+ * `DrawerDialog` instead, which is a wrapper around `FlexibleDialog`.
+ *
  * One of the following is required for labeling the dialog:
  * - title content (React element or string)
  * - aria-label (string)
