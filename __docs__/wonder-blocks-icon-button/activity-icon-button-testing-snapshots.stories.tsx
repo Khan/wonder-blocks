@@ -181,6 +181,7 @@ export const Scenarios: Story = {
                                 </Icon>
                             }
                             aria-label="Khanmigo"
+                            kind="secondary"
                         />
                     ),
                 },
