@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.3.7
+
+### Patch Changes
+
+- Updated dependencies [83620b4]
+- Updated dependencies [f32064b]
+- Updated dependencies [f32064b]
+    - @khanacademy/wonder-blocks-icon-button@10.4.0
+    - @khanacademy/wonder-blocks-modal@8.3.0
+    - @khanacademy/wonder-blocks-search-field@5.1.42
+
 ## 10.3.6
 
 ### Patch Changes
