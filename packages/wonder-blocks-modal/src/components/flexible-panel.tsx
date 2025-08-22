@@ -34,7 +34,7 @@ type Props = {
      * Any optional styling to apply to the root (panel background) and close button.
      */
     styles?: {
-        root?: StyleType;
+        panel?: StyleType;
         closeButton?: StyleType;
     };
     /**
@@ -80,6 +80,8 @@ export default function FlexiblePanel({
     styles,
     testId,
 }: Props) {
+    const panelRef = React.useRef<HTMLButtonElement>(null);
+
     const renderMainContent = React.useCallback((): React.ReactElement => {
         const contentNode =
             typeof content === "function" ? (
@@ -100,10 +102,6 @@ export default function FlexiblePanel({
         }
 
         return React.cloneElement(mainContent, {
-            // We override the styling of the main content to help position
-            // it if there is a close button being
-            // shown. We have to do this here as the ModalContent doesn't
-            // know about things being positioned around it.
             style: [mainContent.props.style],
         });
     }, [title, content]);
@@ -116,13 +114,14 @@ export default function FlexiblePanel({
 
     const combinedBackgroundStyles = {
         ...defaultBackgroundStyle,
-        ...styles?.root,
+        ...styles?.panel,
     };
 
     return (
         <View
             style={[componentStyles.wrapper, combinedBackgroundStyles]}
             testId={testId && `${testId}-panel`}
+            ref={panelRef}
         >
             {closeButtonVisible && (
                 <CloseButton
@@ -153,7 +152,8 @@ const componentStyles = StyleSheet.create({
 
     closeButton: {
         position: "absolute",
-        right: theme.closeButton.layout.gapRight,
+        // insetInlineEnd supports both RTL and LTR layouts
+        insetInlineEnd: theme.closeButton.layout.gapRight,
         top: theme.closeButton.layout.gapTop,
         // This is to allow the button to be tab-ordered before the modal
         // content but still be above the header and content.

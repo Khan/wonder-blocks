@@ -1,11 +1,12 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import {View} from "@khanacademy/wonder-blocks-core";
 
-import {breakpoint} from "@khanacademy/wonder-blocks-tokens";
+import {breakpoint, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
-import ModalDialog from "./modal-dialog";
 import FlexiblePanel from "./flexible-panel";
+import theme from "../theme";
 
 // One of these three props is required for labeling the dialog:
 // `title`, `aria-label`, or `aria-labelledby`.
@@ -49,13 +50,9 @@ type Props = AccessibleDialogProps & {
     /**
      * Optional custom styles.
      */
-    styles?: {
-        root?: StyleType;
-        panel?: StyleType;
-        closeButton?: StyleType;
-    };
+    styles?: FlexibleDialogStyles;
     /**
-     * Test ID used for e2e testing. This ID will be passed down to the Dialog.
+     * Test ID used for e2e testing.
      */
     testId?: string;
     /**
@@ -64,13 +61,25 @@ type Props = AccessibleDialogProps & {
     "aria-describedby"?: string;
 };
 
+// Style contract for DrawerLauncher with FlexibleDialog
+export type FlexibleDialogStyles = {
+    root?: StyleType;
+    dialog?: StyleType;
+    panel?: StyleType;
+    closeButton?: StyleType;
+};
+
 type RenderProps = {
     title: React.ReactNode | string;
 };
+
 /**
- * A more flexible modal variant with fewer layout constraints. It can receive
+ * A flexible modal variant with fewer layout constraints. It can receive
  * a custom background (image or color), a title for the main heading, and that
  * title can optionally render in the content area through a render prop.
+ *
+ * It can be used directly with `ModalLauncher`. In a `DrawerLauncher`, use
+ * `DrawerDialog` instead, which is a wrapper around `FlexibleDialog`.
  *
  * One of the following is required for labeling the dialog:
  * - title content (React element or string)
@@ -101,17 +110,22 @@ type RenderProps = {
  * />
  * ```
  */
-const FlexibleDialog = ({
-    onClose,
-    title,
-    content,
-    styles,
-    closeButtonVisible = true,
-    testId,
-    titleId,
-    role,
-    ...accessibilityProps
-}: Props): React.ReactElement => {
+const FlexibleDialog = React.forwardRef(function FlexibleDialog(
+    props: Props,
+    ref: React.ForwardedRef<HTMLDivElement>,
+): React.ReactElement {
+    const {
+        onClose,
+        title,
+        content,
+        styles,
+        closeButtonVisible = true,
+        testId,
+        titleId,
+        role = "dialog",
+        ...accessibilityProps
+    } = props;
+
     const uniqueId = React.useId();
     const headingId = titleId ?? uniqueId;
 
@@ -127,39 +141,52 @@ const FlexibleDialog = ({
         );
 
     return (
-        <ModalDialog
-            style={[componentStyles.dialog, styles?.root]}
-            testId={testId}
-            aria-label={accessibilityProps["aria-label"]}
-            aria-labelledby={headingId}
-            aria-describedby={accessibilityProps["aria-describedby"]}
-            role={role}
-        >
-            <FlexiblePanel
-                styles={{root: styles?.panel}}
-                onClose={onClose}
-                title={renderedTitle}
-                content={content}
-                closeButtonVisible={closeButtonVisible}
+        <View style={[componentStyles.root, styles?.root]}>
+            <View
+                role={role}
+                aria-modal="true"
+                aria-label={accessibilityProps["aria-label"]}
+                aria-labelledby={headingId}
+                aria-describedby={accessibilityProps["aria-describedby"]}
+                ref={ref}
                 testId={testId}
-            />
-        </ModalDialog>
+                style={[componentStyles.dialog, styles?.dialog]}
+            >
+                <FlexiblePanel
+                    styles={{
+                        panel: styles?.panel,
+                        closeButton: styles?.closeButton,
+                    }}
+                    onClose={onClose}
+                    title={renderedTitle}
+                    content={content}
+                    closeButtonVisible={closeButtonVisible}
+                    testId={testId}
+                />
+            </View>
+        </View>
     );
-};
+});
 
 const componentStyles = StyleSheet.create({
-    dialog: {
-        width: "93.75%",
-        maxWidth: 576,
+    root: {
+        boxShadow: theme.dialog.shadow.default,
+        // Allows propagating the text color to all the children.
+        color: semanticColor.core.foreground.neutral.strong,
+        overflow: "auto", // Prevent dialog from scrolling with background
+        position: "relative",
+        willChange: "transform, opacity",
+
+        // Default widths/heights for FlexibleDialog alone
         height: "auto",
         maxHeight: "100vh",
-        position: "relative",
-        overflow: "auto", // Prevent dialog from scrolling with background
+        maxWidth: 576,
+        width: "93.75%",
 
         [breakpoint.mediaQuery.sm]: {
-            width: "100%",
             height: "100vh",
             maxHeight: "100vh",
+            width: "100%",
         },
     },
 });

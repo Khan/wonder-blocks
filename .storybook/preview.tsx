@@ -162,9 +162,23 @@ const withThemeSwitcher: Decorator = (
 };
 
 /**
- * Wraps a story with `<div dir="rtl">` so it is shown in rtl mode.
+ * Sets the dir attribute on document.documentElement and wraps story with dir div.
+ * This ensures portaled content (like modals) can detect the direction.
  */
 const withLanguageDirection: Decorator = (Story, context) => {
+    React.useEffect(() => {
+        if (context.globals.direction === "rtl") {
+            document.documentElement.setAttribute("dir", "rtl");
+        } else {
+            document.documentElement.setAttribute("dir", "ltr");
+        }
+
+        // Cleanup on unmount
+        return () => {
+            document.documentElement.removeAttribute("dir");
+        };
+    }, [context.globals.direction]);
+
     if (context.globals.direction === "rtl") {
         return (
             <div dir="rtl">

@@ -152,7 +152,8 @@ const styles = StyleSheet.create({
 
     closeButton: {
         position: "absolute",
-        right: theme.closeButton.layout.gapRight,
+        // insetInlineEnd supports both RTL and LTR layouts
+        insetInlineEnd: theme.closeButton.layout.gapRight,
         top: theme.closeButton.layout.gapTop,
         // This is to allow the button to be tab-ordered before the modal
         // content but still be above the header and content.

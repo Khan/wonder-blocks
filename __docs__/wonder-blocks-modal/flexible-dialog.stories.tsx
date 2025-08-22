@@ -16,6 +16,7 @@ import {allModes} from "../../.storybook/modes";
 
 import celebrationBg from "../../static/celebration_bg.svg";
 import celebrationChest from "../../static/celebration-chest.svg";
+import {reallyLongText} from "../components/text-for-testing";
 
 const customViewports = {
     phone: {
@@ -96,16 +97,7 @@ export const Default: StoryComponentType = {
         title: <Heading id="main-heading">Some title</Heading>,
         content: (
             <>
-                <BodyText>
-                    {`Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna
-                aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                Duis aute irure dolor in reprehenderit in voluptate velit
-                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est.`}
-                </BodyText>
+                <BodyText>{reallyLongText}</BodyText>
             </>
         ),
     },
@@ -137,7 +129,6 @@ export const WithBackgroundImage: StoryComponentType = {
                         </Heading>
                     }
                     styles={{
-                        root: styles.modalWithBg,
                         panel: modalBgStyle,
                     }}
                     content={({title}) => (
@@ -274,23 +265,17 @@ export const WithStyle: StoryComponentType = {
                     title={<Heading>Hello, world!</Heading>}
                     content={
                         <>
-                            <BodyText>
-                                {`Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat. Duis aute irure
-                            dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur
-                            sint occaecat cupidatat non proident, sunt in culpa
-                            qui officia deserunt mollit anim id est.`}
-                            </BodyText>
+                            <BodyText>{reallyLongText}</BodyText>
                         </>
                     }
                     styles={{
                         root: {
                             color: semanticColor.status.notice.foreground,
                             maxWidth: 1000,
+                        },
+                        panel: {
+                            backgroundColor:
+                                semanticColor.status.notice.background,
                         },
                     }}
                 />
@@ -311,94 +296,14 @@ export const WithLongContents: StoryComponentType = {
                     title={<Heading>Hello, world!</Heading>}
                     content={
                         <>
-                            <BodyText>
-                                {`Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat. Duis aute irure
-                            dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur
-                            sint occaecat cupidatat non proident, sunt in culpa
-                            qui officia deserunt mollit anim id est.`}
-                            </BodyText>
-                            <BodyText>
-                                {`Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat. Duis aute irure
-                            dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur
-                            sint occaecat cupidatat non proident, sunt in culpa
-                            qui officia deserunt mollit anim id est.`}
-                            </BodyText>
-                            <BodyText>
-                                {`Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat. Duis aute irure
-                            dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur
-                            sint occaecat cupidatat non proident, sunt in culpa
-                            qui officia deserunt mollit anim id est.`}
-                            </BodyText>
-                            <BodyText>
-                                {`Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat. Duis aute irure
-                            dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur
-                            sint occaecat cupidatat non proident, sunt in culpa
-                            qui officia deserunt mollit anim id est.`}
-                            </BodyText>
-                            <BodyText>
-                                {`Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat. Duis aute irure
-                            dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur
-                            sint occaecat cupidatat non proident, sunt in culpa
-                            qui officia deserunt mollit anim id est.`}
-                            </BodyText>
-                            <BodyText>
-                                {`Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat. Duis aute irure
-                            dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur
-                            sint occaecat cupidatat non proident, sunt in culpa
-                            qui officia deserunt mollit anim id est.`}
-                            </BodyText>
-                            <BodyText>
-                                {`Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat. Duis aute irure
-                            dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur
-                            sint occaecat cupidatat non proident, sunt in culpa
-                            qui officia deserunt mollit anim id est.`}
-                            </BodyText>
-                            <BodyText>
-                                {`Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat. Duis aute irure
-                            dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur
-                            sint occaecat cupidatat non proident, sunt in culpa
-                            qui officia deserunt mollit anim id est.`}
-                            </BodyText>
+                            <BodyText>{reallyLongText}</BodyText>
+                            <BodyText>{reallyLongText}</BodyText>
+                            <BodyText>{reallyLongText}</BodyText>
+                            <BodyText>{reallyLongText}</BodyText>
+                            <BodyText>{reallyLongText}</BodyText>
+                            <BodyText>{reallyLongText}</BodyText>
+                            <BodyText>{reallyLongText}</BodyText>
+                            <BodyText>{reallyLongText}</BodyText>
                         </>
                     }
                 />
@@ -426,18 +331,7 @@ export const WithLauncher: StoryComponentType = () => {
             title={<Heading>Single-line title</Heading>}
             content={
                 <>
-                    <BodyText>
-                        {`Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit, sed do eiusmod tempor incididunt
-                    ut labore et dolore magna aliqua. Ut enim ad minim
-                    veniam, quis nostrud exercitation ullamco laboris
-                    nisi ut aliquip ex ea commodo consequat. Duis aute
-                    irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur.
-                    Excepteur sint occaecat cupidatat non proident,
-                    sunt in culpa qui officia deserunt mollit anim id
-                    est.`}
-                    </BodyText>
+                    <BodyText>{reallyLongText}</BodyText>
                     <View style={styles.launcherButton}>
                         <Button onClick={closeModal}>Close</Button>
                     </View>
@@ -505,9 +399,6 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         width: "100%",
-    },
-    modalWithBg: {
-        maxWidth: 1024,
     },
     launcherButton: {
         marginTop: "auto",
