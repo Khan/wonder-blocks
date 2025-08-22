@@ -126,7 +126,7 @@ export default {
 
 const styles = StyleSheet.create({
     example: {
-        background: semanticColor.surface.secondary,
+        background: semanticColor.core.background.base.subtle,
         padding: sizing.size_160,
     },
     exampleExtended: {
@@ -493,7 +493,8 @@ export const CustomActionItems: StoryComponentType = {
                 onClick={action("user profile clicked!")}
                 style={{
                     [":hover [data-testid=new-pill]" as any]: {
-                        backgroundColor: semanticColor.surface.primary,
+                        backgroundColor:
+                            semanticColor.core.background.base.default,
                         color: semanticColor.status.notice.foreground,
                     },
                 }}

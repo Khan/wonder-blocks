@@ -672,7 +672,7 @@ export const semanticColor = {
     input: {
         default: {
             border: core.border.neutral.default,
-            background: surface.primary,
+            background: core.background.base.default,
             foreground: core.foreground.neutral.strong,
             placeholder: core.foreground.neutral.default,
         },
@@ -693,7 +693,7 @@ export const semanticColor = {
             foreground: core.foreground.neutral.strong,
         },
         readOnly: {
-            background: surface.primary,
+            background: core.background.base.default,
             text: core.foreground.neutral.strong,
             icon: core.transparent,
         },

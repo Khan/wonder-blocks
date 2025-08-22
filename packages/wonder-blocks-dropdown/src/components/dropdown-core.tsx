@@ -1073,7 +1073,7 @@ const styles = StyleSheet.create({
     },
 
     dropdown: {
-        backgroundColor: semanticColor.surface.primary,
+        backgroundColor: semanticColor.core.background.base.default,
         borderRadius: theme.listbox.border.radius,
         paddingBlock: theme.listbox.layout.padding.block,
         paddingInline: theme.listbox.layout.padding.inline,

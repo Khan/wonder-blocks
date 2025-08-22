@@ -451,7 +451,7 @@ export const CustomStyles = {
 
 const styles = StyleSheet.create({
     example: {
-        backgroundColor: semanticColor.surface.secondary,
+        backgroundColor: semanticColor.core.background.base.subtle,
         padding: spacing.large_24,
         width: 376,
     },

@@ -34,6 +34,6 @@ export const inverse = {
         borderRadius: border.radius.radius_080,
         // This is a slightly darker color than the inverse color.
         borderColor: pressColor,
-        background: `color-mix(in srgb, ${semanticColor.surface.primary} 5%, transparent)`,
+        background: `color-mix(in srgb, ${semanticColor.core.background.base.default} 5%, transparent)`,
     },
 };

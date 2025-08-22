@@ -176,7 +176,7 @@ export const colorStates: StyleMap = {
             default: {
                 rest: {
                     border: semanticColor.input.checked.background,
-                    background: semanticColor.core.border.knockout.default, // TODO(WB-2050): use white background
+                    background: semanticColor.core.background.base.default,
                 },
                 hover: baseStyles.choice.checked,
                 press: {
@@ -197,15 +197,15 @@ export const colorStates: StyleMap = {
             disabled: {
                 rest: {
                     border: semanticColor.core.border.disabled.default,
-                    background: semanticColor.core.border.knockout.default, // TODO(WB-2050): use white background
+                    background: semanticColor.core.background.base.default,
                 },
                 hover: {
                     border: semanticColor.core.border.disabled.strong,
-                    background: semanticColor.core.border.knockout.default, // TODO(WB-2050): use white background
+                    background: semanticColor.core.background.base.default,
                 },
                 press: {
                     border: semanticColor.core.border.disabled.strong,
-                    background: semanticColor.core.border.knockout.default, // TODO(WB-2050): use white background
+                    background: semanticColor.core.background.base.default,
                 },
             },
         },

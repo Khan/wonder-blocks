@@ -75,7 +75,8 @@ export const Focus: Story = {
                 </View>
                 <View
                     style={{
-                        background: semanticColor.surface.inverse,
+                        background:
+                            semanticColor.core.background.neutral.strong,
                         padding: spacing.medium_16,
                         gap: spacing.medium_16,
                     }}
@@ -208,7 +209,7 @@ export const Scenarios: Story = {
                         {...props}
                         style={{
                             background: inverse
-                                ? semanticColor.surface.inverse
+                                ? semanticColor.core.background.neutral.strong
                                 : semanticColor.status.success.background,
                             padding: spacing.medium_16,
                             gap: spacing.medium_16,

@@ -210,7 +210,7 @@ export default function Listbox(props: Props) {
 
 const styles = StyleSheet.create({
     listbox: {
-        backgroundColor: semanticColor.surface.primary,
+        backgroundColor: semanticColor.core.background.base.default,
         outline: "none",
         // layout
         paddingBlock: theme.listbox.layout.padding.block,

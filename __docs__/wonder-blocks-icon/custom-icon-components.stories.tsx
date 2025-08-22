@@ -104,7 +104,7 @@ export const CustomIconsWithCustomStyle: StoryComponentType = {
     ...AllCustomIcons,
     args: {
         style: {
-            backgroundColor: semanticColor.surface.secondary,
+            backgroundColor: semanticColor.core.background.base.subtle,
             padding: sizing.size_040,
             borderRadius: border.radius.radius_040,
             border: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,

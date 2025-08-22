@@ -109,7 +109,7 @@ export default function FlexiblePanel({
     const mainContent = renderMainContent();
 
     const defaultBackgroundStyle = {
-        backgroundColor: semanticColor.surface.primary,
+        backgroundColor: semanticColor.core.background.base.default,
     };
 
     const combinedBackgroundStyles = {

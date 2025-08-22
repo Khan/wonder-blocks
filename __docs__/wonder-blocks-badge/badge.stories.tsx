@@ -197,7 +197,8 @@ export const CustomStyles: StoryComponentType = {
                 }
                 styles={{
                     root: {
-                        backgroundColor: semanticColor.surface.inverse,
+                        backgroundColor:
+                            semanticColor.core.background.neutral.strong,
                         borderColor: semanticColor.core.border.knockout.default,
                         color: semanticColor.core.foreground.knockout.default,
                     },

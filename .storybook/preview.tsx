@@ -82,15 +82,15 @@ const parameters = {
         values: [
             {
                 name: "light",
-                value: semanticColor.surface.primary,
+                value: semanticColor.core.background.base.default,
             },
             {
-                name: "darkBlue",
-                value: semanticColor.surface.inverse,
+                name: "darkBlue", // TODO(WB-2050): rename to dark
+                value: semanticColor.core.background.neutral.strong,
             },
             {
-                name: "offWhite",
-                value: semanticColor.surface.secondary,
+                name: "offWhite", // TODO(WB-2050): rename to subtle
+                value: semanticColor.core.background.base.subtle,
             },
         ],
     },

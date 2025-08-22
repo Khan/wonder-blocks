@@ -170,6 +170,6 @@ const styles = StyleSheet.create({
         //     now!
         overflow: "auto",
 
-        background: semanticColor.surface.overlay,
+        background: semanticColor.core.background.overlay.default,
     },
 });
