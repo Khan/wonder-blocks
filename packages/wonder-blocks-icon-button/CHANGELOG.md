@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 10.4.0
+
+### Minor Changes
+
+- 83620b4: ActivityIconButton now accepts custom icons for the icon prop.
+
 ## 10.3.18
 
 ### Patch Changes

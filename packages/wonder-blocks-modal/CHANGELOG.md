@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-modal
 
+## 8.3.0
+
+### Minor Changes
+
+- f32064b: Add DrawerLauncher and DrawerDialog components for sliding in from the left, right, or bottom.
+
+### Patch Changes
+
+- f32064b: Fix RTL positioning of close button in ModalPanel
+- Updated dependencies [83620b4]
+    - @khanacademy/wonder-blocks-icon-button@10.4.0
+
 ## 8.2.3
 
 ### Patch Changes
