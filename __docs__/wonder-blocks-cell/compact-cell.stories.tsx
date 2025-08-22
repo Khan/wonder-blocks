@@ -227,7 +227,7 @@ export const CompactCellHorizontalRules: StoryComponentType = {
 export const CompactCellWithCustomStyles: StoryComponentType = {
     render: () => (
         <CompactCell
-            title="CompactCell with a darkBlue background"
+            title="CompactCell with a dark background"
             leftAccessory={
                 <PhosphorIcon icon={IconMappings.article} size="medium" />
             }
