@@ -39,8 +39,5 @@ export const DrawerContext = React.createContext<DrawerContextProps>(
 );
 
 export const useDrawerContext = (): DrawerContextProps => {
-    const context = React.useContext(DrawerContext);
-    return context
-        ? {...defaultDrawerContextValue, ...context}
-        : defaultDrawerContextValue;
+    return React.useContext(DrawerContext);
 };
