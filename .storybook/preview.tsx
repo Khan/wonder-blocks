@@ -183,9 +183,11 @@ const withLanguageDirection: Decorator = (Story, context) => {
         return (
             <div dir="rtl">
                 <Story />
-            </div>);
+            </div>
+        );
+    } else {
+        return <Story />;
     }
-    return <Story />;
 };
 
 /**
