@@ -27,4 +27,17 @@ describe("ActivityIconButton", () => {
         // Assert
         expect(button).toBeInTheDocument();
     });
+
+    it("accepts an element as the icon prop", () => {
+        // Arrange
+        render(
+            <ActivityIconButton
+                label="Search"
+                icon={<div data-testid="search-icon" />}
+            />,
+        );
+
+        // Assert
+        expect(screen.getByTestId("search-icon")).toBeInTheDocument();
+    });
 });

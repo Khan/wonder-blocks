@@ -13,6 +13,9 @@ import packageConfig from "../../packages/wonder-blocks-icon-button/package.json
 import iconButtonSharedArgtypes from "./icon-button-shared.argtypes";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
+import {Icon} from "@khanacademy/wonder-blocks-icon";
+
+import khanmigoIcon from "./images/mini-khanmigo.svg";
 
 export default {
     title: "Packages / IconButton / ActivityIconButton",
@@ -208,6 +211,35 @@ export const WithLabel: StoryComponentType = {
                     icon={IconMappings.magnifyingGlass}
                     onClick={(e) => action("clicked")(e)}
                     label="Search"
+                />
+            </View>
+        );
+    },
+};
+
+/**
+ * `ActivityIconButton` accepts a custom icon element as the `icon` prop. The
+ * custom icon element will be rendered as-is.
+ */
+export const WithCustomIcon: StoryComponentType = {
+    render: () => {
+        return (
+            <View
+                style={{
+                    gap: sizing.size_160,
+                    flexDirection: "row",
+                    alignItems: "flex-start",
+                }}
+            >
+                <ActivityIconButton
+                    icon={
+                        <Icon size="medium">
+                            <img alt="" src={khanmigoIcon} />
+                        </Icon>
+                    }
+                    onClick={(e) => action("clicked")(e)}
+                    aria-label="Khanmigo"
+                    kind="secondary"
                 />
             </View>
         );
