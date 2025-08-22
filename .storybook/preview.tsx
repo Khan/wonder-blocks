@@ -89,7 +89,7 @@ const parameters = {
                 value: semanticColor.core.background.neutral.strong,
             },
             {
-                name: "offWhite", // TODO(WB-2050): rename to subtle
+                name: "subtle",
                 value: semanticColor.core.background.base.subtle,
             },
         ],
