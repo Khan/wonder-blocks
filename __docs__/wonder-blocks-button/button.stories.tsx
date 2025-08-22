@@ -702,4 +702,10 @@ export const ReceivingFocusProgrammatically: StoryComponentType = {
         startIcon: magnifyingGlass,
         endIcon: caretRight,
     },
+    parameters: {
+        chromatic: {
+            // Disable since it requires user interaction to see the focus ring.
+            disableSnapshot: true,
+        },
+    },
 };
