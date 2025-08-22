@@ -64,6 +64,8 @@ const ButtonCore: React.ForwardRefExoticComponent<
         buttonStyles.default,
         disabled && buttonStyles.disabled,
         !disabled && pressed && buttonStyles.pressed,
+        // Enables programmatic focus.
+        !disabled && !pressed && focused && buttonStyles.focused,
         size === "small" && sharedStyles.small,
         size === "large" && sharedStyles.large,
     ];
@@ -231,7 +233,7 @@ const sharedStyles = StyleSheet.create({
     },
 });
 
-type ButtonStylesKey = "default" | "pressed" | "disabled";
+type ButtonStylesKey = "default" | "pressed" | "disabled" | "focused";
 
 const styles: Record<string, Record<ButtonStylesKey, object>> = {};
 
@@ -379,6 +381,8 @@ export const _generateStyles = (
                 : {}),
         },
         pressed: pressStyles,
+        // To receive programmatic focus.
+        focused: focusStyles.focus[":focus-visible"],
         disabled: {
             cursor: "not-allowed",
             ...disabledStatesStyles,

@@ -1,6 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
+import {action} from "@storybook/addon-actions";
 
 import {MemoryRouter} from "react-router-dom";
 import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
@@ -10,10 +11,12 @@ import type {StyleDeclaration} from "aphrodite";
 import pencilSimple from "@phosphor-icons/core/regular/pencil-simple.svg";
 import pencilSimpleBold from "@phosphor-icons/core/bold/pencil-simple-bold.svg";
 import plus from "@phosphor-icons/core/regular/plus.svg";
+import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
+import caretRight from "@phosphor-icons/core/regular/caret-right.svg";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, sizing, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import Button from "@khanacademy/wonder-blocks-button";
@@ -655,5 +658,48 @@ WithRouter.parameters = {
     },
     chromatic: {
         disableSnapshot: true,
+    },
+};
+
+/**
+ * This button can receive focus programmatically. This is useful for cases where
+ * you want to focus the button when the user interacts with another
+ * component, such as a form field or another button.
+ *
+ * To do this, we use a `ref` to the button and call the `focus()` method
+ * on it, so the `ActivityButton` receives focus.
+ */
+export const ReceivingFocusProgrammatically: StoryComponentType = {
+    render: function Render(args) {
+        // This story is used to test the focus ring when the button receives
+        // focus programmatically. The button is focused when the story is
+        // rendered.
+        const buttonRef = React.useRef<HTMLButtonElement | null>(null);
+
+        return (
+            <View style={{gap: sizing.size_160, flexDirection: "row"}}>
+                <Button
+                    {...args}
+                    ref={buttonRef}
+                    onClick={(e) => action("clicked")(e)}
+                />
+                <Button
+                    onClick={() => {
+                        // Focus the button when the button is clicked.
+                        if (buttonRef.current) {
+                            buttonRef.current.focus();
+                        }
+                    }}
+                    kind="secondary"
+                >
+                    Focus on the Button (left)
+                </Button>
+            </View>
+        );
+    },
+    args: {
+        children: "Search",
+        startIcon: magnifyingGlass,
+        endIcon: caretRight,
     },
 };
