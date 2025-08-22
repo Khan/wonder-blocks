@@ -179,7 +179,13 @@ const withLanguageDirection: Decorator = (Story, context) => {
         };
     }, [context.globals.direction]);
 
-    return <div key={context.globals.direction}><Story /></div>;
+    if (context.globals.direction === "rtl") {
+        return (
+            <div dir="rtl">
+                <Story />
+            </div>);
+    }
+    return <Story />;
 };
 
 /**
