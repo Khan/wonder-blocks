@@ -85,7 +85,7 @@ const parameters = {
                 value: semanticColor.core.background.base.default,
             },
             {
-                name: "darkBlue", // TODO(WB-2050): rename to dark
+                name: "dark",
                 value: semanticColor.core.background.neutral.strong,
             },
             {
