@@ -34,8 +34,8 @@ const defaultDrawerContextValue: DrawerContextProps = {
     timingDuration: DEFAULT_DRAWER_TIMING_DURATION_MS,
 };
 
-export const DrawerContext = React.createContext<DrawerContextProps | null>(
-    null,
+export const DrawerContext = React.createContext<DrawerContextProps>(
+    defaultDrawerContextValue,
 );
 
 export const useDrawerContext = (): DrawerContextProps => {

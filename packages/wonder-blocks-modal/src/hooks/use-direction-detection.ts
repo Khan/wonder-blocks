@@ -75,7 +75,9 @@ export function useDirectionDetection(
 
         if (elementWithDir) {
             const dirValue = elementWithDir.getAttribute("dir");
-            return dirValue === "rtl" ? "rtl" : defaultDirection;
+            return dirValue === "rtl" || dirValue === "ltr"
+                ? dirValue
+                : defaultDirection;
         }
     }
 
@@ -83,8 +85,9 @@ export function useDirectionDetection(
     const documentDir =
         document.documentElement.getAttribute("dir") ||
         document.body.getAttribute("dir");
-    if (documentDir === "rtl") {
-        return "rtl";
+
+    if (documentDir === "rtl" || documentDir === "ltr") {
+        return documentDir;
     }
 
     // Fall back to default

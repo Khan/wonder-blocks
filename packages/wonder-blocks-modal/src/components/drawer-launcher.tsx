@@ -280,7 +280,6 @@ const DrawerLauncher = (props: Props) => {
         if (typeof modal === "function") {
             const renderedModal = modal({
                 closeModal: handleCloseModal,
-                ...drawerDialogProps,
             });
 
             if (!renderedModal) {
@@ -296,7 +295,7 @@ const DrawerLauncher = (props: Props) => {
         }
 
         return modal;
-    }, [drawerDialogProps, modal, handleCloseModal]);
+    }, [modal, handleCloseModal]);
 
     const renderedChildren = children
         ? children({
