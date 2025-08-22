@@ -126,7 +126,7 @@ export const InverseOutline: Story = {
     ],
     parameters: {
         backgrounds: {
-            default: "darkBlue",
+            default: "dark",
         },
         chromatic: {
             // Disabling because this is already covered by the All variants
