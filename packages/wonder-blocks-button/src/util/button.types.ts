@@ -140,6 +140,21 @@ export type BaseButtonProps =
          * WARNING: Do not use with `type="submit"`.
          */
         safeWithNav?: () => Promise<unknown>;
+
+        /**
+         * Respond to a raw "mousedown" event.
+         */
+        onMouseDown?: (e: React.MouseEvent) => unknown;
+
+        /**
+         * Respond to a raw "mouseup" event.
+         */
+        onMouseUp?: (e: React.MouseEvent) => unknown;
+
+        /**
+         * Respond to a raw "mouseleave" event.
+         */
+        onMouseLeave?: (e: React.MouseEvent) => unknown;
     };
 
 export type ButtonProps = BaseButtonProps & {
