@@ -103,6 +103,40 @@ describe("Button", () => {
         expect(await screen.findByText("Hello, world!")).toBeInTheDocument();
     });
 
+    test("supports mouse event handlers", async () => {
+        // Arrange
+        const onMouseDown = jest.fn();
+        const onMouseUp = jest.fn();
+        const onMouseEnter = jest.fn();
+        const onMouseLeave = jest.fn();
+
+        render(
+            <Button
+                onMouseDown={onMouseDown}
+                onMouseUp={onMouseUp}
+                onMouseEnter={onMouseEnter}
+                onMouseLeave={onMouseLeave}
+            >
+                Test Button
+            </Button>,
+        );
+
+        // Act
+        const button = screen.getByRole("button");
+        await userEvent.hover(button);
+        await userEvent.pointer({
+            target: button,
+            keys: "[MouseLeft>][/MouseLeft]",
+        });
+        await userEvent.unhover(button);
+
+        // Assert
+        expect(onMouseEnter).toHaveBeenCalledTimes(1);
+        expect(onMouseDown).toHaveBeenCalledTimes(1);
+        expect(onMouseUp).toHaveBeenCalledTimes(1);
+        expect(onMouseLeave).toHaveBeenCalledTimes(1);
+    });
+
     test("beforeNav rejection blocks client-side navigation", async () => {
         // Arrange
         render(

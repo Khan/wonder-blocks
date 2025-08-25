@@ -229,12 +229,20 @@ export const PressDurationTracking: Story = {
             setLastEvent(eventName);
         };
 
+        const baseActions = {
+            onMouseDown: action("onMouseDown"),
+            onMouseUp: action("onMouseUp"),
+            onMouseLeave: action("onMouseLeave"),
+            onClick: action("onClick"),
+            onMouseEnter: action("onMouseEnter"),
+        };
+
         const handleMouseDown = (e: React.MouseEvent) => {
             const startTime = Date.now();
             setPressStartTime(startTime);
             setPressDuration(null);
             logEvent("Mouse Down - Press Started");
-            action("onMouseDown")(e);
+            baseActions.onMouseDown?.(e);
         };
 
         const handleMouseUp = (e: React.MouseEvent) => {
@@ -243,7 +251,12 @@ export const PressDurationTracking: Story = {
                 setPressDuration(duration);
                 logEvent("Mouse Up - Press Completed", duration);
             }
-            action("onMouseUp")(e);
+            baseActions.onMouseUp?.(e);
+        };
+
+        const handleMouseEnter = (e: React.MouseEvent) => {
+            logEvent("Mouse Enter");
+            baseActions.onMouseEnter?.(e);
         };
 
         const handleMouseLeave = (e: React.MouseEvent) => {
@@ -253,12 +266,12 @@ export const PressDurationTracking: Story = {
                 logEvent("Mouse Leave - Press Abandoned", duration);
             }
             setPressStartTime(null);
-            action("onMouseLeave")(e);
+            baseActions.onMouseLeave?.(e);
         };
 
         const handleClick = (e: React.SyntheticEvent) => {
             logEvent("Click - Action Executed");
-            action("onClick")(e);
+            baseActions.onClick?.(e);
         };
 
         const resetTracking = () => {
@@ -284,6 +297,7 @@ export const PressDurationTracking: Story = {
                     <ActivityButton
                         {...args}
                         startIcon={clock}
+                        onMouseEnter={handleMouseEnter}
                         onMouseDown={handleMouseDown}
                         onMouseUp={handleMouseUp}
                         onMouseLeave={handleMouseLeave}

@@ -151,6 +151,7 @@ export const ActivityButton = React.forwardRef(function ActivityButton(
         role,
         onMouseDown,
         onMouseUp,
+        onMouseEnter,
         onMouseLeave,
         ...sharedButtonCoreProps
     } = props;
@@ -184,8 +185,16 @@ export const ActivityButton = React.forwardRef(function ActivityButton(
             {...extraClickableProps}
         >
             {(state: ClickableState, restChildProps: ChildrenProps) => {
-                // Wrap onMouseLeave to call custom handler before internal handler
-                // Only call custom handler if button is not disabled and handler exists
+                // Wrap onMouseEnter to call custom handler and internal handler
+                const wrappedOnMouseEnter =
+                    onMouseEnter && !disabled
+                        ? (e: React.MouseEvent) => {
+                              onMouseEnter(e);
+                              restChildProps.onMouseEnter(e);
+                          }
+                        : restChildProps.onMouseEnter;
+
+                // Wrap onMouseLeave to call custom handler and internal handler
                 const wrappedOnMouseLeave =
                     onMouseLeave && !disabled
                         ? () => {
@@ -202,16 +211,13 @@ export const ActivityButton = React.forwardRef(function ActivityButton(
                           }
                         : restChildProps.onMouseLeave;
 
-                const modifiedChildProps = {
-                    ...restChildProps,
-                    onMouseLeave: wrappedOnMouseLeave,
-                };
-
                 return (
                     <ActivityButtonCore
                         {...sharedButtonCoreProps}
                         {...state}
-                        {...modifiedChildProps}
+                        {...restChildProps}
+                        onMouseEnter={wrappedOnMouseEnter}
+                        onMouseLeave={wrappedOnMouseLeave}
                         disabled={disabled}
                         kind={kind}
                         skipClientNav={skipClientNav}

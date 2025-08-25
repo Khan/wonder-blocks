@@ -203,6 +203,80 @@ describe("ActivityButton", () => {
             });
         });
 
+        describe("onMouseEnter", () => {
+            test("should call onMouseEnter handler when mouse enters button", async () => {
+                // Arrange
+                const onMouseEnter = jest.fn();
+                render(
+                    <ActivityButton onMouseEnter={onMouseEnter}>
+                        Test Button
+                    </ActivityButton>,
+                );
+
+                // Act
+                const button = screen.getByRole("button");
+                await userEvent.hover(button);
+
+                // Assert
+                expect(onMouseEnter).toHaveBeenCalledTimes(1);
+            });
+
+            test("should call onMouseEnter handler with correct event object", async () => {
+                // Arrange
+                const onMouseEnter = jest.fn();
+                render(
+                    <ActivityButton onMouseEnter={onMouseEnter}>
+                        Test Button
+                    </ActivityButton>,
+                );
+
+                // Act
+                const button = screen.getByRole("button");
+                await userEvent.hover(button);
+
+                // Assert
+                expect(onMouseEnter).toHaveBeenCalledWith(
+                    expect.objectContaining({
+                        type: "mouseenter",
+                    }),
+                );
+            });
+
+            test("should not call onMouseEnter when button is disabled", async () => {
+                // Arrange
+                const onMouseEnter = jest.fn();
+                render(
+                    <ActivityButton disabled onMouseEnter={onMouseEnter}>
+                        Test Button
+                    </ActivityButton>,
+                );
+
+                // Act
+                const button = screen.getByRole("button");
+                await userEvent.hover(button);
+
+                // Assert
+                expect(onMouseEnter).not.toHaveBeenCalled();
+            });
+
+            test("should work with links (href)", async () => {
+                // Arrange
+                const onMouseEnter = jest.fn();
+                render(
+                    <ActivityButton href="/test" onMouseEnter={onMouseEnter}>
+                        Test Link
+                    </ActivityButton>,
+                );
+
+                // Act
+                const link = screen.getByRole("link");
+                await userEvent.hover(link);
+
+                // Assert
+                expect(onMouseEnter).toHaveBeenCalledTimes(1);
+            });
+        });
+
         describe("onMouseLeave", () => {
             test("should call onMouseLeave handler when mouse leaves button", async () => {
                 // Arrange
@@ -284,11 +358,15 @@ describe("ActivityButton", () => {
         describe("combined mouse events", () => {
             test("should call all mouse event handlers in correct sequence", async () => {
                 // Arrange
+                const onMouseEnter = jest.fn();
                 const onMouseDown = jest.fn();
                 const onMouseUp = jest.fn();
                 const onMouseLeave = jest.fn();
                 const callOrder: string[] = [];
 
+                onMouseEnter.mockImplementation(() =>
+                    callOrder.push("mouseenter"),
+                );
                 onMouseDown.mockImplementation(() =>
                     callOrder.push("mousedown"),
                 );
@@ -299,6 +377,7 @@ describe("ActivityButton", () => {
 
                 render(
                     <ActivityButton
+                        onMouseEnter={onMouseEnter}
                         onMouseDown={onMouseDown}
                         onMouseUp={onMouseUp}
                         onMouseLeave={onMouseLeave}
@@ -318,6 +397,7 @@ describe("ActivityButton", () => {
 
                 // Assert
                 expect(callOrder).toEqual([
+                    "mouseenter",
                     "mousedown",
                     "mouseup",
                     "mouseleave",

@@ -47,6 +47,10 @@ const Button = React.forwardRef(function Button(
         disabled = false,
         spinner = false,
         role,
+        onMouseDown,
+        onMouseUp,
+        onMouseEnter,
+        onMouseLeave,
         ...sharedButtonCoreProps
     } = props;
 
@@ -74,29 +78,61 @@ const Button = React.forwardRef(function Button(
             onClick={onClick}
             safeWithNav={safeWithNav}
             rel={rel}
+            onMouseDown={onMouseDown}
+            onMouseUp={onMouseUp}
             {...extraClickableProps}
         >
-            {(state: ClickableState, restChildProps: ChildrenProps) => (
-                <ButtonCore
-                    {...sharedButtonCoreProps}
-                    {...state}
-                    {...restChildProps}
-                    disabled={disabled}
-                    spinner={spinner || state.waiting}
-                    actionType={actionType}
-                    kind={kind}
-                    size={size}
-                    skipClientNav={skipClientNav}
-                    href={href}
-                    role={renderedRole}
-                    target={target}
-                    type={type}
-                    tabIndex={tabIndex}
-                    ref={ref}
-                >
-                    {children}
-                </ButtonCore>
-            )}
+            {(state: ClickableState, restChildProps: ChildrenProps) => {
+                // Wrap onMouseEnter to call custom handler and internal handler
+                const wrappedOnMouseEnter =
+                    onMouseEnter && !(spinner || disabled)
+                        ? (e: React.MouseEvent) => {
+                              onMouseEnter(e);
+                              restChildProps.onMouseEnter(e);
+                          }
+                        : restChildProps.onMouseEnter;
+
+                // Wrap onMouseLeave to call custom handler and internal handler
+                const wrappedOnMouseLeave =
+                    onMouseLeave && !(spinner || disabled)
+                        ? () => {
+                              // Create a synthetic event for the custom handler
+                              const syntheticEvent = new MouseEvent(
+                                  "mouseleave",
+                                  {
+                                      bubbles: true,
+                                      cancelable: true,
+                                  },
+                              ) as unknown as React.MouseEvent;
+                              onMouseLeave(syntheticEvent);
+                              restChildProps.onMouseLeave();
+                          }
+                        : restChildProps.onMouseLeave;
+
+                return (
+                    <ButtonCore
+                        {...sharedButtonCoreProps}
+                        {...state}
+                        {...restChildProps}
+                        onMouseEnter={wrappedOnMouseEnter}
+                        onMouseLeave={wrappedOnMouseLeave}
+                        disabled={disabled}
+                        spinner={spinner || state.waiting}
+                        actionType={actionType}
+                        kind={kind}
+                        size={size}
+                        skipClientNav={skipClientNav}
+                        href={href}
+                        role={renderedRole}
+                        target={target}
+                        type={type}
+                        tabIndex={tabIndex}
+                        ref={ref}
+                    >
+                        {children}
+                    </ButtonCore>
+                );
+            }}
         </ClickableBehavior>
     );
 });

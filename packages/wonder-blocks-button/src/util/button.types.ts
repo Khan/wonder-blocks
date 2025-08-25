@@ -152,6 +152,11 @@ export type BaseButtonProps =
         onMouseUp?: (e: React.MouseEvent) => unknown;
 
         /**
+         * Respond to a raw "mouseenter" event.
+         */
+        onMouseEnter?: (e: React.MouseEvent) => unknown;
+
+        /**
          * Respond to a raw "mouseleave" event.
          */
         onMouseLeave?: (e: React.MouseEvent) => unknown;
