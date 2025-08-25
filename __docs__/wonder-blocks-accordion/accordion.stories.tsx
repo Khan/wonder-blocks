@@ -657,7 +657,7 @@ export const BackgroundColorExample: StoryComponentType = {
 
 BackgroundColorExample.parameters = {
     backgrounds: {
-        default: "dark",
+        default: "neutral-strong",
     },
 };
 

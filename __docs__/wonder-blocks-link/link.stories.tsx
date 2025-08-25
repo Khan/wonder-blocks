@@ -77,7 +77,7 @@ export const LightPrimary: StoryComponentType = {
     ),
     parameters: {
         backgrounds: {
-            default: "dark",
+            default: "neutral-strong",
         },
     },
 };
@@ -348,7 +348,7 @@ export const InlineLight: StoryComponentType = {
     ),
     parameters: {
         backgrounds: {
-            default: "dark",
+            default: "neutral-strong",
         },
         chromatic: {
             // Re-enable snapshots for this story since it shows the links in

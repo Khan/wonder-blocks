@@ -148,7 +148,7 @@ Light.parameters = {
         },
     },
     backgrounds: {
-        default: "dark",
+        default: "neutral-strong",
     },
 };
 

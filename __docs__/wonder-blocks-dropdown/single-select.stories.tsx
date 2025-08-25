@@ -100,7 +100,7 @@ export default {
             />
         ),
         backgrounds: {
-            default: "subtle",
+            default: "base-subtle",
         },
     },
 } as Meta<typeof SingleSelect>;

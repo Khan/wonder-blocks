@@ -206,7 +206,7 @@ export const Dark: StoryComponentType = {
 
 Dark.parameters = {
     backgrounds: {
-        default: "dark",
+        default: "neutral-strong",
     },
     docs: {
         description: {
