@@ -81,7 +81,7 @@ export default {
             />
         ) as any,
         backgrounds: {
-            default: "base-subtle",
+            default: "baseSubtle",
         },
     },
 } as Meta<typeof MultiSelect>;

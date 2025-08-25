@@ -170,7 +170,7 @@ export const Layouts: StoryComponentType = () => {
 
 Layouts.parameters = {
     backgrounds: {
-        default: "neutral-strong",
+        default: "neutralStrong",
     },
 };
 
@@ -209,7 +209,7 @@ export const DarkBackground: StoryComponentType = () => (
 
 DarkBackground.parameters = {
     backgrounds: {
-        default: "neutral-strong",
+        default: "neutralStrong",
     },
     chromatic: {
         // Testing snapshots don't cover dark background case

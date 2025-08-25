@@ -30,7 +30,7 @@ export default {
     },
     parameters: {
         backgrounds: {
-            default: "base-subtle",
+            default: "baseSubtle",
         },
         chromatic: {
             modes: themeModes,
