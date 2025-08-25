@@ -10,8 +10,6 @@ import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconButtonUnstyled} from "../icon-button-unstyled";
 
 describe("IconButtonUnstyled", () => {
-    const {location} = window;
-
     beforeAll(() => {
         // @ts-expect-error [FEI-5019] - TS2790 - The operand of a 'delete' operator must be optional.
         delete window.location;
@@ -20,7 +18,8 @@ describe("IconButtonUnstyled", () => {
     });
 
     afterAll(() => {
-        window.location = location;
+        // @ts-expect-error [FEI-5019] - TS2339 - Property 'mockClear' does not exist on type '(url: string | URL) => void'.
+        window.location.assign.mockClear();
     });
 
     test("render a span containing the reference to the icon", async () => {

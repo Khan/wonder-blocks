@@ -54,6 +54,8 @@ describe.each`
     });
 
     afterEach(() => {
+        // @ts-expect-error [FEI-5019] - TS2339 - Property 'mockClear' does not exist on type '(url: string | URL) => void'.
+        window.location.assign.mockClear();
         // @ts-expect-error [FEI-5019] - TS2339 - Property 'mockClear' does not exist on type '((url?: string | URL | undefined, target?: string | undefined, features?: string | undefined) => Window | null) & ((url?: string | URL | undefined, target?: string | undefined, features?: string | undefined) => Window | null)'.
         window.open.mockClear();
     });
@@ -121,13 +123,17 @@ describe.each`
 `("$name without an href", ({Component, name, role}: any) => {
     beforeEach(() => {
         // Note: window.location.assign and window.open need mock functions in
-        // the testing environment, but JSDOM protects assign from being changed
-        // so we need to replace the whole location object.
-        window.location = {...window.location, assign: jest.fn()};
+        // the testing environment
+        // @ts-expect-error [FEI-5019] - TS2790 - The operand of a 'delete' operator must be optional.
+        delete window.location;
+        // @ts-expect-error [FEI-5019] - TS2740 - Type '{ assign: Mock<any, any, any>; }' is missing the following properties from type 'Location': ancestorOrigins, hash, host, hostname, and 8 more.
+        window.location = {assign: jest.fn()};
         window.open = jest.fn();
     });
 
     afterEach(() => {
+        // @ts-expect-error [FEI-5019] - TS2339 - Property 'mockClear' does not exist on type '(url: string | URL) => void'.
+        window.location.assign.mockClear();
         // @ts-expect-error [FEI-5019] - TS2339 - Property 'mockClear' does not exist on type '((url?: string | URL | undefined, target?: string | undefined, features?: string | undefined) => Window | null) & ((url?: string | URL | undefined, target?: string | undefined, features?: string | undefined) => Window | null)'.
         window.open.mockClear();
     });
@@ -184,10 +190,18 @@ describe.each`
 `("$name", ({Component, name, hasTabIndex}: any) => {
     test("has expected existence of tabIndex", async () => {
         // Arrange
+        // @ts-expect-error [FEI-5019] - TS2790 - The operand of a 'delete' operator must be optional.
+        delete window.location;
+        // @ts-expect-error [FEI-5019] - TS2740 - Type '{ assign: Mock<any, any, any>; }' is missing the following properties from type 'Location': ancestorOrigins, hash, host, hostname, and 8 more.
+        window.location = {assign: jest.fn(), origin: "http://localhost"};
 
         // Act
         render(
-            <Component onClick={jest.fn()} testId="clickable-component-test-id">
+            <Component
+                onClick={jest.fn()}
+                testId="clickable-component-test-id"
+                href="#" // Required for Link component
+            >
                 Click me
             </Component>,
         );
