@@ -29,6 +29,7 @@ class Announcer {
         ["modal", {count: 2, aIndex: 0, pIndex: 0}],
     ]);
     layer: LayerContext;
+    modalSelector: string;
     dictionary: RegionDictionary = new Map();
     waitThreshold: number = DEFAULT_WAIT_THRESHOLD;
     lastExecutionTime = 0;
@@ -36,10 +37,13 @@ class Announcer {
         (...args: any[]): Promise<string>;
         updateWaitTime: (newWaitTime: number) => void;
     };
+    private modalObserver?: MutationObserver;
+    private modalCleanupTimeouts: Map<string, number> = new Map();
 
     private constructor(targetElement: HTMLElement = document.body) {
         this.targetElement = targetElement;
         this.layer = "document";
+        this.modalSelector = '[aria-modal="true"]';
 
         if (typeof document !== "undefined") {
             // Check if our top level element already exists
@@ -62,6 +66,9 @@ class Announcer {
                 this.processAnnouncement,
                 this.waitThreshold,
             );
+
+            // Set up modal lifecycle observer
+            this.setupModalObserver();
         }
     }
     /**
@@ -149,12 +156,160 @@ class Announcer {
     }
 
     /**
+     * Sets up a MutationObserver to detect when modals are added/removed from the DOM
+     * and automatically manage modal-specific live regions
+     */
+    private setupModalObserver() {
+        if (typeof window === "undefined" || !window.MutationObserver) {
+            return;
+        }
+
+        this.modalObserver = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                // Handle nodes being added
+                mutation.addedNodes.forEach((node) => {
+                    if (node.nodeType === Node.ELEMENT_NODE) {
+                        const element = node as Element;
+
+                        // Check if this element or any of its children has aria-modal="true"
+                        const modalElements = element.matches(
+                            this.modalSelector,
+                        )
+                            ? [element]
+                            : Array.from(
+                                  element.querySelectorAll(this.modalSelector),
+                              );
+
+                        modalElements.forEach((modalEl) => {
+                            // Cancel any pending cleanup for this modal
+                            const modalId = modalEl.id || `modal-${Date.now()}`;
+                            const timeoutId =
+                                this.modalCleanupTimeouts.get(modalId);
+                            if (timeoutId) {
+                                clearTimeout(timeoutId);
+                                this.modalCleanupTimeouts.delete(modalId);
+                            }
+                        });
+                    }
+                });
+
+                // Handle nodes being removed
+                mutation.removedNodes.forEach((node) => {
+                    if (node.nodeType === Node.ELEMENT_NODE) {
+                        const element = node as Element;
+
+                        // Check if this element or any of its children had aria-modal="true"
+                        const modalElements = element.matches(
+                            this.modalSelector,
+                        )
+                            ? [element]
+                            : Array.from(
+                                  element.querySelectorAll(this.modalSelector),
+                              );
+
+                        modalElements.forEach((modalEl) => {
+                            // Schedule cleanup of modal-specific live regions
+                            this.scheduleModalCleanup(modalEl);
+                        });
+                    }
+                });
+
+                // Handle attribute changes (aria-modal being added/removed)
+                if (
+                    mutation.type === "attributes" &&
+                    mutation.attributeName === "aria-modal"
+                ) {
+                    const element = mutation.target as Element;
+                    const hasAriaModal =
+                        element.getAttribute("aria-modal") === "true";
+
+                    if (!hasAriaModal) {
+                        // aria-modal was removed or set to false, schedule cleanup
+                        this.scheduleModalCleanup(element);
+                    }
+                }
+            });
+        });
+
+        // Observe the entire document for modal changes
+        this.modalObserver.observe(document.body, {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            attributeFilter: ["aria-modal"],
+        });
+    }
+
+    /**
+     * Schedules cleanup of modal-specific live regions after a brief delay
+     * The delay allows for modal transitions and ensures we don't clean up
+     * regions that are still needed
+     */
+    private scheduleModalCleanup(modalElement: Element) {
+        const modalId = modalElement.id || `modal-${Date.now()}`;
+
+        // Clear any existing timeout for this modal
+        const existingTimeout = this.modalCleanupTimeouts.get(modalId);
+        if (existingTimeout) {
+            clearTimeout(existingTimeout);
+        }
+
+        // Schedule cleanup after a short delay
+        const timeoutId = setTimeout(() => {
+            this.cleanupModalRegions();
+            this.modalCleanupTimeouts.delete(modalId);
+        }, 500) as unknown as number; // 500ms delay to allow for transitions
+
+        this.modalCleanupTimeouts.set(modalId, timeoutId);
+    }
+
+    /**
+     * Removes modal-specific live regions that are no longer needed
+     * (i.e., when no modal with aria-modal="true" exists on the page)
+     */
+    private cleanupModalRegions() {
+        // Check if there are any active modals
+        const activeModals = document.querySelectorAll(this.modalSelector);
+
+        if (activeModals.length === 0) {
+            // No active modals, remove all modal-specific regions
+            const modalRegions = [...this.dictionary.entries()].filter(
+                ([id, region]) => region.layerId === "modal",
+            );
+
+            modalRegions.forEach(([id, region]) => {
+                // Remove the region element from the DOM
+                const modalAnnouncerContainer =
+                    region.element.closest(`[id$="-modal"]`);
+                if (
+                    modalAnnouncerContainer &&
+                    modalAnnouncerContainer.parentElement
+                ) {
+                    modalAnnouncerContainer.parentElement.removeChild(
+                        modalAnnouncerContainer,
+                    );
+                }
+
+                // Remove from dictionary
+                this.dictionary.delete(id);
+            });
+
+            // Reset modal region factory indices
+            const modalFactory = this.regionFactory.get("modal");
+            if (modalFactory) {
+                modalFactory.aIndex = 0;
+                modalFactory.pIndex = 0;
+            }
+        }
+    }
+
+    /**
      * Ensures live regions exist inside the modal container when in modal context
      */
     ensureModalLiveRegions() {
         // Find the modal container (element with aria-modal="true")
         const modalContainer = document.querySelector<HTMLElement>(
-            '[aria-modal="true"]',
+            this.modalSelector,
         );
 
         if (!modalContainer) {
@@ -406,6 +561,22 @@ class Announcer {
         if (this.node) {
             this.node.parentElement?.removeChild(this.node);
         }
+
+        // Cleanup modal observer
+        if (this.modalObserver) {
+            this.modalObserver.disconnect();
+            this.modalObserver = undefined;
+        }
+
+        // Clear any pending modal cleanup timeouts
+        this.modalCleanupTimeouts.forEach((timeoutId) => {
+            clearTimeout(timeoutId);
+        });
+        this.modalCleanupTimeouts.clear();
+
+        // Clean up any modal regions
+        this.cleanupModalRegions();
+
         Announcer._instance = null;
     }
 }
