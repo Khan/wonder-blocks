@@ -11,6 +11,8 @@ import {View} from "@khanacademy/wonder-blocks-core";
 
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-announcer/package.json";
+import {FlexibleDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 
 const AnnouncerExample = ({
     message = "Clicked!",
@@ -201,6 +203,77 @@ export const AnnounceMessage: StoryComponentType = {
     args: {
         message: "Here is some example text.",
         level: "polite",
+    },
+};
+
+/**
+ * ## Announcer in Modal Context
+ *
+ * This story demonstrates the Announcer working inside a modal dialog. The modal
+ * is opened by default to test that screen reader announcements work properly
+ * when the modal is active and has focus management applied.
+ */
+export const AnnouncerInModal: StoryComponentType = {
+    render: (args) => {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const [isOpen, setIsOpen] = React.useState(true);
+
+        const handleClose = () => {
+            setIsOpen(false);
+        };
+
+        const handleReopen = () => {
+            setIsOpen(true);
+        };
+
+        const ModalContent = ({closeModal}: {closeModal: () => void}) => (
+            <FlexibleDialog
+                title={<Heading>Announcer Test Modal</Heading>}
+                content={
+                    <View style={{gap: 16, padding: 24}}>
+                        <BodyText>
+                            This modal contains an announcer button. Try
+                            clicking the button below to test screen reader
+                            announcements in a modal context.
+                        </BodyText>
+                        <AnnouncerExample
+                            message={args.message}
+                            level={args.level}
+                            debounceThreshold={args.debounceThreshold}
+                        />
+                        <Button onClick={closeModal} kind="secondary">
+                            Close Modal
+                        </Button>
+                    </View>
+                }
+            />
+        );
+
+        return (
+            <View>
+                {!isOpen && (
+                    <Button onClick={handleReopen}>Reopen Modal to Test</Button>
+                )}
+                <ModalLauncher
+                    opened={isOpen}
+                    onClose={handleClose}
+                    modal={ModalContent}
+                />
+            </View>
+        );
+    },
+    args: {
+        message: "Message announced from inside modal!",
+        level: "polite",
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: `This story tests the Announcer functionality within a modal context.
+                The modal opens automatically to demonstrate that screen reader
+                announcements work properly when focus is managed within the modal.`,
+            },
+        },
     },
 };
 
