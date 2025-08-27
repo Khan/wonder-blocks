@@ -15,22 +15,6 @@ type Props = Omit<ButtonProps, "children"> & {
      * The button content.
      */
     children: React.ReactNode;
-    /**
-     * Respond to a raw "mousedown" event.
-     */
-    onMouseDown?: (e: React.MouseEvent) => unknown;
-    /**
-     * Respond to a raw "mouseup" event.
-     */
-    onMouseUp?: (e: React.MouseEvent) => unknown;
-    /**
-     * Respond to a raw "mouseenter" event.
-     */
-    onMouseEnter?: (e: React.MouseEvent) => unknown;
-    /**
-     * Respond to a raw "mouseleave" event.
-     */
-    onMouseLeave?: (e: React.MouseEvent) => unknown;
 };
 
 const ButtonUnstyled: React.ForwardRefExoticComponent<
@@ -49,29 +33,14 @@ const ButtonUnstyled: React.ForwardRefExoticComponent<
         style,
         testId,
         type,
-        onMouseDown,
-        onMouseUp,
-        onMouseEnter,
-        onMouseLeave,
         ...restProps
     } = props;
-
-    // Only call mouse event handlers when not disabled
-    const conditionalMouseEvents = disabled
-        ? {}
-        : {
-              onMouseDown,
-              onMouseUp,
-              onMouseEnter,
-              onMouseLeave,
-          };
 
     const commonProps = {
         "data-testid": testId,
         id: id,
         role: "button",
         style: [styles.reset, style],
-        ...conditionalMouseEvents,
         ...restProps,
     } as const;
 

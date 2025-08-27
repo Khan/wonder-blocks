@@ -76,46 +76,20 @@ const Button = React.forwardRef(function Button(
             role={roleForEvents}
             type={type}
             onClick={onClick}
-            safeWithNav={safeWithNav}
-            rel={rel}
             onMouseDown={onMouseDown}
             onMouseUp={onMouseUp}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
+            safeWithNav={safeWithNav}
+            rel={rel}
             {...extraClickableProps}
         >
             {(state: ClickableState, restChildProps: ChildrenProps) => {
-                // Wrap onMouseEnter to call custom handler and internal handler
-                const wrappedOnMouseEnter =
-                    onMouseEnter && !(spinner || disabled)
-                        ? (e: React.MouseEvent) => {
-                              onMouseEnter(e);
-                              restChildProps.onMouseEnter(e);
-                          }
-                        : restChildProps.onMouseEnter;
-
-                // Wrap onMouseLeave to call custom handler and internal handler
-                const wrappedOnMouseLeave =
-                    onMouseLeave && !(spinner || disabled)
-                        ? () => {
-                              // Create a synthetic event for the custom handler
-                              const syntheticEvent = new MouseEvent(
-                                  "mouseleave",
-                                  {
-                                      bubbles: true,
-                                      cancelable: true,
-                                  },
-                              ) as unknown as React.MouseEvent;
-                              onMouseLeave(syntheticEvent);
-                              restChildProps.onMouseLeave();
-                          }
-                        : restChildProps.onMouseLeave;
-
                 return (
                     <ButtonCore
                         {...sharedButtonCoreProps}
                         {...state}
                         {...restChildProps}
-                        onMouseEnter={wrappedOnMouseEnter}
-                        onMouseLeave={wrappedOnMouseLeave}
                         disabled={disabled}
                         spinner={spinner || state.waiting}
                         actionType={actionType}

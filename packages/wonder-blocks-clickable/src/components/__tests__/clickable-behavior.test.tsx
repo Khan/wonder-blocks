@@ -81,6 +81,25 @@ describe("ClickableBehavior", () => {
         expect(button).not.toHaveTextContent("hovered");
     });
 
+    it("calls user-provided handlers on mouse enter/leave", async () => {
+        const onMouseEnter = jest.fn();
+        const onMouseLeave = jest.fn();
+        render(
+            <ClickableBehavior
+                disabled={false}
+                onMouseEnter={(e: any) => onMouseEnter(e)}
+                onMouseLeave={(e: any) => onMouseLeave(e)}
+            >
+                {(state: any, childrenProps: any) => {
+                    const label = labelForState(state);
+                    return <button {...childrenProps}>{label}</button>;
+                }}
+            </ClickableBehavior>,
+        );
+        expect(onMouseEnter).toHaveBeenCalled();
+        expect(onMouseLeave).toHaveBeenCalled();
+    });
+
     it("changes hovered state on mouse enter while dragging", async () => {
         const onClick = jest.fn();
         render(
