@@ -7,8 +7,6 @@ import {userEvent} from "@testing-library/user-event";
 import Button from "../button";
 
 describe("Button", () => {
-    const {location} = window;
-
     beforeAll(() => {
         // @ts-expect-error [FEI-5019] - TS2790 - The operand of a 'delete' operator must be optional.
         delete window.location;
@@ -17,7 +15,8 @@ describe("Button", () => {
     });
 
     afterAll(() => {
-        window.location = location;
+        // @ts-expect-error [FEI-5019] - TS2339 - Property 'mockClear' does not exist on type '(url: string | URL) => void'.
+        window.location.assign.mockClear();
     });
 
     describe("attributes", () => {

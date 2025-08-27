@@ -1,8 +1,13 @@
 {
     "exclude": ["dist"],
     "extends": "../packages/tsconfig-shared.json",
+    "include": ["**/*", "setup.ts"],
     "compilerOptions": {
-        "rootDir": "./"
+        "rootDir": "./",
+        "typeRoots": [
+            "../node_modules/@types",
+            "../types"
+        ]
     },
     "references": [
         {"path": "../packages/wonder-blocks-accordion/tsconfig-build.json"},
@@ -21,6 +26,6 @@
         {"path": "../packages/wonder-blocks-switch/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-timing/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-tokens/tsconfig-build.json"},
-        {"path": "../packages/wonder-blocks-typography/tsconfig-build.json"},
+        {"path": "../packages/wonder-blocks-typography/tsconfig-build.json"}
     ]
 }
