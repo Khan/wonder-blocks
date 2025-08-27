@@ -96,7 +96,10 @@ describe("ClickableBehavior", () => {
                 }}
             </ClickableBehavior>,
         );
+        const button = await screen.findByRole("button");
+        await userEvent.hover(button);
         expect(onMouseEnter).toHaveBeenCalled();
+        await userEvent.unhover(button);
         expect(onMouseLeave).toHaveBeenCalled();
     });
 
