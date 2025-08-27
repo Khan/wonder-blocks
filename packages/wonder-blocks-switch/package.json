@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-switch",
-  "version": "3.3.16",
+  "version": "3.3.17",
   "design": "v1",
   "description": "Switch components for Wonder Blocks.",
   "main": "dist/index.js",

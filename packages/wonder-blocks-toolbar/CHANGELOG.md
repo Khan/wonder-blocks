@@ -1,5 +1,14 @@
 # @khanacademy/wonder-blocks-toolbar
 
+## 5.1.37
+
+### Patch Changes
+
+- 1feec01: Replace use of `surface` tokens in components in favour of `background` tokens
+- Updated dependencies [1feec01]
+    - @khanacademy/wonder-blocks-tokens@12.2.1
+    - @khanacademy/wonder-blocks-typography@4.2.20
+
 ## 5.1.36
 
 ### Patch Changes

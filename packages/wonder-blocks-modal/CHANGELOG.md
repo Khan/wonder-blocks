@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-modal
 
+## 8.3.1
+
+### Patch Changes
+
+- 1feec01: Replace use of `surface` tokens in components in favour of `background` tokens
+- Updated dependencies [1feec01]
+    - @khanacademy/wonder-blocks-styles@0.2.30
+    - @khanacademy/wonder-blocks-tokens@12.2.1
+    - @khanacademy/wonder-blocks-icon-button@10.4.1
+    - @khanacademy/wonder-blocks-breadcrumbs@3.2.2
+    - @khanacademy/wonder-blocks-layout@3.1.35
+    - @khanacademy/wonder-blocks-typography@4.2.20
+
 ## 8.3.0
 
 ### Minor Changes
