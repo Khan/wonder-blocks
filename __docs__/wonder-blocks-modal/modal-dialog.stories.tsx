@@ -290,7 +290,7 @@ const styles = StyleSheet.create({
     squareDialog: {
         maxHeight: 500,
         maxWidth: 500,
-        backgroundColor: semanticColor.surface.inverse,
+        backgroundColor: semanticColor.core.background.neutral.strong,
     },
     smallSquarePanel: {
         maxHeight: 400,

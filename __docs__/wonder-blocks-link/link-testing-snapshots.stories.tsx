@@ -79,7 +79,8 @@ export const StateSheetStory: Story = {
     render: (args, {globals}) => {
         const isRTL = globals.direction === "rtl";
         const isDark =
-            globals.backgrounds?.value === semanticColor.surface.inverse;
+            globals.backgrounds?.value ===
+            semanticColor.core.background.neutral.strong;
         const columnsPerMode = isRTL ? rtlColumns : columns;
 
         return (

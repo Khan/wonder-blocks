@@ -120,7 +120,7 @@ export default function Toolbar({
 
 const sharedStyles = StyleSheet.create({
     container: {
-        background: semanticColor.surface.primary,
+        background: semanticColor.core.background.base.default,
         border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
         flex: 1,
         display: "grid",
@@ -144,7 +144,7 @@ const sharedStyles = StyleSheet.create({
     },
     // TODO(WB-1852): Remove light variant.
     dark: {
-        background: semanticColor.surface.inverse,
+        background: color.darkBlue,
         boxShadow: `0 1px 0 0 ${color.white64}`,
         color: semanticColor.core.foreground.knockout.default,
     },

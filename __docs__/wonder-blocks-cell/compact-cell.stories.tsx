@@ -227,7 +227,7 @@ export const CompactCellHorizontalRules: StoryComponentType = {
 export const CompactCellWithCustomStyles: StoryComponentType = {
     render: () => (
         <CompactCell
-            title="CompactCell with a darkBlue background"
+            title="CompactCell with a dark background"
             leftAccessory={
                 <PhosphorIcon icon={IconMappings.article} size="medium" />
             }
@@ -238,7 +238,7 @@ export const CompactCellWithCustomStyles: StoryComponentType = {
                 />
             }
             style={{
-                background: semanticColor.surface.inverse,
+                background: semanticColor.core.background.neutral.strong,
                 color: semanticColor.core.foreground.knockout.default,
             }}
             onClick={() => {}}
@@ -410,7 +410,7 @@ export const CompactCellsAsListItems: StoryComponentType = {
 
 const styles = StyleSheet.create({
     example: {
-        backgroundColor: semanticColor.surface.secondary,
+        backgroundColor: semanticColor.core.background.base.subtle,
         padding: spacing.large_24,
         width: 320 + spacing.xxLarge_48,
     },

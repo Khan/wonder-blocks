@@ -153,7 +153,8 @@ export const Scenarios: Story = {
                         <View
                             style={{
                                 flexDirection: "row",
-                                background: semanticColor.surface.secondary,
+                                background:
+                                    semanticColor.core.background.base.subtle,
                                 gap: sizing.size_160,
                                 padding: sizing.size_160,
                             }}

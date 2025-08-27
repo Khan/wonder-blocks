@@ -357,7 +357,8 @@ export const AllBadgesScenarios: StoryComponentType = {
                                 styles: {
                                     root: {
                                         backgroundColor:
-                                            semanticColor.surface.inverse,
+                                            semanticColor.core.background
+                                                .neutral.strong,
                                         borderColor:
                                             semanticColor.core.border.knockout
                                                 .default,

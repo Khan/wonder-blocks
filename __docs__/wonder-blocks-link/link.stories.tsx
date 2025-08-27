@@ -186,7 +186,8 @@ export const StartAndEndIcons: StoryComponentType = {
             {/* Light */}
             <View
                 style={{
-                    backgroundColor: semanticColor.surface.inverse,
+                    backgroundColor:
+                        semanticColor.core.background.neutral.strong,
                     padding: spacing.large_24,
                 }}
             >
@@ -710,7 +711,7 @@ const styles = StyleSheet.create({
         maxWidth: "15%",
     },
     card: {
-        background: semanticColor.surface.secondary,
+        background: semanticColor.core.background.base.subtle,
         border: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
         borderRadius: border.radius.radius_040,
         width: "100%",

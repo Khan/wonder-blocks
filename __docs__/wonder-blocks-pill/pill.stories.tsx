@@ -234,7 +234,7 @@ WithTypography.parameters = {
 
 export const WithStyle: StoryComponentType = () => {
     const customStyle = {
-        backgroundColor: tokens.semanticColor.surface.inverse,
+        backgroundColor: tokens.semanticColor.core.background.neutral.strong,
         color: tokens.semanticColor.core.foreground.knockout.default,
         paddingLeft: tokens.spacing.xxLarge_48,
         paddingRight: tokens.spacing.xxLarge_48,
@@ -245,7 +245,8 @@ export const WithStyle: StoryComponentType = () => {
 
         ":active": {
             outlineColor: tokens.semanticColor.core.border.neutral.subtle,
-            backgroundColor: tokens.semanticColor.surface.overlay,
+            backgroundColor:
+                tokens.semanticColor.core.background.neutral.default,
         },
     };
 

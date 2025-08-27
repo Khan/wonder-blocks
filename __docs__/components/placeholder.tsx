@@ -15,7 +15,7 @@ export const Placeholder = (props: Props) => {
     return (
         <View
             style={{
-                backgroundColor: semanticColor.surface.secondary,
+                backgroundColor: semanticColor.core.background.base.subtle,
                 padding: sizing.size_120,
                 margin: sizing.size_010,
                 border: `${border.width.thin}px dashed ${semanticColor.core.border.neutral.subtle}`,

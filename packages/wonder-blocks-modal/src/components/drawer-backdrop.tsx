@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
         height: "100%",
         display: "flex",
         overflow: "hidden",
-        background: semanticColor.surface.overlay,
+        background: semanticColor.core.background.overlay.default,
     },
     inlineStart: {
         alignItems: "flex-start",

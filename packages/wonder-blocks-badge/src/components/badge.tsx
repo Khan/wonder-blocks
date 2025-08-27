@@ -89,7 +89,7 @@ const badgeTokens = {
             radius: border.radius.radius_080,
         },
         color: {
-            background: semanticColor.surface.secondary,
+            background: semanticColor.core.background.neutral.subtle,
             foreground: semanticColor.core.foreground.neutral.strong,
             border: semanticColor.core.border.neutral.subtle,
         },

@@ -222,7 +222,7 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
 
 const styles = StyleSheet.create({
     wrapper: {
-        background: semanticColor.surface.primary,
+        background: semanticColor.core.background.base.default,
         borderRadius: theme.root.border.radius.default,
         color: semanticColor.core.foreground.neutral.strong,
         minHeight: theme.root.sizing.minHeight,
@@ -340,15 +340,15 @@ const styles = StyleSheet.create({
     },
 
     disabled: {
-        background: semanticColor.surface.primary,
+        background: semanticColor.core.background.base.default,
         borderRadius: theme.root.border.radius.default,
         color: theme.root.color.disabled.foreground,
         ":hover": {
-            background: semanticColor.surface.primary,
+            background: semanticColor.core.background.base.default,
             cursor: "not-allowed",
         },
         ":active": {
-            background: semanticColor.surface.primary,
+            background: semanticColor.core.background.base.default,
             borderRadius: theme.root.border.radius.default,
         },
         [":focus-visible:active" as any]: {

@@ -27,12 +27,12 @@ const defaultArgs = {
 
 const styles = StyleSheet.create({
     example: {
-        background: semanticColor.surface.secondary,
+        background: semanticColor.core.background.base.subtle,
         padding: sizing.size_160,
         width: 300,
     },
     items: {
-        background: semanticColor.surface.primary,
+        background: semanticColor.core.background.base.default,
     },
 });
 

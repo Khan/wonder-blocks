@@ -336,7 +336,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
     },
     dark: {
-        backgroundColor: semanticColor.surface.inverse,
+        backgroundColor: semanticColor.core.background.neutral.strong,
         color: semanticColor.core.foreground.knockout.default,
         padding: spacing.xSmall_8,
     },
@@ -353,8 +353,8 @@ const styles = StyleSheet.create({
         padding: spacing.large_24,
     },
     disabled: {
-        color: semanticColor.core.foreground.knockout.default,
-        backgroundColor: semanticColor.surface.overlay,
+        color: semanticColor.action.primary.disabled.foreground,
+        backgroundColor: semanticColor.action.primary.disabled.background,
     },
     button: {
         maxWidth: 150,
