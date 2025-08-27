@@ -1,5 +1,23 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.3.8
+
+### Patch Changes
+
+- 1feec01: Replace use of `surface` tokens in components in favour of `background` tokens
+- Updated dependencies [1feec01]
+    - @khanacademy/wonder-blocks-styles@0.2.30
+    - @khanacademy/wonder-blocks-tokens@12.2.1
+    - @khanacademy/wonder-blocks-modal@8.3.1
+    - @khanacademy/wonder-blocks-cell@5.0.12
+    - @khanacademy/wonder-blocks-icon-button@10.4.1
+    - @khanacademy/wonder-blocks-pill@3.1.39
+    - @khanacademy/wonder-blocks-clickable@7.1.24
+    - @khanacademy/wonder-blocks-form@7.3.6
+    - @khanacademy/wonder-blocks-icon@5.2.18
+    - @khanacademy/wonder-blocks-search-field@5.1.43
+    - @khanacademy/wonder-blocks-typography@4.2.20
+
 ## 10.3.7
 
 ### Patch Changes

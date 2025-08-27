@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-button
 
+## 11.0.4
+
+### Patch Changes
+
+- 5b21adb: Add support for programmatic focus
+- Updated dependencies [1feec01]
+    - @khanacademy/wonder-blocks-styles@0.2.30
+    - @khanacademy/wonder-blocks-tokens@12.2.1
+    - @khanacademy/wonder-blocks-clickable@7.1.24
+    - @khanacademy/wonder-blocks-icon@5.2.18
+    - @khanacademy/wonder-blocks-progress-spinner@3.1.35
+    - @khanacademy/wonder-blocks-typography@4.2.20
+
 ## 11.0.3
 
 ### Patch Changes

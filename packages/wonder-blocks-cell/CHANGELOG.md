@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-cell
 
+## 5.0.12
+
+### Patch Changes
+
+- 1feec01: Replace use of `surface` tokens in components in favour of `background` tokens
+- Updated dependencies [1feec01]
+    - @khanacademy/wonder-blocks-styles@0.2.30
+    - @khanacademy/wonder-blocks-tokens@12.2.1
+    - @khanacademy/wonder-blocks-clickable@7.1.24
+    - @khanacademy/wonder-blocks-typography@4.2.20
+
 ## 5.0.11
 
 ### Patch Changes

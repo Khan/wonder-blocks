@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-accordion
 
+## 3.1.38
+
+### Patch Changes
+
+- 1feec01: Replace use of `surface` tokens in components in favour of `background` tokens
+- Updated dependencies [1feec01]
+    - @khanacademy/wonder-blocks-tokens@12.2.1
+    - @khanacademy/wonder-blocks-clickable@7.1.24
+    - @khanacademy/wonder-blocks-icon@5.2.18
+    - @khanacademy/wonder-blocks-typography@4.2.20
+
 ## 3.1.37
 
 ### Patch Changes

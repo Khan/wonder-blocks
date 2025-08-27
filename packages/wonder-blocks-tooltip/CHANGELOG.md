@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-tooltip
 
+## 4.1.43
+
+### Patch Changes
+
+- 1feec01: Replace use of `surface` tokens in components in favour of `background` tokens
+- Updated dependencies [1feec01]
+    - @khanacademy/wonder-blocks-tokens@12.2.1
+    - @khanacademy/wonder-blocks-modal@8.3.1
+    - @khanacademy/wonder-blocks-layout@3.1.35
+    - @khanacademy/wonder-blocks-typography@4.2.20
+
 ## 4.1.42
 
 ### Patch Changes

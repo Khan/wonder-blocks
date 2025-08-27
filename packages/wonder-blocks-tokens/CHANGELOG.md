@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 12.2.1
+
+### Patch Changes
+
+- 1feec01: Replace use of `surface` tokens in components in favour of `background` tokens
+
 ## 12.2.0
 
 ### Minor Changes
