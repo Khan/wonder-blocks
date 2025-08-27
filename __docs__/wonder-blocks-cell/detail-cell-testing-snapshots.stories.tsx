@@ -35,7 +35,7 @@ export default {
     },
     parameters: {
         backgrounds: {
-            default: "offWhite",
+            default: "baseSubtle",
         },
         chromatic: {
             modes: themeModes,

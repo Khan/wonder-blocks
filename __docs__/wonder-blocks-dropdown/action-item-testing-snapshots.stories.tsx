@@ -66,7 +66,7 @@ const meta = {
     ],
     parameters: {
         backgrounds: {
-            default: "offWhite",
+            default: "baseSubtle",
         },
         chromatic: {
             modes: themeModes,

@@ -78,18 +78,18 @@ const parameters = {
     // Enable the RenderStateRoot decorator by default.
     enableRenderStateRootDecorator: true,
     backgrounds: {
-        default: "light",
+        default: "baseDefault",
         values: [
             {
-                name: "light",
+                name: "baseDefault",
                 value: semanticColor.core.background.base.default,
             },
             {
-                name: "darkBlue", // TODO(WB-2050): rename to dark
+                name: "neutralStrong",
                 value: semanticColor.core.background.neutral.strong,
             },
             {
-                name: "offWhite", // TODO(WB-2050): rename to subtle
+                name: "baseSubtle",
                 value: semanticColor.core.background.base.subtle,
             },
         ],

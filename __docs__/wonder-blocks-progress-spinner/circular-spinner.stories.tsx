@@ -122,7 +122,7 @@ export const Light: StoryComponentType = () => <CircularSpinner light={true} />;
 
 Light.parameters = {
     backgrounds: {
-        default: "darkBlue",
+        default: "neutralStrong",
     },
     docs: {
         description: {
