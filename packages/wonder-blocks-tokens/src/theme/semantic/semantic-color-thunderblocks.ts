@@ -140,14 +140,6 @@ const core = {
     },
 };
 
-const surface = {
-    primary: color.white_100,
-    secondary: color.blue_90,
-    emphasis: color.blue_70,
-    inverse: color.gray_05,
-    overlay: color.black_50,
-};
-
 const sharedFeedbackStrongTokens = {
     background: core.background.neutral.strong,
     border: core.border.neutral.strong,
@@ -551,8 +543,6 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
             foreground: color.gray_10,
         },
     },
-
-    surface,
 
     focus: {
         outer: color.blue_30,

@@ -140,14 +140,6 @@ const core = {
     },
 };
 
-const surface = {
-    primary: color.white,
-    secondary: color.offWhite,
-    emphasis: color.fadedBlue16,
-    inverse: color.darkBlue,
-    overlay: color.offBlack64,
-};
-
 const sharedFeedbackStrongTokens = {
     background: core.background.neutral.strong,
     border: core.border.neutral.strong,
@@ -714,11 +706,6 @@ export const semanticColor = {
             foreground: core.foreground.neutral.strong,
         },
     },
-    /**
-     * For background colors. Overlays act as supplementary surfaces that mask
-     * areas of the UI.
-     */
-    surface,
 
     focus: {
         outer: color.blue,
