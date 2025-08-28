@@ -106,16 +106,6 @@ export const Focus = () => {
     );
 };
 
-export const Surface = () => {
-    return (
-        <ColorGroup
-            colors={semanticColor.surface}
-            group="surface"
-            valuePrefix={valuePrefix}
-        />
-    );
-};
-
 export const Input = () => {
     return (
         <ColorGroupStory
