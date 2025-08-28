@@ -41,11 +41,6 @@ const core = {
             default: color.fadedOffBlack16,
             strong: color.fadedOffBlack32,
         },
-        inverse: {
-            subtle: color.fadedOffBlack16,
-            default: color.fadedOffBlack8,
-            strong: color.white,
-        },
         knockout: {
             default: color.white,
         },
@@ -125,11 +120,6 @@ const core = {
             default: color.fadedOffBlack32,
             strong: color.fadedOffBlack50,
         },
-        inverse: {
-            subtle: color.fadedOffBlack32,
-            default: color.offWhite,
-            strong: color.white,
-        },
         knockout: {
             default: color.white,
         },
@@ -148,14 +138,6 @@ const core = {
             },
         },
     },
-};
-
-const surface = {
-    primary: color.white,
-    secondary: color.offWhite,
-    emphasis: color.fadedBlue16,
-    inverse: color.darkBlue,
-    overlay: color.offBlack64,
 };
 
 const sharedFeedbackStrongTokens = {
@@ -724,11 +706,6 @@ export const semanticColor = {
             foreground: core.foreground.neutral.strong,
         },
     },
-    /**
-     * For background colors. Overlays act as supplementary surfaces that mask
-     * areas of the UI.
-     */
-    surface,
 
     focus: {
         outer: color.blue,
