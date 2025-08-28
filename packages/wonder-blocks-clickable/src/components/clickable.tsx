@@ -94,6 +94,14 @@ type CommonProps =
          */
         onMouseUp?: (e: React.MouseEvent) => unknown;
         /**
+         * Respond to raw "mouseenter" event.
+         */
+        onMouseEnter?: (e: React.MouseEvent) => unknown;
+        /**
+         * Respond to raw "mouseleave" event.
+         */
+        onMouseLeave?: (e: React.MouseEvent) => unknown;
+        /**
          * Don't show the default focus ring.  This should be used when implementing
          * a custom focus ring within your own component that uses Clickable.
          */
@@ -275,17 +283,19 @@ const Clickable = React.forwardRef(function Clickable(
     const {
         href,
         onClick,
+        onFocus,
+        onKeyDown,
+        onKeyUp,
+        onMouseDown,
+        onMouseUp,
+        onMouseEnter,
+        onMouseLeave,
         skipClientNav,
         beforeNav = undefined,
         safeWithNav = undefined,
         style,
         target = undefined,
         testId,
-        onFocus,
-        onKeyDown,
-        onKeyUp,
-        onMouseDown,
-        onMouseUp,
         hideDefaultFocusRing,
         light,
         disabled,
@@ -320,6 +330,8 @@ const Clickable = React.forwardRef(function Clickable(
                 onKeyUp={onKeyUp}
                 onMouseDown={onMouseDown}
                 onMouseUp={onMouseUp}
+                onMouseEnter={onMouseEnter}
+                onMouseLeave={onMouseLeave}
                 disabled={disabled}
                 tabIndex={tabIndex}
             >
@@ -344,6 +356,8 @@ const Clickable = React.forwardRef(function Clickable(
                 onKeyUp={onKeyUp}
                 onMouseDown={onMouseDown}
                 onMouseUp={onMouseUp}
+                onMouseEnter={onMouseEnter}
+                onMouseLeave={onMouseLeave}
                 target={target}
                 disabled={disabled}
                 tabIndex={tabIndex}

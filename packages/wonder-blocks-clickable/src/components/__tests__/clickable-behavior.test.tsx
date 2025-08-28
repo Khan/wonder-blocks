@@ -81,6 +81,42 @@ describe("ClickableBehavior", () => {
         expect(button).not.toHaveTextContent("hovered");
     });
 
+    test.each([
+        {
+            eventName: "onMouseEnter",
+            userAction: (button: HTMLElement) => userEvent.hover(button),
+            description: "calls user-provided onMouseEnter handler on hover",
+        },
+        {
+            eventName: "onMouseLeave",
+            userAction: async (button: HTMLElement) => {
+                await userEvent.hover(button);
+                await userEvent.unhover(button);
+            },
+            description: "calls user-provided onMouseLeave handler on unhover",
+        },
+    ])("$description", async ({eventName, userAction}) => {
+        // Arrange
+        const mockHandler = jest.fn();
+        const props = {[eventName]: mockHandler};
+
+        render(
+            <ClickableBehavior disabled={false} {...props}>
+                {(state: any, childrenProps: any) => {
+                    const label = labelForState(state);
+                    return <button {...childrenProps}>{label}</button>;
+                }}
+            </ClickableBehavior>,
+        );
+
+        // Act
+        const button = await screen.findByRole("button");
+        await userAction(button);
+
+        // Assert
+        expect(mockHandler).toHaveBeenCalled();
+    });
+
     it("changes hovered state on mouse enter while dragging", async () => {
         const onClick = jest.fn();
         render(

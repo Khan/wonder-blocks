@@ -50,6 +50,10 @@ const ButtonCore: React.ForwardRefExoticComponent<
         endIcon,
         id,
         waiting: _,
+        onMouseDown,
+        onMouseUp,
+        onMouseEnter,
+        onMouseLeave,
         ...restProps
     } = props;
 
@@ -162,6 +166,10 @@ const ButtonCore: React.ForwardRefExoticComponent<
             testId={testId}
             tabIndex={props.tabIndex}
             type={type}
+            onMouseDown={onMouseDown}
+            onMouseUp={onMouseUp}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
         >
             {contents}
         </ButtonUnstyled>

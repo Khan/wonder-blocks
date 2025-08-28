@@ -134,7 +134,14 @@ type CommonProps = Readonly<{
      * Respond to a raw "mouseup" event.
      */
     onMouseUp?: (e: React.MouseEvent) => unknown;
-
+    /**
+     * Respond to raw "mouseenter" event.
+     */
+    onMouseEnter?: (e: React.MouseEvent) => unknown;
+    /**
+     * Respond to raw "mouseleave" event.
+     */
+    onMouseLeave?: (e: React.MouseEvent) => unknown;
     /**
      * An optional prop that enables a
      * [https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API](View
@@ -214,7 +221,7 @@ type DefaultProps = Readonly<{
 export type ChildrenProps = Readonly<{
     onClick: (e: React.SyntheticEvent) => unknown;
     onMouseEnter: (e: React.MouseEvent) => unknown;
-    onMouseLeave: () => unknown;
+    onMouseLeave: (e: React.MouseEvent) => unknown;
     onMouseDown: (e: React.MouseEvent) => unknown;
     onMouseUp: (e: React.MouseEvent) => unknown;
     onTouchStart: () => unknown;
@@ -528,12 +535,18 @@ export default class ClickableBehavior extends React.Component<
     };
 
     handleMouseEnter: (e: React.MouseEvent) => void = (e) => {
+        if (this.props.onMouseEnter) {
+            this.props.onMouseEnter(e);
+        }
         if (!this.waitingForClick) {
             this.setState({hovered: true});
         }
     };
 
-    handleMouseLeave: () => void = () => {
+    handleMouseLeave: (e: React.MouseEvent) => void = (e) => {
+        if (this.props.onMouseLeave) {
+            this.props.onMouseLeave(e);
+        }
         if (!this.waitingForClick) {
             this.setState({hovered: false, pressed: false, focused: false});
         }

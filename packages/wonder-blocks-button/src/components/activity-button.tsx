@@ -149,6 +149,10 @@ export const ActivityButton = React.forwardRef(function ActivityButton(
         kind = "primary",
         disabled = false,
         role,
+        onMouseDown,
+        onMouseUp,
+        onMouseEnter,
+        onMouseLeave,
         ...sharedButtonCoreProps
     } = props;
 
@@ -176,26 +180,32 @@ export const ActivityButton = React.forwardRef(function ActivityButton(
             onClick={onClick}
             safeWithNav={safeWithNav}
             rel={rel}
+            onMouseDown={onMouseDown}
+            onMouseUp={onMouseUp}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
             {...extraClickableProps}
         >
-            {(state: ClickableState, restChildProps: ChildrenProps) => (
-                <ActivityButtonCore
-                    {...sharedButtonCoreProps}
-                    {...state}
-                    {...restChildProps}
-                    disabled={disabled}
-                    kind={kind}
-                    skipClientNav={skipClientNav}
-                    href={href}
-                    role={renderedRole}
-                    target={target}
-                    type={type}
-                    tabIndex={tabIndex}
-                    ref={ref}
-                >
-                    {children}
-                </ActivityButtonCore>
-            )}
+            {(state: ClickableState, restChildProps: ChildrenProps) => {
+                return (
+                    <ActivityButtonCore
+                        {...sharedButtonCoreProps}
+                        {...state}
+                        {...restChildProps}
+                        disabled={disabled}
+                        kind={kind}
+                        skipClientNav={skipClientNav}
+                        href={href}
+                        role={renderedRole}
+                        target={target}
+                        type={type}
+                        tabIndex={tabIndex}
+                        ref={ref}
+                    >
+                        {children}
+                    </ActivityButtonCore>
+                );
+            }}
         </ClickableBehavior>
     );
 });

@@ -47,6 +47,10 @@ const Button = React.forwardRef(function Button(
         disabled = false,
         spinner = false,
         role,
+        onMouseDown,
+        onMouseUp,
+        onMouseEnter,
+        onMouseLeave,
         ...sharedButtonCoreProps
     } = props;
 
@@ -72,31 +76,37 @@ const Button = React.forwardRef(function Button(
             role={roleForEvents}
             type={type}
             onClick={onClick}
+            onMouseDown={onMouseDown}
+            onMouseUp={onMouseUp}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
             safeWithNav={safeWithNav}
             rel={rel}
             {...extraClickableProps}
         >
-            {(state: ClickableState, restChildProps: ChildrenProps) => (
-                <ButtonCore
-                    {...sharedButtonCoreProps}
-                    {...state}
-                    {...restChildProps}
-                    disabled={disabled}
-                    spinner={spinner || state.waiting}
-                    actionType={actionType}
-                    kind={kind}
-                    size={size}
-                    skipClientNav={skipClientNav}
-                    href={href}
-                    role={renderedRole}
-                    target={target}
-                    type={type}
-                    tabIndex={tabIndex}
-                    ref={ref}
-                >
-                    {children}
-                </ButtonCore>
-            )}
+            {(state: ClickableState, restChildProps: ChildrenProps) => {
+                return (
+                    <ButtonCore
+                        {...sharedButtonCoreProps}
+                        {...state}
+                        {...restChildProps}
+                        disabled={disabled}
+                        spinner={spinner || state.waiting}
+                        actionType={actionType}
+                        kind={kind}
+                        size={size}
+                        skipClientNav={skipClientNav}
+                        href={href}
+                        role={renderedRole}
+                        target={target}
+                        type={type}
+                        tabIndex={tabIndex}
+                        ref={ref}
+                    >
+                        {children}
+                    </ButtonCore>
+                );
+            }}
         </ClickableBehavior>
     );
 });

@@ -13,11 +13,12 @@ import pencilSimpleBold from "@phosphor-icons/core/bold/pencil-simple-bold.svg";
 import plus from "@phosphor-icons/core/regular/plus.svg";
 import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 import caretRight from "@phosphor-icons/core/regular/caret-right.svg";
+import clock from "@phosphor-icons/core/regular/clock.svg";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {color, sizing, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelMedium, LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import packageConfig from "../../packages/wonder-blocks-button/package.json";
@@ -242,7 +243,9 @@ const kinds = ["primary", "secondary", "tertiary"] as const;
 
 const IconExample = () => (
     <View>
-        <LabelLarge style={styles.label}>Using `startIcon` prop</LabelLarge>
+        <BodyText weight="bold" style={styles.label}>
+            Using `startIcon` prop
+        </BodyText>
         <View style={styles.row}>
             {kinds.map((kind, idx) => (
                 <Button
@@ -268,7 +271,9 @@ const IconExample = () => (
                 </Button>
             ))}
         </View>
-        <LabelLarge style={styles.label}>Using `endIcon` prop</LabelLarge>
+        <BodyText weight="bold" style={styles.label}>
+            Using `endIcon` prop
+        </BodyText>
         <View style={styles.row}>
             {kinds.map((kind, idx) => (
                 <Button
@@ -294,9 +299,9 @@ const IconExample = () => (
                 </Button>
             ))}
         </View>
-        <LabelLarge style={styles.label}>
+        <BodyText weight="bold" style={styles.label}>
             Using both `startIcon` and `endIcon` props
-        </LabelLarge>
+        </BodyText>
         <View style={styles.row}>
             {kinds.map((kind, idx) => (
                 <Button
@@ -350,7 +355,7 @@ export const Icon: StoryComponentType = {
 export const Size: StoryComponentType = () => (
     <View>
         <View style={styles.row}>
-            <LabelMedium style={styles.fillSpace}>small</LabelMedium>
+            <BodyText style={styles.fillSpace}>small</BodyText>
             <View style={[styles.row, styles.example]}>
                 <Button style={styles.button} onClick={() => {}} size="small">
                     Label
@@ -374,7 +379,7 @@ export const Size: StoryComponentType = () => (
             </View>
         </View>
         <View style={styles.row}>
-            <LabelMedium style={styles.fillSpace}>medium (default)</LabelMedium>
+            <BodyText style={styles.fillSpace}>medium (default)</BodyText>
 
             <View style={[styles.row, styles.example]}>
                 <Button style={styles.button} onClick={() => {}} size="medium">
@@ -399,7 +404,7 @@ export const Size: StoryComponentType = () => (
             </View>
         </View>
         <View style={styles.row}>
-            <LabelMedium style={styles.fillSpace}>large</LabelMedium>
+            <BodyText style={styles.fillSpace}>large</BodyText>
             <View style={[styles.row, styles.example]}>
                 <Button style={styles.button} onClick={() => {}} size="large">
                     Label
@@ -705,6 +710,161 @@ export const ReceivingFocusProgrammatically: StoryComponentType = {
     parameters: {
         chromatic: {
             // Disable since it requires user interaction to see the focus ring.
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * This story demonstrates tracking press duration from `onMouseDown` to `onMouseUp`,
+ * useful for measuring how long a user holds down on a button. The tracking also
+ * handles cases where the mouse leaves the button area during the press.
+ */
+export const PressDurationTracking: StoryComponentType = {
+    render: function Render(args) {
+        const [pressStartTime, setPressStartTime] = React.useState<
+            number | null
+        >(null);
+        const [pressDuration, setPressDuration] = React.useState<number | null>(
+            null,
+        );
+        const [lastEvent, setLastEvent] = React.useState<string>("none");
+        const [interactionHistory, setInteractionHistory] = React.useState<
+            string[]
+        >([]);
+
+        const logEvent = (eventName: string, duration?: number) => {
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = duration
+                ? `${eventName} (${duration}ms) - ${timestamp}`
+                : `${eventName} - ${timestamp}`;
+            setInteractionHistory((prev) => [...prev.slice(-4), logEntry]);
+            setLastEvent(eventName);
+        };
+
+        // Create base actions for Storybook logging
+        const baseActions = {
+            onMouseDown: action("onMouseDown"),
+            onMouseUp: action("onMouseUp"),
+            onMouseLeave: action("onMouseLeave"),
+            onClick: action("onClick"),
+            onMouseEnter: action("onMouseEnter"),
+        };
+
+        const handleMouseDown = (e: React.MouseEvent) => {
+            const startTime = Date.now();
+            setPressStartTime(startTime);
+            setPressDuration(null);
+            logEvent("onMouseDown");
+            baseActions.onMouseDown(e);
+        };
+
+        const handleMouseUp = (e: React.MouseEvent) => {
+            if (pressStartTime) {
+                const duration = Date.now() - pressStartTime;
+                setPressDuration(duration);
+                logEvent("onMouseUp", duration);
+            } else {
+                logEvent("onMouseUp");
+            }
+            setPressStartTime(null);
+            baseActions.onMouseUp(e);
+        };
+
+        const handleMouseLeave = (e: React.MouseEvent) => {
+            if (pressStartTime) {
+                const duration = Date.now() - pressStartTime;
+                setPressDuration(duration);
+                logEvent("onMouseLeave", duration);
+                setPressStartTime(null);
+            } else {
+                logEvent("onMouseLeave");
+            }
+            baseActions.onMouseLeave(e);
+        };
+
+        const handleMouseEnter = (e: React.MouseEvent) => {
+            logEvent("onMouseEnter");
+            baseActions.onMouseEnter(e);
+        };
+
+        const handleClick = (e: React.SyntheticEvent) => {
+            logEvent("onClick");
+            baseActions.onClick(e);
+        };
+
+        return (
+            <View>
+                <Button
+                    {...args}
+                    startIcon={clock}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseDown={handleMouseDown}
+                    onMouseUp={handleMouseUp}
+                    onMouseLeave={handleMouseLeave}
+                    onClick={handleClick}
+                >
+                    Track Press Duration
+                </Button>
+                <Strut size={spacing.medium_16} />
+                <View
+                    style={{
+                        padding: spacing.medium_16,
+                        backgroundColor: color.offWhite,
+                        borderRadius: 4,
+                        maxWidth: 400,
+                    }}
+                >
+                    <BodyText size="medium" weight="bold">
+                        Press Duration Tracker
+                    </BodyText>
+                    <Strut size={spacing.xSmall_8} />
+                    <BodyText size="medium">
+                        Last Event: <strong>{lastEvent}</strong>
+                    </BodyText>
+                    <BodyText size="medium">
+                        Press Duration:{" "}
+                        <strong>
+                            {pressDuration !== null
+                                ? `${pressDuration}ms`
+                                : "N/A"}
+                        </strong>
+                    </BodyText>
+                    <BodyText size="medium">
+                        Currently Pressing:{" "}
+                        <strong>{pressStartTime ? "Yes" : "No"}</strong>
+                    </BodyText>
+                    <Strut size={spacing.small_12} />
+                    <BodyText size="medium" weight="bold">
+                        Interaction History:
+                    </BodyText>
+                    {interactionHistory.length > 0 ? (
+                        <View style={{marginTop: spacing.xSmall_8}}>
+                            {interactionHistory.map((entry, index) => (
+                                <BodyText
+                                    key={index}
+                                    size="small"
+                                    style={{fontFamily: "monospace"}}
+                                >
+                                    {entry}
+                                </BodyText>
+                            ))}
+                        </View>
+                    ) : (
+                        <BodyText size="small" style={{fontStyle: "italic"}}>
+                            No interactions yet
+                        </BodyText>
+                    )}
+                </View>
+            </View>
+        );
+    },
+    args: {
+        kind: "primary",
+        style: {maxWidth: 240},
+    },
+    parameters: {
+        chromatic: {
             disableSnapshot: true,
         },
     },

@@ -44,6 +44,42 @@ export default {
             },
         },
     },
+    onMouseDown: {
+        action: "onMouseDown",
+        table: {
+            category: "Events",
+            type: {
+                summary: "(e: React.MouseEvent) => unknown",
+            },
+        },
+    },
+    onMouseUp: {
+        action: "onMouseUp",
+        table: {
+            category: "Events",
+            type: {
+                summary: "(e: React.MouseEvent) => unknown",
+            },
+        },
+    },
+    onMouseEnter: {
+        action: "onMouseEnter",
+        table: {
+            category: "Events",
+            type: {
+                summary: "(e: React.MouseEvent) => unknown",
+            },
+        },
+    },
+    onMouseLeave: {
+        action: "onMouseLeave",
+        table: {
+            category: "Events",
+            type: {
+                summary: "(e: React.MouseEvent) => unknown",
+            },
+        },
+    },
     /**
      * Navigation
      */
