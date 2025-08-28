@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-button
 
+## 11.1.0
+
+### Minor Changes
+
+- 0f3feaa: Add onMouseUp, onMouseDown, and onMouseLeave to ActivityButton and Button to track duration of press before release
+
 ## 11.0.4
 
 ### Patch Changes
