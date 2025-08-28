@@ -103,38 +103,52 @@ describe("Button", () => {
         expect(await screen.findByText("Hello, world!")).toBeInTheDocument();
     });
 
-    test("supports mouse event handlers", async () => {
+    test.each([
+        {
+            eventName: "onMouseEnter",
+            userAction: (button: HTMLElement) => userEvent.hover(button),
+            description: "calls onMouseEnter handler when button is hovered",
+        },
+        {
+            eventName: "onMouseDown",
+            userAction: (button: HTMLElement) =>
+                userEvent.pointer({
+                    target: button,
+                    keys: "[MouseLeft>]",
+                }),
+            description: "calls onMouseDown handler when mouse is pressed",
+        },
+        {
+            eventName: "onMouseUp",
+            userAction: async (button: HTMLElement) => {
+                await userEvent.pointer({
+                    target: button,
+                    keys: "[MouseLeft>][/MouseLeft]",
+                });
+            },
+            description: "calls onMouseUp handler when mouse is released",
+        },
+        {
+            eventName: "onMouseLeave",
+            userAction: async (button: HTMLElement) => {
+                await userEvent.hover(button);
+                await userEvent.unhover(button);
+            },
+            description: "calls onMouseLeave handler when button is unhovered",
+        },
+    ])("$description", async ({eventName, userAction}) => {
         // Arrange
-        const onMouseDown = jest.fn();
-        const onMouseUp = jest.fn();
-        const onMouseEnter = jest.fn();
-        const onMouseLeave = jest.fn();
+        const mockHandler = jest.fn();
+        const props = {[eventName]: mockHandler};
 
-        render(
-            <Button
-                onMouseDown={onMouseDown}
-                onMouseUp={onMouseUp}
-                onMouseEnter={onMouseEnter}
-                onMouseLeave={onMouseLeave}
-            >
-                Test Button
-            </Button>,
-        );
+        render(<Button {...props}>Test Button</Button>);
 
         // Act
         const button = screen.getByRole("button");
-        await userEvent.hover(button);
-        await userEvent.pointer({
-            target: button,
-            keys: "[MouseLeft>][/MouseLeft]",
-        });
-        await userEvent.unhover(button);
+        await userAction(button);
 
         // Assert
-        expect(onMouseEnter).toHaveBeenCalledTimes(1);
-        expect(onMouseDown).toHaveBeenCalledTimes(1);
-        expect(onMouseUp).toHaveBeenCalledTimes(1);
-        expect(onMouseLeave).toHaveBeenCalledTimes(1);
+        expect(mockHandler).toHaveBeenCalledTimes(1);
     });
 
     test("beforeNav rejection blocks client-side navigation", async () => {
