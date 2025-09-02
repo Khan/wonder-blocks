@@ -123,7 +123,7 @@ export const InlineEndCustomStyle: StoryComponentType = {
                     title="Single-line title"
                     styles={{
                         root: {
-                            minWidth: "320px",
+                            minWidth: "320px", // style only applies to desktop
                             width: "unset",
                         },
                         content: {
@@ -136,8 +136,7 @@ export const InlineEndCustomStyle: StoryComponentType = {
                     content={
                         <View>
                             <BodyText>
-                                Some text that doesn’t fill the screen and has
-                                no left/right padding
+                                Some text that doesn’t fill the screen
                             </BodyText>
                         </View>
                     }

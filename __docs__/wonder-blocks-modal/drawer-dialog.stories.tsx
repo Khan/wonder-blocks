@@ -23,6 +23,16 @@ import DrawerDialogArgTypes from "./drawer-dialog.argtypes";
  *
  * The component automatically receives alignment, animation, and timing props from `DrawerLauncher`
  * via React Context, eliminating the need for manual prop passing in nested components.
+ *
+ * ### Custom styling
+ *
+ * You can optionally pass in the `styles` prop to override various parts of a DrawerDialog.
+ *
+ * - `styles.root` -  The outermost container of the dialog itself: alignment styles, box shadow, minWidth, maxWidth, width, height, maxHeight, etc.
+ * - `styles.dialog` - The actual dialog element with minWidth/minHeight, mostly to override View default styles
+ * - `styles.panel` - The inner dialog panel, targeting the internal `FlexiblePanel` component
+ * - `styles.content` - The internal `ModalContent` component, which sets padding
+ * - `styles.closeButton` - The close button, including absolute positioning
  */
 export default {
     title: "Packages / Modal / DrawerLauncher / DrawerDialog",
@@ -32,6 +42,55 @@ export default {
         chromatic: {
             // Drawer stories are behavior-based, disable visual regression testing
             disableSnapshot: true,
+        },
+        docs: {
+            description: {
+                component: `\`DrawerDialog\` is the modal content component designed specifically for use with \`DrawerLauncher\`.
+It provides a consistent drawer interface with proper animations, positioning, and accessibility features.
+
+**IMPORTANT**: This component should only be used with \`DrawerLauncher\`. Using it with other
+modal launchers may result in incorrect animations, positioning, and styling.
+
+The component automatically receives alignment, animation, and timing props from \`DrawerLauncher\`
+via React Context, eliminating the need for manual prop passing in nested components.
+
+### Usage
+
+\`\`\`jsx
+import {DrawerLauncher} from "@khanacademy/wonder-blocks-modal";
+import {DrawerDialog} from "@khanacademy/wonder-blocks-modal";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
+
+<DrawerLauncher
+     onClose={handleClose}
+     opened={opened}
+     animated={animated}
+     alignment="inlineStart"
+     modal={({closeModal}) => (
+         <DrawerDialog
+             title="Assign Mastery Mission"
+             styles={{content: {padding: 0}}}
+             content={
+                 <View>
+                     <BodyText>
+                         Hello, world
+                     </BodyText>
+                 </View>
+             }
+         />
+     )}
+/>
+\`\`\`
+
+### Custom styling
+You can optionally pass in the \`styles\` prop to override various parts of a DrawerDialog.
+
+- \`styles.root\` -  The outermost container of the dialog itself: alignment styles, box shadow, minWidth, maxWidth, width, height, maxHeight, etc.
+- \`styles.dialog\` - The actual dialog element with minWidth/minHeight, mostly to override View default styles
+- \`styles.panel\` - The inner dialog panel, targeting the internal \`FlexiblePanel\` component
+- \`styles.content\` - The internal \`ModalContent\` component, which sets padding
+- \`styles.closeButton\` - The close button, including absolute positioning`,
+            },
         },
     },
     argTypes: DrawerDialogArgTypes,

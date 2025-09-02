@@ -184,6 +184,7 @@ export const WithNoPadding: StoryComponentType = {
                     styles={{
                         content: {
                             padding: 0,
+                            maxWidth: "90%",
                             [small]: {
                                 paddingInline: 0,
                             },
