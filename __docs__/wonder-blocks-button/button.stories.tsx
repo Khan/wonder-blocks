@@ -27,6 +27,7 @@ import ComponentInfo from "../components/component-info";
 import ButtonArgTypes from "./button.argtypes";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {Icon} from "@khanacademy/wonder-blocks-icon";
+import {themeModes} from "../../.storybook/modes";
 
 export default {
     title: "Packages / Button / Button",
@@ -412,11 +413,16 @@ const IconExample = () => (
  * );
  * ```
  *
- * Note: The Buttoncomponent will handle the sizing for the icons
+ * Note: The Button component will handle the sizing for the icons
  */
 export const WithIcon: StoryComponentType = {
     name: "Icon",
     render: () => <IconExample />,
+    parameters: {
+        chromatic: {
+            modes: themeModes,
+        },
+    },
 };
 
 export const Size: StoryComponentType = () => (
