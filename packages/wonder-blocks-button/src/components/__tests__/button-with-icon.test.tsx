@@ -7,6 +7,7 @@ import * as React from "react";
 import {render, screen} from "@testing-library/react";
 import plus from "@phosphor-icons/core/regular/plus.svg";
 
+import {Icon} from "@khanacademy/wonder-blocks-icon";
 import Button from "../button";
 
 describe("button with icon", () => {
@@ -176,6 +177,94 @@ describe("button with icon", () => {
 
         // Assert
         expect(icon).toBeInTheDocument();
+        expect(icon).toHaveAttribute("aria-hidden", "true");
+    });
+
+    test("should use the test id prop for the start icon", async () => {
+        // Arrange
+        render(
+            <Button
+                testId={"button-test-id"}
+                startIcon={
+                    <Icon>
+                        <img src="icon.svg" alt="" />
+                    </Icon>
+                }
+            >
+                Label
+            </Button>,
+        );
+
+        // Act
+        const icon = await screen.findByTestId("button-test-id-start-icon");
+
+        // Assert
+        expect(icon).toBeInTheDocument();
+    });
+
+    test("should use the test id prop for the end icon", async () => {
+        // Arrange
+        render(
+            <Button
+                testId={"button-test-id"}
+                endIcon={
+                    <Icon>
+                        <img src="icon.svg" alt="" />
+                    </Icon>
+                }
+            >
+                Label
+            </Button>,
+        );
+
+        // Act
+        const icon = await screen.findByTestId("button-test-id-end-icon");
+
+        // Assert
+        expect(icon).toBeInTheDocument();
+    });
+
+    test("icon is displayed with aria-hidden=true when the button contains a custom startIcon", async () => {
+        // Arrange
+        render(
+            <Button
+                testId={"button-test-id"}
+                startIcon={
+                    <Icon>
+                        <img src="icon.svg" alt="" />
+                    </Icon>
+                }
+            >
+                Label
+            </Button>,
+        );
+
+        // Act
+        const icon = await screen.findByTestId("button-test-id-start-icon");
+
+        // Assert
+        expect(icon).toHaveAttribute("aria-hidden", "true");
+    });
+
+    test("icon is displayed with aria-hidden=true when the button contains a custom endIcon", async () => {
+        // Arrange
+        render(
+            <Button
+                testId={"button-test-id"}
+                endIcon={
+                    <Icon>
+                        <img src="icon.svg" alt="" />
+                    </Icon>
+                }
+            >
+                Label
+            </Button>,
+        );
+
+        // Act
+        const icon = await screen.findByTestId("button-test-id-end-icon");
+
+        // Assert
         expect(icon).toHaveAttribute("aria-hidden", "true");
     });
 });
