@@ -113,6 +113,16 @@ type RenderProps = {
  *     }
  * />
  * ```
+ *
+ * ### Custom styling
+ *
+ * You can optionally pass in the `styles` prop to override various parts of a DrawerDialog.
+ *
+ * - `styles.root` -  The outermost container of the dialog itself: alignment styles, box shadow, minWidth, maxWidth, width, height, maxHeight, etc.
+ * - `styles.dialog` - The actual dialog element with minWidth/minHeight, mostly to override View default styles
+ * - `styles.panel` - The inner dialog panel, targeting the internal `FlexiblePanel` component
+ * - `styles.content` - The internal `ModalContent` component, which sets padding
+ * - `styles.closeButton` - The close button, including absolute positioning
  */
 const DrawerDialog = React.forwardRef(function DrawerDialog(
     props: Props,

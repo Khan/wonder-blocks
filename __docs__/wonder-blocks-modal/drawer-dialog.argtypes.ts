@@ -69,7 +69,10 @@ export default {
     styles: {
         control: {type: undefined},
         table: {
-            type: {summary: "DrawerDialogStyles"},
+            type: {
+                summary:
+                    "{root?: StyleType, dialog?: StyleType, panel?: StyleType, content?: StyleType, closeButton?: StyleType}",
+            },
         },
     },
 
