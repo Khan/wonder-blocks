@@ -112,6 +112,9 @@ export const InlineEnd: StoryComponentType = {
 /**
  * InlineEnd drawer
  */
+// TODO (WB-2080): Use media query tokens here and in ModalContent
+const small = "@media (max-width: 767px)" as any;
+
 export const InlineEndCustomStyle: StoryComponentType = {
     render: () => (
         <DrawerLauncher
@@ -123,11 +126,18 @@ export const InlineEndCustomStyle: StoryComponentType = {
                             minWidth: "320px",
                             width: "unset",
                         },
+                        content: {
+                            paddingInline: 0,
+                            [small]: {
+                                paddingInline: 0,
+                            },
+                        },
                     }}
                     content={
                         <View>
                             <BodyText>
-                                Some text that doesn’t fill the screen
+                                Some text that doesn’t fill the screen and has
+                                no left/right padding
                             </BodyText>
                         </View>
                     }

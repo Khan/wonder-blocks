@@ -66,6 +66,7 @@ export type FlexibleDialogStyles = {
     root?: StyleType;
     dialog?: StyleType;
     panel?: StyleType;
+    content?: StyleType;
     closeButton?: StyleType;
 };
 
@@ -155,6 +156,7 @@ const FlexibleDialog = React.forwardRef(function FlexibleDialog(
                 <FlexiblePanel
                     styles={{
                         panel: styles?.panel,
+                        content: styles?.content,
                         closeButton: styles?.closeButton,
                     }}
                     onClose={onClose}

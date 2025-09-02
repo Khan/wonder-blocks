@@ -84,6 +84,44 @@ export const Default: StoryComponentType = {
 };
 
 /**
+ * Basic drawer dialog with no padding. This allows content to go to the edges.
+ */
+// TODO (WB-2080): Use media query tokens here and in ModalContent
+const small = "@media (max-width: 767px)" as any;
+
+export const WithNoPadding: StoryComponentType = {
+    render: () => (
+        <DrawerLauncher
+            alignment="inlineEnd"
+            modal={
+                <DrawerDialog
+                    title="Default Drawer"
+                    styles={{
+                        content: {
+                            padding: 0,
+                            [small]: {
+                                paddingInline: 0,
+                            },
+                        },
+                    }}
+                    content={
+                        <View>
+                            <BodyText>
+                                This is a basic drawer dialog with no padding.
+                            </BodyText>
+                        </View>
+                    }
+                />
+            }
+        >
+            {({openModal}) => (
+                <Button onClick={openModal}>Open Default Drawer</Button>
+            )}
+        </DrawerLauncher>
+    ),
+};
+
+/**
  * Drawer with rich content including form elements and actions.
  * Demonstrates how to create more complex drawer interfaces.
  */

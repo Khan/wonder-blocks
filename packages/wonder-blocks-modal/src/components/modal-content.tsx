@@ -38,6 +38,7 @@ ModalContent.isComponentOf = (instance: any): boolean => {
  * TODO(WB-1655): Change this to use the theme instead (inside themedStylesFn).
  * e.g. `[theme.breakpoints.small]: {...}`
  */
+// TODO (WB-2080): Use media query tokens here and in ModalContent
 const small = "@media (max-width: 767px)" as any;
 
 const styles = StyleSheet.create({

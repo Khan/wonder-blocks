@@ -71,6 +71,7 @@ export type DrawerDialogStyles = {
     root?: StyleType;
     dialog?: StyleType;
     panel?: StyleType;
+    content?: StyleType;
     closeButton?: StyleType;
 };
 
@@ -156,6 +157,7 @@ const DrawerDialog = React.forwardRef(function DrawerDialog(
                     Boolean,
                 ),
                 panel: styles?.panel,
+                content: styles?.content,
                 closeButton: styles?.closeButton,
             }}
         />
