@@ -75,10 +75,17 @@ export default {
         ),
         docs: {
             description: {
-                component: `A drawer modal launcher intended for the DrawerDialog component. It can align a dialog on the left (inlineStart), right (inlineEnd), or bottom of the screen.
+                component: `A drawer modal launcher intended for the \`DrawerDialog\` component.
+
+It can align a dialog on the \`inlineStart\` (left),  \`inlineEnd\` (right), or \`blockEnd\` (bottom).
 
 - Slide animations can be turned off with the \`animated\` prop.
 - Timing of animations can be fine-tuned with the \`timingDuration\` prop, used on enter and exit animations. It is also used to coordinate timing of focus management on open and close.
+
+**IMPORTANT**: This component should only be used with \`DrawerDialog\`. Using it with other
+dialog components may result in incorrect animations, positioning, and styling.
+
+See available styling customizations in \`DrawerDialog\` docs.
 
 ### Usage
 
