@@ -10,7 +10,9 @@ export default {
         mapping: IconMappings,
         table: {
             category: "Layout",
-            type: {summary: "PhosphorIconAsset"},
+            // NOTE: We use `Icon` instead of `ReactElement` because we want to
+            // encourage the use of `Icon` components for custom icons.
+            type: {summary: "PhosphorIconAsset | Icon"},
         },
     },
     endIcon: {
@@ -18,7 +20,9 @@ export default {
         mapping: IconMappings,
         table: {
             category: "Layout",
-            type: {summary: "PhosphorIconAsset"},
+            // NOTE: We use `Icon` instead of `ReactElement` because we want to
+            // encourage the use of `Icon` components for custom icons.
+            type: {summary: "PhosphorIconAsset | Icon"},
         },
     },
     className: {
