@@ -10,6 +10,7 @@ import {ScenariosLayout} from "../components/scenarios-layout";
 import {longTextWithNoWordBreak} from "../components/text-for-testing";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {Icon} from "@khanacademy/wonder-blocks-icon";
 
 /**
  * The following stories are used to generate the pseudo states for the
@@ -149,6 +150,28 @@ export const Scenarios: Story = {
                             }}
                         >
                             {longTextWithNoWordBreak}
+                        </ActivityButton>
+                    ),
+                },
+            },
+            {
+                name: "With custom icons",
+                props: {
+                    children: (
+                        <ActivityButton
+                            startIcon={
+                                <Icon>
+                                    <img alt="" src="logo.svg" />
+                                </Icon>
+                            }
+                            endIcon={
+                                <Icon>
+                                    <img alt="" src="logo.svg" />
+                                </Icon>
+                            }
+                            kind="secondary"
+                        >
+                            With custom icons
                         </ActivityButton>
                     ),
                 },

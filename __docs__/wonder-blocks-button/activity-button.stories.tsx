@@ -16,6 +16,7 @@ import packageConfig from "../../packages/wonder-blocks-icon-button/package.json
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import activityButtonArgtypes from "./activity-button.argtypes";
+import {Icon} from "@khanacademy/wonder-blocks-icon";
 
 export default {
     title: "Packages / Button / ActivityButton",
@@ -73,6 +74,40 @@ export const WithStartIcon: Story = {
         startIcon: magnifyingGlass,
         disabled: false,
         kind: "primary",
+    },
+};
+
+/**
+ * For non-Phosphor icons, you can use the Wonder Blocks Icon component for the
+ * `startIcon` and `endIcon` props.
+ *
+ * ```tsx
+ * import {Icon} from "@khanacademy/wonder-blocks-icon";
+ *
+ * <ActivityButton
+ *     startIcon={<Icon><img alt="" src="logo.svg" /></Icon>}
+ *     endIcon={<Icon><img alt="" src="logo.svg" /></Icon>}
+ * >
+ *   Action
+ * </ActivityButton>
+ * ```
+ *
+ * Note: The ActivityButton component will handle the sizing for the icons.
+ */
+export const WithCustomIcons: Story = {
+    args: {
+        children: "Action",
+        startIcon: (
+            <Icon>
+                <img alt="" src="logo.svg" />
+            </Icon>
+        ),
+        endIcon: (
+            <Icon>
+                <img alt="" src="logo.svg" />
+            </Icon>
+        ),
+        kind: "secondary",
     },
 };
 
