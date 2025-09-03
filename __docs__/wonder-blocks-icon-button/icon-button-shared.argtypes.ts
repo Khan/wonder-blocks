@@ -23,7 +23,6 @@ export default {
         },
         options: IconMappings as any,
         table: {
-            category: "Layout",
             type: {
                 // NOTE: We document `Icon` instead of `ReactElement` because we want to
                 // encourage the use of `Icon` components for custom icons.
