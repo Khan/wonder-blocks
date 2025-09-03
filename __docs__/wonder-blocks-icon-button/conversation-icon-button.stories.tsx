@@ -12,7 +12,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {ConversationIconButton} from "@khanacademy/wonder-blocks-icon-button";
 
 import {ActionItem, ActionMenu} from "@khanacademy/wonder-blocks-dropdown";
-import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import packageConfig from "../../packages/wonder-blocks-icon-button/package.json";
@@ -210,5 +210,23 @@ export const Expanded: Story = {
                 />
             </ActionMenu>
         );
+    },
+};
+
+/**
+ * For non-Phosphor icons, you can use the Wonder Blocks Icon component to wrap
+ * the custom icon.
+ *
+ * Note: The ConversationIconButton component will handle the sizing for the icon.
+ */
+export const WithCustomIcon: Story = {
+    args: {
+        "aria-label": "Wonder Blocks",
+        icon: (
+            <Icon>
+                <img src="logo.svg" alt="" />
+            </Icon>
+        ),
+        kind: "secondary",
     },
 };
