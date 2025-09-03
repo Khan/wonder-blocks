@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-button
 
+## 11.2.0
+
+### Minor Changes
+
+- cf878cc: Support custom icons in Button and ActivityButton components
+
 ## 11.1.0
 
 ### Minor Changes
