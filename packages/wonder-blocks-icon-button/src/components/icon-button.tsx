@@ -36,6 +36,14 @@ function IconChooser({
         height: theme.icon.sizing[size],
     };
 
+    // If the icon is not a string, it is a custom icon that can be rendered
+    // directly with the corresponding styles
+    if (typeof icon !== "string") {
+        return React.cloneElement(icon, {
+            style: [iconStyle],
+        });
+    }
+
     switch (size) {
         case "small":
             return (

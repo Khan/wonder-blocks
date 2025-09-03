@@ -36,7 +36,7 @@ type LabelOnly = {
     label: string;
 };
 
-type Props = Omit<BaseIconButtonProps, "icon"> &
+type Props = BaseIconButtonProps &
     (AriaLabelOnly | LabelOnly) & {
         /**
          * The action type of the button. This determines the visual style of the
@@ -46,11 +46,6 @@ type Props = Omit<BaseIconButtonProps, "icon"> &
          * - `neutral` is used for buttons that indicate a neutral action.
          */
         actionType?: ActivityIconButtonActionType;
-
-        /**
-         * A Phosphor icon asset (imported as a static SVG file), or an element.
-         */
-        icon: PhosphorIconAsset | React.ReactElement;
     };
 
 /**
