@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-modal
 
+## 8.4.0
+
+### Minor Changes
+
+- 45655a7: Add support for no padding to DrawerDialog and FlexibleDialog
+
 ## 8.3.1
 
 ### Patch Changes
