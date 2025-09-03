@@ -137,7 +137,7 @@ const core = {
         // with the CSS `rgba` function or the `fade` JS function.
         transparent: `color-mix(in srgb, ${color.blue_05} 20%, ${transparent})`,
         chonky: {
-            progressive: {
+            instructive: {
                 subtle: color.blue_60,
                 default: color.blue_10,
             },
@@ -415,22 +415,22 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
             },
             shadow: {
                 primary: {
-                    rest: core.shadow.chonky.progressive.default,
-                    hover: core.shadow.chonky.progressive.default,
-                    press: core.shadow.chonky.progressive.default,
-                    selected: core.shadow.chonky.progressive.default,
+                    rest: core.shadow.chonky.instructive.default,
+                    hover: core.shadow.chonky.instructive.default,
+                    press: core.shadow.chonky.instructive.default,
+                    selected: core.shadow.chonky.instructive.default,
                 },
                 secondary: {
-                    rest: core.shadow.chonky.progressive.subtle,
-                    hover: core.shadow.chonky.progressive.subtle,
-                    press: core.shadow.chonky.progressive.subtle,
-                    selected: core.shadow.chonky.progressive.subtle,
+                    rest: core.shadow.chonky.instructive.subtle,
+                    hover: core.shadow.chonky.instructive.subtle,
+                    press: core.shadow.chonky.instructive.subtle,
+                    selected: core.shadow.chonky.instructive.subtle,
                 },
                 tertiary: {
                     rest: core.transparent,
                     hover: core.shadow.chonky.neutral.subtle,
                     press: core.shadow.chonky.neutral.subtle,
-                    selected: core.shadow.chonky.progressive.subtle,
+                    selected: core.shadow.chonky.instructive.subtle,
                 },
             },
         },
@@ -512,7 +512,7 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                     rest: core.transparent,
                     hover: core.shadow.chonky.neutral.subtle,
                     press: core.shadow.chonky.neutral.subtle,
-                    selected: core.shadow.chonky.progressive.subtle,
+                    selected: core.shadow.chonky.instructive.subtle,
                 },
             },
         },
