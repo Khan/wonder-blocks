@@ -14,7 +14,7 @@ export function ButtonIcon({
     style,
     testId,
 }: {
-    icon: PhosphorIconAsset;
+    icon: PhosphorIconAsset | React.ReactElement;
     size: "small" | "medium";
     style?: StyleType;
     testId?: string;
@@ -28,16 +28,26 @@ export function ButtonIcon({
 
     const commonProps = {
         "aria-hidden": true,
-        color: "currentColor",
         style: [style, iconStyle],
         testId,
     };
+
+    const phosphorIconProps = {
+        ...commonProps,
+        color: "currentColor",
+    };
+
+    if (typeof icon !== "string") {
+        // If the icon is not a string, it is a custom icon that can be rendered
+        // directly with the corresponding styles
+        return React.cloneElement(icon, commonProps);
+    }
 
     switch (size) {
         case "small":
             return (
                 <PhosphorIcon
-                    {...commonProps}
+                    {...phosphorIconProps}
                     size="small"
                     icon={icon as PhosphorBold | PhosphorFill}
                 />
@@ -47,7 +57,7 @@ export function ButtonIcon({
         default:
             return (
                 <PhosphorIcon
-                    {...commonProps}
+                    {...phosphorIconProps}
                     size="medium"
                     icon={icon as PhosphorRegular | PhosphorFill}
                 />

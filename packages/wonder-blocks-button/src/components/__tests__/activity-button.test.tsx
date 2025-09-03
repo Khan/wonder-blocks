@@ -2,6 +2,7 @@ import * as React from "react";
 import {render, screen} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
+import {Icon} from "@khanacademy/wonder-blocks-icon";
 import {ActivityButton} from "../activity-button";
 
 describe("ActivityButton", () => {
@@ -425,6 +426,50 @@ describe("ActivityButton", () => {
                 // Assert
                 expect(onMouseDown).toHaveBeenCalledTimes(1);
             });
+        });
+    });
+
+    describe("icons", () => {
+        test("icon is displayed with aria-hidden=true when the button contains a custom startIcon", async () => {
+            // Arrange
+            render(
+                <ActivityButton
+                    startIcon={
+                        <Icon testId="custom-icon">
+                            <img src="icon.svg" alt="" />
+                        </Icon>
+                    }
+                >
+                    Label
+                </ActivityButton>,
+            );
+
+            // Act
+            const icon = await screen.findByTestId("custom-icon");
+
+            // Assert
+            expect(icon).toHaveAttribute("aria-hidden", "true");
+        });
+
+        test("icon is displayed with aria-hidden=true when the button contains a custom endIcon", async () => {
+            // Arrange
+            render(
+                <ActivityButton
+                    endIcon={
+                        <Icon testId="custom-icon">
+                            <img src="icon.svg" alt="" />
+                        </Icon>
+                    }
+                >
+                    Label
+                </ActivityButton>,
+            );
+
+            // Act
+            const icon = await screen.findByTestId("custom-icon");
+
+            // Assert
+            expect(icon).toHaveAttribute("aria-hidden", "true");
         });
     });
 });

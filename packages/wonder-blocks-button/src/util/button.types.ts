@@ -25,13 +25,19 @@ export type BaseButtonProps =
         /**
          * A Phosphor icon asset (imported as a static SVG file) that
          * will appear at the start of the button (left for LTR, right for RTL).
+         *
+         * For non-Phosphor icons, pass in a WB Icon component that wraps
+         * the custom icon.
          */
-        startIcon?: PhosphorIconAsset;
+        startIcon?: PhosphorIconAsset | React.ReactElement;
         /**
          * A Phosphor icon asset (imported as a static SVG file) that
          * will appear at the end of the button (right for LTR, left for RTL).
+         *
+         * For non-Phosphor icons, pass in a WB Icon component that wraps
+         * the custom icon.
          */
-        endIcon?: PhosphorIconAsset;
+        endIcon?: PhosphorIconAsset | React.ReactElement;
 
         /**
          * The kind of the button, either primary, secondary, or tertiary.

@@ -75,17 +75,24 @@ const ActivityButtonCore: React.ForwardRefExoticComponent<
             <>
                 {/* NOTE: Using a regular className to be able to use descendant selectors to account for the hover and press states */}
                 <View style={chonkyStyles} className="chonky">
-                    {startIcon && (
-                        // We use the `PhosphorIcon` component to render the icon.
-                        // It is a wrapper around the Phosphor icons library.
-                        <PhosphorIcon
-                            size="medium"
-                            color="currentColor"
-                            icon={startIcon}
-                            style={[styles.icon, stylesProp?.startIcon]}
-                            aria-hidden="true"
-                        />
-                    )}
+                    {/* If startIcon is a string, we use the `PhosphorIcon` component to render it. Otherwise, we render the element directly */}
+                    {startIcon &&
+                        (typeof startIcon === "string" ? (
+                            // We use the `PhosphorIcon` component to render the icon.
+                            // It is a wrapper around the Phosphor icons library.
+                            <PhosphorIcon
+                                size="medium"
+                                color="currentColor"
+                                icon={startIcon}
+                                style={[styles.icon, stylesProp?.startIcon]}
+                                aria-hidden="true"
+                            />
+                        ) : (
+                            React.cloneElement(startIcon, {
+                                "aria-hidden": true,
+                                style: [styles.icon, stylesProp?.startIcon],
+                            })
+                        ))}
 
                     <BodyText
                         tag="span"
@@ -95,18 +102,24 @@ const ActivityButtonCore: React.ForwardRefExoticComponent<
                     >
                         {children}
                     </BodyText>
-
-                    {endIcon && (
-                        // We use the `PhosphorIcon` component to render the icon.
-                        // It is a wrapper around the Phosphor icons library.
-                        <PhosphorIcon
-                            size="medium"
-                            color="currentColor"
-                            icon={endIcon}
-                            style={[styles.icon, stylesProp?.endIcon]}
-                            aria-hidden="true"
-                        />
-                    )}
+                    {/* If endIcon is a string, we use the `PhosphorIcon` component to render it. Otherwise, we render the element directly */}
+                    {endIcon &&
+                        (typeof endIcon === "string" ? (
+                            // We use the `PhosphorIcon` component to render the icon.
+                            // It is a wrapper around the Phosphor icons library.
+                            <PhosphorIcon
+                                size="medium"
+                                color="currentColor"
+                                icon={endIcon}
+                                style={[styles.icon, stylesProp?.endIcon]}
+                                aria-hidden="true"
+                            />
+                        ) : (
+                            React.cloneElement(endIcon, {
+                                "aria-hidden": true,
+                                style: [styles.icon, stylesProp?.endIcon],
+                            })
+                        ))}
                 </View>
             </>
         </ButtonUnstyled>

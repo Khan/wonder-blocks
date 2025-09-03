@@ -26,6 +26,8 @@ import ComponentInfo from "../components/component-info";
 
 import ButtonArgTypes from "./button.argtypes";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
+import {Icon} from "@khanacademy/wonder-blocks-icon";
+import {themeModes} from "../../.storybook/modes";
 
 export default {
     title: "Packages / Button / Button",
@@ -329,6 +331,52 @@ const IconExample = () => (
                 </Button>
             ))}
         </View>
+        <BodyText weight="bold" style={styles.label}>
+            Using Icon component for custom icons
+        </BodyText>
+        <View style={styles.row}>
+            {kinds.map((kind, idx) => (
+                <Button
+                    kind={kind}
+                    startIcon={
+                        <Icon>
+                            <img src={"logo.svg"} alt="" />
+                        </Icon>
+                    }
+                    endIcon={
+                        <Icon>
+                            <img src={"logo.svg"} alt="" />
+                        </Icon>
+                    }
+                    style={styles.button}
+                    key={idx}
+                >
+                    {kind}
+                </Button>
+            ))}
+        </View>
+        <View style={styles.row}>
+            {kinds.map((kind, idx) => (
+                <Button
+                    kind={kind}
+                    startIcon={
+                        <Icon>
+                            <img src={"logo.svg"} alt="" />
+                        </Icon>
+                    }
+                    endIcon={
+                        <Icon>
+                            <img src={"logo.svg"} alt="" />
+                        </Icon>
+                    }
+                    style={styles.button}
+                    key={idx}
+                    size="small"
+                >
+                    {`${kind} small`}
+                </Button>
+            ))}
+        </View>
     </View>
 );
 
@@ -341,15 +389,40 @@ const IconExample = () => (
  * __NOTE:__ Icons are available from the [Phosphor
  * Icons](https://phosphoricons.com/) library.
  *
- * To import an icon, you can use the following syntax:
+ * To use a Phosphor icon, you can use the following syntax:
  *
- * e.g.
- * ```
+ * ```tsx
  * import pencilSimple from "@phosphor-icons/core/regular/pencil-simple.svg";
+ *
+ * export const ButtonExample = () => (
+ *     <Button startIcon={pencilSimple}>
+ *         Example button
+ *     </Button>
+ * );
  * ```
+ *
+ * For custom icons, you can use the Wonder Blocks Icon component:
+ *
+ * ```tsx
+ * import {Icon} from "@khanacademy/wonder-blocks-icon";
+ *
+ * export const ButtonExample = () => (
+ *     <Button startIcon={<Icon><img src="example.svg" alt="Example icon" /></Icon>}>
+ *         Example button
+ *     </Button>
+ * );
+ * ```
+ *
+ * Note: The Button component will handle the sizing for the icons
  */
-export const Icon: StoryComponentType = {
+export const WithIcon: StoryComponentType = {
+    name: "Icon",
     render: () => <IconExample />,
+    parameters: {
+        chromatic: {
+            modes: themeModes,
+        },
+    },
 };
 
 export const Size: StoryComponentType = () => (
