@@ -8,6 +8,8 @@ import {color as thunderBlocksColor} from "./internal/primitive-color-thunderblo
 
 const transparent = "transparent";
 
+const transparentShadowColor = color.offBlack16;
+
 const core = {
     transparent,
     border: {
@@ -135,7 +137,11 @@ const core = {
         },
     },
     shadow: {
-        transparent: color.offBlack16,
+        transparent: {
+            low: transparentShadowColor,
+            mid: transparentShadowColor,
+            high: transparentShadowColor,
+        },
         chonky: {
             instructive: {
                 subtle: color.fadedBlue,

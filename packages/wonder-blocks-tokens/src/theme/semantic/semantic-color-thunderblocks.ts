@@ -5,6 +5,11 @@ import {semanticColor as defaultSemanticColor} from "./semantic-color";
 
 const transparent = "transparent";
 
+// NOTE: We use `color-mix` to generate a transparent color because it supports
+// using CSS variables as input, which is not possible with the CSS `rgba`
+// function or the `fade` JS function.
+const transparentShadowColor = `color-mix(in srgb, ${color.blue_05} 20%, ${transparent})`;
+
 const core = {
     transparent,
     border: {
@@ -132,10 +137,11 @@ const core = {
         },
     },
     shadow: {
-        // NOTE: We use `color-mix` to generate a transparent color because
-        // it supports using CSS variables as input, which is not possible
-        // with the CSS `rgba` function or the `fade` JS function.
-        transparent: `color-mix(in srgb, ${color.blue_05} 20%, ${transparent})`,
+        transparent: {
+            low: transparentShadowColor,
+            mid: transparentShadowColor,
+            high: transparentShadowColor,
+        },
         chonky: {
             instructive: {
                 subtle: color.blue_60,
