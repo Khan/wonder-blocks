@@ -16,7 +16,7 @@ import {allModes} from "../../.storybook/modes";
 
 import celebrationBg from "../../static/celebration_bg.svg";
 import celebrationChest from "../../static/celebration-chest.svg";
-import {reallyLongText} from "../components/text-for-testing";
+import {longText, reallyLongText} from "../components/text-for-testing";
 
 const customViewports = {
     phone: {
@@ -164,6 +164,40 @@ export const WithBackgroundImage: StoryComponentType = {
                             </ActivityButton>
                         </View>
                     )}
+                />
+            </View>
+        </View>
+    ),
+};
+
+/**
+ *
+ * A FlexibleDialog can have zeroed out padding.
+ */
+// TODO (WB-2080): Use media query tokens here and in ModalContent
+const small = "@media (max-width: 767px)" as any;
+export const WithNoPadding: StoryComponentType = {
+    render: () => (
+        <View style={styles.previewSizer}>
+            <View style={styles.modalPositioner}>
+                <FlexibleDialog
+                    styles={{
+                        content: {
+                            padding: 0,
+                            maxWidth: "90%",
+                            [small]: {
+                                paddingInline: 0,
+                            },
+                        },
+                    }}
+                    title="Dogz are the best"
+                    content={
+                        <View>
+                            <BodyText>{longText}</BodyText>
+                            <BodyText>{longText}</BodyText>
+                            <BodyText>{longText}</BodyText>
+                        </View>
+                    }
                 />
             </View>
         </View>

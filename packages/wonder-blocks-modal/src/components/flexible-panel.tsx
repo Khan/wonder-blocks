@@ -35,6 +35,7 @@ type Props = {
      */
     styles?: {
         panel?: StyleType;
+        content?: StyleType;
         closeButton?: StyleType;
     };
     /**
@@ -95,7 +96,7 @@ export default function FlexiblePanel({
         const mainContent = ModalContent.isComponentOf(contentNode) ? (
             (contentNode as React.ReactElement<PropsFor<typeof ModalContent>>)
         ) : (
-            <ModalContent>{contentNode}</ModalContent>
+            <ModalContent style={styles?.content}>{contentNode}</ModalContent>
         );
         if (!mainContent) {
             return mainContent;
@@ -104,7 +105,7 @@ export default function FlexiblePanel({
         return React.cloneElement(mainContent, {
             style: [mainContent.props.style],
         });
-    }, [title, content]);
+    }, [title, content, styles?.content]);
 
     const mainContent = renderMainContent();
 

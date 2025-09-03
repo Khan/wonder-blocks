@@ -48,7 +48,7 @@ export default {
         table: {
             type: {
                 summary:
-                    "{root?: StyleType, dialog?: StyleType, panel?: StyleType, closeButton?: StyleType}",
+                    "{root?: StyleType, dialog?: StyleType, panel?: StyleType, content?: StyleType, closeButton?: StyleType}",
             },
         },
     },

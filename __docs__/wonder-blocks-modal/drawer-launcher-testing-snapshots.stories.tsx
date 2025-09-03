@@ -112,6 +112,9 @@ export const InlineEnd: StoryComponentType = {
 /**
  * InlineEnd drawer
  */
+// TODO (WB-2080): Use media query tokens here and in ModalContent
+const small = "@media (max-width: 767px)" as any;
+
 export const InlineEndCustomStyle: StoryComponentType = {
     render: () => (
         <DrawerLauncher
@@ -120,8 +123,14 @@ export const InlineEndCustomStyle: StoryComponentType = {
                     title="Single-line title"
                     styles={{
                         root: {
-                            minWidth: "320px",
+                            minWidth: "320px", // style only applies to desktop
                             width: "unset",
+                        },
+                        content: {
+                            paddingInline: 0,
+                            [small]: {
+                                paddingInline: 0,
+                            },
                         },
                     }}
                     content={
