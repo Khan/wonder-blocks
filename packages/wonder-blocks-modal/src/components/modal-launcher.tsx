@@ -5,6 +5,10 @@ import {StyleSheet} from "aphrodite";
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
 import type {WithActionSchedulerProps} from "@khanacademy/wonder-blocks-timing";
 
+import {
+    setLayerRootModalState,
+    useLayerRootTarget,
+} from "@khanacademy/wonder-blocks-announcer";
 import FocusTrap from "./focus-trap";
 import ModalBackdrop from "./modal-backdrop";
 import ScrollDisabler from "./scroll-disabler";
@@ -116,6 +120,8 @@ function ModalLauncher({
 
     const [internalOpened, setInternalOpened] = useState(false);
 
+    const targetElement = useLayerRootTarget(); // Use layer root instead of document.body
+
     // Handle validation warnings (equivalent to getDerivedStateFromProps)
     useEffect(() => {
         if (typeof opened === "boolean" && children) {
@@ -144,6 +150,7 @@ function ModalLauncher({
     const openModal = useCallback(() => {
         saveLastElementFocused();
         setInternalOpened(true);
+        setLayerRootModalState(true);
     }, [saveLastElementFocused]);
 
     const returnFocus = useCallback(() => {
@@ -177,6 +184,7 @@ function ModalLauncher({
 
     const handleCloseModal = useCallback(() => {
         setInternalOpened(false);
+        setLayerRootModalState(false);
 
         // Use setTimeout to ensure the state update has completed
         setTimeout(() => {
@@ -199,6 +207,7 @@ function ModalLauncher({
     useEffect(() => {
         if (isOpened) {
             saveLastElementFocused();
+            setLayerRootModalState(true);
         }
     }, [isOpened, saveLastElementFocused]);
 
@@ -233,7 +242,7 @@ function ModalLauncher({
                             {renderModal()}
                         </ModalBackdrop>
                     </FocusTrap>,
-                    body,
+                    targetElement,
                 )}
             {isOpened && (
                 <ModalLauncherKeypressListener onClose={handleCloseModal} />

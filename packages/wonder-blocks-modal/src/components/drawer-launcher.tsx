@@ -5,6 +5,7 @@ import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
 import type {WithActionSchedulerProps} from "@khanacademy/wonder-blocks-timing";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
+import {useLayerRootTarget} from "@khanacademy/wonder-blocks-announcer";
 import FocusTrap from "./focus-trap";
 import DrawerBackdrop from "./drawer-backdrop";
 import ScrollDisabler from "./scroll-disabler";
@@ -191,6 +192,8 @@ const DrawerLauncher = (props: Props) => {
     // State to track exit animation
     const [isExiting, setIsExiting] = React.useState(false);
 
+    const targetElement = useLayerRootTarget(); // Use layer root instead of document.body
+
     // Ref to store the last focused element
     const lastElementFocusedOutsideModalRef = React.useRef<HTMLElement | null>(
         null,
@@ -328,7 +331,7 @@ const DrawerLauncher = (props: Props) => {
                               </DrawerBackdrop>
                           </FocusTrap>
                       </DrawerContext.Provider>,
-                      body,
+                      targetElement,
                   )
                 : null}
             {/* Only keep event listeners while actually open */}

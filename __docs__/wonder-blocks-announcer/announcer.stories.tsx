@@ -8,11 +8,11 @@ import {
 } from "@khanacademy/wonder-blocks-announcer";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
+import {ModalLauncher, FlexibleDialog} from "@khanacademy/wonder-blocks-modal";
+import {Heading, BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-announcer/package.json";
-import {FlexibleDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
-import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 
 const AnnouncerExample = ({
     message = "Clicked!",
@@ -209,7 +209,7 @@ export const AnnounceMessage: StoryComponentType = {
 /**
  * ## Announcer in Modal Context
  *
- * This story demonstrates the Announcer working inside a modal dialog. The modal
+ * This story demonstrates the Announcer working inside a modal region. The modal
  * is opened by default to test that screen reader announcements work properly
  * when the modal is active and has focus management applied.
  */
@@ -281,5 +281,6 @@ const styles = StyleSheet.create({
     example: {
         alignItems: "center",
         justifyContent: "center",
+        minHeight: 200,
     },
 });

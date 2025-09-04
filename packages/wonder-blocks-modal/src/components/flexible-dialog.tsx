@@ -144,7 +144,6 @@ const FlexibleDialog = React.forwardRef(function FlexibleDialog(
         <View style={[componentStyles.root, styles?.root]}>
             <View
                 role={role}
-                aria-modal="true"
                 aria-label={accessibilityProps["aria-label"]}
                 aria-labelledby={headingId}
                 aria-describedby={accessibilityProps["aria-describedby"]}

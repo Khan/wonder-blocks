@@ -83,7 +83,6 @@ const ModalDialog = React.forwardRef(function ModalDialog(
             {below && <View style={styles.below}>{below}</View>}
             <View
                 role={role}
-                aria-modal="true"
                 aria-label={ariaLabel}
                 aria-labelledby={ariaLabelledBy}
                 aria-describedby={ariaDescribedBy}
