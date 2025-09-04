@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-labeled-field",
-  "version": "4.0.4",
+  "version": "4.0.5",
   "design": "v1",
   "description": "LabeledField handles accessibility and layout for associating labels with form components.",
   "exports": {

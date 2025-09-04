@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-progress-spinner
 
+## 3.1.36
+
+### Patch Changes
+
+- Updated dependencies [ede6085]
+- Updated dependencies [a70f274]
+    - @khanacademy/wonder-blocks-tokens@13.0.0
+
 ## 3.1.35
 
 ### Patch Changes
