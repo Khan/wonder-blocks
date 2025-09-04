@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-accordion
 
+## 3.1.39
+
+### Patch Changes
+
+- Updated dependencies [ede6085]
+- Updated dependencies [a70f274]
+    - @khanacademy/wonder-blocks-tokens@13.0.0
+    - @khanacademy/wonder-blocks-clickable@7.1.25
+    - @khanacademy/wonder-blocks-icon@5.2.19
+    - @khanacademy/wonder-blocks-typography@4.2.21
+
 ## 3.1.38
 
 ### Patch Changes
