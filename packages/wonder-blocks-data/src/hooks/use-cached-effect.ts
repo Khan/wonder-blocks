@@ -17,6 +17,24 @@ type CachedEffectOptions<TData extends ValidCacheData> = {
      * The policy to use when determining how to retrieve the request data from
      * cache and network.
      *
+     * Inflight requests are shared so that multiple requests for the same
+     * resource do not cause multiple fetches while one fetch is already in
+     * progress.
+     *
+     * Network requests update the cache on return, regardless of which policy
+     * initiated the request.
+     *
+     * For fetch policies that use the cache, if the cache does not yet have
+     * the data, then a `no-data` status is returned.
+     *
+     * The `FetchPolicy.NetworkOnly`  and `FetchPolicy.CacheAndNetwork` only
+     * fetch the data once and then reuse that result, unless a re-fetch is
+     * explicitly triggered via the fetch function in the returned tuple.
+     *
+     * For `FetchPolicy.NetworkOnly`, the cache is ignored (but the cache
+     * is still updated with the fetched value). Until a value is available,
+     * a `loading` status is returned for this policy.
+     *
      * Defaults to `FetchPolicy.CacheBeforeNetwork`.
      */
     fetchPolicy?: (typeof FetchPolicy)[keyof typeof FetchPolicy];

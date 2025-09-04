@@ -1,39 +1,52 @@
 import {Meta} from "@storybook/blocks";
 
-<Meta
-    title="Packages / Data / Types / FetchPolicy"
-/>
+<Meta title="Packages / Data / Types / FetchPolicy" />
 
 # FetchPolicy
 
 ```ts
+/**
+ * Defines the various fetch policies that can be applied to requests.
+ *
+ * If a policy fetches from the server, then the cache will be updated with
+ * the result of that fetch, once it completes. Inflight fetches are shared
+ * so that multiple requests for the same resource do not cause multiple
+ * fetches while one fetch is already in progress.
+ *
+ * It is up to the implementation to decide how to handle cache misses, but
+ * most cases likely return a `no-data` or, in the case of a network-only
+ * policy, `loading` result, depending on the policy.
+ */
 export enum FetchPolicy {
     /**
-     * If the data is in the cache, return that; otherwise, fetch from the server.
+     * If the data is in the cache, use that data and do not fetch.
+     * Otherwise, provide `no-data` while data is fetched from the server.
      */
-    CacheBeforeNetwork,
+    CacheBeforeNetwork = "CacheBeforeNetwork",
 
     /**
-     * If the data is in the cache, return that; always fetch from the server
-     * regardless of cache.
+     * If the data is in the cache, use that data, but also fetch an update
+     * from the server (inflight requests are shared).
+     * Otherwise, provide `no-data` while data is fetched from the server.
      */
-    CacheAndNetwork,
+    CacheAndNetwork = "CacheAndNetwork",
 
     /**
-     * If the data is in the cache, return that; otherwise, do nothing.
+     * If the data is in the cache, use that; otherwise, provide `no-data`.
      */
-    CacheOnly,
+    CacheOnly = "CacheOnly",
 
     /**
-     * Ignore any existing cached result; fetch from the server.
+     * Ignore any existing cached result; fetch data from the server, if it
+     * wasn't already fetched. While there is no data, provide `loading`.
      */
-    NetworkOnly,
+    NetworkOnly = "NetworkOnly",
 }
 ```
 
 The `FetchPolicy` type is used with our request framework to define how a request should be fulfilled with respect to the cache and the network.
 
--   `CacheBeforeNetwork`: If the data is in the cache, return that; otherwise, fetch from the server.
--   `CacheAndNetwork`: If the data is in the cache, return that; always fetch from the server regardless of cache.
--   `CacheOnly`: If the data is in the cache, return that; otherwise, do nothing.
--   `NetworkOnly`: Ignore any existing cached result; always fetch from the server.
+- `CacheBeforeNetwork`: If the data is in the cache, use that data and do not fetch. Otherwise, provide `no-data` while data is fetched from the server.
+- `CacheAndNetwork`: If the data is in the cache, use that data, but also fetch an update from the server (inflight requests are shared). Otherwise, provide `no-data` while data is fetched from the server.
+- `CacheOnly`: If the data is in the cache, use that; otherwise, provide `no-data`
+- `NetworkOnly`: Ignore any existing cached result; fetch data from the server, if it wasn't already fetched. While there is no data, provide `loading`.
