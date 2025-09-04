@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
         border: `solid 1px ${semanticColor.core.border.neutral.subtle}`,
         backgroundColor: semanticColor.core.background.base.default,
         // TODO(WB-1878): Use `elevation` token.
-        boxShadow: `0 ${spacing.xSmall_8}px ${spacing.xSmall_8}px 0 ${color.offBlack8}`,
+        boxShadow: `0 ${spacing.xSmall_8}px ${spacing.xSmall_8}px 0 ${semanticColor.core.shadow.transparent.low}`,
         justifyContent: "center",
     },
 });
