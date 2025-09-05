@@ -15,6 +15,7 @@ import Link from "@khanacademy/wonder-blocks-link";
 import Button from "@khanacademy/wonder-blocks-button";
 import crownIcon from "../wonder-blocks-icon/icons/crown.svg";
 import {AllVariants} from "../components/all-variants";
+import {Icon} from "@khanacademy/wonder-blocks-icon";
 
 /**
  * The following stories are used to generate the pseudo states for the
@@ -263,7 +264,7 @@ const scenarios = [
         },
     },
     {
-        name: "With custom icon",
+        name: "With custom filled icon",
         props: {
             icon: crownIcon,
         },
@@ -272,6 +273,16 @@ const scenarios = [
         name: "With no icon",
         props: {
             icon: "none",
+        },
+    },
+    {
+        name: "With custom icon",
+        props: {
+            icon: (
+                <Icon>
+                    <img src="logo.svg" alt="Wonder Blocks" />
+                </Icon>
+            ),
         },
     },
 ];

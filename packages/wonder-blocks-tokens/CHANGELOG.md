@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 13.0.0
+
+### Major Changes
+
+- a70f274: Remove `semanticColor.surface.*` and `semanticColor.core.foreground.inverse.*` and `semanticColor.core.border.inverse.*` tokens. The `semanticColor.core.background.base.*` or `semanticColor.core.background.overlay.default` tokens should be used instead of surface tokens. `semanticColor.core.foreground/border.knockout.default` and other semantic core color tokens can be used instead of the inverse tokens
+
+### Patch Changes
+
+- ede6085: Update `semanticColor.core.background.neutral.subtle` in the Thunderblocks theme from `white` to `gray_80`.
+
 ## 12.2.1
 
 ### Patch Changes

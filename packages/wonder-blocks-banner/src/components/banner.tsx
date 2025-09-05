@@ -135,7 +135,7 @@ type Props = {
      * conveyed in the text of the banner, since color should not be the only
      * way to convey status information.
      */
-    icon?: PhosphorIconAsset | string | "none";
+    icon?: PhosphorIconAsset | string | "none" | React.ReactElement;
     /**
      * Custom styles for the elements in the Banner component.
      * - `root`: Styles the root element
@@ -289,6 +289,33 @@ const Banner = (props: Props): React.ReactElement => {
     const bannerKindStyle = getBannerKindStyle(kind);
     const bannerIconKindStyle = getBannerIconKindStyle(kind);
 
+    let iconElement = <React.Fragment />;
+    // Only change the iconElement if the icon prop is not "none"
+    if (icon !== "none") {
+        // If icon is defined and it is not a string, it is a custom icon that
+        // can be rendered directly with the corresponding styles
+        if (icon !== undefined && typeof icon !== "string") {
+            iconElement = React.cloneElement(icon, {
+                style: styles.icon,
+                testId: "banner-kind-icon",
+                // When a custom icon element is used, leave it up to the
+                // consumers to provide alt text for the icon
+            });
+        } else {
+            // The icon is compatible with PhosphorIcon so we render the provided
+            // icon or the default icon for the kind
+            iconElement = (
+                <PhosphorIcon
+                    icon={icon || valuesForKind.icon}
+                    style={[styles.icon, bannerIconKindStyle]}
+                    aria-label={kind}
+                    testId="banner-kind-icon"
+                    role="img"
+                />
+            );
+        }
+    }
+
     return (
         <View
             style={[styles.containerOuter, bannerKindStyle, stylesProp?.root]}
@@ -298,15 +325,7 @@ const Banner = (props: Props): React.ReactElement => {
             testId={testId}
         >
             <View style={styles.containerInner}>
-                {icon !== "none" && (
-                    <PhosphorIcon
-                        icon={icon || valuesForKind.icon}
-                        style={[styles.icon, bannerIconKindStyle]}
-                        aria-label={kind}
-                        testId="banner-kind-icon"
-                        role="img"
-                    />
-                )}
+                {iconElement}
                 <View style={styles.labelAndButtonsContainer}>
                     <View style={styles.labelContainer}>
                         {/* We use a div here since text can be a React node with other elements */}

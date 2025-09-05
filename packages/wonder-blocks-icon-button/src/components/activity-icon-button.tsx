@@ -3,7 +3,7 @@ import {CSSProperties, StyleSheet} from "aphrodite";
 import {Link} from "react-router-dom-v5-compat";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {PhosphorIcon, PhosphorIconAsset} from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
@@ -36,7 +36,7 @@ type LabelOnly = {
     label: string;
 };
 
-type Props = Omit<BaseIconButtonProps, "icon"> &
+type Props = BaseIconButtonProps &
     (AriaLabelOnly | LabelOnly) & {
         /**
          * The action type of the button. This determines the visual style of the
@@ -46,11 +46,6 @@ type Props = Omit<BaseIconButtonProps, "icon"> &
          * - `neutral` is used for buttons that indicate a neutral action.
          */
         actionType?: ActivityIconButtonActionType;
-
-        /**
-         * A Phosphor icon asset (imported as a static SVG file), or an element.
-         */
-        icon: PhosphorIconAsset | React.ReactElement;
     };
 
 /**

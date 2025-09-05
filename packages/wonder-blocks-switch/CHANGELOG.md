@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-switch
 
+## 3.3.18
+
+### Patch Changes
+
+- Updated dependencies [ede6085]
+- Updated dependencies [a70f274]
+    - @khanacademy/wonder-blocks-tokens@13.0.0
+    - @khanacademy/wonder-blocks-icon@5.2.19
+    - @khanacademy/wonder-blocks-styles@0.2.31
+
 ## 3.3.17
 
 ### Patch Changes
