@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-banner
 
+## 4.4.0
+
+### Minor Changes
+
+- c62fd64: Banner: Support custom icons
+
+### Patch Changes
+
+- Updated dependencies [94351f5]
+    - @khanacademy/wonder-blocks-icon-button@10.5.0
+
 ## 4.3.6
 
 ### Patch Changes
