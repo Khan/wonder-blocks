@@ -4,7 +4,11 @@ import {StyleSheet} from "aphrodite";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    elevation,
+    semanticColor,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
@@ -33,8 +37,7 @@ const styles = StyleSheet.create({
     },
     panel: {
         padding: spacing.medium_16,
-        // TODO(WB-1878): Use elevation token.
-        boxShadow: `0 ${spacing.xSmall_8}px ${spacing.xSmall_8}px 0 ${color.offBlack8}`,
+        boxShadow: `${elevation.mid} ${semanticColor.core.shadow.transparent.mid}`,
     },
     tabButton: {
         width: "100%",

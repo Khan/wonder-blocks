@@ -15,7 +15,7 @@ import {mapValuesToCssVars} from "./internal/map-values-to-css-vars";
 // theme
 import theme from "./tokens/theme";
 
-const {border, semanticColor, sizing, font} = theme;
+const {border, elevation, semanticColor, sizing, font} = theme;
 
 export {
     /**
@@ -25,6 +25,7 @@ export {
     // TODO(WB-1989): Remove this export once all consumers have migrated to
     // using semanticColor.
     color,
+    elevation,
     font,
     pxToRem,
     remToPx,

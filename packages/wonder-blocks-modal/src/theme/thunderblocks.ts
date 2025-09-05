@@ -1,5 +1,10 @@
 import {mergeTheme} from "@khanacademy/wonder-blocks-theming";
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    elevation,
+    semanticColor,
+    sizing,
+} from "@khanacademy/wonder-blocks-tokens";
 import defaultTheme from "./default";
 
 export default mergeTheme(defaultTheme, {
@@ -10,7 +15,7 @@ export default mergeTheme(defaultTheme, {
     },
     dialog: {
         shadow: {
-            default: `0 ${sizing.size_080} ${sizing.size_160} 0 ${semanticColor.core.shadow.transparent.high}`,
+            default: `${elevation.high} ${semanticColor.core.shadow.transparent.high}`,
         },
     },
     header: {
