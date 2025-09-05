@@ -218,8 +218,10 @@ export const WithLabel: StoryComponentType = {
 };
 
 /**
- * `ActivityIconButton` accepts a custom icon element as the `icon` prop. The
- * custom icon element will be rendered as-is.
+ * For non-Phosphor icons, you can use the Wonder Blocks Icon component to wrap
+ * the custom icon.
+ *
+ * Note: The ActivityIconButton component will handle the sizing for the icon.
  */
 export const WithCustomIcon: StoryComponentType = {
     render: () => {

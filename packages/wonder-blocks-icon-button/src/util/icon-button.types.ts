@@ -17,9 +17,11 @@ export type BaseIconButtonProps = Partial<Omit<AriaProps, "aria-disabled">> & {
      */
     id?: string;
     /**
-     * A Phosphor icon asset (imported as a static SVG file).
+     * A Phosphor icon asset (imported as a static SVG file), or for
+     * non-Phosphor icons, pass in a WB Icon component that wraps the custom
+     * icon.
      */
-    icon: PhosphorIconAsset;
+    icon: PhosphorIconAsset | React.ReactElement;
     /**
      * The kind of the icon button, either primary, secondary, or tertiary.
      *

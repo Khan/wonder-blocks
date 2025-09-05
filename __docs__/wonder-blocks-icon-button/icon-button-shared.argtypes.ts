@@ -22,6 +22,13 @@ export default {
             type: "select",
         },
         options: IconMappings as any,
+        table: {
+            type: {
+                // NOTE: We document `Icon` instead of `ReactElement` because we want to
+                // encourage the use of `Icon` components for custom icons.
+                summary: "PhosphorIconAsset | Icon",
+            },
+        },
     },
     kind: {
         control: {

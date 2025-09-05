@@ -9,6 +9,8 @@ import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {themeModes} from "../../.storybook/modes";
+import {ScenariosLayout} from "../components/scenarios-layout";
+import {Icon} from "@khanacademy/wonder-blocks-icon";
 
 /**
  * The following stories are used to generate the pseudo states for the
@@ -99,6 +101,31 @@ export const Sizes: StoryComponentType = {
                     </View>
                 )}
             </AllVariants>
+        );
+    },
+};
+
+export const Scenarios: StoryComponentType = {
+    render: () => {
+        const scenarios = [
+            {
+                name: "With custom icon",
+                props: {
+                    icon: (
+                        <Icon>
+                            <img src="logo.svg" alt="" />
+                        </Icon>
+                    ),
+                    "aria-label": "Wonder Blocks",
+                    kind: "secondary",
+                },
+            },
+        ];
+
+        return (
+            <ScenariosLayout scenarios={scenarios}>
+                {(props) => <IconButton {...props} />}
+            </ScenariosLayout>
         );
     },
 };
