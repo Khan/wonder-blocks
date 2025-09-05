@@ -7,7 +7,6 @@ const {TextEncoder, TextDecoder} = require("util");
 
 StyleSheetTestUtils.suppressStyleInjection();
 
-
 const attachShims = (targetWindow) => {
     if (!targetWindow.TextEncoder) {
         targetWindow.TextEncoder = TextEncoder;
