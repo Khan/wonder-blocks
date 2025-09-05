@@ -25,6 +25,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@khanacademy/wonder-blocks-announcer": "workspace:*",
     "@khanacademy/wonder-blocks-breadcrumbs": "workspace:*",
     "@khanacademy/wonder-blocks-core": "workspace:*",
     "@khanacademy/wonder-blocks-icon-button": "workspace:*",
