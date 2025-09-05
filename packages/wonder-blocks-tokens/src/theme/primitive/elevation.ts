@@ -15,6 +15,6 @@ export const elevation = {
      * different root font sizes.
      */
     low: `${sizing.size_0} ${SIZE_20_PX} ${SIZE_20_PX} ${sizing.size_0}`,
-    medium: `${sizing.size_0} ${SIZE_40_PX} ${SIZE_80_PX} ${sizing.size_0}`,
+    mid: `${sizing.size_0} ${SIZE_40_PX} ${SIZE_80_PX} ${sizing.size_0}`,
     high: `${sizing.size_0} ${SIZE_80_PX} ${SIZE_160_PX} ${sizing.size_0}`,
 };
