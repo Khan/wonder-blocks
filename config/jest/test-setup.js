@@ -7,13 +7,6 @@ const {TextEncoder, TextDecoder} = require("util");
 
 StyleSheetTestUtils.suppressStyleInjection();
 
-// Mock window.scrollTo for JSDOM environment to prevent "Not implemented" errors
-Object.defineProperty(window, 'scrollTo', {
-    value: jest.fn(),
-    writable: true
-});
-
-
 const attachShims = (targetWindow) => {
     if (!targetWindow.TextEncoder) {
         targetWindow.TextEncoder = TextEncoder;
