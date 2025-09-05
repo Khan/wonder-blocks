@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 10.5.0
+
+### Minor Changes
+
+- 94351f5: Support custom icons in IconButton and ConversationIconButton components
+
 ## 10.4.2
 
 ### Patch Changes
