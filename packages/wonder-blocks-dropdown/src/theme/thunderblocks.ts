@@ -20,7 +20,7 @@ export default mergeTheme(defaultTheme, {
             },
         },
         shadow: {
-            default: `0 ${sizing.size_020} ${sizing.size_020} 0 ${semanticColor.core.shadow.transparent}`,
+            default: `0 ${sizing.size_020} ${sizing.size_020} 0 ${semanticColor.core.shadow.transparent.low}`,
         },
     },
     opener: {
