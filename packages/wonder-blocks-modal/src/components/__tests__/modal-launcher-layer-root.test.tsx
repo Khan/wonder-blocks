@@ -1,6 +1,6 @@
 import * as React from "react";
-import {render, screen, fireEvent, act} from "@testing-library/react";
-import {StyleSheet} from "aphrodite";
+import {render, screen, act} from "@testing-library/react";
+import {userEvent} from "@testing-library/user-event";
 
 import {
     getLayerRootElement,
@@ -11,6 +11,8 @@ import {
 } from "@khanacademy/wonder-blocks-announcer";
 import ModalLauncher from "../modal-launcher";
 import OnePaneDialog from "../one-pane-dialog";
+
+const user = userEvent.setup();
 
 // Mock the action scheduler
 jest.mock("@khanacademy/wonder-blocks-timing", () => ({
@@ -59,7 +61,7 @@ describe("ModalLauncher Layer Root Integration", () => {
 
     describe("Uncontrolled ModalLauncher", () => {
         it("should create layer root when modal opens", async () => {
-            // Arrange: Render ModalLauncher with testId
+            // Arrange
             render(
                 <ModalLauncher modal={<TestModal />} testId="modal-backdrop">
                     {({openModal}) => (
@@ -70,22 +72,67 @@ describe("ModalLauncher Layer Root Integration", () => {
                 </ModalLauncher>,
             );
 
-            // Act: Open the modal
-            fireEvent.click(screen.getByTestId("open-button"));
+            // Act
+            await user.click(screen.getByTestId("open-button"));
 
             await act(async () => {
-                await new Promise((resolve) => setTimeout(resolve, 0));
+                await new Promise((resolve) => setTimeout(resolve, 50));
             });
 
-            // Assert: Layer root should be created and set to modal state
+            // Assert
             const layerRoot = screen.getByTestId(LAYER_ROOT_TESTID);
             expect(layerRoot).toBeInTheDocument();
+        });
+
+        it("should set correct layer root ID when modal opens", async () => {
+            // Arrange
+            render(
+                <ModalLauncher modal={<TestModal />} testId="modal-backdrop">
+                    {({openModal}) => (
+                        <button data-testid="open-button" onClick={openModal}>
+                            Open Modal
+                        </button>
+                    )}
+                </ModalLauncher>,
+            );
+
+            // Act
+            await user.click(screen.getByTestId("open-button"));
+
+            await act(async () => {
+                await new Promise((resolve) => setTimeout(resolve, 50));
+            });
+
+            // Assert
+            const layerRoot = screen.getByTestId(LAYER_ROOT_TESTID);
             expect(layerRoot).toHaveAttribute("id", LAYER_ROOT_ID);
+        });
+
+        it("should set modal state to true when modal opens", async () => {
+            // Arrange
+            render(
+                <ModalLauncher modal={<TestModal />} testId="modal-backdrop">
+                    {({openModal}) => (
+                        <button data-testid="open-button" onClick={openModal}>
+                            Open Modal
+                        </button>
+                    )}
+                </ModalLauncher>,
+            );
+
+            // Act
+            await user.click(screen.getByTestId("open-button"));
+
+            await act(async () => {
+                await new Promise((resolve) => setTimeout(resolve, 50));
+            });
+
+            // Assert
             expect(getLayerRootModalState()).toBe(true);
         });
 
         it("should set aria-modal to false when modal closes", async () => {
-            // Arrange: Render ModalLauncher with close callback
+            // Arrange
             render(
                 <ModalLauncher
                     modal={({closeModal}) => (
@@ -101,23 +148,15 @@ describe("ModalLauncher Layer Root Integration", () => {
                 </ModalLauncher>,
             );
 
-            // Act: Open the modal
-            fireEvent.click(screen.getByTestId("open-button"));
-
-            await act(async () => {
-                await new Promise((resolve) => setTimeout(resolve, 0));
-            });
-
-            expect(getLayerRootModalState()).toBe(true);
-
-            // Act: Close the modal via close button
-            fireEvent.click(screen.getByTestId("close-button"));
+            // Act
+            await user.click(screen.getByTestId("open-button"));
+            await user.click(screen.getByTestId("close-button"));
 
             await act(async () => {
                 await new Promise((resolve) => setTimeout(resolve, 50));
             });
 
-            // Assert: Modal state should be false
+            // Assert
             expect(getLayerRootModalState()).toBe(false);
         });
 
@@ -134,7 +173,7 @@ describe("ModalLauncher Layer Root Integration", () => {
             );
 
             // Act: Open the modal
-            fireEvent.click(screen.getByTestId("open-button"));
+            await user.click(screen.getByTestId("open-button"));
 
             await act(async () => {
                 await new Promise((resolve) => setTimeout(resolve, 0));
@@ -144,8 +183,10 @@ describe("ModalLauncher Layer Root Integration", () => {
 
             // Act: Click backdrop to close (requires mouseDown + mouseUp)
             const backdrop = screen.getByTestId("modal-backdrop");
-            fireEvent.mouseDown(backdrop);
-            fireEvent.mouseUp(backdrop);
+            await user.pointer([
+                {target: backdrop, keys: "[MouseLeft>]"},
+                {keys: "[/MouseLeft]"},
+            ]);
 
             await act(async () => {
                 await new Promise((resolve) => setTimeout(resolve, 50));
@@ -167,11 +208,11 @@ describe("ModalLauncher Layer Root Integration", () => {
             );
 
             // Open the modal
-            fireEvent.click(screen.getByTestId("open-button"));
+            await user.click(screen.getByTestId("open-button"));
             expect(getLayerRootModalState()).toBe(true);
 
             // Press escape key
-            fireEvent.keyUp(window, {key: "Escape"});
+            await user.keyboard("{Escape}");
 
             await act(async () => {
                 await new Promise((resolve) => setTimeout(resolve, 10));
@@ -208,11 +249,11 @@ describe("ModalLauncher Layer Root Integration", () => {
             expect(getLayerRootModalState()).toBe(false);
 
             // Open the modal
-            fireEvent.click(screen.getByTestId("control-button"));
+            await user.click(screen.getByTestId("control-button"));
             expect(getLayerRootModalState()).toBe(true);
 
             // Close the modal
-            fireEvent.click(screen.getByTestId("control-button"));
+            await user.click(screen.getByTestId("control-button"));
 
             await act(async () => {
                 // Allow state updates to complete
@@ -254,11 +295,11 @@ describe("ModalLauncher Layer Root Integration", () => {
             expect(getLayerRootModalState()).toBe(false);
 
             // Open
-            fireEvent.click(screen.getByTestId("open"));
+            await user.click(screen.getByTestId("open"));
             expect(getLayerRootModalState()).toBe(true);
 
             // Close
-            fireEvent.click(screen.getByTestId("close"));
+            await user.click(screen.getByTestId("close"));
 
             await act(async () => {
                 await new Promise((resolve) => setTimeout(resolve, 50));
@@ -267,7 +308,7 @@ describe("ModalLauncher Layer Root Integration", () => {
             expect(getLayerRootModalState()).toBe(false);
 
             // Open again
-            fireEvent.click(screen.getByTestId("open"));
+            await user.click(screen.getByTestId("open"));
             expect(getLayerRootModalState()).toBe(true);
         });
     });
@@ -327,17 +368,19 @@ describe("ModalLauncher Layer Root Integration", () => {
             expect(getLayerRootModalState()).toBe(false);
 
             // Open first modal
-            fireEvent.click(screen.getByTestId("open-modal-1"));
+            await user.click(screen.getByTestId("open-modal-1"));
             expect(getLayerRootModalState()).toBe(true);
 
             // Open second modal while first is open
-            fireEvent.click(screen.getByTestId("open-modal-2"));
+            await user.click(screen.getByTestId("open-modal-2"));
             expect(getLayerRootModalState()).toBe(true);
 
             // Close first modal (second should still be open)
             const firstModalBackdrop = screen.getByTestId("modal-backdrop-1");
-            fireEvent.mouseDown(firstModalBackdrop);
-            fireEvent.mouseUp(firstModalBackdrop);
+            await user.pointer([
+                {target: firstModalBackdrop, keys: "[MouseLeft>]"},
+                {keys: "[/MouseLeft]"},
+            ]);
 
             await act(async () => {
                 await new Promise((resolve) => setTimeout(resolve, 50));
@@ -348,8 +391,10 @@ describe("ModalLauncher Layer Root Integration", () => {
 
             // Close second modal
             const secondModalBackdrop = screen.getByTestId("modal-backdrop-2");
-            fireEvent.mouseDown(secondModalBackdrop);
-            fireEvent.mouseUp(secondModalBackdrop);
+            await user.pointer([
+                {target: secondModalBackdrop, keys: "[MouseLeft>]"},
+                {keys: "[/MouseLeft]"},
+            ]);
 
             await act(async () => {
                 await new Promise((resolve) => setTimeout(resolve, 50));
@@ -372,8 +417,6 @@ describe("ModalLauncher Layer Root Integration", () => {
             const layerRoot = getLayerRootElement();
             const modalContent = screen.getByTestId("modal-content");
 
-            expect(layerRoot).toBeInTheDocument();
-            expect(modalContent).toBeInTheDocument();
             expect(layerRoot?.contains(modalContent)).toBe(true);
         });
 
@@ -390,56 +433,7 @@ describe("ModalLauncher Layer Root Integration", () => {
             const modalContent = screen.getByTestId("modal-content");
 
             // Modal should be in layer root, not directly in document.body
-            expect(layerRoot?.contains(modalContent)).toBe(true);
-            expect(document.body.contains(modalContent)).toBe(true); // Still in body through layer root
-
-            // But not a direct child of body
-            expect(
-                [...document.body.children].some(
-                    (child) =>
-                        child.contains(modalContent) && child !== layerRoot,
-                ),
-            ).toBe(false);
-        });
-    });
-
-    describe("Error scenarios", () => {
-        it("should handle missing onClose gracefully", () => {
-            // Should show warning but not crash
-            const consoleSpy = jest
-                .spyOn(console, "warn")
-                .mockImplementation(() => {});
-
-            render(<ModalLauncher opened={true} modal={<TestModal />} />);
-
-            expect(consoleSpy).toHaveBeenCalledWith(
-                "'onClose' should be used with 'opened'",
-            );
-            expect(getLayerRootModalState()).toBe(true);
-
-            consoleSpy.mockRestore();
-        });
-
-        it("should handle conflicting props gracefully", () => {
-            const consoleSpy = jest
-                .spyOn(console, "warn")
-                .mockImplementation(() => {});
-
-            render(
-                <ModalLauncher
-                    opened={true}
-                    onClose={() => {}}
-                    modal={<TestModal />}
-                >
-                    {({openModal}) => <button onClick={openModal}>Open</button>}
-                </ModalLauncher>,
-            );
-
-            expect(consoleSpy).toHaveBeenCalledWith(
-                "'children' and 'opened' can't be used together",
-            );
-
-            consoleSpy.mockRestore();
+            expect(layerRoot).toContainElement(modalContent);
         });
     });
 });

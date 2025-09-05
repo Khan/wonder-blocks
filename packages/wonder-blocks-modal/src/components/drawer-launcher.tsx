@@ -213,16 +213,19 @@ const DrawerLauncher = (props: Props) => {
             document.activeElement as HTMLElement;
     }, []);
 
+    // Initialize ref to track previous controlled opened state
+    const prevControlledOpened = React.useRef<boolean | undefined>(undefined);
+
     // Save last focused element when modal opens
     React.useEffect(() => {
         if (controlledOpened && !prevControlledOpened.current) {
             saveLastElementFocused();
             setLayerRootModalState(true);
+        } else if (!controlledOpened && prevControlledOpened.current) {
+            setLayerRootModalState(false);
         }
         prevControlledOpened.current = controlledOpened;
     }, [controlledOpened, saveLastElementFocused]);
-
-    const prevControlledOpened = React.useRef(controlledOpened);
 
     const returnFocus = React.useCallback(() => {
         // Focus on the specified element after closing the modal.

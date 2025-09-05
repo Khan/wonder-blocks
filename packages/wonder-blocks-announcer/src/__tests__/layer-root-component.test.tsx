@@ -45,25 +45,38 @@ describe("LayerRoot Component", () => {
 
     describe("LayerRoot", () => {
         it("should create layer root element when rendered", async () => {
-            // Arrange: Render LayerRoot component
+            // Arrange
             render(<LayerRoot />);
 
-            // Act: Wait for useEffect to run
+            // Act
             await act(async () => {
                 await new Promise((resolve) => setTimeout(resolve, 0));
             });
 
-            // Assert: Layer root should be created with correct attributes
+            // Assert
             const layerRoot = screen.getByTestId(LAYER_ROOT_TESTID);
             expect(layerRoot).toBeInTheDocument();
+        });
+
+        it("should set aria-modal to false on layer root by default", async () => {
+            // Arrange
+            render(<LayerRoot />);
+
+            // Act
+            await act(async () => {
+                await new Promise((resolve) => setTimeout(resolve, 0));
+            });
+
+            // Assert
+            const layerRoot = screen.getByTestId(LAYER_ROOT_TESTID);
             expect(layerRoot).toHaveAttribute("aria-modal", "false");
         });
 
         it("should not render children when no children provided", () => {
-            // Arrange: Render LayerRoot without children
+            // Arrange
             const {container} = render(<LayerRoot />);
 
-            // Assert: Should not render any visible content
+            // Assert
             expect(container).toBeEmptyDOMElement();
         });
 
@@ -112,39 +125,59 @@ describe("LayerRoot Component", () => {
             expect(layerRoot).toBeInTheDocument();
         });
 
-        it("should handle cleanupOnUnmount=false", async () => {
-            // Arrange: Render LayerRoot with cleanupOnUnmount=false
-            const {unmount} = render(<LayerRoot cleanupOnUnmount={false} />);
+        it("should create layer root when cleanupOnUnmount is false", async () => {
+            // Arrange
+            render(<LayerRoot cleanupOnUnmount={false} />);
 
-            // Act: Wait for layer root creation
+            // Act
             await act(async () => {
                 await new Promise((resolve) => setTimeout(resolve, 0));
             });
 
-            expect(screen.getByTestId(LAYER_ROOT_TESTID)).toBeInTheDocument();
-
-            // Act: Unmount component
-            unmount();
-
-            // Assert: Layer root should still exist after unmount
+            // Assert
             expect(screen.getByTestId(LAYER_ROOT_TESTID)).toBeInTheDocument();
         });
 
-        it("should handle cleanupOnUnmount=true (default)", async () => {
-            // Arrange: Render LayerRoot with default cleanupOnUnmount=true
-            const {unmount} = render(<LayerRoot />);
+        it("should preserve layer root after unmount when cleanupOnUnmount is false", async () => {
+            // Arrange
+            const {unmount} = render(<LayerRoot cleanupOnUnmount={false} />);
 
-            // Act: Wait for layer root creation
             await act(async () => {
                 await new Promise((resolve) => setTimeout(resolve, 0));
             });
 
-            expect(screen.getByTestId(LAYER_ROOT_TESTID)).toBeInTheDocument();
-
-            // Act: Unmount component
+            // Act
             unmount();
 
-            // Assert: Layer root should be removed after unmount
+            // Assert
+            expect(screen.getByTestId(LAYER_ROOT_TESTID)).toBeInTheDocument();
+        });
+
+        it("should create layer root when cleanupOnUnmount is true by default", async () => {
+            // Arrange
+            render(<LayerRoot />);
+
+            // Act
+            await act(async () => {
+                await new Promise((resolve) => setTimeout(resolve, 0));
+            });
+
+            // Assert
+            expect(screen.getByTestId(LAYER_ROOT_TESTID)).toBeInTheDocument();
+        });
+
+        it("should remove layer root after unmount when cleanupOnUnmount is true", async () => {
+            // Arrange
+            const {unmount} = render(<LayerRoot />);
+
+            await act(async () => {
+                await new Promise((resolve) => setTimeout(resolve, 0));
+            });
+
+            // Act
+            unmount();
+
+            // Assert
             expect(
                 screen.queryByTestId(LAYER_ROOT_TESTID),
             ).not.toBeInTheDocument();
@@ -166,8 +199,8 @@ describe("LayerRoot Component", () => {
             mockUseState.mockRestore();
         });
 
-        it("should handle multiple LayerRoot components gracefully", async () => {
-            // Arrange: Render multiple LayerRoot components
+        it("should use testId from last rendered LayerRoot component", async () => {
+            // Arrange
             render(
                 <>
                     <LayerRoot testId="first" />
@@ -175,16 +208,32 @@ describe("LayerRoot Component", () => {
                 </>,
             );
 
-            // Act: Wait for layer roots to be created
+            // Act
             await act(async () => {
                 await new Promise((resolve) => setTimeout(resolve, 0));
             });
 
-            // Assert: The last rendered component's testId should win
+            // Assert
             const layerRoot = screen.getByTestId("second");
             expect(layerRoot).toBeInTheDocument();
+        });
 
-            // Assert: Should have the layer root ID
+        it("should assign correct ID to layer root with multiple LayerRoot components", async () => {
+            // Arrange
+            render(
+                <>
+                    <LayerRoot testId="first" />
+                    <LayerRoot testId="second" />
+                </>,
+            );
+
+            // Act
+            await act(async () => {
+                await new Promise((resolve) => setTimeout(resolve, 0));
+            });
+
+            // Assert
+            const layerRoot = screen.getByTestId("second");
             expect(layerRoot).toHaveAttribute("id", LAYER_ROOT_ID);
         });
     });
@@ -278,27 +327,42 @@ describe("LayerRoot Component", () => {
     });
 
     describe("integration scenarios", () => {
-        it("should work with pre-existing layer root", async () => {
-            // Arrange: Create layer root before component renders
+        it("should detect existing layer root element via hook", async () => {
+            // Arrange
             findOrCreateLayerRoot();
             setLayerRootModalState(true);
 
-            // Act: Render component with hooks
             render(<TestHookComponent />);
 
+            // Act
             await act(async () => {
                 await new Promise((resolve) => setTimeout(resolve, 0));
             });
 
-            // Assert: Hooks should work with pre-existing layer root
+            // Assert
             expect(screen.getByTestId("layer-root-exists")).toHaveTextContent(
                 "exists",
             );
+        });
+
+        it("should read correct modal state from pre-existing layer root", async () => {
+            // Arrange
+            findOrCreateLayerRoot();
+            setLayerRootModalState(true);
+
+            render(<TestHookComponent />);
+
+            // Act
+            await act(async () => {
+                await new Promise((resolve) => setTimeout(resolve, 0));
+            });
+
+            // Assert
             expect(screen.getByTestId("modal-state")).toHaveTextContent("true");
         });
 
-        it("should handle rapid component mount/unmount cycles", async () => {
-            // Arrange & Act: Perform multiple mount/unmount cycles
+        it("should clean up layer root after multiple mount/unmount cycles", async () => {
+            // Arrange & Act
             for (let i = 0; i < 5; i++) {
                 const {unmount} = render(<LayerRoot />);
 
@@ -306,14 +370,10 @@ describe("LayerRoot Component", () => {
                     await new Promise((resolve) => setTimeout(resolve, 0));
                 });
 
-                expect(
-                    screen.getByTestId(LAYER_ROOT_TESTID),
-                ).toBeInTheDocument();
-
                 unmount();
             }
 
-            // Assert: Should end with no layer root
+            // Assert
             expect(
                 screen.queryByTestId(LAYER_ROOT_TESTID),
             ).not.toBeInTheDocument();
