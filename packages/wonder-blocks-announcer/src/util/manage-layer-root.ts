@@ -54,15 +54,27 @@ export function getLayerRootElement(): HTMLElement | null {
     return document.getElementById(LAYER_ROOT_ID);
 }
 
+// Reference counter for tracking how many modals are currently open
+let modalReferenceCount = 0;
+
 /**
- * Sets the modal state of the layer root
- * @param {boolean} isModal - Whether the layer root should be in modal mode
+ * Sets the modal state of the layer root using reference counting
+ * @param {boolean} isModal - Whether to increment (true) or decrement (false) the modal count
  */
 export function setLayerRootModalState(isModal: boolean): void {
     const layerRoot = getLayerRootElement();
-    if (layerRoot) {
-        layerRoot.setAttribute("aria-modal", isModal.toString());
+    if (!layerRoot) {
+        return;
     }
+
+    if (isModal) {
+        modalReferenceCount++;
+    } else {
+        modalReferenceCount = Math.max(0, modalReferenceCount - 1);
+    }
+
+    // Set aria-modal to true if any modals are open, false if none are open
+    layerRoot.setAttribute("aria-modal", (modalReferenceCount > 0).toString());
 }
 
 /**
@@ -82,6 +94,8 @@ export function removeLayerRoot(): void {
     if (layerRoot && layerRoot.parentElement) {
         layerRoot.parentElement.removeChild(layerRoot);
     }
+    // Reset the modal reference count when removing the layer root
+    modalReferenceCount = 0;
 }
 
 /**

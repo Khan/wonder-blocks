@@ -150,7 +150,7 @@ function ModalLauncher({
     const openModal = useCallback(() => {
         saveLastElementFocused();
         setInternalOpened(true);
-        setLayerRootModalState(true);
+        // Note: setLayerRootModalState(true) is called in useEffect when isOpened becomes true
     }, [saveLastElementFocused]);
 
     const returnFocus = useCallback(() => {
@@ -184,7 +184,7 @@ function ModalLauncher({
 
     const handleCloseModal = useCallback(() => {
         setInternalOpened(false);
-        setLayerRootModalState(false);
+        // Note: setLayerRootModalState(false) is now called in useEffect when isOpened/opened changes
 
         // Use setTimeout to ensure the state update has completed
         setTimeout(() => {
@@ -203,13 +203,27 @@ function ModalLauncher({
         }
     }, [modal, handleCloseModal]);
 
-    // Handle saving focus when modal opens (equivalent to componentDidUpdate)
+    // Handle modal state changes for both controlled and uncontrolled modes
     useEffect(() => {
-        if (isOpened) {
-            saveLastElementFocused();
-            setLayerRootModalState(true);
+        if (typeof opened === "boolean") {
+            // Controlled modal: sync layer root state with opened prop
+            if (opened) {
+                saveLastElementFocused();
+                setLayerRootModalState(true);
+            } else {
+                setLayerRootModalState(false);
+            }
+        } else {
+            // Uncontrolled modal: handle internal state changes
+            if (isOpened) {
+                saveLastElementFocused();
+                setLayerRootModalState(true);
+            } else {
+                // Handle uncontrolled modal closing
+                setLayerRootModalState(false);
+            }
         }
-    }, [isOpened, saveLastElementFocused]);
+    }, [isOpened, opened, saveLastElementFocused]);
 
     const renderedChildren = children
         ? children({

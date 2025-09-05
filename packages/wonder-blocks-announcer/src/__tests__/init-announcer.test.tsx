@@ -48,16 +48,17 @@ describe("Announcer.initAnnouncer", () => {
             }
         });
 
-        it("mounts to document.body for Live Regions by default", () => {
+        it("mounts to layer root for modal-aware Live Regions by default", () => {
             // Arrange
             announcer = initAnnouncer();
 
             // Act
             const liveRegionWrapper = screen.getByTestId("wbAnnounce");
+            const layerRoot = screen.getByTestId("wb-layer-root");
 
             // Assert
             /* eslint-disable testing-library/no-node-access */
-            expect(liveRegionWrapper.parentElement).toBe(document.body);
+            expect(liveRegionWrapper.parentElement).toBe(layerRoot);
         });
 
         it("allows a custom targetElement for mounting Live Regions", async () => {

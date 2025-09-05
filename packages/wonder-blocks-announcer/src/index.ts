@@ -15,6 +15,9 @@ import {
     setLayerRootModalState,
     getLayerRootModalState,
     useLayerRootTarget,
+    removeLayerRoot,
+    LAYER_ROOT_ID,
+    LAYER_ROOT_TESTID,
 } from "./util/manage-layer-root";
 
 export {
@@ -30,6 +33,9 @@ export {
     setLayerRootModalState,
     getLayerRootModalState,
     useLayerRootTarget,
+    removeLayerRoot,
+    LAYER_ROOT_ID,
+    LAYER_ROOT_TESTID,
 };
 
 export {type AnnounceMessageProps};

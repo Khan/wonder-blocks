@@ -5,7 +5,10 @@ import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
 import type {WithActionSchedulerProps} from "@khanacademy/wonder-blocks-timing";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
-import {useLayerRootTarget} from "@khanacademy/wonder-blocks-announcer";
+import {
+    useLayerRootTarget,
+    setLayerRootModalState,
+} from "@khanacademy/wonder-blocks-announcer";
 import FocusTrap from "./focus-trap";
 import DrawerBackdrop from "./drawer-backdrop";
 import ScrollDisabler from "./scroll-disabler";
@@ -214,6 +217,7 @@ const DrawerLauncher = (props: Props) => {
     React.useEffect(() => {
         if (controlledOpened && !prevControlledOpened.current) {
             saveLastElementFocused();
+            setLayerRootModalState(true);
         }
         prevControlledOpened.current = controlledOpened;
     }, [controlledOpened, saveLastElementFocused]);
@@ -237,6 +241,8 @@ const DrawerLauncher = (props: Props) => {
     }, [closedFocusId, schedule]);
 
     const handleCloseModal = React.useCallback(() => {
+        setLayerRootModalState(false);
+
         if (animated) {
             // If component is animated, allow time for exit animations
             setIsExiting(true);
@@ -265,6 +271,7 @@ const DrawerLauncher = (props: Props) => {
     const openModal = React.useCallback(() => {
         saveLastElementFocused();
         setUncontrolledOpened(true);
+        setLayerRootModalState(true);
     }, [saveLastElementFocused]);
 
     // Memoize drawerDialogProps to prevent unnecessary re-renders of DrawerContext consumers
