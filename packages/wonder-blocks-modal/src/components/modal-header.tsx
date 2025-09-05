@@ -137,7 +137,6 @@ const small = "@media (max-width: 767px)";
 
 const styles = StyleSheet.create({
     header: {
-        // TODO(WB-1878): Move this to an `elevation` theme token.
         boxShadow: `0px 1px 0px ${semanticColor.core.border.neutral.subtle}`,
         display: "flex",
         flexDirection: "column",
