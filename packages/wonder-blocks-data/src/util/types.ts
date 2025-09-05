@@ -16,6 +16,9 @@ export enum FetchPolicy {
     /**
      * If the data is in the cache, use that data and do not fetch.
      * Otherwise, provide `no-data` while data is fetched from the server.
+     *
+     * This is usually the policy you want. It means the value is retrieved
+     * once and then reused from cache thereafter.
      */
     CacheBeforeNetwork = "CacheBeforeNetwork",
 
@@ -23,6 +26,11 @@ export enum FetchPolicy {
      * If the data is in the cache, use that data, but also fetch an update
      * from the server if one was not already fetched.
      * Otherwise, provide `no-data` while data is fetched from the server.
+     *
+     * If there is no cached data, this behaves like `NetworkOnly` while
+     * data is being fetched. If there is cached data, this behaves like
+     * `CacheOnly` while data is being fetched, and then updates the cache
+     * when the fetch completes, before acting like `NetworkOnly` thereafter.
      */
     CacheAndNetwork = "CacheAndNetwork",
 
