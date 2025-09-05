@@ -37,7 +37,7 @@ type CachedEffectOptions<TData extends ValidCacheData> = {
      *
      * Defaults to `FetchPolicy.CacheBeforeNetwork`.
      */
-    fetchPolicy?: (typeof FetchPolicy)[keyof typeof FetchPolicy];
+    fetchPolicy?: FetchPolicy;
     /**
      * When `true`, the effect will not be executed; otherwise, the effect will
      * be executed.

@@ -14,20 +14,20 @@ import {Meta} from "@storybook/blocks";
  * fetches while one fetch is already in progress.
  *
  * It is up to the implementation to decide how to handle cache misses, but
- * most cases likely return a `no-data` or, in the case of a network-only
- * policy, `loading` result, depending on the policy.
+ * most cases likely return a `no-data` or, in the case where a request is
+ * being made for the data, a `loading` result.
  */
 export enum FetchPolicy {
     /**
      * If the data is in the cache, use that data and do not fetch.
-     * Otherwise, provide `no-data` while data is fetched from the server.
+     * Otherwise, provide `loading` while data is fetched from the server.
      */
     CacheBeforeNetwork = "CacheBeforeNetwork",
 
     /**
      * If the data is in the cache, use that data, but also fetch an update
      * from the server (inflight requests are shared).
-     * Otherwise, provide `no-data` while data is fetched from the server.
+     * Otherwise, provide `loading` while data is fetched from the server.
      */
     CacheAndNetwork = "CacheAndNetwork",
 
