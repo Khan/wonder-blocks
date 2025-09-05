@@ -6,6 +6,8 @@ import paperPlaneIcon from "@phosphor-icons/core/fill/paper-plane-tilt-fill.svg"
 import {ConversationIconButton} from "@khanacademy/wonder-blocks-icon-button";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 import {themeModes} from "../../.storybook/modes";
+import {ScenariosLayout} from "../components/scenarios-layout";
+import {Icon} from "@khanacademy/wonder-blocks-icon";
 
 /**
  * The following stories are used to generate the pseudo states for the
@@ -64,5 +66,30 @@ export const StateSheetStory: StoryComponentType = {
     },
     parameters: {
         pseudo: defaultPseudoStates,
+    },
+};
+
+export const Scenarios: StoryComponentType = {
+    render: () => {
+        const scenarios = [
+            {
+                name: "With custom icon",
+                props: {
+                    icon: (
+                        <Icon>
+                            <img src="logo.svg" alt="" />
+                        </Icon>
+                    ),
+                    "aria-label": "Wonder Blocks",
+                    kind: "secondary",
+                },
+            },
+        ];
+
+        return (
+            <ScenariosLayout scenarios={scenarios}>
+                {(props) => <ConversationIconButton {...props} />}
+            </ScenariosLayout>
+        );
     },
 };

@@ -87,9 +87,22 @@ export const ConversationIconButton: React.ForwardRefExoticComponent<
             style={styles}
             type={type}
         >
-            <PhosphorIcon size="small" color="currentColor" icon={icon} />
+            {/* If the icon is not a string, it is a custom icon that can be
+            rendered directly with the corresponding styles */}
+            {typeof icon !== "string" ? (
+                React.cloneElement(icon, {style: [staticStyles.icon]})
+            ) : (
+                <PhosphorIcon size="small" color="currentColor" icon={icon} />
+            )}
         </IconButtonUnstyled>
     );
+});
+
+const staticStyles = StyleSheet.create({
+    icon: {
+        width: sizing.size_160,
+        height: sizing.size_160,
+    },
 });
 
 const styles: Record<string, any> = {};

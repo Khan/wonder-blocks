@@ -23,6 +23,7 @@ import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon-button/package.json";
 import IconButtonArgtypes from "./icon-button.argtypes";
 import TextField from "../../packages/wonder-blocks-form/src/components/text-field";
+import {Icon} from "@khanacademy/wonder-blocks-icon";
 
 /**
  * An `IconButton` is a button whose contents are an SVG image.
@@ -374,6 +375,30 @@ export const SubmittingForms: StoryComponentType = {
             // We are testing the form submission, not UI changes.
             disableSnapshot: true,
         },
+    },
+};
+
+/**
+ * For non-Phosphor icons, you can use the Wonder Blocks Icon component to wrap
+ * the custom icon.
+ *
+ * Note: The IconButton component will handle the sizing for the icon.
+ */
+export const WithCustomIcon: StoryComponentType = {
+    render: (args) => (
+        <IconButton
+            {...args}
+            icon={
+                <Icon>
+                    <img src="logo.svg" alt="" />
+                </Icon>
+            }
+            aria-label="Wonder Blocks"
+            onClick={(e) => action("clicked")(e)}
+        />
+    ),
+    args: {
+        kind: "secondary",
     },
 };
 

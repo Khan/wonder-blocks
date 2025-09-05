@@ -43,11 +43,6 @@ const core = {
             default: color.gray_70,
             strong: color.gray_60,
         },
-        inverse: {
-            subtle: color.gray_60,
-            default: color.gray_90,
-            strong: color.white_100,
-        },
         knockout: {
             default: color.white_100,
         },
@@ -64,7 +59,7 @@ const core = {
             strong: color.blue_10,
         },
         neutral: {
-            subtle: color.white_100,
+            subtle: color.gray_80,
             default: color.gray_20,
             strong: color.black_100,
         },
@@ -127,11 +122,6 @@ const core = {
             default: color.gray_50,
             strong: color.gray_40,
         },
-        inverse: {
-            subtle: color.gray_60,
-            default: color.gray_90,
-            strong: color.white_100,
-        },
         knockout: {
             default: color.white_100,
         },
@@ -154,14 +144,6 @@ const core = {
             },
         },
     },
-};
-
-const surface = {
-    primary: color.white_100,
-    secondary: color.blue_90,
-    emphasis: color.blue_70,
-    inverse: color.gray_05,
-    overlay: color.black_50,
 };
 
 const sharedFeedbackStrongTokens = {
@@ -567,8 +549,6 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
             foreground: color.gray_10,
         },
     },
-
-    surface,
 
     focus: {
         outer: color.blue_30,
