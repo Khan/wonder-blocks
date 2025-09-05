@@ -14,6 +14,7 @@ import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-banner/package.json";
 import crownIcon from "../wonder-blocks-icon/icons/crown.svg";
 import {reallyLongText} from "../components/text-for-testing";
+import {Icon} from "@khanacademy/wonder-blocks-icon";
 
 type StoryComponentType = StoryObj<typeof Banner>;
 
@@ -541,7 +542,7 @@ export const WithPhosphorIcon: StoryComponentType = {
  * `icon` prop is not set, a default icon will be used in the banner depending
  * on the `kind` prop.
  *
- * To use a custom icon, you can use the following syntax:
+ * To use a custom icon that has a solid fill, you can use the following syntax:
  *
  * ```jsx
  * // This SVG should have the following attributes:
@@ -557,13 +558,37 @@ export const WithPhosphorIcon: StoryComponentType = {
  * will always have an `aria-label` that communicates the kind of banner
  * (e.g. "info").
  */
-export const WithCustomIcon: StoryComponentType = {
+export const WithCustomSolidIcon: StoryComponentType = {
     render: (args) => (
         <Banner
             icon={crownIcon}
             {...args}
             layout="floating"
             text="Here is an example with a custom icon"
+        />
+    ),
+};
+
+/**
+ * For non-Phosphor icons, you can use the Wonder Blocks Icon component to wrap
+ * a custom icon. The Banner component will handle the sizing for the icon.
+ *
+ * Accessibility: When customizing the icon, make sure to:
+ * - Provide alt text for the icon
+ * - Make sure important information about the banner kind is still communicated
+ * to the user so that color alone isn't used to convey meaning.
+ */
+export const WithCustomIcon: StoryComponentType = {
+    render: (args) => (
+        <Banner
+            {...args}
+            icon={
+                <Icon>
+                    <img src="logo.svg" alt="Wonder Blocks" />
+                </Icon>
+            }
+            kind="success"
+            text="Success! Here is an example with a custom icon"
         />
     ),
 };
