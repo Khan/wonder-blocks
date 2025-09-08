@@ -30,6 +30,10 @@ type Props = AccessibleDialogProps & {
      */
     content: React.ReactElement | ((slots: RenderProps) => React.ReactElement);
     /**
+     * The optional footer of the modal.
+     */
+    footer?: React.ReactElement;
+    /**
      * Called when the close button is clicked.
      *
      * If you're using `ModalLauncher`, you probably shouldn't use this prop!
@@ -108,6 +112,7 @@ type RenderProps = {
  *             qui officia deserunt mollit anim id est.`}
  *         </BodyText>
  *     }
+ *     footer={<Button>Ok</Button>}
  * />
  * ```
  *
@@ -120,6 +125,7 @@ type RenderProps = {
  * - `styles.panel` - The inner dialog flex panel, targeting the internal `FlexiblePanel` component
  * - `styles.content` - The internal `ModalContent` component, which sets padding
  * - `styles.closeButton` - The close button, including absolute positioning
+ * - `styles.footer` - The optional footer, centered and positioned at bottom by default
  */
 const FlexibleDialog = React.forwardRef(function FlexibleDialog(
     props: Props,
@@ -129,6 +135,7 @@ const FlexibleDialog = React.forwardRef(function FlexibleDialog(
         onClose,
         title,
         content,
+        footer,
         styles,
         closeButtonVisible = true,
         testId,
@@ -174,6 +181,7 @@ const FlexibleDialog = React.forwardRef(function FlexibleDialog(
                     content={content}
                     closeButtonVisible={closeButtonVisible}
                     testId={testId}
+                    footer={footer}
                 />
             </View>
         </View>

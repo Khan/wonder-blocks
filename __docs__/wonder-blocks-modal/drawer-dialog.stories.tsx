@@ -180,6 +180,39 @@ export const WithNoPadding: StoryComponentType = {
     ),
 };
 
+export const WithFooter: StoryComponentType = {
+    render: () => (
+        <DrawerLauncher
+            alignment="inlineEnd"
+            modal={({closeModal}) => (
+                <DrawerDialog
+                    title="Drawer with Footer"
+                    styles={{
+                        content: {
+                            padding: 0,
+                            [small]: {
+                                paddingInline: 0,
+                            },
+                        },
+                    }}
+                    content={
+                        <View>
+                            <BodyText>
+                                This is a drawer dialog with an optional footer.
+                            </BodyText>
+                        </View>
+                    }
+                    footer={<Button onClick={closeModal}>Submit</Button>}
+                />
+            )}
+        >
+            {({openModal}) => (
+                <Button onClick={openModal}>Open Default Drawer</Button>
+            )}
+        </DrawerLauncher>
+    ),
+};
+
 /**
  * Drawer with rich content including form elements and actions.
  * Demonstrates how to create more complex drawer interfaces.

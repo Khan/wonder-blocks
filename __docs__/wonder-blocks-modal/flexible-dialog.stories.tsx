@@ -204,6 +204,31 @@ export const WithNoPadding: StoryComponentType = {
     ),
 };
 
+export const WithFooter: StoryComponentType = {
+    render: () => (
+        <ModalLauncher
+            modal={({closeModal}) => (
+                <FlexibleDialog
+                    title="Flexible dialog"
+                    content={
+                        <View>
+                            <BodyText>
+                                This is a flexible dialog with an optional
+                                footer.
+                            </BodyText>
+                        </View>
+                    }
+                    footer={<Button onClick={closeModal}>Submit</Button>}
+                />
+            )}
+        >
+            {({openModal}) => (
+                <Button onClick={openModal}>Open Flexible Dialog</Button>
+            )}
+        </ModalLauncher>
+    ),
+};
+
 /**
  *
  * A FlexibleDialog can have a movable title via the

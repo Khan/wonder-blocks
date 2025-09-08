@@ -6,6 +6,7 @@ import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {StyleSheet} from "aphrodite";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import ModalContent from "./modal-content";
+import FlexibleFooter from "./flexible-footer";
 import CloseButton from "./close-button";
 import theme from "../theme";
 
@@ -27,6 +28,10 @@ type Props = {
         | ((slots: RenderProps) => React.ReactElement)
         | React.ReactElement;
     /**
+     * The optional footer for the dialog.
+     */
+    footer?: React.ReactElement<PropsFor<typeof FlexibleFooter>>;
+    /**
      * When true, the close button is shown; otherwise, the close button is not shown.
      */
     closeButtonVisible: boolean;
@@ -37,6 +42,7 @@ type Props = {
         panel?: StyleType;
         content?: StyleType;
         closeButton?: StyleType;
+        footer?: StyleType;
     };
     /**
      * Called when the close button is clicked.
@@ -76,6 +82,7 @@ type Props = {
 export default function FlexiblePanel({
     closeButtonVisible = true,
     content,
+    footer,
     title,
     onClose,
     styles,
@@ -132,6 +139,7 @@ export default function FlexiblePanel({
                 />
             )}
             {mainContent}
+            <FlexibleFooter styles={styles?.footer}>{footer}</FlexibleFooter>
         </View>
     );
 }

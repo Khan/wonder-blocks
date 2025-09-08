@@ -40,6 +40,14 @@ export default {
             },
         },
     },
+    footer: {
+        control: {type: undefined},
+        table: {
+            type: {
+                summary: "ReactElement",
+            },
+        },
+    },
 
     // Interaction props
     onClose: {
@@ -71,7 +79,7 @@ export default {
         table: {
             type: {
                 summary:
-                    "{root?: StyleType, dialog?: StyleType, panel?: StyleType, content?: StyleType, closeButton?: StyleType}",
+                    "{root?: StyleType, dialog?: StyleType, panel?: StyleType, content?: StyleType, closeButton?: StyleType, footer?: StyleType}",
             },
         },
     },

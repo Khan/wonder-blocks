@@ -20,6 +20,19 @@ export default {
             required: true,
         },
     },
+    footer: {
+        control: {type: undefined},
+        table: {
+            type: {
+                summary: "React.ReactNode",
+            },
+        },
+        type: {
+            name: "other",
+            value: "React.ReactNode",
+            required: false,
+        },
+    },
 
     onClose: {
         table: {type: {summary: "() => unknown"}},
@@ -48,7 +61,7 @@ export default {
         table: {
             type: {
                 summary:
-                    "{root?: StyleType, dialog?: StyleType, panel?: StyleType, content?: StyleType, closeButton?: StyleType}",
+                    "{root?: StyleType, dialog?: StyleType, panel?: StyleType, content?: StyleType, closeButton?: StyleType, footer?: StyleType}",
             },
         },
     },

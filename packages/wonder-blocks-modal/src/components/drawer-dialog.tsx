@@ -35,6 +35,10 @@ type Props = AccessibleDialogProps & {
      */
     content: React.ReactElement | ((slots: RenderProps) => React.ReactElement);
     /**
+     * The optional footer of the modal.
+     */
+    footer?: React.ReactElement;
+    /**
      * Called when the close button is clicked.
      *
      * If you're using `DrawerLauncher`, you probably shouldn't use this prop!
@@ -111,6 +115,7 @@ type RenderProps = {
  *             qui officia deserunt mollit anim id est.`}
  *         </BodyText>
  *     }
+ *     footer={<Button>Ok</Button>}
  * />
  * ```
  *
@@ -123,6 +128,7 @@ type RenderProps = {
  * - `styles.panel` - The inner dialog panel, targeting the internal `FlexiblePanel` component
  * - `styles.content` - The internal `ModalContent` component, which sets padding
  * - `styles.closeButton` - The close button, including absolute positioning
+ * - `styles.footer` - The optional footer, centered and positioned at bottom by default
  */
 const DrawerDialog = React.forwardRef(function DrawerDialog(
     props: Props,
@@ -170,6 +176,7 @@ const DrawerDialog = React.forwardRef(function DrawerDialog(
                 content: styles?.content,
                 closeButton: styles?.closeButton,
             }}
+            footer={props.footer}
         />
     );
 });
