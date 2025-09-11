@@ -5,6 +5,7 @@ import {Popper} from "react-popper";
 import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import {Placement} from "@popperjs/core";
 import {maxHeightModifier} from "../util/popper-max-height-modifier";
 
 const modifiers = [
@@ -36,7 +37,7 @@ type Props = {
      * Whether this menu should be left-aligned or right-aligned with the
      * reference component. Defaults to left-aligned.
      */
-    alignment?: "left" | "right";
+    alignment?: "left" | "right" | Placement;
     /**
      * The popper's reference.
      * @see https://popper.js.org/react-popper/v2/render-props/#innerref
@@ -71,6 +72,13 @@ const DropdownPopper = function ({
         return null;
     }
 
+    const placement =
+        alignment === "left"
+            ? "bottom-start"
+            : alignment === "right"
+              ? "bottom-end"
+              : alignment;
+
     return ReactDOM.createPortal(
         <Popper
             innerRef={(node?: HTMLElement | null) => {
@@ -80,7 +88,7 @@ const DropdownPopper = function ({
             }}
             referenceElement={referenceElement}
             strategy="fixed"
-            placement={alignment === "left" ? "bottom-start" : "bottom-end"}
+            placement={placement}
             modifiers={modifiers}
         >
             {({placement, ref, style, hasPopperEscaped, isReferenceHidden}) => {

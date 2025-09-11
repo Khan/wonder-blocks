@@ -389,6 +389,21 @@ export const CustomOpener: StoryComponentType = {
 };
 
 /**
+ * Sometimes you may want to align the dropdown somewhere besides below the
+ * opener. In these cases, you can specify any valid popper placement as the
+ * alignment.
+ */
+export const WithPopperPlacement: StoryComponentType = {
+    name: "With popper placement",
+    args: {
+        alignment: "right-start",
+        opener: ({text}: any) => (
+            <Button endIcon={IconMappings.caretRight}>{text}</Button>
+        ),
+    } as Partial<typeof ActionMenu>,
+};
+
+/**
  * You can use the `lang` attribute to specify the language of the action
  * item(s). This is useful if you want to avoid issues with Screen Readers
  * trying to read the proper language for the rendered text.

@@ -16,6 +16,7 @@ import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import type {WithActionSchedulerProps} from "@khanacademy/wonder-blocks-timing";
+import {Placement} from "@popperjs/core";
 import DropdownCoreVirtualized from "./dropdown-core-virtualized";
 import SeparatorItem from "./separator-item";
 import {defaultLabels} from "../util/constants";
@@ -65,7 +66,7 @@ type DefaultProps = Readonly<{
      * Whether this menu should be left-aligned or right-aligned with the
      * opener component. Defaults to left-aligned.
      */
-    alignment: "left" | "right";
+    alignment: "left" | "right" | Placement;
     /**
      * Whether to auto focus an option. Defaults to true.
      */
@@ -177,7 +178,7 @@ type ExportProps = Readonly<{
      * Whether this menu should be left-aligned or right-aligned with the
      * opener component. Defaults to left-aligned.
      */
-    alignment?: "left" | "right";
+    alignment?: "left" | "right" | Placement;
     /**
      * Whether to auto focus an option. Defaults to true.
      */
