@@ -1,5 +1,27 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.3.12
+
+### Patch Changes
+
+- f627dca: Updates listbox to use boxShadow tokens
+- 6963849: Updated `core.shadow.transparent` to use the new subcategories (`low`, `mid`, `high`)
+- Updated dependencies [6963849]
+- Updated dependencies [f627dca]
+- Updated dependencies [6963849]
+- Updated dependencies [f627dca]
+    - @khanacademy/wonder-blocks-tokens@14.0.0
+    - @khanacademy/wonder-blocks-modal@8.4.3
+    - @khanacademy/wonder-blocks-cell@5.0.14
+    - @khanacademy/wonder-blocks-clickable@7.1.26
+    - @khanacademy/wonder-blocks-form@7.3.8
+    - @khanacademy/wonder-blocks-icon@5.2.20
+    - @khanacademy/wonder-blocks-icon-button@10.5.1
+    - @khanacademy/wonder-blocks-pill@3.1.41
+    - @khanacademy/wonder-blocks-search-field@5.1.46
+    - @khanacademy/wonder-blocks-styles@0.2.32
+    - @khanacademy/wonder-blocks-typography@4.2.22
+
 ## 10.3.11
 
 ### Patch Changes

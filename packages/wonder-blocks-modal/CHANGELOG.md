@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-modal
 
+## 8.4.3
+
+### Patch Changes
+
+- 6963849: Updated `core.shadow.transparent` to use the new subcategories (`low`, `mid`, `high`)
+- f627dca: Updates boxShadow to use `boxShadow` tokens.
+- Updated dependencies [6963849]
+- Updated dependencies [f627dca]
+    - @khanacademy/wonder-blocks-tokens@14.0.0
+    - @khanacademy/wonder-blocks-breadcrumbs@3.2.4
+    - @khanacademy/wonder-blocks-icon-button@10.5.1
+    - @khanacademy/wonder-blocks-layout@3.1.37
+    - @khanacademy/wonder-blocks-styles@0.2.32
+    - @khanacademy/wonder-blocks-typography@4.2.22
+
 ## 8.4.2
 
 ### Patch Changes

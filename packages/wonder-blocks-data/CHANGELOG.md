@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-data
 
+## 14.1.6
+
+### Patch Changes
+
+- 642b5d7: Update docs to provide clearer details on fetch policy behaviors
+
 ## 14.1.5
 
 ### Patch Changes
