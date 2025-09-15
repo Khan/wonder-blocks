@@ -5,6 +5,7 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {
     border,
+    boxShadow,
     semanticColor,
     spacing,
 } from "@khanacademy/wonder-blocks-tokens";
@@ -104,8 +105,7 @@ const styles = StyleSheet.create({
         borderRadius: border.radius.radius_040,
         border: `solid 1px ${semanticColor.core.border.neutral.subtle}`,
         backgroundColor: semanticColor.core.background.base.default,
-        // TODO(WB-1878): Use `elevation` token.
-        boxShadow: `0 ${spacing.xSmall_8}px ${spacing.xSmall_8}px 0 ${semanticColor.core.shadow.transparent.low}`,
+        boxShadow: boxShadow.mid,
         margin: 0,
         maxWidth: spacing.medium_16 * 18, // 288px
         padding: spacing.large_24,

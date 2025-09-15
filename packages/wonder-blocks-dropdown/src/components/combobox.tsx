@@ -745,7 +745,6 @@ const styles = StyleSheet.create({
         backgroundColor: semanticColor.core.background.base.default,
         borderRadius: theme.listbox.border.radius,
         border: `solid ${border.width.thin} ${semanticColor.core.border.neutral.subtle}`,
-        // TODO(WB-1878): Move to elevation tokens.
         boxShadow: theme.listbox.shadow.default,
         // We use a custom property to set the max height of the dropdown.
         // This comes from the maxHeight custom modifier.

@@ -240,9 +240,9 @@ export default class TooltipTail extends React.Component<Props> {
              */
             <g key="dropshadow" transform={`translate(${offsetShadowX},5.5)`}>
                 <polyline
-                    fill={semanticColor.core.shadow.transparent.low}
+                    fill={semanticColor.core.shadow.transparent.mid}
                     points={points.join(" ")}
-                    stroke={semanticColor.core.shadow.transparent.low}
+                    stroke={semanticColor.core.shadow.transparent.mid}
                     filter={`url(#${dropShadowFilterId})`}
                 />
             </g>,
@@ -385,7 +385,7 @@ export default class TooltipTail extends React.Component<Props> {
                     // the border of the tooltip.
                     fill={color[arrowColor]}
                     points={points.join(" ")}
-                    stroke={semanticColor.core.shadow.transparent.low}
+                    stroke={semanticColor.core.shadow.transparent.mid}
                 />
                 {/* Draw a trimline to make the arrow appear flush */}
                 <polyline

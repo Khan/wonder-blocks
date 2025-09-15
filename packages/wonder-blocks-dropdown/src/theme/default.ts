@@ -1,5 +1,6 @@
 import {
     border,
+    boxShadow,
     font,
     semanticColor,
     sizing,
@@ -17,7 +18,7 @@ export default {
             },
         },
         shadow: {
-            default: `0 ${sizing.size_080} ${sizing.size_080} 0 ${semanticColor.core.shadow.transparent.low}`,
+            default: boxShadow.mid,
         },
     },
     opener: {

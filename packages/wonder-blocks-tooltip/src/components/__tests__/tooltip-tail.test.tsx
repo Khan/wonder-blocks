@@ -81,10 +81,10 @@ describe("TooltipTail", () => {
         transform="translate(0,5.5)"
       >
         <polyline
-          fill="var(--wb-semanticColor-core-shadow-transparent-low)"
+          fill="var(--wb-semanticColor-core-shadow-transparent-mid)"
           filter="url(#tooltip-dropshadow-top-3)"
           points="0,0 12,12 24,0"
-          stroke="var(--wb-semanticColor-core-shadow-transparent-low)"
+          stroke="var(--wb-semanticColor-core-shadow-transparent-mid)"
         />
       </g>
       <polyline
@@ -95,7 +95,7 @@ describe("TooltipTail", () => {
       <polyline
         fill="#ffffff"
         points="0,0 12,12 24,0"
-        stroke="var(--wb-semanticColor-core-shadow-transparent-low)"
+        stroke="var(--wb-semanticColor-core-shadow-transparent-mid)"
       />
       <polyline
         points="0,-0.5 24,-0.5"

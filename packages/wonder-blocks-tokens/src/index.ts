@@ -15,13 +15,14 @@ import {mapValuesToCssVars} from "./internal/map-values-to-css-vars";
 // theme
 import theme from "./tokens/theme";
 
-const {border, semanticColor, sizing, font} = theme;
+const {border, boxShadow, semanticColor, sizing, font} = theme;
 
 export {
     /**
      * Primitive tokens for the Wonder Blocks design system.
      */
     border,
+    boxShadow,
     // TODO(WB-1989): Remove this export once all consumers have migrated to
     // using semanticColor.
     color,

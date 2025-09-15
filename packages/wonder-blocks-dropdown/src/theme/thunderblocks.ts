@@ -2,6 +2,7 @@ import {mergeTheme} from "@khanacademy/wonder-blocks-theming";
 
 import {
     border,
+    boxShadow,
     font,
     semanticColor,
     sizing,
@@ -20,7 +21,7 @@ export default mergeTheme(defaultTheme, {
             },
         },
         shadow: {
-            default: `0 ${sizing.size_020} ${sizing.size_020} 0 ${semanticColor.core.shadow.transparent.low}`,
+            default: boxShadow.low,
         },
     },
     opener: {
