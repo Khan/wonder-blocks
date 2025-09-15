@@ -167,10 +167,14 @@ const withThemeSwitcher: Decorator = (
  */
 const withLanguageDirection: Decorator = (Story, context) => {
     React.useEffect(() => {
-        if (context.globals.direction === "rtl") {
-            document.documentElement.setAttribute("dir", "rtl");
-        } else {
-            document.documentElement.setAttribute("dir", "ltr");
+        // Only set the dir attribute on the document.documentElement if we are in a story
+        // so docs pages don't have the dir attribute set.
+        if (context.viewMode === "story") {
+            if (context.globals.direction === "rtl") {
+                document.documentElement.setAttribute("dir", "rtl");
+            } else {
+                document.documentElement.setAttribute("dir", "ltr");
+            }
         }
 
         // Cleanup on unmount
