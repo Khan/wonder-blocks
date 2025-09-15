@@ -4,7 +4,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {
     border,
     color,
-    elevation,
+    boxShadow,
     semanticColor,
 } from "@khanacademy/wonder-blocks-tokens";
 
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
         borderRadius: border.radius.radius_040,
         border: `solid 1px ${semanticColor.core.border.neutral.subtle}`,
         backgroundColor: semanticColor.core.background.base.default,
-        boxShadow: `${elevation.mid} ${semanticColor.core.shadow.transparent.mid}`,
+        boxShadow: boxShadow.mid,
         justifyContent: "center",
     },
 });

@@ -4,4 +4,4 @@
 "@khanacademy/wonder-blocks-modal": patch
 ---
 
-Updates boxShadow to use `elevation` tokens.
+Updates boxShadow to use `boxShadow` tokens.

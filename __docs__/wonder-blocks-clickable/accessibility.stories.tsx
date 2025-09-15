@@ -5,7 +5,7 @@ import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {
-    elevation,
+    boxShadow,
     semanticColor,
     spacing,
 } from "@khanacademy/wonder-blocks-tokens";
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     },
     panel: {
         padding: spacing.medium_16,
-        boxShadow: `${elevation.mid} ${semanticColor.core.shadow.transparent.mid}`,
+        boxShadow: boxShadow.mid,
     },
     tabButton: {
         width: "100%",

@@ -1,6 +1,6 @@
 import {
     border,
-    elevation,
+    boxShadow,
     font,
     semanticColor,
     sizing,
@@ -18,7 +18,7 @@ export default {
             },
         },
         shadow: {
-            default: `${elevation.mid} ${semanticColor.core.shadow.transparent.mid}`,
+            default: boxShadow.mid,
         },
     },
     opener: {

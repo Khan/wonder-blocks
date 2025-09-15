@@ -2,4 +2,4 @@
 "@khanacademy/wonder-blocks-dropdown": patch
 ---
 
-Updates listbox to use elevation tokens
+Updates listbox to use boxShadow tokens

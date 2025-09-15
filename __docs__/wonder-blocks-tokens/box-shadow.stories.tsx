@@ -4,7 +4,7 @@ import {Meta} from "@storybook/react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import TokenTable from "../components/token-table";
 import {
-    elevation,
+    boxShadow,
     semanticColor,
     sizing,
 } from "@khanacademy/wonder-blocks-tokens";
@@ -13,24 +13,22 @@ import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
 import {Code} from "../components/code";
 
 /**
- * The `elevation` tokens are used to define the box-shadow of an element.
- *
- * Note: We don't define box-shadow colors here, and instead we recommend you to
- * rely on the `semanticColor.core.shadow` tokens to build on top of that.
+ * The `boxS` tokens are used to define the box-shadow of an element. This
+ * includes both the elevation and the shadow color of it.
  *
  * ## Usage
  *
  * ```ts
- *   import {elevation} from "@khanacademy/wonder-blocks-tokens";
+ *   import {boxShadow} from "@khanacademy/wonder-blocks-tokens";
  *   const styles = {
  *       elevatedContainer: {
- *           boxShadow: `{elevation.low} ${semanticColor.core.shadow.transparent.low}`,
+ *           boxShadow: boxShadow.low,
  *       },
  *   };
  * ```
  */
 export default {
-    title: "Packages /Tokens / Elevation",
+    title: "Packages /Tokens / boxShadow",
     parameters: {
         docs: {
             // Use a custom page so the SB <Primary> component is not rendered
@@ -56,35 +54,31 @@ export default {
 } as Meta;
 
 type Row = {label: string; css: string; value: string};
-const baseColumns = (kind: string) => [
-    {
-        label: "Token",
-        cell: (row: Row) => <Code>{`elevation.${row.label}`}</Code>,
-    },
-    {
-        label: "CSS Variable",
-        cell: (row: Row) => <Code>{row.css}</Code>,
-    },
-    {
-        label: "Value",
-        cell: "value",
-    },
-];
 
 export const Elevation = {
     render: () => (
         <TokenTable
             columns={[
-                ...baseColumns("elevation"),
+                {
+                    label: "Token",
+                    cell: (row: Row) => <Code>{`boxShadow.${row.label}`}</Code>,
+                },
+                {
+                    label: "CSS Variable",
+                    cell: (row: Row) => <Code>{row.css}</Code>,
+                },
+                {
+                    label: "Value",
+                    cell: "value",
+                },
                 {
                     label: "Example",
                     cell: (row) => (
                         <View
                             style={{
                                 backgroundColor:
-                                    semanticColor.core.background.instructive
-                                        .default,
-                                boxShadow: `var(${row.css}) ${semanticColor.core.shadow.transparent.low}`,
+                                    semanticColor.core.background.base.default,
+                                boxShadow: `var(${row.css})`,
                                 width: sizing.size_480,
                                 height: sizing.size_480,
                             }}
@@ -94,7 +88,7 @@ export const Elevation = {
                     ),
                 },
             ]}
-            tokens={elevation}
+            tokens={boxShadow}
         />
     ),
 };

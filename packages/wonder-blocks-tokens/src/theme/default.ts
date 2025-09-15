@@ -2,7 +2,7 @@ import {sizing} from "./primitive/sizing";
 import {font} from "./primitive/font";
 import {semanticColor} from "./semantic/semantic-color";
 import {border} from "./primitive/border";
-import {elevation} from "./primitive/elevation";
+import {boxShadow} from "./primitive/box-shadow";
 
 /**
  * NOTE: All the tokens included in this `theme` file will be automatically
@@ -15,7 +15,9 @@ import {elevation} from "./primitive/elevation";
  */
 export default {
     border,
-    elevation,
+    // We need to pass semanticColor to boxShadow to have access to the
+    // correct shadow colors.
+    boxShadow: boxShadow(semanticColor),
     font,
     semanticColor,
     sizing,
