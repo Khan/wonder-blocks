@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 14.0.0
+
+### Major Changes
+
+- 6963849: Updates `core.shadow.transparent` to include `low`, `mid` and `high` tokens. Renames `shadow.chonky.progressive` to `shadow.chonky.instructive`.
+
+### Minor Changes
+
+- f627dca: Adds `boxShadow` tokens to systematize box shadows.
+
 ## 13.0.0
 
 ### Major Changes

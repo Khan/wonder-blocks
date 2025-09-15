@@ -1,5 +1,23 @@
 # @khanacademy/wonder-blocks-popover
 
+## 6.1.33
+
+### Patch Changes
+
+- 6963849: Updates boxShadow to use `core.shadow.transparent.low` instead of a primitive `color` token.
+- f627dca: Updates boxShadow to use `boxShadow` tokens.
+- Updated dependencies [6963849]
+- Updated dependencies [f627dca]
+- Updated dependencies [6963849]
+- Updated dependencies [6963849]
+- Updated dependencies [f627dca]
+    - @khanacademy/wonder-blocks-tokens@14.0.0
+    - @khanacademy/wonder-blocks-modal@8.4.3
+    - @khanacademy/wonder-blocks-tooltip@4.1.47
+    - @khanacademy/wonder-blocks-icon-button@10.5.1
+    - @khanacademy/wonder-blocks-styles@0.2.32
+    - @khanacademy/wonder-blocks-typography@4.2.22
+
 ## 6.1.32
 
 ### Patch Changes
