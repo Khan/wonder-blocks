@@ -13,7 +13,7 @@ import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
 import {Code} from "../components/code";
 
 /**
- * The `boxS` tokens are used to define the box-shadow of an element. This
+ * The `boxShadow` tokens are used to define the box-shadow of an element. This
  * includes both the elevation and the shadow color of it.
  *
  * ## Usage
@@ -28,7 +28,7 @@ import {Code} from "../components/code";
  * ```
  */
 export default {
-    title: "Packages /Tokens / boxShadow",
+    title: "Packages /Tokens / Box Shadow",
     parameters: {
         docs: {
             // Use a custom page so the SB <Primary> component is not rendered
@@ -55,7 +55,7 @@ export default {
 
 type Row = {label: string; css: string; value: string};
 
-export const Elevation = {
+export const BoxShadow = {
     render: () => (
         <TokenTable
             columns={[

@@ -2,7 +2,7 @@ import {sizing} from "./primitive/sizing";
 import {font} from "./primitive/font";
 import {semanticColor} from "./semantic/semantic-color";
 import {border} from "./primitive/border";
-import {boxShadow} from "./primitive/box-shadow";
+import {boxShadow} from "./semantic/box-shadow";
 
 /**
  * NOTE: All the tokens included in this `theme` file will be automatically

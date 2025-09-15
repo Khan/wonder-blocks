@@ -1,6 +1,6 @@
 import {remToPx} from "../../util";
-import {sizing} from "./sizing";
-import {semanticColor} from "../semantic/semantic-color";
+import {sizing} from "../primitive/sizing";
+import {semanticColor} from "./semantic-color";
 
 type SemanticColor = typeof semanticColor;
 
