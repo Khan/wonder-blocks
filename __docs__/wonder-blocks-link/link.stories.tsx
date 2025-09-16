@@ -67,23 +67,6 @@ export const Default: StoryComponentType = {
 };
 
 /**
- * Minimal link usage on a dark background. This link has its `light` prop set
- * to true. It links to the top of the page.
- */
-export const LightPrimary: StoryComponentType = {
-    render: () => (
-        <Link href="#link" style={actionStyles.inverse}>
-            The quick brown fox jumps over the lazy dog.
-        </Link>
-    ),
-    parameters: {
-        backgrounds: {
-            default: "neutralStrong",
-        },
-    },
-};
-
-/**
  * When a link is external and target="_blank", the external icon is
  * automatically added to the end of the link. This indicates that the link will
  * open in a new tab.
@@ -302,48 +285,6 @@ export const Inline: StoryComponentType = {
         </Body>
     ),
     parameters: {
-        chromatic: {
-            // Re-enable snapshots for this story since it shows the links in
-            // the context of paragraphs.
-            disableSnapshot: false,
-        },
-        pseudo: {visited: true},
-    },
-};
-
-/**
- * Inline links include an underline to distinguish them from the surrounding
- * text. If the link is on a dark background, set the `light` prop to true for
- * it to be appropriately visible.
- */
-export const InlineLight: StoryComponentType = {
-    render: () => (
-        <Body
-            style={{
-                color: semanticColor.core.foreground.knockout.default,
-                width: 530,
-            }}
-        >
-            This is an inline{" "}
-            <Link href="#link" inline={true} style={actionStyles.inverse}>
-                regular link
-            </Link>
-            . In this sentence, there is also an inline{" "}
-            <Link
-                href="https://cat-bounce.com/"
-                inline={true}
-                style={actionStyles.inverse}
-                target="_blank"
-            >
-                external link
-            </Link>
-            .
-        </Body>
-    ),
-    parameters: {
-        backgrounds: {
-            default: "neutralStrong",
-        },
         chromatic: {
             // Re-enable snapshots for this story since it shows the links in
             // the context of paragraphs.

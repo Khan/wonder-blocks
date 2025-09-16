@@ -13,6 +13,7 @@ import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Button from "@khanacademy/wonder-blocks-button";
 import Link from "@khanacademy/wonder-blocks-link";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 const StyledButton = addStyle("button");
 
@@ -187,9 +188,32 @@ export default {
                 name: "Using Link",
                 props: {
                     children: (
-                        <Link href="#test" style={actionStyles.inverse}>
-                            An inverse link component
-                        </Link>
+                        <BodyText
+                            style={{
+                                color: semanticColor.core.foreground.knockout
+                                    .default,
+                                width: 530,
+                            }}
+                        >
+                            This is an inline{" "}
+                            <Link
+                                href="#link"
+                                inline={true}
+                                style={actionStyles.inverse}
+                            >
+                                regular link
+                            </Link>
+                            . In this sentence, there is also an inline{" "}
+                            <Link
+                                href="https://cat-bounce.com/"
+                                inline={true}
+                                style={actionStyles.inverse}
+                                target="_blank"
+                            >
+                                external link
+                            </Link>
+                            .
+                        </BodyText>
                     ),
                 },
             },
