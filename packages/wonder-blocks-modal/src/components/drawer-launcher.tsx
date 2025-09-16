@@ -5,6 +5,10 @@ import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
 import type {WithActionSchedulerProps} from "@khanacademy/wonder-blocks-timing";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
+import {
+    useLayerRootTarget,
+    setLayerRootModalState,
+} from "@khanacademy/wonder-blocks-announcer";
 import FocusTrap from "./focus-trap";
 import DrawerBackdrop from "./drawer-backdrop";
 import ScrollDisabler from "./scroll-disabler";
@@ -191,6 +195,8 @@ const DrawerLauncher = (props: Props) => {
     // State to track exit animation
     const [isExiting, setIsExiting] = React.useState(false);
 
+    const targetElement = useLayerRootTarget(); // Use layer root instead of document.body
+
     // Ref to store the last focused element
     const lastElementFocusedOutsideModalRef = React.useRef<HTMLElement | null>(
         null,
@@ -207,15 +213,19 @@ const DrawerLauncher = (props: Props) => {
             document.activeElement as HTMLElement;
     }, []);
 
+    // Initialize ref to track previous controlled opened state
+    const prevControlledOpened = React.useRef<boolean | undefined>(undefined);
+
     // Save last focused element when modal opens
     React.useEffect(() => {
         if (controlledOpened && !prevControlledOpened.current) {
             saveLastElementFocused();
+            setLayerRootModalState(true);
+        } else if (!controlledOpened && prevControlledOpened.current) {
+            setLayerRootModalState(false);
         }
         prevControlledOpened.current = controlledOpened;
     }, [controlledOpened, saveLastElementFocused]);
-
-    const prevControlledOpened = React.useRef(controlledOpened);
 
     const returnFocus = React.useCallback(() => {
         // Focus on the specified element after closing the modal.
@@ -234,6 +244,8 @@ const DrawerLauncher = (props: Props) => {
     }, [closedFocusId, schedule]);
 
     const handleCloseModal = React.useCallback(() => {
+        setLayerRootModalState(false);
+
         if (animated) {
             // If component is animated, allow time for exit animations
             setIsExiting(true);
@@ -262,6 +274,7 @@ const DrawerLauncher = (props: Props) => {
     const openModal = React.useCallback(() => {
         saveLastElementFocused();
         setUncontrolledOpened(true);
+        setLayerRootModalState(true);
     }, [saveLastElementFocused]);
 
     // Memoize drawerDialogProps to prevent unnecessary re-renders of DrawerContext consumers
@@ -328,7 +341,7 @@ const DrawerLauncher = (props: Props) => {
                               </DrawerBackdrop>
                           </FocusTrap>
                       </DrawerContext.Provider>,
-                      body,
+                      targetElement,
                   )
                 : null}
             {/* Only keep event listeners while actually open */}

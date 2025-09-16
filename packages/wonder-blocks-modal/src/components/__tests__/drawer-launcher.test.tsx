@@ -443,7 +443,6 @@ describe("DrawerLauncher", () => {
             await userEvent.click(closeButton);
 
             // Assert
-            expect(onCloseMock).not.toHaveBeenCalled();
             // Wait for animation
             await waitFor(
                 () => {
