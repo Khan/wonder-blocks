@@ -145,7 +145,7 @@ export const useTabIndicator = (props: Props) => {
             ...styles.currentUnderline,
             ...positioningStyle,
             ...(animated ? styles.underlineTransition : {}),
-            // This prevents the indicator from sliding in initially
+            // This prevents the indicator from sliding in initially in rtl
             ...(!indicatorIsReady.current ? {display: "none"} : {}),
         },
         role: "presentation",
