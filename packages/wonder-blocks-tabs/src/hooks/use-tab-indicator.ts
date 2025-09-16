@@ -85,13 +85,19 @@ export const useTabIndicator = (props: Props) => {
      * We recalculate the underline style when the tabs container size changes.
      */
     useOnMountEffect(() => {
-        // If the ref is not set or if the ResizeObserver is not available,
-        // don't set up a resize observer. Note: ResizeObserver is supported in
+        // If the ref is not set or if the observers are not available,
+        // don't set up observers. Note: ResizeObserver is supported in
         // the browsers we support, but not in jsdom for tests
         // https://github.com/jsdom/jsdom/issues/3368
-        if (!tabsContainerRef.current || !window?.ResizeObserver) {
+        if (
+            !tabsContainerRef.current ||
+            !window?.ResizeObserver ||
+            !window?.MutationObserver
+        ) {
             return;
         }
+        // Add resize observer to initialize the underline style and to watch
+        // for any changes for the tabs container size (including change in zoom)
         const resizeObserver = new window.ResizeObserver(([entry]) => {
             if (entry) {
                 // Update underline style when the ref size changes
@@ -105,8 +111,24 @@ export const useTabIndicator = (props: Props) => {
 
         resizeObserver.observe(tabsContainerRef.current);
 
+        // Add mutation observer to watch for any attribute or children changes
+        const mutationObserver = new window.MutationObserver(([entry]) => {
+            if (entry) {
+                // Update underline style when the ref size changes
+                updateUnderlineStyle();
+            }
+        });
+
+        // Observe the descendants of the tabs container and any attribute changes
+        mutationObserver.observe(tabsContainerRef.current, {
+            attributes: true,
+            childList: true,
+            subtree: true,
+        });
+
         return () => {
             resizeObserver.disconnect();
+            mutationObserver.disconnect();
         };
     });
 
@@ -123,6 +145,7 @@ export const useTabIndicator = (props: Props) => {
             ...styles.currentUnderline,
             ...positioningStyle,
             ...(animated ? styles.underlineTransition : {}),
+            // This prevents the indicator from sliding in initially
             ...(!indicatorIsReady.current ? {display: "none"} : {}),
         },
         role: "presentation",
