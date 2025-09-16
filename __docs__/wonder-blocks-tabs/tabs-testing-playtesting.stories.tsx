@@ -1,9 +1,13 @@
 import * as React from "react";
 import {Meta, StoryObj} from "@storybook/react";
+import iceCreamBold from "@phosphor-icons/core/bold/ice-cream-bold.svg";
 import {Tabs} from "@khanacademy/wonder-blocks-tabs";
 import {Placeholder} from "../components/placeholder";
 import {ControlledTabs} from "./tabs-utils";
-import {PropsFor} from "@khanacademy/wonder-blocks-core";
+import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import Button from "@khanacademy/wonder-blocks-button";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 export default {
     title: "Packages / Tabs / Tabs / Testing / Tabs - Playtesting",
@@ -81,5 +85,58 @@ export const ScrollingPage: Story = {
     parameters: {
         /** This story is used for testing purposes only so we disable snapshots */
         chromatic: {disableSnapshot: true},
+    },
+};
+
+/**
+ * This is a story to test to make sure the active tab indicator is updated when
+ * an icon is dynamically added to the tab label.
+ */
+export const DynamicIcon: Story = {
+    render: function Example() {
+        const [showIcon, setShowIcon] = React.useState(false);
+        const [selectedTabId, setSelectedTabId] = React.useState("tab-1");
+        return (
+            <View>
+                <Tabs
+                    animated={true}
+                    selectedTabId={selectedTabId}
+                    onTabSelected={setSelectedTabId}
+                    aria-label="Dynamic icon example"
+                    tabs={[
+                        {
+                            label: (
+                                <span>
+                                    {showIcon && (
+                                        <PhosphorIcon
+                                            icon={iceCreamBold}
+                                            style={{
+                                                marginRight: sizing.size_040,
+                                            }}
+                                        />
+                                    )}
+                                    Tab 1
+                                </span>
+                            ),
+                            id: "tab-1",
+                            panel: <Placeholder>Tab contents 1</Placeholder>,
+                        },
+                        {
+                            label: "Tab 2",
+                            id: "tab-2",
+                            panel: <Placeholder>Tab contents 2</Placeholder>,
+                        },
+                        {
+                            label: "Tab 3",
+                            id: "tab-3",
+                            panel: <Placeholder>Tab contents 3</Placeholder>,
+                        },
+                    ]}
+                />
+                <Button onClick={() => setShowIcon(!showIcon)}>
+                    Toggle icon
+                </Button>
+            </View>
+        );
     },
 };
