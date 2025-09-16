@@ -55,14 +55,6 @@ export default {
         type: {name: "boolean", required: false},
     },
 
-    light: {
-        control: {type: "boolean"},
-        description: "Whether the button is on a dark/colored background.",
-        table: {
-            type: {summary: "boolean"},
-        },
-    },
-
     rel: {
         control: {type: "text"},
         description: `Specifies the type of relationship between the current

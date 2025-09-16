@@ -4,7 +4,6 @@ import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {
-    color,
     spacing,
     semanticColor,
     border,
@@ -19,7 +18,6 @@ import type {
     ChildrenProps,
     ClickableState,
 } from "@khanacademy/wonder-blocks-clickable";
-import type {StyleDeclaration} from "aphrodite";
 import type {SharedProps} from "./link";
 import theme from "../theme";
 
@@ -45,7 +43,6 @@ const LinkCore = React.forwardRef(function LinkCore(
         hovered, // eslint-disable-line @typescript-eslint/no-unused-vars
         href,
         inline = false,
-        light = false,
         pressed,
         style,
         testId,
@@ -57,14 +54,12 @@ const LinkCore = React.forwardRef(function LinkCore(
         ...restProps
     } = props;
 
-    const linkStyles = _generateStyles(inline, light);
-
     const defaultStyles = [
-        sharedStyles.shared,
-        linkStyles.rest,
-        inline && linkStyles.restInline,
+        styles.shared,
+        styles.rest,
+        inline && styles.restInline,
         // focused is preserved to allow for programmatic focus.
-        !pressed && focused && linkStyles.focus,
+        !pressed && focused && styles.focus,
     ];
 
     const commonProps = {
@@ -82,7 +77,7 @@ const LinkCore = React.forwardRef(function LinkCore(
         <PhosphorIcon
             icon={externalLinkIcon}
             size="small"
-            style={[linkContentStyles.endIcon, linkContentStyles.centered]}
+            style={[styles.endIcon, styles.centered]}
             testId="external-icon"
         />
     );
@@ -92,7 +87,7 @@ const LinkCore = React.forwardRef(function LinkCore(
 
     if (startIcon) {
         startIconElement = React.cloneElement(startIcon, {
-            style: [linkContentStyles.startIcon, linkContentStyles.centered],
+            style: [styles.startIcon, styles.centered],
             testId: "start-icon",
             "aria-hidden": "true",
             ...startIcon.props,
@@ -103,7 +98,7 @@ const LinkCore = React.forwardRef(function LinkCore(
 
     if (endIcon) {
         endIconElement = React.cloneElement(endIcon, {
-            style: [linkContentStyles.endIcon, linkContentStyles.centered],
+            style: [styles.endIcon, styles.centered],
             testId: "end-icon",
             "aria-hidden": "true",
             ...endIcon.props,
@@ -142,9 +137,49 @@ const LinkCore = React.forwardRef(function LinkCore(
     );
 });
 
-const styles: Record<string, any> = {};
+const focusStyling = {
+    ...focusStyles.focus[":focus-visible"],
+    borderRadius: border.radius.radius_010,
+    outlineOffset: border.width.medium,
+};
 
-const linkContentStyles = StyleSheet.create({
+const pressStyling = {
+    color: semanticColor.link.press,
+    textDecoration: "underline currentcolor solid",
+    textUnderlineOffset: font.textDecoration.underlineOffset,
+};
+
+const styles = StyleSheet.create({
+    shared: {
+        fontFamily: theme.root.font.family,
+        fontWeight: theme.root.font.weight,
+        cursor: "pointer",
+        textDecoration: "none",
+        outline: "none",
+        alignItems: "center",
+    },
+    rest: {
+        color: semanticColor.link.rest,
+        ":hover": {
+            textDecoration: "underline currentcolor solid",
+            color: semanticColor.link.hover,
+            textUnderlineOffset: font.textDecoration.underlineOffset,
+        },
+        // Focus styles only show up with keyboard navigation.
+        // Mouse users don't see focus styles.
+        ":focus-visible": focusStyling,
+        ":active": pressStyling,
+    },
+    restInline: {
+        textDecoration: "underline currentcolor solid",
+        textDecorationThickness: font.textDecoration.thickness,
+        textUnderlineOffset: font.textDecoration.underlineOffset,
+    },
+    focus: focusStyling,
+    press: pressStyling,
+    /**
+     * Content styles
+     */
     startIcon: {
         marginInlineEnd: spacing.xxxSmall_4,
     },
@@ -156,99 +191,5 @@ const linkContentStyles = StyleSheet.create({
         verticalAlign: "-10%",
     },
 });
-
-const sharedStyles = StyleSheet.create({
-    shared: {
-        fontFamily: theme.root.font.family,
-        fontWeight: theme.root.font.weight,
-        cursor: "pointer",
-        textDecoration: "none",
-        outline: "none",
-        alignItems: "center",
-    },
-});
-
-/**
- * The object that contains the default and inverse colors for the link
- * component.
- */
-const states = {
-    color: {
-        // Primary link color
-        default: {
-            rest: {
-                foreground: semanticColor.link.rest,
-            },
-            hover: {
-                foreground: semanticColor.link.hover,
-            },
-            focus: {
-                border: semanticColor.focus.outer,
-            },
-            press: {
-                foreground: semanticColor.link.press,
-            },
-        },
-        // Over dark backgrounds
-        // TODO(WB-1852): Remove light variant.
-        inverse: {
-            rest: {
-                foreground: semanticColor.core.foreground.knockout.default,
-            },
-            hover: {
-                foreground: semanticColor.core.foreground.knockout.default,
-            },
-            press: {
-                foreground: color.fadedBlue,
-            },
-        },
-    },
-};
-
-const _generateStyles = (inline: boolean, light: boolean) => {
-    const buttonType = `${inline.toString()}-${light.toString()}`;
-    if (styles[buttonType]) {
-        return styles[buttonType];
-    }
-
-    const variant = light ? states.color.inverse : states.color.default;
-
-    const focusStyling = {
-        ...focusStyles.focus[":focus-visible"],
-        borderRadius: border.radius.radius_010,
-        outlineOffset: border.width.medium,
-    };
-
-    const pressStyling = {
-        color: variant.press.foreground,
-        textDecoration: "underline currentcolor solid",
-        textUnderlineOffset: font.textDecoration.underlineOffset,
-    };
-
-    const newStyles: StyleDeclaration = {
-        rest: {
-            color: variant.rest.foreground,
-            ":hover": {
-                textDecoration: "underline currentcolor solid",
-                color: variant.hover.foreground,
-                textUnderlineOffset: font.textDecoration.underlineOffset,
-            },
-            // Focus styles only show up with keyboard navigation.
-            // Mouse users don't see focus styles.
-            ":focus-visible": focusStyling,
-            ":active": pressStyling,
-        },
-        restInline: {
-            textDecoration: "underline currentcolor solid",
-            textDecorationThickness: font.textDecoration.thickness,
-            textUnderlineOffset: font.textDecoration.underlineOffset,
-        },
-        focus: focusStyling,
-        press: pressStyling,
-    };
-
-    styles[buttonType] = StyleSheet.create(newStyles);
-    return styles[buttonType];
-};
 
 export default LinkCore;

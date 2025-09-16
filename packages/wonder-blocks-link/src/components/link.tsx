@@ -30,10 +30,6 @@ type CommonProps = AriaProps & {
      */
     inline?: boolean;
     /**
-     * Whether the button is on a dark/colored background.
-     */
-    light?: boolean;
-    /**
      * Specifies the type of relationship between the current document and the
      * linked document. Should only be used when `href` is specified. This
      * defaults to "noopener noreferrer" when `target="_blank"`, but can be
@@ -200,7 +196,6 @@ const Link = React.forwardRef(function Link(
         onKeyUp,
         target = undefined,
         inline = false,
-        light = false,
         viewTransition = false,
         ...sharedProps
     } = props;
@@ -237,7 +232,6 @@ const Link = React.forwardRef(function Link(
                             target={target}
                             tabIndex={tabIndex}
                             inline={inline}
-                            light={light}
                             ref={ref}
                             viewTransition={viewTransition}
                         >
@@ -271,7 +265,6 @@ const Link = React.forwardRef(function Link(
                             target={target}
                             tabIndex={tabIndex}
                             inline={inline}
-                            light={light}
                             ref={ref}
                             viewTransition={viewTransition}
                         >
