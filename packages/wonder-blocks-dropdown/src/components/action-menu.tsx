@@ -46,8 +46,9 @@ type Props = AriaProps &
          */
         selectedValues?: Array<string>;
         /**
-         * Whether this menu should be left-aligned or right-aligned with the
-         * opener component. Defaults to left-aligned.
+         * The alignment of the menu component in relation to the opener
+         * component. Defaults to "left", which is below the opener and left
+         * aligned. Any valid Popper placement is also supported.
          */
         alignment: "left" | "right" | Placement;
         /**

@@ -395,6 +395,24 @@ export const CustomOpener: StoryComponentType = {
  */
 export const WithPopperPlacement: StoryComponentType = {
     name: "With popper placement",
+    render: function Render(args) {
+        const [opened, setOpened] = React.useState(false);
+
+        React.useEffect(() => {
+            setOpened(true);
+        }, []);
+
+        return (
+            <ActionMenu
+                menuText="Betsy Appleseed"
+                {...args}
+                opened={opened}
+                onToggle={setOpened}
+            >
+                {actionItems.map((actionItem, index) => actionItem)}
+            </ActionMenu>
+        );
+    },
     args: {
         alignment: "right-start",
         opener: ({text}: any) => (
