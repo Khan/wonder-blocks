@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.4.0
+
+### Minor Changes
+
+- 6f24d7d: Allow ActionMenu to support any valid popper placement
+
 ## 10.3.12
 
 ### Patch Changes
