@@ -11,6 +11,10 @@ import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 export default {
     title: "Packages / Tabs / Tabs / Testing / Tabs - Playtesting",
+    parameters: {
+        /** These stories are used for testing purposes only so we disable snapshots */
+        chromatic: {disableSnapshot: true},
+    },
 } as Meta<typeof Tabs>;
 
 type Story = StoryObj<typeof Tabs>;
@@ -35,9 +39,6 @@ export const Default: Story = {
             },
         ],
         selectedTabId: "tab-1",
-    },
-    parameters: {
-        chromatic: {disableSnapshot: true},
     },
 };
 
@@ -81,10 +82,6 @@ export const ScrollingPage: Story = {
             },
         ],
         selectedTabId: "tab-1",
-    },
-    parameters: {
-        /** This story is used for testing purposes only so we disable snapshots */
-        chromatic: {disableSnapshot: true},
     },
 };
 
