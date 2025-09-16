@@ -7,6 +7,7 @@ import {
     type StyleType,
 } from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {Placement} from "@popperjs/core";
 import DropdownOpener from "./dropdown-opener";
 import ActionItem from "./action-item";
 import OptionItem from "./option-item";
@@ -45,10 +46,11 @@ type Props = AriaProps &
          */
         selectedValues?: Array<string>;
         /**
-         * Whether this menu should be left-aligned or right-aligned with the
-         * opener component. Defaults to left-aligned.
+         * The alignment of the menu component in relation to the opener
+         * component. Defaults to "left", which is below the opener and left
+         * aligned. Any valid Popper placement is also supported.
          */
-        alignment: "left" | "right";
+        alignment: "left" | "right" | Placement;
         /**
          * Whether this component is disabled. A disabled dropdown may not be opened
          * and does not support interaction. Defaults to false.
