@@ -8,7 +8,6 @@ import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 import {allModes} from "../../.storybook/modes";
 import {rtlText} from "../components/text-for-testing";
-import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 const rows = [
     {name: "Default", props: {}},
@@ -78,9 +77,6 @@ export const StateSheetStory: Story = {
     name: "StateSheet",
     render: (args, {globals}) => {
         const isRTL = globals.direction === "rtl";
-        const isDark =
-            globals.backgrounds?.value ===
-            semanticColor.core.background.neutral.strong;
         const columnsPerMode = isRTL ? rtlColumns : columns;
 
         return (
@@ -89,7 +85,6 @@ export const StateSheetStory: Story = {
                     <Link
                         {...args}
                         {...props}
-                        light={isDark}
                         href="https://www.khanacademy.org"
                         className={className}
                         key={name}

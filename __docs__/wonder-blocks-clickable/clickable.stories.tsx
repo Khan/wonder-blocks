@@ -22,7 +22,6 @@ export default {
     args: {
         testId: "",
         disabled: false,
-        light: false,
         hideDefaultFocusRing: false,
     },
     decorators: [
@@ -108,47 +107,6 @@ Basic.parameters = {
         // `Default`. We add this story to the `Docs` tab to present the
         // description above along with the example.
         disableSnapshot: true,
-    },
-};
-
-/**
- * Clickable usage on dark backgrounds
- */
-export const Light: StoryComponentType = () => (
-    <View style={styles.dark}>
-        <Clickable
-            href="https://www.khanacademy.org/about/tos"
-            skipClientNav={true}
-            light={true}
-        >
-            {({hovered, pressed}) => (
-                <View
-                    style={[
-                        styles.clickable,
-                        hovered && styles.hovered,
-                        pressed && styles.pressed,
-                    ]}
-                >
-                    <Body>This text is clickable!</Body>
-                </View>
-            )}
-        </Clickable>
-    </View>
-);
-
-Light.parameters = {
-    chromatic: {
-        // Not needed because the default state doesn't test the disabled
-        // clickable behavior.
-        disableSnapshot: true,
-    },
-    docs: {
-        description: {
-            story: "Clickable has a `light` prop which changes the default focus ring color to fit a dark background.",
-        },
-    },
-    backgrounds: {
-        default: "neutralStrong",
     },
 };
 

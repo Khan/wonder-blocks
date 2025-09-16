@@ -45,12 +45,6 @@ type CommonProps =
          */
         className?: string;
         /**
-         * Whether the Clickable is on a dark colored background.
-         * Sets the default focus ring color to white, instead of blue.
-         * Defaults to false.
-         */
-        light?: boolean;
-        /**
          * Disables or enables the child; defaults to false
          */
         disabled?: boolean;
@@ -297,7 +291,6 @@ const Clickable = React.forwardRef(function Clickable(
         target = undefined,
         testId,
         hideDefaultFocusRing,
-        light,
         disabled,
         tabIndex,
         ...restProps
@@ -311,9 +304,7 @@ const Clickable = React.forwardRef(function Clickable(
     const getStyle = (state: ClickableState): StyleType => [
         styles.reset,
         styles.link,
-        !hideDefaultFocusRing &&
-            state.focused &&
-            (light ? styles.focusedLight : styles.focused),
+        !hideDefaultFocusRing && state.focused && styles.focused,
         disabled && styles.disabled,
         style,
     ];
@@ -376,7 +367,6 @@ const Clickable = React.forwardRef(function Clickable(
 });
 
 Clickable.defaultProps = {
-    light: false,
     disabled: false,
 };
 
@@ -422,10 +412,6 @@ const styles = StyleSheet.create({
         ":focus": {
             outline: `solid ${border.width.medium} ${semanticColor.focus.outer}`,
         },
-    },
-    // TODO(WB-1852): Remove light variant.
-    focusedLight: {
-        outline: `solid ${border.width.medium} ${semanticColor.core.border.knockout.default}`,
     },
     disabled: {
         color: semanticColor.action.secondary.disabled.foreground,
