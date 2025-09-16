@@ -110,16 +110,11 @@ export const NavigationTabs = React.forwardRef(function NavigationTabs(
         [],
     );
 
-    const {indicatorProps, updateUnderlineStyle} = useTabIndicator({
+    const {indicatorProps} = useTabIndicator({
         animated,
         tabsContainerRef: listRef,
         isTabActive,
     });
-
-    React.useEffect(() => {
-        // Update the underline style when children (tabs) change
-        updateUnderlineStyle();
-    }, [children, updateUnderlineStyle]);
 
     return (
         <StyledNav

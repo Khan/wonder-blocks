@@ -17,7 +17,9 @@ type Props = {
     animated: boolean;
     /**
      * Ref for the container of the tabs so we can observe when the size of the
-     * children changes. This is necessary to update the underline position.
+     * children changes or when descendant elements and attributes change.
+     * This is necessary to update the underline position when needed (ie. when
+     * tab label changes, tab is selected, viewport is zoomed or adjusted, etc)
      */
     tabsContainerRef: React.RefObject<HTMLElement>;
     /**
@@ -31,8 +33,6 @@ type Props = {
  * A hook that is used to manage the underline current indicator for tabs.
  * It returns:
  * - `indicatorProps`: The props to apply to the underline current indicator
- * - `updateUnderlineStyle`: A function that updates the underline style. Use
- * this function when the component detects a change in the tabs
  */
 export const useTabIndicator = (props: Props) => {
     const {animated, tabsContainerRef, isTabActive} = props;
@@ -151,7 +151,7 @@ export const useTabIndicator = (props: Props) => {
         role: "presentation",
     };
 
-    return {indicatorProps, updateUnderlineStyle};
+    return {indicatorProps};
 };
 
 // Styles for the tab indicator. We use the styles as inline styles instead of
