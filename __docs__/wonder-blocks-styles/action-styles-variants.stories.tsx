@@ -12,6 +12,7 @@ import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Button from "@khanacademy/wonder-blocks-button";
+import Link from "@khanacademy/wonder-blocks-link";
 
 const StyledButton = addStyle("button");
 
@@ -179,6 +180,16 @@ export default {
                                 Disabled Tertiary button
                             </Button>
                         </View>
+                    ),
+                },
+            },
+            {
+                name: "Using Link",
+                props: {
+                    children: (
+                        <Link href="#test" style={actionStyles.inverse}>
+                            An inverse link component
+                        </Link>
                     ),
                 },
             },

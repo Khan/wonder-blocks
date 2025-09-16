@@ -107,7 +107,7 @@ export const InverseOutline: Story = {
                     Tertiary button
                 </Button>
 
-                <Link href="#sss" style={actionStyles.inverse}>
+                <Link href="#test" style={actionStyles.inverse}>
                     Link component
                 </Link>
             </>
