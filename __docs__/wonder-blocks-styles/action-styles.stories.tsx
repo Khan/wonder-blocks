@@ -9,6 +9,7 @@ import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import Button from "@khanacademy/wonder-blocks-button";
+import Link from "@khanacademy/wonder-blocks-link";
 
 /**
  * Styles that can be used to create reusable states for interactive elements.
@@ -105,6 +106,10 @@ export const InverseOutline: Story = {
                 <Button kind="tertiary" style={actionStyles.inverse}>
                     Tertiary button
                 </Button>
+
+                <Link href="#sss" style={actionStyles.inverse}>
+                    Link component
+                </Link>
             </>
         );
     },

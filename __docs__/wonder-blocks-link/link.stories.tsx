@@ -33,6 +33,7 @@ import packageConfig from "../../packages/wonder-blocks-link/package.json";
 import ComponentInfo from "../components/component-info";
 import LinkArgTypes from "./link.argtypes";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
+import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 
 export default {
     title: "Packages / Link",
@@ -71,7 +72,7 @@ export const Default: StoryComponentType = {
  */
 export const LightPrimary: StoryComponentType = {
     render: () => (
-        <Link href="#link" light={true}>
+        <Link href="#link" style={actionStyles.inverse}>
             The quick brown fox jumps over the lazy dog.
         </Link>
     ),
@@ -196,8 +197,7 @@ export const StartAndEndIcons: StoryComponentType = {
                     startIcon={
                         <PhosphorIcon icon={IconMappings.plusCircleBold} />
                     }
-                    light={true}
-                    style={styles.standaloneLinkWrapper}
+                    style={[styles.standaloneLinkWrapper, actionStyles.inverse]}
                 >
                     This link has a start icon
                 </Link>
@@ -206,8 +206,7 @@ export const StartAndEndIcons: StoryComponentType = {
                     endIcon={
                         <PhosphorIcon icon={IconMappings.magnifyingGlassBold} />
                     }
-                    light={true}
-                    style={styles.standaloneLinkWrapper}
+                    style={[styles.standaloneLinkWrapper, actionStyles.inverse]}
                 >
                     This link has an end icon
                 </Link>
@@ -215,8 +214,7 @@ export const StartAndEndIcons: StoryComponentType = {
                     href="https://stuffonmycat.com/"
                     endIcon={<PhosphorIcon icon={IconMappings.infoBold} />}
                     target="_blank"
-                    light={true}
-                    style={styles.standaloneLinkWrapper}
+                    style={[styles.standaloneLinkWrapper, actionStyles.inverse]}
                 >
                     This external link has an end icon that is overrides the
                     default external icon
@@ -229,8 +227,7 @@ export const StartAndEndIcons: StoryComponentType = {
                     endIcon={
                         <PhosphorIcon icon={IconMappings.caretRightBold} />
                     }
-                    light={true}
-                    style={styles.standaloneLinkWrapper}
+                    style={[styles.standaloneLinkWrapper, actionStyles.inverse]}
                 >
                     This link has a start icon and an end icon
                 </Link>
@@ -242,8 +239,7 @@ export const StartAndEndIcons: StoryComponentType = {
                     endIcon={
                         <PhosphorIcon icon={IconMappings.caretRightBold} />
                     }
-                    light={true}
-                    style={styles.multiLine}
+                    style={[styles.multiLine, actionStyles.inverse]}
                 >
                     This is a multi-line link with start and end icons
                 </Link>
@@ -259,7 +255,7 @@ export const StartAndEndIcons: StoryComponentType = {
                             <PhosphorIcon icon={IconMappings.caretLeftBold} />
                         }
                         inline={true}
-                        light={true}
+                        style={actionStyles.inverse}
                     >
                         link with a start icon
                     </Link>{" "}
@@ -270,7 +266,7 @@ export const StartAndEndIcons: StoryComponentType = {
                             <PhosphorIcon icon={IconMappings.caretRightBold} />
                         }
                         inline={true}
-                        light={true}
+                        style={actionStyles.inverse}
                         target="_blank"
                     >
                         link with an end icon
@@ -319,8 +315,6 @@ export const Inline: StoryComponentType = {
  * Inline links include an underline to distinguish them from the surrounding
  * text. If the link is on a dark background, set the `light` prop to true for
  * it to be appropriately visible.
- *
- * **NOTE:** Secondary light links are not supported.
  */
 export const InlineLight: StoryComponentType = {
     render: () => (
@@ -331,14 +325,14 @@ export const InlineLight: StoryComponentType = {
             }}
         >
             This is an inline{" "}
-            <Link href="#link" inline={true} light={true}>
+            <Link href="#link" inline={true} style={actionStyles.inverse}>
                 regular link
             </Link>
             . In this sentence, there is also an inline{" "}
             <Link
                 href="https://cat-bounce.com/"
                 inline={true}
-                light={true}
+                style={actionStyles.inverse}
                 target="_blank"
             >
                 external link
