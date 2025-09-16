@@ -92,7 +92,7 @@ export const useTabIndicator = (props: Props) => {
         if (!tabsContainerRef.current || !window?.ResizeObserver) {
             return;
         }
-        const observer = new window.ResizeObserver(([entry]) => {
+        const resizeObserver = new window.ResizeObserver(([entry]) => {
             if (entry) {
                 // Update underline style when the ref size changes
                 updateUnderlineStyle();
@@ -103,10 +103,10 @@ export const useTabIndicator = (props: Props) => {
             }
         });
 
-        observer.observe(tabsContainerRef.current);
+        resizeObserver.observe(tabsContainerRef.current);
 
         return () => {
-            observer.disconnect();
+            resizeObserver.disconnect();
         };
     });
 
