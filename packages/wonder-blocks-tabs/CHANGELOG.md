@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tabs
 
+## 0.3.31
+
+### Patch Changes
+
+- 14006ce: Improve how underline styling is calculated to address edge cases with refreshes and dynamic content
+
 ## 0.3.30
 
 ### Patch Changes
