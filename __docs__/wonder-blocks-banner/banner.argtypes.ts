@@ -55,7 +55,7 @@ export default {
         table: {
             type: {summary: `"floating" | "full-width"`},
         },
-        type: {name: "enum", value: ["floating", "full-width"], required: true},
+        type: {name: "enum", value: ["floating", "full-width"]},
     },
     text: {
         control: {type: "text"},
