@@ -95,7 +95,7 @@ type Props = {
      *
      * @deprecated
      */
-    layout: BannerLayout;
+    layout?: BannerLayout;
     /**
      * Text on the banner or a node if you want something different. For the
      * best results, use the default styles provided by the Banner component and
