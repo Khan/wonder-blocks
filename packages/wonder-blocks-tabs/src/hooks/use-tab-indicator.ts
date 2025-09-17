@@ -33,6 +33,12 @@ type Props = {
  * A hook that is used to manage the underline current indicator for tabs.
  * It returns:
  * - `indicatorProps`: The props to apply to the underline current indicator
+ *
+ * We use a hook to calculate the underline style instead of a CSS bottom border
+ * to support the underline sliding animation between tabs. This hook accounts
+ * for resizing (including change in size and zoom) and for any changes within
+ * the tabs container (including changes in a tab label, when a tab is selected,
+ * etc).
  */
 export const useTabIndicator = (props: Props) => {
     const {animated, tabsContainerRef, isTabActive} = props;
