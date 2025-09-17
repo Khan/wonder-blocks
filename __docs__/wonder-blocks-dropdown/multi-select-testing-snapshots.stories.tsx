@@ -1,5 +1,5 @@
 import * as React from "react";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {themeModes} from "../../.storybook/modes";

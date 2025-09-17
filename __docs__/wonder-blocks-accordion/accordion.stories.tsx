@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {
     Accordion,
@@ -655,9 +655,9 @@ export const BackgroundColorExample: StoryComponentType = {
     },
 };
 
-BackgroundColorExample.parameters = {
+BackgroundColorExample.globals = {
     backgrounds: {
-        default: "neutralStrong",
+        value: "neutralStrong",
     },
 };
 

@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
@@ -204,10 +204,13 @@ export const Dark: StoryComponentType = {
     },
 };
 
-Dark.parameters = {
+Dark.globals = {
     backgrounds: {
-        default: "neutralStrong",
+        value: "neutralStrong",
     },
+};
+
+Dark.parameters = {
     docs: {
         description: {
             story:

@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet, css} from "aphrodite";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
@@ -120,10 +120,13 @@ Sizes.parameters = {
 
 export const Light: StoryComponentType = () => <CircularSpinner light={true} />;
 
-Light.parameters = {
+Light.globals = {
     backgrounds: {
-        default: "neutralStrong",
+        value: "neutralStrong",
     },
+};
+
+Light.parameters = {
     docs: {
         description: {
             story: `This is a progress spinner with its \`light\`
