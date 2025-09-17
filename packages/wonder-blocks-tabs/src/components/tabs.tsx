@@ -235,7 +235,7 @@ export const Tabs = React.forwardRef(function Tabs(
         return tabElement.ariaSelected === "true";
     }, []);
 
-    const {indicatorProps, updateUnderlineStyle} = useTabIndicator({
+    const {indicatorProps} = useTabIndicator({
         animated,
         tabsContainerRef: tablistRef,
         isTabActive,
@@ -244,12 +244,6 @@ export const Tabs = React.forwardRef(function Tabs(
     React.useEffect(() => {
         focusedTabId.current = selectedTabId;
     }, [selectedTabId]);
-
-    React.useEffect(() => {
-        // Update the underline style when the selected tab changes or the tabs
-        // changes
-        updateUnderlineStyle();
-    }, [updateUnderlineStyle, tabs, selectedTabId]);
 
     const selectTab = React.useCallback(
         (tabId: string) => {
