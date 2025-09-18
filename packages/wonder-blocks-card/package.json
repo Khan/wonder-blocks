@@ -1,0 +1,29 @@
+{
+  "name": "@khanacademy/wonder-blocks-card",
+  "version": "1.0.0",
+  "design": "v1",
+  "description": "Card component for Wonder Blocks.",
+  "main": "dist/index.js",
+  "module": "dist/es/index.js",
+  "source": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "types": "dist/index.d.ts",
+  "author": "",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@khanacademy/wonder-blocks-button": "workspace:*",
+    "@khanacademy/wonder-blocks-core": "workspace:*"
+  },
+  "peerDependencies": {
+    "aphrodite": "catalog:",
+    "react": "catalog:"
+  },
+  "devDependencies": {
+    "@khanacademy/wb-dev-build-settings": "workspace:*"
+  }
+}
