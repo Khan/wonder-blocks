@@ -278,12 +278,8 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             });
 
         const textAreaContainerRef = React.useRef<HTMLDivElement>(null);
-        // Keep track of the textarea height for browsers that don't support
-        // field-sizing.
+
         const [height, setHeight] = React.useState(0);
-        const [supportsFieldSizing] = React.useState(
-            CSS.supports("field-sizing", "content"),
-        );
 
         const hasError = error || !!errorMessage;
 
@@ -320,9 +316,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             onChangeValidation(newValue);
             onChange(newValue);
 
-            if (!supportsFieldSizing) {
-                setHeight(getTextAreaHeight(event.target));
-            }
+            setHeight(getTextAreaHeight(event.target));
         };
 
         const handleBlur = (event: React.FocusEvent<HTMLTextAreaElement>) => {
@@ -339,7 +333,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             // directly.
             const ref = textAreaContainerRef.current?.children[0];
 
-            if (!supportsFieldSizing && ref && window?.ResizeObserver) {
+            if (ref && window?.ResizeObserver) {
                 const observer = new window.ResizeObserver(([entry]) => {
                     if (entry) {
                         setHeight(
@@ -360,14 +354,11 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
 
         const autoResizeStyles = autoResize
             ? [
-                  supportsFieldSizing
-                      ? styles.fieldSizing
-                      : {
-                            // Dynamically set the height if field-sizing is
-                            // not supported. We account for the border width
-                            // so the scrollbar is not shown.
-                            height: `calc(${height}px + (2 * ${border.width.thin}))`,
-                        },
+                  {
+                      // Dynamically set the height. We account for the border
+                      // width so the scrollbar is not shown.
+                      height: `calc(${height}px + (2 * ${border.width.thin}))`,
+                  },
                   {
                       // Set the max height so the textarea can't grow infinitely
                       maxHeight: getHeightForNumberOfRows(
@@ -396,7 +387,6 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                         readOnly && styles.readOnly,
                         rows && {
                             // Set the min height to the height of the number of rows
-                            // This is because `rows` is not applied when `field-sizing` is also used.
                             minHeight: getHeightForNumberOfRows(rows),
                         },
                         ...autoResizeStyles,
@@ -438,12 +428,6 @@ const styles = StyleSheet.create({
         paddingBlock: theme.field.layout.paddingBlock,
         // Disable the resize control
         resize: "none",
-        minWidth: "28rem",
-    },
-    fieldSizing: {
-        // For browsers that support field-sizing, set it to content so that
-        // the textarea can grow to fit the content
-        ["fieldSizing" as any]: "content",
     },
     readOnly: {
         background: semanticColor.input.readOnly.background,
