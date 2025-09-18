@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-banner
 
+## 4.5.0
+
+### Minor Changes
+
+- 2805af4: Banner: Make `layout` prop optional so that we can start removing usage of this prop before removing the prop completely. `layout` has been deprecated and is not used in Banner
+
 ## 4.4.1
 
 ### Patch Changes
