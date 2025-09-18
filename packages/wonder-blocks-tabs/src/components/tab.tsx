@@ -65,6 +65,7 @@ export const Tab = React.forwardRef(function Tab(
     return (
         <StyledButton
             {...otherProps}
+            type="button" // this prevents form submissions if the tab is inside a form
             role="tab"
             onClick={onClick}
             ref={ref}

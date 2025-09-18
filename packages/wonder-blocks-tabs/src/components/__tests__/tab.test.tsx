@@ -27,6 +27,21 @@ describe("Tab", () => {
         expect(tab.tagName).toBe("BUTTON");
     });
 
+    it("should render the tab with type=button to prevent form submissions", async () => {
+        // Arrange
+        render(
+            <Tab id={id} aria-controls={ariaControlsId}>
+                Tab
+            </Tab>,
+        );
+
+        // Act
+        const tab = await screen.findByRole("tab");
+
+        // Assert
+        expect(tab.getAttribute("type")).toBe("button");
+    });
+
     it("should render the provided children", async () => {
         // Arrange
         const childrenId = "children-id";
