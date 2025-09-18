@@ -40,21 +40,6 @@ export default {
     /**
      * States
      */
-    light: {
-        description:
-            "Whether the Clickable is on a dark colored background. Sets the default focus ring color to white, instead of blue. Defaults to false.",
-        defaultValue: false,
-        type: {
-            name: "boolean",
-            required: true,
-        },
-        table: {
-            category: "States",
-            type: {
-                summary: "boolean",
-            },
-        },
-    },
     disabled: {
         description: "Disables or enables the child; defaults to false",
         defaultValue: false,
