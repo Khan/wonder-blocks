@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tabs
 
+## 0.3.32
+
+### Patch Changes
+
+- 7f46382: Tabs: Set type="button" on tab elements to prevent form submission when placed within a <form> element
+
 ## 0.3.31
 
 ### Patch Changes
