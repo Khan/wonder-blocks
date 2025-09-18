@@ -1,7 +1,6 @@
 import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {StyleSheet} from "aphrodite";
 import {TextArea} from "@khanacademy/wonder-blocks-form";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {themeModes} from "../../.storybook/modes";
@@ -32,12 +31,6 @@ export default {
 type Story = StoryObj<typeof TextArea>;
 
 const rows = [{name: "Default", props: {}}];
-
-const styles = StyleSheet.create({
-    fixedWidth: {
-        width: "500px",
-    },
-});
 
 const columns = [
     {
@@ -163,13 +156,12 @@ export const Scenarios: Story = {
             },
             {
                 name: "Empty and auto resize is false",
-                props: {autoResize: false, style: styles.fixedWidth},
+                props: {autoResize: false},
             },
             {
                 name: "With value and auto resize is false",
                 props: {
                     autoResize: false,
-                    style: styles.fixedWidth,
                     value: repeatText(longText, 3),
                 },
             },
@@ -178,7 +170,6 @@ export const Scenarios: Story = {
                 props: {
                     autoResize: true,
                     value: repeatText(reallyLongText, 3),
-                    style: styles.fixedWidth,
                 },
             },
             {
@@ -187,7 +178,6 @@ export const Scenarios: Story = {
                     autoResize: true,
                     value: repeatText(reallyLongText, 3),
                     maxRows: 10,
-                    style: styles.fixedWidth,
                 },
             },
             {
@@ -196,7 +186,6 @@ export const Scenarios: Story = {
                     autoResize: true,
                     value: repeatText(reallyLongText, 3),
                     rows: 30,
-                    style: styles.fixedWidth,
                 },
             },
             {
@@ -206,7 +195,6 @@ export const Scenarios: Story = {
                     value: repeatText(reallyLongText, 3),
                     rows: 4,
                     maxRows: 2,
-                    style: styles.fixedWidth,
                 },
             },
         ];
