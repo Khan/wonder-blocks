@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-link
 
+## 10.0.0
+
+### Major Changes
+
+- 59e0211: Removes `light` prop as we no longer recommend it. Note: Please use actionStyles.inverse instead.
+
+### Patch Changes
+
+- Updated dependencies [59e0211]
+    - @khanacademy/wonder-blocks-clickable@8.0.0
+
 ## 9.2.4
 
 ### Patch Changes

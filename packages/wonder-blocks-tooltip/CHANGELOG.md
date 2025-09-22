@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tooltip
 
+## 4.1.48
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-modal@8.4.4
+
 ## 4.1.47
 
 ### Patch Changes
