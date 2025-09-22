@@ -31,7 +31,6 @@ export default function ComponentGallery() {
             <View>
                 <Banner
                     kind="info"
-                    layout="floating"
                     text={`Note: The core, data, translations, layout, testing,
                     theming, timing, tokens, and typography packages are not
                     featured in this gallery.`}

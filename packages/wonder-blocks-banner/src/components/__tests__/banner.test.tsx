@@ -12,7 +12,7 @@ describe("Banner", () => {
         // Arrange
 
         // Act
-        render(<Banner text="test text" layout="floating" />);
+        render(<Banner text="test text" />);
 
         // Assert
         const button = screen.queryByRole("button");
@@ -23,9 +23,7 @@ describe("Banner", () => {
         // Arrange
 
         // Act
-        render(
-            <Banner text="test text" onDismiss={() => {}} layout="floating" />,
-        );
+        render(<Banner text="test text" onDismiss={() => {}} />);
 
         // Assert
         const button = screen.queryByRole("button");
@@ -35,13 +33,7 @@ describe("Banner", () => {
     test("clicking the dismiss button triggers `onDismiss`", () => {
         // Arrange
         const onDismissSpy = jest.fn();
-        render(
-            <Banner
-                text="test text"
-                onDismiss={onDismissSpy}
-                layout="floating"
-            />,
-        );
+        render(<Banner text="test text" onDismiss={onDismissSpy} />);
 
         // Act
         const button = screen.getByRole("button");
@@ -58,7 +50,6 @@ describe("Banner", () => {
         render(
             <Banner
                 text="test text"
-                layout="floating"
                 actions={[
                     {
                         type: "link",
@@ -82,7 +73,6 @@ describe("Banner", () => {
         render(
             <Banner
                 text="test text"
-                layout="floating"
                 actions={[
                     {type: "button", title: "some button", onClick: () => {}},
                 ]}
@@ -101,7 +91,6 @@ describe("Banner", () => {
         render(
             <Banner
                 text="some text"
-                layout="floating"
                 actions={[
                     {
                         type: "custom",
@@ -133,7 +122,6 @@ describe("Banner", () => {
         render(
             <Banner
                 text="test text"
-                layout="floating"
                 actions={[
                     {type: "button", title: "button 1", onClick: () => {}},
                     {type: "button", title: "button 2", onClick: () => {}},
@@ -166,7 +154,6 @@ describe("Banner", () => {
         render(
             <Banner
                 text="test text"
-                layout="floating"
                 actions={[
                     {type: "button", title: "a button", onClick: actionSpy},
                 ]}
@@ -188,7 +175,6 @@ describe("Banner", () => {
         render(
             <Banner
                 text="test text"
-                layout="floating"
                 actions={[
                     {
                         type: "link",
@@ -214,7 +200,6 @@ describe("Banner", () => {
         render(
             <Banner
                 text="test text"
-                layout="floating"
                 actions={[
                     {
                         type: "link",
@@ -239,7 +224,7 @@ describe("Banner", () => {
         // Arrange
 
         // Act
-        render(<Banner text="test text" layout="floating" />);
+        render(<Banner text="test text" />);
 
         // Assert
         const icon = screen.getByTestId("banner-kind-icon");
@@ -252,7 +237,7 @@ describe("Banner", () => {
             // Arrange
 
             // Act
-            render(<Banner text="test text" kind={kind} layout="floating" />);
+            render(<Banner text="test text" kind={kind} />);
 
             // Assert
             const icon = screen.getByTestId("banner-kind-icon");
@@ -266,9 +251,7 @@ describe("Banner", () => {
         // Arrange
 
         // Act
-        render(
-            <Banner text="test text" layout="floating" onDismiss={() => {}} />,
-        );
+        render(<Banner text="test text" onDismiss={() => {}} />);
 
         // Assert
         const dismissButton = screen.getByRole("button");
@@ -282,7 +265,6 @@ describe("Banner", () => {
         render(
             <Banner
                 text="test text"
-                layout="floating"
                 onDismiss={() => {}}
                 dismissAriaLabel="Test dismiss aria label"
             />,
@@ -303,7 +285,6 @@ describe("Banner", () => {
         render(
             <Banner
                 text="test text"
-                layout="floating"
                 actions={[
                     {
                         type: "button",
@@ -326,7 +307,6 @@ describe("Banner", () => {
         render(
             <Banner
                 text="test text"
-                layout="floating"
                 actions={[{type: "link", title: "Test link title", href: "/"}]}
             />,
         );
@@ -343,7 +323,6 @@ describe("Banner", () => {
         render(
             <Banner
                 text="test text"
-                layout="floating"
                 actions={[
                     {
                         type: "button",
@@ -370,7 +349,6 @@ describe("Banner", () => {
         render(
             <Banner
                 text="test text"
-                layout="floating"
                 actions={[
                     {
                         type: "link",
@@ -403,7 +381,6 @@ describe("Banner", () => {
             <Banner
                 text="test text"
                 kind={kind}
-                layout="floating"
                 testId="wonder-blocks-banner-test-id"
             />,
         );
@@ -421,7 +398,6 @@ describe("Banner", () => {
             <Banner
                 text="test text"
                 kind="warning"
-                layout="floating"
                 testId="wonder-blocks-banner-test-id"
             />,
         );
@@ -438,7 +414,6 @@ describe("Banner", () => {
         render(
             <Banner
                 text="test text"
-                layout="full-width"
                 testId="wonder-blocks-banner-test-id"
                 aria-label="This is a banner aria label."
             />,
@@ -460,7 +435,6 @@ describe("Banner", () => {
             render(
                 <Banner
                     text="test text"
-                    layout="full-width"
                     testId="wonder-blocks-banner-test-id"
                     aria-label="This is a banner aria label."
                     kind="warning"
@@ -481,7 +455,6 @@ describe("Banner", () => {
             render(
                 <Banner
                     text="test text"
-                    layout="full-width"
                     testId="wonder-blocks-banner-test-id"
                     aria-label="This is a banner aria label."
                     kind="warning"
@@ -501,7 +474,6 @@ describe("Banner", () => {
             render(
                 <Banner
                     text="test text"
-                    layout="full-width"
                     testId="wonder-blocks-banner-test-id"
                     aria-label="This is a banner aria label."
                     kind="warning"
@@ -522,7 +494,6 @@ describe("Banner", () => {
             render(
                 <Banner
                     text="test text"
-                    layout="full-width"
                     testId="wonder-blocks-banner-test-id"
                     aria-label="This is a banner aria label."
                     kind="warning"
