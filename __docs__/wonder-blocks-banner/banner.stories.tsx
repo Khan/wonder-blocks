@@ -158,7 +158,6 @@ DarkBackground.parameters = {
 export const WithButtons: StoryComponentType = {
     args: {
         text: "This is a banner with buttons.",
-        layout: "full-width",
         actions: [
             {type: "button", title: "Button 1", onClick: () => {}},
             {type: "button", title: "Button 2", onClick: () => {}},
@@ -174,7 +173,6 @@ export const WithButtons: StoryComponentType = {
 export const WithLinks: StoryComponentType = {
     args: {
         text: "This is a banner with links.",
-        layout: "floating",
         actions: [
             {type: "link", title: "Link 1", href: "/"},
             {type: "link", title: "Link 2", href: "/", onClick: () => {}},

@@ -136,18 +136,6 @@ export const AllVariantsStory: StoryComponentType = {
 
 const scenarios = [
     {
-        name: "Layout: Full-width",
-        props: {
-            layout: "full-width",
-        },
-    },
-    {
-        name: "Layout: Floating",
-        props: {
-            layout: "floating",
-        },
-    },
-    {
         name: "Multiple lines of text",
         props: {
             text: reallyLongText,
