@@ -7,7 +7,6 @@ import type {Meta, StoryObj} from "@storybook/react";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {
     border,
-    color,
     semanticColor,
     spacing,
 } from "@khanacademy/wonder-blocks-tokens";
@@ -134,9 +133,12 @@ export const DetailCellDisabled: StoryComponentType = {
 };
 
 /**
- * Accessories and the main content container can also be customized to adapt to
- * different sizes and alignments. In this example, we can see how a cell can be
- * customized for both accessories and the content.
+ * `DetailCell` can be used with custom styles. The following parts can be
+ * styled:
+ * - `root`: Styles the root element
+ * - `content`: Styles the content area (between the accessories)
+ * - `leftAccessory`: Styles the left accessory element
+ * - `rightAccessory`: Styles the right accessory element
  */
 export const DetailCellWithCustomStyles: StoryComponentType = {
     render: () => (
@@ -152,6 +154,9 @@ export const DetailCellWithCustomStyles: StoryComponentType = {
                 root: {
                     textAlign: "center",
                     minHeight: 88,
+                },
+                content: {
+                    alignSelf: "flex-start",
                 },
                 leftAccessory: {
                     alignSelf: "flex-start",
@@ -372,7 +377,7 @@ export const DetailCellsAsListItems: StoryComponentType = {
 };
 
 /**
- * Custom styling can be applied to the component using the `style` prop.
+ * Custom styling can be applied to the component using the `styles` prop.
  */
 export const CustomStyles = {
     args: {
@@ -475,7 +480,7 @@ const styles = StyleSheet.create({
         width: 376,
     },
     navigation: {
-        border: `1px dashed ${color.purple}`,
+        border: `${border.width.thin} dashed ${semanticColor.core.border.instructive.default}`,
         marginTop: spacing.large_24,
         padding: spacing.large_24,
     },

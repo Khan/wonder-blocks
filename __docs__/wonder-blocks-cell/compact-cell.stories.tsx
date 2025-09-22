@@ -223,8 +223,12 @@ export const CompactCellHorizontalRules: StoryComponentType = {
 };
 
 /**
- * Cell components can also adapt to different visual needs. One example of this
- * can be done by passing a custom style object to the `style` prop.
+ * `Compact` can be used with custom styles. The following parts can be
+ * styled:
+ * - `root`: Styles the root element
+ * - `content`: Styles the content area (between the accessories)
+ * - `leftAccessory`: Styles the left accessory element
+ * - `rightAccessory`: Styles the right accessory element
  */
 export const CompactCellWithCustomStyles: StoryComponentType = {
     render: () => (
