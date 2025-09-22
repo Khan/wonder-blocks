@@ -60,17 +60,6 @@ type BannerKind =
      */
     | "critical";
 
-type BannerLayout =
-    /**
-     * Renders a rounded rectangle, usually for when banner is used as an inset
-     * element on a screen (e.g., the SOT card) that appears to be floating.
-     */
-    | "floating"
-    /**
-     * Renders a full-width banner, with no rounded corners.
-     */
-    | "full-width";
-
 type BannerValues = {
     icon: PhosphorIconAsset;
     role: "status" | "alert";
@@ -87,15 +76,6 @@ type Props = {
      * Determines the color and icon of the banner.
      */
     kind?: BannerKind;
-    /**
-     * (DEPRECATED) Determines the edge style of the Banner.
-     *
-     * This prop is deprecated and will be removed in a future release.
-     * Currently, it has no effect on the component.
-     *
-     * @deprecated
-     */
-    layout?: BannerLayout;
     /**
      * Text on the banner or a node if you want something different. For the
      * best results, use the default styles provided by the Banner component and
@@ -204,11 +184,6 @@ const StyledDiv = addStyle("div");
  * It can be used as a way of informing the user of important changes.
  * Typically, it is displayed toward the top of the screen.
  *
- * There are two possible layouts for banners - floating and full-width.
- * The `floating` layout is intended to be used when there is whitespace
- * around the banner. The `full-width` layout is intended to be used when
- * the banner needs to be flush with surrounding elements.
- *
  * ### Usage
  * ```jsx
  * import Banner from "@khanacademy/wonder-blocks-banner";
@@ -216,7 +191,6 @@ const StyledDiv = addStyle("div");
  * <Banner
  *     text="Here is some example text."
  *     kind="success"
- *     layout="floating"
  *     actions={[
  *         {title: "Button 1", onClick: () => {}},
  *         {title: "Button 2", onClick: () => {}},
