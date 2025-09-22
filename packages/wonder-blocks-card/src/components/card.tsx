@@ -10,25 +10,60 @@ import {
     sizing,
 } from "@khanacademy/wonder-blocks-tokens";
 
-import {CloseButton} from "@khanacademy/wonder-blocks-button";
+import {DismissButton} from "./dismiss-button";
 
 type Props = {
     styles?: {
         root?: StyleType;
+        dismissButton?: StyleType;
     };
+    ref?: React.Ref<any>;
     children: React.ReactNode;
-    closeButton?: React.ReactNode;
-    closeButtonLabel?: string;
+    showDismissButton?: boolean;
+    dismissButtonLabel?: string;
+    onDismiss?: (e?: React.SyntheticEvent) => void;
 };
 
-const Card = ({styles, children, closeButton, closeButtonLabel}: Props) => {
+/**
+ * The Card component is a flexible, reusable UI building block designed to
+ * encapsulate content within a structured, visually distinct container.
+ * Its primary goal is to present grouped or related information in a way that
+ * is visually consistent, easily scannable, and modular across different
+ * parts of the application.
+ *
+ * Cards provide a defined surface area with clear visual boundaries
+ * (via border-radius and box-shadow elevation tokens), making them ideal for
+ * use cases that involve displaying comparable content items side-by-side or
+ * in structured layouts such as grids, lists, or dashboards.
+ *
+ * ### Usage
+ *
+ * ```jsx
+ * import {Card} from "@khanacademy/wonder-blocks-card";
+ *
+ * <Card>
+ *   <Heading>This is a basic card.</Heading>
+ * </Card>
+ * ```
+ */
+const Card = React.forwardRef(function Card(
+    props: Props,
+    ref: React.ForwardedRef<any>,
+) {
+    const {styles, children, showDismissButton, dismissButtonLabel, onDismiss} =
+        props;
     return (
-        <View style={[componentStyles.root, styles?.root]}>
-            {closeButton ? <CloseButton aria-label={closeButtonLabel} /> : null}
+        <View style={[componentStyles.root, styles?.root]} ref={ref}>
+            {showDismissButton ? (
+                <DismissButton
+                    aria-label={dismissButtonLabel}
+                    onClick={(e) => onDismiss?.(e)}
+                />
+            ) : null}
             {children}
         </View>
     );
-};
+});
 
 const componentStyles = StyleSheet.create({
     root: {

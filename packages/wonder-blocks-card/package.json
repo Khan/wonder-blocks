@@ -16,7 +16,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@khanacademy/wonder-blocks-button": "workspace:*",
     "@khanacademy/wonder-blocks-core": "workspace:*"
   },
   "peerDependencies": {

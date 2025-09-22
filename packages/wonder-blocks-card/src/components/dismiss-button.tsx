@@ -8,7 +8,7 @@ import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 type Props = {
     /** Optional click handler */
-    onClick?: () => unknown;
+    onClick?: (e?: React.SyntheticEvent) => unknown;
     /** Screen reader label for close button */
     "aria-label"?: string;
     /** Optional custom styles. */
@@ -27,7 +27,8 @@ type Props = {
     testId?: string;
 };
 
-export const CloseButton = (props: Props) => {
+// TODO[WB-2090]: Update to shared CloseButton component
+export const DismissButton = (props: Props) => {
     const {onClick, style, testId} = props;
     return (
         <IconButton

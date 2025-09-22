@@ -49,23 +49,119 @@ export default {
 } as Meta<typeof Card>;
 
 /**
- * You can create a minimal cell that only uses a title and an PhosphorIcon that
- * can be placed on the left or right (or both). In this case, we will place the
- * icon on the left to show you how cell is flexible. Note that you can pass any
- * of the existing WB components such as `PhosphorIcon`, `IconButton`,
- * `Tooltip`, etc.
+ * The most basic Card has simple contents as `children`.
  */
 export const DefaultCard: StoryComponentType = {
     render: () => (
-        <Card aria-label="Intro to rational & irrational numbers">
-            <BodyText>Some Contents</BodyText>
+        <Card>
+            <Heading>Some Contents</Heading>
+            <BodyText>This is a basic card.</BodyText>
         </Card>
     ),
-    parameters: {
-        chromatic: {
-            // This is already tested in the StateSheet story.
-            disableSnapshot: true,
-        },
+    parameters: {},
+};
+
+/**
+ * The Gem Challenge Card has more complex content structure including icons,
+ * badges, tabular data, and multiple buttons.
+ */
+export const GemCard: StoryComponentType = {
+    args: {},
+    render: () => (
+        <Card>
+            <View style={[styles.gemRow, styles.gemHeaderRow]}>
+                <View style={styles.gemColumn}>
+                    <View style={styles.gemRow}>
+                        <Heading tag="h3" size="large">
+                            Gem challenge
+                        </Heading>
+                        <PhosphorIcon
+                            icon={infoIcon}
+                            size="small"
+                            color={semanticColor.feedback.info.strong.icon}
+                        />
+                    </View>
+                    <GemBadge label="30 days left" showIcon={false} />
+                </View>
+                <View style={styles.gemIcon}>
+                    <Icon size="large">
+                        <GemIcon aria-label="Gem" />
+                    </Icon>
+                </View>
+            </View>
+            <View style={styles.gemColumn}>
+                {/* progress bar here */}
+                <View style={styles.gemRow}>
+                    <BodyText size="small" style={{marginInlineEnd: "auto"}}>
+                        Class gems
+                    </BodyText>
+                    <BodyText>
+                        <span>0</span> of <span>1500</span>
+                    </BodyText>
+                </View>
+                <View style={styles.gemRow}>
+                    <BodyText size="small" style={{marginInlineEnd: "auto"}}>
+                        Remaining
+                    </BodyText>
+                    <BodyText>
+                        <span>1500</span>
+                    </BodyText>
+                </View>
+                <View style={styles.gemRow}>
+                    <BodyText size="small" style={{marginInlineEnd: "auto"}}>
+                        Reward
+                    </BodyText>
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                    <Link href="#" style={{fontSize: font.body.size.small}}>
+                        Set Reward
+                    </Link>
+                </View>
+                <Button kind="secondary">Learn more about gems</Button>
+                <Button kind="tertiary">View previous challenges</Button>
+            </View>
+        </Card>
+    ),
+};
+
+/**
+ * Cards also have the option to display a "close" button that can dismiss the card from the DOM.
+ */
+export const WithDismissButton: StoryComponentType = {
+    args: {
+        showDismissButton: true,
+        dismissButtonLabel: "Dismiss",
+    },
+    render: (args) => {
+        const CardWithRef = () => {
+            const wrapperRef = React.useRef<HTMLDivElement>(null);
+            const cardRef = React.useRef<HTMLDivElement>(null);
+            const onDismiss = () => {
+                // Remove the card from the DOM
+                cardRef.current?.remove();
+
+                // Ensure focus is handled gracefully across browsers
+                wrapperRef.current?.focus();
+            };
+
+            return (
+                <View ref={wrapperRef} tabIndex={-1}>
+                    <Card
+                        onDismiss={onDismiss}
+                        ref={cardRef}
+                        {...args}
+                        styles={{root: styles.example}}
+                    >
+                        <Heading>Dismissable Card</Heading>
+                        <BodyText>
+                            This is a card with a close button. Click the button
+                            to dismiss.
+                        </BodyText>
+                    </Card>
+                </View>
+            );
+        };
+
+        return <CardWithRef />;
     },
 };
 
@@ -90,71 +186,3 @@ const styles = StyleSheet.create({
         marginBlockEnd: sizing.size_160,
     },
 });
-
-export const GemCard: StoryComponentType = {
-    args: {
-        children: (
-            <>
-                <View style={[styles.gemRow, styles.gemHeaderRow]}>
-                    <View style={styles.gemColumn}>
-                        <View style={styles.gemRow}>
-                            <Heading tag="h3" size="large">
-                                Gem challenge
-                            </Heading>
-                            <PhosphorIcon
-                                icon={infoIcon}
-                                size="small"
-                                color={semanticColor.feedback.info.strong.icon}
-                            />
-                        </View>
-                        <GemBadge label="30 days left" showIcon={false} />
-                    </View>
-                    <View style={styles.gemIcon}>
-                        <Icon size="large">
-                            <GemIcon aria-label="Gem" />
-                        </Icon>
-                    </View>
-                </View>
-                <View style={styles.gemColumn}>
-                    {/* progress bar here */}
-                    <View style={styles.gemRow}>
-                        <BodyText
-                            size="small"
-                            style={{marginInlineEnd: "auto"}}
-                        >
-                            Class gems
-                        </BodyText>
-                        <BodyText>
-                            <span>0</span> of <span>1500</span>
-                        </BodyText>
-                    </View>
-                    <View style={styles.gemRow}>
-                        <BodyText
-                            size="small"
-                            style={{marginInlineEnd: "auto"}}
-                        >
-                            Remaining
-                        </BodyText>
-                        <BodyText>
-                            <span>1500</span>
-                        </BodyText>
-                    </View>
-                    <View style={styles.gemRow}>
-                        <BodyText
-                            size="small"
-                            style={{marginInlineEnd: "auto"}}
-                        >
-                            Reward
-                        </BodyText>
-                        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                        <Link href="#" style={{fontSize: font.body.size.small}}>
-                            Set Reward
-                        </Link>
-                    </View>
-                    <Button kind="secondary">Learn more about gems</Button>
-                    <Button kind="tertiary">View previous challenges</Button>
-                </View>
-            </>
-        ),
-    },
-};
