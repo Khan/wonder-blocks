@@ -170,18 +170,20 @@ export const CompactCellAccessoryStyles: StoryComponentType = {
             leftAccessory={
                 <PhosphorIcon icon={IconMappings.article} size="medium" />
             }
-            leftAccessoryStyle={{
-                minWidth: spacing.xxLarge_48,
-                alignSelf: "flex-start",
-                alignItems: "flex-start",
-            }}
             rightAccessory={
                 <PhosphorIcon icon={IconMappings.caretRightBold} size="small" />
             }
-            rightAccessoryStyle={{
-                minWidth: spacing.large_24,
-                alignSelf: "flex-end",
-                alignItems: "flex-end",
+            styles={{
+                leftAccessory: {
+                    minWidth: spacing.xxLarge_48,
+                    alignSelf: "flex-start",
+                    alignItems: "flex-start",
+                },
+                rightAccessory: {
+                    minWidth: spacing.large_24,
+                    alignSelf: "flex-end",
+                    alignItems: "flex-end",
+                },
             }}
         />
     ),

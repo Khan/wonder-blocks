@@ -84,13 +84,15 @@ type DetailCellProps = CellProps & {
  * ```
  */
 const DetailCell = function (props: DetailCellProps): React.ReactElement {
-    const {contentStyle, title, subtitle1, subtitle2, ...coreProps} = props;
+    const {title, subtitle1, subtitle2, ...coreProps} = props;
 
     return (
         <CellCore
             {...coreProps}
             innerStyle={styles.innerWrapper}
-            contentStyle={{gap: theme.root.layout.gap.detail, ...contentStyle}}
+            contentStyle={{
+                gap: theme.root.layout.gap.detail,
+            }}
         >
             <Subtitle subtitle={subtitle1} disabled={coreProps.disabled} />
             {typeof title === "string" ? (

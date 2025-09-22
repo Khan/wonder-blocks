@@ -142,24 +142,23 @@ export const DetailCellWithCustomStyles: StoryComponentType = {
     render: () => (
         <DetailCell
             title="Title for article item"
-            contentStyle={{
-                alignSelf: "flex-start",
-            }}
             leftAccessory={
                 <PhosphorIcon icon={IconMappings.caretLeftBold} size="small" />
             }
-            leftAccessoryStyle={{
-                alignSelf: "flex-start",
-            }}
             rightAccessory={
                 <PhosphorIcon icon={IconMappings.caretRightBold} size="small" />
             }
-            rightAccessoryStyle={{
-                alignSelf: "flex-start",
-            }}
-            style={{
-                textAlign: "center",
-                minHeight: 88,
+            styles={{
+                root: {
+                    textAlign: "center",
+                    minHeight: 88,
+                },
+                leftAccessory: {
+                    alignSelf: "flex-start",
+                },
+                rightAccessory: {
+                    alignSelf: "flex-start",
+                },
             }}
         />
     ),
@@ -383,10 +382,12 @@ export const CustomStyles = {
                 Active
                 <DetailCell
                     {...args}
-                    style={{
-                        borderRadius: border.radius.radius_120,
-                        ":active": {
+                    styles={{
+                        root: {
                             borderRadius: border.radius.radius_120,
+                            ":active": {
+                                borderRadius: border.radius.radius_120,
+                            },
                         },
                     }}
                     active={true}
@@ -394,9 +395,11 @@ export const CustomStyles = {
                 Pressed
                 <DetailCell
                     {...args}
-                    style={{
-                        ":active": {
-                            borderRadius: border.radius.radius_120,
+                    styles={{
+                        root: {
+                            ":active": {
+                                borderRadius: border.radius.radius_120,
+                            },
                         },
                     }}
                 />
