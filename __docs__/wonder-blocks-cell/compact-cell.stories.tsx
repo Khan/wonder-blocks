@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import packageConfig from "../../packages/wonder-blocks-cell/package.json";
@@ -239,9 +239,11 @@ export const CompactCellWithCustomStyles: StoryComponentType = {
                     color={semanticColor.core.foreground.knockout.default}
                 />
             }
-            style={{
-                background: semanticColor.core.background.neutral.strong,
-                color: semanticColor.core.foreground.knockout.default,
+            styles={{
+                root: {
+                    background: semanticColor.core.background.neutral.strong,
+                    color: semanticColor.core.foreground.knockout.default,
+                },
             }}
             onClick={() => {}}
         />
@@ -382,7 +384,12 @@ export const CompactCellsAsListItems: StoryComponentType = {
                     }
                     href="https://khanacademy.org"
                     horizontalRule="full-width"
-                    style={{background: color.offBlack50}}
+                    styles={{
+                        root: {
+                            background:
+                                semanticColor.core.background.overlay.default,
+                        },
+                    }}
                 />
             </View>
             <View role="listitem">
@@ -395,7 +402,12 @@ export const CompactCellsAsListItems: StoryComponentType = {
                         />
                     }
                     onClick={() => {}}
-                    style={{background: color.fadedPurple24}}
+                    styles={{
+                        root: {
+                            background:
+                                semanticColor.core.background.warning.subtle,
+                        },
+                    }}
                     horizontalRule="full-width"
                 />
             </View>

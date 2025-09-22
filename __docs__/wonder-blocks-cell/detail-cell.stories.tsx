@@ -333,7 +333,12 @@ export const DetailCellsAsListItems: StoryComponentType = {
                     }
                     href="https://khanacademy.org"
                     horizontalRule="full-width"
-                    style={{background: color.offBlack50}}
+                    styles={{
+                        root: {
+                            background:
+                                semanticColor.core.background.overlay.default,
+                        },
+                    }}
                 />
             </View>
             <View role="listitem">
@@ -346,7 +351,12 @@ export const DetailCellsAsListItems: StoryComponentType = {
                         />
                     }
                     onClick={() => {}}
-                    style={{background: color.fadedPurple24}}
+                    styles={{
+                        root: {
+                            background:
+                                semanticColor.core.background.warning.subtle,
+                        },
+                    }}
                     horizontalRule="full-width"
                 />
             </View>
@@ -416,33 +426,39 @@ export const CustomStyles = {
                         subtitle1="Subtitle 1"
                         subtitle2="Subtitle2"
                         onClick={() => {}}
-                        style={[
-                            {
-                                border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
-                            },
-                        ]}
+                        styles={{
+                            root: [
+                                {
+                                    border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
+                                },
+                            ],
+                        }}
                         horizontalRule={"none"}
                     />
                     <DetailCell
                         title="Title"
                         onClick={() => {}}
-                        style={[
-                            args.style,
-                            {
-                                border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
-                            },
-                        ]}
+                        styles={{
+                            root: [
+                                args.styles?.root,
+                                {
+                                    border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
+                                },
+                            ],
+                        }}
                         horizontalRule={"none"}
                     />
                     <DetailCell
                         title="Title"
                         onClick={() => {}}
-                        style={[
-                            args.style,
-                            {
-                                border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
-                            },
-                        ]}
+                        styles={{
+                            root: [
+                                args.styles?.root,
+                                {
+                                    border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
+                                },
+                            ],
+                        }}
                         horizontalRule={"none"}
                     />
                 </View>

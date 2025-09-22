@@ -310,8 +310,10 @@ export const ReactElementInChildren: StoryComponentType = {
                         />
                     }
                     horizontalRule="none"
-                    style={{
-                        borderTop: `1px solid ${tokens.color.offBlack16}`,
+                    styles={{
+                        root: {
+                            borderTop: `1px solid ${tokens.color.offBlack16}`,
+                        },
                     }}
                 />
             </AccordionSection>

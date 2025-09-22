@@ -58,10 +58,6 @@ export type CellProps = {
      */
     role?: ClickableRole;
     /**
-     * Optional custom styles applied to the cell container.
-     */
-    style?: StyleType;
-    /**
      * Custom styles for the elements of Cell. Useful if there are
      * specific cases where spacing between elements needs to be customized.
      */
