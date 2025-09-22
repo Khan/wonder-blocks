@@ -1,22 +1,56 @@
 import type {ArgTypes} from "@storybook/react";
 
 export default {
-    title: {
+    children: {
+        control: {type: "text"},
         description:
-            "The title / main content of the cell. You can either provide a string or a Typography component. If a string is provided, typography defaults to `LabelLarge`.",
-        type: {
-            name: "union",
-            value: [
-                {name: "string"},
-                {name: "other", value: "React.ReactElement<Typography>"},
-            ],
-            required: true,
+            "The content to display inside the card. Can be any React element or multiple elements.",
+        table: {
+            type: {summary: "React.ReactNode"},
         },
+        type: {name: "other", value: "React.ReactNode", required: true},
+    },
+    showDismissButton: {
+        control: {type: "boolean"},
+        description:
+            "Whether to display a dismiss/close button in the top-right corner of the card. When true, users can close the card.",
+        defaultValue: false,
+        table: {
+            type: {summary: "boolean"},
+            defaultValue: {summary: "false"},
+        },
+        type: {name: "boolean", required: false},
+    },
+    dismissButtonLabel: {
+        control: {type: "text"},
+        description:
+            "Custom aria-label for the dismiss button to improve accessibility. If not provided, defaults to 'Close'.",
+        table: {
+            type: {summary: "string"},
+            defaultValue: {summary: '"Close"'},
+            category: "Accessibility",
+        },
+        type: {name: "string", required: false},
+    },
+    onDismiss: {
+        action: "dismissed",
+        description:
+            "Callback function called when the dismiss button is clicked. Receives the click event as a parameter.",
+        table: {
+            type: {summary: "(e?: React.SyntheticEvent) => void"},
+            category: "Events",
+        },
+        type: {name: "function", required: false},
+    },
+    styles: {
+        control: false,
+        description:
+            "Custom styles to apply to the card. Supports styling the root element and dismiss button separately.",
         table: {
             type: {
-                summary: "TypographyText",
-                detail: "string | React.Element<Typography>",
+                summary: "{ root?: StyleType; dismissButton?: StyleType; }",
             },
+            category: "Styling",
         },
     },
 } satisfies ArgTypes;
