@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 8.0.0
+
+### Major Changes
+
+- 59e0211: Removes light prop from Clickable as it is no longer used/recommended. Please use `actionStyles.inverse` instead.
+
 ## 7.1.26
 
 ### Patch Changes

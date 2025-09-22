@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-button
 
+## 11.2.3
+
+### Patch Changes
+
+- Updated dependencies [59e0211]
+    - @khanacademy/wonder-blocks-clickable@8.0.0
+
 ## 11.2.2
 
 ### Patch Changes
