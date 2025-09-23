@@ -359,6 +359,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
         });
 
         const autoResizeStyles = [
+            styles.autoResize,
             {
                 // Dynamically set the height. We account for the border
                 // width so the scrollbar is not shown.
@@ -366,7 +367,6 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                 // Set the max height so the textarea can't grow infinitely
                 maxHeight: getHeightForNumberOfRows(Math.max(maxRows, rows)),
             },
-            styles.autoResize,
         ];
 
         return (
