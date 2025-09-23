@@ -73,6 +73,15 @@ type TextAreaProps = AriaProps & {
      */
     autoFocus?: boolean;
     /**
+     * The number of visible lines of text for the textarea. Defaults to 2.
+     *
+     * If `autoResize` is `true`, `rows` is the starting number of rows and more
+     * content increases the number of rows, up until the `maxRows` prop value
+     * is reached. If `autoResize` is `false`, the textarea will be scrollable
+     * with the number of rows set by the `rows` prop.
+     */
+    rows?: number;
+    /**
      * Determines if the textarea should be checked for spelling by the browser/OS.
      * By default, it is enabled. It will be checked for spelling when you try
      * to edit it (ie. once the textarea is focused). For more details, see the
@@ -175,14 +184,10 @@ type TextAreaProps = AriaProps & {
      */
     required?: boolean | string;
     /**
-     * The number of visible lines of text for the textarea. Defaults to 2.
-     *
-     * If `autoResize` is `true`, `rows` is the starting number of rows and more
-     * content increases the number of rows, up until the `maxRows` prop value
-     * is reached. If `autoResize` is `false`, the textarea will be scrollable
-     * with the number of rows set by the `rows` prop.
+     * Specifies the resizing behaviour for the textarea. Defaults to both
+     * behaviour. For more details, see the [CSS resize property values MDN docs](https://developer.mozilla.org/en-US/docs/Web/CSS/resize#values)
      */
-    rows?: number;
+    resizeType?: "horizontal" | "vertical" | "both" | "none";
     /**
      * Whether the textarea should automatically resize to fit the content.
      * If `true`, the textarea will resize to fit the content. If `false`,
@@ -258,6 +263,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             validate,
             onValidate,
             required,
+            resizeType,
             rootStyle,
             error,
             autoResize = true,
@@ -352,21 +358,16 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             }
         });
 
-        const autoResizeStyles = autoResize
-            ? [
-                  {
-                      // Dynamically set the height. We account for the border
-                      // width so the scrollbar is not shown.
-                      height: `calc(${height}px + (2 * ${border.width.thin}))`,
-                  },
-                  {
-                      // Set the max height so the textarea can't grow infinitely
-                      maxHeight: getHeightForNumberOfRows(
-                          Math.max(maxRows, rows),
-                      ),
-                  },
-              ]
-            : [];
+        const autoResizeStyles = [
+            {
+                // Dynamically set the height. We account for the border
+                // width so the scrollbar is not shown.
+                height: `calc(${height}px + (2 * ${border.width.thin}))`,
+                // Set the max height so the textarea can't grow infinitely
+                maxHeight: getHeightForNumberOfRows(Math.max(maxRows, rows)),
+            },
+            styles.autoResize,
+        ];
 
         return (
             <View
@@ -381,6 +382,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                     style={[
                         styles.textarea,
                         typographyStyles.BodyTextMediumMediumWeight,
+                        resizeType && resizeStyles[resizeType],
                         styles.default,
                         disabled && styles.disabled,
                         hasError && styles.error,
@@ -389,7 +391,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                             // Set the min height to the height of the number of rows
                             minHeight: getHeightForNumberOfRows(rows),
                         },
-                        ...autoResizeStyles,
+                        autoResize && autoResizeStyles,
                         style,
                     ]}
                     value={value}
@@ -426,6 +428,8 @@ const styles = StyleSheet.create({
         boxSizing: "border-box",
         paddingInline: theme.field.layout.paddingInline,
         paddingBlock: theme.field.layout.paddingBlock,
+    },
+    autoResize: {
         // Disable the resize control
         resize: "none",
     },
@@ -464,6 +468,21 @@ const styles = StyleSheet.create({
         "::placeholder": {
             color: semanticColor.input.default.placeholder,
         },
+    },
+});
+
+const resizeStyles = StyleSheet.create({
+    both: {
+        resize: "both",
+    },
+    none: {
+        resize: "none",
+    },
+    horizontal: {
+        resize: "horizontal",
+    },
+    vertical: {
+        resize: "vertical",
     },
 });
 

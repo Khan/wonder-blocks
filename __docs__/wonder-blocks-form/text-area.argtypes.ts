@@ -26,6 +26,13 @@ export default {
             type: "text",
         },
     },
+    resizeType: {
+        table: {
+            type: {
+                summary: `"horizontal" | "vertical" | "both" | "none"`,
+            },
+        },
+    },
     /**
      * Visual Style
      */

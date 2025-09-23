@@ -173,15 +173,6 @@ export const WithValue: ControlledStoryComponentType = {
 };
 
 /**
- * The `rows` prop can be used to set the number of rows to show by default.
- */
-export const Rows: StoryComponentType = {
-    args: {
-        rows: 10,
-    },
-};
-
-/**
  * The `autoResize` prop can be used to automatically resize the textarea to fit
  * the content. By default, `autoResize` is `true`.
  *
@@ -496,6 +487,15 @@ export const Required: StoryComponentType = {
 };
 
 /**
+ * The `rows` prop can be used to set the number of rows to show by default.
+ */
+export const Rows: StoryComponentType = {
+    args: {
+        rows: 10,
+    },
+};
+
+/**
  * If the `autoComplete` prop is set, the browser can predict values for the
  * textarea. For more details, see the
  * [MDN docs for the textarea attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attributes).
@@ -692,6 +692,48 @@ export const MinMaxLength: StoryComponentType = {
             // Disabling because this doesn't test anything visual.
             disableSnapshot: true,
         },
+    },
+};
+
+/**
+ * The behaviour of the built-in resize control can be configured using the
+ * `resizeType` prop. Here are some tips:
+ * - The initial size of the TextArea can be configured using the `rows` prop.
+ * This size should be large enough for the expected user input.
+ * - Avoid having too small of a TextArea and having `resizeType=none`. This
+ * makes it difficult for users to scroll through their input.
+ */
+export const ResizeType: StoryComponentType = {
+    args: {},
+    render(args) {
+        return (
+            <div>
+                <LabeledField
+                    label="Resize Type: both"
+                    field={<TextArea {...args} resizeType="both" />}
+                />
+                <br />
+                <LabeledField
+                    label="Resize Type: vertical"
+                    field={<TextArea {...args} resizeType="vertical" />}
+                />
+                <br />
+                <LabeledField
+                    label="Resize Type: horizontal"
+                    field={<TextArea {...args} resizeType="horizontal" />}
+                />
+                <br />
+                <LabeledField
+                    label="Resize Type: none"
+                    field={<TextArea {...args} resizeType="none" />}
+                />
+                <br />
+                <LabeledField
+                    label="Resize Type: default (both)"
+                    field={<TextArea {...args} />}
+                />
+            </div>
+        );
     },
 };
 
