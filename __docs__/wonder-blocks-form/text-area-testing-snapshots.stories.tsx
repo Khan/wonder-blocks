@@ -189,10 +189,58 @@ export const Scenarios: Story = {
                 },
             },
             {
+                name: "Auto resize is true with rows = 10 and value is short",
+                props: {
+                    autoResize: true,
+                    value: longText,
+                    rows: 10,
+                },
+            },
+            {
                 name: "Auto-resize is true with rows = 4 and maxRows = 2 (rows > maxRows)",
                 props: {
                     autoResize: true,
                     value: repeatText(reallyLongText, 3),
+                    rows: 4,
+                    maxRows: 2,
+                },
+            },
+            {
+                name: "Using Placeholder: Auto resize is true with default maxRows of 6",
+                props: {
+                    autoResize: true,
+                    placeholder: repeatText(reallyLongText, 3),
+                },
+            },
+            {
+                name: "Using Placeholder: Auto resize is true with maxRows = 10",
+                props: {
+                    autoResize: true,
+                    placeholder: repeatText(reallyLongText, 3),
+                    maxRows: 10,
+                },
+            },
+            {
+                name: "Using Placeholder: Auto resize is true with rows = 30",
+                props: {
+                    autoResize: true,
+                    placeholder: repeatText(reallyLongText, 4),
+                    rows: 30,
+                },
+            },
+            {
+                name: "Auto resize is true with rows = 10 and placeholder is short",
+                props: {
+                    autoResize: true,
+                    placeholder: longText,
+                    rows: 10,
+                },
+            },
+            {
+                name: "Using Placeholder: Auto-resize is true with rows = 4 and maxRows = 2 (rows > maxRows)",
+                props: {
+                    autoResize: true,
+                    placeholder: repeatText(reallyLongText, 3),
                     rows: 4,
                     maxRows: 2,
                 },
