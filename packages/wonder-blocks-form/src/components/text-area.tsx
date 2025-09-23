@@ -326,7 +326,11 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             onChangeValidation(newValue);
             onChange(newValue);
 
-            setHeight(getTextAreaHeight(event.target));
+            // When the textarea value is changed, we need to recalculate the
+            // height if autoResize is true
+            if (autoResize) {
+                setHeight(getTextAreaHeight(event.target));
+            }
         };
 
         const handleBlur = (event: React.FocusEvent<HTMLTextAreaElement>) => {
@@ -338,6 +342,10 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
         };
 
         useOnMountEffect(() => {
+            // If autoResize is false, we don't need to set up the resize observer
+            if (!autoResize) {
+                return;
+            }
             // We use a ref to the container to get the child textarea element
             // so that consumers can pass in a ref to the textarea element
             // directly.
@@ -346,6 +354,9 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             if (ref && window?.ResizeObserver) {
                 const observer = new window.ResizeObserver(([entry]) => {
                     if (entry) {
+                        // When the resize observer is triggered from things like
+                        // a change in size or zoom level, we need to recalculate
+                        // the height
                         setHeight(
                             getTextAreaHeight(
                                 entry.target as HTMLTextAreaElement,

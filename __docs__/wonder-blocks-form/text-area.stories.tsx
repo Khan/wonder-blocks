@@ -174,7 +174,7 @@ export const WithValue: ControlledStoryComponentType = {
 
 /**
  * The `autoResize` prop can be used to automatically resize the textarea to fit
- * the content. By default, `autoResize` is `true`.
+ * the content. By default, `autoResize` is `false`.
  *
  * There is also a `maxRows` prop that can be used to set the maximum number of
  * rows to show when `autoResize` is enabled. If the content exceeds the max
