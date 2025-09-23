@@ -266,7 +266,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             resizeType,
             rootStyle,
             error,
-            autoResize = true,
+            autoResize = false,
             maxRows = 6,
             instantValidation = true,
             // Should only include aria related props
