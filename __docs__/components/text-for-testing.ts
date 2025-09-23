@@ -8,6 +8,12 @@ export const reallyLongText =
 export const reallyLongTextWithNoWordBreak =
     "LoremipsumdolorsitametconsecteturadipiscingelitseddoeiusmodtemporincididuntutlaboreetdoloremagnaaliquaUtenimadminimveniamquisnostrudexercitationullamcolaborisnisiutaliquipexeacommodoconsequatDuisauteiruredolorinreprehenderitinvoluptatevelitessecillumdoloreeufugiatnullapariaturExcepteursintoccaecatcupidatatnonproidentsuntinculpaquiofficiadeseruntmollitanimidestlaborum";
 
+/**
+ * A utility function to repeat text a given number of times.
+ * @param text - The text to repeat.
+ * @param times - The number of times to repeat the text.
+ * @returns The repeated text.
+ */
 export function repeatText(text: string, times: number) {
     return Array.from({length: times}, () => text).join(" ");
 }
