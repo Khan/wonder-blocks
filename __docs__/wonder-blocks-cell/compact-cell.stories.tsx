@@ -223,7 +223,7 @@ export const CompactCellHorizontalRules: StoryComponentType = {
 };
 
 /**
- * `Compact` can be used with custom styles. The following parts can be
+ * `CompactCell` can be used with custom styles. The following parts can be
  * styled:
  * - `root`: Styles the root element
  * - `content`: Styles the content area (between the accessories)
