@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.4.2
+
+### Patch Changes
+
+- a558788: Updates Dropdown components internally to adapt to the new Cell `styles` prop.
+- Updated dependencies [a558788]
+    - @khanacademy/wonder-blocks-cell@6.0.0
+
 ## 10.4.1
 
 ### Patch Changes
