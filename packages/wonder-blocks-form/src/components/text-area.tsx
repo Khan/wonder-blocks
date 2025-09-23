@@ -221,6 +221,33 @@ function getHeightForNumberOfRows(rows: number) {
 }
 
 /**
+ * Calculate the height of a textarea element.
+ * @param textArea - The textarea element.
+ * @returns The height of the textarea element.
+ */
+function getTextAreaHeight(textArea: HTMLTextAreaElement) {
+    // Save the original style properties
+    const originalHeight = textArea.style.height;
+    const originalOverflow = textArea.style.overflow;
+
+    // Force the textarea to shrink by setting height to 0 and hiding overflow
+    textArea.style.setProperty("height", "0px", "important");
+    textArea.style.setProperty("overflow", "hidden", "important");
+    // Now get the actual scrollHeight needed for the content
+    const newHeight = textArea.scrollHeight;
+
+    // Restore the original styles (remove !important)
+    textArea.style.removeProperty("height");
+    textArea.style.removeProperty("overflow");
+    if (originalHeight) {
+        textArea.style.height = originalHeight;
+    }
+    if (originalOverflow) {
+        textArea.style.overflow = originalOverflow;
+    }
+    return newHeight;
+}
+/**
  * A TextArea is an element used to accept text from the user.
  *
  * Make sure to provide a label for the field. This can be done by either:
@@ -291,29 +318,6 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
 
         const generatedUniqueId = useId();
         const uniqueId = id ?? generatedUniqueId;
-
-        const getTextAreaHeight = (textArea: HTMLTextAreaElement) => {
-            // Save the original style properties
-            const originalHeight = textArea.style.height;
-            const originalOverflow = textArea.style.overflow;
-
-            // Force the textarea to shrink by setting height to 0 and hiding overflow
-            textArea.style.setProperty("height", "0px", "important");
-            textArea.style.setProperty("overflow", "hidden", "important");
-            // Now get the actual scrollHeight needed for the content
-            const newHeight = textArea.scrollHeight;
-
-            // Restore the original styles (remove !important)
-            textArea.style.removeProperty("height");
-            textArea.style.removeProperty("overflow");
-            if (originalHeight) {
-                textArea.style.height = originalHeight;
-            }
-            if (originalOverflow) {
-                textArea.style.overflow = originalOverflow;
-            }
-            return newHeight;
-        };
 
         const handleChange = (
             event: React.ChangeEvent<HTMLTextAreaElement>,
