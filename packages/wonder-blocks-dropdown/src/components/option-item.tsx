@@ -214,12 +214,14 @@ export default class OptionItem extends React.Component<OptionProps> {
             <DetailCell
                 disabled={disabled}
                 horizontalRule={horizontalRule}
-                style={[
-                    defaultStyle,
-                    parentComponent === "listbox"
-                        ? listboxStyles
-                        : selectStyles,
-                ]}
+                styles={{
+                    root: [
+                        defaultStyle,
+                        parentComponent === "listbox"
+                            ? listboxStyles
+                            : selectStyles,
+                    ],
+                }}
                 aria-selected={selected ? "true" : "false"}
                 role={role}
                 testId={testId}

@@ -15,7 +15,7 @@ import theme from "../../theme";
 
 type LeftAccessoryProps = {
     leftAccessory?: CellProps["leftAccessory"];
-    leftAccessoryStyle?: CellProps["leftAccessoryStyle"];
+    style?: StyleType;
     disabled?: CellProps["disabled"];
 };
 
@@ -25,7 +25,7 @@ type LeftAccessoryProps = {
  */
 const LeftAccessory = ({
     leftAccessory,
-    leftAccessoryStyle,
+    style,
     disabled,
 }: LeftAccessoryProps): React.ReactElement => {
     if (!leftAccessory) {
@@ -39,7 +39,7 @@ const LeftAccessory = ({
                 styles.accessory,
                 styles.accessoryLeft,
                 disabled && styles.accessoryDisabled,
-                {...leftAccessoryStyle},
+                {...style},
             ]}
         >
             {leftAccessory}
@@ -49,7 +49,7 @@ const LeftAccessory = ({
 
 type RightAccessoryProps = {
     rightAccessory?: CellProps["rightAccessory"];
-    rightAccessoryStyle?: CellProps["rightAccessoryStyle"];
+    style?: StyleType;
     active?: CellProps["active"];
     disabled?: CellProps["disabled"];
 };
@@ -60,7 +60,7 @@ type RightAccessoryProps = {
  */
 const RightAccessory = ({
     rightAccessory,
-    rightAccessoryStyle,
+    style,
     active,
     disabled,
 }: RightAccessoryProps): React.ReactElement => {
@@ -75,7 +75,7 @@ const RightAccessory = ({
                 styles.accessory,
                 styles.accessoryRight,
                 disabled && styles.accessoryDisabled,
-                {...rightAccessoryStyle},
+                {...style},
                 active && styles.accessoryActive,
             ]}
         >
@@ -96,9 +96,8 @@ function CellInner(props: CellCoreProps): React.ReactElement {
         disabled,
         contentStyle = undefined,
         leftAccessory = undefined,
-        leftAccessoryStyle = undefined,
         rightAccessory = undefined,
-        rightAccessoryStyle = undefined,
+        styles: stylesProp,
         testId,
     } = props;
 
@@ -107,19 +106,22 @@ function CellInner(props: CellCoreProps): React.ReactElement {
             {/* Left accessory */}
             <LeftAccessory
                 leftAccessory={leftAccessory}
-                leftAccessoryStyle={leftAccessoryStyle}
+                style={stylesProp?.leftAccessory}
                 disabled={disabled}
             />
 
             {/* Cell contents */}
-            <View style={[styles.content, contentStyle]} testId={testId}>
+            <View
+                style={[styles.content, contentStyle, stylesProp?.content]}
+                testId={testId}
+            >
                 {children}
             </View>
 
             {/* Right accessory */}
             <RightAccessory
                 rightAccessory={rightAccessory}
-                rightAccessoryStyle={rightAccessoryStyle}
+                style={stylesProp?.rightAccessory}
                 active={active}
                 disabled={disabled}
             />
@@ -132,6 +134,13 @@ type CellCoreProps = Partial<Omit<CellProps, "title">> & {
      * The content of the cell.
      */
     children: React.ReactNode;
+
+    /**
+     * Optional custom styles applied to the content wrapper. For example, it
+     * can be used to set a custom minWidth or a custom alignment.
+     */
+    contentStyle?: StyleType;
+
     /**
      * The optional styles applied to the inner wrapper.
      *
@@ -163,7 +172,7 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
         tabIndex,
 
         horizontalRule = "inset",
-        style,
+        styles: stylesProp,
         innerStyle,
     } = props;
 
@@ -194,7 +203,7 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
                     styles.clickable,
                     disabled && styles.disabled,
                     // custom styles
-                    style,
+                    stylesProp?.root,
                 ]}
                 aria-current={active ? "true" : undefined}
                 tabIndex={tabIndex}
@@ -210,7 +219,7 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
         <View
             style={[
                 sharedStyles, // custom styles
-                style,
+                stylesProp?.root,
             ]}
             aria-current={active ? "true" : undefined}
             role={role}
