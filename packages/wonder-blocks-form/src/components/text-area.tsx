@@ -195,7 +195,7 @@ type TextAreaProps = AriaProps & {
      * the textarea will not change in size and the textarea will be scrollable if
      * content exceeds the height of the textarea.
      *
-     * Defaults to `true`.
+     * Defaults to `false`.
      *
      * See related `maxRows` prop for setting the max height for the textarea.
      */
@@ -222,7 +222,7 @@ function getHeightForNumberOfRows(rows: number) {
 }
 
 /**
- * Calculate the height of a textarea element.
+ * Calculate the height needed for a textarea element to fit the content
  * @param textArea - The textarea element.
  * @returns The height to use for the textarea element.
  */
@@ -232,11 +232,11 @@ function getTextAreaHeight(textArea: HTMLTextAreaElement): string {
     const originalHeight = style.height;
     const originalOverflow = style.overflow;
 
-    // Force the textarea to shrink by setting height to 0 and hiding overflow
+    // Force the textarea to shrink by setting height to 0 and hiding overflow.
     textArea.style.setProperty("height", "0px", "important");
     textArea.style.setProperty("overflow", "hidden", "important");
 
-    // Now get the actual scrollHeight needed for the content. We account for the border
+    // Get the scrollHeight needed for the content. We account for the border
     // width so the scrollbar is not shown.
     const borderTop = style.borderTopWidth;
     const borderBottom = style.borderBottomWidth;
