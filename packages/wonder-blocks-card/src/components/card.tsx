@@ -12,17 +12,26 @@ import {
 
 import {DismissButton} from "./dismiss-button";
 
+type AllowedStyleProps = {
+    backgroundColor?: "subtle" | "default" | "transparent";
+    borderRadius?: "radius_080" | "radius_120";
+    padding?: "size_0" | "size_160" | "size_240";
+};
 type Props = {
     styles?: {
         root?: StyleType;
         dismissButton?: StyleType;
     };
     ref?: React.Ref<any>;
+    tag?: keyof JSX.IntrinsicElements;
     children: React.ReactNode;
-    showDismissButton?: boolean;
-    dismissButtonLabel?: string;
+    labels?: {
+        dismissButtonAriaLabel?: string;
+        cardAriaLabel?: string;
+    };
     onDismiss?: (e?: React.SyntheticEvent) => void;
-};
+    inert?: boolean;
+} & AllowedStyleProps;
 
 /**
  * The Card component is a flexible, reusable UI building block designed to
@@ -50,13 +59,33 @@ const Card = React.forwardRef(function Card(
     props: Props,
     ref: React.ForwardedRef<any>,
 ) {
-    const {styles, children, showDismissButton, dismissButtonLabel, onDismiss} =
-        props;
+    const {
+        styles,
+        labels,
+        tag,
+        backgroundColor = "default",
+        borderRadius = "radius_080",
+        padding = "size_160", // TODO: figure out conversion to px
+        children,
+        onDismiss,
+        inert,
+    } = props;
+
+    const componentStyles = getComponentStyles({
+        backgroundColor,
+        borderRadius,
+        padding,
+    });
     return (
-        <View style={[componentStyles.root, styles?.root]} ref={ref}>
-            {showDismissButton ? (
+        <View
+            style={[componentStyles.root, styles?.root]}
+            ref={ref}
+            tag={tag}
+            {...{inert: inert ? "" : undefined}}
+        >
+            {onDismiss ? (
                 <DismissButton
-                    aria-label={dismissButtonLabel}
+                    aria-label={labels?.dismissButtonAriaLabel || "Close"}
                     onClick={(e) => onDismiss?.(e)}
                 />
             ) : null}
@@ -65,19 +94,30 @@ const Card = React.forwardRef(function Card(
     );
 });
 
-const componentStyles = StyleSheet.create({
-    root: {
-        backgroundColor: semanticColor.core.background.base.subtle,
-        borderColor: semanticColor.core.border.neutral.subtle,
-        borderRadius: border.radius.radius_080,
-        borderStyle: "solid",
-        borderWidth: border.width.thin,
-        boxShadow: boxShadow.low,
-        padding: sizing.size_160, // TODO: figure out conversion to px
-        maxWidth: "295px", // TODO: figure out max/min widths
-        position: "relative",
-        width: "100%",
-    },
-});
+const getComponentStyles = ({
+    backgroundColor,
+    borderRadius,
+    padding,
+}: AllowedStyleProps) => {
+    const backgroundColorStyle =
+        (backgroundColor && backgroundColor === "subtle") ||
+        backgroundColor === "default"
+            ? semanticColor.core.background.base[backgroundColor]
+            : "transparent"; // fall back to transparent
+    return StyleSheet.create({
+        root: {
+            backgroundColor: backgroundColorStyle,
+            borderColor: semanticColor.core.border.neutral.subtle,
+            borderStyle: "solid",
+            borderRadius: borderRadius && border.radius[borderRadius],
+            borderWidth: border.width.thin,
+            boxShadow: boxShadow.low,
+            padding: padding && sizing[padding], // TODO: figure out conversion to px
+            maxWidth: "295px", // TODO: figure out max/min widths
+            position: "relative",
+            width: "100%",
+        },
+    });
+};
 
 export default Card;

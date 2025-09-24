@@ -128,8 +128,8 @@ export const GemCard: StoryComponentType = {
  */
 export const WithDismissButton: StoryComponentType = {
     args: {
-        showDismissButton: true,
-        dismissButtonLabel: "Dismiss",
+        onDismiss: () => {},
+        labels: {dismissButtonAriaLabel: "Dismiss"},
     },
     render: (args) => {
         const CardWithRef = () => {
@@ -165,6 +165,57 @@ export const WithDismissButton: StoryComponentType = {
     },
 };
 
+export const WithTag: StoryComponentType = {
+    render: () => (
+        <View tag="ul">
+            <Card tag="li">
+                <Heading>Card 1</Heading>
+            </Card>
+            <Card tag="li">
+                <Heading>Card 2</Heading>
+            </Card>
+        </View>
+    ),
+};
+
+export const WithInertContents: StoryComponentType = {
+    render: () => (
+        <View tag="ul">
+            <View tag="li" style={styles.stackedCard}>
+                <Card>
+                    <Heading>Card 1</Heading>
+                    <Button>CTA 1</Button>
+                </Card>
+            </View>
+            <View tag="li" style={[styles.stackedCard, styles.dimmed]}>
+                <Card inert={true}>
+                    <Heading>Card 2</Heading>
+                    <Button>CTA 2</Button>
+                </Card>
+            </View>
+        </View>
+    ),
+};
+
+export const WithStyleProps: StoryComponentType = {
+    render: () => (
+        <View tag="ul">
+            <Card tag="li" borderRadius="radius_120">
+                <Heading>Card 1</Heading>
+                <Button>CTA 1</Button>
+            </Card>
+            <Card padding="size_240">
+                <Heading>Card 2</Heading>
+                <Button>CTA 2</Button>
+            </Card>
+            <Card backgroundColor="subtle">
+                <Heading>Card 2</Heading>
+                <Button>CTA 2</Button>
+            </Card>
+        </View>
+    ),
+};
+
 const styles = StyleSheet.create({
     example: {
         backgroundColor: semanticColor.core.background.base.subtle,
@@ -184,5 +235,18 @@ const styles = StyleSheet.create({
     },
     gemHeaderRow: {
         marginBlockEnd: sizing.size_160,
+    },
+    stackedCard: {
+        listStyle: "none",
+        position: "absolute",
+        padding: 0,
+        margin: 0,
+        width: 320,
+    },
+    dimmed: {
+        opacity: "0.5",
+        zIndex: -1,
+        marginBlockStart: spacing.large_24,
+        marginInlineStart: spacing.large_24,
     },
 });
