@@ -15,7 +15,11 @@ import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 
 import TextAreaArgTypes from "./text-area.argtypes";
 import {validateEmail} from "./form-utilities";
-import {reallyLongText, repeatText} from "../components/text-for-testing";
+import {
+    longText,
+    reallyLongText,
+    repeatText,
+} from "../components/text-for-testing";
 
 /**
  * A TextArea is an element used to accept text from the user.
@@ -61,7 +65,6 @@ const styles = StyleSheet.create({
     customField: {
         backgroundColor: semanticColor.status.notice.background,
         color: semanticColor.status.notice.foreground,
-        border: "none",
         maxWidth: 250,
         "::placeholder": {
             color: semanticColor.core.foreground.neutral.default,
@@ -187,12 +190,18 @@ export const WithValue: ControlledStoryComponentType = {
 export const AutoResize: StoryComponentType = {
     render: (args) => {
         return (
-            <View style={{gap: spacing.large_24, width: "500px"}}>
+            <View style={{gap: spacing.large_24, maxWidth: "500px"}}>
                 <ControlledTextArea
                     {...args}
                     autoResize={false}
                     label="Auto resize is false"
                     value={repeatText(reallyLongText, 3)}
+                />
+                <ControlledTextArea
+                    {...args}
+                    autoResize={true}
+                    label="Auto resize is true"
+                    value={repeatText(longText, 2)}
                 />
                 <ControlledTextArea
                     {...args}
