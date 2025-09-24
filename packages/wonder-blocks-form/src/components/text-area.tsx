@@ -224,18 +224,23 @@ function getHeightForNumberOfRows(rows: number) {
 /**
  * Calculate the height of a textarea element.
  * @param textArea - The textarea element.
- * @returns The height of the textarea element.
+ * @returns The height to use for the textarea element.
  */
-function getTextAreaHeight(textArea: HTMLTextAreaElement) {
+function getTextAreaHeight(textArea: HTMLTextAreaElement): string {
     // Save the original style properties
-    const originalHeight = textArea.style.height;
-    const originalOverflow = textArea.style.overflow;
+    const style = getComputedStyle(textArea);
+    const originalHeight = style.height;
+    const originalOverflow = style.overflow;
 
     // Force the textarea to shrink by setting height to 0 and hiding overflow
     textArea.style.setProperty("height", "0px", "important");
     textArea.style.setProperty("overflow", "hidden", "important");
-    // Now get the actual scrollHeight needed for the content
-    const newHeight = textArea.scrollHeight;
+
+    // Now get the actual scrollHeight needed for the content. We account for the border
+    // width so the scrollbar is not shown.
+    const borderTop = style.borderTopWidth;
+    const borderBottom = style.borderBottomWidth;
+    const newHeight = `calc(${textArea.scrollHeight}px + ${borderTop} + ${borderBottom})`;
 
     // Restore the original styles (remove !important)
     textArea.style.removeProperty("height");
@@ -313,7 +318,8 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
 
         const textAreaContainerRef = React.useRef<HTMLDivElement>(null);
 
-        const [height, setHeight] = React.useState(0);
+        // height is a string so that we can use the calc function
+        const [height, setHeight] = React.useState("0px");
 
         const hasError = error || !!errorMessage;
 
@@ -377,9 +383,8 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
         const autoResizeStyles = [
             styles.autoResize,
             {
-                // Dynamically set the height. We account for the border
-                // width so the scrollbar is not shown.
-                height: `calc(${height}px + (2 * ${border.width.thin}))`,
+                // Dynamically set the height
+                height,
                 // Set the max height so the textarea can't grow infinitely
                 maxHeight: getHeightForNumberOfRows(Math.max(maxRows, rows)),
             },

@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
     customField: {
         backgroundColor: semanticColor.status.notice.background,
         color: semanticColor.status.notice.foreground,
+        border: "none",
         maxWidth: 250,
         "::placeholder": {
             color: semanticColor.core.foreground.neutral.default,
