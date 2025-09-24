@@ -1,5 +1,10 @@
 import * as React from "react";
-import {Title, Subtitle, Description, Stories} from "@storybook/blocks";
+import {
+    Title,
+    Subtitle,
+    Description,
+    Stories,
+} from "@storybook/addon-docs/blocks";
 import {Meta} from "@storybook/react-vite";
 import TokenTable from "../components/token-table";
 import ComponentInfo from "../components/component-info";

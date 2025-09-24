@@ -40,7 +40,7 @@ const columns = weights.map((weight) => ({
 
 export const AllVariantsStory: StoryComponentType = {
     name: "All Variants",
-    render: (args) => {
+    render: () => {
         return (
             <AllVariants rows={rows} columns={columns} title="Size / Weight">
                 {({props, name}) => (

@@ -1,5 +1,10 @@
 import * as React from "react";
-import {Title, Subtitle, Description, Stories} from "@storybook/blocks";
+import {
+    Title,
+    Subtitle,
+    Description,
+    Stories,
+} from "@storybook/addon-docs/blocks";
 import {StyleSheet} from "aphrodite";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
