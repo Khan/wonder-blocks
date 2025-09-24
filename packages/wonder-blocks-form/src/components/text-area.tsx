@@ -184,6 +184,7 @@ type TextAreaProps = AriaProps & {
      */
     required?: boolean | string;
     /**
+     * @deprecated This prop is deprecated in favour of the `autoResize` prop.
      * Specifies the resizing behaviour for the textarea. Defaults to both
      * behaviour. For more details, see the [CSS resize property values MDN docs](https://developer.mozilla.org/en-US/docs/Web/CSS/resize#values)
      */
