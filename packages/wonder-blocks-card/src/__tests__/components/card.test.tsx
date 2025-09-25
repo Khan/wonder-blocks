@@ -137,7 +137,7 @@ describe("Card", () => {
             );
 
             // Act
-            const section = screen.getByRole("section");
+            const section = screen.getByRole("region");
 
             // Assert
             expect(section).toBeInTheDocument();
@@ -156,7 +156,7 @@ describe("Card", () => {
             );
 
             // Act
-            const section = screen.getByRole("section", {
+            const section = screen.getByRole("region", {
                 name: "Custom section label",
             });
 
@@ -167,7 +167,7 @@ describe("Card", () => {
         it("should apply the inert attribute", () => {
             // Arrange
             render(
-                <Card inert data-test-id="card">
+                <Card inert testId="card">
                     <h2>Heading</h2>
                     <p>Description</p>
                     <button>Button</button>
