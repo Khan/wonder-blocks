@@ -227,10 +227,15 @@ function getHeightForNumberOfRows(rows: number) {
  * @returns The height to use for the textarea element.
  */
 function getTextAreaHeight(textArea: HTMLTextAreaElement): string {
-    // Save the original style properties
-    const style = getComputedStyle(textArea);
-    const originalHeight = style.height;
-    const originalOverflow = style.overflow;
+    // Save the original style properties. Note this is only gets the value from
+    // the style object, not the computed style which considers css classes
+    const originalStyleHeightValue = textArea.style.getPropertyValue("height");
+    const originalStyleHeightPriority =
+        textArea.style.getPropertyPriority("height");
+    const originalStyleOverflowValue =
+        textArea.style.getPropertyValue("overflow");
+    const originalStyleOverflowPriority =
+        textArea.style.getPropertyPriority("overflow");
 
     // Force the textarea to shrink by setting height to 0 and hiding overflow.
     textArea.style.setProperty("height", "0px", "important");
@@ -238,19 +243,32 @@ function getTextAreaHeight(textArea: HTMLTextAreaElement): string {
 
     // Get the scrollHeight needed for the content. We account for the border
     // width so the scrollbar is not shown.
-    const borderTop = style.borderTopWidth;
-    const borderBottom = style.borderBottomWidth;
+    const computedStyle = getComputedStyle(textArea);
+    const borderTop = computedStyle.borderTopWidth;
+    const borderBottom = computedStyle.borderBottomWidth;
     const newHeight = `calc(${textArea.scrollHeight}px + ${borderTop} + ${borderBottom})`;
 
-    // Restore the original styles (remove !important)
-    textArea.style.removeProperty("height");
-    textArea.style.removeProperty("overflow");
-    if (originalHeight) {
-        textArea.style.height = originalHeight;
+    // Restore the original style properties if they were set. Otherwise, remove
+    // the temporary properties used to calculate the content height.
+    if (originalStyleHeightValue) {
+        textArea.style.setProperty(
+            "height",
+            originalStyleHeightValue,
+            originalStyleHeightPriority,
+        );
+    } else {
+        textArea.style.removeProperty("height");
     }
-    if (originalOverflow) {
-        textArea.style.overflow = originalOverflow;
+    if (originalStyleOverflowValue) {
+        textArea.style.setProperty(
+            "overflow",
+            originalStyleOverflowValue,
+            originalStyleOverflowPriority,
+        );
+    } else {
+        textArea.style.removeProperty("overflow");
     }
+
     return newHeight;
 }
 /**
