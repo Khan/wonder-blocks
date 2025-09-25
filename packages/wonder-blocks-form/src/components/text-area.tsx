@@ -408,6 +408,18 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             },
         ];
 
+        React.useEffect(() => {
+            // If `autoResize` becomes `true`, we need to recalculate the height
+            if (autoResize) {
+                setHeight(
+                    getTextAreaHeight(
+                        textAreaContainerRef.current
+                            ?.children[0] as HTMLTextAreaElement,
+                    ),
+                );
+            }
+        }, [autoResize, ref]);
+
         return (
             <View
                 style={[{width: "100%"}, rootStyle]}
