@@ -180,46 +180,47 @@ export const WithTag: StoryComponentType = {
 
 export const WithInertContents: StoryComponentType = {
     render: () => (
-        <View tag="ul">
-            <View tag="li" style={styles.stackedCard}>
-                <Card>
-                    <Heading>Card 1</Heading>
-                    <Button>CTA 1</Button>
-                </Card>
+        <>
+            <Heading>Cards in a stack</Heading>
+            <View tag="ul">
+                <View tag="li" style={styles.stackedCard}>
+                    <Card>
+                        <Heading>Active Card</Heading>
+                        <Button>CTA</Button>
+                    </Card>
+                </View>
+                <View tag="li" style={[styles.stackedCard, styles.dimmed]}>
+                    <Card inert={true}>
+                        <Heading>Inactive Card</Heading>
+                        <Button>CTA</Button>
+                    </Card>
+                </View>
             </View>
-            <View tag="li" style={[styles.stackedCard, styles.dimmed]}>
-                <Card inert={true}>
-                    <Heading>Card 2</Heading>
-                    <Button>CTA 2</Button>
-                </Card>
-            </View>
-        </View>
+        </>
     ),
 };
 
 export const WithStyleProps: StoryComponentType = {
     render: () => (
-        <View tag="ul">
-            <Card tag="li" borderRadius="radius_120">
-                <Heading>Card 1</Heading>
-                <Button>CTA 1</Button>
-            </Card>
-            <Card padding="size_240">
-                <Heading>Card 2</Heading>
-                <Button>CTA 2</Button>
-            </Card>
-            <Card backgroundColor="subtle">
-                <Heading>Card 2</Heading>
-                <Button>CTA 2</Button>
-            </Card>
-        </View>
+        <>
+            <Heading>Style props</Heading>
+            <View tag="ul">
+                <Card tag="li" borderRadius="radius_120">
+                    <Heading>borderRadius=radius_120</Heading>
+                </Card>
+                <Card padding="size_240">
+                    <Heading>padding=size_240</Heading>
+                </Card>
+                <Card backgroundColor="subtle">
+                    <Heading>backgroundColor=subtle</Heading>
+                </Card>
+            </View>
+        </>
     ),
 };
 
 const styles = StyleSheet.create({
     example: {
-        backgroundColor: semanticColor.core.background.base.subtle,
-        padding: spacing.large_24,
         width: 320 + spacing.xxLarge_48,
     },
     gemRow: {
@@ -231,6 +232,8 @@ const styles = StyleSheet.create({
         gap: sizing.size_080,
     },
     gemIcon: {
+        alignItems: "center",
+        marginInlineStart: "auto",
         width: sizing.size_560,
     },
     gemHeaderRow: {
