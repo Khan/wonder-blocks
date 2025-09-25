@@ -16,11 +16,14 @@
     "access": "public"
   },
   "dependencies": {
-    "@khanacademy/wonder-blocks-core": "workspace:*"
+    "@khanacademy/wonder-blocks-core": "workspace:*",
+    "@khanacademy/wonder-blocks-icon-button": "workspace:*",
+    "@khanacademy/wonder-blocks-tokens": "workspace:*"
   },
   "peerDependencies": {
     "aphrodite": "catalog:",
-    "react": "catalog:"
+    "react": "catalog:",
+    "@phosphor-icons/core": "catalog:"
   },
   "devDependencies": {
     "@khanacademy/wb-dev-build-settings": "workspace:*"
