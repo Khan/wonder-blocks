@@ -255,10 +255,14 @@ export const WithStyleProps: StoryComponentType = {
                 >
                     <Heading>borderRadius=radius_120</Heading>
                 </Card>
-                <Card styles={{root: styles.card}} padding="size_240">
+                <Card tag="li" styles={{root: styles.card}} padding="size_240">
                     <Heading>padding=size_240</Heading>
                 </Card>
-                <Card styles={{root: styles.card}} backgroundColor="subtle">
+                <Card
+                    tag="li"
+                    styles={{root: styles.card}}
+                    backgroundColor="subtle"
+                >
                     <Heading>backgroundColor=subtle</Heading>
                 </Card>
             </View>
