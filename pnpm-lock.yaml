@@ -1301,9 +1301,6 @@ importers:
       '@khanacademy/wonder-stuff-core':
         specifier: 'catalog:'
         version: 1.5.4
-      '@storybook/addon-actions':
-        specifier: ^8.5.2
-        version: 8.5.2(storybook@8.6.12(prettier@3.4.2))
       aphrodite:
         specifier: 'catalog:'
         version: 1.2.5
@@ -1335,9 +1332,6 @@ importers:
       '@khanacademy/wonder-stuff-core':
         specifier: 'catalog:'
         version: 1.5.4
-      '@storybook/addon-actions':
-        specifier: ^8.5.2
-        version: 8.5.2(storybook@8.6.12(prettier@3.4.2))
       aphrodite:
         specifier: 'catalog:'
         version: 1.2.5
@@ -2905,11 +2899,6 @@ packages:
     resolution: {integrity: sha512-H28zHiL8uuv29XsVNf9VjNWsCeht/l66GPYHT7aom1jh+f3fS9+sutrCGEBC/T7cnRpy8ZyuHCtihUqS+RI4pg==}
     peerDependencies:
       storybook: ^8.6.12
-
-  '@storybook/addon-actions@8.5.2':
-    resolution: {integrity: sha512-g0gLesVSFgstUq5QphsLeC1vEdwNHgqo2TE0m+STM47832xbxBwmK6uvBeqi416xZvnt1TTKaaBr4uCRRQ64Ww==}
-    peerDependencies:
-      storybook: ^8.5.2
 
   '@storybook/addon-actions@8.6.12':
     resolution: {integrity: sha512-B5kfiRvi35oJ0NIo53CGH66H471A3XTzrfaa6SxXEJsgxxSeKScG5YeXcCvLiZfvANRQ7QDsmzPUgg0o3hdMXw==}
@@ -9587,15 +9576,6 @@ snapshots:
       '@storybook/test': 8.6.12(storybook@8.6.12(prettier@3.4.2))
       axe-core: 4.10.2
       storybook: 8.6.12(prettier@3.4.2)
-
-  '@storybook/addon-actions@8.5.2(storybook@8.6.12(prettier@3.4.2))':
-    dependencies:
-      '@storybook/global': 5.0.0
-      '@types/uuid': 9.0.8
-      dequal: 2.0.3
-      polished: 4.3.1
-      storybook: 8.6.12(prettier@3.4.2)
-      uuid: 9.0.1
 
   '@storybook/addon-actions@8.6.12(storybook@8.6.12(prettier@3.4.2))':
     dependencies:
