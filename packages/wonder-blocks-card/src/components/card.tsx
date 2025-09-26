@@ -100,6 +100,9 @@ type Props = {
  * use cases that involve displaying comparable content items side-by-side or
  * in structured layouts such as grids, lists, or dashboards.
  *
+ * Note: cards do not set a default width. Width styles should be set by the consumer
+ * with the `styles.root` prop.
+ *
  * ### Usage
  *
  * ```jsx
@@ -110,6 +113,7 @@ type Props = {
  * </Card>
  * ```
  */
+
 const Card = React.forwardRef(function Card(
     props: Props,
     ref: React.ForwardedRef<any>,
@@ -121,7 +125,7 @@ const Card = React.forwardRef(function Card(
         testId,
         backgroundColor = "default",
         borderRadius = "radius_080",
-        padding = "size_160", // TODO: figure out conversion to px
+        padding = "size_160",
         children,
         onDismiss,
         inert,
@@ -170,10 +174,9 @@ const getComponentStyles = ({
             borderRadius: borderRadius && border.radius[borderRadius],
             borderWidth: border.width.thin,
             boxShadow: boxShadow.low,
-            padding: padding && sizing[padding], // TODO: figure out conversion to px
-            maxWidth: "295px", // TODO: figure out max/min widths
+            padding: padding && sizing[padding], // TODO[WB-2094]: figure out conversion to px
+            minInlineSize: sizing.size_280,
             position: "relative",
-            width: "100%",
         },
     });
 };

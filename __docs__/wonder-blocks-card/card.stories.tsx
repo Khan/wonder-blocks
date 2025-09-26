@@ -53,7 +53,7 @@ export default {
  */
 export const DefaultCard: StoryComponentType = {
     render: () => (
-        <Card>
+        <Card styles={{root: styles.card}}>
             <Heading>Some Contents</Heading>
             <BodyText>This is a basic card.</BodyText>
         </Card>
@@ -67,8 +67,11 @@ export const DefaultCard: StoryComponentType = {
  */
 export const GemCard: StoryComponentType = {
     args: {},
+    parameters: {
+        chromatic: {disableSnapshot: true}, // disable snapshot since it is mostly custom contents
+    },
     render: () => (
-        <Card>
+        <Card styles={{root: styles.card}}>
             <View style={[styles.gemRow, styles.gemHeaderRow]}>
                 <View style={styles.gemColumn}>
                     <View style={styles.gemRow}>
@@ -149,7 +152,7 @@ export const WithDismissButton: StoryComponentType = {
                         onDismiss={onDismiss}
                         ref={cardRef}
                         {...args}
-                        styles={{root: styles.example}}
+                        styles={{root: styles.card}}
                     >
                         <Heading>Dismissable Card</Heading>
                         <BodyText>
@@ -166,35 +169,75 @@ export const WithDismissButton: StoryComponentType = {
 };
 
 export const WithTag: StoryComponentType = {
+    parameters: {
+        chromatic: {disableSnapshot: true}, // disable snapshot since doesn't have a meaningful visual effect
+    },
     render: () => (
         <View tag="ul">
-            <Card tag="li">
+            <Card tag="li" styles={{root: styles.card}}>
                 <Heading>Card 1</Heading>
             </Card>
-            <Card tag="li">
+            <Card tag="li" styles={{root: styles.card}}>
                 <Heading>Card 2</Heading>
             </Card>
         </View>
     ),
 };
 
-export const WithInertContents: StoryComponentType = {
+export const InAStack: StoryComponentType = {
+    parameters: {
+        chromatic: {disableSnapshot: true}, // disable snapshot since doesn't have a meaningful visual effect
+    },
     render: () => (
         <>
             <Heading>Cards in a stack</Heading>
             <View tag="ul">
                 <View tag="li" style={styles.stackedCard}>
-                    <Card>
+                    <Card styles={{root: styles.card}}>
                         <Heading>Active Card</Heading>
                         <Button>CTA</Button>
                     </Card>
                 </View>
                 <View tag="li" style={[styles.stackedCard, styles.dimmed]}>
-                    <Card inert={true}>
+                    <Card inert={true} styles={{root: styles.card}}>
                         <Heading>Inactive Card</Heading>
                         <Button>CTA</Button>
                     </Card>
                 </View>
+            </View>
+        </>
+    ),
+};
+
+export const InAGrid: StoryComponentType = {
+    parameters: {
+        chromatic: {disableSnapshot: true}, // disable snapshot since doesn't have a meaningful visual effect
+    },
+    render: () => (
+        <>
+            <Heading>Cards in a grid</Heading>
+            <View
+                style={[
+                    styles.gemRow,
+                    {flexWrap: "wrap", gap: spacing.large_24},
+                ]}
+            >
+                <Card styles={{root: styles.card}}>
+                    <Heading>Card 1</Heading>
+                    <BodyText>This is a basic card.</BodyText>
+                </Card>
+                <Card styles={{root: styles.card}}>
+                    <Heading>Card 2</Heading>
+                    <BodyText>This is a basic card.</BodyText>
+                </Card>
+                <Card styles={{root: styles.card}}>
+                    <Heading>Card 3</Heading>
+                    <BodyText>This is a basic card.</BodyText>
+                </Card>
+                <Card styles={{root: styles.card}}>
+                    <Heading>Card 4</Heading>
+                    <BodyText>This is a basic card.</BodyText>
+                </Card>
             </View>
         </>
     ),
@@ -205,13 +248,17 @@ export const WithStyleProps: StoryComponentType = {
         <>
             <Heading>Style props</Heading>
             <View tag="ul">
-                <Card tag="li" borderRadius="radius_120">
+                <Card
+                    styles={{root: styles.card}}
+                    tag="li"
+                    borderRadius="radius_120"
+                >
                     <Heading>borderRadius=radius_120</Heading>
                 </Card>
-                <Card padding="size_240">
+                <Card styles={{root: styles.card}} padding="size_240">
                     <Heading>padding=size_240</Heading>
                 </Card>
-                <Card backgroundColor="subtle">
+                <Card styles={{root: styles.card}} backgroundColor="subtle">
                     <Heading>backgroundColor=subtle</Heading>
                 </Card>
             </View>
@@ -220,7 +267,7 @@ export const WithStyleProps: StoryComponentType = {
 };
 
 const styles = StyleSheet.create({
-    example: {
+    card: {
         width: 320 + spacing.xxLarge_48,
     },
     gemRow: {
