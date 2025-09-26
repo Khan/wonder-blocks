@@ -73,6 +73,10 @@ const baseColumns = (property: string) => [
         cell: (row: Row) => <Code>{`font.${property}.${row.label}`}</Code>,
     },
     {
+        label: "CSS Variable",
+        cell: (row: Row) => <Code>{row.css}</Code>,
+    },
+    {
         label: "Value",
         cell: "value",
     },
@@ -115,6 +119,11 @@ export const FontFamily = {
  *
  * Sizes are categorized by `Body` and `Heading`, such as `font.body.size.small` and `font.heading.size.large`.
  *
+ * When using the `font.body.size.*` tokens, also use the corresponding
+ * `font.body.lineHeight.*` token for the line height. As an alternative, the
+ * WB `BodyText` component can be used instead, which will apply all the needed
+ * font properties by default.
+ *
  * **Note:** the legacy font token API will be deprecated in the future (e.g. `font.size.small`) to support
  * both Classic and Thunderblocks with the same theme structure.
  */
@@ -148,6 +157,12 @@ export const BodyFontSize = {
     ),
 };
 
+/**
+ * When using the `font.heading.size.*` tokens, also use the corresponding
+ * `font.heading.lineHeight.*` token for the line height. As an alternative, the
+ * WB `Heading` component can be used instead, which will apply all the needed
+ * font properties by default.
+ */
 export const HeadingFontSize = {
     name: "Font Size (Heading)",
     render: () => (
@@ -182,6 +197,11 @@ export const HeadingFontSize = {
  * The vertical space associated to a given font size.
  *
  * Line-heights are categorized by `Body` and `Heading`.
+ *
+ * When using the `font.body.lineHeight.*` tokens, also use the corresponding
+ * `font.body.size.*` token for the font size. As an alternative, the
+ * WB `BodyText` component can be used instead, which will apply all the needed
+ * font properties by default.
  */
 export const BodyLineHeight = {
     name: "Line Height (Body)",
@@ -213,6 +233,12 @@ export const BodyLineHeight = {
     ),
 };
 
+/**
+ * When using the `font.heading.lineHeight.*` tokens, also use the corresponding
+ * `font.heading.size.*` token for the font size. As an alternative, the
+ * WB `Heading` component can be used instead, which will apply all the needed
+ * font properties by default.
+ */
 export const HeadingLineHeight = {
     name: "Line Height (Heading)",
     render: () => (
