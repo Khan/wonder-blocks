@@ -13,6 +13,7 @@ import {
     repeatText,
 } from "../components/text-for-testing";
 import {AllVariants} from "../components/all-variants";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 /**
  * The following stories are used to generate the pseudo states for the
@@ -247,7 +248,10 @@ export const Scenarios: Story = {
             },
         ];
         return (
-            <ScenariosLayout scenarios={scenarios}>
+            <ScenariosLayout
+                scenarios={scenarios}
+                styles={{root: {paddingBlockEnd: sizing.size_240}}}
+            >
                 {(props, name) => (
                     <LabeledField
                         label="Text Area"
