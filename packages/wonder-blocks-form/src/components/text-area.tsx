@@ -227,7 +227,7 @@ function getHeightForNumberOfRows(rows: number) {
  * @returns The height to use for the textarea element.
  */
 function getTextAreaHeight(textArea: HTMLTextAreaElement): string {
-    // Save the original style properties. Note this is only gets the value from
+    // Save the original style properties. Note this only gets the value from
     // the style object, not the computed style which considers css classes
     const originalStyleHeightValue = textArea.style.getPropertyValue("height");
     const originalStyleHeightPriority =
