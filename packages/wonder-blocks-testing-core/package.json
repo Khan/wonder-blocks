@@ -16,7 +16,6 @@
   "dependencies": {},
   "peerDependencies": {
     "@khanacademy/wonder-stuff-core": "catalog:",
-    "@storybook/addon-actions": "^8.5.2",
     "aphrodite": "catalog:",
     "node-fetch": "catalog:",
     "react": "catalog:",

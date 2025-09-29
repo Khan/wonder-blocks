@@ -4,7 +4,7 @@ import type {GqlMockOperation} from "./types";
 // TODO(somewhatabstract, FEI-4268): use a third-party library to do this and
 // possibly make it also support the jest `jest.objectContaining` type matching
 // to simplify mock declaration (note that it would need to work in regular
-// tests and stories/fixtures).
+// tests and stories).
 const areObjectsEquivalent = (a: any, b: any): boolean => {
     if (a === b) {
         return true;

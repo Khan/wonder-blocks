@@ -1,7 +1,3 @@
-// Fixtures framework
-export {fixtures} from "./fixtures/fixtures";
-export type {FixtureFn, FixtureProps, GetPropsOptions} from "./fixtures/types";
-
 // Fetch mocking framework
 export {mockFetch} from "./fetch/mock-fetch";
 export {mockRequester} from "./mock-requester";
