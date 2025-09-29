@@ -84,7 +84,7 @@ const parameters: Preview["parameters"] = {
                 name: "baseDefault",
                 value: semanticColor.core.background.base.default,
             },
-            light: {
+            neutralStrong: {
                 name: "neutralStrong",
                 value: semanticColor.core.background.neutral.strong,
             },
