@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-testing-core
 
+## 4.0.0
+
+### Major Changes
+
+- 82b5970: Removed Fixtures framework - please use the native Storybook CSFv3 format for stories
+
 ## 3.0.1
 
 ### Patch Changes
