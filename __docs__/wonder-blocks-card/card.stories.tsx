@@ -128,13 +128,11 @@ export const GemCard: StoryComponentType = {
 
 /**
  * Cards also have the option to display a "close" button that can dismiss the card from the DOM.
+ *
+ * If a Card is removed onDismiss, focus should be moved to a wrapper or neighoring interactive element.
  */
 export const WithDismissButton: StoryComponentType = {
-    args: {
-        onDismiss: () => {},
-        labels: {dismissButtonAriaLabel: "Dismiss"},
-    },
-    render: (args) => {
+    render: () => {
         const CardWithRef = () => {
             const wrapperRef = React.useRef<HTMLDivElement>(null);
             const cardRef = React.useRef<HTMLDivElement>(null);
@@ -149,9 +147,9 @@ export const WithDismissButton: StoryComponentType = {
             return (
                 <View ref={wrapperRef} tabIndex={-1}>
                     <Card
+                        labels={{dismissButtonAriaLabel: "Dismiss"}}
                         onDismiss={onDismiss}
                         ref={cardRef}
-                        {...args}
                         styles={{root: styles.card}}
                     >
                         <Heading>Dismissable Card</Heading>
@@ -251,19 +249,23 @@ export const WithStyleProps: StoryComponentType = {
                 <Card
                     styles={{root: styles.card}}
                     tag="li"
-                    borderRadius="radius_120"
+                    borderRadiusStyle="small"
                 >
-                    <Heading>borderRadius=radius_120</Heading>
-                </Card>
-                <Card tag="li" styles={{root: styles.card}} padding="size_240">
-                    <Heading>padding=size_240</Heading>
+                    <Heading>borderRadiusStyle=small</Heading>
                 </Card>
                 <Card
                     tag="li"
                     styles={{root: styles.card}}
-                    backgroundColor="subtle"
+                    paddingSize="medium"
                 >
-                    <Heading>backgroundColor=subtle</Heading>
+                    <Heading>paddingSize=medium</Heading>
+                </Card>
+                <Card
+                    tag="li"
+                    styles={{root: styles.card}}
+                    backgroundColorStyle="base-subtle"
+                >
+                    <Heading>backgroundColorStyle=base-subtle</Heading>
                 </Card>
             </View>
         </>

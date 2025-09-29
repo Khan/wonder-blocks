@@ -3,49 +3,113 @@ import type {ArgTypes} from "@storybook/react";
 export default {
     children: {
         control: {type: "text"},
-        description:
-            "The content to display inside the card. Can be any React element or multiple elements.",
         table: {
             type: {summary: "React.ReactNode"},
         },
         type: {name: "other", value: "React.ReactNode", required: true},
     },
-    showDismissButton: {
-        control: {type: "boolean"},
-        description:
-            "Whether to display a dismiss/close button in the top-right corner of the card. When true, users can close the card.",
-        defaultValue: false,
+    backgroundColorStyle: {
+        control: {type: "select"},
+        options: ["base-subtle", "base-default"],
+        defaultValue: "base-default",
         table: {
-            type: {summary: "boolean"},
-            defaultValue: {summary: "false"},
+            type: {summary: '"base-subtle" | "base-default"'},
+            defaultValue: {summary: '"base-default"'},
+            category: "Styling",
         },
-        type: {name: "boolean", required: false},
+        type: {
+            name: "enum",
+            value: ["base-subtle", "base-default"],
+            required: false,
+        },
     },
-    dismissButtonLabel: {
-        control: {type: "text"},
-        description:
-            "Custom aria-label for the dismiss button to improve accessibility. If not provided, defaults to 'Close'.",
+    borderRadiusStyle: {
+        control: {type: "select"},
+        options: ["small", "medium"],
+        defaultValue: "small",
         table: {
-            type: {summary: "string"},
-            defaultValue: {summary: '"Close"'},
+            type: {summary: '"small" | "medium"'},
+            defaultValue: {summary: '"small"'},
+            category: "Styling",
+        },
+        type: {name: "enum", value: ["small", "medium"], required: false},
+    },
+    paddingSize: {
+        control: {type: "select"},
+        options: ["none", "small", "medium"],
+        defaultValue: "small",
+        table: {
+            type: {summary: '"none" | "small" | "medium"'},
+            defaultValue: {summary: '"small"'},
+            category: "Styling",
+        },
+        type: {
+            name: "enum",
+            value: ["none", "small", "medium"],
+            required: false,
+        },
+    },
+    tag: {
+        control: {type: "select"},
+        options: ["div", "section", "figure", "article"],
+        defaultValue: "div",
+        table: {
+            type: {summary: "keyof JSX.IntrinsicElements"},
+            defaultValue: {summary: '"div"'},
+            category: "Structure",
+        },
+        type: {
+            name: "enum",
+            value: ["div", "section", "figure", "article"],
+            required: false,
+        },
+    },
+    labels: {
+        control: {type: "object"},
+        table: {
+            type: {
+                summary:
+                    "{ cardAriaLabel?: string; dismissButtonAriaLabel?: string; }",
+            },
             category: "Accessibility",
         },
-        type: {name: "string", required: false},
+        type: {
+            name: "object",
+            value: {
+                cardAriaLabel: {name: "string", required: false},
+                dismissButtonAriaLabel: {name: "string", required: false},
+            },
+            required: false,
+        },
     },
     onDismiss: {
         action: "dismissed",
-        description:
-            "Callback function called when the dismiss button is clicked. Receives the click event as a parameter.",
         table: {
             type: {summary: "(e?: React.SyntheticEvent) => void"},
             category: "Events",
         },
         type: {name: "function", required: false},
     },
+    testId: {
+        control: {type: "text"},
+        table: {
+            type: {summary: "string"},
+            category: "Testing",
+        },
+        type: {name: "string", required: false},
+    },
+    inert: {
+        control: {type: "boolean"},
+        defaultValue: false,
+        table: {
+            type: {summary: "boolean"},
+            defaultValue: {summary: "false"},
+            category: "Accessibility",
+        },
+        type: {name: "boolean", required: false},
+    },
     styles: {
         control: false,
-        description:
-            "Custom styles to apply to the card. Supports styling the root element and dismiss button separately.",
         table: {
             type: {
                 summary: "{ root?: StyleType; dismissButton?: StyleType; }",

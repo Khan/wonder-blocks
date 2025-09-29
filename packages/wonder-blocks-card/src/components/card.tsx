@@ -12,37 +12,10 @@ import {
 
 import {DismissButton} from "./dismiss-button";
 
-type AllowedStyleProps = {
-    /**
-     * The background color of the card, as a string identifier that matches a semanticColor token.
-     * This can be one of:
-     * - `"subtle"`, matching `semanticColor.core.background.base.subtle`: a light gray background, useful for cards that need to stand out from the page background.
-     * - `"default"`, matching `semanticColor.core.background.base.default`: a white background, useful for cards that are placed on a light gray page background.
-     *
-     * Default: `"default"`
-     */
-    backgroundColor?: "subtle" | "default";
-    /**
-     * The border radius of the card, as a string identifier that matches a border.radius token.
-     * This can be one of:
-     * - `"radius_080"`, matching `border.radius.radius_080`: a moderate border radius, useful for cards that need to have a slightly rounded appearance.
-     * - `"radius_120"`, matching `border.radius.radius_120`: a more pronounced border radius, useful for cards that need to have a more rounded appearance.
-     *
-     * Default: `"radius_080"`
-     */
-    borderRadius?: "radius_080" | "radius_120";
-    /**
-     * The padding inside the card, as a string identifier that matches a sizing token.
-     * This can be one of:
-     * - `"size_0"`, matching `sizing.size_0`: no padding, useful for cards that need to have content flush with the edges.
-     * - `"size_160"`, matching `sizing.size_160`: moderate padding, useful for cards that need to have some space between the content and the edges.
-     * - `"size_240"`, matching `sizing.size_240`: more padding, useful for cards that need to have more space between the content and the edges.
-     *
-     * Default: `"size_160"`
-     */
-    padding?: "size_0" | "size_160" | "size_240";
-};
-type Props = {
+/**
+ * Base props that are shared across all Card configurations
+ */
+type BaseCardProps = {
     /**
      * Optional styles to be applied to the root element and the dismiss button.
      */
@@ -53,30 +26,11 @@ type Props = {
     /**
      * A ref that will be passed to the root element (i.e. the card container).
      */
-    ref?: React.Ref<any>;
-    /**
-     * The HTML tag to use for the card container. By default, this is a `<div>`, but
-     * if the card is being used as a landmark region, you may want to set this to
-     * `<section>` and provide an appropriate `aria-label` via the `labels` prop.
-     */
-    tag?: keyof JSX.IntrinsicElements;
+    ref?: React.Ref<HTMLElement>;
     /**
      * The content for the card.
      */
     children: React.ReactNode;
-    /**
-     * A set of localizable labels for this component, including a dismiss button
-     * and the card itself, if marked as an HTML region.
-     */
-    labels?: {
-        dismissButtonAriaLabel?: string;
-        cardAriaLabel?: string;
-    };
-    /**
-     * A callback function to handle dismissing the card. When this prop is present,
-     * a dismiss button with an X icon will be rendered.
-     */
-    onDismiss?: (e?: React.SyntheticEvent) => void;
     /**
      * An optional attribute to remove this component from the accessibility tree
      * and keyboard tab order, such as for inactive cards in a stack.
@@ -86,7 +40,75 @@ type Props = {
      * The test ID used to locate this component in automated tests.
      */
     testId?: string;
-} & AllowedStyleProps;
+} & StyleOnlyProps;
+
+/**
+ * A callback function to handle dismissing the card. When this prop is present,
+ * a dismiss button with an X icon will be rendered.
+ *
+ * When `onDismiss` is provided, `labels.dismissButtonAriaLabel` must also be
+ * provided for accessibility and localization.
+ */
+type DismissProps =
+    | {
+          onDismiss: (e?: React.SyntheticEvent) => void;
+          labels: {dismissButtonAriaLabel: string} & Record<string, any>;
+      }
+    | {
+          onDismiss?: never;
+          labels?: Record<string, any>;
+      };
+
+/**
+ * Provide a specific HTML tag that overrides the default (`div`)
+ * When `tag="section"` or `"figure"`, `cardAriaLabel` is required for accessibility.
+ */
+type TagProps =
+    | {
+          tag: "section" | "figure";
+          labels: {cardAriaLabel: string} & Record<string, any>;
+      }
+    | {
+          tag?: Exclude<keyof JSX.IntrinsicElements, "section" | "figure">;
+          labels?: Record<string, any>;
+      };
+
+/**
+ * Combined props - these two requirements work independently
+ */
+type ConditionalProps = BaseCardProps & TagProps & DismissProps;
+
+type StyleOnlyProps = {
+    /**
+     * The background color of the card, as a string identifier that matches a semanticColor token.
+     * This can be one of:
+     * - `"base-subtle"` `semanticColor.core.background.base.subtle`: a light gray background.
+     * - `"base-default"`, matching `semanticColor.core.background.base.default`: a white background.
+     *
+     * Default: `"base-default"`
+     */
+    backgroundColorStyle?: "base-subtle" | "base-default";
+    /**
+     * The border radius of the card, as a string identifier that matches a border.radius token.
+     * This can be one of:
+     * - `"radius_080"`, matching `border.radius.radius_080`.
+     * - `"radius_120"`, matching `border.radius.radius_120`.
+     *
+     * Default: `"radius_080"`
+     */
+    borderRadiusStyle?: "small" | "medium";
+    /**
+     * The padding inside the card, as a string identifier that matches a sizing token.
+     * This can be one of:
+     * - `"none"`: no padding.
+     * - `"small"`, matching `sizing.size_160`.
+     * - `"medium"`, matching `sizing.size_240`.
+     *
+     * Default: `"size_160"`
+     */
+    paddingSize?: "none" | "small" | "medium";
+};
+type Props = ConditionalProps;
 
 /**
  * The Card component is a flexible, reusable UI building block designed to
@@ -101,7 +123,7 @@ type Props = {
  * in structured layouts such as grids, lists, or dashboards.
  *
  * Note: cards do not set a default width. Width styles should be set by the consumer
- * with the `styles.root` prop.
+ * with the `styles.root` prop, or a parent flex or grid container.
  *
  * ### Usage
  *
@@ -112,6 +134,39 @@ type Props = {
  *   <Heading>This is a basic card.</Heading>
  * </Card>
  * ```
+ *
+ * ### Styling
+ *
+ * Cards can be customized via the following props:
+ *
+ * **`backgroundColorStyle` prop**
+ *
+ * | value | resolves to |
+ * |---|---|
+ * | `base-subtle` | `semanticColor.core.background.base.subtle` (light gray) |
+ * | `base-default` | `semanticColor.core.background.base.default` (white) |
+ *
+ * **`borderRadiusStyle` prop**
+ *
+ * | value | resolves to |
+ * |---|---|
+ * | `small` | `border.radius.radius_080` |
+ * | `medium` | `border.radius.radius_120` |
+ *
+ * **`paddingSize` prop**
+ *
+ * | value | resolves to |
+ * |---|---|
+ * | `none` | `sizing.size_0` |
+ * | `small` | `sizing.size_160` |
+ * | `medium` | `sizing.size_240` |
+ *
+ * Other styles can be applied via the `styles` prop, which accepts an object with `root` and `dismissButton` keys for custom styling of the card container and dismiss button respectively.
+ *
+ * ### Accessibility
+ * - When using `tag="section"` or `tag="figure"`, the `labels.cardAriaLabel` prop is required to provide an accessible name for the card.
+ * - When the `onDismiss` prop is provided, a dismiss button will be rendered. In this case, the `labels.dismissButtonAriaLabel` prop is required to provide an accessible label for the dismiss button.
+ * - Cards cannot be interactive elements themselves (e.g. buttons or links), but they can contain interactive elements as children.
  */
 
 const Card = React.forwardRef(function Card(
@@ -123,18 +178,18 @@ const Card = React.forwardRef(function Card(
         labels,
         tag,
         testId,
-        backgroundColor = "default",
-        borderRadius = "radius_080",
-        padding = "size_160",
+        backgroundColorStyle = "base-default",
+        borderRadiusStyle = "small",
+        paddingSize = "small",
         children,
         onDismiss,
         inert,
     } = props;
 
     const componentStyles = getComponentStyles({
-        backgroundColor,
-        borderRadius,
-        padding,
+        backgroundColorStyle,
+        borderRadiusStyle,
+        paddingSize,
     });
     return (
         <View
@@ -157,24 +212,39 @@ const Card = React.forwardRef(function Card(
 });
 
 const getComponentStyles = ({
-    backgroundColor,
-    borderRadius,
-    padding,
-}: AllowedStyleProps) => {
-    const backgroundColorStyle =
-        (backgroundColor && backgroundColor === "subtle") ||
-        backgroundColor === "default"
-            ? semanticColor.core.background.base[backgroundColor]
-            : undefined;
+    backgroundColorStyle,
+    borderRadiusStyle,
+    paddingSize,
+}: StyleOnlyProps) => {
+    // Map prop values to tokens
+    const styleMap = {
+        backgroundColor: {
+            "base-subtle": semanticColor.core.background.base.subtle,
+            "base-default": semanticColor.core.background.base.default,
+        },
+        borderRadius: {
+            small: border.radius.radius_080,
+            medium: border.radius.radius_120,
+        },
+        padding: {
+            none: sizing.size_0,
+            small: sizing.size_160,
+            medium: sizing.size_240,
+        },
+    } as const;
+
     return StyleSheet.create({
         root: {
-            backgroundColor: backgroundColorStyle,
+            backgroundColor:
+                backgroundColorStyle &&
+                styleMap.backgroundColor[backgroundColorStyle],
             borderColor: semanticColor.core.border.neutral.subtle,
             borderStyle: "solid",
-            borderRadius: borderRadius && border.radius[borderRadius],
+            borderRadius:
+                borderRadiusStyle && styleMap.borderRadius[borderRadiusStyle],
             borderWidth: border.width.thin,
             boxShadow: boxShadow.low,
-            padding: padding && sizing[padding], // TODO[WB-2094]: figure out conversion to px
+            padding: paddingSize && styleMap.padding[paddingSize],
             minInlineSize: sizing.size_280,
             position: "relative",
         },

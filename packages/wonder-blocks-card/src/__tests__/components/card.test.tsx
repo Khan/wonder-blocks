@@ -41,7 +41,10 @@ describe("Card", () => {
         it("should render dismiss button when onDismiss is present", () => {
             // Arrange
             render(
-                <Card onDismiss={() => {}}>
+                <Card
+                    onDismiss={() => {}}
+                    labels={{dismissButtonAriaLabel: "Close"}}
+                >
                     <div>Content</div>
                 </Card>,
             );
@@ -92,21 +95,6 @@ describe("Card", () => {
     });
 
     describe("Accessibility", () => {
-        it("should use default aria-label on dismiss button when dismissButtonAriaLabel is not provided", () => {
-            // Arrange
-            render(
-                <Card onDismiss={() => {}}>
-                    <div>Content</div>
-                </Card>,
-            );
-
-            // Act
-            const dismissButton = screen.getByRole("button", {name: "Close"});
-
-            // Assert
-            expect(dismissButton).toBeInTheDocument();
-        });
-
         it("should pass custom aria-label to dismiss button", () => {
             // Arrange
             render(
