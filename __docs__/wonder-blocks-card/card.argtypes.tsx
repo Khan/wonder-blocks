@@ -34,6 +34,17 @@ export default {
         },
         type: {name: "enum", value: ["small", "medium"], required: false},
     },
+    elevation: {
+        control: {type: "select"},
+        options: ["none", "low"],
+        defaultValue: "none",
+        table: {
+            type: {summary: '"none" | "low"'},
+            defaultValue: {summary: '"none"'},
+            category: "Styling",
+        },
+        type: {name: "enum", value: ["none", "low"], required: false},
+    },
     paddingSize: {
         control: {type: "select"},
         options: ["none", "small", "medium"],

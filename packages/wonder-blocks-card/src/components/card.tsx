@@ -107,6 +107,15 @@ type StyleOnlyProps = {
      * Default: `"size_160"`
      */
     paddingSize?: "none" | "small" | "medium";
+    /**
+     * The box-shadow for the card, as a string identifier that matches a sizing token.
+     * This can be one of:
+     * - `"none"`: no elevation.
+     * - `"low"`, matching `boxShadow.low`.
+     *
+     * Default: `"none"`
+     */
+    elevation?: "none" | "low";
 };
 type Props = ConditionalProps;
 
@@ -153,6 +162,13 @@ type Props = ConditionalProps;
  * | `small` | `border.radius.radius_080` |
  * | `medium` | `border.radius.radius_120` |
  *
+ * **`elevation` prop**
+ *
+ * | value | resolves to |
+ * |---|---|
+ * | `none` | `none` |
+ * | `low` | `boxShadow.low` |
+ *
  * **`paddingSize` prop**
  *
  * | value | resolves to |
@@ -181,6 +197,7 @@ const Card = React.forwardRef(function Card(
         backgroundColorStyle = "base-default",
         borderRadiusStyle = "small",
         paddingSize = "small",
+        elevation = "none",
         children,
         onDismiss,
         inert,
@@ -190,6 +207,7 @@ const Card = React.forwardRef(function Card(
         backgroundColorStyle,
         borderRadiusStyle,
         paddingSize,
+        elevation,
     });
     return (
         <View
@@ -215,6 +233,7 @@ const getComponentStyles = ({
     backgroundColorStyle,
     borderRadiusStyle,
     paddingSize,
+    elevation,
 }: StyleOnlyProps) => {
     // Map prop values to tokens
     const styleMap = {
@@ -231,6 +250,10 @@ const getComponentStyles = ({
             small: sizing.size_160,
             medium: sizing.size_240,
         },
+        elevation: {
+            none: "none",
+            low: boxShadow.low,
+        },
     } as const;
 
     return StyleSheet.create({
@@ -243,7 +266,7 @@ const getComponentStyles = ({
             borderRadius:
                 borderRadiusStyle && styleMap.borderRadius[borderRadiusStyle],
             borderWidth: border.width.thin,
-            boxShadow: boxShadow.low,
+            boxShadow: elevation && styleMap.elevation[elevation],
             padding: paddingSize && styleMap.padding[paddingSize],
             minInlineSize: sizing.size_280,
             position: "relative",

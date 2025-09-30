@@ -217,7 +217,7 @@ export const InAGrid: StoryComponentType = {
             <View
                 style={[
                     styles.gemRow,
-                    {flexWrap: "wrap", gap: spacing.large_24},
+                    {flexWrap: "wrap", gap: sizing.size_100},
                 ]}
             >
                 <Card styles={{root: styles.card}}>
@@ -267,6 +267,9 @@ export const WithStyleProps: StoryComponentType = {
                 >
                     <Heading>backgroundColorStyle=base-subtle</Heading>
                 </Card>
+                <Card tag="li" styles={{root: styles.card}} elevation="low">
+                    <Heading>elevation=low</Heading>
+                </Card>
             </View>
         </>
     ),
@@ -274,7 +277,8 @@ export const WithStyleProps: StoryComponentType = {
 
 const styles = StyleSheet.create({
     card: {
-        width: 320 + spacing.xxLarge_48,
+        marginBlockEnd: sizing.size_100,
+        width: 320,
     },
     gemRow: {
         flexDirection: "row",
