@@ -44,10 +44,6 @@ they include the CSS variables used in Wonder Blocks.
 @import "@khanacademy/wonder-blocks-tokens/styles.css";
 ```
 
-#### Theming
-
-TODO
-
 #### Typography
 1. Set the root font size to `62.5%` so that `1rem` is equal to `10px`. Many of
 the Wonder Blocks components and typography use rems based on this unit.
@@ -59,6 +55,32 @@ html {
 ```
 
 2. More details to come on how to import fonts!
+
+#### Theming
+
+1. Install the theming package:
+```shell
+pnpm install @khanacademy/wonder-blocks-theming
+```
+2. Wrap the root of your application with the [Theme Switcher](/?path=/docs/packages-theming-themeswitcher--docs)
+component. The theme can be set using the `theme` prop. Any descendants of this
+that uses Wonder Blocks components or tokens will have styling for the selected
+theme!
+
+```tsx
+// App.tsx
+
+import {ThemeSwitcher} from "@khanacademy/wonder-blocks-theming";
+
+export const App = () => {
+    return (
+        <ThemeSwitcher theme="thunderblocks">
+            {/* The application contents */}
+        </ThemeSwitcher>
+    );
+};
+
+```
 
 #### Icons
 
