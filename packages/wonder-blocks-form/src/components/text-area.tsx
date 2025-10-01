@@ -6,8 +6,9 @@ import {
     StyleType,
     addStyle,
     View,
+    useOnMountEffect,
 } from "@khanacademy/wonder-blocks-core";
-import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {border, font, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 import {useId} from "react";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
@@ -72,10 +73,12 @@ type TextAreaProps = AriaProps & {
      */
     autoFocus?: boolean;
     /**
-     * The number of visible lines of text for the textarea.
-     * By default, 2 rows are shown.
-     * `rows` is ignored if a height is applied to the textarea using CSS.
-     * The number of rows can change if the resize control is used by the user.
+     * The number of visible lines of text for the textarea. Defaults to 2.
+     *
+     * If `autoResize` is `true`, `rows` is the starting number of rows and more
+     * content increases the number of rows, up until the `maxRows` prop value
+     * is reached. If `autoResize` is `false`, the textarea will be scrollable
+     * with the number of rows set by the `rows` prop.
      */
     rows?: number;
     /**
@@ -181,14 +184,93 @@ type TextAreaProps = AriaProps & {
      */
     required?: boolean | string;
     /**
+     * @deprecated This prop is deprecated in favour of the `autoResize` prop.
      * Specifies the resizing behaviour for the textarea. Defaults to both
      * behaviour. For more details, see the [CSS resize property values MDN docs](https://developer.mozilla.org/en-US/docs/Web/CSS/resize#values)
      */
     resizeType?: "horizontal" | "vertical" | "both" | "none";
+    /**
+     * Whether the textarea should automatically resize to fit the content.
+     * If `true`, the textarea will resize to fit the content. If `false`,
+     * the textarea will not change in size and the textarea will be scrollable if
+     * content exceeds the height of the textarea.
+     *
+     * Defaults to `false`.
+     *
+     * See related `maxRows` prop for setting the max height for the textarea.
+     */
+    autoResize?: boolean;
+    /**
+     * The maximum number of rows to show when `autoResize` is `true` to prevent
+     * the textarea from becoming too tall. The textarea will become scrollable
+     * if content exceeds the max number of rows.
+     *
+     * Defaults to 6. If `rows` > `maxRows`, `rows` will be used for `maxRows`.
+     */
+    maxRows?: number;
 };
 
 const StyledTextarea = addStyle("textarea");
 
+/**
+ * Calculate the height of x number of rows, including padding and border.
+ *
+ * Height = (number of rows * line height) + (2 * vertical padding) + (2 * border width)
+ */
+function getHeightForNumberOfRows(rows: number) {
+    return `calc((${rows} * ${font.body.lineHeight.medium}) + (2 * ${theme.field.layout.paddingBlock}) + (2 * ${border.width.thin}))`;
+}
+
+/**
+ * Calculate the height needed for a textarea element to fit the content
+ * @param textArea - The textarea element.
+ * @returns The height to use for the textarea element.
+ */
+function getTextAreaHeight(textArea: HTMLTextAreaElement): string {
+    // Save the original style properties. Note this only gets the value from
+    // the style object, not the computed style which considers css classes
+    const originalStyleHeightValue = textArea.style.getPropertyValue("height");
+    const originalStyleHeightPriority =
+        textArea.style.getPropertyPriority("height");
+    const originalStyleOverflowValue =
+        textArea.style.getPropertyValue("overflow");
+    const originalStyleOverflowPriority =
+        textArea.style.getPropertyPriority("overflow");
+
+    // Force the textarea to shrink by setting height to 0 and hiding overflow.
+    textArea.style.setProperty("height", "0px", "important");
+    textArea.style.setProperty("overflow", "hidden", "important");
+
+    // Get the scrollHeight needed for the content. We account for the border
+    // width so the scrollbar is not shown.
+    const computedStyle = getComputedStyle(textArea);
+    const borderTop = computedStyle.borderTopWidth;
+    const borderBottom = computedStyle.borderBottomWidth;
+    const newHeight = `calc(${textArea.scrollHeight}px + ${borderTop} + ${borderBottom})`;
+
+    // Restore the original style properties if they were set. Otherwise, remove
+    // the temporary properties used to calculate the content height.
+    if (originalStyleHeightValue) {
+        textArea.style.setProperty(
+            "height",
+            originalStyleHeightValue,
+            originalStyleHeightPriority,
+        );
+    } else {
+        textArea.style.removeProperty("height");
+    }
+    if (originalStyleOverflowValue) {
+        textArea.style.setProperty(
+            "overflow",
+            originalStyleOverflowValue,
+            originalStyleOverflowPriority,
+        );
+    } else {
+        textArea.style.removeProperty("overflow");
+    }
+
+    return newHeight;
+}
 /**
  * A TextArea is an element used to accept text from the user.
  *
@@ -218,7 +300,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             name,
             className,
             autoFocus,
-            rows,
+            rows = 2,
             spellCheck,
             wrap,
             minLength,
@@ -235,6 +317,8 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             resizeType,
             rootStyle,
             error,
+            autoResize = false,
+            maxRows = 6,
             instantValidation = true,
             // Should only include aria related props
             ...otherProps
@@ -250,6 +334,11 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                 instantValidation,
             });
 
+        const textAreaContainerRef = React.useRef<HTMLDivElement>(null);
+
+        // height is a string so that we can use the calc function
+        const [height, setHeight] = React.useState("0px");
+
         const hasError = error || !!errorMessage;
 
         const generatedUniqueId = useId();
@@ -261,6 +350,12 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             const newValue = event.target.value;
             onChangeValidation(newValue);
             onChange(newValue);
+
+            // When the textarea value is changed, we need to recalculate the
+            // height if autoResize is true
+            if (autoResize) {
+                setHeight(getTextAreaHeight(event.target));
+            }
         };
 
         const handleBlur = (event: React.FocusEvent<HTMLTextAreaElement>) => {
@@ -271,8 +366,65 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             }
         };
 
+        useOnMountEffect(() => {
+            // If autoResize is false, we don't need to set up the resize observer
+            if (!autoResize) {
+                return;
+            }
+            // We use a ref to the container to get the child textarea element
+            // so that consumers can pass in a ref to the textarea element
+            // directly.
+            const ref = textAreaContainerRef.current?.children[0];
+
+            if (ref && window?.ResizeObserver) {
+                const observer = new window.ResizeObserver(([entry]) => {
+                    if (entry) {
+                        // When the resize observer is triggered from things like
+                        // a change in size or zoom level, we need to recalculate
+                        // the height
+                        setHeight(
+                            getTextAreaHeight(
+                                entry.target as HTMLTextAreaElement,
+                            ),
+                        );
+                    }
+                });
+
+                observer.observe(ref);
+
+                return () => {
+                    observer.disconnect();
+                };
+            }
+        });
+
+        const autoResizeStyles = [
+            styles.autoResize,
+            {
+                // Dynamically set the height
+                height,
+                // Set the max height so the textarea can't grow infinitely
+                maxHeight: getHeightForNumberOfRows(Math.max(maxRows, rows)),
+            },
+        ];
+
+        React.useEffect(() => {
+            // If `autoResize` becomes `true`, we need to recalculate the height
+            if (autoResize) {
+                setHeight(
+                    getTextAreaHeight(
+                        textAreaContainerRef.current
+                            ?.children[0] as HTMLTextAreaElement,
+                    ),
+                );
+            }
+        }, [autoResize, ref]);
+
         return (
-            <View style={[{width: "100%"}, rootStyle]}>
+            <View
+                style={[{width: "100%"}, rootStyle]}
+                ref={textAreaContainerRef}
+            >
                 <StyledTextarea
                     id={uniqueId}
                     data-testid={testId}
@@ -286,6 +438,11 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                         disabled && styles.disabled,
                         hasError && styles.error,
                         readOnly && styles.readOnly,
+                        rows && {
+                            // Set the min height to the height of the number of rows
+                            minHeight: getHeightForNumberOfRows(rows),
+                        },
+                        autoResize && autoResizeStyles,
                         style,
                     ]}
                     value={value}
@@ -296,7 +453,6 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                     autoComplete={autoComplete}
                     name={name}
                     autoFocus={autoFocus}
-                    rows={rows}
                     spellCheck={spellCheck}
                     wrap={wrap}
                     minLength={minLength}
@@ -323,8 +479,10 @@ const styles = StyleSheet.create({
         boxSizing: "border-box",
         paddingInline: theme.field.layout.paddingInline,
         paddingBlock: theme.field.layout.paddingBlock,
-        // This minHeight is equivalent to when the textarea has one row
-        minHeight: theme.field.sizing.height,
+    },
+    autoResize: {
+        // Disable the resize control
+        resize: "none",
     },
     readOnly: {
         background: semanticColor.input.readOnly.background,
