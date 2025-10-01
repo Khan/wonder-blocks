@@ -40,7 +40,7 @@ type BaseCardProps = {
      * The test ID used to locate this component in automated tests.
      */
     testId?: string;
-} & StyleOnlyProps;
+} & StyleProps;
 
 /**
  * A callback function to handle dismissing the card. When this prop is present,
@@ -73,21 +73,16 @@ type TagProps =
           labels?: Record<string, any>;
       };
 
-/**
- * Combined props - these two requirements work independently
- */
-type ConditionalProps = BaseCardProps & TagProps & DismissProps;
-
-type StyleOnlyProps = {
+type StyleProps = {
     /**
-     * The background color of the card, as a string identifier that matches a semanticColor token.
+     * The background style of the card, as a string identifier that matches a semanticColor token.
      * This can be one of:
-     * - `"base-subtle"` `semanticColor.core.background.base.subtle`: a light gray background.
-     * - `"base-default"`, matching `semanticColor.core.background.base.default`: a white background.
+     * - `"base-subtle"` (color), `semanticColor.core.background.base.subtle`: a light gray background.
+     * - `"base-default"` (color), `semanticColor.core.background.base.default`: a white background.
      *
      * Default: `"base-default"`
      */
-    backgroundColorStyle?: "base-subtle" | "base-default";
+    background?: "base-subtle" | "base-default";
     /**
      * The border radius of the card, as a string identifier that matches a border.radius token.
      * This can be one of:
@@ -96,7 +91,7 @@ type StyleOnlyProps = {
      *
      * Default: `"radius_080"`
      */
-    borderRadiusStyle?: "small" | "medium";
+    borderRadius?: "small" | "medium";
     /**
      * The padding inside the card, as a string identifier that matches a sizing token.
      * This can be one of:
@@ -117,8 +112,8 @@ type StyleOnlyProps = {
      */
     elevation?: "none" | "low";
 };
-type Props = ConditionalProps;
 
+type Props = BaseCardProps & TagProps & DismissProps;
 /**
  * The Card component is a flexible, reusable UI building block designed to
  * encapsulate content within a structured, visually distinct container.
@@ -148,14 +143,14 @@ type Props = ConditionalProps;
  *
  * Cards can be customized via the following props:
  *
- * **`backgroundColorStyle` prop**
+ * **`background` prop**
  *
  * | value | resolves to |
  * |---|---|
  * | `base-subtle` | `semanticColor.core.background.base.subtle` (light gray) |
  * | `base-default` | `semanticColor.core.background.base.default` (white) |
  *
- * **`borderRadiusStyle` prop**
+ * **`borderRadius` prop**
  *
  * | value | resolves to |
  * |---|---|
@@ -194,8 +189,8 @@ const Card = React.forwardRef(function Card(
         labels,
         tag,
         testId,
-        backgroundColorStyle = "base-default",
-        borderRadiusStyle = "small",
+        background = "base-default",
+        borderRadius = "small",
         paddingSize = "small",
         elevation = "none",
         children,
@@ -204,8 +199,8 @@ const Card = React.forwardRef(function Card(
     } = props;
 
     const componentStyles = getComponentStyles({
-        backgroundColorStyle,
-        borderRadiusStyle,
+        background,
+        borderRadius,
         paddingSize,
         elevation,
     });
@@ -230,11 +225,11 @@ const Card = React.forwardRef(function Card(
 });
 
 const getComponentStyles = ({
-    backgroundColorStyle,
-    borderRadiusStyle,
+    background,
+    borderRadius,
     paddingSize,
     elevation,
-}: StyleOnlyProps) => {
+}: StyleProps) => {
     // Map prop values to tokens
     const styleMap = {
         backgroundColor: {
@@ -258,13 +253,10 @@ const getComponentStyles = ({
 
     return StyleSheet.create({
         root: {
-            backgroundColor:
-                backgroundColorStyle &&
-                styleMap.backgroundColor[backgroundColorStyle],
+            backgroundColor: background && styleMap.backgroundColor[background],
             borderColor: semanticColor.core.border.neutral.subtle,
             borderStyle: "solid",
-            borderRadius:
-                borderRadiusStyle && styleMap.borderRadius[borderRadiusStyle],
+            borderRadius: borderRadius && styleMap.borderRadius[borderRadius],
             borderWidth: border.width.thin,
             boxShadow: elevation && styleMap.elevation[elevation],
             padding: paddingSize && styleMap.padding[paddingSize],

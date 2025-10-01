@@ -249,9 +249,9 @@ export const WithStyleProps: StoryComponentType = {
                 <Card
                     styles={{root: styles.card}}
                     tag="li"
-                    borderRadiusStyle="small"
+                    borderRadius="small"
                 >
-                    <Heading>borderRadiusStyle=small</Heading>
+                    <Heading>borderRadius=small</Heading>
                 </Card>
                 <Card
                     tag="li"
@@ -263,9 +263,9 @@ export const WithStyleProps: StoryComponentType = {
                 <Card
                     tag="li"
                     styles={{root: styles.card}}
-                    backgroundColorStyle="base-subtle"
+                    background="base-subtle"
                 >
-                    <Heading>backgroundColorStyle=base-subtle</Heading>
+                    <Heading>background=base-subtle</Heading>
                 </Card>
                 <Card tag="li" styles={{root: styles.card}} elevation="low">
                     <Heading>elevation=low</Heading>
