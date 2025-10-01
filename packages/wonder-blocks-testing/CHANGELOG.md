@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-testing
 
+## 16.0.1
+
+### Patch Changes
+
+- 4c03506: Upgrade wonder-blocks infrastructure to use Storybook v9
+- 4c03506: Remove storybook dependency - no longer used.
+- Updated dependencies [4c03506]
+    - @khanacademy/wonder-blocks-testing-core@4.0.1
+    - @khanacademy/wonder-blocks-core@12.4.0
+    - @khanacademy/wonder-blocks-data@14.1.6
+
 ## 16.0.0
 
 ### Major Changes
