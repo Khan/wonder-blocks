@@ -824,6 +824,7 @@ export const CustomOpener: StoryComponentType = {
  */
 export const RightToLeft: StoryComponentType = {
     ...ControlledOpened,
+    name: "Right to Left",
     globals: {
         direction: "rtl",
     },
