@@ -187,6 +187,63 @@ export const Default: StoryComponentType = {
     },
 };
 
+const studentData = [
+    {kaid: "kaid_1", coachNickname: "Alice Smith"},
+    {kaid: "kaid_2", coachNickname: "Bob Jones"},
+    {kaid: "kaid_3", coachNickname: "Carol Wilson"},
+    {kaid: "kaid_4", coachNickname: "David Brown"},
+    {kaid: "kaid_5", coachNickname: "Eve Taylor"},
+];
+
+const studentLabels: LabelsValues = {
+    clearSearch: "Clear search",
+    filter: "Search",
+    noResults: "None found",
+    selectAllLabel: (count) =>
+        count === 1 ? "Select 1 student" : `Select all ${count} students`,
+    selectNoneLabel: "Clear selection",
+    noneSelected: "No students",
+    someSelected: (numSelected) =>
+        numSelected === 1 ? "1 student" : `${numSelected} students`,
+    allSelected: "All students",
+};
+
+/**
+ * This example demonstrates a StudentMultiSelect with all students initially selected.
+ * The screen reader will not announce the initial values on mount, but will
+ * announce when values change through user interaction.
+ */
+export const StudentMultiSelect: StoryComponentType = {
+    render: function Render() {
+        const [selectedValues, setSelectedValues] = React.useState(
+            studentData.map((student) => student.kaid),
+        );
+        const [opened, setOpened] = React.useState(false);
+
+        return (
+            <MultiSelect
+                aria-label="Students"
+                id="students-multiselect"
+                onChange={setSelectedValues}
+                selectedValues={selectedValues}
+                shortcuts={true}
+                isFilterable={true}
+                labels={studentLabels}
+                opened={opened}
+                onToggle={setOpened}
+            >
+                {studentData.map((student) => (
+                    <OptionItem
+                        key={student.kaid}
+                        label={student.coachNickname}
+                        value={student.kaid}
+                    />
+                ))}
+            </MultiSelect>
+        );
+    },
+};
+
 /**
  * The field can be used with the LabeledField component to provide a label,
  * description, required indicator, and/or error message for the field.

@@ -1674,8 +1674,77 @@ describe("MultiSelect", () => {
             );
         });
 
+        beforeEach(() => {
+            announceMessageSpy.mockReset();
+        });
+
         afterAll(() => {
             announceMessageSpy.mockRestore();
+        });
+
+        it("should not announce initial values on mount", async () => {
+            // Arrange & Act
+            doRender(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    selectedValues={["1", "2"]}
+                    labels={{
+                        ...builtinLabels,
+                        someSelected: (numOptions: number): string =>
+                            numOptions <= 1
+                                ? `${numOptions} item`
+                                : `${numOptions} items`,
+                    }}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Assert
+            expect(announceMessageSpy).not.toHaveBeenCalled();
+        });
+
+        it("should announce when values change after mount", async () => {
+            const ControlledMultiSelect = (
+                props: Partial<PropsFor<typeof MultiSelect>>,
+            ) => {
+                // Arrange
+                const [selectedValues, setSelectedValues] = React.useState<
+                    Array<string>
+                >([]);
+                return (
+                    <MultiSelect
+                        {...props}
+                        onChange={setSelectedValues}
+                        selectedValues={selectedValues}
+                        labels={{
+                            ...builtinLabels,
+                            someSelected: (numOptions: number): string =>
+                                numOptions <= 1
+                                    ? `${numOptions} item`
+                                    : `${numOptions} items`,
+                        }}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                        <OptionItem label="item 3" value="3" />
+                    </MultiSelect>
+                );
+            };
+
+            const {userEvent} = doRender(<ControlledMultiSelect />);
+            // Act
+            await userEvent.click(await screen.findByRole("combobox"));
+            await userEvent.click(await screen.findByText("item 1"));
+
+            // Assert
+            // First call announces total options ("3 items")
+            // Second call announces selected item count
+            expect(announceMessageSpy).toHaveBeenNthCalledWith(2, {
+                message: "item 1",
+            });
         });
 
         it("should announce the number of options when the listbox is open", async () => {

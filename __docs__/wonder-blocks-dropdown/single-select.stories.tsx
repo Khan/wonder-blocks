@@ -209,6 +209,18 @@ export const Default: StoryComponentType = {
 };
 
 /**
+ * This example demonstrates how SingleSelect behaves with an initial value.
+ * The screen reader will not announce the initial value on mount, but will
+ * announce when the value changes through user interaction.
+ */
+export const WithInitialValue: StoryComponentType = {
+    render: Template,
+    args: {
+        selectedValue: "banana",
+    },
+};
+
+/**
  * The field can be used with the LabeledField component to provide a label,
  * description, required indicator, and/or error message for the field.
  *
