@@ -138,6 +138,11 @@ export const Scenarios: Story = {
                     rightAccessory: undefined,
                 },
             },
+            {
+                name: "Right to Left",
+                props: {...defaultProps, title: longTextWithNoWordBreak},
+                decorator: <div dir="rtl" />,
+            },
         ];
 
         return (
