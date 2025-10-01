@@ -3,7 +3,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 import {action} from "@storybook/addon-actions";
 import {expect, within} from "@storybook/test";
 import ComponentInfo from "../components/component-info";
-import packageConfig from "../../packages/wonder-blocks-form/package.json";
+import packageConfig from "../../packages/wonder-blocks-tabs/package.json";
 import {
     Tab,
     TabItem,
