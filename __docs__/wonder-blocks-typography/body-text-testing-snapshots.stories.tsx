@@ -1,5 +1,5 @@
 import * as React from "react";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
@@ -40,7 +40,7 @@ const columns = weights.map((weight) => ({
 
 export const AllVariantsStory: StoryComponentType = {
     name: "All Variants",
-    render: (args) => {
+    render: () => {
         return (
             <AllVariants rows={rows} columns={columns} title="Size / Weight">
                 {({props, name}) => (

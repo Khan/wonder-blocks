@@ -1,7 +1,7 @@
 import * as React from "react";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 import {StyleSheet} from "aphrodite";
-import {expect, userEvent, within} from "@storybook/test";
+import {expect, userEvent, within} from "storybook/test";
 import magnifyingGlassIcon from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";
 
 import Switch from "@khanacademy/wonder-blocks-switch";

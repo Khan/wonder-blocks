@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Meta, StoryObj} from "@storybook/react";
+import {Meta, StoryObj} from "@storybook/react-vite";
 import iceCreamBold from "@phosphor-icons/core/bold/ice-cream-bold.svg";
 import {Tabs} from "@khanacademy/wonder-blocks-tabs";
 import {Placeholder} from "../components/placeholder";

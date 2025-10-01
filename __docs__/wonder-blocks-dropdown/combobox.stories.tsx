@@ -1,7 +1,7 @@
-import {action} from "@storybook/addon-actions";
-import {useArgs} from "@storybook/preview-api";
-import {Meta, StoryObj} from "@storybook/react";
-import {expect, userEvent, within} from "@storybook/test";
+import {action} from "storybook/actions";
+import {useArgs} from "storybook/preview-api";
+import {Meta, StoryObj} from "@storybook/react-vite";
+import {expect, userEvent, within} from "storybook/test";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
 import magnifyingGlassIcon from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import {Meta} from "@storybook/react";
+import {Meta} from "@storybook/react-vite";
 import {View, Id} from "@khanacademy/wonder-blocks-core";
 import {Body, BodyMonospace} from "@khanacademy/wonder-blocks-typography";
 import {Strut} from "@khanacademy/wonder-blocks-layout";

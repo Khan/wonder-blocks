@@ -10,7 +10,7 @@ import {
     Routes,
     useViewTransitionState,
 } from "react-router-dom-v5-compat";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -35,7 +35,7 @@ import LinkArgTypes from "./link.argtypes";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 
-export default {
+const meta = {
     title: "Packages / Link",
     component: Link,
     parameters: {
@@ -51,7 +51,8 @@ export default {
         },
     },
     argTypes: LinkArgTypes,
-} as Meta<typeof Link>;
+} satisfies Meta<typeof Link>;
+export default meta;
 
 type StoryComponentType = StoryObj<typeof Link>;
 

@@ -1,5 +1,5 @@
 import * as React from "react";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -35,7 +35,7 @@ export default {
     },
     parameters: {
         backgrounds: {
-            default: "baseSubtle",
+            value: "baseSubtle",
         },
         chromatic: {
             modes: themeModes,

@@ -1,13 +1,13 @@
 import * as React from "react";
 
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import microphone from "@phosphor-icons/core/bold/microphone-bold.svg";
 import plus from "@phosphor-icons/core/bold/plus-bold.svg";
 import microphoneFill from "@phosphor-icons/core/fill/microphone-fill.svg";
 import plusFill from "@phosphor-icons/core/fill/plus-fill.svg";
 
-import {action} from "@storybook/addon-actions";
+import {action} from "storybook/actions";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {ConversationIconButton} from "@khanacademy/wonder-blocks-icon-button";
 

@@ -1,7 +1,7 @@
 import * as React from "react";
 import wonderBlocksTheme from "./wonder-blocks-theme";
-import {Decorator} from "@storybook/react";
-import {DocsContainer} from "@storybook/blocks";
+import {Decorator} from "@storybook/react-vite";
+import {DocsContainer} from "@storybook/addon-docs/blocks";
 import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {initAnnouncer} from "@khanacademy/wonder-blocks-announcer";
@@ -11,7 +11,7 @@ import {
     ThemeSwitcher,
     THEME_DATA_ATTRIBUTE,
 } from "@khanacademy/wonder-blocks-theming";
-import {Preview} from "@storybook/react";
+import {Preview} from "@storybook/react-vite";
 
 // Import the Wonder Blocks CSS variables
 import "@khanacademy/wonder-blocks-tokens/styles.css";
@@ -74,25 +74,29 @@ function DocsContainerWithTheme({children, context, ...props}) {
     );
 }
 
-const parameters = {
+const parameters: Preview["parameters"] = {
     // Enable the RenderStateRoot decorator by default.
     enableRenderStateRootDecorator: true,
     backgrounds: {
         default: "baseDefault",
-        values: [
-            {
+        options: {
+            baseDefault: {
                 name: "baseDefault",
                 value: semanticColor.core.background.base.default,
             },
-            {
+            neutralStrong: {
                 name: "neutralStrong",
                 value: semanticColor.core.background.neutral.strong,
             },
-            {
+            baseSubtle: {
                 name: "baseSubtle",
                 value: semanticColor.core.background.base.subtle,
             },
-        ],
+        },
+    },
+    initialGlobals: {
+        // 👇 Set the initial background color
+        backgrounds: {value: "baseDefault"},
     },
     // https://storybook.js.org/docs/react/configure/story-layout
     layout: "padded",
