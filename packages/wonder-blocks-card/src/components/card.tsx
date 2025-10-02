@@ -139,45 +139,9 @@ type Props = BaseCardProps & TagProps & DismissProps;
  * </Card>
  * ```
  *
- * ### Styling
+ * When the `onDismiss` prop is provided, a dismiss button will be rendered. In this case, the `labels.dismissButtonAriaLabel` prop is required to provide an accessible label for the dismiss button.
  *
- * Cards can be customized via the following props:
- *
- * **`background` prop**
- *
- * | value | resolves to |
- * |---|---|
- * | `base-subtle` | `semanticColor.core.background.base.subtle` (light gray) |
- * | `base-default` | `semanticColor.core.background.base.default` (white) |
- *
- * **`borderRadius` prop**
- *
- * | value | resolves to |
- * |---|---|
- * | `small` | `border.radius.radius_080` |
- * | `medium` | `border.radius.radius_120` |
- *
- * **`elevation` prop**
- *
- * | value | resolves to |
- * |---|---|
- * | `none` | `none` |
- * | `low` | `boxShadow.low` |
- *
- * **`paddingSize` prop**
- *
- * | value | resolves to |
- * |---|---|
- * | `none` | `sizing.size_0` |
- * | `small` | `sizing.size_160` |
- * | `medium` | `sizing.size_240` |
- *
- * Other styles can be applied via the `styles` prop, which accepts an object with `root` and `dismissButton` keys for custom styling of the card container and dismiss button respectively.
- *
- * ### Accessibility
- * - When using `tag="section"` or `tag="figure"`, the `labels.cardAriaLabel` prop is required to provide an accessible name for the card.
- * - When the `onDismiss` prop is provided, a dismiss button will be rendered. In this case, the `labels.dismissButtonAriaLabel` prop is required to provide an accessible label for the dismiss button.
- * - Cards cannot be interactive elements themselves (e.g. buttons or links), but they can contain interactive elements as children.
+ * See additional [Accessibility docs](./?path=/docs/packages-card-card-accessibility--docs).
  */
 
 const Card = React.forwardRef(function Card(
