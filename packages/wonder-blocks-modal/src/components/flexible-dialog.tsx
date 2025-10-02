@@ -194,12 +194,6 @@ const componentStyles = StyleSheet.create({
         maxHeight: "100vh",
         maxWidth: 576,
         width: "93.75%",
-
-        [breakpoint.mediaQuery.sm]: {
-            height: "100vh",
-            maxHeight: "100vh",
-            width: "100%",
-        },
     },
 });
 
