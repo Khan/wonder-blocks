@@ -8,7 +8,7 @@ export default {
         },
         type: {name: "other", value: "React.ReactNode", required: true},
     },
-    backgroundColorStyle: {
+    background: {
         control: {type: "select"},
         options: ["base-subtle", "base-default"],
         defaultValue: "base-default",
@@ -23,7 +23,7 @@ export default {
             required: false,
         },
     },
-    borderRadiusStyle: {
+    borderRadius: {
         control: {type: "select"},
         options: ["small", "medium"],
         defaultValue: "small",
