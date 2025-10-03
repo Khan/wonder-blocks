@@ -72,5 +72,8 @@ jobs:
       - name: Build .d.ts types
         run: pnpm build:types
 
+      - name: Stylelint
+        run: pnpm lint:style
+
       - name: Check package.json files
         run: ./utils/publish/pre-publish-check-ci.ts
