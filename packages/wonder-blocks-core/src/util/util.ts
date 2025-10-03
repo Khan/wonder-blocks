@@ -44,7 +44,6 @@ export function processStyleList(style?: StyleType): StyledExport {
         typeof global !== "undefined" && global.SNAPSHOT_INLINE_APHRODITE;
 
     flatten(style).forEach((child) => {
-        console.log("child", child);
         // Check for aphrodite internal property
         const _definition = (child as any)._definition;
         if (_definition != null) {
