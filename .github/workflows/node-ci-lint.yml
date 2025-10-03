@@ -53,6 +53,9 @@ jobs:
           files: '.pnpm-lock.yaml'
 
       # Linting / type checking
+      - name: Stylelint
+        run: pnpm lint:style
+
       - name: Eslint
         uses: Khan/actions@full-or-limited-v0
         with:

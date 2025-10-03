@@ -85,8 +85,13 @@ export const CssModules: StoryComponentType = {
                 style={[styles.container, newStyles.cssModulesExample]}
                 // className={newStyles.cssModulesExample}
             >
-                The style prop can accept a (nested) array of Aphrodite styles
-                and CSS modules
+                1. The style prop can accept a (nested) array of Aphrodite
+                styles and CSS modules. Note that in this case, Aphrodite styles
+                are applied after CSS modules due to the order of the styles
+                that are being injected in the document.
+            </View>
+            <View style={newStyles.cssModulesExample}>
+                2. In this case, only CSS modules are applied.
             </View>
         </View>
     ),
