@@ -1,0 +1,49 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+
+<Meta title="Packages / Card / Accessibility" />
+
+# Card Accessibility
+
+- When using `tag="section"` or `tag="figure"`, the `labels.cardAriaLabel` prop is required to provide an accessible name for the card.
+- When the `onDismiss` prop is provided, a dismiss button will be rendered. In this case, the `labels.dismissButtonAriaLabel` prop is required to provide an accessible label for the dismiss button.
+- Cards cannot be interactive elements themselves (e.g. buttons or links), but they can contain interactive elements as children.
+
+## HTML Semantics
+
+By default, cards render as `<div>` elements. However, you can specify a different semantic element using the `tag` prop:
+
+- `tag="section"` - Use when the card represents a distinct section of content. Requires an accessible name via `labels.cardAriaLabel`.
+- `tag="figure"` - Use when the card contains media or illustrated content. Accepts an accessible name via `labels.cardAriaLabel`.
+- `tag="article"` - Use when the card represents standalone content
+- `tag="li"` - Use when cards are part of a list (see notes about `inert` below)
+
+## Dismiss Button
+
+When `onDismiss` is provided, an accessible dismiss button is automatically added:
+
+- The button has `aria-label` set from `labels.dismissButtonAriaLabel`
+- The button is positioned in the top-right corner of the card (with support for RTL languages)
+- Focus management should be handled by the consuming application when the card is dismissed
+
+## Inert Cards
+
+The `inert` prop can be used to remove cards from the accessibility tree and keyboard tab order:
+
+- Useful for inactive cards in a stack or overlay
+- Sets the `inert` attribute on the card container
+- All interactive elements within the card become non-focusable
+
+See the [In a Stack](./?path=/story/packages-card-card--in-a-stack) story for an example of disabling cards while keeping them part of a list count, like End-of-Task cards.
+
+## Best Practices
+
+- Ensure cards have a logical heading structure when they contain headings
+- If cards are part of a collection, consider using appropriate container semantics (`<ul>`, `<ol>`, or `role="list"`)
+- When cards are dismissible, ensure focus is moved to an appropriate element after dismissal
+- Use meaningful accessible names for semantic card tags (`section`, `figure`)
+
+## References
+
+- [ARIA: section role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/section_role)
+- [ARIA: figure role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/figure_role)
+- [The inert attribute](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/inert)
