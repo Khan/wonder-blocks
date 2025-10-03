@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-cell
 
+## 6.0.1
+
+### Patch Changes
+
+- 79ea5ab: Updates styles to support RTL
+- 79ea5ab: Updates styles to support RTL
+
 ## 6.0.0
 
 ### Major Changes

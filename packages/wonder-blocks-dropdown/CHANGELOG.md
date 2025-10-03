@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.4.4
+
+### Patch Changes
+
+- 11eac78: Prevents announcements on initial render
+- Updated dependencies [aa67854]
+- Updated dependencies [79ea5ab]
+- Updated dependencies [79ea5ab]
+    - @khanacademy/wonder-blocks-modal@8.4.5
+    - @khanacademy/wonder-blocks-cell@6.0.1
+
 ## 10.4.3
 
 ### Patch Changes
