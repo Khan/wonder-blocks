@@ -242,6 +242,12 @@ export const StudentMultiSelect: StoryComponentType = {
             </MultiSelect>
         );
     },
+    parameters: {
+        chromatic: {
+            // Disabling because this is for manual testing purposes
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**

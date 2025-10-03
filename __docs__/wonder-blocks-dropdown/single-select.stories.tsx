@@ -218,6 +218,12 @@ export const WithInitialValue: StoryComponentType = {
     args: {
         selectedValue: "banana",
     },
+    parameters: {
+        chromatic: {
+            // Disabling because this is for manual testing purposes
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**
