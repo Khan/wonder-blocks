@@ -5,6 +5,7 @@ import path from "path";
 import {nodeExternals} from "rollup-plugin-node-externals";
 import swc from "@rollup/plugin-swc";
 import resolve from "@rollup/plugin-node-resolve";
+import postcss from "rollup-plugin-postcss";
 
 const createConfig = (pkgName) => {
     const packageJsonPath = path.join("packages", pkgName, "package.json");
@@ -47,6 +48,10 @@ const createConfig = (pkgName) => {
             }),
             nodeExternals({
                 packagePath: `packages/${pkgName}/package.json`,
+            }),
+            postcss({
+                modules: true,
+                extract: false,
             }),
         ],
     };

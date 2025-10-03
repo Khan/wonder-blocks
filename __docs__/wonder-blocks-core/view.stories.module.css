@@ -1,0 +1,5 @@
+.cssModulesExample {
+    background: var(--wb-semanticColor-core-background-instructive-subtle);
+    border: 1px solid var(--wb-semanticColor-core-border-instructive-default);
+    padding: var(--wb-spacing-xxxSmall-4);
+}

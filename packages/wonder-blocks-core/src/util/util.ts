@@ -28,6 +28,7 @@ function flatten(list?: StyleType): Array<CSSProperties> {
 
 export function processStyleList(style?: StyleType): StyledExport {
     const stylesheetStyles: Array<any> = [];
+    const classNameStyles: Array<string> = [];
     const inlineStyles: Array<any | Record<any, any>> = [];
 
     if (!style) {
@@ -43,6 +44,7 @@ export function processStyleList(style?: StyleType): StyledExport {
         typeof global !== "undefined" && global.SNAPSHOT_INLINE_APHRODITE;
 
     flatten(style).forEach((child) => {
+        console.log("child", child);
         // Check for aphrodite internal property
         const _definition = (child as any)._definition;
         if (_definition != null) {
@@ -65,6 +67,8 @@ export function processStyleList(style?: StyleType): StyledExport {
             } else {
                 stylesheetStyles.push(child);
             }
+        } else if (typeof child === "string") {
+            classNameStyles.push(child);
         } else {
             inlineStyles.push(child);
         }
@@ -86,6 +90,6 @@ export function processStyleList(style?: StyleType): StyledExport {
 
     return {
         style: shouldInlineStyles ? inlineStylesObject : {},
-        className: css(...stylesheetStyles),
+        className: [css(...stylesheetStyles), ...classNameStyles].join(" "),
     };
 }
