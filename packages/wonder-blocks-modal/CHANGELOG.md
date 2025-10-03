@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-modal
 
+## 8.4.5
+
+### Patch Changes
+
+- aa67854: Removes mobile media query in FlexibleDialog causing incorrect positioning
+
 ## 8.4.4
 
 ### Patch Changes
