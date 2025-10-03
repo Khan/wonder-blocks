@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-testing-core
 
+## 4.0.1
+
+### Patch Changes
+
+- 4c03506: Upgrade wonder-blocks infrastructure to use Storybook v9
+
 ## 4.0.0
 
 ### Major Changes
