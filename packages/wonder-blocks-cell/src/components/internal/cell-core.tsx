@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
         // Hide overflow so that if custom styling applies a border radius, the
         // left visual indicator for press/active states does not overflow
         overflow: "hidden",
-        textAlign: "left",
+        textAlign: "start",
         width: "100%",
         // layout
         // We need to specify flex as the wrapper can be a <View> or a

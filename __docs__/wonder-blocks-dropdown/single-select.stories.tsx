@@ -838,6 +838,17 @@ export const CustomOpener: StoryComponentType = {
 };
 
 /**
+ * When in the right-to-left direction, the single select is mirrored.
+ */
+export const RightToLeft: StoryComponentType = {
+    ...ControlledOpened,
+    name: "Right to Left",
+    globals: {
+        direction: "rtl",
+    },
+};
+
+/**
  * Custom labels
  */
 const translatedItems = [
