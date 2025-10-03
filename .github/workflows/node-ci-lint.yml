@@ -53,9 +53,6 @@ jobs:
           files: '.pnpm-lock.yaml'
 
       # Linting / type checking
-      - name: Stylelint
-        run: pnpm lint:style
-
       - name: Eslint
         uses: Khan/actions@full-or-limited-v0
         with:
@@ -74,6 +71,9 @@ jobs:
 
       - name: Build .d.ts types
         run: pnpm build:types
+
+      - name: Stylelint
+        run: pnpm lint:style
 
       - name: Check package.json files
         run: ./utils/publish/pre-publish-check-ci.ts
