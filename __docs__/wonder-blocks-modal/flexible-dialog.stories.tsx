@@ -391,6 +391,137 @@ WithLauncher.parameters = {
     },
 };
 
+/**
+ * A FlexibleDialog can be positioned full-screen by overriding the root styles.
+ * This creates a clean, full-viewport experience.
+ */
+export const WithFullScreenStyling: StoryComponentType = () => {
+    type MyModalProps = {
+        closeModal: () => void;
+    };
+
+    const FullScreenModal = ({
+        closeModal,
+    }: MyModalProps): React.ReactElement => (
+        <FlexibleDialog
+            title={
+                <Heading
+                    size="xxlarge"
+                    style={{
+                        marginBottom: sizing.size_320,
+                    }}
+                >
+                    Full-Screen Dialog
+                </Heading>
+            }
+            styles={{
+                root: {
+                    // Make the dialog take up the full viewport
+                    width: "100vw",
+                    maxWidth: "none",
+                    maxHeight: "none",
+                    height: "100%",
+                    minHeight: "100vh",
+                    margin: 0,
+                },
+            }}
+            content={({title}) => (
+                <View style={styles.fullScreenContent}>
+                    {title}
+                    <BodyText
+                        style={{
+                            color: semanticColor.core.foreground.neutral
+                                .default,
+                            marginBottom: sizing.size_480,
+                        }}
+                    >
+                        This FlexibleDialog demonstrates full-screen
+                        positioning. The dialog takes up the entire viewport
+                        with clean styling using Wonder Blocks tokens.
+                    </BodyText>
+                    <View style={styles.fullScreenActions}>
+                        <Button
+                            kind="primary"
+                            size="large"
+                            onClick={closeModal}
+                        >
+                            Continue
+                        </Button>
+                    </View>
+                </View>
+            )}
+        />
+    );
+
+    return (
+        <ModalLauncher modal={FullScreenModal}>
+            {({openModal}) => (
+                <Button onClick={openModal}>Open Full-Screen Dialog</Button>
+            )}
+        </ModalLauncher>
+    );
+};
+
+WithFullScreenStyling.parameters = {
+    chromatic: {
+        // Don't take screenshots of this story since it would only show a
+        // button and not the actual modal.
+        disableSnapshot: true,
+    },
+};
+
+/**
+ * A FlexibleDialog can have custom close button positioning through the styles prop.
+ * This example shows positioning the close button in a novel location.
+ */
+export const WithCustomCloseButtonPositioning: StoryComponentType = {
+    render: () => (
+        <View style={styles.previewSizer}>
+            <View style={styles.modalPositioner}>
+                <FlexibleDialog
+                    title={
+                        <Heading size="large">
+                            Custom Close Button Positioning
+                        </Heading>
+                    }
+                    styles={{
+                        closeButton: {
+                            // Position close button at bottom left instead of top right
+                            position: "absolute",
+                            insetBlockEnd: sizing.size_240,
+                            insetInlineStart: sizing.size_240,
+                            insetBlockStart: "auto",
+                            insetInlineEnd: "auto",
+                        },
+                    }}
+                    content={
+                        <View>
+                            <BodyText>
+                                This FlexibleDialog demonstrates custom close
+                                button positioning. Instead of the traditional
+                                top-right corner, the close button has been
+                                moved to the bottom-left corner.
+                            </BodyText>
+
+                            <View style={styles.row}>
+                                <Button kind="primary">Save Changes</Button>
+                                <Button kind="secondary">Cancel</Button>
+                            </View>
+                        </View>
+                    }
+                />
+            </View>
+        </View>
+    ),
+};
+
+WithCustomCloseButtonPositioning.parameters = {
+    chromatic: {
+        // Skip a snapshot as this is for docs purposes
+        disableSnapshot: true,
+    },
+};
+
 const styles = StyleSheet.create({
     example: {
         alignItems: "center",
@@ -436,5 +567,22 @@ const styles = StyleSheet.create({
     },
     launcherButton: {
         marginTop: "auto",
+    },
+    fullScreenContent: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100%",
+        textAlign: "center",
+        minHeight: "100vh",
+        minWidth: "unset",
+    },
+    fullScreenActions: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: sizing.size_160,
     },
 });
