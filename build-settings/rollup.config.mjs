@@ -29,6 +29,10 @@ const createConfig = (pkgName) => {
         ],
         input: `packages/${pkgName}/src/index.ts`,
         plugins: [
+            postcss({
+                modules: true,
+                extract: false,
+            }),
             swc({
                 swc: {
                     swcrc: true,
@@ -48,10 +52,6 @@ const createConfig = (pkgName) => {
             }),
             nodeExternals({
                 packagePath: `packages/${pkgName}/package.json`,
-            }),
-            postcss({
-                modules: true,
-                extract: false,
             }),
         ],
     };
