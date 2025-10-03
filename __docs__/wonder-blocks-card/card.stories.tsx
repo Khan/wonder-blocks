@@ -25,7 +25,7 @@ import Link from "@khanacademy/wonder-blocks-link";
 type StoryComponentType = StoryObj<typeof Card>;
 
 export default {
-    title: "Packages / Card / Card",
+    title: "Packages / Card",
     component: Card,
     argTypes: CardArgTypes,
     parameters: {
@@ -52,8 +52,8 @@ export default {
  * The most basic Card has simple contents as `children`.
  */
 export const DefaultCard: StoryComponentType = {
-    render: () => (
-        <Card styles={{root: styles.card}}>
+    render: (args) => (
+        <Card styles={{root: styles.card}} {...args}>
             <Heading>Some Contents</Heading>
             <BodyText>This is a basic card.</BodyText>
         </Card>
