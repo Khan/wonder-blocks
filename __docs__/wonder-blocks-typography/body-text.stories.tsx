@@ -8,6 +8,7 @@ import TypographyArgTypes from "./typography.argtypes";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {
+    Footnote,
     BodyText,
     LabelXSmall,
     LabelSmall,
@@ -157,6 +158,12 @@ export const ClassicConversionGuide = {
     },
     render: () => (
         <View style={[styles.grid, styles.conversionGuide]}>
+            <View style={styles.row}>
+                <Footnote tag="p" style={styles.classic}>
+                    Footnote
+                </Footnote>
+                <BodyText size="xsmall">BodyText size=xsmall</BodyText>
+            </View>
             <View style={styles.row}>
                 <LabelXSmall tag="p" style={styles.classic}>
                     LabelXSmall
