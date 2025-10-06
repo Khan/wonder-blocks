@@ -1,4 +1,8 @@
 import {Meta, Canvas} from "@storybook/addon-docs/blocks";
+import {StyleSheet} from "aphrodite";
+import Banner from "@khanacademy/wonder-blocks-banner";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import * as OnePaneDialogStories from "./one-pane-dialog.stories";
 import * as FlexibleDialogStories from "./flexible-dialog.stories";
 import * as DrawerDialogStories from "./drawer-dialog.stories";
@@ -12,6 +16,13 @@ import * as ModalPanelStories from "./modal-panel.stories";
 <Meta
     title="Packages / Modal / Overview"
 />
+
+export const styles = StyleSheet.create({
+    banner: {
+        marginBottom: spacing.xLarge_32,
+    },
+
+});
 
 # Wonder Blocks Modal
 
@@ -94,6 +105,13 @@ Specialized launcher for drawer interfaces with slide-in animations and mobile-r
 <Canvas of={DrawerLauncherStories.Default} />
 
 ## Building Block Components
+
+<View style={styles.banner}>
+    <Banner
+        kind="info"
+        text={<>The following components are lower-level building blocks. Most use cases should be covered by the Dialog and Launcher components above.<br />Can't get something working? Contact the WB team!</>}
+    />
+</View>
 
 ### ModalDialog
 
