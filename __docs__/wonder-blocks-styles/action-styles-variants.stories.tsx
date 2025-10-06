@@ -43,34 +43,40 @@ export default {
                             <IconButton
                                 kind="primary"
                                 icon={info}
+                                aria-label="Primary info button"
                                 style={actionStyles.inverse}
                             />
                             <IconButton
                                 kind="secondary"
                                 icon={info}
+                                aria-label="Secondary info button"
                                 style={actionStyles.inverse}
                             />
                             <IconButton
                                 kind="tertiary"
                                 icon={info}
+                                aria-label="Tertiary info button"
                                 style={actionStyles.inverse}
                             />
                             <IconButton
                                 kind="primary"
                                 disabled
                                 icon={info}
+                                aria-label="Disabled primary info button"
                                 style={actionStyles.inverse}
                             />
                             <IconButton
                                 kind="secondary"
                                 disabled
                                 icon={info}
+                                aria-label="Disabled secondary info button"
                                 style={actionStyles.inverse}
                             />
                             <IconButton
                                 kind="tertiary"
                                 disabled
                                 icon={info}
+                                aria-label="Disabled tertiary info button"
                                 style={actionStyles.inverse}
                             />
                         </View>
@@ -118,11 +124,12 @@ export default {
                                     // NOTE: Swapping the colors is intentional
                                     // here to show the inverse version of the
                                     // button.
-                                    border: `${border.width.thin} solid ${semanticColor.status.success.background}`,
+                                    border: `${border.width.thin} solid ${semanticColor.core.border.critical.default}`,
                                     backgroundColor:
-                                        semanticColor.status.success.foreground,
-                                    color: semanticColor.status.success
-                                        .background,
+                                        semanticColor.core.background.critical
+                                            .default,
+                                    color: semanticColor.core.foreground
+                                        .knockout.default,
                                 },
                                 actionStyles.inverse,
                             ]}
