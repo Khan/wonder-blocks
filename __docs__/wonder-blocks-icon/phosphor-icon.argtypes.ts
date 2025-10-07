@@ -148,7 +148,7 @@ export default {
     },
     size: {
         description:
-            "One of `small` (16px), `medium` (24px), `large` (48px), or `xlarge` (96px).",
+            "One of `small` (1.6rem), `medium` (2.4rem), `large` (4.8rem), or `xlarge` (9.6rem).",
         options: ["small", "medium", "large", "xlarge"],
         control: {
             type: "select",
