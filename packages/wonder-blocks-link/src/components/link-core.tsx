@@ -58,8 +58,7 @@ const LinkCore = React.forwardRef(function LinkCore(
 
     const commonProps = {
         "data-testid": testId,
-        className: classNames,
-        style: style,
+        style: [classNames, style],
         target,
         ...restProps,
     } as const;
@@ -72,7 +71,7 @@ const LinkCore = React.forwardRef(function LinkCore(
         <PhosphorIcon
             icon={externalLinkIcon}
             size="small"
-            style={[styles.endIcon, styles.centered]}
+            className={[styles.endIcon, styles.centered].join(" ")}
             testId="external-icon"
         />
     );
@@ -82,7 +81,7 @@ const LinkCore = React.forwardRef(function LinkCore(
 
     if (startIcon) {
         startIconElement = React.cloneElement(startIcon, {
-            style: [styles.startIcon, styles.centered],
+            className: [styles.startIcon, styles.centered].join(" "),
             testId: "start-icon",
             "aria-hidden": "true",
             ...startIcon.props,
@@ -93,7 +92,7 @@ const LinkCore = React.forwardRef(function LinkCore(
 
     if (endIcon) {
         endIconElement = React.cloneElement(endIcon, {
-            style: [styles.endIcon, styles.centered],
+            className: [styles.endIcon, styles.centered].join(" "),
             testId: "end-icon",
             "aria-hidden": "true",
             ...endIcon.props,

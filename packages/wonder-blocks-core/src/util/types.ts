@@ -8,8 +8,9 @@ type NestedArray<T> = ReadonlyArray<T | NestedArray<T>>;
 type Falsy = false | 0 | null | undefined;
 export type StyleType =
     | CSSProperties
+    | string
     | Falsy
-    | NestedArray<CSSProperties | Falsy>;
+    | NestedArray<CSSProperties | Falsy | string>;
 
 export type AriaProps = Readonly<AriaAttributes> &
     Readonly<{
