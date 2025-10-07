@@ -186,9 +186,6 @@ export const WithTag: StoryComponentType = {
 };
 
 export const WithBackgroundImage: StoryComponentType = {
-    parameters: {
-        chromatic: {disableSnapshot: true}, // disable snapshot since doesn't have a meaningful visual effect
-    },
     render: () => (
         <Card background={eotBackground} styles={{root: styles.card}}>
             <View
@@ -217,9 +214,6 @@ export const WithBackgroundImage: StoryComponentType = {
 };
 
 export const WithSplitBackgroundImage: StoryComponentType = {
-    parameters: {
-        chromatic: {disableSnapshot: true}, // disable snapshot since doesn't have a meaningful visual effect
-    },
     render: () => (
         <Card paddingSize="none" styles={{root: styles.card}}>
             <View
