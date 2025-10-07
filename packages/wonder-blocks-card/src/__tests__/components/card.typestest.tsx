@@ -64,6 +64,9 @@ import Card from "../../components/card";
     Content
 </Card>;
 
+// @ts-expect-error - onClick is not allowed on Card wrapper
+<Card onClick={() => {}}>Content</Card>;
+
 /**
  * Card with different HTML tags
  */
