@@ -35,7 +35,7 @@ const generateRows = (rtl: boolean = false) => [
                     <PhosphorIcon icon={IconMappings.iceCream} />
                 </StyledDiv>
             ),
-            ariaLabel: "Tab with icons",
+            "aria-label": "Tab with icons",
         },
     },
     {
@@ -44,7 +44,7 @@ const generateRows = (rtl: boolean = false) => [
             children: (
                 <PhosphorIcon icon={IconMappings.iceCream} size="medium" />
             ),
-            ariaLabel: "Tab with icon",
+            "aria-label": "Tab with icon",
         },
     },
 ];
@@ -89,7 +89,7 @@ export const StateSheetStory: Story = {
     name: "StateSheet",
     render: (args) => (
         <>
-            <StateSheet rows={rows} columns={columns} title="">
+            <StateSheet rows={rows} columns={columns}>
                 {({props, className}) => (
                     <div role="tablist" className={className}>
                         <Tab {...args} {...props} />
@@ -97,7 +97,7 @@ export const StateSheetStory: Story = {
                 )}
             </StateSheet>
             <div dir="rtl">
-                <StateSheet rows={rtlRows} columns={columns} title="">
+                <StateSheet rows={rtlRows} columns={columns}>
                     {({props, className}) => (
                         <div role="tablist" className={className}>
                             <Tab {...args} {...props} />
