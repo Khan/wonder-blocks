@@ -58,7 +58,8 @@ const LinkCore = React.forwardRef(function LinkCore(
 
     const commonProps = {
         "data-testid": testId,
-        style: [classNames, style].join(" "),
+        className: classNames,
+        style: style,
         target,
         ...restProps,
     } as const;
