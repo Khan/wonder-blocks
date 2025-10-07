@@ -1,0 +1,64 @@
+.shared {
+    font-family: var(--wb-c-link-root-font-family);
+    font-weight: var(--wb-c-link-root-font-weight);
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+    align-items: center;
+}
+
+.rest {
+    color: var(--wb-semanticColor-link-rest);
+
+    &:hover {
+        text-decoration: underline currentcolor solid;
+        color: var(--wb-semanticColor-link-hover);
+        text-underline-offset: var(--wb-font-textDecoration-underlineOffset);
+    }
+
+    &:focus-visible {
+        border-radius: var(--wb-border-radius-radius_010);
+        box-shadow: 0 0 0 var(--wb-border-width-medium) var(--wb-semanticColor-focus-inner);
+        outline: var(--wb-border-width-medium) solid var(--wb-semanticColor-focus-outer);
+        outline-offset: var(--wb-border-width-medium);
+    }
+
+    &:active {
+        color: var(--wb-semanticColor-link-press);
+        text-decoration: underline currentcolor solid;
+        text-underline-offset: var(--wb-font-textDecoration-underlineOffset);
+    }
+}
+
+.restInline {
+    text-decoration: underline currentcolor solid;
+    text-decoration-thickness: var(--wb-font-textDecoration-thickness);
+    text-underline-offset: var(--wb-font-textDecoration-underlineOffset);
+}
+
+.focus {
+    border-radius: var(--wb-border-radius-radius_010);
+    outline-offset: var(--wb-border-width-medium);
+    outline: var(--wb-focus-outline);
+    outline-offset: var(--wb-focus-outlineOffset);
+}
+
+.press {
+    color: var(--wb-semanticColor-link-press);
+    text-decoration: underline currentcolor solid;
+    text-underline-offset: var(--wb-font-textDecoration-underlineOffset);
+}
+
+/* Content styles */
+.startIcon {
+    margin-inline-end: var(--wb-sizing-size_040);
+}
+
+.endIcon {
+    margin-inline-start: var(--wb-sizing-size_040);
+}
+
+.centered {
+    /* Manually align the bottom of start/end icons with the text baseline. */
+    vertical-align: -10%;
+}
