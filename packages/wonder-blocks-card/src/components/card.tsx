@@ -223,14 +223,14 @@ const getComponentStyles = ({
 
     return StyleSheet.create({
         root: {
-            backgroundColor: isBackgroundColorStyle
-                ? styleMap.backgroundColor[background]
-                : undefined,
+            ...(isBackgroundColorStyle && {
+                backgroundColor: styleMap.backgroundColor[background],
+            }),
             // provide background image styles for non-color background values
-            background: !isBackgroundColorStyle
-                ? `url(${background})`
-                : undefined,
-            backgroundSize: !isBackgroundColorStyle ? "cover" : undefined,
+            ...(!isBackgroundColorStyle && {
+                background: `url(${background})`,
+                backgroundSize: "cover",
+            }),
             borderColor: semanticColor.core.border.neutral.subtle,
             borderStyle: "solid",
             borderRadius: borderRadius && styleMap.borderRadius[borderRadius],
