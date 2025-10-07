@@ -144,7 +144,7 @@ type Props = BaseCardProps & TagProps & DismissProps;
  *
  * When the `onDismiss` prop is provided, a dismiss button will be rendered. In this case, the `labels.dismissButtonAriaLabel` prop is required to provide an accessible label for the dismiss button.
  *
- * See additional [Accessibility docs](./?path=/docs/packages-card-card-accessibility--docs).
+ * See additional Accessibility docs.
  */
 
 const Card = React.forwardRef(function Card(
