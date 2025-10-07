@@ -11,7 +11,7 @@ export default function addStyle<
     T extends React.ComponentType<any> | keyof JSX.IntrinsicElements,
     Props extends {
         className?: string;
-        style?: StyleType;
+        style?: StyleType | string;
         children?: React.ReactNode;
     } & Omit<React.ComponentProps<T>, "style">, // Removes the 'style' prop from the original component
 >(
