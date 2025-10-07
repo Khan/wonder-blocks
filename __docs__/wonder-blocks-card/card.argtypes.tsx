@@ -9,17 +9,30 @@ export default {
         type: {name: "other", value: "React.ReactNode", required: true},
     },
     background: {
-        control: {type: "select"},
-        options: ["base-subtle", "base-default"],
+        control: {
+            type: "select",
+            labels: {
+                Image: "Image (import and pass as prop)",
+            },
+        },
+        options: ["base-subtle", "base-default", "Image"],
         defaultValue: "base-default",
+        description:
+            "The background style of the card. Can be either a semantic color token or an imported image URL.",
         table: {
-            type: {summary: '"base-subtle" | "base-default"'},
+            type: {
+                summary: '"base-subtle" | "base-default" | Image',
+                detail: "Can be either:\n- Semantic color token: 'base-subtle' or 'base-default'\n- Imported image: import myImage from './my-image.svg' then use background={myImage}\nImages are displayed with background-size: cover",
+            },
             defaultValue: {summary: '"base-default"'},
             category: "Styling",
         },
         type: {
-            name: "enum",
-            value: ["base-subtle", "base-default"],
+            name: "union",
+            value: [
+                {name: "enum", value: ["base-subtle", "base-default"]},
+                {name: "other", value: "Image"},
+            ],
             required: false,
         },
     },

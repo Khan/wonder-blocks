@@ -79,10 +79,13 @@ type StyleProps = {
      * This can be one of:
      * - `"base-subtle"` (color), `semanticColor.core.background.base.subtle`: a light gray background.
      * - `"base-default"` (color), `semanticColor.core.background.base.default`: a white background.
+     * - `Image` (image), a URL string for a background image. Can be an imported image file or a URL string.
+     *
+     * For additional background styling such as repeat or size, use the `styles.root` prop to pass in custom styles.
      *
      * Default: `"base-default"`
      */
-    background?: "base-subtle" | "base-default";
+    background?: "base-subtle" | "base-default" | typeof Image;
     /**
      * The border radius of the card, as a string identifier that matches a border.radius token.
      * This can be one of:
@@ -215,9 +218,19 @@ const getComponentStyles = ({
         },
     } as const;
 
+    const isBackgroundColorStyle =
+        background === "base-subtle" || background === "base-default";
+
     return StyleSheet.create({
         root: {
-            backgroundColor: background && styleMap.backgroundColor[background],
+            backgroundColor: isBackgroundColorStyle
+                ? styleMap.backgroundColor[background]
+                : undefined,
+            // provide background image styles for non-color background values
+            background: !isBackgroundColorStyle
+                ? `url(${background})`
+                : undefined,
+            backgroundSize: !isBackgroundColorStyle ? "cover" : undefined,
             borderColor: semanticColor.core.border.neutral.subtle,
             borderStyle: "solid",
             borderRadius: borderRadius && styleMap.borderRadius[borderRadius],
