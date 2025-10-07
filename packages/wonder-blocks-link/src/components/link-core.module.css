@@ -38,9 +38,8 @@
 
 .focus {
     border-radius: var(--wb-border-radius-radius_010);
+    outline: var(--wb-border-width-medium) solid var(--wb-semanticColor-focus-outer);
     outline-offset: var(--wb-border-width-medium);
-    outline: var(--wb-focus-outline);
-    outline-offset: var(--wb-focus-outlineOffset);
 }
 
 .press {
