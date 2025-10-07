@@ -30,8 +30,13 @@ const createConfig = (pkgName) => {
         input: `packages/${pkgName}/src/index.ts`,
         plugins: [
             postcss({
-                modules: true,
-                extract: false,
+                modules: {
+                    generateScopedName: "[hash:base64:5]",
+                    getJSON() {},
+                },
+                extract: true,
+                minimize: true,
+                sourceMap: true,
             }),
             swc({
                 swc: {
