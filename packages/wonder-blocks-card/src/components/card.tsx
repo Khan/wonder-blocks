@@ -191,56 +191,87 @@ const Card = React.forwardRef(function Card(
     );
 });
 
-const getComponentStyles = ({
+// Map prop values to tokens
+const styleMap = {
+    backgroundColor: {
+        "base-subtle": semanticColor.core.background.base.subtle,
+        "base-default": semanticColor.core.background.base.default,
+    },
+    borderRadius: {
+        small: border.radius.radius_080,
+        medium: border.radius.radius_120,
+    },
+    padding: {
+        none: sizing.size_0,
+        small: sizing.size_160,
+        medium: sizing.size_240,
+    },
+    elevation: {
+        none: "none",
+        low: boxShadow.low,
+    },
+} as const;
+
+// Cache for dynamically generated styles
+const dynamicStyles: Record<string, any> = {};
+
+/**
+ * Generates a unique key for caching styles based on prop combinations
+ */
+const getStyleKey = ({
     background,
     borderRadius,
     paddingSize,
     elevation,
-}: StyleProps) => {
-    // Map prop values to tokens
-    const styleMap = {
-        backgroundColor: {
-            "base-subtle": semanticColor.core.background.base.subtle,
-            "base-default": semanticColor.core.background.base.default,
-        },
-        borderRadius: {
-            small: border.radius.radius_080,
-            medium: border.radius.radius_120,
-        },
-        padding: {
-            none: sizing.size_0,
-            small: sizing.size_160,
-            medium: sizing.size_240,
-        },
-        elevation: {
-            none: "none",
-            low: boxShadow.low,
-        },
-    } as const;
+}: StyleProps): string => {
+    return `${background || "default"}-${borderRadius || "small"}-${
+        paddingSize || "small"
+    }-${elevation || "none"}`;
+};
 
+/**
+ * Generates the component styles with caching for better performance
+ */
+const getComponentStyles = (props: StyleProps) => {
+    const styleKey = getStyleKey(props);
+    // Return cached styles if they exist
+    if (dynamicStyles[styleKey]) {
+        return dynamicStyles[styleKey];
+    }
+
+    const {background, borderRadius, paddingSize, elevation} = props;
     const isBackgroundColorStyle =
         background === "base-subtle" || background === "base-default";
 
-    return StyleSheet.create({
+    // Generate new styles
+    const newStyles = StyleSheet.create({
         root: {
+            // Background styles
             ...(isBackgroundColorStyle && {
                 backgroundColor: styleMap.backgroundColor[background],
             }),
-            // provide background image styles for non-color background values
-            ...(!isBackgroundColorStyle && {
-                background: `url(${background})`,
-                backgroundSize: "cover",
-            }),
+            // Background image styles
+            ...(!isBackgroundColorStyle &&
+                background && {
+                    background: `url(${background})`,
+                    backgroundSize: "cover",
+                }),
+            // Common styles
             borderColor: semanticColor.core.border.neutral.subtle,
             borderStyle: "solid",
-            borderRadius: borderRadius && styleMap.borderRadius[borderRadius],
             borderWidth: border.width.thin,
-            boxShadow: elevation && styleMap.elevation[elevation],
-            padding: paddingSize && styleMap.padding[paddingSize],
             minInlineSize: sizing.size_280,
             position: "relative",
+            // Optional styles based on props
+            borderRadius: borderRadius && styleMap.borderRadius[borderRadius],
+            boxShadow: elevation && styleMap.elevation[elevation],
+            padding: paddingSize && styleMap.padding[paddingSize],
         },
     });
+
+    // Cache the styles
+    dynamicStyles[styleKey] = newStyles;
+    return newStyles;
 };
 
 export default Card;

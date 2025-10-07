@@ -1,6 +1,12 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
+import {
+    boxShadow,
+    border,
+    semanticColor,
+    sizing,
+} from "@khanacademy/wonder-blocks-tokens";
 
 import Card from "../../components/card";
 
@@ -189,6 +195,182 @@ describe("Card", () => {
             // Assert
             expect(firstChild).toBeInTheDocument();
             expect(secondChild).toBeInTheDocument();
+        });
+    });
+
+    describe("Style application", () => {
+        it("should apply default styles", () => {
+            // Arrange
+            const testId = "test-card";
+
+            // Act
+            render(<Card testId={testId}>Content</Card>);
+            const card = screen.getByTestId(testId);
+
+            // Assert
+            expect(card).toHaveStyle({
+                position: "relative",
+                borderStyle: "solid",
+            });
+        });
+
+        it("should apply base-subtle background", () => {
+            // Arrange
+            const testId = "test-card";
+
+            // Act
+            render(
+                <Card testId={testId} background="base-subtle">
+                    Content
+                </Card>,
+            );
+            const card = screen.getByTestId(testId);
+
+            // Assert
+            expect(card).toHaveStyle({
+                backgroundColor: semanticColor.core.background.base.subtle,
+            });
+        });
+
+        it("should apply medium border radius", () => {
+            // Arrange
+            const testId = "test-card";
+
+            // Act
+            render(
+                <Card testId={testId} borderRadius="medium">
+                    Content
+                </Card>,
+            );
+            const card = screen.getByTestId(testId);
+
+            // Assert
+            expect(card).toHaveStyle({
+                borderRadius: border.radius.radius_120,
+            });
+        });
+
+        it("should apply medium padding", () => {
+            // Arrange
+            const testId = "test-card";
+
+            // Act
+            render(
+                <Card testId={testId} paddingSize="medium">
+                    Content
+                </Card>,
+            );
+            const card = screen.getByTestId(testId);
+
+            // Assert
+            expect(card).toHaveStyle({
+                padding: sizing.size_240,
+            });
+        });
+
+        it("should apply low elevation", () => {
+            // Arrange
+            const testId = "test-card";
+
+            // Act
+            render(
+                <Card testId={testId} elevation="low">
+                    Content
+                </Card>,
+            );
+            const card = screen.getByTestId(testId);
+
+            // Assert
+            expect(card).toHaveStyle({
+                boxShadow: boxShadow.low,
+            });
+        });
+
+        it("should apply image background", () => {
+            // Arrange
+            const testId = "test-card";
+            const testImage = Image;
+
+            // Act
+            render(
+                <Card testId={testId} background={testImage}>
+                    Content
+                </Card>,
+            );
+            const card = screen.getByTestId(testId);
+
+            // Assert
+            expect(card).toHaveStyle({
+                backgroundSize: "cover",
+            });
+        });
+    });
+
+    describe("Style application", () => {
+        it("should apply custom margin style", () => {
+            // Arrange
+            const testId = "test-card";
+            const customStyle = {marginTop: "10px"};
+
+            // Act
+            render(
+                <Card testId={testId} styles={{root: customStyle}}>
+                    Content
+                </Card>,
+            );
+
+            // Assert
+            expect(screen.getByTestId(testId)).toHaveStyle(customStyle);
+        });
+
+        it("should apply custom padding style", () => {
+            // Arrange
+            const testId = "test-card";
+            const customStyle = {padding: "20px"};
+
+            // Act
+            render(
+                <Card testId={testId} styles={{root: customStyle}}>
+                    Content
+                </Card>,
+            );
+
+            // Assert
+            expect(screen.getByTestId(testId)).toHaveStyle(customStyle);
+        });
+
+        it("should apply custom background color", () => {
+            // Arrange
+            const testId = "test-card";
+            const customStyle = {backgroundColor: "rgb(255, 0, 0)"};
+
+            // Act
+            render(
+                <Card testId={testId} styles={{root: customStyle}}>
+                    Content
+                </Card>,
+            );
+
+            // Assert
+            expect(screen.getByTestId(testId)).toHaveStyle(customStyle);
+        });
+
+        it("should maintain default styles with custom styles", () => {
+            // Arrange
+            const testId = "test-card";
+            const customStyle = {marginTop: "10px"};
+
+            // Act
+            render(
+                <Card testId={testId} styles={{root: customStyle}}>
+                    Content
+                </Card>,
+            );
+
+            // Assert
+            const element = screen.getByTestId(testId);
+            expect(element).toHaveStyle(customStyle);
+            expect(element).toHaveStyle({position: "relative"}); // A default style
         });
     });
 });
