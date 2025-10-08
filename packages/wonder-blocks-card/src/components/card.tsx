@@ -241,6 +241,7 @@ const getComponentStyles = ({
             borderColor: semanticColor.core.border.neutral.subtle,
             borderStyle: "solid",
             borderWidth: border.width.thin,
+            // Apply the system font to cards by default
             fontFamily: font.family.sans,
             minInlineSize: sizing.size_280,
             position: "relative",
