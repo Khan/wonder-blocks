@@ -32,8 +32,7 @@ type Props = Pick<AriaProps, "aria-hidden" | "aria-label" | "role"> & {
     role?: "img";
 
     /**
-     * Size of the icon. One of `small` (16), `medium` (24), `large` (48), or
-     * `xlarge` (96). Defaults to `small`.
+     * Size of the icon. One of `small` (1.6rem), `medium` (2.4rem), `large` (4.8rem), or `xlarge` (9.6rem). Defaults to `small`.
      */
     size?: IconSize;
 
