@@ -8,6 +8,7 @@ import {
     border,
     semanticColor,
     sizing,
+    font,
 } from "@khanacademy/wonder-blocks-tokens";
 
 import {DismissButton} from "./dismiss-button";
@@ -212,39 +213,19 @@ const styleMap = {
     },
 } as const;
 
-// Cache for dynamically generated styles
-const dynamicStyles: Record<string, any> = {};
-
 /**
- * Generates a unique key for caching styles based on prop combinations
+ * Gets the styles for the card based on its props
  */
-const getStyleKey = ({
-    background,
-    borderRadius,
-    paddingSize,
-    elevation,
-}: StyleProps): string => {
-    return `${background || "default"}-${borderRadius || "small"}-${
-        paddingSize || "small"
-    }-${elevation || "none"}`;
-};
-
-/**
- * Generates the component styles with caching for better performance
- */
-const getComponentStyles = (props: StyleProps) => {
-    const styleKey = getStyleKey(props);
-    // Return cached styles if they exist
-    if (dynamicStyles[styleKey]) {
-        return dynamicStyles[styleKey];
-    }
-
-    const {background, borderRadius, paddingSize, elevation} = props;
+const getComponentStyles = ({
+    background = "base-default",
+    borderRadius = "small",
+    paddingSize = "small",
+    elevation = "none",
+}: StyleProps) => {
     const isBackgroundColorStyle =
         background === "base-subtle" || background === "base-default";
 
-    // Generate new styles
-    const newStyles = StyleSheet.create({
+    return StyleSheet.create({
         root: {
             // Background styles
             ...(isBackgroundColorStyle && {
@@ -260,18 +241,15 @@ const getComponentStyles = (props: StyleProps) => {
             borderColor: semanticColor.core.border.neutral.subtle,
             borderStyle: "solid",
             borderWidth: border.width.thin,
+            fontFamily: font.family.sans,
             minInlineSize: sizing.size_280,
             position: "relative",
             // Optional styles based on props
-            borderRadius: borderRadius && styleMap.borderRadius[borderRadius],
-            boxShadow: elevation && styleMap.elevation[elevation],
-            padding: paddingSize && styleMap.padding[paddingSize],
+            borderRadius: styleMap.borderRadius[borderRadius],
+            boxShadow: styleMap.elevation[elevation],
+            padding: styleMap.padding[paddingSize],
         },
     });
-
-    // Cache the styles
-    dynamicStyles[styleKey] = newStyles;
-    return newStyles;
 };
 
 export default Card;

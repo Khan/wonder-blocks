@@ -341,6 +341,7 @@ export const WithStyleProps: StoryComponentType = {
 
 const styles = StyleSheet.create({
     card: {
+        gap: sizing.size_100,
         marginBlockEnd: sizing.size_100,
         width: 320,
     },
