@@ -356,6 +356,63 @@ describe("ModalLauncher", () => {
         });
     });
 
+    test("if modal with opened=true is closed, return focus to the last element focused outside the modal", async () => {
+        // Arrange
+        const ModalLauncherWrapper = () => {
+            const [opened, setOpened] = React.useState(true);
+
+            const handleClose = () => {
+                setOpened(false);
+            };
+
+            return (
+                <MemoryRouter>
+                    <CompatRouter>
+                        <View>
+                            <Button>
+                                Top of page (should not receive focus)
+                            </Button>
+                            <Button testId="launcher-button">Open modal</Button>
+                            <ModalLauncher
+                                onClose={() => handleClose()}
+                                opened={opened}
+                                modal={({closeModal}: any) => (
+                                    <OnePaneDialog
+                                        title="Regular modal"
+                                        content={<View>Hello World</View>}
+                                        footer={
+                                            <Button
+                                                testId="modal-close-button"
+                                                onClick={closeModal}
+                                            >
+                                                Close Modal
+                                            </Button>
+                                        }
+                                    />
+                                )}
+                            />
+                        </View>
+                    </CompatRouter>
+                </MemoryRouter>
+            );
+        };
+
+        render(<ModalLauncherWrapper />);
+
+        const lastButton = await screen.findByTestId("launcher-button");
+
+        // Act
+        // Close modal
+        const modalCloseButton =
+            await screen.findByTestId("modal-close-button");
+        await userEvent.click(modalCloseButton);
+
+        // Assert
+        await waitFor(() => {
+            expect(lastButton).toHaveFocus();
+        });
+    });
+
     test("if `closedFocusId` is passed, shift focus to specified element after the modal closes", async () => {
         // Arrange
         const ModalLauncherWrapper = () => {
@@ -439,5 +496,59 @@ describe("ModalLauncher", () => {
 
         // Assert
         expect(backdrop).toBeInTheDocument();
+    });
+
+    test("should handle focus correctly when opened programmatically through a wrapper component", async () => {
+        // Arrange
+        const WrappedModalLauncher = () => {
+            const [opened, setOpened] = React.useState(true);
+
+            const handleClose = () => {
+                setOpened(false);
+            };
+
+            return (
+                <View>
+                    <Button testId="focused-button">
+                        Button that should receive focus
+                    </Button>
+                    <ModalLauncher
+                        onClose={handleClose}
+                        opened={opened}
+                        modal={({closeModal}) => (
+                            <OnePaneDialog
+                                title="Modal"
+                                content={<View>Content</View>}
+                                footer={
+                                    <Button
+                                        testId="modal-close-button"
+                                        onClick={closeModal}
+                                    >
+                                        Close Modal
+                                    </Button>
+                                }
+                            />
+                        )}
+                    />
+                </View>
+            );
+        };
+
+        render(<WrappedModalLauncher />);
+
+        // Focus the button before the modal opens
+        const buttonToFocus = await screen.findByTestId("focused-button");
+        await userEvent.tab(); // Move focus to the button
+
+        // Act
+        // Close modal
+        const modalCloseButton =
+            await screen.findByTestId("modal-close-button");
+        await userEvent.click(modalCloseButton);
+
+        // Assert
+        await waitFor(() => {
+            expect(buttonToFocus).toHaveFocus();
+        });
     });
 });
