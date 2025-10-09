@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-icon
 
+## 5.3.0
+
+### Minor Changes
+
+- 44f77b7: Updates PhosphorIcon to use rem sizing
+
 ## 5.2.20
 
 ### Patch Changes
