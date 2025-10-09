@@ -23,11 +23,10 @@
     "@khanacademy/wonder-blocks-typography": "workspace:*"
   },
   "peerDependencies": {
-    "@popperjs/core": "catalog:",
+    "@floating-ui/react-dom": "catalog:",
     "aphrodite": "catalog:",
     "react": "catalog:",
-    "react-dom": "catalog:",
-    "react-popper": "catalog:"
+    "react-dom": "catalog:"
   },
   "devDependencies": {
     "@khanacademy/wb-dev-build-settings": "workspace:*"

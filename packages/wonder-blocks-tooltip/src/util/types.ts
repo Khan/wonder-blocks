@@ -1,7 +1,6 @@
 import * as React from "react";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
-import type {State as PopperState} from "@popperjs/core";
 import type {CSSProperties} from "aphrodite";
 
 export type getRefFn = (
@@ -26,7 +25,7 @@ export type ContentStyle = {
     padding?: CSSProperties["padding"];
 };
 
-export type PopperUpdateFn = () => Promise<null | Partial<PopperState>>;
+export type PopperUpdateFn = () => Promise<void>;
 
 export type PopperElementProps = {
     /** The placement of the bubble with respect to the anchor. */
