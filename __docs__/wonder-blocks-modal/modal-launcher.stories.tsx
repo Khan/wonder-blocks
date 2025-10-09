@@ -2,6 +2,9 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
+import pencilIcon from "@phosphor-icons/core/bold/pencil-bold.svg";
+import trashIcon from "@phosphor-icons/core/bold/trash-bold.svg";
+import dotsThreeIcon from "@phosphor-icons/core/regular/dots-three.svg";
 import Button from "@khanacademy/wonder-blocks-button";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {ActionMenu, ActionItem} from "@khanacademy/wonder-blocks-dropdown";
@@ -10,7 +13,7 @@ import {
     RadioGroup,
     Choice,
 } from "@khanacademy/wonder-blocks-form";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 
 import {
@@ -26,6 +29,8 @@ import ModalLauncherArgTypes from "./modal-launcher.argtypes";
 
 import ComponentInfo from "../components/component-info";
 import {allModes} from "../../.storybook/modes";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 const customViewports = {
     phone: {
@@ -326,6 +331,138 @@ TriggeringProgrammatically.parameters = {
     },
 };
 
+export const WithOpenedTrue = () => {
+    const [openedModal, setOpenedModal] = React.useState<
+        "EDIT" | "DELETE" | null
+    >(null);
+    const [, setSelectedItem] = React.useState<string | null>(null);
+
+    // Simulated data item
+    const item = {
+        id: "1",
+        title: "Example Assignment",
+        dueDate: new Date().toISOString(),
+    };
+
+    const handleClose = () => {
+        setOpenedModal(null);
+        setSelectedItem(null);
+    };
+
+    const editDialog = ({closeModal}: {closeModal: () => void}) => (
+        <OnePaneDialog
+            title="Edit Item"
+            content={
+                <View style={styles.modalContent}>
+                    <BodyText>
+                        This is a reproduction of the focus management issue.
+                        When this modal is closed, focus should return to the
+                        action menu button that opened it.
+                    </BodyText>
+                </View>
+            }
+            footer={
+                <View>
+                    <Button onClick={closeModal}>Close</Button>
+                </View>
+            }
+        />
+    );
+
+    const deleteDialog = ({closeModal}: {closeModal: () => void}) => (
+        <ModalDialog aria-labelledby="heading-id">
+            <ModalPanel
+                content={
+                    <View style={styles.modalContent}>
+                        <Heading id="heading-id">Delete Item</Heading>
+                        <BodyText>
+                            Are you sure you want to delete this item? When this
+                            modal is closed, focus should return to the action
+                            menu button.
+                        </BodyText>
+                    </View>
+                }
+                footer={
+                    <View style={styles.footer}>
+                        <Button onClick={closeModal}>Cancel</Button>
+                        <Button
+                            onClick={() => {
+                                // Simulate delete
+                                closeModal();
+                            }}
+                        >
+                            Delete
+                        </Button>
+                    </View>
+                }
+            />
+        </ModalDialog>
+    );
+
+    return (
+        <View>
+            <View style={styles.actionMenuRow}>
+                <BodyText>Example Item</BodyText>
+                <ActionMenu
+                    menuText=""
+                    opener={() => (
+                        <IconButton
+                            aria-label="Actions"
+                            aria-haspopup="true"
+                            kind="secondary"
+                            icon={dotsThreeIcon}
+                            testId="item-actions-button"
+                            size="small"
+                        />
+                    )}
+                >
+                    <ActionItem
+                        onClick={() => {
+                            setSelectedItem(item.id);
+                            setOpenedModal("EDIT");
+                        }}
+                        label="Edit"
+                        leftAccessory={
+                            <PhosphorIcon icon={pencilIcon} size="small" />
+                        }
+                    />
+                    <ActionItem
+                        onClick={() => {
+                            setSelectedItem(item.id);
+                            setOpenedModal("DELETE");
+                        }}
+                        label="Delete"
+                        leftAccessory={
+                            <PhosphorIcon icon={trashIcon} size="small" />
+                        }
+                    />
+                </ActionMenu>
+            </View>
+
+            {/* Edit Modal */}
+            <ModalLauncher
+                opened={openedModal === "EDIT"}
+                onClose={handleClose}
+                modal={editDialog}
+            />
+
+            {/* Delete Modal */}
+            <ModalLauncher
+                opened={openedModal === "DELETE"}
+                onClose={handleClose}
+                modal={deleteDialog}
+            />
+        </View>
+    );
+};
+
+WithOpenedTrue.parameters = {
+    chromatic: {
+        // All the examples for ModalLauncher are behavior based, not visual.
+        disableSnapshot: true,
+    },
+};
+
 export const WithClosedFocusId: StoryComponentType = () => {
     const [opened, setOpened] = React.useState(false);
 
@@ -528,6 +665,37 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
         gap: sizing.size_160,
+    },
+    storyContainer: {
+        display: "flex",
+        flexDirection: "column",
+        gap: sizing.size_240,
+        maxWidth: 600,
+    },
+    description: {
+        display: "flex",
+        flexDirection: "column",
+        gap: sizing.size_160,
+        padding: sizing.size_160,
+        backgroundColor: "rgba(33, 36, 44, 0.08)",
+        borderRadius: 4,
+    },
+    buttonRow: {
+        display: "flex",
+        flexDirection: "row",
+        gap: sizing.size_160,
+        alignItems: "center",
+    },
+    actionMenuRow: {
+        flexDirection: "row",
+        alignItems: "center",
+        gap: sizing.size_160,
+        justifyContent: "space-between",
+        padding: sizing.size_160,
+        borderColor: semanticColor.core.border.neutral.subtle,
+        borderStyle: "solid",
+        borderWidth: border.width.thin,
+        borderRadius: border.radius.radius_040,
     },
 });
 
