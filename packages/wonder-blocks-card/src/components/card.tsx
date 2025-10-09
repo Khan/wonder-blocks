@@ -86,7 +86,7 @@ type StyleProps = {
      *
      * Default: `"base-default"`
      */
-    background?: "base-subtle" | "base-default" | typeof Image;
+    background?: "base-subtle" | "base-default" | typeof Image | null;
     /**
      * The border radius of the card, as a string identifier that matches a border.radius token.
      * This can be one of:
@@ -166,16 +166,26 @@ const Card = React.forwardRef(function Card(
         inert,
     } = props;
 
+    const isBackgroundToken =
+        background === "base-default" || background === "base-subtle";
     const componentStyles = getComponentStyles({
-        background,
+        background: isBackgroundToken ? background : null,
         borderRadius,
         paddingSize,
         elevation,
     });
+
     return (
         <View
             aria-label={labels?.cardAriaLabel}
-            style={[componentStyles.root, styles?.root]}
+            style={[
+                componentStyles.root,
+                !isBackgroundToken && {
+                    background: `url(${background})`,
+                    backgroundSize: "cover",
+                },
+                styles?.root,
+            ]}
             ref={ref}
             tag={tag}
             testId={testId}
@@ -222,21 +232,10 @@ const getComponentStyles = ({
     paddingSize = "small",
     elevation = "none",
 }: StyleProps) => {
-    const isBackgroundColorStyle =
-        background === "base-subtle" || background === "base-default";
-
+    const bgColor = background as keyof typeof styleMap.backgroundColor;
     return StyleSheet.create({
         root: {
-            // Background styles
-            ...(isBackgroundColorStyle && {
-                backgroundColor: styleMap.backgroundColor[background],
-            }),
-            // Background image styles
-            ...(!isBackgroundColorStyle &&
-                background && {
-                    background: `url(${background})`,
-                    backgroundSize: "cover",
-                }),
+            backgroundColor: bgColor && styleMap.backgroundColor[bgColor],
             // Common styles
             borderColor: semanticColor.core.border.neutral.subtle,
             borderStyle: "solid",
