@@ -114,6 +114,11 @@ function TooltipPopper({
     viewportPadding = spacing.small_12,
 }: Props): React.ReactElement {
     const arrowRef = React.useRef<HTMLElement | null>(null);
+    const [isReady, setIsReady] = React.useState(false);
+
+    React.useEffect(() => {
+        setIsReady(true);
+    }, []);
 
     // Create ref trackers for managing refs
     const bubbleRefTracker = React.useRef(new RefTracker());
@@ -138,20 +143,21 @@ function TooltipPopper({
             // Shift within viewport with padding
             middlewares.push(
                 shift({
-                    padding: viewportPadding,
+                    rootBoundary: "viewport",
                 }),
+                flip(),
             );
         } else {
             // Flip when overflowing document
             middlewares.push(
                 flip({
-                    boundary: "clippingAncestors",
+                    rootBoundary: "document",
                 }),
             );
         }
 
         return middlewares;
-    }, [rootBoundary, viewportPadding]);
+    }, [rootBoundary]);
 
     // Use floating-ui hook for positioning
     const {
@@ -201,6 +207,8 @@ function TooltipPopper({
             position: strategy,
             top: y ?? 0,
             left: x ?? 0,
+            // while it re-positions itself
+            visibility: !isReady ? "hidden" : undefined,
         },
         updateBubbleRef: bubbleRefTracker.current.updateRef,
         tailOffset: {
