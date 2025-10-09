@@ -8,6 +8,7 @@ import {
     border,
     semanticColor,
     sizing,
+    font,
 } from "@khanacademy/wonder-blocks-tokens";
 
 import {DismissButton} from "./dismiss-button";
@@ -79,10 +80,13 @@ type StyleProps = {
      * This can be one of:
      * - `"base-subtle"` (color), `semanticColor.core.background.base.subtle`: a light gray background.
      * - `"base-default"` (color), `semanticColor.core.background.base.default`: a white background.
+     * - `Image` (image), a URL string for a background image. Can be an imported image file or a URL string.
+     *
+     * For additional background styling such as repeat or size, use the `styles.root` prop to pass in custom styles.
      *
      * Default: `"base-default"`
      */
-    background?: "base-subtle" | "base-default";
+    background?: "base-subtle" | "base-default" | typeof Image | null;
     /**
      * The border radius of the card, as a string identifier that matches a border.radius token.
      * This can be one of:
@@ -141,7 +145,7 @@ type Props = BaseCardProps & TagProps & DismissProps;
  *
  * When the `onDismiss` prop is provided, a dismiss button will be rendered. In this case, the `labels.dismissButtonAriaLabel` prop is required to provide an accessible label for the dismiss button.
  *
- * See additional [Accessibility docs](./?path=/docs/packages-card-card-accessibility--docs).
+ * See additional Accessibility docs.
  */
 
 const Card = React.forwardRef(function Card(
@@ -162,16 +166,26 @@ const Card = React.forwardRef(function Card(
         inert,
     } = props;
 
+    const isBackgroundToken =
+        background === "base-default" || background === "base-subtle";
     const componentStyles = getComponentStyles({
-        background,
+        background: isBackgroundToken ? background : null,
         borderRadius,
         paddingSize,
         elevation,
     });
+
     return (
         <View
             aria-label={labels?.cardAriaLabel}
-            style={[componentStyles.root, styles?.root]}
+            style={[
+                componentStyles.root,
+                !isBackgroundToken && {
+                    background: `url(${background})`,
+                    backgroundSize: "cover",
+                },
+                styles?.root,
+            ]}
             ref={ref}
             tag={tag}
             testId={testId}
@@ -188,44 +202,52 @@ const Card = React.forwardRef(function Card(
     );
 });
 
-const getComponentStyles = ({
-    background,
-    borderRadius,
-    paddingSize,
-    elevation,
-}: StyleProps) => {
-    // Map prop values to tokens
-    const styleMap = {
-        backgroundColor: {
-            "base-subtle": semanticColor.core.background.base.subtle,
-            "base-default": semanticColor.core.background.base.default,
-        },
-        borderRadius: {
-            small: border.radius.radius_080,
-            medium: border.radius.radius_120,
-        },
-        padding: {
-            none: sizing.size_0,
-            small: sizing.size_160,
-            medium: sizing.size_240,
-        },
-        elevation: {
-            none: "none",
-            low: boxShadow.low,
-        },
-    } as const;
+// Map prop values to tokens
+const styleMap = {
+    backgroundColor: {
+        "base-subtle": semanticColor.core.background.base.subtle,
+        "base-default": semanticColor.core.background.base.default,
+    },
+    borderRadius: {
+        small: border.radius.radius_080,
+        medium: border.radius.radius_120,
+    },
+    padding: {
+        none: sizing.size_0,
+        small: sizing.size_160,
+        medium: sizing.size_240,
+    },
+    elevation: {
+        none: "none",
+        low: boxShadow.low,
+    },
+} as const;
 
+/**
+ * Gets the styles for the card based on its props
+ */
+const getComponentStyles = ({
+    background = "base-default",
+    borderRadius = "small",
+    paddingSize = "small",
+    elevation = "none",
+}: StyleProps) => {
+    const bgColor = background as keyof typeof styleMap.backgroundColor;
     return StyleSheet.create({
         root: {
-            backgroundColor: background && styleMap.backgroundColor[background],
+            backgroundColor: bgColor && styleMap.backgroundColor[bgColor],
+            // Common styles
             borderColor: semanticColor.core.border.neutral.subtle,
             borderStyle: "solid",
-            borderRadius: borderRadius && styleMap.borderRadius[borderRadius],
             borderWidth: border.width.thin,
-            boxShadow: elevation && styleMap.elevation[elevation],
-            padding: paddingSize && styleMap.padding[paddingSize],
+            // Apply the system font to cards by default
+            fontFamily: font.family.sans,
             minInlineSize: sizing.size_280,
             position: "relative",
+            // Optional styles based on props
+            borderRadius: styleMap.borderRadius[borderRadius],
+            boxShadow: styleMap.elevation[elevation],
+            padding: styleMap.padding[paddingSize],
         },
     });
 };

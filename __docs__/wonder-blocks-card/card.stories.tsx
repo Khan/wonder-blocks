@@ -21,6 +21,9 @@ import ComponentInfo from "../components/component-info";
 import CardArgTypes from "./card.argtypes";
 import {GemBadge} from "@khanacademy/wonder-blocks-badge";
 import Link from "@khanacademy/wonder-blocks-link";
+import eotBackground from "../../static/EOT-Background.svg";
+import eotIcon from "../../static/EOT-Icon.svg";
+import blooketBg from "../../static/Blooket.svg";
 
 type StoryComponentType = StoryObj<typeof Card>;
 
@@ -182,6 +185,67 @@ export const WithTag: StoryComponentType = {
     ),
 };
 
+export const WithBackgroundImage: StoryComponentType = {
+    render: () => (
+        <Card background={eotBackground} styles={{root: styles.card}}>
+            <View
+                style={{
+                    alignItems: "center",
+                }}
+            >
+                <Heading size="small" style={styles.eotCardText}>
+                    Practice
+                </Heading>
+                <img src={eotIcon} alt="" style={{maxWidth: sizing.size_640}} />
+                <Heading
+                    size="small"
+                    weight="semi"
+                    tag="h3"
+                    style={styles.eotCardText}
+                >
+                    Proficient
+                </Heading>
+                <Heading size="xxlarge" tag="h4" style={styles.eotCardText}>
+                    100%
+                </Heading>
+            </View>
+        </Card>
+    ),
+};
+
+export const WithSplitBackgroundImage: StoryComponentType = {
+    render: () => (
+        <Card paddingSize="none" styles={{root: styles.card}}>
+            <View
+                style={{
+                    backgroundImage: `url(${blooketBg})`,
+                    backgroundSize: "cover",
+                    height: 156,
+                }}
+            />
+            <View
+                style={{
+                    padding: sizing.size_160,
+                }}
+            >
+                <Heading size="medium">Khanmigo and Blooket</Heading>
+                <BodyText>
+                    Gamify learning without adding more work to your plate!
+                </BodyText>
+                <View
+                    style={{
+                        insetBlockStart: sizing.size_160,
+                        marginBlockEnd: sizing.size_160,
+                        flexDirection: "unset",
+                    }}
+                >
+                    <Button kind="secondary">Try it out</Button>
+                </View>
+            </View>
+        </Card>
+    ),
+};
+
 export const InAStack: StoryComponentType = {
     parameters: {
         chromatic: {disableSnapshot: true}, // disable snapshot since doesn't have a meaningful visual effect
@@ -277,6 +341,7 @@ export const WithStyleProps: StoryComponentType = {
 
 const styles = StyleSheet.create({
     card: {
+        gap: sizing.size_100,
         marginBlockEnd: sizing.size_100,
         width: 320,
     },
@@ -308,5 +373,9 @@ const styles = StyleSheet.create({
         zIndex: -1,
         marginBlockStart: spacing.large_24,
         marginInlineStart: spacing.large_24,
+    },
+    eotCardText: {
+        marginBlockStart: sizing.size_160,
+        marginBlockEnd: sizing.size_160,
     },
 });
