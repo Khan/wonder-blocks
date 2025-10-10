@@ -10,7 +10,7 @@ import {
     shift,
     arrow,
     hide,
-    offset,
+    // offset,
 } from "@floating-ui/react-dom";
 import type {
     Placement as FloatingPlacement,
@@ -128,7 +128,7 @@ function TooltipPopper({
     const middleware: Middleware[] = React.useMemo(() => {
         const middlewares: Middleware[] = [
             // Add spacing between reference and floating element
-            offset(8),
+            // offset(8),
             // Add hide middleware to detect when reference is hidden
             hide(),
             // Add custom small viewport middleware
