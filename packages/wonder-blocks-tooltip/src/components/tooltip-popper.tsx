@@ -8,9 +8,9 @@ import {
     autoUpdate as floatingAutoUpdate,
     flip,
     shift,
-    arrow as arrowMiddleware,
+    arrow,
     hide,
-    offset as offsetMiddleware,
+    offset,
 } from "@floating-ui/react-dom";
 import type {
     Placement as FloatingPlacement,
@@ -128,11 +128,7 @@ function TooltipPopper({
     const middleware: Middleware[] = React.useMemo(() => {
         const middlewares: Middleware[] = [
             // Add spacing between reference and floating element
-            offsetMiddleware(8),
-            // Add arrow middleware
-            arrowMiddleware({
-                element: arrowRef,
-            }),
+            offset(8),
             // Add hide middleware to detect when reference is hidden
             hide(),
             // Add custom small viewport middleware
@@ -155,6 +151,14 @@ function TooltipPopper({
                 }),
             );
         }
+
+        // Arrow needs to be added toward the end of the middleware array
+        // @see https://floating-ui.com/docs/arrow#order
+        middlewares.push(
+            arrow({
+                element: arrowRef,
+            }),
+        );
 
         return middlewares;
     }, [rootBoundary]);
