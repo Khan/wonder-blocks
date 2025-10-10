@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import {render, screen, fireEvent, waitFor} from "@testing-library/react";
+import {render, screen, fireEvent, waitFor, act} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
 import Tooltip from "../tooltip";
@@ -46,7 +46,7 @@ describe("tooltip integration tests", () => {
         // instant set to true.  This second call is what actually triggers the
         // call to this.props.onActiveChanged() which updates Tooltip's active
         // state.
-        jest.runAllTimers();
+        await act(() => jest.runOnlyPendingTimersAsync());
 
         // Assert
         expect(screen.queryByRole("tooltip")).toBeNull();

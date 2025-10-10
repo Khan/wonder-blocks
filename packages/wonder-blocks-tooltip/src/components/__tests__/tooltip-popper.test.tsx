@@ -45,8 +45,8 @@ class TestHarness extends React.Component<any, State> {
 }
 
 describe("TooltipPopper", () => {
-    // The TooltipPopper component is just a wrapper around react-popper.
-    // PopperJS requires full visual rendering and we don't do that here as
+    // The TooltipPopper component is just a wrapper around @floating-ui/react-dom.
+    // Floating UI requires full visual rendering and we don't do that here as
     // we're not in a browser.
     // So, let's do a test that we at least render the content how we expect
     // and use other things to test the overall placement things.

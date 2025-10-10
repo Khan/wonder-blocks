@@ -14,6 +14,7 @@ catalog:
     # Positioning
     "@popperjs/core": ^2.10.1
     react-popper: ^2.3.0
+    "@floating-ui/react-dom": ^2.1.6
     # Styling
     aphrodite: ^1.2.5
     # Dates

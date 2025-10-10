@@ -39,15 +39,15 @@
   },
   "author": "",
   "license": "MIT",
-  "devDependencies": {
+"devDependencies": {
     "@changesets/cli": "^2.27.12",
     "@jest/globals": "^29.7.0",
     "@khanacademy/eslint-config": "^5.2.0",
     "@khanacademy/eslint-plugin": "^3.1.1",
     "@khanacademy/wonder-blocks-accordion": "workspace:*",
     "@khanacademy/wonder-blocks-announcer": "workspace:*",
-    "@khanacademy/wonder-blocks-banner": "workspace:*",
     "@khanacademy/wonder-blocks-badge": "workspace:*",
+    "@khanacademy/wonder-blocks-banner": "workspace:*",
     "@khanacademy/wonder-blocks-birthday-picker": "workspace:*",
     "@khanacademy/wonder-blocks-breadcrumbs": "workspace:*",
     "@khanacademy/wonder-blocks-button": "workspace:*",
@@ -148,6 +148,7 @@
   },
   "dependencies": {
     "@khanacademy/wonder-stuff-core": "catalog:",
+    "@floating-ui/react-dom": "catalog:",
     "@phosphor-icons/core": "catalog:",
     "@popperjs/core": "catalog:",
     "aphrodite": "catalog:",

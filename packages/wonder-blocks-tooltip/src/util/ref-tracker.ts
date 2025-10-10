@@ -1,16 +1,14 @@
 /**
- * This is a little helper that we can use to wrap the react-popper reference
+ * This is a little helper that we can use to wrap the floating-ui reference
  * update methods so that we can convert a regular React ref into a DOM node
- * as react-popper expects, and also ensure we only update react-popper
+ * as floating-ui expects, and also ensure we only update floating-ui
  * on actual changes, and not just renders of the same thing.
  */
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import type {PopperChildrenProps} from "react-popper";
-
-type PopperRef = PopperChildrenProps["ref"];
-type TargetFn = (target?: HTMLElement | null) => void;
+type FloatingRef = (node: HTMLElement | null) => void;
+type TargetFn = (target: HTMLElement | null) => void;
 
 export default class RefTracker {
     _lastRef: HTMLElement | null | undefined;
@@ -32,7 +30,7 @@ export default class RefTracker {
         }
     };
 
-    setCallback: (targetFn?: PopperRef | null | undefined) => void = (
+    setCallback: (targetFn?: FloatingRef | null | undefined) => void = (
         targetFn,
     ) => {
         if (this._targetFn !== targetFn) {

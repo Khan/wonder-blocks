@@ -11,7 +11,7 @@
  * - TooltipAnchor (provides hover/focus behaviors on anchored content)
  *   - TooltipPortalMounter (creates portal into which the callout is rendered)
  * --------------------------- [PORTAL BOUNDARY] ------------------------------
- * - TooltipPopper (provides positioning for the callout using react-popper)
+ * - TooltipPopper (provides positioning for the callout using @floating-ui/react-dom)
  *   - TooltipBubble (renders the callout borders, background and shadow)
  *     - TooltipContent (renders the callout content; the actual information)
  *     - TooltipTail (renders the callout tail and shadow that points from the
