@@ -144,6 +144,46 @@ Simple.parameters = {
     },
 };
 
+export const WithLongContentsAndFooter: StoryComponentType = () => (
+    <View style={styles.previewSizer}>
+        <View style={styles.modalPositioner}>
+            <OnePaneDialog
+                title="Hello, world! Here is an example of a long title that wraps to the next line."
+                content={
+                    <BodyText>
+                        {`Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut
+                            aliquip ex ea commodo consequat. Duis aute irure
+                            dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. Excepteur
+                            sint occaecat cupidatat non proident, sunt in culpa
+                            qui officia deserunt mollit anim id est.`}
+                    </BodyText>
+                }
+                footer={
+                    <View style={styles.footer}>
+                        <View style={styles.row}>
+                            <Button kind="tertiary">Previous</Button>
+                            <Button kind="primary">Next</Button>
+                        </View>
+                    </View>
+                }
+            />
+        </View>
+    </View>
+);
+
+WithLongContentsAndFooter.parameters = {
+    docs: {
+        description: {
+            story: `This is the most basic OnePaneDialog, with just
+            the title and content.`,
+        },
+    },
+};
+
 export const WithFooter: StoryComponentType = () => (
     <View style={styles.previewSizer}>
         <View style={styles.modalPositioner}>
