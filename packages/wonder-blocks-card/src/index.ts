@@ -1,3 +1,5 @@
-import Card from "./components/card";
+import Card, {type CardProps} from "./components/card";
+
+export type {CardProps};
 
 export {Card};
