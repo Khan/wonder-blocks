@@ -2,7 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {TooltipTail} from "@khanacademy/wonder-blocks-tooltip";
+// import {TooltipTail} from "@khanacademy/wonder-blocks-tooltip";
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
 
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
@@ -11,6 +11,7 @@ import type {
     PopperElementProps,
 } from "@khanacademy/wonder-blocks-tooltip";
 
+import {FloatingArrow} from "@floating-ui/react";
 import PopoverContent from "./popover-content";
 import PopoverContentCore from "./popover-content-core";
 
@@ -73,8 +74,10 @@ export default class PopoverDialog extends React.Component<Props> {
             isReferenceHidden,
             updateBubbleRef,
             updateTailRef,
-            tailOffset,
-            style,
+            // tailOffset,
+            context,
+            floatingStyles,
+            // style,
             showTail,
             "aria-describedby": ariaDescribedby,
             "aria-labelledby": ariaLabelledBy,
@@ -85,6 +88,9 @@ export default class PopoverDialog extends React.Component<Props> {
 
         // extract the background color from the popover content
         const color: keyof typeof tokens.color = contentProps.color;
+        const arrowColor =
+            tokens.color[color] ??
+            tokens.semanticColor.core.background.base.default;
 
         return (
             <React.Fragment>
@@ -99,17 +105,37 @@ export default class PopoverDialog extends React.Component<Props> {
                     style={[
                         isReferenceHidden && styles.hide,
                         styles[`content-${placement}`],
-                        style,
+                        // style,
+                        floatingStyles,
                     ]}
                 >
                     {children}
-                    <TooltipTail
+                    {context && showTail && (
+                        <FloatingArrow
+                            ref={
+                                updateTailRef as React.RefObject<SVGSVGElement>
+                            }
+                            context={context}
+                            fill={arrowColor}
+                            width={24}
+                            height={12}
+                            stroke={
+                                tokens.semanticColor.core.border.neutral.subtle
+                            }
+                            strokeWidth={1}
+                            style={{
+                                filter: `drop-shadow(0 4px 2px ${tokens.semanticColor.core.shadow.transparent.mid})`,
+                                zIndex: -1,
+                            }}
+                        />
+                    )}
+                    {/* <TooltipTail
                         show={showTail}
                         color={color}
                         updateRef={updateTailRef}
                         placement={placement}
                         offset={tailOffset}
-                    />
+                    /> */}
                 </View>
             </React.Fragment>
         );

@@ -16,6 +16,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@floating-ui/react": "catalog:",
     "@khanacademy/wonder-blocks-core": "workspace:*",
     "@khanacademy/wonder-blocks-layout": "workspace:*",
     "@khanacademy/wonder-blocks-modal": "workspace:*",
@@ -23,7 +24,6 @@
     "@khanacademy/wonder-blocks-typography": "workspace:*"
   },
   "peerDependencies": {
-    "@floating-ui/react-dom": "catalog:",
     "aphrodite": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:"

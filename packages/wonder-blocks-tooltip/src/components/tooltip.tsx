@@ -239,6 +239,8 @@ export default class Tooltip extends React.Component<Props, State> {
                         onActiveChanged={(active) =>
                             this.setState({activeBubble: active})
                         }
+                        floatingStyles={props.floatingStyles}
+                        context={props.context}
                     >
                         {this._renderBubbleContent()}
                     </TooltipBubble>

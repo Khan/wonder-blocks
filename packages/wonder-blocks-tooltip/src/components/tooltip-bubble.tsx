@@ -8,8 +8,9 @@ import {
     semanticColor,
 } from "@khanacademy/wonder-blocks-tokens";
 
+import {FloatingArrow} from "@floating-ui/react";
 import TooltipContent from "./tooltip-content";
-import TooltipTail from "./tooltip-tail";
+// import TooltipTail from "./tooltip-tail";
 import {PopperElementProps} from "../util/types";
 
 export type Props = {
@@ -51,11 +52,18 @@ export default class TooltipBubble extends React.Component<Props, State> {
             updateBubbleRef,
             placement,
             isReferenceHidden,
-            style,
+            // style,
             updateTailRef,
-            tailOffset,
+            floatingStyles,
+            // tailOffset,
+            context,
             backgroundColor,
         } = this.props;
+
+        const arrowColor =
+            backgroundColor ?? semanticColor.core.background.base.default;
+        const locatedAtBlockStart = placement.startsWith("top");
+
         return (
             <View
                 id={id}
@@ -68,7 +76,8 @@ export default class TooltipBubble extends React.Component<Props, State> {
                     isReferenceHidden && styles.hide,
                     styles.bubble,
                     styles[`content-${placement}`],
-                    style,
+                    // style,
+                    floatingStyles,
                 ]}
             >
                 <View
@@ -80,13 +89,33 @@ export default class TooltipBubble extends React.Component<Props, State> {
                     ]}
                 >
                     {children}
+                    {context && (
+                        <FloatingArrow
+                            ref={
+                                updateTailRef as React.RefObject<SVGSVGElement>
+                            }
+                            context={context}
+                            fill={arrowColor}
+                            width={24}
+                            height={12}
+                            stroke={semanticColor.core.border.neutral.subtle}
+                            strokeWidth={1}
+                            style={
+                                locatedAtBlockStart
+                                    ? {
+                                          filter: `drop-shadow(0 3px 2px ${semanticColor.core.shadow.transparent.mid})`,
+                                      }
+                                    : undefined
+                            }
+                        />
+                    )}
                 </View>
-                <TooltipTail
+                {/* <TooltipTail
                     updateRef={updateTailRef}
                     placement={placement}
                     offset={tailOffset}
                     color={backgroundColor}
-                />
+                /> */}
             </View>
         );
     }

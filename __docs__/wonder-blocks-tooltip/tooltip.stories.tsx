@@ -278,21 +278,28 @@ TooltipOnButtons.parameters = {
 /**
  * Opening a tooltip programatically (Controlled)
  */
-export const Controlled: StoryComponentType = () => {
-    const [opened, setOpened] = React.useState(true);
-    const buttonText = `Click to ${opened ? "close" : "open"} tooltip`;
+export const Controlled: StoryComponentType = {
+    args: {
+        placement: "top",
+    } as TooltipArgs,
 
-    return (
-        <View style={[styles.centered, styles.row]}>
-            <Tooltip
-                content="You opened the tooltip with a button"
-                opened={opened}
-            >
-                tooltip
-            </Tooltip>
-            <Button onClick={() => setOpened(!opened)}>{buttonText}</Button>
-        </View>
-    );
+    render: function Render(args) {
+        const [opened, setOpened] = React.useState(true);
+        const buttonText = `Click to ${opened ? "close" : "open"} tooltip`;
+
+        return (
+            <View style={[styles.centered, styles.row]}>
+                <Tooltip
+                    content="You opened the tooltip with a button"
+                    opened={opened}
+                    {...args}
+                >
+                    tooltip
+                </Tooltip>
+                <Button onClick={() => setOpened(!opened)}>{buttonText}</Button>
+            </View>
+        );
+    },
 };
 
 Controlled.parameters = {

@@ -39,7 +39,7 @@
   },
   "author": "",
   "license": "MIT",
-"devDependencies": {
+  "devDependencies": {
     "@changesets/cli": "^2.27.12",
     "@jest/globals": "^29.7.0",
     "@khanacademy/eslint-config": "^5.2.0",
@@ -147,8 +147,9 @@
     "vitest": "^3.0.4"
   },
   "dependencies": {
-    "@khanacademy/wonder-stuff-core": "catalog:",
+    "@floating-ui/react": "catalog:",
     "@floating-ui/react-dom": "catalog:",
+    "@khanacademy/wonder-stuff-core": "catalog:",
     "@phosphor-icons/core": "catalog:",
     "@popperjs/core": "catalog:",
     "aphrodite": "catalog:",

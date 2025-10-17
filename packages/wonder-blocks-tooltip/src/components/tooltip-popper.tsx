@@ -10,19 +10,15 @@ import {
     shift,
     arrow,
     hide,
-    // offset,
-} from "@floating-ui/react-dom";
+    offset,
+} from "@floating-ui/react";
 import type {
     Placement as FloatingPlacement,
     Middleware,
 } from "@floating-ui/react-dom";
 
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
-import type {
-    Placement,
-    PopperElementProps,
-    PopperUpdateFn,
-} from "../util/types";
+import type {Placement, PopperElementProps} from "../util/types";
 import RefTracker from "../util/ref-tracker";
 
 type Props = {
@@ -113,7 +109,7 @@ function TooltipPopper({
     rootBoundary = "viewport",
     viewportPadding = spacing.small_12,
 }: Props): React.ReactElement {
-    const arrowRef = React.useRef<HTMLElement | null>(null);
+    const arrowRef = React.useRef<SVGSVGElement | null>(null);
     const [isReady, setIsReady] = React.useState(false);
 
     React.useEffect(() => {
@@ -128,7 +124,7 @@ function TooltipPopper({
     const middleware: Middleware[] = React.useMemo(() => {
         const middlewares: Middleware[] = [
             // Add spacing between reference and floating element
-            // offset(8),
+            offset(20),
             // Add hide middleware to detect when reference is hidden
             hide(),
             // Add custom small viewport middleware
@@ -171,7 +167,8 @@ function TooltipPopper({
         refs,
         placement: floatingPlacement,
         middlewareData,
-        update,
+        floatingStyles,
+        context,
     } = useFloating({
         placement: placement as FloatingPlacement,
         strategy: "fixed",
@@ -189,7 +186,7 @@ function TooltipPopper({
 
     React.useEffect(() => {
         tailRefTracker.current.setCallback((element) => {
-            arrowRef.current = element as HTMLElement | null;
+            arrowRef.current = element as SVGSVGElement | null;
         });
     }, []);
 
@@ -214,6 +211,7 @@ function TooltipPopper({
             // while it re-positions itself
             visibility: !isReady ? "hidden" : undefined,
         },
+        floatingStyles,
         updateBubbleRef: bubbleRefTracker.current.updateRef,
         tailOffset: {
             top: arrowY != null ? `${arrowY}px` : undefined,
@@ -222,9 +220,9 @@ function TooltipPopper({
             bottom: undefined,
             transform: undefined,
         },
-        updateTailRef: tailRefTracker.current.updateRef,
+        updateTailRef: arrowRef,
         isReferenceHidden,
-        update: update as PopperUpdateFn,
+        context,
     };
 
     return <>{children(bubbleProps)}</>;
