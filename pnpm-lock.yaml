@@ -1149,6 +1149,9 @@ importers:
 
   packages/wonder-blocks-popover:
     dependencies:
+      '@floating-ui/react':
+        specifier: 'catalog:'
+        version: 0.27.16(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:../wonder-blocks-core
@@ -1173,9 +1176,6 @@ importers:
       '@phosphor-icons/core':
         specifier: 'catalog:'
         version: 2.1.1
-      '@popperjs/core':
-        specifier: 'catalog:'
-        version: 2.11.8
       aphrodite:
         specifier: 'catalog:'
         version: 1.2.5
