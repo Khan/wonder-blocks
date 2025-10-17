@@ -157,17 +157,19 @@ export const WithLongContentsAndFooter: StoryComponentType = () => {
         <OnePaneDialog
             title="Hello, world! Here is an example of a long title that wraps to the next line."
             content={
-                <BodyText>
-                    {`Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat. Duis aute irure
-                            dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur
-                            sint occaecat cupidatat non proident, sunt in culpa
-                            qui officia deserunt mollit anim id est.`}
-                </BodyText>
+                <View>
+                    <BodyText>
+                        {`Lorem ipsum dolor sit amet, consectetur adipiscing
+                                elit, sed do eiusmod tempor incididunt ut labore et
+                                dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut
+                                aliquip ex ea commodo consequat. Duis aute irure
+                                dolor in reprehenderit in voluptate velit esse
+                                cillum dolore eu fugiat nulla pariatur. Excepteur
+                                sint occaecat cupidatat non proident, sunt in culpa
+                                qui officia deserunt mollit anim id est.`}
+                    </BodyText>
+                </View>
             }
             footer={
                 <View style={styles.footer}>
@@ -195,7 +197,7 @@ WithLongContentsAndFooter.parameters = {
     },
     docs: {
         description: {
-            story: "This is a modal launcher with long contents for reproducing zoom issues.",
+            story: "This example demonstrates how to handle long content in modals, especially at high zoom levels. The modal supports two modes: standard (fixed height with overflow hidden) and fullscreen (scrollable content). The fullscreen mode is particularly useful for accessibility, allowing users to read all content even at 400% zoom.",
         },
     },
 };

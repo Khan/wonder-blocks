@@ -34,6 +34,11 @@ type Props = {
     /**
      * Should the contents of the panel become scrollable should they
      * become too tall?
+     *
+     * - `true`: The content area will be scrollable, while the header and footer will not.
+     * - `false`: The content area will expand to allow the parent container to scroll.
+     *
+     * Defaults to true.
      */
     scrollOverflow: boolean;
     /**
@@ -91,7 +96,9 @@ export default function ModalPanel({
         const mainContent = ModalContent.isComponentOf(content) ? (
             (content as React.ReactElement<PropsFor<typeof ModalContent>>)
         ) : (
-            <ModalContent>{content}</ModalContent>
+            <ModalContent scrollOverflow={scrollOverflow}>
+                {content}
+            </ModalContent>
         );
 
         if (!mainContent) {
@@ -113,7 +120,11 @@ export default function ModalPanel({
 
     return (
         <View
-            style={[styles.wrapper, style]}
+            style={[
+                styles.wrapper,
+                scrollOverflow ? styles.scrollHidden : styles.scrollAuto,
+                style,
+            ]}
             testId={testId && `${testId}-panel`}
         >
             {closeButtonVisible && (
@@ -145,9 +156,14 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         background: semanticColor.core.background.base.default,
         boxSizing: "border-box",
-        overflow: "hidden",
         height: "100%",
         width: "100%",
+    },
+    scrollHidden: {
+        overflow: "hidden",
+    },
+    scrollAuto: {
+        overflow: "auto",
     },
 
     closeButton: {

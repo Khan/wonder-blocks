@@ -5,9 +5,11 @@ import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {Id} from "@khanacademy/wonder-blocks-core";
+import {breakpoint} from "@khanacademy/wonder-blocks-tokens";
 import ModalDialog from "./modal-dialog";
 import ModalPanel from "./modal-panel";
 import ModalHeader from "./modal-header";
+import {useMediaQuery} from "../../../wonder-blocks-core/src/hooks/use-media-query";
 
 type Common = {
     /**
@@ -25,6 +27,11 @@ type Common = {
      * provide a container element with 100% width.
      */
     footer?: React.ReactNode;
+    /**
+     * Should the contents of the panel become scrollable should they
+     * become too tall?
+     */
+    scrollOverflow?: boolean;
     /**
      * Called when the close button is clicked.
      *
@@ -135,6 +142,7 @@ const renderHeader = (
         // @ts-expect-error [FEI-5019] - TS2339 - Property 'subtitle' does not exist on type 'Props'.
         subtitle = undefined,
         testId,
+        scrollOverflow,
     } = props;
 
     if (breadcrumbs) {
@@ -148,6 +156,7 @@ const renderHeader = (
                 }
                 titleId={uniqueId}
                 testId={testId && `${testId}-header`}
+                scrollOverflow={scrollOverflow}
             />
         );
     } else if (subtitle) {
@@ -157,6 +166,7 @@ const renderHeader = (
                 subtitle={subtitle as string}
                 titleId={uniqueId}
                 testId={testId && `${testId}-header`}
+                scrollOverflow={scrollOverflow}
             />
         );
     } else {
@@ -165,6 +175,7 @@ const renderHeader = (
                 title={title}
                 titleId={uniqueId}
                 testId={testId && `${testId}-header`}
+                scrollOverflow={scrollOverflow}
             />
         );
     }
@@ -185,6 +196,10 @@ const OnePaneDialog = (props: Props): React.ReactElement => {
         "aria-describedby": ariaDescribedBy,
     } = props;
 
+    const isNarrowScreen = useMediaQuery(breakpoint.mediaQuery.shortHeight);
+    const isShortScreen = useMediaQuery(breakpoint.mediaQuery.mediumWidth);
+
+    const isShortAndNarrowScreen = isNarrowScreen && isShortScreen;
     return (
         <MediaLayout styleSheets={styleSheets}>
             {({styles}) => (
@@ -198,6 +213,7 @@ const OnePaneDialog = (props: Props): React.ReactElement => {
                             aria-labelledby={uniqueId}
                             aria-describedby={ariaDescribedBy}
                             role={role}
+                            scrollOverflow={isShortAndNarrowScreen}
                         >
                             <ModalPanel
                                 onClose={onClose}
@@ -206,6 +222,9 @@ const OnePaneDialog = (props: Props): React.ReactElement => {
                                 footer={footer}
                                 closeButtonVisible={closeButtonVisible}
                                 testId={testId}
+                                // ModalPanel sets scrollOverflow to true by default,
+                                // we override it for short and narrow screens
+                                scrollOverflow={!isShortAndNarrowScreen}
                             />
                         </ModalDialog>
                     )}
@@ -225,7 +244,6 @@ const styleSheets = {
             overflow: "hidden",
         },
     }),
-
     mdOrLarger: StyleSheet.create({
         dialog: {
             width: "93.75%",
@@ -234,4 +252,8 @@ const styleSheets = {
             maxHeight: 624,
         },
     }),
+    // At high zoom (e.g., 400%), enable scrolling automatically
+    scrollOverflow: {
+        overflow: "auto",
+    },
 } as const;
