@@ -10,5 +10,7 @@
         {"path": "../wonder-blocks-icon/tsconfig-build.json"},
         {"path": "../wonder-blocks-icon-button/tsconfig-build.json"},
         {"path": "../wonder-blocks-tokens/tsconfig-build.json"},
+        {"path": "../wonder-blocks-button/tsconfig-build.json"},
+        {"path": "../wonder-blocks-link/tsconfig-build.json"},
     ]
 }
