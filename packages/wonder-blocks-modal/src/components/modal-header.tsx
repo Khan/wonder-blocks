@@ -16,6 +16,11 @@ type Common = {
      */
     titleId: string;
     /**
+     * Should the contents of the panel become scrollable should they
+     * become too tall?
+     */
+    scrollOverflow: boolean;
+    /**
      * Test ID used for e2e testing.
      *
      * In this case, this component is internal, so `testId` is composed with
@@ -95,14 +100,20 @@ export default function ModalHeader(props: Props) {
         testId,
         title,
         titleId,
+        scrollOverflow,
     } = props;
 
     if (subtitle && breadcrumbs) {
         throw new Error("'subtitle' and 'breadcrumbs' can't be used together");
     }
-
     return (
-        <View style={[styles.header]} testId={testId}>
+        <View
+            style={[
+                styles.header,
+                scrollOverflow ? undefined : styles.scrollOverflow,
+            ]}
+            testId={testId}
+        >
             {breadcrumbs && (
                 <View style={styles.breadcrumbs}>{breadcrumbs}</View>
             )}
@@ -149,6 +160,9 @@ const styles = StyleSheet.create({
         [small as any]: {
             paddingInline: theme.header.layout.padding.inline.small,
         },
+    },
+    scrollOverflow: {
+        minHeight: "unset",
     },
 
     breadcrumbs: {

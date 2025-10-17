@@ -6,7 +6,12 @@ import {StyleSheet} from "aphrodite";
 import theme from "../theme";
 
 type Props = {
-    /** Should the content scroll on overflow, or just expand. */
+    /** Should the content scroll on overflow, or just expand.
+     *
+     * - `true`: The content area will be scrollable, while the header and footer will not.
+     * - `false`: The content area will expand to allow the parent container to scroll.
+     *
+     * Defaults to true. */
     scrollOverflow: boolean;
     /** The contents of the ModalContent */
     children: React.ReactNode;
@@ -21,8 +26,21 @@ function ModalContent(props: Props) {
     const {scrollOverflow, style, children} = props;
 
     return (
-        <View style={[styles.wrapper, scrollOverflow && styles.scrollOverflow]}>
-            <View style={[styles.content, style]}>{children}</View>
+        <View
+            style={[
+                styles.wrapper,
+                !scrollOverflow ? styles.nonScrollOverflow : undefined,
+            ]}
+        >
+            <View
+                style={[
+                    styles.content,
+                    scrollOverflow ? styles.scrollOverflow : undefined,
+                    style,
+                ]}
+            >
+                {children}
+            </View>
         </View>
     );
 }
@@ -50,8 +68,10 @@ const styles = StyleSheet.create({
         display: "block",
     },
 
-    scrollOverflow: {
-        overflow: "auto",
+    nonScrollOverflow: {
+        flex: "unset",
+        minHeight: "unset",
+        overflow: "unset",
     },
 
     content: {

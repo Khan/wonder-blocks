@@ -50,6 +50,8 @@ type Props = {
      * The ID of the content describing this dialog, if applicable.
      */
     "aria-describedby"?: string;
+
+    scrollOverflow?: boolean;
 };
 
 /**
@@ -76,11 +78,12 @@ const ModalDialog = React.forwardRef(function ModalDialog(
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledBy,
         "aria-describedby": ariaDescribedBy,
+        scrollOverflow,
     } = props;
 
     return (
-        <View style={[styles.wrapper, style]}>
-            {below && <View style={styles.below}>{below}</View>}
+        <View style={[componentStyles.wrapper, style]}>
+            {below && <View style={componentStyles.below}>{below}</View>}
             <View
                 role={role}
                 aria-modal="true"
@@ -88,19 +91,22 @@ const ModalDialog = React.forwardRef(function ModalDialog(
                 aria-labelledby={ariaLabelledBy}
                 aria-describedby={ariaDescribedBy}
                 ref={ref}
-                style={styles.dialog}
+                style={[
+                    componentStyles.dialog,
+                    scrollOverflow ? {overflow: "auto"} : undefined,
+                ]}
                 testId={testId}
             >
                 {children}
             </View>
-            {above && <View style={styles.above}>{above}</View>}
+            {above && <View style={componentStyles.above}>{above}</View>}
         </View>
     );
 });
 
 const small = "@media (max-width: 767px)" as any;
 
-const styles = StyleSheet.create({
+const componentStyles = StyleSheet.create({
     wrapper: {
         // Allows propagating the text color to all the children.
         color: semanticColor.core.foreground.neutral.strong,

@@ -15,6 +15,10 @@ const width = {
     lgMin: 1024,
 } as const;
 
+// Adapted from Classroom for zoom support
+const pxShortScreenHeightBreakpoint = "500px"; // Arbitary breakpoint for screen height
+const pxMediumScreenWidthBreakpoint = "900px"; // for media queries
+
 /* Named mediaQuery conditions */
 const mediaQuery = {
     // Note: any updates to this will need to be replicated in /types/aphrodite.d.ts
@@ -32,6 +36,9 @@ const mediaQuery = {
     smOrLarger: `@media screen and (min-width: ${width.smMin}px) /* breakpoint.mediaQuery.smOrLarger */`,
     mdOrLarger: `@media screen and (min-width: ${width.mdMin}px) /* breakpoint.mediaQuery.mdOrLarger */`,
     lgOrLarger: `@media screen and (min-width: ${width.lgMin}px) /* breakpoint.mediaQuery.lgOrLarger */`,
+
+    shortHeight: `(max-height:${pxShortScreenHeightBreakpoint})`,
+    mediumWidth: `(max-width:${pxMediumScreenWidthBreakpoint})`,
 } as const;
 
 export const breakpoint = {
