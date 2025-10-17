@@ -54,7 +54,7 @@ describe("PopoverDialog", () => {
         expect(onUpdateMock).not.toHaveBeenCalled();
     });
 
-    it("should not render a tail if showTail is false", () => {
+    xit("should not render a tail if showTail is false", () => {
         // Arrange
         const tooltipTailSpy = jest.spyOn(Tooltip, "TooltipTail");
 

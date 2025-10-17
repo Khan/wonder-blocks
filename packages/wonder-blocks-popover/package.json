@@ -26,7 +26,7 @@
   },
   "peerDependencies": {
     "@phosphor-icons/core": "catalog:",
-    "@popperjs/core": "catalog:",
+    "@floating-ui/react": "catalog:",
     "aphrodite": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
