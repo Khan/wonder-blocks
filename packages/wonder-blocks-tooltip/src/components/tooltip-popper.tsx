@@ -137,13 +137,16 @@ function TooltipPopper({
                 shift({
                     rootBoundary: "viewport",
                 }),
-                flip(),
+                flip({
+                    padding: viewportPadding,
+                }),
             );
         } else {
             // Flip when overflowing document
             middlewares.push(
                 flip({
                     rootBoundary: "document",
+                    padding: viewportPadding,
                 }),
             );
         }
@@ -157,7 +160,7 @@ function TooltipPopper({
         );
 
         return middlewares;
-    }, [rootBoundary]);
+    }, [rootBoundary, viewportPadding]);
 
     // Use floating-ui hook for positioning
     const {
