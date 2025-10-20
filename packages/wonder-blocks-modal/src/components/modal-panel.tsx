@@ -35,12 +35,9 @@ type Props = {
      * Should the contents of the panel become scrollable should they
      * become too tall?
      *
-     * - `true`: The content area will be scrollable, while the header and footer will not.
-     * - `false`: The content area will expand to allow the parent container to scroll.
-     *
      * Defaults to true.
      */
-    scrollOverflow: boolean;
+    scrollOverflow?: boolean;
     /**
      * Any optional styling to apply to the panel.
      */
@@ -60,6 +57,12 @@ type Props = {
      * Dialog variant (e.g. OnePaneDialog).
      */
     testId?: string;
+    /**
+     * Should an outer component wrapped around the panel be scrollable instead?
+     *
+     * Defaults to false.
+     * */
+    shouldOuterScroll?: boolean;
 };
 
 /**
@@ -85,6 +88,7 @@ type Props = {
 export default function ModalPanel({
     closeButtonVisible = true,
     scrollOverflow = true,
+    shouldOuterScroll = false,
     content,
     footer,
     header,
@@ -96,7 +100,7 @@ export default function ModalPanel({
         const mainContent = ModalContent.isComponentOf(content) ? (
             (content as React.ReactElement<PropsFor<typeof ModalContent>>)
         ) : (
-            <ModalContent scrollOverflow={scrollOverflow}>
+            <ModalContent shouldOuterScroll={shouldOuterScroll}>
                 {content}
             </ModalContent>
         );
@@ -108,13 +112,15 @@ export default function ModalPanel({
         return React.cloneElement(mainContent, {
             // Pass the scrollOverflow and header in to the main content
             scrollOverflow,
+            // Tell content not to scroll for short height screens
+            shouldOuterScroll,
             // We override the styling of the main content to help position
             // it if there is a footer or close button being
             // shown. We have to do this here as the ModalContent doesn't
             // know about things being positioned around it.
             style: [!!footer && styles.hasFooter, mainContent.props.style],
         });
-    }, [content, footer, scrollOverflow]);
+    }, [content, footer, scrollOverflow, shouldOuterScroll]);
 
     const mainContent = renderMainContent();
 
@@ -122,7 +128,7 @@ export default function ModalPanel({
         <View
             style={[
                 styles.wrapper,
-                scrollOverflow ? styles.scrollHidden : styles.scrollAuto,
+                shouldOuterScroll ? styles.scrollAuto : styles.scrollHidden,
                 style,
             ]}
             testId={testId && `${testId}-panel`}

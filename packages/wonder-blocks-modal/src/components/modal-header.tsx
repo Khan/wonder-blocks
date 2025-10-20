@@ -16,11 +16,6 @@ type Common = {
      */
     titleId: string;
     /**
-     * Should the contents of the panel become scrollable should they
-     * become too tall?
-     */
-    scrollOverflow: boolean;
-    /**
      * Test ID used for e2e testing.
      *
      * In this case, this component is internal, so `testId` is composed with
@@ -32,6 +27,10 @@ type Common = {
      * The result will be: `some-random-id-modal-header`
      */
     testId?: string;
+    /**
+     * Should an outer component wrapped around the header be scrollable instead?
+     * */
+    shouldOuterScroll?: boolean;
 };
 
 type WithSubtitle = Common & {
@@ -100,7 +99,7 @@ export default function ModalHeader(props: Props) {
         testId,
         title,
         titleId,
-        scrollOverflow,
+        shouldOuterScroll,
     } = props;
 
     if (subtitle && breadcrumbs) {
@@ -110,7 +109,7 @@ export default function ModalHeader(props: Props) {
         <View
             style={[
                 styles.header,
-                scrollOverflow ? undefined : styles.scrollOverflow,
+                shouldOuterScroll ? styles.outerScroll : undefined,
             ]}
             testId={testId}
         >
@@ -161,7 +160,10 @@ const styles = StyleSheet.create({
             paddingInline: theme.header.layout.padding.inline.small,
         },
     },
-    scrollOverflow: {
+
+    innerScroll: {},
+    // Override styles to allow outer parent to scroll instead
+    outerScroll: {
         minHeight: "unset",
     },
 

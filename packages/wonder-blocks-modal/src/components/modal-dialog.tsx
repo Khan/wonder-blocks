@@ -50,8 +50,12 @@ type Props = {
      * The ID of the content describing this dialog, if applicable.
      */
     "aria-describedby"?: string;
-
-    scrollOverflow?: boolean;
+    /**
+     * Should an outer component wrapped around the dialog be scrollable instead?
+     *
+     * Defaults to false.
+     * */
+    shouldOuterScroll?: boolean;
 };
 
 /**
@@ -78,11 +82,17 @@ const ModalDialog = React.forwardRef(function ModalDialog(
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledBy,
         "aria-describedby": ariaDescribedBy,
-        scrollOverflow,
+        shouldOuterScroll,
     } = props;
 
     return (
-        <View style={[componentStyles.wrapper, style]}>
+        <View
+            style={[
+                componentStyles.wrapper,
+                shouldOuterScroll ? {overflow: "auto"} : undefined,
+                style,
+            ]}
+        >
             {below && <View style={componentStyles.below}>{below}</View>}
             <View
                 role={role}
@@ -93,7 +103,7 @@ const ModalDialog = React.forwardRef(function ModalDialog(
                 ref={ref}
                 style={[
                     componentStyles.dialog,
-                    scrollOverflow ? {overflow: "auto"} : undefined,
+                    shouldOuterScroll ? {overflow: "auto"} : undefined,
                 ]}
                 testId={testId}
             >

@@ -28,11 +28,6 @@ type Common = {
      */
     footer?: React.ReactNode;
     /**
-     * Should the contents of the panel become scrollable should they
-     * become too tall?
-     */
-    scrollOverflow?: boolean;
-    /**
      * Called when the close button is clicked.
      *
      * If you're using `ModalLauncher`, you probably shouldn't use this prop!
@@ -134,6 +129,7 @@ type Props = Common | WithSubtitle | WithBreadcrumbs;
 const renderHeader = (
     props: Props,
     uniqueId: string,
+    shouldOuterScroll?: boolean,
 ): React.ReactElement<React.ComponentProps<typeof ModalHeader>> => {
     const {
         title,
@@ -142,7 +138,6 @@ const renderHeader = (
         // @ts-expect-error [FEI-5019] - TS2339 - Property 'subtitle' does not exist on type 'Props'.
         subtitle = undefined,
         testId,
-        scrollOverflow,
     } = props;
 
     if (breadcrumbs) {
@@ -156,7 +151,7 @@ const renderHeader = (
                 }
                 titleId={uniqueId}
                 testId={testId && `${testId}-header`}
-                scrollOverflow={scrollOverflow}
+                shouldOuterScroll={shouldOuterScroll}
             />
         );
     } else if (subtitle) {
@@ -166,7 +161,7 @@ const renderHeader = (
                 subtitle={subtitle as string}
                 titleId={uniqueId}
                 testId={testId && `${testId}-header`}
-                scrollOverflow={scrollOverflow}
+                shouldOuterScroll={shouldOuterScroll}
             />
         );
     } else {
@@ -175,7 +170,7 @@ const renderHeader = (
                 title={title}
                 titleId={uniqueId}
                 testId={testId && `${testId}-header`}
-                scrollOverflow={scrollOverflow}
+                shouldOuterScroll={shouldOuterScroll}
             />
         );
     }
@@ -196,10 +191,8 @@ const OnePaneDialog = (props: Props): React.ReactElement => {
         "aria-describedby": ariaDescribedBy,
     } = props;
 
-    const isNarrowScreen = useMediaQuery(breakpoint.mediaQuery.shortHeight);
-    const isShortScreen = useMediaQuery(breakpoint.mediaQuery.mediumWidth);
+    const isShortScreen = useMediaQuery(breakpoint.mediaQuery.shortHeight);
 
-    const isShortAndNarrowScreen = isNarrowScreen && isShortScreen;
     return (
         <MediaLayout styleSheets={styleSheets}>
             {({styles}) => (
@@ -213,18 +206,22 @@ const OnePaneDialog = (props: Props): React.ReactElement => {
                             aria-labelledby={uniqueId}
                             aria-describedby={ariaDescribedBy}
                             role={role}
-                            scrollOverflow={isShortAndNarrowScreen}
+                            shouldOuterScroll={isShortScreen}
                         >
                             <ModalPanel
                                 onClose={onClose}
-                                header={renderHeader(props, uniqueId)}
+                                header={renderHeader(
+                                    props,
+                                    uniqueId,
+                                    isShortScreen,
+                                )}
                                 content={content}
                                 footer={footer}
                                 closeButtonVisible={closeButtonVisible}
                                 testId={testId}
-                                // ModalPanel sets scrollOverflow to true by default,
-                                // we override it for short and narrow screens
-                                scrollOverflow={!isShortAndNarrowScreen}
+                                // ModalPanel has internal scrolling by default,
+                                // we override it for short height screens
+                                shouldOuterScroll={isShortScreen}
                             />
                         </ModalDialog>
                     )}
@@ -252,8 +249,4 @@ const styleSheets = {
             maxHeight: 624,
         },
     }),
-    // At high zoom (e.g., 400%), enable scrolling automatically
-    scrollOverflow: {
-        overflow: "auto",
-    },
 } as const;

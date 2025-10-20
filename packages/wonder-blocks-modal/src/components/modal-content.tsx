@@ -8,11 +8,14 @@ import theme from "../theme";
 type Props = {
     /** Should the content scroll on overflow, or just expand.
      *
-     * - `true`: The content area will be scrollable, while the header and footer will not.
-     * - `false`: The content area will expand to allow the parent container to scroll.
-     *
      * Defaults to true. */
     scrollOverflow: boolean;
+    /**
+     * Should an outer component wrapped around the content be scrollable instead?
+     *
+     * Defaults to false.
+     * */
+    shouldOuterScroll?: boolean;
     /** The contents of the ModalContent */
     children: React.ReactNode;
     /** Optional styling to apply to the contents. */
@@ -23,19 +26,27 @@ type Props = {
  * The Modal content included after the header
  */
 function ModalContent(props: Props) {
-    const {scrollOverflow, style, children} = props;
+    const {
+        style,
+        children,
+        scrollOverflow = true,
+        shouldOuterScroll = false,
+    } = props;
 
     return (
         <View
             style={[
                 styles.wrapper,
-                !scrollOverflow ? styles.nonScrollOverflow : undefined,
+                // preserve existing optional scroll behavior
+                scrollOverflow && !shouldOuterScroll && styles.scrollOverflow,
+                // if an outer component should scroll, disable internal scrolling
+                shouldOuterScroll ? styles.outerScroll : undefined,
             ]}
         >
             <View
                 style={[
                     styles.content,
-                    scrollOverflow ? styles.scrollOverflow : undefined,
+                    shouldOuterScroll ? styles.outerScroll : undefined,
                     style,
                 ]}
             >
@@ -68,10 +79,15 @@ const styles = StyleSheet.create({
         display: "block",
     },
 
-    nonScrollOverflow: {
+    // Move scrolling to a parent container instead of this internal component
+    outerScroll: {
         flex: "unset",
         minHeight: "unset",
         overflow: "unset",
+    },
+
+    scrollOverflow: {
+        overflow: "auto",
     },
 
     content: {
