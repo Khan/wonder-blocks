@@ -57,12 +57,6 @@ type Props = {
      * Dialog variant (e.g. OnePaneDialog).
      */
     testId?: string;
-    /**
-     * Should an outer component wrapped around the panel be scrollable instead?
-     *
-     * Defaults to false.
-     * */
-    shouldOuterScroll?: boolean;
 };
 
 /**
@@ -88,7 +82,6 @@ type Props = {
 export default function ModalPanel({
     closeButtonVisible = true,
     scrollOverflow = true,
-    shouldOuterScroll = false,
     content,
     footer,
     header,
@@ -154,8 +147,8 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         background: semanticColor.core.background.base.default,
         boxSizing: "border-box",
-        height: "100%",
         overflow: "hidden",
+        height: "100%",
         width: "100%",
         [breakpoint.mediaQuery.shortHeight as any]: {
             overflow: "auto",

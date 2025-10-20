@@ -7,9 +7,7 @@ import {breakpoint} from "@khanacademy/wonder-blocks-tokens";
 import theme from "../theme";
 
 type Props = {
-    /** Should the content scroll on overflow, or just expand.
-     *
-     * Defaults to true. */
+    /** Should the content scroll on overflow, or just expand. */
     scrollOverflow: boolean;
     /** The contents of the ModalContent */
     children: React.ReactNode;
@@ -21,7 +19,7 @@ type Props = {
  * The Modal content included after the header
  */
 function ModalContent(props: Props) {
-    const {style, children, scrollOverflow = true} = props;
+    const {scrollOverflow, style, children} = props;
 
     return (
         <View style={[styles.wrapper, scrollOverflow && styles.scrollOverflow]}>
