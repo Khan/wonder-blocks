@@ -5,6 +5,10 @@
  *
  */
 
+/* Pure height values */
+const height = {
+    smMin: 500, // Arbitary breakpoint for screen height
+} as const;
 /* Pure width values */
 const width = {
     xsMax: 567,
@@ -14,9 +18,6 @@ const width = {
     mdMax: 1023,
     lgMin: 1024,
 } as const;
-
-// Adapted from Classroom for zoom support
-const pxShortScreenHeightBreakpoint = "500px"; // Arbitary breakpoint for screen height
 
 /* Named mediaQuery conditions */
 const mediaQuery = {
@@ -36,10 +37,11 @@ const mediaQuery = {
     mdOrLarger: `@media screen and (min-width: ${width.mdMin}px) /* breakpoint.mediaQuery.mdOrLarger */`,
     lgOrLarger: `@media screen and (min-width: ${width.lgMin}px) /* breakpoint.mediaQuery.lgOrLarger */`,
 
-    shortHeight: `@media screen and (max-height:${pxShortScreenHeightBreakpoint})`,
+    shortHeight: `@media screen and (max-height:${height.smMin}px)`,
 } as const;
 
 export const breakpoint = {
+    height,
     width,
     mediaQuery,
 };

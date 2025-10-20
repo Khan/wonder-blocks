@@ -110,3 +110,21 @@ export const BreakpointWidths = () => (
         tokens={tokens.breakpoint.width}
     />
 );
+
+export const BreakpointHeights = () => (
+    <TokenTable
+        columns={[
+            {
+                label: "Height Token",
+                cell: (row: Row) => (
+                    <Code>{`breakpoint.height.${row.label}`}</Code>
+                ),
+            },
+            {
+                label: "Value (px)",
+                cell: "value",
+            },
+        ]}
+        tokens={tokens.breakpoint.height}
+    />
+);
