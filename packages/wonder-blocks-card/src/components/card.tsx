@@ -126,7 +126,7 @@ type StyleProps = {
     elevation?: "none" | "low";
 };
 
-export type CardProps = BaseCardProps & TagProps & DismissProps;
+type CardProps = BaseCardProps & TagProps & DismissProps;
 /**
  * The Card component is a flexible, reusable UI building block designed to
  * encapsulate content within a structured, visually distinct container.
