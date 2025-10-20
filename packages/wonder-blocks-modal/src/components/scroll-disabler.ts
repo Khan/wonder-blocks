@@ -5,7 +5,7 @@
  * unfortunately, and this handles that in an encapsulated way.
  *
  * NOTE(mdr): This component was copied from webapp. Be wary of sync issues. It
- *     also doesn't have many unit tests, since it's a
+ *     also doesn't have any unit tests, and we haven't added any, since it's a
  *     relatively stable component that has now been stress-tested lots in prod.
  */
 
