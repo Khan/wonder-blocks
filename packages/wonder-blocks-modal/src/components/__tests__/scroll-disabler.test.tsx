@@ -22,17 +22,15 @@ describe("ScrollDisabler", () => {
             top: "",
         };
 
-        // Mock document.body
-        Object.defineProperty(document, "body", {
-            value: {
-                style: new Proxy(mockBodyStyle, {
-                    get: (target, prop) => target[prop as string],
-                    set: (target, prop, value) => {
-                        target[prop as string] = value;
-                        return true;
-                    },
-                }),
-            },
+        // Set up style proxy on document.body
+        Object.defineProperty(document.body, "style", {
+            value: new Proxy(mockBodyStyle, {
+                get: (target, prop) => target[prop as string],
+                set: (target, prop, value) => {
+                    target[prop as string] = value;
+                    return true;
+                },
+            }),
             configurable: true,
         });
 
@@ -57,47 +55,86 @@ describe("ScrollDisabler", () => {
             configurable: true,
         });
         window.scrollTo = originalScrollTo;
+
+        // Clean up document.body.style
+        if (document.body) {
+            Object.defineProperty(document.body, "style", {
+                value: {},
+                configurable: true,
+            });
+        }
     });
 
     describe("on regular browsers", () => {
         let ScrollDisabler: typeof import("../scroll-disabler").default;
 
         beforeEach(async () => {
-            // Mock non-Safari user agent
+            // Arrange
             Object.defineProperty(window.navigator, "userAgent", {
                 value: "Mozilla/5.0 Chrome",
                 configurable: true,
             });
-
-            // Import the component after mocking user agent
             ScrollDisabler = (await import("../scroll-disabler")).default;
         });
 
         it("should disable scrolling when mounted", () => {
+            // Arrange - initial state
+            expect(document.body.style.overflow).toBe("");
+
+            // Act
             render(<ScrollDisabler />);
+
+            // Assert
             expect(document.body.style.overflow).toBe("hidden");
         });
 
         it("should restore scrolling when unmounted", () => {
+            // Arrange
             const {unmount} = render(<ScrollDisabler />);
+
+            // Act
             unmount();
+
+            // Assert
             expect(document.body.style.overflow).toBe("");
         });
 
-        it("should handle multiple instances", () => {
-            const {unmount: unmount1} = render(<ScrollDisabler />);
-            const {unmount: unmount2} = render(<ScrollDisabler />);
+        describe("with multiple instances", () => {
+            it("should maintain hidden overflow with two instances", () => {
+                // Arrange
+                const {unmount: unmount1} = render(<ScrollDisabler />);
 
-            // First instance mounted
-            expect(document.body.style.overflow).toBe("hidden");
+                // Act
+                render(<ScrollDisabler />);
 
-            // Unmount first instance
-            unmount1();
-            expect(document.body.style.overflow).toBe("hidden");
+                // Assert
+                expect(document.body.style.overflow).toBe("hidden");
+            });
 
-            // Unmount second instance
-            unmount2();
-            expect(document.body.style.overflow).toBe("");
+            it("should maintain hidden overflow after first instance unmount", () => {
+                // Arrange
+                const {unmount: unmount1} = render(<ScrollDisabler />);
+                render(<ScrollDisabler />);
+
+                // Act
+                unmount1();
+
+                // Assert
+                expect(document.body.style.overflow).toBe("hidden");
+            });
+
+            it("should restore overflow after all instances unmount", () => {
+                // Arrange
+                const {unmount: unmount1} = render(<ScrollDisabler />);
+                const {unmount: unmount2} = render(<ScrollDisabler />);
+                unmount1();
+
+                // Act
+                unmount2();
+
+                // Assert
+                expect(document.body.style.overflow).toBe("");
+            });
         });
     });
 
@@ -105,71 +142,198 @@ describe("ScrollDisabler", () => {
         let ScrollDisabler: typeof import("../scroll-disabler").default;
 
         beforeEach(async () => {
-            // Mock Safari user agent
+            // Arrange
             Object.defineProperty(window.navigator, "userAgent", {
                 value: "Mozilla/5.0 (iPad;)",
                 configurable: true,
             });
-
-            // Import the component after mocking user agent
             ScrollDisabler = (await import("../scroll-disabler")).default;
         });
 
-        it("should apply Safari-specific styles when mounted", () => {
-            render(<ScrollDisabler />);
-            expect(document.body.style.overflow).toBe("hidden");
-            expect(document.body.style.position).toBe("fixed");
-            expect(document.body.style.width).toBe("100%");
-            expect(document.body.style.top).toBe("-100px"); // Based on mocked scrollY
+        describe("when mounted", () => {
+            it("should set overflow to hidden", () => {
+                // Act
+                render(<ScrollDisabler />);
+
+                // Assert
+                expect(document.body.style.overflow).toBe("hidden");
+            });
+
+            it("should set position to fixed", () => {
+                // Act
+                render(<ScrollDisabler />);
+
+                // Assert
+                expect(document.body.style.position).toBe("fixed");
+            });
+
+            it("should set width to 100%", () => {
+                // Act
+                render(<ScrollDisabler />);
+
+                // Assert
+                expect(document.body.style.width).toBe("100%");
+            });
+
+            it("should set top based on scrollY", () => {
+                // Act
+                render(<ScrollDisabler />);
+
+                // Assert
+                expect(document.body.style.top).toBe("-100px");
+            });
         });
 
-        it("should restore Safari-specific styles when unmounted", () => {
-            const {unmount} = render(<ScrollDisabler />);
-            unmount();
+        describe("when unmounted", () => {
+            it("should restore overflow", () => {
+                // Arrange
+                const {unmount} = render(<ScrollDisabler />);
 
-            expect(document.body.style.overflow).toBe("");
-            expect(document.body.style.position).toBe("");
-            expect(document.body.style.width).toBe("");
-            expect(document.body.style.top).toBe("");
-            expect(window.scrollTo).toHaveBeenCalledWith(0, 100);
+                // Act
+                unmount();
+
+                // Assert
+                expect(document.body.style.overflow).toBe("");
+            });
+
+            it("should restore position", () => {
+                // Arrange
+                const {unmount} = render(<ScrollDisabler />);
+
+                // Act
+                unmount();
+
+                // Assert
+                expect(document.body.style.position).toBe("");
+            });
+
+            it("should restore width", () => {
+                // Arrange
+                const {unmount} = render(<ScrollDisabler />);
+
+                // Act
+                unmount();
+
+                // Assert
+                expect(document.body.style.width).toBe("");
+            });
+
+            it("should restore top", () => {
+                // Arrange
+                const {unmount} = render(<ScrollDisabler />);
+
+                // Act
+                unmount();
+
+                // Assert
+                expect(document.body.style.top).toBe("");
+            });
+
+            it("should restore scroll position", () => {
+                // Arrange
+                const {unmount} = render(<ScrollDisabler />);
+
+                // Act
+                unmount();
+
+                // Assert
+                expect(window.scrollTo).toHaveBeenCalledWith(0, 100);
+            });
         });
 
-        it("should handle multiple instances with Safari styles", () => {
-            const {unmount: unmount1} = render(<ScrollDisabler />);
-            const {unmount: unmount2} = render(<ScrollDisabler />);
+        describe("with multiple instances", () => {
+            it("should maintain fixed position with two instances", () => {
+                // Arrange
+                render(<ScrollDisabler />);
 
-            // First instance mounted
-            expect(document.body.style.position).toBe("fixed");
+                // Act
+                render(<ScrollDisabler />);
 
-            // Unmount first instance
-            unmount1();
-            expect(document.body.style.position).toBe("fixed");
+                // Assert
+                expect(document.body.style.position).toBe("fixed");
+            });
 
-            // Unmount second instance
-            unmount2();
-            expect(document.body.style.position).toBe("");
-            expect(window.scrollTo).toHaveBeenCalledWith(0, 100);
+            it("should maintain fixed position after first instance unmount", () => {
+                // Arrange
+                const {unmount: unmount1} = render(<ScrollDisabler />);
+                render(<ScrollDisabler />);
+
+                // Act
+                unmount1();
+
+                // Assert
+                expect(document.body.style.position).toBe("fixed");
+            });
+
+            it("should restore position after all instances unmount", () => {
+                // Arrange
+                const {unmount: unmount1} = render(<ScrollDisabler />);
+                const {unmount: unmount2} = render(<ScrollDisabler />);
+                unmount1();
+
+                // Act
+                unmount2();
+
+                // Assert
+                expect(document.body.style.position).toBe("");
+            });
+
+            it("should restore scroll position after all instances unmount", () => {
+                // Arrange
+                const {unmount: unmount1} = render(<ScrollDisabler />);
+                const {unmount: unmount2} = render(<ScrollDisabler />);
+                unmount1();
+
+                // Act
+                unmount2();
+
+                // Assert
+                expect(window.scrollTo).toHaveBeenCalledWith(0, 100);
+            });
         });
     });
 
     it("should throw error if document.body is not available", async () => {
-        // Mock document.body as undefined
-        Object.defineProperty(document, "body", {
-            value: undefined,
-            configurable: true,
-        });
-
+        // First import the component while React is still properly set up
         const ScrollDisabler = (await import("../scroll-disabler")).default;
+
+        // Create a container for RTL
+        const container = document.createElement("div");
+        document.body.appendChild(container);
+
+        // Save original body
+        const originalBody = document.body;
 
         // Suppress console.error for the expected error
         const consoleSpy = jest
             .spyOn(console, "error")
             .mockImplementation(() => {});
 
-        expect(() => {
-            render(<ScrollDisabler />);
-        }).toThrow("couldn't find document.body");
+        // Now we can safely modify document.body
+        Object.defineProperty(document, "body", {
+            value: null,
+            configurable: true,
+        });
+
+        try {
+            // The error should happen during the useEffect callback
+            const {unmount} = render(<ScrollDisabler />, {container});
+            unmount();
+            throw new Error("Expected an error but none was thrown");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                expect(e.message).toBe("couldn't find document.body");
+            } else {
+                throw e;
+            }
+        }
 
         consoleSpy.mockRestore();
+
+        // Restore document.body
+        Object.defineProperty(document, "body", {
+            value: originalBody,
+            configurable: true,
+        });
     });
 });
