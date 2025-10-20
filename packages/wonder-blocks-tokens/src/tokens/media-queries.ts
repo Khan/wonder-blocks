@@ -17,7 +17,6 @@ const width = {
 
 // Adapted from Classroom for zoom support
 const pxShortScreenHeightBreakpoint = "500px"; // Arbitary breakpoint for screen height
-const pxMediumScreenWidthBreakpoint = "900px"; // for media queries
 
 /* Named mediaQuery conditions */
 const mediaQuery = {
@@ -38,7 +37,6 @@ const mediaQuery = {
     lgOrLarger: `@media screen and (min-width: ${width.lgMin}px) /* breakpoint.mediaQuery.lgOrLarger */`,
 
     shortHeight: `@media screen and (max-height:${pxShortScreenHeightBreakpoint})`,
-    mediumWidth: `@media screen and (max-width:${pxMediumScreenWidthBreakpoint})`,
 } as const;
 
 export const breakpoint = {
