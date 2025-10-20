@@ -3,7 +3,7 @@ import {Breadcrumbs} from "@khanacademy/wonder-blocks-breadcrumbs";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Heading, BodyText} from "@khanacademy/wonder-blocks-typography";
 import {StyleSheet} from "aphrodite";
-import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {breakpoint, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import theme from "../theme";
 
 type Common = {
@@ -27,10 +27,6 @@ type Common = {
      * The result will be: `some-random-id-modal-header`
      */
     testId?: string;
-    /**
-     * Should an outer component wrapped around the header be scrollable instead?
-     * */
-    shouldOuterScroll?: boolean;
 };
 
 type WithSubtitle = Common & {
@@ -99,20 +95,13 @@ export default function ModalHeader(props: Props) {
         testId,
         title,
         titleId,
-        shouldOuterScroll,
     } = props;
 
     if (subtitle && breadcrumbs) {
         throw new Error("'subtitle' and 'breadcrumbs' can't be used together");
     }
     return (
-        <View
-            style={[
-                styles.header,
-                shouldOuterScroll ? styles.outerScroll : undefined,
-            ]}
-            testId={testId}
-        >
+        <View style={[styles.header]} testId={testId}>
             {breadcrumbs && (
                 <View style={styles.breadcrumbs}>{breadcrumbs}</View>
             )}
@@ -159,12 +148,9 @@ const styles = StyleSheet.create({
         [small as any]: {
             paddingInline: theme.header.layout.padding.inline.small,
         },
-    },
-
-    innerScroll: {},
-    // Override styles to allow outer parent to scroll instead
-    outerScroll: {
-        minHeight: "unset",
+        [breakpoint.mediaQuery.shortHeight as any]: {
+            minHeight: "unset",
+        },
     },
 
     breadcrumbs: {

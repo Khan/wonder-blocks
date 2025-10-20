@@ -3,6 +3,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {StyleSheet} from "aphrodite";
+import {breakpoint} from "@khanacademy/wonder-blocks-tokens";
 import theme from "../theme";
 
 type Props = {
@@ -10,12 +11,6 @@ type Props = {
      *
      * Defaults to true. */
     scrollOverflow: boolean;
-    /**
-     * Should an outer component wrapped around the content be scrollable instead?
-     *
-     * Defaults to false.
-     * */
-    shouldOuterScroll?: boolean;
     /** The contents of the ModalContent */
     children: React.ReactNode;
     /** Optional styling to apply to the contents. */
@@ -26,32 +21,11 @@ type Props = {
  * The Modal content included after the header
  */
 function ModalContent(props: Props) {
-    const {
-        style,
-        children,
-        scrollOverflow = true,
-        shouldOuterScroll = false,
-    } = props;
+    const {style, children, scrollOverflow = true} = props;
 
     return (
-        <View
-            style={[
-                styles.wrapper,
-                // preserve existing optional scroll behavior
-                scrollOverflow && !shouldOuterScroll && styles.scrollOverflow,
-                // if an outer component should scroll, disable internal scrolling
-                shouldOuterScroll ? styles.outerScroll : undefined,
-            ]}
-        >
-            <View
-                style={[
-                    styles.content,
-                    shouldOuterScroll ? styles.outerScroll : undefined,
-                    style,
-                ]}
-            >
-                {children}
-            </View>
+        <View style={[styles.wrapper, scrollOverflow && styles.scrollOverflow]}>
+            <View style={[styles.content, style]}>{children}</View>
         </View>
     );
 }
@@ -77,13 +51,11 @@ const styles = StyleSheet.create({
         // This helps to ensure that the paddingBottom is preserved when
         // the contents start to overflow, this goes away on display: flex
         display: "block",
-    },
-
-    // Move scrolling to a parent container instead of this internal component
-    outerScroll: {
-        flex: "unset",
-        minHeight: "unset",
-        overflow: "unset",
+        [breakpoint.mediaQuery.shortHeight as any]: {
+            flex: "unset",
+            minHeight: "unset",
+            overflow: "unset",
+        },
     },
 
     scrollOverflow: {
@@ -97,6 +69,11 @@ const styles = StyleSheet.create({
         boxSizing: "border-box",
         [small]: {
             paddingInline: theme.panel.layout.gap.small,
+        },
+        [breakpoint.mediaQuery.shortHeight as any]: {
+            flex: "unset",
+            minHeight: "unset",
+            overflow: "unset",
         },
     },
 });

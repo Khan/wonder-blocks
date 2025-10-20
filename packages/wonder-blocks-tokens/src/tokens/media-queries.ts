@@ -37,8 +37,8 @@ const mediaQuery = {
     mdOrLarger: `@media screen and (min-width: ${width.mdMin}px) /* breakpoint.mediaQuery.mdOrLarger */`,
     lgOrLarger: `@media screen and (min-width: ${width.lgMin}px) /* breakpoint.mediaQuery.lgOrLarger */`,
 
-    shortHeight: `(max-height:${pxShortScreenHeightBreakpoint})`,
-    mediumWidth: `(max-width:${pxMediumScreenWidthBreakpoint})`,
+    shortHeight: `@media screen and (max-height:${pxShortScreenHeightBreakpoint})`,
+    mediumWidth: `@media screen and (max-width:${pxMediumScreenWidthBreakpoint})`,
 } as const;
 
 export const breakpoint = {

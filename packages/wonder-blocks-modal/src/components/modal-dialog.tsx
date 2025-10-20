@@ -2,7 +2,7 @@ import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {StyleSheet} from "aphrodite";
-import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {breakpoint, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import theme from "../theme";
 
 type Props = {
@@ -50,12 +50,6 @@ type Props = {
      * The ID of the content describing this dialog, if applicable.
      */
     "aria-describedby"?: string;
-    /**
-     * Should an outer component wrapped around the dialog be scrollable instead?
-     *
-     * Defaults to false.
-     * */
-    shouldOuterScroll?: boolean;
 };
 
 /**
@@ -82,17 +76,10 @@ const ModalDialog = React.forwardRef(function ModalDialog(
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledBy,
         "aria-describedby": ariaDescribedBy,
-        shouldOuterScroll,
     } = props;
 
     return (
-        <View
-            style={[
-                componentStyles.wrapper,
-                shouldOuterScroll ? {overflow: "auto"} : undefined,
-                style,
-            ]}
-        >
+        <View style={[componentStyles.wrapper, style]}>
             {below && <View style={componentStyles.below}>{below}</View>}
             <View
                 role={role}
@@ -101,10 +88,7 @@ const ModalDialog = React.forwardRef(function ModalDialog(
                 aria-labelledby={ariaLabelledBy}
                 aria-describedby={ariaDescribedBy}
                 ref={ref}
-                style={[
-                    componentStyles.dialog,
-                    shouldOuterScroll ? {overflow: "auto"} : undefined,
-                ]}
+                style={[componentStyles.dialog]}
                 testId={testId}
             >
                 {children}
@@ -131,6 +115,9 @@ const componentStyles = StyleSheet.create({
             padding: theme.dialog.layout.padding,
             flexDirection: "column",
         },
+        [breakpoint.mediaQuery.shortHeight as any]: {
+            overflow: "auto",
+        },
     },
 
     /**
@@ -141,6 +128,9 @@ const componentStyles = StyleSheet.create({
         height: "100%",
         borderRadius: theme.root.border.radius,
         overflow: "hidden",
+        [breakpoint.mediaQuery.shortHeight as any]: {
+            overflow: "auto",
+        },
     },
 
     above: {

@@ -4,7 +4,7 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {StyleSheet} from "aphrodite";
-import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {breakpoint, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import ModalContent from "./modal-content";
 import ModalHeader from "./modal-header";
 import ModalFooter from "./modal-footer";
@@ -100,9 +100,7 @@ export default function ModalPanel({
         const mainContent = ModalContent.isComponentOf(content) ? (
             (content as React.ReactElement<PropsFor<typeof ModalContent>>)
         ) : (
-            <ModalContent shouldOuterScroll={shouldOuterScroll}>
-                {content}
-            </ModalContent>
+            <ModalContent>{content}</ModalContent>
         );
 
         if (!mainContent) {
@@ -112,25 +110,19 @@ export default function ModalPanel({
         return React.cloneElement(mainContent, {
             // Pass the scrollOverflow and header in to the main content
             scrollOverflow,
-            // Tell content not to scroll for short height screens
-            shouldOuterScroll,
             // We override the styling of the main content to help position
             // it if there is a footer or close button being
             // shown. We have to do this here as the ModalContent doesn't
             // know about things being positioned around it.
             style: [!!footer && styles.hasFooter, mainContent.props.style],
         });
-    }, [content, footer, scrollOverflow, shouldOuterScroll]);
+    }, [content, footer, scrollOverflow]);
 
     const mainContent = renderMainContent();
 
     return (
         <View
-            style={[
-                styles.wrapper,
-                shouldOuterScroll ? styles.scrollAuto : styles.scrollHidden,
-                style,
-            ]}
+            style={[styles.wrapper, style]}
             testId={testId && `${testId}-panel`}
         >
             {closeButtonVisible && (
@@ -163,13 +155,11 @@ const styles = StyleSheet.create({
         background: semanticColor.core.background.base.default,
         boxSizing: "border-box",
         height: "100%",
-        width: "100%",
-    },
-    scrollHidden: {
         overflow: "hidden",
-    },
-    scrollAuto: {
-        overflow: "auto",
+        width: "100%",
+        [breakpoint.mediaQuery.shortHeight as any]: {
+            overflow: "auto",
+        },
     },
 
     closeButton: {

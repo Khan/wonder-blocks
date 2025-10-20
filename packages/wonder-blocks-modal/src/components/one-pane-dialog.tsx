@@ -1,7 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {Breadcrumbs} from "@khanacademy/wonder-blocks-breadcrumbs";
-import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {Id} from "@khanacademy/wonder-blocks-core";
@@ -9,7 +8,6 @@ import {breakpoint} from "@khanacademy/wonder-blocks-tokens";
 import ModalDialog from "./modal-dialog";
 import ModalPanel from "./modal-panel";
 import ModalHeader from "./modal-header";
-import {useMediaQuery} from "../../../wonder-blocks-core/src/hooks/use-media-query";
 
 type Common = {
     /**
@@ -129,7 +127,6 @@ type Props = Common | WithSubtitle | WithBreadcrumbs;
 const renderHeader = (
     props: Props,
     uniqueId: string,
-    shouldOuterScroll?: boolean,
 ): React.ReactElement<React.ComponentProps<typeof ModalHeader>> => {
     const {
         title,
@@ -151,7 +148,6 @@ const renderHeader = (
                 }
                 titleId={uniqueId}
                 testId={testId && `${testId}-header`}
-                shouldOuterScroll={shouldOuterScroll}
             />
         );
     } else if (subtitle) {
@@ -161,7 +157,6 @@ const renderHeader = (
                 subtitle={subtitle as string}
                 titleId={uniqueId}
                 testId={testId && `${testId}-header`}
-                shouldOuterScroll={shouldOuterScroll}
             />
         );
     } else {
@@ -170,7 +165,6 @@ const renderHeader = (
                 title={title}
                 titleId={uniqueId}
                 testId={testId && `${testId}-header`}
-                shouldOuterScroll={shouldOuterScroll}
             />
         );
     }
@@ -190,63 +184,45 @@ const OnePaneDialog = (props: Props): React.ReactElement => {
         role,
         "aria-describedby": ariaDescribedBy,
     } = props;
-
-    const isShortScreen = useMediaQuery(breakpoint.mediaQuery.shortHeight);
-
     return (
-        <MediaLayout styleSheets={styleSheets}>
-            {({styles}) => (
-                <Id id={titleId}>
-                    {(uniqueId) => (
-                        <ModalDialog
-                            style={[styles.dialog, style]}
-                            above={above}
-                            below={below}
-                            testId={testId}
-                            aria-labelledby={uniqueId}
-                            aria-describedby={ariaDescribedBy}
-                            role={role}
-                            shouldOuterScroll={isShortScreen}
-                        >
-                            <ModalPanel
-                                onClose={onClose}
-                                header={renderHeader(
-                                    props,
-                                    uniqueId,
-                                    isShortScreen,
-                                )}
-                                content={content}
-                                footer={footer}
-                                closeButtonVisible={closeButtonVisible}
-                                testId={testId}
-                                // ModalPanel has internal scrolling by default,
-                                // we override it for short height screens
-                                shouldOuterScroll={isShortScreen}
-                            />
-                        </ModalDialog>
-                    )}
-                </Id>
+        <Id id={titleId}>
+            {(uniqueId) => (
+                <ModalDialog
+                    style={[styles.dialog, style]}
+                    above={above}
+                    below={below}
+                    testId={testId}
+                    aria-labelledby={uniqueId}
+                    aria-describedby={ariaDescribedBy}
+                    role={role}
+                >
+                    <ModalPanel
+                        onClose={onClose}
+                        header={renderHeader(props, uniqueId)}
+                        content={content}
+                        footer={footer}
+                        closeButtonVisible={closeButtonVisible}
+                        testId={testId}
+                    />
+                </ModalDialog>
             )}
-        </MediaLayout>
+        </Id>
     );
 };
 
 export default OnePaneDialog;
 
-const styleSheets = {
-    small: StyleSheet.create({
-        dialog: {
-            width: "100%",
-            height: "100%",
-            overflow: "hidden",
-        },
-    }),
-    mdOrLarger: StyleSheet.create({
-        dialog: {
+const styles = StyleSheet.create({
+    dialog: {
+        width: "100%",
+        height: "100%",
+        overflow: "hidden",
+
+        [breakpoint.mediaQuery.mdOrLarger as any]: {
             width: "93.75%",
             maxWidth: 576,
             height: "81.25%",
             maxHeight: 624,
         },
-    }),
-} as const;
+    },
+});
