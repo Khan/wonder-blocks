@@ -108,12 +108,10 @@ const ModalLauncher = (props: Props): React.ReactElement | null => {
         testId,
     } = props;
 
-    // Convert the class instance variable to a ref
     const lastElementFocusedOutsideModalRef = React.useRef<HTMLElement | null>(
         null,
     );
 
-    // Convert state to useState
     const [opened, setOpened] = React.useState(false);
     const isOpened =
         typeof controlledOpened === "boolean" ? controlledOpened : opened;

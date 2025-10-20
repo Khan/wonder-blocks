@@ -5,7 +5,7 @@
  * unfortunately, and this handles that in an encapsulated way.
  *
  * NOTE(mdr): This component was copied from webapp. Be wary of sync issues. It
- *     also doesn't have unit tests, and we haven't added any, since it's a
+ *     also doesn't have many unit tests, since it's a
  *     relatively stable component that has now been stress-tested lots in prod.
  */
 
@@ -22,15 +22,16 @@ const needsHackyMobileSafariScrollDisabler = (() => {
 
 type Props = Record<any, any>;
 
-class ScrollDisabler extends React.Component<Props> {
-    static oldOverflow: string;
-    static oldPosition: string;
-    static oldScrollY: number;
-    static oldWidth: string;
-    static oldTop: string;
+let numModalsOpened = 0;
+let oldOverflow: string;
+let oldPosition: string;
+let oldScrollY: number;
+let oldWidth: string;
+let oldTop: string;
 
-    componentDidMount() {
-        if (ScrollDisabler.numModalsOpened === 0) {
+const ScrollDisabler = (_props: Props): null => {
+    React.useEffect(() => {
+        if (numModalsOpened === 0) {
             const body = document.body;
             if (!body) {
                 throw new Error("couldn't find document.body");
@@ -38,15 +39,15 @@ class ScrollDisabler extends React.Component<Props> {
 
             // Prevent scrolling of the background, the first time a modal is
             // opened.
-            ScrollDisabler.oldOverflow = body.style.overflow;
-            ScrollDisabler.oldScrollY = window.scrollY;
+            oldOverflow = body.style.overflow;
+            oldScrollY = window.scrollY;
 
             // We need to grab all of the original style properties before we
             // modified any of them.
             if (needsHackyMobileSafariScrollDisabler) {
-                ScrollDisabler.oldPosition = body.style.position;
-                ScrollDisabler.oldWidth = body.style.width;
-                ScrollDisabler.oldTop = body.style.top;
+                oldPosition = body.style.position;
+                oldWidth = body.style.width;
+                oldTop = body.style.top;
             }
 
             body.style.overflow = "hidden";
@@ -57,39 +58,35 @@ class ScrollDisabler extends React.Component<Props> {
             if (needsHackyMobileSafariScrollDisabler) {
                 body.style.position = "fixed";
                 body.style.width = "100%";
-                body.style.top = `${-ScrollDisabler.oldScrollY}px`;
+                body.style.top = `${-oldScrollY}px`;
             }
         }
-        ScrollDisabler.numModalsOpened++;
-    }
+        numModalsOpened++;
 
-    componentWillUnmount() {
-        ScrollDisabler.numModalsOpened--;
-        if (ScrollDisabler.numModalsOpened === 0) {
-            const body = document.body;
-            if (!body) {
-                throw new Error("couldn't find document.body");
+        return () => {
+            numModalsOpened--;
+            if (numModalsOpened === 0) {
+                const body = document.body;
+                if (!body) {
+                    throw new Error("couldn't find document.body");
+                }
+
+                // Reset all values on the closing of the final modal.
+                body.style.overflow = oldOverflow;
+                if (needsHackyMobileSafariScrollDisabler) {
+                    body.style.position = oldPosition;
+                    body.style.width = oldWidth;
+                    body.style.top = oldTop;
+                }
+
+                if (typeof window !== "undefined" && window.scrollTo) {
+                    window.scrollTo(0, oldScrollY);
+                }
             }
+        };
+    }, []); // Empty dependency array since we don't use any props
 
-            // Reset all values on the closing of the final modal.
-            body.style.overflow = ScrollDisabler.oldOverflow;
-            if (needsHackyMobileSafariScrollDisabler) {
-                body.style.position = ScrollDisabler.oldPosition;
-                body.style.width = ScrollDisabler.oldWidth;
-                body.style.top = ScrollDisabler.oldTop;
-            }
-
-            if (typeof window !== "undefined" && window.scrollTo) {
-                window.scrollTo(0, ScrollDisabler.oldScrollY);
-            }
-        }
-    }
-
-    static numModalsOpened = 0;
-
-    render(): React.ReactElement | null {
-        return null;
-    }
-}
+    return null;
+};
 
 export default ScrollDisabler;

@@ -39,15 +39,69 @@ type Props = {
     style?: StyleType;
 };
 
-export default class FocusTrap extends React.Component<Props> {
-    /**
-     * Tabbing is restricted to descendents of this element.
-     */
-    modalRoot: Node | null | undefined;
+const FocusTrap = ({children, style}: Props): React.ReactElement => {
+    const modalRootRef = React.useRef<Node | null>(null);
 
-    getModalRoot: (node?: any) => void = (node) => {
+    /**
+     * Try to focus the given node. Return true if successful.
+     */
+    const tryToFocus = React.useCallback(
+        (node: Node): boolean | null | undefined => {
+            if (node instanceof HTMLElement) {
+                try {
+                    node.focus();
+                } catch (e: any) {
+                    // ignore error
+                }
+
+                return document.activeElement === node;
+            }
+        },
+        [],
+    );
+
+    /**
+     * Focus the next available focusable element within the modal root.
+     *
+     * @param {boolean} isLast Used to determine the next available item. true =
+     * First element within the modal, false = Last element within the modal.
+     */
+    const focusElementIn = React.useCallback(
+        (isLast: boolean) => {
+            if (!modalRootRef.current) {
+                return;
+            }
+
+            const modalRootAsHtmlEl = modalRootRef.current as HTMLElement;
+            // Get the list of available focusable elements within the modal.
+            const focusableNodes = Array.from(
+                modalRootAsHtmlEl.querySelectorAll(FOCUSABLE_ELEMENTS),
+            ).filter((element) => {
+                const style = window.getComputedStyle(element);
+                return (
+                    style.display !== "none" && style.visibility !== "hidden"
+                );
+            });
+
+            const nodeIndex = !isLast ? focusableNodes.length - 1 : 0;
+
+            const focusableNode = focusableNodes[nodeIndex];
+            tryToFocus(focusableNode);
+        },
+        [tryToFocus],
+    );
+
+    const handleFocusMoveToLast = React.useCallback(() => {
+        focusElementIn(false);
+    }, [focusElementIn]);
+
+    const handleFocusMoveToFirst = React.useCallback(() => {
+        focusElementIn(true);
+    }, [focusElementIn]);
+
+    const getModalRoot = React.useCallback((node?: any) => {
         if (!node) {
-            // The component is being umounted
+            // The component is being unmounted
             return;
         }
 
@@ -58,99 +112,44 @@ export default class FocusTrap extends React.Component<Props> {
                 "Assertion error: modal root should exist after mount",
             );
         }
-        this.modalRoot = modalRoot;
-    };
+        modalRootRef.current = modalRoot;
+    }, []);
 
-    /**
-     * Try to focus the given node. Return true if successful.
-     */
-    tryToFocus(node: Node): boolean | null | undefined {
-        if (node instanceof HTMLElement) {
-            try {
-                node.focus();
-            } catch (e: any) {
-                // ignore error
-            }
+    return (
+        <React.Fragment>
+            {/* When you press Tab on the last focusable node of the
+             * document, some browsers will move your tab focus outside of
+             * the document. But we want to capture that as a focus event,
+             * and move focus back into the modal! So, we add focusable
+             * sentinel nodes. That way, tabbing out of the modal should
+             * take you to a sentinel node, rather than taking you out of
+             * the document. These sentinels aren't critical to focus
+             * wrapping, though; we're resilient to any kind of focus
+             * shift, whether it's to the sentinels or somewhere else!
+             * We set the sentinels to be position: fixed to make sure
+             * they're always in view, this prevents page scrolling when
+             * tabbing. */}
+            {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO(WB-1789): Address a11y error */}
+            <div
+                // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- TODO(WB-1789): Address a11y error
+                tabIndex={0}
+                className="modal-focus-trap-first"
+                onFocus={handleFocusMoveToLast}
+                style={{position: "fixed"}}
+            />
+            <View style={style} ref={getModalRoot}>
+                {children}
+            </View>
+            {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO(WB-1789): Address a11y error */}
+            <div
+                // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- TODO(WB-1789): Address a11y error
+                tabIndex={0}
+                className="modal-focus-trap-last"
+                onFocus={handleFocusMoveToFirst}
+                style={{position: "fixed"}}
+            />
+        </React.Fragment>
+    );
+};
 
-            return document.activeElement === node;
-        }
-    }
-
-    /**
-     * Focus the next available focusable element within the modal root.
-     *
-     * @param {boolean} isLast Used to determine the next available item. true =
-     * First element within the modal, false = Last element within the modal.
-     */
-    focusElementIn(isLast: boolean) {
-        const modalRootAsHtmlEl = this.modalRoot as HTMLElement;
-        // Get the list of available focusable elements within the modal.
-        const focusableNodes = Array.from(
-            modalRootAsHtmlEl.querySelectorAll(FOCUSABLE_ELEMENTS),
-        ).filter((element) => {
-            const style = window.getComputedStyle(element);
-            return style.display !== "none" && style.visibility !== "hidden";
-        });
-
-        const nodeIndex = !isLast ? focusableNodes.length - 1 : 0;
-
-        const focusableNode = focusableNodes[nodeIndex];
-        this.tryToFocus(focusableNode);
-    }
-
-    /**
-     * Triggered when the focus is set to the first sentinel. This way, the
-     * focus will be redirected to the last element inside the modal dialog.
-     */
-    handleFocusMoveToLast: () => void = () => {
-        this.focusElementIn(false);
-    };
-
-    /**
-     * Triggered when the focus is set to the last sentinel. This way, the focus
-     * will be redirected to the first element inside the modal dialog.
-     */
-    handleFocusMoveToFirst: () => void = () => {
-        this.focusElementIn(true);
-    };
-
-    render(): React.ReactNode {
-        const {style} = this.props;
-
-        return (
-            <React.Fragment>
-                {/* When you press Tab on the last focusable node of the
-                 * document, some browsers will move your tab focus outside of
-                 * the document. But we want to capture that as a focus event,
-                 * and move focus back into the modal! So, we add focusable
-                 * sentinel nodes. That way, tabbing out of the modal should
-                 * take you to a sentinel node, rather than taking you out of
-                 * the document. These sentinels aren't critical to focus
-                 * wrapping, though; we're resilient to any kind of focus
-                 * shift, whether it's to the sentinels or somewhere else!
-                 * We set the sentinels to be position: fixed to make sure
-                 * they're always in view, this prevents page scrolling when
-                 * tabbing. */}
-                {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO(WB-1789): Address a11y error */}
-                <div
-                    // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- TODO(WB-1789): Address a11y error
-                    tabIndex={0}
-                    className="modal-focus-trap-first"
-                    onFocus={this.handleFocusMoveToLast}
-                    style={{position: "fixed"}}
-                />
-                <View style={style} ref={this.getModalRoot}>
-                    {this.props.children}
-                </View>
-                {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO(WB-1789): Address a11y error */}
-                <div
-                    // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- TODO(WB-1789): Address a11y error
-                    tabIndex={0}
-                    className="modal-focus-trap-last"
-                    onFocus={this.handleFocusMoveToFirst}
-                    style={{position: "fixed"}}
-                />
-            </React.Fragment>
-        );
-    }
-}
+export default FocusTrap;
