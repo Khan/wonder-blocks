@@ -2,8 +2,12 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 
-import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
-import type {WithActionSchedulerProps} from "@khanacademy/wonder-blocks-timing";
+import {
+    withActionScheduler,
+    type WithActionSchedulerProps,
+    SchedulePolicy,
+    ClearPolicy,
+} from "@khanacademy/wonder-blocks-timing";
 
 import FocusTrap from "./focus-trap";
 import ModalBackdrop from "./modal-backdrop";
@@ -151,16 +155,12 @@ const ModalLauncher = (props: Props): React.ReactElement | null => {
     const returnFocus = React.useCallback(() => {
         // Focus on the specified element after closing the modal.
         if (closedFocusId) {
-            // eslint-disable-next-line import/no-deprecated
-            const focusElement = ReactDOM.findDOMNode(
-                document.getElementById(closedFocusId),
-            ) as any;
-
+            const focusElement = document.getElementById(closedFocusId);
             if (focusElement) {
-                // Wait for the modal to leave the DOM before trying
-                // to focus on the specified element.
-                schedule.animationFrame(() => {
-                    focusElement.focus();
+                // Use the scheduler to ensure testability
+                schedule.animationFrame(() => focusElement.focus(), {
+                    schedulePolicy: SchedulePolicy.Immediately,
+                    clearPolicy: ClearPolicy.Resolve,
                 });
                 return;
             }
@@ -170,17 +170,27 @@ const ModalLauncher = (props: Props): React.ReactElement | null => {
         if (lastElement != null) {
             // Wait for the modal to leave the DOM before trying to
             // return focus to the element that triggered the modal.
-            schedule.animationFrame(() => {
-                lastElement.focus();
+            schedule.animationFrame(() => lastElement.focus(), {
+                schedulePolicy: SchedulePolicy.Immediately,
+                clearPolicy: ClearPolicy.Resolve,
             });
         }
     }, [closedFocusId, schedule]);
 
     const handleCloseModal = React.useCallback(() => {
         setOpened(false);
-        onClose?.();
-        returnFocus();
-    }, [onClose, returnFocus]);
+        // Let React finish its updates before focusing
+        schedule.animationFrame(
+            () => {
+                onClose?.();
+                returnFocus();
+            },
+            {
+                schedulePolicy: SchedulePolicy.Immediately,
+                clearPolicy: ClearPolicy.Resolve,
+            },
+        );
+    }, [onClose, returnFocus, schedule]);
 
     const renderModal = React.useCallback((): ModalElement => {
         if (typeof modal === "function") {
