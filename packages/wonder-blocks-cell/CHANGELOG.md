@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-cell
 
+## 6.0.1
+
+### Patch Changes
+
+- 79ea5ab: Updates styles to support RTL
+- 79ea5ab: Updates styles to support RTL
+
+## 6.0.0
+
+### Major Changes
+
+- a558788: Removes `contentStyle`, `leftAccessoryStyle`, `rightAccessoryStyle` and `style` to consolidate it into a single `styles` prop object that contains all keys.
+
 ## 5.0.15
 
 ### Patch Changes

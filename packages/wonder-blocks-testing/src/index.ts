@@ -1,11 +1,3 @@
-// Fixtures framework
-export {fixtures} from "@khanacademy/wonder-blocks-testing-core";
-export type {
-    FixtureFn,
-    FixtureProps,
-    GetPropsOptions,
-} from "@khanacademy/wonder-blocks-testing-core";
-
 // Fetch mocking framework
 export {
     mockFetch,

@@ -1,9 +1,8 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-
 import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
-import {viewportPixelsForSize} from "../util/icon-util";
 import {IconSize, PhosphorIconAsset} from "../types";
 
 // We use a span instead of an img because we want to use the mask-image CSS
@@ -33,8 +32,7 @@ type Props = Pick<AriaProps, "aria-hidden" | "aria-label" | "role"> & {
     role?: "img";
 
     /**
-     * Size of the icon. One of `small` (16), `medium` (24), `large` (48), or
-     * `xlarge` (96). Defaults to `small`.
+     * Size of the icon. One of `small` (1.6rem), `medium` (2.4rem), `large` (4.8rem), or `xlarge` (9.6rem). Defaults to `small`.
      */
     size?: IconSize;
 
@@ -76,8 +74,11 @@ type Props = Pick<AriaProps, "aria-hidden" | "aria-label" | "role"> & {
  * />
  * ```
  *
- * These icons should fit into a viewport of `16`, `24`, `48`, and `96` pixels,
- * respectively.
+ * These icons use rem-based sizing from wonder-blocks-tokens:
+ * - small: 1.6rem (16px)
+ * - medium: 2.4rem (24px)
+ * - large: 4.8rem (48px)
+ * - xlarge: 9.6rem (96px)
  */
 export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
     props: Props,
@@ -94,9 +95,8 @@ export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
         ...sharedProps
     } = props;
 
-    const pixelSize = viewportPixelsForSize(size);
+    const sizeStyles = getSize(size);
     const classNames = `${className ?? ""}`;
-    const iconStyles = _generateStyles(color, pixelSize);
 
     return (
         <StyledSpan
@@ -104,11 +104,9 @@ export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
             className={classNames}
             style={[
                 styles.svg,
-                iconStyles.icon,
+                sizeStyles,
                 {
-                    // We still pass inline styles to the icon itself, so we
-                    // prevent the icon from being overridden by the inline
-                    // styles.
+                    backgroundColor: color,
                     maskImage: `url(${icon})`,
                 },
                 style,
@@ -120,29 +118,23 @@ export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
     );
 });
 
-const dynamicStyles: Record<string, any> = {};
-
 /**
- * Generates the visual styles for the icon.
+ * Gets the size-specific styles for the icon.
  */
-const _generateStyles = (color: string, size: number) => {
-    const iconStyle = `${color}-${size}`;
-    // The styles are cached to avoid creating a new object on every render.
-    if (styles[iconStyle]) {
-        return styles[iconStyle];
+
+function getSize(size: IconSize) {
+    switch (size) {
+        case "small":
+        default:
+            return styles.small;
+        case "medium":
+            return styles.medium;
+        case "large":
+            return styles.large;
+        case "xlarge":
+            return styles.xlarge;
     }
-
-    const newStyles: Record<string, any> = {
-        icon: {
-            backgroundColor: color,
-            width: size,
-            height: size,
-        },
-    };
-
-    dynamicStyles[iconStyle] = StyleSheet.create(newStyles);
-    return dynamicStyles[iconStyle];
-};
+}
 
 const styles = StyleSheet.create({
     svg: {
@@ -153,6 +145,22 @@ const styles = StyleSheet.create({
         maskSize: "100%",
         maskRepeat: "no-repeat",
         maskPosition: "center",
+    },
+    small: {
+        width: sizing.size_160,
+        height: sizing.size_160,
+    },
+    medium: {
+        width: sizing.size_240,
+        height: sizing.size_240,
+    },
+    large: {
+        width: sizing.size_480,
+        height: sizing.size_480,
+    },
+    xlarge: {
+        width: sizing.size_960,
+        height: sizing.size_960,
     },
 });
 

@@ -3,8 +3,8 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import planetIcon from "@phosphor-icons/core/regular/planet.svg";
 
-import {action} from "@storybook/addon-actions";
-import type {Meta, StoryObj} from "@storybook/react";
+import {action} from "storybook/actions";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
@@ -92,6 +92,11 @@ export default {
         placeholder: "Choose a fruit",
         selectedValue: "",
     },
+    globals: {
+        backgrounds: {
+            value: "baseDefault",
+        },
+    },
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -100,7 +105,7 @@ export default {
             />
         ),
         backgrounds: {
-            default: "baseSubtle",
+            value: "baseSubtle",
         },
     },
 } as Meta<typeof SingleSelect>;
@@ -201,6 +206,24 @@ const Template = (args: any) => {
 
 export const Default: StoryComponentType = {
     render: Template,
+};
+
+/**
+ * This example demonstrates how SingleSelect behaves with an initial value.
+ * The screen reader will not announce the initial value on mount, but will
+ * announce when the value changes through user interaction.
+ */
+export const WithInitialValue: StoryComponentType = {
+    render: Template,
+    args: {
+        selectedValue: "banana",
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this is for manual testing purposes
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**
@@ -812,6 +835,17 @@ export const CustomOpener: StoryComponentType = {
         },
     } as SingleSelectArgs,
     name: "With custom opener",
+};
+
+/**
+ * When in the right-to-left direction, the single select is mirrored.
+ */
+export const RightToLeft: StoryComponentType = {
+    ...ControlledOpened,
+    name: "Right to Left",
+    globals: {
+        direction: "rtl",
+    },
 };
 
 /**

@@ -648,16 +648,18 @@ export default function Combobox({
                                 // No items to display
                                 <DetailCell
                                     title={labels.noItems}
-                                    style={[
-                                        styles.listbox,
-                                        // The listbox width is at least the
-                                        // width of the combobox.
-                                        {
-                                            minWidth:
-                                                rootNodeRef?.current
-                                                    ?.offsetWidth,
-                                        },
-                                    ]}
+                                    styles={{
+                                        root: [
+                                            styles.listbox,
+                                            // The listbox width is at least the
+                                            // width of the combobox.
+                                            {
+                                                minWidth:
+                                                    rootNodeRef?.current
+                                                        ?.offsetWidth,
+                                            },
+                                        ],
+                                    }}
                                     horizontalRule="none"
                                 />
                             ) : (

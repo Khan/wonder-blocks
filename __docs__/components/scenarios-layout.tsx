@@ -1,12 +1,16 @@
-import React from "react";
-import type {StrictArgs} from "@storybook/react";
+import * as React from "react";
+import type {StrictArgs} from "@storybook/react-vite";
 import {StyleSheet} from "aphrodite";
 import {StyleType, View} from "@khanacademy/wonder-blocks-core";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 type Props = {
-    scenarios: {name: string; props: StrictArgs}[];
+    scenarios: {
+        name: string;
+        props: StrictArgs;
+        decorator?: React.ReactElement;
+    }[];
     children: (props: any, name: string) => React.ReactNode;
     styles?: {
         root?: StyleType;
@@ -23,10 +27,16 @@ export const ScenariosLayout = (props: Props) => {
     return (
         <View style={[styles.container, stylesProp?.root]}>
             {scenarios.map((scenario) => {
+                const renderer = children(scenario.props, scenario.name);
+                const {decorator: Decorator} = scenario;
                 return (
                     <View key={scenario.name} style={styles.scenario}>
                         <LabelLarge>{scenario.name}</LabelLarge>
-                        {children(scenario.props, scenario.name)}
+                        {Decorator
+                            ? React.cloneElement(Decorator, {
+                                  children: renderer,
+                              })
+                            : renderer}
                     </View>
                 );
             })}

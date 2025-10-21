@@ -1,4 +1,4 @@
-import type {ArgTypes} from "@storybook/react";
+import type {ArgTypes} from "@storybook/react-vite";
 import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -52,16 +52,6 @@ export default {
             },
         },
     },
-    contentStyle: {
-        description: `Optional custom styles applied to the content wrapper. For example, it can be used to set a custom minWidth or a custom alignment.`,
-        table: {
-            category: "Styling",
-            type: {
-                summary: "AccessoryStyle",
-                detail: '"minWidth" | "alignSelf" | "alignItems"',
-            },
-        },
-    },
     leftAccessory: {
         description: `If provided, this adds a left accessory to the cell. Left Accessories can be defined using WB components such as PhosphorIcon, IconButton, or it can even be used for a custom node/component if needed. What ever is passed in will occupy the "LeftAccessory” area of the Cell.`,
         control: {type: "select"},
@@ -72,16 +62,6 @@ export default {
             type: {
                 summary: "React.Node",
                 detail: "By default it uses a free width and its default alignment is center (for both vertical and horizontal).",
-            },
-        },
-    },
-    leftAccessoryStyle: {
-        description: `Optional custom styles applied to the leftAccessory wrapper. For example, it can be used to set a custom minWidth or a custom alignment.`,
-        table: {
-            category: "Styling",
-            type: {
-                summary: "AccessoryStyle",
-                detail: "NOTE: leftAccessoryStyle can only be used if leftAccessory is set.",
             },
         },
     },
@@ -98,16 +78,6 @@ export default {
             },
         },
     },
-    rightAccessoryStyle: {
-        description: `Optional custom styles applied to the rightAccessory wrapper. For example, it can be used to set a custom minWidth or a custom alignment.`,
-        table: {
-            category: "Styling",
-            type: {
-                summary: "AccessoryStyle",
-                detail: "NOTE: rightAccessoryStyle can only be used if rightAccessory is set.",
-            },
-        },
-    },
     horizontalRule: {
         description:
             "Adds a horizontal rule at the bottom of the cell that can be used to separate cells within groups such as lists. Defaults to `inset`.",
@@ -121,14 +91,9 @@ export default {
             },
         },
     },
-    style: {
-        description: "Optional custom styles.",
-        control: {type: "object"},
+    styles: {
         table: {
-            category: "Styling",
-            type: {
-                summary: "StyleType",
-            },
+            category: "Layout",
         },
     },
     testId: {

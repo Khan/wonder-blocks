@@ -1,5 +1,5 @@
 import * as React from "react";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
@@ -64,10 +64,12 @@ const meta = {
             </View>
         ),
     ],
-    parameters: {
+    globals: {
         backgrounds: {
-            default: "baseSubtle",
+            value: "baseSubtle",
         },
+    },
+    parameters: {
         chromatic: {
             modes: themeModes,
         },
@@ -83,12 +85,16 @@ export const StateSheetStory: Story = {
         return (
             <StateSheet rows={rows} columns={columns}>
                 {({props, className, name}) => (
-                    <ActionItem
-                        {...args}
-                        {...props}
-                        className={className}
-                        key={name}
-                    />
+                    // NOTE: We need to wrap it in a menu role to ensure that
+                    // a11y tools announce the listbox correctly.
+                    <View role="menu" aria-label={name}>
+                        <ActionItem
+                            {...args}
+                            {...props}
+                            className={className}
+                            key={name}
+                        />
+                    </View>
                 )}
             </StateSheet>
         );

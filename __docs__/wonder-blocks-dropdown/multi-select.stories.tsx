@@ -1,8 +1,8 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {action} from "@storybook/addon-actions";
-import type {Meta, StoryObj} from "@storybook/react";
+import {action} from "storybook/actions";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
@@ -73,6 +73,11 @@ export default {
         testId: "",
         "aria-label": "Planets",
     },
+    globals: {
+        backgrounds: {
+            value: "baseDefault",
+        },
+    },
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -81,7 +86,7 @@ export default {
             />
         ) as any,
         backgrounds: {
-            default: "baseSubtle",
+            value: "baseSubtle",
         },
     },
 } as Meta<typeof MultiSelect>;
@@ -177,6 +182,69 @@ export const Default: StoryComponentType = {
     parameters: {
         chromatic: {
             // We don't need screenshots b/c the dropdown is initially closed.
+            disableSnapshot: true,
+        },
+    },
+};
+
+const studentData = [
+    {kaid: "kaid_1", coachNickname: "Alice Smith"},
+    {kaid: "kaid_2", coachNickname: "Bob Jones"},
+    {kaid: "kaid_3", coachNickname: "Carol Wilson"},
+    {kaid: "kaid_4", coachNickname: "David Brown"},
+    {kaid: "kaid_5", coachNickname: "Eve Taylor"},
+];
+
+const studentLabels: LabelsValues = {
+    clearSearch: "Clear search",
+    filter: "Search",
+    noResults: "None found",
+    selectAllLabel: (count) =>
+        count === 1 ? "Select 1 student" : `Select all ${count} students`,
+    selectNoneLabel: "Clear selection",
+    noneSelected: "No students",
+    someSelected: (numSelected) =>
+        numSelected === 1 ? "1 student" : `${numSelected} students`,
+    allSelected: "All students",
+};
+
+/**
+ * This example demonstrates a StudentMultiSelect with all students initially selected.
+ * The screen reader will not announce the initial values on mount, but will
+ * announce when values change through user interaction.
+ */
+export const StudentMultiSelect: StoryComponentType = {
+    render: function Render() {
+        const [selectedValues, setSelectedValues] = React.useState(
+            studentData.map((student) => student.kaid),
+        );
+        const [opened, setOpened] = React.useState(false);
+
+        return (
+            <MultiSelect
+                aria-label="Students"
+                id="students-multiselect"
+                onChange={setSelectedValues}
+                selectedValues={selectedValues}
+                shortcuts={true}
+                isFilterable={true}
+                labels={studentLabels}
+                opened={opened}
+                onToggle={setOpened}
+            >
+                {studentData.map((student) => (
+                    <OptionItem
+                        key={student.kaid}
+                        label={student.coachNickname}
+                        value={student.kaid}
+                    />
+                ))}
+            </MultiSelect>
+        );
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this is for manual testing purposes
             disableSnapshot: true,
         },
     },

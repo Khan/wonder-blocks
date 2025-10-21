@@ -1,20 +1,15 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import Plus from "@phosphor-icons/core/regular/plus.svg";
-import PlusBold from "@phosphor-icons/core/bold/plus-bold.svg";
 // mock out the custom icon
 import customIcon from "./custom-icon-mock.svg";
 
 import {PhosphorIcon} from "../phosphor-icon";
-import * as utils from "../../util/icon-util";
 
 describe("PhosphorIcon", () => {
-    beforeEach(() => {
-        jest.clearAllMocks();
-    });
-
-    it("forwards the ref to the `span` element", async () => {
+    it("forwards the ref to the `span` element", () => {
         // Arrange
         const ref: React.RefObject<HTMLSpanElement> = React.createRef();
 
@@ -25,20 +20,16 @@ describe("PhosphorIcon", () => {
         expect(ref.current).toBeInstanceOf(HTMLSpanElement);
     });
 
-    it("applies role to icon", async () => {
-        // Arrange
-
-        // Act
+    it("applies role to icon", () => {
+        // Arrange & Act
         render(<PhosphorIcon icon={Plus} role="img" />);
 
         // Assert
         expect(screen.getByRole("img")).toBeInTheDocument();
     });
 
-    it("applies aria-label to icon", async () => {
-        // Arrange
-
-        // Act
+    it("applies aria-label to icon", () => {
+        // Arrange & Act
         render(<PhosphorIcon icon={Plus} aria-label="something" role="img" />);
 
         // Assert
@@ -48,102 +39,166 @@ describe("PhosphorIcon", () => {
         );
     });
 
-    it("applies role=img when aria-label is provided", async () => {
-        // Arrange
-
-        // Act
+    it("applies role=img when aria-label is provided", () => {
+        // Arrange & Act
         render(<PhosphorIcon icon={Plus} aria-label="something" />);
 
         // Assert
         expect(screen.getByRole("img")).toBeInTheDocument();
     });
 
-    it("calls viewportPixelsForSize with size from props", async () => {
-        // Arrange
-        const viewPortPixelsForSizeSpy = jest.spyOn(
-            utils,
-            "viewportPixelsForSize",
-        );
+    describe("size styles", () => {
+        it("applies small size by default", () => {
+            // Arrange & Act
+            render(<PhosphorIcon icon={Plus} testId="phosphor-icon" />);
 
-        // Act
-        render(<PhosphorIcon icon={PlusBold} size="small" />);
+            // Assert
+            const icon = screen.getByTestId("phosphor-icon");
+            expect(icon).toHaveStyle({
+                width: sizing.size_160,
+                height: sizing.size_160,
+            });
+        });
 
-        // Assert
-        expect(viewPortPixelsForSizeSpy).toHaveBeenCalledWith("small");
+        it("applies medium size", () => {
+            // Arrange & Act
+            render(
+                <PhosphorIcon
+                    icon={Plus}
+                    size="medium"
+                    testId="phosphor-icon"
+                />,
+            );
+
+            // Assert
+            const icon = screen.getByTestId("phosphor-icon");
+            expect(icon).toHaveStyle({
+                width: sizing.size_240,
+                height: sizing.size_240,
+            });
+        });
+
+        it("applies large size", () => {
+            // Arrange & Act
+            render(
+                <PhosphorIcon
+                    icon={Plus}
+                    size="large"
+                    testId="phosphor-icon"
+                />,
+            );
+
+            // Assert
+            const icon = screen.getByTestId("phosphor-icon");
+            expect(icon).toHaveStyle({
+                width: sizing.size_480,
+                height: sizing.size_480,
+            });
+        });
+
+        it("applies xlarge size", () => {
+            // Arrange & Act
+            render(
+                <PhosphorIcon
+                    icon={Plus}
+                    size="xlarge"
+                    testId="phosphor-icon"
+                />,
+            );
+
+            // Assert
+            const icon = screen.getByTestId("phosphor-icon");
+            expect(icon).toHaveStyle({
+                width: sizing.size_960,
+                height: sizing.size_960,
+            });
+        });
     });
 
-    it("sets correct width", async () => {
-        // Arrange
-        const expectedRenderSize = 24;
+    describe("style customization", () => {
+        it("applies custom style prop", () => {
+            // Arrange
+            const customStyle = {
+                margin: "10px",
+            };
 
-        jest.spyOn(utils, "viewportPixelsForSize").mockImplementationOnce(
-            () => expectedRenderSize,
-        );
+            // Act
+            render(
+                <PhosphorIcon
+                    icon={Plus}
+                    style={customStyle}
+                    testId="phosphor-icon"
+                />,
+            );
 
-        // Act
-        render(<PhosphorIcon icon={Plus} testId="phosphor-icon" />);
+            // Assert
+            expect(screen.getByTestId("phosphor-icon")).toHaveStyle(
+                customStyle,
+            );
+        });
 
-        // Assert
-        const icon = screen.getByTestId("phosphor-icon");
-        expect(icon).toHaveStyle(`width: ${expectedRenderSize}px`);
+        it("applies custom color", () => {
+            // Arrange
+            const customColor = "rgb(255, 0, 0)";
+
+            // Act
+            render(
+                <PhosphorIcon
+                    icon={Plus}
+                    color={customColor}
+                    testId="phosphor-icon"
+                />,
+            );
+
+            // Assert
+            expect(screen.getByTestId("phosphor-icon")).toHaveStyle({
+                backgroundColor: customColor,
+            });
+        });
+
+        it("defaults to currentColor", () => {
+            // Arrange & Act
+            render(<PhosphorIcon icon={Plus} testId="phosphor-icon" />);
+
+            // Assert
+            expect(screen.getByTestId("phosphor-icon")).toHaveStyle({
+                backgroundColor: "currentColor",
+            });
+        });
     });
 
-    it("sets correct height", async () => {
-        // Arrange
-        const expectedRenderSize = 24;
+    describe("icon rendering", () => {
+        it("includes SVG using the maskImage css attribute", () => {
+            // Arrange & Act
+            render(<PhosphorIcon icon={Plus} testId="phosphor-icon" />);
 
-        jest.spyOn(utils, "viewportPixelsForSize").mockImplementationOnce(
-            () => expectedRenderSize,
-        );
+            // Assert
+            expect(screen.getByTestId("phosphor-icon")).toHaveStyle({
+                maskImage: `url(${Plus})`,
+            });
+        });
 
-        // Act
-        render(<PhosphorIcon icon={Plus} testId="phosphor-icon" />);
+        it("allows importing an arbitrary SVG file (custom icon)", () => {
+            // Arrange & Act
+            render(<PhosphorIcon icon={customIcon} testId="phosphor-icon" />);
 
-        // Assert
-        const icon = screen.getByTestId("phosphor-icon");
-        expect(icon).toHaveStyle(`height: ${expectedRenderSize}px`);
-    });
+            // Assert
+            expect(screen.getByTestId("phosphor-icon")).toHaveStyle({
+                maskImage: `url(${customIcon})`,
+            });
+        });
 
-    it("applies style prop", async () => {
-        // Arrange
-        const expectedStyle = {
-            width: 30,
-        } as const;
+        it("applies correct mask properties", () => {
+            // Arrange & Act
+            render(<PhosphorIcon icon={Plus} testId="phosphor-icon" />);
 
-        // Act
-        render(
-            <PhosphorIcon
-                icon={Plus}
-                style={expectedStyle}
-                testId="phosphor-icon"
-            />,
-        );
-
-        // Assert
-        expect(screen.getByTestId("phosphor-icon")).toHaveStyle("width: 30px");
-    });
-
-    it("includes SVG using the maskImage css attribute", async () => {
-        // Arrange
-
-        // Act
-        render(<PhosphorIcon icon={Plus} testId="phosphor-icon" />);
-
-        // Assert
-        expect(screen.getByTestId("phosphor-icon")).toHaveStyle(
-            `mask-image: url(${Plus});`,
-        );
-    });
-
-    it("allows importing an arbitrary SVG file (custom icon)", async () => {
-        // Arrange
-
-        // Act
-        render(<PhosphorIcon icon={customIcon} testId="phosphor-icon" />);
-
-        // Assert
-        expect(screen.getByTestId("phosphor-icon")).toHaveStyle(
-            `mask-image: url(${customIcon});`,
-        );
+            // Assert
+            const icon = screen.getByTestId("phosphor-icon");
+            expect(icon).toHaveStyle({
+                maskSize: "100%",
+                maskRepeat: "no-repeat",
+                maskPosition: "center",
+            });
+        });
     });
 });

@@ -1,5 +1,5 @@
 import * as React from "react";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {TextArea} from "@khanacademy/wonder-blocks-form";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
@@ -9,8 +9,11 @@ import {ScenariosLayout} from "../components/scenarios-layout";
 import {
     longText,
     longTextWithNoWordBreak,
+    reallyLongText,
+    repeatText,
 } from "../components/text-for-testing";
 import {AllVariants} from "../components/all-variants";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 /**
  * The following stories are used to generate the pseudo states for the
@@ -144,9 +147,111 @@ export const Scenarios: Story = {
                 name: "With Placeholder (long, no word breaks)",
                 props: {placeholder: longTextWithNoWordBreak},
             },
+            {
+                name: "With rows = 10",
+                props: {rows: 10},
+            },
+            {
+                name: "With rows = 10 and value",
+                props: {rows: 10, value: repeatText(longText, 3)},
+            },
+            {
+                name: "Empty and auto resize is false",
+                props: {autoResize: false},
+            },
+            {
+                name: "With value and auto resize is false",
+                props: {
+                    autoResize: false,
+                    value: repeatText(longText, 3),
+                },
+            },
+            {
+                name: "Auto resize is true with default maxRows of 6",
+                props: {
+                    autoResize: true,
+                    value: repeatText(reallyLongText, 3),
+                },
+            },
+            {
+                name: "Auto resize is true with maxRows = 10",
+                props: {
+                    autoResize: true,
+                    value: repeatText(reallyLongText, 3),
+                    maxRows: 10,
+                },
+            },
+            {
+                name: "Auto resize is true with rows = 30",
+                props: {
+                    autoResize: true,
+                    value: repeatText(reallyLongText, 3),
+                    rows: 30,
+                },
+            },
+            {
+                name: "Auto resize is true with rows = 10 and value is short",
+                props: {
+                    autoResize: true,
+                    value: longText,
+                    rows: 10,
+                },
+            },
+            {
+                name: "Auto-resize is true with rows = 4 and maxRows = 2 (rows > maxRows)",
+                props: {
+                    autoResize: true,
+                    value: repeatText(reallyLongText, 3),
+                    rows: 4,
+                    maxRows: 2,
+                },
+            },
+            {
+                name: "Using Placeholder: Auto resize is true with default maxRows of 6",
+                props: {
+                    autoResize: true,
+                    placeholder: repeatText(reallyLongText, 3),
+                },
+            },
+            {
+                name: "Using Placeholder: Auto resize is true with maxRows = 10",
+                props: {
+                    autoResize: true,
+                    placeholder: repeatText(reallyLongText, 3),
+                    maxRows: 10,
+                },
+            },
+            {
+                name: "Using Placeholder: Auto resize is true with rows = 30",
+                props: {
+                    autoResize: true,
+                    placeholder: repeatText(reallyLongText, 4),
+                    rows: 30,
+                },
+            },
+            {
+                name: "Auto resize is true with rows = 10 and placeholder is short",
+                props: {
+                    autoResize: true,
+                    placeholder: longText,
+                    rows: 10,
+                },
+            },
+            {
+                name: "Using Placeholder: Auto-resize is true with rows = 4 and maxRows = 2 (rows > maxRows)",
+                props: {
+                    autoResize: true,
+                    placeholder: repeatText(reallyLongText, 3),
+                    rows: 4,
+                    maxRows: 2,
+                },
+            },
         ];
         return (
-            <ScenariosLayout scenarios={scenarios}>
+            <ScenariosLayout
+                scenarios={scenarios}
+                styles={{root: {paddingBlockEnd: sizing.size_240}}}
+            >
                 {(props, name) => (
                     <LabeledField
                         label="Text Area"

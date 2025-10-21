@@ -1,4 +1,4 @@
-import type {ArgTypes} from "@storybook/react";
+import type {ArgTypes} from "@storybook/react-vite";
 
 import plusCircle from "@phosphor-icons/core/regular/plus-circle.svg";
 import plusCircleBold from "@phosphor-icons/core/bold/plus-circle-bold.svg";
@@ -115,12 +115,6 @@ export const IconMappings = {
 
 export default {
     icon: {
-        description:
-            `The icon to display. This is a reference to the icon asset ` +
-            `(imported as a static SVG file).\n\n` +
-            `It supports the following types:\n` +
-            `- \`PhosphorIconAsset\`: a reference to a Phosphor SVG asset.\n` +
-            `- \`string\`: an import referencing an arbitrary SVG file.`,
         options: Object.keys(IconMappings),
         mapping: IconMappings,
         type: {
@@ -135,8 +129,6 @@ export default {
         },
     },
     color: {
-        description:
-            "The color of the icon. Will default to `currentColor`, which means that it will take on the CSS `color` value from the parent element.",
         options: Object.keys(color),
         mapping: color,
         control: {
@@ -147,8 +139,6 @@ export default {
         },
     },
     size: {
-        description:
-            "One of `small` (16px), `medium` (24px), `large` (48px), or `xlarge` (96px).",
         options: ["small", "medium", "large", "xlarge"],
         control: {
             type: "select",
@@ -158,12 +148,10 @@ export default {
         },
     },
     style: {
-        description: "Additional styles to apply to the icon.",
         control: {type: "object"},
         table: {type: {summary: "StyleType"}},
     },
     className: {
-        description: "Adds CSS classes to the Icon.",
         control: {type: "text"},
         table: {
             type: {
@@ -172,7 +160,6 @@ export default {
         },
     },
     testId: {
-        description: "Test ID used for e2e testing.",
         control: {type: "text"},
         table: {
             type: {
@@ -207,9 +194,6 @@ export default {
         },
     },
     role: {
-        description:
-            "The role of this icon. Make sure to use it when setting `aria-label`\n" +
-            "See: https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA24",
         defaultValue: "img",
         control: {
             type: "text",

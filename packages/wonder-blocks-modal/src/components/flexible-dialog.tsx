@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {View} from "@khanacademy/wonder-blocks-core";
 
-import {breakpoint, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 import FlexiblePanel from "./flexible-panel";
 import theme from "../theme";
@@ -194,12 +194,6 @@ const componentStyles = StyleSheet.create({
         maxHeight: "100vh",
         maxWidth: 576,
         width: "93.75%",
-
-        [breakpoint.mediaQuery.sm]: {
-            height: "100vh",
-            maxHeight: "100vh",
-            width: "100%",
-        },
     },
 });
 

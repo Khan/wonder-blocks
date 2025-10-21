@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-testing-core",
-  "version": "3.0.1",
+  "version": "4.0.1",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -16,7 +16,6 @@
   "dependencies": {},
   "peerDependencies": {
     "@khanacademy/wonder-stuff-core": "catalog:",
-    "@storybook/addon-actions": "^8.5.2",
     "aphrodite": "catalog:",
     "node-fetch": "catalog:",
     "react": "catalog:",

@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import articleIcon from "./icons/article.svg";
 import courseIcon from "./icons/course.svg";
@@ -44,8 +44,11 @@ import PhosphorIconArgtypes, {IconMappings} from "./phosphor-icon.argtypes";
  * />
  * ```
  *
- * These icons should fit into a viewport of `16`, `24`, `48`, and `96` pixels,
- * respectively.
+ * These icons use rem-based sizing from wonder-blocks-tokens:
+ * - small: 1.6rem (16px)
+ * - medium: 2.4rem (24px)
+ * - large: 4.8rem (48px)
+ * - xlarge: 9.6rem (96px)
  */
 export default {
     title: "Packages / Icon / PhosphorIcon",

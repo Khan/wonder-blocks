@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
@@ -140,9 +140,9 @@ export const DarkBackground: StoryComponentType = () => (
     </View>
 );
 
-DarkBackground.parameters = {
+DarkBackground.globals = {
     backgrounds: {
-        default: "neutralStrong",
+        value: "neutralStrong",
     },
     chromatic: {
         // Testing snapshots don't cover dark background case

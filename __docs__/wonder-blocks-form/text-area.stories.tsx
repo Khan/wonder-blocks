@@ -1,5 +1,5 @@
 import * as React from "react";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {StyleSheet} from "aphrodite";
 import {TextArea} from "@khanacademy/wonder-blocks-form";
@@ -15,6 +15,11 @@ import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 
 import TextAreaArgTypes from "./text-area.argtypes";
 import {validateEmail} from "./form-utilities";
+import {
+    longText,
+    reallyLongText,
+    repeatText,
+} from "../components/text-for-testing";
 
 /**
  * A TextArea is an element used to accept text from the user.
@@ -169,6 +174,65 @@ export const WithValue: ControlledStoryComponentType = {
         label: "With Value",
     },
     render: ControlledTextArea,
+};
+
+/**
+ * The `autoResize` prop can be used to automatically resize the textarea to fit
+ * the content. By default, `autoResize` is `false`.
+ *
+ * There is also a `maxRows` prop that can be used to set the maximum number of
+ * rows to show when `autoResize` is enabled. If the content exceeds the max
+ * number of rows, the textarea will become scrollable. By default, `maxRows`
+ * is 6.
+ *
+ * When `autoResize` is enabled, the `rows` prop is used as the starting and
+ * minimum height. If `rows > maxRows`, `rows` will be used for `maxRows`.
+ */
+export const AutoResize: StoryComponentType = {
+    render: (args) => {
+        return (
+            <View style={{gap: spacing.large_24, maxWidth: "500px"}}>
+                <ControlledTextArea
+                    {...args}
+                    autoResize={false}
+                    label="Auto resize is false"
+                    value={repeatText(reallyLongText, 3)}
+                />
+                <ControlledTextArea
+                    {...args}
+                    autoResize={true}
+                    label="Auto resize is true"
+                    value={repeatText(longText, 2)}
+                />
+                <ControlledTextArea
+                    {...args}
+                    autoResize={true}
+                    label="Auto resize is true with default maxRows"
+                    value={repeatText(reallyLongText, 3)}
+                />
+                <ControlledTextArea
+                    {...args}
+                    autoResize={true}
+                    label="Auto resize is true with maxRows = 30"
+                    value={repeatText(reallyLongText, 3)}
+                    maxRows={30}
+                />
+                <ControlledTextArea
+                    {...args}
+                    autoResize={true}
+                    label="Auto resize is true with rows = 30"
+                    value={repeatText(reallyLongText, 3)}
+                    rows={30}
+                />
+            </View>
+        );
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because it is covered by scenarios
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**
@@ -433,13 +497,7 @@ export const Required: StoryComponentType = {
 };
 
 /**
- * The number of rows to use by default can be specified using the `rows` prop.
- * This will be ignored if:
- * - the height is set on the textarea using CSS
- * - the user resizes the textarea using the built-in resize control
- *
- * It is often helpful to set the initial number of rows based on how much
- * content we expect from the user.
+ * The `rows` prop can be used to set the number of rows to show by default.
  */
 export const Rows: StoryComponentType = {
     args: {

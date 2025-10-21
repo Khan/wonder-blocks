@@ -1,10 +1,10 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import packageConfig from "../../packages/wonder-blocks-cell/package.json";
@@ -170,18 +170,20 @@ export const CompactCellAccessoryStyles: StoryComponentType = {
             leftAccessory={
                 <PhosphorIcon icon={IconMappings.article} size="medium" />
             }
-            leftAccessoryStyle={{
-                minWidth: spacing.xxLarge_48,
-                alignSelf: "flex-start",
-                alignItems: "flex-start",
-            }}
             rightAccessory={
                 <PhosphorIcon icon={IconMappings.caretRightBold} size="small" />
             }
-            rightAccessoryStyle={{
-                minWidth: spacing.large_24,
-                alignSelf: "flex-end",
-                alignItems: "flex-end",
+            styles={{
+                leftAccessory: {
+                    minWidth: spacing.xxLarge_48,
+                    alignSelf: "flex-start",
+                    alignItems: "flex-start",
+                },
+                rightAccessory: {
+                    minWidth: spacing.large_24,
+                    alignSelf: "flex-end",
+                    alignItems: "flex-end",
+                },
             }}
         />
     ),
@@ -221,8 +223,12 @@ export const CompactCellHorizontalRules: StoryComponentType = {
 };
 
 /**
- * Cell components can also adapt to different visual needs. One example of this
- * can be done by passing a custom style object to the `style` prop.
+ * `CompactCell` can be used with custom styles. The following parts can be
+ * styled:
+ * - `root`: Styles the root element
+ * - `content`: Styles the content area (between the accessories)
+ * - `leftAccessory`: Styles the left accessory element
+ * - `rightAccessory`: Styles the right accessory element
  */
 export const CompactCellWithCustomStyles: StoryComponentType = {
     render: () => (
@@ -237,9 +243,11 @@ export const CompactCellWithCustomStyles: StoryComponentType = {
                     color={semanticColor.core.foreground.knockout.default}
                 />
             }
-            style={{
-                background: semanticColor.core.background.neutral.strong,
-                color: semanticColor.core.foreground.knockout.default,
+            styles={{
+                root: {
+                    background: semanticColor.core.background.neutral.strong,
+                    color: semanticColor.core.foreground.knockout.default,
+                },
             }}
             onClick={() => {}}
         />
@@ -380,7 +388,12 @@ export const CompactCellsAsListItems: StoryComponentType = {
                     }
                     href="https://khanacademy.org"
                     horizontalRule="full-width"
-                    style={{background: color.offBlack50}}
+                    styles={{
+                        root: {
+                            background:
+                                semanticColor.core.background.overlay.default,
+                        },
+                    }}
                 />
             </View>
             <View role="listitem">
@@ -393,7 +406,12 @@ export const CompactCellsAsListItems: StoryComponentType = {
                         />
                     }
                     onClick={() => {}}
-                    style={{background: color.fadedPurple24}}
+                    styles={{
+                        root: {
+                            background:
+                                semanticColor.core.background.warning.subtle,
+                        },
+                    }}
                     horizontalRule="full-width"
                 />
             </View>

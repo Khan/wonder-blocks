@@ -237,6 +237,7 @@ type Props = AriaProps &
  * ```
  */
 const MultiSelect = (props: Props) => {
+    const isInitialRender = React.useRef(true);
     const {
         id,
         opener,
@@ -569,6 +570,11 @@ const MultiSelect = (props: Props) => {
     );
 
     React.useEffect(() => {
+        if (isInitialRender.current) {
+            isInitialRender.current = false;
+            return;
+        }
+
         const optionItems = React.Children.toArray(
             children,
         ) as OptionItemComponentArray;

@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Meta, StoryObj} from "@storybook/react";
+import {Meta, StoryObj} from "@storybook/react-vite";
 import info from "@phosphor-icons/core/regular/info.svg";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-styles/package.json";
@@ -70,6 +70,7 @@ export const Focus: Story = {
                     <IconButton
                         kind="tertiary"
                         icon={info}
+                        aria-label="Tertiary info button"
                         style={focusStyles.focus}
                     />
                 </View>
@@ -84,6 +85,7 @@ export const Focus: Story = {
                     <IconButton
                         kind="tertiary"
                         icon={info}
+                        aria-label="Tertiary info button"
                         style={[
                             focusStyles.focus,
                             {
@@ -115,6 +117,7 @@ export const Scenarios: Story = {
                         <IconButton
                             kind="tertiary"
                             icon={info}
+                            aria-label="Tertiary info button"
                             style={focusStyles.focus}
                         />
                     ),
@@ -127,6 +130,7 @@ export const Scenarios: Story = {
                         <IconButton
                             kind="tertiary"
                             icon={info}
+                            aria-label="Tertiary info button"
                             style={[
                                 focusStyles.focus,
                                 {
@@ -165,8 +169,11 @@ export const Scenarios: Story = {
                     children: (
                         <StyledButton
                             style={{
-                                color: semanticColor.action.secondary
-                                    .progressive.default.foreground,
+                                background:
+                                    semanticColor.core.background.critical
+                                        .default,
+                                color: semanticColor.core.foreground.knockout
+                                    .default,
                                 // focus styles will be merged with the
                                 // defined styles
                                 ...focusStyles.focus,

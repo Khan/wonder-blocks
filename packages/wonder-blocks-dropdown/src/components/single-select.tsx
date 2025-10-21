@@ -259,6 +259,7 @@ type Props = AriaProps &
  */
 const SingleSelect = (props: Props) => {
     const selectedIndex = React.useRef(0);
+    const isInitialRender = React.useRef(true);
     const {
         children,
         error = false,
@@ -437,8 +438,13 @@ const SingleSelect = (props: Props) => {
         });
     };
 
-    // Announce when selectedValue or children changes in the opener
+    // Announce when selectedValue or children changes in the opener, but skip initial render
     React.useEffect(() => {
+        if (isInitialRender.current) {
+            isInitialRender.current = false;
+            return;
+        }
+
         const optionItems = React.Children.toArray(
             children,
         ) as OptionItemComponentArray;

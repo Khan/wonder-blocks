@@ -1,4 +1,4 @@
-import {create} from "@storybook/theming";
+import {create} from "storybook/theming";
 
 // NOTE: We cannot import wonder-blocks-colors directly here because it's not a
 // dependency of the main package.json file.

@@ -1214,8 +1214,61 @@ describe("SingleSelect", () => {
             );
         });
 
+        beforeEach(() => {
+            // Clear any stale announcements
+            announceMessageSpy.mockClear();
+        });
+
         afterAll(() => {
             announceMessageSpy.mockRestore();
+        });
+
+        it("should not announce initial value on mount", async () => {
+            // Arrange & Act
+            doRender(
+                <SingleSelect
+                    onChange={onChange}
+                    placeholder="Choose"
+                    selectedValue="1"
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </SingleSelect>,
+            );
+
+            // Assert
+            expect(announceMessageSpy).not.toHaveBeenCalled();
+        });
+
+        it("should announce when value changes after mount", async () => {
+            // Arrange
+            const ControlledSingleSelect = (
+                props: Partial<PropsFor<typeof SingleSelect>>,
+            ) => {
+                const [selectedValue, setSelectedValue] = React.useState("2");
+                return (
+                    <SingleSelect
+                        onChange={setSelectedValue}
+                        selectedValue={selectedValue}
+                        placeholder="Choose"
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                    </SingleSelect>
+                );
+            };
+            const {userEvent} = doRender(<ControlledSingleSelect />);
+
+            // Act
+            await userEvent.click(await screen.findByRole("combobox")); // Opens dropdown
+            await userEvent.click(await screen.findByText("item 1")); // Selects item
+
+            // Assert
+            // First call announces total options ("2 items")
+            // Second call announces selected item
+            expect(announceMessageSpy).toHaveBeenNthCalledWith(2, {
+                message: "item 1",
+            });
         });
 
         it("should change the number of options after using the search filter", async () => {

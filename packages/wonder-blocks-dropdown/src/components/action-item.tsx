@@ -180,7 +180,13 @@ export default class ActionItem extends React.Component<ActionProps> {
                 horizontalRule={horizontalRule}
                 leftAccessory={leftAccessory}
                 rightAccessory={rightAccessory}
-                style={[defaultStyle, styles.shared, indent && styles.indent]}
+                styles={{
+                    root: [
+                        defaultStyle,
+                        styles.shared,
+                        indent && styles.indent,
+                    ],
+                }}
                 role={role}
                 testId={testId}
                 subtitle1={subtitle1}

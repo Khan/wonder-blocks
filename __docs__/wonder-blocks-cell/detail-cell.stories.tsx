@@ -2,12 +2,11 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {MemoryRouter} from "react-router-dom";
 import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {
     border,
-    color,
     semanticColor,
     spacing,
 } from "@khanacademy/wonder-blocks-tokens";
@@ -134,32 +133,37 @@ export const DetailCellDisabled: StoryComponentType = {
 };
 
 /**
- * Accessories and the main content container can also be customized to adapt to
- * different sizes and alignments. In this example, we can see how a cell can be
- * customized for both accessories and the content.
+ * `DetailCell` can be used with custom styles. The following parts can be
+ * styled:
+ * - `root`: Styles the root element
+ * - `content`: Styles the content area (between the accessories)
+ * - `leftAccessory`: Styles the left accessory element
+ * - `rightAccessory`: Styles the right accessory element
  */
 export const DetailCellWithCustomStyles: StoryComponentType = {
     render: () => (
         <DetailCell
             title="Title for article item"
-            contentStyle={{
-                alignSelf: "flex-start",
-            }}
             leftAccessory={
                 <PhosphorIcon icon={IconMappings.caretLeftBold} size="small" />
             }
-            leftAccessoryStyle={{
-                alignSelf: "flex-start",
-            }}
             rightAccessory={
                 <PhosphorIcon icon={IconMappings.caretRightBold} size="small" />
             }
-            rightAccessoryStyle={{
-                alignSelf: "flex-start",
-            }}
-            style={{
-                textAlign: "center",
-                minHeight: 88,
+            styles={{
+                root: {
+                    textAlign: "center",
+                    minHeight: 88,
+                },
+                content: {
+                    alignSelf: "flex-start",
+                },
+                leftAccessory: {
+                    alignSelf: "flex-start",
+                },
+                rightAccessory: {
+                    alignSelf: "flex-start",
+                },
             }}
         />
     ),
@@ -334,7 +338,12 @@ export const DetailCellsAsListItems: StoryComponentType = {
                     }
                     href="https://khanacademy.org"
                     horizontalRule="full-width"
-                    style={{background: color.offBlack50}}
+                    styles={{
+                        root: {
+                            background:
+                                semanticColor.core.background.overlay.default,
+                        },
+                    }}
                 />
             </View>
             <View role="listitem">
@@ -347,7 +356,12 @@ export const DetailCellsAsListItems: StoryComponentType = {
                         />
                     }
                     onClick={() => {}}
-                    style={{background: color.fadedPurple24}}
+                    styles={{
+                        root: {
+                            background:
+                                semanticColor.core.background.warning.subtle,
+                        },
+                    }}
                     horizontalRule="full-width"
                 />
             </View>
@@ -363,7 +377,7 @@ export const DetailCellsAsListItems: StoryComponentType = {
 };
 
 /**
- * Custom styling can be applied to the component using the `style` prop.
+ * Custom styling can be applied to the component using the `styles` prop.
  */
 export const CustomStyles = {
     args: {
@@ -383,10 +397,12 @@ export const CustomStyles = {
                 Active
                 <DetailCell
                     {...args}
-                    style={{
-                        borderRadius: border.radius.radius_120,
-                        ":active": {
+                    styles={{
+                        root: {
                             borderRadius: border.radius.radius_120,
+                            ":active": {
+                                borderRadius: border.radius.radius_120,
+                            },
                         },
                     }}
                     active={true}
@@ -394,9 +410,11 @@ export const CustomStyles = {
                 Pressed
                 <DetailCell
                     {...args}
-                    style={{
-                        ":active": {
-                            borderRadius: border.radius.radius_120,
+                    styles={{
+                        root: {
+                            ":active": {
+                                borderRadius: border.radius.radius_120,
+                            },
                         },
                     }}
                 />
@@ -413,33 +431,39 @@ export const CustomStyles = {
                         subtitle1="Subtitle 1"
                         subtitle2="Subtitle2"
                         onClick={() => {}}
-                        style={[
-                            {
-                                border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
-                            },
-                        ]}
+                        styles={{
+                            root: [
+                                {
+                                    border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
+                                },
+                            ],
+                        }}
                         horizontalRule={"none"}
                     />
                     <DetailCell
                         title="Title"
                         onClick={() => {}}
-                        style={[
-                            args.style,
-                            {
-                                border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
-                            },
-                        ]}
+                        styles={{
+                            root: [
+                                args.styles?.root,
+                                {
+                                    border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
+                                },
+                            ],
+                        }}
                         horizontalRule={"none"}
                     />
                     <DetailCell
                         title="Title"
                         onClick={() => {}}
-                        style={[
-                            args.style,
-                            {
-                                border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
-                            },
-                        ]}
+                        styles={{
+                            root: [
+                                args.styles?.root,
+                                {
+                                    border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
+                                },
+                            ],
+                        }}
                         horizontalRule={"none"}
                     />
                 </View>
@@ -456,7 +480,7 @@ const styles = StyleSheet.create({
         width: 376,
     },
     navigation: {
-        border: `1px dashed ${color.purple}`,
+        border: `${border.width.thin} dashed ${semanticColor.core.border.instructive.default}`,
         marginTop: spacing.large_24,
         padding: spacing.large_24,
     },

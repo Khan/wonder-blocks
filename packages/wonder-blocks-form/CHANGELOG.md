@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-form
 
+## 7.4.1
+
+### Patch Changes
+
+- Updated dependencies [44f77b7]
+    - @khanacademy/wonder-blocks-icon@5.3.0
+
+## 7.4.0
+
+### Minor Changes
+
+- e095f19: TextArea: Add `autoResize` and `maxRows` props. The `resizeType` prop is deprecated in favour of these new props.
+
 ## 7.3.9
 
 ### Patch Changes
