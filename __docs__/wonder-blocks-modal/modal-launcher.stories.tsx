@@ -587,6 +587,115 @@ const SubModal = () => (
     />
 );
 
+/*
+A complex reproduction to test focus management issues on close.
+*/
+export const FocusManagementPattern: StoryComponentType = () => {
+    type Student = {
+        id: string;
+        name: string;
+        progress: number;
+    };
+
+    const mockStudents: Array<Student> = [
+        {id: "1", name: "Alice Smith", progress: 85},
+        {id: "2", name: "Bob Johnson", progress: 70},
+        {id: "3", name: "Charlie Brown", progress: 95},
+    ];
+
+    type CompletionModalProps = {
+        isOpen: boolean;
+        handleClose: () => void;
+        returnFocusToId: string | null;
+    };
+
+    // Separate modal component to match the pattern in MasteryCompletionModal
+    const CompletionModal = ({
+        isOpen,
+        handleClose,
+        returnFocusToId,
+    }: CompletionModalProps) => {
+        return (
+            <ModalLauncher
+                opened={isOpen}
+                onClose={handleClose}
+                closedFocusId={returnFocusToId || undefined}
+                modal={() => (
+                    <OnePaneDialog
+                        title="Unit: Sample Unit"
+                        content={
+                            <View style={styles.modalContent}>
+                                <BodyText>
+                                    This is a reproduction of the focus
+                                    management pattern. When this modal is
+                                    closed, focus should return to the button
+                                    that opened it.
+                                </BodyText>
+                            </View>
+                        }
+                        style={styles.modal}
+                    />
+                )}
+            />
+        );
+    };
+
+    // Container component to manage state
+    const CompletionModalContainer = () => {
+        const [selectedItem, setSelectedItem] = React.useState<string | null>(
+            null,
+        );
+        const [modalTriggerId, setModalTriggerId] = React.useState<
+            string | null
+        >(null);
+
+        const handleOpenModal = (triggerId: string) => {
+            setModalTriggerId(triggerId);
+            setSelectedItem("sample-item");
+        };
+
+        const handleCloseModal = () => {
+            setSelectedItem(null);
+            setModalTriggerId(null);
+        };
+
+        return (
+            <View style={styles.container}>
+                <View style={styles.buttonRow}>
+                    {mockStudents.map((student) => {
+                        const triggerId = `completion-modal-trigger-${student.id}`;
+                        return (
+                            <Button
+                                key={student.id}
+                                id={triggerId}
+                                onClick={() => handleOpenModal(triggerId)}
+                            >
+                                {`${student.name} (${student.progress}%)`}
+                            </Button>
+                        );
+                    })}
+                </View>
+                {selectedItem && (
+                    <CompletionModal
+                        isOpen={true}
+                        handleClose={handleCloseModal}
+                        returnFocusToId={modalTriggerId}
+                    />
+                )}
+            </View>
+        );
+    };
+
+    return <CompletionModalContainer />;
+};
+
+FocusManagementPattern.parameters = {
+    chromatic: {
+        // All the examples for ModalLauncher are behavior based, not visual.
+        disableSnapshot: true,
+    },
+};
+
 export const FocusTrap: StoryComponentType = () => {
     const [selectedValue, setSelectedValue] = React.useState<any>(null);
 
@@ -696,6 +805,19 @@ const styles = StyleSheet.create({
         borderStyle: "solid",
         borderWidth: border.width.thin,
         borderRadius: border.radius.radius_040,
+    },
+    container: {
+        display: "flex",
+        flexDirection: "column",
+        gap: sizing.size_160,
+        padding: sizing.size_160,
+        borderRadius: border.radius.radius_040,
+    },
+    modalContent: {
+        padding: sizing.size_160,
+    },
+    modal: {
+        minInlineSize: "80vw",
     },
 });
 
