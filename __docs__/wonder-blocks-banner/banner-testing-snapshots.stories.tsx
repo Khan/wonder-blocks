@@ -127,11 +127,6 @@ export const AllVariantsStory: StoryComponentType = {
                             text={`Custom Icon. ${longText}`}
                             icon={IconMappings.cookieBold}
                         />
-                        <Banner
-                            {...props}
-                            text={`Floating. ${longText}`}
-                            layout="floating"
-                        />
                     </View>
                 )}
             </AllVariants>
@@ -140,18 +135,6 @@ export const AllVariantsStory: StoryComponentType = {
 };
 
 const scenarios = [
-    {
-        name: "Layout: Full-width",
-        props: {
-            layout: "full-width",
-        },
-    },
-    {
-        name: "Layout: Floating",
-        props: {
-            layout: "floating",
-        },
-    },
     {
         name: "Multiple lines of text",
         props: {

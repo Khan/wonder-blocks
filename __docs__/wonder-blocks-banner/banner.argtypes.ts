@@ -49,14 +49,6 @@ export default {
             required: false,
         },
     },
-    layout: {
-        control: {type: "select"},
-        options: ["floating", "full-width"],
-        table: {
-            type: {summary: `"floating" | "full-width"`},
-        },
-        type: {name: "enum", value: ["floating", "full-width"]},
-    },
     text: {
         control: {type: "text"},
         table: {type: {summary: "string | React.Node"}},

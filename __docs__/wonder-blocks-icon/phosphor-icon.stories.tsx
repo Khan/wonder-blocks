@@ -249,10 +249,7 @@ export const Variants: StoryComponentType = {
     decorators: [
         (Story) => (
             <View style={{gap: tokens.spacing.medium_16}}>
-                <Banner
-                    layout="floating"
-                    text="This is a preview of the icons available in the Phosphor Icons package."
-                />
+                <Banner text="This is a preview of the icons available in the Phosphor Icons package." />
                 <Story />
             </View>
         ),
