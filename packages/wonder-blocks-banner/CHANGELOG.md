@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-banner
 
+## 5.0.0
+
+### Major Changes
+
+- 28d9ed5: Banner: Remove `layout` prop
+
 ## 4.5.2
 
 ### Patch Changes
