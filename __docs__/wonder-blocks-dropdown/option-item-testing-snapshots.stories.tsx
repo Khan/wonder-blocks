@@ -29,7 +29,7 @@ const columns = [
         props: {
             label: "Option Item",
             onClick: () => {},
-            subtitle1: AccessoryMappings.pill,
+            subtitle1: AccessoryMappings.badge,
             subtitle2: "Subtitle 2",
             leftAccessory: (
                 <PhosphorIcon icon={IconMappings.calendar} size="medium" />
