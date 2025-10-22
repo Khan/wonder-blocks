@@ -39,9 +39,6 @@ ModalContent.isComponentOf = (instance: any): boolean => {
  * TODO(WB-1655): Change this to use the theme instead (inside themedStylesFn).
  * e.g. `[theme.breakpoints.small]: {...}`
  */
-// TODO (WB-2080): Use media query tokens here and in ModalContent
-const small = "@media (max-width: 767px)" as any;
-
 const styles = StyleSheet.create({
     wrapper: {
         flex: 1,
@@ -49,7 +46,7 @@ const styles = StyleSheet.create({
         // This helps to ensure that the paddingBottom is preserved when
         // the contents start to overflow, this goes away on display: flex
         display: "block",
-        [breakpoint.mediaQuery.shortHeight as any]: {
+        [breakpoint.mediaQuery.smMinOrSmallerHeight as any]: {
             flex: "unset",
             minHeight: "unset",
             overflow: "unset",
@@ -65,10 +62,10 @@ const styles = StyleSheet.create({
         minHeight: "100%",
         padding: theme.panel.layout.gap.default,
         boxSizing: "border-box",
-        [small]: {
+        [breakpoint.mediaQuery.midOrSmaller as any]: {
             paddingInline: theme.panel.layout.gap.small,
         },
-        [breakpoint.mediaQuery.shortHeight as any]: {
+        [breakpoint.mediaQuery.smMinOrSmallerHeight as any]: {
             flex: "unset",
             minHeight: "unset",
             overflow: "unset",

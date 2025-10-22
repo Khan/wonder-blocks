@@ -322,7 +322,7 @@ export const WithAboveAndBelow: StoryComponentType = () => {
                 <OnePaneDialog
                     title="Single-line title"
                     content={
-                        <View style={{gap: sizing.size_160}}>
+                        <View style={{gap: sizing.size_160}} tabIndex={0}>
                             <BodyText>
                                 {`Lorem ipsum dolor sit amet, consectetur
                             adipiscing elit, sed do eiusmod tempor incididunt

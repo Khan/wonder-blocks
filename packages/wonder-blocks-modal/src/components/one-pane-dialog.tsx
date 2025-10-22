@@ -214,9 +214,11 @@ export default OnePaneDialog;
 
 const styles = StyleSheet.create({
     dialog: {
-        width: "100%",
-        height: "100%",
-        overflow: "hidden",
+        [breakpoint.mediaQuery.midOrSmaller as any]: {
+            width: "100%",
+            height: "100%",
+            overflow: "hidden",
+        },
 
         [breakpoint.mediaQuery.mdOrLarger as any]: {
             width: "93.75%",

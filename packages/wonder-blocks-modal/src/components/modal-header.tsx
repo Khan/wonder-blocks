@@ -132,8 +132,6 @@ export default function ModalHeader(props: Props) {
  * TODO(WB-1655): Change this to use the theme instead (inside themedStylesFn).
  * e.g. `[theme.breakpoints.small]: {...}`
  */
-const small = "@media (max-width: 767px)";
-
 const styles = StyleSheet.create({
     header: {
         boxShadow: `0px 1px 0px ${semanticColor.core.border.neutral.subtle}`,
@@ -145,10 +143,10 @@ const styles = StyleSheet.create({
         position: "relative",
         width: "100%",
 
-        [small as any]: {
+        [breakpoint.mediaQuery.midOrSmaller as any]: {
             paddingInline: theme.header.layout.padding.inline.small,
         },
-        [breakpoint.mediaQuery.shortHeight as any]: {
+        [breakpoint.mediaQuery.smMinOrSmallerHeight as any]: {
             minHeight: "unset",
         },
     },
@@ -161,7 +159,7 @@ const styles = StyleSheet.create({
     title: {
         // Prevent title from overlapping the close button
         paddingInlineEnd: theme.header.layout.gap.title.default,
-        [small as any]: {
+        [breakpoint.mediaQuery.midOrSmaller as any]: {
             paddingInlineEnd: theme.header.layout.gap.title.small,
         },
     },

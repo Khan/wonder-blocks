@@ -98,8 +98,6 @@ const ModalDialog = React.forwardRef(function ModalDialog(
     );
 });
 
-const small = "@media (max-width: 767px)" as any;
-
 const componentStyles = StyleSheet.create({
     wrapper: {
         // Allows propagating the text color to all the children.
@@ -111,11 +109,11 @@ const componentStyles = StyleSheet.create({
         position: "relative",
         boxShadow: theme.dialog.shadow.default,
         borderRadius: theme.root.border.radius,
-        [small]: {
+        [breakpoint.mediaQuery.midOrSmaller as any]: {
             padding: theme.dialog.layout.padding,
             flexDirection: "column",
         },
-        [breakpoint.mediaQuery.shortHeight as any]: {
+        [breakpoint.mediaQuery.smMinOrSmallerHeight as any]: {
             overflow: "auto",
         },
     },
@@ -128,7 +126,7 @@ const componentStyles = StyleSheet.create({
         height: "100%",
         borderRadius: theme.root.border.radius,
         overflow: "hidden",
-        [breakpoint.mediaQuery.shortHeight as any]: {
+        [breakpoint.mediaQuery.smMinOrSmallerHeight as any]: {
             overflow: "auto",
         },
     },

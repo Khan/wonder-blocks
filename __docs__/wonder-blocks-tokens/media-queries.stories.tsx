@@ -111,6 +111,20 @@ export const BreakpointWidths = () => (
     />
 );
 
+/**
+ * You can use pure height values by importing `breakpoint` from the
+ * `wonder-blocks-tokens` package and accessing the `height` object:
+ * `breakpoint.height.sm`.
+ *
+ * ```js
+ * import {breakpoint} from "@khanacademy/wonder-blocks-tokens";
+ * const styles = {
+ *     element: {
+ *         maxBlockSize: `${breakpoint.height.smMin}px`,
+ *     },
+ * };
+ * ```
+ */
 export const BreakpointHeights = () => (
     <TokenTable
         columns={[

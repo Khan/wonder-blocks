@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
         overflow: "hidden",
         height: "100%",
         width: "100%",
-        [breakpoint.mediaQuery.shortHeight as any]: {
+        [breakpoint.mediaQuery.smMinOrSmallerHeight as any]: {
             overflow: "auto",
         },
     },
