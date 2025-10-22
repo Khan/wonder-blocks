@@ -170,27 +170,17 @@ const ModalLauncher = (props: Props): React.ReactElement | null => {
         if (lastElement != null) {
             // Wait for the modal to leave the DOM before trying to
             // return focus to the element that triggered the modal.
-            schedule.animationFrame(() => lastElement.focus(), {
-                schedulePolicy: SchedulePolicy.Immediately,
-                clearPolicy: ClearPolicy.Resolve,
+            schedule.animationFrame(() => {
+                lastElement.focus();
             });
         }
     }, [closedFocusId, schedule]);
 
     const handleCloseModal = React.useCallback(() => {
         setOpened(false);
-        // Let React finish its updates before focusing
-        schedule.animationFrame(
-            () => {
-                onClose?.();
-                returnFocus();
-            },
-            {
-                schedulePolicy: SchedulePolicy.Immediately,
-                clearPolicy: ClearPolicy.Resolve,
-            },
-        );
-    }, [onClose, returnFocus, schedule]);
+        onClose?.();
+        returnFocus();
+    }, [onClose, returnFocus]);
 
     const renderModal = React.useCallback((): ModalElement => {
         if (typeof modal === "function") {
