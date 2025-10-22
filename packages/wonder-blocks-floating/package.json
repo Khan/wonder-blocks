@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@floating-ui/react": "catalog:",
+    "@khanacademy/wonder-blocks-modal": "workspace:*",
     "@khanacademy/wonder-blocks-tokens": "workspace:*"
   },
   "peerDependencies": {

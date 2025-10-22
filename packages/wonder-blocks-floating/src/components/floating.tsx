@@ -113,8 +113,6 @@ export default function Floating({
         [children, refs.setReference],
     );
 
-    console.log("trigger: ", trigger);
-
     const floatingContainer = (
         <FloatingFocusManager
             context={context}
