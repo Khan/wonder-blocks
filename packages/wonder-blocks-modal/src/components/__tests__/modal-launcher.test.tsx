@@ -359,7 +359,7 @@ describe("ModalLauncher", () => {
     test("if modal with opened=true is closed, return focus to the last element focused outside the modal", async () => {
         // Arrange
         const ModalLauncherWrapper = () => {
-            const [opened, setOpened] = React.useState(true);
+            const [opened, setOpened] = React.useState(false);
 
             const handleClose = () => {
                 setOpened(false);
@@ -372,7 +372,12 @@ describe("ModalLauncher", () => {
                             <Button>
                                 Top of page (should not receive focus)
                             </Button>
-                            <Button testId="launcher-button">Open modal</Button>
+                            <Button
+                                testId="launcher-button"
+                                onClick={() => setOpened(true)}
+                            >
+                                Open modal
+                            </Button>
                             <ModalLauncher
                                 onClose={() => handleClose()}
                                 opened={opened}
@@ -400,6 +405,7 @@ describe("ModalLauncher", () => {
         render(<ModalLauncherWrapper />);
 
         const lastButton = await screen.findByTestId("launcher-button");
+        await userEvent.click(lastButton);
 
         // Act
         // Close modal
@@ -501,7 +507,7 @@ describe("ModalLauncher", () => {
     test("should handle focus correctly when opened programmatically through a wrapper component", async () => {
         // Arrange
         const WrappedModalLauncher = () => {
-            const [opened, setOpened] = React.useState(true);
+            const [opened, setOpened] = React.useState(false);
 
             const handleClose = () => {
                 setOpened(false);
@@ -509,7 +515,10 @@ describe("ModalLauncher", () => {
 
             return (
                 <View>
-                    <Button testId="focused-button">
+                    <Button
+                        testId="focused-button"
+                        onClick={() => setOpened(true)}
+                    >
                         Button that should receive focus
                     </Button>
                     <ModalLauncher
@@ -538,7 +547,7 @@ describe("ModalLauncher", () => {
 
         // Focus the button before the modal opens
         const buttonToFocus = await screen.findByTestId("focused-button");
-        await userEvent.tab(); // Move focus to the button
+        await userEvent.click(buttonToFocus); // Move focus to the button
 
         // Act
         // Close modal

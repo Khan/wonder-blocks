@@ -155,9 +155,13 @@ const ModalLauncher = (props: Props): React.ReactElement | null => {
     const returnFocus = React.useCallback(() => {
         // Focus on the specified element after closing the modal.
         if (closedFocusId) {
-            const focusElement = document.getElementById(closedFocusId);
+            // eslint-disable-next-line import/no-deprecated
+            const focusElement = ReactDOM.findDOMNode(
+                document.getElementById(closedFocusId),
+            ) as any;
             if (focusElement) {
-                // Use the scheduler to ensure testability
+                // Wait for the modal to leave the DOM before trying
+                // to focus on the specified element.
                 schedule.animationFrame(() => focusElement.focus(), {
                     schedulePolicy: SchedulePolicy.Immediately,
                     clearPolicy: ClearPolicy.Resolve,
