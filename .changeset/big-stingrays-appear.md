@@ -2,4 +2,4 @@
 "@khanacademy/wonder-blocks-tokens": minor
 ---
 
-Adds media query token for short height screens
+Adds media query tokens for short height screens and mid-width screens.
