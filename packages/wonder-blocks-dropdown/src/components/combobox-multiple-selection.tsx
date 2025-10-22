@@ -95,14 +95,15 @@ const styles = StyleSheet.create({
     pillsWrapper: {
         flexDirection: "row",
         flexWrap: "wrap",
+        gap: sizing.size_080,
+        paddingBlockStart: sizing.size_080,
     },
     pill: {
         fontSize: font.body.size.small,
         justifyContent: "space-between",
         alignItems: "center",
-        marginBlockStart: sizing.size_040,
-        marginInlineEnd: sizing.size_040,
-        paddingInlineEnd: sizing.size_040,
+        height: "auto",
+        paddingInline: sizing.size_080,
     },
     pillFocused: focusStyles.focus[":focus-visible"],
 });
