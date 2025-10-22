@@ -331,6 +331,9 @@ TriggeringProgrammatically.parameters = {
     },
 };
 
+/*
+This story demonstrates a controlled modal with complex focus management.
+*/
 export const WithOpenedTrue = () => {
     const [openedModal, setOpenedModal] = React.useState<
         "EDIT" | "DELETE" | null
@@ -588,7 +591,8 @@ const SubModal = () => (
 );
 
 /*
-A complex reproduction to test focus management issues on close.
+A complex reproduction with a modal launched from within a table to test focus
+management issues on close.
 */
 export const FocusManagementPattern: StoryComponentType = () => {
     type Student = {
@@ -820,6 +824,102 @@ const styles = StyleSheet.create({
         minInlineSize: "80vw",
     },
 });
+
+/**
+ * This story helps debug focus management with controlled modals.
+    It specifically tests the case where a modal starts with opened=true and
+    needs to return focus to the last focused element when closed.
+ */
+export const ControlledModalFocusTest: StoryComponentType = () => {
+    const [opened, setOpened] = React.useState(false);
+    const [showModal, setShowModal] = React.useState(false);
+
+    // This button simulates what we're interacting with before the modal appears
+    const buttonRef = React.useRef<HTMLButtonElement>(null);
+
+    React.useEffect(() => {
+        // Focus the button when component mounts
+        if (buttonRef.current) {
+            buttonRef.current.focus();
+        }
+    }, []);
+
+    const handleShowWrappedModal = () => {
+        setShowModal(true);
+    };
+
+    return (
+        <View style={styles.storyContainer}>
+            <BodyText>
+                This story reproduces the test case for controlled modals and
+                focus management. Steps to test: 1. Click &quot;Focus me
+                first&quot; button 2. Click &quot;Show wrapped modal&quot;
+                button 3. Close the modal using the close button 4. Focus should
+                return to &quot;Focus me first&quot; button
+            </BodyText>
+
+            <View style={styles.buttonRow}>
+                <Button
+                    ref={buttonRef}
+                    onClick={() => setOpened(true)}
+                    testId="focus-target"
+                >
+                    Focus me first
+                </Button>
+
+                <Button onClick={handleShowWrappedModal}>
+                    Show wrapped modal
+                </Button>
+            </View>
+
+            {/* Regular modal to verify focus behavior */}
+            <ModalLauncher
+                modal={({closeModal}) => (
+                    <OnePaneDialog
+                        title="Regular Modal"
+                        content={<View>This is a regular modal</View>}
+                        footer={
+                            <Button onClick={closeModal}>Close Modal</Button>
+                        }
+                    />
+                )}
+                opened={opened}
+                onClose={() => setOpened(false)}
+            />
+
+            {/* Wrapped modal that starts opened=true */}
+            {showModal && (
+                <WrappedModalExample onClose={() => setShowModal(false)} />
+            )}
+        </View>
+    );
+};
+
+ControlledModalFocusTest.parameters = {
+    parameters: {
+        chromatic: {
+            // All the examples for ModalLauncher are behavior based, not
+            // visual.
+            disableSnapshot: true,
+        },
+    },
+};
+
+const WrappedModalExample = ({onClose}: {onClose: () => void}) => {
+    return (
+        <ModalLauncher
+            opened={true}
+            onClose={onClose}
+            modal={({closeModal}) => (
+                <OnePaneDialog
+                    title="Wrapped Modal"
+                    content={<View>This modal starts with opened=true</View>}
+                    footer={<Button onClick={closeModal}>Close Modal</Button>}
+                />
+            )}
+        />
+    );
+};
 
 /**
  * This example demonstrates how to use `ModalLauncher` to launch a modal that
