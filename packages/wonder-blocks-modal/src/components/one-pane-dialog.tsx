@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
             overflow: "hidden",
         },
 
-        [breakpoint.mediaQuery.mdOrLarger as any]: {
+        [breakpoint.mediaQuery.midOrLarger as any]: {
             width: "93.75%",
             maxWidth: 576,
             height: "81.25%",
