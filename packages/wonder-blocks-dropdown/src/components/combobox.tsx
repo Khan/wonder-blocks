@@ -599,7 +599,7 @@ export default function Combobox({
                         onClick={handleClearClick}
                         actionType="neutral"
                         kind="tertiary"
-                        size="small"
+                        size="medium"
                         style={[styles.button, styles.clearButton]}
                         aria-label={labels.clearSelection}
                         testId={testId ? `${testId}-clear` : undefined}
@@ -620,7 +620,7 @@ export default function Combobox({
                     }}
                     actionType="neutral"
                     kind="tertiary"
-                    size="small"
+                    size="medium"
                     style={[styles.button, openState && styles.buttonOpen]}
                     tabIndex={-1}
                     aria-controls={uniqueId}
@@ -764,7 +764,6 @@ const styles = StyleSheet.create({
     button: {
         position: "absolute",
         right: sizing.size_040,
-        top: sizing.size_040,
         margin: 0,
     },
     buttonOpen: {
