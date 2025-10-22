@@ -2,8 +2,6 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {TooltipTail} from "@khanacademy/wonder-blocks-tooltip";
-import * as tokens from "@khanacademy/wonder-blocks-tokens";
 
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import type {
@@ -72,19 +70,16 @@ export default class PopoverDialog extends React.Component<Props> {
             id,
             isReferenceHidden,
             updateBubbleRef,
-            updateTailRef,
-            tailOffset,
             style,
-            showTail,
             "aria-describedby": ariaDescribedby,
             "aria-labelledby": ariaLabelledBy,
             "aria-label": ariaLabel,
         } = this.props;
 
-        const contentProps = children.props as any;
+        // const contentProps = children.props as any;
 
         // extract the background color from the popover content
-        const color: keyof typeof tokens.color = contentProps.color;
+        // const color: keyof typeof tokens.color = contentProps.color;
 
         return (
             <React.Fragment>
@@ -103,13 +98,6 @@ export default class PopoverDialog extends React.Component<Props> {
                     ]}
                 >
                     {children}
-                    <TooltipTail
-                        show={showTail}
-                        color={color}
-                        updateRef={updateTailRef}
-                        placement={placement}
-                        offset={tailOffset}
-                    />
                 </View>
             </React.Fragment>
         );
