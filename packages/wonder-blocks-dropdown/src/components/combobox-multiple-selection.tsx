@@ -2,11 +2,11 @@ import {StyleSheet} from "aphrodite";
 import * as React from "react";
 
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import Pill from "@khanacademy/wonder-blocks-pill";
 import {font, sizing} from "@khanacademy/wonder-blocks-tokens";
 import xIcon from "@phosphor-icons/core/regular/x.svg";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
+import Button from "@khanacademy/wonder-blocks-button";
 
 type Props = {
     /**
@@ -66,24 +66,25 @@ export const MultipleSelection = React.memo(function SelectedPills({
                 const uniqueId = id + index;
 
                 return (
-                    <Pill
+                    <Button
                         id={uniqueId}
                         key={uniqueId}
                         testId={testId ? `${testId}-pill-${index}` : undefined}
                         size="small"
                         style={[styles.pill, focused && styles.pillFocused]}
-                        kind={focused ? "info" : "neutral"}
+                        kind="secondary"
+                        actionType="neutral"
                         aria-label={removeSelectedLabel(label)}
                         tabIndex={-1}
                         onClick={() => onRemove(value)}
-                    >
-                        <>
-                            {label}
-                            {!disabled && (
+                        endIcon={
+                            disabled ? undefined : (
                                 <PhosphorIcon icon={xIcon} size="small" />
-                            )}
-                        </>
-                    </Pill>
+                            )
+                        }
+                    >
+                        {label}
+                    </Button>
                 );
             })}
         </View>
