@@ -129,6 +129,39 @@ export const Kinds = {
 };
 
 /**
+ * A status badge can be used without a border.
+ */
+export const NoBorder = {
+    args: {
+        icon: "cookieBold",
+    },
+    render(args: Omit<PropsFor<typeof StatusBadge>, "icon"> & {icon: string}) {
+        return (
+            <View style={styles.container}>
+                {kinds.map((kind) => {
+                    const kindLabel =
+                        kind.charAt(0).toUpperCase() + kind.slice(1);
+                    return (
+                        <StatusBadge
+                            showBorder={false}
+                            key={kind}
+                            kind={kind}
+                            label={kindLabel}
+                            icon={
+                                <PhosphorIcon
+                                    icon={args.icon}
+                                    aria-label="Cookie"
+                                />
+                            }
+                        />
+                    );
+                })}
+            </View>
+        );
+    },
+};
+
+/**
  * A badge can be used with only a label.
  */
 export const LabelOnly: StoryComponentType = {
