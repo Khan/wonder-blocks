@@ -116,7 +116,6 @@ const ModalLauncher = (props: Props): React.ReactElement | null => {
     const isOpened =
         typeof controlledOpened === "boolean" ? controlledOpened : opened;
 
-    // Handle validation warnings from getDerivedStateFromProps
     React.useEffect(() => {
         if (typeof controlledOpened === "boolean" && children) {
             // eslint-disable-next-line no-console
@@ -138,7 +137,6 @@ const ModalLauncher = (props: Props): React.ReactElement | null => {
         lastElementFocusedOutsideModalRef.current = document.activeElement;
     }, []);
 
-    // Handle componentDidUpdate logic
     React.useEffect(() => {
         if (!opened && controlledOpened) {
             saveLastElementFocused();

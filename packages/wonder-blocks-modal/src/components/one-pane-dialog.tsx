@@ -1,10 +1,11 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {Breadcrumbs} from "@khanacademy/wonder-blocks-breadcrumbs";
-import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {Id} from "@khanacademy/wonder-blocks-core";
+// TODO [WB-2137]: standardize media query breakpoint tokens
+import {modalMediaQuery} from "../util/constants";
 import ModalDialog from "./modal-dialog";
 import ModalPanel from "./modal-panel";
 import ModalHeader from "./modal-header";
@@ -184,54 +185,48 @@ const OnePaneDialog = (props: Props): React.ReactElement => {
         role,
         "aria-describedby": ariaDescribedBy,
     } = props;
-
     return (
-        <MediaLayout styleSheets={styleSheets}>
-            {({styles}) => (
-                <Id id={titleId}>
-                    {(uniqueId) => (
-                        <ModalDialog
-                            style={[styles.dialog, style]}
-                            above={above}
-                            below={below}
-                            testId={testId}
-                            aria-labelledby={uniqueId}
-                            aria-describedby={ariaDescribedBy}
-                            role={role}
-                        >
-                            <ModalPanel
-                                onClose={onClose}
-                                header={renderHeader(props, uniqueId)}
-                                content={content}
-                                footer={footer}
-                                closeButtonVisible={closeButtonVisible}
-                                testId={testId}
-                            />
-                        </ModalDialog>
-                    )}
-                </Id>
+        <Id id={titleId}>
+            {(uniqueId) => (
+                <ModalDialog
+                    style={[styles.dialog, style]}
+                    above={above}
+                    below={below}
+                    testId={testId}
+                    aria-labelledby={uniqueId}
+                    aria-describedby={ariaDescribedBy}
+                    role={role}
+                >
+                    <ModalPanel
+                        onClose={onClose}
+                        header={renderHeader(props, uniqueId)}
+                        content={content}
+                        footer={footer}
+                        closeButtonVisible={closeButtonVisible}
+                        testId={testId}
+                    />
+                </ModalDialog>
             )}
-        </MediaLayout>
+        </Id>
     );
 };
 
 export default OnePaneDialog;
 
-const styleSheets = {
-    small: StyleSheet.create({
-        dialog: {
+const styles = StyleSheet.create({
+    dialog: {
+        maxInlineSize: 576,
+
+        [modalMediaQuery.midOrSmaller as any]: {
             width: "100%",
             height: "100%",
             overflow: "hidden",
         },
-    }),
 
-    mdOrLarger: StyleSheet.create({
-        dialog: {
+        [modalMediaQuery.midOrLarger as any]: {
             width: "93.75%",
-            maxWidth: 576,
             height: "81.25%",
-            maxHeight: 624,
+            maxBlockSize: 624,
         },
-    }),
-} as const;
+    },
+});

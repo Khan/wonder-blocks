@@ -3,6 +3,8 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {StyleSheet} from "aphrodite";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+// TODO [WB-2137]: standardize media query breakpoint tokens
+import {modalMediaQuery} from "../util/constants";
 import theme from "../theme";
 
 type Props = {
@@ -79,8 +81,8 @@ const ModalDialog = React.forwardRef(function ModalDialog(
     } = props;
 
     return (
-        <View style={[styles.wrapper, style]}>
-            {below && <View style={styles.below}>{below}</View>}
+        <View style={[componentStyles.wrapper, style]}>
+            {below && <View style={componentStyles.below}>{below}</View>}
             <View
                 role={role}
                 aria-modal="true"
@@ -88,19 +90,17 @@ const ModalDialog = React.forwardRef(function ModalDialog(
                 aria-labelledby={ariaLabelledBy}
                 aria-describedby={ariaDescribedBy}
                 ref={ref}
-                style={styles.dialog}
+                style={[componentStyles.dialog]}
                 testId={testId}
             >
                 {children}
             </View>
-            {above && <View style={styles.above}>{above}</View>}
+            {above && <View style={componentStyles.above}>{above}</View>}
         </View>
     );
 });
 
-const small = "@media (max-width: 767px)" as any;
-
-const styles = StyleSheet.create({
+const componentStyles = StyleSheet.create({
     wrapper: {
         // Allows propagating the text color to all the children.
         color: semanticColor.core.foreground.neutral.strong,
@@ -111,9 +111,12 @@ const styles = StyleSheet.create({
         position: "relative",
         boxShadow: theme.dialog.shadow.default,
         borderRadius: theme.root.border.radius,
-        [small]: {
+        [modalMediaQuery.midOrSmaller as any]: {
             padding: theme.dialog.layout.padding,
             flexDirection: "column",
+        },
+        [modalMediaQuery.smMinOrSmallerHeight as any]: {
+            overflow: "auto",
         },
     },
 
@@ -125,6 +128,9 @@ const styles = StyleSheet.create({
         height: "100%",
         borderRadius: theme.root.border.radius,
         overflow: "hidden",
+        [modalMediaQuery.smMinOrSmallerHeight as any]: {
+            overflow: "auto",
+        },
     },
 
     above: {

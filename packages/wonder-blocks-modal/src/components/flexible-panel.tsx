@@ -138,7 +138,6 @@ export default function FlexiblePanel({
 
 FlexiblePanel.defaultProps = {
     closeButtonVisible: true,
-    scrollOverflow: true,
 };
 
 const componentStyles = StyleSheet.create({
