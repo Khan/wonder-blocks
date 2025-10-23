@@ -790,5 +790,17 @@ export const semanticColor = {
                 icon: core.foreground.critical.subtle,
             },
         },
+        neutral: {
+            subtle: {
+                background: core.background.neutral.subtle,
+                border: core.border.neutral.subtle,
+                icon: core.foreground.neutral.subtle,
+                text: core.foreground.neutral.default,
+            },
+            strong: {
+                ...sharedFeedbackStrongTokens,
+                icon: core.foreground.neutral.subtle,
+            },
+        },
     },
 };
