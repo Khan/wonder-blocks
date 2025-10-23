@@ -44,7 +44,7 @@ please refer to the [internal documentation](https://khanacademy.atlassian.net/w
 
 Please note – before contributing ensure that any design changes you are wanting
 to make are reflected in the [Wonder Blocks project in
-Figma](https://www.figma.com/file/VbVu3h2BpBhH80niq101MHHE/Wonder-Blocks).
+Figma](https://khanacademy.atlassian.net/wiki/spaces/WB/pages/4396089552/Resources#Figma).
 
 ## Thanks
 
