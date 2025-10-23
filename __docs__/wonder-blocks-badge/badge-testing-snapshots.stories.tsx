@@ -29,6 +29,7 @@ import singleColoredIcon from "../components/single-colored-icon.svg";
 import {multiColoredIcon} from "../components/icons-for-testing";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {themeModes} from "../../.storybook/modes";
+import {NeutralBadge} from "../../packages/wonder-blocks-badge/src/components/neutral-badge";
 
 /**
  * Badges are visual indicators used to display concise information, such as
@@ -150,6 +151,17 @@ export const StateSheetStory: StoryComponentType = {
                         >
                             <StatusBadge {...props} />
                             <StatusBadge {...props} showBorder={false} />
+                        </View>
+                    )}
+                </StateSheet>
+                <HeadingLarge>Neutral Badge</HeadingLarge>
+                <StateSheet rows={rows} columns={columns} states={states}>
+                    {({props}) => (
+                        <View
+                            style={{gap: sizing.size_100, flexDirection: "row"}}
+                        >
+                            <NeutralBadge {...props} />
+                            <NeutralBadge {...props} showBorder={false} />
                         </View>
                     )}
                 </StateSheet>
@@ -315,6 +327,7 @@ export const AllBadgesScenarios: StoryComponentType = {
             ...statusKinds.map((kind) => (
                 <StatusBadge label="Badge" kind={kind} />
             )),
+            <NeutralBadge label="Badge" />,
         ].map((component) =>
             React.cloneElement(component, {
                 icon: <PhosphorIcon icon={IconMappings.cookieBold} />,
