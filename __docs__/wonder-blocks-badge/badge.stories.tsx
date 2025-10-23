@@ -69,6 +69,17 @@ export const Default = {
 };
 
 /**
+ * A badge can be used without a border.
+ */
+export const NoBorder: StoryComponentType = {
+    args: {
+        icon: "cookieBold",
+        label: "Badge",
+        showBorder: false,
+    },
+};
+
+/**
  * A badge can be used with only a label.
  */
 export const LabelOnly: StoryComponentType = {
