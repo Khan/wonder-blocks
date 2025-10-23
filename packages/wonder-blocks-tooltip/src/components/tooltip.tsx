@@ -20,18 +20,16 @@
 import * as React from "react";
 // import * as ReactDOM from "react-dom";
 
-import {Id, View} from "@khanacademy/wonder-blocks-core";
-import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
+import {Id} from "@khanacademy/wonder-blocks-core";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import {color} from "@khanacademy/wonder-blocks-tokens";
 
 import {Floating} from "@khanacademy/wonder-blocks-floating";
 import TooltipAnchor from "./tooltip-anchor";
-import TooltipBubble from "./tooltip-bubble";
 import TooltipContent from "./tooltip-content";
-import TooltipPopper from "./tooltip-popper";
 import type {ContentStyle, Placement} from "../util/types";
+import TooltipBubble from "./tooltip-bubble";
 
 type Props = AriaProps &
     Readonly<{
@@ -218,50 +216,9 @@ export default class Tooltip extends React.Component<Props, State> {
         }
     }
 
-    _renderPopper(ariaContentId: string): React.ReactNode {
-        const {backgroundColor, placement} = this.props;
-        return (
-            <TooltipPopper
-                anchorElement={this.state.anchorElement}
-                placement={placement}
-                autoUpdate={this.props.autoUpdate}
-                viewportPadding={this.props.viewportPadding}
-            >
-                {(props) => (
-                    <TooltipBubble
-                        id={ariaContentId}
-                        style={props.style}
-                        backgroundColor={backgroundColor}
-                        tailOffset={props.tailOffset}
-                        isReferenceHidden={props.isReferenceHidden}
-                        placement={props.placement}
-                        updateTailRef={props.updateTailRef}
-                        updateBubbleRef={props.updateBubbleRef}
-                        onActiveChanged={(active) =>
-                            this.setState({activeBubble: active})
-                        }
-                    >
-                        {this._renderBubbleContent()}
-                    </TooltipBubble>
-                )}
-            </TooltipPopper>
-        );
-    }
-
-    _getHost(): Element | null | undefined {
-        const {anchorElement} = this.state;
-
-        return (
-            maybeGetPortalMountedModalHostElement(anchorElement) ||
-            document.body
-        );
-    }
-
     _renderTooltipAnchor(uniqueId: string): React.ReactNode {
-        const {autoUpdate, placement} = this.props;
+        const {autoUpdate, backgroundColor, placement} = this.props;
         const {active, activeBubble} = this.state;
-
-        // const popperHost = this._getHost();
 
         // Only render the popper if the anchor element is available so that we
         // can position the popper correctly. If autoUpdate is false, we don't
@@ -276,7 +233,18 @@ export default class Tooltip extends React.Component<Props, State> {
                 placement={placement}
                 portal={true}
                 content={
-                    <View role="tooltip">{this._renderBubbleContent()}</View>
+                    <TooltipBubble
+                        id={ariaContentId}
+                        backgroundColor={backgroundColor}
+                        // isReferenceHidden={props.isReferenceHidden}
+                        placement={placement}
+                        // updateTailRef={props.updateTailRef}
+                        onActiveChanged={(active) =>
+                            this.setState({activeBubble: active})
+                        }
+                    >
+                        {this._renderBubbleContent()}
+                    </TooltipBubble>
                 }
                 defaultOpen={!!shouldBeVisible}
                 useFocusManager={false}

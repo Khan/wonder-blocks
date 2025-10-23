@@ -18,7 +18,7 @@ import {
     boxShadow,
     semanticColor,
 } from "@khanacademy/wonder-blocks-tokens";
-import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
+import maybeGetPortalMountedModalHostElement from "../util/maybe-get-portal-mounted-modal-host-element";
 
 function MaybeRenderFloatingFocusManager({
     context,
@@ -178,6 +178,13 @@ export default function Floating({
                         strokeWidth={1}
                         width={20}
                         height={10}
+                        style={
+                            placement.endsWith("top")
+                                ? {
+                                      filter: `drop-shadow(0 4px 2px ${semanticColor.core.shadow.transparent.mid})`,
+                                  }
+                                : undefined
+                        }
                     />
                 )}
             </div>

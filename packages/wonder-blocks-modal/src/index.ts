@@ -9,7 +9,6 @@ import DrawerLauncher from "./components/drawer-launcher";
 import DrawerDialog, {
     type DrawerDialogStyles,
 } from "./components/drawer-dialog";
-import maybeGetPortalMountedModalHostElement from "./util/maybe-get-portal-mounted-modal-host-element";
 import type {DrawerAlignment} from "./util/types";
 
 export {
@@ -22,7 +21,6 @@ export {
     FlexibleDialog,
     DrawerLauncher,
     DrawerDialog,
-    maybeGetPortalMountedModalHostElement,
 };
 
 export type {DrawerAlignment, DrawerDialogStyles};
