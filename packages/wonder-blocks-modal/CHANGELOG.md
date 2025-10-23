@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-modal
 
+## 8.5.0
+
+### Minor Changes
+
+- 9a989a4: Adds support to OnePaneDialog for shorter-height and zoomed screens
+
+### Patch Changes
+
+- 1d94230: Converts some parts of WB Modal to functional components
+
 ## 8.4.6
 
 ### Patch Changes
