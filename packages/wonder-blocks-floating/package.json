@@ -15,7 +15,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@floating-ui/react": "catalog:",
+    "@floating-ui/react-dom": "catalog:",
     "@khanacademy/wonder-blocks-modal": "workspace:*",
     "@khanacademy/wonder-blocks-tokens": "workspace:*"
   },
