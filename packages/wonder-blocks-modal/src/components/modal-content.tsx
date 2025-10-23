@@ -3,7 +3,8 @@ import {View} from "@khanacademy/wonder-blocks-core";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {StyleSheet} from "aphrodite";
-import {breakpoint} from "@khanacademy/wonder-blocks-tokens";
+// TODO [WB-2137]: standardize media query breakpoint tokens
+import {modalMediaQuery} from "../util/constants";
 import theme from "../theme";
 
 type Props = {
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
         // This helps to ensure that the paddingBottom is preserved when
         // the contents start to overflow, this goes away on display: flex
         display: "block",
-        [breakpoint.mediaQuery.smMinOrSmallerHeight as any]: {
+        [modalMediaQuery.smMinOrSmallerHeight as any]: {
             flex: "unset",
             minHeight: "unset",
             overflow: "unset",
@@ -62,10 +63,10 @@ const styles = StyleSheet.create({
         minHeight: "100%",
         padding: theme.panel.layout.gap.default,
         boxSizing: "border-box",
-        [breakpoint.mediaQuery.midOrSmaller as any]: {
+        [modalMediaQuery.midOrSmaller as any]: {
             paddingInline: theme.panel.layout.gap.small,
         },
-        [breakpoint.mediaQuery.smMinOrSmallerHeight as any]: {
+        [modalMediaQuery.smMinOrSmallerHeight as any]: {
             flex: "unset",
             minHeight: "unset",
             overflow: "unset",

@@ -4,7 +4,9 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {StyleSheet} from "aphrodite";
-import {breakpoint, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+// TODO [WB-2137]: standardize media query breakpoint tokens
+import {modalMediaQuery} from "../util/constants";
 import ModalContent from "./modal-content";
 import ModalHeader from "./modal-header";
 import ModalFooter from "./modal-footer";
@@ -150,7 +152,7 @@ const styles = StyleSheet.create({
         overflow: "hidden",
         height: "100%",
         width: "100%",
-        [breakpoint.mediaQuery.smMinOrSmallerHeight as any]: {
+        [modalMediaQuery.smMinOrSmallerHeight as any]: {
             overflow: "auto",
         },
     },

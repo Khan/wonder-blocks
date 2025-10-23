@@ -2,7 +2,9 @@ import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {StyleSheet} from "aphrodite";
-import {breakpoint, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+// TODO [WB-2137]: standardize media query breakpoint tokens
+import {modalMediaQuery} from "../util/constants";
 import theme from "../theme";
 
 type Props = {
@@ -109,11 +111,11 @@ const componentStyles = StyleSheet.create({
         position: "relative",
         boxShadow: theme.dialog.shadow.default,
         borderRadius: theme.root.border.radius,
-        [breakpoint.mediaQuery.midOrSmaller as any]: {
+        [modalMediaQuery.midOrSmaller as any]: {
             padding: theme.dialog.layout.padding,
             flexDirection: "column",
         },
-        [breakpoint.mediaQuery.smMinOrSmallerHeight as any]: {
+        [modalMediaQuery.smMinOrSmallerHeight as any]: {
             overflow: "auto",
         },
     },
@@ -126,7 +128,7 @@ const componentStyles = StyleSheet.create({
         height: "100%",
         borderRadius: theme.root.border.radius,
         overflow: "hidden",
-        [breakpoint.mediaQuery.smMinOrSmallerHeight as any]: {
+        [modalMediaQuery.smMinOrSmallerHeight as any]: {
             overflow: "auto",
         },
     },

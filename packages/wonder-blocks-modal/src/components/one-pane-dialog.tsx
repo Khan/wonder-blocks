@@ -4,7 +4,8 @@ import {Breadcrumbs} from "@khanacademy/wonder-blocks-breadcrumbs";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {Id} from "@khanacademy/wonder-blocks-core";
-import {breakpoint} from "@khanacademy/wonder-blocks-tokens";
+// TODO [WB-2137]: standardize media query breakpoint tokens
+import {modalMediaQuery} from "../util/constants";
 import ModalDialog from "./modal-dialog";
 import ModalPanel from "./modal-panel";
 import ModalHeader from "./modal-header";
@@ -214,13 +215,13 @@ export default OnePaneDialog;
 
 const styles = StyleSheet.create({
     dialog: {
-        [breakpoint.mediaQuery.midOrSmaller as any]: {
+        [modalMediaQuery.midOrSmaller as any]: {
             width: "100%",
             height: "100%",
             overflow: "hidden",
         },
 
-        [breakpoint.mediaQuery.midOrLarger as any]: {
+        [modalMediaQuery.midOrLarger as any]: {
             width: "93.75%",
             maxWidth: 576,
             height: "81.25%",

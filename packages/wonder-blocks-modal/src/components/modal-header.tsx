@@ -3,7 +3,9 @@ import {Breadcrumbs} from "@khanacademy/wonder-blocks-breadcrumbs";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Heading, BodyText} from "@khanacademy/wonder-blocks-typography";
 import {StyleSheet} from "aphrodite";
-import {breakpoint, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+// TODO [WB-2137]: standardize media query breakpoint tokens
+import {modalMediaQuery} from "../util/constants";
 import theme from "../theme";
 
 type Common = {
@@ -143,10 +145,10 @@ const styles = StyleSheet.create({
         position: "relative",
         width: "100%",
 
-        [breakpoint.mediaQuery.midOrSmaller as any]: {
+        [modalMediaQuery.midOrSmaller as any]: {
             paddingInline: theme.header.layout.padding.inline.small,
         },
-        [breakpoint.mediaQuery.smMinOrSmallerHeight as any]: {
+        [modalMediaQuery.smMinOrSmallerHeight as any]: {
             minHeight: "unset",
         },
     },
@@ -159,7 +161,7 @@ const styles = StyleSheet.create({
     title: {
         // Prevent title from overlapping the close button
         paddingInlineEnd: theme.header.layout.gap.title.default,
-        [breakpoint.mediaQuery.midOrSmaller as any]: {
+        [modalMediaQuery.midOrSmaller as any]: {
             paddingInlineEnd: theme.header.layout.gap.title.small,
         },
     },
