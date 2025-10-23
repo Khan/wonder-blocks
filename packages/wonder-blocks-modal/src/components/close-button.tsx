@@ -24,34 +24,32 @@ type Props = {
     testId?: string;
 };
 
-export default class CloseButton extends React.Component<Props> {
-    render(): React.ReactNode {
-        const {onClick, style, testId} = this.props;
-
-        return (
-            <ModalContext.Consumer>
-                {({closeModal}) => {
-                    if (closeModal && onClick) {
-                        throw new Error(
-                            "You've specified 'onClose' on a modal when using ModalLauncher.  Please specify 'onClose' on the ModalLauncher instead",
-                        );
-                    }
-
-                    return (
-                        <IconButton
-                            icon={xIcon}
-                            // TODO(mdr): Translate this string for i18n.
-                            // TODO(kevinb): provide a way to set this label
-                            aria-label="Close modal"
-                            onClick={onClick || closeModal}
-                            kind="tertiary"
-                            actionType="neutral"
-                            style={style}
-                            testId={testId}
-                        />
+const CloseButton = ({onClick, style, testId}: Props): React.ReactElement => {
+    return (
+        <ModalContext.Consumer>
+            {({closeModal}) => {
+                if (closeModal && onClick) {
+                    throw new Error(
+                        "You've specified 'onClose' on a modal when using ModalLauncher.  Please specify 'onClose' on the ModalLauncher instead",
                     );
-                }}
-            </ModalContext.Consumer>
-        );
-    }
-}
+                }
+
+                return (
+                    <IconButton
+                        icon={xIcon}
+                        // TODO(mdr): Translate this string for i18n.
+                        // TODO(kevinb): provide a way to set this label
+                        aria-label="Close modal"
+                        onClick={onClick || closeModal}
+                        kind="tertiary"
+                        actionType="neutral"
+                        style={style}
+                        testId={testId}
+                    />
+                );
+            }}
+        </ModalContext.Consumer>
+    );
+};
+
+export default CloseButton;

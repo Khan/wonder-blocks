@@ -79,15 +79,6 @@ type Props = Readonly<{
 }> &
     WithActionSchedulerProps;
 
-type DefaultProps = Readonly<{
-    backdropDismissEnabled: Props["backdropDismissEnabled"];
-}>;
-
-type State = Readonly<{
-    /** Whether the modal should currently be open. */
-    opened: boolean;
-}>;
-
 /**
  * This component enables you to launch a modal, covering the screen.
  *
@@ -104,63 +95,62 @@ type State = Readonly<{
  * like OnePaneDialog and is provided via
  * the `modal` prop.
  */
-class ModalLauncher extends React.Component<Props, State> {
-    /**
-     * The most recent element _outside this component_ that received focus.
-     * Be default, it captures the element that triggered the modal opening
-     */
-    lastElementFocusedOutsideModal: HTMLElement | null | undefined;
+const ModalLauncher = (props: Props): React.ReactElement | null => {
+    const {
+        backdropDismissEnabled = true,
+        children,
+        closedFocusId,
+        initialFocusId,
+        modal,
+        onClose,
+        opened: controlledOpened,
+        schedule,
+        testId,
+    } = props;
 
-    static defaultProps: DefaultProps = {
-        backdropDismissEnabled: true,
-    };
+    const lastElementFocusedOutsideModalRef = React.useRef<HTMLElement | null>(
+        null,
+    );
 
-    static getDerivedStateFromProps(
-        props: Props,
-        state: State,
-    ): Partial<State> {
-        if (typeof props.opened === "boolean" && props.children) {
+    const [opened, setOpened] = React.useState(false);
+    const isOpened =
+        typeof controlledOpened === "boolean" ? controlledOpened : opened;
+
+    // Handle validation warnings from getDerivedStateFromProps
+    React.useEffect(() => {
+        if (typeof controlledOpened === "boolean" && children) {
             // eslint-disable-next-line no-console
             console.warn("'children' and 'opened' can't be used together");
         }
-        if (typeof props.opened === "boolean" && !props.onClose) {
+        if (typeof controlledOpened === "boolean" && !onClose) {
             // eslint-disable-next-line no-console
             console.warn("'onClose' should be used with 'opened'");
         }
-        if (typeof props.opened !== "boolean" && !props.children) {
+        if (typeof controlledOpened !== "boolean" && !children) {
             // eslint-disable-next-line no-console
             console.warn("either 'children' or 'opened' must be set");
         }
-        return {
-            opened:
-                typeof props.opened === "boolean" ? props.opened : state.opened,
-        };
-    }
+    }, [controlledOpened, children, onClose]);
 
-    state: State = {opened: false};
-
-    componentDidUpdate(prevProps: Props) {
-        // ensures the element is stored only when the modal is opened
-        if (!prevProps.opened && this.props.opened) {
-            this._saveLastElementFocused();
-        }
-    }
-
-    _saveLastElementFocused: () => void = () => {
+    const saveLastElementFocused = React.useCallback(() => {
         // keep a reference of the element that triggers the modal
-        // @ts-expect-error [FEI-5019] - TS2322 - Type 'Element | null' is not assignable to type 'HTMLElement | null | undefined'.
-        this.lastElementFocusedOutsideModal = document.activeElement;
-    };
+        // @ts-expect-error [FEI-5019] - TS2322 - Type 'Element | null' is not assignable to type 'HTMLElement | null'.
+        lastElementFocusedOutsideModalRef.current = document.activeElement;
+    }, []);
 
-    _openModal: () => void = () => {
-        this._saveLastElementFocused();
-        this.setState({opened: true});
-    };
+    // Handle componentDidUpdate logic
+    React.useEffect(() => {
+        if (!opened && controlledOpened) {
+            saveLastElementFocused();
+        }
+    }, [controlledOpened, opened, saveLastElementFocused]);
 
-    _returnFocus: () => void = () => {
-        const {closedFocusId, schedule} = this.props;
-        const lastElement = this.lastElementFocusedOutsideModal;
+    const openModal = React.useCallback(() => {
+        saveLastElementFocused();
+        setOpened(true);
+    }, [saveLastElementFocused]);
 
+    const returnFocus = React.useCallback(() => {
         // Focus on the specified element after closing the modal.
         if (closedFocusId) {
             // eslint-disable-next-line import/no-deprecated
@@ -178,6 +168,7 @@ class ModalLauncher extends React.Component<Props, State> {
             }
         }
 
+        const lastElement = lastElementFocusedOutsideModalRef.current;
         if (lastElement != null) {
             // Wait for the modal to leave the DOM before trying to
             // return focus to the element that triggered the modal.
@@ -185,105 +176,100 @@ class ModalLauncher extends React.Component<Props, State> {
                 lastElement.focus();
             });
         }
-    };
+    }, [closedFocusId, schedule]);
 
-    handleCloseModal: () => void = () => {
-        this.setState({opened: false}, () => {
-            const {onClose} = this.props;
+    const handleCloseModal = React.useCallback(() => {
+        setOpened(false);
+        onClose?.();
+        returnFocus();
+    }, [onClose, returnFocus]);
 
-            onClose?.();
-            this._returnFocus();
-        });
-    };
-
-    _renderModal(): ModalElement {
-        if (typeof this.props.modal === "function") {
-            return this.props.modal({
-                closeModal: this.handleCloseModal,
+    const renderModal = React.useCallback((): ModalElement => {
+        if (typeof modal === "function") {
+            return modal({
+                closeModal: handleCloseModal,
             });
         } else {
-            return this.props.modal;
+            return modal;
         }
-    }
+    }, [modal, handleCloseModal]);
 
-    render(): React.ReactElement | null {
-        const renderedChildren = this.props.children
-            ? this.props.children({
-                  openModal: this._openModal,
-              })
-            : null;
+    const renderedChildren = children
+        ? children({
+              openModal,
+          })
+        : null;
 
-        const {body} = document;
-        if (!body) {
-            return null;
-        }
-
-        return (
-            <ModalContext.Provider value={{closeModal: this.handleCloseModal}}>
-                {renderedChildren}
-                {this.state.opened &&
-                    ReactDOM.createPortal(
-                        /* We need the container View that FocusTrap creates to be at the
-                           correct z-index so that it'll be above the global nav in webapp. */
-                        <FocusTrap style={styles.container}>
-                            <ModalBackdrop
-                                initialFocusId={this.props.initialFocusId}
-                                testId={this.props.testId}
-                                onCloseModal={
-                                    this.props.backdropDismissEnabled
-                                        ? this.handleCloseModal
-                                        : () => {}
-                                }
-                            >
-                                {this._renderModal()}
-                            </ModalBackdrop>
-                        </FocusTrap>,
-                        body,
-                    )}
-                {this.state.opened && (
-                    <ModalLauncherKeypressListener
-                        onClose={this.handleCloseModal}
-                    />
-                )}
-                {this.state.opened && <ScrollDisabler />}
-            </ModalContext.Provider>
-        );
-    }
-}
-
-/** A component that, when mounted, calls `onClose` when Escape is pressed. */
-class ModalLauncherKeypressListener extends React.Component<{
-    onClose: () => unknown;
-}> {
-    componentDidMount() {
-        window.addEventListener("keyup", this._handleKeyup);
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener("keyup", this._handleKeyup);
-    }
-
-    _handleKeyup = (e: KeyboardEvent) => {
-        // We check the key as that's keyboard layout agnostic and also avoids
-        // the minefield of deprecated number type properties like keyCode and
-        // which, with the replacement code, which uses a string instead.
-        if (e.key === "Escape") {
-            // Stop the event going any further.
-            // For cancellation events, like the Escape key, we generally should
-            // air on the side of caution and only allow it to cancel one thing.
-            // So, it's polite for us to stop propagation of the event.
-            // Otherwise, we end up with UX where one Escape key press
-            // unexpectedly cancels multiple things.
-            e.preventDefault();
-            e.stopPropagation();
-            this.props.onClose();
-        }
-    };
-
-    render(): React.ReactElement | null {
+    const {body} = document;
+    if (!body) {
         return null;
     }
-}
+
+    return (
+        <ModalContext.Provider value={{closeModal: handleCloseModal}}>
+            {renderedChildren}
+            {isOpened &&
+                ReactDOM.createPortal(
+                    /* We need the container View that FocusTrap creates to be at the
+                       correct z-index so that it'll be above the global nav in webapp. */
+                    <FocusTrap style={styles.container}>
+                        <ModalBackdrop
+                            initialFocusId={initialFocusId}
+                            testId={testId}
+                            onCloseModal={
+                                backdropDismissEnabled
+                                    ? handleCloseModal
+                                    : () => {}
+                            }
+                        >
+                            {renderModal()}
+                        </ModalBackdrop>
+                    </FocusTrap>,
+                    body,
+                )}
+            {isOpened && (
+                <ModalLauncherKeypressListener onClose={handleCloseModal} />
+            )}
+            {isOpened && <ScrollDisabler />}
+        </ModalContext.Provider>
+    );
+};
+
+/** A component that, when mounted, calls `onClose` when Escape is pressed. */
+const ModalLauncherKeypressListener = ({
+    onClose,
+}: {
+    onClose: () => unknown;
+}): null => {
+    const handleKeyup = React.useCallback(
+        (e: KeyboardEvent) => {
+            // We check the key as that's keyboard layout agnostic and also avoids
+            // the minefield of deprecated number type properties like keyCode and
+            // which, with the replacement code, which uses a string instead.
+            if (e.key === "Escape") {
+                // Stop the event going any further.
+                // For cancellation events, like the Escape key, we generally should
+                // air on the side of caution and only allow it to cancel one thing.
+                // So, it's polite for us to stop propagation of the event.
+                // Otherwise, we end up with UX where one Escape key press
+                // unexpectedly cancels multiple things.
+                e.preventDefault();
+                e.stopPropagation();
+                onClose();
+            }
+        },
+        [onClose],
+    );
+
+    React.useEffect(() => {
+        window.addEventListener("keyup", handleKeyup);
+        return () => {
+            window.removeEventListener("keyup", handleKeyup);
+        };
+    }, [handleKeyup]);
+
+    return null;
+};
 
 const styles = StyleSheet.create({
     container: {
