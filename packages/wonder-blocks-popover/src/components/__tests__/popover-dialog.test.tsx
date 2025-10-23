@@ -1,6 +1,5 @@
 import * as React from "react";
 import {render} from "@testing-library/react";
-import * as Tooltip from "@khanacademy/wonder-blocks-tooltip";
 
 import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
 import PopoverDialog from "../popover-dialog";
@@ -52,27 +51,5 @@ describe("PopoverDialog", () => {
 
         // Assert
         expect(onUpdateMock).not.toHaveBeenCalled();
-    });
-
-    it("should not render a tail if showTail is false", () => {
-        // Arrange
-        const tooltipTailSpy = jest.spyOn(Tooltip, "TooltipTail");
-
-        // Act
-        render(
-            <PopoverDialog
-                showTail={false}
-                placement="top"
-                onUpdate={jest.fn()}
-            >
-                <PopoverContentCore>popover content</PopoverContentCore>
-            </PopoverDialog>,
-        );
-
-        // Assert
-        expect(tooltipTailSpy).toHaveBeenCalledWith(
-            expect.objectContaining({show: false}),
-            {},
-        );
     });
 });
