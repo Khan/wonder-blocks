@@ -18,14 +18,15 @@
  *                     callout to the anchor content)
  */
 import * as React from "react";
-import * as ReactDOM from "react-dom";
+// import * as ReactDOM from "react-dom";
 
-import {Id} from "@khanacademy/wonder-blocks-core";
+import {Id, View} from "@khanacademy/wonder-blocks-core";
 import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import {color} from "@khanacademy/wonder-blocks-tokens";
 
+import {Floating} from "@khanacademy/wonder-blocks-floating";
 import TooltipAnchor from "./tooltip-anchor";
 import TooltipBubble from "./tooltip-bubble";
 import TooltipContent from "./tooltip-content";
@@ -191,9 +192,9 @@ export default class Tooltip extends React.Component<Props, State> {
     };
 
     _updateAnchorElement(ref?: Element | null) {
-        if (ref && ref !== this.state.anchorElement) {
-            this.setState({anchorElement: ref as HTMLElement});
-        }
+        // if (ref && ref !== this.state.anchorElement) {
+        //     this.setState({anchorElement: ref as HTMLElement});
+        // }
     }
 
     _renderBubbleContent(): React.ReactElement<
@@ -257,39 +258,40 @@ export default class Tooltip extends React.Component<Props, State> {
     }
 
     _renderTooltipAnchor(uniqueId: string): React.ReactNode {
-        const {autoUpdate, children, forceAnchorFocusivity} = this.props;
+        const {autoUpdate, placement} = this.props;
         const {active, activeBubble} = this.state;
 
-        const popperHost = this._getHost();
+        // const popperHost = this._getHost();
 
         // Only render the popper if the anchor element is available so that we
         // can position the popper correctly. If autoUpdate is false, we don't
         // need to wait for the anchor element to render the popper.
         const shouldAnchorExist = autoUpdate ? this.state.anchorElement : true;
-        const shouldBeVisible =
-            popperHost && (active || activeBubble) && shouldAnchorExist;
+        const shouldBeVisible = (active || activeBubble) && shouldAnchorExist;
 
         const ariaContentId = `${uniqueId}-aria-content`;
 
-        // TODO(kevinb): update to use ReactPopper's React 16-friendly syntax
         return (
-            <React.Fragment>
+            <Floating
+                placement={placement}
+                portal={true}
+                content={
+                    <View role="tooltip">{this._renderBubbleContent()}</View>
+                }
+                defaultOpen={!!shouldBeVisible}
+                useFocusManager={false}
+            >
                 <TooltipAnchor
-                    forceAnchorFocusivity={forceAnchorFocusivity}
-                    anchorRef={(r) => this._updateAnchorElement(r)}
+                    anchorRef={this._updateAnchorElement}
+                    forceAnchorFocusivity={this.props.forceAnchorFocusivity}
                     onActiveChanged={(active) => this.setState({active})}
                     aria-describedby={
                         shouldBeVisible ? ariaContentId : undefined
                     }
                 >
-                    {children}
+                    {this.props.children}
                 </TooltipAnchor>
-                {shouldBeVisible &&
-                    ReactDOM.createPortal(
-                        this._renderPopper(ariaContentId),
-                        popperHost,
-                    )}
-            </React.Fragment>
+            </Floating>
         );
     }
 

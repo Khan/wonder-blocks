@@ -10,6 +10,7 @@ import {
     arrow,
     FloatingArrow,
     FloatingFocusManager,
+    FloatingRootContext,
 } from "@floating-ui/react";
 import {StyleSheet, css} from "aphrodite";
 import {
@@ -18,6 +19,35 @@ import {
     semanticColor,
 } from "@khanacademy/wonder-blocks-tokens";
 import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
+
+function MaybeRenderFloatingFocusManager({
+    context,
+    dismissEnabled,
+    useFocusManager,
+    initialFocus,
+    children,
+}: {
+    context: FloatingRootContext;
+    dismissEnabled: boolean;
+    useFocusManager: boolean;
+    initialFocus: React.RefObject<HTMLElement>;
+    children: React.JSX.Element;
+}) {
+    if (useFocusManager) {
+        return (
+            <FloatingFocusManager
+                context={context}
+                modal={false}
+                closeOnFocusOut={dismissEnabled}
+                initialFocus={initialFocus}
+            >
+                {children}
+            </FloatingFocusManager>
+        );
+    }
+
+    return children;
+}
 
 type FloatingProps = {
     /**
@@ -54,13 +84,20 @@ type FloatingProps = {
     /**
      * The element that will receive focus when the floating element is opened.
      */
-    initialFocus?: React.RefObject<HTMLElement>;
+    initialFocus?: React.MutableRefObject<HTMLElement | null>;
 
     /**
      * Whether to render the floating element in a portal.
      * @default true
      */
     portal?: boolean | HTMLElement | null | undefined;
+
+    /**
+     * Whether to use the FocusManager component to manage the focus of the
+     * floating element.
+     * @default true
+     */
+    useFocusManager?: boolean;
 };
 
 /**
@@ -76,6 +113,7 @@ export default function Floating({
     dismissEnabled = false,
     initialFocus,
     showArrow = true,
+    useFocusManager = true,
 }: FloatingProps) {
     const [isOpen, setIsOpen] = React.useState(defaultOpen);
     const arrowRef = React.useRef(null);
@@ -114,11 +152,11 @@ export default function Floating({
     );
 
     const floatingContainer = (
-        <FloatingFocusManager
+        <MaybeRenderFloatingFocusManager
+            useFocusManager={useFocusManager}
             context={context}
-            modal={false}
-            closeOnFocusOut={dismissEnabled}
-            initialFocus={initialFocus}
+            dismissEnabled={dismissEnabled}
+            initialFocus={initialFocus as React.RefObject<HTMLElement>}
         >
             <div
                 ref={refs.setFloating}
@@ -143,7 +181,7 @@ export default function Floating({
                     />
                 )}
             </div>
-        </FloatingFocusManager>
+        </MaybeRenderFloatingFocusManager>
     );
 
     let renderedContent = null;
@@ -173,7 +211,7 @@ const styles = StyleSheet.create({
         background: semanticColor.core.background.base.default,
         border: `solid ${border.width.thin} ${semanticColor.core.border.neutral.subtle}`,
         borderRadius: border.radius.radius_040,
-        maxWidth: 300,
+        maxWidth: 288,
         boxShadow: boxShadow.mid,
         justifyContent: "center",
     },
