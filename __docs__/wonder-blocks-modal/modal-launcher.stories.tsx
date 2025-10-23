@@ -896,12 +896,10 @@ export const ControlledModalFocusTest: StoryComponentType = () => {
 };
 
 ControlledModalFocusTest.parameters = {
-    parameters: {
-        chromatic: {
-            // All the examples for ModalLauncher are behavior based, not
-            // visual.
-            disableSnapshot: true,
-        },
+    chromatic: {
+        // All the examples for ModalLauncher are behavior based, not
+        // visual.
+        disableSnapshot: true,
     },
 };
 
