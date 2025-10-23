@@ -791,6 +791,9 @@ importers:
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:../wonder-blocks-core
+      '@khanacademy/wonder-blocks-floating':
+        specifier: workspace:*
+        version: link:../wonder-blocks-floating
       '@khanacademy/wonder-blocks-form':
         specifier: workspace:*
         version: link:../wonder-blocks-form
@@ -800,9 +803,6 @@ importers:
       '@khanacademy/wonder-blocks-icon-button':
         specifier: workspace:*
         version: link:../wonder-blocks-icon-button
-      '@khanacademy/wonder-blocks-modal':
-        specifier: workspace:*
-        version: link:../wonder-blocks-modal
       '@khanacademy/wonder-blocks-pill':
         specifier: workspace:*
         version: link:../wonder-blocks-pill
