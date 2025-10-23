@@ -1462,6 +1462,9 @@ importers:
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:../wonder-blocks-core
+      '@khanacademy/wonder-blocks-floating':
+        specifier: workspace:*
+        version: link:../wonder-blocks-floating
       '@khanacademy/wonder-blocks-layout':
         specifier: workspace:*
         version: link:../wonder-blocks-layout
