@@ -405,7 +405,7 @@ export const WithStyle: StoryComponentType = () => (
                 }
                 style={{
                     color: semanticColor.status.notice.foreground,
-                    maxWidth: 1000,
+                    maxBlockSize: 1000,
                 }}
             />
         </View>
