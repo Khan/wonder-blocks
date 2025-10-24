@@ -9,6 +9,10 @@ type Props = {
      * The kind of badge to display. Defaults to `info`.
      */
     kind?: "info" | "success" | "warning" | "critical";
+    /**
+     * Whether to show the border. Defaults to `true`.
+     */
+    showBorder?: boolean;
 } & BaseBadgeProps &
     IconLabelProps;
 
@@ -19,10 +23,11 @@ type Props = {
  * for the status kinds. For more details, see the `Badge` docs.
  */
 const StatusBadge = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
-    const {kind = "info", ...otherProps} = props;
+    const {kind = "info", showBorder, ...otherProps} = props;
     return (
         <Badge
             ref={ref}
+            showBorder={showBorder}
             {...otherProps}
             styles={{
                 ...otherProps.styles,
