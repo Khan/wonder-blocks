@@ -6,8 +6,12 @@ import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {themeModes} from "../../.storybook/modes";
-import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
-import {AccessoryMappings} from "./option-item.argtypes";
+import {
+    commonStates,
+    defaultPseudoStates,
+    StateSheet,
+} from "../components/state-sheet";
+import {StatusBadge} from "@khanacademy/wonder-blocks-badge";
 
 const rows = [
     {name: "Unselected", props: {checked: false}},
@@ -29,7 +33,9 @@ const columns = [
         props: {
             label: "Option Item",
             onClick: () => {},
-            subtitle1: AccessoryMappings.badge,
+            subtitle1: (
+                <StatusBadge label="New" kind="info" testId="new-badge" />
+            ),
             subtitle2: "Subtitle 2",
             leftAccessory: (
                 <PhosphorIcon icon={IconMappings.calendar} size="medium" />
@@ -103,6 +109,15 @@ export const StateSheetStory: Story = {
         );
     },
     parameters: {
-        pseudo: defaultPseudoStates,
+        pseudo: {
+            ...defaultPseudoStates,
+            focusVisible: [
+                // Exclude the badge from the focus visible state since it is not focusable
+                // Badge has focus styling applied to it in case it is used with a tooltip.
+                `.${commonStates.focus.className} *:not([data-testid="new-badge"])`,
+                `.${commonStates.hoverAndFocus.className} *:not([data-testid="new-badge"])`,
+                `.${commonStates.pressAndFocus.className} *:not([data-testid="new-badge"])`,
+            ],
+        },
     },
 };
