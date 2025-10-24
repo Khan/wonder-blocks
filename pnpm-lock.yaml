@@ -861,9 +861,6 @@ importers:
       '@floating-ui/react-dom':
         specifier: 'catalog:'
         version: 2.1.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@khanacademy/wonder-blocks-modal':
-        specifier: workspace:*
-        version: link:../wonder-blocks-modal
       '@khanacademy/wonder-blocks-tokens':
         specifier: workspace:*
         version: link:../wonder-blocks-tokens
@@ -877,6 +874,9 @@ importers:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
         version: link:../../build-settings
+      '@khanacademy/wonder-blocks-modal':
+        specifier: workspace:*
+        version: link:../wonder-blocks-modal
 
   packages/wonder-blocks-form:
     dependencies:
