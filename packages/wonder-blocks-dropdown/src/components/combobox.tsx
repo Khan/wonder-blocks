@@ -763,7 +763,7 @@ const styles = StyleSheet.create({
      */
     button: {
         position: "absolute",
-        insetInlineEnd: sizing.size_040,
+        insetInlineEnd: sizing.size_0,
         margin: 0,
     },
     buttonOpen: {
@@ -775,7 +775,7 @@ const styles = StyleSheet.create({
     clearButton: {
         // The clear button is positioned to the left of the arrow button.
         // This is calculated based on the padding + width of the arrow button.
-        insetInlineEnd: sizing.size_400,
+        insetInlineEnd: sizing.size_360,
     },
     iconWrapper: {
         padding: sizing.size_040,
