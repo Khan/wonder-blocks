@@ -6,6 +6,9 @@ settings:
 
 catalogs:
   default:
+    '@floating-ui/react':
+      specifier: ^0.27.16
+      version: 0.27.16
     '@khanacademy/wonder-stuff-core':
       specifier: ^1.5.4
       version: 1.5.4
@@ -848,6 +851,25 @@ importers:
       react-window:
         specifier: 'catalog:'
         version: 1.8.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+    devDependencies:
+      '@khanacademy/wb-dev-build-settings':
+        specifier: workspace:*
+        version: link:../../build-settings
+
+  packages/wonder-blocks-floating:
+    dependencies:
+      '@floating-ui/react':
+        specifier: 'catalog:'
+        version: 0.27.16(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@khanacademy/wonder-blocks-tokens':
+        specifier: workspace:*
+        version: link:../wonder-blocks-tokens
+      aphrodite:
+        specifier: 'catalog:'
+        version: 1.2.5
+      react:
+        specifier: 'catalog:'
+        version: 18.2.0
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*

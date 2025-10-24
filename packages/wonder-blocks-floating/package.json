@@ -1,0 +1,28 @@
+{
+  "name": "@khanacademy/wonder-blocks-floating",
+  "version": "0.0.1",
+  "description": "A package that provides support for floating UI components in our UIs, including portal and focus management support.",
+  "main": "dist/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
+  },
+  "author": "",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@floating-ui/react": "catalog:",
+    "@khanacademy/wonder-blocks-tokens": "workspace:*"
+  },
+  "peerDependencies": {
+    "aphrodite": "catalog:",
+    "react": "catalog:"
+  },
+  "devDependencies": {
+    "@khanacademy/wb-dev-build-settings": "workspace:*"
+  }
+}
