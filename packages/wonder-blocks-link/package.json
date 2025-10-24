@@ -1,11 +1,21 @@
 {
   "name": "@khanacademy/wonder-blocks-link",
+  "description": "Link component for Wonder Blocks design system.",
+  "author": "Khan Academy",
+  "license": "MIT",
   "version": "10.0.1",
-  "design": "v1",
   "publishConfig": {
     "access": "public"
   },
-  "description": "Link component for Wonder Blocks design system.",
+  "design": "v1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Khan/wonder-blocks.git",
+    "directory": "packages/wonder-blocks-link"
+  },
+  "bugs": {
+    "url": "https://github.com/Khan/wonder-blocks/issues"
+  },
   "main": "dist/index.js",
   "module": "dist/es/index.js",
   "types": "dist/index.d.ts",
@@ -22,8 +32,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },
-  "author": "",
-  "license": "MIT",
   "dependencies": {
     "@khanacademy/wonder-blocks-clickable": "workspace:*",
     "@khanacademy/wonder-blocks-core": "workspace:*",

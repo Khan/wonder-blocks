@@ -1,11 +1,21 @@
 {
   "name": "@khanacademy/wonder-blocks-icon",
+  "description": "",
+  "author": "Khan Academy",
+  "license": "MIT",
   "version": "5.3.0",
-  "design": "v1",
   "publishConfig": {
     "access": "public"
   },
-  "description": "",
+  "design": "v1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Khan/wonder-blocks.git",
+    "directory": "packages/wonder-blocks-icon"
+  },
+  "bugs": {
+    "url": "https://github.com/Khan/wonder-blocks/issues"
+  },
   "main": "dist/index.js",
   "module": "dist/es/index.js",
   "types": "dist/index.d.ts",
@@ -13,18 +23,16 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },
-  "author": "",
-  "license": "MIT",
   "dependencies": {
     "@khanacademy/wonder-blocks-core": "workspace:*",
     "@khanacademy/wonder-blocks-tokens": "workspace:*"
-  },
-  "devDependencies": {
-    "@khanacademy/wb-dev-build-settings": "workspace:*"
   },
   "peerDependencies": {
     "@phosphor-icons/core": "catalog:",
     "aphrodite": "catalog:",
     "react": "catalog:"
+  },
+  "devDependencies": {
+    "@khanacademy/wb-dev-build-settings": "workspace:*"
   }
 }

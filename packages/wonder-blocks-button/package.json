@@ -1,11 +1,24 @@
 {
   "name": "@khanacademy/wonder-blocks-button",
+  "description": "",
+  "author": "Khan Academy",
+  "license": "MIT",
   "version": "11.2.4",
-  "design": "v1",
   "publishConfig": {
     "access": "public"
   },
-  "description": "",
+  "design": "v1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Khan/wonder-blocks.git",
+    "directory": "packages/wonder-blocks-button"
+  },
+  "bugs": {
+    "url": "https://github.com/Khan/wonder-blocks/issues"
+  },
+  "main": "dist/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/es/index.js",
@@ -14,16 +27,11 @@
     },
     "./styles.css": "./dist/css/vars.css"
   },
-  "main": "dist/index.js",
-  "module": "dist/es/index.js",
-  "types": "dist/index.d.ts",
   "scripts": {
     "build:css": "pnpm exec wonder-blocks-tokens .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },
-  "author": "",
-  "license": "MIT",
   "dependencies": {
     "@khanacademy/wonder-blocks-clickable": "workspace:*",
     "@khanacademy/wonder-blocks-core": "workspace:*",

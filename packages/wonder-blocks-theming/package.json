@@ -1,10 +1,20 @@
 {
   "name": "@khanacademy/wonder-blocks-theming",
+  "description": "Theming in Wonder Blocks can be set per package/component level using a theme object that defines your components's colors, spacing, fonts, and more.",
+  "author": "Khan Academy",
+  "license": "MIT",
   "version": "4.0.0",
   "publishConfig": {
     "access": "public"
   },
-  "description": "Theming in Wonder Blocks can be set per package/component level using a theme object that defines your components's colors, spacing, fonts, and more.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Khan/wonder-blocks.git",
+    "directory": "packages/wonder-blocks-theming"
+  },
+  "bugs": {
+    "url": "https://github.com/Khan/wonder-blocks/issues"
+  },
   "main": "dist/index.js",
   "module": "dist/es/index.js",
   "types": "dist/index.d.ts",
@@ -20,7 +30,5 @@
   },
   "devDependencies": {
     "@khanacademy/wb-dev-build-settings": "workspace:*"
-  },
-  "author": "",
-  "license": "MIT"
+  }
 }

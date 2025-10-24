@@ -1,11 +1,21 @@
 {
   "name": "@khanacademy/wonder-blocks-core",
+  "description": "",
+  "author": "Khan Academy",
+  "license": "MIT",
   "version": "12.4.0",
-  "design": "v1",
   "publishConfig": {
     "access": "public"
   },
-  "description": "",
+  "design": "v1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Khan/wonder-blocks.git",
+    "directory": "packages/wonder-blocks-core"
+  },
+  "bugs": {
+    "url": "https://github.com/Khan/wonder-blocks/issues"
+  },
   "main": "dist/index.js",
   "module": "dist/es/index.js",
   "types": "dist/index.d.ts",
@@ -25,7 +35,5 @@
   "devDependencies": {
     "@khanacademy/wb-dev-build-settings": "workspace:*",
     "@khanacademy/wonder-blocks-testing-core": "workspace:*"
-  },
-  "author": "",
-  "license": "MIT"
+  }
 }

@@ -1,8 +1,24 @@
 {
   "name": "@khanacademy/wonder-blocks-labeled-field",
-  "version": "4.0.6",
-  "design": "v1",
   "description": "LabeledField handles accessibility and layout for associating labels with form components.",
+  "author": "Khan Academy",
+  "license": "MIT",
+  "version": "4.0.6",
+  "publishConfig": {
+    "access": "public"
+  },
+  "design": "v1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Khan/wonder-blocks.git",
+    "directory": "packages/wonder-blocks-labeled-field"
+  },
+  "bugs": {
+    "url": "https://github.com/Khan/wonder-blocks/issues"
+  },
+  "main": "dist/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/es/index.js",
@@ -11,18 +27,10 @@
     },
     "./styles.css": "./dist/css/vars.css"
   },
-  "main": "dist/index.js",
-  "module": "dist/es/index.js",
-  "types": "dist/index.d.ts",
   "scripts": {
     "build:css": "pnpm exec wonder-blocks-tokens .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
-  },
-  "author": "",
-  "license": "MIT",
-  "publishConfig": {
-    "access": "public"
   },
   "dependencies": {
     "@khanacademy/wonder-blocks-core": "workspace:*",
