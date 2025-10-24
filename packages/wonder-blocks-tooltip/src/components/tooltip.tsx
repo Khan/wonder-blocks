@@ -30,6 +30,7 @@ import TooltipAnchor from "./tooltip-anchor";
 import TooltipContent from "./tooltip-content";
 import type {ContentStyle, Placement} from "../util/types";
 import TooltipBubble from "./tooltip-bubble";
+import TooltipTail from "./tooltip-tail";
 
 type Props = AriaProps &
     Readonly<{
@@ -232,6 +233,13 @@ export default class Tooltip extends React.Component<Props, State> {
             <Floating
                 placement={placement}
                 portal={true}
+                arrow={
+                    <TooltipTail
+                        show={true}
+                        placement={placement}
+                        color="white"
+                    />
+                }
                 content={
                     <TooltipBubble
                         id={ariaContentId}

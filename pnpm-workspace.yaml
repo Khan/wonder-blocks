@@ -12,7 +12,8 @@ catalog:
     # Icons library
     "@phosphor-icons/core": ^2.0.2
     # Positioning
-    "@floating-ui/react": ^0.27.16
+    # "@floating-ui/react": ^0.27.16
+    "@floating-ui/react-dom": 2.1.6
     "@popperjs/core": ^2.10.1
     react-popper: ^2.3.0
     # Styling

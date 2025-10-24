@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as ReactDOM from "react-dom";
 import {
     useFloating,
     autoUpdate,
@@ -6,12 +7,8 @@ import {
     flip,
     hide,
     shift,
-    FloatingPortal,
     arrow,
-    FloatingArrow,
-    FloatingFocusManager,
-    FloatingRootContext,
-} from "@floating-ui/react";
+} from "@floating-ui/react-dom";
 import {StyleSheet, css} from "aphrodite";
 import {
     border,
@@ -20,36 +17,11 @@ import {
 } from "@khanacademy/wonder-blocks-tokens";
 import maybeGetPortalMountedModalHostElement from "../util/maybe-get-portal-mounted-modal-host-element";
 
-function MaybeRenderFloatingFocusManager({
-    context,
-    dismissEnabled,
-    useFocusManager,
-    initialFocus,
-    children,
-}: {
-    context: FloatingRootContext;
-    dismissEnabled: boolean;
-    useFocusManager: boolean;
-    initialFocus: React.RefObject<HTMLElement>;
-    children: React.JSX.Element;
-}) {
-    if (useFocusManager) {
-        return (
-            <FloatingFocusManager
-                context={context}
-                modal={false}
-                closeOnFocusOut={dismissEnabled}
-                initialFocus={initialFocus}
-            >
-                {children}
-            </FloatingFocusManager>
-        );
-    }
-
-    return children;
-}
-
 type FloatingProps = {
+    /**
+     * The arrow element to display on the floating element.
+     */
+    arrow?: React.ReactNode;
     /**
      * The content to display in the floating element.
      */
@@ -105,13 +77,14 @@ type FloatingProps = {
  * relative to a reference element. The floating element appears on hover or focus.
  */
 export default function Floating({
+    arrow: arrowElement,
     content,
     children,
     portal = true,
     placement = "top",
     defaultOpen = false,
-    dismissEnabled = false,
-    initialFocus,
+    // dismissEnabled = false,
+    // initialFocus,
     showArrow = true,
     useFocusManager = true,
 }: FloatingProps) {
@@ -122,24 +95,23 @@ export default function Floating({
         setIsOpen(defaultOpen);
     }, [defaultOpen]);
 
-    const {refs, elements, floatingStyles, context, middlewareData} =
-        useFloating({
-            open: isOpen,
-            onOpenChange: setIsOpen,
-            placement,
-            // Ensure the floating element stays in sync with the reference element
-            whileElementsMounted: autoUpdate,
-            middleware: [
-                hide(),
-                // Add offset from the reference element
-                offset(20),
-                // Flip to the opposite side if there's not enough space
-                flip(),
-                // Shift along the axis to keep it in view
-                shift({padding: 12}),
-                ...(showArrow ? [arrow({element: arrowRef})] : []),
-            ],
-        });
+    const {refs, elements, floatingStyles, middlewareData} = useFloating({
+        // open: isOpen,
+        // onOpenChange: setIsOpen,
+        placement,
+        // Ensure the floating element stays in sync with the reference element
+        whileElementsMounted: autoUpdate,
+        middleware: [
+            hide(),
+            // Add offset from the reference element
+            offset(20),
+            // Flip to the opposite side if there's not enough space
+            flip(),
+            // Shift along the axis to keep it in view
+            shift({padding: 12}),
+            ...(showArrow ? [arrow({element: arrowRef})] : []),
+        ],
+    });
 
     // Clone the child element and add the ref and props
     const trigger = React.useMemo(
@@ -152,43 +124,30 @@ export default function Floating({
     );
 
     const floatingContainer = (
-        <MaybeRenderFloatingFocusManager
-            useFocusManager={useFocusManager}
-            context={context}
-            dismissEnabled={dismissEnabled}
-            initialFocus={initialFocus as React.RefObject<HTMLElement>}
+        <div
+            ref={refs.setFloating}
+            style={{
+                ...floatingStyles,
+                visibility: middlewareData.hide?.referenceHidden
+                    ? "hidden"
+                    : "visible",
+            }}
+            className={css(styles.floating)}
         >
-            <div
-                ref={refs.setFloating}
-                style={{
-                    ...floatingStyles,
-                    visibility: middlewareData.hide?.referenceHidden
-                        ? "hidden"
-                        : "visible",
-                }}
-                className={css(styles.floating)}
-            >
-                {content}
-                {showArrow && (
-                    <FloatingArrow
-                        ref={arrowRef}
-                        context={context}
-                        fill={semanticColor.core.background.base.default}
-                        stroke={semanticColor.core.border.neutral.subtle}
-                        strokeWidth={1}
-                        width={20}
-                        height={10}
-                        style={
-                            placement.endsWith("top")
-                                ? {
-                                      filter: `drop-shadow(0 4px 2px ${semanticColor.core.shadow.transparent.mid})`,
-                                  }
-                                : undefined
-                        }
-                    />
-                )}
-            </div>
-        </MaybeRenderFloatingFocusManager>
+            {content}
+            {showArrow && (
+                <div
+                    ref={arrowRef}
+                    style={{
+                        position: "absolute",
+                        left: middlewareData.arrow?.x,
+                        top: middlewareData.arrow?.y,
+                    }}
+                >
+                    {arrowElement}
+                </div>
+            )}
+        </div>
     );
 
     let renderedContent = null;
@@ -198,9 +157,7 @@ export default function Floating({
                 elements.reference as HTMLElement,
             ) as HTMLElement) || document.body;
 
-        renderedContent = (
-            <FloatingPortal root={root}>{floatingContainer}</FloatingPortal>
-        );
+        renderedContent = ReactDOM.createPortal(floatingContainer, root);
     } else {
         renderedContent = floatingContainer;
     }

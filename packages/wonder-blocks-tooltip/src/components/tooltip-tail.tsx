@@ -50,7 +50,13 @@ type FilterPosition = {
 // something SSR-friendly and more robust.
 let tempIdCounter = 0;
 
-export default class TooltipTail extends React.Component<Props> {
+type WithForwardRef = {
+    forwardedRef: React.ForwardedRef<SVGElement>;
+};
+
+type PropsWithForwardRef = Props & WithForwardRef;
+
+class TooltipTail extends React.Component<PropsWithForwardRef> {
     static defaultProps: DefaultProps = {
         color: "white",
         show: true,
@@ -432,7 +438,7 @@ const styles = StyleSheet.create({
      * Container
      */
     tailContainer: {
-        position: "relative",
+        // position: "relative",
         pointerEvents: "none",
     },
 
@@ -444,3 +450,7 @@ const styles = StyleSheet.create({
         overflow: "visible",
     },
 });
+
+export default React.forwardRef<SVGElement, Props>((props, ref) => (
+    <TooltipTail {...props} forwardedRef={ref} />
+)) as React.ForwardRefExoticComponent<Props & React.RefAttributes<SVGElement>>;

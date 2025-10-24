@@ -17,10 +17,10 @@ import PopoverContext from "./popover-context";
 import PopoverAnchor from "./popover-anchor";
 import PopoverDialog from "./popover-dialog";
 import PopoverEventListener from "./popover-event-listener";
+import InitialFocus from "./initial-focus";
+import FocusManager from "./focus-manager";
 
 const {useState, useRef, useEffect, useCallback} = React;
-// import InitialFocus from "./initial-focus";
-// import FocusManager from "./focus-manager";
 
 type PopoverContents =
     | React.ReactElement<React.ComponentProps<typeof PopoverContent>>
@@ -176,6 +176,8 @@ const Popover = (props: Props): React.ReactElement => {
         children,
         closedFocusId,
         initialFocus,
+        initialFocusId,
+        initialFocusDelay,
         onClose,
         opened: controlledOpened,
         "aria-label": ariaLabel,
@@ -186,7 +188,7 @@ const Popover = (props: Props): React.ReactElement => {
     const [internalOpened, setInternalOpened] = useState(!!controlledOpened);
     const [currentPlacement, setCurrentPlacement] =
         useState<Placement>(placement);
-
+    const anchorElement = useRef<HTMLElement>(null);
     /**
      * Popover content ref
      */
@@ -277,6 +279,45 @@ const Popover = (props: Props): React.ReactElement => {
         (uniqueId: string, opened: boolean) => {
             const describedBy = ariaDescribedBy || `${uniqueId}-content`;
             const ariaLabelledBy = ariaLabel ? undefined : `${uniqueId}-title`;
+            const popperContent = (
+                <PopoverDialog
+                    placement={currentPlacement}
+                    aria-label={ariaLabel}
+                    aria-describedby={describedBy}
+                    aria-labelledby={ariaLabelledBy}
+                    id={uniqueId}
+                    onUpdate={(newPlacement) =>
+                        setCurrentPlacement(newPlacement)
+                    }
+                    showTail={showTail}
+                >
+                    {renderContent(uniqueId)}
+                </PopoverDialog>
+            );
+
+            let popoverWrapper = null;
+            if (portal) {
+                popoverWrapper = (
+                    <FocusManager
+                        anchorElement={anchorElement.current}
+                        initialFocusId={initialFocusId}
+                        initialFocusDelay={initialFocusDelay}
+                    >
+                        {popperContent}
+                    </FocusManager>
+                );
+            } else {
+                popoverWrapper = (
+                    // Ensures the user is focused on the first available element
+                    // when popover is rendered without the focus manager.
+                    <InitialFocus
+                        initialFocusId={initialFocusId}
+                        delay={initialFocusDelay}
+                    >
+                        {popperContent}
+                    </InitialFocus>
+                );
+            }
 
             return (
                 <Floating
@@ -284,25 +325,12 @@ const Popover = (props: Props): React.ReactElement => {
                     dismissEnabled={dismissEnabled}
                     showArrow={showTail}
                     portal={portal}
-                    content={
-                        <PopoverDialog
-                            placement={currentPlacement}
-                            aria-label={ariaLabel}
-                            aria-describedby={describedBy}
-                            aria-labelledby={ariaLabelledBy}
-                            id={uniqueId}
-                            onUpdate={(newPlacement) =>
-                                setCurrentPlacement(newPlacement)
-                            }
-                            showTail={showTail}
-                        >
-                            {renderContent(uniqueId)}
-                        </PopoverDialog>
-                    }
+                    content={popoverWrapper}
                     defaultOpen={opened}
                     initialFocus={initialFocus}
                 >
                     <PopoverAnchor
+                        ref={anchorElement}
                         id={`${uniqueId}-anchor`}
                         aria-controls={uniqueId}
                         aria-expanded={opened ? "true" : "false"}
@@ -316,15 +344,17 @@ const Popover = (props: Props): React.ReactElement => {
         [
             ariaDescribedBy,
             ariaLabel,
+            currentPlacement,
+            showTail,
+            renderContent,
+            portal,
             placement,
             dismissEnabled,
-            showTail,
-            portal,
-            currentPlacement,
-            renderContent,
             initialFocus,
             handleOpen,
             children,
+            initialFocusId,
+            initialFocusDelay,
         ],
     );
 
