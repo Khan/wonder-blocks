@@ -1,12 +1,21 @@
 {
   "name": "@khanacademy/wonder-blocks-timing",
-  "private": false,
+  "description": "",
+  "author": "Khan Academy",
+  "license": "MIT",
   "version": "7.0.2",
-  "design": "v1",
   "publishConfig": {
     "access": "public"
   },
-  "description": "",
+  "design": "v1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Khan/wonder-blocks.git",
+    "directory": "packages/wonder-blocks-timing"
+  },
+  "bugs": {
+    "url": "https://github.com/Khan/wonder-blocks/issues"
+  },
   "main": "dist/index.js",
   "module": "dist/es/index.js",
   "types": "dist/index.d.ts",
@@ -20,7 +29,5 @@
   "devDependencies": {
     "@khanacademy/wb-dev-build-settings": "workspace:*",
     "@khanacademy/wonder-blocks-testing-core": "workspace:*"
-  },
-  "author": "",
-  "license": "MIT"
+  }
 }

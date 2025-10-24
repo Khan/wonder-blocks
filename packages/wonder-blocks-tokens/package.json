@@ -1,7 +1,23 @@
 {
   "name": "@khanacademy/wonder-blocks-tokens",
-  "version": "14.0.0",
   "description": "Core primitive design tokens for Web Wonder Blocks",
+  "author": "Khan Academy",
+  "license": "MIT",
+  "version": "14.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Khan/wonder-blocks.git",
+    "directory": "packages/wonder-blocks-tokens"
+  },
+  "bugs": {
+    "url": "https://github.com/Khan/wonder-blocks/issues"
+  },
+  "main": "dist/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/es/index.js",
@@ -10,18 +26,10 @@
     },
     "./styles.css": "./dist/css/index.css"
   },
-  "main": "dist/index.js",
-  "module": "dist/es/index.js",
-  "types": "dist/index.d.ts",
   "scripts": {
     "build:css": "node -r @swc-node/register ./src/build/generate-css-variables.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
-  },
-  "author": "",
-  "license": "MIT",
-  "publishConfig": {
-    "access": "public"
   },
   "dependencies": {
     "@khanacademy/wonder-blocks-theming": "workspace:*"
