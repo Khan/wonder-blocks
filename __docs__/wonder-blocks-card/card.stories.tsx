@@ -168,7 +168,17 @@ export const WithDismissButton: StoryComponentType = {
         return <CardWithRef />;
     },
 };
-
+/**
+ * Cards can be marked up with different HTML tags via the `tag` prop.
+ *
+ * Any HTML tag is allowed except for `button` and `a` tags, which should use
+ * Wonder Blocks Button and Link components as children instead.
+ *
+ * When using `section` or `figure` tags, a label must be provided for accessibility
+ * via the `labels.cardAriaLabel` prop.
+ *
+ * See the "In a Stack" story for an example of using listitems with Cards.
+ */
 export const WithTag: StoryComponentType = {
     parameters: {
         chromatic: {disableSnapshot: true}, // disable snapshot since doesn't have a meaningful visual effect
