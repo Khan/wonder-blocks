@@ -794,8 +794,8 @@ export const semanticColor = {
             subtle: {
                 background: core.background.neutral.subtle,
                 border: core.border.neutral.subtle,
-                icon: core.foreground.neutral.subtle,
-                text: core.foreground.neutral.default,
+                icon: core.foreground.neutral.default,
+                text: core.foreground.neutral.strong,
             },
             strong: {
                 ...sharedFeedbackStrongTokens,
