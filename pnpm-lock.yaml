@@ -870,6 +870,9 @@ importers:
       react:
         specifier: 'catalog:'
         version: 18.2.0
+      react-dom:
+        specifier: 'catalog:'
+        version: 18.2.0(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
