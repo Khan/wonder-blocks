@@ -96,6 +96,15 @@ export const FeedbackCritical = () => {
     );
 };
 
+export const FeedbackNeutral = () => {
+    return (
+        <ColorGroupStory
+            category={semanticColor.feedback.neutral}
+            group="feedback.neutral"
+        />
+    );
+};
+
 export const Focus = () => {
     return (
         <ColorGroup

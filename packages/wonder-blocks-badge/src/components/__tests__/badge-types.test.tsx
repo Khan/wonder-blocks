@@ -6,12 +6,14 @@ import {StatusBadge} from "../status-badge";
 import {GemBadge} from "../gem-badge";
 import {StreakBadge} from "../streak-badge";
 import {DueBadge} from "../due-badge";
+import {NeutralBadge} from "../neutral-badge";
 /**
  * Tests for props that are common to the different badge types.
  */
 describe("Badge types", () => {
     describe.each([
         {name: "StatusBadge", Component: StatusBadge},
+        {name: "NeutralBadge", Component: NeutralBadge},
         {name: "GemBadge", Component: GemBadge},
         {name: "StreakBadge", Component: StreakBadge},
         {name: "DueBadge", Component: DueBadge},
