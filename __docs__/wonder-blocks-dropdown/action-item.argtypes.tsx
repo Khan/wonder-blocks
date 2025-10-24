@@ -1,14 +1,14 @@
 import * as React from "react";
 import type {ArgTypes} from "@storybook/react-vite";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import Pill from "@khanacademy/wonder-blocks-pill";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import type {ActionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {StatusBadge} from "@khanacademy/wonder-blocks-badge";
 
 const AccessoryMappings = {
     none: null,
     icon: <PhosphorIcon icon={IconMappings.play} size="medium" />,
-    pill: <Pill kind="accent">New</Pill>,
+    badge: <StatusBadge label="New" kind="info" />,
 };
 
 export default {

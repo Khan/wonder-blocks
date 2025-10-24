@@ -10,7 +10,6 @@ import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
-import Pill from "@khanacademy/wonder-blocks-pill";
 import type {LabelsValues} from "@khanacademy/wonder-blocks-dropdown";
 
 import ComponentInfo from "../components/component-info";
@@ -26,6 +25,7 @@ import {
 import {OpenerProps} from "../../packages/wonder-blocks-dropdown/src/util/types";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
+import {StatusBadge} from "@khanacademy/wonder-blocks-badge";
 
 type StoryComponentType = StoryObj<typeof MultiSelect>;
 
@@ -864,7 +864,7 @@ export const CustomOptionItems: StoryComponentType = {
                         leftAccessory={user.picture}
                         subtitle1={
                             index === 1 ? (
-                                <Pill kind="accent">New</Pill>
+                                <StatusBadge label="New" kind="info" />
                             ) : undefined
                         }
                         subtitle2={user.email}

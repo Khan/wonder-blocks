@@ -125,6 +125,46 @@ describe("CellCore", () => {
         ).toBeInTheDocument();
     });
 
+    it("should add an id if id is set and it is a button", () => {
+        // Arrange
+        // Act
+        render(
+            <CellCore id="test-id" onClick={jest.fn()}>
+                <div>cell core content</div>
+            </CellCore>,
+        );
+
+        // Assert
+        expect(screen.getByRole("button")).toHaveAttribute("id", "test-id");
+    });
+
+    it("should add an id if it is set and it is a link", () => {
+        // Arrange
+        // Act
+        render(
+            <CellCore id="test-id" href="#">
+                <div>cell core content</div>
+            </CellCore>,
+        );
+
+        // Assert
+        expect(screen.getByRole("link")).toHaveAttribute("id", "test-id");
+    });
+
+    it("should add an id if it is set and it is not a button or link", () => {
+        // Arrange
+        // Act
+        const {container} = render(
+            <CellCore id="test-id">
+                <div>cell core content</div>
+            </CellCore>,
+        );
+
+        // Assert
+        // eslint-disable-next-line testing-library/no-node-access -- Verify that the root element has the id attribute
+        expect(container.firstChild).toHaveAttribute("id", "test-id");
+    });
+
     describe("aria-checked", () => {
         it("should add aria-checked if aria-checked is set and it is a link", () => {
             // Arrange

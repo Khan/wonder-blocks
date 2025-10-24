@@ -70,6 +70,10 @@ export type CellProps = {
         rightAccessory?: StyleType;
     };
     /**
+     * The unique identifier of the cell.
+     */
+    id?: string;
+    /**
      * Optional test ID for e2e testing.
      */
     testId?: string;

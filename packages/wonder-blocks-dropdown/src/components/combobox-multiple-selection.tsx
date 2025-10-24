@@ -2,11 +2,11 @@ import {StyleSheet} from "aphrodite";
 import * as React from "react";
 
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import Pill from "@khanacademy/wonder-blocks-pill";
 import {font, sizing} from "@khanacademy/wonder-blocks-tokens";
 import xIcon from "@phosphor-icons/core/regular/x.svg";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
+import Button from "@khanacademy/wonder-blocks-button";
 
 type Props = {
     /**
@@ -14,7 +14,7 @@ type Props = {
      */
     disabled?: boolean;
     /**
-     * The index of the focused item in the pills group.
+     * The index of the focused item in the selected items group.
      */
     focusedMultiSelectIndex: number;
     /**
@@ -39,14 +39,13 @@ type Props = {
      */
     selected: Array<string>;
     /**
-     * The testId prefix used for the pills.
+     * The testId prefix used for the items.
      */
     testId?: string;
 };
 
 /**
- * Renders the selected items as pills that are horizontally stacked before
- * the input element.
+ * Renders the selected items before the input element.
  */
 export const MultipleSelection = React.memo(function SelectedPills({
     disabled,
@@ -59,31 +58,32 @@ export const MultipleSelection = React.memo(function SelectedPills({
     testId,
 }: Props) {
     return (
-        <View role="group" style={styles.pillsWrapper} id={id}>
+        <View role="group" style={styles.container} id={id}>
             {selected.map((value, index) => {
                 const label = labels[index] as string;
                 const focused = index === focusedMultiSelectIndex;
                 const uniqueId = id + index;
 
                 return (
-                    <Pill
+                    <Button
                         id={uniqueId}
                         key={uniqueId}
-                        testId={testId ? `${testId}-pill-${index}` : undefined}
+                        testId={testId ? `${testId}-item-${index}` : undefined}
                         size="small"
-                        style={[styles.pill, focused && styles.pillFocused]}
-                        kind={focused ? "info" : "neutral"}
+                        style={[styles.item, focused && styles.itemFocused]}
+                        kind="secondary"
+                        actionType="neutral"
                         aria-label={removeSelectedLabel(label)}
                         tabIndex={-1}
                         onClick={() => onRemove(value)}
-                    >
-                        <>
-                            {label}
-                            {!disabled && (
+                        endIcon={
+                            disabled ? undefined : (
                                 <PhosphorIcon icon={xIcon} size="small" />
-                            )}
-                        </>
-                    </Pill>
+                            )
+                        }
+                    >
+                        {label}
+                    </Button>
                 );
             })}
         </View>
@@ -91,17 +91,18 @@ export const MultipleSelection = React.memo(function SelectedPills({
 });
 
 const styles = StyleSheet.create({
-    pillsWrapper: {
+    container: {
         flexDirection: "row",
         flexWrap: "wrap",
+        gap: sizing.size_080,
+        paddingBlockStart: sizing.size_080,
     },
-    pill: {
+    item: {
         fontSize: font.body.size.small,
         justifyContent: "space-between",
         alignItems: "center",
-        marginBlockStart: sizing.size_040,
-        marginInlineEnd: sizing.size_040,
-        paddingInlineEnd: sizing.size_040,
+        height: "auto",
+        paddingInline: sizing.size_080,
     },
-    pillFocused: focusStyles.focus[":focus-visible"],
+    itemFocused: focusStyles.focus[":focus-visible"],
 });

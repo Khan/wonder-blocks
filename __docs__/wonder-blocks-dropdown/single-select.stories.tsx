@@ -12,7 +12,6 @@ import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
-import Pill from "@khanacademy/wonder-blocks-pill";
 import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 import {
     SingleSelect,
@@ -34,6 +33,7 @@ import {
 } from "./option-item-examples";
 import {OpenerProps} from "../../packages/wonder-blocks-dropdown/src/util/types";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
+import {StatusBadge} from "@khanacademy/wonder-blocks-badge";
 
 type StoryComponentType = StoryObj<typeof SingleSelect>;
 type SingleSelectArgs = Partial<typeof SingleSelect>;
@@ -1026,7 +1026,7 @@ export const CustomOptionItems: StoryComponentType = {
                             leftAccessory={user.picture}
                             subtitle1={
                                 index === 1 ? (
-                                    <Pill kind="accent">New</Pill>
+                                    <StatusBadge label="New" kind="info" />
                                 ) : undefined
                             }
                             subtitle2={user.email}

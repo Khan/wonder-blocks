@@ -4,7 +4,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import ComponentTile from "../component-tile";
 import {Combobox, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {CommonTileProps} from "../types";
-import Pill from "@khanacademy/wonder-blocks-pill";
+import {StatusBadge} from "@khanacademy/wonder-blocks-badge";
 
 type MaybeString = string | null | undefined;
 type MaybeValueOrValues = MaybeString | Array<MaybeString>;
@@ -21,11 +21,7 @@ export default function ComboboxTile(props: CommonTileProps) {
                     associated listbox. This listbox enables users to
                     choose one or more values for the input from a
                     collection of option items.`}
-            rightAccessory={
-                <Pill kind="info" size="small">
-                    In Development
-                </Pill>
-            }
+            rightAccessory={<StatusBadge label="In development" kind="info" />}
             {...props}
         >
             <View>
