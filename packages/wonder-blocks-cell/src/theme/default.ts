@@ -88,9 +88,6 @@ export default {
         },
     },
     subtitle: {
-        color: {
-            foreground: semanticColor.core.foreground.neutral.default,
-        },
         font: {
             size: font.body.size.small,
             lineHeight: font.body.lineHeight.small,
