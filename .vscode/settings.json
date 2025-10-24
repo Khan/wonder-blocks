@@ -30,5 +30,10 @@
     "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
     "typescript.inlayHints.variableTypes.enabled": true,
 
-    "jest.jestCommandLine": "pnpm jest"
+    "jest.jestCommandLine": "pnpm jest",
+
+    "cssVariables.lookupFiles": [
+        "./packages/wonder-blocks-tokens/dist/css/index.css"
+    ]
+
 }
