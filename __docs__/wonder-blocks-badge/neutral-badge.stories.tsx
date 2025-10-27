@@ -7,7 +7,7 @@ import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import singleColoredIcon from "../components/single-colored-icon.svg";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
+import {Heading} from "@khanacademy/wonder-blocks-typography";
 import badgeArgtypes, {iconArgType} from "./badge.argtypes";
 import {multiColoredIcon} from "../components/icons-for-testing";
 import {themeModes} from "../../.storybook/modes";
@@ -121,9 +121,9 @@ export const CustomIcons: StoryComponentType = {
     render: () => {
         return (
             <View style={{gap: sizing.size_240}}>
-                <HeadingLarge>
+                <Heading size="large">
                     Custom single colored svg icon using PhosphorIcon
-                </HeadingLarge>
+                </Heading>
                 <NeutralBadge
                     icon={
                         <PhosphorIcon
@@ -133,10 +133,10 @@ export const CustomIcons: StoryComponentType = {
                     }
                     label="Custom Icon"
                 />
-                <HeadingLarge>
+                <Heading size="large">
                     Custom single colored svg icon using PhosphorIcon and color
                     prop
-                </HeadingLarge>
+                </Heading>
                 <NeutralBadge
                     icon={
                         <PhosphorIcon
@@ -147,16 +147,16 @@ export const CustomIcons: StoryComponentType = {
                     }
                     label="Custom Icon"
                 />
-                <HeadingLarge>
+                <Heading size="large">
                     Custom multi-colored inline svg using the Icon component
-                </HeadingLarge>
+                </Heading>
                 <NeutralBadge
                     icon={<Icon>{multiColoredIcon}</Icon>}
                     label="Custom Icon"
                 />
-                <HeadingLarge>
+                <Heading size="large">
                     Custom img element using the Icon component with a svg src
-                </HeadingLarge>
+                </Heading>
                 <NeutralBadge
                     icon={
                         <Icon>
@@ -165,9 +165,9 @@ export const CustomIcons: StoryComponentType = {
                     }
                     label="Custom Icon"
                 />
-                <HeadingLarge>
+                <Heading size="large">
                     Custom img element using the Icon component with a png src
-                </HeadingLarge>
+                </Heading>
                 <NeutralBadge
                     icon={
                         <Icon>

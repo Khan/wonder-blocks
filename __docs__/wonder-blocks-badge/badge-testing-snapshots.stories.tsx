@@ -9,6 +9,7 @@ import {
     StatusBadge,
     StreakBadge,
     DueBadge,
+    NeutralBadge,
 } from "@khanacademy/wonder-blocks-badge";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -24,12 +25,11 @@ import {
 } from "../components/text-for-testing";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {Heading, HeadingLarge} from "@khanacademy/wonder-blocks-typography";
+import {Heading} from "@khanacademy/wonder-blocks-typography";
 import singleColoredIcon from "../components/single-colored-icon.svg";
 import {multiColoredIcon} from "../components/icons-for-testing";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {themeModes} from "../../.storybook/modes";
-import {NeutralBadge} from "../../packages/wonder-blocks-badge/src/components/neutral-badge";
 
 /**
  * Badges are visual indicators used to display concise information, such as
@@ -132,7 +132,7 @@ export const StateSheetStory: StoryComponentType = {
 
         return (
             <View style={{gap: sizing.size_080}}>
-                <HeadingLarge>Badge</HeadingLarge>
+                <Heading size="large">Badge</Heading>
                 <StateSheet rows={rows} columns={columns} states={states}>
                     {({props}) => (
                         <View
@@ -143,7 +143,7 @@ export const StateSheetStory: StoryComponentType = {
                         </View>
                     )}
                 </StateSheet>
-                <HeadingLarge>Status Badge</HeadingLarge>
+                <Heading size="large">Status Badge</Heading>
                 <StateSheet rows={statusRows} columns={columns} states={states}>
                     {({props}) => (
                         <View
@@ -154,7 +154,7 @@ export const StateSheetStory: StoryComponentType = {
                         </View>
                     )}
                 </StateSheet>
-                <HeadingLarge>Neutral Badge</HeadingLarge>
+                <Heading size="large">Neutral Badge</Heading>
                 <StateSheet rows={rows} columns={columns} states={states}>
                     {({props}) => (
                         <View
@@ -165,7 +165,7 @@ export const StateSheetStory: StoryComponentType = {
                         </View>
                     )}
                 </StateSheet>
-                <HeadingLarge>Gem Badge</HeadingLarge>
+                <Heading size="large">Gem Badge</Heading>
                 <StateSheet
                     rows={rows}
                     columns={columnsWithShowIconProp}
@@ -173,7 +173,7 @@ export const StateSheetStory: StoryComponentType = {
                 >
                     {({props}) => <GemBadge {...props} />}
                 </StateSheet>
-                <HeadingLarge>Streak Badge</HeadingLarge>
+                <Heading size="large">Streak Badge</Heading>
                 <StateSheet
                     rows={rows}
                     columns={columnsWithShowIconProp}
@@ -181,7 +181,7 @@ export const StateSheetStory: StoryComponentType = {
                 >
                     {({props}) => <StreakBadge {...props} />}
                 </StateSheet>
-                <HeadingLarge>Due Badge</HeadingLarge>
+                <Heading size="large">Due Badge</Heading>
                 <StateSheet
                     rows={dueBadgeRows}
                     columns={columnsWithShowIconProp}
