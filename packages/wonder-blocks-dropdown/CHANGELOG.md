@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.4.7
+
+### Patch Changes
+
+- bfeaf57: Combobox improvements: Use Button instead of Pill for selected items. Also fixes styling for TB theme and uses logical css properties to support RTL
+- Updated dependencies [bfeaf57]
+    - @khanacademy/wonder-blocks-cell@6.1.0
+
 ## 10.4.6
 
 ### Patch Changes
