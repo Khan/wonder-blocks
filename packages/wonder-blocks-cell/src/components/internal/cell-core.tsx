@@ -170,7 +170,7 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
         target,
         role,
         tabIndex,
-
+        id,
         horizontalRule = "inset",
         styles: stylesProp,
         innerStyle,
@@ -207,6 +207,7 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
                 ]}
                 aria-current={active ? "true" : undefined}
                 tabIndex={tabIndex}
+                id={id}
             >
                 {() => <CellInner {...props} />}
             </Clickable>
@@ -223,6 +224,7 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
             ]}
             aria-current={active ? "true" : undefined}
             role={role}
+            id={id}
         >
             <CellInner {...props} />
         </View>
