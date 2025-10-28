@@ -1,90 +1,90 @@
 import {mergeTheme} from "@khanacademy/wonder-blocks-theming";
-import {color} from "./internal/primitive-color-thunderblocks";
 
 import {semanticColor as defaultSemanticColor} from "./semantic-color";
 
-const transparent = "transparent";
+const TEMP_COLOR = "#beabea";
+const transparent = TEMP_COLOR;
 
 // NOTE: We use `color-mix` to generate a transparent color because it supports
 // using CSS variables as input, which is not possible with the CSS `rgba`
 // function or the `fade` JS function.
-const transparentShadowColor = `color-mix(in srgb, ${color.blue_05} 20%, ${transparent})`;
+const transparentShadowColor = TEMP_COLOR;
 
 const core = {
     transparent,
     border: {
         instructive: {
-            subtle: color.blue_60,
-            default: color.blue_40,
-            strong: color.blue_10,
+            subtle: TEMP_COLOR,
+            default: TEMP_COLOR,
+            strong: TEMP_COLOR,
         },
         neutral: {
-            subtle: color.gray_60,
-            default: color.gray_30,
-            strong: color.gray_10,
+            subtle: TEMP_COLOR,
+            default: TEMP_COLOR,
+            strong: TEMP_COLOR,
         },
         critical: {
-            subtle: color.red_60,
-            default: color.red_30,
-            strong: color.red_10,
+            subtle: TEMP_COLOR,
+            default: TEMP_COLOR,
+            strong: TEMP_COLOR,
         },
         success: {
-            subtle: color.green_60,
-            default: color.green_30,
-            strong: color.green_10,
+            subtle: TEMP_COLOR,
+            default: TEMP_COLOR,
+            strong: TEMP_COLOR,
         },
         warning: {
-            subtle: color.yellow_60,
-            default: color.yellow_40,
-            strong: color.yellow_10,
+            subtle: TEMP_COLOR,
+            default: TEMP_COLOR,
+            strong: TEMP_COLOR,
         },
         disabled: {
             subtle: transparent,
-            default: color.gray_70,
-            strong: color.gray_60,
+            default: TEMP_COLOR,
+            strong: TEMP_COLOR,
         },
         knockout: {
-            default: color.white_100,
+            default: TEMP_COLOR,
         },
     },
     background: {
         base: {
-            subtle: color.blue_90,
-            default: color.white_100,
-            strong: color.blue_70,
+            subtle: TEMP_COLOR,
+            default: TEMP_COLOR,
+            strong: TEMP_COLOR,
         },
         instructive: {
-            subtle: color.blue_80,
-            default: color.blue_30,
-            strong: color.blue_10,
+            subtle: TEMP_COLOR,
+            default: TEMP_COLOR,
+            strong: TEMP_COLOR,
         },
         neutral: {
-            subtle: color.gray_80,
-            default: color.gray_20,
-            strong: color.black_100,
+            subtle: TEMP_COLOR,
+            default: TEMP_COLOR,
+            strong: TEMP_COLOR,
         },
         critical: {
-            subtle: color.red_90,
-            default: color.red_20,
-            strong: color.red_05,
+            subtle: TEMP_COLOR,
+            default: TEMP_COLOR,
+            strong: TEMP_COLOR,
         },
         success: {
-            subtle: color.green_90,
-            default: color.green_30,
-            strong: color.green_20,
+            subtle: TEMP_COLOR,
+            default: TEMP_COLOR,
+            strong: TEMP_COLOR,
         },
         warning: {
-            subtle: color.yellow_90,
-            default: color.yellow_60,
-            strong: color.yellow_10,
+            subtle: TEMP_COLOR,
+            default: TEMP_COLOR,
+            strong: TEMP_COLOR,
         },
         disabled: {
             subtle: transparent,
-            default: color.gray_80,
-            strong: color.gray_70,
+            default: TEMP_COLOR,
+            strong: TEMP_COLOR,
         },
         overlay: {
-            default: color.black_50,
+            default: TEMP_COLOR,
         },
     },
 
@@ -93,37 +93,37 @@ const core = {
      */
     foreground: {
         instructive: {
-            subtle: color.blue_50,
-            default: color.blue_30,
-            strong: color.blue_10,
+            subtle: TEMP_COLOR,
+            default: TEMP_COLOR,
+            strong: TEMP_COLOR,
         },
         neutral: {
-            subtle: color.gray_20,
-            default: color.gray_10,
-            strong: color.black_100,
+            subtle: TEMP_COLOR,
+            default: TEMP_COLOR,
+            strong: TEMP_COLOR,
         },
         critical: {
-            subtle: color.red_50,
-            default: color.red_20,
-            strong: color.red_10,
+            subtle: TEMP_COLOR,
+            default: TEMP_COLOR,
+            strong: TEMP_COLOR,
         },
         success: {
-            subtle: color.green_50,
-            default: color.green_20,
-            strong: color.green_05,
+            subtle: TEMP_COLOR,
+            default: TEMP_COLOR,
+            strong: TEMP_COLOR,
         },
         warning: {
-            subtle: color.yellow_50,
-            default: color.yellow_10,
-            strong: color.yellow_05,
+            subtle: TEMP_COLOR,
+            default: TEMP_COLOR,
+            strong: TEMP_COLOR,
         },
         disabled: {
-            subtle: color.gray_60,
-            default: color.gray_50,
-            strong: color.gray_40,
+            subtle: TEMP_COLOR,
+            default: TEMP_COLOR,
+            strong: TEMP_COLOR,
         },
         knockout: {
-            default: color.white_100,
+            default: TEMP_COLOR,
         },
     },
     shadow: {
@@ -134,13 +134,13 @@ const core = {
         },
         chonky: {
             instructive: {
-                subtle: color.blue_60,
-                default: color.blue_10,
+                subtle: TEMP_COLOR,
+                default: TEMP_COLOR,
             },
             neutral: {
-                subtle: color.gray_60,
-                default: color.gray_30,
-                strong: color.gray_10,
+                subtle: TEMP_COLOR,
+                default: TEMP_COLOR,
+                strong: TEMP_COLOR,
             },
         },
     },
@@ -516,9 +516,9 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                 tertiary: core.border.disabled.subtle,
             },
             foreground: {
-                primary: color.gray_50,
-                secondary: color.gray_50,
-                tertiary: color.gray_50,
+                primary: TEMP_COLOR,
+                secondary: TEMP_COLOR,
+                tertiary: TEMP_COLOR,
             },
             shadow: {
                 primary: core.shadow.chonky.neutral.subtle,
@@ -529,30 +529,30 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
     },
     status: {
         critical: {
-            background: color.red_90,
-            foreground: color.red_10,
+            background: TEMP_COLOR,
+            foreground: TEMP_COLOR,
         },
         warning: {
-            background: color.yellow_90,
-            foreground: color.yellow_05,
+            background: TEMP_COLOR,
+            foreground: TEMP_COLOR,
         },
         success: {
-            background: color.green_90,
-            foreground: color.green_10,
+            background: TEMP_COLOR,
+            foreground: TEMP_COLOR,
         },
         notice: {
-            background: color.blue_90,
-            foreground: color.blue_10,
+            background: TEMP_COLOR,
+            foreground: TEMP_COLOR,
         },
         neutral: {
-            background: color.gray_90,
-            foreground: color.gray_10,
+            background: TEMP_COLOR,
+            foreground: TEMP_COLOR,
         },
     },
 
     focus: {
-        outer: color.blue_30,
-        inner: color.white_100,
+        outer: TEMP_COLOR,
+        inner: TEMP_COLOR,
     },
     link: {
         rest: core.foreground.instructive.default,
@@ -614,103 +614,103 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
     learning: {
         math: {
             foreground: {
-                blue: color.cyan_10,
-                gold: color.yellow_10,
-                green: color.green_20,
-                gray: color.gray_10,
-                grayH: color.gray_05,
-                grayI: color.black_100,
-                purple: color.blue_05,
-                purpleD: color.blue_10,
-                pink: color.magenta_10,
-                red: color.red_20,
+                blue: TEMP_COLOR,
+                gold: TEMP_COLOR,
+                green: TEMP_COLOR,
+                gray: TEMP_COLOR,
+                grayH: TEMP_COLOR,
+                grayI: TEMP_COLOR,
+                purple: TEMP_COLOR,
+                purpleD: TEMP_COLOR,
+                pink: TEMP_COLOR,
+                red: TEMP_COLOR,
             },
         },
         background: {
             gems: {
-                subtle: color.magenta_90,
-                default: color.magenta_80,
-                strong: color.magenta_10,
+                subtle: TEMP_COLOR,
+                default: TEMP_COLOR,
+                strong: TEMP_COLOR,
             },
             due: {
-                subtle: color.cyan_80,
-                default: color.cyan_60,
-                strong: color.cyan_10,
+                subtle: TEMP_COLOR,
+                default: TEMP_COLOR,
+                strong: TEMP_COLOR,
             },
             streaks: {
-                subtle: color.orange_80,
-                default: color.orange_60,
-                strong: color.orange_10,
+                subtle: TEMP_COLOR,
+                default: TEMP_COLOR,
+                strong: TEMP_COLOR,
             },
             progress: {
                 notStarted: {
-                    default: color.gray_60,
+                    default: TEMP_COLOR,
                 },
                 attempted: {
-                    default: color.yellow_60,
+                    default: TEMP_COLOR,
                 },
                 complete: {
-                    default: color.green_60,
+                    default: TEMP_COLOR,
                 },
             },
         },
         border: {
             gems: {
-                subtle: color.magenta_80,
-                default: color.magenta_60,
-                strong: color.magenta_30,
+                subtle: TEMP_COLOR,
+                default: TEMP_COLOR,
+                strong: TEMP_COLOR,
             },
             streaks: {
-                subtle: color.orange_80,
-                default: color.orange_60,
-                strong: color.orange_30,
+                subtle: TEMP_COLOR,
+                default: TEMP_COLOR,
+                strong: TEMP_COLOR,
             },
             due: {
-                subtle: color.cyan_80,
-                default: color.cyan_60,
-                strong: color.cyan_30,
+                subtle: TEMP_COLOR,
+                default: TEMP_COLOR,
+                strong: TEMP_COLOR,
             },
         },
         foreground: {
             gems: {
-                subtle: color.magenta_60,
-                default: color.magenta_30,
-                strong: color.magenta_10,
+                subtle: TEMP_COLOR,
+                default: TEMP_COLOR,
+                strong: TEMP_COLOR,
             },
             streaks: {
-                subtle: color.orange_60,
-                default: color.orange_30,
-                strong: color.orange_10,
+                subtle: TEMP_COLOR,
+                default: TEMP_COLOR,
+                strong: TEMP_COLOR,
             },
             due: {
-                subtle: color.cyan_60,
-                default: color.cyan_20,
-                strong: color.cyan_10,
+                subtle: TEMP_COLOR,
+                default: TEMP_COLOR,
+                strong: TEMP_COLOR,
             },
             progress: {
                 notStarted: {
-                    subtle: color.gray_50,
-                    strong: color.gray_10,
+                    subtle: TEMP_COLOR,
+                    strong: TEMP_COLOR,
                 },
                 attempted: {
-                    subtle: color.yellow_50,
-                    strong: color.yellow_10,
+                    subtle: TEMP_COLOR,
+                    strong: TEMP_COLOR,
                 },
                 complete: {
-                    strong: color.green_10,
+                    strong: TEMP_COLOR,
                 },
             },
         },
         shadow: {
             progress: {
                 notStarted: {
-                    default: color.gray_20,
+                    default: TEMP_COLOR,
                 },
                 attempted: {
-                    default: color.yellow_30,
+                    default: TEMP_COLOR,
                 },
                 complete: {
-                    default: color.green_30,
+                    default: TEMP_COLOR,
                 },
             },
         },
