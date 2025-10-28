@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-modal
 
+## 8.5.2
+
+### Patch Changes
+
+- 8ea7b98: OnePaneDialog: Move mdOrLarger styles to default modal styles so they can be overridden easily
+
 ## 8.5.1
 
 ### Patch Changes
