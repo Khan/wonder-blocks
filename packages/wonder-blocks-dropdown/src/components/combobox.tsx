@@ -599,7 +599,7 @@ export default function Combobox({
                         onClick={handleClearClick}
                         actionType="neutral"
                         kind="tertiary"
-                        size="small"
+                        size="medium"
                         style={[styles.button, styles.clearButton]}
                         aria-label={labels.clearSelection}
                         testId={testId ? `${testId}-clear` : undefined}
@@ -620,7 +620,7 @@ export default function Combobox({
                     }}
                     actionType="neutral"
                     kind="tertiary"
-                    size="small"
+                    size="medium"
                     style={[styles.button, openState && styles.buttonOpen]}
                     tabIndex={-1}
                     aria-controls={uniqueId}
@@ -763,8 +763,7 @@ const styles = StyleSheet.create({
      */
     button: {
         position: "absolute",
-        right: sizing.size_040,
-        top: sizing.size_040,
+        insetInlineEnd: sizing.size_0,
         margin: 0,
     },
     buttonOpen: {
@@ -776,7 +775,7 @@ const styles = StyleSheet.create({
     clearButton: {
         // The clear button is positioned to the left of the arrow button.
         // This is calculated based on the padding + width of the arrow button.
-        right: sizing.size_400,
+        insetInlineEnd: sizing.size_360,
     },
     iconWrapper: {
         padding: sizing.size_040,

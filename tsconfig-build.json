@@ -12,6 +12,7 @@
         {"path": "./packages/wonder-blocks-birthday-picker/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-breadcrumbs/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-button/tsconfig-build.json"},
+        {"path": "./packages/wonder-blocks-card/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-cell/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-clickable/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-core/tsconfig-build.json"},

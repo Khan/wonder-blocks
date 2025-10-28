@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-card
 
+## 1.2.1
+
+### Patch Changes
+
+- c04ea1e: Exports CardProps types from Wonder Blocks Card
+
 ## 1.2.0
 
 ### Minor Changes
