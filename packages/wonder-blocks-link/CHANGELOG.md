@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-link
 
+## 10.0.2
+
+### Patch Changes
+
+- 6d5c485: Include provenance information when publishing to npmjs
+- Updated dependencies [6d5c485]
+    - @khanacademy/wonder-blocks-clickable@8.0.1
+    - @khanacademy/wonder-blocks-core@12.4.1
+    - @khanacademy/wonder-blocks-icon@5.3.1
+    - @khanacademy/wonder-blocks-styles@0.2.33
+    - @khanacademy/wonder-blocks-tokens@14.0.1
+    - @khanacademy/wonder-blocks-typography@4.2.23
+
 ## 10.0.1
 
 ### Patch Changes

@@ -1,5 +1,26 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.4.8
+
+### Patch Changes
+
+- 6d5c485: Include provenance information when publishing to npmjs
+- Updated dependencies [6d5c485]
+    - @khanacademy/wonder-blocks-announcer@1.0.4
+    - @khanacademy/wonder-blocks-cell@6.1.1
+    - @khanacademy/wonder-blocks-clickable@8.0.1
+    - @khanacademy/wonder-blocks-core@12.4.1
+    - @khanacademy/wonder-blocks-form@7.4.2
+    - @khanacademy/wonder-blocks-icon@5.3.1
+    - @khanacademy/wonder-blocks-icon-button@10.5.4
+    - @khanacademy/wonder-blocks-modal@8.5.1
+    - @khanacademy/wonder-blocks-pill@3.1.44
+    - @khanacademy/wonder-blocks-search-field@5.1.50
+    - @khanacademy/wonder-blocks-styles@0.2.33
+    - @khanacademy/wonder-blocks-timing@7.0.3
+    - @khanacademy/wonder-blocks-tokens@14.0.1
+    - @khanacademy/wonder-blocks-typography@4.2.23
+
 ## 10.4.7
 
 ### Patch Changes

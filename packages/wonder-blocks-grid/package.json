@@ -3,7 +3,7 @@
   "description": "Grid components for Wonder Blocks design system.",
   "author": "Khan Academy",
   "license": "MIT",
-  "version": "3.1.37",
+  "version": "3.1.38",
   "publishConfig": {
     "access": "public"
   },

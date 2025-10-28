@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-theming
 
+## 4.0.1
+
+### Patch Changes
+
+- 6d5c485: Include provenance information when publishing to npmjs
+
 ## 4.0.0
 
 ### Major Changes
