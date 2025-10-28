@@ -72,7 +72,7 @@ importers:
   .:
     dependencies:
       '@floating-ui/react':
-        specifier: ^0.27.16
+        specifier: 'catalog:'
         version: 0.27.16(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@khanacademy/wonder-stuff-core':
         specifier: 'catalog:'

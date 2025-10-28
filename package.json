@@ -147,7 +147,7 @@
     "vitest": "^3.0.4"
   },
   "dependencies": {
-    "@floating-ui/react": "^0.27.16",
+    "@floating-ui/react": "catalog:",
     "@khanacademy/wonder-stuff-core": "catalog:",
     "@phosphor-icons/core": "catalog:",
     "@popperjs/core": "catalog:",
