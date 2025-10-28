@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-cell
 
+## 6.1.0
+
+### Minor Changes
+
+- bfeaf57: Set id attribute on CellCore if it is provided
+
 ## 6.0.1
 
 ### Patch Changes

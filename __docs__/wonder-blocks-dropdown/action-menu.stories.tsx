@@ -9,7 +9,6 @@ import {action} from "storybook/actions";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import Pill from "@khanacademy/wonder-blocks-pill";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {
@@ -29,6 +28,7 @@ import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
 import Button from "@khanacademy/wonder-blocks-button";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
+import {StatusBadge} from "@khanacademy/wonder-blocks-badge";
 
 const actionItems: Array<Item> = [
     <ActionItem
@@ -517,11 +517,7 @@ export const CustomActionItems: StoryComponentType = {
                 leftAccessory={
                     <PhosphorIcon icon={IconMappings.info} size="medium" />
                 }
-                rightAccessory={
-                    <Pill kind="accent" size="small" testId="new-pill">
-                        New
-                    </Pill>
-                }
+                rightAccessory={<StatusBadge label="New" kind="info" />}
                 subtitle2="View your profile"
                 onClick={action("user profile clicked!")}
                 style={{

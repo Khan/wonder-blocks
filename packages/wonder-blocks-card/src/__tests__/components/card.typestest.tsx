@@ -1,5 +1,8 @@
 import * as React from "react";
 
+// Import Button and Link for proper usage examples
+import Button from "@khanacademy/wonder-blocks-button";
+import Link from "@khanacademy/wonder-blocks-link";
 import Card from "../../components/card";
 
 /**
@@ -10,6 +13,18 @@ import Card from "../../components/card";
 
 <Card>
     <div>Some content</div>
+</Card>;
+
+/**
+ * Card with Button and Link components (correct usage)
+ */
+
+<Card>
+    <Button onClick={() => {}}>Click me</Button>
+</Card>;
+
+<Card>
+    <Link href="/foo">Click me</Link>
 </Card>;
 
 /**
@@ -72,6 +87,12 @@ import Card from "../../components/card";
  */
 
 <Card tag="div">Content</Card>;
+
+// @ts-expect-error - button tag not allowed, use Wonder Blocks Button component instead
+<Card tag="button">Content</Card>;
+
+// @ts-expect-error - anchor tag not allowed, use Wonder Blocks Link component instead
+<Card tag="a">Content</Card>;
 
 <Card tag="section" labels={{cardAriaLabel: "Card section"}}>
     Content

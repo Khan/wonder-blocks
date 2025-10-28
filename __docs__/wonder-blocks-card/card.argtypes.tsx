@@ -77,8 +77,12 @@ export default {
         control: {type: "select"},
         options: ["div", "section", "figure", "article"],
         defaultValue: "div",
+        description:
+            "HTML tag for the card. Any valid HTML tag except button and anchor tags. When using section or figure, cardAriaLabel is required.",
         table: {
-            type: {summary: "keyof JSX.IntrinsicElements"},
+            type: {
+                summary: 'Exclude<keyof JSX.IntrinsicElements, "button" | "a">',
+            },
             defaultValue: {summary: '"div"'},
             category: "Structure",
         },

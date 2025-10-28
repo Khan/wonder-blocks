@@ -61,16 +61,25 @@ type DismissProps =
       };
 
 /**
- * Provide a specific HTML tag that overrides the default (`div`)
- * When `tag="section"` or `"figure"`, `cardAriaLabel` is required for accessibility.
+ * Provide a specific HTML tag that overrides the default (`div`).
+ *
+ * Notes:
+ * - When `tag="section"` or `"figure"`, `cardAriaLabel` is required for accessibility.
+ * - `button` and `a` tags are not allowed - use Wonder Blocks Button and Link components as children instead.
+ * Valid HTML tags for the Card component.
+ * Excludes button and anchor tags which should use Wonder Blocks Button and Link components instead.
  */
+type ValidCardTags = Exclude<keyof JSX.IntrinsicElements, "button" | "a">;
+
 type TagProps =
     | {
+          // Section and figure require an aria-label
           tag: "section" | "figure";
           labels: {cardAriaLabel: string} & Record<string, any>;
       }
     | {
-          tag?: Exclude<keyof JSX.IntrinsicElements, "section" | "figure">;
+          // All other valid tags except button and a
+          tag?: Exclude<ValidCardTags, "section" | "figure">;
           labels?: Record<string, any>;
       };
 
@@ -117,7 +126,7 @@ type StyleProps = {
     elevation?: "none" | "low";
 };
 
-type Props = BaseCardProps & TagProps & DismissProps;
+type CardProps = BaseCardProps & TagProps & DismissProps;
 /**
  * The Card component is a flexible, reusable UI building block designed to
  * encapsulate content within a structured, visually distinct container.
@@ -149,8 +158,8 @@ type Props = BaseCardProps & TagProps & DismissProps;
  */
 
 const Card = React.forwardRef(function Card(
-    props: Props,
-    ref: React.ForwardedRef<any>,
+    props: CardProps,
+    ref: React.ForwardedRef<HTMLElement>,
 ) {
     const {
         styles,

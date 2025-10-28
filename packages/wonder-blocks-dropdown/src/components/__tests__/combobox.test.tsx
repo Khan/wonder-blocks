@@ -602,7 +602,7 @@ describe("Combobox", () => {
 
             // Assert
             // pills
-            expect(screen.getByTestId("test-pill-0")).toHaveTextContent(
+            expect(screen.getByTestId("test-item-0")).toHaveTextContent(
                 "option 2",
             );
         });

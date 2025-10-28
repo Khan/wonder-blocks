@@ -5,13 +5,13 @@ import * as React from "react";
 
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {Listbox, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
-import Pill from "@khanacademy/wonder-blocks-pill";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {allProfilesWithPictures} from "./option-item-examples";
 
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
+import {StatusBadge} from "@khanacademy/wonder-blocks-badge";
 
 const items = [
     <OptionItem label="Banana" value="banana" key={0} />,
@@ -227,7 +227,9 @@ export const SingleSelectionCustomOptionItems: Story = {
                 label={user.name}
                 leftAccessory={user.picture}
                 subtitle1={
-                    index === 1 ? <Pill kind="accent">New</Pill> : undefined
+                    index === 1 ? (
+                        <StatusBadge label="New" kind="info" />
+                    ) : undefined
                 }
                 subtitle2={user.email}
             />
