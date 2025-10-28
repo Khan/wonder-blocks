@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 14.1.0
+
+### Minor Changes
+
+- 272bf31: Add feedback neutral semantic color tokens
+
 ## 14.0.1
 
 ### Patch Changes

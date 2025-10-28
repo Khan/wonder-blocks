@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-badge
 
+## 1.1.0
+
+### Minor Changes
+
+- 284c969: Add `showBorder` prop (defaults to true) to Badge and StatusBadge components
+- 272bf31: Add NeutralBadge component
+
+### Patch Changes
+
+- Updated dependencies [272bf31]
+    - @khanacademy/wonder-blocks-tokens@14.1.0
+    - @khanacademy/wonder-blocks-icon@5.3.2
+    - @khanacademy/wonder-blocks-styles@0.2.34
+    - @khanacademy/wonder-blocks-typography@4.2.24
+
 ## 1.0.13
 
 ### Patch Changes
