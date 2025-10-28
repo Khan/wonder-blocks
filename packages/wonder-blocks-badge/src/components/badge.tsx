@@ -10,7 +10,14 @@ import * as React from "react";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {BaseBadgeProps, IconLabelProps} from "../types";
 
-type Props = IconLabelProps & BaseBadgeProps;
+type BadgeProps = {
+    /**
+     * Whether to show the border. Defaults to `true`.
+     */
+    showBorder?: boolean;
+};
+
+type Props = IconLabelProps & BaseBadgeProps & BadgeProps;
 
 const StyledSpan = addStyle("span");
 
@@ -29,6 +36,7 @@ const Badge = React.forwardRef<HTMLDivElement, Props>(function Badge(
         testId,
         styles: stylesProp,
         tag = "div",
+        showBorder = true,
         ...otherProps
     } = props;
     const StyledTag = React.useMemo(() => addStyle(tag, styles.default), [tag]);
@@ -46,6 +54,10 @@ const Badge = React.forwardRef<HTMLDivElement, Props>(function Badge(
                 styles.defaultBadgeStyling,
                 icon && !label ? styles.iconOnly : {},
                 stylesProp?.root,
+                // disabling border needs to be after custom styles so it can
+                // override any border styles that were applied by another badge
+                // component
+                !showBorder && styles.transparentBorder,
             ]}
             {...otherProps}
         >
@@ -155,5 +167,8 @@ const styles = StyleSheet.create({
     },
     iconOnly: {
         padding: badgeTokens.root.layout.iconOnly.padding,
+    },
+    transparentBorder: {
+        borderColor: semanticColor.core.transparent,
     },
 });

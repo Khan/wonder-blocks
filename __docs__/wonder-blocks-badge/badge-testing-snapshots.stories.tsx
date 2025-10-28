@@ -133,11 +133,25 @@ export const StateSheetStory: StoryComponentType = {
             <View style={{gap: sizing.size_080}}>
                 <HeadingLarge>Badge</HeadingLarge>
                 <StateSheet rows={rows} columns={columns} states={states}>
-                    {({props}) => <Badge {...props} />}
+                    {({props}) => (
+                        <View
+                            style={{gap: sizing.size_100, flexDirection: "row"}}
+                        >
+                            <Badge {...props} />
+                            <Badge {...props} showBorder={false} />
+                        </View>
+                    )}
                 </StateSheet>
                 <HeadingLarge>Status Badge</HeadingLarge>
                 <StateSheet rows={statusRows} columns={columns} states={states}>
-                    {({props}) => <StatusBadge {...props} />}
+                    {({props}) => (
+                        <View
+                            style={{gap: sizing.size_100, flexDirection: "row"}}
+                        >
+                            <StatusBadge {...props} />
+                            <StatusBadge {...props} showBorder={false} />
+                        </View>
+                    )}
                 </StateSheet>
                 <HeadingLarge>Gem Badge</HeadingLarge>
                 <StateSheet
