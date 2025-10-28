@@ -628,3 +628,35 @@ export const CreatingACustomModal: StoryComponentType = {
         },
     },
 };
+
+/**
+ * The following example demonstrates how to use `ModalLauncher` to launch a
+ * modal that is styled to be a confirmation modal.
+ */
+export const ConfirmationModal: StoryComponentType = {
+    render: () => {
+        return (
+            <ModalLauncher
+                modal={
+                    <OnePaneDialog
+                        style={{
+                            blockSize: "fit-content",
+                            inlineSize: "fit-content",
+                            maxInlineSize: "100%",
+                        }}
+                        title="Title of the modal"
+                        content={"Content"}
+                        footer={<Button kind="primary">Confirm</Button>}
+                    />
+                }
+                opened={true}
+            >
+                {({openModal}) => (
+                    <Button onClick={openModal}>
+                        Click me to open the modal
+                    </Button>
+                )}
+            </ModalLauncher>
+        );
+    },
+};

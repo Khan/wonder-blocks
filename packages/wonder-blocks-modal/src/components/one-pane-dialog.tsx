@@ -216,17 +216,14 @@ export default OnePaneDialog;
 const styles = StyleSheet.create({
     dialog: {
         maxInlineSize: 576,
+        width: "93.75%",
+        height: "81.25%",
+        maxBlockSize: 624,
 
         [modalMediaQuery.midOrSmaller as any]: {
             width: "100%",
             height: "100%",
             overflow: "hidden",
-        },
-
-        [modalMediaQuery.midOrLarger as any]: {
-            width: "93.75%",
-            height: "81.25%",
-            maxBlockSize: 624,
         },
     },
 });
