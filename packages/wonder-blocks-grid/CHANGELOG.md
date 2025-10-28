@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-grid
 
+## 3.1.38
+
+### Patch Changes
+
+- 6d5c485: Include provenance information when publishing to npmjs
+- Updated dependencies [6d5c485]
+    - @khanacademy/wonder-blocks-core@12.4.1
+    - @khanacademy/wonder-blocks-layout@3.1.38
+    - @khanacademy/wonder-blocks-tokens@14.0.1
+
 ## 3.1.37
 
 ### Patch Changes

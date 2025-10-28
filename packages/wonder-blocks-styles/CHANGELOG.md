@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-styles
 
+## 0.2.33
+
+### Patch Changes
+
+- 6d5c485: Include provenance information when publishing to npmjs
+- Updated dependencies [6d5c485]
+    - @khanacademy/wonder-blocks-tokens@14.0.1
+
 ## 0.2.32
 
 ### Patch Changes

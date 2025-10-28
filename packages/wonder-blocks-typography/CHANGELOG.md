@@ -1,5 +1,14 @@
 # @khanacademy/wonder-blocks-typography
 
+## 4.2.23
+
+### Patch Changes
+
+- 6d5c485: Include provenance information when publishing to npmjs
+- Updated dependencies [6d5c485]
+    - @khanacademy/wonder-blocks-core@12.4.1
+    - @khanacademy/wonder-blocks-tokens@14.0.1
+
 ## 4.2.22
 
 ### Patch Changes

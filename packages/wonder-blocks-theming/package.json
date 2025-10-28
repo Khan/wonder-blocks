@@ -3,7 +3,7 @@
   "description": "Theming in Wonder Blocks can be set per package/component level using a theme object that defines your components's colors, spacing, fonts, and more.",
   "author": "Khan Academy",
   "license": "MIT",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "publishConfig": {
     "access": "public"
   },
