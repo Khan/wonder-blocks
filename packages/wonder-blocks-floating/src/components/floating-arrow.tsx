@@ -8,8 +8,9 @@ export const Arrow = React.forwardRef(function Arrow(
     {context}: {context: FloatingContext},
     ref: React.ForwardedRef<SVGSVGElement>,
 ) {
-    const placement = context.placement;
-    const style = placement.endsWith("top")
+    // Only apply the drop shadow to the top placement, that way the shadow
+    // follows the floating element's shape.
+    const style = context.placement.endsWith("top")
         ? {
               filter: `drop-shadow(0 4px 2px ${semanticColor.core.shadow.transparent.mid})`,
           }
