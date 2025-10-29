@@ -132,7 +132,7 @@ type Props = AriaProps &
         /**
          * The object containing the custom labels and placeholder values used inside this component.
          */
-        labels?: LabelsValues;
+        labels?: Partial<LabelsValues>;
         /**
          * Callback for when the selection changes. Parameter is an updated array of
          * the values that are now selected.
