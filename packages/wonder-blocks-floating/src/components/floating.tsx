@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
         background: semanticColor.core.background.base.default,
         border: `solid ${border.width.thin} ${semanticColor.core.border.neutral.subtle}`,
         borderRadius: border.radius.radius_040,
-        maxInlineSize: 288,
+        maxInlineSize: 472,
         // Allow the floating element to be at least as tall as the arrow. We
         // set inline size to ensure that it works with inline placements.
         minBlockSize: ARROW_SIZE_INLINE,
