@@ -1,11 +1,21 @@
 {
   "name": "@khanacademy/wonder-blocks-layout",
-  "version": "3.1.37",
-  "design": "v1",
+  "description": "",
+  "author": "Khan Academy",
+  "license": "MIT",
+  "version": "3.1.39",
   "publishConfig": {
     "access": "public"
   },
-  "description": "",
+  "design": "v1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Khan/wonder-blocks.git",
+    "directory": "packages/wonder-blocks-layout"
+  },
+  "bugs": {
+    "url": "https://github.com/Khan/wonder-blocks/issues"
+  },
   "main": "dist/index.js",
   "module": "dist/es/index.js",
   "types": "dist/index.d.ts",
@@ -17,13 +27,11 @@
     "@khanacademy/wonder-blocks-core": "workspace:*",
     "@khanacademy/wonder-blocks-tokens": "workspace:*"
   },
-  "devDependencies": {
-    "@khanacademy/wb-dev-build-settings": "workspace:*"
-  },
   "peerDependencies": {
     "aphrodite": "catalog:",
     "react": "catalog:"
   },
-  "author": "",
-  "license": "MIT"
+  "devDependencies": {
+    "@khanacademy/wb-dev-build-settings": "workspace:*"
+  }
 }

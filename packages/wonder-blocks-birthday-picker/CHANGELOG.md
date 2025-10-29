@@ -1,5 +1,35 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 4.1.20
+
+### Patch Changes
+
+- Updated dependencies [272bf31]
+    - @khanacademy/wonder-blocks-tokens@14.1.0
+    - @khanacademy/wonder-blocks-dropdown@10.4.10
+    - @khanacademy/wonder-blocks-icon@5.3.2
+    - @khanacademy/wonder-blocks-layout@3.1.39
+    - @khanacademy/wonder-blocks-typography@4.2.24
+
+## 4.1.19
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-dropdown@10.4.9
+
+## 4.1.18
+
+### Patch Changes
+
+- 6d5c485: Include provenance information when publishing to npmjs
+- Updated dependencies [6d5c485]
+    - @khanacademy/wonder-blocks-core@12.4.1
+    - @khanacademy/wonder-blocks-dropdown@10.4.8
+    - @khanacademy/wonder-blocks-icon@5.3.1
+    - @khanacademy/wonder-blocks-layout@3.1.38
+    - @khanacademy/wonder-blocks-tokens@14.0.1
+    - @khanacademy/wonder-blocks-typography@4.2.23
+
 ## 4.1.17
 
 ### Patch Changes

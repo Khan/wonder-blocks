@@ -1,8 +1,21 @@
 {
   "name": "@khanacademy/wonder-blocks-dropdown",
-  "version": "10.4.7",
-  "design": "v1",
   "description": "Dropdown variants for Wonder Blocks.",
+  "author": "Khan Academy",
+  "license": "MIT",
+  "version": "10.4.10",
+  "publishConfig": {
+    "access": "public"
+  },
+  "design": "v1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Khan/wonder-blocks.git",
+    "directory": "packages/wonder-blocks-dropdown"
+  },
+  "bugs": {
+    "url": "https://github.com/Khan/wonder-blocks/issues"
+  },
   "main": "dist/index.js",
   "module": "dist/es/index.js",
   "types": "dist/index.d.ts",
@@ -18,11 +31,6 @@
     "build:css": "pnpm exec wonder-blocks-tokens .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
-  },
-  "author": "",
-  "license": "MIT",
-  "publishConfig": {
-    "access": "public"
   },
   "dependencies": {
     "@khanacademy/wonder-blocks-announcer": "workspace:*",

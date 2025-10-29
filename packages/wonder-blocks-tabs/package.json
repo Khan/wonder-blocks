@@ -1,19 +1,27 @@
 {
   "name": "@khanacademy/wonder-blocks-tabs",
-  "version": "0.3.32",
-  "design": "v1",
   "description": "Tabs are used to control what content is shown",
+  "author": "Khan Academy",
+  "license": "MIT",
+  "version": "0.3.34",
+  "publishConfig": {
+    "access": "public"
+  },
+  "design": "v1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Khan/wonder-blocks.git",
+    "directory": "packages/wonder-blocks-tabs"
+  },
+  "bugs": {
+    "url": "https://github.com/Khan/wonder-blocks/issues"
+  },
   "main": "dist/index.js",
   "module": "dist/es/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
-  },
-  "author": "",
-  "license": "MIT",
-  "publishConfig": {
-    "access": "public"
   },
   "dependencies": {
     "@khanacademy/wonder-blocks-core": "workspace:*",

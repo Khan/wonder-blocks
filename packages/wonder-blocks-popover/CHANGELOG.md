@@ -1,5 +1,39 @@
 # @khanacademy/wonder-blocks-popover
 
+## 6.1.40
+
+### Patch Changes
+
+- Updated dependencies [272bf31]
+    - @khanacademy/wonder-blocks-tokens@14.1.0
+    - @khanacademy/wonder-blocks-icon-button@10.5.5
+    - @khanacademy/wonder-blocks-modal@8.5.3
+    - @khanacademy/wonder-blocks-styles@0.2.34
+    - @khanacademy/wonder-blocks-tooltip@4.1.54
+    - @khanacademy/wonder-blocks-typography@4.2.24
+
+## 6.1.39
+
+### Patch Changes
+
+- Updated dependencies [8ea7b98]
+    - @khanacademy/wonder-blocks-modal@8.5.2
+    - @khanacademy/wonder-blocks-tooltip@4.1.53
+
+## 6.1.38
+
+### Patch Changes
+
+- 6d5c485: Include provenance information when publishing to npmjs
+- Updated dependencies [6d5c485]
+    - @khanacademy/wonder-blocks-core@12.4.1
+    - @khanacademy/wonder-blocks-icon-button@10.5.4
+    - @khanacademy/wonder-blocks-modal@8.5.1
+    - @khanacademy/wonder-blocks-styles@0.2.33
+    - @khanacademy/wonder-blocks-tokens@14.0.1
+    - @khanacademy/wonder-blocks-tooltip@4.1.52
+    - @khanacademy/wonder-blocks-typography@4.2.23
+
 ## 6.1.37
 
 ### Patch Changes

@@ -2,20 +2,19 @@ import * as React from "react";
 import type {StoryObj} from "@storybook/react-vite";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-badge/package.json";
-import {Badge} from "@khanacademy/wonder-blocks-badge";
+import {NeutralBadge} from "@khanacademy/wonder-blocks-badge";
 import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import singleColoredIcon from "../components/single-colored-icon.svg";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
+import {Heading} from "@khanacademy/wonder-blocks-typography";
 import badgeArgtypes, {iconArgType} from "./badge.argtypes";
 import {multiColoredIcon} from "../components/icons-for-testing";
-import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {themeModes} from "../../.storybook/modes";
 
 export default {
-    title: "Packages / Badge / Badge",
-    component: Badge,
+    title: "Packages / Badge / Neutral Badge",
+    component: NeutralBadge,
     argTypes: {...badgeArgtypes, ...iconArgType},
     parameters: {
         componentSubtitle: (
@@ -30,9 +29,11 @@ export default {
             modes: themeModes,
         },
     },
-    render: (args: Omit<PropsFor<typeof Badge>, "icon"> & {icon: string}) => {
+    render: (
+        args: Omit<PropsFor<typeof NeutralBadge>, "icon"> & {icon: string},
+    ) => {
         return (
-            <Badge
+            <NeutralBadge
                 {...args}
                 label={args.label || ""}
                 icon={
@@ -51,7 +52,7 @@ export default {
 type StoryComponentType = StoryObj<
     // Omit original icon type and replace with string so we can use the IconMapping
     // for PhosphorIcons
-    Omit<PropsFor<typeof Badge>, "icon"> & {icon?: string}
+    Omit<PropsFor<typeof NeutralBadge>, "icon"> & {icon?: string}
 >;
 
 /**
@@ -120,10 +121,10 @@ export const CustomIcons: StoryComponentType = {
     render: () => {
         return (
             <View style={{gap: sizing.size_240}}>
-                <HeadingLarge>
+                <Heading size="large">
                     Custom single colored svg icon using PhosphorIcon
-                </HeadingLarge>
-                <Badge
+                </Heading>
+                <NeutralBadge
                     icon={
                         <PhosphorIcon
                             icon={singleColoredIcon}
@@ -132,11 +133,11 @@ export const CustomIcons: StoryComponentType = {
                     }
                     label="Custom Icon"
                 />
-                <HeadingLarge>
+                <Heading size="large">
                     Custom single colored svg icon using PhosphorIcon and color
                     prop
-                </HeadingLarge>
-                <Badge
+                </Heading>
+                <NeutralBadge
                     icon={
                         <PhosphorIcon
                             icon={singleColoredIcon}
@@ -146,17 +147,17 @@ export const CustomIcons: StoryComponentType = {
                     }
                     label="Custom Icon"
                 />
-                <HeadingLarge>
+                <Heading size="large">
                     Custom multi-colored inline svg using the Icon component
-                </HeadingLarge>
-                <Badge
+                </Heading>
+                <NeutralBadge
                     icon={<Icon>{multiColoredIcon}</Icon>}
                     label="Custom Icon"
                 />
-                <HeadingLarge>
+                <Heading size="large">
                     Custom img element using the Icon component with a svg src
-                </HeadingLarge>
-                <Badge
+                </Heading>
+                <NeutralBadge
                     icon={
                         <Icon>
                             <img src={"logo.svg"} alt="Wonder Blocks" />
@@ -164,10 +165,10 @@ export const CustomIcons: StoryComponentType = {
                     }
                     label="Custom Icon"
                 />
-                <HeadingLarge>
+                <Heading size="large">
                     Custom img element using the Icon component with a png src
-                </HeadingLarge>
-                <Badge
+                </Heading>
+                <NeutralBadge
                     icon={
                         <Icon>
                             <img src="avatar.png" alt="Example avatar" />
@@ -195,7 +196,7 @@ export const CustomStyles: StoryComponentType = {
     },
     render: (args) => {
         return (
-            <Badge
+            <NeutralBadge
                 {...args}
                 label={args.label || ""}
                 icon={
@@ -222,62 +223,5 @@ export const CustomStyles: StoryComponentType = {
                 }}
             />
         );
-    },
-};
-
-/**
- * When the `tag` prop is provided, the badge will render as the specified tag.
- *
- * For example, if a badge should have emphasis, use a `strong` tag.
- */
-export const Tag: StoryComponentType = {
-    args: {
-        label: "Badge",
-        icon: "cookieBold",
-        tag: "strong",
-    },
-};
-
-/**
- * When using a `Badge` with a `Tooltip`, make sure to add `role="button"` on the
- * `Badge`. This is so that it is interactive and the tooltip contents can be
- * read out properly via the `aria-describedby` attribute on the `Badge` added
- * by the Tooltip component.
- *
- * Note: The `Tooltip` component also sets the `tabIndex` of the `Badge` so that
- * it is focusable.
- */
-export const BadgeWithTooltip: StoryComponentType = {
-    render: (args) => {
-        return (
-            <Tooltip content="This is a tooltip" opened={true}>
-                <Badge
-                    {...args}
-                    label={args.label || ""}
-                    icon={
-                        args.icon ? (
-                            <PhosphorIcon icon={args.icon} />
-                        ) : undefined
-                    }
-                    role="button"
-                />
-            </Tooltip>
-        );
-    },
-    args: {
-        label: "Badge",
-        icon: "cookieBold",
-    },
-};
-
-/**
- * By default, the label is truncated after `30ch` (approximately 30 characters).
- * If you have long lines of text to communicate information, this badge pattern
- * is not the right component for that purpose.
- */
-export const BadgeTruncation: StoryComponentType = {
-    args: {
-        label: "Badge with a long label that should be truncated",
-        icon: "cookieBold",
     },
 };

@@ -1,11 +1,24 @@
 {
   "name": "@khanacademy/wonder-blocks-modal",
-  "version": "8.5.0",
-  "design": "v2",
+  "description": "",
+  "author": "Khan Academy",
+  "license": "MIT",
+  "version": "8.5.3",
   "publishConfig": {
     "access": "public"
   },
-  "description": "",
+  "design": "v2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Khan/wonder-blocks.git",
+    "directory": "packages/wonder-blocks-modal"
+  },
+  "bugs": {
+    "url": "https://github.com/Khan/wonder-blocks/issues"
+  },
+  "main": "dist/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/es/index.js",
@@ -14,16 +27,11 @@
     },
     "./styles.css": "./dist/css/vars.css"
   },
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "module": "dist/es/index.js",
   "scripts": {
     "build:css": "pnpm exec wonder-blocks-tokens .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },
-  "author": "",
-  "license": "MIT",
   "dependencies": {
     "@khanacademy/wonder-blocks-breadcrumbs": "workspace:*",
     "@khanacademy/wonder-blocks-core": "workspace:*",

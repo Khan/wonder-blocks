@@ -1,5 +1,21 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 8.0.2
+
+### Patch Changes
+
+- Updated dependencies [272bf31]
+    - @khanacademy/wonder-blocks-tokens@14.1.0
+
+## 8.0.1
+
+### Patch Changes
+
+- 6d5c485: Include provenance information when publishing to npmjs
+- Updated dependencies [6d5c485]
+    - @khanacademy/wonder-blocks-core@12.4.1
+    - @khanacademy/wonder-blocks-tokens@14.0.1
+
 ## 8.0.0
 
 ### Major Changes

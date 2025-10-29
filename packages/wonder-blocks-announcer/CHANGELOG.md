@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-announcer
 
+## 1.0.4
+
+### Patch Changes
+
+- 6d5c485: Include provenance information when publishing to npmjs
+- Updated dependencies [6d5c485]
+    - @khanacademy/wonder-blocks-core@12.4.1
+
 ## 1.0.3
 
 ### Patch Changes

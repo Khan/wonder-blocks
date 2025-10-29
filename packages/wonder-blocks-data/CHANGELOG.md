@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-data
 
+## 14.1.7
+
+### Patch Changes
+
+- 6d5c485: Include provenance information when publishing to npmjs
+- Updated dependencies [6d5c485]
+    - @khanacademy/wonder-blocks-core@12.4.1
+
 ## 14.1.6
 
 ### Patch Changes

@@ -1,11 +1,21 @@
 {
   "name": "@khanacademy/wonder-blocks-data",
-  "version": "14.1.6",
-  "design": "v1",
+  "description": "",
+  "author": "Khan Academy",
+  "license": "MIT",
+  "version": "14.1.7",
   "publishConfig": {
     "access": "public"
   },
-  "description": "",
+  "design": "v1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Khan/wonder-blocks.git",
+    "directory": "packages/wonder-blocks-data"
+  },
+  "bugs": {
+    "url": "https://github.com/Khan/wonder-blocks/issues"
+  },
   "main": "dist/index.js",
   "module": "dist/es/index.js",
   "types": "dist/index.d.ts",
@@ -24,7 +34,5 @@
     "@khanacademy/wb-dev-build-settings": "workspace:*",
     "@khanacademy/wonder-stuff-testing": "catalog:",
     "@khanacademy/wonder-blocks-testing-core": "workspace:*"
-  },
-  "author": "",
-  "license": "MIT"
+  }
 }

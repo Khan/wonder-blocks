@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-timing
 
+## 7.0.3
+
+### Patch Changes
+
+- 6d5c485: Include provenance information when publishing to npmjs
+
 ## 7.0.2
 
 ### Patch Changes
