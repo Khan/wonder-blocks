@@ -12,12 +12,14 @@ import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import packageConfig from "../../packages/wonder-blocks-floating/package.json";
 import ComponentInfo from "../components/component-info";
 import {longText} from "../components/text-for-testing";
+import floatingArgtypes from "./floating.argtypes";
 
 type StoryComponentType = StoryObj<typeof Floating>;
 
 export default {
     title: "Packages / Floating / Floating",
     component: Floating,
+    argTypes: floatingArgtypes,
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -38,7 +40,7 @@ export default {
     ],
     args: {
         content: (
-            <View style={{padding: sizing.size_080}}>Floating content</View>
+            <View style={{padding: sizing.size_160}}>Floating content</View>
         ),
     },
 } as Meta<typeof Floating>;
@@ -134,6 +136,7 @@ export const Middlewares: StoryComponentType = {
                     <View style={styles.scrollableContentArea}>
                         <BodyText>{longText}</BodyText>
                         <BodyText>{longText}</BodyText>
+                        <BodyText>{longText}</BodyText>
                         <div style={{textAlign: "center"}}>
                             <Floating
                                 {...args}
@@ -148,6 +151,8 @@ export const Middlewares: StoryComponentType = {
                             </Floating>
                         </div>
 
+                        <BodyText>{longText}</BodyText>
+                        <BodyText>{longText}</BodyText>
                         <BodyText>{longText}</BodyText>
                         <BodyText>{longText}</BodyText>
                         <BodyText>{longText}</BodyText>

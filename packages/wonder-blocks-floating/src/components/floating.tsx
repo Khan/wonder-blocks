@@ -33,12 +33,6 @@ type FloatingProps = {
     content: React.ReactNode;
 
     /**
-     * The padding to apply between the floating element and its boundary.
-     * @default 8
-     */
-    boundaryPadding?: number;
-
-    /**
      * The placement of the floating element relative to the reference element.
      * @default "top"
      * @see https://floating-ui.com/docs/useFloating#placement
@@ -69,13 +63,20 @@ type FloatingProps = {
 
     // ----- Middleware specific props -----
     /**
-     * The flip strategy to use.
+     * Whether to flip the floating element to the opposite side if there's not
+     * enough space.
+     *
+     * This middleware hanges the placement of the floating element to keep it
+     * in view.
      * @default true
      */
     flip?: boolean;
 
     /**
-     * Whether to hide the floating element when the reference element is hidden.
+     * Whether to hide the floating element when the reference element is
+     * hidden.
+     *
+     * Allows to visually hide the floating element when it is out of bounds.
      * @default true
      */
     hide?: boolean;
@@ -87,7 +88,7 @@ type FloatingProps = {
     offset?: number;
 
     /**
-     * The shift strategy to use.
+     * Whether to shift the floating element along the axis to keep it in view.
      * @default true
      */
     shift?: boolean;
@@ -103,13 +104,11 @@ type FloatingProps = {
 
 /**
  * A component that uses the Floating UI library to position a floating element
- * relative to a reference element. The floating element appears on hover or
- * focus.
+ * relative to a reference element.
  */
 export default function Floating({
     content,
     children,
-    boundaryPadding = 8,
     placement = "top",
     open = false,
     onOpenChange,
@@ -141,7 +140,6 @@ export default function Floating({
             // Shift along the axis to keep it in view
             shiftProp
                 ? shift({
-                      padding: boundaryPadding,
                       crossAxis: true,
                   })
                 : undefined,
