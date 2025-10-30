@@ -103,6 +103,12 @@ type FloatingProps = {
 };
 
 /**
+ * The padding to use for the shift middleware. This is useful to avoid the
+ * floating element to be near the edges of the viewport.
+ */
+const SHIFT_PADDING = 12;
+
+/**
  * A component that uses the Floating UI library to position a floating element
  * relative to a reference element.
  *
@@ -153,6 +159,7 @@ export default function Floating({
             // Shift along the axis to keep it in view
             shiftProp
                 ? shift({
+                      padding: SHIFT_PADDING,
                       crossAxis: true,
                   })
                 : undefined,
@@ -209,6 +216,7 @@ const styles = StyleSheet.create({
         background: semanticColor.core.background.base.default,
         border: `solid ${border.width.thin} ${semanticColor.core.border.neutral.subtle}`,
         borderRadius: border.radius.radius_040,
+        // NOTE: Adapted from Tooltip.
         maxInlineSize: 472,
         // Allow the floating element to be at least as tall as the arrow. We
         // set inline size to ensure that it works with inline placements.
