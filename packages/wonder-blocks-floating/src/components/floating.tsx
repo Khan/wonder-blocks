@@ -105,6 +105,19 @@ type FloatingProps = {
 /**
  * A component that uses the Floating UI library to position a floating element
  * relative to a reference element.
+ *
+ * Please take a look at the
+ * [Accessibility](?path=/docs/packages-floating-floating-accessibility--docs)
+ * section for more information.
+ *
+ * ## Usage
+ * ```tsx
+ * import {Floating} from "@khanacademy/wonder-blocks-floating";
+ *
+ * <Floating content="Floating content" open={true}>
+ *     <Button>Trigger</Button>
+ * </Floating>
+ * ```
  */
 export default function Floating({
     content,
