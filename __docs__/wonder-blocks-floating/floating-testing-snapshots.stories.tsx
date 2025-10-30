@@ -7,6 +7,8 @@ import {ScenariosLayout} from "../components/scenarios-layout";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 
+import {Portal as PortalStory} from "./floating.stories";
+
 const styles = StyleSheet.create({
     layout: {
         gap: sizing.size_160,
@@ -177,5 +179,13 @@ export const Scenarios: Story = {
                 </ScenariosLayout>
             </View>
         );
+    },
+};
+
+export const Portal: Story = {
+    ...PortalStory,
+    args: {
+        ...PortalStory.args,
+        open: true,
     },
 };
