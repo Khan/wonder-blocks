@@ -182,6 +182,8 @@ export const Scenarios: Story = {
     },
 };
 
+// This story is reused to test that portal works correctly when the modal
+// dialog is opened.
 export const Portal: Story = {
     ...PortalStory,
     args: {
