@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.5.0
+
+### Minor Changes
+
+- a784e6c: Allow a `Partial` object for `labels` in `MultiSelect`, so consumers can decide which labels to override
+
 ## 10.4.10
 
 ### Patch Changes
