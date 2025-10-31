@@ -874,6 +874,9 @@ importers:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
         version: link:../../build-settings
+      '@khanacademy/wonder-blocks-modal':
+        specifier: workspace:*
+        version: link:../wonder-blocks-modal
 
   packages/wonder-blocks-form:
     dependencies:
