@@ -42,6 +42,9 @@ export default {
         // NOTE: The strategy is set to absolute to ensure that the floating
         // element applies middlewares correctly within the scrolling container.
         strategy: "absolute",
+        // Also portal is set to false to ensure that the floating element
+        // boundaries are set to the scrolling container.
+        portal: false,
         // all middlewares disabled
         hide: false,
         flip: false,
