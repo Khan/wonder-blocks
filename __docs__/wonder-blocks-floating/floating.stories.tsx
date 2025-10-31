@@ -13,11 +13,12 @@ import packageConfig from "../../packages/wonder-blocks-floating/package.json";
 import ComponentInfo from "../components/component-info";
 import {longText} from "../components/text-for-testing";
 import floatingArgtypes from "./floating.argtypes";
+import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
 
 type StoryComponentType = StoryObj<typeof Floating>;
 
 export default {
-    title: "Packages / Floating / Floating",
+    title: "Packages / Floating",
     component: Floating,
     argTypes: floatingArgtypes,
     parameters: {
@@ -202,6 +203,74 @@ export const Middlewares: StoryComponentType = {
     },
 };
 
+/**
+ * This story demonstrates how to render the floating element in a portal.
+ * This is useful when the floating element needs to be rendered outside the
+ * parent component.
+ *
+ * For example, if the reference element is inside a modal, Floating will
+ * automatically render the floating element inside the modal launcher portal,
+ * so it does not get clipped by the dialog and or the overlay.
+ */
+export const Portal: StoryComponentType = {
+    ...Default,
+    args: {
+        open: false,
+    },
+    render: function Render(args) {
+        const [open, setOpen] = React.useState(args.open);
+
+        React.useEffect(() => {
+            if (args.open !== undefined) {
+                setOpen(args.open);
+            }
+        }, [args.open]);
+
+        const exampleModal = (
+            <OnePaneDialog
+                title="Using Floating in a Modal"
+                content={
+                    <View style={styles.dialogContent}>
+                        <BodyText>
+                            When the reference is inside the Modal, its floating
+                            element is rendered but outside the Dialog element,
+                            so it does not get clipped by the dialog and or the
+                            overlay.
+                        </BodyText>
+
+                        <Floating
+                            {...args}
+                            portal={true}
+                            open={true}
+                            placement="left"
+                        >
+                            <View style={styles.reference}>Reference</View>
+                        </Floating>
+                    </View>
+                }
+            />
+        );
+        return (
+            <View style={styles.portalContainer}>
+                <ModalLauncher
+                    modal={exampleModal}
+                    opened={open}
+                    onClose={() => setOpen(false)}
+                >
+                    {() => (
+                        <Button
+                            style={styles.button}
+                            onClick={() => setOpen(true)}
+                        >
+                            Open Modal
+                        </Button>
+                    )}
+                </ModalLauncher>
+            </View>
+        );
+    },
+};
+
 const styles = StyleSheet.create({
     storyCanvas: {
         minHeight: 200,
@@ -233,5 +302,15 @@ const styles = StyleSheet.create({
     scrollableContentArea: {
         gap: sizing.size_080,
         width: 500,
+    },
+    dialogContent: {
+        gap: sizing.size_160,
+    },
+    portalContainer: {
+        paddingBlock: sizing.size_480,
+        placeContent: "center",
+    },
+    button: {
+        placeSelf: "center",
     },
 });

@@ -7,6 +7,8 @@ import {ScenariosLayout} from "../components/scenarios-layout";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 
+import {Portal as PortalStory} from "./floating.stories";
+
 const styles = StyleSheet.create({
     layout: {
         gap: sizing.size_160,
@@ -40,6 +42,9 @@ export default {
         // NOTE: The strategy is set to absolute to ensure that the floating
         // element applies middlewares correctly within the scrolling container.
         strategy: "absolute",
+        // Also portal is set to false to ensure that the floating element
+        // boundaries are set to the scrolling container.
+        portal: false,
         // all middlewares disabled
         hide: false,
         flip: false,
@@ -177,5 +182,15 @@ export const Scenarios: Story = {
                 </ScenariosLayout>
             </View>
         );
+    },
+};
+
+// This story is reused to test that portal works correctly when the modal
+// dialog is opened.
+export const Portal: Story = {
+    ...PortalStory,
+    args: {
+        ...PortalStory.args,
+        open: true,
     },
 };
