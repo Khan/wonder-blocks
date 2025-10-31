@@ -81,9 +81,6 @@ export default mergeTheme(defaultTheme, {
         },
     },
     subtitle: {
-        color: {
-            foreground: semanticColor.core.foreground.neutral.subtle,
-        },
         font: {
             size: font.body.size.xsmall,
             lineHeight: font.body.lineHeight.xsmall,
