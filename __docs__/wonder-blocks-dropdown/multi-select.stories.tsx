@@ -15,7 +15,6 @@ import type {LabelsValues} from "@khanacademy/wonder-blocks-dropdown";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 import multiSelectArgtypes from "./multi-select.argtypes";
-import {defaultLabels} from "../../packages/wonder-blocks-dropdown/src/util/constants";
 import {
     allCountries,
     allProfilesWithPictures,
@@ -340,8 +339,7 @@ export const ControlledOpened: StoryComponentType = {
 };
 
 // Custom MultiSelect labels
-const dropdownLabels: LabelsValues = {
-    ...defaultLabels,
+const dropdownLabels: Partial<LabelsValues> = {
     noneSelected: "Solar system",
     someSelected: (numSelectedValues: number) => `${numSelectedValues} planets`,
 };
@@ -651,7 +649,6 @@ export const ImplicitAllEnabled: StoryComponentType = {
     args: {
         implicitAllEnabled: true,
         labels: {
-            ...defaultLabels,
             someSelected: (numSelectedValues: number) =>
                 `${numSelectedValues} fruits`,
             allSelected: "All planets selected",
