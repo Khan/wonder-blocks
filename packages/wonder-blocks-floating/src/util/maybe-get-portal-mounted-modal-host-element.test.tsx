@@ -3,10 +3,9 @@ import * as ReactDOM from "react-dom";
 import {render, screen} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
+import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
 import {ModalLauncherPortalAttributeName} from "./constants";
 import maybeGetPortalMountedModalHostElement from "./maybe-get-portal-mounted-modal-host-element";
-import ModalLauncher from "../components/modal-launcher";
-import OnePaneDialog from "../components/one-pane-dialog";
 
 describe("maybeGetPortalMountedModalHostElement", () => {
     test("when candidate is null, returns null", async () => {
