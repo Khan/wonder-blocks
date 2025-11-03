@@ -1,9 +1,8 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {IconMappings} from "./wonder-blocks-icon/phosphor-icon.argtypes";
 import Tooltip, {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
@@ -96,14 +95,6 @@ const components = [
     },
 ];
 
-const styles = StyleSheet.create({
-    componentSection: {
-        padding: sizing.size_200,
-        border: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
-        borderRadius: border.radius.radius_120,
-    },
-});
-
 // Helper function to generate all combinations of remaining props
 const generateCombinations = (arrays: readonly any[][]): any[][] => {
     if (arrays.length === 0) {
@@ -123,15 +114,12 @@ const generateCombinations = (arrays: readonly any[][]): any[][] => {
 
 export const AllComponents = {
     render: () => (
-        <View style={{gap: sizing.size_160}}>
+        <View style={{gap: sizing.size_400, padding: sizing.size_200}}>
             {components.map((component) => {
                 const Component = component.component;
                 if (component.variantProps.length === 0) {
                     return (
-                        <View
-                            key={component.name}
-                            style={styles.componentSection}
-                        >
+                        <View key={component.name}>
                             <Heading
                                 tag="h2"
                                 style={{marginBlockEnd: sizing.size_120}}
@@ -156,7 +144,7 @@ export const AllComponents = {
                         : [[]];
 
                 return (
-                    <View key={component.name} style={styles.componentSection}>
+                    <View key={component.name}>
                         <Heading
                             tag="h2"
                             style={{marginBlockEnd: sizing.size_120}}
