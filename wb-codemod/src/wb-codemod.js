@@ -30,7 +30,7 @@ async function run(transformFileName, filePaths, options) {
             dry: options.dryRun || false,
             print: options.print || false,
             verbose: 2,
-            extensions: "js,jsx,ts,tsx",
+            extensions: "js,jsx,ts,tsx,md,mdx",
             parser: "tsx",
             runInBand: !!options.dryRun,
             silent: false,

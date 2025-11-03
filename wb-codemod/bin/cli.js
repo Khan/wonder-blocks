@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env -S node -r @swc-node/register
 /* eslint-disable @typescript-eslint/no-require-imports */
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable import/no-commonjs */
