@@ -6,6 +6,7 @@ import {Heading} from "@khanacademy/wonder-blocks-typography";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {IconMappings} from "./wonder-blocks-icon/phosphor-icon.argtypes";
 import Tooltip, {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
 export default {
     name: "All Components",
@@ -73,6 +74,26 @@ const components = [
             {name: "Spinner", props: {spinner: true}},
         ],
     }),
+    {
+        name: "IconButton",
+        component: IconButton,
+        variantProps: [
+            variantProp("size", ["small", "medium", "large"]),
+            variantProp("kind", ["primary", "secondary", "tertiary"]),
+            variantProp("actionType", [
+                "progressive",
+                "destructive",
+                "neutral",
+            ]),
+        ],
+        defaultProps: {
+            icon: IconMappings.cookieBold,
+        },
+        states: [
+            {name: "Default", props: {}},
+            {name: "Disabled", props: {disabled: true}},
+        ],
+    },
 ];
 
 const styles = StyleSheet.create({
