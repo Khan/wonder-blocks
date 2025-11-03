@@ -105,7 +105,7 @@
     "@vitest/browser": "^3.0.4",
     "alex": "^11.0.1",
     "ancesdir": "^6.0.0",
-    "chalk": "^4.1.2",
+    "chalk": "catalog:",
     "chromatic": "^6.0.4",
     "eslint": "8.57.1",
     "eslint-config-prettier": "^10.0.1",

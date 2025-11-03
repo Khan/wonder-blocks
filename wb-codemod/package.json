@@ -16,6 +16,7 @@
     "url": "https://github.com/Khan/wonder-blocks/issues"
   },
   "dependencies": {
+    "chalk": "catalog:",
     "jscodeshift": "catalog:"
   },
   "devDependencies": {},
