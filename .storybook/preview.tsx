@@ -265,6 +265,11 @@ const preview: Preview = {
                         icon: "lightning",
                         title: "Shape Your Learning (Thunder Blocks)",
                     },
+                    {
+                        value: "syl-dark",
+                        icon: "moon",
+                        title: "Shape Your Learning - Dark",
+                    },
                 ],
                 // Change title based on selected value
                 dynamicTitle: true,
