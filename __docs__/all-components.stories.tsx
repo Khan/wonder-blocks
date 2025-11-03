@@ -32,6 +32,7 @@ const components = [
         states: [
             {name: "Default", props: {}},
             {name: "Disabled", props: {disabled: true}},
+            {name: "Spinner", props: {spinner: true}},
         ],
     },
 ];
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
     componentSection: {
         padding: sizing.size_200,
         border: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
-        borderRadius: border.radius.radius_040,
+        borderRadius: border.radius.radius_120,
     },
 });
 
@@ -63,7 +64,7 @@ const generateCombinations = (arrays: any[][]): any[][] => {
 
 export const AllComponents = {
     render: () => (
-        <View style={{gap: sizing.size_160, alignItems: "flex-start"}}>
+        <View style={{gap: sizing.size_160}}>
             {components.map((component) => {
                 const Component = component.component;
                 if (component.variantProps.length === 0) {
@@ -103,19 +104,18 @@ export const AllComponents = {
                         >
                             {component.name}
                         </Heading>
-                        <View style={{gap: sizing.size_120}}>
+                        <View style={{gap: sizing.size_280}}>
                             {component.states.map((state) => (
-                                <View key={state.name}>
+                                <View
+                                    key={state.name}
+                                    style={{gap: sizing.size_160}}
+                                >
                                     {firstVariantProp.options.map(
                                         (firstOption) => (
                                             <View
                                                 key={firstOption}
                                                 style={{gap: sizing.size_040}}
                                             >
-                                                <Heading tag="h3" size="small">
-                                                    {firstVariantProp.propName}:{" "}
-                                                    {firstOption}
-                                                </Heading>
                                                 <View
                                                     style={{
                                                         flexDirection: "row",
