@@ -5,98 +5,21 @@ html {
     font-size: 62.5%;
 }
 
-/* These overrides depend on a Base 10 font size */
-.sb-show-main.sb-main-padded {
-    padding: 0.8rem;
-}
-
 .sbdocs.sbdocs-wrapper {
-    padding: 0 2rem 3.2rem 2rem;
     /* create stacking context for docs so modals sit on top */
     position: relative;
-    gap: 2.4rem;
     z-index: 0;
-}
-
-.sbdocs ul,
-.sbdocs li,
-.sbdocs p,
-.sbdocs p *:not(a) {
-    color: var(--color-text);
-    font-size: var(--typography-body-size-md);
-    line-height: var(--typography-base-line-height);
-}
-
-.sbdocs .docblock-argstable p,
-.sbdocs .docblock-argstable ul,
-.sbdocs .docblock-argstable li {
-    font-size: 1em;
-}
-
-.sbdocs h1,
-.sbdocs title,
-.sbdocs h2,
-.sbdocs h3,
-.sbdocs h4,
-.sbdocs h5,
-.sbdocs h6 {
-    color: var(--color-text);
-    font-family: 'Source Serif Pro', sans-serif;
-    font-weight: 400;
-    margin-top: 0.96rem;
-}
-
-/* Reset WB typhography colors inside docs pages */
-.sb-unstyled h1,
-.sb-unstyled h2,
-.sb-unstyled h3,
-.sb-unstyled h4,
-.sb-unstyled h5,
-.sb-unstyled h6 {
-    color: unset;
-}
-
-
-.sbdocs h1 {
-    font-size: var(--typography-heading-size-xxl);
-    line-height: var(--typography-heading-line-height-xxl);
-    margin-top: 0;
 }
 
 .sbdocs h2 {
     counter-reset: story;
-    font-size: var(--typography-heading-size-xl);
-    letter-spacing: initial;
-    line-height: var(--typography-heading-line-height-xl);
-}
-
-.sbdocs h3 {
-    font-size: var(--typography-heading-size-lg);
-    line-height: var(--typography-heading-line-height-lg);
 }
 
 /* only include the counter to the stories titles */
 .sb-anchor>h3::before {
     counter-increment: story;
-    color: var(--color-text-64);
     content: counter(story) ".";
 }
-
-.sbdocs h4 {
-    font-size: var(--typography-heading-size-md);
-    line-height: var(--typography-heading-line-height-md);
-}
-
-.sbdocs h5 {
-    font-size: var(--typography-heading-size-sm);
-    line-height: var(--typography-heading-line-height-sm);
-}
-
-.sbdocs h6 {
-    font-size: var(--typography-heading-size-xs);
-    line-height: var(--typography-heading-line-height-xs);
-}
-
 
 .showAnnouncer.sb-show-main #wbAnnounce {
     background-color: white;
