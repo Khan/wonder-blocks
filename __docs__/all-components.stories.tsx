@@ -29,6 +29,10 @@ const components = [
             startIcon: IconMappings.cookieBold,
             endIcon: IconMappings.cookieBold,
         },
+        states: [
+            {name: "Default", props: {}},
+            {name: "Disabled", props: {disabled: true}},
+        ],
     },
 ];
 
@@ -100,68 +104,87 @@ export const AllComponents = {
                             {component.name}
                         </Heading>
                         <View style={{gap: sizing.size_120}}>
-                            {firstVariantProp.options.map((firstOption) => (
-                                <View
-                                    key={firstOption}
-                                    style={{gap: sizing.size_040}}
-                                >
-                                    <Heading tag="h3" size="small">
-                                        {firstVariantProp.propName}:{" "}
-                                        {firstOption}
-                                    </Heading>
-                                    <View
-                                        style={{
-                                            flexDirection: "row",
-                                            gap: sizing.size_120,
-                                            flexWrap: "wrap",
-                                        }}
-                                    >
-                                        {remainingPropCombinations.map(
-                                            (combo, index) => {
-                                                const props = {
-                                                    ...component.defaultProps,
-                                                    [firstVariantProp.propName]:
-                                                        firstOption,
-                                                };
+                            {component.states.map((state) => (
+                                <View key={state.name}>
+                                    {firstVariantProp.options.map(
+                                        (firstOption) => (
+                                            <View
+                                                key={firstOption}
+                                                style={{gap: sizing.size_040}}
+                                            >
+                                                <Heading tag="h3" size="small">
+                                                    {firstVariantProp.propName}:{" "}
+                                                    {firstOption}
+                                                </Heading>
+                                                <View
+                                                    style={{
+                                                        flexDirection: "row",
+                                                        gap: sizing.size_120,
+                                                        flexWrap: "wrap",
+                                                    }}
+                                                >
+                                                    {remainingPropCombinations.map(
+                                                        (combo, index) => {
+                                                            const props = {
+                                                                ...component.defaultProps,
+                                                                ...state.props,
+                                                                [firstVariantProp.propName]:
+                                                                    firstOption,
+                                                            };
 
-                                                // Add all the remaining prop values
-                                                restVariantProps.forEach(
-                                                    (vp, vpIndex) => {
-                                                        props[vp.propName] =
-                                                            combo[vpIndex];
-                                                    },
-                                                );
+                                                            // Add all the remaining prop values
+                                                            restVariantProps.forEach(
+                                                                (
+                                                                    vp,
+                                                                    vpIndex,
+                                                                ) => {
+                                                                    props[
+                                                                        vp.propName
+                                                                    ] =
+                                                                        combo[
+                                                                            vpIndex
+                                                                        ];
+                                                                },
+                                                            );
 
-                                                // Create a label for the combination
-                                                const comboLabel =
-                                                    restVariantProps
-                                                        .map(
-                                                            (vp, vpIndex) =>
-                                                                `${vp.propName}=${combo[vpIndex]}`,
-                                                        )
-                                                        .join(", ");
+                                                            // Create a label for the combination
+                                                            const comboLabel = [
+                                                                `State: ${state.name}`,
+                                                                ...restVariantProps.map(
+                                                                    (
+                                                                        vp,
+                                                                        vpIndex,
+                                                                    ) =>
+                                                                        `${vp.propName}=${combo[vpIndex]}`,
+                                                                ),
+                                                            ].join(", ");
 
-                                                const Component =
-                                                    component.component;
-                                                return (
-                                                    <View
-                                                        key={index}
-                                                        style={{
-                                                            gap: sizing.size_040,
-                                                        }}
-                                                    >
-                                                        <Tooltip
-                                                            content={comboLabel}
-                                                        >
-                                                            <Component
-                                                                {...props}
-                                                            />
-                                                        </Tooltip>
-                                                    </View>
-                                                );
-                                            },
-                                        )}
-                                    </View>
+                                                            const Component =
+                                                                component.component;
+                                                            return (
+                                                                <View
+                                                                    key={index}
+                                                                    style={{
+                                                                        gap: sizing.size_040,
+                                                                    }}
+                                                                >
+                                                                    <Tooltip
+                                                                        content={
+                                                                            comboLabel
+                                                                        }
+                                                                    >
+                                                                        <Component
+                                                                            {...props}
+                                                                        />
+                                                                    </Tooltip>
+                                                                </View>
+                                                            );
+                                                        },
+                                                    )}
+                                                </View>
+                                            </View>
+                                        ),
+                                    )}
                                 </View>
                             ))}
                         </View>
