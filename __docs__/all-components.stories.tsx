@@ -12,17 +12,55 @@ export default {
     tags: ["!autodocs"],
 };
 
+type VariantProp<T> = {
+    [K in keyof T & string]: {
+        propName: K;
+        options: ReadonlyArray<T[K]>;
+    };
+}[keyof T & string];
+
+type ComponentConfig<ComponentType extends React.ComponentType<any>> = {
+    name: string;
+    component: ComponentType;
+    variantProps: ReadonlyArray<
+        VariantProp<React.ComponentProps<ComponentType>>
+    >;
+    defaultProps?: Partial<React.ComponentProps<ComponentType>>;
+    states: ReadonlyArray<{
+        name: string;
+        props: Partial<React.ComponentProps<ComponentType>>;
+    }>;
+};
+
+// Helper function to create a variant prop with automatic type inference
+// The 'const' type parameter preserves literal types without needing 'as const'
+const variantProp = <K extends string, const Options extends readonly any[]>(
+    propName: K,
+    options: Options,
+) =>
+    ({
+        propName,
+        options,
+    }) as const;
+
+// Helper function to create a type-safe component config
+// This function validates that variant prop options match the component's prop types
+const createComponentConfig = <C extends React.ComponentType<any>>(
+    config: ComponentConfig<C>,
+): ComponentConfig<C> => config;
+
 const components = [
-    {
+    createComponentConfig({
         name: "Button",
         component: Button,
         variantProps: [
-            {propName: "size", options: ["small", "medium", "large"]},
-            {propName: "kind", options: ["primary", "secondary", "tertiary"]},
-            {
-                propName: "actionType",
-                options: ["progressive", "destructive", "neutral"],
-            },
+            variantProp("size", ["small", "medium", "large"]),
+            variantProp("kind", ["primary", "secondary", "tertiary"]),
+            variantProp("actionType", [
+                "progressive",
+                "destructive",
+                "neutral",
+            ]),
         ],
         defaultProps: {
             children: "Button",
@@ -34,7 +72,7 @@ const components = [
             {name: "Disabled", props: {disabled: true}},
             {name: "Spinner", props: {spinner: true}},
         ],
-    },
+    }),
 ];
 
 const styles = StyleSheet.create({
@@ -46,7 +84,7 @@ const styles = StyleSheet.create({
 });
 
 // Helper function to generate all combinations of remaining props
-const generateCombinations = (arrays: any[][]): any[][] => {
+const generateCombinations = (arrays: readonly any[][]): any[][] => {
     if (arrays.length === 0) {
         return [[]];
     }
