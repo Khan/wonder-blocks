@@ -96,7 +96,7 @@ export default function ComponentGallery() {
 
                 {groupMaps[currentGroup].map((group) => (
                     <View key={group.name}>
-                        <HeadingLarge tag="h3" style={styles.sectionLabel}>
+                        <HeadingLarge tag="h2" style={styles.sectionLabel}>
                             {group.name}
                         </HeadingLarge>
 
