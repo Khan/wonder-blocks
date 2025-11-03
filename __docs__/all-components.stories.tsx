@@ -5,7 +5,7 @@ import Button from "@khanacademy/wonder-blocks-button";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {IconMappings} from "./wonder-blocks-icon/phosphor-icon.argtypes";
-import Tooltip from "@khanacademy/wonder-blocks-tooltip";
+import Tooltip, {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 
 export default {
     name: "All Components",
@@ -148,16 +148,47 @@ export const AllComponents = {
                                                             );
 
                                                             // Create a label for the combination
-                                                            const comboLabel = [
-                                                                `State: ${state.name}`,
-                                                                ...restVariantProps.map(
-                                                                    (
-                                                                        vp,
-                                                                        vpIndex,
-                                                                    ) =>
-                                                                        `${vp.propName}=${combo[vpIndex]}`,
-                                                                ),
-                                                            ].join(", ");
+                                                            const comboLabelItems =
+                                                                [
+                                                                    `${firstVariantProp.propName}: ${firstOption}`,
+                                                                    ...restVariantProps.map(
+                                                                        (
+                                                                            vp,
+                                                                            vpIndex,
+                                                                        ) =>
+                                                                            `${vp.propName}: ${combo[vpIndex]}`,
+                                                                    ),
+                                                                    `State: ${state.name}`,
+                                                                ];
+
+                                                            const comboLabel = (
+                                                                <TooltipContent>
+                                                                    <ul
+                                                                        style={{
+                                                                            margin: 0,
+                                                                            paddingLeft:
+                                                                                "20px",
+                                                                        }}
+                                                                    >
+                                                                        {comboLabelItems.map(
+                                                                            (
+                                                                                item,
+                                                                                i,
+                                                                            ) => (
+                                                                                <li
+                                                                                    key={
+                                                                                        i
+                                                                                    }
+                                                                                >
+                                                                                    {
+                                                                                        item
+                                                                                    }
+                                                                                </li>
+                                                                            ),
+                                                                        )}
+                                                                    </ul>
+                                                                </TooltipContent>
+                                                            );
 
                                                             const Component =
                                                                 component.component;
