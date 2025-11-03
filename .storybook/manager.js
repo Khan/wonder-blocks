@@ -3,7 +3,7 @@
  */
 import {addons} from "storybook/manager-api";
 import wonderBlocksTheme from "./wonder-blocks-theme";
-import {themes} from "storybook/theming";
+import wonderBlocksDarkTheme from "./wonder-blocks-dark-theme";
 
 /**
  * Configures a custom theme to add some minor WB branding to our Storybook
@@ -21,7 +21,7 @@ addons.setConfig({
 addons.register("theme", (api) => {
     api.on("globalsUpdated", ({globals}) => {
         const {theme} = globals;
-        const storybookTheme = theme === "syl-dark" ? themes.dark : wonderBlocksTheme;
+        const storybookTheme = theme === "syl-dark" ? wonderBlocksDarkTheme : wonderBlocksTheme;
         addons.setConfig({theme: storybookTheme});
     });
 });
