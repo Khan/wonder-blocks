@@ -11,6 +11,13 @@ html {
     z-index: 0;
 }
 
+.sbdocs ul,
+.sbdocs li,
+.sbdocs p,
+.sbdocs p *:not(a) {
+    font-size: 1.6rem;
+}
+
 .sbdocs h2 {
     counter-reset: story;
 }
