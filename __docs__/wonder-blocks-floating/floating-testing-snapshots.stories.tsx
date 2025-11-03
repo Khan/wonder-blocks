@@ -7,7 +7,10 @@ import {ScenariosLayout} from "../components/scenarios-layout";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 
-import {Portal as PortalStory} from "./floating.stories";
+import {
+    Portal as PortalStory,
+    InitialFocus as InitialFocusStory,
+} from "./floating.stories";
 
 const styles = StyleSheet.create({
     layout: {
@@ -192,5 +195,17 @@ export const Portal: Story = {
     args: {
         ...PortalStory.args,
         open: true,
+    },
+};
+
+export const InitialFocus: Story = {
+    ...InitialFocusStory,
+    args: {
+        ...InitialFocusStory.args,
+        open: true,
+        hide: true,
+        flip: true,
+        shift: true,
+        offset: 20,
     },
 };
