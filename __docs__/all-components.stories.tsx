@@ -32,17 +32,6 @@ type ComponentConfig<ComponentType extends React.ComponentType<any>> = {
     }>;
 };
 
-// Helper function to create a variant prop with automatic type inference
-// The 'const' type parameter preserves literal types without needing 'as const'
-const variantProp = <K extends string, const Options extends readonly any[]>(
-    propName: K,
-    options: Options,
-) =>
-    ({
-        propName,
-        options,
-    }) as const;
-
 // Helper function to create a type-safe component config
 // This function validates that variant prop options match the component's prop types
 const createComponentConfig = <C extends React.ComponentType<any>>(
@@ -54,13 +43,18 @@ const components = [
         name: "Button",
         component: Button,
         variantProps: [
-            variantProp("size", ["small", "medium", "large"]),
-            variantProp("kind", ["primary", "secondary", "tertiary"]),
-            variantProp("actionType", [
-                "progressive",
-                "destructive",
-                "neutral",
-            ]),
+            {
+                propName: "size",
+                options: ["small", "medium", "large"] as const,
+            },
+            {
+                propName: "kind",
+                options: ["primary", "secondary", "tertiary"] as const,
+            },
+            {
+                propName: "actionType",
+                options: ["progressive", "destructive", "neutral"] as const,
+            },
         ],
         defaultProps: {
             children: "Button",
@@ -73,17 +67,22 @@ const components = [
             {name: "Spinner", props: {spinner: true}},
         ],
     }),
-    {
+    createComponentConfig({
         name: "IconButton",
         component: IconButton,
         variantProps: [
-            variantProp("size", ["small", "medium", "large"]),
-            variantProp("kind", ["primary", "secondary", "tertiary"]),
-            variantProp("actionType", [
-                "progressive",
-                "destructive",
-                "neutral",
-            ]),
+            {
+                propName: "size",
+                options: ["small", "medium", "large"] as const,
+            },
+            {
+                propName: "kind",
+                options: ["primary", "secondary", "tertiary"] as const,
+            },
+            {
+                propName: "actionType",
+                options: ["progressive", "destructive", "neutral"] as const,
+            },
         ],
         defaultProps: {
             icon: IconMappings.cookieBold,
@@ -92,7 +91,7 @@ const components = [
             {name: "Default", props: {}},
             {name: "Disabled", props: {disabled: true}},
         ],
-    },
+    }),
 ];
 
 // Helper function to generate all combinations of remaining props
