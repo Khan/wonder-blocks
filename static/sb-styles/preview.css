@@ -5,9 +5,15 @@ html {
     font-size: 62.5%;
 }
 
+.sb-show-main.sb-main-padded {
+    padding: 0.8rem;
+}
+
 .sbdocs.sbdocs-wrapper {
+    padding: 0 2rem 3.2rem 2rem;
     /* create stacking context for docs so modals sit on top */
     position: relative;
+    gap: 2.4rem;
     z-index: 0;
 }
 
