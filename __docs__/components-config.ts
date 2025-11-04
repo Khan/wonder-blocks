@@ -37,6 +37,51 @@ const createComponentConfig = <C extends React.ComponentType<any>>(
 ): ComponentConfig<C> => config;
 
 export const components = [
+    /**
+     * wonder-blocks-accordion
+     */
+    createComponentConfig({
+        name: "Accordion",
+        component: Accordion,
+        variantProps: [
+            {
+                propName: "caretPosition",
+                options: ["start", "end"] as const,
+            },
+            {
+                propName: "cornerKind",
+                options: ["square", "rounded", "rounded-per-section"] as const,
+            },
+        ],
+        defaultProps: {
+            initialExpandedIndex: 1,
+            children: [
+                React.createElement(
+                    AccordionSection,
+                    {key: "section-1", header: "First Section"} as any,
+                    "This is the content of the first section",
+                ),
+                React.createElement(
+                    AccordionSection,
+                    {
+                        key: "section-2",
+                        header: "Second Section",
+                    } as any,
+                    "This is the content of the second section",
+                ),
+                React.createElement(
+                    AccordionSection,
+                    {key: "section-3", header: "Third Section"} as any,
+                    "This is the content of the third section",
+                ),
+            ],
+        },
+        states: [],
+        package: "wonder-blocks-accordion",
+    }),
+    /**
+     * wonder-blocks-button
+     */
     createComponentConfig({
         name: "Button",
         component: Button,
@@ -82,6 +127,9 @@ export const components = [
         states: [{name: "Default", props: {disabled: true}}],
         package: "wonder-blocks-button",
     }),
+    /**
+     * wonder-blocks-icon-button
+     */
     createComponentConfig({
         name: "IconButton",
         component: IconButton,
@@ -144,44 +192,5 @@ export const components = [
         },
         states: [{name: "Disabled", props: {disabled: true}}],
         package: "wonder-blocks-icon-button",
-    }),
-    createComponentConfig({
-        name: "Accordion",
-        component: Accordion,
-        variantProps: [
-            {
-                propName: "caretPosition",
-                options: ["start", "end"] as const,
-            },
-            {
-                propName: "cornerKind",
-                options: ["square", "rounded", "rounded-per-section"] as const,
-            },
-        ],
-        defaultProps: {
-            initialExpandedIndex: 1,
-            children: [
-                React.createElement(
-                    AccordionSection,
-                    {key: "section-1", header: "First Section"} as any,
-                    "This is the content of the first section",
-                ),
-                React.createElement(
-                    AccordionSection,
-                    {
-                        key: "section-2",
-                        header: "Second Section",
-                    } as any,
-                    "This is the content of the second section",
-                ),
-                React.createElement(
-                    AccordionSection,
-                    {key: "section-3", header: "Third Section"} as any,
-                    "This is the content of the third section",
-                ),
-            ],
-        },
-        states: [],
-        package: "wonder-blocks-accordion",
     }),
 ];
