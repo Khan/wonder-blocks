@@ -1106,4 +1106,37 @@ export const components = [
             package: "wonder-blocks-labeled-field",
         }),
     ),
+    /**
+     * wonder-blocks-link
+     */
+    createComponentConfig({
+        name: "Link",
+        component: Link,
+        variantProps: [
+            {
+                propName: "inline",
+                options: [false, true] as const,
+            },
+            {
+                propName: "target",
+                options: [undefined, "_blank"] as const,
+            },
+        ],
+        defaultProps: {
+            href: "https://khanacademy.org",
+            children: "Link",
+        },
+        states: [
+            {
+                name: "Icons",
+                props: {
+                    startIcon: <PhosphorIcon icon={IconMappings.cookieBold} />,
+                    endIcon: (
+                        <PhosphorIcon icon={IconMappings.caretRightBold} />
+                    ),
+                },
+            },
+        ],
+        package: "wonder-blocks-link",
+    }),
 ];
