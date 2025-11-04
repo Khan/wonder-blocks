@@ -51,6 +51,7 @@ import {
 import {FlexibleDialog, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
 import Pill from "@khanacademy/wonder-blocks-pill";
 import {PopoverContent} from "@khanacademy/wonder-blocks-popover";
+import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 import {IconMappings} from "./wonder-blocks-icon/phosphor-icon.argtypes";
 import Link from "@khanacademy/wonder-blocks-link";
 import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
@@ -1256,5 +1257,21 @@ export const components = [
             },
         ],
         package: "wonder-blocks-popover",
+    }),
+    /**
+     * wonder-blocks-progress-spinner
+     */
+    createComponentConfig({
+        name: "CircularSpinner",
+        component: CircularSpinner,
+        variantProps: [
+            {
+                propName: "size",
+                options: ["xsmall", "small", "medium", "large"] as const,
+            },
+        ],
+        defaultProps: {},
+        states: [],
+        package: "wonder-blocks-progress-spinner",
     }),
 ];
