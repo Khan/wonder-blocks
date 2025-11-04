@@ -220,7 +220,7 @@ export const AllComponents = {
                                                 <View
                                                     key={state.name}
                                                     style={{
-                                                        gap: sizing.size_160,
+                                                        gap: sizing.size_200,
                                                     }}
                                                 >
                                                     {firstVariantProp.options.map(
@@ -237,7 +237,7 @@ export const AllComponents = {
                                                                     style={{
                                                                         flexDirection:
                                                                             "row",
-                                                                        gap: sizing.size_120,
+                                                                        gap: sizing.size_200,
                                                                         flexWrap:
                                                                             "wrap",
                                                                     }}
