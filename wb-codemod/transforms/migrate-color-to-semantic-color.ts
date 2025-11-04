@@ -180,6 +180,13 @@ const COLOR_TO_SEMANTIC_MAPPING: Record<
         border: "core.border.success.subtle",
         default: "core.background.success.subtle",
     },
+    // same as fadedGreen8
+    fadedGreen16: {
+        foreground: "core.foreground.success.subtle",
+        background: "core.background.success.subtle",
+        border: "core.border.success.subtle",
+        default: "core.background.success.subtle",
+    },
     fadedGreen24: {
         foreground: "core.foreground.success.subtle",
         background: "core.background.success.subtle",
@@ -201,6 +208,12 @@ const COLOR_TO_SEMANTIC_MAPPING: Record<
         default: "core.border.warning.strong",
     },
     fadedGold8: {
+        foreground: "core.foreground.warning.subtle",
+        background: "core.background.warning.subtle",
+        border: "core.border.warning.subtle",
+        default: "core.background.warning.subtle",
+    },
+    fadedGold16: {
         foreground: "core.foreground.warning.subtle",
         background: "core.background.warning.subtle",
         border: "core.border.warning.subtle",
