@@ -1,5 +1,5 @@
 import * as React from "react";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
@@ -22,13 +22,11 @@ type VariantProp<T> = {
 type ComponentConfig<ComponentType extends React.ComponentType<any>> = {
     name: string;
     component: ComponentType;
-    variantProps: ReadonlyArray<
-        VariantProp<React.ComponentProps<ComponentType>>
-    >;
-    defaultProps?: Partial<React.ComponentProps<ComponentType>>;
+    variantProps: ReadonlyArray<VariantProp<PropsFor<ComponentType>>>;
+    defaultProps: PropsFor<ComponentType>;
     states: ReadonlyArray<{
         name: string;
-        props: Partial<React.ComponentProps<ComponentType>>;
+        props: Partial<PropsFor<ComponentType>>;
     }>;
 };
 
@@ -39,7 +37,7 @@ const createComponentConfig = <C extends React.ComponentType<any>>(
 ): ComponentConfig<C> => config;
 
 const components = [
-    createComponentConfig({
+    createComponentConfig<typeof Button>({
         name: "Button",
         component: Button,
         variantProps: [
@@ -67,7 +65,7 @@ const components = [
             {name: "Spinner", props: {spinner: true}},
         ],
     }),
-    createComponentConfig({
+    createComponentConfig<typeof IconButton>({
         name: "IconButton",
         component: IconButton,
         variantProps: [
@@ -159,7 +157,7 @@ export const AllComponents = {
                                     {firstVariantProp.options.map(
                                         (firstOption) => (
                                             <View
-                                                key={firstOption}
+                                                key={String(firstOption)}
                                                 style={{gap: sizing.size_040}}
                                             >
                                                 <View
