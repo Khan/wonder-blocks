@@ -20,6 +20,7 @@ export type ComponentConfig<ComponentType extends React.ComponentType<any>> = {
         name: string;
         props: Partial<PropsFor<ComponentType>>;
     }>;
+    package: string;
 };
 
 // Helper function to create a type-safe component config
@@ -56,6 +57,7 @@ export const components = [
             {name: "Disabled", props: {disabled: true}},
             {name: "Spinner", props: {spinner: true}},
         ],
+        package: "wonder-blocks-button",
     }),
     createComponentConfig({
         name: "IconButton",
@@ -81,5 +83,6 @@ export const components = [
             {name: "Default", props: {}},
             {name: "Disabled", props: {disabled: true}},
         ],
+        package: "wonder-blocks-icon-button",
     }),
 ];
