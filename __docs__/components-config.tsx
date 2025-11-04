@@ -40,11 +40,16 @@ import {
     RadioGroup,
     Choice,
 } from "@khanacademy/wonder-blocks-form";
-import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {
+    PhosphorIcon,
+    Icon,
+    GemIcon,
+    StreakIcon,
+} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "./wonder-blocks-icon/phosphor-icon.argtypes";
 import Link from "@khanacademy/wonder-blocks-link";
 import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import customBackgroundImage from "../static/EOT-Background.svg";
 
 export type VariantProp<T> = {
@@ -899,6 +904,48 @@ export const components = [
         },
         states: [],
         package: "wonder-blocks-form",
+    }),
+    /**
+     * wonder-blocks-icon
+     */
+    createComponentConfig({
+        name: "PhosphorIcon",
+        component: PhosphorIcon,
+        variantProps: [
+            {
+                propName: "size",
+                options: ["small", "medium", "large", "xlarge"] as const,
+            },
+        ],
+        defaultProps: {
+            icon: IconMappings.cookieBold,
+            color: semanticColor.core.foreground.neutral.subtle,
+        },
+        states: [],
+        package: "wonder-blocks-icon",
+    }),
+    createComponentConfig({
+        name: "Icon (with custom icons, GemIcon, StreakIcon)",
+        component: Icon,
+        variantProps: [
+            {
+                propName: "size",
+                options: ["small", "medium", "large", "xlarge"] as const,
+            },
+            {
+                propName: "children",
+                options: [
+                    <img src="./logo.svg" alt="Wonder Blocks Logo" />,
+                    <GemIcon aria-label="Gem icon" />,
+                    <StreakIcon aria-label="Streak icon" />,
+                ],
+            },
+        ],
+        defaultProps: {
+            children: <></>,
+        },
+        states: [],
+        package: "wonder-blocks-icon",
     }),
     /**
      * wonder-blocks-icon-button
