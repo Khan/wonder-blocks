@@ -59,6 +59,7 @@ import {
     NavigationTabItem,
     Tabs,
 } from "@khanacademy/wonder-blocks-tabs";
+import Toolbar from "@khanacademy/wonder-blocks-toolbar";
 import {IconMappings} from "./wonder-blocks-icon/phosphor-icon.argtypes";
 import Link from "@khanacademy/wonder-blocks-link";
 import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
@@ -1516,5 +1517,43 @@ export const components = [
             },
         ],
         package: "wonder-blocks-tabs",
+    }),
+    /**
+     * wonder-blocks-toolbar
+     */
+    createComponentConfig({
+        name: "Toolbar",
+        component: Toolbar,
+        variantProps: [
+            {
+                propName: "size",
+                options: ["small", "medium"] as const,
+            },
+            {
+                propName: "color",
+                options: ["light", "dark"] as const,
+            },
+        ],
+        defaultProps: {
+            title: "Toolbar Title",
+            leftContent: (
+                <IconButton
+                    icon={IconMappings.xBold}
+                    kind="tertiary"
+                    actionType="neutral"
+                    aria-label="Close"
+                />
+            ),
+            rightContent: <Button>Action</Button>,
+        },
+        states: [
+            {
+                name: "With Subtitle",
+                props: {
+                    subtitle: "Toolbar subtitle",
+                },
+            },
+        ],
+        package: "wonder-blocks-toolbar",
     }),
 ];
