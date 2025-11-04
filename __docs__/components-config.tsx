@@ -37,6 +37,7 @@ import {
     TextArea,
     Checkbox,
     CheckboxGroup,
+    RadioGroup,
     Choice,
 } from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -844,6 +845,41 @@ export const components = [
             onChange: () => {},
             label: "Label",
             description: "Description for the checkbox group",
+            children: [
+                <Choice key="choice1" label="Choice 1" value="choice1" />,
+                <Choice
+                    key="choice2"
+                    label="Choice 2"
+                    value="choice2"
+                    description="Description for choice 2"
+                />,
+                <Choice
+                    key="choice3"
+                    label="Choice 3"
+                    value="choice3"
+                    description="Description for choice 3"
+                    disabled={true}
+                />,
+            ],
+        },
+        states: [],
+        package: "wonder-blocks-form",
+    }),
+    createComponentConfig({
+        name: "RadioGroup",
+        component: RadioGroup,
+        variantProps: [
+            {
+                propName: "errorMessage",
+                options: ["", "Error message"] as const,
+            },
+        ],
+        defaultProps: {
+            groupName: "radio-group",
+            selectedValue: "choice1",
+            onChange: () => {},
+            label: "Label",
+            description: "Description for the radio group",
             children: [
                 <Choice key="choice1" label="Choice 1" value="choice1" />,
                 <Choice
