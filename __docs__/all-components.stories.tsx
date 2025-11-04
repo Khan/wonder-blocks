@@ -73,6 +73,119 @@ export const AllComponents = {
                                     );
                                 }
 
+                                // Special case: if there's only 1 variant prop, render all options in one row
+                                if (component.variantProps.length === 1) {
+                                    const [singleVariantProp] =
+                                        component.variantProps;
+
+                                    return (
+                                        <View key={component.name}>
+                                            <Heading
+                                                tag="h3"
+                                                style={{
+                                                    marginBlockEnd:
+                                                        sizing.size_120,
+                                                }}
+                                                size="medium"
+                                                weight="medium"
+                                            >
+                                                {component.name}
+                                            </Heading>
+                                            <View
+                                                style={{gap: sizing.size_280}}
+                                            >
+                                                {[
+                                                    {
+                                                        name: "Default",
+                                                        props: {},
+                                                    },
+                                                    ...component.states,
+                                                ].map((state) => (
+                                                    <View
+                                                        key={state.name}
+                                                        style={{
+                                                            flexDirection:
+                                                                "row",
+                                                            gap: sizing.size_120,
+                                                            flexWrap: "wrap",
+                                                        }}
+                                                    >
+                                                        {singleVariantProp.options.map(
+                                                            (option) => {
+                                                                const props = {
+                                                                    ...component.defaultProps,
+                                                                    ...state.props,
+                                                                    [singleVariantProp.propName]:
+                                                                        option,
+                                                                };
+
+                                                                const comboLabelItems =
+                                                                    [
+                                                                        `${singleVariantProp.propName}: ${option}`,
+                                                                        `State: ${state.name}`,
+                                                                    ];
+
+                                                                const comboLabel =
+                                                                    (
+                                                                        <TooltipContent>
+                                                                            <ul
+                                                                                style={{
+                                                                                    margin: 0,
+                                                                                    paddingLeft:
+                                                                                        "20px",
+                                                                                }}
+                                                                            >
+                                                                                {comboLabelItems.map(
+                                                                                    (
+                                                                                        item,
+                                                                                        i,
+                                                                                    ) => (
+                                                                                        <li
+                                                                                            key={
+                                                                                                i
+                                                                                            }
+                                                                                        >
+                                                                                            {
+                                                                                                item
+                                                                                            }
+                                                                                        </li>
+                                                                                    ),
+                                                                                )}
+                                                                            </ul>
+                                                                        </TooltipContent>
+                                                                    );
+
+                                                                const Component =
+                                                                    component.component;
+                                                                return (
+                                                                    <View
+                                                                        key={String(
+                                                                            option,
+                                                                        )}
+                                                                        style={{
+                                                                            gap: sizing.size_040,
+                                                                        }}
+                                                                    >
+                                                                        <Tooltip
+                                                                            content={
+                                                                                comboLabel
+                                                                            }
+                                                                        >
+                                                                            <Component
+                                                                                {...(props as any)}
+                                                                            />
+                                                                        </Tooltip>
+                                                                    </View>
+                                                                );
+                                                            },
+                                                        )}
+                                                    </View>
+                                                ))}
+                                            </View>
+                                        </View>
+                                    );
+                                }
+
                                 // Get the first variant prop to group by
                                 const [firstVariantProp, ...restVariantProps] =
                                     component.variantProps;
