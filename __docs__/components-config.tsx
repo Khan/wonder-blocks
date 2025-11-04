@@ -50,6 +50,7 @@ import {
 } from "@khanacademy/wonder-blocks-icon";
 import {FlexibleDialog, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
 import Pill from "@khanacademy/wonder-blocks-pill";
+import {PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import {IconMappings} from "./wonder-blocks-icon/phosphor-icon.argtypes";
 import Link from "@khanacademy/wonder-blocks-link";
 import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
@@ -1215,5 +1216,45 @@ export const components = [
             },
         ],
         package: "wonder-blocks-pill",
+    }),
+    /**
+     * wonder-blocks-popover
+     */
+    createComponentConfig({
+        name: "PopoverContent",
+        component: PopoverContent,
+        variantProps: [],
+        defaultProps: {
+            title: "Popover Title",
+            content: "This is the content of the popover.",
+            closeButtonVisible: true,
+            actions: <Button>Action</Button>,
+        },
+        states: [
+            {
+                name: "With Icon",
+                props: {
+                    icon: (
+                        <img
+                            src="./logo.svg"
+                            width="100%"
+                            alt="Wonder Blocks logo"
+                        />
+                    ),
+                },
+            },
+            {
+                name: "With Image",
+                props: {
+                    image: (
+                        <img
+                            src="./illustration.svg"
+                            alt="An illustration of a person skating on a pencil"
+                        />
+                    ),
+                },
+            },
+        ],
+        package: "wonder-blocks-popover",
     }),
 ];
