@@ -9,7 +9,7 @@ import {
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import * as tokens from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {
     MultiSelect,
@@ -100,9 +100,7 @@ export const Default: StoryComponentType = {
 export const AllowMultipleExpanded: StoryComponentType = {
     render: () => (
         <View>
-            <View
-                style={{maxWidth: 500, marginBottom: tokens.spacing.large_24}}
-            >
+            <View style={{maxWidth: 500, marginBottom: spacing.large_24}}>
                 <LabelLarge>Allow multiple expanded (default)</LabelLarge>
                 <Accordion allowMultipleExpanded>{exampleSections}</Accordion>
             </View>
@@ -171,7 +169,7 @@ export const CaretPositions: StoryComponentType = {
                             {exampleSections}
                         </Accordion>
                     </View>
-                    <Strut size={tokens.spacing.xLarge_32} />
+                    <Strut size={spacing.xLarge_32} />
                     <View style={styles.fullWidth}>
                         <LabelLarge>
                             Caret position: start, language direction: left to
@@ -204,7 +202,7 @@ export const CaretPositions: StoryComponentType = {
                             </AccordionSection>
                         </Accordion>
                     </View>
-                    <Strut size={tokens.spacing.xLarge_32} />
+                    <Strut size={spacing.xLarge_32} />
                     <View style={styles.fullWidth}>
                         <LabelLarge>
                             Caret position: start, language direction: right to
@@ -377,7 +375,7 @@ export const WithAnimation: StoryComponentType = {
                             <View
                                 style={{
                                     height: 500,
-                                    padding: tokens.spacing.large_24,
+                                    padding: spacing.large_24,
                                 }}
                             >
                                 This is the information present in the first
@@ -388,7 +386,7 @@ export const WithAnimation: StoryComponentType = {
                             <View
                                 style={{
                                     height: 100,
-                                    padding: tokens.spacing.large_24,
+                                    padding: spacing.large_24,
                                 }}
                             >
                                 This is the information present in the second
@@ -399,7 +397,7 @@ export const WithAnimation: StoryComponentType = {
                             <View
                                 style={{
                                     height: 300,
-                                    padding: tokens.spacing.large_24,
+                                    padding: spacing.large_24,
                                 }}
                             >
                                 This is the information present in the third
@@ -433,8 +431,8 @@ WithAnimation.parameters = {
 export const WithStyle: StoryComponentType = {
     render: () => {
         const customStyles = {
-            border: `2px solid ${tokens.color.purple}`,
-            padding: tokens.spacing.xLarge_32,
+            border: `2px solid ${color.purple}`,
+            padding: spacing.xLarge_32,
         };
 
         return (
@@ -510,7 +508,7 @@ export const LongSections: StoryComponentType = {
                                         width="100%"
                                         alt="Wonder Blocks logo"
                                     />
-                                    <Strut size={tokens.spacing.xLarge_32} />
+                                    <Strut size={spacing.xLarge_32} />
                                     <img
                                         src="logo.svg"
                                         width="100%"
@@ -610,11 +608,11 @@ LongSections.parameters = {
 export const BackgroundColorExample: StoryComponentType = {
     render: () => {
         const accordionSectionStyle = {
-            backgroundColor: tokens.color.fadedBlue,
+            backgroundColor: color.fadedBlue,
             // NOTE: This border color uses the opacity token to match the
             // background color. By default, the border color is
             // `fadedOffBlack16`, which is the HEX value of `offBlack16`.
-            borderColor: tokens.color.offBlack16,
+            borderColor: color.offBlack16,
         };
 
         const sections = [
@@ -644,9 +642,9 @@ export const BackgroundColorExample: StoryComponentType = {
         return (
             <>
                 <Accordion cornerKind="rounded">{sections}</Accordion>
-                <Strut size={tokens.spacing.large_24} />
+                <Strut size={spacing.large_24} />
                 <Accordion cornerKind="square">{sections}</Accordion>
-                <Strut size={tokens.spacing.large_24} />
+                <Strut size={spacing.large_24} />
                 <Accordion cornerKind="rounded-per-section">
                     {sections}
                 </Accordion>
@@ -678,10 +676,10 @@ const styles = StyleSheet.create({
         direction: "rtl",
     },
     space: {
-        margin: tokens.spacing.xSmall_8,
+        margin: spacing.xSmall_8,
     },
     button: {
         width: "fit-content",
-        marginBottom: tokens.spacing.medium_16,
+        marginBottom: spacing.medium_16,
     },
 });
