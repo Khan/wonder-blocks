@@ -54,6 +54,10 @@ import {PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
 import Switch from "@khanacademy/wonder-blocks-switch";
+import {
+    NavigationTabs,
+    NavigationTabItem,
+} from "@khanacademy/wonder-blocks-tabs";
 import {IconMappings} from "./wonder-blocks-icon/phosphor-icon.argtypes";
 import Link from "@khanacademy/wonder-blocks-link";
 import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
@@ -1328,5 +1332,88 @@ export const components = [
         },
         states: [{name: "Disabled", props: {disabled: true}}],
         package: "wonder-blocks-switch",
+    }),
+    /**
+     * wonder-blocks-tabs
+     */
+    createComponentConfig({
+        name: "NavigationTabs",
+        component: NavigationTabs,
+        variantProps: [],
+        defaultProps: {
+            "aria-label": "Navigation tabs",
+            children: [
+                <NavigationTabItem key="tab1" current={true}>
+                    <Link href="#tab1">Navigation Tab 1</Link>
+                </NavigationTabItem>,
+                <NavigationTabItem key="tab2">
+                    <Link href="#tab2">Navigation Tab 2</Link>
+                </NavigationTabItem>,
+                <NavigationTabItem key="tab3">
+                    <Link href="#tab3">Navigation Tab 3</Link>
+                </NavigationTabItem>,
+            ],
+        },
+        states: [
+            {
+                name: "With Icons",
+                props: {
+                    children: [
+                        <NavigationTabItem key="tab1" current={true}>
+                            <Link
+                                href="#tab1"
+                                startIcon={
+                                    <PhosphorIcon
+                                        icon={IconMappings.cookieBold}
+                                    />
+                                }
+                                endIcon={
+                                    <PhosphorIcon
+                                        icon={IconMappings.cookieBold}
+                                    />
+                                }
+                            >
+                                Navigation Tab 1
+                            </Link>
+                        </NavigationTabItem>,
+                        <NavigationTabItem key="tab2">
+                            <Link
+                                href="#tab2"
+                                startIcon={
+                                    <PhosphorIcon
+                                        icon={IconMappings.cookieBold}
+                                    />
+                                }
+                                endIcon={
+                                    <PhosphorIcon
+                                        icon={IconMappings.cookieBold}
+                                    />
+                                }
+                            >
+                                Navigation Tab 2
+                            </Link>
+                        </NavigationTabItem>,
+                        <NavigationTabItem key="tab3">
+                            <Link
+                                href="#tab3"
+                                startIcon={
+                                    <PhosphorIcon
+                                        icon={IconMappings.cookieBold}
+                                    />
+                                }
+                                endIcon={
+                                    <PhosphorIcon
+                                        icon={IconMappings.cookieBold}
+                                    />
+                                }
+                            >
+                                Navigation Tab 3
+                            </Link>
+                        </NavigationTabItem>,
+                    ],
+                },
+            },
+        ],
+        package: "wonder-blocks-tabs",
     }),
 ];
