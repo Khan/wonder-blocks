@@ -32,6 +32,7 @@ import {
     SingleSelect,
     OptionItem,
 } from "@khanacademy/wonder-blocks-dropdown";
+import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "./wonder-blocks-icon/phosphor-icon.argtypes";
 import Link from "@khanacademy/wonder-blocks-link";
@@ -749,6 +750,33 @@ export const components = [
         },
         states: [],
         package: "wonder-blocks-dropdown",
+    }),
+    /**
+     * wonder-blocks-form
+     */
+    createComponentConfig({
+        name: "TextField",
+        component: TextField,
+        variantProps: [
+            {
+                propName: "value",
+                options: ["", "TextField"],
+            },
+            {
+                propName: "placeholder",
+                options: ["", "Placeholder"],
+            },
+        ],
+        defaultProps: {
+            value: "",
+            onChange: () => {},
+        },
+        states: [
+            {name: "Disabled", props: {disabled: true}},
+            {name: "Error", props: {error: true}},
+            {name: "Read Only", props: {readOnly: true}},
+        ],
+        package: "wonder-blocks-form",
     }),
     /**
      * wonder-blocks-icon-button
