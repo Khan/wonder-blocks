@@ -52,6 +52,7 @@ import {FlexibleDialog, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
 import Pill from "@khanacademy/wonder-blocks-pill";
 import {PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
+import SearchField from "@khanacademy/wonder-blocks-search-field";
 import {IconMappings} from "./wonder-blocks-icon/phosphor-icon.argtypes";
 import Link from "@khanacademy/wonder-blocks-link";
 import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
@@ -1273,5 +1274,31 @@ export const components = [
         defaultProps: {},
         states: [],
         package: "wonder-blocks-progress-spinner",
+    }),
+    /**
+     * wonder-blocks-search-field
+     */
+    createComponentConfig({
+        name: "SearchField",
+        component: SearchField,
+        variantProps: [
+            {
+                propName: "value",
+                options: ["", "Search text"] as const,
+            },
+            {
+                propName: "placeholder",
+                options: ["", "Search..."] as const,
+            },
+        ],
+        defaultProps: {
+            value: "",
+            onChange: () => {},
+        },
+        states: [
+            {name: "Disabled", props: {disabled: true}},
+            {name: "Error", props: {error: true}},
+        ],
+        package: "wonder-blocks-search-field",
     }),
 ];
