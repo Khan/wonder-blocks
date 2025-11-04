@@ -1028,7 +1028,7 @@ export const components = [
             description: "Description for the field",
             additionalHelperMessage: "Additional helper text",
             contextLabel: "Context label",
-            styles: {root: {maxWidth: "300px"}},
+            styles: {root: {width: "300px"}},
         },
         states: [
             {
