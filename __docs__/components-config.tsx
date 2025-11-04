@@ -19,8 +19,13 @@ import {
 } from "@khanacademy/wonder-blocks-badge";
 import Banner from "@khanacademy/wonder-blocks-banner";
 import BirthdayPicker from "@khanacademy/wonder-blocks-birthday-picker";
+import {
+    Breadcrumbs,
+    BreadcrumbsItem,
+} from "@khanacademy/wonder-blocks-breadcrumbs";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "./wonder-blocks-icon/phosphor-icon.argtypes";
+import Link from "@khanacademy/wonder-blocks-link";
 
 export type VariantProp<T> = {
     [K in keyof T & string]: {
@@ -268,6 +273,27 @@ export const components = [
         },
         states: [{name: "Disabled", props: {disabled: true}}],
         package: "wonder-blocks-birthday-picker",
+    }),
+    /**
+     * wonder-blocks-breadcrumbs
+     */
+    createComponentConfig({
+        name: "Breadcrumbs",
+        component: Breadcrumbs,
+        variantProps: [],
+        defaultProps: {
+            children: [
+                <BreadcrumbsItem key="home">
+                    <Link href="/">Course</Link>
+                </BreadcrumbsItem>,
+                <BreadcrumbsItem key="category">
+                    <Link href="/">Unit</Link>
+                </BreadcrumbsItem>,
+                <BreadcrumbsItem key="current">Lesson</BreadcrumbsItem>,
+            ],
+        },
+        states: [],
+        package: "wonder-blocks-breadcrumbs",
     }),
     /**
      * wonder-blocks-button
