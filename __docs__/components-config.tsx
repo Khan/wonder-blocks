@@ -1018,38 +1018,83 @@ export const components = [
     /**
      * wonder-blocks-labeled-field
      */
-    createComponentConfig({
-        name: "LabeledField",
-        component: LabeledField,
-        variantProps: [],
-        defaultProps: {
-            field: <TextField value="" onChange={() => {}} />,
-            label: "Label",
-            description: "Description for the field",
-            additionalHelperMessage: "Additional helper text",
-            contextLabel: "Context label",
-            styles: {root: {width: "300px"}},
+    ...[
+        {componentName: "TextField", FormComponent: TextField},
+        {componentName: "TextArea", FormComponent: TextArea},
+        {
+            componentName: "SingleSelect",
+            FormComponent: SingleSelect,
+            componentProps: {
+                placeholder: "Placeholder",
+                children: [
+                    <OptionItem
+                        key="option1"
+                        label="Option 1"
+                        value="option1"
+                    />,
+                ],
+            },
         },
-        states: [
-            {
-                name: "Read Only",
-                props: {
-                    readOnlyMessage: "This field is read only",
-                },
+        {
+            componentName: "MultiSelect",
+            FormComponent: MultiSelect,
+            componentProps: {
+                children: [
+                    <OptionItem
+                        key="option1"
+                        label="Option 1"
+                        value="option1"
+                    />,
+                ],
             },
-            {
-                name: "Error",
-                props: {
-                    errorMessage: "This field has an error",
-                },
+        },
+    ].map(({componentName, FormComponent, componentProps = {}}) =>
+        createComponentConfig({
+            name: `LabeledField with ${componentName}`,
+            component: LabeledField,
+            variantProps: [],
+            defaultProps: {
+                field: (
+                    <FormComponent
+                        value=""
+                        onChange={() => {}}
+                        {...componentProps}
+                    />
+                ),
+                label: "Label",
+                description: "Description for the field",
+                additionalHelperMessage: "Additional helper text",
+                contextLabel: "Context label",
+                styles: {root: {width: "300px"}},
             },
-            {
-                name: "Disabled",
-                props: {
-                    field: <TextField value="" onChange={() => {}} disabled />,
+            states: [
+                {
+                    name: "Read Only",
+                    props: {
+                        readOnlyMessage: "This field is read only",
+                    },
                 },
-            },
-        ],
-        package: "wonder-blocks-labeled-field",
-    }),
+                {
+                    name: "Error",
+                    props: {
+                        errorMessage: "This field has an error",
+                    },
+                },
+                {
+                    name: "Disabled",
+                    props: {
+                        field: (
+                            <FormComponent
+                                value=""
+                                onChange={() => {}}
+                                {...componentProps}
+                                disabled
+                            />
+                        ),
+                    },
+                },
+            ],
+            package: "wonder-blocks-labeled-field",
+        }),
+    ),
 ];
