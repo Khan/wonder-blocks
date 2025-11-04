@@ -1,7 +1,10 @@
 import * as React from "react";
 import {PropsFor} from "@khanacademy/wonder-blocks-core";
 import Button, {ActivityButton} from "@khanacademy/wonder-blocks-button";
-import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import IconButton, {
+    ActivityIconButton,
+    ConversationIconButton,
+} from "@khanacademy/wonder-blocks-icon-button";
 import {IconMappings} from "./wonder-blocks-icon/phosphor-icon.argtypes";
 
 export type VariantProp<T> = {
@@ -94,6 +97,46 @@ export const components = [
         ],
         defaultProps: {
             icon: IconMappings.cookieBold,
+        },
+        states: [{name: "Disabled", props: {disabled: true}}],
+        package: "wonder-blocks-icon-button",
+    }),
+    createComponentConfig({
+        name: "ActivityIconButton",
+        component: ActivityIconButton,
+        variantProps: [
+            {
+                propName: "actionType",
+                options: ["progressive", "neutral"] as const,
+            },
+            {
+                propName: "kind",
+                options: ["primary", "secondary", "tertiary"] as const,
+            },
+        ],
+        defaultProps: {
+            icon: IconMappings.cookieBold,
+            "aria-label": "Activity Icon Button",
+        },
+        states: [{name: "Disabled", props: {disabled: true}}],
+        package: "wonder-blocks-icon-button",
+    }),
+    createComponentConfig({
+        name: "ConversationIconButton",
+        component: ConversationIconButton,
+        variantProps: [
+            {
+                propName: "actionType",
+                options: ["progressive", "neutral"] as const,
+            },
+            {
+                propName: "kind",
+                options: ["primary", "secondary", "tertiary"] as const,
+            },
+        ],
+        defaultProps: {
+            icon: IconMappings.cookieBold,
+            "aria-label": "Conversation Icon Button",
         },
         states: [{name: "Disabled", props: {disabled: true}}],
         package: "wonder-blocks-icon-button",
