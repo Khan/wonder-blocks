@@ -1,96 +1,14 @@
 import * as React from "react";
-import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
-import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
-import {IconMappings} from "./wonder-blocks-icon/phosphor-icon.argtypes";
 import Tooltip, {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
-import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import {components} from "./components-config";
 
 export default {
     name: "All Components",
     tags: ["!autodocs"],
 };
-
-type VariantProp<T> = {
-    [K in keyof T & string]: {
-        propName: K;
-        options: ReadonlyArray<T[K]>;
-    };
-}[keyof T & string];
-
-type ComponentConfig<ComponentType extends React.ComponentType<any>> = {
-    name: string;
-    component: ComponentType;
-    variantProps: ReadonlyArray<VariantProp<PropsFor<ComponentType>>>;
-    defaultProps: PropsFor<ComponentType>;
-    states: ReadonlyArray<{
-        name: string;
-        props: Partial<PropsFor<ComponentType>>;
-    }>;
-};
-
-// Helper function to create a type-safe component config
-// This function validates that variant prop options match the component's prop types
-const createComponentConfig = <C extends React.ComponentType<any>>(
-    config: ComponentConfig<C>,
-): ComponentConfig<C> => config;
-
-const components = [
-    createComponentConfig<typeof Button>({
-        name: "Button",
-        component: Button,
-        variantProps: [
-            {
-                propName: "size",
-                options: ["small", "medium", "large"] as const,
-            },
-            {
-                propName: "kind",
-                options: ["primary", "secondary", "tertiary"] as const,
-            },
-            {
-                propName: "actionType",
-                options: ["progressive", "destructive", "neutral"] as const,
-            },
-        ],
-        defaultProps: {
-            children: "Button",
-            startIcon: IconMappings.cookieBold,
-            endIcon: IconMappings.cookieBold,
-        },
-        states: [
-            {name: "Default", props: {}},
-            {name: "Disabled", props: {disabled: true}},
-            {name: "Spinner", props: {spinner: true}},
-        ],
-    }),
-    createComponentConfig<typeof IconButton>({
-        name: "IconButton",
-        component: IconButton,
-        variantProps: [
-            {
-                propName: "size",
-                options: ["small", "medium", "large"] as const,
-            },
-            {
-                propName: "kind",
-                options: ["primary", "secondary", "tertiary"] as const,
-            },
-            {
-                propName: "actionType",
-                options: ["progressive", "destructive", "neutral"] as const,
-            },
-        ],
-        defaultProps: {
-            icon: IconMappings.cookieBold,
-        },
-        states: [
-            {name: "Default", props: {}},
-            {name: "Disabled", props: {disabled: true}},
-        ],
-    }),
-];
 
 // Helper function to generate all combinations of remaining props
 const generateCombinations = (arrays: readonly any[][]): any[][] => {
