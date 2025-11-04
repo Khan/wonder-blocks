@@ -9,6 +9,15 @@ import {
     Accordion,
     AccordionSection,
 } from "@khanacademy/wonder-blocks-accordion";
+import {
+    Badge,
+    StatusBadge,
+    GemBadge,
+    StreakBadge,
+    DueBadge,
+    NeutralBadge,
+} from "@khanacademy/wonder-blocks-badge";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "./wonder-blocks-icon/phosphor-icon.argtypes";
 
 export type VariantProp<T> = {
@@ -56,28 +65,150 @@ export const components = [
         defaultProps: {
             initialExpandedIndex: 1,
             children: [
-                React.createElement(
-                    AccordionSection,
-                    {key: "section-1", header: "First Section"} as any,
-                    "This is the content of the first section",
-                ),
-                React.createElement(
-                    AccordionSection,
-                    {
-                        key: "section-2",
-                        header: "Second Section",
-                    } as any,
-                    "This is the content of the second section",
-                ),
-                React.createElement(
-                    AccordionSection,
-                    {key: "section-3", header: "Third Section"} as any,
-                    "This is the content of the third section",
-                ),
+                <AccordionSection key="section-1" header="First Section">
+                    This is the content of the first section
+                </AccordionSection>,
+                <AccordionSection key="section-2" header="Second Section">
+                    This is the content of the second section
+                </AccordionSection>,
+                <AccordionSection key="section-3" header="Third Section">
+                    This is the content of the third section
+                </AccordionSection>,
             ],
         },
         states: [],
         package: "wonder-blocks-accordion",
+    }),
+    /**
+     * wonder-blocks-badge
+     */
+    createComponentConfig({
+        name: "StatusBadge",
+        component: StatusBadge,
+        variantProps: [
+            {
+                propName: "showBorder",
+                options: [true, false] as const,
+            },
+            {
+                propName: "kind",
+                options: ["info", "success", "warning", "critical"] as const,
+            },
+            {
+                propName: "icon",
+                options: [
+                    <PhosphorIcon icon={IconMappings.cookieBold} />,
+                    undefined,
+                ] as const,
+            },
+        ],
+        defaultProps: {
+            label: "StatusBadge",
+            icon: <PhosphorIcon icon={IconMappings.cookieBold} />,
+        },
+        states: [],
+        package: "wonder-blocks-badge",
+    }),
+    createComponentConfig({
+        name: "NeutralBadge",
+        component: NeutralBadge,
+        variantProps: [
+            {
+                propName: "showBorder",
+                options: [true, false] as const,
+            },
+            {
+                propName: "icon",
+                options: [
+                    <PhosphorIcon icon={IconMappings.cookieBold} />,
+                    undefined,
+                ] as const,
+            },
+        ],
+        defaultProps: {
+            label: "NeutralBadge",
+        },
+        states: [],
+        package: "wonder-blocks-badge",
+    }),
+    createComponentConfig({
+        name: "GemBadge",
+        component: GemBadge,
+        variantProps: [
+            {
+                propName: "label",
+                options: ["GemBadge", ""] as const,
+            },
+            {
+                propName: "showIcon",
+                options: [true, false] as const,
+            },
+        ],
+        defaultProps: {
+            label: "GemBadge",
+        },
+        states: [],
+        package: "wonder-blocks-badge",
+    }),
+    createComponentConfig({
+        name: "StreakBadge",
+        component: StreakBadge,
+        variantProps: [
+            {
+                propName: "label",
+                options: ["StreakBadge", ""] as const,
+            },
+            {
+                propName: "showIcon",
+                options: [true, false] as const,
+            },
+        ],
+        defaultProps: {
+            label: "StreakBadge",
+        },
+        states: [],
+        package: "wonder-blocks-badge",
+    }),
+    createComponentConfig({
+        name: "DueBadge",
+        component: DueBadge,
+        variantProps: [
+            {
+                propName: "kind",
+                options: ["due", "overdue"] as const,
+            },
+            {
+                propName: "showIcon",
+                options: [true, false] as const,
+            },
+        ],
+        defaultProps: {
+            label: "DueBadge",
+        },
+        states: [],
+        package: "wonder-blocks-badge",
+    }),
+    createComponentConfig({
+        name: "Badge",
+        component: Badge,
+        variantProps: [
+            {
+                propName: "showBorder",
+                options: [true, false] as const,
+            },
+            {
+                propName: "icon",
+                options: [
+                    <PhosphorIcon icon={IconMappings.cookieBold} />,
+                    undefined,
+                ] as const,
+            },
+        ],
+        defaultProps: {
+            label: "Badge",
+        },
+        states: [],
+        package: "wonder-blocks-badge",
     }),
     /**
      * wonder-blocks-button
