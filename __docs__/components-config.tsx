@@ -25,6 +25,7 @@ import {
 } from "@khanacademy/wonder-blocks-breadcrumbs";
 import {Card} from "@khanacademy/wonder-blocks-card";
 import {CompactCell, DetailCell} from "@khanacademy/wonder-blocks-cell";
+import {ActionMenu, ActionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "./wonder-blocks-icon/phosphor-icon.argtypes";
 import Link from "@khanacademy/wonder-blocks-link";
@@ -434,6 +435,84 @@ export const components = [
             {name: "Disabled", props: {disabled: true}},
         ],
         package: "wonder-blocks-cell",
+    }),
+    /**
+     * wonder-blocks-dropdown
+     */
+    createComponentConfig({
+        name: "ActionMenu",
+        component: ActionMenu as any,
+        variantProps: [
+            {
+                propName: "disabled",
+                options: [false, true] as const,
+            },
+        ],
+        defaultProps: {
+            menuText: "ActionMenu",
+
+            children: [<ActionItem key="option1" label="Option 1" />],
+        },
+        states: [],
+        package: "wonder-blocks-dropdown",
+    }),
+    createComponentConfig({
+        name: "ActionMenu opened",
+        component: ActionMenu as any,
+        variantProps: [
+            {
+                propName: "children",
+                options: [
+                    [
+                        <ActionItem
+                            key="option1"
+                            label="Option 1"
+                            leftAccessory={
+                                <PhosphorIcon icon={IconMappings.cookieBold} />
+                            }
+                            rightAccessory={
+                                <PhosphorIcon
+                                    icon={IconMappings.caretRightBold}
+                                />
+                            }
+                        />,
+                        <ActionItem
+                            key="option2"
+                            label="Option 2"
+                            leftAccessory={
+                                <PhosphorIcon icon={IconMappings.cookieBold} />
+                            }
+                            rightAccessory={
+                                <PhosphorIcon
+                                    icon={IconMappings.caretRightBold}
+                                />
+                            }
+                            disabled={true}
+                        />,
+                        <ActionItem
+                            key="option3"
+                            label="Option 3"
+                            leftAccessory={
+                                <PhosphorIcon icon={IconMappings.cookieBold} />
+                            }
+                            rightAccessory={
+                                <PhosphorIcon
+                                    icon={IconMappings.caretRightBold}
+                                />
+                            }
+                            active={true}
+                        />,
+                    ],
+                ] as const,
+            },
+        ],
+        defaultProps: {
+            opened: true,
+            menuText: "ActionMenu",
+            style: {marginBlockEnd: "16rem"},
+        },
+        states: [],
+        package: "wonder-blocks-dropdown",
     }),
     /**
      * wonder-blocks-icon-button
