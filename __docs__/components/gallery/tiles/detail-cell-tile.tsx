@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import * as tokens from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {IconMappings} from "../../../wonder-blocks-icon/phosphor-icon.argtypes";
 
 import ComponentTile from "../component-tile";
@@ -46,7 +46,7 @@ export default function DetailCellTile(props: CommonTileProps) {
 
 const localStyles = StyleSheet.create({
     cellExample: {
-        backgroundColor: tokens.color.offWhite,
-        padding: tokens.spacing.large_24,
+        backgroundColor: color.offWhite,
+        padding: spacing.large_24,
     },
 });

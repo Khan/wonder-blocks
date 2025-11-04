@@ -9,7 +9,7 @@ import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import * as tokens from "@khanacademy/wonder-blocks-tokens";
+import {border, color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingSmall, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentInfo from "../components/component-info";
@@ -222,7 +222,7 @@ export const ReactElementInHeader: StoryComponentType = {
                 >
                     This is the information present in the first section
                 </AccordionSection>
-                <Strut size={tokens.spacing.xLarge_32} />
+                <Strut size={spacing.xLarge_32} />
                 {/* The following AccordionSection is implemented
                 the same way as the CourseAccordion in the LearnableNodeSidebar
                 that can be found on Khan Academy. It should truncate the
@@ -232,18 +232,17 @@ export const ReactElementInHeader: StoryComponentType = {
                         <View
                             style={{
                                 flexDirection: "row",
-                                margin: tokens.spacing.medium_16,
+                                margin: spacing.medium_16,
                             }}
                         >
                             <View
                                 style={{
                                     backgroundSize: "contain",
-                                    borderRadius:
-                                        tokens.border.radius.radius_080,
+                                    borderRadius: border.radius.radius_080,
                                     height: 40,
-                                    marginRight: tokens.spacing.small_12,
+                                    marginRight: spacing.small_12,
                                     minWidth: 40,
-                                    padding: tokens.spacing.xSmall_8,
+                                    padding: spacing.xSmall_8,
                                     width: 40,
                                 }}
                             >
@@ -312,7 +311,7 @@ export const ReactElementInChildren: StoryComponentType = {
                     horizontalRule="none"
                     styles={{
                         root: {
-                            borderTop: `1px solid ${tokens.color.offBlack16}`,
+                            borderTop: `1px solid ${color.offBlack16}`,
                         },
                     }}
                 />
@@ -360,7 +359,7 @@ export const CaretPositions: StoryComponentType = {
                             Something
                         </AccordionSection>
                     </View>
-                    <Strut size={tokens.spacing.xLarge_32} />
+                    <Strut size={spacing.xLarge_32} />
                     <View style={styles.fullWidth}>
                         <LabelLarge style={styles.space}>
                             Caret position: start, language direction: left to
@@ -376,7 +375,7 @@ export const CaretPositions: StoryComponentType = {
                         </AccordionSection>
                     </View>
                 </View>
-                <Strut size={tokens.spacing.xLarge_32} />
+                <Strut size={spacing.xLarge_32} />
                 {/* Right-to-left */}
                 <View style={[styles.sideBySide, styles.rtl]}>
                     <View style={styles.fullWidth}>
@@ -393,7 +392,7 @@ export const CaretPositions: StoryComponentType = {
                             کچھ
                         </AccordionSection>
                     </View>
-                    <Strut size={tokens.spacing.xLarge_32} />
+                    <Strut size={spacing.xLarge_32} />
                     <View style={styles.fullWidth}>
                         <LabelLarge style={styles.space}>
                             Caret position: start, language direction: right to
@@ -543,9 +542,9 @@ export const WithStyle: StoryComponentType = {
         const [expanded, setExpanded] = React.useState(true);
 
         const customStyles = {
-            backgroundColor: tokens.color.offBlack8,
-            margin: tokens.spacing.large_24,
-            outline: `2px solid ${tokens.color.offBlack32}`,
+            backgroundColor: color.offBlack8,
+            margin: spacing.large_24,
+            outline: `2px solid ${color.offBlack32}`,
         };
 
         return (
@@ -570,7 +569,7 @@ export const WithHeaderStyle: StoryComponentType = {
         const [expanded, setExpanded] = React.useState(false);
 
         const headerStyle = {
-            backgroundColor: tokens.color.offBlack8,
+            backgroundColor: color.offBlack8,
         };
 
         return (
@@ -628,10 +627,10 @@ const styles = StyleSheet.create({
         direction: "rtl",
     },
     space: {
-        margin: tokens.spacing.xSmall_8,
+        margin: spacing.xSmall_8,
     },
     button: {
         width: "fit-content",
-        marginBottom: tokens.spacing.large_24,
+        marginBottom: spacing.large_24,
     },
 });

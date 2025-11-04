@@ -8,7 +8,7 @@ import {
 import {Meta} from "@storybook/react-vite";
 import {View} from "@khanacademy/wonder-blocks-core";
 import TokenTable from "../components/token-table";
-import * as tokens from "@khanacademy/wonder-blocks-tokens";
+import {color, font} from "@khanacademy/wonder-blocks-tokens";
 import {themeModes} from "../../.storybook/modes";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
@@ -114,7 +114,7 @@ export const FontFamily = {
                     ),
                 },
             ]}
-            tokens={tokens.font.family}
+            tokens={font.family}
         />
     ),
 };
@@ -157,7 +157,7 @@ export const BodyFontSize = {
                     ),
                 },
             ]}
-            tokens={tokens.font.body.size}
+            tokens={font.body.size}
         />
     ),
 };
@@ -193,7 +193,7 @@ export const HeadingFontSize = {
                     ),
                 },
             ]}
-            tokens={tokens.font.heading.size}
+            tokens={font.heading.size}
         />
     ),
 };
@@ -219,7 +219,7 @@ export const BodyLineHeight = {
                     cell: (row) => (
                         <View
                             style={{
-                                backgroundColor: tokens.color.offBlack8,
+                                backgroundColor: color.offBlack8,
                                 lineHeight: row.value,
                             }}
                         >
@@ -233,7 +233,7 @@ export const BodyLineHeight = {
                     ),
                 },
             ]}
-            tokens={tokens.font.body.lineHeight}
+            tokens={font.body.lineHeight}
         />
     ),
 };
@@ -255,7 +255,7 @@ export const HeadingLineHeight = {
                     cell: (row) => (
                         <View
                             style={{
-                                backgroundColor: tokens.color.offBlack8,
+                                backgroundColor: color.offBlack8,
                                 lineHeight: row.value,
                             }}
                         >
@@ -269,7 +269,7 @@ export const HeadingLineHeight = {
                     ),
                 },
             ]}
-            tokens={tokens.font.heading.lineHeight}
+            tokens={font.heading.lineHeight}
         />
     ),
 };
@@ -301,7 +301,7 @@ export const FontWeight = {
                     ),
                 },
             ]}
-            tokens={tokens.font.weight}
+            tokens={font.weight}
         />
     ),
 };

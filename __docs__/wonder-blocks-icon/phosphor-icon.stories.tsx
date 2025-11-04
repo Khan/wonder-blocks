@@ -16,7 +16,7 @@ import {
     LabelMedium,
 } from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import * as tokens from "@khanacademy/wonder-blocks-tokens";
+import {border, color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon/package.json";
@@ -248,7 +248,7 @@ export const Variants: StoryComponentType = {
     },
     decorators: [
         (Story) => (
-            <View style={{gap: tokens.spacing.medium_16}}>
+            <View style={{gap: spacing.medium_16}}>
                 <Banner text="This is a preview of the icons available in the Phosphor Icons package." />
                 <Story />
             </View>
@@ -263,7 +263,7 @@ export const WithColor: StoryComponentType = {
     args: {
         size: "small",
         icon: IconMappings.infoBold,
-        color: tokens.color.red,
+        color: color.red,
     },
 };
 
@@ -336,15 +336,15 @@ export const CustomIcons: StoryComponentType = {
 
 const styles = StyleSheet.create({
     container: {
-        gap: tokens.spacing.medium_16,
+        gap: spacing.medium_16,
         width: 200,
     },
     row: {
-        backgroundColor: tokens.color.offWhite,
+        backgroundColor: color.offWhite,
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        padding: tokens.spacing.medium_16,
+        padding: spacing.medium_16,
     },
     table: {
         borderCollapse: "collapse",
@@ -354,11 +354,11 @@ const styles = StyleSheet.create({
     },
 
     tableCell: {
-        border: `${tokens.border.width.thin} solid ${tokens.color.offBlack}`,
-        padding: tokens.spacing.medium_16,
+        border: `${border.width.thin} solid ${color.offBlack}`,
+        padding: spacing.medium_16,
     },
     inline: {
-        margin: tokens.spacing.xxxxSmall_2,
+        margin: spacing.xxxxSmall_2,
     },
 });
 
