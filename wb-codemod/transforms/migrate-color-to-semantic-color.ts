@@ -62,7 +62,19 @@ const COLOR_TO_SEMANTIC_MAPPING: Record<
         border: "core.border.neutral.subtle",
         default: "core.background.neutral.subtle",
     },
+    offBlack8: {
+        foreground: "core.foreground.neutral.subtle",
+        background: "core.background.neutral.subtle",
+        border: "core.border.neutral.subtle",
+        default: "core.border.neutral.subtle",
+    },
     fadedOffBlack16: {
+        foreground: "core.foreground.disabled.subtle",
+        background: "core.background.disabled.strong",
+        border: "core.border.neutral.subtle",
+        default: "core.border.neutral.subtle",
+    },
+    offBlack16: {
         foreground: "core.foreground.disabled.subtle",
         background: "core.background.disabled.strong",
         border: "core.border.neutral.subtle",
@@ -74,13 +86,31 @@ const COLOR_TO_SEMANTIC_MAPPING: Record<
         border: "core.border.disabled.strong",
         default: "core.foreground.disabled.default",
     },
+    offBlack32: {
+        foreground: "core.foreground.disabled.default",
+        background: "core.background.disabled.strong",
+        border: "core.border.disabled.strong",
+        default: "core.foreground.disabled.default",
+    },
     fadedOffBlack50: {
         foreground: "core.foreground.disabled.strong",
         background: "core.background.neutral.default",
         border: "core.border.neutral.default",
         default: "core.border.neutral.default",
     },
+    offBlack50: {
+        foreground: "core.foreground.neutral.default",
+        background: "core.background.neutral.default",
+        border: "core.border.neutral.default",
+        default: "core.foreground.neutral.default",
+    },
     fadedOffBlack64: {
+        foreground: "core.foreground.neutral.subtle",
+        background: "core.background.neutral.default",
+        border: "core.border.neutral.default",
+        default: "core.foreground.neutral.subtle",
+    },
+    offBlack64: {
         foreground: "core.foreground.neutral.subtle",
         background: "core.background.neutral.default",
         border: "core.border.neutral.default",
@@ -92,11 +122,11 @@ const COLOR_TO_SEMANTIC_MAPPING: Record<
         border: "core.border.neutral.default",
         default: "core.foreground.neutral.default",
     },
-    offBlack50: {
-        foreground: "core.foreground.neutral.strong",
-        background: "core.background.overlay.default",
+    offBlack72: {
+        foreground: "core.foreground.neutral.default",
+        background: "core.background.neutral.default",
         border: "core.border.neutral.default",
-        default: "core.background.overlay.default",
+        default: "core.foreground.neutral.default",
     },
 
     // Critical colors (red)
@@ -113,6 +143,12 @@ const COLOR_TO_SEMANTIC_MAPPING: Record<
         default: "core.border.critical.strong",
     },
     fadedRed8: {
+        foreground: "core.foreground.critical.subtle",
+        background: "core.background.critical.subtle",
+        border: "core.border.critical.subtle",
+        default: "core.background.critical.subtle",
+    },
+    fadedRed16: {
         foreground: "core.foreground.critical.subtle",
         background: "core.background.critical.subtle",
         border: "core.border.critical.subtle",
