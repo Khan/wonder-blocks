@@ -66,9 +66,58 @@ export const AllComponents = {
                                             >
                                                 {component.name}
                                             </Heading>
-                                            <Component
-                                                {...(component.defaultProps as any)}
-                                            />
+                                            <View
+                                                style={{gap: sizing.size_280}}
+                                            >
+                                                {[
+                                                    {
+                                                        name: "Default",
+                                                        props: {},
+                                                    },
+                                                    ...component.states,
+                                                ].map((state) => {
+                                                    const props = {
+                                                        ...component.defaultProps,
+                                                        ...state.props,
+                                                    };
+
+                                                    const comboLabel = (
+                                                        <TooltipContent>
+                                                            <ul
+                                                                style={{
+                                                                    margin: 0,
+                                                                    paddingLeft:
+                                                                        "20px",
+                                                                }}
+                                                            >
+                                                                <li>
+                                                                    State:{" "}
+                                                                    {state.name}
+                                                                </li>
+                                                            </ul>
+                                                        </TooltipContent>
+                                                    );
+
+                                                    return (
+                                                        <View
+                                                            key={state.name}
+                                                            style={{
+                                                                gap: sizing.size_040,
+                                                            }}
+                                                        >
+                                                            <Tooltip
+                                                                content={
+                                                                    comboLabel
+                                                                }
+                                                            >
+                                                                <Component
+                                                                    {...(props as any)}
+                                                                />
+                                                            </Tooltip>
+                                                        </View>
+                                                    );
+                                                })}
+                                            </View>
                                         </View>
                                     );
                                 }
