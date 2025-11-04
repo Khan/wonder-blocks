@@ -67,7 +67,11 @@ export const AllComponents = {
                                                 {component.name}
                                             </Heading>
                                             <View
-                                                style={{gap: sizing.size_280}}
+                                                style={{
+                                                    flexDirection: "row",
+                                                    gap: sizing.size_240,
+                                                    flexWrap: "wrap",
+                                                }}
                                             >
                                                 {[
                                                     {
