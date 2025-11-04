@@ -32,7 +32,7 @@ import {
     SingleSelect,
     OptionItem,
 } from "@khanacademy/wonder-blocks-dropdown";
-import {TextField, TextArea} from "@khanacademy/wonder-blocks-form";
+import {TextField, TextArea, Checkbox} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "./wonder-blocks-icon/phosphor-icon.argtypes";
 import Link from "@khanacademy/wonder-blocks-link";
@@ -799,6 +799,27 @@ export const components = [
             {name: "Disabled", props: {disabled: true}},
             {name: "Error", props: {error: true}},
             {name: "Read Only", props: {readOnly: true}},
+        ],
+        package: "wonder-blocks-form",
+    }),
+    createComponentConfig({
+        name: "Checkbox",
+        component: Checkbox,
+        variantProps: [
+            {
+                propName: "checked",
+                options: [false, true, null] as const,
+            },
+        ],
+        defaultProps: {
+            checked: false,
+            onChange: () => {},
+            label: "Label",
+            description: "Description for the checkbox",
+        },
+        states: [
+            {name: "Disabled", props: {disabled: true}},
+            {name: "Error", props: {error: true}},
         ],
         package: "wonder-blocks-form",
     }),
