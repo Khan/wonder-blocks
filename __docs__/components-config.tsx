@@ -49,6 +49,7 @@ import {
     StreakIcon,
 } from "@khanacademy/wonder-blocks-icon";
 import {FlexibleDialog, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
+import Pill from "@khanacademy/wonder-blocks-pill";
 import {IconMappings} from "./wonder-blocks-icon/phosphor-icon.argtypes";
 import Link from "@khanacademy/wonder-blocks-link";
 import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
@@ -1177,5 +1178,42 @@ export const components = [
         },
         states: [],
         package: "wonder-blocks-modal",
+    }),
+    /**
+     * wonder-blocks-pill
+     */
+    createComponentConfig({
+        name: "Pill",
+        component: Pill,
+        variantProps: [
+            {
+                propName: "size",
+                options: ["small", "medium", "large"] as const,
+            },
+            {
+                propName: "kind",
+                options: [
+                    "neutral",
+                    "accent",
+                    "info",
+                    "success",
+                    "warning",
+                    "critical",
+                    "transparent",
+                ] as const,
+            },
+        ],
+        defaultProps: {
+            children: "Pill",
+        },
+        states: [
+            {
+                name: "Clickable",
+                props: {
+                    onClick: () => {},
+                },
+            },
+        ],
+        package: "wonder-blocks-pill",
     }),
 ];
