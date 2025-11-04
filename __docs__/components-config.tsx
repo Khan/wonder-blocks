@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import * as React from "react";
 import {PropsFor} from "@khanacademy/wonder-blocks-core";
 import Button, {ActivityButton} from "@khanacademy/wonder-blocks-button";
@@ -40,6 +41,7 @@ import {
     RadioGroup,
     Choice,
 } from "@khanacademy/wonder-blocks-form";
+import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {
     PhosphorIcon,
     Icon,
@@ -1012,5 +1014,42 @@ export const components = [
         },
         states: [{name: "Disabled", props: {disabled: true}}],
         package: "wonder-blocks-icon-button",
+    }),
+    /**
+     * wonder-blocks-labeled-field
+     */
+    createComponentConfig({
+        name: "LabeledField",
+        component: LabeledField,
+        variantProps: [],
+        defaultProps: {
+            field: <TextField value="" onChange={() => {}} />,
+            label: "Label",
+            description: "Description for the field",
+            additionalHelperMessage: "Additional helper text",
+            contextLabel: "Context label",
+            styles: {root: {maxWidth: "300px"}},
+        },
+        states: [
+            {
+                name: "Read Only",
+                props: {
+                    readOnlyMessage: "This field is read only",
+                },
+            },
+            {
+                name: "Error",
+                props: {
+                    errorMessage: "This field has an error",
+                },
+            },
+            {
+                name: "Disabled",
+                props: {
+                    field: <TextField value="" onChange={() => {}} disabled />,
+                },
+            },
+        ],
+        package: "wonder-blocks-labeled-field",
     }),
 ];
