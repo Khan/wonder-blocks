@@ -250,9 +250,9 @@ export const AllComponents = {
                                                                             const props =
                                                                                 {
                                                                                     ...component.defaultProps,
-                                                                                    ...state.props,
                                                                                     [firstVariantProp.propName]:
                                                                                         firstOption,
+                                                                                    ...state.props,
                                                                                 };
 
                                                                             // Add all the remaining prop values

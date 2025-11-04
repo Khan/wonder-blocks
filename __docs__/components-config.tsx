@@ -277,7 +277,10 @@ export const components = [
         defaultProps: {
             onChange: () => {},
         },
-        states: [{name: "Disabled", props: {disabled: true}}],
+        states: [
+            {name: "Disabled", props: {disabled: true}},
+            {name: "Error", props: {defaultValue: "2030-07-19"}},
+        ],
         package: "wonder-blocks-birthday-picker",
     }),
     /**
