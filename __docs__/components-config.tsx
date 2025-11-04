@@ -1,6 +1,6 @@
 /* eslint-disable max-lines */
 import * as React from "react";
-import {PropsFor} from "@khanacademy/wonder-blocks-core";
+import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import Button, {ActivityButton} from "@khanacademy/wonder-blocks-button";
 import IconButton, {
     ActivityIconButton,
@@ -57,6 +57,7 @@ import Switch from "@khanacademy/wonder-blocks-switch";
 import {
     NavigationTabs,
     NavigationTabItem,
+    Tabs,
 } from "@khanacademy/wonder-blocks-tabs";
 import {IconMappings} from "./wonder-blocks-icon/phosphor-icon.argtypes";
 import Link from "@khanacademy/wonder-blocks-link";
@@ -1410,6 +1411,106 @@ export const components = [
                                 Navigation Tab 3
                             </Link>
                         </NavigationTabItem>,
+                    ],
+                },
+            },
+        ],
+        package: "wonder-blocks-tabs",
+    }),
+    createComponentConfig({
+        name: "Tabs",
+        component: Tabs,
+        variantProps: [],
+        defaultProps: {
+            "aria-label": "Tabs",
+            selectedTabId: "tab1",
+            onTabSelected: () => {},
+            tabs: [
+                {
+                    id: "tab1",
+                    label: "Tab 1",
+                    panel: <BodyText>Content for Tab 1</BodyText>,
+                },
+                {
+                    id: "tab2",
+                    label: "Tab 2",
+                    panel: <BodyText>Content for Tab 2</BodyText>,
+                },
+                {
+                    id: "tab3",
+                    label: "Tab 3",
+                    panel: <BodyText>Content for Tab 3</BodyText>,
+                },
+            ],
+        },
+        states: [
+            {
+                name: "With Icons",
+                props: {
+                    tabs: [
+                        {
+                            id: "tab1",
+                            label: (
+                                <View
+                                    style={{
+                                        flexDirection: "row",
+                                        alignItems: "center",
+                                        gap: sizing.size_040,
+                                    }}
+                                >
+                                    <PhosphorIcon
+                                        icon={IconMappings.cookieBold}
+                                    />
+                                    Tab 1
+                                    <PhosphorIcon
+                                        icon={IconMappings.cookieBold}
+                                    />
+                                </View>
+                            ),
+                            panel: <BodyText>Content for Tab 1</BodyText>,
+                        },
+                        {
+                            id: "tab2",
+                            label: (
+                                <View
+                                    style={{
+                                        flexDirection: "row",
+                                        alignItems: "center",
+                                        gap: sizing.size_040,
+                                    }}
+                                >
+                                    <PhosphorIcon
+                                        icon={IconMappings.cookieBold}
+                                    />
+                                    Tab 2
+                                    <PhosphorIcon
+                                        icon={IconMappings.cookieBold}
+                                    />
+                                </View>
+                            ),
+                            panel: <BodyText>Content for Tab 2</BodyText>,
+                        },
+                        {
+                            id: "tab3",
+                            label: (
+                                <View
+                                    style={{
+                                        flexDirection: "row",
+                                        alignItems: "center",
+                                        gap: sizing.size_040,
+                                    }}
+                                >
+                                    <PhosphorIcon
+                                        icon={IconMappings.cookieBold}
+                                    />
+                                    Tab 3
+                                    <PhosphorIcon
+                                        icon={IconMappings.cookieBold}
+                                    />
+                                </View>
+                            ),
+                            panel: <BodyText>Content for Tab 3</BodyText>,
+                        },
                     ],
                 },
             },
