@@ -23,9 +23,13 @@ import {
     Breadcrumbs,
     BreadcrumbsItem,
 } from "@khanacademy/wonder-blocks-breadcrumbs";
+import {Card} from "@khanacademy/wonder-blocks-card";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "./wonder-blocks-icon/phosphor-icon.argtypes";
 import Link from "@khanacademy/wonder-blocks-link";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import customBackgroundImage from "../static/EOT-Background.svg";
 
 export type VariantProp<T> = {
     [K in keyof T & string]: {
@@ -342,6 +346,46 @@ export const components = [
         },
         states: [{name: "Default", props: {disabled: true}}],
         package: "wonder-blocks-button",
+    }),
+    /**
+     * wonder-blocks-card
+     */
+    createComponentConfig({
+        name: "Card",
+        component: Card,
+        variantProps: [
+            {
+                propName: "paddingSize",
+                options: ["medium", "small", "none"] as const,
+            },
+            {
+                propName: "background",
+                options: [
+                    "base-subtle",
+                    "base-default",
+                    customBackgroundImage,
+                ] as const,
+            },
+            {
+                propName: "elevation",
+                options: ["none", "low"] as const,
+            },
+            {
+                propName: "borderRadius",
+                options: ["small", "medium"] as const,
+            },
+        ],
+        defaultProps: {
+            children: (
+                <>
+                    <Heading>Card Component</Heading>
+                    <BodyText>This is a card component</BodyText>
+                </>
+            ),
+            styles: {root: {gap: sizing.size_040}},
+        },
+        states: [{name: "Dismissible", props: {onDismiss: () => {}}}],
+        package: "wonder-blocks-card",
     }),
     /**
      * wonder-blocks-icon-button
