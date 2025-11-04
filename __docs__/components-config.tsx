@@ -24,6 +24,7 @@ import {
     BreadcrumbsItem,
 } from "@khanacademy/wonder-blocks-breadcrumbs";
 import {Card} from "@khanacademy/wonder-blocks-card";
+import {CompactCell, DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "./wonder-blocks-icon/phosphor-icon.argtypes";
 import Link from "@khanacademy/wonder-blocks-link";
@@ -386,6 +387,53 @@ export const components = [
         },
         states: [{name: "Dismissible", props: {onDismiss: () => {}}}],
         package: "wonder-blocks-card",
+    }),
+    /**
+     * wonder-blocks-cell
+     */
+    createComponentConfig({
+        name: "CompactCell",
+        component: CompactCell,
+        variantProps: [
+            {
+                propName: "horizontalRule",
+                options: ["full-width", "inset", "none"] as const,
+            },
+        ],
+        defaultProps: {
+            title: "CompactCell",
+            leftAccessory: <PhosphorIcon icon={IconMappings.cookieBold} />,
+            rightAccessory: <PhosphorIcon icon={IconMappings.caretRightBold} />,
+            onClick: () => {},
+        },
+        states: [
+            {name: "Active", props: {active: true}},
+            {name: "Disabled", props: {disabled: true}},
+        ],
+        package: "wonder-blocks-cell",
+    }),
+    createComponentConfig({
+        name: "DetailCell",
+        component: DetailCell,
+        variantProps: [
+            {
+                propName: "horizontalRule",
+                options: ["full-width", "inset", "none"] as const,
+            },
+        ],
+        defaultProps: {
+            title: "DetailCell",
+            leftAccessory: <PhosphorIcon icon={IconMappings.cookieBold} />,
+            rightAccessory: <PhosphorIcon icon={IconMappings.caretRightBold} />,
+            onClick: () => {},
+            subtitle1: "Subtitle1",
+            subtitle2: "Subtitle2",
+        },
+        states: [
+            {name: "Active", props: {active: true}},
+            {name: "Disabled", props: {disabled: true}},
+        ],
+        package: "wonder-blocks-cell",
     }),
     /**
      * wonder-blocks-icon-button
