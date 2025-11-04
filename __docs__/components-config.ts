@@ -5,6 +5,10 @@ import IconButton, {
     ActivityIconButton,
     ConversationIconButton,
 } from "@khanacademy/wonder-blocks-icon-button";
+import {
+    Accordion,
+    AccordionSection,
+} from "@khanacademy/wonder-blocks-accordion";
 import {IconMappings} from "./wonder-blocks-icon/phosphor-icon.argtypes";
 
 export type VariantProp<T> = {
@@ -140,5 +144,44 @@ export const components = [
         },
         states: [{name: "Disabled", props: {disabled: true}}],
         package: "wonder-blocks-icon-button",
+    }),
+    createComponentConfig({
+        name: "Accordion",
+        component: Accordion,
+        variantProps: [
+            {
+                propName: "caretPosition",
+                options: ["start", "end"] as const,
+            },
+            {
+                propName: "cornerKind",
+                options: ["square", "rounded", "rounded-per-section"] as const,
+            },
+        ],
+        defaultProps: {
+            initialExpandedIndex: 1,
+            children: [
+                React.createElement(
+                    AccordionSection,
+                    {key: "section-1", header: "First Section"} as any,
+                    "This is the content of the first section",
+                ),
+                React.createElement(
+                    AccordionSection,
+                    {
+                        key: "section-2",
+                        header: "Second Section",
+                    } as any,
+                    "This is the content of the second section",
+                ),
+                React.createElement(
+                    AccordionSection,
+                    {key: "section-3", header: "Third Section"} as any,
+                    "This is the content of the third section",
+                ),
+            ],
+        },
+        states: [],
+        package: "wonder-blocks-accordion",
     }),
 ];
