@@ -1,6 +1,6 @@
 import * as React from "react";
 import {PropsFor} from "@khanacademy/wonder-blocks-core";
-import Button from "@khanacademy/wonder-blocks-button";
+import Button, {ActivityButton} from "@khanacademy/wonder-blocks-button";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {IconMappings} from "./wonder-blocks-icon/phosphor-icon.argtypes";
 
@@ -53,10 +53,26 @@ export const components = [
             endIcon: IconMappings.cookieBold,
         },
         states: [
-            {name: "Default", props: {}},
             {name: "Disabled", props: {disabled: true}},
             {name: "Spinner", props: {spinner: true}},
         ],
+        package: "wonder-blocks-button",
+    }),
+    createComponentConfig({
+        name: "ActivityButton",
+        component: ActivityButton,
+        variantProps: [
+            {
+                propName: "kind",
+                options: ["primary", "secondary", "tertiary"] as const,
+            },
+        ],
+        defaultProps: {
+            children: "ActivityButton",
+            startIcon: IconMappings.cookieBold,
+            endIcon: IconMappings.cookieBold,
+        },
+        states: [{name: "Default", props: {disabled: true}}],
         package: "wonder-blocks-button",
     }),
     createComponentConfig({
@@ -79,10 +95,7 @@ export const components = [
         defaultProps: {
             icon: IconMappings.cookieBold,
         },
-        states: [
-            {name: "Default", props: {}},
-            {name: "Disabled", props: {disabled: true}},
-        ],
+        states: [{name: "Disabled", props: {disabled: true}}],
         package: "wonder-blocks-icon-button",
     }),
 ];

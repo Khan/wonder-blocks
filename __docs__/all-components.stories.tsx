@@ -54,10 +54,7 @@ export const AllComponents = {
                                 const Component = component.component;
                                 if (component.variantProps.length === 0) {
                                     return (
-                                        <View
-                                            key={component.name}
-                                            style={{gap: sizing.size_400}}
-                                        >
+                                        <View key={component.name}>
                                             <Heading
                                                 tag="h3"
                                                 style={{
@@ -65,6 +62,7 @@ export const AllComponents = {
                                                         sizing.size_120,
                                                 }}
                                                 size="medium"
+                                                weight="medium"
                                             >
                                                 {component.name}
                                             </Heading>
@@ -102,7 +100,10 @@ export const AllComponents = {
                                             {component.name}
                                         </Heading>
                                         <View style={{gap: sizing.size_280}}>
-                                            {component.states.map((state) => (
+                                            {[
+                                                {name: "Default", props: {}},
+                                                ...component.states,
+                                            ].map((state) => (
                                                 <View
                                                     key={state.name}
                                                     style={{
