@@ -8,8 +8,8 @@ import {create} from "storybook/theming";
  * website (at least from the branding perspective).
  */
 export default create({
-    base: "light",
+    base: "dark",
     brandTitle: "Wonder Blocks",
     brandUrl: "/",
-    brandImage: "./logo-with-text.svg",
+    brandImage: "./logo-with-text--dark.svg",
 });

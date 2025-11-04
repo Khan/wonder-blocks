@@ -1,1 +1,1 @@
-export type SupportedThemes = "default" | "dark" | "thunderblocks";
+export type SupportedThemes = "default" | "dark" | "thunderblocks" | "syl-dark";
