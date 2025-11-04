@@ -18,6 +18,7 @@ import {
     NeutralBadge,
 } from "@khanacademy/wonder-blocks-badge";
 import Banner from "@khanacademy/wonder-blocks-banner";
+import BirthdayPicker from "@khanacademy/wonder-blocks-birthday-picker";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "./wonder-blocks-icon/phosphor-icon.argtypes";
 
@@ -245,6 +246,28 @@ export const components = [
         },
         states: [],
         package: "wonder-blocks-banner",
+    }),
+    /**
+     * wonder-blocks-birthday-picker
+     */
+    createComponentConfig({
+        name: "BirthdayPicker",
+        component: BirthdayPicker,
+        variantProps: [
+            {
+                propName: "defaultValue",
+                options: ["2021-05-26", undefined] as const,
+            },
+            {
+                propName: "monthYearOnly",
+                options: [true, false] as const,
+            },
+        ],
+        defaultProps: {
+            onChange: () => {},
+        },
+        states: [{name: "Disabled", props: {disabled: true}}],
+        package: "wonder-blocks-birthday-picker",
     }),
     /**
      * wonder-blocks-button
