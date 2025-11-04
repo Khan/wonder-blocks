@@ -17,6 +17,7 @@ import {
     DueBadge,
     NeutralBadge,
 } from "@khanacademy/wonder-blocks-badge";
+import Banner from "@khanacademy/wonder-blocks-banner";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "./wonder-blocks-icon/phosphor-icon.argtypes";
 
@@ -209,6 +210,41 @@ export const components = [
         },
         states: [],
         package: "wonder-blocks-badge",
+    }),
+    /**
+     * wonder-blocks-banner
+     */
+    createComponentConfig({
+        name: "Banner",
+        component: Banner,
+        variantProps: [
+            {
+                propName: "kind",
+                options: ["info", "success", "warning", "critical"] as const,
+            },
+            {
+                propName: "onDismiss",
+                options: [() => {}, undefined] as const,
+            },
+            {
+                propName: "actions",
+                options: [
+                    [
+                        {
+                            type: "button" as const,
+                            title: "Action",
+                            onClick: () => {},
+                        },
+                    ],
+                    [],
+                ] as const,
+            },
+        ],
+        defaultProps: {
+            text: "This is a banner message",
+        },
+        states: [],
+        package: "wonder-blocks-banner",
     }),
     /**
      * wonder-blocks-button
