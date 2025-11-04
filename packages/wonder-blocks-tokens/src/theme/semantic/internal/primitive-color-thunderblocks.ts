@@ -1,7 +1,7 @@
 import {fade} from "../../../util/color-utils";
 
 // Base colors
-const black = "#191918";
+const black = "#151521";
 const white = "#FFFFFF";
 
 /**
@@ -74,11 +74,12 @@ export const color = {
     blue_70: "#DFEAFF",
     blue_60: "#BFCAFF",
     blue_50: "#8DA2FF",
-    blue_40: "#6E78FF",
+    blue_40: "#6C82FF",
     blue_30: "#5753FA",
     blue_20: "#4340D0",
     blue_10: "#363498",
     blue_05: "#252368",
+    blue_01: "#222149",
     // Magenta
     magenta_90: "#FCEEF7",
     magenta_80: "#FFE3F4",
@@ -100,7 +101,7 @@ export const color = {
     gray_30: "#8A8B90",
     gray_20: "#717279",
     gray_10: "#4A4C53",
-    gray_05: "#35373F",
+    gray_05: "#252531",
     // Black
     black_100: black,
     black_50: fade(black, 0.5),
