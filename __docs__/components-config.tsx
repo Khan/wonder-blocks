@@ -48,7 +48,7 @@ import {
     GemIcon,
     StreakIcon,
 } from "@khanacademy/wonder-blocks-icon";
-import {FlexibleDialog} from "@khanacademy/wonder-blocks-modal";
+import {FlexibleDialog, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
 import {IconMappings} from "./wonder-blocks-icon/phosphor-icon.argtypes";
 import Link from "@khanacademy/wonder-blocks-link";
 import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
@@ -1156,6 +1156,24 @@ export const components = [
                     <BodyText>{reallyLongText}</BodyText>
                 </>
             ),
+        },
+        states: [],
+        package: "wonder-blocks-modal",
+    }),
+    createComponentConfig({
+        name: "OnePaneDialog",
+        component: OnePaneDialog,
+        variantProps: [],
+        defaultProps: {
+            title: "Dialog Title",
+            subtitle: "Dialog Subtitle",
+            closeButtonVisible: true,
+            content: (
+                <>
+                    <BodyText>{reallyLongText}</BodyText>
+                </>
+            ),
+            footer: <Button>Action</Button>,
         },
         states: [],
         package: "wonder-blocks-modal",
