@@ -1019,8 +1019,16 @@ export const components = [
      * wonder-blocks-labeled-field
      */
     ...[
-        {componentName: "TextField", FormComponent: TextField},
-        {componentName: "TextArea", FormComponent: TextArea},
+        {
+            componentName: "TextField",
+            FormComponent: TextField,
+            componentProps: {},
+        },
+        {
+            componentName: "TextArea",
+            FormComponent: TextArea,
+            componentProps: {},
+        },
         {
             componentName: "SingleSelect",
             FormComponent: SingleSelect,
@@ -1039,6 +1047,7 @@ export const components = [
             componentName: "MultiSelect",
             FormComponent: MultiSelect,
             componentProps: {
+                placeholder: "",
                 children: [
                     <OptionItem
                         key="option1"
@@ -1048,7 +1057,7 @@ export const components = [
                 ],
             },
         },
-    ].map(({componentName, FormComponent, componentProps = {}}) =>
+    ].map(({componentName, FormComponent, componentProps}) =>
         createComponentConfig({
             name: `LabeledField with ${componentName}`,
             component: LabeledField,
@@ -1058,7 +1067,7 @@ export const components = [
                     <FormComponent
                         value=""
                         onChange={() => {}}
-                        {...componentProps}
+                        {...(componentProps as any)}
                     />
                 ),
                 label: "Label",
@@ -1087,7 +1096,7 @@ export const components = [
                             <FormComponent
                                 value=""
                                 onChange={() => {}}
-                                {...componentProps}
+                                {...(componentProps as any)}
                                 disabled
                             />
                         ),
