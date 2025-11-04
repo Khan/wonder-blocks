@@ -53,6 +53,7 @@ import Pill from "@khanacademy/wonder-blocks-pill";
 import {PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
+import Switch from "@khanacademy/wonder-blocks-switch";
 import {IconMappings} from "./wonder-blocks-icon/phosphor-icon.argtypes";
 import Link from "@khanacademy/wonder-blocks-link";
 import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
@@ -1300,5 +1301,32 @@ export const components = [
             {name: "Error", props: {error: true}},
         ],
         package: "wonder-blocks-search-field",
+    }),
+    /**
+     * wonder-blocks-switch
+     */
+    createComponentConfig({
+        name: "Switch",
+        component: Switch,
+        variantProps: [
+            {
+                propName: "icon",
+                options: [
+                    undefined,
+                    <PhosphorIcon icon={IconMappings.cookieBold} />,
+                ] as const,
+            },
+            {
+                propName: "checked",
+                options: [true, false] as const,
+            },
+        ],
+        defaultProps: {
+            checked: false,
+            onChange: () => {},
+            "aria-label": "Switch",
+        },
+        states: [{name: "Disabled", props: {disabled: true}}],
+        package: "wonder-blocks-switch",
     }),
 ];
