@@ -13,23 +13,15 @@ describe("migrate-color-to-semantic-color", () => {
     defineInlineTest(
         transform,
         transformOptions,
-        `import {color} from "@khanacademy/wonder-blocks-tokens";`,
-        `import {semanticColor} from "@khanacademy/wonder-blocks-tokens";`,
-        "should replace color with semanticColor in import",
-    );
-
-    defineInlineTest(
-        transform,
-        transformOptions,
         `
 import {color} from "@khanacademy/wonder-blocks-tokens";
 const bgColor = color.blue;
     `,
         `
-import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
-const bgColor = semanticColor.core.border.instructive.default;
+import {color} from "@khanacademy/wonder-blocks-tokens";
+const bgColor = color.blue;
     `,
-        "should use default context when no CSS property context is found",
+        "should not transform when no CSS property context is found",
     );
 
     defineInlineTest(
@@ -37,13 +29,17 @@ const bgColor = semanticColor.core.border.instructive.default;
         transformOptions,
         `
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
-const bgColor = color.red;
-const padding = spacing.medium_16;
+const styles = {
+    color: color.red,
+    padding: spacing.medium_16,
+};
 `,
         `
 import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
-const bgColor = semanticColor.core.border.critical.default;
-const padding = spacing.medium_16;
+const styles = {
+    color: semanticColor.core.foreground.critical.subtle,
+    padding: spacing.medium_16,
+};
 `,
         "should replace color with semanticColor when there are other imports",
     );
@@ -53,10 +49,18 @@ const padding = spacing.medium_16;
         transformOptions,
         `
 import {color, semanticColor} from "@khanacademy/wonder-blocks-tokens";
-const bgColor = color.blue;
+const styles = {
+    background: semanticColor.core.background.instructive.default,
+    color: color.blue,
+};
 `,
-        `import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
-const bgColor = semanticColor.core.border.instructive.default;`,
+        `
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+const styles = {
+    background: semanticColor.core.background.instructive.default,
+    color: semanticColor.core.foreground.instructive.subtle,
+};
+`,
         "should remove color import if semanticColor already exists",
     );
 
@@ -124,20 +128,6 @@ const styles = {
         transform,
         transformOptions,
         `
-const color = {blue: "blue"};
-const bgColor = color.blue;
-`,
-        `
-const color = {blue: "blue"};
-const bgColor = color.blue;
-`,
-        "should not replace color if it's not imported from wonder-blocks-tokens",
-    );
-
-    defineInlineTest(
-        transform,
-        transformOptions,
-        `
 import {color} from "@khanacademy/wonder-blocks-tokens";
 const styles = {
     backgroundColor: color.fadedBlue8,
@@ -154,22 +144,6 @@ const styles = {
 };
 `,
         "should map different colors based on their CSS property context",
-    );
-
-    defineInlineTest(
-        transform,
-        transformOptions,
-        `
-import {color} from "@khanacademy/wonder-blocks-tokens";
-const eggplantColor = color.eggplant;
-const purpleColor = color.purple;
-`,
-        `
-import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
-const eggplantColor = semanticColor.khanmigo.primary;
-const purpleColor = semanticColor.mastery.primary;
-`,
-        "should replace special colors like eggplant and purple",
     );
 
     defineInlineTest(

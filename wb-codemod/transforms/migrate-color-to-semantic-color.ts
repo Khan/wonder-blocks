@@ -6,7 +6,7 @@ const SOURCE_SPECIFIER = "color";
 // To
 const TARGET_SPECIFIER = "semanticColor";
 
-type ColorContext = "foreground" | "background" | "border" | "default";
+type ColorContext = "foreground" | "background" | "border";
 
 /**
  * Mapping from primitive color properties to semantic color paths,
@@ -22,31 +22,26 @@ const COLOR_TO_SEMANTIC_MAPPING: Record<
         foreground: "core.foreground.instructive.subtle",
         background: "core.background.instructive.default",
         border: "core.border.instructive.default",
-        default: "core.border.instructive.default",
     },
     fadedBlue: {
         foreground: "core.foreground.instructive.subtle",
         background: "core.background.instructive.subtle",
         border: "core.border.instructive.subtle",
-        default: "core.border.instructive.subtle",
     },
     activeBlue: {
         foreground: "core.foreground.instructive.default",
         background: "core.background.instructive.strong",
         border: "core.border.instructive.strong",
-        default: "core.border.instructive.strong",
     },
     fadedBlue8: {
         foreground: "core.foreground.instructive.subtle",
         background: "core.background.instructive.subtle",
         border: "core.border.instructive.subtle",
-        default: "core.background.instructive.subtle",
     },
     fadedBlue16: {
         foreground: "core.foreground.instructive.subtle",
         background: "core.background.base.strong",
         border: "core.border.instructive.subtle",
-        default: "core.background.base.strong",
     },
 
     // Neutral colors (black/gray)
@@ -54,79 +49,66 @@ const COLOR_TO_SEMANTIC_MAPPING: Record<
         foreground: "core.foreground.neutral.strong",
         background: "core.background.neutral.strong",
         border: "core.border.neutral.strong",
-        default: "core.foreground.neutral.strong",
     },
     fadedOffBlack8: {
         foreground: "core.foreground.neutral.subtle",
         background: "core.background.neutral.subtle",
         border: "core.border.neutral.subtle",
-        default: "core.background.neutral.subtle",
     },
     offBlack8: {
         foreground: "core.foreground.neutral.subtle",
         background: "core.background.neutral.subtle",
         border: "core.border.neutral.subtle",
-        default: "core.border.neutral.subtle",
     },
     fadedOffBlack16: {
         foreground: "core.foreground.disabled.subtle",
         background: "core.background.disabled.strong",
         border: "core.border.neutral.subtle",
-        default: "core.border.neutral.subtle",
     },
     offBlack16: {
         foreground: "core.foreground.disabled.subtle",
         background: "core.background.disabled.strong",
         border: "core.border.neutral.subtle",
-        default: "core.border.neutral.subtle",
     },
     fadedOffBlack32: {
         foreground: "core.foreground.disabled.default",
         background: "core.background.disabled.strong",
         border: "core.border.disabled.strong",
-        default: "core.foreground.disabled.default",
     },
     offBlack32: {
         foreground: "core.foreground.disabled.default",
         background: "core.background.disabled.strong",
         border: "core.border.disabled.strong",
-        default: "core.foreground.disabled.default",
     },
     fadedOffBlack50: {
         foreground: "core.foreground.disabled.strong",
         background: "core.background.neutral.default",
         border: "core.border.neutral.default",
-        default: "core.border.neutral.default",
     },
     offBlack50: {
         foreground: "core.foreground.neutral.default",
         background: "core.background.neutral.default",
         border: "core.border.neutral.default",
-        default: "core.foreground.neutral.default",
     },
     fadedOffBlack64: {
         foreground: "core.foreground.neutral.subtle",
         background: "core.background.neutral.default",
         border: "core.border.neutral.default",
-        default: "core.foreground.neutral.subtle",
     },
     offBlack64: {
         foreground: "core.foreground.neutral.subtle",
         background: "core.background.neutral.default",
         border: "core.border.neutral.default",
-        default: "core.foreground.neutral.subtle",
     },
     fadedOffBlack72: {
         foreground: "core.foreground.neutral.default",
         background: "core.background.neutral.default",
         border: "core.border.neutral.default",
-        default: "core.foreground.neutral.default",
     },
     offBlack72: {
         foreground: "core.foreground.neutral.default",
         background: "core.background.neutral.default",
         border: "core.border.neutral.default",
-        default: "core.foreground.neutral.default",
     },
 
     // Critical colors (red)
@@ -134,31 +116,26 @@ const COLOR_TO_SEMANTIC_MAPPING: Record<
         foreground: "core.foreground.critical.subtle",
         background: "core.background.critical.default",
         border: "core.border.critical.default",
-        default: "core.border.critical.default",
     },
     activeRed: {
         foreground: "core.foreground.critical.default",
         background: "core.background.critical.strong",
         border: "core.border.critical.strong",
-        default: "core.border.critical.strong",
     },
     fadedRed8: {
         foreground: "core.foreground.critical.subtle",
         background: "core.background.critical.subtle",
         border: "core.border.critical.subtle",
-        default: "core.background.critical.subtle",
     },
     fadedRed16: {
         foreground: "core.foreground.critical.subtle",
         background: "core.background.critical.subtle",
         border: "core.border.critical.subtle",
-        default: "core.background.critical.subtle",
     },
     fadedRed24: {
         foreground: "core.foreground.critical.subtle",
         background: "core.background.critical.subtle",
         border: "core.border.critical.subtle",
-        default: "core.border.critical.subtle",
     },
 
     // Success colors (green)
@@ -166,32 +143,27 @@ const COLOR_TO_SEMANTIC_MAPPING: Record<
         foreground: "core.foreground.success.subtle",
         background: "core.background.success.default",
         border: "core.border.success.default",
-        default: "core.border.success.default",
     },
     activeGreen: {
         foreground: "core.foreground.success.default",
         background: "core.background.success.strong",
         border: "core.border.success.strong",
-        default: "core.border.success.strong",
     },
     fadedGreen8: {
         foreground: "core.foreground.success.subtle",
         background: "core.background.success.subtle",
         border: "core.border.success.subtle",
-        default: "core.background.success.subtle",
     },
     // same as fadedGreen8
     fadedGreen16: {
         foreground: "core.foreground.success.subtle",
         background: "core.background.success.subtle",
         border: "core.border.success.subtle",
-        default: "core.background.success.subtle",
     },
     fadedGreen24: {
         foreground: "core.foreground.success.subtle",
         background: "core.background.success.subtle",
         border: "core.border.success.subtle",
-        default: "core.border.success.subtle",
     },
 
     // Warning colors (gold)
@@ -199,31 +171,26 @@ const COLOR_TO_SEMANTIC_MAPPING: Record<
         foreground: "core.foreground.warning.subtle",
         background: "core.background.warning.default",
         border: "core.border.warning.default",
-        default: "core.border.warning.default",
     },
     activeGold: {
         foreground: "core.foreground.warning.default",
         background: "core.background.warning.strong",
         border: "core.border.warning.strong",
-        default: "core.border.warning.strong",
     },
     fadedGold8: {
         foreground: "core.foreground.warning.subtle",
         background: "core.background.warning.subtle",
         border: "core.border.warning.subtle",
-        default: "core.background.warning.subtle",
     },
     fadedGold16: {
         foreground: "core.foreground.warning.subtle",
         background: "core.background.warning.subtle",
         border: "core.border.warning.subtle",
-        default: "core.background.warning.subtle",
     },
     fadedGold24: {
         foreground: "core.foreground.warning.subtle",
         background: "core.background.warning.subtle",
         border: "core.border.warning.subtle",
-        default: "core.border.warning.subtle",
     },
 
     // Base colors
@@ -231,13 +198,11 @@ const COLOR_TO_SEMANTIC_MAPPING: Record<
         foreground: "core.foreground.knockout.default",
         background: "core.background.base.default",
         border: "core.border.knockout.default",
-        default: "core.background.base.default",
     },
     offWhite: {
         foreground: "core.foreground.knockout.default",
         background: "core.background.base.subtle",
         border: "core.border.knockout.default",
-        default: "core.background.base.subtle",
     },
 
     // Special colors
@@ -245,26 +210,75 @@ const COLOR_TO_SEMANTIC_MAPPING: Record<
         foreground: "khanmigo.primary",
         background: "khanmigo.primary",
         border: "khanmigo.primary",
-        default: "khanmigo.primary",
     },
     fadedEggplant8: {
         foreground: "khanmigo.secondary",
         background: "khanmigo.secondary",
         border: "khanmigo.secondary",
-        default: "khanmigo.secondary",
     },
     purple: {
         foreground: "mastery.primary",
         background: "mastery.primary",
         border: "mastery.primary",
-        default: "mastery.primary",
     },
 };
 
 /**
+ * Check if an identifier is bound to the imported specifier (not shadowed by a local variable).
+ * This checks if there's a local variable/const/let/parameter with the same name in any parent scope
+ * that would shadow the import.
+ */
+function isImportedIdentifier(
+    j: any,
+    root: any,
+    path: any,
+    importName: string,
+): boolean {
+    // Walk up the tree to find if there's a local binding that shadows the import
+    let currentPath = path;
+    while (currentPath) {
+        const node = currentPath.value;
+
+        // Check for variable declarations
+        if (
+            node.type === "VariableDeclarator" &&
+            node.id.type === "Identifier" &&
+            node.id.name === importName
+        ) {
+            // Found a local variable with the same name, it shadows the import
+            return false;
+        }
+
+        // Check for function parameters
+        if (
+            node.type === "FunctionDeclaration" ||
+            node.type === "FunctionExpression" ||
+            node.type === "ArrowFunctionExpression"
+        ) {
+            if (node.params) {
+                for (const param of node.params) {
+                    if (
+                        param.type === "Identifier" &&
+                        param.name === importName
+                    ) {
+                        // Found a parameter with the same name, it shadows the import
+                        return false;
+                    }
+                }
+            }
+        }
+
+        currentPath = currentPath.parent;
+    }
+
+    // No local binding found, so it refers to the import
+    return true;
+}
+
+/**
  * Determines the color context based on the CSS property name.
  */
-function getColorContext(propertyName: string): ColorContext {
+function getColorContext(propertyName: string): ColorContext | null {
     const prop = propertyName.toLowerCase();
 
     // Foreground properties (text color, fill, etc.)
@@ -305,7 +319,7 @@ function getColorContext(propertyName: string): ColorContext {
         return "border";
     }
 
-    return "default";
+    return null;
 }
 
 /**
@@ -333,66 +347,38 @@ export default function transform(file: FileInfo, api: API, options: Options) {
 
     let hasSourceSpecifier = false;
 
-    // Step 2: Replace the import specifier
+    // First check if there's a source specifier
     sourceImport.forEach((path) => {
         const specifiers = path.value.specifiers;
         if (!specifiers) {
             return;
         }
 
-        // Find the source specifier (color)
         const sourceSpecifierNode = specifiers.find(
             (specifier) =>
                 specifier.type === "ImportSpecifier" &&
                 specifier.imported.name === SOURCE_SPECIFIER,
         );
 
-        if (!sourceSpecifierNode) {
-            return;
-        }
-
-        hasSourceSpecifier = true;
-
-        // Check if semanticColor already exists
-        const targetSpecifierExists = specifiers.some(
-            (specifier) =>
-                specifier.type === "ImportSpecifier" &&
-                specifier.imported.name === TARGET_SPECIFIER,
-        );
-
-        if (targetSpecifierExists) {
-            // If semanticColor already exists, just remove color
-            path.value.specifiers = specifiers.filter(
-                (specifier) =>
-                    !(
-                        specifier.type === "ImportSpecifier" &&
-                        specifier.imported.name === SOURCE_SPECIFIER
-                    ),
-            );
-        } else {
-            // Replace color with semanticColor
-            const targetSpecifier = j.importSpecifier(
-                j.identifier(TARGET_SPECIFIER),
-            );
-
-            path.value.specifiers = specifiers.map((specifier) => {
-                if (
-                    specifier.type === "ImportSpecifier" &&
-                    specifier.imported.name === SOURCE_SPECIFIER
-                ) {
-                    return targetSpecifier;
-                }
-                return specifier;
-            });
+        if (sourceSpecifierNode) {
+            hasSourceSpecifier = true;
         }
     });
 
-    // Step 3: Replace the usage (only if we found the source specifier)
+    // Track if any transformations actually happened
+    let transformationsOccurred = false;
+
+    // Step 2: Transform the usages first to see if any transformations occur
     if (hasSourceSpecifier) {
         root.find(j.MemberExpression, {
             object: {name: SOURCE_SPECIFIER},
         }).forEach((path) => {
             const memberExpression = path.value;
+
+            // Verify this is the imported color, not a local variable
+            if (!isImportedIdentifier(j, root, path, SOURCE_SPECIFIER)) {
+                return;
+            }
 
             // Get the property name (e.g., "blue" from color.blue)
             if (
@@ -404,7 +390,7 @@ export default function transform(file: FileInfo, api: API, options: Options) {
 
                 if (colorMapping) {
                     // Determine the context by looking at the parent
-                    let context: ColorContext = "default";
+                    let context: ColorContext | null = null;
 
                     // Walk up the tree to find if we're in an object property
                     let currentPath = path.parent;
@@ -436,6 +422,11 @@ export default function transform(file: FileInfo, api: API, options: Options) {
                         currentPath = currentPath.parent;
                     }
 
+                    // If we couldn't determine the context, skip the transformation
+                    if (context === null) {
+                        return;
+                    }
+
                     const semanticPath = colorMapping[context];
 
                     // Build the new member expression chain
@@ -452,11 +443,56 @@ export default function transform(file: FileInfo, api: API, options: Options) {
                     }
 
                     j(path).replaceWith(newExpression);
+                    transformationsOccurred = true;
                 } else if (memberExpression.object.type === "Identifier") {
-                    // If no mapping found, just replace color with semanticColor
-                    // and keep the same property
+                    // If no mapping found, just replace color with
+                    // semanticColor and keep the same property
                     memberExpression.object.name = TARGET_SPECIFIER;
+                    transformationsOccurred = true;
                 }
+            }
+        });
+    }
+
+    // Step 3: Update the import only if transformations occurred
+    if (transformationsOccurred) {
+        sourceImport.forEach((path) => {
+            const specifiers = path.value.specifiers;
+            if (!specifiers) {
+                return;
+            }
+
+            // Check if semanticColor already exists
+            const targetSpecifierExists = specifiers.some(
+                (specifier) =>
+                    specifier.type === "ImportSpecifier" &&
+                    specifier.imported.name === TARGET_SPECIFIER,
+            );
+
+            if (targetSpecifierExists) {
+                // If semanticColor already exists, just remove color
+                path.value.specifiers = specifiers.filter(
+                    (specifier) =>
+                        !(
+                            specifier.type === "ImportSpecifier" &&
+                            specifier.imported.name === SOURCE_SPECIFIER
+                        ),
+                );
+            } else {
+                // Replace color with semanticColor
+                const targetSpecifier = j.importSpecifier(
+                    j.identifier(TARGET_SPECIFIER),
+                );
+
+                path.value.specifiers = specifiers.map((specifier) => {
+                    if (
+                        specifier.type === "ImportSpecifier" &&
+                        specifier.imported.name === SOURCE_SPECIFIER
+                    ) {
+                        return targetSpecifier;
+                    }
+                    return specifier;
+                });
             }
         });
     }
