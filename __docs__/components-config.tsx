@@ -1574,4 +1574,32 @@ export const components = [
         states: [],
         package: "wonder-blocks-tooltip",
     }),
+    /**
+     * wonder-blocks-typography
+     */
+    createComponentConfig({
+        name: "Heading",
+        component: Heading,
+        variantProps: [
+            {
+                propName: "size",
+                options: [
+                    "small",
+                    "medium",
+                    "large",
+                    "xlarge",
+                    "xxlarge",
+                ] as const,
+            },
+            {
+                propName: "weight",
+                options: ["medium", "semi", "bold"] as const,
+            },
+        ],
+        defaultProps: {
+            children: "Heading Text",
+        },
+        states: [],
+        package: "wonder-blocks-typography",
+    }),
 ];
