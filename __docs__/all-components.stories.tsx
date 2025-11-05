@@ -416,3 +416,37 @@ export const AllComponents = {
         );
     },
 };
+
+export const AllComponentsHover = {
+    render: AllComponents.render,
+    parameters: {
+        pseudo: {
+            hover: true,
+        },
+    },
+};
+
+export const AllComponentsFocus = {
+    render: AllComponents.render,
+    parameters: {
+        pseudo: {
+            focusVisible: true,
+        },
+    },
+};
+
+export const AllComponentsPress = {
+    render: AllComponents.render,
+    parameters: {
+        pseudo: {
+            active: true,
+        },
+    },
+};
+
+export const AllComponentsRTL = {
+    render: AllComponents.render,
+    globals: {
+        direction: "rtl",
+    },
+};
