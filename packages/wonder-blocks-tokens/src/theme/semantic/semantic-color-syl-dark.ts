@@ -1,46 +1,43 @@
 import {mergeTheme} from "@khanacademy/wonder-blocks-theming";
-import {color} from "./internal/primitive-color-syl-dark";
+import {color} from "./internal/primitive-color-thunderblocks";
 import {semanticColor as thunderblocksSemanticColor} from "./semantic-color-thunderblocks";
 
 const transparent = "transparent";
 
-// NOTE: We use `color-mix` to generate a transparent color because it supports
-// using CSS variables as input, which is not possible with the CSS `rgba`
-// function or the `fade` JS function.
-const transparentShadowColor = `color-mix(in srgb, ${color.blue_05} 20%, ${transparent})`;
+const transparentShadowColor = color.black_60;
 
 const core = {
     transparent,
     border: {
         instructive: {
-            subtle: color.blue_60,
-            default: color.blue_40,
-            strong: color.blue_10,
+            subtle: color.blue_40,
+            default: color.blue_50,
+            strong: color.blue_60,
         },
         neutral: {
-            subtle: color.gray_60,
-            default: color.gray_30,
-            strong: color.gray_10,
+            subtle: color.gray_10,
+            default: color.gray_20,
+            strong: color.gray_40,
         },
         critical: {
-            subtle: color.red_60,
-            default: color.red_30,
-            strong: color.red_10,
+            subtle: color.red_30,
+            default: color.red_40,
+            strong: color.red_60,
         },
         success: {
-            subtle: color.green_60,
-            default: color.green_30,
-            strong: color.green_10,
+            subtle: color.green_30,
+            default: color.green_40,
+            strong: color.green_60,
         },
         warning: {
-            subtle: color.yellow_60,
-            default: color.yellow_40,
-            strong: color.yellow_10,
+            subtle: color.yellow_20,
+            default: color.yellow_30,
+            strong: color.yellow_50,
         },
         disabled: {
             subtle: transparent,
-            default: color.gray_70,
-            strong: color.gray_60,
+            default: color.gray_30,
+            strong: color.gray_40,
         },
         knockout: {
             default: color.white_100,
@@ -48,39 +45,39 @@ const core = {
     },
     background: {
         base: {
-            subtle: color.blue_90,
-            default: color.white_100,
-            strong: color.blue_70,
+            subtle: color.gray_05,
+            default: color.black_100,
+            strong: color.gray_60,
         },
         instructive: {
-            subtle: color.blue_80,
+            subtle: color.blue_01,
             default: color.blue_30,
-            strong: color.blue_10,
+            strong: color.blue_70,
         },
         neutral: {
-            subtle: color.gray_80,
+            subtle: color.gray_10,
             default: color.gray_20,
-            strong: color.black_100,
+            strong: color.gray_70,
         },
         critical: {
-            subtle: color.red_90,
-            default: color.red_20,
-            strong: color.red_05,
+            subtle: color.red_05,
+            default: color.red_30,
+            strong: color.red_50,
         },
         success: {
-            subtle: color.green_90,
+            subtle: color.green_05,
             default: color.green_30,
-            strong: color.green_20,
+            strong: color.green_50,
         },
         warning: {
-            subtle: color.yellow_90,
-            default: color.yellow_60,
-            strong: color.yellow_10,
+            subtle: color.yellow_05,
+            default: color.yellow_30,
+            strong: color.yellow_50,
         },
         disabled: {
             subtle: transparent,
-            default: color.gray_80,
-            strong: color.gray_70,
+            default: color.gray_20,
+            strong: color.gray_40,
         },
         overlay: {
             default: color.black_50,
@@ -92,34 +89,34 @@ const core = {
      */
     foreground: {
         instructive: {
-            subtle: color.blue_50,
-            default: color.blue_30,
-            strong: color.blue_10,
+            subtle: color.blue_20,
+            default: color.blue_40,
+            strong: color.blue_70,
         },
         neutral: {
-            subtle: color.gray_20,
-            default: color.gray_10,
-            strong: color.black_100,
+            subtle: color.gray_40,
+            default: color.gray_60,
+            strong: color.gray_80,
         },
         critical: {
             subtle: color.red_50,
-            default: color.red_20,
-            strong: color.red_10,
+            default: color.red_80,
+            strong: color.red_90,
         },
         success: {
             subtle: color.green_50,
-            default: color.green_20,
-            strong: color.green_05,
+            default: color.green_80,
+            strong: color.green_90,
         },
         warning: {
             subtle: color.yellow_50,
-            default: color.yellow_10,
-            strong: color.yellow_05,
+            default: color.yellow_80,
+            strong: color.yellow_90,
         },
         disabled: {
-            subtle: color.gray_60,
-            default: color.gray_50,
-            strong: color.gray_40,
+            subtle: color.gray_50,
+            default: color.gray_60,
+            strong: color.gray_70,
         },
         knockout: {
             default: color.white_100,
@@ -133,13 +130,13 @@ const core = {
         },
         chonky: {
             instructive: {
-                subtle: color.blue_60,
+                subtle: color.blue_40,
                 default: color.blue_10,
             },
             neutral: {
-                subtle: color.gray_60,
+                subtle: color.gray_10,
                 default: color.gray_30,
-                strong: color.gray_10,
+                strong: color.gray_50,
             },
         },
     },
