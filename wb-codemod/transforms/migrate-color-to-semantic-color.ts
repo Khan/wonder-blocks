@@ -234,7 +234,7 @@ function getColorContext(propertyName: string): ColorContext | null {
         prop === "color" ||
         prop === "fill" ||
         prop === "stroke" ||
-        prop.includes("textColor")
+        prop.includes("textcolor")
     ) {
         return "foreground";
     }
@@ -242,8 +242,8 @@ function getColorContext(propertyName: string): ColorContext | null {
     // Background properties
     if (
         prop === "background" ||
-        prop === "backgroundColor" ||
-        prop === "backgroundImage" ||
+        prop === "backgroundcolor" ||
+        prop === "backgroundimage" ||
         prop.includes("background")
     ) {
         return "background";
@@ -252,18 +252,18 @@ function getColorContext(propertyName: string): ColorContext | null {
     // Border properties
     if (
         prop === "border" ||
-        prop === "borderColor" ||
-        prop === "borderTopColor" ||
-        prop === "borderBottomColor" ||
-        prop === "borderLeftColor" ||
-        prop === "borderRightColor" ||
-        prop === "borderBlockStartColor" ||
-        prop === "borderBlockEndColor" ||
-        prop === "borderInlineStartColor" ||
-        prop === "borderInlineEndColor" ||
+        prop === "bordercolor" ||
+        prop === "bordertopcolor" ||
+        prop === "borderbottomcolor" ||
+        prop === "borderleftcolor" ||
+        prop === "borderrightcolor" ||
+        prop === "borderblockstartcolor" ||
+        prop === "borderblockendcolor" ||
+        prop === "borderinlinestartcolor" ||
+        prop === "borderinlineendcolor" ||
         prop.includes("border") ||
         prop === "outline" ||
-        prop === "outlineColor"
+        prop === "outlinecolor"
     ) {
         return "border";
     }
@@ -370,36 +370,52 @@ export default function transform(file: FileInfo, api: API, options: Options) {
                     let context: ColorContext | null = null;
 
                     // Walk up the tree to find if we're in an object property
+                    // This handles both plain objects and Aphrodite's StyleSheet.create()
                     let currentPath = path.parent;
                     while (currentPath) {
                         const node = currentPath.value;
 
                         // Check if we're the value in an object property
                         if (
-                            node.type === "Property" &&
+                            (node.type === "ObjectProperty" ||
+                                node.type === "Property") &&
                             node.key.type === "Identifier"
                         ) {
                             context = getColorContext(node.key.name);
-                            break;
+                            if (context !== null) {
+                                break;
+                            }
+                            // If this property is not a CSS property (e.g., it's a style name
+                            // like "myStyle" in StyleSheet.create), keep walking up
                         }
 
                         // Check if we're in a template literal (for cases like
                         // `border: 1px solid ${color.blue}`)
                         if (
-                            node.type === "TemplateLiteral" &&
-                            currentPath.parent?.value.type === "Property" &&
-                            currentPath.parent.value.key.type === "Identifier"
+                            (node.type === "TemplateLiteral" &&
+                                currentPath.parent?.value.type ===
+                                    "ObjectProperty") ||
+                            (currentPath.parent?.value.type === "Property" &&
+                                currentPath.parent.value.key.type ===
+                                    "Identifier")
                         ) {
                             context = getColorContext(
                                 currentPath.parent.value.key.name,
                             );
-                            break;
+                            if (context !== null) {
+                                break;
+                            }
                         }
 
                         currentPath = currentPath.parent;
                     }
 
-                    const semanticPath = colorMapping[context ?? "foreground"];
+                    // If we couldn't determine the context, we don't transform
+                    if (context === null) {
+                        return;
+                    }
+
+                    const semanticPath = colorMapping[context];
 
                     // Build the new member expression chain
                     // e.g., "core.border.instructive.default" becomes

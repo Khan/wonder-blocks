@@ -247,4 +247,38 @@ const styles = {
 `,
         "should handle warning (gold) colors and outline properties",
     );
+
+    defineInlineTest(
+        transform,
+        transformOptions,
+        `
+import {StyleSheet} from "aphrodite";
+import {color} from "@khanacademy/wonder-blocks-tokens";
+const styles = StyleSheet.create({
+    myButton: {
+        color: color.blue,
+        backgroundColor: color.white,
+        borderColor: color.offBlack,
+    },
+    myText: {
+        color: color.red,
+    },
+});
+`,
+        `
+import {StyleSheet} from "aphrodite";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+const styles = StyleSheet.create({
+    myButton: {
+        color: semanticColor.core.foreground.instructive.subtle,
+        backgroundColor: semanticColor.core.background.base.default,
+        borderColor: semanticColor.core.border.neutral.strong,
+    },
+    myText: {
+        color: semanticColor.core.foreground.critical.subtle,
+    },
+});
+`,
+        "should handle Aphrodite StyleSheet.create with nested style objects",
+    );
 });
