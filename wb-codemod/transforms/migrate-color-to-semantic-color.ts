@@ -234,7 +234,7 @@ function getColorContext(propertyName: string): ColorContext | null {
         prop === "color" ||
         prop === "fill" ||
         prop === "stroke" ||
-        prop.includes("textcolor")
+        prop.includes("textColor")
     ) {
         return "foreground";
     }
@@ -242,7 +242,8 @@ function getColorContext(propertyName: string): ColorContext | null {
     // Background properties
     if (
         prop === "background" ||
-        prop === "backgroundcolor" ||
+        prop === "backgroundColor" ||
+        prop === "backgroundImage" ||
         prop.includes("background")
     ) {
         return "background";
@@ -251,18 +252,18 @@ function getColorContext(propertyName: string): ColorContext | null {
     // Border properties
     if (
         prop === "border" ||
-        prop === "bordercolor" ||
-        prop === "bordertopcolor" ||
-        prop === "borderbottomcolor" ||
-        prop === "borderleftcolor" ||
-        prop === "borderrightcolor" ||
-        prop === "borderblockstartcolor" ||
-        prop === "borderblockendcolor" ||
-        prop === "borderinlinestartcolor" ||
-        prop === "borderinlineendcolor" ||
+        prop === "borderColor" ||
+        prop === "borderTopColor" ||
+        prop === "borderBottomColor" ||
+        prop === "borderLeftColor" ||
+        prop === "borderRightColor" ||
+        prop === "borderBlockStartColor" ||
+        prop === "borderBlockEndColor" ||
+        prop === "borderInlineStartColor" ||
+        prop === "borderInlineEndColor" ||
         prop.includes("border") ||
         prop === "outline" ||
-        prop === "outlinecolor"
+        prop === "outlineColor"
     ) {
         return "border";
     }
@@ -398,13 +399,7 @@ export default function transform(file: FileInfo, api: API, options: Options) {
                         currentPath = currentPath.parent;
                     }
 
-                    // If we couldn't determine the context, we don't need to
-                    // transform the expression.
-                    if (context === null) {
-                        return;
-                    }
-
-                    const semanticPath = colorMapping[context];
+                    const semanticPath = colorMapping[context ?? "foreground"];
 
                     // Build the new member expression chain
                     // e.g., "core.border.instructive.default" becomes
@@ -420,10 +415,9 @@ export default function transform(file: FileInfo, api: API, options: Options) {
                     }
 
                     j(path).replaceWith(newExpression);
-                    // }
                 } else if (memberExpression.object.type === "Identifier") {
-                    // If no mapping found, just replace color with
-                    // semanticColor and keep the same property
+                    // If no mapping found, just replace color with semanticColor
+                    // and keep the same property
                     memberExpression.object.name = TARGET_SPECIFIER;
                 }
             }
