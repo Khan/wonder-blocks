@@ -622,78 +622,78 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
     learning: {
         math: {
             foreground: {
-                blue: color.cyan_10,
-                gold: color.yellow_10,
-                green: color.green_20,
-                gray: color.gray_10,
-                grayH: color.gray_05,
-                grayI: color.black_100,
-                purple: color.blue_05,
-                purpleD: color.blue_10,
-                pink: color.magenta_10,
-                red: color.red_20,
+                blue: color.cyan_50,
+                gold: color.yellow_40,
+                green: color.green_50,
+                gray: color.gray_60,
+                grayH: color.gray_70,
+                grayI: color.gray_80,
+                purple: color.blue_60,
+                purpleD: color.blue_50,
+                pink: color.magenta_50,
+                red: color.red_60,
             },
         },
         background: {
             gems: {
-                subtle: color.magenta_90,
-                default: color.magenta_80,
-                strong: color.magenta_10,
+                subtle: color.magenta_05,
+                default: color.magenta_10,
+                strong: color.magenta_20,
             },
             due: {
-                subtle: color.cyan_80,
-                default: color.cyan_60,
-                strong: color.cyan_10,
+                subtle: color.cyan_05,
+                default: color.cyan_10,
+                strong: color.cyan_20,
             },
             streaks: {
-                subtle: color.orange_80,
-                default: color.orange_60,
-                strong: color.orange_10,
+                subtle: color.orange_05,
+                default: color.orange_10,
+                strong: color.orange_20,
             },
             progress: {
                 notStarted: {
-                    default: color.gray_60,
+                    default: color.gray_50,
                 },
                 attempted: {
-                    default: color.yellow_60,
+                    default: color.yellow_40,
                 },
                 complete: {
-                    default: color.green_60,
+                    default: color.green_40,
                 },
             },
         },
         border: {
             gems: {
-                subtle: color.magenta_80,
-                default: color.magenta_60,
+                subtle: color.magenta_10,
+                default: color.magenta_20,
                 strong: color.magenta_30,
             },
             streaks: {
-                subtle: color.orange_80,
-                default: color.orange_60,
+                subtle: color.orange_10,
+                default: color.orange_20,
                 strong: color.orange_30,
             },
             due: {
-                subtle: color.cyan_80,
-                default: color.cyan_60,
-                strong: color.cyan_30,
+                subtle: color.cyan_20,
+                default: color.cyan_40,
+                strong: color.cyan_60,
             },
         },
         foreground: {
             gems: {
-                subtle: color.magenta_60,
+                subtle: color.magenta_20,
                 default: color.magenta_30,
-                strong: color.magenta_10,
+                strong: color.magenta_90,
             },
             streaks: {
-                subtle: color.orange_60,
+                subtle: color.orange_20,
                 default: color.orange_30,
-                strong: color.orange_10,
+                strong: color.orange_90,
             },
             due: {
-                subtle: color.cyan_60,
-                default: color.cyan_20,
-                strong: color.cyan_10,
+                subtle: color.cyan_20,
+                default: color.cyan_30,
+                strong: color.cyan_40,
             },
             progress: {
                 notStarted: {
@@ -701,8 +701,8 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
                     strong: color.gray_10,
                 },
                 attempted: {
-                    subtle: color.yellow_50,
-                    strong: color.yellow_10,
+                    subtle: color.yellow_20,
+                    strong: color.yellow_05,
                 },
                 complete: {
                     strong: color.green_10,
@@ -712,13 +712,13 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
         shadow: {
             progress: {
                 notStarted: {
-                    default: color.gray_20,
+                    default: color.gray_10,
                 },
                 attempted: {
-                    default: color.yellow_30,
+                    default: color.yellow_20,
                 },
                 complete: {
-                    default: color.green_30,
+                    default: color.green_20,
                 },
             },
         },
