@@ -105,6 +105,7 @@ export const color = {
     // Black
     black_100: black,
     black_50: fade(black, 0.5),
+    black_60: fade(black, 0.6),
     // White
     white_100: white,
 };
