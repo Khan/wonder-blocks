@@ -84,7 +84,7 @@ import {
     Title,
 } from "@khanacademy/wonder-blocks-typography";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import customBackgroundImage from "../static/EOT-Background.svg";
+import customBackgroundImage from "../static/celebration_bg.svg";
 import {reallyLongText} from "./components/text-for-testing";
 
 export type VariantProp<T> = {
