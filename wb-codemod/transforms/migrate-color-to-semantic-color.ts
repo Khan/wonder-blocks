@@ -224,58 +224,6 @@ const COLOR_TO_SEMANTIC_MAPPING: Record<
 };
 
 /**
- * Check if an identifier is bound to the imported specifier (not shadowed by a local variable).
- * This checks if there's a local variable/const/let/parameter with the same name in any parent scope
- * that would shadow the import.
- */
-function isImportedIdentifier(
-    j: any,
-    root: any,
-    path: any,
-    importName: string,
-): boolean {
-    // Walk up the tree to find if there's a local binding that shadows the import
-    let currentPath = path;
-    while (currentPath) {
-        const node = currentPath.value;
-
-        // Check for variable declarations
-        if (
-            node.type === "VariableDeclarator" &&
-            node.id.type === "Identifier" &&
-            node.id.name === importName
-        ) {
-            // Found a local variable with the same name, it shadows the import
-            return false;
-        }
-
-        // Check for function parameters
-        if (
-            node.type === "FunctionDeclaration" ||
-            node.type === "FunctionExpression" ||
-            node.type === "ArrowFunctionExpression"
-        ) {
-            if (node.params) {
-                for (const param of node.params) {
-                    if (
-                        param.type === "Identifier" &&
-                        param.name === importName
-                    ) {
-                        // Found a parameter with the same name, it shadows the import
-                        return false;
-                    }
-                }
-            }
-        }
-
-        currentPath = currentPath.parent;
-    }
-
-    // No local binding found, so it refers to the import
-    return true;
-}
-
-/**
  * Determines the color context based on the CSS property name.
  */
 function getColorContext(propertyName: string): ColorContext | null {
@@ -347,38 +295,66 @@ export default function transform(file: FileInfo, api: API, options: Options) {
 
     let hasSourceSpecifier = false;
 
-    // First check if there's a source specifier
+    // Step 2: Replace the import specifier
     sourceImport.forEach((path) => {
         const specifiers = path.value.specifiers;
         if (!specifiers) {
             return;
         }
 
+        // Find the source specifier (color)
         const sourceSpecifierNode = specifiers.find(
             (specifier) =>
                 specifier.type === "ImportSpecifier" &&
                 specifier.imported.name === SOURCE_SPECIFIER,
         );
 
-        if (sourceSpecifierNode) {
-            hasSourceSpecifier = true;
+        if (!sourceSpecifierNode) {
+            return;
+        }
+
+        hasSourceSpecifier = true;
+
+        // Check if semanticColor already exists
+        const targetSpecifierExists = specifiers.some(
+            (specifier) =>
+                specifier.type === "ImportSpecifier" &&
+                specifier.imported.name === TARGET_SPECIFIER,
+        );
+
+        if (targetSpecifierExists) {
+            // If semanticColor already exists, just remove color
+            path.value.specifiers = specifiers.filter(
+                (specifier) =>
+                    !(
+                        specifier.type === "ImportSpecifier" &&
+                        specifier.imported.name === SOURCE_SPECIFIER
+                    ),
+            );
+        } else {
+            // Replace color with semanticColor
+            const targetSpecifier = j.importSpecifier(
+                j.identifier(TARGET_SPECIFIER),
+            );
+
+            path.value.specifiers = specifiers.map((specifier) => {
+                if (
+                    specifier.type === "ImportSpecifier" &&
+                    specifier.imported.name === SOURCE_SPECIFIER
+                ) {
+                    return targetSpecifier;
+                }
+                return specifier;
+            });
         }
     });
 
-    // Track if any transformations actually happened
-    let transformationsOccurred = false;
-
-    // Step 2: Transform the usages first to see if any transformations occur
+    // Step 3: Replace the usage (only if we found the source specifier)
     if (hasSourceSpecifier) {
         root.find(j.MemberExpression, {
             object: {name: SOURCE_SPECIFIER},
         }).forEach((path) => {
             const memberExpression = path.value;
-
-            // Verify this is the imported color, not a local variable
-            if (!isImportedIdentifier(j, root, path, SOURCE_SPECIFIER)) {
-                return;
-            }
 
             // Get the property name (e.g., "blue" from color.blue)
             if (
@@ -422,7 +398,8 @@ export default function transform(file: FileInfo, api: API, options: Options) {
                         currentPath = currentPath.parent;
                     }
 
-                    // If we couldn't determine the context, skip the transformation
+                    // If we couldn't determine the context, we don't need to
+                    // transform the expression.
                     if (context === null) {
                         return;
                     }
@@ -443,56 +420,12 @@ export default function transform(file: FileInfo, api: API, options: Options) {
                     }
 
                     j(path).replaceWith(newExpression);
-                    transformationsOccurred = true;
+                    // }
                 } else if (memberExpression.object.type === "Identifier") {
                     // If no mapping found, just replace color with
                     // semanticColor and keep the same property
                     memberExpression.object.name = TARGET_SPECIFIER;
-                    transformationsOccurred = true;
                 }
-            }
-        });
-    }
-
-    // Step 3: Update the import only if transformations occurred
-    if (transformationsOccurred) {
-        sourceImport.forEach((path) => {
-            const specifiers = path.value.specifiers;
-            if (!specifiers) {
-                return;
-            }
-
-            // Check if semanticColor already exists
-            const targetSpecifierExists = specifiers.some(
-                (specifier) =>
-                    specifier.type === "ImportSpecifier" &&
-                    specifier.imported.name === TARGET_SPECIFIER,
-            );
-
-            if (targetSpecifierExists) {
-                // If semanticColor already exists, just remove color
-                path.value.specifiers = specifiers.filter(
-                    (specifier) =>
-                        !(
-                            specifier.type === "ImportSpecifier" &&
-                            specifier.imported.name === SOURCE_SPECIFIER
-                        ),
-                );
-            } else {
-                // Replace color with semanticColor
-                const targetSpecifier = j.importSpecifier(
-                    j.identifier(TARGET_SPECIFIER),
-                );
-
-                path.value.specifiers = specifiers.map((specifier) => {
-                    if (
-                        specifier.type === "ImportSpecifier" &&
-                        specifier.imported.name === SOURCE_SPECIFIER
-                    ) {
-                        return targetSpecifier;
-                    }
-                    return specifier;
-                });
             }
         });
     }
