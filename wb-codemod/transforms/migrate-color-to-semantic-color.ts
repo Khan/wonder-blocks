@@ -52,7 +52,7 @@ const COLOR_TO_SEMANTIC_MAPPING: Record<
     },
     fadedOffBlack8: {
         foreground: "core.foreground.neutral.subtle",
-        background: "core.background.neutral.subtle",
+        background: "core.background.neutral.disabled",
         border: "core.border.neutral.subtle",
     },
     offBlack8: {
@@ -62,7 +62,7 @@ const COLOR_TO_SEMANTIC_MAPPING: Record<
     },
     fadedOffBlack16: {
         foreground: "core.foreground.disabled.subtle",
-        background: "core.background.disabled.strong",
+        background: "core.background.neutral.subtle",
         border: "core.border.neutral.subtle",
     },
     offBlack16: {
@@ -73,12 +73,12 @@ const COLOR_TO_SEMANTIC_MAPPING: Record<
     fadedOffBlack32: {
         foreground: "core.foreground.disabled.default",
         background: "core.background.disabled.strong",
-        border: "core.border.disabled.strong",
+        border: "core.border.neutral.subtle",
     },
     offBlack32: {
         foreground: "core.foreground.disabled.default",
         background: "core.background.disabled.strong",
-        border: "core.border.disabled.strong",
+        border: "core.border.neutral.subtle",
     },
     fadedOffBlack50: {
         foreground: "core.foreground.disabled.strong",
@@ -223,6 +223,17 @@ const COLOR_TO_SEMANTIC_MAPPING: Record<
     },
 };
 
+// Include a list of colors that don't have a semantic color mapping
+const COLORS_WITHOUT_SEMANTIC_MAPPING = [
+    "darkBlue",
+    "teal",
+    "fadedPurple8",
+    "fadedPurple16",
+    "fadedPurple8",
+    "fadedPurple24",
+    "white64",
+];
+
 /**
  * Determines the color context based on the CSS property name.
  */
@@ -363,6 +374,12 @@ export default function transform(file: FileInfo, api: API, options: Options) {
                 !memberExpression.computed
             ) {
                 const colorProperty = memberExpression.property.name;
+
+                // Skip colors that don't have a semantic mapping
+                if (COLORS_WITHOUT_SEMANTIC_MAPPING.includes(colorProperty)) {
+                    return;
+                }
+
                 const colorMapping = COLOR_TO_SEMANTIC_MAPPING[colorProperty];
 
                 if (colorMapping) {
