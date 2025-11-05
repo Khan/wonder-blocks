@@ -63,7 +63,26 @@ import Toolbar from "@khanacademy/wonder-blocks-toolbar";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {IconMappings} from "./wonder-blocks-icon/phosphor-icon.argtypes";
 import Link from "@khanacademy/wonder-blocks-link";
-import {Body, BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
+import {
+    Body,
+    BodyMonospace,
+    BodySerif,
+    BodySerifBlock,
+    BodyText,
+    Caption,
+    Footnote,
+    Heading,
+    HeadingLarge,
+    HeadingMedium,
+    HeadingSmall,
+    HeadingXSmall,
+    LabelLarge,
+    LabelMedium,
+    LabelSmall,
+    LabelXSmall,
+    Tagline,
+    Title,
+} from "@khanacademy/wonder-blocks-typography";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import customBackgroundImage from "../static/EOT-Background.svg";
 import {reallyLongText} from "./components/text-for-testing";
@@ -92,6 +111,35 @@ export type ComponentConfig<ComponentType extends React.ComponentType<any>> = {
 const createComponentConfig = <C extends React.ComponentType<any>>(
     config: ComponentConfig<C>,
 ): ComponentConfig<C> => config;
+
+const legacyTypographyComponents = [
+    {name: "BodyMonospace", TypographyComponent: BodyMonospace},
+    {name: "BodySerifBlock", TypographyComponent: BodySerifBlock},
+    {name: "BodySerif", TypographyComponent: BodySerif},
+    {name: "Body", TypographyComponent: Body},
+    {name: "Caption", TypographyComponent: Caption},
+    {name: "Footnote", TypographyComponent: Footnote},
+    {name: "HeadingLarge", TypographyComponent: HeadingLarge},
+    {name: "HeadingMedium", TypographyComponent: HeadingMedium},
+    {name: "HeadingSmall", TypographyComponent: HeadingSmall},
+    {name: "HeadingXSmall", TypographyComponent: HeadingXSmall},
+    {name: "LabelLarge", TypographyComponent: LabelLarge},
+    {name: "LabelMedium", TypographyComponent: LabelMedium},
+    {name: "LabelSmall", TypographyComponent: LabelSmall},
+    {name: "LabelXSmall", TypographyComponent: LabelXSmall},
+    {name: "Tagline", TypographyComponent: Tagline},
+    {name: "Title", TypographyComponent: Title},
+];
+
+const LegacyTypographyComponents = () => {
+    return (
+        <View style={{gap: sizing.size_120}}>
+            {legacyTypographyComponents.map(({name, TypographyComponent}) => (
+                <TypographyComponent key={name}>{name}</TypographyComponent>
+            ))}
+        </View>
+    );
+};
 
 export const components = [
     /**
@@ -1621,17 +1669,12 @@ export const components = [
         states: [],
         package: "wonder-blocks-typography",
     }),
-    ...[{name: "Body", TypographyComponent: Body}].map(
-        ({name, TypographyComponent}) =>
-            createComponentConfig({
-                name: `${name} (Legacy)`,
-                component: TypographyComponent,
-                variantProps: [],
-                defaultProps: {
-                    children: name,
-                },
-                states: [],
-                package: "wonder-blocks-typography",
-            }),
-    ),
+    createComponentConfig({
+        name: "Legacy Typography Components",
+        component: LegacyTypographyComponents,
+        variantProps: [],
+        defaultProps: {},
+        states: [],
+        package: "wonder-blocks-typography",
+    }),
 ];
