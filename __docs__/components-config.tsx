@@ -60,6 +60,7 @@ import {
     Tabs,
 } from "@khanacademy/wonder-blocks-tabs";
 import Toolbar from "@khanacademy/wonder-blocks-toolbar";
+import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {IconMappings} from "./wonder-blocks-icon/phosphor-icon.argtypes";
 import Link from "@khanacademy/wonder-blocks-link";
 import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
@@ -1555,5 +1556,22 @@ export const components = [
             },
         ],
         package: "wonder-blocks-toolbar",
+    }),
+    /**
+     * wonder-blocks-tooltip
+     */
+    createComponentConfig({
+        name: "Tooltip",
+        component: Tooltip as any,
+        variantProps: [],
+        defaultProps: {
+            content: "This is a tooltip",
+            children: "Hover over me",
+            opened: true,
+            placement: "right",
+            title: "Title",
+        },
+        states: [],
+        package: "wonder-blocks-tooltip",
     }),
 ];
