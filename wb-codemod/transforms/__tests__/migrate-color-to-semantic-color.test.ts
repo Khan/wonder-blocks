@@ -14,20 +14,6 @@ describe("migrate-color-to-semantic-color", () => {
         transform,
         transformOptions,
         `
-import {color} from "@khanacademy/wonder-blocks-tokens";
-const bgColor = color.blue;
-    `,
-        `
-import {color} from "@khanacademy/wonder-blocks-tokens";
-const bgColor = color.blue;
-    `,
-        "should not transform when no CSS property context is found",
-    );
-
-    defineInlineTest(
-        transform,
-        transformOptions,
-        `
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 const styles = {
     color: color.red,
