@@ -9,6 +9,7 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import type {getRefFn, Placement, Offset} from "../util/types";
 
 export type Props = {
+    // TODO: color prop is no longer used, check if it can be safely removed
     /**
      * Whether we should use the default white background color or switch to a
      * different bg color.
@@ -350,8 +351,8 @@ export default class TooltipTail extends React.Component<Props> {
         const {trimlinePoints, points, height, width} =
             this._calculateDimensionsFromPlacement();
 
-        const {color: arrowColor, show} = this.props;
-
+        const {show} = this.props;
+        const arrowColor = semanticColor.core.background.base.default;
         if (!show) {
             // If we aren't showing the tail, we still need to take up space
             // so we render a strut instead.
@@ -374,8 +375,8 @@ export default class TooltipTail extends React.Component<Props> {
                  * outline, it draws over white and not the dropshadow behind.
                  */}
                 <polyline
-                    fill={color[arrowColor]}
-                    stroke={color[arrowColor]}
+                    fill={arrowColor}
+                    stroke={arrowColor}
                     points={points.join(" ")}
                 />
                 {/* Draw the tooltip outline around the tooltip arrow. */}
@@ -383,13 +384,13 @@ export default class TooltipTail extends React.Component<Props> {
                     // Redraw the stroke on top of the background color,
                     // so that the ends aren't extra dark where they meet
                     // the border of the tooltip.
-                    fill={color[arrowColor]}
+                    fill={arrowColor}
                     points={points.join(" ")}
-                    stroke={semanticColor.core.shadow.transparent.mid}
+                    stroke={semanticColor.core.border.neutral.subtle}
                 />
                 {/* Draw a trimline to make the arrow appear flush */}
                 <polyline
-                    stroke={color[arrowColor]}
+                    stroke={arrowColor}
                     points={trimlinePoints.join(" ")}
                 />
             </svg>
