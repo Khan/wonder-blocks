@@ -95,10 +95,6 @@ const parameters: Preview["parameters"] = {
             },
         },
     },
-    initialGlobals: {
-        // 👇 Set the initial background color
-        backgrounds: {value: "baseDefault"},
-    },
     // https://storybook.js.org/docs/react/configure/story-layout
     layout: "padded",
     options: {
@@ -321,6 +317,10 @@ const preview: Preview = {
     },
 
     tags: ["autodocs"],
+    initialGlobals: {
+        // 👇 Set the initial background color
+        backgrounds: {value: "baseDefault"},
+    },
 };
 
 export default preview;
