@@ -1597,7 +1597,26 @@ export const components = [
             },
         ],
         defaultProps: {
-            children: "Heading Text",
+            children: "HeadingText",
+        },
+        states: [],
+        package: "wonder-blocks-typography",
+    }),
+    createComponentConfig({
+        name: "BodyText",
+        component: BodyText,
+        variantProps: [
+            {
+                propName: "size",
+                options: ["xsmall", "small", "medium"] as const,
+            },
+            {
+                propName: "weight",
+                options: ["medium", "semi", "bold"] as const,
+            },
+        ],
+        defaultProps: {
+            children: "BodyText",
         },
         states: [],
         package: "wonder-blocks-typography",
