@@ -63,7 +63,7 @@ import Toolbar from "@khanacademy/wonder-blocks-toolbar";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {IconMappings} from "./wonder-blocks-icon/phosphor-icon.argtypes";
 import Link from "@khanacademy/wonder-blocks-link";
-import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
+import {Body, BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import customBackgroundImage from "../static/EOT-Background.svg";
 import {reallyLongText} from "./components/text-for-testing";
@@ -1621,4 +1621,17 @@ export const components = [
         states: [],
         package: "wonder-blocks-typography",
     }),
+    ...[{name: "Body", TypographyComponent: Body}].map(
+        ({name, TypographyComponent}) =>
+            createComponentConfig({
+                name: `${name} (Legacy)`,
+                component: TypographyComponent,
+                variantProps: [],
+                defaultProps: {
+                    children: name,
+                },
+                states: [],
+                package: "wonder-blocks-typography",
+            }),
+    ),
 ];
