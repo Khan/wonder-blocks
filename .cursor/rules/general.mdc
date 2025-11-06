@@ -1,0 +1,96 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# Wonder Blocks Design System
+
+## Technology Stack
+
+* Language: TypeScript (Strict mode enforced).
+* Framework: React (Functional Components and Hooks are standard).
+* Styling: Aphrodite (`aphrodite`) for CSS-in-JS, leveraging Wonder Blocks tokens (`@khanacademy/wonder-blocks-tokens`) and themes.
+* State Management: Primarily local state (`useState`) and React Context API (`useContext` with custom provider hooks).
+* Data Fetching: There should be no data fetching in the design system UI components
+* Routing: Design system components that have link functionality should also support React-Router routes
+* Testing: Jest, React Testing Library (RTL), Storybook.
+
+## Coding Conventions & Style
+
+1. File Naming:
+
+* Use kebab-case for files and directories (e.g., `activity-button.tsx`, `utils.ts`).
+* Test files: `*.test.ts(x)`.
+* Storybook files: `*.stories.tsx`.
+
+2. Export Naming:
+
+* PascalCase for React components and TSX types/interfaces (e.g., `Button`, `type ButtonProps`).
+* camelCase for functions, variables, hooks (e.g., `getButtonProps`, `useButtonFunctionality`).
+
+3. TypeScript:
+
+* Use `strict` mode. Avoid `any`; use `unknown` or specific types.
+* Define clear interfaces/types (colocated or in `types.ts`). Use `type` for props and state, `interface` for shared structures where appropriate.
+* Use utility types (`Partial`, `Omit`, `Pick`, `Readonly`, etc.).
+
+4. React:
+
+* Functional Components & Hooks: Standard practice. Use `useState`, `useEffect`, `useContext`, `useCallback`, `useMemo`, custom hooks extensively.
+* Legacy Class Components: Avoid creating new ones. Refactor if making significant changes to existing ones.
+* Props: Define explicit `Props` types. Use object destructuring. Pass complex objects/callbacks with stable references (`useCallback`, `useMemo`) if they are dependencies of effects or memoized children.
+* State: Keep component state minimal. Lift state up when necessary.
+* Keys: Provide stable `key` props for lists (use item IDs if available).
+* Composition: Build complex UI by composing smaller Wonder Blocks or custom components.
+* Code Splitting: Use `React.lazy` for non-critical components or route-based splitting.
+* Don't use `React.FC<Props>` when defining functional components, use `(props: Props) =>` instead
+* When convert a class-based component to a functional component, is there is a `willComponentUnmount` method, the corresponding `useEffect` should either not have any dependencies or it should make call the `isMounted` function returned by the `useIsMounted` hook (this can be imported from `@khanacademy/wonder-blocks-core`).
+
+5. Styling (Aphrodite & Wonder Blocks):
+
+* Define styles using `StyleSheet.create` from `aphrodite`. Colocate styles with the component.
+* Use Wonder Blocks components for layout, typography, color, spacing, etc., leveraging their props and tokens.
+* Tokens: Use `semanticColor`, `font`, and `sizing` tokens
+
+6. Imports:
+
+* Organize imports: React, third-party libs, internal absolute paths (`@khan/`, `@khanacademy/`), hash-based paths (`#`), relative paths (`./`, `../`).
+* Use hash-based paths (e.g. `#components/button`) for internal imports within a package/app where configured.
+* Use absolute paths (`@khan/`, `@khanacademy/`) for cross-package imports.
+
+7. Linting & Formatting:
+
+* Strictly adhere to ESLint and Prettier.
+* Run `pnpm lint` before submitting changes.
+
+## Key Patterns
+
+### Component Design
+
+* Small, single-responsibility components.
+* Use Storybook (`*.stories.tsx`) for isolated development, documentation, and visual testing.
+* Separate logic hooks from presentational components.
+
+### Error Handling
+
+* Make sure undefined / null values are handled.
+
+### Accessibility (a11y)
+
+* Use semantic HTML or appropriate ARIA roles/attributes.
+* Ensure keyboard navigation and focus indicators work correctly.
+* Use tools for automated checks and perform manual testing (keyboard, screen reader).
+* Ensure components follow best practices. Common accessible patterns can be referenced: <https://www.w3.org/WAI/ARIA/apg/patterns/>
+* Components should often support `AriaProps`
+
+### Internationalization (i18n)
+
+* Any copy (visible or screen reader text like aria-label, alt text, etc) should be provided via a `labels` prop. Defaults are to be provided by the component in `en-us`
+
+## Tools & Commands
+
+* Start Dev Server: `pnpm start`
+* Install/Update Deps: `pnpm install`
+* Lint Check: `pnpm lint`
+* Type Check: `pnpm typecheck`
+* Run Tests: `pnpm test`
