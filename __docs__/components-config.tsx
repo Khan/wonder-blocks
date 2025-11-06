@@ -135,7 +135,11 @@ const LegacyTypographyComponents = () => {
     return (
         <View style={{gap: sizing.size_120}}>
             {legacyTypographyComponents.map(({name, TypographyComponent}) => (
-                <TypographyComponent key={name}>{name}</TypographyComponent>
+                // Use span tag to avoid semantic issues with header tags in a11y tools
+                // This story is for visual testing purposes
+                <TypographyComponent key={name} tag="span">
+                    {name}
+                </TypographyComponent>
             ))}
         </View>
     );
@@ -411,6 +415,7 @@ export const components = [
             children: "Button",
             startIcon: IconMappings.cookieBold,
             endIcon: IconMappings.cookieBold,
+            "aria-label": "ExampleButton",
         },
         states: [
             {name: "Disabled", props: {disabled: true}},
@@ -616,6 +621,7 @@ export const components = [
                 <OptionItem key="option2" label="Option 2" value="option2" />,
                 <OptionItem key="option3" label="Option 3" value="option3" />,
             ],
+            "aria-label": "Example MultiSelect",
         },
         states: [
             {name: "Disabled", props: {disabled: true}},
@@ -708,6 +714,7 @@ export const components = [
                 paddingInlineEnd: sizing.size_960,
                 marginInlineEnd: sizing.size_400,
             },
+            "aria-label": "Example MultiSelect",
         },
         states: [],
         package: "wonder-blocks-dropdown",
@@ -729,6 +736,7 @@ export const components = [
                 <OptionItem key="option2" label="Option 2" value="option2" />,
                 <OptionItem key="option3" label="Option 3" value="option3" />,
             ],
+            "aria-label": "Example SingleSelect",
         },
         states: [
             {name: "Disabled", props: {disabled: true}},
@@ -823,6 +831,7 @@ export const components = [
                 paddingInlineEnd: sizing.size_960,
                 marginInlineEnd: sizing.size_400,
             },
+            "aria-label": "Example SingleSelect",
         },
         states: [],
         package: "wonder-blocks-dropdown",
@@ -846,6 +855,7 @@ export const components = [
         defaultProps: {
             value: "",
             onChange: () => {},
+            "aria-label": "Example TextField",
         },
         states: [
             {name: "Disabled", props: {disabled: true}},
@@ -870,6 +880,7 @@ export const components = [
         defaultProps: {
             value: "",
             onChange: () => {},
+            "aria-label": "Example TextArea",
         },
         states: [
             {name: "Disabled", props: {disabled: true}},
@@ -1033,6 +1044,7 @@ export const components = [
         ],
         defaultProps: {
             icon: IconMappings.cookieBold,
+            "aria-label": "Example IconButton",
         },
         states: [{name: "Disabled", props: {disabled: true}}],
         package: "wonder-blocks-icon-button",
@@ -1350,6 +1362,7 @@ export const components = [
         defaultProps: {
             value: "",
             onChange: () => {},
+            "aria-label": "Example SearchField",
         },
         states: [
             {name: "Disabled", props: {disabled: true}},
@@ -1409,6 +1422,7 @@ export const components = [
             {
                 name: "With Icons",
                 props: {
+                    "aria-label": "Example NavigationTabs with icons",
                     children: [
                         <NavigationTabItem key="tab1" current={true}>
                             <Link
@@ -1646,6 +1660,9 @@ export const components = [
         ],
         defaultProps: {
             children: "HeadingText",
+            // Default to h4 tag to avoid semantic issues with header tags in a11y tools
+            // This story is for visual testing purposes
+            tag: "h4",
         },
         states: [],
         package: "wonder-blocks-typography",
