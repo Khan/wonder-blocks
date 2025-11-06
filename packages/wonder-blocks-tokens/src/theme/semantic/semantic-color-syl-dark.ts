@@ -148,6 +148,69 @@ const sharedFeedbackStrongTokens = {
     text: core.foreground.knockout.default,
 };
 
+const feedbackTokens = {
+    info: {
+        subtle: {
+            background: core.background.instructive.subtle,
+            border: core.border.instructive.subtle,
+            icon: core.foreground.instructive.default,
+            text: core.foreground.instructive.strong,
+        },
+        strong: {
+            ...sharedFeedbackStrongTokens,
+            icon: core.foreground.instructive.subtle,
+        },
+    },
+    success: {
+        subtle: {
+            background: core.background.success.subtle,
+            border: core.border.success.subtle,
+            icon: core.foreground.success.default,
+            text: core.foreground.success.strong,
+        },
+        strong: {
+            ...sharedFeedbackStrongTokens,
+            icon: core.foreground.success.subtle,
+        },
+    },
+    warning: {
+        subtle: {
+            background: core.background.warning.subtle,
+            border: core.border.warning.default,
+            icon: core.foreground.warning.default,
+            text: core.foreground.warning.strong,
+        },
+        strong: {
+            ...sharedFeedbackStrongTokens,
+            icon: core.foreground.warning.subtle,
+        },
+    },
+    critical: {
+        subtle: {
+            background: core.background.critical.subtle,
+            border: core.border.critical.subtle,
+            icon: core.foreground.critical.default,
+            text: core.foreground.critical.strong,
+        },
+        strong: {
+            ...sharedFeedbackStrongTokens,
+            icon: core.foreground.critical.subtle,
+        },
+    },
+    neutral: {
+        subtle: {
+            background: core.background.neutral.subtle,
+            border: core.border.neutral.subtle,
+            icon: core.foreground.neutral.subtle,
+            text: core.foreground.neutral.default,
+        },
+        strong: {
+            ...sharedFeedbackStrongTokens,
+            icon: core.foreground.neutral.subtle,
+        },
+    },
+};
+
 export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
     action: {
         primary: {
@@ -525,24 +588,24 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
     },
     status: {
         critical: {
-            background: color.red_90,
-            foreground: color.red_10,
+            background: feedbackTokens.critical.subtle.background,
+            foreground: feedbackTokens.critical.subtle.text,
         },
         warning: {
-            background: color.yellow_90,
-            foreground: color.yellow_05,
+            background: feedbackTokens.warning.subtle.background,
+            foreground: feedbackTokens.warning.subtle.text,
         },
         success: {
-            background: color.green_90,
-            foreground: color.green_10,
+            background: feedbackTokens.success.subtle.background,
+            foreground: feedbackTokens.success.subtle.text,
         },
         notice: {
-            background: color.blue_90,
-            foreground: color.blue_10,
+            background: feedbackTokens.info.subtle.background,
+            foreground: feedbackTokens.info.subtle.text,
         },
         neutral: {
-            background: color.gray_90,
-            foreground: color.gray_10,
+            background: feedbackTokens.neutral.subtle.background,
+            foreground: feedbackTokens.neutral.subtle.text,
         },
     },
 
@@ -557,68 +620,7 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
         disabled: core.foreground.disabled.subtle,
     },
     core,
-    feedback: {
-        info: {
-            subtle: {
-                background: core.background.instructive.subtle,
-                border: core.border.instructive.subtle,
-                icon: core.foreground.instructive.default,
-                text: core.foreground.instructive.strong,
-            },
-            strong: {
-                ...sharedFeedbackStrongTokens,
-                icon: core.foreground.instructive.subtle,
-            },
-        },
-        success: {
-            subtle: {
-                background: core.background.success.subtle,
-                border: core.border.success.subtle,
-                icon: core.foreground.success.default,
-                text: core.foreground.success.strong,
-            },
-            strong: {
-                ...sharedFeedbackStrongTokens,
-                icon: core.foreground.success.subtle,
-            },
-        },
-        warning: {
-            subtle: {
-                background: core.background.warning.subtle,
-                border: core.border.warning.default,
-                icon: core.foreground.warning.default,
-                text: core.foreground.warning.strong,
-            },
-            strong: {
-                ...sharedFeedbackStrongTokens,
-                icon: core.foreground.warning.subtle,
-            },
-        },
-        critical: {
-            subtle: {
-                background: core.background.critical.subtle,
-                border: core.border.critical.subtle,
-                icon: core.foreground.critical.default,
-                text: core.foreground.critical.strong,
-            },
-            strong: {
-                ...sharedFeedbackStrongTokens,
-                icon: core.foreground.critical.subtle,
-            },
-        },
-        neutral: {
-            subtle: {
-                background: core.background.neutral.subtle,
-                border: core.border.neutral.subtle,
-                icon: core.foreground.neutral.subtle,
-                text: core.foreground.neutral.default,
-            },
-            strong: {
-                ...sharedFeedbackStrongTokens,
-                icon: core.foreground.neutral.subtle,
-            },
-        },
-    },
+    feedback: feedbackTokens,
     learning: {
         math: {
             foreground: {
