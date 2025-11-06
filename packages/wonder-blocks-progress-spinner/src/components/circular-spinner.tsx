@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {View, addStyle} from "@khanacademy/wonder-blocks-core";
-import {color} from "@khanacademy/wonder-blocks-tokens";
+import {color, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
@@ -20,8 +20,8 @@ const paths = {
 } as const;
 
 const colors = {
-    light: color.white,
-    dark: color.offBlack50,
+    light: semanticColor.core.foreground.knockout.default,
+    dark: semanticColor.core.foreground.neutral.default,
 } as const;
 
 const StyledPath = addStyle("path");
