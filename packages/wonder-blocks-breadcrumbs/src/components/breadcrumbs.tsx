@@ -3,6 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {font, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import BreadcrumbsItem from "./breadcrumbs-item";
 
 type Props = AriaProps & {
@@ -107,6 +108,8 @@ const styles = StyleSheet.create({
         margin: 0,
         padding: 0,
         overflow: "hidden",
+        fontFamily: font.family.sans,
+        color: semanticColor.core.foreground.neutral.strong,
     },
 });
 

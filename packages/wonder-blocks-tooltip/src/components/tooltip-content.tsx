@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingSmall, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
 
@@ -88,9 +88,11 @@ export default class TooltipContent extends React.Component<Props> {
 const styles = StyleSheet.create({
     withoutTitle: {
         padding: `10px ${spacing.medium_16}px`,
+        color: semanticColor.core.foreground.neutral.strong,
     },
 
     withTitle: {
         padding: spacing.medium_16,
+        color: semanticColor.core.foreground.neutral.strong,
     },
 });

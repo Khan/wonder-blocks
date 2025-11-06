@@ -1,46 +1,43 @@
 import {mergeTheme} from "@khanacademy/wonder-blocks-theming";
-import {color} from "./internal/primitive-color-syl-dark";
+import {color} from "./internal/primitive-color-thunderblocks";
 import {semanticColor as thunderblocksSemanticColor} from "./semantic-color-thunderblocks";
 
 const transparent = "transparent";
 
-// NOTE: We use `color-mix` to generate a transparent color because it supports
-// using CSS variables as input, which is not possible with the CSS `rgba`
-// function or the `fade` JS function.
-const transparentShadowColor = `color-mix(in srgb, ${color.blue_05} 20%, ${transparent})`;
+const transparentShadowColor = color.black_60;
 
 const core = {
     transparent,
     border: {
         instructive: {
-            subtle: color.blue_60,
-            default: color.blue_40,
-            strong: color.blue_10,
+            subtle: color.blue_40,
+            default: color.blue_50,
+            strong: color.blue_60,
         },
         neutral: {
-            subtle: color.gray_60,
-            default: color.gray_30,
-            strong: color.gray_10,
+            subtle: color.gray_10,
+            default: color.gray_20,
+            strong: color.gray_40,
         },
         critical: {
-            subtle: color.red_60,
-            default: color.red_30,
-            strong: color.red_10,
+            subtle: color.red_30,
+            default: color.red_40,
+            strong: color.red_60,
         },
         success: {
-            subtle: color.green_60,
-            default: color.green_30,
-            strong: color.green_10,
+            subtle: color.green_30,
+            default: color.green_40,
+            strong: color.green_60,
         },
         warning: {
-            subtle: color.yellow_60,
-            default: color.yellow_40,
-            strong: color.yellow_10,
+            subtle: color.yellow_20,
+            default: color.yellow_30,
+            strong: color.yellow_50,
         },
         disabled: {
             subtle: transparent,
-            default: color.gray_70,
-            strong: color.gray_60,
+            default: color.gray_30,
+            strong: color.gray_40,
         },
         knockout: {
             default: color.white_100,
@@ -48,39 +45,39 @@ const core = {
     },
     background: {
         base: {
-            subtle: color.blue_90,
-            default: color.white_100,
-            strong: color.blue_70,
+            subtle: color.gray_05,
+            default: color.black_100,
+            strong: color.gray_60,
         },
         instructive: {
-            subtle: color.blue_80,
+            subtle: color.blue_01,
             default: color.blue_30,
-            strong: color.blue_10,
+            strong: color.blue_70,
         },
         neutral: {
-            subtle: color.gray_80,
+            subtle: color.gray_10,
             default: color.gray_20,
-            strong: color.black_100,
+            strong: color.gray_70,
         },
         critical: {
-            subtle: color.red_90,
-            default: color.red_20,
-            strong: color.red_05,
+            subtle: color.red_05,
+            default: color.red_30,
+            strong: color.red_50,
         },
         success: {
-            subtle: color.green_90,
+            subtle: color.green_05,
             default: color.green_30,
-            strong: color.green_20,
+            strong: color.green_50,
         },
         warning: {
-            subtle: color.yellow_90,
-            default: color.yellow_60,
-            strong: color.yellow_10,
+            subtle: color.yellow_05,
+            default: color.yellow_30,
+            strong: color.yellow_50,
         },
         disabled: {
             subtle: transparent,
-            default: color.gray_80,
-            strong: color.gray_70,
+            default: color.gray_20,
+            strong: color.gray_40,
         },
         overlay: {
             default: color.black_50,
@@ -92,34 +89,34 @@ const core = {
      */
     foreground: {
         instructive: {
-            subtle: color.blue_50,
-            default: color.blue_30,
-            strong: color.blue_10,
+            subtle: color.blue_20,
+            default: color.blue_40,
+            strong: color.blue_70,
         },
         neutral: {
-            subtle: color.gray_20,
-            default: color.gray_10,
-            strong: color.black_100,
+            subtle: color.gray_40,
+            default: color.gray_60,
+            strong: color.gray_80,
         },
         critical: {
             subtle: color.red_50,
-            default: color.red_20,
-            strong: color.red_10,
+            default: color.red_80,
+            strong: color.red_90,
         },
         success: {
             subtle: color.green_50,
-            default: color.green_20,
-            strong: color.green_05,
+            default: color.green_80,
+            strong: color.green_90,
         },
         warning: {
             subtle: color.yellow_50,
-            default: color.yellow_10,
-            strong: color.yellow_05,
+            default: color.yellow_80,
+            strong: color.yellow_90,
         },
         disabled: {
-            subtle: color.gray_60,
-            default: color.gray_50,
-            strong: color.gray_40,
+            subtle: color.gray_50,
+            default: color.gray_60,
+            strong: color.gray_70,
         },
         knockout: {
             default: color.white_100,
@@ -133,13 +130,13 @@ const core = {
         },
         chonky: {
             instructive: {
-                subtle: color.blue_60,
+                subtle: color.blue_40,
                 default: color.blue_10,
             },
             neutral: {
-                subtle: color.gray_60,
+                subtle: color.gray_10,
                 default: color.gray_30,
-                strong: color.gray_10,
+                strong: color.gray_50,
             },
         },
     },
@@ -149,6 +146,69 @@ const sharedFeedbackStrongTokens = {
     background: core.background.neutral.strong,
     border: core.border.neutral.strong,
     text: core.foreground.knockout.default,
+};
+
+const feedbackTokens = {
+    info: {
+        subtle: {
+            background: core.background.instructive.subtle,
+            border: core.border.instructive.subtle,
+            icon: core.foreground.instructive.default,
+            text: core.foreground.instructive.strong,
+        },
+        strong: {
+            ...sharedFeedbackStrongTokens,
+            icon: core.foreground.instructive.subtle,
+        },
+    },
+    success: {
+        subtle: {
+            background: core.background.success.subtle,
+            border: core.border.success.subtle,
+            icon: core.foreground.success.default,
+            text: core.foreground.success.strong,
+        },
+        strong: {
+            ...sharedFeedbackStrongTokens,
+            icon: core.foreground.success.subtle,
+        },
+    },
+    warning: {
+        subtle: {
+            background: core.background.warning.subtle,
+            border: core.border.warning.default,
+            icon: core.foreground.warning.default,
+            text: core.foreground.warning.strong,
+        },
+        strong: {
+            ...sharedFeedbackStrongTokens,
+            icon: core.foreground.warning.subtle,
+        },
+    },
+    critical: {
+        subtle: {
+            background: core.background.critical.subtle,
+            border: core.border.critical.subtle,
+            icon: core.foreground.critical.default,
+            text: core.foreground.critical.strong,
+        },
+        strong: {
+            ...sharedFeedbackStrongTokens,
+            icon: core.foreground.critical.subtle,
+        },
+    },
+    neutral: {
+        subtle: {
+            background: core.background.neutral.subtle,
+            border: core.border.neutral.subtle,
+            icon: core.foreground.neutral.subtle,
+            text: core.foreground.neutral.default,
+        },
+        strong: {
+            ...sharedFeedbackStrongTokens,
+            icon: core.foreground.neutral.subtle,
+        },
+    },
 };
 
 export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
@@ -528,24 +588,24 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
     },
     status: {
         critical: {
-            background: color.red_90,
-            foreground: color.red_10,
+            background: feedbackTokens.critical.subtle.background,
+            foreground: feedbackTokens.critical.subtle.text,
         },
         warning: {
-            background: color.yellow_90,
-            foreground: color.yellow_05,
+            background: feedbackTokens.warning.subtle.background,
+            foreground: feedbackTokens.warning.subtle.text,
         },
         success: {
-            background: color.green_90,
-            foreground: color.green_10,
+            background: feedbackTokens.success.subtle.background,
+            foreground: feedbackTokens.success.subtle.text,
         },
         notice: {
-            background: color.blue_90,
-            foreground: color.blue_10,
+            background: feedbackTokens.info.subtle.background,
+            foreground: feedbackTokens.info.subtle.text,
         },
         neutral: {
-            background: color.gray_90,
-            foreground: color.gray_10,
+            background: feedbackTokens.neutral.subtle.background,
+            foreground: feedbackTokens.neutral.subtle.text,
         },
     },
 
@@ -560,143 +620,82 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
         disabled: core.foreground.disabled.subtle,
     },
     core,
-    feedback: {
-        info: {
-            subtle: {
-                background: core.background.instructive.subtle,
-                border: core.border.instructive.subtle,
-                icon: core.foreground.instructive.default,
-                text: core.foreground.instructive.strong,
-            },
-            strong: {
-                ...sharedFeedbackStrongTokens,
-                icon: core.foreground.instructive.subtle,
-            },
-        },
-        success: {
-            subtle: {
-                background: core.background.success.subtle,
-                border: core.border.success.subtle,
-                icon: core.foreground.success.default,
-                text: core.foreground.success.strong,
-            },
-            strong: {
-                ...sharedFeedbackStrongTokens,
-                icon: core.foreground.success.subtle,
-            },
-        },
-        warning: {
-            subtle: {
-                background: core.background.warning.subtle,
-                border: core.border.warning.default,
-                icon: core.foreground.warning.default,
-                text: core.foreground.warning.strong,
-            },
-            strong: {
-                ...sharedFeedbackStrongTokens,
-                icon: core.foreground.warning.subtle,
-            },
-        },
-        critical: {
-            subtle: {
-                background: core.background.critical.subtle,
-                border: core.border.critical.subtle,
-                icon: core.foreground.critical.default,
-                text: core.foreground.critical.strong,
-            },
-            strong: {
-                ...sharedFeedbackStrongTokens,
-                icon: core.foreground.critical.subtle,
-            },
-        },
-        neutral: {
-            subtle: {
-                background: core.background.neutral.subtle,
-                border: core.border.neutral.subtle,
-                icon: core.foreground.neutral.subtle,
-                text: core.foreground.neutral.default,
-            },
-            strong: {
-                ...sharedFeedbackStrongTokens,
-                icon: core.foreground.neutral.subtle,
-            },
-        },
-    },
+    feedback: feedbackTokens,
     learning: {
         math: {
             foreground: {
-                blue: color.cyan_10,
-                gold: color.yellow_10,
-                green: color.green_20,
-                gray: color.gray_10,
-                grayH: color.gray_05,
-                grayI: color.black_100,
-                purple: color.blue_05,
-                purpleD: color.blue_10,
-                pink: color.magenta_10,
-                red: color.red_20,
+                blue: color.cyan_50,
+                gold: color.yellow_40,
+                green: color.green_50,
+                gray: color.gray_60,
+                grayH: color.gray_70,
+                grayI: color.gray_80,
+                purple: color.blue_60,
+                purpleD: color.blue_50,
+                pink: color.magenta_50,
+                red: color.red_60,
             },
         },
         background: {
             gems: {
-                subtle: color.magenta_90,
-                default: color.magenta_80,
-                strong: color.magenta_10,
+                subtle: color.magenta_05,
+                default: color.magenta_10,
+                strong: color.magenta_20,
             },
             due: {
-                subtle: color.cyan_80,
-                default: color.cyan_60,
-                strong: color.cyan_10,
+                subtle: color.cyan_05,
+                default: color.cyan_10,
+                strong: color.cyan_20,
             },
             streaks: {
-                subtle: color.orange_80,
-                default: color.orange_60,
-                strong: color.orange_10,
+                subtle: color.orange_05,
+                default: color.orange_10,
+                strong: color.orange_20,
             },
             progress: {
                 notStarted: {
-                    default: color.gray_60,
+                    default: color.gray_50,
                 },
                 attempted: {
-                    default: color.yellow_60,
+                    default: color.yellow_40,
                 },
                 complete: {
-                    default: color.green_60,
+                    default: color.green_40,
                 },
             },
         },
         border: {
             gems: {
-                subtle: color.magenta_80,
-                default: color.magenta_60,
+                subtle: color.magenta_10,
+                default: color.magenta_20,
                 strong: color.magenta_30,
             },
             streaks: {
-                subtle: color.orange_80,
-                default: color.orange_60,
+                subtle: color.orange_10,
+                default: color.orange_20,
                 strong: color.orange_30,
             },
             due: {
-                subtle: color.cyan_80,
-                default: color.cyan_60,
-                strong: color.cyan_30,
+                subtle: color.cyan_20,
+                default: color.cyan_40,
+                strong: color.cyan_60,
             },
         },
         foreground: {
             gems: {
-                subtle: color.magenta_60,
+                subtle: color.magenta_20,
                 default: color.magenta_30,
-                strong: color.magenta_10,
+                strong: color.magenta_90,
             },
             streaks: {
-                subtle: color.orange_60,
+                subtle: color.orange_20,
                 default: color.orange_30,
-                strong: color.orange_10,
+                strong: color.orange_90,
             },
             due: {
-                subtle: color.cyan_60,
-                default: color.cyan_20,
-                strong: color.cyan_10,
+                subtle: color.cyan_20,
+                default: color.cyan_30,
+                strong: color.cyan_40,
             },
             progress: {
                 notStarted: {
@@ -704,8 +703,8 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
                     strong: color.gray_10,
                 },
                 attempted: {
-                    subtle: color.yellow_50,
-                    strong: color.yellow_10,
+                    subtle: color.yellow_20,
+                    strong: color.yellow_05,
                 },
                 complete: {
                     strong: color.green_10,
@@ -715,13 +714,13 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
         shadow: {
             progress: {
                 notStarted: {
-                    default: color.gray_20,
+                    default: color.gray_10,
                 },
                 attempted: {
-                    default: color.yellow_30,
+                    default: color.yellow_20,
                 },
                 complete: {
-                    default: color.green_30,
+                    default: color.green_20,
                 },
             },
         },

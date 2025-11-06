@@ -1,9 +1,14 @@
 import {StyleSheet} from "aphrodite";
 import type {StyleDeclaration} from "aphrodite";
-import {font, breakpoint} from "@khanacademy/wonder-blocks-tokens";
+import {
+    font,
+    breakpoint,
+    semanticColor,
+} from "@khanacademy/wonder-blocks-tokens";
 
 const common = {
     display: "block",
+    color: semanticColor.core.foreground.neutral.strong,
 } as const;
 
 const Heading = {
