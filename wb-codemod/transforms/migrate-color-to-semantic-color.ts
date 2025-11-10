@@ -52,7 +52,7 @@ const COLOR_TO_SEMANTIC_MAPPING: Record<
     },
     fadedOffBlack8: {
         foreground: "core.foreground.neutral.subtle",
-        background: "core.background.neutral.disabled",
+        background: "core.background.neutral.subtle",
         border: "core.border.neutral.subtle",
     },
     offBlack8: {
