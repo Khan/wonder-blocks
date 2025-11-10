@@ -97,6 +97,10 @@ html {
     line-height: var(--typography-heading-line-height-xs);
 }
 
+/* Give the automatic TOC column more width instead of awkward scrolling */
+.sbdocs nav {
+    width: 22rem !important;
+}
 
 .showAnnouncer.sb-show-main #wbAnnounce {
     background-color: white;
