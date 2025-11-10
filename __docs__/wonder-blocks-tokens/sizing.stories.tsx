@@ -10,7 +10,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import TokenTable from "../components/token-table";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
-import {color, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {Code} from "../components/code";
 
 /**
@@ -90,7 +90,7 @@ export const Sizing = () => (
                 cell: (row) => (
                     <View
                         style={{
-                            backgroundColor: color.purple,
+                            backgroundColor: semanticColor.mastery.primary,
                             height: row.value,
                         }}
                     >

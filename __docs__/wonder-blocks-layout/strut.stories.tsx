@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import packageConfig from "../../packages/wonder-blocks-layout/package.json";
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     },
     strut: {
         alignSelf: "center",
-        backgroundColor: color.darkBlue,
+        backgroundColor: semanticColor.core.background.instructive.strong,
     },
     thin: {
         height: "4px",

@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
         borderRadius: border.radius.radius_040,
     },
     pattern: {
-        backgroundImage: `radial-gradient(${color.blue} 0.5px, ${color.offWhite} 0.5px)`,
+        backgroundImage: `radial-gradient(${semanticColor.core.background.instructive.default} 0.5px, ${semanticColor.core.background.base.subtle} 0.5px)`,
         backgroundSize: `${spacing.small_12}px ${spacing.small_12}px`,
         boxShadow: `0 0 1px 0 ${semanticColor.core.border.neutral.subtle}`,
     },
@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
         color: semanticColor.core.foreground.neutral.strong,
         display: "inline-flex",
         backgroundColor: semanticColor.core.background.base.subtle,
-        border: `1px solid ${color.offBlack16}`,
+        border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
         padding: spacing.xxxxSmall_2,
         borderRadius: border.radius.radius_040,
     },

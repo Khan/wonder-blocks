@@ -5,7 +5,7 @@ import externalLinkIcon from "@phosphor-icons/core/bold/arrow-square-out-bold.sv
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body, HeadingSmall} from "@khanacademy/wonder-blocks-typography";
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {CommonTileProps} from "./types";
@@ -114,18 +114,18 @@ const styles = StyleSheet.create({
         height: "auto",
     },
     clickable: {
-        backgroundColor: color.offWhite,
-        border: `1px solid ${color.offBlack16}`,
+        backgroundColor: semanticColor.core.background.base.subtle,
+        border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
         borderStartStartRadius: spacing.small_12,
         borderStartEndRadius: spacing.small_12,
 
         ":hover": {
-            border: `1px solid ${color.blue}`,
-            outline: `1px solid ${color.blue}`,
+            border: `1px solid ${semanticColor.core.border.instructive.default}`,
+            outline: `1px solid ${semanticColor.core.border.instructive.default}`,
         },
 
         ":focus": {
-            border: `1px solid ${color.blue}`,
+            border: `1px solid ${semanticColor.core.border.instructive.default}`,
             outline: `1px solid ${semanticColor.focus.outer}`,
         },
     },
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         justifyContent: "center",
         padding: spacing.large_24,
-        border: `1px solid ${color.offBlack16}`,
+        border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
         borderTop: "none",
         borderEndStartRadius: spacing.small_12,
         borderEndEndRadius: spacing.small_12,
