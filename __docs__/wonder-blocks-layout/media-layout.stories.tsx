@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     Body,
     HeadingSmall,
@@ -49,20 +49,22 @@ export const Default: StoryComponentType = {
         styleSheets: {
             large: StyleSheet.create({
                 test: {
-                    backgroundColor: color.darkBlue,
-                    color: color.white,
+                    backgroundColor:
+                        semanticColor.core.background.instructive.strong,
+                    color: semanticColor.core.foreground.knockout.default,
                 },
             }),
             medium: StyleSheet.create({
                 test: {
-                    backgroundColor: color.blue,
-                    color: color.white,
+                    backgroundColor:
+                        semanticColor.core.background.instructive.default,
+                    color: semanticColor.core.foreground.knockout.default,
                 },
             }),
             small: StyleSheet.create({
                 test: {
-                    backgroundColor: color.purple,
-                    color: color.white,
+                    backgroundColor: semanticColor.mastery.primary,
+                    color: semanticColor.core.foreground.knockout.default,
                 },
             }),
         },
@@ -80,20 +82,22 @@ export const ScreenSizeStyles: StoryComponentType = () => {
     const styleSheets = {
         large: StyleSheet.create({
             test: {
-                backgroundColor: color.darkBlue,
-                color: color.white,
+                backgroundColor:
+                    semanticColor.core.background.instructive.strong,
+                color: semanticColor.core.foreground.knockout.default,
             },
         }),
         medium: StyleSheet.create({
             test: {
-                backgroundColor: color.blue,
-                color: color.white,
+                backgroundColor:
+                    semanticColor.core.background.instructive.default,
+                color: semanticColor.core.foreground.knockout.default,
             },
         }),
         small: StyleSheet.create({
             test: {
-                backgroundColor: color.purple,
-                color: color.white,
+                backgroundColor: semanticColor.mastery.primary,
+                color: semanticColor.core.foreground.knockout.default,
             },
         }),
     } as const;
@@ -128,7 +132,7 @@ export const AllStyles: StoryComponentType = () => {
         all: StyleSheet.create({
             // use shared styles for all sizes
             test: {
-                color: color.white,
+                color: semanticColor.core.foreground.knockout.default,
                 padding: spacing.medium_16,
             },
         }),
@@ -136,20 +140,22 @@ export const AllStyles: StoryComponentType = () => {
         large: StyleSheet.create({
             // override the `padding` prop` here
             test: {
-                backgroundColor: color.darkBlue,
+                backgroundColor:
+                    semanticColor.core.background.instructive.strong,
                 padding: spacing.xxLarge_48,
             },
         }),
 
         medium: StyleSheet.create({
             test: {
-                backgroundColor: color.blue,
+                backgroundColor:
+                    semanticColor.core.background.instructive.default,
             },
         }),
 
         small: StyleSheet.create({
             test: {
-                backgroundColor: color.purple,
+                backgroundColor: semanticColor.mastery.primary,
             },
         }),
     } as const;
@@ -185,15 +191,16 @@ export const CustomSpec: StoryComponentType = () => {
         large: StyleSheet.create({
             example: {
                 alignItems: "center",
-                backgroundColor: color.darkBlue,
-                color: color.white,
+                backgroundColor:
+                    semanticColor.core.background.instructive.strong,
+                color: semanticColor.core.foreground.knockout.default,
                 padding: spacing.xxxLarge_64,
             },
         }),
 
         small: StyleSheet.create({
             example: {
-                backgroundColor: color.purple,
+                backgroundColor: semanticColor.mastery.primary,
                 padding: spacing.small_12,
             },
         }),

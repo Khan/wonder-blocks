@@ -9,7 +9,7 @@ import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {border, color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingSmall, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentInfo from "../components/component-info";
@@ -311,7 +311,7 @@ export const ReactElementInChildren: StoryComponentType = {
                     horizontalRule="none"
                     styles={{
                         root: {
-                            borderTop: `1px solid ${color.offBlack16}`,
+                            borderTop: `1px solid ${semanticColor.core.border.neutral.subtle}`,
                         },
                     }}
                 />
@@ -542,9 +542,9 @@ export const WithStyle: StoryComponentType = {
         const [expanded, setExpanded] = React.useState(true);
 
         const customStyles = {
-            backgroundColor: color.offBlack8,
+            backgroundColor: semanticColor.core.background.neutral.subtle,
             margin: spacing.large_24,
-            outline: `2px solid ${color.offBlack32}`,
+            outline: `2px solid ${semanticColor.core.border.neutral.subtle}`,
         };
 
         return (
@@ -569,7 +569,7 @@ export const WithHeaderStyle: StoryComponentType = {
         const [expanded, setExpanded] = React.useState(false);
 
         const headerStyle = {
-            backgroundColor: color.offBlack8,
+            backgroundColor: semanticColor.core.background.neutral.subtle,
         };
 
         return (
