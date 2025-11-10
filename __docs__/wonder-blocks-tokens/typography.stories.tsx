@@ -219,7 +219,9 @@ export const BodyLineHeight = {
                     cell: (row) => (
                         <View
                             style={{
-                                backgroundColor: semanticColor.core.background.neutral.subtle,
+                                backgroundColor:
+                                    semanticColor.core.background.neutral
+                                        .subtle,
                                 lineHeight: row.value,
                             }}
                         >
@@ -255,7 +257,9 @@ export const HeadingLineHeight = {
                     cell: (row) => (
                         <View
                             style={{
-                                backgroundColor: semanticColor.core.background.neutral.subtle,
+                                backgroundColor:
+                                    semanticColor.core.background.neutral
+                                        .subtle,
                                 lineHeight: row.value,
                             }}
                         >

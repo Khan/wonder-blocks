@@ -42,14 +42,14 @@ export default {
         (Story) => (
             // Set a fixed size for the custom icons since they expand to the
             // size of its parent container.
-            (<View
+            <View
                 style={{
                     height: sizing.size_400,
                     width: "100%",
                 }}
             >
                 <Story />
-            </View>)
+            </View>
         ),
     ],
 } as Meta<typeof GemIcon>;

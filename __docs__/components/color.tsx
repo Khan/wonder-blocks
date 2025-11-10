@@ -7,7 +7,14 @@ import {
     LabelLarge,
     LabelSmall,
 } from "@khanacademy/wonder-blocks-typography";
-import {border, font, semanticColor, sizing, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    color,
+    font,
+    semanticColor,
+    sizing,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {getTokenName, maybeGetCssVariableInfo} from "./tokens-util";
 import {CopyButton} from "./copy-button";
 

@@ -17,7 +17,11 @@ import clock from "@phosphor-icons/core/regular/clock.svg";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {semanticColor, sizing, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    semanticColor,
+    sizing,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import Button from "@khanacademy/wonder-blocks-button";
@@ -883,7 +887,8 @@ export const PressDurationTracking: StoryComponentType = {
                 <View
                     style={{
                         padding: spacing.medium_16,
-                        backgroundColor: semanticColor.core.background.base.subtle,
+                        backgroundColor:
+                            semanticColor.core.background.base.subtle,
                         borderRadius: 4,
                         maxWidth: 400,
                     }}
