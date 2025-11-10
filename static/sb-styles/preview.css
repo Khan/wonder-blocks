@@ -98,7 +98,7 @@ html {
 }
 
 /* Give the automatic TOC column more width instead of awkward scrolling */
-.sbdocs nav {
+.sbdocs-toc--custom, .sbdocs-toc--custom nav {
     width: 22rem !important;
 }
 
