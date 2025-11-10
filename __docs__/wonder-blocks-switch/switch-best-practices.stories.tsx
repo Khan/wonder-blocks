@@ -90,7 +90,9 @@ export const WithLabelAndDescription: StoryComponentType = (() => {
                 </LabelMedium>
                 <LabelSmall
                     id="desc-for-switch-with-desc"
-                    style={{color: semanticColor.core.foreground.neutral.subtle}}
+                    style={{
+                        color: semanticColor.core.foreground.neutral.subtle,
+                    }}
                 >
                     Sleep is important for your health. The benefits of a good
                     night sleep include improved memory, longer life, and
@@ -127,7 +129,10 @@ export const WithLabelAndOnOff: StoryComponentType = (() => {
                 aria-labelledby="label-for-switch-with-on-off"
             />
             <LabelSmall
-                style={{marginLeft: spacing.xSmall_8, color: semanticColor.core.foreground.neutral.subtle}}
+                style={{
+                    marginLeft: spacing.xSmall_8,
+                    color: semanticColor.core.foreground.neutral.subtle,
+                }}
                 aria-hidden={true}
             >
                 {checked ? "ON" : "OFF"}
@@ -197,7 +202,9 @@ export const InsideDetailCell: StoryComponentType = (() => {
             subtitle2={
                 <LabelSmall
                     id="desc-for-switch-inside-detail-cell"
-                    style={{color: semanticColor.core.foreground.neutral.subtle}}
+                    style={{
+                        color: semanticColor.core.foreground.neutral.subtle,
+                    }}
                 >
                     I am a long description that does not change the state of
                     the switch. Click me all you want and nothing will change.

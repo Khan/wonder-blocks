@@ -4,7 +4,11 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
-import {semanticColor, sizing, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    semanticColor,
+    sizing,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {
     Title,
     Heading,

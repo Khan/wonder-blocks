@@ -9,7 +9,11 @@ import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {border, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    semanticColor,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingSmall, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentInfo from "../components/component-info";
