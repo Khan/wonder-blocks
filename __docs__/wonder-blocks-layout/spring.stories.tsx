@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import type {Meta, StoryObj} from "@storybook/react-vite";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {color} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import Button from "@khanacademy/wonder-blocks-button";
 
 import {Spring, Strut} from "@khanacademy/wonder-blocks-layout";
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     },
     spring: {
         alignSelf: "center",
-        backgroundColor: color.darkBlue,
+        backgroundColor: semanticColor.core.background.instructive.strong,
     },
     thin: {
         height: "4px",

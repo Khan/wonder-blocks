@@ -2,7 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     HeadingMedium,
     LabelMedium,
@@ -52,8 +52,9 @@ export const InlineStyles: StoryComponentType = () => (
             style={[
                 styles.container,
                 {
-                    background: color.fadedPurple24,
-                    border: `1px solid ${color.blue}`,
+                    background:
+                        semanticColor.core.background.instructive.subtle,
+                    border: `1px solid ${semanticColor.core.border.instructive.default}`,
                     padding: spacing.xxxSmall_4,
                 },
             ]}
@@ -135,19 +136,19 @@ DefiningLayout.parameters = {
 
 const styles = StyleSheet.create({
     container: {
-        background: color.offBlack8,
+        background: semanticColor.core.background.neutral.subtle,
         gap: spacing.medium_16,
         padding: spacing.xLarge_32,
     },
 
     view: {
-        border: `1px dashed ${color.purple}`,
+        border: `1px dashed ${semanticColor.mastery.primary}`,
         gap: spacing.medium_16,
         padding: spacing.medium_16,
     },
 
     item: {
-        background: color.offBlack32,
+        background: semanticColor.core.background.disabled.strong,
         padding: spacing.medium_16,
     },
 });

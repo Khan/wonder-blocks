@@ -29,9 +29,9 @@ export default {
             // Wrap in a ul to address a11y warnings since NavigationTabItem
             // renders a li element and should be used within a NavigationTabs
             // component (which provides the ul element).
-            <StyledUl>
+            (<StyledUl>
                 <Story />
-            </StyledUl>
+            </StyledUl>)
         ),
     ],
     argTypes,

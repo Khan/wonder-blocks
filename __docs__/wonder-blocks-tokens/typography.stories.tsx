@@ -8,7 +8,7 @@ import {
 import {Meta} from "@storybook/react-vite";
 import {View} from "@khanacademy/wonder-blocks-core";
 import TokenTable from "../components/token-table";
-import {color, font} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, font} from "@khanacademy/wonder-blocks-tokens";
 import {themeModes} from "../../.storybook/modes";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
@@ -219,7 +219,7 @@ export const BodyLineHeight = {
                     cell: (row) => (
                         <View
                             style={{
-                                backgroundColor: color.offBlack8,
+                                backgroundColor: semanticColor.core.background.neutral.subtle,
                                 lineHeight: row.value,
                             }}
                         >
@@ -255,7 +255,7 @@ export const HeadingLineHeight = {
                     cell: (row) => (
                         <View
                             style={{
-                                backgroundColor: color.offBlack8,
+                                backgroundColor: semanticColor.core.background.neutral.subtle,
                                 lineHeight: row.value,
                             }}
                         >

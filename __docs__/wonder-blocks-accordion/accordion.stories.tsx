@@ -9,7 +9,7 @@ import {
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {
     MultiSelect,
@@ -431,7 +431,7 @@ WithAnimation.parameters = {
 export const WithStyle: StoryComponentType = {
     render: () => {
         const customStyles = {
-            border: `2px solid ${color.purple}`,
+            border: `2px solid ${semanticColor.mastery.primary}`,
             padding: spacing.xLarge_32,
         };
 
@@ -608,11 +608,11 @@ LongSections.parameters = {
 export const BackgroundColorExample: StoryComponentType = {
     render: () => {
         const accordionSectionStyle = {
-            backgroundColor: color.fadedBlue,
+            backgroundColor: semanticColor.core.background.instructive.subtle,
             // NOTE: This border color uses the opacity token to match the
             // background color. By default, the border color is
             // `fadedOffBlack16`, which is the HEX value of `offBlack16`.
-            borderColor: color.offBlack16,
+            borderColor: semanticColor.core.border.neutral.subtle,
         };
 
         const sections = [

@@ -10,7 +10,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import TokenTable from "../components/token-table";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Code} from "../components/code";
 
 /**
@@ -114,7 +114,7 @@ export const Spacing = () => (
                 cell: (row) => (
                     <View
                         style={{
-                            backgroundColor: color.purple,
+                            backgroundColor: semanticColor.mastery.primary,
                             height: row.value,
                         }}
                     >
