@@ -102,6 +102,12 @@ type FloatingProps = {
 
     /**
      * Whether to render the floating element in a portal.
+     *
+     * This is useful when the floating element needs to be rendered outside the
+     * current DOM hierarchy and instead be rendered in the uppermost DOM
+     * hierarchy. This allows us to prevent clipping issues with the floating
+     * element.
+     *
      * @default true
      */
     portal?: boolean;
