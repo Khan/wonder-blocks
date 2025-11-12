@@ -39,6 +39,9 @@ type BaseCardProps = {
     inert?: boolean;
     /**
      * The test ID used to locate this component in automated tests.
+     *
+     * The test ID will also be passed to the dismiss button as
+     * `{testId}-dismiss-button` if the `onDismiss` prop is provided.
      */
     testId?: string;
 } & StyleProps;
@@ -165,7 +168,7 @@ const Card = React.forwardRef(function Card(
         styles,
         labels,
         tag,
-        testId,
+        testId = "card",
         background = "base-default",
         borderRadius = "small",
         paddingSize = "small",
@@ -204,6 +207,7 @@ const Card = React.forwardRef(function Card(
                 <DismissButton
                     aria-label={labels?.dismissButtonAriaLabel || "Close"}
                     onClick={(e) => onDismiss?.(e)}
+                    testId={`${testId}-dismiss-button`}
                 />
             ) : null}
             {children}

@@ -94,6 +94,60 @@ describe("Card", () => {
         });
     });
 
+    describe("Test IDs", () => {
+        it("should apply a custom testId for card", () => {
+            // Arrange
+            render(
+                <Card testId="my-card">
+                    <div>Content</div>
+                </Card>,
+            );
+
+            // Act
+            const card = screen.getByTestId("my-card");
+
+            // Assert
+            expect(card).toBeInTheDocument();
+        });
+
+        it("should append -dismiss-button to testId for dismiss button", () => {
+            // Arrange
+            render(
+                <Card
+                    testId="my-card"
+                    onDismiss={() => {}}
+                    labels={{dismissButtonAriaLabel: "Close"}}
+                >
+                    <div>Content</div>
+                </Card>,
+            );
+
+            // Act
+            const dismissButton = screen.getByTestId("my-card-dismiss-button");
+
+            // Assert
+            expect(dismissButton).toBeInTheDocument();
+        });
+
+        it("should use default testId for dismiss button when no custom testId provided", () => {
+            // Arrange
+            render(
+                <Card
+                    onDismiss={() => {}}
+                    labels={{dismissButtonAriaLabel: "Close"}}
+                >
+                    <div>Content</div>
+                </Card>,
+            );
+
+            // Act
+            const dismissButton = screen.getByTestId("card-dismiss-button");
+
+            // Assert
+            expect(dismissButton).toBeInTheDocument();
+        });
+    });
+
     describe("Accessibility", () => {
         it("should pass custom aria-label to dismiss button", () => {
             // Arrange
