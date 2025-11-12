@@ -1,13 +1,13 @@
 import {Meta, StoryObj} from "@storybook/react-vite";
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
+import {View} from "@khanacademy/wonder-blocks-core";
 
 import {
     SupportedThemes,
     ThemeSwitcher,
 } from "@khanacademy/wonder-blocks-theming";
-import {View} from "@khanacademy/wonder-blocks-core";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing, border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import Button from "@khanacademy/wonder-blocks-button";
 
 export default {
@@ -77,6 +77,6 @@ const styles = StyleSheet.create({
     container: {
         padding: sizing.size_160,
         margin: sizing.size_160,
-        border: "1px solid black",
+        border: `${border.width.thin} solid ${semanticColor.core.border.neutral.strong}`,
     },
 });
