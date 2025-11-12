@@ -3,7 +3,7 @@
   "description": "Switch components for Wonder Blocks.",
   "author": "Khan Academy",
   "license": "MIT",
-  "version": "3.3.22",
+  "version": "3.3.23",
   "publishConfig": {
     "access": "public"
   },

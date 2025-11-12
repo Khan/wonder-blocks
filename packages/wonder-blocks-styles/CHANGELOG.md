@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-styles
 
+## 0.2.35
+
+### Patch Changes
+
+- Updated dependencies [540371d]
+    - @khanacademy/wonder-blocks-tokens@14.1.1
+
 ## 0.2.34
 
 ### Patch Changes

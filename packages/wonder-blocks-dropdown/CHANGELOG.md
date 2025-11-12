@@ -1,5 +1,28 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.5.1
+
+### Patch Changes
+
+- Updated dependencies [540371d]
+    - @khanacademy/wonder-blocks-tokens@14.1.1
+    - @khanacademy/wonder-blocks-cell@6.1.3
+    - @khanacademy/wonder-blocks-clickable@8.0.3
+    - @khanacademy/wonder-blocks-form@7.4.4
+    - @khanacademy/wonder-blocks-icon@5.3.3
+    - @khanacademy/wonder-blocks-icon-button@10.5.6
+    - @khanacademy/wonder-blocks-modal@8.5.4
+    - @khanacademy/wonder-blocks-pill@3.1.46
+    - @khanacademy/wonder-blocks-search-field@5.1.52
+    - @khanacademy/wonder-blocks-styles@0.2.35
+    - @khanacademy/wonder-blocks-typography@4.2.25
+
+## 10.5.0
+
+### Minor Changes
+
+- a784e6c: Allow a `Partial` object for `labels` in `MultiSelect`, so consumers can decide which labels to override
+
 ## 10.4.10
 
 ### Patch Changes
