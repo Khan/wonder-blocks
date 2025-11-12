@@ -88,11 +88,7 @@ jobs:
           publish: pnpm publish:ci
         env:
           GITHUB_TOKEN: ${{ secrets.KHAN_ACTIONS_BOT_TOKEN }}
-          # Note: we no longer use the NPM_TOKEN secret because we've enabled
-          # Trusted Publishing (https://docs.npmjs.com/trusted-publishers) on
-          # the npmjs.com side. Eg:
-          # https://www.npmjs.com/package/@khanacademy/wonder-blocks-core/access
-          #
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           # We set this so that (p)npm publish will include the
           # provenance information in the package.json file and surface
           # it in the npm registry.
@@ -207,6 +203,8 @@ jobs:
       - name: Publish snapshot release to npm
         id: publish-snapshot
         run: ./utils/publish/publish-snapshot.sh # All config is via Github env vars
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Calculate short SHA for this commit
         id: short-sha
