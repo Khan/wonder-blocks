@@ -3,7 +3,7 @@
   "description": "Reusable Wonder Blocks styles.",
   "author": "Khan Academy",
   "license": "MIT",
-  "version": "0.2.34",
+  "version": "0.2.35",
   "publishConfig": {
     "access": "public"
   },
