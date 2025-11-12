@@ -18,6 +18,7 @@ import {
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {ARROW_SIZE_INLINE} from "../util/constants";
 import {Arrow} from "./floating-arrow";
+import {Portal} from "./floating-portal";
 
 const StyledDiv = addStyle("div");
 
@@ -99,6 +100,18 @@ type FloatingProps = {
      */
     showArrow?: boolean;
 
+    /**
+     * Whether to render the floating element in a portal.
+     *
+     * This is useful when the floating element needs to be rendered outside the
+     * current DOM hierarchy and instead be rendered in the uppermost DOM
+     * hierarchy. This allows us to prevent clipping issues with the floating
+     * element.
+     *
+     * @default true
+     */
+    portal?: boolean;
+
     // TODO(WB-2111.3): Add props for dismissEnabled, portal and useFocusManager
 };
 
@@ -113,7 +126,7 @@ const SHIFT_PADDING = 12;
  * relative to a reference element.
  *
  * Please take a look at the
- * [Accessibility](?path=/docs/packages-floating-floating-accessibility--docs)
+ * [Accessibility](?path=/docs/packages-floating-accessibility--docs)
  * section for more information.
  *
  * ## Usage
@@ -131,6 +144,7 @@ export default function Floating({
     placement = "top",
     open = false,
     onOpenChange,
+    portal = true,
     strategy = "absolute",
     testId,
     // middleware specific
@@ -144,29 +158,30 @@ export default function Floating({
     const prevOpenRef = React.useRef(open ?? false);
 
     // Calculate the floating styles and context
-    const {refs, floatingStyles, context, middlewareData} = useFloating({
-        open,
-        onOpenChange,
-        placement,
-        strategy,
-        // Ensure the floating element stays in sync with the reference element
-        whileElementsMounted: autoUpdate,
-        middleware: [
-            // Add offset from the reference element
-            offset({mainAxis: offsetProp}),
-            // Flip to the opposite side if there's not enough space
-            flipProp ? flip() : undefined,
-            // Shift along the axis to keep it in view
-            shiftProp
-                ? shift({
-                      padding: SHIFT_PADDING,
-                      crossAxis: true,
-                  })
-                : undefined,
-            showArrow ? arrow({element: arrowRef}) : undefined,
-            hideProp ? hide() : undefined,
-        ],
-    });
+    const {elements, refs, floatingStyles, context, middlewareData} =
+        useFloating({
+            open,
+            onOpenChange,
+            placement,
+            strategy,
+            // Ensure the floating element stays in sync with the reference element
+            whileElementsMounted: autoUpdate,
+            middleware: [
+                // Add offset from the reference element
+                offset({mainAxis: offsetProp}),
+                // Flip to the opposite side if there's not enough space
+                flipProp ? flip() : undefined,
+                // Shift along the axis to keep it in view
+                shiftProp
+                    ? shift({
+                          padding: SHIFT_PADDING,
+                          crossAxis: true,
+                      })
+                    : undefined,
+                showArrow ? arrow({element: arrowRef}) : undefined,
+                hideProp ? hide() : undefined,
+            ],
+        });
 
     // call onOpenChange when the floating element is opened or closed
     React.useEffect(() => {
@@ -188,24 +203,31 @@ export default function Floating({
     return (
         <>
             {trigger}
-            {open && (
-                <StyledDiv
-                    data-testid={testId}
-                    data-placement={placement}
-                    ref={refs.setFloating}
-                    style={[
-                        styles.floating,
-                        floatingStyles,
-                        {
-                            visibility: middlewareData.hide?.referenceHidden
-                                ? "hidden"
-                                : "visible",
-                        },
-                    ]}
+            {open && elements.reference && (
+                <Portal
+                    portal={portal}
+                    reference={elements.reference as Element}
                 >
-                    {content}
-                    {showArrow && <Arrow ref={arrowRef} context={context} />}
-                </StyledDiv>
+                    <StyledDiv
+                        data-testid={testId}
+                        data-placement={placement}
+                        ref={refs.setFloating}
+                        style={[
+                            styles.floating,
+                            floatingStyles,
+                            {
+                                visibility: middlewareData.hide?.referenceHidden
+                                    ? "hidden"
+                                    : "visible",
+                            },
+                        ]}
+                    >
+                        {content}
+                        {showArrow && (
+                            <Arrow ref={arrowRef} context={context} />
+                        )}
+                    </StyledDiv>
+                </Portal>
             )}
         </>
     );
