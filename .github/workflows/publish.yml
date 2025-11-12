@@ -81,6 +81,14 @@ jobs:
         with:
           node-version: 20.x
 
+      - name: ⬆️ Upgrade npm for OIDC support
+        shell: bash
+        run: |
+          # npm trusted publishing requires npm CLI v11.5.1+
+          # Node.js 22 ships with npm 10.x, so we need to upgrade
+          npm install -g npm@latest
+          echo "✅ npm upgraded to $(npm --version)"
+
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
@@ -203,6 +211,14 @@ jobs:
         uses: ./.github/actions/shared-node-cache
         with:
           node-version: ${{ matrix.node-version }}
+
+      - name: ⬆️ Upgrade npm for OIDC support
+        shell: bash
+        run: |
+          # npm trusted publishing requires npm CLI v11.5.1+
+          # Node.js 22 ships with npm 10.x, so we need to upgrade
+          npm install -g npm@latest
+          echo "✅ npm upgraded to $(npm --version)"
 
       - name: Publish snapshot release to npm
         id: publish-snapshot
