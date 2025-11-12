@@ -144,11 +144,10 @@ jobs:
   # PR code in a host applicaiton without doing a release.
   publish_snapshot:
     name: Publish npm snapshot
-    # We don't publish snapshots on draft PRs or
-    # on the main Changeset "Version Packages" PR
+    # We don't publish snapshots on Changeset "Version Packages" PRs
     if: |
-      github.event.pull_request.draft == false
-      && !startsWith(github.head_ref, 'changeset-release/')
+      (github.event_name == 'workflow_dispatch' && inputs.run_type == 'snapshot') ||
+      (github.event_name == 'pull_request' && !startsWith(github.head_ref, 'changeset-release/'))
     runs-on: ${{ matrix.os }}
     permissions:
       id-token: write # required for publishing to npm with provenance
