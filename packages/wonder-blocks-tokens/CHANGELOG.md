@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 14.1.1
+
+### Patch Changes
+
+- 540371d: Allow the 'default' theme to be nested within the 'thunderblocks' theme
+
 ## 14.1.0
 
 ### Minor Changes
