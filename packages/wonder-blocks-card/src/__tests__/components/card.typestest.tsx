@@ -102,18 +102,54 @@ import Card from "../../components/card";
     Content
 </Card>;
 
-// @ts-expect-error - section tag requires cardAriaLabel
+<Card tag="section" aria-label="Card section">
+    Content
+</Card>;
+
+<Card tag="figure" aria-label="Card figure">
+    Content
+</Card>;
+
+<Card tag="section" aria-labelledby="someId">
+    <h2 id="someId">Card title</h2>
+</Card>;
+
+<Card tag="figure" aria-labelledby="someId2">
+    <h2 id="someId2">Card title</h2>
+</Card>;
+
+// @ts-expect-error - cannot use both aria-labelledby and labels.cardAriaLabel
+<Card
+    tag="figure"
+    aria-labelledby="someId2"
+    labels={{cardAriaLabel: "redundant label"}}
+>
+    <h2 id="someId2">Card title</h2>
+</Card>;
+
+// @ts-expect-error - cannot use both aria-labelledby and labels.cardAriaLabel
+<Card
+    tag="section"
+    aria-labelledby="someId2"
+    labels={{cardAriaLabel: "redundant label"}}
+>
+    <h2 id="someId2">Card title</h2>
+</Card>;
+
+// @ts-expect-error - figure tag should only have one label mechanism
+<Card tag="figure" aria-labelledby="someId2" aria-label="redundant label">
+    <h2 id="someId2">Card title</h2>
+</Card>;
+
+// Semantic tags without labels are now allowed (but not recommended)
 <Card tag="section">Content</Card>;
 
-// @ts-expect-error - figure tag requires cardAriaLabel
 <Card tag="figure">Content</Card>;
 
-// @ts-expect-error - section tag requires cardAriaLabel in labels
 <Card tag="section" labels={{}}>
     Content
 </Card>;
 
-// @ts-expect-error - figure tag requires cardAriaLabel in labels
 <Card tag="figure" labels={{}}>
     Content
 </Card>;

@@ -64,27 +64,53 @@ type DismissProps =
       };
 
 /**
- * Provide a specific HTML tag that overrides the default (`div`).
- *
- * Notes:
- * - When `tag="section"` or `"figure"`, `cardAriaLabel` is required for accessibility.
- * - `button` and `a` tags are not allowed - use Wonder Blocks Button and Link components as children instead.
  * Valid HTML tags for the Card component.
  * Excludes button and anchor tags which should use Wonder Blocks Button and Link components instead.
  */
-type ValidCardTags = Exclude<keyof JSX.IntrinsicElements, "button" | "a">;
 
-type TagProps =
+/**
+ * Accessibility props for the Card.
+ *
+ * Choose ONE labeling method (in order of preference):
+ * 1. `labels.cardAriaLabel` - For translatable strings (preferred)
+ * 2. `aria-labelledby` - For ID references
+ * 3. `aria-label` - For direct labels (fallback)
+ */
+type DismissLabelOnly = {
+    cardAriaLabel?: never;
+    dismissButtonAriaLabel?: string;
+};
+type AccessibilityProps =
     | {
-          // Section and figure require an aria-label
-          tag: "section" | "figure";
-          labels: {cardAriaLabel: string} & Record<string, any>;
+          labels: {
+              cardAriaLabel: string;
+              dismissButtonAriaLabel?: string;
+          };
+          "aria-labelledby"?: never;
+          "aria-label"?: never;
       }
     | {
-          // All other valid tags except button and a
-          tag?: Exclude<ValidCardTags, "section" | "figure">;
-          labels?: Record<string, any>;
+          labels?: DismissLabelOnly;
+          "aria-labelledby": string;
+          "aria-label"?: never;
+      }
+    | {
+          labels?: DismissLabelOnly;
+          "aria-labelledby"?: never;
+          "aria-label": string;
+      }
+    | {
+          labels?: DismissLabelOnly;
+          "aria-labelledby"?: never;
+          "aria-label"?: never;
       };
+
+/**
+ * Tag and accessibility props combined.
+ */
+type TagProps = {
+    tag?: Exclude<keyof JSX.IntrinsicElements, "button" | "a">;
+} & AccessibilityProps;
 
 type StyleProps = {
     /**
@@ -155,7 +181,11 @@ type CardProps = BaseCardProps & TagProps & DismissProps;
  * </Card>
  * ```
  *
- * When the `onDismiss` prop is provided, a dismiss button will be rendered. In this case, the `labels.dismissButtonAriaLabel` prop is required to provide an accessible label for the dismiss button.
+ * ### Accessibility
+ *
+ * When the `onDismiss` prop is provided, a dismiss button will be rendered.
+ * In this case, the `labels.dismissButtonAriaLabel` prop is required to provide
+ * a translatable screen reader label for the dismiss button.
  *
  * See additional Accessibility docs.
  */
@@ -176,6 +206,8 @@ const Card = React.forwardRef(function Card(
         children,
         onDismiss,
         inert,
+        "aria-label": ariaLabel,
+        "aria-labelledby": ariaLabelledBy,
     } = props;
 
     const isBackgroundToken =
@@ -187,9 +219,18 @@ const Card = React.forwardRef(function Card(
         elevation,
     });
 
+    // Determine the aria-label value with proper precedence:
+    // - Use labels.cardAriaLabel (preferred for translatable strings)
+    // - Fall back to aria-label
+    // - If aria-labelledby is provided, don't set aria-label
+    const ariaLabelValue = ariaLabelledBy
+        ? undefined
+        : labels?.cardAriaLabel || ariaLabel;
+
     return (
         <View
-            aria-label={labels?.cardAriaLabel}
+            aria-label={ariaLabelValue}
+            aria-labelledby={ariaLabelledBy}
             style={[
                 componentStyles.root,
                 !isBackgroundToken && {
