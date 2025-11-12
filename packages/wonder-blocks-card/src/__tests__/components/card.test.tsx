@@ -185,7 +185,7 @@ describe("Card", () => {
             expect(section).toBeInTheDocument();
         });
 
-        it("should apply labels.cardAriaLabel for a custom tag", () => {
+        it("should apply labels.cardAriaLabel for a custom tag (preferred)", () => {
             // Arrange
             render(
                 <Card
@@ -200,6 +200,44 @@ describe("Card", () => {
             // Act
             const section = screen.getByRole("region", {
                 name: "Custom section label",
+            });
+
+            // Assert
+            expect(section).toBeInTheDocument();
+        });
+
+        it("should apply aria-labelledby for a custom tag", () => {
+            // Arrange
+            render(
+                <div>
+                    <h2 id="card-heading">My Card Title</h2>
+                    <Card tag="section" aria-labelledby="card-heading">
+                        <p>Description</p>
+                    </Card>
+                </div>,
+            );
+
+            // Act
+            const section = screen.getByRole("region", {
+                name: "My Card Title",
+            });
+
+            // Assert
+            expect(section).toBeInTheDocument();
+        });
+
+        it("should apply aria-label as a fallback for a custom tag", () => {
+            // Arrange
+            render(
+                <Card tag="section" aria-label="Fallback label">
+                    <h2>Heading</h2>
+                    <p>Description</p>
+                </Card>,
+            );
+
+            // Act
+            const section = screen.getByRole("region", {
+                name: "Fallback label",
             });
 
             // Assert
