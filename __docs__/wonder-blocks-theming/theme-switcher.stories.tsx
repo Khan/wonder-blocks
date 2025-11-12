@@ -1,5 +1,6 @@
 import {Meta, StoryObj} from "@storybook/react-vite";
 import * as React from "react";
+import {StyleSheet} from "aphrodite";
 
 import {
     SupportedThemes,
@@ -48,3 +49,34 @@ export const Default: Story = (() => {
         </>
     );
 }) as Story;
+
+export const Nested: Story = (() => {
+    return (
+        <ThemeSwitcher theme="default">
+            <View style={styles.container}>
+                <p>Default</p>
+                <Button>Themed button</Button>
+                <ThemeSwitcher theme="thunderblocks">
+                    <View style={styles.container}>
+                        <p>Thunder Blocks</p>
+                        <Button>Themed button</Button>
+                        <ThemeSwitcher theme="default">
+                            <View style={styles.container}>
+                                <p>Default</p>
+                                <Button>Themed button</Button>
+                            </View>
+                        </ThemeSwitcher>
+                    </View>
+                </ThemeSwitcher>
+            </View>
+        </ThemeSwitcher>
+    );
+}) as Story;
+
+const styles = StyleSheet.create({
+    container: {
+        padding: sizing.size_160,
+        margin: sizing.size_160,
+        border: "1px solid black",
+    },
+});
