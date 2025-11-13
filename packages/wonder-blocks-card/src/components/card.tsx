@@ -71,39 +71,22 @@ type DismissProps =
 /**
  * Accessibility props for the Card.
  *
- * Choose ONE labeling method (in order of preference):
+ * Labeling methods (in order of preference):
  * 1. `labels.cardAriaLabel` - For translatable strings (preferred)
  * 2. `aria-labelledby` - For ID references
  * 3. `aria-label` - For direct labels (fallback)
+ *
+ * Multiple methods can be provided for consumer simplicity, but only one will win
+ * based on standard Accessible Name Computation rules.
  */
-type DismissLabelOnly = {
-    cardAriaLabel?: never;
-    dismissButtonAriaLabel?: string;
+type AccessibilityProps = {
+    labels?: {
+        cardAriaLabel?: string;
+        dismissButtonAriaLabel?: string;
+    };
+    "aria-labelledby"?: string;
+    "aria-label"?: string;
 };
-type AccessibilityProps =
-    | {
-          labels: {
-              cardAriaLabel: string;
-              dismissButtonAriaLabel?: string;
-          };
-          "aria-labelledby"?: never;
-          "aria-label"?: never;
-      }
-    | {
-          labels?: DismissLabelOnly;
-          "aria-labelledby": string;
-          "aria-label"?: never;
-      }
-    | {
-          labels?: DismissLabelOnly;
-          "aria-labelledby"?: never;
-          "aria-label": string;
-      }
-    | {
-          labels?: DismissLabelOnly;
-          "aria-labelledby"?: never;
-          "aria-label"?: never;
-      };
 
 /**
  * Tag and accessibility props combined.
@@ -220,12 +203,14 @@ const Card = React.forwardRef(function Card(
     });
 
     // Determine the aria-label value with proper precedence:
-    // - Use labels.cardAriaLabel (preferred for translatable strings)
-    // - Fall back to aria-label
-    // - If aria-labelledby is provided, don't set aria-label
-    const ariaLabelValue = ariaLabelledBy
-        ? undefined
-        : labels?.cardAriaLabel || ariaLabel;
+    // 1. labels.cardAriaLabel (preferred for translatable strings)
+    // 2. aria-labelledby (if provided, don't set aria-label)
+    // 3. aria-label (fallback)
+    const ariaLabelValue = labels?.cardAriaLabel
+        ? labels.cardAriaLabel
+        : ariaLabelledBy
+          ? undefined
+          : ariaLabel;
 
     return (
         <View
