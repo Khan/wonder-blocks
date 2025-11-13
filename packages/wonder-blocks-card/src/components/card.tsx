@@ -2,6 +2,7 @@ import * as React from "react";
 
 import {StyleSheet} from "aphrodite";
 import {StyleType, View} from "@khanacademy/wonder-blocks-core";
+import type {AriaAttributes} from "@khanacademy/wonder-blocks-core";
 
 import {
     boxShadow,
@@ -86,8 +87,8 @@ type AccessibilityProps = {
     };
     "aria-labelledby"?: string;
     "aria-label"?: string;
-    "aria-busy"?: boolean;
-    "aria-roledescription"?: string;
+    "aria-busy"?: AriaAttributes["aria-busy"];
+    "aria-roledescription"?: AriaAttributes["aria-roledescription"];
 };
 
 /**
