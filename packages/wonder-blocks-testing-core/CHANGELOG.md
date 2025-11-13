@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-testing-core
 
+## 4.0.3
+
+### Patch Changes
+
+- 8a36c70: Re-publish to publish with Trusted Publishing
+- 3e0d137: Re-publishing via Trusted Publishing
+
 ## 4.0.2
 
 ### Patch Changes

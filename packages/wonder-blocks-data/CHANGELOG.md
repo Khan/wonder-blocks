@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-data
 
+## 14.1.8
+
+### Patch Changes
+
+- 8a36c70: Re-publish to publish with Trusted Publishing
+- 3e0d137: Re-publishing via Trusted Publishing
+- Updated dependencies [8a36c70]
+- Updated dependencies [3e0d137]
+    - @khanacademy/wonder-blocks-core@12.4.2
+
 ## 14.1.7
 
 ### Patch Changes
