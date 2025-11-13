@@ -1,7 +1,7 @@
 {
   "name": "@khanacademy/wb-codemod",
   "license": "MIT",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "publishConfig": {
     "access": "public"
   },
