@@ -9,16 +9,11 @@ import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingMedium, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
 
-import {
-    Popover,
-    PopoverContent,
-    PopoverContentCore,
-} from "@khanacademy/wonder-blocks-popover";
+import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import packageConfig from "../../packages/wonder-blocks-popover/package.json";
 
 import ComponentInfo from "../components/component-info";
 import PopoverArgtypes, {ContentMappings} from "./popover.argtypes";
-import {Tabs} from "@khanacademy/wonder-blocks-tabs";
 
 /**
  * Popovers provide additional information that is related to a particular
@@ -901,51 +896,4 @@ export const InCorners = (args: PropsFor<typeof Popover>) => {
 };
 InCorners.parameters = {
     layout: "fullscreen",
-};
-
-/**
- * An example of a popover that has tabs inside of it.
- */
-export const PopoverWithTabs = {
-    parameters: {
-        chromatic: {
-            disableSnapshot: true,
-        },
-    },
-    render: function Example() {
-        const [selectedTab, setSelectedTab] = React.useState("tab-1");
-        return (
-            <View style={styles.example}>
-                <Popover
-                    content={() => (
-                        <PopoverContentCore closeButtonVisible={true}>
-                            <Tabs
-                                aria-label="tabs"
-                                selectedTabId={selectedTab}
-                                onTabSelected={setSelectedTab}
-                                tabs={[
-                                    {
-                                        label: "Tab 1",
-                                        id: "tab-1",
-                                        panel: (
-                                            <div>
-                                                Tab 1 <button>Button</button>
-                                            </div>
-                                        ),
-                                    },
-                                    {
-                                        label: "Tab 2",
-                                        id: "tab-2",
-                                        panel: <div>Tab 2</div>,
-                                    },
-                                ]}
-                            />
-                        </PopoverContentCore>
-                    )}
-                >
-                    {({open}) => <Button onClick={open}>Open popover</Button>}
-                </Popover>
-            </View>
-        );
-    },
 };
