@@ -118,30 +118,28 @@ import Card from "../../components/card";
     <h2 id="someId2">Card title</h2>
 </Card>;
 
-// @ts-expect-error - cannot use both aria-labelledby and labels.cardAriaLabel
+// Multiple label mechanisms are allowed to simplify consumer typing, but only one will win
+// based on Accessible Name Computation rules
 <Card
     tag="figure"
     aria-labelledby="someId2"
-    labels={{cardAriaLabel: "redundant label"}}
+    labels={{cardAriaLabel: "preferred label"}}
 >
     <h2 id="someId2">Card title</h2>
 </Card>;
 
-// @ts-expect-error - cannot use both aria-labelledby and labels.cardAriaLabel
 <Card
     tag="section"
     aria-labelledby="someId2"
-    labels={{cardAriaLabel: "redundant label"}}
+    labels={{cardAriaLabel: "preferred label"}}
 >
     <h2 id="someId2">Card title</h2>
 </Card>;
 
-// @ts-expect-error - figure tag should only have one label mechanism
-<Card tag="figure" aria-labelledby="someId2" aria-label="redundant label">
+<Card tag="figure" aria-labelledby="someId2" aria-label="fallback label">
     <h2 id="someId2">Card title</h2>
 </Card>;
 
-// Semantic tags without labels are now allowed (but not recommended)
 <Card tag="section">Content</Card>;
 
 <Card tag="figure">Content</Card>;
@@ -168,10 +166,6 @@ import Card from "../../components/card";
     Content
 </Card>;
 
-/**
- * Card with dismiss and section tag (complex case)
- */
-
 <Card
     tag="section"
     onDismiss={() => {}}
@@ -188,6 +182,7 @@ import Card from "../../components/card";
  */
 
 <Card
+    aria-busy="true"
     background="base-subtle"
     borderRadius="medium"
     paddingSize="medium"
