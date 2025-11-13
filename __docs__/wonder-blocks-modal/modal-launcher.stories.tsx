@@ -649,7 +649,6 @@ export const ConfirmationModal: StoryComponentType = {
                         footer={<Button kind="primary">Confirm</Button>}
                     />
                 }
-                opened={true}
             >
                 {({openModal}) => (
                     <Button onClick={openModal}>
@@ -658,5 +657,12 @@ export const ConfirmationModal: StoryComponentType = {
                 )}
             </ModalLauncher>
         );
+    },
+    parameters: {
+        chromatic: {
+            // All the examples for ModalLauncher are behavior based, not
+            // visual.
+            disableSnapshot: true,
+        },
     },
 };
