@@ -8,6 +8,8 @@ import {
     shift,
     arrow,
     Placement,
+    useDismiss,
+    useInteractions,
 } from "@floating-ui/react";
 import {StyleSheet} from "aphrodite";
 import {
@@ -19,6 +21,7 @@ import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {ARROW_SIZE_INLINE} from "../util/constants";
 import {Arrow} from "./floating-arrow";
 import {Portal} from "./floating-portal";
+import {FocusManager} from "./focus-manager";
 
 const StyledDiv = addStyle("div");
 
@@ -112,7 +115,22 @@ type FloatingProps = {
      */
     portal?: boolean;
 
-    // TODO(WB-2111.3): Add props for dismissEnabled, portal and useFocusManager
+    /**
+     * Whether to use the FocusManager component to manage the focus of the
+     * floating element.
+     * @default false
+     */
+    useFocusManager?: boolean;
+    /**
+     * The element that will receive focus when the floating element is opened.
+     */
+    initialFocusRef?: React.RefObject<HTMLElement>;
+    /**
+     * When enabled, user can hide the floating element by pressing the `esc`
+     * key or clicking/tapping outside of it.
+     * @default false
+     */
+    dismissEnabled?: boolean;
 };
 
 /**
@@ -147,6 +165,10 @@ export default function Floating({
     portal = true,
     strategy = "absolute",
     testId,
+    // focus management
+    useFocusManager = false,
+    initialFocusRef,
+    dismissEnabled = false,
     // middleware specific
     hide: hideProp = true,
     offset: offsetProp = 20,
@@ -183,6 +205,13 @@ export default function Floating({
             ],
         });
 
+    // Closes the floating element when a dismissal is requested.
+    const dismiss = useDismiss(context, {
+        enabled: dismissEnabled,
+    });
+
+    const {getReferenceProps, getFloatingProps} = useInteractions([dismiss]);
+
     // call onOpenChange when the floating element is opened or closed
     React.useEffect(() => {
         // only trigger when the open value changes and is controlled mode
@@ -197,8 +226,9 @@ export default function Floating({
     const trigger = React.useMemo(() => {
         return React.cloneElement(children, {
             ref: refs.setReference,
+            ...getReferenceProps(),
         });
-    }, [children, refs.setReference]);
+    }, [children, refs.setReference, getReferenceProps]);
 
     return (
         <>
@@ -208,25 +238,34 @@ export default function Floating({
                     portal={portal}
                     reference={elements.reference as Element}
                 >
-                    <StyledDiv
-                        data-testid={testId}
-                        data-placement={placement}
-                        ref={refs.setFloating}
-                        style={[
-                            styles.floating,
-                            floatingStyles,
-                            {
-                                visibility: middlewareData.hide?.referenceHidden
-                                    ? "hidden"
-                                    : "visible",
-                            },
-                        ]}
+                    <FocusManager
+                        useFocusManager={useFocusManager}
+                        context={context}
+                        dismissEnabled={dismissEnabled}
+                        initialFocusRef={initialFocusRef}
                     >
-                        {content}
-                        {showArrow && (
-                            <Arrow ref={arrowRef} context={context} />
-                        )}
-                    </StyledDiv>
+                        <StyledDiv
+                            data-testid={testId}
+                            data-placement={placement}
+                            ref={refs.setFloating}
+                            style={[
+                                styles.floating,
+                                floatingStyles,
+                                {
+                                    visibility: middlewareData.hide
+                                        ?.referenceHidden
+                                        ? "hidden"
+                                        : "visible",
+                                },
+                            ]}
+                            {...getFloatingProps()}
+                        >
+                            {content}
+                            {showArrow && (
+                                <Arrow ref={arrowRef} context={context} />
+                            )}
+                        </StyledDiv>
+                    </FocusManager>
                 </Portal>
             )}
         </>
