@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-timing
 
+## 7.0.4
+
+### Patch Changes
+
+- 8a36c70: Re-publish to publish with Trusted Publishing
+- 3e0d137: Re-publishing via Trusted Publishing
+
 ## 7.0.3
 
 ### Patch Changes
