@@ -1,6 +1,7 @@
 import * as React from "react";
 import {addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
 import {StyleSheet} from "aphrodite";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {findFocusableNodes} from "../../../wonder-blocks-core/src/util/focus";
 
 type Props = {
@@ -87,5 +88,6 @@ const styles = StyleSheet.create({
     tabPanel: {
         // Apply flex so that panel supports rtl
         display: "flex",
+        ...focusStyles.focus,
     },
 });
