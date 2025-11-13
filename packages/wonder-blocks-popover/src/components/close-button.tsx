@@ -15,6 +15,10 @@ type Props = AriaProps & {
      * Test ID used for e2e testing.
      */
     testId?: string;
+    /**
+     * Size of the close button.
+     */
+    size?: "xsmall" | "small" | "medium" | "large";
 };
 
 type DefaultProps = {
@@ -32,7 +36,7 @@ export default class CloseButton extends React.Component<Props> {
     };
 
     render(): React.ReactNode {
-        const {"aria-label": ariaLabel, style, testId} = this.props;
+        const {"aria-label": ariaLabel, style, testId, size} = this.props;
         return (
             <PopoverContext.Consumer>
                 {({close}) => {
@@ -45,6 +49,7 @@ export default class CloseButton extends React.Component<Props> {
                             actionType="neutral"
                             style={style}
                             testId={testId}
+                            size={size}
                         />
                     );
                 }}
