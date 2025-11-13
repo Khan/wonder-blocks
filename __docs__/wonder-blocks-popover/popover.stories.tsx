@@ -9,11 +9,16 @@ import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingMedium, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
 
-import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
+import {
+    Popover,
+    PopoverContent,
+    PopoverContentCore,
+} from "@khanacademy/wonder-blocks-popover";
 import packageConfig from "../../packages/wonder-blocks-popover/package.json";
 
 import ComponentInfo from "../components/component-info";
 import PopoverArgtypes, {ContentMappings} from "./popover.argtypes";
+import {Tabs} from "@khanacademy/wonder-blocks-tabs";
 
 /**
  * Popovers provide additional information that is related to a particular
@@ -115,6 +120,43 @@ export const Default: StoryComponentType = {
         testId: "",
         onClose: () => {},
     } as PopoverArgs,
+};
+
+export const PopoverWithTabs = () => {
+    return (
+        <View style={styles.example}>
+            <Popover
+                opened={true}
+                content={() => (
+                    <PopoverContentCore>
+                        <Tabs
+                            aria-label="tabs"
+                            selectedTabId="tab-1"
+                            onTabSelected={() => {}}
+                            tabs={[
+                                {
+                                    label: "Tab 1",
+                                    id: "tab-1",
+                                    panel: (
+                                        <div>
+                                            Tab 1 <button>Button</button>
+                                        </div>
+                                    ),
+                                },
+                                {
+                                    label: "Tab 2",
+                                    id: "tab-2",
+                                    panel: <div>Tab 2</div>,
+                                },
+                            ]}
+                        />
+                    </PopoverContentCore>
+                )}
+            >
+                <Button>Open popover</Button>
+            </Popover>
+        </View>
+    );
 };
 
 /**
