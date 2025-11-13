@@ -86,6 +86,8 @@ type AccessibilityProps = {
     };
     "aria-labelledby"?: string;
     "aria-label"?: string;
+    "aria-busy"?: boolean;
+    "aria-roledescription"?: string;
 };
 
 /**
@@ -191,6 +193,7 @@ const Card = React.forwardRef(function Card(
         inert,
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledBy,
+        "aria-busy": ariaBusy,
     } = props;
 
     const isBackgroundToken =
@@ -214,6 +217,7 @@ const Card = React.forwardRef(function Card(
 
     return (
         <View
+            aria-busy={ariaBusy}
             aria-label={ariaLabelValue}
             aria-labelledby={ariaLabelledBy}
             style={[

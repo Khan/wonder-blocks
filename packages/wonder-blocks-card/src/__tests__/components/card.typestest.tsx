@@ -182,7 +182,8 @@ import Card from "../../components/card";
  */
 
 <Card
-    aria-busy="true"
+    aria-busy={true}
+    aria-roledescription="A custom card"
     background="base-subtle"
     borderRadius="medium"
     paddingSize="medium"
