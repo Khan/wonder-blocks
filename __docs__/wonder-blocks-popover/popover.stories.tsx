@@ -122,43 +122,6 @@ export const Default: StoryComponentType = {
     } as PopoverArgs,
 };
 
-export const PopoverWithTabs = () => {
-    return (
-        <View style={styles.example}>
-            <Popover
-                opened={true}
-                content={() => (
-                    <PopoverContentCore>
-                        <Tabs
-                            aria-label="tabs"
-                            selectedTabId="tab-1"
-                            onTabSelected={() => {}}
-                            tabs={[
-                                {
-                                    label: "Tab 1",
-                                    id: "tab-1",
-                                    panel: (
-                                        <div>
-                                            Tab 1 <button>Button</button>
-                                        </div>
-                                    ),
-                                },
-                                {
-                                    label: "Tab 2",
-                                    id: "tab-2",
-                                    panel: <div>Tab 2</div>,
-                                },
-                            ]}
-                        />
-                    </PopoverContentCore>
-                )}
-            >
-                <Button>Open popover</Button>
-            </Popover>
-        </View>
-    );
-};
-
 /**
  * No tail
  */
@@ -938,4 +901,51 @@ export const InCorners = (args: PropsFor<typeof Popover>) => {
 };
 InCorners.parameters = {
     layout: "fullscreen",
+};
+
+/**
+ * An example of a popover that has tabs inside of it.
+ */
+export const PopoverWithTabs = {
+    parameters: {
+        chromatic: {
+            disableSnapshot: true,
+        },
+    },
+    render: function Example() {
+        const [selectedTab, setSelectedTab] = React.useState("tab-1");
+        return (
+            <View style={styles.example}>
+                <Popover
+                    content={() => (
+                        <PopoverContentCore closeButtonVisible={true}>
+                            <Tabs
+                                aria-label="tabs"
+                                selectedTabId={selectedTab}
+                                onTabSelected={setSelectedTab}
+                                tabs={[
+                                    {
+                                        label: "Tab 1",
+                                        id: "tab-1",
+                                        panel: (
+                                            <div>
+                                                Tab 1 <button>Button</button>
+                                            </div>
+                                        ),
+                                    },
+                                    {
+                                        label: "Tab 2",
+                                        id: "tab-2",
+                                        panel: <div>Tab 2</div>,
+                                    },
+                                ]}
+                            />
+                        </PopoverContentCore>
+                    )}
+                >
+                    {({open}) => <Button onClick={open}>Open popover</Button>}
+                </Popover>
+            </View>
+        );
+    },
 };
