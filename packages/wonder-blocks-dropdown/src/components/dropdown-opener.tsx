@@ -116,7 +116,14 @@ const DropdownOpener = React.forwardRef<HTMLElement, Props>((props, ref) => {
             // try to get the testId from the child element
             // If it's not set, try to fallback to the parent's testId
             "data-testid": childrenTestId || testId,
-            onBlur,
+            onBlur: onBlur
+                ? (e: React.FocusEvent) => {
+                      // This is done to avoid overriding a custom onBlur
+                      // handler inside the children node
+                      onBlur(e);
+                      clickableChildrenProps.onBlur(e);
+                  }
+                : clickableChildrenProps.onBlur,
         });
     };
 
