@@ -102,18 +102,52 @@ import Card from "../../components/card";
     Content
 </Card>;
 
-// @ts-expect-error - section tag requires cardAriaLabel
+<Card tag="section" aria-label="Card section">
+    Content
+</Card>;
+
+<Card tag="figure" aria-label="Card figure">
+    Content
+</Card>;
+
+<Card tag="section" aria-labelledby="someId">
+    <h2 id="someId">Card title</h2>
+</Card>;
+
+<Card tag="figure" aria-labelledby="someId2">
+    <h2 id="someId2">Card title</h2>
+</Card>;
+
+// Multiple label mechanisms are allowed to simplify consumer typing, but only one will win
+// based on Accessible Name Computation rules
+<Card
+    tag="figure"
+    aria-labelledby="someId2"
+    labels={{cardAriaLabel: "preferred label"}}
+>
+    <h2 id="someId2">Card title</h2>
+</Card>;
+
+<Card
+    tag="section"
+    aria-labelledby="someId2"
+    labels={{cardAriaLabel: "preferred label"}}
+>
+    <h2 id="someId2">Card title</h2>
+</Card>;
+
+<Card tag="figure" aria-labelledby="someId2" aria-label="fallback label">
+    <h2 id="someId2">Card title</h2>
+</Card>;
+
 <Card tag="section">Content</Card>;
 
-// @ts-expect-error - figure tag requires cardAriaLabel
 <Card tag="figure">Content</Card>;
 
-// @ts-expect-error - section tag requires cardAriaLabel in labels
 <Card tag="section" labels={{}}>
     Content
 </Card>;
 
-// @ts-expect-error - figure tag requires cardAriaLabel in labels
 <Card tag="figure" labels={{}}>
     Content
 </Card>;
@@ -132,10 +166,6 @@ import Card from "../../components/card";
     Content
 </Card>;
 
-/**
- * Card with dismiss and section tag (complex case)
- */
-
 <Card
     tag="section"
     onDismiss={() => {}}
@@ -152,6 +182,8 @@ import Card from "../../components/card";
  */
 
 <Card
+    aria-busy={true}
+    aria-roledescription="A custom card"
     background="base-subtle"
     borderRadius="medium"
     paddingSize="medium"

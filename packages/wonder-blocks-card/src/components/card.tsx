@@ -2,6 +2,7 @@ import * as React from "react";
 
 import {StyleSheet} from "aphrodite";
 import {StyleType, View} from "@khanacademy/wonder-blocks-core";
+import type {AriaAttributes} from "@khanacademy/wonder-blocks-core";
 
 import {
     boxShadow,
@@ -39,6 +40,9 @@ type BaseCardProps = {
     inert?: boolean;
     /**
      * The test ID used to locate this component in automated tests.
+     *
+     * The test ID will also be passed to the dismiss button as
+     * `{testId}-dismiss-button` if the `onDismiss` prop is provided.
      */
     testId?: string;
 } & StyleProps;
@@ -61,27 +65,39 @@ type DismissProps =
       };
 
 /**
- * Provide a specific HTML tag that overrides the default (`div`).
- *
- * Notes:
- * - When `tag="section"` or `"figure"`, `cardAriaLabel` is required for accessibility.
- * - `button` and `a` tags are not allowed - use Wonder Blocks Button and Link components as children instead.
  * Valid HTML tags for the Card component.
  * Excludes button and anchor tags which should use Wonder Blocks Button and Link components instead.
  */
-type ValidCardTags = Exclude<keyof JSX.IntrinsicElements, "button" | "a">;
 
-type TagProps =
-    | {
-          // Section and figure require an aria-label
-          tag: "section" | "figure";
-          labels: {cardAriaLabel: string} & Record<string, any>;
-      }
-    | {
-          // All other valid tags except button and a
-          tag?: Exclude<ValidCardTags, "section" | "figure">;
-          labels?: Record<string, any>;
-      };
+/**
+ * Accessibility props for the Card.
+ *
+ * Labeling methods (in order of preference):
+ * 1. `labels.cardAriaLabel` - For translatable strings (preferred)
+ * 2. `aria-labelledby` - For ID references
+ * 3. `aria-label` - also allowed as a fallback. `labels.cardAriaLabel` automatically
+ * applies this attribute.
+ *
+ * Multiple methods can be provided for consumer simplicity, but only one will win
+ * based on standard Accessible Name Computation rules.
+ */
+type AccessibilityProps = {
+    labels?: {
+        cardAriaLabel?: string;
+        dismissButtonAriaLabel?: string;
+    };
+    "aria-labelledby"?: string;
+    "aria-label"?: string;
+    "aria-busy"?: AriaAttributes["aria-busy"];
+    "aria-roledescription"?: AriaAttributes["aria-roledescription"];
+};
+
+/**
+ * Tag and accessibility props combined.
+ */
+type TagProps = {
+    tag?: Exclude<keyof JSX.IntrinsicElements, "button" | "a">;
+} & AccessibilityProps;
 
 type StyleProps = {
     /**
@@ -152,7 +168,11 @@ type CardProps = BaseCardProps & TagProps & DismissProps;
  * </Card>
  * ```
  *
- * When the `onDismiss` prop is provided, a dismiss button will be rendered. In this case, the `labels.dismissButtonAriaLabel` prop is required to provide an accessible label for the dismiss button.
+ * ### Accessibility
+ *
+ * When the `onDismiss` prop is provided, a dismiss button will be rendered.
+ * In this case, the `labels.dismissButtonAriaLabel` prop is required to provide
+ * a translatable screen reader label for the dismiss button.
  *
  * See additional Accessibility docs.
  */
@@ -165,7 +185,7 @@ const Card = React.forwardRef(function Card(
         styles,
         labels,
         tag,
-        testId,
+        testId = "card",
         background = "base-default",
         borderRadius = "small",
         paddingSize = "small",
@@ -173,6 +193,9 @@ const Card = React.forwardRef(function Card(
         children,
         onDismiss,
         inert,
+        "aria-label": ariaLabel,
+        "aria-labelledby": ariaLabelledBy,
+        "aria-busy": ariaBusy,
     } = props;
 
     const isBackgroundToken =
@@ -184,9 +207,21 @@ const Card = React.forwardRef(function Card(
         elevation,
     });
 
+    // Determine the aria-label value with proper precedence:
+    // 1. labels.cardAriaLabel (preferred for translatable strings)
+    // 2. aria-labelledby (if provided, don't set aria-label)
+    // 3. aria-label (fallback)
+    const ariaLabelValue = labels?.cardAriaLabel
+        ? labels.cardAriaLabel
+        : ariaLabelledBy
+          ? undefined
+          : ariaLabel;
+
     return (
         <View
-            aria-label={labels?.cardAriaLabel}
+            aria-busy={ariaBusy}
+            aria-label={ariaLabelValue}
+            aria-labelledby={ariaLabelledBy}
             style={[
                 componentStyles.root,
                 !isBackgroundToken && {
@@ -204,6 +239,7 @@ const Card = React.forwardRef(function Card(
                 <DismissButton
                     aria-label={labels?.dismissButtonAriaLabel || "Close"}
                     onClick={(e) => onDismiss?.(e)}
+                    testId={`${testId}-dismiss-button`}
                 />
             ) : null}
             {children}
