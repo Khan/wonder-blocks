@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
@@ -873,17 +874,7 @@ const WrappedModalExample = ({
 
         onClose();
     };
-    React.useEffect(() => {
-        return () => {
-            // This cleanup function runs when the component unmounts
-            if (isClosingRef.current && returnFocusToId) {
-                const element = document.getElementById(returnFocusToId);
-                if (element) {
-                    element.focus();
-                }
-            }
-        };
-    }, [returnFocusToId]);
+
     return (
         <ModalLauncher
             onClose={handleCloseWithFocusReturn}
@@ -988,4 +979,31 @@ export const CreatingACustomModal: StoryComponentType = {
             </ModalLauncher>
         );
     },
+};
+
+export const ReproIssue = () => {
+    const [opened, setOpened] = React.useState(false);
+
+    return (
+        <View>
+            <Button onClick={() => setOpened(true)}>Open Modal</Button>
+            {opened && (
+                <ModalLauncher
+                    modal={() => (
+                        <OnePaneDialog
+                            title="Repro Issue"
+                            content={<View>This is a repro issue</View>}
+                            footer={
+                                <Button onClick={() => setOpened(false)}>
+                                    Close
+                                </Button>
+                            }
+                        />
+                    )}
+                    opened={true}
+                    onClose={() => setOpened(false)}
+                />
+            )}
+        </View>
+    );
 };
