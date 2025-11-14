@@ -57,8 +57,8 @@ export const TabPanel = (props: Props) => {
 
     React.useEffect(() => {
         // Whenever tab panel contents change, determine if the panel has a
-        // focusable element
-        if (ref.current) {
+        // focusable element (only if the tab panel has children)
+        if (ref.current && children) {
             setHasFocusableElement(findFocusableNodes(ref.current).length > 0);
         }
     }, [active, ref, children]);

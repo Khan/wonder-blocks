@@ -178,7 +178,22 @@ export const PopoverWithTabs = {
                                     {
                                         label: "Tab 2",
                                         id: "tab-2",
-                                        panel: <div>Tab 2</div>,
+                                        panel: (
+                                            <div>
+                                                Tab 2
+                                                <Button
+                                                    kind="secondary"
+                                                    size="small"
+                                                >
+                                                    Focusable element
+                                                </Button>
+                                            </div>
+                                        ),
+                                    },
+                                    {
+                                        label: "Tab 3",
+                                        id: "tab-3",
+                                        panel: <div>Tab 3</div>,
                                     },
                                 ]}
                             />
