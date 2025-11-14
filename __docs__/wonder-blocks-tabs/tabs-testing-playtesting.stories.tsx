@@ -139,6 +139,47 @@ export const DynamicIcon: Story = {
     },
 };
 
+const TabsWrapperComponent = () => {
+    const [selectedTab, setSelectedTab] = React.useState("tab-1");
+    return (
+        <Tabs
+            aria-label="tabs"
+            selectedTabId={selectedTab}
+            onTabSelected={setSelectedTab}
+            tabs={[
+                {
+                    label: "Tab 1",
+                    id: "tab-1",
+                    panel: (
+                        <div>
+                            Tab 1{" "}
+                            <Button kind="secondary" size="small">
+                                Focusable element
+                            </Button>
+                        </div>
+                    ),
+                },
+                {
+                    label: "Tab 2",
+                    id: "tab-2",
+                    panel: (
+                        <div>
+                            Tab 2
+                            <Button kind="secondary" size="small">
+                                Focusable element
+                            </Button>
+                        </div>
+                    ),
+                },
+                {
+                    label: "Tab 3",
+                    id: "tab-3",
+                    panel: <div>Tab 3</div>,
+                },
+            ]}
+        />
+    );
+};
 /**
  * An example of a popover that has tabs inside of it.
  */
@@ -151,7 +192,20 @@ export const PopoverWithTabs = {
     render: function Example() {
         const [selectedTab, setSelectedTab] = React.useState("tab-1");
         return (
-            <View style={{alignItems: "center"}}>
+            <View style={{alignItems: "center", gap: sizing.size_960}}>
+                <Popover
+                    content={() => (
+                        <PopoverContentCore closeButtonVisible={true}>
+                            <TabsWrapperComponent />
+                        </PopoverContentCore>
+                    )}
+                >
+                    {({open}) => (
+                        <Button onClick={open}>
+                            Popover with wrapped tabs
+                        </Button>
+                    )}
+                </Popover>
                 <Popover
                     content={() => (
                         <PopoverContentCore closeButtonVisible={true}>
@@ -200,7 +254,11 @@ export const PopoverWithTabs = {
                         </PopoverContentCore>
                     )}
                 >
-                    {({open}) => <Button onClick={open}>Open popover</Button>}
+                    {({open}) => (
+                        <Button onClick={open}>
+                            Popover with tabs as direct children
+                        </Button>
+                    )}
                 </Popover>
             </View>
         );
