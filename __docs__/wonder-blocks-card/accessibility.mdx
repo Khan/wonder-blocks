@@ -15,13 +15,13 @@ By default, cards render as `<div>` elements. However, you can specify a differe
 - `tag="article"` - Use when the card represents standalone content
 - `tag="li"` - Use when cards are part of a list (see notes about `inert` below)
 
-## Labeling
+## Labeling cards
 
 When using semantic tags like `tag="section"` or `tag="figure"`, you should provide an accessible name for the Card using one of the following (in order of preference):
 
- 1. `labels.cardAriaLabel` (preferred for translatable strings)
- 2. `aria-labelledby` (for ID references to existing elements)
- 3. `aria-label` (fallback for direct aria-label)
+ 1. `labels.cardAriaLabel`: preferred for translatable strings. See the Dismiss Button section below for more.
+ 2. `aria-labelledby`: for ID references to existing elements.
+ 3. `aria-label`: also allowed as a fallback - `labels.cardAriaLabel` automatically applies this attribute.
 
 When the `onDismiss` prop is provided, a dismiss button will be rendered. In this case, the `labels.dismissButtonAriaLabel` prop is required to provide a translatable, accessible label for the dismiss button.
 
@@ -45,10 +45,10 @@ See the In a Stack story for an example of disabling cards while keeping them pa
 
 ## Best Practices
 
-- Ensure cards have a logical heading structure when they contain headings
-- If cards are part of a collection, consider using appropriate container semantics (`<ul>`, `<ol>`, or `role="list"`)
-- When cards are dismissible, ensure focus is moved to an appropriate element after dismissal
-- Use meaningful accessible names for semantic card tags (`section`, `figure`)
+- Ensure cards have a logical heading structure when they contain headings.
+- If cards are part of a collection, consider wrapping them with appropriate container semantics (`<ul>`, `<ol>`, or `role="list"`).
+- When cards are dismissible, ensure focus is moved to an appropriate element after dismissal.
+- When applicable, use meaningful accessible names for semantic landmark tags (`section`, `figure`) so they show in the VoiceOver Rotor and NVDA Elements List.
 
 ## References
 
