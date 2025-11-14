@@ -75,7 +75,8 @@ type DismissProps =
  * Labeling methods (in order of preference):
  * 1. `labels.cardAriaLabel` - For translatable strings (preferred)
  * 2. `aria-labelledby` - For ID references
- * 3. `aria-label` - For direct labels (fallback)
+ * 3. `aria-label` - also allowed as a fallback. `labels.cardAriaLabel` automatically
+ * applies this attribute.
  *
  * Multiple methods can be provided for consumer simplicity, but only one will win
  * based on standard Accessible Name Computation rules.
