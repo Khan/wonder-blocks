@@ -782,6 +782,9 @@ const styles = StyleSheet.create({
  * This story helps debug focus management with controlled modals.
     It specifically tests the case where a modal starts with opened=true and
     needs to return focus to the last focused element when closed.
+
+    Because the wrapped ModalLauncher is unmounted on close, it needs special
+    focus management logic to return focus back to the main page.
  */
 export const ControlledModalFocusTest: StoryComponentType = () => {
     const [opened, setOpened] = React.useState(false);
@@ -820,7 +823,7 @@ export const ControlledModalFocusTest: StoryComponentType = () => {
                     Focus me first
                 </Button>
 
-                <Button onClick={handleShowWrappedModal}>
+                <Button onClick={handleShowWrappedModal} id="second-target">
                     Show wrapped modal
                 </Button>
             </View>
@@ -832,7 +835,9 @@ export const ControlledModalFocusTest: StoryComponentType = () => {
                         title="Regular Modal"
                         content={<View>This is a regular modal</View>}
                         footer={
-                            <Button onClick={closeModal}>Close Modal</Button>
+                            <Button onClick={() => closeModal()}>
+                                Close Modal
+                            </Button>
                         }
                     />
                 )}
@@ -844,7 +849,10 @@ export const ControlledModalFocusTest: StoryComponentType = () => {
 
             {/* Wrapped modal that starts opened=true */}
             {showModal && (
-                <WrappedModalExample onClose={() => setShowModal(false)} />
+                <WrappedModalExample
+                    onClose={() => setShowModal(false)}
+                    returnFocusToId="second-target"
+                />
             )}
         </View>
     );
@@ -852,11 +860,34 @@ export const ControlledModalFocusTest: StoryComponentType = () => {
 
 ControlledModalFocusTest.parameters = {};
 
-const WrappedModalExample = ({onClose}: {onClose: () => void}) => {
+const WrappedModalExample = ({
+    onClose,
+    returnFocusToId,
+}: {
+    onClose: () => void;
+    returnFocusToId?: string;
+}) => {
+    const isClosingRef = React.useRef(false);
+    const handleCloseWithFocusReturn = () => {
+        isClosingRef.current = true;
+
+        onClose();
+    };
+    React.useEffect(() => {
+        return () => {
+            // This cleanup function runs when the component unmounts
+            if (isClosingRef.current && returnFocusToId) {
+                const element = document.getElementById(returnFocusToId);
+                if (element) {
+                    element.focus();
+                }
+            }
+        };
+    }, [returnFocusToId]);
     return (
         <ModalLauncher
+            onClose={handleCloseWithFocusReturn}
             opened={true}
-            onClose={onClose}
             modal={({closeModal}) => (
                 <OnePaneDialog
                     title="Wrapped Modal"
