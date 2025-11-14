@@ -1,15 +1,9 @@
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {
-    border,
-    color,
-    boxShadow,
-    semanticColor,
-} from "@khanacademy/wonder-blocks-tokens";
+import {color} from "@khanacademy/wonder-blocks-tokens";
 
 import TooltipContent from "./tooltip-content";
-import TooltipTail from "./tooltip-tail";
 import {PopperElementProps} from "../util/types";
 
 export type Props = {
@@ -48,12 +42,12 @@ export default class TooltipBubble extends React.Component<Props, State> {
         const {
             id,
             children,
-            updateBubbleRef,
+            // updateBubbleRef,
             placement,
             isReferenceHidden,
             style,
-            updateTailRef,
-            tailOffset,
+            // updateTailRef,
+            // tailOffset,
             backgroundColor,
         } = this.props;
         return (
@@ -63,7 +57,7 @@ export default class TooltipBubble extends React.Component<Props, State> {
                 data-placement={placement}
                 onMouseEnter={this.handleMouseEnter}
                 onMouseLeave={this.handleMouseLeave}
-                ref={updateBubbleRef}
+                // ref={updateBubbleRef}
                 style={[
                     isReferenceHidden && styles.hide,
                     styles.bubble,
@@ -81,12 +75,6 @@ export default class TooltipBubble extends React.Component<Props, State> {
                 >
                     {children}
                 </View>
-                <TooltipTail
-                    updateRef={updateTailRef}
-                    placement={placement}
-                    offset={tailOffset}
-                    color={backgroundColor}
-                />
             </View>
         );
     }
@@ -94,7 +82,7 @@ export default class TooltipBubble extends React.Component<Props, State> {
 
 const styles = StyleSheet.create({
     bubble: {
-        position: "absolute",
+        // position: "absolute",
     },
 
     /**
@@ -128,10 +116,10 @@ const styles = StyleSheet.create({
 
     content: {
         maxWidth: 472,
-        borderRadius: border.radius.radius_040,
-        border: `solid 1px ${semanticColor.core.border.neutral.subtle}`,
-        backgroundColor: semanticColor.core.background.base.default,
-        boxShadow: boxShadow.mid,
+        // borderRadius: border.radius.radius_040,
+        // border: `solid 1px ${semanticColor.core.border.neutral.subtle}`,
+        // backgroundColor: semanticColor.core.background.base.default,
+        // boxShadow: boxShadow.mid,
         justifyContent: "center",
     },
 });

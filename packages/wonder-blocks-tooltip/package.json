@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@khanacademy/wonder-blocks-core": "workspace:*",
+    "@khanacademy/wonder-blocks-floating": "workspace:*",
     "@khanacademy/wonder-blocks-layout": "workspace:*",
     "@khanacademy/wonder-blocks-modal": "workspace:*",
     "@khanacademy/wonder-blocks-tokens": "workspace:*",

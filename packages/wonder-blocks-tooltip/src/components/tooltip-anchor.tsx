@@ -3,7 +3,6 @@
  * positioning and displaying tooltips.
  */
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 
 import {Text as WBText} from "@khanacademy/wonder-blocks-core";
 
@@ -61,272 +60,299 @@ type Props = {
     "aria-describedby": string | undefined;
 };
 
-type DefaultProps = {
-    forceAnchorFocusivity: Props["forceAnchorFocusivity"];
-};
-
-type State = {
-    /** Is the anchor active or not? */
-    active: boolean;
-};
-
 const TRACKER = new ActiveTracker();
 
-export default class TooltipAnchor
-    extends React.Component<Props, State>
-    implements IActiveTrackerSubscriber
-{
-    _weSetFocusivity: boolean | null | undefined;
-    _anchorNode: Element | null | undefined;
-    _focused: boolean;
-    _hovered: boolean;
-    // @ts-expect-error [FEI-5019] - TS2564 - Property '_stolenFromUs' has no initializer and is not definitely assigned in the constructor.
-    _stolenFromUs: boolean;
-    // @ts-expect-error [FEI-5019] - TS2564 - Property '_unsubscribeFromTracker' has no initializer and is not definitely assigned in the constructor.
-    _unsubscribeFromTracker: () => void | null | undefined;
-    _timeoutID: number | null | undefined;
+const TooltipAnchor = React.forwardRef<Element, Props>(
+    (
+        {
+            children,
+            anchorRef,
+            forceAnchorFocusivity = true,
+            onActiveChanged,
+            "aria-describedby": ariaDescribedBy,
+        },
+        ref,
+    ): React.ReactElement<any> => {
+        const [active, setActive] = React.useState(false);
 
-    static defaultProps: DefaultProps = {
-        forceAnchorFocusivity: true,
-    };
+        const weSetFocusivityRef = React.useRef<boolean | null | undefined>();
+        const anchorNodeRef = React.useRef<Element | null | undefined>();
+        const focusedRef = React.useRef(false);
+        const hoveredRef = React.useRef(false);
+        const stolenFromUsRef = React.useRef(false);
+        const unsubscribeFromTrackerRef = React.useRef<
+            (() => void | null | undefined) | null
+        >();
+        const timeoutIDRef = React.useRef<number | null | undefined>();
 
-    constructor(props: Props) {
-        super(props);
-
-        this._focused = false;
-        this._hovered = false;
-        this.state = {
-            active: false,
-        };
-    }
-
-    componentDidMount() {
-        // eslint-disable-next-line import/no-deprecated
-        const anchorNode = ReactDOM.findDOMNode(this);
-
-        // This should never happen, but we have this check here to make TypeScript
-        // happy and ensure that if this does happen, we'll know about it.
-        if (anchorNode instanceof Text) {
-            throw new Error(
-                "TooltipAnchor must be applied to an Element. Text content is not supported.",
-            );
-        }
-
-        this._unsubscribeFromTracker = TRACKER.subscribe(this);
-        this._anchorNode = anchorNode;
-        this._updateFocusivity();
-        if (anchorNode) {
-            /**
-             * TODO(somewhatabstract): Work out how to allow pointer to go over
-             * the tooltip content to keep it active. This likely requires
-             * pointer events but that would break the obscurement checks we do.
-             * So, careful consideration required. See WB-302.
-             */
-            anchorNode.addEventListener("focusin", this._handleFocusIn);
-            anchorNode.addEventListener("focusout", this._handleFocusOut);
-            anchorNode.addEventListener("mouseenter", this._handleMouseEnter);
-            anchorNode.addEventListener("mouseleave", this._handleMouseLeave);
-
-            this.props.anchorRef(this._anchorNode);
-        }
-    }
-
-    componentDidUpdate(prevProps: Props) {
-        if (
-            prevProps.forceAnchorFocusivity !==
-                this.props.forceAnchorFocusivity ||
-            prevProps.children !== this.props.children
-        ) {
-            this._updateFocusivity();
-        }
-    }
-
-    componentWillUnmount() {
-        if (this._unsubscribeFromTracker) {
-            this._unsubscribeFromTracker();
-        }
-        this._clearPendingAction();
-
-        const anchorNode = this._anchorNode;
-        if (anchorNode) {
-            anchorNode.removeEventListener("focusin", this._handleFocusIn);
-            anchorNode.removeEventListener("focusout", this._handleFocusOut);
-            anchorNode.removeEventListener(
-                "mouseenter",
-                this._handleMouseEnter,
-            );
-            anchorNode.removeEventListener(
-                "mouseleave",
-                this._handleMouseLeave,
-            );
-        }
-        if (this.state.active) {
-            document.removeEventListener("keyup", this._handleKeyUp);
-        }
-    }
-
-    activeStateStolen: () => void = () => {
-        // Something wants the active state.
-        // Do we have it? If so, let's remember that.
-        // If we are already active, or we're inactive but have a timeoutID,
-        // then it was stolen from us.
-        this._stolenFromUs = this.state.active || !!this._timeoutID;
-        // Let's first tell ourselves we're not focused (otherwise the tooltip
-        // will be sticky on the next hover of this anchor and that just looks
-        // weird).
-        this._focused = false;
-        // Now update our actual state.
-        this._setActiveState(false, true);
-    };
-
-    _updateFocusivity() {
-        const anchorNode = this._anchorNode;
-        if (!anchorNode) {
-            return;
-        }
-        const {forceAnchorFocusivity} = this.props;
-        const currentTabIndex = anchorNode.getAttribute("tabindex");
-
-        if (forceAnchorFocusivity && !currentTabIndex) {
-            // Ensure that the anchor point is keyboard focusable so that
-            // we can show the tooltip for visually impaired users that don't
-            // use pointer devices nor assistive technology like screen readers.
-            anchorNode.setAttribute("tabindex", "0");
-            this._weSetFocusivity = true;
-        } else if (!forceAnchorFocusivity && currentTabIndex) {
-            // We may not be forcing it, but we also want to ensure that if we
-            // did before, we remove it.
-            if (this._weSetFocusivity) {
-                anchorNode.removeAttribute("tabindex");
-                this._weSetFocusivity = false;
+        const clearPendingAction = React.useCallback(() => {
+            if (timeoutIDRef.current) {
+                clearTimeout(timeoutIDRef.current);
+                timeoutIDRef.current = null;
             }
-        }
-    }
+        }, []);
 
-    _updateActiveState(hovered: boolean, focused: boolean) {
-        // Update our stored values.
-        this._hovered = hovered;
-        this._focused = focused;
-
-        this._setActiveState(hovered || focused);
-    }
-
-    _clearPendingAction() {
-        if (this._timeoutID) {
-            clearTimeout(this._timeoutID);
-            this._timeoutID = null;
-        }
-    }
-
-    _setActiveState(active: boolean, instant?: boolean) {
-        if (
-            this._stolenFromUs ||
-            active !== this.state.active ||
-            (!this.state.active && this._timeoutID)
-        ) {
-            // If we are about to lose active state or change it, we need to
-            // cancel any pending action to show ourselves.
-            // So, if active is stolen from us, we are changing active state,
-            // or we are inactive and have a timer, clear the action.
-            this._clearPendingAction();
-        } else if (active === this.state.active) {
-            if (this._timeoutID) {
-                // Cancel pending action if the current `this.state.active` is
-                // already the value we want to set it to (ie. the `active` arg).
-                // This is okay to cancel because:
-                // - if the pending action was to set `this.state.active` to the
-                // same value, it is not needed because it already is up to date
-                // - if the pending action was to set `this.state.active` to the
-                // opposite value, it is not needed because there is a more recent
-                // event that triggered this function with an `active` arg that is
-                // the same value as the current state.
-                this._clearPendingAction();
+        const updateFocusivity = React.useCallback(() => {
+            const anchorNode = anchorNodeRef.current;
+            if (!anchorNode) {
+                return;
             }
-            // Nothing else to do if active state is up to date.
-            return;
-        }
+            const currentTabIndex = anchorNode.getAttribute("tabindex");
 
-        // Determine if we are doing things immediately or not.
-        instant = instant || (active && TRACKER.steal(this));
-
-        if (instant) {
-            if (active) {
-                document.addEventListener("keyup", this._handleKeyUp);
-            } else {
-                document.removeEventListener("keyup", this._handleKeyUp);
+            if (forceAnchorFocusivity && !currentTabIndex) {
+                // Ensure that the anchor point is keyboard focusable so that
+                // we can show the tooltip for visually impaired users that don't
+                // use pointer devices nor assistive technology like screen readers.
+                anchorNode.setAttribute("tabindex", "0");
+                weSetFocusivityRef.current = true;
+            } else if (!forceAnchorFocusivity && currentTabIndex) {
+                // We may not be forcing it, but we also want to ensure that if we
+                // did before, we remove it.
+                if (weSetFocusivityRef.current) {
+                    anchorNode.removeAttribute("tabindex");
+                    weSetFocusivityRef.current = false;
+                }
             }
-            this.setState({active});
-            this.props.onActiveChanged(active);
-            if (!this._stolenFromUs && !active) {
-                // Only the very last thing going inactive will giveup
-                // the stolen active state.
-                TRACKER.giveup();
-            }
-            this._stolenFromUs = false;
-        } else {
-            const delay = active
-                ? TooltipAppearanceDelay
-                : TooltipDisappearanceDelay;
-            // @ts-expect-error [FEI-5019] - TS2322 - Type 'Timeout' is not assignable to type 'number'.
-            this._timeoutID = setTimeout(() => {
-                this._timeoutID = null;
-                this._setActiveState(active, true);
-            }, delay);
-        }
-    }
+        }, [forceAnchorFocusivity]);
 
-    _handleFocusIn: () => void = () => {
-        this._updateActiveState(this._hovered, true);
-    };
+        const setActiveState = React.useCallback(
+            (newActive: boolean, instant?: boolean) => {
+                if (
+                    stolenFromUsRef.current ||
+                    newActive !== active ||
+                    (!active && timeoutIDRef.current)
+                ) {
+                    // If we are about to lose active state or change it, we need to
+                    // cancel any pending action to show ourselves.
+                    // So, if active is stolen from us, we are changing active state,
+                    // or we are inactive and have a timer, clear the action.
+                    clearPendingAction();
+                } else if (newActive === active) {
+                    if (timeoutIDRef.current) {
+                        // Cancel pending action if the current `active` is
+                        // already the value we want to set it to (ie. the `newActive` arg).
+                        // This is okay to cancel because:
+                        // - if the pending action was to set `active` to the
+                        // same value, it is not needed because it already is up to date
+                        // - if the pending action was to set `active` to the
+                        // opposite value, it is not needed because there is a more recent
+                        // event that triggered this function with an `newActive` arg that is
+                        // the same value as the current state.
+                        clearPendingAction();
+                    }
+                    // Nothing else to do if active state is up to date.
+                    return;
+                }
 
-    _handleFocusOut: () => void = () => {
-        this._updateActiveState(this._hovered, false);
-    };
+                // Determine if we are doing things immediately or not.
+                const subscriber: IActiveTrackerSubscriber = {
+                    activeStateStolen: () => {
+                        // This will be called by the tracker
+                    },
+                };
+                instant = instant || (newActive && TRACKER.steal(subscriber));
 
-    _handleMouseEnter: () => void = () => {
-        this._updateActiveState(true, this._focused);
-    };
-
-    _handleMouseLeave: () => void = () => {
-        this._updateActiveState(false, this._focused);
-    };
-
-    _handleKeyUp: (e: KeyboardEvent) => void = (e) => {
-        // We check the key as that's keyboard layout agnostic and also avoids
-        // the minefield of deprecated number type properties like keyCode and
-        // which, with the replacement code, which uses a string instead.
-        if (e.key === "Escape" && this.state.active) {
-            // Stop the event going any further.
-            // For cancellation events, like the Escape key, we generally should
-            // air on the side of caution and only allow it to cancel one thing.
-            // So, it's polite for us to stop propagation of the event.
-            // Otherwise, we end up with UX where one Escape key press
-            // unexpectedly cancels multiple things.
-            //
-            // For example, using Escape to close a tooltip or a dropdown while
-            // displaying a modal and having the modal close as well. This would
-            // be annoyingly bad UX.
-            e.preventDefault();
-            e.stopPropagation();
-            this._updateActiveState(false, false);
-        }
-    };
-
-    _renderAnchorableChildren(): React.ReactElement<any> {
-        const {children} = this.props;
-        return typeof children === "string" ? (
-            <WBText>{children}</WBText>
-        ) : (
-            children
+                if (instant) {
+                    setActive(newActive);
+                    onActiveChanged(newActive);
+                    if (!stolenFromUsRef.current && !newActive) {
+                        // Only the very last thing going inactive will giveup
+                        // the stolen active state.
+                        TRACKER.giveup();
+                    }
+                    stolenFromUsRef.current = false;
+                } else {
+                    const delay = newActive
+                        ? TooltipAppearanceDelay
+                        : TooltipDisappearanceDelay;
+                    // @ts-expect-error [FEI-5019] - TS2322 - Type 'Timeout' is not assignable to type 'number'.
+                    timeoutIDRef.current = setTimeout(() => {
+                        timeoutIDRef.current = null;
+                        setActiveState(newActive, true);
+                    }, delay);
+                }
+            },
+            [active, onActiveChanged, clearPendingAction],
         );
-    }
 
-    render(): React.ReactNode {
-        const {"aria-describedby": ariaDescribedBy} = this.props;
-        const anchorableChildren = this._renderAnchorableChildren();
+        const updateActiveState = React.useCallback(
+            (hovered: boolean, focused: boolean) => {
+                // Update our stored values.
+                hoveredRef.current = hovered;
+                focusedRef.current = focused;
+
+                setActiveState(hovered || focused);
+            },
+            [setActiveState],
+        );
+
+        const handleKeyUp = React.useCallback(
+            (e: KeyboardEvent) => {
+                // We check the key as that's keyboard layout agnostic and also avoids
+                // the minefield of deprecated number type properties like keyCode and
+                // which, with the replacement code, which uses a string instead.
+                if (e.key === "Escape" && active) {
+                    // Stop the event going any further.
+                    // For cancellation events, like the Escape key, we generally should
+                    // air on the side of caution and only allow it to cancel one thing.
+                    // So, it's polite for us to stop propagation of the event.
+                    // Otherwise, we end up with UX where one Escape key press
+                    // unexpectedly cancels multiple things.
+                    //
+                    // For example, using Escape to close a tooltip or a dropdown while
+                    // displaying a modal and having the modal close as well. This would
+                    // be annoyingly bad UX.
+                    e.preventDefault();
+                    e.stopPropagation();
+                    updateActiveState(false, false);
+                }
+            },
+            [active, updateActiveState],
+        );
+
+        const handleFocusIn = React.useCallback(() => {
+            updateActiveState(hoveredRef.current, true);
+        }, [updateActiveState]);
+
+        const handleFocusOut = React.useCallback(() => {
+            updateActiveState(hoveredRef.current, false);
+        }, [updateActiveState]);
+
+        const handleMouseEnter = React.useCallback(() => {
+            updateActiveState(true, focusedRef.current);
+        }, [updateActiveState]);
+
+        const handleMouseLeave = React.useCallback(() => {
+            updateActiveState(false, focusedRef.current);
+        }, [updateActiveState]);
+
+        // Handle active state updates with keyup listener
+        React.useEffect(() => {
+            if (active) {
+                document.addEventListener("keyup", handleKeyUp);
+            } else {
+                document.removeEventListener("keyup", handleKeyUp);
+            }
+
+            return () => {
+                document.removeEventListener("keyup", handleKeyUp);
+            };
+        }, [active, handleKeyUp]);
+
+        // Update focusivity when anchor node or props change
+        React.useEffect(() => {
+            updateFocusivity();
+        }, [forceAnchorFocusivity, children, updateFocusivity]);
+
+        // Setup/cleanup event listeners and tracker subscription
+        React.useEffect(() => {
+            const anchorNode = anchorNodeRef.current;
+
+            const subscriber: IActiveTrackerSubscriber = {
+                activeStateStolen: () => {
+                    // Something wants the active state.
+                    // Do we have it? If so, let's remember that.
+                    // If we are already active, or we're inactive but have a timeoutID,
+                    // then it was stolen from us.
+                    stolenFromUsRef.current = active || !!timeoutIDRef.current;
+                    // Let's first tell ourselves we're not focused (otherwise the tooltip
+                    // will be sticky on the next hover of this anchor and that just looks
+                    // weird).
+                    focusedRef.current = false;
+                    // Now update our actual state.
+                    setActiveState(false, true);
+                },
+            };
+
+            unsubscribeFromTrackerRef.current = TRACKER.subscribe(subscriber);
+
+            if (anchorNode) {
+                /**
+                 * TODO(somewhatabstract): Work out how to allow pointer to go over
+                 * the tooltip content to keep it active. This likely requires
+                 * pointer events but that would break the obscurement checks we do.
+                 * So, careful consideration required. See WB-302.
+                 */
+                anchorNode.addEventListener("focusin", handleFocusIn);
+                anchorNode.addEventListener("focusout", handleFocusOut);
+                anchorNode.addEventListener("mouseenter", handleMouseEnter);
+                anchorNode.addEventListener("mouseleave", handleMouseLeave);
+            }
+
+            return () => {
+                if (unsubscribeFromTrackerRef.current) {
+                    unsubscribeFromTrackerRef.current();
+                }
+                clearPendingAction();
+
+                if (anchorNode) {
+                    anchorNode.removeEventListener("focusin", handleFocusIn);
+                    anchorNode.removeEventListener("focusout", handleFocusOut);
+                    anchorNode.removeEventListener(
+                        "mouseenter",
+                        handleMouseEnter,
+                    );
+                    anchorNode.removeEventListener(
+                        "mouseleave",
+                        handleMouseLeave,
+                    );
+                }
+            };
+        }, [
+            handleFocusIn,
+            handleFocusOut,
+            handleMouseEnter,
+            handleMouseLeave,
+            clearPendingAction,
+            active,
+            setActiveState,
+        ]);
+
+        // Callback ref to capture the anchor node and forward it
+        const handleRefCallback = React.useCallback(
+            (node: Element | null) => {
+                // This should never happen, but we have this check here to make TypeScript
+                // happy and ensure that if this does happen, we'll know about it.
+                if (node instanceof Text) {
+                    throw new Error(
+                        "TooltipAnchor must be applied to an Element. Text content is not supported.",
+                    );
+                }
+
+                if (node && node !== anchorNodeRef.current) {
+                    anchorNodeRef.current = node;
+                    updateFocusivity();
+                    anchorRef(node);
+                }
+
+                // Forward the ref
+                if (typeof ref === "function") {
+                    ref(node);
+                } else if (ref) {
+                    (ref as React.MutableRefObject<Element | null>).current =
+                        node;
+                }
+            },
+            [anchorRef, updateFocusivity, ref],
+        );
+
+        const renderAnchorableChildren = (): React.ReactElement<any> => {
+            return typeof children === "string" ? (
+                <WBText>{children}</WBText>
+            ) : (
+                children
+            );
+        };
+
+        const anchorableChildren = renderAnchorableChildren();
 
         return React.cloneElement(anchorableChildren, {
             "aria-describedby": ariaDescribedBy,
+            ref: handleRefCallback,
         });
-    }
-}
+    },
+);
+
+TooltipAnchor.displayName = "TooltipAnchor";
+
+export default TooltipAnchor;

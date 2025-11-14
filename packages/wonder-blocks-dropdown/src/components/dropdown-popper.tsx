@@ -2,7 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {Popper} from "react-popper";
 
-import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
+import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-floating";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {Placement} from "@popperjs/core";

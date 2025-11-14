@@ -3,12 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {
-    border,
-    boxShadow,
-    semanticColor,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 import CloseButton from "./close-button";
@@ -102,12 +97,12 @@ export default class PopoverContentCore extends React.Component<Props> {
 
 const styles = StyleSheet.create({
     content: {
-        borderRadius: border.radius.radius_040,
-        border: `solid 1px ${semanticColor.core.border.neutral.subtle}`,
-        backgroundColor: semanticColor.core.background.base.default,
-        boxShadow: boxShadow.mid,
+        // borderRadius: border.radius.radius_040,
+        // border: `solid 1px ${semanticColor.core.border.neutral.subtle}`,
+        // backgroundColor: semanticColor.core.background.base.default,
+        // boxShadow: boxShadow.mid,
         margin: 0,
-        maxWidth: spacing.medium_16 * 18, // 288px
+        // maxWidth: spacing.medium_16 * 18, // 288px
         padding: spacing.large_24,
         overflow: "hidden",
         justifyContent: "center",
