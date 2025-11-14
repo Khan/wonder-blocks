@@ -14,6 +14,17 @@ describe("isFocusable", () => {
         expect(result).toBe(true);
     });
 
+    it("should mark a button with tabindex -1 as non-focusable", () => {
+        // Arrange
+        render(<button tabIndex={-1}>Open popover</button>);
+
+        // Act
+        const result = isFocusable(screen.getByRole("button"));
+
+        // Assert
+        expect(result).toBe(false);
+    });
+
     it("should mark a div as non-focusable", () => {
         // Arrange
         render(<div>placeholder</div>);

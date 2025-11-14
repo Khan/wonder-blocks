@@ -8,6 +8,7 @@ import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Button from "@khanacademy/wonder-blocks-button";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {Popover, PopoverContentCore} from "@khanacademy/wonder-blocks-popover";
 
 export default {
     title: "Packages / Tabs / Tabs / Testing / Tabs - Playtesting",
@@ -133,6 +134,132 @@ export const DynamicIcon: Story = {
                 <Button onClick={() => setShowIcon(!showIcon)}>
                     Toggle icon
                 </Button>
+            </View>
+        );
+    },
+};
+
+const TabsWrapperComponent = () => {
+    const [selectedTab, setSelectedTab] = React.useState("tab-1");
+    return (
+        <Tabs
+            aria-label="tabs"
+            selectedTabId={selectedTab}
+            onTabSelected={setSelectedTab}
+            tabs={[
+                {
+                    label: "Tab 1",
+                    id: "tab-1",
+                    panel: (
+                        <div>
+                            Tab 1{" "}
+                            <Button kind="secondary" size="small">
+                                Focusable element
+                            </Button>
+                        </div>
+                    ),
+                },
+                {
+                    label: "Tab 2",
+                    id: "tab-2",
+                    panel: (
+                        <div>
+                            Tab 2
+                            <Button kind="secondary" size="small">
+                                Focusable element
+                            </Button>
+                        </div>
+                    ),
+                },
+                {
+                    label: "Tab 3",
+                    id: "tab-3",
+                    panel: <div>Tab 3</div>,
+                },
+            ]}
+        />
+    );
+};
+/**
+ * An example of a popover that has tabs inside of it.
+ */
+export const PopoverWithTabs = {
+    parameters: {
+        chromatic: {
+            disableSnapshot: true,
+        },
+    },
+    render: function Example() {
+        const [selectedTab, setSelectedTab] = React.useState("tab-1");
+        return (
+            <View style={{alignItems: "center", gap: sizing.size_960}}>
+                <Popover
+                    content={() => (
+                        <PopoverContentCore closeButtonVisible={true}>
+                            <TabsWrapperComponent />
+                        </PopoverContentCore>
+                    )}
+                >
+                    {({open}) => (
+                        <Button onClick={open}>
+                            Popover with wrapped tabs
+                        </Button>
+                    )}
+                </Popover>
+                <Popover
+                    content={() => (
+                        <PopoverContentCore closeButtonVisible={true}>
+                            <Tabs
+                                aria-label="tabs"
+                                selectedTabId={selectedTab}
+                                onTabSelected={setSelectedTab}
+                                tabs={[
+                                    {
+                                        label: "Tab 1",
+                                        id: "tab-1",
+                                        panel: (
+                                            <div>
+                                                Tab 1{" "}
+                                                <Button
+                                                    kind="secondary"
+                                                    size="small"
+                                                >
+                                                    Focusable element
+                                                </Button>
+                                            </div>
+                                        ),
+                                    },
+                                    {
+                                        label: "Tab 2",
+                                        id: "tab-2",
+                                        panel: (
+                                            <div>
+                                                Tab 2
+                                                <Button
+                                                    kind="secondary"
+                                                    size="small"
+                                                >
+                                                    Focusable element
+                                                </Button>
+                                            </div>
+                                        ),
+                                    },
+                                    {
+                                        label: "Tab 3",
+                                        id: "tab-3",
+                                        panel: <div>Tab 3</div>,
+                                    },
+                                ]}
+                            />
+                        </PopoverContentCore>
+                    )}
+                >
+                    {({open}) => (
+                        <Button onClick={open}>
+                            Popover with tabs as direct children
+                        </Button>
+                    )}
+                </Popover>
             </View>
         );
     },
