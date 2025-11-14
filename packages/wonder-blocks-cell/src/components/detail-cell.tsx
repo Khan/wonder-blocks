@@ -3,6 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import CellCore from "./internal/cell-core";
 
 import type {CellProps, TypographyText} from "../util/types";
@@ -112,7 +113,7 @@ const DetailCell = function (props: DetailCellProps): React.ReactElement {
 
 const styles = StyleSheet.create({
     subtitle: {
-        color: theme.subtitle.color.foreground,
+        color: semanticColor.core.foreground.neutral.default,
     },
     // This is to override the default padding of the CellCore innerWrapper.
     innerWrapper: {
