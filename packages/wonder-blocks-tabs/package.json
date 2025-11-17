@@ -3,7 +3,7 @@
   "description": "Tabs are used to control what content is shown",
   "author": "Khan Academy",
   "license": "MIT",
-  "version": "0.3.34",
+  "version": "0.3.36",
   "publishConfig": {
     "access": "public"
   },

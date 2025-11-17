@@ -2,8 +2,12 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 
-import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
-import type {WithActionSchedulerProps} from "@khanacademy/wonder-blocks-timing";
+import {
+    withActionScheduler,
+    type WithActionSchedulerProps,
+    SchedulePolicy,
+    ClearPolicy,
+} from "@khanacademy/wonder-blocks-timing";
 
 import FocusTrap from "./focus-trap";
 import ModalBackdrop from "./modal-backdrop";
@@ -155,12 +159,12 @@ const ModalLauncher = (props: Props): React.ReactElement | null => {
             const focusElement = ReactDOM.findDOMNode(
                 document.getElementById(closedFocusId),
             ) as any;
-
             if (focusElement) {
                 // Wait for the modal to leave the DOM before trying
                 // to focus on the specified element.
-                schedule.animationFrame(() => {
-                    focusElement.focus();
+                schedule.animationFrame(() => focusElement.focus(), {
+                    schedulePolicy: SchedulePolicy.Immediately,
+                    clearPolicy: ClearPolicy.Resolve,
                 });
                 return;
             }

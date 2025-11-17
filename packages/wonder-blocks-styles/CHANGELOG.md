@@ -1,5 +1,22 @@
 # @khanacademy/wonder-blocks-styles
 
+## 0.2.36
+
+### Patch Changes
+
+- 8a36c70: Re-publish to publish with Trusted Publishing
+- 3e0d137: Re-publishing via Trusted Publishing
+- Updated dependencies [8a36c70]
+- Updated dependencies [3e0d137]
+    - @khanacademy/wonder-blocks-tokens@14.1.2
+
+## 0.2.35
+
+### Patch Changes
+
+- Updated dependencies [540371d]
+    - @khanacademy/wonder-blocks-tokens@14.1.1
+
 ## 0.2.34
 
 ### Patch Changes

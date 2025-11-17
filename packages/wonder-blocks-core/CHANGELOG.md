@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-core
 
+## 12.4.2
+
+### Patch Changes
+
+- 8a36c70: Re-publish to publish with Trusted Publishing
+- 3e0d137: Re-publishing via Trusted Publishing
+
 ## 12.4.1
 
 ### Patch Changes

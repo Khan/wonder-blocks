@@ -1,5 +1,58 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.5.3
+
+### Patch Changes
+
+- Updated dependencies [40d1eb2]
+    - @khanacademy/wonder-blocks-modal@8.5.6
+
+## 10.5.2
+
+### Patch Changes
+
+- 8a36c70: Re-publish to publish with Trusted Publishing
+- 3e0d137: Re-publishing via Trusted Publishing
+- Updated dependencies [8a36c70]
+- Updated dependencies [3e0d137]
+    - @khanacademy/wonder-blocks-announcer@1.0.5
+    - @khanacademy/wonder-blocks-cell@6.1.4
+    - @khanacademy/wonder-blocks-clickable@8.0.4
+    - @khanacademy/wonder-blocks-core@12.4.2
+    - @khanacademy/wonder-blocks-form@7.4.5
+    - @khanacademy/wonder-blocks-icon@5.3.4
+    - @khanacademy/wonder-blocks-icon-button@10.5.7
+    - @khanacademy/wonder-blocks-modal@8.5.5
+    - @khanacademy/wonder-blocks-pill@3.1.47
+    - @khanacademy/wonder-blocks-search-field@5.1.53
+    - @khanacademy/wonder-blocks-styles@0.2.36
+    - @khanacademy/wonder-blocks-timing@7.0.4
+    - @khanacademy/wonder-blocks-tokens@14.1.2
+    - @khanacademy/wonder-blocks-typography@4.2.26
+
+## 10.5.1
+
+### Patch Changes
+
+- Updated dependencies [540371d]
+    - @khanacademy/wonder-blocks-tokens@14.1.1
+    - @khanacademy/wonder-blocks-cell@6.1.3
+    - @khanacademy/wonder-blocks-clickable@8.0.3
+    - @khanacademy/wonder-blocks-form@7.4.4
+    - @khanacademy/wonder-blocks-icon@5.3.3
+    - @khanacademy/wonder-blocks-icon-button@10.5.6
+    - @khanacademy/wonder-blocks-modal@8.5.4
+    - @khanacademy/wonder-blocks-pill@3.1.46
+    - @khanacademy/wonder-blocks-search-field@5.1.52
+    - @khanacademy/wonder-blocks-styles@0.2.35
+    - @khanacademy/wonder-blocks-typography@4.2.25
+
+## 10.5.0
+
+### Minor Changes
+
+- a784e6c: Allow a `Partial` object for `labels` in `MultiSelect`, so consumers can decide which labels to override
+
 ## 10.4.10
 
 ### Patch Changes

@@ -1,5 +1,21 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 14.1.2
+
+### Patch Changes
+
+- 8a36c70: Re-publish to publish with Trusted Publishing
+- 3e0d137: Re-publishing via Trusted Publishing
+- Updated dependencies [8a36c70]
+- Updated dependencies [3e0d137]
+    - @khanacademy/wonder-blocks-theming@4.0.2
+
+## 14.1.1
+
+### Patch Changes
+
+- 540371d: Allow the 'default' theme to be nested within the 'thunderblocks' theme
+
 ## 14.1.0
 
 ### Minor Changes
