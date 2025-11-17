@@ -296,12 +296,7 @@ export const FocusManager: StoryComponentType = {
                     open={open}
                     onOpenChange={setOpen}
                     content={
-                        <View
-                            style={{
-                                padding: sizing.size_160,
-                                gap: sizing.size_160,
-                            }}
-                        >
+                        <View style={styles.contentContainer}>
                             <Heading>Title</Heading>
                             <BodyText>Floating content</BodyText>
                             <Button
@@ -342,12 +337,7 @@ export const DismissEnabled: StoryComponentType = {
                 open={open}
                 onOpenChange={setOpen}
                 content={
-                    <View
-                        style={{
-                            padding: sizing.size_160,
-                            gap: sizing.size_160,
-                        }}
-                    >
+                    <View style={styles.contentContainer}>
                         <Heading>Title</Heading>
                         <BodyText>Floating content</BodyText>
                         <Button kind="secondary" onClick={() => setOpen(false)}>
@@ -388,12 +378,7 @@ export const InitialFocus: StoryComponentType = {
                 onOpenChange={setOpen}
                 initialFocusRef={initialFocusRef}
                 content={
-                    <View
-                        style={{
-                            padding: sizing.size_160,
-                            gap: sizing.size_160,
-                        }}
-                    >
+                    <View style={styles.contentContainer}>
                         <Heading>Title</Heading>
                         <BodyText>Floating content</BodyText>
                         <Button kind="secondary" onClick={() => setOpen(false)}>
@@ -455,5 +440,9 @@ const styles = StyleSheet.create({
     },
     button: {
         placeSelf: "center",
+    },
+    contentContainer: {
+        padding: sizing.size_160,
+        gap: sizing.size_160,
     },
 });
