@@ -158,7 +158,7 @@ export const WithStyle: StoryObj<typeof Title> = {
                 color: semanticColor.core.foreground.instructive.subtle,
             },
             highlighted: {
-                background: semanticColor.core.background.disabled.strong,
+                background: semanticColor.core.background.neutral.subtle,
             },
         });
 

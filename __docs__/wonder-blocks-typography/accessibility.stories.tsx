@@ -96,6 +96,8 @@ export const ColorContrast = {
             </View>
             <Body
                 style={{
+                    // NOTE: Using disabled on purpose to demonstrate the
+                    // contrast ratio issue.
                     color: semanticColor.core.foreground.disabled.default,
                 }}
             >
