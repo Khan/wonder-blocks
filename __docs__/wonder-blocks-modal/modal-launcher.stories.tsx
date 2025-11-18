@@ -779,27 +779,18 @@ const styles = StyleSheet.create({
 });
 
 /**
- * This story helps debug focus management with controlled modals.
-    It specifically tests the case where a modal starts with opened=true and
-    needs to return focus to the last focused element when closed.
-
-    Because the wrapped ModalLauncher is unmounted on close, it needs special
-    focus management logic to return focus back to the main page.
+ * This story demonstrates using a single controlled ModalLauncher with
+ * conditional dialog content. Different buttons trigger different modal
+ * content, and focus management is handled correctly when the modal closes.
+ *
+ * This pattern is useful when you need to show different dialogs based on
+ * user interaction, but want to manage them through a single ModalLauncher
+ * instance.
  */
-export const ControlledModalFocusTest: StoryComponentType = () => {
+export const ConditionalDialogsWithFocusManagement: StoryComponentType = () => {
     const [openedModal, setOpenedModal] = React.useState<
         "REGULAR" | "WRAPPED" | null
     >(null);
-
-    // This button simulates what we're interacting with before the modal appears
-    const buttonRef = React.useRef<HTMLButtonElement>(null);
-
-    React.useEffect(() => {
-        // Focus the button when component mounts
-        if (buttonRef.current) {
-            buttonRef.current.focus();
-        }
-    }, []);
 
     const handleClose = () => {
         setOpenedModal(null);
@@ -823,8 +814,12 @@ export const ControlledModalFocusTest: StoryComponentType = () => {
         if (openedModal === "WRAPPED") {
             return (
                 <OnePaneDialog
-                    title="Wrapped Modal"
-                    content={<View>This modal starts with opened=true</View>}
+                    title="Alternative Modal"
+                    content={
+                        <View>
+                            This is an alternative modal with different content
+                        </View>
+                    }
                     footer={<Button onClick={closeModal}>Close Modal</Button>}
                 />
             );
@@ -837,27 +832,25 @@ export const ControlledModalFocusTest: StoryComponentType = () => {
     return (
         <View style={styles.storyContainer}>
             <BodyText>
-                This story reproduces the test case for controlled modals and
-                focus management. Steps to test: 1. Click &quot;Focus me
-                first&quot; button 2. Click &quot;Show wrapped modal&quot;
-                button 3. Close the modal using the close button 4. Focus should
-                return to &quot;Focus me first&quot; button
+                This story demonstrates conditional dialogs within a single
+                ModalLauncher. Click either button to open different modal
+                content. When the modal closes, focus returns to the triggering
+                button using the `closedFocusId` prop.
             </BodyText>
 
             <View style={styles.buttonRow}>
                 <Button
-                    ref={buttonRef}
                     onClick={() => setOpenedModal("REGULAR")}
-                    testId="focus-target"
+                    testId="regular-modal-trigger"
                 >
-                    Focus me first
+                    Open Regular Modal
                 </Button>
 
                 <Button
                     onClick={() => setOpenedModal("WRAPPED")}
-                    id="second-target"
+                    id="alternative-modal-trigger"
                 >
-                    Show wrapped modal
+                    Open Alternative Modal
                 </Button>
             </View>
 
@@ -866,7 +859,9 @@ export const ControlledModalFocusTest: StoryComponentType = () => {
                 opened={openedModal !== null}
                 onClose={handleClose}
                 closedFocusId={
-                    openedModal === "WRAPPED" ? "second-target" : undefined
+                    openedModal === "WRAPPED"
+                        ? "alternative-modal-trigger"
+                        : undefined
                 }
                 modal={conditionalDialog}
             />
@@ -874,7 +869,13 @@ export const ControlledModalFocusTest: StoryComponentType = () => {
     );
 };
 
-ControlledModalFocusTest.parameters = {};
+ConditionalDialogsWithFocusManagement.parameters = {
+    docs: {
+        description: {
+            story: "Shows how to use a single controlled ModalLauncher to display different dialog content based on which button was clicked. The `conditionalDialog` function returns different `OnePaneDialog` components based on the state. Focus management works correctly with the `closedFocusId` prop pointing to the specific button that opened each modal.",
+        },
+    },
+};
 
 /**
  * This example demonstrates how to use `ModalLauncher` to launch a modal that
