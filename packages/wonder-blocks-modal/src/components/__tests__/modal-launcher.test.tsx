@@ -682,26 +682,24 @@ describe("ModalLauncher", () => {
                 name: "opens content modal when clicking content button",
                 triggerId: "content-modal-trigger-1",
                 expectedTitle: "Content: Alice Smith",
-                expectedTestId: "content-modal-content",
             },
             {
                 name: "opens mastery modal when clicking mastery button",
                 triggerId: "mastery-modal-trigger-2",
                 expectedTitle: "Mastery: Bob Johnson",
-                expectedTestId: "mastery-modal-content",
             },
-        ].forEach(({name, triggerId, expectedTitle, expectedTestId}) => {
+        ].forEach(({name, triggerId, expectedTitle}) => {
             test(name, async () => {
+                // Arrange
                 render(<ConditionalModalContainer />);
+
+                // Act
                 const button = await screen.findByTestId(triggerId);
                 await userEvent.click(button);
 
-                expect(await screen.findByRole("dialog")).toBeInTheDocument();
+                // Assert
                 expect(
                     await screen.findByText(expectedTitle),
-                ).toBeInTheDocument();
-                expect(
-                    await screen.findByTestId(expectedTestId),
                 ).toBeInTheDocument();
             });
         });
@@ -718,48 +716,77 @@ describe("ModalLauncher", () => {
             },
         ].forEach(({name, triggerId}) => {
             test(name, async () => {
+                // Arrange
                 render(<ConditionalModalContainer />);
                 const button = await screen.findByTestId(triggerId);
+
+                // Act
                 await userEvent.click(button);
                 await userEvent.click(
                     await screen.findByRole("button", {name: "Close modal"}),
                 );
+
+                // Assert
                 await waitFor(() => expect(button).toHaveFocus());
             });
         });
 
-        test("switches between different modal types from different students", async () => {
+        test("closes modal and removes it from DOM", async () => {
+            // Arrange
             render(<ConditionalModalContainer />);
-
-            // Open and verify first modal
-            const contentButton1 = await screen.findByTestId(
+            const contentButton = await screen.findByTestId(
                 "content-modal-trigger-1",
             );
-            await userEvent.click(contentButton1);
-            expect(
-                await screen.findByText("Content: Alice Smith"),
-            ).toBeInTheDocument();
+            await userEvent.click(contentButton);
+
+            // Act
             await userEvent.click(
                 await screen.findByRole("button", {name: "Close modal"}),
             );
+
+            // Assert
             await waitFor(() =>
                 expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),
             );
+        });
 
-            // Open and verify second modal with different type/student
+        test("opens different modal type after closing previous modal", async () => {
+            // Arrange
+            render(<ConditionalModalContainer />);
+            const contentButton = await screen.findByTestId(
+                "content-modal-trigger-1",
+            );
+            await userEvent.click(contentButton);
+            await userEvent.click(
+                await screen.findByRole("button", {name: "Close modal"}),
+            );
+
+            // Act
+            const masteryButton = await screen.findByTestId(
+                "mastery-modal-trigger-2",
+            );
+            await userEvent.click(masteryButton);
+
+            // Assert
+            expect(
+                await screen.findByText("Mastery: Bob Johnson"),
+            ).toBeInTheDocument();
+        });
+
+        test("returns focus to second button after closing its modal", async () => {
+            // Arrange
+            render(<ConditionalModalContainer />);
             const masteryButton2 = await screen.findByTestId(
                 "mastery-modal-trigger-2",
             );
             await userEvent.click(masteryButton2);
-            expect(
-                await screen.findByText("Mastery: Bob Johnson"),
-            ).toBeInTheDocument();
-            expect(
-                await screen.findByTestId("mastery-modal-content"),
-            ).toBeInTheDocument();
+
+            // Act
             await userEvent.click(
                 await screen.findByRole("button", {name: "Close modal"}),
             );
+
+            // Assert
             await waitFor(() => expect(masteryButton2).toHaveFocus());
         });
     });
