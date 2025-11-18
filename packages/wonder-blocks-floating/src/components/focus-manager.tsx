@@ -7,22 +7,19 @@ import {FloatingFocusManager, FloatingRootContext} from "@floating-ui/react";
 export function FocusManager({
     context,
     dismissEnabled,
-    useFocusManager,
+    focusManagerEnabled,
     initialFocusRef,
     children,
 }: {
     context: FloatingRootContext;
     dismissEnabled: boolean;
-    useFocusManager: boolean;
+    focusManagerEnabled: boolean;
     initialFocusRef: React.RefObject<HTMLElement> | undefined;
     children: React.JSX.Element;
 }) {
-    if (!useFocusManager) {
-        return children;
-    }
-
     return (
         <FloatingFocusManager
+            disabled={!focusManagerEnabled}
             context={context}
             modal={false}
             initialFocus={initialFocusRef}

@@ -273,16 +273,22 @@ export const Portal: StoryComponentType = {
 
 /**
  * This story demonstrates how to manage the focus of the floating element when
- * it is opened. This can be done with the `useFocusManager`prop, which allows
- * you to handle focus programmatically. The focus should continue flowing from
- * the reference element to the floating element and back to the reference
- * element when the floating element is closed.
+ * it is opened. This can be done with the `focusManagerEnabled`prop, which
+ * allows you to handle focus programmatically. The focus should continue
+ * flowing from the reference element to the floating element and back to the
+ * reference element when the floating element is closed.
+ *
+ * By default, the first focusable element inside the floating element will
+ * receive focus when it is opened. You can set the initial focus to an element
+ * inside the floating element by passing a ref to the element that should
+ * receive focus when the floating element is opened via the `initialFocusRef`
+ * prop.
  */
 export const FocusManager: StoryComponentType = {
     ...Default,
     args: {
         open: false,
-        useFocusManager: true,
+        focusManagerEnabled: true,
         dismissEnabled: true,
     },
     render: function Render(args) {
@@ -325,7 +331,7 @@ export const DismissEnabled: StoryComponentType = {
     ...Default,
     args: {
         open: true,
-        useFocusManager: true,
+        focusManagerEnabled: true,
         dismissEnabled: true,
     },
     render: function Render(args) {
@@ -358,6 +364,9 @@ export const DismissEnabled: StoryComponentType = {
  * floating element when opened. This can be done by passing a ref to the
  * element that should receive focus when the floating element is opened via the
  * `initialFocusRef` prop.
+ *
+ * If not provided, the first focusable element inside the floating element
+ * will receive focus when it is opened.
  */
 export const InitialFocus: StoryComponentType = {
     ...Default,
@@ -365,7 +374,7 @@ export const InitialFocus: StoryComponentType = {
         open: false,
         portal: true,
         strategy: "fixed",
-        useFocusManager: true,
+        focusManagerEnabled: true,
     },
     render: function Render(args) {
         const [open, setOpen] = React.useState(args.open);

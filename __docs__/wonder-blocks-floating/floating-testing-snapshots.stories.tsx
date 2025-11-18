@@ -208,4 +208,11 @@ export const InitialFocus: Story = {
         shift: true,
         offset: 20,
     },
+    parameters: {
+        chromatic: {
+            // Ensures that the snapshot is taken after the floating element is
+            // mounted, so we can avoid tabIndex a11y issues.
+            delay: 1000,
+        },
+    },
 };
