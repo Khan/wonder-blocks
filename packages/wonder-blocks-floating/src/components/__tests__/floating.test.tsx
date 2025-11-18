@@ -479,7 +479,11 @@ describe("Floating", () => {
             it("should have no a11y violations", async () => {
                 // Arrange
                 const {container} = render(
-                    <Floating content="Floating content" open={true}>
+                    <Floating
+                        content="Floating content"
+                        open={true}
+                        focusManagerEnabled={false}
+                    >
                         <button>Trigger</button>
                     </Floating>,
                 );

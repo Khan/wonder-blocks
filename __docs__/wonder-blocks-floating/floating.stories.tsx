@@ -374,17 +374,18 @@ export const InitialFocus: StoryComponentType = {
         open: false,
         portal: true,
         strategy: "fixed",
-        focusManagerEnabled: true,
     },
     render: function Render(args) {
         const [open, setOpen] = React.useState(args.open);
         const initialFocusRef = React.useRef(null);
+        const {focusManagerEnabled, ...rest} = args;
 
         return (
             <Floating
-                {...args}
+                {...rest}
                 open={open}
                 onOpenChange={setOpen}
+                focusManagerEnabled={focusManagerEnabled ? true : undefined}
                 initialFocusRef={initialFocusRef}
                 content={
                     <View style={styles.contentContainer}>

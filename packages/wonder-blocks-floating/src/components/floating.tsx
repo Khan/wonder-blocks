@@ -116,37 +116,47 @@ type FloatingProps = {
     portal?: boolean;
 
     /**
-     * Whether to enable the FocusManager component to manage the focus of the
-     * floating element.
-     *
-     * When enabled, the focus will continue flowing from the reference element
-     * to the floating element and back to the reference element when the
-     * floating element is closed.
-     *
-     * This should be enabled in most cases, but it can be disabled if you want
-     * to handle the focus manually or use it in a non-interactive context (e.g.
-     * tooltips).
-     *
-     * @default true
-     */
-    focusManagerEnabled?: boolean;
-    /**
-     * The element that will receive focus when the floating element is opened.
-     *
-     * This is useful when you want to set the initial focus to an element
-     * inside the floating element when it is opened.
-     *
-     * If not provided, the first focusable element inside the floating element
-     * will receive focus when it is opened.
-     */
-    initialFocusRef?: React.RefObject<HTMLElement>;
-    /**
      * When enabled, user can hide the floating element by pressing the `esc`
      * key or clicking/tapping outside of it.
      * @default false
      */
     dismissEnabled?: boolean;
 };
+
+type FocusManagerProps =
+    | {
+          /**
+           * Whether to enable the FocusManager component to manage the focus of the
+           * floating element.
+           *
+           * When enabled, the focus will continue flowing from the reference element
+           * to the floating element and back to the reference element when the
+           * floating element is closed.
+           *
+           * This should be enabled in most cases, but it can be disabled if you want
+           * to handle the focus manually or use it in a non-interactive context (e.g.
+           * tooltips).
+           *
+           * @default true
+           */
+          focusManagerEnabled?: true;
+          /**
+           * The element that will receive focus when the floating element is opened.
+           *
+           * This is useful when you want to set the initial focus to an element
+           * inside the floating element when it is opened.
+           *
+           * If not provided, the first focusable element inside the floating element
+           * will receive focus when it is opened.
+           */
+          initialFocusRef?: React.RefObject<HTMLElement>;
+      }
+    | {
+          focusManagerEnabled: false | undefined;
+          initialFocusRef?: never;
+      };
+
+type Props = FloatingProps & FocusManagerProps;
 
 /**
  * The padding to use for the shift middleware. This is useful to avoid the
@@ -190,7 +200,7 @@ export default function Floating({
     flip: flipProp = true,
     shift: shiftProp = true,
     showArrow = true,
-}: FloatingProps) {
+}: Props) {
     const arrowRef = React.useRef(null);
     const prevOpenRef = React.useRef(open ?? false);
 
