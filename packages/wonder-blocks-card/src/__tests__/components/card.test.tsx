@@ -208,24 +208,6 @@ describe("Card", () => {
             expect(section).toBeInTheDocument();
         });
 
-        it("should apply aria-label as a fallback for a custom tag", () => {
-            // Arrange
-            render(
-                <Card tag="section" aria-label="Fallback label">
-                    <h2>Heading</h2>
-                    <p>Description</p>
-                </Card>,
-            );
-
-            // Act
-            const section = screen.getByRole("region", {
-                name: "Fallback label",
-            });
-
-            // Assert
-            expect(section).toBeInTheDocument();
-        });
-
         it("should apply the inert attribute", () => {
             // Arrange
             render(

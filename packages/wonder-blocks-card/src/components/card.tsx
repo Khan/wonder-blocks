@@ -73,10 +73,8 @@ type DismissProps =
  * Accessibility props for the Card.
  *
  * Labeling methods (in order of preference):
- * 1. `labels.cardAriaLabel` - For translatable strings (preferred)
- * 2. `aria-labelledby` - For ID references
- * 3. `aria-label` - also allowed as a fallback. `labels.cardAriaLabel` automatically
- * applies this attribute.
+ * 1. `labels.cardAriaLabel` - For translatable strings, automatically applied to `aria-label`
+ * 2. `aria-labelledby` - For ID references (will take precedence over `aria-label` if both are provided).
  *
  * Multiple methods can be provided for consumer simplicity, but only one will win
  * based on standard Accessible Name Computation rules.
@@ -87,7 +85,6 @@ type AccessibilityProps = {
         dismissButtonAriaLabel?: string;
     };
     "aria-labelledby"?: string;
-    "aria-label"?: string;
     "aria-busy"?: AriaProps["aria-busy"];
     "aria-roledescription"?: AriaProps["aria-roledescription"];
     role?: AriaProps["role"];
@@ -194,7 +191,6 @@ const Card = React.forwardRef(function Card(
         children,
         onDismiss,
         inert,
-        "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledBy,
         "aria-busy": ariaBusy,
         role,
@@ -209,15 +205,11 @@ const Card = React.forwardRef(function Card(
         elevation,
     });
 
-    // Determine the aria-label value with proper precedence:
-    // 1. labels.cardAriaLabel (preferred for translatable strings)
-    // 2. aria-labelledby (if provided, don't set aria-label)
-    // 3. aria-label (fallback)
     const ariaLabelValue = labels?.cardAriaLabel
         ? labels.cardAriaLabel
         : ariaLabelledBy
           ? undefined
-          : ariaLabel;
+          : undefined;
 
     return (
         <View
