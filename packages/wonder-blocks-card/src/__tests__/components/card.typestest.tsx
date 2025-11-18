@@ -201,6 +201,7 @@ import Card from "../../components/card";
         dismissButton: {top: 10, right: 10},
     }}
     ref={React.createRef<HTMLElement>()}
+    role="status"
 >
     <div>Complex content</div>
 </Card>;

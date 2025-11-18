@@ -128,24 +128,6 @@ describe("Card", () => {
             // Assert
             expect(dismissButton).toBeInTheDocument();
         });
-
-        it("should use default testId for dismiss button when no custom testId provided", () => {
-            // Arrange
-            render(
-                <Card
-                    onDismiss={() => {}}
-                    labels={{dismissButtonAriaLabel: "Close"}}
-                >
-                    <div>Content</div>
-                </Card>,
-            );
-
-            // Act
-            const dismissButton = screen.getByTestId("card-dismiss-button");
-
-            // Assert
-            expect(dismissButton).toBeInTheDocument();
-        });
     });
 
     describe("Accessibility", () => {

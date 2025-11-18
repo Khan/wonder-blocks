@@ -2,7 +2,7 @@ import * as React from "react";
 
 import {StyleSheet} from "aphrodite";
 import {StyleType, View} from "@khanacademy/wonder-blocks-core";
-import type {AriaAttributes} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 
 import {
     boxShadow,
@@ -88,8 +88,9 @@ type AccessibilityProps = {
     };
     "aria-labelledby"?: string;
     "aria-label"?: string;
-    "aria-busy"?: AriaAttributes["aria-busy"];
-    "aria-roledescription"?: AriaAttributes["aria-roledescription"];
+    "aria-busy"?: AriaProps["aria-busy"];
+    "aria-roledescription"?: AriaProps["aria-roledescription"];
+    role?: AriaProps["role"];
 };
 
 /**
@@ -185,7 +186,7 @@ const Card = React.forwardRef(function Card(
         styles,
         labels,
         tag,
-        testId = "card",
+        testId,
         background = "base-default",
         borderRadius = "small",
         paddingSize = "small",
@@ -196,6 +197,7 @@ const Card = React.forwardRef(function Card(
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledBy,
         "aria-busy": ariaBusy,
+        role,
     } = props;
 
     const isBackgroundToken =
@@ -231,6 +233,7 @@ const Card = React.forwardRef(function Card(
                 styles?.root,
             ]}
             ref={ref}
+            role={role}
             tag={tag}
             testId={testId}
             {...{inert: inert ? "" : undefined}}
