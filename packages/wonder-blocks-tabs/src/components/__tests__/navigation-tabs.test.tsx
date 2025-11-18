@@ -34,6 +34,21 @@ describe("NavigationTabs", () => {
         expect(nav).toBeInTheDocument();
     });
 
+    it("should render a use the tag prop if provided ", async () => {
+        // Arrange
+        render(
+            <NavigationTabs tag="div" testId="navigation-tabs">
+                {children}
+            </NavigationTabs>,
+        );
+
+        // Act
+        const navigationTabs = await screen.findByTestId("navigation-tabs");
+
+        // Assert
+        expect(navigationTabs).toHaveProperty("tagName", "DIV");
+    });
+
     it("should render a list element", async () => {
         // Arrange
         render(

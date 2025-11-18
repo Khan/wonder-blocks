@@ -49,9 +49,13 @@ type Props = AriaProps & {
      * if the user has `prefers-reduced-motion` opted in. Defaults to `false`.
      */
     animated?: boolean;
+
+    /**
+     * The HTML tag to render. Defaults to `nav`.
+     */
+    tag?: keyof JSX.IntrinsicElements;
 };
 
-const StyledNav = addStyle("nav");
 const StyledUl = addStyle("ul");
 const StyledDiv = addStyle("div");
 
@@ -90,8 +94,11 @@ export const NavigationTabs = React.forwardRef(function NavigationTabs(
         "aria-labelledby": ariaLabelledBy,
         styles: stylesProp,
         animated = false,
+        tag = "nav",
         ...otherProps
     } = props;
+
+    const StyledTag = React.useMemo(() => addStyle(tag), [tag]);
 
     /**
      * Ref for the list element so we can observe when the size of the children
@@ -117,7 +124,7 @@ export const NavigationTabs = React.forwardRef(function NavigationTabs(
     });
 
     return (
-        <StyledNav
+        <StyledTag
             id={id}
             data-testid={testId}
             aria-label={ariaLabel}
@@ -136,7 +143,7 @@ export const NavigationTabs = React.forwardRef(function NavigationTabs(
             the list so that it can slide between tab items. */}
                 {<div {...indicatorProps} />}
             </StyledDiv>
-        </StyledNav>
+        </StyledTag>
     );
 });
 
