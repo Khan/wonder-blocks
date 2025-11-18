@@ -560,4 +560,670 @@ describe("ModalLauncher", () => {
             expect(buttonToFocus).toHaveFocus();
         });
     });
+
+    describe("Conditional modal content pattern", () => {
+        type Student = {
+            id: string;
+            name: string;
+            progress: number;
+        };
+
+        const mockStudents: Array<Student> = [
+            {id: "1", name: "Alice Smith", progress: 85},
+            {id: "2", name: "Bob Johnson", progress: 70},
+            {id: "3", name: "Charlie Brown", progress: 95},
+        ];
+
+        test("opens content modal when clicking content button", async () => {
+            // Arrange
+            const SingleModalLauncherContainer = () => {
+                const [selectedItem, setSelectedItem] = React.useState<{
+                    type: "content" | "mastery";
+                    id: string;
+                } | null>(null);
+                const [modalTriggerId, setModalTriggerId] = React.useState<
+                    string | null
+                >(null);
+
+                const handleOpenModal = (
+                    type: "content" | "mastery",
+                    triggerId: string,
+                    studentId: string,
+                ) => {
+                    setModalTriggerId(triggerId);
+                    setSelectedItem({type, id: studentId});
+                };
+
+                const handleCloseModal = () => {
+                    setSelectedItem(null);
+                    setModalTriggerId(null);
+                };
+
+                const selectedStudent = mockStudents.find(
+                    (s) => s.id === selectedItem?.id,
+                );
+
+                const conditionalModal = React.useMemo(() => {
+                    if (selectedItem?.type === "content") {
+                        return (
+                            <OnePaneDialog
+                                title={`Content: ${selectedStudent?.name}`}
+                                content={
+                                    <View testId="content-modal-content">
+                                        Content completion details
+                                    </View>
+                                }
+                            />
+                        );
+                    }
+
+                    if (selectedItem?.type === "mastery") {
+                        return (
+                            <OnePaneDialog
+                                title={`Mastery: ${selectedStudent?.name}`}
+                                content={
+                                    <View testId="mastery-modal-content">
+                                        Mastery progress details
+                                    </View>
+                                }
+                            />
+                        );
+                    }
+
+                    return null;
+                }, [selectedItem, selectedStudent]);
+
+                return (
+                    <View>
+                        {mockStudents.map((student) => {
+                            const contentTriggerId = `content-modal-trigger-${student.id}`;
+                            const masteryTriggerId = `mastery-modal-trigger-${student.id}`;
+                            return (
+                                <View key={student.id}>
+                                    <Button
+                                        testId={contentTriggerId}
+                                        id={contentTriggerId}
+                                        onClick={() =>
+                                            handleOpenModal(
+                                                "content",
+                                                contentTriggerId,
+                                                student.id,
+                                            )
+                                        }
+                                    >
+                                        {student.name} - Content
+                                    </Button>
+                                    <Button
+                                        testId={masteryTriggerId}
+                                        id={masteryTriggerId}
+                                        onClick={() =>
+                                            handleOpenModal(
+                                                "mastery",
+                                                masteryTriggerId,
+                                                student.id,
+                                            )
+                                        }
+                                    >
+                                        {student.name} - Mastery
+                                    </Button>
+                                </View>
+                            );
+                        })}
+                        <ModalLauncher
+                            opened={!!selectedItem}
+                            onClose={handleCloseModal}
+                            closedFocusId={modalTriggerId || undefined}
+                            modal={conditionalModal}
+                        />
+                    </View>
+                );
+            };
+
+            render(<SingleModalLauncherContainer />);
+
+            // Act
+            const contentButton = await screen.findByTestId(
+                "content-modal-trigger-1",
+            );
+            await userEvent.click(contentButton);
+
+            // Assert
+            const dialog = await screen.findByRole("dialog");
+            expect(dialog).toBeInTheDocument();
+            expect(
+                await screen.findByText("Content: Alice Smith"),
+            ).toBeInTheDocument();
+            expect(
+                await screen.findByTestId("content-modal-content"),
+            ).toBeInTheDocument();
+        });
+
+        test("opens mastery modal when clicking mastery button", async () => {
+            // Arrange
+            const SingleModalLauncherContainer = () => {
+                const [selectedItem, setSelectedItem] = React.useState<{
+                    type: "content" | "mastery";
+                    id: string;
+                } | null>(null);
+                const [modalTriggerId, setModalTriggerId] = React.useState<
+                    string | null
+                >(null);
+
+                const handleOpenModal = (
+                    type: "content" | "mastery",
+                    triggerId: string,
+                    studentId: string,
+                ) => {
+                    setModalTriggerId(triggerId);
+                    setSelectedItem({type, id: studentId});
+                };
+
+                const handleCloseModal = () => {
+                    setSelectedItem(null);
+                    setModalTriggerId(null);
+                };
+
+                const selectedStudent = mockStudents.find(
+                    (s) => s.id === selectedItem?.id,
+                );
+
+                const conditionalModal = React.useMemo(() => {
+                    if (selectedItem?.type === "content") {
+                        return (
+                            <OnePaneDialog
+                                title={`Content: ${selectedStudent?.name}`}
+                                content={
+                                    <View testId="content-modal-content">
+                                        Content completion details
+                                    </View>
+                                }
+                            />
+                        );
+                    }
+
+                    if (selectedItem?.type === "mastery") {
+                        return (
+                            <OnePaneDialog
+                                title={`Mastery: ${selectedStudent?.name}`}
+                                content={
+                                    <View testId="mastery-modal-content">
+                                        Mastery progress details
+                                    </View>
+                                }
+                            />
+                        );
+                    }
+
+                    return null;
+                }, [selectedItem, selectedStudent]);
+
+                return (
+                    <View>
+                        {mockStudents.map((student) => {
+                            const contentTriggerId = `content-modal-trigger-${student.id}`;
+                            const masteryTriggerId = `mastery-modal-trigger-${student.id}`;
+                            return (
+                                <View key={student.id}>
+                                    <Button
+                                        testId={contentTriggerId}
+                                        id={contentTriggerId}
+                                        onClick={() =>
+                                            handleOpenModal(
+                                                "content",
+                                                contentTriggerId,
+                                                student.id,
+                                            )
+                                        }
+                                    >
+                                        {`${student.name} - Content`}
+                                    </Button>
+                                    <Button
+                                        testId={masteryTriggerId}
+                                        id={masteryTriggerId}
+                                        onClick={() =>
+                                            handleOpenModal(
+                                                "mastery",
+                                                masteryTriggerId,
+                                                student.id,
+                                            )
+                                        }
+                                    >
+                                        {`${student.name} - Mastery`}
+                                    </Button>
+                                </View>
+                            );
+                        })}
+                        <ModalLauncher
+                            opened={!!selectedItem}
+                            onClose={handleCloseModal}
+                            closedFocusId={modalTriggerId || undefined}
+                            modal={conditionalModal}
+                        />
+                    </View>
+                );
+            };
+
+            render(<SingleModalLauncherContainer />);
+
+            // Act
+            const masteryButton = await screen.findByTestId(
+                "mastery-modal-trigger-2",
+            );
+            await userEvent.click(masteryButton);
+
+            // Assert
+            const dialog = await screen.findByRole("dialog");
+            expect(dialog).toBeInTheDocument();
+            expect(
+                await screen.findByText("Mastery: Bob Johnson"),
+            ).toBeInTheDocument();
+            expect(
+                await screen.findByTestId("mastery-modal-content"),
+            ).toBeInTheDocument();
+        });
+
+        test("returns focus to correct button after closing content modal", async () => {
+            // Arrange
+            const SingleModalLauncherContainer = () => {
+                const [selectedItem, setSelectedItem] = React.useState<{
+                    type: "content" | "mastery";
+                    id: string;
+                } | null>(null);
+                const [modalTriggerId, setModalTriggerId] = React.useState<
+                    string | null
+                >(null);
+
+                const handleOpenModal = (
+                    type: "content" | "mastery",
+                    triggerId: string,
+                    studentId: string,
+                ) => {
+                    setModalTriggerId(triggerId);
+                    setSelectedItem({type, id: studentId});
+                };
+
+                const handleCloseModal = () => {
+                    setSelectedItem(null);
+                    setModalTriggerId(null);
+                };
+
+                const selectedStudent = mockStudents.find(
+                    (s) => s.id === selectedItem?.id,
+                );
+
+                const conditionalModal = React.useMemo(() => {
+                    if (selectedItem?.type === "content") {
+                        return (
+                            <OnePaneDialog
+                                title={`Content: ${selectedStudent?.name}`}
+                                content={
+                                    <View testId="content-modal-content">
+                                        Content completion details
+                                    </View>
+                                }
+                            />
+                        );
+                    }
+
+                    if (selectedItem?.type === "mastery") {
+                        return (
+                            <OnePaneDialog
+                                title={`Mastery: ${selectedStudent?.name}`}
+                                content={
+                                    <View testId="mastery-modal-content">
+                                        Mastery progress details
+                                    </View>
+                                }
+                            />
+                        );
+                    }
+
+                    return null;
+                }, [selectedItem, selectedStudent]);
+
+                return (
+                    <View>
+                        {mockStudents.map((student) => {
+                            const contentTriggerId = `content-modal-trigger-${student.id}`;
+                            const masteryTriggerId = `mastery-modal-trigger-${student.id}`;
+                            return (
+                                <View key={student.id}>
+                                    <Button
+                                        testId={contentTriggerId}
+                                        id={contentTriggerId}
+                                        onClick={() =>
+                                            handleOpenModal(
+                                                "content",
+                                                contentTriggerId,
+                                                student.id,
+                                            )
+                                        }
+                                    >
+                                        {`${student.name} - Content`}
+                                    </Button>
+                                    <Button
+                                        testId={masteryTriggerId}
+                                        id={masteryTriggerId}
+                                        onClick={() =>
+                                            handleOpenModal(
+                                                "mastery",
+                                                masteryTriggerId,
+                                                student.id,
+                                            )
+                                        }
+                                    >
+                                        {`${student.name} - Mastery`}
+                                    </Button>
+                                </View>
+                            );
+                        })}
+                        <ModalLauncher
+                            opened={!!selectedItem}
+                            onClose={handleCloseModal}
+                            closedFocusId={modalTriggerId || undefined}
+                            modal={conditionalModal}
+                        />
+                    </View>
+                );
+            };
+
+            render(<SingleModalLauncherContainer />);
+
+            const contentButton = await screen.findByTestId(
+                "content-modal-trigger-1",
+            );
+            await userEvent.click(contentButton);
+
+            // Act
+            // Close modal
+            const closeButton = await screen.findByRole("button", {
+                name: "Close modal",
+            });
+            await userEvent.click(closeButton);
+
+            // Assert
+            await waitFor(() => {
+                expect(contentButton).toHaveFocus();
+            });
+        });
+
+        test("returns focus to correct button after closing mastery modal from different row", async () => {
+            // Arrange
+            const SingleModalLauncherContainer = () => {
+                const [selectedItem, setSelectedItem] = React.useState<{
+                    type: "content" | "mastery";
+                    id: string;
+                } | null>(null);
+                const [modalTriggerId, setModalTriggerId] = React.useState<
+                    string | null
+                >(null);
+
+                const handleOpenModal = (
+                    type: "content" | "mastery",
+                    triggerId: string,
+                    studentId: string,
+                ) => {
+                    setModalTriggerId(triggerId);
+                    setSelectedItem({type, id: studentId});
+                };
+
+                const handleCloseModal = () => {
+                    setSelectedItem(null);
+                    setModalTriggerId(null);
+                };
+
+                const selectedStudent = mockStudents.find(
+                    (s) => s.id === selectedItem?.id,
+                );
+
+                const conditionalModal = React.useMemo(() => {
+                    if (selectedItem?.type === "content") {
+                        return (
+                            <OnePaneDialog
+                                title={`Content: ${selectedStudent?.name}`}
+                                content={
+                                    <View testId="content-modal-content">
+                                        Content completion details
+                                    </View>
+                                }
+                            />
+                        );
+                    }
+
+                    if (selectedItem?.type === "mastery") {
+                        return (
+                            <OnePaneDialog
+                                title={`Mastery: ${selectedStudent?.name}`}
+                                content={
+                                    <View testId="mastery-modal-content">
+                                        Mastery progress details
+                                    </View>
+                                }
+                            />
+                        );
+                    }
+
+                    return null;
+                }, [selectedItem, selectedStudent]);
+
+                return (
+                    <View>
+                        {mockStudents.map((student) => {
+                            const contentTriggerId = `content-modal-trigger-${student.id}`;
+                            const masteryTriggerId = `mastery-modal-trigger-${student.id}`;
+                            return (
+                                <View key={student.id}>
+                                    <Button
+                                        testId={contentTriggerId}
+                                        id={contentTriggerId}
+                                        onClick={() =>
+                                            handleOpenModal(
+                                                "content",
+                                                contentTriggerId,
+                                                student.id,
+                                            )
+                                        }
+                                    >
+                                        {student.name} - Content
+                                    </Button>
+                                    <Button
+                                        testId={masteryTriggerId}
+                                        id={masteryTriggerId}
+                                        onClick={() =>
+                                            handleOpenModal(
+                                                "mastery",
+                                                masteryTriggerId,
+                                                student.id,
+                                            )
+                                        }
+                                    >
+                                        {student.name} - Mastery
+                                    </Button>
+                                </View>
+                            );
+                        })}
+                        <ModalLauncher
+                            opened={!!selectedItem}
+                            onClose={handleCloseModal}
+                            closedFocusId={modalTriggerId || undefined}
+                            modal={conditionalModal}
+                        />
+                    </View>
+                );
+            };
+
+            render(<SingleModalLauncherContainer />);
+
+            const masteryButton = await screen.findByTestId(
+                "mastery-modal-trigger-3",
+            );
+            await userEvent.click(masteryButton);
+
+            // Act
+            // Close modal
+            const closeButton = await screen.findByRole("button", {
+                name: "Close modal",
+            });
+            await userEvent.click(closeButton);
+
+            // Assert
+            await waitFor(() => {
+                expect(masteryButton).toHaveFocus();
+            });
+        });
+
+        test("switches between different modal types from different students", async () => {
+            // Arrange
+            const SingleModalLauncherContainer = () => {
+                const [selectedItem, setSelectedItem] = React.useState<{
+                    type: "content" | "mastery";
+                    id: string;
+                } | null>(null);
+                const [modalTriggerId, setModalTriggerId] = React.useState<
+                    string | null
+                >(null);
+
+                const handleOpenModal = (
+                    type: "content" | "mastery",
+                    triggerId: string,
+                    studentId: string,
+                ) => {
+                    setModalTriggerId(triggerId);
+                    setSelectedItem({type, id: studentId});
+                };
+
+                const handleCloseModal = () => {
+                    setSelectedItem(null);
+                    setModalTriggerId(null);
+                };
+
+                const selectedStudent = mockStudents.find(
+                    (s) => s.id === selectedItem?.id,
+                );
+
+                const conditionalModal = React.useMemo(() => {
+                    if (selectedItem?.type === "content") {
+                        return (
+                            <OnePaneDialog
+                                title={`Content: ${selectedStudent?.name}`}
+                                content={
+                                    <View testId="content-modal-content">
+                                        Content completion details
+                                    </View>
+                                }
+                            />
+                        );
+                    }
+
+                    if (selectedItem?.type === "mastery") {
+                        return (
+                            <OnePaneDialog
+                                title={`Mastery: ${selectedStudent?.name}`}
+                                content={
+                                    <View testId="mastery-modal-content">
+                                        Mastery progress details
+                                    </View>
+                                }
+                            />
+                        );
+                    }
+
+                    return null;
+                }, [selectedItem, selectedStudent]);
+
+                return (
+                    <View>
+                        {mockStudents.map((student) => {
+                            const contentTriggerId = `content-modal-trigger-${student.id}`;
+                            const masteryTriggerId = `mastery-modal-trigger-${student.id}`;
+                            return (
+                                <View key={student.id}>
+                                    <Button
+                                        testId={contentTriggerId}
+                                        id={contentTriggerId}
+                                        onClick={() =>
+                                            handleOpenModal(
+                                                "content",
+                                                contentTriggerId,
+                                                student.id,
+                                            )
+                                        }
+                                    >
+                                        {student.name} - Content
+                                    </Button>
+                                    <Button
+                                        testId={masteryTriggerId}
+                                        id={masteryTriggerId}
+                                        onClick={() =>
+                                            handleOpenModal(
+                                                "mastery",
+                                                masteryTriggerId,
+                                                student.id,
+                                            )
+                                        }
+                                    >
+                                        {student.name} - Mastery
+                                    </Button>
+                                </View>
+                            );
+                        })}
+                        <ModalLauncher
+                            opened={!!selectedItem}
+                            onClose={handleCloseModal}
+                            closedFocusId={modalTriggerId || undefined}
+                            modal={conditionalModal}
+                        />
+                    </View>
+                );
+            };
+
+            render(<SingleModalLauncherContainer />);
+
+            // Act - Open first content modal
+            const contentButton1 = await screen.findByTestId(
+                "content-modal-trigger-1",
+            );
+            await userEvent.click(contentButton1);
+
+            // Assert - Verify first content modal
+            expect(
+                await screen.findByText("Content: Alice Smith"),
+            ).toBeInTheDocument();
+
+            // Act - Close first modal
+            const closeButton1 = await screen.findByRole("button", {
+                name: "Close modal",
+            });
+            await userEvent.click(closeButton1);
+
+            await waitFor(() => {
+                expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+            });
+
+            // Act - Open mastery modal for different student
+            const masteryButton2 = await screen.findByTestId(
+                "mastery-modal-trigger-2",
+            );
+            await userEvent.click(masteryButton2);
+
+            // Assert - Verify different modal type and student
+            expect(
+                await screen.findByText("Mastery: Bob Johnson"),
+            ).toBeInTheDocument();
+            expect(
+                await screen.findByTestId("mastery-modal-content"),
+            ).toBeInTheDocument();
+
+            // Act - Close second modal
+            const closeButton2 = await screen.findByRole("button", {
+                name: "Close modal",
+            });
+            await userEvent.click(closeButton2);
+
+            // Assert - Focus returns to second button
+            await waitFor(() => {
+                expect(masteryButton2).toHaveFocus();
+            });
+        });
+    });
 });

@@ -77,7 +77,7 @@ const getDialogElement = (node: HTMLElement): HTMLElement => {
         node.querySelector('[role="dialog"]'),
     ) as any;
     // add tabIndex to make the Dialog focusable
-    dialogElement.tabIndex = -1;
+    dialogElement?.setAttribute("tabindex", "-1");
 
     return dialogElement;
 };
