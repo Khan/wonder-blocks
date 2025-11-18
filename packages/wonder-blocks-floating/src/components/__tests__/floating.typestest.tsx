@@ -13,6 +13,19 @@ import Floating from "../floating";
     <button>Trigger</button>
 </Floating>;
 
+/**
+ * Focus management
+ */
+// focusManagerEnabled is true by default so it is not required when
+// initialFocusRef is provided.
+<Floating
+    content="Floating content"
+    open={true}
+    initialFocusRef={React.createRef<HTMLElement>()}
+>
+    <button>Trigger</button>
+</Floating>;
+
 // @ts-expect-error - focusManagerEnabled=true is required when initialFocusRef
 // is provided
 <Floating

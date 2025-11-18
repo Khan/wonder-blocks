@@ -152,7 +152,7 @@ type FocusManagerProps =
           initialFocusRef?: React.RefObject<HTMLElement>;
       }
     | {
-          focusManagerEnabled: false | undefined;
+          focusManagerEnabled: false;
           initialFocusRef?: never;
       };
 
