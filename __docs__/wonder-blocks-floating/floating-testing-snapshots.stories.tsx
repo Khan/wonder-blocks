@@ -207,12 +207,7 @@ export const InitialFocus: Story = {
         flip: true,
         shift: true,
         offset: 20,
-    },
-    parameters: {
-        chromatic: {
-            // Ensures that the snapshot is taken after the floating element is
-            // mounted, so we can avoid tabIndex a11y issues.
-            delay: 1000,
-        },
+        // NOTE: Disabling portal to avoid a11y false positives.
+        portal: false,
     },
 };
