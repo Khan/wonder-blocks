@@ -101,7 +101,7 @@ const ModalBackdrop = ({
         const firstFocusableElement =
             // 1. try to get element specified by the user
             getInitialFocusElement(node, initialFocusId) ||
-            // 2. get first occurencees from list of focusable elements
+            // 2. get first occurrence from list of focusable elements
             getFirstFocusableElement(node) ||
             // 3. get the dialog itself
             getDialogElement(node);
