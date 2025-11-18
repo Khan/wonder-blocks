@@ -76,8 +76,6 @@ const getDialogElement = (node: HTMLElement): HTMLElement => {
     const dialogElement: HTMLElement = ReactDOM.findDOMNode(
         node.querySelector('[role="dialog"]'),
     ) as any;
-    // eslint-disable-next-line no-console
-    console.log("dialogElement", dialogElement);
     // add tabIndex to make the Dialog focusable
     dialogElement?.setAttribute("tabindex", "-1");
 
@@ -99,8 +97,6 @@ const ModalBackdrop = ({
         if (!node) {
             return;
         }
-        // eslint-disable-next-line no-console
-        console.log("node", node);
 
         const firstFocusableElement =
             // 1. try to get element specified by the user
