@@ -4,7 +4,11 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
-import {color, sizing, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    semanticColor,
+    sizing,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {
     Title,
     Heading,
@@ -151,10 +155,10 @@ export const WithStyle: StoryObj<typeof Title> = {
     render: () => {
         const styles = StyleSheet.create({
             blueText: {
-                color: color.blue,
+                color: semanticColor.core.foreground.instructive.subtle,
             },
             highlighted: {
-                background: color.offBlack16,
+                background: semanticColor.core.background.neutral.subtle,
             },
         });
 
@@ -397,7 +401,7 @@ Paragraph.parameters = {
 
 export const LineHeight: StoryObj<any> = () => {
     const style = {
-        outline: `1px solid ${color.offBlack}`,
+        outline: `1px solid ${semanticColor.core.border.neutral.strong}`,
         marginBottom: spacing.small_12,
     } as const;
 

@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import {CompactCell} from "@khanacademy/wonder-blocks-cell";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {IconMappings} from "../../../wonder-blocks-icon/phosphor-icon.argtypes";
 
 import ComponentTile from "../component-tile";
@@ -37,7 +37,7 @@ export default function CompactCellTile(props: CommonTileProps) {
 
 const localStyles = StyleSheet.create({
     cellExample: {
-        backgroundColor: color.offWhite,
+        backgroundColor: semanticColor.core.background.base.subtle,
         padding: spacing.large_24,
     },
 });

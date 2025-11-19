@@ -53,7 +53,7 @@ import cookie from "@phosphor-icons/core/regular/cookie.svg";
 import cookieBold from "@phosphor-icons/core/bold/cookie-bold.svg";
 import iceCream from "@phosphor-icons/core/regular/ice-cream.svg";
 
-import {color} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 /**
  * Some pre-defined icon examples to use in our stories.
@@ -129,8 +129,8 @@ export default {
         },
     },
     color: {
-        options: Object.keys(color),
-        mapping: color,
+        options: Object.keys(semanticColor),
+        mapping: semanticColor,
         control: {
             type: "select",
         },
