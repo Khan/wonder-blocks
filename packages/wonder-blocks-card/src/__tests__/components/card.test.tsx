@@ -208,6 +208,30 @@ describe("Card", () => {
             expect(section).toBeInTheDocument();
         });
 
+        it("should only apply aria-labelledby", () => {
+            // Arrange
+            render(
+                <div>
+                    <h2 id="card-heading">My Card Title</h2>
+                    <Card
+                        tag="section"
+                        aria-labelledby="card-heading"
+                        aria-label="Fallback label"
+                    >
+                        <p>Description</p>
+                    </Card>
+                </div>,
+            );
+
+            // Act
+            const section = screen.getByRole("region", {
+                name: "My Card Title",
+            });
+
+            // Assert
+            expect(section).toBeInTheDocument();
+        });
+
         it("should apply the inert attribute", () => {
             // Arrange
             render(

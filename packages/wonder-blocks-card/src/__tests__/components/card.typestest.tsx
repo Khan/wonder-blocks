@@ -118,8 +118,7 @@ import Card from "../../components/card";
     <h2 id="someId2">Card title</h2>
 </Card>;
 
-// Multiple label mechanisms are allowed to simplify consumer typing, but only one will win
-// based on Accessible Name Computation rules
+// @ts-expect-error - aria-labelledby cannot be used with labels.cardAriaLabel
 <Card
     tag="figure"
     aria-labelledby="someId2"
@@ -128,6 +127,7 @@ import Card from "../../components/card";
     <h2 id="someId2">Card title</h2>
 </Card>;
 
+// @ts-expect-error - aria-labelledby cannot be used with labels.cardAriaLabel
 <Card
     tag="section"
     aria-labelledby="someId2"

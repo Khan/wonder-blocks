@@ -19,10 +19,10 @@ By default, cards render as `<div>` elements. However, you can specify a differe
 
 When using semantic tags like `tag="section"` or `tag="figure"`, you should provide an accessible name for the Card using one of the following (in order of preference):
 
- 1. `labels.cardAriaLabel`: preferred for translatable strings. It automatically applies to the `aria-label` attribute. See the Dismiss Button section below for more.
- 2. `aria-labelledby`: for ID references to existing elements (will take precedence over `aria-label` if both are provided).
+ 1. `labels.cardAriaLabel`: preferred for translatable strings. It automatically applies to the `aria-label` attribute. See the Dismiss Button section below for dismiss button labeling requirements.
+ 2. `aria-labelledby`: for ID references to existing elements.
 
-Only one labeling mechanism should be used at a time to avoid confusion. Refer to the [Accessible Name Computation specification](https://www.w3.org/TR/accname-1.2/#computation-steps) to understand how this is standardized.
+Only one labeling mechanism can be used at a time. Refer to the [Accessible Name Computation specification](https://www.w3.org/TR/accname-1.2/#computation-steps) to understand how this is standardized.
 
 When the `onDismiss` prop is provided, a dismiss button will be rendered. In this case, the `labels.dismissButtonAriaLabel` prop is required to provide a translatable, accessible label for the dismiss button.
 

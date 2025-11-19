@@ -74,17 +74,30 @@ type DismissProps =
  *
  * Labeling methods (in order of preference):
  * 1. `labels.cardAriaLabel` - For translatable strings, automatically applied to `aria-label`
- * 2. `aria-labelledby` - For ID references (will take precedence over `aria-label` if both are provided).
+ * 2. `aria-labelledby` - For ID references to existing elements
  *
- * Multiple methods can be provided for consumer simplicity, but only one will win
- * based on standard Accessible Name Computation rules.
+ * Only one labeling mechanism can be used at a time. The type system enforces this
+ * by using discriminated unions.
  */
-type AccessibilityProps = {
-    labels?: {
-        cardAriaLabel?: string;
-        dismissButtonAriaLabel?: string;
-    };
-    "aria-labelledby"?: string;
+type LabelingProps =
+    | {
+          /** Translatable label string for aria-label */
+          labels?: {
+              cardAriaLabel?: string;
+              dismissButtonAriaLabel?: string;
+          };
+          "aria-labelledby"?: never;
+      }
+    | {
+          /** ID reference for aria-labelledby */
+          "aria-labelledby"?: string;
+          labels?: {
+              cardAriaLabel?: never;
+              dismissButtonAriaLabel?: string;
+          };
+      };
+
+type AccessibilityProps = LabelingProps & {
     "aria-busy"?: AriaProps["aria-busy"];
     "aria-roledescription"?: AriaProps["aria-roledescription"];
     role?: AriaProps["role"];
@@ -205,16 +218,10 @@ const Card = React.forwardRef(function Card(
         elevation,
     });
 
-    const ariaLabelValue = labels?.cardAriaLabel
-        ? labels.cardAriaLabel
-        : ariaLabelledBy
-          ? undefined
-          : undefined;
-
     return (
         <View
             aria-busy={ariaBusy}
-            aria-label={ariaLabelValue}
+            aria-label={labels?.cardAriaLabel}
             aria-labelledby={ariaLabelledBy}
             style={[
                 componentStyles.root,
@@ -234,7 +241,7 @@ const Card = React.forwardRef(function Card(
                 <DismissButton
                     aria-label={labels?.dismissButtonAriaLabel || "Close"}
                     onClick={(e) => onDismiss?.(e)}
-                    testId={`${testId}-dismiss-button`}
+                    testId={testId && `${testId}-dismiss-button`}
                 />
             ) : null}
             {children}
