@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-card
 
+## 1.3.0
+
+### Minor Changes
+
+- d36c492: Updates labeling requirements and adds testId to dismiss button
+
 ## 1.2.5
 
 ### Patch Changes

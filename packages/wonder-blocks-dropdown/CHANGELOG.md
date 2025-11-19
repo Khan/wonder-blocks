@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.5.4
+
+### Patch Changes
+
+- 415dd5a: Fixes DropdownOpener to propagate onBlur event correctly. This change allows to update the focused styles when the opener is blurred.
+- Updated dependencies [8b713e2]
+    - @khanacademy/wonder-blocks-modal@8.5.7
+
 ## 10.5.3
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-modal
 
+## 8.5.7
+
+### Patch Changes
+
+- 8b713e2: Adds a bugfix for ModalBackdrop when dialogs are conditionally rendered
+
 ## 8.5.6
 
 ### Patch Changes
