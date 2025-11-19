@@ -34,7 +34,7 @@ describe("NavigationTabs", () => {
         expect(nav).toBeInTheDocument();
     });
 
-    it("should render a use the tag prop if provided ", async () => {
+    it("should use the tag prop if provided ", async () => {
         // Arrange
         render(
             <NavigationTabs tag="div" testId="navigation-tabs">
