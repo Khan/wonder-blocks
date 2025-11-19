@@ -94,6 +94,42 @@ describe("Card", () => {
         });
     });
 
+    describe("Test IDs", () => {
+        it("should apply a custom testId for card", () => {
+            // Arrange
+            render(
+                <Card testId="my-card">
+                    <div>Content</div>
+                </Card>,
+            );
+
+            // Act
+            const card = screen.getByTestId("my-card");
+
+            // Assert
+            expect(card).toBeInTheDocument();
+        });
+
+        it("should append -dismiss-button to testId for dismiss button", () => {
+            // Arrange
+            render(
+                <Card
+                    testId="my-card"
+                    onDismiss={() => {}}
+                    labels={{dismissButtonAriaLabel: "Close"}}
+                >
+                    <div>Content</div>
+                </Card>,
+            );
+
+            // Act
+            const dismissButton = screen.getByTestId("my-card-dismiss-button");
+
+            // Assert
+            expect(dismissButton).toBeInTheDocument();
+        });
+    });
+
     describe("Accessibility", () => {
         it("should pass custom aria-label to dismiss button", () => {
             // Arrange
@@ -131,7 +167,7 @@ describe("Card", () => {
             expect(section).toBeInTheDocument();
         });
 
-        it("should apply labels.cardAriaLabel for a custom tag", () => {
+        it("should apply labels.cardAriaLabel for a custom tag (preferred)", () => {
             // Arrange
             render(
                 <Card
@@ -146,6 +182,50 @@ describe("Card", () => {
             // Act
             const section = screen.getByRole("region", {
                 name: "Custom section label",
+            });
+
+            // Assert
+            expect(section).toBeInTheDocument();
+        });
+
+        it("should apply aria-labelledby for a custom tag", () => {
+            // Arrange
+            render(
+                <div>
+                    <h2 id="card-heading">My Card Title</h2>
+                    <Card tag="section" aria-labelledby="card-heading">
+                        <p>Description</p>
+                    </Card>
+                </div>,
+            );
+
+            // Act
+            const section = screen.getByRole("region", {
+                name: "My Card Title",
+            });
+
+            // Assert
+            expect(section).toBeInTheDocument();
+        });
+
+        it("should only apply aria-labelledby", () => {
+            // Arrange
+            render(
+                <div>
+                    <h2 id="card-heading">My Card Title</h2>
+                    <Card
+                        tag="section"
+                        aria-labelledby="card-heading"
+                        aria-label="Fallback label"
+                    >
+                        <p>Description</p>
+                    </Card>
+                </div>,
+            );
+
+            // Act
+            const section = screen.getByRole("region", {
+                name: "My Card Title",
             });
 
             // Assert
