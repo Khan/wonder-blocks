@@ -22,6 +22,7 @@ catalog:
     node-fetch: ^2.6.7
     # React
     "react": 18.2.0
+    "react-day-picker": ^9.11.1
     "react-dom": 18.2.0
     # React Router
     react-router: 5.3.4
