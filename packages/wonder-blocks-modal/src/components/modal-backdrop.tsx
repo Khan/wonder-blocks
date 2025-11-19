@@ -48,7 +48,7 @@ const getInitialFocusElement = (
     // eslint-disable-next-line import/no-deprecated
     return ReactDOM.findDOMNode(
         node.querySelector(`#${initialFocusId}`),
-    ) as any;
+    ) as HTMLElement | null;
 };
 
 /**
@@ -69,13 +69,13 @@ const getFirstFocusableElement = (node: HTMLElement): HTMLElement | null => {
 /**
  * Returns the dialog element
  */
-const getDialogElement = (node: HTMLElement): HTMLElement => {
+const getDialogElement = (node: HTMLElement): HTMLElement | null => {
     // If no focusable elements are found,
     // the dialog content element itself will receive focus.
     // eslint-disable-next-line import/no-deprecated
-    const dialogElement: HTMLElement = ReactDOM.findDOMNode(
+    const dialogElement = ReactDOM.findDOMNode(
         node.querySelector('[role="dialog"]'),
-    ) as any;
+    ) as HTMLElement | null;
     // add tabIndex to make the Dialog focusable
     dialogElement?.setAttribute("tabindex", "-1");
 

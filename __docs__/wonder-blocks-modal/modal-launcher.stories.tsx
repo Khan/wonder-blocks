@@ -869,13 +869,7 @@ export const ConditionalDialogsWithFocusManagement: StoryComponentType = () => {
     );
 };
 
-ConditionalDialogsWithFocusManagement.parameters = {
-    docs: {
-        description: {
-            story: "Shows how to use a single controlled ModalLauncher to display different dialog content based on which button was clicked. The `conditionalDialog` function returns different `OnePaneDialog` components based on the state. Focus management works correctly with the `closedFocusId` prop pointing to the specific button that opened each modal.",
-        },
-    },
-};
+ConditionalDialogsWithFocusManagement.parameters = {};
 
 /**
  * This example demonstrates how to use `ModalLauncher` to launch a modal that
