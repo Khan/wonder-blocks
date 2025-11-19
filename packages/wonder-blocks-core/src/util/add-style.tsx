@@ -37,19 +37,38 @@ export default function addStyle<
         const reset =
             typeof Component === "string" ? overrides[Component] : null;
 
-        const {className: aphroditeClassName, style: inlineStyles} =
-            processStyleList([reset, defaultStyle, style]);
+        // Check if defaultStyle is a string (CSS module class) or StyleType
+        if (typeof defaultStyle === "string") {
+            // CSS module case
+            const {className: aphroditeClassName, style: inlineStyles} =
+                processStyleList([reset, style]);
 
-        return (
-            <Component
-                {...otherProps}
-                ref={ref}
-                className={[aphroditeClassName, className]
-                    .filter(Boolean)
-                    .join(" ")}
-                style={inlineStyles}
-            />
-        );
+            return (
+                <Component
+                    {...otherProps}
+                    ref={ref}
+                    className={[defaultStyle, aphroditeClassName, className]
+                        .filter(Boolean)
+                        .join(" ")}
+                    style={inlineStyles}
+                />
+            );
+        } else {
+            // Aphrodite case (legacy)
+            const {className: aphroditeClassName, style: inlineStyles} =
+                processStyleList([reset, defaultStyle, style]);
+
+            return (
+                <Component
+                    {...otherProps}
+                    ref={ref}
+                    className={[aphroditeClassName, className]
+                        .filter(Boolean)
+                        .join(" ")}
+                    style={inlineStyles}
+                />
+            );
+        }
     });
 }
 

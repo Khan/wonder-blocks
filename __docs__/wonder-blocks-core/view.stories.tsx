@@ -14,6 +14,8 @@ import packageConfig from "../../packages/wonder-blocks-core/package.json";
 import ComponentInfo from "../components/component-info";
 import viewArgTypes from "./view.argtypes";
 
+import newStyles from "./view.stories.module.css";
+
 export default {
     title: "Packages / Core / View",
     component: View,
@@ -70,6 +72,29 @@ InlineStyles.parameters = {
             story: "Styles can be applied inline to the component, or by passing an Aphrodite style object.",
         },
     },
+};
+
+/**
+ * Styles can also be applied using CSS modules.
+ */
+export const CssModules: StoryComponentType = {
+    render: () => (
+        <View style={styles.container}>
+            <HeadingMedium>Hello, world!</HeadingMedium>
+            <View
+                style={[styles.container, newStyles.cssModulesExample]}
+                // className={newStyles.cssModulesExample}
+            >
+                1. The style prop can accept a (nested) array of Aphrodite
+                styles and CSS modules. Note that in this case, Aphrodite styles
+                are applied after CSS modules due to the order of the styles
+                that are being injected in the document.
+            </View>
+            <View style={newStyles.cssModulesExample}>
+                2. In this case, only CSS modules are applied.
+            </View>
+        </View>
+    ),
 };
 
 export const OtherProps: StoryComponentType = {

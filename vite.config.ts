@@ -24,6 +24,10 @@ export default defineConfig({
                     "./packages/wonder-blocks$1/src",
                 ),
             },
+            {
+                find: /^aphrodite$/,
+                replacement: "aphrodite/no-important",
+            },
         ],
     },
 });

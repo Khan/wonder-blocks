@@ -113,14 +113,13 @@ export default function FlexiblePanel({
         backgroundColor: semanticColor.core.background.base.default,
     };
 
-    const combinedBackgroundStyles = {
-        ...defaultBackgroundStyle,
-        ...styles?.panel,
-    };
-
     return (
         <View
-            style={[componentStyles.wrapper, combinedBackgroundStyles]}
+            style={[
+                componentStyles.wrapper,
+                defaultBackgroundStyle,
+                styles?.panel,
+            ]}
             testId={testId && `${testId}-panel`}
             ref={panelRef}
         >

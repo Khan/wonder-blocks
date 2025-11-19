@@ -39,7 +39,7 @@ const LeftAccessory = ({
                 styles.accessory,
                 styles.accessoryLeft,
                 disabled && styles.accessoryDisabled,
-                {...style},
+                style,
             ]}
         >
             {leftAccessory}
@@ -75,7 +75,7 @@ const RightAccessory = ({
                 styles.accessory,
                 styles.accessoryRight,
                 disabled && styles.accessoryDisabled,
-                {...style},
+                style,
                 active && styles.accessoryActive,
             ]}
         >
