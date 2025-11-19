@@ -1,0 +1,22 @@
+
+@import "react-day-picker/lib/style.css" layer(shared);
+
+@layer legacy {
+    /**
+    * Custom overrides
+    *
+    * Needed to display the circle around the selected day (and not an oval).
+    * Note that the circle is not perfectly round due to the font used.
+    */
+    .DayPicker-Day {
+        line-height: 1.2;
+    }
+
+    /**
+     * To account for the root font size being 62.5%, we need to increase the
+     * font size of the DayPicker component by 1.6x to make it readable.
+     */
+    .DayPicker {
+        font-size: 1.6rem;
+    }
+}
