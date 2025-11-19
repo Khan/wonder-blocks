@@ -779,125 +779,97 @@ const styles = StyleSheet.create({
 });
 
 /**
- * This story helps debug focus management with controlled modals.
-    It specifically tests the case where a modal starts with opened=true and
-    needs to return focus to the last focused element when closed.
-
-    Because the wrapped ModalLauncher is unmounted on close, it needs special
-    focus management logic to return focus back to the main page.
+ * This story demonstrates using a single controlled ModalLauncher with
+ * conditional dialog content. Different buttons trigger different modal
+ * content, and focus management is handled correctly when the modal closes.
+ *
+ * This pattern is useful when you need to show different dialogs based on
+ * user interaction, but want to manage them through a single ModalLauncher
+ * instance.
  */
-export const ControlledModalFocusTest: StoryComponentType = () => {
-    const [opened, setOpened] = React.useState(false);
-    const [showModal, setShowModal] = React.useState(false);
+export const ConditionalDialogsWithFocusManagement: StoryComponentType = () => {
+    const [openedModal, setOpenedModal] = React.useState<
+        "REGULAR" | "WRAPPED" | null
+    >(null);
 
-    // This button simulates what we're interacting with before the modal appears
-    const buttonRef = React.useRef<HTMLButtonElement>(null);
+    const handleClose = () => {
+        setOpenedModal(null);
+    };
 
-    React.useEffect(() => {
-        // Focus the button when component mounts
-        if (buttonRef.current) {
-            buttonRef.current.focus();
+    const conditionalDialog = ({closeModal}: {closeModal: () => void}) => {
+        if (openedModal === "REGULAR") {
+            return (
+                <OnePaneDialog
+                    title="Regular Modal"
+                    content={<View>This is a regular modal</View>}
+                    footer={
+                        <Button onClick={() => closeModal()}>
+                            Close Modal
+                        </Button>
+                    }
+                />
+            );
         }
-    }, []);
 
-    const handleShowWrappedModal = () => {
-        setShowModal(true);
+        if (openedModal === "WRAPPED") {
+            return (
+                <OnePaneDialog
+                    title="Alternative Modal"
+                    content={
+                        <View>
+                            This is an alternative modal with different content
+                        </View>
+                    }
+                    footer={<Button onClick={closeModal}>Close Modal</Button>}
+                />
+            );
+        }
+
+        // Fallback (should not be reached)
+        return null;
     };
 
     return (
         <View style={styles.storyContainer}>
             <BodyText>
-                This story reproduces the test case for controlled modals and
-                focus management. Steps to test: 1. Click &quot;Focus me
-                first&quot; button 2. Click &quot;Show wrapped modal&quot;
-                button 3. Close the modal using the close button 4. Focus should
-                return to &quot;Focus me first&quot; button
+                This story demonstrates conditional dialogs within a single
+                ModalLauncher. Click either button to open different modal
+                content. When the modal closes, focus returns to the triggering
+                button using the `closedFocusId` prop.
             </BodyText>
 
             <View style={styles.buttonRow}>
                 <Button
-                    ref={buttonRef}
-                    onClick={() => setOpened(true)}
-                    testId="focus-target"
+                    onClick={() => setOpenedModal("REGULAR")}
+                    testId="regular-modal-trigger"
                 >
-                    Focus me first
+                    Open Regular Modal
                 </Button>
 
-                <Button onClick={handleShowWrappedModal} id="second-target">
-                    Show wrapped modal
+                <Button
+                    onClick={() => setOpenedModal("WRAPPED")}
+                    id="alternative-modal-trigger"
+                >
+                    Open Alternative Modal
                 </Button>
             </View>
 
-            {/* Regular modal to verify focus behavior */}
+            {/* Single ModalLauncher with conditional dialogs */}
             <ModalLauncher
-                modal={({closeModal}) => (
-                    <OnePaneDialog
-                        title="Regular Modal"
-                        content={<View>This is a regular modal</View>}
-                        footer={
-                            <Button onClick={() => closeModal()}>
-                                Close Modal
-                            </Button>
-                        }
-                    />
-                )}
-                opened={opened}
-                onClose={() => {
-                    setOpened(false);
-                }}
+                opened={openedModal !== null}
+                onClose={handleClose}
+                closedFocusId={
+                    openedModal === "WRAPPED"
+                        ? "alternative-modal-trigger"
+                        : undefined
+                }
+                modal={conditionalDialog}
             />
-
-            {/* Wrapped modal that starts opened=true */}
-            {showModal && (
-                <WrappedModalExample
-                    onClose={() => setShowModal(false)}
-                    returnFocusToId="second-target"
-                />
-            )}
         </View>
     );
 };
 
-ControlledModalFocusTest.parameters = {};
-
-const WrappedModalExample = ({
-    onClose,
-    returnFocusToId,
-}: {
-    onClose: () => void;
-    returnFocusToId?: string;
-}) => {
-    const isClosingRef = React.useRef(false);
-    const handleCloseWithFocusReturn = () => {
-        isClosingRef.current = true;
-
-        onClose();
-    };
-    React.useEffect(() => {
-        return () => {
-            // This cleanup function runs when the component unmounts
-            if (isClosingRef.current && returnFocusToId) {
-                const element = document.getElementById(returnFocusToId);
-                if (element) {
-                    element.focus();
-                }
-            }
-        };
-    }, [returnFocusToId]);
-    return (
-        <ModalLauncher
-            onClose={handleCloseWithFocusReturn}
-            opened={true}
-            modal={({closeModal}) => (
-                <OnePaneDialog
-                    title="Wrapped Modal"
-                    content={<View>This modal starts with opened=true</View>}
-                    footer={<Button onClick={closeModal}>Close Modal</Button>}
-                />
-            )}
-        />
-    );
-};
+ConditionalDialogsWithFocusManagement.parameters = {};
 
 /**
  * This example demonstrates how to use `ModalLauncher` to launch a modal that

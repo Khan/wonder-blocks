@@ -560,4 +560,234 @@ describe("ModalLauncher", () => {
             expect(buttonToFocus).toHaveFocus();
         });
     });
+
+    describe("Conditional modal content pattern", () => {
+        type Student = {
+            id: string;
+            name: string;
+            progress: number;
+        };
+
+        const mockStudents: Array<Student> = [
+            {id: "1", name: "Alice Smith", progress: 85},
+            {id: "2", name: "Bob Johnson", progress: 70},
+            {id: "3", name: "Charlie Brown", progress: 95},
+        ];
+
+        // Shared component for all tests
+        const ConditionalModalContainer = () => {
+            const [selectedItem, setSelectedItem] = React.useState<{
+                type: "content" | "mastery";
+                id: string;
+            } | null>(null);
+            const [modalTriggerId, setModalTriggerId] = React.useState<
+                string | null
+            >(null);
+
+            const handleOpenModal = (
+                type: "content" | "mastery",
+                triggerId: string,
+                studentId: string,
+            ) => {
+                setModalTriggerId(triggerId);
+                setSelectedItem({type, id: studentId});
+            };
+
+            const handleCloseModal = () => {
+                setSelectedItem(null);
+                setModalTriggerId(null);
+            };
+
+            const selectedStudent = mockStudents.find(
+                (s) => s.id === selectedItem?.id,
+            );
+
+            const conditionalModal = React.useMemo(() => {
+                if (selectedItem?.type === "content") {
+                    return (
+                        <OnePaneDialog
+                            title={`Content: ${selectedStudent?.name}`}
+                            content={
+                                <View testId="content-modal-content">
+                                    Content completion details
+                                </View>
+                            }
+                        />
+                    );
+                }
+                if (selectedItem?.type === "mastery") {
+                    return (
+                        <OnePaneDialog
+                            title={`Mastery: ${selectedStudent?.name}`}
+                            content={
+                                <View testId="mastery-modal-content">
+                                    Mastery progress details
+                                </View>
+                            }
+                        />
+                    );
+                }
+                return null;
+            }, [selectedItem, selectedStudent]);
+
+            return (
+                <View>
+                    {mockStudents.map((student) => {
+                        const contentTriggerId = `content-modal-trigger-${student.id}`;
+                        const masteryTriggerId = `mastery-modal-trigger-${student.id}`;
+                        return (
+                            <View key={student.id}>
+                                <Button
+                                    testId={contentTriggerId}
+                                    id={contentTriggerId}
+                                    onClick={() =>
+                                        handleOpenModal(
+                                            "content",
+                                            contentTriggerId,
+                                            student.id,
+                                        )
+                                    }
+                                >
+                                    {`${student.name} - Content`}
+                                </Button>
+                                <Button
+                                    testId={masteryTriggerId}
+                                    id={masteryTriggerId}
+                                    onClick={() =>
+                                        handleOpenModal(
+                                            "mastery",
+                                            masteryTriggerId,
+                                            student.id,
+                                        )
+                                    }
+                                >
+                                    {`${student.name} - Mastery`}
+                                </Button>
+                            </View>
+                        );
+                    })}
+                    <ModalLauncher
+                        opened={!!selectedItem}
+                        onClose={handleCloseModal}
+                        closedFocusId={modalTriggerId || undefined}
+                        modal={conditionalModal}
+                    />
+                </View>
+            );
+        };
+
+        // Parameterized tests for opening modals
+        [
+            {
+                name: "opens content modal when clicking content button",
+                triggerId: "content-modal-trigger-1",
+                expectedTitle: "Content: Alice Smith",
+            },
+            {
+                name: "opens mastery modal when clicking mastery button",
+                triggerId: "mastery-modal-trigger-2",
+                expectedTitle: "Mastery: Bob Johnson",
+            },
+        ].forEach(({name, triggerId, expectedTitle}) => {
+            test(name, async () => {
+                // Arrange
+                render(<ConditionalModalContainer />);
+
+                // Act
+                const button = await screen.findByTestId(triggerId);
+                await userEvent.click(button);
+
+                // Assert
+                expect(
+                    await screen.findByText(expectedTitle),
+                ).toBeInTheDocument();
+            });
+        });
+
+        // Parameterized tests for focus management
+        [
+            {
+                name: "returns focus to correct button after closing content modal",
+                triggerId: "content-modal-trigger-1",
+            },
+            {
+                name: "returns focus to correct button after closing mastery modal from different row",
+                triggerId: "mastery-modal-trigger-3",
+            },
+        ].forEach(({name, triggerId}) => {
+            test(name, async () => {
+                // Arrange
+                render(<ConditionalModalContainer />);
+                const button = await screen.findByTestId(triggerId);
+
+                // Act
+                await userEvent.click(button);
+                await userEvent.click(
+                    await screen.findByRole("button", {name: "Close modal"}),
+                );
+
+                // Assert
+                await waitFor(() => expect(button).toHaveFocus());
+            });
+        });
+
+        test("closes modal and removes it from DOM", async () => {
+            // Arrange
+            render(<ConditionalModalContainer />);
+            const contentButton = await screen.findByTestId(
+                "content-modal-trigger-1",
+            );
+            await userEvent.click(contentButton);
+
+            // Act
+            await userEvent.click(
+                await screen.findByRole("button", {name: "Close modal"}),
+            );
+
+            // Assert
+            await waitFor(() =>
+                expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),
+            );
+        });
+
+        test("opens different modal type after closing previous modal", async () => {
+            // Arrange
+            render(<ConditionalModalContainer />);
+            const contentButton = await screen.findByTestId(
+                "content-modal-trigger-1",
+            );
+            await userEvent.click(contentButton);
+            await userEvent.click(
+                await screen.findByRole("button", {name: "Close modal"}),
+            );
+
+            // Act
+            const masteryButton = await screen.findByTestId(
+                "mastery-modal-trigger-2",
+            );
+            await userEvent.click(masteryButton);
+
+            // Assert
+            expect(
+                await screen.findByText("Mastery: Bob Johnson"),
+            ).toBeInTheDocument();
+        });
+
+        test("returns focus to second button after closing its modal", async () => {
+            // Arrange
+            render(<ConditionalModalContainer />);
+            const masteryButton2 = await screen.findByTestId(
+                "mastery-modal-trigger-2",
+            );
+            await userEvent.click(masteryButton2);
+
+            // Act
+            await userEvent.click(
+                await screen.findByRole("button", {name: "Close modal"}),
+            );
+
+            // Assert
+            await waitFor(() => expect(masteryButton2).toHaveFocus());
+        });
+    });
 });

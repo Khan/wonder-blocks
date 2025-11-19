@@ -48,7 +48,7 @@ const getInitialFocusElement = (
     // eslint-disable-next-line import/no-deprecated
     return ReactDOM.findDOMNode(
         node.querySelector(`#${initialFocusId}`),
-    ) as any;
+    ) as HTMLElement | null;
 };
 
 /**
@@ -69,15 +69,15 @@ const getFirstFocusableElement = (node: HTMLElement): HTMLElement | null => {
 /**
  * Returns the dialog element
  */
-const getDialogElement = (node: HTMLElement): HTMLElement => {
+const getDialogElement = (node: HTMLElement): HTMLElement | null => {
     // If no focusable elements are found,
     // the dialog content element itself will receive focus.
     // eslint-disable-next-line import/no-deprecated
-    const dialogElement: HTMLElement = ReactDOM.findDOMNode(
+    const dialogElement = ReactDOM.findDOMNode(
         node.querySelector('[role="dialog"]'),
-    ) as any;
+    ) as HTMLElement | null;
     // add tabIndex to make the Dialog focusable
-    dialogElement.tabIndex = -1;
+    dialogElement?.setAttribute("tabindex", "-1");
 
     return dialogElement;
 };
@@ -101,14 +101,14 @@ const ModalBackdrop = ({
         const firstFocusableElement =
             // 1. try to get element specified by the user
             getInitialFocusElement(node, initialFocusId) ||
-            // 2. get first occurence from list of focusable elements
+            // 2. get first occurrence from list of focusable elements
             getFirstFocusableElement(node) ||
             // 3. get the dialog itself
             getDialogElement(node);
 
         // wait for styles to applied
         setTimeout(() => {
-            firstFocusableElement.focus();
+            firstFocusableElement?.focus();
         }, 0);
     }, [initialFocusId]);
 
