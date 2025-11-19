@@ -10,6 +10,7 @@ import {
     Placement,
     useDismiss,
     useInteractions,
+    FloatingFocusManager,
 } from "@floating-ui/react";
 import {StyleSheet} from "aphrodite";
 import {
@@ -21,7 +22,6 @@ import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {ARROW_SIZE_INLINE} from "../util/constants";
 import {Arrow} from "./floating-arrow";
 import {Portal} from "./floating-portal";
-import {FocusManager} from "./focus-manager";
 
 const StyledDiv = addStyle("div");
 
@@ -126,28 +126,32 @@ type FloatingProps = {
 type FocusManagerProps =
     | {
           /**
-           * Whether to enable the FocusManager component to manage the focus of the
-           * floating element.
+           * Whether to enable the FocusManager component to manage the focus of
+           * the floating element.
            *
-           * When enabled, the focus will continue flowing from the reference element
-           * to the floating element and back to the reference element when the
-           * floating element is closed.
+           * When enabled, the focus will continue flowing from the reference
+           * element to the floating element and back to the reference element
+           * when the floating element is closed.
            *
-           * This should be enabled in most cases, but it can be disabled if you want
-           * to handle the focus manually or use it in a non-interactive context (e.g.
-           * tooltips).
+           * This should be enabled in most cases, but it can be disabled if you
+           * want to handle the focus manually or use it in a non-interactive
+           * context (e.g. tooltips).
+           *
+           * NOTE: FloatingUI might not preserve tab order with FloatingPortal.
+           * @see https://github.com/floating-ui/floating-ui/issues/2988
            *
            * @default true
            */
           focusManagerEnabled?: true;
           /**
-           * The element that will receive focus when the floating element is opened.
+           * The element that will receive focus when the floating element is
+           * opened.
            *
            * This is useful when you want to set the initial focus to an element
            * inside the floating element when it is opened.
            *
-           * If not provided, the first focusable element inside the floating element
-           * will receive focus when it is opened.
+           * If not provided, the first focusable element inside the floating
+           * element will receive focus when it is opened.
            */
           initialFocusRef?: React.RefObject<HTMLElement>;
       }
@@ -263,11 +267,15 @@ export default function Floating({
                     portal={portal}
                     reference={elements.reference as Element}
                 >
-                    <FocusManager
-                        focusManagerEnabled={focusManagerEnabled}
+                    <FloatingFocusManager
+                        disabled={!focusManagerEnabled}
                         context={context}
-                        dismissEnabled={dismissEnabled}
-                        initialFocusRef={initialFocusRef}
+                        modal={false}
+                        initialFocus={initialFocusRef}
+                        // TODO(WB-1987): Determine if we want to close the
+                        // floating element when the user focuses outside of it.
+                        closeOnFocusOut={false}
+                        visuallyHiddenDismiss={dismissEnabled}
                     >
                         <StyledDiv
                             data-testid={testId}
@@ -290,7 +298,7 @@ export default function Floating({
                                 <Arrow ref={arrowRef} context={context} />
                             )}
                         </StyledDiv>
-                    </FocusManager>
+                    </FloatingFocusManager>
                 </Portal>
             )}
         </>

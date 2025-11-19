@@ -482,7 +482,10 @@ describe("Floating", () => {
                     <Floating
                         content="Floating content"
                         open={true}
-                        focusManagerEnabled={false}
+                        // NOTE: Setting portal to false as we don't need to
+                        // test the focus guards.
+                        // @see https://github.com/floating-ui/floating-ui/issues/2823#issuecomment-2010715019
+                        portal={false}
                     >
                         <button>Trigger</button>
                     </Floating>,
