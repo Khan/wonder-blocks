@@ -190,6 +190,8 @@ const sharedStyles = StyleSheet.create({
         height: theme.root.sizing.height.large,
     },
     text: {
+        // Inherit color from parent, so the BodyText default color isn't used in buttons
+        color: "inherit",
         alignItems: "center",
         fontWeight: theme.root.font.weight.default,
         whiteSpace: "nowrap",
