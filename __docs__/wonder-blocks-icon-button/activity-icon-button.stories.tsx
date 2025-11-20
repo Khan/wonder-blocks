@@ -247,3 +247,49 @@ export const WithCustomIcon: StoryComponentType = {
         );
     },
 };
+
+/**
+ * ActivityIconButton can be configured to be toggleable. This is useful for
+ * features like toggling a microphone on and off.
+ *
+ * Note that the `aria-pressed` attribute is used to indicate the toggle state
+ * of the button. This is important for accessibility, as it allows screen
+ * readers to announce the current state of the button to users.
+ */
+export const Toggleable: StoryComponentType = {
+    render: function Render() {
+        const [on, setOn] = React.useState(false);
+        return (
+            <View
+                style={{
+                    gap: sizing.size_080,
+                    flexDirection: "row",
+                    placeItems: "center",
+                }}
+            >
+                <ActivityIconButton
+                    icon={
+                        on
+                            ? IconMappings.pencilSimpleBold
+                            : IconMappings.pencilSimple
+                    }
+                    onClick={(e) => {
+                        setOn(!on);
+                        action("clicked")(e);
+                    }}
+                    kind="secondary"
+                    label="Toggleable"
+                    aria-pressed={on}
+                />
+                <ActivityIconButton
+                    icon={IconMappings.pencilSimple}
+                    onClick={(e) => {
+                        action("clicked")(e);
+                    }}
+                    kind="secondary"
+                    label="Normal button"
+                />
+            </View>
+        );
+    },
+};

@@ -271,6 +271,12 @@ const _generateStyles = (
 
             [":is(:active) .chonky" as any]: chonkyPressed,
 
+            [":is([aria-pressed=true]) .chonky" as any]: {
+                ...chonkyPressed,
+                paddingBlock: "1.6rem",
+                transform: "none",
+            },
+
             // :focus-visible -> Provide focus styles for keyboard users only.
             ...focusStyles.focus,
         },
