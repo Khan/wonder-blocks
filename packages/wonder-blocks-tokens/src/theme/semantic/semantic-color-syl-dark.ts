@@ -212,188 +212,188 @@ const feedbackTokens = {
 };
 
 export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
-    action: {
-        primary: {
-            progressive: {
-                default: {
-                    border: core.border.instructive.default,
-                    background: core.background.instructive.default,
-                    foreground: core.foreground.knockout.default,
-                },
-                hover: {
-                    border: core.border.instructive.strong,
-                    background: core.background.instructive.strong,
-                    foreground: core.foreground.knockout.default,
-                },
-                press: {
-                    border: core.border.instructive.strong,
-                    background: core.background.instructive.strong,
-                    foreground: core.foreground.knockout.default,
-                },
-            },
-            destructive: {
-                default: {
-                    border: core.border.critical.default,
-                    background: core.background.critical.default,
-                    foreground: core.foreground.knockout.default,
-                },
-                hover: {
-                    border: core.border.critical.strong,
-                    background: core.background.critical.strong,
-                    foreground: core.foreground.knockout.default,
-                },
-                press: {
-                    border: core.border.critical.strong,
-                    background: core.background.critical.strong,
-                    foreground: core.foreground.knockout.default,
-                },
-            },
-            neutral: {
-                default: {
-                    border: core.border.neutral.default,
-                    background: core.background.neutral.default,
-                    foreground: core.foreground.knockout.default,
-                },
-                hover: {
-                    border: core.border.neutral.strong,
-                    background: core.background.neutral.strong,
-                    foreground: core.foreground.knockout.default,
-                },
-                press: {
-                    border: core.border.neutral.strong,
-                    background: core.background.neutral.strong,
-                    foreground: core.foreground.knockout.default,
-                },
-            },
+    // action: {
+    //     primary: {
+    //         progressive: {
+    //             default: {
+    //                 border: core.border.instructive.default,
+    //                 background: core.background.instructive.default,
+    //                 foreground: core.foreground.knockout.default,
+    //             },
+    //             hover: {
+    //                 border: core.border.instructive.strong,
+    //                 background: core.background.instructive.strong,
+    //                 foreground: core.foreground.knockout.default,
+    //             },
+    //             press: {
+    //                 border: core.border.instructive.strong,
+    //                 background: core.background.instructive.strong,
+    //                 foreground: core.foreground.knockout.default,
+    //             },
+    //         },
+    //         destructive: {
+    //             default: {
+    //                 border: core.border.critical.default,
+    //                 background: core.background.critical.default,
+    //                 foreground: core.foreground.knockout.default,
+    //             },
+    //             hover: {
+    //                 border: core.border.critical.strong,
+    //                 background: core.background.critical.strong,
+    //                 foreground: core.foreground.knockout.default,
+    //             },
+    //             press: {
+    //                 border: core.border.critical.strong,
+    //                 background: core.background.critical.strong,
+    //                 foreground: core.foreground.knockout.default,
+    //             },
+    //         },
+    //         neutral: {
+    //             default: {
+    //                 border: core.border.neutral.default,
+    //                 background: core.background.neutral.default,
+    //                 foreground: core.foreground.knockout.default,
+    //             },
+    //             hover: {
+    //                 border: core.border.neutral.strong,
+    //                 background: core.background.neutral.strong,
+    //                 foreground: core.foreground.knockout.default,
+    //             },
+    //             press: {
+    //                 border: core.border.neutral.strong,
+    //                 background: core.background.neutral.strong,
+    //                 foreground: core.foreground.knockout.default,
+    //             },
+    //         },
 
-            disabled: {
-                border: core.transparent,
-                background: core.background.disabled.strong,
-                foreground: core.foreground.disabled.default,
-            },
-        },
+    //         disabled: {
+    //             border: core.transparent,
+    //             background: core.background.disabled.strong,
+    //             foreground: core.foreground.disabled.default,
+    //         },
+    //     },
 
-        secondary: {
-            progressive: {
-                default: {
-                    border: core.border.instructive.subtle,
-                    background: core.background.instructive.subtle,
-                    foreground: core.foreground.instructive.default,
-                },
-                hover: {
-                    border: core.border.instructive.default,
-                    background: core.background.instructive.subtle,
-                    foreground: core.foreground.instructive.default,
-                },
-                press: {
-                    border: core.border.instructive.default,
-                    background: core.background.instructive.subtle,
-                    foreground: core.foreground.instructive.default,
-                },
-            },
-            destructive: {
-                default: {
-                    border: core.border.critical.default,
-                    background: core.background.critical.subtle,
-                    foreground: core.foreground.critical.default,
-                },
-                hover: {
-                    border: core.border.critical.strong,
-                    background: core.background.critical.subtle,
-                    foreground: core.foreground.critical.strong,
-                },
-                press: {
-                    border: core.border.critical.strong,
-                    background: core.background.critical.subtle,
-                    foreground: core.foreground.critical.strong,
-                },
-            },
-            neutral: {
-                default: {
-                    border: core.border.neutral.subtle,
-                    background: core.background.base.default,
-                    foreground: core.foreground.neutral.default,
-                },
-                hover: {
-                    border: core.border.neutral.strong,
-                    background: core.background.base.default,
-                    foreground: core.foreground.neutral.strong,
-                },
-                press: {
-                    border: core.border.neutral.strong,
-                    background: core.background.base.default,
-                    foreground: core.foreground.neutral.strong,
-                },
-            },
+    //     secondary: {
+    //         progressive: {
+    //             default: {
+    //                 border: core.border.instructive.subtle,
+    //                 background: core.background.instructive.subtle,
+    //                 foreground: core.foreground.instructive.default,
+    //             },
+    //             hover: {
+    //                 border: core.border.instructive.default,
+    //                 background: core.background.instructive.subtle,
+    //                 foreground: core.foreground.instructive.default,
+    //             },
+    //             press: {
+    //                 border: core.border.instructive.default,
+    //                 background: core.background.instructive.subtle,
+    //                 foreground: core.foreground.instructive.default,
+    //             },
+    //         },
+    //         destructive: {
+    //             default: {
+    //                 border: core.border.critical.default,
+    //                 background: core.background.critical.subtle,
+    //                 foreground: core.foreground.critical.default,
+    //             },
+    //             hover: {
+    //                 border: core.border.critical.strong,
+    //                 background: core.background.critical.subtle,
+    //                 foreground: core.foreground.critical.strong,
+    //             },
+    //             press: {
+    //                 border: core.border.critical.strong,
+    //                 background: core.background.critical.subtle,
+    //                 foreground: core.foreground.critical.strong,
+    //             },
+    //         },
+    //         neutral: {
+    //             default: {
+    //                 border: core.border.neutral.subtle,
+    //                 background: core.background.base.default,
+    //                 foreground: core.foreground.neutral.default,
+    //             },
+    //             hover: {
+    //                 border: core.border.neutral.strong,
+    //                 background: core.background.base.default,
+    //                 foreground: core.foreground.neutral.strong,
+    //             },
+    //             press: {
+    //                 border: core.border.neutral.strong,
+    //                 background: core.background.base.default,
+    //                 foreground: core.foreground.neutral.strong,
+    //             },
+    //         },
 
-            disabled: {
-                border: core.border.disabled.default,
-                background: core.background.disabled.default,
-                foreground: core.foreground.disabled.default,
-            },
-        },
+    //         disabled: {
+    //             border: core.border.disabled.default,
+    //             background: core.background.disabled.default,
+    //             foreground: core.foreground.disabled.default,
+    //         },
+    //     },
 
-        tertiary: {
-            progressive: {
-                default: {
-                    border: core.transparent,
-                    background: core.transparent,
-                    foreground: core.foreground.instructive.default,
-                },
-                hover: {
-                    border: core.border.instructive.strong,
-                    background: core.transparent,
-                    foreground: core.foreground.instructive.strong,
-                },
-                press: {
-                    border: core.border.instructive.strong,
-                    background: core.transparent,
-                    foreground: core.foreground.instructive.strong,
-                },
-            },
+    //     tertiary: {
+    //         progressive: {
+    //             default: {
+    //                 border: core.transparent,
+    //                 background: core.transparent,
+    //                 foreground: core.foreground.instructive.default,
+    //             },
+    //             hover: {
+    //                 border: core.border.instructive.strong,
+    //                 background: core.transparent,
+    //                 foreground: core.foreground.instructive.strong,
+    //             },
+    //             press: {
+    //                 border: core.border.instructive.strong,
+    //                 background: core.transparent,
+    //                 foreground: core.foreground.instructive.strong,
+    //             },
+    //         },
 
-            destructive: {
-                default: {
-                    border: core.transparent,
-                    background: core.transparent,
-                    foreground: core.foreground.critical.default,
-                },
-                hover: {
-                    border: core.border.critical.strong,
-                    background: core.transparent,
-                    foreground: core.foreground.critical.strong,
-                },
-                press: {
-                    border: core.border.critical.strong,
-                    background: core.transparent,
-                    foreground: core.foreground.critical.strong,
-                },
-            },
-            neutral: {
-                default: {
-                    border: core.transparent,
-                    background: core.transparent,
-                    foreground: core.foreground.neutral.default,
-                },
-                hover: {
-                    border: core.border.neutral.strong,
-                    background: core.transparent,
-                    foreground: core.foreground.neutral.strong,
-                },
-                press: {
-                    border: core.border.neutral.strong,
-                    background: core.transparent,
-                    foreground: core.foreground.neutral.strong,
-                },
-            },
+    //         destructive: {
+    //             default: {
+    //                 border: core.transparent,
+    //                 background: core.transparent,
+    //                 foreground: core.foreground.critical.default,
+    //             },
+    //             hover: {
+    //                 border: core.border.critical.strong,
+    //                 background: core.transparent,
+    //                 foreground: core.foreground.critical.strong,
+    //             },
+    //             press: {
+    //                 border: core.border.critical.strong,
+    //                 background: core.transparent,
+    //                 foreground: core.foreground.critical.strong,
+    //             },
+    //         },
+    //         neutral: {
+    //             default: {
+    //                 border: core.transparent,
+    //                 background: core.transparent,
+    //                 foreground: core.foreground.neutral.default,
+    //             },
+    //             hover: {
+    //                 border: core.border.neutral.strong,
+    //                 background: core.transparent,
+    //                 foreground: core.foreground.neutral.strong,
+    //             },
+    //             press: {
+    //                 border: core.border.neutral.strong,
+    //                 background: core.transparent,
+    //                 foreground: core.foreground.neutral.strong,
+    //             },
+    //         },
 
-            disabled: {
-                border: core.border.disabled.subtle,
-                background: core.background.disabled.subtle,
-                foreground: core.foreground.disabled.subtle,
-            },
-        },
-    },
+    //         disabled: {
+    //             border: core.border.disabled.subtle,
+    //             background: core.background.disabled.subtle,
+    //             foreground: core.foreground.disabled.subtle,
+    //         },
+    //     },
+    // },
 
     /**
      * For activity and conversation buttons.
