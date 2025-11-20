@@ -1,7 +1,7 @@
 import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import {IconMappings} from "./phosphor-icon.argtypes";
@@ -38,7 +38,7 @@ export const IconContrast = {
             <PhosphorIcon
                 icon={IconMappings.checkCircle}
                 style={{
-                    color: color.blue,
+                    color: semanticColor.core.foreground.instructive.subtle,
                     marginInlineStart: spacing.xSmall_8,
                 }}
             />

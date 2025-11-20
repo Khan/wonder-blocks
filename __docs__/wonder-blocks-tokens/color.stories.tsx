@@ -8,7 +8,7 @@ import {
 import {Meta} from "@storybook/react-vite";
 import {View} from "@khanacademy/wonder-blocks-core";
 import TokenTable from "../components/token-table";
-import {semanticColor, sizing, color} from "@khanacademy/wonder-blocks-tokens";
+import {color, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
 import {Code} from "../components/code";

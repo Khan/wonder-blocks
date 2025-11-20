@@ -4,18 +4,27 @@ import {Meta} from "@storybook/addon-docs/blocks";
 
 # Card Accessibility
 
-- When using `tag="section"` or `tag="figure"`, the `labels.cardAriaLabel` prop is required to provide an accessible name for the card.
-- When the `onDismiss` prop is provided, a dismiss button will be rendered. In this case, the `labels.dismissButtonAriaLabel` prop is required to provide an accessible label for the dismiss button.
-- Cards cannot be interactive elements themselves (e.g. buttons or links), but they can contain interactive elements as children.
+Cards cannot be interactive elements themselves (e.g. buttons or links), but they can contain interactive elements as children.
 
 ## HTML Semantics
 
 By default, cards render as `<div>` elements. However, you can specify a different semantic element using the `tag` prop:
 
-- `tag="section"` - Use when the card represents a distinct section of content. Requires an accessible name via `labels.cardAriaLabel`.
+- `tag="section"` - Use when the card represents a distinct section of content. Accepts an accessible name via `labels.cardAriaLabel`.
 - `tag="figure"` - Use when the card contains media or illustrated content. Accepts an accessible name via `labels.cardAriaLabel`.
 - `tag="article"` - Use when the card represents standalone content
 - `tag="li"` - Use when cards are part of a list (see notes about `inert` below)
+
+## Labeling cards
+
+When using semantic tags like `tag="section"` or `tag="figure"`, you should provide an accessible name for the Card using one of the following (in order of preference):
+
+ 1. `labels.cardAriaLabel`: preferred for translatable strings. It automatically applies to the `aria-label` attribute. See the Dismiss Button section below for dismiss button labeling requirements.
+ 2. `aria-labelledby`: for ID references to existing elements.
+
+Only one labeling mechanism can be used at a time. Refer to the [Accessible Name Computation specification](https://www.w3.org/TR/accname-1.2/#computation-steps) to understand how this is standardized.
+
+When the `onDismiss` prop is provided, a dismiss button will be rendered. In this case, the `labels.dismissButtonAriaLabel` prop is required to provide a translatable, accessible label for the dismiss button.
 
 ## Dismiss Button
 
@@ -37,10 +46,10 @@ See the In a Stack story for an example of disabling cards while keeping them pa
 
 ## Best Practices
 
-- Ensure cards have a logical heading structure when they contain headings
-- If cards are part of a collection, consider using appropriate container semantics (`<ul>`, `<ol>`, or `role="list"`)
-- When cards are dismissible, ensure focus is moved to an appropriate element after dismissal
-- Use meaningful accessible names for semantic card tags (`section`, `figure`)
+- Ensure cards have a logical heading structure when they contain headings.
+- If cards are part of a collection, consider wrapping them with appropriate container semantics (`<ul>`, `<ol>`, or `role="list"`).
+- When cards are dismissible, ensure focus is moved to an appropriate element after dismissal.
+- When applicable, use meaningful accessible names for semantic landmark tags (`section`, `figure`) so they show in the VoiceOver Rotor and NVDA Elements List.
 
 ## References
 

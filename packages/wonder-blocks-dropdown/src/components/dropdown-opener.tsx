@@ -22,7 +22,7 @@ type Props = Partial<Omit<AriaProps, "aria-disabled">> & {
     /**
      * Whether the opener is disabled. If disabled, disallows interaction.
      */
-    disabled: boolean;
+    disabled?: boolean;
     /**
      * Callback for when the opener is pressed.
      */
@@ -57,52 +57,46 @@ type Props = Partial<Omit<AriaProps, "aria-disabled">> & {
     role: "combobox" | "button";
 };
 
-type DefaultProps = {
-    disabled: Props["disabled"];
-};
+const DropdownOpener = React.forwardRef<HTMLElement, Props>((props, ref) => {
+    const {
+        disabled = false,
+        testId,
+        text,
+        opened,
+        "aria-controls": ariaControls,
+        "aria-haspopup": ariaHasPopUp,
+        "aria-required": ariaRequired,
+        "aria-label": ariaLabel,
+        id,
+        role,
+        onBlur,
+        onClick,
+        children,
+        error,
+    } = props;
 
-class DropdownOpener extends React.Component<Props> {
-    static defaultProps: DefaultProps = {
-        disabled: false,
-    };
-
-    getTestIdFromProps: (childrenProps?: any) => string = (childrenProps) => {
-        return childrenProps.testId || childrenProps["data-testid"];
-    };
-
-    renderAnchorChildren(
+    const renderAnchorChildren = (
         eventState: ClickableState,
         clickableChildrenProps: ChildrenProps,
-    ): React.ReactElement {
-        const {
-            disabled,
-            testId,
-            text,
-            opened,
-            "aria-controls": ariaControls,
-            "aria-haspopup": ariaHasPopUp,
-            "aria-required": ariaRequired,
-            id,
-            role,
-            onBlur,
-        } = this.props;
-        const renderedChildren = this.props.children({
+    ): React.ReactElement => {
+        const renderedChildren = children({
             ...eventState,
             text,
             opened,
         });
         const childrenProps = renderedChildren.props;
-        const childrenTestId = this.getTestIdFromProps(childrenProps);
+        const childrenTestId =
+            childrenProps?.testId || childrenProps?.["data-testid"];
 
         // If custom opener has `aria-label`, prioritize that.
         // If parent component has `aria-label`, fall back to that next.
-        const renderedAriaLabel =
-            childrenProps["aria-label"] ?? this.props["aria-label"];
+        const renderedAriaLabel = childrenProps["aria-label"] ?? ariaLabel;
 
         return React.cloneElement(renderedChildren, {
             ...clickableChildrenProps,
+            ref,
             "aria-label": renderedAriaLabel ?? undefined,
-            "aria-invalid": this.props.error,
+            "aria-invalid": error,
             disabled,
             "aria-controls": ariaControls,
             role,
@@ -122,26 +116,33 @@ class DropdownOpener extends React.Component<Props> {
             // try to get the testId from the child element
             // If it's not set, try to fallback to the parent's testId
             "data-testid": childrenTestId || testId,
-            onBlur,
+            onBlur: onBlur
+                ? (e: React.FocusEvent) => {
+                      // This is done to avoid overriding a custom onBlur
+                      // handler inside the children node
+                      onBlur(e);
+                      clickableChildrenProps.onBlur(e);
+                  }
+                : clickableChildrenProps.onBlur,
         });
-    }
+    };
 
-    render(): React.ReactNode {
-        return (
-            <ClickableBehavior
-                onClick={this.props.onClick}
-                disabled={this.props.disabled}
-                // Allows the opener to be focused with the keyboard, which ends
-                // up triggering onFocus/onBlur events needed to re-render the
-                // dropdown opener.
-                tabIndex={0}
-            >
-                {(eventState, handlers) =>
-                    this.renderAnchorChildren(eventState, handlers)
-                }
-            </ClickableBehavior>
-        );
-    }
-}
+    return (
+        <ClickableBehavior
+            onClick={onClick}
+            disabled={disabled}
+            // Allows the opener to be focused with the keyboard, which ends
+            // up triggering onFocus/onBlur events needed to re-render the
+            // dropdown opener.
+            tabIndex={0}
+        >
+            {(eventState, handlers) =>
+                renderAnchorChildren(eventState, handlers)
+            }
+        </ClickableBehavior>
+    );
+});
+
+DropdownOpener.displayName = "DropdownOpener";
 
 export default DropdownOpener;
