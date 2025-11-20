@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
@@ -15,12 +15,12 @@ const styles = StyleSheet.create({
         marginTop: spacing.xSmall_8,
     },
     correct: {
-        color: color.green,
+        color: semanticColor.core.foreground.success.subtle,
         marginRight: spacing.xxxSmall_4,
         paddingTop: spacing.xxxxSmall_2,
     },
     incorrect: {
-        color: color.red,
+        color: semanticColor.core.foreground.critical.subtle,
         marginRight: spacing.xxxSmall_4,
         paddingTop: spacing.xxxxSmall_2,
     },
@@ -96,7 +96,9 @@ export const ColorContrast = {
             </View>
             <Body
                 style={{
-                    color: color.offBlack32,
+                    // NOTE: Using disabled on purpose to demonstrate the
+                    // contrast ratio issue.
+                    color: semanticColor.core.foreground.disabled.default,
                 }}
             >
                 The quick brown fox jumps over the lazy dog
@@ -112,7 +114,7 @@ export const ColorContrast = {
             </View>
             <Body
                 style={{
-                    color: color.offBlack,
+                    color: semanticColor.core.foreground.neutral.strong,
                 }}
             >
                 The quick brown fox jumps over the lazy dog
