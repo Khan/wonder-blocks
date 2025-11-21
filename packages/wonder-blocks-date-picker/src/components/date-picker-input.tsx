@@ -1,13 +1,12 @@
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
-import {type DayModifiers, type Modifiers} from "react-day-picker";
 
 import {useOnMountEffect, View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-
 import calendarIcon from "@phosphor-icons/core/bold/calendar-blank-bold.svg";
+import type {CustomModifiers} from "../util/types";
 
 interface Props {
     /**
@@ -47,7 +46,7 @@ interface Props {
      */
     onChange?: (
         value: Date | null | undefined,
-        modifiers: Partial<DayModifiers>,
+        modifiers: Partial<CustomModifiers>,
     ) => unknown;
     /**
      * Used to format the value as a valid Date.
@@ -61,7 +60,7 @@ interface Props {
      * An object of day modifiers (exposed by react-day-picker).
      * @see https://react-day-picker.js.org/docs/matching-days
      */
-    modifiers?: Partial<Modifiers>;
+    modifiers?: Partial<CustomModifiers>;
     /**
      * Return the modifiers matching day for the given modifiers  (exposed by
      * react-day-picker).
@@ -69,7 +68,7 @@ interface Props {
      */
     getModifiersForDay?: (
         day: Date,
-        modifiers: Partial<Modifiers>,
+        modifiers: Partial<CustomModifiers>,
     ) => Array<string>;
     /**
      * Parses an input string using a given format and returns the result as a
@@ -128,12 +127,12 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
 
         // Helper to process modifiers
         const processModifiers = React.useCallback(
-            (date: Date, value?: string | null): Partial<DayModifiers> => {
+            (date: Date, value?: string | null): Partial<CustomModifiers> => {
                 if (!getModifiersForDay || !modifiers) {
                     return {};
                 }
                 return getModifiersForDay(date, modifiers).reduce<
-                    Partial<DayModifiers>
+                    Partial<CustomModifiers>
                 >(
                     (obj, modifier) => ({
                         ...obj,

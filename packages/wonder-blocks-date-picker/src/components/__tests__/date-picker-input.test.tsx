@@ -1,9 +1,10 @@
+import React from "react";
 import {describe, expect, it} from "@jest/globals";
 import {fireEvent, render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import moment from "moment";
+import {Temporal} from "temporal-polyfill";
 import {ModifiersUtils} from "react-day-picker";
-import LocaleUtils from "react-day-picker/moment";
+import {TemporalLocaleUtils} from "../../util/temporal-locale-utils.js";
 
 import DatePickerInput from "../date-picker-input.tsx";
 
@@ -23,8 +24,8 @@ describe("DatePickerInput", () => {
         // Arrange
         const validDate = "2021-05-13";
         const onChangeSpy = jest.fn();
-        const minDate = moment(validDate);
-        const maxDate = moment(validDate).add(10, "day");
+        const minDate = Temporal.PlainDate.from(validDate);
+        const maxDate = minDate.add({days: 10});
         const dateFormat = "YYYY-MM-DD";
 
         // Act
@@ -33,14 +34,27 @@ describe("DatePickerInput", () => {
                 dateFormat={dateFormat}
                 value={validDate}
                 getModifiersForDay={ModifiersUtils.getModifiersForDay as any}
-                parseDate={LocaleUtils.parseDate as any}
+                parseDate={TemporalLocaleUtils.parseDate as any}
                 onChange={onChangeSpy}
                 modifiers={{
-                    selected: moment(validDate).toDate(),
+                    selected: Temporal.PlainDate.from(validDate).toString(),
                     // We want to disable past dates and dates after 10 days from now
-                    disabled: (date) =>
-                        (minDate && moment(date) < minDate.startOf("day")) ||
-                        (maxDate && moment(date) > maxDate.endOf("day")),
+                    disabled: (date) => {
+                        // (minDate && moment(date) < minDate.startOf("day")) ||
+                        // (maxDate && moment(date) > maxDate.endOf("day")),
+                        // Convert native Date to Temporal.PlainDate for accurate date-only comparison
+                        const plain = Temporal.PlainDate.from({
+                            year: date.getFullYear(),
+                            month: date.getMonth() + 1,
+                            day: date.getDate(),
+                        });
+
+                        const today = Temporal.Now.plainDateISO();
+                        const min = today;
+                        const max = today.add({days: 10});
+
+                        return plain < min || plain > max;
+                    },
                 }}
                 testId="date-picker-input"
             />,

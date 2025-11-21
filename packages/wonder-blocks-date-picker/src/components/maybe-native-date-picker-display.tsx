@@ -1,34 +1,33 @@
 import {t} from "@lingui/core/macro";
 import {css, StyleSheet, type CSSProperties} from "aphrodite";
-import moment from "moment";
+import {Temporal} from "temporal-polyfill";
 import * as React from "react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
+import {temporalDateToJsDate} from "../util/temporal-locale-utils";
 
 import DatePickerInput from "./date-picker-input";
 
 // NOTE(juan): This is one of the Day/Date picker variants so we won't probably
 // need this on load. Also, we could refactor this component after verifying
 // that we can get rid of the renderDatePicker() function.
-const DatePicker = React.lazy(
-    () => import("./date-picker-do-we-need-this.jsx"),
-);
+const DatePicker = React.lazy(() => import("./date-picker.jsx"));
 
 interface Props {
     // Styles for the date picker container.
     style?: CSSProperties;
     dateFormat?: Array<string> | string;
-    maxDate?: moment.Moment | null | undefined;
-    minDate?: moment.Moment | null | undefined;
+    maxDate?: Temporal.PlainDate | null | undefined;
+    minDate?: Temporal.PlainDate | null | undefined;
     nativePicker?: boolean;
-    selectedDate?: moment.Moment | null | undefined;
+    selectedDate?: Temporal.PlainDate | null | undefined;
     disabled?: boolean;
     id?: string;
-    // When the selected date changes, this callback yields a Moment object for
+    // When the selected date changes, this callback yields a Temporal object for
     // midnight on the selected date, set to the user's local time zone.
-    updateDate: (arg1?: moment.Moment | null | undefined) => any;
+    updateDate: (arg1?: Temporal.PlainDate | null | undefined) => any;
     /**
      * The placeholder assigned to the date field
      */
@@ -56,25 +55,31 @@ const MaybeNativeDayPickerDisplay = (props: Props) => {
     } = props;
 
     const [currentEditValue, setCurrentEditValue] = React.useState<
-        moment.Moment | null | undefined
+        Temporal.PlainDate | null | undefined
     >(selectedDate);
 
     React.useEffect(() => {
         setCurrentEditValue(selectedDate);
     }, [selectedDate]);
 
-    const getDateAsJsDate = (date?: moment.Moment | null): undefined | Date => {
-        return (date && moment(date).toDate()) || undefined;
+    const getDateAsJsDate = (
+        date?: Temporal.PlainDate | null,
+    ): undefined | Date => {
+        return (date && temporalDateToJsDate(date)) || undefined;
     };
 
     const updateDateNative = (
         event: React.ChangeEvent<HTMLInputElement>,
     ): any => {
         const rawDate = event.target.valueAsDate;
-        const date = moment({
+        if (!rawDate) {
+            updateDate(null);
+            return;
+        }
+        const date = Temporal.PlainDate.from({
             year: rawDate?.getUTCFullYear(),
-            month: rawDate?.getUTCMonth(),
-            date: rawDate?.getUTCDate(),
+            month: rawDate?.getUTCMonth() + 1, // Temporal months are 1-indexed
+            day: rawDate?.getUTCDate(),
         });
         updateDate(date);
     };
@@ -83,10 +88,11 @@ const MaybeNativeDayPickerDisplay = (props: Props) => {
         // Note that YYYY-MM-DD is the internal format for the native
         // datepicker, but may not be the way it is actually displayed to
         // the user.
-        const nativeDateFormat = "YYYY-MM-DD";
+        // const nativeDateFormat = "YYYY-MM-DD";
 
         // NOTE: We force locale to be set in English to avoid having issues
         // with languages that don't support the default format.
+        // New: Temporal.PlainDate.toString() returns ISO format (YYYY-MM-DD) by default
         return (
             <View style={[styles.datepickerContainer, style]}>
                 <input
@@ -99,10 +105,10 @@ const MaybeNativeDayPickerDisplay = (props: Props) => {
                             : styles.datepickerEnabled,
                     )}
                     type="date"
-                    min={minDate?.locale("en").format(nativeDateFormat)}
-                    max={maxDate?.locale("en").format(nativeDateFormat)}
+                    min={minDate?.toString()}
+                    max={maxDate?.toString()}
                     onChange={updateDateNative}
-                    value={selectedDate?.locale("en").format(nativeDateFormat)}
+                    value={selectedDate?.toString() ?? ""}
                     disabled={disabled}
                     id={id}
                     aria-label={inputAriaLabel ?? t`Choose or enter a date`}

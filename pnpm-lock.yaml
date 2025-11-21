@@ -827,6 +827,9 @@ importers:
       react-window:
         specifier: 'catalog:'
         version: 1.8.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      temporal-polyfill:
+        specifier: 'catalog:'
+        version: 0.3.0
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
