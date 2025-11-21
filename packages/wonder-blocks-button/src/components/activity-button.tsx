@@ -298,6 +298,7 @@ const styles = {
         height: theme.icon.sizing.height,
     },
     label: {
+        color: "inherit",
         lineHeight: theme.label.font.lineHeight,
         paddingBlockStart: theme.label.layout.padding.blockStart,
         paddingBlockEnd: theme.label.layout.padding.blockEnd,
