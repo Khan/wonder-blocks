@@ -213,65 +213,7 @@ const feedbackTokens = {
 
 export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
     action: {
-        primary: {
-            progressive: {
-                default: {
-                    border: core.border.instructive.default,
-                    background: core.background.instructive.default,
-                    foreground: core.foreground.knockout.default,
-                },
-                hover: {
-                    border: core.border.instructive.strong,
-                    background: core.background.instructive.strong,
-                    foreground: core.foreground.knockout.default,
-                },
-                press: {
-                    border: core.border.instructive.strong,
-                    background: core.background.instructive.strong,
-                    foreground: core.foreground.knockout.default,
-                },
-            },
-            destructive: {
-                default: {
-                    border: core.border.critical.default,
-                    background: core.background.critical.default,
-                    foreground: core.foreground.knockout.default,
-                },
-                hover: {
-                    border: core.border.critical.strong,
-                    background: core.background.critical.strong,
-                    foreground: core.foreground.knockout.default,
-                },
-                press: {
-                    border: core.border.critical.strong,
-                    background: core.background.critical.strong,
-                    foreground: core.foreground.knockout.default,
-                },
-            },
-            neutral: {
-                default: {
-                    border: core.border.neutral.default,
-                    background: core.background.neutral.default,
-                    foreground: core.foreground.knockout.default,
-                },
-                hover: {
-                    border: core.border.neutral.strong,
-                    background: core.background.neutral.strong,
-                    foreground: core.foreground.knockout.default,
-                },
-                press: {
-                    border: core.border.neutral.strong,
-                    background: core.background.neutral.strong,
-                    foreground: core.foreground.knockout.default,
-                },
-            },
-
-            disabled: {
-                border: core.transparent,
-                background: core.background.disabled.strong,
-                foreground: core.foreground.disabled.default,
-            },
-        },
+        primary: thunderblocksSemanticColor.action.primary,
 
         secondary: {
             progressive: {
@@ -401,12 +343,9 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
     chonky: {
         progressive: {
             background: {
-                primary: {
-                    rest: core.background.instructive.default,
-                    hover: core.background.instructive.default,
-                    press: core.background.instructive.default,
-                    selected: core.background.instructive.default,
-                },
+                primary:
+                    thunderblocksSemanticColor.chonky.progressive.background
+                        .primary,
                 secondary: {
                     rest: core.background.instructive.subtle,
                     hover: core.background.instructive.subtle,
@@ -421,12 +360,9 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
                 },
             },
             border: {
-                primary: {
-                    rest: core.transparent,
-                    hover: core.transparent,
-                    press: core.transparent,
-                    selected: core.transparent,
-                },
+                primary:
+                    thunderblocksSemanticColor.chonky.progressive.border
+                        .primary,
                 secondary: {
                     rest: core.border.instructive.subtle,
                     hover: core.border.instructive.subtle,
@@ -441,12 +377,9 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
                 },
             },
             foreground: {
-                primary: {
-                    rest: core.foreground.knockout.default,
-                    hover: core.foreground.knockout.default,
-                    press: core.foreground.knockout.default,
-                    selected: core.foreground.knockout.default,
-                },
+                primary:
+                    thunderblocksSemanticColor.chonky.progressive.foreground
+                        .primary,
                 secondary: {
                     rest: core.foreground.instructive.default,
                     hover: core.foreground.instructive.default,
@@ -461,12 +394,9 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
                 },
             },
             shadow: {
-                primary: {
-                    rest: core.shadow.chonky.instructive.default,
-                    hover: core.shadow.chonky.instructive.default,
-                    press: core.shadow.chonky.instructive.default,
-                    selected: core.shadow.chonky.instructive.default,
-                },
+                primary:
+                    thunderblocksSemanticColor.chonky.progressive.shadow
+                        .primary,
                 secondary: {
                     rest: core.shadow.chonky.instructive.subtle,
                     hover: core.shadow.chonky.instructive.subtle,
@@ -483,12 +413,9 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
         },
         neutral: {
             background: {
-                primary: {
-                    rest: core.background.neutral.default,
-                    hover: core.background.neutral.default,
-                    press: core.background.neutral.default,
-                    selected: core.background.neutral.default,
-                },
+                primary:
+                    thunderblocksSemanticColor.chonky.neutral.background
+                        .primary,
                 secondary: {
                     rest: core.background.base.default,
                     hover: core.background.base.default,
@@ -503,12 +430,8 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
                 },
             },
             border: {
-                primary: {
-                    rest: core.transparent,
-                    hover: core.transparent,
-                    press: core.transparent,
-                    selected: core.transparent,
-                },
+                primary:
+                    thunderblocksSemanticColor.chonky.neutral.border.primary,
                 secondary: {
                     rest: core.border.neutral.subtle,
                     hover: core.border.neutral.subtle,
@@ -523,12 +446,9 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
                 },
             },
             foreground: {
-                primary: {
-                    rest: core.foreground.knockout.default,
-                    hover: core.foreground.knockout.default,
-                    press: core.foreground.knockout.default,
-                    selected: core.foreground.knockout.default,
-                },
+                primary:
+                    thunderblocksSemanticColor.chonky.neutral.foreground
+                        .primary,
                 secondary: {
                     rest: core.foreground.neutral.subtle,
                     hover: core.foreground.neutral.subtle,
@@ -543,12 +463,8 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
                 },
             },
             shadow: {
-                primary: {
-                    rest: core.shadow.chonky.neutral.strong,
-                    hover: core.shadow.chonky.neutral.strong,
-                    press: core.shadow.chonky.neutral.strong,
-                    selected: core.shadow.chonky.neutral.strong,
-                },
+                primary:
+                    thunderblocksSemanticColor.chonky.neutral.shadow.primary,
                 secondary: {
                     rest: core.shadow.chonky.neutral.subtle,
                     hover: core.shadow.chonky.neutral.subtle,
@@ -565,22 +481,28 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
         },
         disabled: {
             background: {
-                primary: core.background.disabled.default,
+                primary:
+                    thunderblocksSemanticColor.chonky.disabled.background
+                        .primary,
                 secondary: core.background.disabled.default,
                 tertiary: core.background.disabled.subtle,
             },
             border: {
-                primary: core.border.disabled.subtle,
+                primary:
+                    thunderblocksSemanticColor.chonky.disabled.border.primary,
                 secondary: core.border.disabled.strong,
                 tertiary: core.border.disabled.subtle,
             },
             foreground: {
-                primary: color.gray_50,
+                primary:
+                    thunderblocksSemanticColor.chonky.disabled.foreground
+                        .primary,
                 secondary: color.gray_50,
                 tertiary: color.gray_50,
             },
             shadow: {
-                primary: core.shadow.chonky.neutral.subtle,
+                primary:
+                    thunderblocksSemanticColor.chonky.disabled.shadow.primary,
                 secondary: core.shadow.chonky.neutral.subtle,
                 tertiary: core.transparent,
             },
