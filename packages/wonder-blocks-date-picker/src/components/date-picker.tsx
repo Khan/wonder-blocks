@@ -1,16 +1,18 @@
 import {t} from "@lingui/core/macro";
 import {StyleSheet} from "aphrodite";
-import moment from "moment";
+import {Temporal} from "temporal-polyfill";
 import * as React from "react";
-import DayPicker, {
-    ModifiersUtils,
-    type DayModifiers,
-    type Modifiers,
-} from "react-day-picker";
-import MomentLocaleUtils from "react-day-picker/moment";
+import {DayPicker} from "react-day-picker";
 
 import {View, type StyleType} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    formatDate,
+    temporalDateToJsDate,
+    jsDateToTemporalDate,
+    TemporalLocaleUtils,
+} from "../util/temporal-locale-utils";
+import type {CustomModifiers} from "../util/types";
 // eslint-disable-next-line import/no-unassigned-import
 import "./styles/react-day-picker.css";
 
@@ -19,10 +21,10 @@ import DatePickerOverlay from "./date-picker-overlay";
 
 interface Props {
     /**
-     * When the selected date changes, this callback is passsed a Moment object
+     * When the selected date changes, this callback is passsed a Temporal object
      * for midnight on the selected date, set to the user's local time zone.
      */
-    updateDate: (arg1?: moment.Moment | null | undefined) => any;
+    updateDate: (arg1?: Temporal.PlainDate | null | undefined) => any;
     /**
      * Used to format the value as a valid Date.
      */
@@ -39,11 +41,11 @@ interface Props {
     /**
      * The maximum date to be allowed to select in the picker container.
      */
-    maxDate?: moment.Moment | null | undefined;
+    maxDate?: Temporal.PlainDate | null | undefined;
     /**
      * The minimum date to be allowed to select in the picker container.
      */
-    minDate?: moment.Moment | null | undefined;
+    minDate?: Temporal.PlainDate | null | undefined;
     /**
      * The placeholder assigned to the date field
      */
@@ -51,7 +53,7 @@ interface Props {
     /**
      * The current valid date associated to the DatePicker component.
      */
-    selectedDate?: moment.Moment | null | undefined;
+    selectedDate?: Temporal.PlainDate | null | undefined;
     /**
      * Styles for the date picker container.
      */
@@ -94,7 +96,7 @@ const DatePicker = (props: Props) => {
 
     const [showOverlay, setShowOverlay] = React.useState(false);
     const [currentDate, setCurrentDate] = React.useState<
-        moment.Moment | null | undefined
+        Temporal.PlainDate | null | undefined
     >(selectedDate);
 
     const datePickerInputRef = React.useRef<HTMLInputElement | null>(null);
@@ -154,12 +156,12 @@ const DatePicker = (props: Props) => {
 
     const handleInputChange = (
         selectedDate: Date | null | undefined,
-        modifiers: Partial<DayModifiers>,
+        modifiers: Partial<CustomModifiers>,
     ) => {
         if (!selectedDate || modifiers.disabled) {
             return;
         }
-        const wrappedDate = moment(selectedDate);
+        const wrappedDate = jsDateToTemporalDate(selectedDate);
         setCurrentDate(wrappedDate);
         updateDate(wrappedDate);
     };
@@ -173,25 +175,24 @@ const DatePicker = (props: Props) => {
 
     const handleDayClick = (
         date: Date | null | undefined,
-        {disabled, selected}: DayModifiers,
+        {disabled, selected}: CustomModifiers,
     ) => {
-        if (disabled) {
+        if (disabled || !date) {
             return;
         }
         datePickerInputRef.current?.focus();
-        const wrappedDate = moment(date);
+        const wrappedDate = jsDateToTemporalDate(date);
         setCurrentDate(selected ? undefined : wrappedDate);
         setShowOverlay(!closeOnSelect);
         updateDate(wrappedDate);
     };
 
-    const renderInput = (modifiers: Partial<Modifiers>): React.ReactNode => {
+    const renderInput = (
+        modifiers: Partial<CustomModifiers>,
+    ): React.ReactNode => {
+        const locale = navigator.language || "en";
         const selectedDateAsValue = currentDate
-            ? MomentLocaleUtils.formatDate(
-                  currentDate as any,
-                  dateFormat,
-                  moment.locale(),
-              )
+            ? formatDate(currentDate, dateFormat, locale)
             : "";
 
         return (
@@ -208,9 +209,8 @@ const DatePicker = (props: Props) => {
                 value={selectedDateAsValue}
                 ref={datePickerInputRef}
                 dateFormat={dateFormat}
-                locale={moment.locale()}
-                getModifiersForDay={ModifiersUtils.getModifiersForDay as any}
-                parseDate={MomentLocaleUtils.parseDate as any}
+                locale={locale}
+                parseDate={TemporalLocaleUtils.parseDate as any}
                 modifiers={modifiers}
                 testId={id && `${id}-input`}
             />
@@ -229,19 +229,30 @@ const DatePicker = (props: Props) => {
     };
 
     // Calculate selectedDate and minDateToShow
-    const selectedDateValue = currentDate ? currentDate.toDate() : undefined;
+    const selectedDateValue = currentDate
+        ? temporalDateToJsDate(currentDate)
+        : undefined;
     const minDateToShow =
-        minDate &&
-        (minDate.isBefore(selectedDateValue)
-            ? minDate.toDate()
-            : selectedDateValue);
+        minDate && selectedDateValue
+            ? Temporal.PlainDate.compare(minDate, currentDate!) < 0
+                ? temporalDateToJsDate(minDate)
+                : selectedDateValue
+            : minDate
+              ? temporalDateToJsDate(minDate)
+              : undefined;
 
-    const modifiers: Partial<Modifiers> = {
+    const modifiers: Partial<CustomModifiers> = {
         selected: selectedDateValue,
-        disabled: (date: any) =>
-            ((minDate && date < minDate.startOf("day")) ||
-                (maxDate && date > maxDate.endOf("day"))) ??
-            false,
+        disabled: (date: Date) => {
+            const temporalDate = jsDateToTemporalDate(date);
+            return (
+                (minDate &&
+                    Temporal.PlainDate.compare(temporalDate, minDate) < 0) ||
+                (maxDate &&
+                    Temporal.PlainDate.compare(temporalDate, maxDate) > 0) ||
+                false
+            );
+        },
     } as const;
 
     return (
@@ -256,12 +267,16 @@ const DatePicker = (props: Props) => {
                         <DayPicker
                             month={selectedDateValue ?? undefined}
                             fromMonth={minDateToShow ?? undefined}
-                            toMonth={maxDate?.toDate() ?? undefined}
+                            toMonth={
+                                maxDate
+                                    ? temporalDateToJsDate(maxDate)
+                                    : undefined
+                            }
                             modifiers={modifiers}
                             onDayClick={handleDayClick}
                             onKeyDown={handleKeyDown}
-                            locale={moment.locale()}
-                            localeUtils={MomentLocaleUtils}
+                            locale={navigator.language || "en"}
+                            localeUtils={TemporalLocaleUtils}
                         />
                         {maybeRenderFooter()}
                     </View>
