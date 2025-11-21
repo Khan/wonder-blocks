@@ -8,8 +8,9 @@
  */
 import {t} from "@lingui/core/macro";
 import type {CSSProperties} from "aphrodite";
-import type moment from "moment";
+import {Temporal} from "temporal-polyfill";
 import * as React from "react";
+import {temporalDateToJsDate} from "../util/temporal-locale-utils";
 
 import MaybeNativeDayPickerDisplay from "./maybe-native-date-picker-display";
 
@@ -17,14 +18,14 @@ interface MaybeNativeDatePickerProps {
     // Styles for the date picker container.
     style?: CSSProperties;
     dateFormat?: string;
-    maxDate?: moment.Moment | null;
-    minDate?: moment.Moment | null;
-    selectedDate?: moment.Moment | null;
+    maxDate?: Temporal.PlainDate | null;
+    minDate?: Temporal.PlainDate | null;
+    selectedDate?: Temporal.PlainDate | null;
     disabled?: boolean;
     id?: string;
-    // When the selected date changes, this callback yields a Moment object for
+    // When the selected date changes, this callback yields a Temporal object for
     // midnight on the selected date, set to the user's local time zone.
-    updateDate: (arg1?: moment.Moment | null) => any;
+    updateDate: (arg1?: Temporal.PlainDate | null) => any;
     /**
      * The placeholder assigned to the date field
      */
@@ -69,11 +70,17 @@ const MaybeNativeDatePicker = (props: MaybeNativeDatePickerProps) => {
     }, [supportsDateInput]);
 
     const validateAndUpdate = React.useCallback(
-        (newDate?: moment.Moment | null) => {
+        (newDate?: Temporal.PlainDate | null) => {
+            // TODO: do we need to allow other locales/formats?
+            const formatter = new Intl.DateTimeFormat("en", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+            });
             if (
                 minDate &&
                 newDate &&
-                newDate.isBefore(minDate.startOf("day"))
+                Temporal.PlainDate.compare(minDate, newDate) < 0
             ) {
                 /* eslint-disable-next-line no-alert
                    --
@@ -81,19 +88,23 @@ const MaybeNativeDatePicker = (props: MaybeNativeDatePickerProps) => {
                    is what we have.
                  */
                 alert(
-                    t`Selected date cannot be before ${minDate.format("MMMM D, YYYY")}`,
+                    t`Selected date cannot be before ${formatter.format(temporalDateToJsDate(minDate))}`,
                 );
                 return;
             }
 
-            if (maxDate && newDate && newDate.isAfter(maxDate.endOf("day"))) {
+            if (
+                maxDate &&
+                newDate &&
+                Temporal.PlainDate.compare(newDate, maxDate) > 0
+            ) {
                 /* eslint-disable-next-line no-alert
                    --
                    We really should have a different UX for this but this
                    is what we have.
                  */
                 alert(
-                    t`Selected date cannot be after ${maxDate.format("MMMM D, YYYY")}`,
+                    t`Selected date cannot be after ${formatter.format(temporalDateToJsDate(maxDate))}`,
                 );
                 return;
             }
