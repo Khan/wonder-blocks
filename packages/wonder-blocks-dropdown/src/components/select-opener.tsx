@@ -26,6 +26,10 @@ type SelectOpenerProps = AriaProps & {
      */
     disabled: boolean;
     /**
+     * Specifies if the dropdown is read-only. Defaults to false.
+     */
+    readOnly?: boolean;
+    /**
      * Whether or not the input is in an error state. Defaults to false.
      */
     error: boolean;
@@ -63,6 +67,7 @@ type SelectOpenerProps = AriaProps & {
 
 type DefaultProps = {
     disabled: SelectOpenerProps["disabled"];
+    readOnly: SelectOpenerProps["readOnly"];
     error: SelectOpenerProps["error"];
     isPlaceholder: SelectOpenerProps["isPlaceholder"];
 };
@@ -87,6 +92,7 @@ export default class SelectOpener extends React.Component<
 > {
     static defaultProps: DefaultProps = {
         disabled: false,
+        readOnly: false,
         error: false,
         isPlaceholder: false,
     };
@@ -129,6 +135,7 @@ export default class SelectOpener extends React.Component<
         const {
             children,
             disabled,
+            readOnly,
             error,
             id,
             isPlaceholder,
@@ -153,12 +160,17 @@ export default class SelectOpener extends React.Component<
             disabled && styles.disabled,
             error && styles.error,
             isPlaceholder && styles.placeholder,
-            !disabled && this.state.pressed && styles.press,
+            !disabled && !readOnly && this.state.pressed && styles.press,
+            readOnly && styles.readOnly,
         ];
+
+        const allowInteraction = !disabled && !readOnly;
 
         return (
             <StyledButton
                 {...sharedProps}
+                // Set aria-readonly to undefined if readOnly is not true
+                aria-readonly={readOnly || undefined}
                 aria-disabled={disabled}
                 aria-expanded={open ? "true" : "false"}
                 aria-invalid={error}
@@ -172,9 +184,9 @@ export default class SelectOpener extends React.Component<
                 /* Note(marcysutton): type=button prevents form submits on click */
                 type="button"
                 style={style}
-                onClick={!disabled ? this.handleClick : undefined}
-                onKeyDown={!disabled ? this.handleKeyDown : undefined}
-                onKeyUp={!disabled ? this.handleKeyUp : undefined}
+                onClick={allowInteraction ? this.handleClick : undefined}
+                onKeyDown={allowInteraction ? this.handleKeyDown : undefined}
+                onKeyUp={allowInteraction ? this.handleKeyUp : undefined}
                 onBlur={onBlur}
             >
                 <BodyText tag="span" style={styles.text}>
@@ -245,10 +257,13 @@ const styles = StyleSheet.create({
         border: `${border.width.thin} solid ${semanticColor.input.default.border}`,
         color: semanticColor.input.default.foreground,
         cursor: "pointer",
-        // :focus-visible -> Provide focus styles for keyboard users only.
-        ...focusStyles.focus,
+        ":focus": {
+            // Using :focus instead of :focus-visible to ensure the focus ring is
+            // visible when the button is focused (even when clicked).
+            ...focusStyles.focus[":focus-visible"],
+        },
         ":active": {
-            boxShadow: PRESS_SHADOW,
+            boxShadow: `${PRESS_SHADOW}, ${focusStyles.focus[":focus-visible"].boxShadow}`,
         },
     },
     error: {
@@ -275,5 +290,13 @@ const styles = StyleSheet.create({
     },
     placeholder: {
         color: semanticColor.input.default.placeholder,
+    },
+    readOnly: {
+        background: semanticColor.input.readOnly.background,
+        color: semanticColor.input.readOnly.text,
+        ":active": {
+            // Make sure press shadow outline is not shown when it is read-only.
+            boxShadow: focusStyles.focus[":focus-visible"].boxShadow,
+        },
     },
 });

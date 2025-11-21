@@ -260,4 +260,141 @@ describe("SelectOpener", () => {
         // Assert
         expect(onBlur).toHaveBeenCalledTimes(1);
     });
+
+    describe("readOnly prop", () => {
+        it("should set aria-readonly to true if readOnly is true", () => {
+            // Arrange
+            // Act
+            render(
+                <SelectOpener
+                    readOnly={true}
+                    open={false}
+                    onOpenChanged={jest.fn()}
+                >
+                    {children}
+                </SelectOpener>,
+            );
+
+            // Assert
+            expect(screen.getByRole("combobox")).toHaveAttribute(
+                "aria-readonly",
+                "true",
+            );
+        });
+
+        it("should not set aria-readonly if readOnly is false", () => {
+            // Arrange
+            // Act
+            render(
+                <SelectOpener
+                    readOnly={false}
+                    open={false}
+                    onOpenChanged={jest.fn()}
+                >
+                    {children}
+                </SelectOpener>,
+            );
+
+            // Assert
+            expect(screen.getByRole("combobox")).not.toHaveAttribute(
+                "aria-readonly",
+            );
+        });
+
+        it("should not set aria-readonly if readOnly is not provided", () => {
+            // Arrange
+            // Act
+            render(
+                <SelectOpener open={false} onOpenChanged={jest.fn()}>
+                    {children}
+                </SelectOpener>,
+            );
+
+            // Assert
+            expect(screen.getByRole("combobox")).not.toHaveAttribute(
+                "aria-readonly",
+            );
+        });
+
+        it("should not call onOpenChanged if readOnly is true and the opener is clicked", async () => {
+            // Arrange
+            const onOpenChanged = jest.fn();
+            render(
+                <SelectOpener
+                    readOnly={true}
+                    open={false}
+                    onOpenChanged={onOpenChanged}
+                >
+                    {children}
+                </SelectOpener>,
+            );
+
+            // Act
+            await userEvent.click(screen.getByRole("combobox"));
+
+            // Assert
+            expect(onOpenChanged).not.toHaveBeenCalled();
+        });
+
+        it("should not call onOpenChanged if readOnly is true and the opener is pressed using the enter key", async () => {
+            // Arrange
+            const onOpenChanged = jest.fn();
+            render(
+                <SelectOpener
+                    readOnly={true}
+                    open={false}
+                    onOpenChanged={onOpenChanged}
+                >
+                    {children}
+                </SelectOpener>,
+            );
+
+            // Act
+            await userEvent.keyboard("{Tab}");
+            await userEvent.keyboard("{Enter}");
+
+            // Assert
+            expect(onOpenChanged).not.toHaveBeenCalled();
+        });
+
+        it("should not call onOpenChanged if readOnly is true and the opener is pressed using the space key", async () => {
+            // Arrange
+            const onOpenChanged = jest.fn();
+            render(
+                <SelectOpener
+                    readOnly={true}
+                    open={false}
+                    onOpenChanged={onOpenChanged}
+                >
+                    {children}
+                </SelectOpener>,
+            );
+
+            // Act
+            await userEvent.tab();
+            await userEvent.keyboard(" ");
+
+            // Assert
+            expect(onOpenChanged).not.toHaveBeenCalled();
+        });
+
+        it("should be focusable if readOnly is true", async () => {
+            // Arrange
+            render(
+                <SelectOpener
+                    readOnly={true}
+                    open={false}
+                    onOpenChanged={jest.fn()}
+                >
+                    {children}
+                </SelectOpener>,
+            );
+
+            // Act
+            await userEvent.tab();
+
+            // Assert
+            expect(screen.getByRole("combobox")).toHaveFocus();
+        });
+    });
 });
