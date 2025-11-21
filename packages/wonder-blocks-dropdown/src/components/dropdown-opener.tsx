@@ -24,6 +24,10 @@ type Props = Partial<Omit<AriaProps, "aria-disabled">> & {
      */
     disabled?: boolean;
     /**
+     * Specifies if the dropdown is read-only. Defaults to false.
+     */
+    readOnly?: boolean;
+    /**
      * Callback for when the opener is pressed.
      */
     onClick: (e: React.SyntheticEvent) => unknown;
@@ -60,6 +64,7 @@ type Props = Partial<Omit<AriaProps, "aria-disabled">> & {
 const DropdownOpener = React.forwardRef<HTMLElement, Props>((props, ref) => {
     const {
         disabled = false,
+        readOnly = false,
         testId,
         text,
         opened,
@@ -104,6 +109,8 @@ const DropdownOpener = React.forwardRef<HTMLElement, Props>((props, ref) => {
             "aria-expanded": opened ? "true" : "false",
             "aria-haspopup": ariaHasPopUp,
             "aria-required": ariaRequired,
+            // Set aria-readonly to undefined if readOnly is not true
+            "aria-readonly": readOnly || undefined,
             onClick: childrenProps.onClick
                 ? (e: React.MouseEvent) => {
                       // This is done to avoid overriding a
@@ -130,7 +137,10 @@ const DropdownOpener = React.forwardRef<HTMLElement, Props>((props, ref) => {
     return (
         <ClickableBehavior
             onClick={onClick}
-            disabled={disabled}
+            // If readOnly is true, clickable behaviour should be disabled to
+            // prevent interactions. Note: DropdownOpener is responsible for
+            // adding attributes to the opener
+            disabled={disabled || readOnly}
             // Allows the opener to be focused with the keyboard, which ends
             // up triggering onFocus/onBlur events needed to re-render the
             // dropdown opener.
