@@ -61,6 +61,10 @@ type DefaultProps = Readonly<{
      */
     disabled?: boolean;
     /**
+     * Specifies if the dropdown is read-only. Defaults to false.
+     */
+    readOnly?: boolean;
+    /**
      * Whether to enable the type-ahead suggestions feature. Defaults to true.
      *
      * This feature allows to navigate the listbox using the keyboard.
@@ -288,6 +292,7 @@ const SingleSelect = (props: Props) => {
         "aria-invalid": ariaInvalid,
         "aria-required": ariaRequired,
         disabled = false,
+        readOnly = false,
         dropdownId,
         validate,
         onValidate,
@@ -320,13 +325,13 @@ const SingleSelect = (props: Props) => {
 
     React.useEffect(() => {
         // Used to sync the `opened` state when this component acts as a controlled
-        if (disabled) {
-            // open should always be false if select is disabled
+        if (disabled || readOnly) {
+            // open should always be false if select is disabled or readOnly
             setOpen(false);
         } else if (typeof opened === "boolean") {
             setOpen(opened);
         }
-    }, [disabled, opened]);
+    }, [disabled, opened, readOnly]);
 
     const handleOpenChanged = (opened: boolean) => {
         setOpen(opened);
@@ -506,6 +511,7 @@ const SingleSelect = (props: Props) => {
                             opened={open}
                             error={hasError}
                             onBlur={onOpenerBlurValidation}
+                            readOnly={readOnly}
                         >
                             {opener}
                         </DropdownOpener>
@@ -524,6 +530,7 @@ const SingleSelect = (props: Props) => {
                             ref={handleOpenerRef}
                             testId={testId}
                             onBlur={onOpenerBlurValidation}
+                            readOnly={readOnly}
                         >
                             {menuContent}
                         </SelectOpener>

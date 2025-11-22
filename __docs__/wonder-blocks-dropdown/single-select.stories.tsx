@@ -88,6 +88,7 @@ export default {
         isFilterable: true,
         opened: false,
         disabled: false,
+        readOnly: false,
         "aria-label": "Fruit",
         placeholder: "Choose a fruit",
         selectedValue: "",
@@ -448,6 +449,30 @@ export const Disabled: StoryComponentType = {
             />
         </View>
     ),
+};
+
+/**
+ * A SingleSelect can be set to read-only by passing `readOnly` to `true`.
+ * When `true`, read-only styling is applied and the aria-readonly attribute is
+ * set to "true".
+ */
+export const ReadOnly: StoryComponentType = {
+    render: function ReadOnlyStory(args) {
+        const [selectedValue, setSelectedValue] = React.useState(
+            items[0].props.value,
+        );
+        return (
+            <SingleSelect
+                {...args}
+                placeholder="Choose a fruit"
+                readOnly={true}
+                onChange={setSelectedValue}
+                selectedValue={selectedValue}
+            >
+                {items}
+            </SingleSelect>
+        );
+    },
 };
 
 const ControlledSingleSelect = (
