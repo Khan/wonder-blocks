@@ -488,28 +488,22 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
         },
         disabled: {
             background: {
-                primary:
-                    thunderblocksSemanticColor.chonky.disabled.background
-                        .primary,
+                primary: core.background.disabled.default,
                 secondary: core.background.disabled.default,
                 tertiary: core.background.disabled.subtle,
             },
             border: {
-                primary:
-                    thunderblocksSemanticColor.chonky.disabled.border.primary,
+                primary: core.border.disabled.subtle,
                 secondary: core.border.disabled.strong,
                 tertiary: core.border.disabled.subtle,
             },
             foreground: {
-                primary:
-                    thunderblocksSemanticColor.chonky.disabled.foreground
-                        .primary,
+                primary: color.gray_50,
                 secondary: color.gray_50,
                 tertiary: color.gray_50,
             },
             shadow: {
-                primary:
-                    thunderblocksSemanticColor.chonky.disabled.shadow.primary,
+                primary: core.shadow.chonky.neutral.subtle,
                 secondary: core.shadow.chonky.neutral.subtle,
                 tertiary: core.transparent,
             },
