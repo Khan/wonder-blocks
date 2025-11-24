@@ -6,7 +6,6 @@
  * and also support this type of input. Since we've moved to a new day picker
  * we should see if this is still the case.
  */
-import {t} from "@lingui/core/macro";
 import type {CSSProperties} from "aphrodite";
 import {Temporal} from "temporal-polyfill";
 import * as React from "react";
@@ -88,7 +87,7 @@ const MaybeNativeDatePicker = (props: MaybeNativeDatePickerProps) => {
                    is what we have.
                  */
                 alert(
-                    t`Selected date cannot be before ${formatter.format(temporalDateToJsDate(minDate))}`,
+                    `Selected date cannot be before ${formatter.format(temporalDateToJsDate(minDate))}`, // TODO: add i18n
                 );
                 return;
             }
@@ -104,7 +103,7 @@ const MaybeNativeDatePicker = (props: MaybeNativeDatePickerProps) => {
                    is what we have.
                  */
                 alert(
-                    t`Selected date cannot be after ${formatter.format(temporalDateToJsDate(maxDate))}`,
+                    `Selected date cannot be after ${formatter.format(temporalDateToJsDate(maxDate))}`, //TODO: add i18n
                 );
                 return;
             }
@@ -136,7 +135,7 @@ const MaybeNativeDatePicker = (props: MaybeNativeDatePickerProps) => {
             style={style}
             disabled={disabled}
             id={id}
-            inputAriaLabel={inputAriaLabel ?? t`Choose or enter a date`}
+            inputAriaLabel={inputAriaLabel ?? `Choose or enter a date`} //TODO: add i18n
         />
     );
 };
