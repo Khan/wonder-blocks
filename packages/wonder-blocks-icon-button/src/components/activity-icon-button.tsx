@@ -15,6 +15,7 @@ import type {
 } from "../util/icon-button.types";
 
 import {IconButtonUnstyled} from "./icon-button-unstyled";
+import themeTokens from "../theme";
 
 type AriaLabelOnly = {
     /**
@@ -190,7 +191,7 @@ const theme = {
     },
     label: {
         color: {
-            progressive: semanticColor.core.foreground.instructive.default,
+            progressive: themeTokens.activityIconButton.label.color.progressive,
             neutral: semanticColor.core.foreground.neutral.default,
             disabled: semanticColor.core.foreground.disabled.default,
         },
@@ -330,6 +331,7 @@ const _generateStyles = (
             WebkitLineClamp: "2",
             overflow: "hidden",
             wordBreak: "break-word",
+            color: "inherit",
         },
     } as const;
 
