@@ -76,6 +76,10 @@ type DefaultProps = Readonly<{
      */
     disabled?: boolean;
     /**
+     * Specifies if the dropdown is read-only. Defaults to false.
+     */
+    readOnly?: boolean;
+    /**
      * Whether this component is in an error state. Defaults to false.
      */
     error?: boolean;
@@ -258,6 +262,7 @@ const MultiSelect = (props: Props) => {
         "aria-invalid": ariaInvalid,
         "aria-required": ariaRequired,
         disabled = false,
+        readOnly = false,
         error = false,
         children,
         dropdownId,
@@ -309,13 +314,13 @@ const MultiSelect = (props: Props) => {
 
     React.useEffect(() => {
         // Used to sync the `opened` state when this component acts as a controlled component
-        if (disabled) {
+        if (disabled || readOnly) {
             // open should always be false if select is disabled
             setOpen(false);
         } else if (typeof opened === "boolean") {
             setOpen(opened);
         }
-    }, [disabled, opened]);
+    }, [disabled, opened, readOnly]);
 
     const handleOpenChanged = (opened: boolean) => {
         setOpen(opened);
@@ -625,6 +630,7 @@ const MultiSelect = (props: Props) => {
                             role="combobox"
                             text={openerContent}
                             opened={open}
+                            readOnly={readOnly}
                         >
                             {opener}
                         </DropdownOpener>
@@ -643,6 +649,7 @@ const MultiSelect = (props: Props) => {
                             open={open}
                             ref={handleOpenerRef}
                             testId={testId}
+                            readOnly={readOnly}
                         >
                             {openerContent}
                         </SelectOpener>

@@ -66,6 +66,7 @@ export default {
         error: false,
         opened: false,
         disabled: false,
+        readOnly: false,
         shortcuts: false,
         implicitAllEnabled: false,
         id: "",
@@ -638,6 +639,29 @@ export const Disabled: StoryComponentType = {
             />
         </View>
     ),
+};
+
+/**
+ * A MultiSelect can be set to read-only by passing `readOnly` to `true`.
+ * When `true`, read-only styling is applied and the aria-readonly attribute is
+ * set to "true".
+ */
+export const ReadOnly: StoryComponentType = {
+    render: function ReadOnlyStory(args) {
+        const [selectedValue, setSelectedValue] = React.useState(
+            items[0].props.value,
+        );
+        return (
+            <MultiSelect
+                {...args}
+                readOnly={true}
+                onChange={setSelectedValue}
+                selectedValue={selectedValue}
+            >
+                {items}
+            </MultiSelect>
+        );
+    },
 };
 
 /**

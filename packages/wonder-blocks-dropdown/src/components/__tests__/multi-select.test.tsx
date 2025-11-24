@@ -3420,4 +3420,115 @@ describe("MultiSelect", () => {
             });
         });
     });
+
+    describe("readOnly prop", () => {
+        describe.each([
+            {name: "default", opener: undefined},
+            {name: "custom", opener: () => <div>Custom opener</div>},
+        ])("With $name opener", ({opener}) => {
+            it("should set aria-readonly to true if readOnly is true", () => {
+                // Arrange
+                // Act
+                doRender(
+                    <MultiSelect
+                        readOnly={true}
+                        onChange={jest.fn()}
+                        opener={opener}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                    </MultiSelect>,
+                );
+
+                // Assert
+                expect(screen.getByRole("combobox")).toHaveAttribute(
+                    "aria-readonly",
+                    "true",
+                );
+            });
+
+            it("should not have an open dropdown if readOnly is true and opened is true", () => {
+                // Arrange
+                // Act
+                doRender(
+                    <MultiSelect
+                        readOnly={true}
+                        opened={true}
+                        onChange={jest.fn()}
+                        opener={opener}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                    </MultiSelect>,
+                );
+
+                // Assert
+                expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+            });
+
+            it("should not open the dropdown if readOnly is true and the opener is clicked", async () => {
+                // Arrange
+                const {userEvent} = doRender(
+                    <MultiSelect
+                        readOnly={true}
+                        onChange={jest.fn()}
+                        opener={opener}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                    </MultiSelect>,
+                );
+                const combobox = await screen.findByRole("combobox");
+
+                // Act
+                await userEvent.click(combobox);
+
+                // Assert
+                expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+            });
+
+            it("should not open the dropdown if readOnly is true and the opener is clicked using the enter key", async () => {
+                // Arrange
+                const {userEvent} = doRender(
+                    <MultiSelect
+                        readOnly={true}
+                        onChange={jest.fn()}
+                        opener={opener}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                    </MultiSelect>,
+                );
+
+                // Act
+                await userEvent.tab();
+                await userEvent.keyboard("{Enter}");
+
+                // Assert
+                expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+            });
+
+            it("should be focusable when readOnly is true", async () => {
+                // Arrange
+                const {userEvent} = doRender(
+                    <MultiSelect
+                        onChange={jest.fn()}
+                        testId="select-focus-test"
+                        readOnly={true}
+                        opener={opener}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                        <OptionItem label="item 3" value="3" />
+                    </MultiSelect>,
+                );
+
+                // Act
+                await userEvent.tab();
+
+                // Assert
+                expect(await screen.findByRole("combobox")).toHaveFocus();
+            });
+        });
+    });
 });
