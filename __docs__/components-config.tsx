@@ -1064,7 +1064,8 @@ export const components = [
         ],
         defaultProps: {
             icon: IconMappings.cookieBold,
-            "aria-label": "Activity Icon Button",
+            // "aria-label": "Activity Icon Button",
+            label: "Label",
         },
         states: [{name: "Disabled", props: {disabled: true}}],
         package: "wonder-blocks-icon-button",
