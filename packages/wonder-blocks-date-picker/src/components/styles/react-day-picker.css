@@ -1,5 +1,4 @@
-
-@import "react-day-picker/lib/style.css" layer(shared);
+@import "react-day-picker/style.css";
 
 @layer legacy {
     /**

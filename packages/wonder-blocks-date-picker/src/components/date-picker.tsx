@@ -1,8 +1,8 @@
-import {t} from "@lingui/core/macro";
 import {StyleSheet} from "aphrodite";
 import {Temporal} from "temporal-polyfill";
 import * as React from "react";
 import {DayPicker} from "react-day-picker";
+import {enUS} from "react-day-picker/locale";
 
 import {View, type StyleType} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
@@ -172,6 +172,25 @@ const DatePicker = (props: Props) => {
             datePickerInputRef.current?.focus();
         }
     };
+    const RootWithEsc = (props: React.HTMLAttributes<HTMLDivElement>) => {
+        // TODO: revisit this function and fix props
+        // eslint-disable-next-line react/prop-types
+        const {onKeyDown, ...rest} = props;
+        return (
+            // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+            <div
+                {...rest}
+                tabIndex={-1}
+                onKeyDown={(e) => {
+                    onKeyDown?.(e);
+                    if (e.key === "Escape") {
+                        close();
+                        datePickerInputRef.current?.focus();
+                    }
+                }}
+            />
+        );
+    };
 
     const handleDayClick = (
         date: Date | null | undefined,
@@ -202,7 +221,7 @@ const DatePicker = (props: Props) => {
                 onClick={open}
                 onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
-                aria-label={inputAriaLabel ?? t`Choose or enter a date`}
+                aria-label={inputAriaLabel ?? "Choose or enter a date"} // TODO: add i18n
                 disabled={disabled}
                 id={id}
                 placeholder={placeholder}
@@ -210,7 +229,7 @@ const DatePicker = (props: Props) => {
                 ref={datePickerInputRef}
                 dateFormat={dateFormat}
                 locale={locale}
-                parseDate={TemporalLocaleUtils.parseDate as any}
+                parseDate={TemporalLocaleUtils.parseDateToJsDate}
                 modifiers={modifiers}
                 testId={id && `${id}-input`}
             />
@@ -266,17 +285,17 @@ const DatePicker = (props: Props) => {
                     <View ref={datePickerRef}>
                         <DayPicker
                             month={selectedDateValue ?? undefined}
-                            fromMonth={minDateToShow ?? undefined}
-                            toMonth={
+                            startMonth={minDateToShow ?? undefined}
+                            endMonth={
                                 maxDate
                                     ? temporalDateToJsDate(maxDate)
                                     : undefined
                             }
                             modifiers={modifiers}
                             onDayClick={handleDayClick}
-                            onKeyDown={handleKeyDown}
-                            locale={navigator.language || "en"}
-                            localeUtils={TemporalLocaleUtils}
+                            components={{Root: RootWithEsc}}
+                            locale={enUS}
+                            // localeUtils={TemporalLocaleUtils} TODO: determine if we still need formatters/labels for custom text
                         />
                         {maybeRenderFooter()}
                     </View>

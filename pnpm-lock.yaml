@@ -89,6 +89,9 @@ importers:
       react:
         specifier: 'catalog:'
         version: 18.2.0
+      react-day-picker:
+        specifier: 'catalog:'
+        version: 9.11.1(react@18.2.0)
       react-dom:
         specifier: 'catalog:'
         version: 18.2.0(react@18.2.0)
@@ -107,6 +110,9 @@ importers:
       react-window:
         specifier: 'catalog:'
         version: 1.8.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      temporal-polyfill:
+        specifier: 'catalog:'
+        version: 0.3.0
     devDependencies:
       '@changesets/cli':
         specifier: ^2.27.12

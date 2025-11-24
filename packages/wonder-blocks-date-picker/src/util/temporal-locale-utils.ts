@@ -1,4 +1,5 @@
 import {Temporal} from "temporal-polyfill";
+import {CustomModifiers} from "./types";
 
 /**
  * Utility functions for working with Temporal dates in react-day-picker.
@@ -75,6 +76,39 @@ export function parseDate(
     return undefined;
 }
 
+// Helper function to get modifiers for a given day
+export const getModifiersForDay = (
+    day: Date,
+    modifiers: Partial<CustomModifiers>,
+): Array<string> => {
+    const matchedModifiers: Array<string> = [];
+
+    for (const [modifierName, matcher] of Object.entries(modifiers)) {
+        if (!matcher) {
+            continue;
+        }
+
+        // If matcher is a function, call it with the day
+        if (typeof matcher === "function") {
+            if (matcher(day)) {
+                matchedModifiers.push(modifierName);
+            }
+        }
+        // If matcher is a Date, check if it's the same day
+        else if (matcher instanceof Date) {
+            if (
+                day.getFullYear() === matcher.getFullYear() &&
+                day.getMonth() === matcher.getMonth() &&
+                day.getDate() === matcher.getDate()
+            ) {
+                matchedModifiers.push(modifierName);
+            }
+        }
+    }
+
+    return matchedModifiers;
+};
+
 /**
  * Convert a Temporal.PlainDate to a JavaScript Date object.
  * Sets the time to midnight in the local timezone.
@@ -96,19 +130,42 @@ export function jsDateToTemporalDate(date: Date): Temporal.PlainDate {
 }
 
 /**
+ * Parse a date string and return a JavaScript Date.
+ * This is a convenience wrapper around parseDate that converts the result
+ * to a Date object for compatibility with react-day-picker.
+ * If a Date is passed in, it's returned as-is.
+ */
+export function parseDateToJsDate(
+    value: string | Date,
+    format: string | Array<string> | null | undefined,
+    locale?: string | null | undefined,
+): Date | null | undefined {
+    // If already a Date, return it
+    if (value instanceof Date) {
+        return value;
+    }
+
+    const temporalDate = parseDate(value, format, locale || undefined);
+    return temporalDate ? temporalDateToJsDate(temporalDate) : undefined;
+}
+
+/**
  * Get the first day of the week for a given locale.
  * Returns 0 for Sunday, 1 for Monday, etc.
  */
 export function getFirstDayOfWeek(locale?: string): number {
     // Most locales use Monday (1), but some like US use Sunday (0)
-    const localeStr = locale || "en-US";
+    // If no locale is provided, default to Monday
+    if (!locale) {
+        return 1; // Monday (most of the world)
+    }
 
     // US, Canada, and some others use Sunday
     if (
-        localeStr.startsWith("en-US") ||
-        localeStr.startsWith("en-CA") ||
-        localeStr.startsWith("ja") ||
-        localeStr.startsWith("ko")
+        locale.startsWith("en-US") ||
+        locale.startsWith("en-CA") ||
+        locale.startsWith("ja") ||
+        locale.startsWith("ko")
     ) {
         return 0; // Sunday
     }
@@ -221,8 +278,13 @@ function parseWithFormat(
     // Handle common formats manually
     // This is a simplified parser - you may need to expand this based on your needs
 
-    // M/D/YYYY or M-D-YYYY
-    if (format === "M/D/YYYY" || format === "M-D-YYYY") {
+    // M/D/YYYY, MM/DD/YYYY or M-D-YYYY, MM-DD-YYYY
+    if (
+        format === "M/D/YYYY" ||
+        format === "M-D-YYYY" ||
+        format === "MM/DD/YYYY" ||
+        format === "MM-DD-YYYY"
+    ) {
         const separator = format.includes("/") ? "/" : "-";
         const parts = str.split(separator);
         if (parts.length === 3) {
@@ -238,18 +300,94 @@ function parseWithFormat(
         }
     }
 
+    // MMMM D, YYYY (e.g., "May 7, 2021")
+    if (format === "MMMM D, YYYY" || format === "MMM D, YYYY") {
+        try {
+            // Parse using Intl.DateTimeFormat
+            // This is a bit of a hack but works for most locales
+            const cleaned = str.trim();
+            const localeStr = locale || "en-US";
+
+            // Try to parse the date using Date constructor
+            // which can handle many locale-specific formats
+            const jsDate = new Date(cleaned);
+
+            // Validate the date is valid
+            if (!isNaN(jsDate.getTime())) {
+                return jsDateToTemporalDate(jsDate);
+            }
+
+            // Alternative approach: split by comma and parse parts
+            const parts = cleaned.split(",");
+            if (parts.length === 2) {
+                const [monthDay, yearStr] = parts;
+                const year = parseInt(yearStr.trim(), 10);
+
+                // Get month names for the locale
+                const months = getMonthNamesForLocale(localeStr);
+
+                // Parse month and day
+                const monthDayParts = monthDay.trim().split(" ");
+                if (monthDayParts.length === 2) {
+                    const monthName = monthDayParts[0];
+                    const day = parseInt(monthDayParts[1], 10);
+
+                    // Find month index
+                    const monthIndex = months.findIndex(
+                        (m) =>
+                            m.toLowerCase() === monthName.toLowerCase() ||
+                            m.slice(0, 3).toLowerCase() ===
+                                monthName.toLowerCase(),
+                    );
+
+                    if (monthIndex >= 0 && !isNaN(day) && !isNaN(year)) {
+                        return Temporal.PlainDate.from({
+                            year,
+                            month: monthIndex + 1,
+                            day,
+                        });
+                    }
+                }
+            }
+        } catch {
+            return undefined;
+        }
+    }
+
     // For more complex parsing, you might need a proper date parsing library
     // or implement more format patterns as needed
 
     return undefined;
 }
 
+function getMonthNamesForLocale(locale: string): string[] {
+    const format = new Intl.DateTimeFormat(locale, {month: "long"});
+    const months: string[] = [];
+    for (let i = 0; i < 12; i++) {
+        const date = new Date(2021, i, 15);
+        months.push(format.format(date));
+    }
+    return months;
+}
+
 /**
  * LocaleUtils object compatible with react-day-picker's expected interface.
+ * Includes all utility functions for working with Temporal dates.
  */
 export const TemporalLocaleUtils = {
+    // Core date formatting and parsing
     formatDate,
     parseDate,
+    parseDateToJsDate,
+
+    // Date conversion utilities
+    temporalDateToJsDate,
+    jsDateToTemporalDate,
+
+    // Modifier utilities
+    getModifiersForDay,
+
+    // Locale-specific utilities
     getFirstDayOfWeek,
     getMonths,
     getWeekdaysLong,

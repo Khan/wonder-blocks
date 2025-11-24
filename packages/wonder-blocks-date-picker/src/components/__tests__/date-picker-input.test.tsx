@@ -1,12 +1,12 @@
 import React from "react";
-import {describe, expect, it} from "@jest/globals";
+import {describe, it} from "@jest/globals";
 import {fireEvent, render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {Temporal} from "temporal-polyfill";
-import {ModifiersUtils} from "react-day-picker";
-import {TemporalLocaleUtils} from "../../util/temporal-locale-utils.js";
-
-import DatePickerInput from "../date-picker-input.tsx";
+import {
+    TemporalLocaleUtils,
+    DatePickerInput,
+} from "@khanacademy/wonder-blocks-date-picker";
 
 describe("DatePickerInput", () => {
     it("adds a default value as initial date", async () => {
@@ -24,8 +24,6 @@ describe("DatePickerInput", () => {
         // Arrange
         const validDate = "2021-05-13";
         const onChangeSpy = jest.fn();
-        const minDate = Temporal.PlainDate.from(validDate);
-        const maxDate = minDate.add({days: 10});
         const dateFormat = "YYYY-MM-DD";
 
         // Act
@@ -33,11 +31,12 @@ describe("DatePickerInput", () => {
             <DatePickerInput
                 dateFormat={dateFormat}
                 value={validDate}
-                getModifiersForDay={ModifiersUtils.getModifiersForDay as any}
-                parseDate={TemporalLocaleUtils.parseDate as any}
+                parseDate={TemporalLocaleUtils.parseDateToJsDate}
                 onChange={onChangeSpy}
                 modifiers={{
-                    selected: Temporal.PlainDate.from(validDate).toString(),
+                    selected: TemporalLocaleUtils.temporalDateToJsDate(
+                        Temporal.PlainDate.from(validDate),
+                    ),
                     // We want to disable past dates and dates after 10 days from now
                     disabled: (date) => {
                         // (minDate && moment(date) < minDate.startOf("day")) ||
@@ -68,8 +67,8 @@ describe("DatePickerInput", () => {
         // Arrange
         // Passing in an invalid day (43)
         const onChangeSpy = jest.fn();
-        const minDate = moment("2021-05-13");
-        const maxDate = moment("2021-05-13").add(10, "day");
+        const minDate = Temporal.PlainDate.from("2021-05-13");
+        const maxDate = Temporal.PlainDate.from("2021-05-13").add({days: 10});
         const dateFormat = "YYYY-MM-DD";
 
         // Act
@@ -77,14 +76,21 @@ describe("DatePickerInput", () => {
             <DatePickerInput
                 dateFormat={dateFormat}
                 value=""
-                getModifiersForDay={ModifiersUtils.getModifiersForDay as any}
-                parseDate={LocaleUtils.parseDate as any}
+                parseDate={TemporalLocaleUtils.parseDateToJsDate}
                 onChange={onChangeSpy}
                 modifiers={{
                     // We want to disable past dates and dates after 10 days from now
-                    disabled: (date) =>
-                        (minDate && moment(date) < minDate.startOf("day")) ||
-                        (maxDate && moment(date) > maxDate.endOf("day")),
+                    disabled: (date) => {
+                        const plain = Temporal.PlainDate.from({
+                            year: date.getFullYear(),
+                            month: date.getMonth() + 1,
+                            day: date.getDate(),
+                        });
+                        return (
+                            Temporal.PlainDate.compare(plain, minDate) < 0 ||
+                            Temporal.PlainDate.compare(plain, maxDate) > 0
+                        );
+                    },
                 }}
             />,
         );
@@ -98,8 +104,8 @@ describe("DatePickerInput", () => {
         // Passing in an invalid day (43)
         const invalidDate = "2021-05-43";
         const onChangeSpy = jest.fn();
-        const minDate = moment("2021-05-13");
-        const maxDate = moment("2021-05-13").add(10, "day");
+        const minDate = Temporal.PlainDate.from("2021-05-13");
+        const maxDate = Temporal.PlainDate.from("2021-05-13").add({days: 10});
         const dateFormat = "YYYY-MM-DD";
 
         // Act
@@ -107,14 +113,21 @@ describe("DatePickerInput", () => {
             <DatePickerInput
                 dateFormat={dateFormat}
                 value={invalidDate}
-                getModifiersForDay={ModifiersUtils.getModifiersForDay as any}
-                parseDate={LocaleUtils.parseDate as any}
+                parseDate={TemporalLocaleUtils.parseDateToJsDate}
                 onChange={onChangeSpy}
                 modifiers={{
                     // We want to disable past dates and dates after 10 days from now
-                    disabled: (date) =>
-                        (minDate && moment(date) < minDate.startOf("day")) ||
-                        (maxDate && moment(date) > maxDate.endOf("day")),
+                    disabled: (date) => {
+                        const plain = Temporal.PlainDate.from({
+                            year: date.getFullYear(),
+                            month: date.getMonth() + 1,
+                            day: date.getDate(),
+                        });
+                        return (
+                            Temporal.PlainDate.compare(plain, minDate) < 0 ||
+                            Temporal.PlainDate.compare(plain, maxDate) > 0
+                        );
+                    },
                 }}
             />,
         );
@@ -128,8 +141,8 @@ describe("DatePickerInput", () => {
         // Passing in a date 1 day before of the valid range
         const disabledDate = "2021-05-12";
         const onChangeSpy = jest.fn();
-        const minDate = moment("2021-05-13");
-        const maxDate = moment("2021-05-13").add(10, "day");
+        const minDate = Temporal.PlainDate.from("2021-05-13");
+        const maxDate = Temporal.PlainDate.from("2021-05-13").add({days: 10});
         const dateFormat = "YYYY-MM-DD";
 
         // Act
@@ -137,14 +150,22 @@ describe("DatePickerInput", () => {
             <DatePickerInput
                 dateFormat={dateFormat}
                 value={disabledDate}
-                getModifiersForDay={ModifiersUtils.getModifiersForDay as any}
-                parseDate={LocaleUtils.parseDate as any}
+                parseDate={TemporalLocaleUtils.parseDateToJsDate}
+                getModifiersForDay={TemporalLocaleUtils.getModifiersForDay}
                 onChange={onChangeSpy}
                 modifiers={{
                     // We want to disable past dates and dates after 10 days from now
-                    disabled: (date) =>
-                        (minDate && moment(date) < minDate.startOf("day")) ||
-                        (maxDate && moment(date) > maxDate.endOf("day")),
+                    disabled: (date) => {
+                        const plain = Temporal.PlainDate.from({
+                            year: date.getFullYear(),
+                            month: date.getMonth() + 1,
+                            day: date.getDate(),
+                        });
+                        return (
+                            Temporal.PlainDate.compare(plain, minDate) < 0 ||
+                            Temporal.PlainDate.compare(plain, maxDate) > 0
+                        );
+                    },
                 }}
             />,
         );
@@ -158,23 +179,32 @@ describe("DatePickerInput", () => {
         // Passing in a date 1 day before of the valid range
         const initialDate = "2021-05-12";
         const onChangeSpy = jest.fn();
-        const minDate = moment(initialDate);
-        const maxDate = moment(initialDate).add(10, "day");
+        const minDate = Temporal.PlainDate.from(initialDate);
+        const maxDate = Temporal.PlainDate.from(initialDate).add({days: 10});
         const dateFormat = "YYYY-MM-DD";
 
         render(
             <DatePickerInput
                 dateFormat={dateFormat}
                 value={initialDate}
-                getModifiersForDay={ModifiersUtils.getModifiersForDay as any}
-                parseDate={LocaleUtils.parseDate as any}
+                parseDate={TemporalLocaleUtils.parseDateToJsDate}
                 onChange={onChangeSpy}
                 modifiers={{
-                    selected: moment(initialDate).toDate(),
+                    selected: TemporalLocaleUtils.temporalDateToJsDate(
+                        Temporal.PlainDate.from(initialDate),
+                    ),
                     // We want to disable past dates and dates after 10 days from now
-                    disabled: (date) =>
-                        (minDate && moment(date) < minDate.startOf("day")) ||
-                        (maxDate && moment(date) > maxDate.endOf("day")),
+                    disabled: (date) => {
+                        const plain = Temporal.PlainDate.from({
+                            year: date.getFullYear(),
+                            month: date.getMonth() + 1,
+                            day: date.getDate(),
+                        });
+                        return (
+                            Temporal.PlainDate.compare(plain, minDate) < 0 ||
+                            Temporal.PlainDate.compare(plain, maxDate) > 0
+                        );
+                    },
                 }}
                 testId="date-picker-input"
             />,
@@ -189,7 +219,9 @@ describe("DatePickerInput", () => {
 
         // Assert
         expect(onChangeSpy).toHaveBeenCalledWith(
-            moment("2021-05-14", dateFormat).toDate(),
+            TemporalLocaleUtils.temporalDateToJsDate(
+                Temporal.PlainDate.from("2021-05-14"),
+            ),
             {},
         );
     });
@@ -236,22 +268,29 @@ describe("DatePickerInput", () => {
         // Arrange
         const validDate = "2021-05-15";
         const onChangeSpy = jest.fn();
-        const minDate = moment("2021-05-13");
-        const maxDate = moment("2021-05-13").add(10, "day");
+        const minDate = Temporal.PlainDate.from("2021-05-13");
+        const maxDate = Temporal.PlainDate.from("2021-05-13").add({days: 10});
         const dateFormat = "YYYY-MM-DD";
 
         render(
             <DatePickerInput
                 dateFormat={dateFormat}
                 value={validDate}
-                getModifiersForDay={ModifiersUtils.getModifiersForDay as any}
-                parseDate={LocaleUtils.parseDate as any}
+                parseDate={TemporalLocaleUtils.parseDateToJsDate}
                 onChange={onChangeSpy}
                 modifiers={{
                     // We want to disable past dates and dates after 10 days from now
-                    disabled: (date) =>
-                        (minDate && moment(date) < minDate.startOf("day")) ||
-                        (maxDate && moment(date) > maxDate.endOf("day")),
+                    disabled: (date) => {
+                        const plain = Temporal.PlainDate.from({
+                            year: date.getFullYear(),
+                            month: date.getMonth() + 1,
+                            day: date.getDate(),
+                        });
+                        return (
+                            Temporal.PlainDate.compare(plain, minDate) < 0 ||
+                            Temporal.PlainDate.compare(plain, maxDate) > 0
+                        );
+                    },
                 }}
                 testId="date-picker-input"
             />,
