@@ -213,7 +213,14 @@ const feedbackTokens = {
 
 export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
     action: {
-        primary: thunderblocksSemanticColor.action.primary,
+        primary: {
+            ...thunderblocksSemanticColor.action.primary,
+            disabled: {
+                border: core.transparent,
+                background: core.background.disabled.strong,
+                foreground: core.foreground.disabled.default,
+            },
+        },
 
         secondary: {
             progressive: {
