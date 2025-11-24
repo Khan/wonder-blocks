@@ -1,12 +1,17 @@
-import moment from "moment";
+import {Temporal} from "temporal-polyfill";
 import * as React from "react";
-import {ModifiersUtils, type DayModifiers} from "react-day-picker";
-import LocaleUtils from "react-day-picker/moment";
+import {enUS} from "react-day-picker/locale";
+import type {CustomModifiers} from "@khanacademy/wonder-blocks-date-picker";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
-import DatePickerInput from "../date-picker-input.tsx";
+import {
+    DatePickerInput,
+    TemporalLocaleUtils,
+} from "@khanacademy/wonder-blocks-date-picker";
+import ComponentInfo from "../components/component-info";
+import packageConfig from "../../packages/wonder-blocks-date-picker/package.json";
 
 type StoryArgs = React.ComponentProps<typeof DatePickerInput>;
 
@@ -15,11 +20,28 @@ const DateInputWrapper = (props: StoryArgs) => {
     const [isInvalid, setIsInvalid] = React.useState(false);
     const [selectedDate, setSelectedDate] = React.useState<
         Date | null | undefined
-    >(props.value ? moment(props.value).toDate() : null);
+    >(() => {
+        if (props.value && typeof props.value === "string") {
+            try {
+                const locale = enUS.code;
+                const parsed = TemporalLocaleUtils.parseDate(
+                    props.value,
+                    props.dateFormat,
+                    locale,
+                );
+                return parsed
+                    ? TemporalLocaleUtils.temporalDateToJsDate(parsed)
+                    : null;
+            } catch {
+                return null;
+            }
+        }
+        return null;
+    });
 
     const handleChange = (
         date: Date | null | undefined,
-        modifiers: Partial<DayModifiers>,
+        modifiers: Partial<CustomModifiers>,
     ) => {
         // We don't want to send back invalid dates.
         if (!date || modifiers.disabled) {
@@ -30,12 +52,13 @@ const DateInputWrapper = (props: StoryArgs) => {
         setIsInvalid(false);
         setSelectedDate(date);
     };
+    const locale = navigator.language || "en";
 
     const selectedDateAsValue = selectedDate
-        ? LocaleUtils.formatDate(
-              selectedDate,
+        ? TemporalLocaleUtils.formatDate(
+              TemporalLocaleUtils.jsDateToTemporalDate(selectedDate),
               props.dateFormat,
-              moment.locale(),
+              locale,
           )
         : props.value;
 
@@ -47,34 +70,57 @@ const DateInputWrapper = (props: StoryArgs) => {
                     setSelectedDate(selectedDate);
                 }}
                 onChange={handleChange}
-                parseDate={LocaleUtils.parseDate as any}
-                getModifiersForDay={ModifiersUtils.getModifiersForDay as any}
                 value={selectedDateAsValue}
             />
-            {isInvalid && <LabelMedium>Invalid date</LabelMedium>}
+            {isInvalid && <BodyText>Invalid date</BodyText>}
         </View>
     );
 };
 
-const minDate = moment();
-const maxDate = moment().add(10, "day");
+const minDate = Temporal.Now.plainDateISO();
+const maxDate = minDate.add({days: 10});
 
 export default {
-    title: "DatePickerInput",
+    title: "Packages / Date Picker / DatePickerInput",
     component: DatePickerInput,
+    parameters: {
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
+    },
 };
 
 export const SelectedDateIsNow = {
     args: {
         disabled: false,
-        value: moment().format("MMMM D, YYYY"),
+        value: TemporalLocaleUtils.formatDate(
+            Temporal.Now.plainDateISO(),
+            "MMMM D, YYYY",
+            "en-US",
+        ),
         dateFormat: "MMMM D, YYYY",
+        parseDate: TemporalLocaleUtils.parseDateToJsDate,
+        getModifiersForDay: TemporalLocaleUtils.getModifiersForDay,
         modifiers: {
-            selected: moment().toDate(),
+            selected: TemporalLocaleUtils.temporalDateToJsDate(
+                Temporal.Now.plainDateISO(),
+            ),
             // We want to disable past dates and dates after 10 days from now
-            disabled: (date) =>
-                (minDate && date < minDate.startOf("day")) ||
-                (maxDate && date > maxDate.endOf("day")),
+            disabled: (date: Date) => {
+                const temporalDate =
+                    TemporalLocaleUtils.jsDateToTemporalDate(date);
+
+                return (
+                    (minDate &&
+                        Temporal.PlainDate.compare(temporalDate, minDate) <
+                            0) ||
+                    (maxDate &&
+                        Temporal.PlainDate.compare(temporalDate, maxDate) > 0)
+                );
+            },
         },
     },
     render: (args: StoryArgs) => <DateInputWrapper {...args} />,
@@ -84,7 +130,7 @@ export const DisabledState = {
     args: {
         disabled: true,
         value: "May 7, 2021",
-        parseDate: LocaleUtils.parseDate,
+        parseDate: TemporalLocaleUtils.parseDateToJsDate,
         dateFormat: "MMMM D, YYYY",
     },
     render: (args: StoryArgs) => <DateInputWrapper {...args} />,
@@ -94,12 +140,24 @@ export const InvalidDate = {
     args: {
         value: "May 7, 2024",
         dateFormat: "MMMM D, YYYY",
+        parseDate: TemporalLocaleUtils.parseDateToJsDate,
+        getModifiersForDay: TemporalLocaleUtils.getModifiersForDay,
         modifiers: {
-            selected: moment().toDate(),
+            selected: TemporalLocaleUtils.temporalDateToJsDate(
+                Temporal.Now.plainDateISO(),
+            ),
             // We want to disable past dates and dates after 10 days from now
-            disabled: (date) =>
-                (minDate && date < minDate.startOf("day")) ||
-                (maxDate && date > maxDate.endOf("day")),
+            disabled: (date: Date) => {
+                const temporalDate =
+                    TemporalLocaleUtils.jsDateToTemporalDate(date);
+                return (
+                    (minDate &&
+                        Temporal.PlainDate.compare(temporalDate, minDate) <
+                            0) ||
+                    (maxDate &&
+                        Temporal.PlainDate.compare(temporalDate, maxDate) > 0)
+                );
+            },
         },
     },
     render: (args: StoryArgs) => <DateInputWrapper {...args} />,

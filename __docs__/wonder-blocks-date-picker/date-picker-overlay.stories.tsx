@@ -5,11 +5,13 @@ import {View, type PropsFor} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 
-import DatePickerOverlay from "../date-picker-overlay.tsx";
+import {DatePickerOverlay} from "@khanacademy/wonder-blocks-date-picker";
+import ComponentInfo from "../components/component-info";
+import packageConfig from "../../packages/wonder-blocks-date-picker/package.json";
 
 type Props = PropsFor<typeof DatePickerOverlay>;
 
-const TestWrapper: React.FC<Props> = (props) => {
+const TestWrapper = (props: Props) => {
     const [showOverlay, setShowOverlay] = React.useState(false);
     const ref = React.useRef<HTMLButtonElement | null>(null);
 
@@ -33,8 +35,16 @@ const TestWrapper: React.FC<Props> = (props) => {
  * DatePickerOverlay component for displaying content in a floating overlay
  */
 const meta: Meta<typeof DatePickerOverlay> = {
+    title: "Packages / Date Picker / DatePickerOverlay",
     component: DatePickerOverlay,
-    title: "DatePickerOverlay",
+    parameters: {
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
+    },
 };
 
 export default meta;
@@ -49,7 +59,7 @@ export const BasicOverlay: Story = {
     args: {
         children: (
             <View style={{padding: spacing.medium_16}}>
-                <HeadingLarge>I'm a container inside Popper.</HeadingLarge>
+                <HeadingLarge>I’m a container inside Popper.</HeadingLarge>
             </View>
         ),
         referenceElement: null,
@@ -66,7 +76,7 @@ export const CustomStyleOverlay: Story = {
         children: (
             <View style={{padding: spacing.medium_16}}>
                 <HeadingLarge>
-                    I'm a container with custom styles inside Popper.
+                    I’m a container with custom styles inside Popper.
                 </HeadingLarge>
             </View>
         ),

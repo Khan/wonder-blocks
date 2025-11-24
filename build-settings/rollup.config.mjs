@@ -15,6 +15,7 @@ const createConfig = (pkgName) => {
     const extensions = [".js", ".jsx", ".ts", ".tsx"];
 
     return {
+        external: (id) => id.endsWith(".css"),
         output: [
             {
                 file: `packages/${pkgName}/dist/es/index.js`,
@@ -39,7 +40,7 @@ const createConfig = (pkgName) => {
                     // aren't supported in this browser list).
                     // "env": {...}
                 },
-                exclude: "node_modules/**",
+                exclude: ["node_modules/**", "**/*.css"],
             }),
             resolve({
                 browser: true,

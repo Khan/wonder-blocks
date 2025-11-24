@@ -1,10 +1,11 @@
+import * as React from "react";
 import {afterEach, beforeEach, describe, expect, it} from "@jest/globals";
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import * as DateMock from "jest-date-mock";
-import moment from "moment";
+import {Temporal} from "temporal-polyfill";
 
-import MaybeNativeDatePicker from "../maybe-native-date-picker.tsx";
+import {MaybeNativeDatePicker} from "@khanacademy/wonder-blocks-date-picker";
 
 describe("MaybeNativeDatePicker", () => {
     const originalOnTouchStart = window.ontouchstart;
@@ -13,6 +14,20 @@ describe("MaybeNativeDatePicker", () => {
         // For the purposes of these tests, we don't want the native date
         // picker so we turn it off.
         delete window.ontouchstart;
+
+        // Mock getBoundingClientRect to provide realistic dimensions
+        // This prevents Popper from thinking elements are out of bounds
+        Element.prototype.getBoundingClientRect = jest.fn(() => ({
+            width: 300,
+            height: 50,
+            top: 100,
+            left: 100,
+            bottom: 150,
+            right: 400,
+            x: 100,
+            y: 100,
+            toJSON: () => {},
+        }));
     });
 
     afterEach(() => {
@@ -36,7 +51,7 @@ describe("MaybeNativeDatePicker", () => {
 
     it("calls updateDate if the date is valid (with an initial selectedDate)", async () => {
         // Arrange
-        const today = moment("2023-05-10 09:30").toDate();
+        const today = new Date("2023-05-10T09:30:00");
         // Allows opening the calendar on a specific date.
         // NOTE: This happens because the Calendar component uses the current
         // date to open the calendar by default (in case there's no initial
@@ -45,16 +60,15 @@ describe("MaybeNativeDatePicker", () => {
 
         const updateDateMock = jest.fn();
 
-        const startOfNextMonth = moment()
-            .add(1, "month")
-            .startOf("month")
-            .format("YYYY-MM-DD");
+        const startOfNextMonth = Temporal.Now.plainDateISO()
+            .add({months: 1})
+            .with({day: 1});
 
         render(
             <MaybeNativeDatePicker
-                minDate={moment(startOfNextMonth)}
-                maxDate={moment(startOfNextMonth).add(10, "day")}
-                selectedDate={moment(startOfNextMonth)}
+                minDate={startOfNextMonth}
+                maxDate={startOfNextMonth.add({days: 10})}
+                selectedDate={startOfNextMonth}
                 updateDate={updateDateMock}
                 id="date-picker"
             />,
@@ -65,8 +79,8 @@ describe("MaybeNativeDatePicker", () => {
         await userEvent.click(textbox);
 
         // Pick a valid date
-        const validDay = moment(startOfNextMonth).add(2, "day").startOf("day");
-        const dayButton = await screen.findByText(validDay.format("D"));
+        const validDay = startOfNextMonth.add({days: 2});
+        const dayButton = await screen.findByText(validDay.day.toString());
         await userEvent.click(dayButton);
 
         // Assert
@@ -82,11 +96,13 @@ describe("MaybeNativeDatePicker", () => {
 
         const updateDateMock = jest.fn();
 
+        const today = Temporal.Now.plainDateISO();
+
         render(
             <MaybeNativeDatePicker
-                minDate={moment()}
-                maxDate={moment().add(10, "day")}
-                selectedDate={moment()}
+                minDate={today}
+                maxDate={today.add({days: 10})}
+                selectedDate={today}
                 updateDate={updateDateMock}
                 id="date-picker"
             />,
@@ -97,8 +113,8 @@ describe("MaybeNativeDatePicker", () => {
         await userEvent.click(textbox);
 
         // Pick a valid date
-        const validDay = moment().add(2, "day").startOf("day");
-        const dayButton = await screen.findByText(validDay.format("D"));
+        const validDay = today.add({days: 2});
+        const dayButton = await screen.findByText(validDay.day.toString());
         await userEvent.click(dayButton);
 
         // Assert

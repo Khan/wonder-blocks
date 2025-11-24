@@ -1,14 +1,14 @@
-import {describe, expect, it} from "@jest/globals";
+import {describe, it} from "@jest/globals";
 import {fireEvent, render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import * as React from "react";
 
-import FocusManager from "../focus-manager.tsx";
+import FocusManager from "../focus-manager";
 
 /**
  * Component that mocks a document inside a page
  */
-const Document: React.FC = () => (
+const Document = () => (
     <div>
         <button data-testid="reference" />
         <button data-testid="next" />

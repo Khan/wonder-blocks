@@ -1,14 +1,34 @@
-import {describe, expect, it} from "@jest/globals";
+import * as React from "react";
+import {describe, it} from "@jest/globals";
 import {act, fireEvent, render, screen, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import * as DateMock from "jest-date-mock";
-import moment from "moment";
+import {Temporal} from "temporal-polyfill";
 
 import Button from "@khanacademy/wonder-blocks-button";
 
-import DatePicker from "../date-picker.tsx";
+import {
+    DatePicker,
+    TemporalLocaleUtils,
+} from "@khanacademy/wonder-blocks-date-picker";
 
 describe("DatePicker", () => {
+    beforeEach(() => {
+        // Mock getBoundingClientRect to provide realistic dimensions
+        // This prevents Popper from thinking elements are out of bounds
+        Element.prototype.getBoundingClientRect = jest.fn(() => ({
+            width: 300,
+            height: 50,
+            top: 100,
+            left: 100,
+            bottom: 150,
+            right: 400,
+            x: 100,
+            y: 100,
+            toJSON: () => {},
+        }));
+    });
+
     it("hides the date picker overlay by default", () => {
         // Arrange
 
@@ -146,15 +166,15 @@ describe("DatePicker", () => {
 
     it("closes the date picker if a date is selected", async () => {
         // Arrange
-        const today = moment("2023-05-10 09:30").toDate();
+        const today = new Date("2023-05-10T09:30:00");
         // Allows opening the calendar on a specific date.
         // NOTE: This happens because the Calendar component uses the current
         // date to open the calendar by default (in case there's no initial
         // selectedDate set).
         DateMock.advanceTo(today);
 
-        const minDate = moment("2023-05-07");
-        const maxDate = moment("2023-05-22");
+        const minDate = Temporal.PlainDate.from("2023-05-07");
+        const maxDate = Temporal.PlainDate.from("2023-05-22");
         const updateDateMock = jest.fn();
 
         render(
@@ -180,15 +200,15 @@ describe("DatePicker", () => {
 
     it("does not close the date picker if a date is selected and closeOnSelect is set false", async () => {
         // Arrange
-        const today = moment("2023-05-10 09:30").toDate();
+        const today = new Date("2023-05-10T09:30:00");
         // Allows opening the calendar on a specific date.
         // NOTE: This happens because the Calendar component uses the current
         // date to open the calendar by default (in case there's no initial
         // selectedDate set).
         DateMock.advanceTo(today);
 
-        const minDate = moment("2023-05-07");
-        const maxDate = moment("2023-05-22");
+        const minDate = Temporal.PlainDate.from("2023-05-07");
+        const maxDate = Temporal.PlainDate.from("2023-05-22");
         const updateDateMock = jest.fn();
 
         render(
@@ -215,7 +235,7 @@ describe("DatePicker", () => {
 
     it("changes the date in the input if we pick a date from the overlay", async () => {
         // Arrange
-        const selectedDate = moment("2021-05-07");
+        const selectedDate = Temporal.PlainDate.from("2021-05-07");
         const updateDateMock = jest.fn();
         const dateFormat = "YYYY-MM-DD";
 
@@ -237,16 +257,20 @@ describe("DatePicker", () => {
         // We'd want to ensure that the input is updated with the picker value.
         expect(
             await screen.findByDisplayValue(
-                moment("2021-05-15").format(dateFormat),
+                TemporalLocaleUtils.formatDate(
+                    Temporal.PlainDate.from("2021-05-15"),
+                    dateFormat,
+                    "en-US",
+                ),
             ),
         ).toBeInTheDocument();
     });
 
     it("changes the date in the picker if we type in a valid date", async () => {
         // Arrange
-        const minDate = moment("2021-05-05");
-        const selectedDate = moment("2021-05-07");
-        const maxDate = moment("2021-05-12");
+        const minDate = Temporal.PlainDate.from("2021-05-05");
+        const selectedDate = Temporal.PlainDate.from("2021-05-07");
+        const maxDate = Temporal.PlainDate.from("2021-05-12");
         const updateDateMock = jest.fn();
         const dateFormat = "YYYY-MM-DD";
 
@@ -277,9 +301,9 @@ describe("DatePicker", () => {
 
     it("does not modify the current date if current input contains an invalid format", async () => {
         // Arrange
-        const minDate = moment("2021-05-05");
-        const selectedDate = moment("2021-05-07");
-        const maxDate = moment("2021-05-12");
+        const minDate = Temporal.PlainDate.from("2021-05-05");
+        const selectedDate = Temporal.PlainDate.from("2021-05-07");
+        const maxDate = Temporal.PlainDate.from("2021-05-12");
         const updateDateMock = jest.fn();
         const dateFormat = "YYYY-MM-DD";
 
