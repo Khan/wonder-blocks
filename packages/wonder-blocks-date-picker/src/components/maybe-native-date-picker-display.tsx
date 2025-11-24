@@ -1,4 +1,3 @@
-import {t} from "@lingui/core/macro";
 import {css, StyleSheet, type CSSProperties} from "aphrodite";
 import {Temporal} from "temporal-polyfill";
 import * as React from "react";
@@ -13,7 +12,7 @@ import DatePickerInput from "./date-picker-input";
 // NOTE(juan): This is one of the Day/Date picker variants so we won't probably
 // need this on load. Also, we could refactor this component after verifying
 // that we can get rid of the renderDatePicker() function.
-const DatePicker = React.lazy(() => import("./date-picker.jsx"));
+const DatePicker = React.lazy(() => import("./date-picker"));
 
 interface Props {
     // Styles for the date picker container.
@@ -111,7 +110,7 @@ const MaybeNativeDayPickerDisplay = (props: Props) => {
                     value={selectedDate?.toString() ?? ""}
                     disabled={disabled}
                     id={id}
-                    aria-label={inputAriaLabel ?? t`Choose or enter a date`}
+                    aria-label={inputAriaLabel ?? `Choose or enter a date`} //TODO: add i18n
                 />
             </View>
         );
