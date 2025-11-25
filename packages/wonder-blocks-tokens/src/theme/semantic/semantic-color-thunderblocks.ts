@@ -51,7 +51,8 @@ const core = {
         base: {
             subtle: color.blue_90,
             default: color.white_100,
-            strong: color.blue_70,
+            // TODO: This change needs to be carefully managed and tested
+            strong: color.black_100,
         },
         instructive: {
             subtle: color.blue_80,
