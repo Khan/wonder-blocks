@@ -24,6 +24,7 @@ export const color = {
     red_20: "#BE2626",
     red_10: "#8E1C1C",
     red_05: "#621414",
+    red_01: "#3B141A",
     // Orange
     orange_90: "#FEF4F2",
     orange_80: "#FEE9E5",
@@ -35,6 +36,7 @@ export const color = {
     orange_20: "#C8481A",
     orange_10: "#983C1A",
     orange_05: "#672912",
+    orange_01: "##3E1F19",
     // Yellow
     yellow_90: "#FEF8E7",
     yellow_80: "#FEF1D0",
@@ -46,6 +48,7 @@ export const color = {
     yellow_20: "#D69900",
     yellow_10: "#966B00",
     yellow_05: "#5F4500",
+    yellow_01: "#3A2D10",
     // Green
     green_90: "#F1FBF1",
     green_80: "#E3F7E3",
@@ -57,6 +60,7 @@ export const color = {
     green_20: "#3C6D4A",
     green_10: "#2C5037",
     green_05: "#24432D",
+    green_01: "#1C2C27",
     // Cyan
     cyan_90: "#EEF7FE",
     cyan_80: "#DDF0FE",
@@ -68,6 +72,7 @@ export const color = {
     cyan_20: "#2485C7",
     cyan_10: "#20628F",
     cyan_05: "#1D3F58",
+    cyan_01: "#192A3C",
     // Blue
     blue_90: "#F8F9FB",
     blue_80: "#EBF1FD",
@@ -91,6 +96,7 @@ export const color = {
     magenta_20: "#BB3183",
     magenta_10: "#84275E",
     magenta_05: "#521B3C",
+    magenta_01: "#33182E",
     // Gray
     gray_90: "#F6F6F6",
     gray_80: "#EDEDEE",
@@ -102,11 +108,29 @@ export const color = {
     gray_20: "#717279",
     gray_10: "#4A4C53",
     gray_05: "#252531",
+    gray_01: "#1D1D29",
     // Black
     black_100: black,
-    black_50: fade(black, 0.5),
-    black_60: fade(black, 0.6),
+    black_90: fade(black, 0.9),
     black_80: fade(black, 0.8),
+    black_70: fade(black, 0.7),
+    black_60: fade(black, 0.6),
+    black_50: fade(black, 0.5),
+    black_40: fade(black, 0.4),
+    black_30: fade(black, 0.3),
+    black_20: fade(black, 0.2),
+    black_10: fade(black, 0.1),
+    black_01: fade(black, 0.01),
     // White
     white_100: white,
+    white_90: fade(white, 0.9),
+    white_80: fade(white, 0.8),
+    white_70: fade(white, 0.7),
+    white_60: fade(white, 0.6),
+    white_50: fade(white, 0.5),
+    white_40: fade(white, 0.4),
+    white_30: fade(white, 0.3),
+    white_20: fade(white, 0.2),
+    white_10: fade(white, 0.1),
+    white_01: fade(white, 0.01),
 };
