@@ -648,15 +648,15 @@ export const Disabled: StoryComponentType = {
  */
 export const ReadOnly: StoryComponentType = {
     render: function ReadOnlyStory(args) {
-        const [selectedValue, setSelectedValue] = React.useState(
+        const [selectedValue, setSelectedValue] = React.useState([
             items[0].props.value,
-        );
+        ]);
         return (
             <MultiSelect
                 {...args}
                 readOnly={true}
                 onChange={setSelectedValue}
-                selectedValue={selectedValue}
+                selectedValues={selectedValue}
             >
                 {items}
             </MultiSelect>
