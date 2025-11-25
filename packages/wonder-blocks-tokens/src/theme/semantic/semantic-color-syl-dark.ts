@@ -36,8 +36,8 @@ const core = {
         },
         disabled: {
             subtle: transparent,
-            default: color.gray_30,
-            strong: color.gray_40,
+            default: color.gray_10,
+            strong: color.gray_20,
         },
         knockout: {
             default: color.white_100,
@@ -77,8 +77,8 @@ const core = {
         },
         disabled: {
             subtle: transparent,
-            default: color.gray_20,
-            strong: color.gray_40,
+            default: color.gray_05,
+            strong: color.gray_20,
         },
         overlay: {
             default: color.black_80,
@@ -115,9 +115,9 @@ const core = {
             strong: color.yellow_90,
         },
         disabled: {
-            subtle: color.gray_50,
-            default: color.gray_60,
-            strong: color.gray_70,
+            subtle: color.gray_10,
+            default: color.gray_10,
+            strong: color.gray_20,
         },
         knockout: {
             default: color.white_100,
