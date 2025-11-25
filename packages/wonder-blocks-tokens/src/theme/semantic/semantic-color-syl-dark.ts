@@ -47,7 +47,8 @@ const core = {
         base: {
             subtle: color.gray_05,
             default: color.black_100,
-            strong: color.gray_60,
+            // TODO: This change needs to be carefully managed and tested
+            strong: color.white_100,
         },
         instructive: {
             subtle: color.blue_01,
@@ -80,7 +81,7 @@ const core = {
             strong: color.gray_40,
         },
         overlay: {
-            default: color.black_50,
+            default: color.black_80,
         },
     },
 
