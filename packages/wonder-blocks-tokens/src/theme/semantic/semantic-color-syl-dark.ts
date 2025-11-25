@@ -217,7 +217,6 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
         primary: {
             ...thunderblocksSemanticColor.action.primary,
             disabled: {
-                // TODO: Confirm this: Figma spec uses background token
                 border: core.border.disabled.subtle,
                 background: core.background.disabled.strong,
                 foreground: core.foreground.disabled.default,
