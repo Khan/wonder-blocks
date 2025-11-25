@@ -644,7 +644,8 @@ export const Disabled: StoryComponentType = {
 /**
  * A MultiSelect can be set to read-only by passing `readOnly` to `true`.
  * When `true`, read-only styling is applied and the aria-disabled attribute is
- * set to "true".
+ * set to "true". A user won't be able to open the dropdown or change the
+ * selected values.
  *
  * We recommend using the MultiSelect with `LabeledField`. The
  * `readOnlyMessage` prop in `LabeledField` can be set so that users know why
@@ -652,6 +653,9 @@ export const Disabled: StoryComponentType = {
  *
  * Note: We set `aria-disabled` instead of `aria-readonly` due to low
  * browser + screen reader support for `aria-readonly`.
+ *
+ * If it is expected that the user will select multiple values, consider using
+ * a custom opener to display the selected values.
  */
 export const ReadOnly: StoryComponentType = {
     render: function ReadOnlyStory(args) {

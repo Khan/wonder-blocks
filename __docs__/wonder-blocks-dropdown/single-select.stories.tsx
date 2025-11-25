@@ -454,7 +454,8 @@ export const Disabled: StoryComponentType = {
 /**
  * A SingleSelect can be set to read-only by passing `readOnly` to `true`.
  * When `true`, read-only styling is applied and the aria-disabled attribute is
- * set to "true".
+ * set to "true". A user won't be able to open the dropdown or change the
+ * selected value.
  *
  * We recommend using the SingleSelect with `LabeledField`. The
  * `readOnlyMessage` prop in `LabeledField` can be set so that users know why
