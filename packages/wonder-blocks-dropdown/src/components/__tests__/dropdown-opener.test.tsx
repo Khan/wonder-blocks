@@ -5,7 +5,7 @@ import DropdownOpener from "../dropdown-opener";
 
 describe("DropdownOpener", () => {
     describe("readOnly prop", () => {
-        it("should set aria-readonly to true if readOnly is true", () => {
+        it("should set aria-disabled to true if readOnly is true", () => {
             // Arrange
             // Act
             render(
@@ -22,12 +22,12 @@ describe("DropdownOpener", () => {
 
             // Assert
             expect(screen.getByRole("combobox")).toHaveAttribute(
-                "aria-readonly",
+                "aria-disabled",
                 "true",
             );
         });
 
-        it("should not set aria-readonly if readOnly is false", () => {
+        it("should not set aria-disabled if readOnly is false", () => {
             // Arrange
             // Act
             render(
@@ -44,11 +44,11 @@ describe("DropdownOpener", () => {
 
             // Assert
             expect(screen.getByRole("combobox")).not.toHaveAttribute(
-                "aria-readonly",
+                "aria-disabled",
             );
         });
 
-        it("should not set aria-readonly if readOnly is not provided", () => {
+        it("should not set aria-disabled if readOnly is not provided", () => {
             // Arrange
             // Act
             render(
@@ -64,7 +64,7 @@ describe("DropdownOpener", () => {
 
             // Assert
             expect(screen.getByRole("combobox")).not.toHaveAttribute(
-                "aria-readonly",
+                "aria-disabled",
             );
         });
 

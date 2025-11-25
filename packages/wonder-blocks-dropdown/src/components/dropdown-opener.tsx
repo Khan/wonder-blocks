@@ -109,8 +109,8 @@ const DropdownOpener = React.forwardRef<HTMLElement, Props>((props, ref) => {
             "aria-expanded": opened ? "true" : "false",
             "aria-haspopup": ariaHasPopUp,
             "aria-required": ariaRequired,
-            // Set aria-readonly to undefined if readOnly is not true
-            "aria-readonly": readOnly || undefined,
+            // Set aria-disabled based on readOnly or disabled state. If none are true, set to undefined so attribute isn't set
+            "aria-disabled": readOnly || disabled || undefined,
             onClick: childrenProps.onClick
                 ? (e: React.MouseEvent) => {
                       // This is done to avoid overriding a

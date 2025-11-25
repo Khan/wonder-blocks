@@ -3426,7 +3426,7 @@ describe("MultiSelect", () => {
             {name: "default", opener: undefined},
             {name: "custom", opener: () => <div>Custom opener</div>},
         ])("With $name opener", ({opener}) => {
-            it("should set aria-readonly to true if readOnly is true", () => {
+            it("should set aria-disabled to true if readOnly is true", () => {
                 // Arrange
                 // Act
                 doRender(
@@ -3442,7 +3442,7 @@ describe("MultiSelect", () => {
 
                 // Assert
                 expect(screen.getByRole("combobox")).toHaveAttribute(
-                    "aria-readonly",
+                    "aria-disabled",
                     "true",
                 );
             });
