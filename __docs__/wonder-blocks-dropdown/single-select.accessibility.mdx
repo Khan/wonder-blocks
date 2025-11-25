@@ -76,3 +76,16 @@ To observe the affect of the Announcer, you have a few options:
 visually to the DOM
 
 <Canvas of={SingleSelectAccessibilityStories.WithVisibleAnnouncer} />
+
+## Read only state
+
+We recommend using `SingleSelect` with `LabeledField` so that `LabeledField`'s
+`readOnlyMessage` prop can be used to provide context for users on why the field
+is in a read only state.
+
+Note: The component uses `aria-disabled` instead of `aria-readonly` to indicate
+that the user can't change the value. This is because `aria-readonly` has low
+browser + screen reader support currently with `combobox` roles. Using
+`aria-disabled` and the `readOnlyMessage` provides contextual information to
+users (`LabeledField`'s `readOnlyMessage` is included in the combobox element's
+`aria-describedby` attribute)

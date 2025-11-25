@@ -169,7 +169,10 @@ export default class SelectOpener extends React.Component<
         return (
             <StyledButton
                 {...sharedProps}
-                // Set aria-disabled if readOnly or disabled state. If none are true, set to undefined so attribute isn't set
+                // Set aria-disabled if readOnly or disabled state. If none are
+                // true, set to undefined so attribute isn't set
+                // Note: We set `aria-disabled` instead of `aria-readonly` due to
+                // low browser + screen reader support for `aria-readonly` on comboboxes.
                 aria-disabled={readOnly || disabled || undefined}
                 aria-expanded={open ? "true" : "false"}
                 aria-invalid={error}

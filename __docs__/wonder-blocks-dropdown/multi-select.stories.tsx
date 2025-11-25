@@ -643,8 +643,15 @@ export const Disabled: StoryComponentType = {
 
 /**
  * A MultiSelect can be set to read-only by passing `readOnly` to `true`.
- * When `true`, read-only styling is applied and the aria-readonly attribute is
+ * When `true`, read-only styling is applied and the aria-disabled attribute is
  * set to "true".
+ *
+ * We recommend using the MultiSelect with `LabeledField`. The
+ * `readOnlyMessage` prop in `LabeledField` can be set so that users know why
+ * the field is marked as read only.
+ *
+ * Note: We set `aria-disabled` instead of `aria-readonly` due to low
+ * browser + screen reader support for `aria-readonly`.
  */
 export const ReadOnly: StoryComponentType = {
     render: function ReadOnlyStory(args) {
