@@ -92,7 +92,7 @@ export const baseStyles = {
             foreground: semanticColor.core.foreground.knockout.default,
         },
         disabled: {
-            foreground: semanticColor.core.foreground.neutral.subtle,
+            foreground: semanticColor.core.foreground.disabled.default,
         },
     },
 };
