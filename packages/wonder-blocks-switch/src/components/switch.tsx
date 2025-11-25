@@ -57,7 +57,7 @@ const baseStyles = {
                 disabledOff: semanticColor.core.border.disabled.strong,
                 activeOff: semanticColor.core.border.neutral.strong,
                 on: semanticColor.core.background.instructive.default,
-                disabledOn: semanticColor.core.border.instructive.subtle,
+                disabledOn: semanticColor.core.border.disabled.strong,
                 activeOn: semanticColor.core.background.instructive.strong,
             },
             slider: {
@@ -66,7 +66,7 @@ const baseStyles = {
             },
             icon: {
                 on: semanticColor.core.foreground.instructive.subtle,
-                disabledOn: semanticColor.core.border.instructive.subtle,
+                disabledOn: semanticColor.core.foreground.disabled.default,
                 off: semanticColor.core.border.neutral.default,
                 disabledOff: semanticColor.core.foreground.disabled.default,
             },
