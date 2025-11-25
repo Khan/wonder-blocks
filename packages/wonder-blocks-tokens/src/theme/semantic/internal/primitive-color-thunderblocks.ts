@@ -88,7 +88,7 @@ export const color = {
     magenta_50: "#F8A2D6",
     magenta_40: "#F670C1",
     magenta_30: "#E83FA4",
-    magenta_20: "#C03187",
+    magenta_20: "#BB3183",
     magenta_10: "#84275E",
     magenta_05: "#521B3C",
     // Gray
