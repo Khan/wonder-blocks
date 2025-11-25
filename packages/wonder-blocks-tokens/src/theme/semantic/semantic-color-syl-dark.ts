@@ -10,9 +10,9 @@ const core = {
     transparent,
     border: {
         instructive: {
-            subtle: color.blue_40,
-            default: color.blue_50,
-            strong: color.blue_60,
+            subtle: color.blue_30,
+            default: color.blue_40,
+            strong: color.blue_50,
         },
         neutral: {
             subtle: color.gray_10,
