@@ -216,6 +216,262 @@ describe("Floating", () => {
                 );
             });
         });
+
+        describe("focusManagerEnabled", () => {
+            it("should not move focus to the floating element when it is opened and focusManagerEnabled is false", () => {
+                // Arrange
+
+                // Act
+                render(
+                    <Floating
+                        content={
+                            <div>
+                                <button>First focusable element</button>
+                            </div>
+                        }
+                        open={true}
+                        portal={true}
+                        focusManagerEnabled={false}
+                    >
+                        <button>Trigger</button>
+                    </Floating>,
+                );
+
+                // Assert
+                expect(document.body).toHaveFocus();
+            });
+
+            it("should move focus to the floating element when it is opened and focusManagerEnabled is true", async () => {
+                // Arrange
+                const ControlledFloating = () => {
+                    const [open, setOpen] = React.useState(false);
+                    return (
+                        <Floating
+                            content={
+                                <div>
+                                    <button>First focusable element</button>
+                                </div>
+                            }
+                            open={open}
+                            portal={true}
+                            focusManagerEnabled={true}
+                        >
+                            <button
+                                onClick={() => {
+                                    setOpen(true);
+                                }}
+                            >
+                                Trigger
+                            </button>
+                        </Floating>
+                    );
+                };
+
+                render(<ControlledFloating />);
+
+                // Act
+                const trigger = screen.getByRole("button", {name: "Trigger"});
+                await userEvent.click(trigger);
+
+                const firstFocusableElement = await screen.findByText(
+                    "First focusable element",
+                );
+
+                // Assert
+                await waitFor(() => {
+                    expect(firstFocusableElement).toHaveFocus();
+                });
+            });
+        });
+
+        describe("initialFocusRef", () => {
+            it("should focus the initialFocusRef when it is provided", async () => {
+                // Arrange
+                const initialFocusRef = React.createRef<HTMLButtonElement>();
+                const ControlledFloating = () => {
+                    const [open, setOpen] = React.useState(false);
+                    return (
+                        <Floating
+                            content={
+                                <div data-testid="floating-content">
+                                    <button>First focusable element</button>
+                                    <button ref={initialFocusRef}>
+                                        Initial focusable element
+                                    </button>
+                                </div>
+                            }
+                            open={open}
+                            portal={true}
+                            focusManagerEnabled={true}
+                            initialFocusRef={initialFocusRef}
+                        >
+                            <button
+                                onClick={() => {
+                                    setOpen(true);
+                                }}
+                            >
+                                Trigger
+                            </button>
+                        </Floating>
+                    );
+                };
+
+                render(<ControlledFloating />);
+
+                // Act
+                const trigger = screen.getByRole("button", {name: "Trigger"});
+                await userEvent.click(trigger);
+
+                // Assert
+                await waitFor(() => {
+                    expect(initialFocusRef.current).toHaveFocus();
+                });
+            });
+        });
+
+        describe("dismissEnabled", () => {
+            it("should not dismiss the floating element when dismissEnabled is false", async () => {
+                // Arrange
+                const onOpenChangeMock = jest.fn();
+
+                const {container} = render(
+                    <Floating
+                        content={
+                            <div>
+                                <button>First focusable element</button>
+                            </div>
+                        }
+                        open={true}
+                        dismissEnabled={false}
+                        onOpenChange={onOpenChangeMock}
+                    >
+                        <button>Trigger</button>
+                    </Floating>,
+                );
+
+                // Act
+                // Click outside the floating element
+                await userEvent.click(container);
+
+                // Assert
+                await waitFor(() => {
+                    expect(onOpenChangeMock).not.toHaveBeenCalled();
+                });
+            });
+
+            it("should dismiss the floating element when dismissEnabled is true", async () => {
+                // Arrange
+                const onOpenChangeMock = jest.fn();
+
+                const ControlledFloating = () => {
+                    const [open, setOpen] = React.useState(true);
+                    return (
+                        <Floating
+                            content={
+                                <div>
+                                    <button>First focusable element</button>
+                                </div>
+                            }
+                            dismissEnabled={true}
+                            open={open}
+                            onOpenChange={(open) => {
+                                setOpen(open);
+                                onOpenChangeMock(open);
+                            }}
+                        >
+                            <button>Trigger</button>
+                        </Floating>
+                    );
+                };
+
+                const {container} = render(<ControlledFloating />);
+
+                // Act
+                // Click outside the floating element
+                await userEvent.click(container);
+
+                // Assert
+                await waitFor(() => {
+                    // False because the floating element is dismissed
+                    expect(onOpenChangeMock).toHaveBeenCalledWith(false);
+                });
+            });
+
+            it("should dismiss the floating element when the escape key is pressed", async () => {
+                // Arrange
+                const onOpenChangeMock = jest.fn();
+
+                const ControlledFloating = () => {
+                    const [open, setOpen] = React.useState(true);
+                    return (
+                        <Floating
+                            content={
+                                <div>
+                                    <button>First focusable element</button>
+                                </div>
+                            }
+                            dismissEnabled={true}
+                            open={open}
+                            onOpenChange={(open) => {
+                                setOpen(open);
+                                onOpenChangeMock(open);
+                            }}
+                        >
+                            <button>Trigger</button>
+                        </Floating>
+                    );
+                };
+
+                render(<ControlledFloating />);
+
+                // Act
+                // Press the escape key
+                await userEvent.keyboard("{Escape}");
+
+                // Assert
+                await waitFor(() => {
+                    // False because the floating element is dismissed
+                    expect(onOpenChangeMock).toHaveBeenCalledWith(false);
+                });
+            });
+
+            it("should not dismiss the floating element when the escape key is pressed and dismissEnabled is false", async () => {
+                // Arrange
+                const onOpenChangeMock = jest.fn();
+
+                const ControlledFloating = () => {
+                    const [open, setOpen] = React.useState(true);
+                    return (
+                        <Floating
+                            content={
+                                <div>
+                                    <button>First focusable element</button>
+                                </div>
+                            }
+                            dismissEnabled={false}
+                            open={open}
+                            onOpenChange={(open) => {
+                                setOpen(open);
+                                onOpenChangeMock(open);
+                            }}
+                        >
+                            <button>Trigger</button>
+                        </Floating>
+                    );
+                };
+
+                render(<ControlledFloating />);
+
+                // Act
+                // Press the escape key
+                await userEvent.keyboard("{Escape}");
+
+                // Assert
+                await waitFor(() => {
+                    expect(onOpenChangeMock).not.toHaveBeenCalled();
+                });
+            });
+        });
     });
 
     describe("Accessibility", () => {
@@ -223,7 +479,14 @@ describe("Floating", () => {
             it("should have no a11y violations", async () => {
                 // Arrange
                 const {container} = render(
-                    <Floating content="Floating content" open={true}>
+                    <Floating
+                        content="Floating content"
+                        open={true}
+                        // NOTE: Setting portal to false as we don't need to
+                        // test the focus guards.
+                        // @see https://github.com/floating-ui/floating-ui/issues/2823#issuecomment-2010715019
+                        portal={false}
+                    >
                         <button>Trigger</button>
                     </Floating>,
                 );

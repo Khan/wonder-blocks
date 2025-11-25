@@ -8,6 +8,9 @@ import {
     shift,
     arrow,
     Placement,
+    useDismiss,
+    useInteractions,
+    FloatingFocusManager,
 } from "@floating-ui/react";
 import {StyleSheet} from "aphrodite";
 import {
@@ -112,8 +115,52 @@ type FloatingProps = {
      */
     portal?: boolean;
 
-    // TODO(WB-2111.3): Add props for dismissEnabled, portal and useFocusManager
+    /**
+     * When enabled, user can hide the floating element by pressing the `esc`
+     * key or clicking/tapping outside of it.
+     * @default false
+     */
+    dismissEnabled?: boolean;
 };
+
+type FocusManagerProps =
+    | {
+          /**
+           * Whether to enable the FocusManager component to manage the focus of
+           * the floating element.
+           *
+           * When enabled, the focus will continue flowing from the reference
+           * element to the floating element and back to the reference element
+           * when the floating element is closed.
+           *
+           * This should be enabled in most cases, but it can be disabled if you
+           * want to handle the focus manually or use it in a non-interactive
+           * context (e.g. tooltips).
+           *
+           * NOTE: FloatingUI might not preserve tab order with FloatingPortal.
+           * @see https://github.com/floating-ui/floating-ui/issues/2988
+           *
+           * @default true
+           */
+          focusManagerEnabled?: true;
+          /**
+           * The element that will receive focus when the floating element is
+           * opened.
+           *
+           * This is useful when you want to set the initial focus to an element
+           * inside the floating element when it is opened.
+           *
+           * If not provided, the first focusable element inside the floating
+           * element will receive focus when it is opened.
+           */
+          initialFocusRef?: React.RefObject<HTMLElement>;
+      }
+    | {
+          focusManagerEnabled: false;
+          initialFocusRef?: never;
+      };
+
+type Props = FloatingProps & FocusManagerProps;
 
 /**
  * The padding to use for the shift middleware. This is useful to avoid the
@@ -147,13 +194,17 @@ export default function Floating({
     portal = true,
     strategy = "absolute",
     testId,
+    // focus management
+    focusManagerEnabled = true,
+    initialFocusRef,
+    dismissEnabled = false,
     // middleware specific
     hide: hideProp = true,
     offset: offsetProp = 20,
     flip: flipProp = true,
     shift: shiftProp = true,
     showArrow = true,
-}: FloatingProps) {
+}: Props) {
     const arrowRef = React.useRef(null);
     const prevOpenRef = React.useRef(open ?? false);
 
@@ -183,6 +234,13 @@ export default function Floating({
             ],
         });
 
+    // Closes the floating element when a dismissal is requested.
+    const dismiss = useDismiss(context, {
+        enabled: dismissEnabled,
+    });
+
+    const {getReferenceProps, getFloatingProps} = useInteractions([dismiss]);
+
     // call onOpenChange when the floating element is opened or closed
     React.useEffect(() => {
         // only trigger when the open value changes and is controlled mode
@@ -197,8 +255,9 @@ export default function Floating({
     const trigger = React.useMemo(() => {
         return React.cloneElement(children, {
             ref: refs.setReference,
+            ...getReferenceProps(),
         });
-    }, [children, refs.setReference]);
+    }, [children, refs.setReference, getReferenceProps]);
 
     return (
         <>
@@ -208,25 +267,38 @@ export default function Floating({
                     portal={portal}
                     reference={elements.reference as Element}
                 >
-                    <StyledDiv
-                        data-testid={testId}
-                        data-placement={placement}
-                        ref={refs.setFloating}
-                        style={[
-                            styles.floating,
-                            floatingStyles,
-                            {
-                                visibility: middlewareData.hide?.referenceHidden
-                                    ? "hidden"
-                                    : "visible",
-                            },
-                        ]}
+                    <FloatingFocusManager
+                        disabled={!focusManagerEnabled}
+                        context={context}
+                        modal={false}
+                        initialFocus={initialFocusRef}
+                        // TODO(WB-1987): Determine if we want to close the
+                        // floating element when the user focuses outside of it.
+                        closeOnFocusOut={false}
+                        visuallyHiddenDismiss={dismissEnabled}
                     >
-                        {content}
-                        {showArrow && (
-                            <Arrow ref={arrowRef} context={context} />
-                        )}
-                    </StyledDiv>
+                        <StyledDiv
+                            data-testid={testId}
+                            data-placement={placement}
+                            ref={refs.setFloating}
+                            style={[
+                                styles.floating,
+                                floatingStyles,
+                                {
+                                    visibility: middlewareData.hide
+                                        ?.referenceHidden
+                                        ? "hidden"
+                                        : "visible",
+                                },
+                            ]}
+                            {...getFloatingProps()}
+                        >
+                            {content}
+                            {showArrow && (
+                                <Arrow ref={arrowRef} context={context} />
+                            )}
+                        </StyledDiv>
+                    </FloatingFocusManager>
                 </Portal>
             )}
         </>
@@ -245,5 +317,7 @@ const styles = StyleSheet.create({
         minBlockSize: ARROW_SIZE_INLINE,
         boxShadow: boxShadow.mid,
         justifyContent: "center",
+        // Prevent the floating element from receiving focus when it is clicked.
+        outline: "none",
     },
 });

@@ -7,7 +7,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {Floating} from "@khanacademy/wonder-blocks-floating";
 import Switch from "@khanacademy/wonder-blocks-switch";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {BodyText} from "@khanacademy/wonder-blocks-typography";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 
 import packageConfig from "../../packages/wonder-blocks-floating/package.json";
 import ComponentInfo from "../components/component-info";
@@ -271,6 +271,144 @@ export const Portal: StoryComponentType = {
     },
 };
 
+/**
+ * This story demonstrates how to manage the focus of the floating element when
+ * it is opened. This can be done with the `focusManagerEnabled`prop, which
+ * allows you to handle focus programmatically. The focus should continue
+ * flowing from the reference element to the floating element and back to the
+ * reference element when the floating element is closed.
+ *
+ * By default, the first focusable element inside the floating element will
+ * receive focus when it is opened. You can set the initial focus to an element
+ * inside the floating element by passing a ref to the element that should
+ * receive focus when the floating element is opened via the `initialFocusRef`
+ * prop.
+ */
+export const FocusManager: StoryComponentType = {
+    ...Default,
+    args: {
+        open: false,
+        focusManagerEnabled: true,
+        dismissEnabled: true,
+    },
+    render: function Render(args) {
+        const [open, setOpen] = React.useState(args.open);
+
+        return (
+            <View style={styles.row}>
+                <Button kind="secondary">Before floating</Button>
+                <Floating
+                    {...args}
+                    open={open}
+                    onOpenChange={setOpen}
+                    content={
+                        <View style={styles.contentContainer}>
+                            <Heading>Title</Heading>
+                            <BodyText>Floating content</BodyText>
+                            <Button
+                                kind="secondary"
+                                onClick={() => setOpen(false)}
+                            >
+                                Dismiss
+                            </Button>
+                            <Button onClick={() => {}}>Another action</Button>
+                        </View>
+                    }
+                >
+                    <Button onClick={() => setOpen(!open)}>Open</Button>
+                </Floating>
+                <Button kind="secondary">After floating</Button>
+            </View>
+        );
+    },
+};
+
+/**
+ * This story demonstrates how to enable the dismissal of the floating element
+ * when the user clicks/taps outside of it or presses the `esc` key.
+ */
+export const DismissEnabled: StoryComponentType = {
+    ...Default,
+    args: {
+        open: true,
+        focusManagerEnabled: true,
+        dismissEnabled: true,
+    },
+    render: function Render(args) {
+        const [open, setOpen] = React.useState(args.open);
+
+        return (
+            <Floating
+                {...args}
+                open={open}
+                onOpenChange={setOpen}
+                content={
+                    <View style={styles.contentContainer}>
+                        <Heading>Title</Heading>
+                        <BodyText>Floating content</BodyText>
+                        <Button kind="secondary" onClick={() => setOpen(false)}>
+                            Dismiss
+                        </Button>
+                        <Button onClick={() => {}}>Another action</Button>
+                    </View>
+                }
+            >
+                <Button onClick={() => setOpen(!open)}>Open</Button>
+            </Floating>
+        );
+    },
+};
+
+/**
+ * This story demonstrates how to set the initial focus to an element inside the
+ * floating element when opened. This can be done by passing a ref to the
+ * element that should receive focus when the floating element is opened via the
+ * `initialFocusRef` prop.
+ *
+ * If not provided, the first focusable element inside the floating element
+ * will receive focus when it is opened.
+ */
+export const InitialFocus: StoryComponentType = {
+    ...Default,
+    args: {
+        open: false,
+        portal: true,
+        strategy: "fixed",
+    },
+    render: function Render(args) {
+        const [open, setOpen] = React.useState(args.open);
+        const initialFocusRef = React.useRef(null);
+        const {focusManagerEnabled, ...rest} = args;
+
+        return (
+            <Floating
+                {...rest}
+                open={open}
+                onOpenChange={setOpen}
+                focusManagerEnabled={focusManagerEnabled ? true : undefined}
+                initialFocusRef={initialFocusRef}
+                content={
+                    <View style={styles.contentContainer}>
+                        <Heading>Title</Heading>
+                        <BodyText>Floating content</BodyText>
+                        <Button kind="secondary" onClick={() => setOpen(false)}>
+                            Dismiss
+                        </Button>
+                        <Button
+                            ref={initialFocusRef}
+                            onClick={() => setOpen(false)}
+                        >
+                            Receive focus
+                        </Button>
+                    </View>
+                }
+            >
+                <Button onClick={() => setOpen(!open)}>Open</Button>
+            </Floating>
+        );
+    },
+};
+
 const styles = StyleSheet.create({
     storyCanvas: {
         minHeight: 200,
@@ -312,5 +450,9 @@ const styles = StyleSheet.create({
     },
     button: {
         placeSelf: "center",
+    },
+    contentContainer: {
+        padding: sizing.size_160,
+        gap: sizing.size_160,
     },
 });
