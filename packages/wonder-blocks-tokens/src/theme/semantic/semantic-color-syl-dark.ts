@@ -217,7 +217,8 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
         primary: {
             ...thunderblocksSemanticColor.action.primary,
             disabled: {
-                border: core.transparent,
+                // TODO: Confirm this: Figma spec uses background token
+                border: core.border.disabled.subtle,
                 background: core.background.disabled.strong,
                 foreground: core.foreground.disabled.default,
             },
@@ -489,19 +490,19 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
         },
         disabled: {
             background: {
-                primary: core.background.disabled.default,
+                primary: core.background.disabled.strong,
                 secondary: core.background.disabled.default,
                 tertiary: core.background.disabled.subtle,
             },
             border: {
                 primary: core.border.disabled.subtle,
-                secondary: core.border.disabled.strong,
+                secondary: core.border.disabled.default,
                 tertiary: core.border.disabled.subtle,
             },
             foreground: {
-                primary: color.gray_50,
-                secondary: color.gray_50,
-                tertiary: color.gray_50,
+                primary: core.foreground.disabled.default,
+                secondary: core.foreground.disabled.default,
+                tertiary: core.foreground.disabled.subtle,
             },
             shadow: {
                 primary: core.shadow.chonky.neutral.subtle,
