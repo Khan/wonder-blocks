@@ -72,7 +72,31 @@ export default {
         ),
         docs: {
             description: {
-                component: null,
+                component: `A component that enables you to launch a modal, covering the screen.
+
+Intended for use with \`OnePaneDialog\`, \`FlexibleDialog\`, or modal Building Blocks.
+
+For conditionally rendering modals, ensure there is only one \`DrawerLauncher\` in
+your component tree. A launcher needs to stay mounted on the current page to
+properly handle the user's keyboard focus on close of modals.
+Read [more details on Confluence](https://khanacademy.atlassian.net/wiki/spaces/FRONTEND/blog/2025/11/24/4454383789/Wonder+Blocks+Modal+Tips+Tricks).
+
+### Usage
+
+\`\`\`jsx
+import {ModalLauncher} from "@khanacademy/wonder-blocks-modal";
+import {FlexibleDialog} from "@khanacademy/wonder-blocks-modal";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
+
+<ModalLauncher
+     onClose={handleClose}
+     opened={opened}
+     animated={animated}
+     modal={({closeModal}) => (
+         <FlexibleDialog  />
+     )}
+/>
+\`\`\``,
             },
             source: {
                 // See https://github.com/storybookjs/storybook/issues/12596
