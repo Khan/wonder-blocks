@@ -481,6 +481,12 @@ export const ReadOnly: StoryComponentType = {
             </SingleSelect>
         );
     },
+    parameters: {
+        chromatic: {
+            // Disabling because this is covered in testing snapshots story
+            disableSnapshot: true,
+        },
+    },
 };
 
 const ControlledSingleSelect = (

@@ -673,6 +673,12 @@ export const ReadOnly: StoryComponentType = {
             </MultiSelect>
         );
     },
+    parameters: {
+        chromatic: {
+            // Disabling because this is covered in testing snapshots story
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**
