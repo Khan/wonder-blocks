@@ -79,9 +79,9 @@ export const Scenarios: Story = {
             </ScenariosLayout>
         );
     },
-    globals: {
+    parameters: {
         viewport: {
-            value: "small",
+            defaultViewport: "small",
         },
     },
 };

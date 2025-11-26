@@ -125,7 +125,7 @@ const parameters: Preview["parameters"] = {
         },
     },
     viewport: {
-        options: wbViewports,
+        viewports: wbViewports,
     },
 };
 
