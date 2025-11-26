@@ -180,7 +180,13 @@ export const Scenarios: Story = {
         ];
         return (
             <ScenariosLayout scenarios={scenarios}>
-                {(props) => <ControlledSingleSelect {...props} key={name} />}
+                {(props, name) => (
+                    <ControlledSingleSelect
+                        {...props}
+                        key={name}
+                        aria-label={name}
+                    />
+                )}
             </ScenariosLayout>
         );
     },
