@@ -19,30 +19,7 @@ import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 
 import ComponentInfo from "../components/component-info";
 import ModalHeaderArgtypes from "./modal-header.argtypes";
-
-const customViewports = {
-    phone: {
-        name: "phone",
-        styles: {
-            width: "320px",
-            height: "568px",
-        },
-    },
-    tablet: {
-        name: "tablet",
-        styles: {
-            width: "640px",
-            height: "960px",
-        },
-    },
-    desktop: {
-        name: "desktop",
-        styles: {
-            width: "1024px",
-            height: "768px",
-        },
-    },
-} as const;
+import {allModes} from "../../.storybook/modes";
 
 const longBody = (
     <>
@@ -154,11 +131,11 @@ export default {
                 excludeDecorators: true,
             },
         },
-        viewport: {
-            viewports: customViewports,
-            defaultViewport: "desktop",
-        },
         chromatic: {
+            modes: {
+                small: allModes.small,
+                large: allModes.large,
+            },
             // We already have screenshots of other stories in
             // one-pane-dialog.stories.tsx
             disableSnapshot: true,

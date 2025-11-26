@@ -18,30 +18,6 @@ import celebrationBg from "../../static/celebration_bg.svg";
 import celebrationChest from "../../static/celebration-chest.svg";
 import {longText, reallyLongText} from "../components/text-for-testing";
 
-const customViewports = {
-    phone: {
-        name: "phone",
-        styles: {
-            width: "320px",
-            height: "568px",
-        },
-    },
-    tablet: {
-        name: "tablet",
-        styles: {
-            width: "640px",
-            height: "960px",
-        },
-    },
-    desktop: {
-        name: "desktop",
-        styles: {
-            width: "1024px",
-            height: "768px",
-        },
-    },
-} as const;
-
 export default {
     title: "Packages / Modal / FlexibleDialog",
     component: FlexibleDialog,
@@ -67,10 +43,6 @@ export default {
                 // See https://github.com/storybookjs/storybook/issues/12596
                 excludeDecorators: true,
             },
-        },
-        viewport: {
-            viewports: customViewports,
-            defaultViewport: "desktop",
         },
         chromatic: {
             modes: {
