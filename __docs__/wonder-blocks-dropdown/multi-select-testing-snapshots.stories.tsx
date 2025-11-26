@@ -4,6 +4,13 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {themeModes} from "../../.storybook/modes";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
+import {
+    longText,
+    longTextWithNoWordBreak,
+} from "../components/text-for-testing";
+import {ScenariosLayout} from "../components/scenarios-layout";
+import {PropsFor} from "@khanacademy/wonder-blocks-core";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 /**
  * The following stories are used to generate the pseudo states for the
@@ -80,5 +87,95 @@ export const StateSheetStory: Story = {
     },
     parameters: {
         pseudo: defaultPseudoStates,
+    },
+};
+
+const ControlledMultiSelect = (props: PropsFor<typeof MultiSelect>) => {
+    const [selectedValues, setSelectedValues] = React.useState(
+        props.selectedValues,
+    );
+    return (
+        <MultiSelect
+            {...props}
+            selectedValues={selectedValues}
+            onChange={setSelectedValues}
+        />
+    );
+};
+
+export const Scenarios: Story = {
+    render: () => {
+        const scenarios = [
+            {
+                name: "Long option item label",
+                props: {
+                    children: [
+                        <OptionItem label={longText} value="1" key="1" />,
+                    ],
+                    opened: true,
+                    style: {paddingBlockEnd: sizing.size_560},
+                },
+            },
+            {
+                name: "Long option item label with no word break",
+                props: {
+                    children: [
+                        <OptionItem
+                            label={longTextWithNoWordBreak}
+                            value="1"
+                            key="1"
+                        />,
+                    ],
+                    opened: true,
+                    style: {marginBlockEnd: sizing.size_560},
+                },
+            },
+            {
+                name: "Long selected option label",
+                props: {
+                    children: [
+                        <OptionItem label={longText} value="1" key="1" />,
+                        <OptionItem label={longText} value="2" key="2" />,
+                        <OptionItem label={longText} value="3" key="3" />,
+                    ],
+                    selectedValues: ["1"],
+                },
+            },
+            {
+                name: "Long selected option label with no word break",
+                props: {
+                    children: [
+                        <OptionItem
+                            label={longTextWithNoWordBreak}
+                            value="1"
+                            key="1"
+                        />,
+                        <OptionItem
+                            label={longTextWithNoWordBreak}
+                            value="2"
+                            key="2"
+                        />,
+                        <OptionItem
+                            label={longTextWithNoWordBreak}
+                            value="3"
+                            key="3"
+                        />,
+                    ],
+                    selectedValues: ["1"],
+                },
+            },
+        ];
+        return (
+            <ScenariosLayout scenarios={scenarios}>
+                {(props, name) => (
+                    <ControlledMultiSelect {...props} aria-label={name} />
+                )}
+            </ScenariosLayout>
+        );
+    },
+    globals: {
+        viewport: {
+            value: "small",
+        },
     },
 };
