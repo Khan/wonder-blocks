@@ -14,6 +14,8 @@ import ComponentInfo from "../components/component-info";
 import {longText} from "../components/text-for-testing";
 import floatingArgtypes from "./floating.argtypes";
 import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 type StoryComponentType = StoryObj<typeof Floating>;
 
@@ -409,6 +411,83 @@ export const InitialFocus: StoryComponentType = {
     },
 };
 
+/**
+ * Floating allows you to customize the styles of the floating element using the
+ * `styles` prop. This is useful when you want to override the default styles of
+ * the floating element.
+ *
+ * Styles can be set for the following elements:
+ * - `root`: The styles to use for the floating element.
+ * - `arrow`: The styles to use for the arrow of the floating element.
+ *
+ * **NOTE:** The arrow styles object is different as it uses internally an SVG
+ * element, so it needs to be a bit different.
+ * - `fill`: The fill color of the arrow.
+ * - `stroke`: The stroke color of the arrow.
+ * - `strokeWidth`: The width of the stroke (border) of the arrow.
+ * - `width`: The width of the arrow.
+ * - `height`: The height of the arrow.
+ */
+export const CustomStyles: StoryComponentType = {
+    args: {
+        open: true,
+        placement: "right-end",
+        styles: {
+            root: {
+                background: semanticColor.feedback.critical.subtle.background,
+                color: semanticColor.feedback.critical.subtle.text,
+                border: `${border.width.thick} solid ${semanticColor.feedback.critical.subtle.border}`,
+            },
+            arrow: {
+                fill: semanticColor.feedback.critical.subtle.background,
+                stroke: semanticColor.feedback.critical.subtle.border,
+                strokeWidth: 4,
+            },
+        },
+    },
+    render: function Render(args) {
+        return (
+            <View style={{alignSelf: "flex-start"}}>
+                <Floating
+                    {...args}
+                    content={
+                        <View style={[styles.contentContainer, styles.row]}>
+                            <BodyText>Floating content</BodyText>
+                            <PhosphorIcon icon={IconMappings.cookie} />
+                        </View>
+                    }
+                >
+                    <View style={styles.reference}>Ref</View>
+                </Floating>
+            </View>
+        );
+    },
+};
+
+/**
+ * This story demonstrates how the floating element is positioned when the
+ * document is in a right-to-left direction.
+ *
+ * In this case, the floating element is positioned to the left of the reference
+ * element. Also note that the icon is mirrored.
+ */
+export const RightToLeft: StoryComponentType = {
+    ...CustomStyles,
+    parameters: {
+        docs: {
+            story: {
+                // Renders the story in an iframe, so we can see the full effect
+                // of the right-to-left direction.
+                inline: false,
+                height: 200,
+            },
+        },
+    },
+    globals: {
+        direction: "rtl",
+    },
+};
+
 const styles = StyleSheet.create({
     storyCanvas: {
         minHeight: 200,
@@ -427,6 +506,7 @@ const styles = StyleSheet.create({
         color: semanticColor.core.foreground.knockout.default,
         height: sizing.size_440,
         padding: sizing.size_160,
+        justifyContent: "center",
     },
     scrollableContainer: {
         border: `${border.width.medium} dashed ${semanticColor.core.border.neutral.default}`,
