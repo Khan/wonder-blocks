@@ -190,9 +190,9 @@ export const Scenarios: Story = {
             </ScenariosLayout>
         );
     },
-    parameters: {
+    globals: {
         viewport: {
-            defaultViewport: "small",
+            value: "small",
         },
     },
 };
