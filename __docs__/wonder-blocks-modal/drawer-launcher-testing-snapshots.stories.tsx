@@ -11,30 +11,6 @@ import type {ModalElement} from "../../packages/wonder-blocks-modal/src/util/typ
 import {allModes} from "../../.storybook/modes";
 import {reallyLongText} from "../components/text-for-testing";
 
-const customViewports = {
-    phone: {
-        name: "phone",
-        styles: {
-            width: "320px",
-            height: "568px",
-        },
-    },
-    tablet: {
-        name: "tablet",
-        styles: {
-            width: "640px",
-            height: "960px",
-        },
-    },
-    desktop: {
-        name: "desktop",
-        styles: {
-            width: "1024px",
-            height: "768px",
-        },
-    },
-} as const;
-
 const DefaultModal = (): ModalElement => (
     <DrawerDialog
         title="Single-line title"
@@ -57,10 +33,6 @@ export default {
                 small: allModes.small,
                 thunderblocks: allModes.themeThunderBlocks,
             },
-        },
-        viewport: {
-            viewports: customViewports,
-            defaultViewport: "desktop",
         },
     },
     tags: ["!autodocs"],
