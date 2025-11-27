@@ -15,7 +15,6 @@ import {
 import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 
 import ComponentInfo from "../components/component-info";
-import {allModes} from "../../.storybook/modes";
 
 const longBody = (
     <>
@@ -105,10 +104,6 @@ export default {
             },
         },
         chromatic: {
-            modes: {
-                small: allModes.small,
-                large: allModes.large,
-            },
             // We already have screenshots of other stories in
             // one-pane-dialog.stories.tsx
             disableSnapshot: true,

@@ -15,7 +15,6 @@ import {
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 import modalDialogArgtypes from "./modal-dialog.argtypes";
-import {allModes} from "../../.storybook/modes";
 
 /**
  * `ModalDialog` is a component that contains these elements:
@@ -54,10 +53,6 @@ export default {
             },
         },
         chromatic: {
-            modes: {
-                small: allModes.small,
-                large: allModes.large,
-            },
             // We already have screenshots in one-pane-dialog.stories.tsx
             disableSnapshot: true,
         },
@@ -218,13 +213,6 @@ export const WithLauncher: StoryComponentType = {
                 )}
             </ModalLauncher>
         );
-    },
-    parameters: {
-        chromatic: {
-            // Don't take screenshots of this story since it would only show a
-            // button and not the actual modal.
-            disableSnapshot: true,
-        },
     },
 };
 
