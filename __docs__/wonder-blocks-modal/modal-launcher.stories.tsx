@@ -28,7 +28,6 @@ import type {ModalElement} from "../../packages/wonder-blocks-modal/src/util/typ
 import ModalLauncherArgTypes from "./modal-launcher.argtypes";
 
 import ComponentInfo from "../components/component-info";
-import {allModes} from "../../.storybook/modes";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
@@ -81,10 +80,7 @@ export default {
             },
         },
         chromatic: {
-            modes: {
-                small: allModes.small,
-                large: allModes.large,
-            },
+            // All the examples for ModalLauncher are behavior based, not visual.
             disableSnapshot: true,
         },
     },
