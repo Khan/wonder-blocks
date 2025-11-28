@@ -10,6 +10,7 @@ import {Heading} from "@khanacademy/wonder-blocks-typography";
 import {
     Portal as PortalStory,
     InitialFocus as InitialFocusStory,
+    CustomStyles as CustomStylesStory,
 } from "./floating.stories";
 
 const styles = StyleSheet.create({
@@ -48,11 +49,6 @@ export default {
         // Also portal is set to false to ensure that the floating element
         // boundaries are set to the scrolling container.
         portal: false,
-        // all middlewares disabled
-        hide: false,
-        flip: false,
-        shift: false,
-        offset: 0,
     },
 } as Meta;
 
@@ -114,6 +110,13 @@ function ScrollingContainer({
  * The following story shows how the component handles specific scenarios.
  */
 export const Scenarios: Story = {
+    args: {
+        // all middlewares disabled
+        hide: false,
+        flip: false,
+        shift: false,
+        offset: 0,
+    },
     render(args) {
         const scenarios = [
             {
@@ -167,10 +170,16 @@ export const Scenarios: Story = {
                     },
                 },
             },
+            {
+                name: "Custom styles",
+                props: {
+                    floating: {...CustomStylesStory.args, placement: "top"},
+                },
+            },
         ];
         return (
             <View style={styles.layout}>
-                <Heading>Middlewares</Heading>
+                <Heading>Scenarios</Heading>
                 <ScenariosLayout
                     scenarios={scenarios}
                     styles={{
@@ -195,6 +204,9 @@ export const Portal: Story = {
     args: {
         ...PortalStory.args,
         open: true,
+        // NOTE: Disabling focus manager to avoid a11y false positives.
+        focusManagerEnabled: false,
+        initialFocusRef: undefined,
     },
 };
 
@@ -203,10 +215,6 @@ export const InitialFocus: Story = {
     args: {
         ...InitialFocusStory.args,
         open: true,
-        hide: true,
-        flip: true,
-        shift: true,
-        offset: 20,
         // NOTE: Disabling portal to avoid a11y false positives.
         portal: false,
     },

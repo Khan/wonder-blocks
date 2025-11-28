@@ -464,30 +464,6 @@ export const CustomStyles: StoryComponentType = {
     },
 };
 
-/**
- * This story demonstrates how the floating element is positioned when the
- * document is in a right-to-left direction.
- *
- * In this case, the floating element is positioned to the left of the reference
- * element. Also note that the icon is mirrored.
- */
-export const RightToLeft: StoryComponentType = {
-    ...CustomStyles,
-    parameters: {
-        docs: {
-            story: {
-                // Renders the story in an iframe, so we can see the full effect
-                // of the right-to-left direction.
-                inline: false,
-                height: 200,
-            },
-        },
-    },
-    globals: {
-        direction: "rtl",
-    },
-};
-
 const styles = StyleSheet.create({
     storyCanvas: {
         minHeight: 200,
