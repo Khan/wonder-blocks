@@ -11,7 +11,7 @@ import {ActivityIconButton} from "@khanacademy/wonder-blocks-icon-button";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon-button/package.json";
 import iconButtonSharedArgtypes from "./icon-button-shared.argtypes";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {Icon} from "@khanacademy/wonder-blocks-icon";
 
@@ -271,7 +271,8 @@ export const WithStyles: StoryComponentType = {
                     },
                     box: {
                         width: "100%",
-                        backgroundColor: "salmon",
+                        backgroundColor:
+                            semanticColor.learning.background.streaks.default,
                         justifyContent: "center",
                         alignItems: "center",
                     },
@@ -281,5 +282,11 @@ export const WithStyles: StoryComponentType = {
                 }}
             />
         );
+    },
+    parameters: {
+        chromatic: {
+            // Keep snapshots to confirm custom styles are working
+            disableSnapshot: false,
+        },
     },
 };
