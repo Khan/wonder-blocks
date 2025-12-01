@@ -16,30 +16,6 @@ import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 
 import ComponentInfo from "../components/component-info";
 
-const customViewports = {
-    phone: {
-        name: "phone",
-        styles: {
-            width: "320px",
-            height: "568px",
-        },
-    },
-    tablet: {
-        name: "tablet",
-        styles: {
-            width: "640px",
-            height: "960px",
-        },
-    },
-    desktop: {
-        name: "desktop",
-        styles: {
-            width: "1024px",
-            height: "768px",
-        },
-    },
-} as const;
-
 const longBody = (
     <>
         <BodyText>
@@ -126,10 +102,6 @@ export default {
                 // See https://github.com/storybookjs/storybook/issues/12596
                 excludeDecorators: true,
             },
-        },
-        viewport: {
-            viewports: customViewports,
-            defaultViewport: "desktop",
         },
         chromatic: {
             // We already have screenshots of other stories in

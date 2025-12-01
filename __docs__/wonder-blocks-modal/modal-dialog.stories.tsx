@@ -16,30 +16,6 @@ import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 import modalDialogArgtypes from "./modal-dialog.argtypes";
 
-const customViewports = {
-    phone: {
-        name: "phone",
-        styles: {
-            width: "320px",
-            height: "568px",
-        },
-    },
-    tablet: {
-        name: "tablet",
-        styles: {
-            width: "640px",
-            height: "960px",
-        },
-    },
-    desktop: {
-        name: "desktop",
-        styles: {
-            width: "1024px",
-            height: "768px",
-        },
-    },
-} as const;
-
 /**
  * `ModalDialog` is a component that contains these elements:
  * - The visual dialog element itself (`<div role="dialog"/>`)
@@ -75,10 +51,6 @@ export default {
                 // See https://github.com/storybookjs/storybook/issues/12596
                 excludeDecorators: true,
             },
-        },
-        viewport: {
-            viewports: customViewports,
-            defaultViewport: "desktop",
         },
         chromatic: {
             // We already have screenshots in one-pane-dialog.stories.tsx
@@ -241,13 +213,6 @@ export const WithLauncher: StoryComponentType = {
                 )}
             </ModalLauncher>
         );
-    },
-    parameters: {
-        chromatic: {
-            // Don't take screenshots of this story since it would only show a
-            // button and not the actual modal.
-            disableSnapshot: true,
-        },
     },
 };
 

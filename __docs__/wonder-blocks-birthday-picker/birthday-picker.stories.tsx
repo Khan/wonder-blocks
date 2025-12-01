@@ -32,8 +32,10 @@ const meta: Meta<typeof BirthdayPicker> = {
                 excludeDecorators: true,
             },
         },
+    },
+    globals: {
         viewport: {
-            defaultViewport: "large",
+            value: "large",
         },
     },
     decorators: [(Story): React.ReactElement => <View>{Story()}</View>],
@@ -189,8 +191,10 @@ export const BirthdayPickerMobile: StoryComponentType = {
                 story: "A BirthdayPicker will reflow on small screens to stack controls rather than position them side-by-side.",
             },
         },
+    },
+    globals: {
         viewport: {
-            defaultViewport: "small",
+            value: "small",
         },
     },
 };

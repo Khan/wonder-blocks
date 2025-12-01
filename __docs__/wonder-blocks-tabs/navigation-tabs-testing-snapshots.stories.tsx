@@ -342,10 +342,9 @@ export const Scenarios: Story = {
  */
 export const ScenariosSmallScreen: Story = {
     ...Scenarios,
-    parameters: {
-        ...Scenarios.parameters,
+    globals: {
         viewport: {
-            defaultViewport: "small",
+            value: "small",
         },
     },
 };

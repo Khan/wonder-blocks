@@ -28,33 +28,8 @@ import type {ModalElement} from "../../packages/wonder-blocks-modal/src/util/typ
 import ModalLauncherArgTypes from "./modal-launcher.argtypes";
 
 import ComponentInfo from "../components/component-info";
-import {allModes} from "../../.storybook/modes";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-
-const customViewports = {
-    phone: {
-        name: "phone",
-        styles: {
-            width: "320px",
-            height: "568px",
-        },
-    },
-    tablet: {
-        name: "tablet",
-        styles: {
-            width: "640px",
-            height: "960px",
-        },
-    },
-    desktop: {
-        name: "desktop",
-        styles: {
-            width: "1024px",
-            height: "768px",
-        },
-    },
-} as const;
 
 const DefaultModal = (): ModalElement => (
     <OnePaneDialog
@@ -104,15 +79,8 @@ export default {
                 excludeDecorators: true,
             },
         },
-        viewport: {
-            viewports: customViewports,
-            defaultViewport: "desktop",
-        },
         chromatic: {
-            modes: {
-                small: allModes.small,
-                large: allModes.large,
-            },
+            // All the examples for ModalLauncher are behavior based, not visual.
             disableSnapshot: true,
         },
     },

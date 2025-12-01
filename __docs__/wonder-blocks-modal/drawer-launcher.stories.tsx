@@ -21,30 +21,6 @@ import {allModes} from "../../.storybook/modes";
 import TextField from "../../packages/wonder-blocks-form/src/components/text-field";
 import {reallyLongText} from "../components/text-for-testing";
 
-const customViewports = {
-    phone: {
-        name: "phone",
-        styles: {
-            width: "320px",
-            height: "568px",
-        },
-    },
-    tablet: {
-        name: "tablet",
-        styles: {
-            width: "640px",
-            height: "960px",
-        },
-    },
-    desktop: {
-        name: "desktop",
-        styles: {
-            width: "1024px",
-            height: "768px",
-        },
-    },
-} as const;
-
 const DefaultModal = (): ModalElement => (
     <DrawerDialog
         title="Single-line title"
@@ -118,10 +94,6 @@ import {BodyText} from "@khanacademy/wonder-blocks-typography";
                 // See https://github.com/storybookjs/storybook/issues/12596
                 excludeDecorators: true,
             },
-        },
-        viewport: {
-            viewports: customViewports,
-            defaultViewport: "desktop",
         },
         chromatic: {
             modes: {
