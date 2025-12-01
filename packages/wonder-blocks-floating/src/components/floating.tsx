@@ -18,9 +18,9 @@ import {
     boxShadow,
     semanticColor,
 } from "@khanacademy/wonder-blocks-tokens";
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
 import {ARROW_SIZE_INLINE} from "../util/constants";
-import {Arrow} from "./floating-arrow";
+import {Arrow, type ArrowStyles} from "./floating-arrow";
 import {Portal} from "./floating-portal";
 
 const StyledDiv = addStyle("div");
@@ -59,6 +59,17 @@ type FloatingProps = {
      * Callback for when the floating element is opened or closed.
      */
     onOpenChange?: (open: boolean) => void;
+
+    /**
+     * The styles to use for the floating element.
+     *
+     * - `root`: The styles to use for the floating element.
+     * - `arrow`: The styles to use for the arrow of the floating element.
+     */
+    styles?: {
+        root?: StyleType;
+        arrow?: ArrowStyles;
+    };
 
     /**
      * The test ID to use for the floating element.
@@ -204,6 +215,7 @@ export default function Floating({
     flip: flipProp = true,
     shift: shiftProp = true,
     showArrow = true,
+    styles: stylesProp,
 }: Props) {
     const arrowRef = React.useRef(null);
     const prevOpenRef = React.useRef(open ?? false);
@@ -252,6 +264,7 @@ export default function Floating({
     }, [onOpenChange, open]);
 
     // Clone the child element and add the ref
+
     const trigger = React.useMemo(() => {
         return React.cloneElement(children, {
             ref: refs.setReference,
@@ -284,6 +297,7 @@ export default function Floating({
                             style={[
                                 styles.floating,
                                 floatingStyles,
+                                stylesProp?.root,
                                 {
                                     visibility: middlewareData.hide
                                         ?.referenceHidden
@@ -295,7 +309,11 @@ export default function Floating({
                         >
                             {content}
                             {showArrow && (
-                                <Arrow ref={arrowRef} context={context} />
+                                <Arrow
+                                    ref={arrowRef}
+                                    context={context}
+                                    style={stylesProp?.arrow}
+                                />
                             )}
                         </StyledDiv>
                     </FloatingFocusManager>
