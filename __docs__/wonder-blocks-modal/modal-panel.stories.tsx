@@ -303,6 +303,18 @@ export const WithStyle: StoryComponentType = {
             borderRadius: 20,
         } as const;
 
+        const button = (
+            <BodyText style={{display: "flex"}}>
+                <Button
+                    style={{
+                        marginInlineStart: "auto",
+                        marginBlockStart: sizing.size_100,
+                    }}
+                >
+                    A button
+                </Button>
+            </BodyText>
+        );
         return (
             <ModalDialog aria-labelledby="modal-title-1" style={styles.dialog}>
                 <ModalPanel
@@ -312,7 +324,12 @@ export const WithStyle: StoryComponentType = {
                             title="Modal Title"
                         />
                     }
-                    content={longBody}
+                    content={
+                        <>
+                            {longBody}
+                            {button}
+                        </>
+                    }
                     style={modalStyles}
                 />
             </ModalDialog>
