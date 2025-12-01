@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import * as React from "react";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {Floating} from "@khanacademy/wonder-blocks-floating";
 import Switch from "@khanacademy/wonder-blocks-switch";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
@@ -16,6 +16,7 @@ import floatingArgtypes from "./floating.argtypes";
 import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
 type StoryComponentType = StoryObj<typeof Floating>;
 
@@ -53,6 +54,9 @@ export default {
  * launch a popup that is triggered when the button is clicked.
  */
 export const Default: StoryComponentType = {
+    args: {
+        placement: "right",
+    },
     render: function Render(args) {
         const [isOpen, setIsOpen] = React.useState(args.open ?? true);
 
@@ -459,6 +463,63 @@ export const CustomStyles: StoryComponentType = {
                 >
                     <View style={styles.reference}>Ref</View>
                 </Floating>
+            </View>
+        );
+    },
+};
+
+type Placement = PropsFor<typeof Floating>["placement"];
+
+export const Placements: StoryComponentType = {
+    args: {
+        open: true,
+    },
+    render: function Render(args) {
+        const placements: Array<{name: Placement; icon: PhosphorRegular}> = [
+            {name: "top-start", icon: IconMappings.arrowElbowLeftUp},
+            {name: "top", icon: IconMappings.arrowUp},
+            {name: "top-end", icon: IconMappings.arrowElbowRightUp},
+            {name: "right-start", icon: IconMappings.arrowElbowUpRight},
+            {name: "right", icon: IconMappings.arrowRight},
+            {name: "right-end", icon: IconMappings.arrowElbowDownRight},
+            {name: "bottom-start", icon: IconMappings.arrowElbowLeftDown},
+            {name: "bottom", icon: IconMappings.arrowDown},
+            {name: "bottom-end", icon: IconMappings.arrowElbowRightDown},
+            {name: "left-start", icon: IconMappings.arrowElbowUpLeft},
+            {name: "left", icon: IconMappings.arrowLeft},
+            {name: "left-end", icon: IconMappings.arrowElbowDownLeft},
+        ];
+
+        return (
+            <View
+                style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(3, 1fr)",
+                    gridTemplateRows: "repeat(4, 150px)",
+                    placeItems: "center",
+                    width: "100%",
+                    height: "100%",
+                }}
+            >
+                {placements.map(({name, icon}) => (
+                    <Floating
+                        {...args}
+                        content={
+                            <View style={[styles.contentContainer, styles.row]}>
+                                <BodyText>{name}</BodyText>
+                                <PhosphorIcon icon={IconMappings.cookie} />
+                            </View>
+                        }
+                        placement={name}
+                        key={name}
+                    >
+                        <IconButton
+                            actionType="neutral"
+                            aria-label={name}
+                            icon={<PhosphorIcon icon={icon} />}
+                        />
+                    </Floating>
+                ))}
             </View>
         );
     },
