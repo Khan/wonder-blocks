@@ -1,15 +1,8 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 
 type Props = AriaProps & {
-    /**
-     * Callback to be invoked when the anchored content is mounted.
-     * This provides a reference to the anchored content, which can then be
-     * used for calculating popover content positioning.
-     */
-    anchorRef: (arg1?: HTMLElement) => unknown;
     /**
      * The element that triggers the popover. This element will be used to
      * position the popover. It can be either a Node or a function using the
@@ -35,30 +28,22 @@ type Props = AriaProps & {
  * The element that triggers the popover dialog. This is also used as reference
  * to position the dialog itself.
  */
-export default class PopoverAnchor extends React.Component<Props> {
-    componentDidMount() {
-        // eslint-disable-next-line import/no-deprecated
-        const anchorNode = ReactDOM.findDOMNode(this) as HTMLElement;
-
-        if (anchorNode) {
-            this.props.anchorRef(anchorNode);
-        }
-    }
-
-    render(): React.ReactNode {
+const PopoverAnchor = React.forwardRef<HTMLElement, Props>(
+    (props, forwardedRef): React.ReactElement => {
         const {
             children,
             id,
             onClick,
             "aria-controls": ariaControls,
             "aria-expanded": ariaExpanded,
-        } = this.props;
+        } = props;
 
         // props that will be injected to both children versions
         const sharedProps = {
             id: id,
             "aria-controls": ariaControls,
             "aria-expanded": ariaExpanded,
+            ref: forwardedRef,
         } as const;
 
         if (typeof children === "function") {
@@ -86,5 +71,9 @@ export default class PopoverAnchor extends React.Component<Props> {
                     : onClick,
             });
         }
-    }
-}
+    },
+);
+
+PopoverAnchor.displayName = "PopoverAnchor";
+
+export default PopoverAnchor;
