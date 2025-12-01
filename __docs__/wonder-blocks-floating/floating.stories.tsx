@@ -54,9 +54,6 @@ export default {
  * launch a popup that is triggered when the button is clicked.
  */
 export const Default: StoryComponentType = {
-    args: {
-        placement: "right",
-    },
     render: function Render(args) {
         const [isOpen, setIsOpen] = React.useState(args.open ?? true);
 
