@@ -471,33 +471,71 @@ export const Placements: StoryComponentType = {
     args: {
         open: true,
     },
-    render: function Render(args) {
+    render: function Render(args, {globals}) {
+        const isRTL = globals.direction === "rtl";
         const placements: Array<{name: Placement; icon: PhosphorRegular}> = [
-            {name: "top-start", icon: IconMappings.arrowElbowLeftUp},
+            {
+                name: "top-start",
+                icon: isRTL
+                    ? IconMappings.arrowElbowRightUp
+                    : IconMappings.arrowElbowLeftUp,
+            },
             {name: "top", icon: IconMappings.arrowUp},
-            {name: "top-end", icon: IconMappings.arrowElbowRightUp},
-            {name: "right-start", icon: IconMappings.arrowElbowUpRight},
-            {name: "right", icon: IconMappings.arrowRight},
-            {name: "right-end", icon: IconMappings.arrowElbowDownRight},
-            {name: "bottom-start", icon: IconMappings.arrowElbowLeftDown},
+            {
+                name: "top-end",
+                icon: isRTL
+                    ? IconMappings.arrowElbowLeftUp
+                    : IconMappings.arrowElbowRightUp,
+            },
+            {
+                name: "right-start",
+                icon: isRTL
+                    ? IconMappings.arrowElbowDownLeft
+                    : IconMappings.arrowElbowUpRight,
+            },
+            {
+                name: "right",
+                icon: isRTL ? IconMappings.arrowLeft : IconMappings.arrowRight,
+            },
+            {
+                name: "right-end",
+                icon: isRTL
+                    ? IconMappings.arrowElbowUpLeft
+                    : IconMappings.arrowElbowDownRight,
+            },
+            {
+                name: "bottom-start",
+                icon: isRTL
+                    ? IconMappings.arrowElbowRightDown
+                    : IconMappings.arrowElbowLeftDown,
+            },
             {name: "bottom", icon: IconMappings.arrowDown},
-            {name: "bottom-end", icon: IconMappings.arrowElbowRightDown},
-            {name: "left-start", icon: IconMappings.arrowElbowUpLeft},
-            {name: "left", icon: IconMappings.arrowLeft},
-            {name: "left-end", icon: IconMappings.arrowElbowDownLeft},
+            {
+                name: "bottom-end",
+                icon: isRTL
+                    ? IconMappings.arrowElbowLeftDown
+                    : IconMappings.arrowElbowRightDown,
+            },
+            {
+                name: "left-start",
+                icon: isRTL
+                    ? IconMappings.arrowElbowDownRight
+                    : IconMappings.arrowElbowUpLeft,
+            },
+            {
+                name: "left",
+                icon: isRTL ? IconMappings.arrowRight : IconMappings.arrowLeft,
+            },
+            {
+                name: "left-end",
+                icon: isRTL
+                    ? IconMappings.arrowElbowUpRight
+                    : IconMappings.arrowElbowDownLeft,
+            },
         ];
 
         return (
-            <View
-                style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(3, 1fr)",
-                    gridTemplateRows: "repeat(4, 150px)",
-                    placeItems: "center",
-                    width: "100%",
-                    height: "100%",
-                }}
-            >
+            <View style={styles.placementsContainer}>
                 {placements.map(({name, icon}) => (
                     <Floating
                         {...args}
@@ -568,5 +606,13 @@ const styles = StyleSheet.create({
     contentContainer: {
         padding: sizing.size_160,
         gap: sizing.size_160,
+    },
+    placementsContainer: {
+        display: "grid",
+        gridTemplateColumns: "repeat(3, 1fr)",
+        gridTemplateRows: "repeat(4, 150px)",
+        placeItems: "center",
+        width: "100%",
+        height: "100%",
     },
 });
