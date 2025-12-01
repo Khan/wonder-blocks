@@ -247,3 +247,39 @@ export const WithCustomIcon: StoryComponentType = {
         );
     },
 };
+
+/**
+ * You can use the `styles` prop to apply custom styles to speicific parts of
+ * the ActivityIconButton component.
+ *
+ * The following parts can be styled:
+ * - `root`: Styles the root element (button)
+ * - `box`: Styles the "chonky" box element
+ * - `label`: Styles the text in the button
+ */
+export const WithStyles: StoryComponentType = {
+    render: () => {
+        return (
+            <ActivityIconButton
+                icon={IconMappings.info}
+                label="More information"
+                styles={{
+                    root: {
+                        width: "200px",
+                        maxWidth: "unset",
+                        maxHeight: "unset",
+                    },
+                    box: {
+                        width: "100%",
+                        backgroundColor: "salmon",
+                        justifyContent: "center",
+                        alignItems: "center",
+                    },
+                    label: {
+                        fontWeight: "bold",
+                    },
+                }}
+            />
+        );
+    },
+};
