@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-button
 
+## 11.2.9
+
+### Patch Changes
+
+- 0fd41cc: Replace style prop with styles object prop for ActivityIconButton
+
 ## 11.2.8
 
 ### Patch Changes
