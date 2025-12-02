@@ -11,7 +11,9 @@ import {
     Portal as PortalStory,
     InitialFocus as InitialFocusStory,
     CustomStyles as CustomStylesStory,
+    Placements as PlacementsStory,
 } from "./floating.stories";
+import {allModes} from "../../.storybook/modes";
 
 const styles = StyleSheet.create({
     layout: {
@@ -217,5 +219,21 @@ export const InitialFocus: Story = {
         open: true,
         // NOTE: Disabling portal to avoid a11y false positives.
         portal: false,
+    },
+};
+
+export const Placements: Story = {
+    ...PlacementsStory,
+    args: {
+        ...PlacementsStory.args,
+        open: true,
+    },
+    parameters: {
+        chromatic: {
+            modes: {
+                default: allModes.themeDefault,
+                "default rtl": allModes["themeDefault rtl"],
+            },
+        },
     },
 };

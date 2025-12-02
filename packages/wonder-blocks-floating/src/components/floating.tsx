@@ -22,6 +22,7 @@ import {addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
 import {ARROW_SIZE_INLINE} from "../util/constants";
 import {Arrow, type ArrowStyles} from "./floating-arrow";
 import {Portal} from "./floating-portal";
+import {rtlMirror} from "../util/rtl-mirror-middleware";
 
 const StyledDiv = addStyle("div");
 
@@ -243,6 +244,8 @@ export default function Floating({
                     : undefined,
                 showArrow ? arrow({element: arrowRef}) : undefined,
                 hideProp ? hide() : undefined,
+                // Mirror the floating element in RTL when placement is left/right
+                rtlMirror(),
             ],
         });
 

@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import * as React from "react";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {Floating} from "@khanacademy/wonder-blocks-floating";
 import Switch from "@khanacademy/wonder-blocks-switch";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
@@ -16,6 +16,7 @@ import floatingArgtypes from "./floating.argtypes";
 import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
 type StoryComponentType = StoryObj<typeof Floating>;
 
@@ -464,6 +465,114 @@ export const CustomStyles: StoryComponentType = {
     },
 };
 
+type Placement = PropsFor<typeof Floating>["placement"];
+
+/**
+ * This story demonstrates how to render the floating element in different
+ * placements.
+ *
+ * By default, we set `top` as the placement, but this can be changed by passing
+ * the `placement` prop.
+ *
+ * For more information about the placements, please check the [Floating UI
+ * documentation](https://floating-ui.com/docs/useFloating#placement).
+ *
+ * **NOTE:** In RTL mode, the horizontal placements are mirrored. For example,
+ * the "left" placement will be rendered as "right" and vice versa.
+ */
+export const Placements: StoryComponentType = {
+    args: {
+        open: true,
+    },
+    render: function Render(args, {globals}) {
+        const isRTL = globals.direction === "rtl";
+        const placements: Array<{name: Placement; icon: PhosphorRegular}> = [
+            {
+                name: "top-start",
+                icon: isRTL
+                    ? IconMappings.arrowElbowRightUp
+                    : IconMappings.arrowElbowLeftUp,
+            },
+            {name: "top", icon: IconMappings.arrowUp},
+            {
+                name: "top-end",
+                icon: isRTL
+                    ? IconMappings.arrowElbowLeftUp
+                    : IconMappings.arrowElbowRightUp,
+            },
+            {
+                name: "right-start",
+                icon: isRTL
+                    ? IconMappings.arrowElbowDownLeft
+                    : IconMappings.arrowElbowUpRight,
+            },
+            {
+                name: "right",
+                icon: isRTL ? IconMappings.arrowLeft : IconMappings.arrowRight,
+            },
+            {
+                name: "right-end",
+                icon: isRTL
+                    ? IconMappings.arrowElbowUpLeft
+                    : IconMappings.arrowElbowDownRight,
+            },
+            {
+                name: "bottom-start",
+                icon: isRTL
+                    ? IconMappings.arrowElbowRightDown
+                    : IconMappings.arrowElbowLeftDown,
+            },
+            {name: "bottom", icon: IconMappings.arrowDown},
+            {
+                name: "bottom-end",
+                icon: isRTL
+                    ? IconMappings.arrowElbowLeftDown
+                    : IconMappings.arrowElbowRightDown,
+            },
+            {
+                name: "left-start",
+                icon: isRTL
+                    ? IconMappings.arrowElbowDownRight
+                    : IconMappings.arrowElbowUpLeft,
+            },
+            {
+                name: "left",
+                icon: isRTL ? IconMappings.arrowRight : IconMappings.arrowLeft,
+            },
+            {
+                name: "left-end",
+                icon: isRTL
+                    ? IconMappings.arrowElbowUpRight
+                    : IconMappings.arrowElbowDownLeft,
+            },
+        ];
+
+        return (
+            <View style={styles.placementsContainer}>
+                {placements.map(({name, icon}) => (
+                    <Floating
+                        {...args}
+                        content={
+                            <View style={[styles.contentContainer, styles.row]}>
+                                <BodyText>{name}</BodyText>
+                                <PhosphorIcon icon={IconMappings.cookie} />
+                            </View>
+                        }
+                        placement={name}
+                        key={name}
+                    >
+                        <IconButton
+                            actionType="neutral"
+                            aria-label={name}
+                            icon={<PhosphorIcon icon={icon} />}
+                        />
+                    </Floating>
+                ))}
+            </View>
+        );
+    },
+};
+
 const styles = StyleSheet.create({
     storyCanvas: {
         minHeight: 200,
@@ -510,5 +619,13 @@ const styles = StyleSheet.create({
     contentContainer: {
         padding: sizing.size_160,
         gap: sizing.size_160,
+    },
+    placementsContainer: {
+        display: "grid",
+        gridTemplateColumns: "repeat(3, 1fr)",
+        gridTemplateRows: "repeat(4, 150px)",
+        placeItems: "center",
+        inlineSize: "100%",
+        blockSize: "100%",
     },
 });
