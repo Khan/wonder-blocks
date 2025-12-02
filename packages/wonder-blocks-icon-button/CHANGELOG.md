@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 11.0.0
+
+### Major Changes
+
+- 0fd41cc: Replace style prop with styles object prop for ActivityIconButton
+
+### Patch Changes
+
+- d36860e: Changes `ActivityIconButton` styling to allow longer labels in the same line.
+
 ## 10.5.7
 
 ### Patch Changes
