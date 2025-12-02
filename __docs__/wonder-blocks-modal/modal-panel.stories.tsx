@@ -17,6 +17,7 @@ import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 import ComponentInfo from "../components/component-info";
 import modalPanelArgtypes from "./modal-panel.argtypes";
 import {allModes} from "../../.storybook/modes";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 
 const longBody = (
     <View style={{gap: sizing.size_160}}>
@@ -135,7 +136,10 @@ export const Default: StoryComponentType = {
             <ModalPanel
                 {...args}
                 content={
-                    <View style={styles.content}>
+                    <View
+                        style={[styles.content, styles.scrollContainer]}
+                        tabIndex={0}
+                    >
                         <Heading size="xxlarge" id="modal-title-0">
                             Modal Title
                         </Heading>
@@ -165,7 +169,11 @@ export const WithHeader: StoryComponentType = {
                 header={
                     <ModalHeader titleId="modal-title-2" title="Modal Title" />
                 }
-                content={longBody}
+                content={
+                    <View tabIndex={0} style={styles.scrollContainer}>
+                        {longBody}
+                    </View>
+                }
             />
         </ModalDialog>
     ),
@@ -186,7 +194,10 @@ export const WithFooter: StoryComponentType = {
         <ModalDialog aria-labelledby="modal-title-3" style={styles.dialog}>
             <ModalPanel
                 content={
-                    <View style={styles.content}>
+                    <View
+                        style={[styles.content, styles.scrollContainer]}
+                        tabIndex={0}
+                    >
                         <Heading size="xxlarge" id="modal-title-3">
                             Modal Title
                         </Heading>
@@ -368,5 +379,8 @@ const styles = StyleSheet.create({
     },
     content: {
         gap: sizing.size_240,
+    },
+    scrollContainer: {
+        ":focus-visible": focusStyles.focus[":focus-visible"],
     },
 });
