@@ -196,7 +196,7 @@ const theme = {
             disabled: semanticColor.core.foreground.disabled.default,
         },
         layout: {
-            width: sizing.size_640,
+            inlineSize: sizing.size_640,
         },
     },
 };
@@ -249,8 +249,9 @@ const _generateStyles = (
             // layout
             flexDirection: "column",
             gap: sizing.size_020,
-            // Prevent the button from stretching to fill the parent
-            maxWidth: theme.label.layout.width,
+            // Putting an arbitrary max inline size to prevent the button from
+            // stretching to fill the parent.
+            maxInlineSize: 200,
             alignSelf: "flex-start",
             justifySelf: "center",
             /**
@@ -302,6 +303,9 @@ const _generateStyles = (
             marginBlockEnd: theme.root.shadow.y.rest,
             paddingBlock: theme.root.layout.padding.block,
             paddingInline: theme.root.layout.padding.inline,
+            inlineSize: theme.label.layout.inlineSize,
+            justifyContent: "center",
+            alignItems: "center",
             // theming
             background: themeVariant.background[kind].rest,
             border: `${borderWidthKind.rest} solid ${themeVariant.border[kind].rest}`,

@@ -12,6 +12,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {Icon} from "@khanacademy/wonder-blocks-icon";
 import khanmigoIcon from "./images/mini-khanmigo.svg";
+import {StatusBadge} from "@khanacademy/wonder-blocks-badge";
 
 /**
  * The following stories are used to generate the pseudo states for the
@@ -136,7 +137,7 @@ export const Scenarios: Story = {
                 },
             },
             {
-                name: "Long label with single word in two lines",
+                name: "Long label with single word in same line",
                 props: {
                     children: (
                         <ActivityIconButton
@@ -183,6 +184,47 @@ export const Scenarios: Story = {
                             }
                             aria-label="Khanmigo"
                             kind="secondary"
+                        />
+                    ),
+                },
+            },
+            {
+                name: "With custom size + badge",
+                props: {
+                    children: (
+                        <ActivityIconButton
+                            icon={
+                                <>
+                                    <StatusBadge
+                                        label="new"
+                                        kind="info"
+                                        styles={{
+                                            root: {
+                                                top: sizing.size_0,
+                                                right: sizing.size_0,
+                                                position: "absolute",
+                                                transform:
+                                                    "translate(-50%, -50%)",
+                                            },
+                                        }}
+                                    />
+                                    <Icon size="large">
+                                        <img alt="" src={khanmigoIcon} />
+                                    </Icon>
+                                </>
+                            }
+                            label="Cool badge"
+                            actionType="neutral"
+                            kind="secondary"
+                            styles={{
+                                root: {
+                                    marginBlock: sizing.size_160,
+                                },
+                                box: {
+                                    inlineSize: sizing.size_960,
+                                    blockSize: sizing.size_960,
+                                },
+                            }}
                         />
                     ),
                 },
