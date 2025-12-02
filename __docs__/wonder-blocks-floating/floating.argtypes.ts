@@ -1,5 +1,20 @@
 import type {ArgTypes} from "@storybook/react-vite";
 
+const placements = [
+    "top",
+    "top-start",
+    "top-end",
+    "right",
+    "right-start",
+    "right-end",
+    "bottom",
+    "bottom-start",
+    "bottom-end",
+    "left",
+    "left-start",
+    "left-end",
+];
+
 export default {
     content: {
         control: {type: "text"},
@@ -11,20 +26,8 @@ export default {
     },
     placement: {
         control: {type: "select"},
-        options: [
-            "top",
-            "top-start",
-            "top-end",
-            "right",
-            "right-start",
-            "right-end",
-            "bottom",
-            "bottom-start",
-            "bottom-end",
-            "left",
-            "left-start",
-            "left-end",
-        ],
+        mapping: Object.keys(placements),
+        options: placements,
         table: {
             type: {
                 summary: "Placement",

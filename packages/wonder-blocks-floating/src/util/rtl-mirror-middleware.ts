@@ -27,7 +27,8 @@ export const rtlMirror = (): Middleware => {
                 placement,
                 elements: {reference},
             } = state;
-            const isRtl = !!(reference as Element).closest("[dir='rtl']");
+            const isRtl =
+                reference && !!(reference as Element).closest("[dir='rtl']");
 
             // Only swap placement when in RTL mode and placement is left or
             // right
@@ -47,6 +48,9 @@ export const rtlMirror = (): Middleware => {
                 nextPlacement = placement.replace("right", "left") as Placement;
             }
 
+            // Allows resetting the placement to the original value so other
+            // middlewares can take effect after this one.
+            // @see https://floating-ui.com/docs/middleware#resetting-the-lifecycle
             return {
                 reset: {
                     placement: nextPlacement,

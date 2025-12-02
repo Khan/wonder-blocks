@@ -467,6 +467,19 @@ export const CustomStyles: StoryComponentType = {
 
 type Placement = PropsFor<typeof Floating>["placement"];
 
+/**
+ * This story demonstrates how to render the floating element in different
+ * placements.
+ *
+ * By default, we set `top` as the placement, but this can be changed by passing
+ * the `placement` prop.
+ *
+ * For more information about the placements, please check the [Floating UI
+ * documentation](https://floating-ui.com/docs/useFloating#placement).
+ *
+ * **NOTE:** In RTL mode, the horizontal placements are mirrored. For example,
+ * the "left" placement will be rendered as "right" and vice versa.
+ */
 export const Placements: StoryComponentType = {
     args: {
         open: true,
@@ -612,7 +625,7 @@ const styles = StyleSheet.create({
         gridTemplateColumns: "repeat(3, 1fr)",
         gridTemplateRows: "repeat(4, 150px)",
         placeItems: "center",
-        width: "100%",
-        height: "100%",
+        inlineSize: "100%",
+        blockSize: "100%",
     },
 });
