@@ -115,6 +115,48 @@ export const WithIcons: StoryComponentType = {
     },
 };
 
+const ComponentWithInitialLoad = () => {
+    const [isLoading, setIsLoading] = React.useState(true);
+
+    React.useEffect(() => {
+        // On mount, trigger setting loading to false after 5 seconds
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 5000);
+    }, []);
+
+    React.useEffect(() => {
+        // Whenever isLoading changes, trigger setting loading to false after 5 seconds
+        if (isLoading) {
+            setTimeout(() => {
+                setIsLoading(false);
+            }, 5000);
+        }
+    }, [isLoading]);
+
+    return (
+        <div>
+            {isLoading ? (
+                <>Loading...</>
+            ) : (
+                <>
+                    Loaded{" "}
+                    <Button onClick={() => setIsLoading(true)}>
+                        Reset Loading
+                    </Button>
+                </>
+            )}
+        </div>
+    );
+};
+
+const ComponentWithInitialLoadWrapper = () => {
+    return (
+        <div>
+            <ComponentWithInitialLoad />
+        </div>
+    );
+};
 /**
  * When a tab panel has focusable elements, pressing `Tab` from the tablist
  * will move focus to the first focusable element in the tab panel. If there
@@ -122,9 +164,11 @@ export const WithIcons: StoryComponentType = {
  * focused instead.
  */
 export const WithFocusableContent: StoryComponentType = {
-    args: {
-        selectedTabId: "tab-wb-button",
-        tabs: [
+    render: function WithFocusableContent() {
+        const [selectedTabId, setSelectedTabId] =
+            React.useState("tab-wb-button");
+
+        const tabs = [
             {
                 label: "Content with WB Button",
                 id: "tab-wb-button",
@@ -194,7 +238,24 @@ export const WithFocusableContent: StoryComponentType = {
                 id: "tab-no-focusable-elements",
                 panel: <div>No focusable elements. Tab panel is focusable</div>,
             },
-        ],
+            {
+                label: "Content with no focusable elements at first",
+                id: "tab-no-focusable-elements-at-first",
+                panel: (
+                    <View>
+                        <ComponentWithInitialLoadWrapper />
+                    </View>
+                ),
+            },
+        ];
+        return (
+            <Tabs
+                aria-label="Tabs Example"
+                tabs={tabs}
+                selectedTabId={selectedTabId}
+                onTabSelected={setSelectedTabId}
+            />
+        );
     },
     parameters: {
         chromatic: {

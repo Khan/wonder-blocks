@@ -1,5 +1,5 @@
 import * as React from "react";
-import {render, screen} from "@testing-library/react";
+import {act, render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {TabPanel} from "../tab-panel";
 
@@ -271,6 +271,131 @@ describe("TabPanel", () => {
                     expect(expectedFocusableElement).toHaveFocus();
                 },
             );
+
+            it("should not set tabindex=0 on the tabpanel if the children element changes from having no focusable elements to having focusable elements", async () => {
+                // Arrange
+                jest.useFakeTimers();
+                const ComponentWithInitialLoad = () => {
+                    const [isLoading, setIsLoading] = React.useState(true);
+
+                    React.useEffect(() => {
+                        setTimeout(() => {
+                            setIsLoading(false);
+                        }, 5000);
+                    }, []);
+
+                    return (
+                        <div>
+                            {!isLoading && (
+                                <>
+                                    Loaded <button>Focusable button</button>
+                                </>
+                            )}
+                        </div>
+                    );
+                };
+
+                const ComponentWithInitialLoadWrapper = () => {
+                    return (
+                        <div>
+                            <ComponentWithInitialLoad />
+                        </div>
+                    );
+                };
+
+                render(
+                    <TabPanel
+                        id={id}
+                        aria-labelledby={ariaLabelledby}
+                        active={true}
+                    >
+                        <ComponentWithInitialLoadWrapper />
+                    </TabPanel>,
+                );
+
+                // Verify that the tabpanel has tabindex=0
+                expect(await screen.findByRole("tabpanel")).toHaveAttribute(
+                    "tabindex",
+                    "0",
+                );
+
+                // Act
+                // Fast-forward until all timers have been executed
+                await act(async () => {
+                    jest.runAllTimers();
+                });
+
+                // Assert
+                expect(await screen.findByRole("tabpanel")).not.toHaveAttribute(
+                    "tabindex",
+                );
+
+                // Clean up
+                jest.useRealTimers();
+            });
+
+            it("should set tabindex=0 on the tabpanel if the children element changes from having focusable elements to having nofocusable elements", async () => {
+                // Arrange
+                jest.useFakeTimers();
+                const ComponentWithInitialLoad = () => {
+                    const [isLoading, setIsLoading] = React.useState(true);
+
+                    React.useEffect(() => {
+                        setTimeout(() => {
+                            setIsLoading(false);
+                        }, 5000);
+                    }, []);
+
+                    return (
+                        <div>
+                            {isLoading && (
+                                <>
+                                    Loading with focusable element{" "}
+                                    <button>Focusable button</button>
+                                </>
+                            )}
+                        </div>
+                    );
+                };
+
+                const ComponentWithInitialLoadWrapper = () => {
+                    return (
+                        <div>
+                            <ComponentWithInitialLoad />
+                        </div>
+                    );
+                };
+
+                render(
+                    <TabPanel
+                        id={id}
+                        aria-labelledby={ariaLabelledby}
+                        active={true}
+                    >
+                        <ComponentWithInitialLoadWrapper />
+                    </TabPanel>,
+                );
+
+                // Verify that the tabpanel has tabindex=0
+                expect(await screen.findByRole("tabpanel")).not.toHaveAttribute(
+                    "tabindex",
+                );
+
+                // Act
+                // Fast-forward until all timers have been executed
+                await act(async () => {
+                    jest.runAllTimers();
+                });
+
+                // Assert
+                expect(await screen.findByRole("tabpanel")).toHaveAttribute(
+                    "tabindex",
+                    "0",
+                );
+
+                // Clean up
+                jest.useRealTimers();
+            });
         });
     });
 });
