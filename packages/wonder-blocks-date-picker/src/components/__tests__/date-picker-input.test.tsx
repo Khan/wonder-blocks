@@ -39,8 +39,6 @@ describe("DatePickerInput", () => {
                     ),
                     // We want to disable past dates and dates after 10 days from now
                     disabled: (date) => {
-                        // (minDate && moment(date) < minDate.startOf("day")) ||
-                        // (maxDate && moment(date) > maxDate.endOf("day")),
                         // Convert native Date to Temporal.PlainDate for accurate date-only comparison
                         const plain = Temporal.PlainDate.from({
                             year: date.getFullYear(),
