@@ -2,7 +2,6 @@ import * as React from "react";
 import wonderBlocksTheme from "./wonder-blocks-theme";
 import {Decorator} from "@storybook/react-vite";
 import {DocsContainer} from "@storybook/addon-docs/blocks";
-import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {initAnnouncer} from "@khanacademy/wonder-blocks-announcer";
 import Link from "@khanacademy/wonder-blocks-link";
@@ -78,8 +77,6 @@ const parameters: Preview["parameters"] = {
     a11y: {
         test: "error",
     },
-    // Enable the RenderStateRoot decorator by default.
-    enableRenderStateRootDecorator: true,
     backgrounds: {
         default: "baseDefault",
         options: {
@@ -132,10 +129,7 @@ const parameters: Preview["parameters"] = {
     },
 };
 
-const withThemeSwitcher: Decorator = (
-    Story,
-    {globals: {theme}, parameters: {enableRenderStateRootDecorator}},
-) => {
+const withThemeSwitcher: Decorator = (Story, {globals: {theme}}) => {
     // Keep track of the theme locally so we can re-render the story after the
     // attribute is updated.
     const [localTheme, setLocalTheme] = React.useState(null);
@@ -146,18 +140,6 @@ const withThemeSwitcher: Decorator = (
             setLocalTheme(theme);
         }
     }, [theme]);
-
-    if (enableRenderStateRootDecorator) {
-        return (
-            <RenderStateRoot key={localTheme}>
-                <ThemeSwitcherContext.Provider value={theme}>
-                    <ThemeSwitcher theme={theme}>
-                        <Story />
-                    </ThemeSwitcher>
-                </ThemeSwitcherContext.Provider>
-            </RenderStateRoot>
-        );
-    }
 
     return (
         <ThemeSwitcherContext.Provider value={theme} key={localTheme}>
