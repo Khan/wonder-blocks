@@ -99,7 +99,7 @@ const DropdownPopper = function ({
                 return (
                     <div
                         ref={ref}
-                        style={style}
+                        style={{...style, maxWidth: "100%"}}
                         data-testid="dropdown-popper"
                         data-placement={placement}
                     >
