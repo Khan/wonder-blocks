@@ -90,7 +90,7 @@ jobs:
     - name: Publish to Chromatic for visual testing (review PRs only)
       id: chromatic_publish
       if: ${{ inputs.target == 'review' }}
-      uses: chromaui/action@v11
+      uses: chromaui/action@latest
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         projectToken: ${{ secrets.projectToken }}
@@ -113,7 +113,7 @@ jobs:
     # (if) Run this step on dependabot or changesets PRs.
     - name: Skip Chromatic builds (dependabot or changesets PRs)
       if: ${{ inputs.target == 'bot' }}
-      uses: chromaui/action@v11
+      uses: chromaui/action@latest
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         projectToken: ${{ secrets.projectToken }}
@@ -126,7 +126,7 @@ jobs:
     # (if) Run this step on the main branch.
     - name: Auto-accept Chromatic build on main branch.
       if: ${{ inputs.target == 'main' }}
-      uses: chromaui/action@v11
+      uses: chromaui/action@latest
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         projectToken: ${{ secrets.projectToken }}
