@@ -74,6 +74,11 @@ interface Props {
     inputAriaLabel?: string;
 }
 
+type RootWithEscProps = React.HTMLAttributes<Element> & {
+    rootRef?: unknown;
+    onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;
+};
+
 /**
  * A UI component that allows the user to pick a date by using an input element
  * or the calendar popup exposed by `react-day-picker`.
@@ -172,10 +177,9 @@ const DatePicker = (props: Props) => {
             datePickerInputRef.current?.focus();
         }
     };
-    const RootWithEsc = (props: React.HTMLAttributes<HTMLDivElement>) => {
-        // TODO: revisit this function and fix props
-        // eslint-disable-next-line react/prop-types
-        const {onKeyDown, ...rest} = props;
+
+    const RootWithEsc = (props: RootWithEscProps) => {
+        const {onKeyDown, rootRef: _, ...rest} = props;
         return (
             // eslint-disable-next-line jsx-a11y/no-static-element-interactions
             <div
