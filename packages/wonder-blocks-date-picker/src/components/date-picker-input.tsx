@@ -71,9 +71,21 @@ interface Props {
         modifiers: Partial<CustomModifiers>,
     ) => Array<string>;
     /**
-     * Parses an input string using a given format and returns the result as a
-     * Date  (exposed by react-day-picker).
-     * @see https://github.com/gpbl/react-day-picker/blob/750f6cd808b2ac29772c8df5c497a66e818080e8/src/addons/MomentLocaleUtils.js#L39
+     * Function to parse user-entered date strings into Date objects.
+     *
+     * This is called as the user types to validate and convert their input
+     * into a Date. If the input matches one of the provided formats, it
+     * returns a Date object. If the input is invalid or doesn't match any
+     * format, it returns null or undefined.
+     *
+     * @param value - The date string to parse (or an existing Date to pass through)
+     * @param format - A single format string or array of format strings to try
+     * @param locale - Optional locale for locale-aware parsing
+     * @returns A Date object if parsing succeeds, null/undefined otherwise
+     *
+     * @example
+     * parseDate("2024-12-25", "YYYY-MM-DD", "en-US") // => Date object
+     * parseDate("invalid", "YYYY-MM-DD", "en-US") // => null
      */
     parseDate?: (
         value: string | Date,
