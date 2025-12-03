@@ -1,5 +1,5 @@
 import * as React from "react";
-import {afterEach, beforeEach, describe, expect, it} from "@jest/globals";
+import {afterEach, beforeEach, describe, it} from "@jest/globals";
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import * as DateMock from "jest-date-mock";
@@ -9,11 +9,15 @@ import {MaybeNativeDatePicker} from "@khanacademy/wonder-blocks-date-picker";
 
 describe("MaybeNativeDatePicker", () => {
     const originalOnTouchStart = window.ontouchstart;
+    const originalAlert = window.alert;
 
     beforeEach(() => {
         // For the purposes of these tests, we don't want the native date
         // picker so we turn it off.
         delete window.ontouchstart;
+
+        // Mock window.alert to prevent "Not implemented" errors in JSDOM
+        window.alert = jest.fn();
 
         // Mock getBoundingClientRect to provide realistic dimensions
         // This prevents Popper from thinking elements are out of bounds
@@ -32,6 +36,7 @@ describe("MaybeNativeDatePicker", () => {
 
     afterEach(() => {
         window.ontouchstart = originalOnTouchStart;
+        window.alert = originalAlert;
     });
 
     it("renders the date picker if the date input is clicked", async () => {
@@ -41,12 +46,13 @@ describe("MaybeNativeDatePicker", () => {
         );
 
         // Act
+        // Wait for lazy-loaded DatePicker to render
         const textbox = await screen.findByTestId("date-picker-input");
         await userEvent.click(textbox);
 
         // Assert
-        // make sure date picker opened
-        await screen.findByTitle(/wednesday/i);
+        // make sure date picker opened - the calendar should be visible
+        expect(screen.getByRole("grid")).toBeInTheDocument();
     });
 
     it("calls updateDate if the date is valid (with an initial selectedDate)", async () => {

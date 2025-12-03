@@ -79,7 +79,7 @@ const MaybeNativeDatePicker = (props: MaybeNativeDatePickerProps) => {
             if (
                 minDate &&
                 newDate &&
-                Temporal.PlainDate.compare(minDate, newDate) < 0
+                Temporal.PlainDate.compare(newDate, minDate) < 0
             ) {
                 /* eslint-disable-next-line no-alert
                    --
