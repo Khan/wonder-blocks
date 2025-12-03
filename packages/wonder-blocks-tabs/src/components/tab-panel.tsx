@@ -68,21 +68,23 @@ export const TabPanel = (props: Props) => {
         if (ref.current && children) {
             updateHasFocusableElement(ref.current);
 
-            // Watch for changes to focusable elements within the tabpanel
-            const mutationObserver = new MutationObserver(() => {
-                if (ref.current) {
-                    updateHasFocusableElement(ref.current);
-                }
-            });
-            mutationObserver.observe(ref.current, {
-                // Monitor any changes to descendants of the tab panel
-                childList: true,
-                subtree: true,
-            });
+            if (active) {
+                // Watch for changes to focusable elements within the tabpanel
+                const mutationObserver = new MutationObserver(() => {
+                    if (ref.current) {
+                        updateHasFocusableElement(ref.current);
+                    }
+                });
+                mutationObserver.observe(ref.current, {
+                    // Monitor any changes to descendants of the tab panel
+                    childList: true,
+                    subtree: true,
+                });
 
-            return () => {
-                mutationObserver.disconnect();
-            };
+                return () => {
+                    mutationObserver.disconnect();
+                };
+            }
         }
     }, [active, ref, children, updateHasFocusableElement]);
 
