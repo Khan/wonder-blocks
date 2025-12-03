@@ -212,7 +212,7 @@ describe("DatePickerInput", () => {
 
         // Act
         // change the date to 2 days in the future
-        const input = await screen.findByTestId("date-picker-input");
+        const input = screen.getByTestId("date-picker-input");
         await userEvent.click(input);
         await userEvent.clear(input);
         await userEvent.paste("2021-05-14");
@@ -239,7 +239,7 @@ describe("DatePickerInput", () => {
         );
 
         // Act
-        await userEvent.click(await screen.findByTestId("date-picker-input"));
+        await userEvent.click(screen.getByTestId("date-picker-input"));
 
         // Assert
         expect(onClickSpy).toHaveBeenCalled();
@@ -258,7 +258,7 @@ describe("DatePickerInput", () => {
         );
 
         // Act
-        await userEvent.click(await screen.findByTestId("date-picker-input"));
+        await userEvent.click(screen.getByTestId("date-picker-input"));
 
         // Assert
         expect(onClickSpy).not.toHaveBeenCalled();
@@ -303,11 +303,9 @@ describe("DatePickerInput", () => {
         );
 
         // Act
-        fireEvent.blur(await screen.findByTestId("date-picker-input"));
+        fireEvent.blur(screen.getByTestId("date-picker-input"));
 
         // Assert
-        expect(await screen.findByTestId("date-picker-input")).toHaveValue(
-            validDate,
-        );
+        expect(screen.getByTestId("date-picker-input")).toHaveValue(validDate);
     });
 });
