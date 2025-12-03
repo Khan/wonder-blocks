@@ -1,6 +1,13 @@
 import * as React from "react";
 import {describe, it} from "@jest/globals";
-import {act, fireEvent, render, screen, waitFor} from "@testing-library/react";
+import {
+    act,
+    fireEvent,
+    render,
+    screen,
+    waitFor,
+    within,
+} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import * as DateMock from "jest-date-mock";
 import {Temporal} from "temporal-polyfill";
@@ -46,12 +53,10 @@ describe("DatePicker", () => {
         render(<DatePicker updateDate={() => {}} />);
 
         // Act
-        await userEvent.click(await screen.findByRole("textbox"));
+        await userEvent.click(screen.getByRole("textbox"));
 
         // Assert
-        expect(
-            await screen.findByTestId("focus-sentinel-prev"),
-        ).toBeInTheDocument();
+        expect(screen.getByTestId("focus-sentinel-prev")).toBeInTheDocument();
     });
 
     it("shows the date picker overlay if the input is focused", async () => {
@@ -61,10 +66,9 @@ describe("DatePicker", () => {
         // Act
         await userEvent.tab();
 
+        await expect(screen.getByRole("grid")).toBeVisible();
         // Assert
-        expect(
-            await screen.findByTestId("focus-sentinel-prev"),
-        ).toBeInTheDocument();
+        expect(screen.getByTestId("focus-sentinel-prev")).toBeInTheDocument();
     });
 
     it("includes a footer if set", async () => {
@@ -72,7 +76,9 @@ describe("DatePicker", () => {
         render(
             <DatePicker
                 updateDate={() => {}}
-                footer={({close}) => <Button>Footer Button</Button>}
+                footer={({close}) => (
+                    <Button onClick={close}>Footer Button</Button>
+                )}
             />,
         );
 
@@ -82,7 +88,7 @@ describe("DatePicker", () => {
 
         // Assert
         expect(
-            await screen.findByRole("button", {name: /footer button/i}),
+            screen.getByRole("button", {name: /footer button/i}),
         ).toBeInTheDocument();
     });
 
@@ -100,9 +106,8 @@ describe("DatePicker", () => {
         // We need first to focus on the input so we can display the picker.
         await userEvent.tab();
 
-        // Act
         await userEvent.click(
-            await screen.findByRole("button", {name: /footer button/i}),
+            screen.getByRole("button", {name: /footer button/i}),
         );
 
         // Assert
@@ -111,9 +116,7 @@ describe("DatePicker", () => {
         });
     });
 
-    // TODO(FEI-5533): Key press events aren't working correctly with
-    // user-event v14. We need to investigate and fix this.
-    it.skip("closes the date picker if ESC is pressed", async () => {
+    it("closes the date picker if ESC is pressed", async () => {
         // Arrange
         render(<DatePicker updateDate={() => {}} />);
 
@@ -121,7 +124,7 @@ describe("DatePicker", () => {
         await userEvent.tab();
 
         // Act
-        await userEvent.type(await screen.findByRole("textbox"), "{esc}");
+        await userEvent.type(screen.getByRole("textbox"), "{Esc}");
 
         // Assert
         expect(
@@ -137,7 +140,7 @@ describe("DatePicker", () => {
         await userEvent.tab();
 
         // Act
-        fireEvent.blur(await screen.findByRole("textbox"));
+        fireEvent.blur(screen.getByRole("textbox"));
 
         // Assert
         expect(
@@ -190,7 +193,7 @@ describe("DatePicker", () => {
 
         // Act
         // Select a date
-        await userEvent.click(await screen.findByText("15"));
+        await userEvent.click(screen.getByText("15"));
 
         // Assert
         await waitFor(() => {
@@ -225,12 +228,10 @@ describe("DatePicker", () => {
 
         // Act
         // Select a date
-        await userEvent.click(await screen.findByText("15"));
+        await userEvent.click(screen.getByText("15"));
 
         // Assert
-        await waitFor(async () => {
-            expect(await screen.findByRole("grid")).toBeInTheDocument();
-        });
+        await expect(screen.getByRole("grid")).toBeInTheDocument();
     });
 
     it("changes the date in the input if we pick a date from the overlay", async () => {
@@ -251,12 +252,12 @@ describe("DatePicker", () => {
         await userEvent.tab();
 
         // Act
-        await userEvent.click(await screen.findByText("15"));
+        await userEvent.click(screen.getByText("15"));
 
         // Assert
         // We'd want to ensure that the input is updated with the picker value.
         expect(
-            await screen.findByDisplayValue(
+            screen.getByDisplayValue(
                 TemporalLocaleUtils.formatDate(
                     Temporal.PlainDate.from("2021-05-15"),
                     dateFormat,
@@ -287,15 +288,17 @@ describe("DatePicker", () => {
         // We need first to focus on the input so we can display the picker.
         await userEvent.tab();
 
+        const input = screen.getByRole("textbox");
         // Act
-        await userEvent.clear(await screen.findByRole("textbox"));
-        await userEvent.type(await screen.findByRole("textbox"), "2021-05-10");
+        await userEvent.clear(input);
+        await userEvent.type(input, "2021-05-10");
 
         // Assert
-        await waitFor(async () =>
-            expect(
-                await screen.findByRole("gridcell", {name: "Mon May 10, 2021"}),
-            ).toHaveAttribute("aria-selected", "true"),
+        const gridcell = screen.getByRole("gridcell", {selected: true});
+        expect(
+            within(gridcell).getByRole("button", {
+                name: "Monday, May 10th, 2021, selected",
+            }),
         );
     });
 
@@ -321,14 +324,15 @@ describe("DatePicker", () => {
         await userEvent.tab();
 
         // Act
-        await userEvent.clear(await screen.findByRole("textbox"));
-        await userEvent.type(await screen.findByRole("textbox"), "2021-55-55");
+        await userEvent.clear(screen.getByRole("textbox"));
+        await userEvent.type(screen.getByRole("textbox"), "2021-55-55");
 
         // Assert
-        await waitFor(async () =>
-            expect(
-                await screen.findByRole("gridcell", {name: "Fri May 7, 2021"}),
-            ).toHaveAttribute("aria-selected", "true"),
+        const gridcell = screen.getByRole("gridcell", {selected: true});
+        expect(
+            within(gridcell).getByRole("button", {
+                name: "Friday, May 7th, 2021, selected",
+            }),
         );
     });
 
@@ -337,7 +341,7 @@ describe("DatePicker", () => {
         render(<DatePicker updateDate={() => {}} />);
 
         // Act
-        const input = await screen.findByRole("textbox");
+        const input = screen.getByRole("textbox");
 
         // Assert
         expect(input).toHaveAttribute("aria-label", "Choose or enter a date");
@@ -353,7 +357,7 @@ describe("DatePicker", () => {
         );
 
         // Act
-        const input = await screen.findByRole("textbox");
+        const input = screen.getByRole("textbox");
 
         // Assert
         expect(input).toHaveAttribute(
@@ -372,7 +376,7 @@ describe("DatePicker", () => {
         );
 
         // Act
-        const input = await screen.findByRole("textbox");
+        const input = screen.getByRole("textbox");
 
         // Assert
         expect(input).toHaveAttribute(
