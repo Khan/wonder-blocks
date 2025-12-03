@@ -19,7 +19,7 @@ describe("FocusManager", () => {
     it("should focus on the first element inside the container", async () => {
         // Arrange
         render(<Document />);
-        const referenceElement = await screen.findByTestId("reference");
+        const referenceElement = screen.getByTestId("reference");
         render(
             <FocusManager referenceElement={referenceElement}>
                 <div>
@@ -34,14 +34,14 @@ describe("FocusManager", () => {
         await userEvent.tab();
 
         // Assert
-        const firstFocusableElementInside = await screen.findByTestId("tab-1");
+        const firstFocusableElementInside = screen.getByTestId("tab-1");
         expect(firstFocusableElementInside).toHaveFocus();
     });
 
     it("should focus on the last element inside the container", async () => {
         // Arrange
         render(<Document />);
-        const referenceElement = await screen.findByTestId("reference");
+        const referenceElement = screen.getByTestId("reference");
         render(
             <FocusManager referenceElement={referenceElement}>
                 <div>
@@ -52,19 +52,19 @@ describe("FocusManager", () => {
         );
 
         // Act
-        const nextElementOutside = await screen.findByTestId("next");
+        const nextElementOutside = screen.getByTestId("next");
         nextElementOutside.focus();
         await userEvent.tab({shift: true});
 
         // Assert
-        const lastFocusableElementInside = await screen.findByTestId("tab-2");
+        const lastFocusableElementInside = screen.getByTestId("tab-2");
         expect(lastFocusableElementInside).toHaveFocus();
     });
 
     it("should focus on the reference element", async () => {
         // Arrange
         render(<Document />);
-        const referenceElement = await screen.findByTestId("reference");
+        const referenceElement = screen.getByTestId("reference");
         const onStartFocusedMock = jest.fn();
         render(
             <FocusManager
@@ -77,7 +77,7 @@ describe("FocusManager", () => {
                 </div>
             </FocusManager>,
         );
-        const firstSentinel = await screen.findByTestId("focus-sentinel-prev");
+        const firstSentinel = screen.getByTestId("focus-sentinel-prev");
 
         // Act
         fireEvent.focus(firstSentinel);
@@ -91,7 +91,7 @@ describe("FocusManager", () => {
     it("should focus on the next focusable element outside the container", async () => {
         // Arrange
         render(<Document />);
-        const referenceElement = await screen.findByTestId("reference");
+        const referenceElement = screen.getByTestId("reference");
         const onEndFocusedMock = jest.fn();
         render(
             <FocusManager
@@ -104,13 +104,13 @@ describe("FocusManager", () => {
                 </div>
             </FocusManager>,
         );
-        const lastSentinel = await screen.findByTestId("focus-sentinel-next");
+        const lastSentinel = screen.getByTestId("focus-sentinel-next");
 
         // Act
         fireEvent.focus(lastSentinel);
 
         // Assert
-        const nextElementOutside = await screen.findByTestId("next");
+        const nextElementOutside = screen.getByTestId("next");
         expect(nextElementOutside).toHaveFocus();
         // Also verify that onEndFocused is called (if set).
         expect(onEndFocusedMock).toHaveBeenCalled();
@@ -127,7 +127,7 @@ describe("FocusManager", () => {
             </div>
         );
         render(<Document />);
-        const referenceElement = await screen.findByTestId("reference");
+        const referenceElement = screen.getByTestId("reference");
         render(
             <FocusManager
                 referenceElement={referenceElement}
@@ -139,13 +139,13 @@ describe("FocusManager", () => {
                 </div>
             </FocusManager>,
         );
-        const lastSentinel = await screen.findByTestId("focus-sentinel-next");
+        const lastSentinel = screen.getByTestId("focus-sentinel-next");
 
         // Act
         fireEvent.focus(lastSentinel);
 
         // Assert
-        const nextElementOutside = await screen.findByTestId("next");
+        const nextElementOutside = screen.getByTestId("next");
         // Verify that the disabled element is skipped.
         expect(nextElementOutside).toHaveFocus();
     });
