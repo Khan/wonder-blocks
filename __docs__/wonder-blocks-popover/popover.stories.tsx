@@ -6,7 +6,11 @@ import Button from "@khanacademy/wonder-blocks-button";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {HeadingMedium, LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {
+    BodyText,
+    HeadingMedium,
+    LabelLarge,
+} from "@khanacademy/wonder-blocks-typography";
 import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
 
 import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
@@ -14,6 +18,9 @@ import packageConfig from "../../packages/wonder-blocks-popover/package.json";
 
 import ComponentInfo from "../components/component-info";
 import PopoverArgtypes, {ContentMappings} from "./popover.argtypes";
+import ModalLauncher from "../../packages/wonder-blocks-modal/src/components/modal-launcher";
+import {OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
+import {longText} from "../components/text-for-testing";
 
 /**
  * Popovers provide additional information that is related to a particular
@@ -110,6 +117,7 @@ export const Default: StoryComponentType = {
         content: ContentMappings.withTextOnly,
         placement: "top",
         dismissEnabled: true,
+        portal: true,
         id: "",
         initialFocusId: "",
         testId: "",
@@ -139,6 +147,44 @@ export const NoTail: StoryComponentType = {
         testId: "",
         onClose: () => {},
         showTail: false,
+    } as PopoverArgs,
+};
+
+export const InsideModal: StoryComponentType = {
+    render: (args: PopoverArgs) => (
+        <ModalLauncher
+            modal={
+                <OnePaneDialog
+                    title="Modal"
+                    content={
+                        <View style={{gap: spacing.medium_16}}>
+                            <BodyText>{longText}</BodyText>
+                            <BodyText>{longText}</BodyText>
+                            <BodyText>{longText}</BodyText>
+                            <BodyText>{longText}</BodyText>
+                            <BodyText>{longText}</BodyText>
+                            <Popover {...args} />
+                            <BodyText>{longText}</BodyText>
+                            <BodyText>{longText}</BodyText>
+                            <BodyText>{longText}</BodyText>
+                            <BodyText>{longText}</BodyText>
+                            <BodyText>{longText}</BodyText>
+                            <BodyText>{longText}</BodyText>
+                        </View>
+                    }
+                />
+            }
+        >
+            {({openModal}) => (
+                <Button onClick={openModal}>Open popover inside modal</Button>
+            )}
+        </ModalLauncher>
+    ),
+    args: {
+        children: <Button>Open popover inside modal</Button>,
+        content: ContentMappings.withTextOnly,
+        placement: "top",
+        dismissEnabled: true,
     } as PopoverArgs,
 };
 
@@ -308,33 +354,40 @@ WithActions.parameters = {
 };
 
 export const WithInitialFocusId: StoryComponentType = {
-    args: {
-        children: (
-            <Button>
-                Open with initial focus on the &quot;It is focused!&quot; button
-            </Button>
-        ),
-        content: (
-            <PopoverContent
-                title="
-            Setting initialFocusId"
-                content="The focus will be set on the second button"
-                actions={
-                    <View style={styles.row}>
-                        <Button kind="tertiary" id="popover-button-1">
-                            No focus
-                        </Button>
-                        <Strut size={spacing.medium_16} />
-                        <Button kind="tertiary" id="popover-button-2">
-                            It is focused!
-                        </Button>
-                    </View>
+    render: function Render(args) {
+        const initialFocusRef = React.useRef<HTMLButtonElement>(null);
+        return (
+            <Popover
+                {...args}
+                initialFocus={initialFocusRef}
+                content={
+                    <PopoverContent
+                        title="Setting initialFocusId"
+                        content="The focus will be set on the second button"
+                        actions={
+                            <View style={styles.row}>
+                                <Button kind="tertiary" id="popover-button-1">
+                                    No focus
+                                </Button>
+                                <Strut size={spacing.medium_16} />
+                                <Button kind="tertiary" ref={initialFocusRef}>
+                                    It is focused!
+                                </Button>
+                            </View>
+                        }
+                    />
                 }
-            />
-        ),
+            >
+                <Button>
+                    Open with initial focus on the &quot;It is focused!&quot;
+                    button
+                </Button>
+            </Popover>
+        );
+    },
+    args: {
         placement: "top",
         dismissEnabled: true,
-        initialFocusId: "popover-button-2",
     } as PopoverArgs,
 };
 
@@ -621,6 +674,7 @@ export const CustomKeyboardNavigation: StoryComponentType = {
                                             (_, index) => (
                                                 <ArrowButton
                                                     onClick={() => {}}
+                                                    key={index}
                                                     index={index}
                                                     focus={index === focus}
                                                 />
