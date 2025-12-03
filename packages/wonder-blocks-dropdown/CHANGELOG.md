@@ -1,5 +1,23 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.5.6
+
+### Patch Changes
+
+- 6d35175: Handle long text in SingleSelect, MultiSelect, and ActionMenu components so that the width doesn't exceed 100% of the horizontal space
+- Updated dependencies [70d6c08]
+    - @khanacademy/wonder-blocks-cell@6.1.5
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-clickable@8.0.5
+    - @khanacademy/wonder-blocks-form@7.4.6
+    - @khanacademy/wonder-blocks-icon@5.3.5
+    - @khanacademy/wonder-blocks-icon-button@11.0.1
+    - @khanacademy/wonder-blocks-modal@8.5.9
+    - @khanacademy/wonder-blocks-pill@3.1.48
+    - @khanacademy/wonder-blocks-search-field@5.1.55
+    - @khanacademy/wonder-blocks-styles@0.2.37
+    - @khanacademy/wonder-blocks-typography@4.2.27
+
 ## 10.5.5
 
 ### Patch Changes
