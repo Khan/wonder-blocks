@@ -791,6 +791,9 @@ importers:
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:../wonder-blocks-core
+      '@khanacademy/wonder-blocks-modal':
+        specifier: workspace:*
+        version: link:../wonder-blocks-modal
       '@khanacademy/wonder-blocks-styles':
         specifier: workspace:*
         version: link:../wonder-blocks-styles
