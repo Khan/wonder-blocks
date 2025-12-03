@@ -32,6 +32,7 @@ import ButtonArgTypes from "./button.argtypes";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {Icon} from "@khanacademy/wonder-blocks-icon";
 import {themeModes} from "../../.storybook/modes";
+import {TextField} from "@khanacademy/wonder-blocks-form";
 
 export default {
     title: "Packages / Button / Button",
@@ -646,7 +647,9 @@ export const SubmittingForms: StoryComponentType = {
             <View>
                 <LabeledField
                     label="Foo"
-                    field={<input id="foo" value="bar" onChange={() => {}} />}
+                    field={
+                        <TextField id="foo" value="bar" onChange={() => {}} />
+                    }
                 />
                 <Button type="submit">Submit</Button>
             </View>

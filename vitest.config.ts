@@ -15,7 +15,7 @@ export default mergeConfig(viteConfig, {
         name: "storybook",
         browser: {
             enabled: true,
-            name: "chromium",
+            instances: [{browser: "chromium"}],
             headless: true,
             provider: "playwright",
         },

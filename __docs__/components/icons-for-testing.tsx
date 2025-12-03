@@ -22,7 +22,7 @@ export const multiColoredIcon = (
         <defs>
             <rect id="path-1" x="0" y="0" width="256" height="256" rx="8" />
         </defs>
-        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
             <g>
                 <g>
                     <mask id="mask-2" fill="white">
@@ -33,7 +33,7 @@ export const multiColoredIcon = (
                         d="M51,128 L205,128 C205,170.525926 170.525926,205 128,205 C85.4740743,205 51,170.525926 51,128 Z"
                         id="Smile"
                         fill="#FFFFFF"
-                        fill-rule="nonzero"
+                        fillRule="nonzero"
                         mask="url(#mask-2)"
                     />
                     <path
