@@ -334,7 +334,7 @@ describe("TabPanel", () => {
                 jest.useRealTimers();
             });
 
-            it("should set tabindex=0 on the tabpanel if the children element changes from having focusable elements to having nofocusable elements", async () => {
+            it("should set tabindex=0 on the tabpanel if the children element changes from having focusable elements to having no focusable elements", async () => {
                 // Arrange
                 jest.useFakeTimers();
                 const ComponentWithInitialLoad = () => {
@@ -376,7 +376,7 @@ describe("TabPanel", () => {
                     </TabPanel>,
                 );
 
-                // Verify that the tabpanel has tabindex=0
+                // Verify that the tabpanel does not have tabindex since it has a focusable element
                 expect(await screen.findByRole("tabpanel")).not.toHaveAttribute(
                     "tabindex",
                 );
@@ -388,6 +388,7 @@ describe("TabPanel", () => {
                 });
 
                 // Assert
+                // The tabindex should have changed to 0 since the focusable element is now gone
                 expect(await screen.findByRole("tabpanel")).toHaveAttribute(
                     "tabindex",
                     "0",
@@ -438,7 +439,7 @@ describe("TabPanel", () => {
                     </TabPanel>,
                 );
 
-                // Verify that the tabpanel has tabindex=0
+                // Verify that the tabpanel has tabindex=0 since it does not have a focusable element
                 expect(
                     await screen.findByRole("tabpanel", {hidden: true}),
                 ).toHaveAttribute("tabindex", "0");
