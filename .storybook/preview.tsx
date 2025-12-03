@@ -75,6 +75,9 @@ function DocsContainerWithTheme({children, context, ...props}) {
 }
 
 const parameters: Preview["parameters"] = {
+    a11y: {
+        test: "error",
+    },
     // Enable the RenderStateRoot decorator by default.
     enableRenderStateRootDecorator: true,
     backgrounds: {
