@@ -109,6 +109,7 @@ const parameters: Preview["parameters"] = {
         },
     },
     docs: {
+        codePanel: true,
         // Customize the DocsContainer to use the WB theme in MDX pages.
         container: DocsContainerWithTheme,
         toc: {
