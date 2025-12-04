@@ -75,7 +75,20 @@ function DocsContainerWithTheme({children, context, ...props}) {
 
 const parameters: Preview["parameters"] = {
     a11y: {
+        // Fails the CI check if there are any a11y violations
         test: "error",
+        /*
+         * Axe's configuration
+         * See https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#api-name-axeconfigure
+         * to learn more about the available properties.
+         */
+        config: {},
+        /*
+         * Axe's options parameter
+         * See https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#options-parameter
+         * to learn more about the available options.
+         */
+        options: {},
     },
     backgrounds: {
         default: "baseDefault",
