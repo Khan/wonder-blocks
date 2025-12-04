@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-popover
 
+## 6.1.47
+
+### Patch Changes
+
+- 5db127a: Fix issue where Popover focus management was interfering with Tabs focus management
+
 ## 6.1.46
 
 ### Patch Changes
