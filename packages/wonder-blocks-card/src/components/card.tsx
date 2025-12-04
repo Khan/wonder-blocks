@@ -57,7 +57,10 @@ type BaseCardProps = {
 type DismissProps =
     | {
           onDismiss: (e?: React.SyntheticEvent) => void;
-          labels: {dismissButtonAriaLabel: string} & Record<string, any>;
+          labels: {
+              dismissButtonAriaLabel: string;
+              dismissButtonAriaDescribedBy?: string;
+          } & Record<string, any>;
       }
     | {
           onDismiss?: never;
@@ -240,6 +243,7 @@ const Card = React.forwardRef(function Card(
             {onDismiss ? (
                 <DismissButton
                     aria-label={labels?.dismissButtonAriaLabel || "Close"}
+                    aria-describedby={labels?.dismissButtonAriaDescribedBy}
                     onClick={(e) => onDismiss?.(e)}
                     testId={testId && `${testId}-dismiss-button`}
                 />
