@@ -10,7 +10,7 @@ import {
     ThemeSwitcher,
     THEME_DATA_ATTRIBUTE,
 } from "@khanacademy/wonder-blocks-theming";
-import {Preview} from "@storybook/react-vite";
+import type {Preview} from "@storybook/react-vite";
 
 // Import the Wonder Blocks CSS variables
 import "@khanacademy/wonder-blocks-tokens/styles.css";
