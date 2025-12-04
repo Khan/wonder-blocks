@@ -456,3 +456,21 @@ export const ChildrenRenderFunction: StoryComponentType = {
         chromatic: {delay: 500},
     },
 };
+
+/**
+ * By default, the `NavigationTabs` component renders as a `nav` element. If
+ * the underlying element needs to be changed, the `tag` prop can be used to
+ * specify the HTML tag to render.
+ */
+export const Tag: StoryComponentType = {
+    args: {
+        children: navigationTabItems,
+        tag: "div",
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this story doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
+};
