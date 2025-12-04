@@ -109,6 +109,10 @@ jobs:
       - name: Install playwright dependencies
         run: pnpm exec playwright install chromium --with-deps
 
+      # Build the project
+      - name: Generate WB build artifacts
+        run: pnpm build
+
       - name: Run Storybook tests
         run: pnpm test:storybook
         env:
