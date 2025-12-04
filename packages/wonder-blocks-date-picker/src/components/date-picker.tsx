@@ -14,7 +14,7 @@ import {
 } from "../util/temporal-locale-utils";
 import type {CustomModifiers} from "../util/types";
 // eslint-disable-next-line import/no-unassigned-import
-import "./styles/react-day-picker.css";
+import "react-day-picker/style.css";
 
 import DatePickerInput from "./date-picker-input";
 import DatePickerOverlay from "./date-picker-overlay";
