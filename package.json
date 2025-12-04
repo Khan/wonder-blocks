@@ -160,9 +160,7 @@
     "react-router": "catalog:",
     "react-router-dom": "catalog:",
     "react-router-dom-v5-compat": "catalog:",
-    "react-window": "catalog:",
-    "react-day-picker": "catalog:",
-    "temporal-polyfill": "catalog:"
+    "react-window": "catalog:"
   },
   "resolutions": {
     "@types/react": "18",
