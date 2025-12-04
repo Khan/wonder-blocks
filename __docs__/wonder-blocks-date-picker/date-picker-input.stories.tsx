@@ -133,6 +133,10 @@ export const DisabledState = {
         parseDate: TemporalLocaleUtils.parseDateToJsDate,
         dateFormat: "MMMM D, YYYY",
     },
+    chromatic: {
+        // Disabling because this is behavior is tested in TextField stories
+        disableSnapshot: true,
+    },
     render: (args: StoryArgs) => <DateInputWrapper {...args} />,
 };
 
@@ -168,6 +172,12 @@ export const WithAriaLabel = {
         "aria-label": "Choose a date",
         value: "May 7, 2021",
         dateFormat: "MMMM D, YYYY",
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
     },
     render: (args: StoryArgs) => <DatePickerInput {...args} />,
 };
