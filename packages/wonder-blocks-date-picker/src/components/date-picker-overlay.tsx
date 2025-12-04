@@ -7,6 +7,7 @@ import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-
 import {
     border,
     boxShadow,
+    font,
     semanticColor,
     sizing,
 } from "@khanacademy/wonder-blocks-tokens";
@@ -16,11 +17,22 @@ import FocusManager from "./focus-manager";
 // Custom styles to display the calendar popup correctly.
 const DEFAULT_STYLE = {
     background: semanticColor.core.background.base.default,
-    padding: `calc(${sizing.size_120} - ${sizing.size_120})`,
     borderRadius: border.radius.radius_040,
     border: `solid ${border.width.thin} ${semanticColor.core.border.neutral.subtle}`,
     boxShadow: boxShadow.mid,
 } as const;
+
+// Static base styles for the overlay container - cached outside component
+const BASE_CONTAINER_STYLES = {
+    fontFamily: font.family.sans,
+    padding: sizing.size_100,
+} as const;
+
+// Static styles for when content is out of boundaries - cached outside component
+const OUT_OF_BOUNDARIES_STYLES = {
+    pointerEvents: "none" as const,
+    visibility: "hidden" as const,
+};
 
 interface Props {
     /**
@@ -108,21 +120,19 @@ const DatePickerOverlay = ({
                     const outOfBoundaries =
                         !isTestEnvironment &&
                         (isReferenceHidden || hasPopperEscaped);
-                    const styles = {
+
+                    // Combine styles: base -> popper positioning -> custom -> boundary hiding
+                    const combinedStyles = {
+                        ...BASE_CONTAINER_STYLES,
                         ...popperStyle,
                         ...style,
-                        ...(outOfBoundaries
-                            ? {
-                                  pointerEvents: "none",
-                                  visibility: "hidden",
-                              }
-                            : {}),
+                        ...(outOfBoundaries && OUT_OF_BOUNDARIES_STYLES),
                     } as React.CSSProperties;
 
                     return (
                         <div
                             ref={ref}
-                            style={styles}
+                            style={combinedStyles}
                             data-placement={placement}
                         >
                             {children}
