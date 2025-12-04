@@ -61,6 +61,11 @@ It can align a dialog on the \`inlineStart\` (left),  \`inlineEnd\` (right), or 
 **IMPORTANT**: This component should only be used with \`DrawerDialog\`. Using it with other
 dialog components may result in incorrect animations, positioning, and styling.
 
+For conditionally rendering modals, ensure there is only one \`DrawerLauncher\` in
+your component tree. A launcher needs to stay mounted on the current page to
+properly handle the user's keyboard focus on close of modals.
+Read [more details on Confluence](https://khanacademy.atlassian.net/wiki/spaces/FRONTEND/blog/2025/11/24/4454383789/Wonder+Blocks+Modal+Tips+Tricks).
+
 See available styling customizations in \`DrawerDialog\` docs.
 
 ### Usage

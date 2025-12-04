@@ -239,6 +239,8 @@ const styles = StyleSheet.create({
         lineHeight: sizing.size_200,
         whiteSpace: "nowrap",
         userSelect: "none",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
     },
 
     indent: {

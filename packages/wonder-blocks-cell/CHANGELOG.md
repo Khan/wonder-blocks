@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-cell
 
+## 6.1.5
+
+### Patch Changes
+
+- 70d6c08: DetailCell: Use `semanticColor.core.foreground.neutral.default` for the subtitle in all themes. This removes the need for a component theme token for the subtitle color
+- Updated dependencies [70d6c08]
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-clickable@8.0.5
+    - @khanacademy/wonder-blocks-styles@0.2.37
+    - @khanacademy/wonder-blocks-typography@4.2.27
+
 ## 6.1.4
 
 ### Patch Changes

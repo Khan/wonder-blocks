@@ -235,7 +235,7 @@ export const WithAriaLabel: StoryComponentType = {
 
 /**
  *
- * A FlexibleDialog can have an aria-label as its accessible name.
+ * A FlexibleDialog can derive its accessible name from aria-labelledby.
  */
 export const WithAriaLabelledby: StoryComponentType = {
     render: () => (
@@ -243,11 +243,11 @@ export const WithAriaLabelledby: StoryComponentType = {
             <View style={styles.modalPositioner}>
                 <FlexibleDialog
                     aria-labelledby="main-heading"
+                    title={
+                        <Heading id="main-heading">Dogz are the best</Heading>
+                    }
                     content={
                         <View>
-                            <Heading id="main-heading">
-                                Dogz are the best
-                            </Heading>
                             <BodyText>This is some text</BodyText>
                         </View>
                     }
@@ -310,6 +310,16 @@ export const WithLongContents: StoryComponentType = {
                             <BodyText>{reallyLongText}</BodyText>
                             <BodyText>{reallyLongText}</BodyText>
                             <BodyText>{reallyLongText}</BodyText>
+                            <BodyText style={{display: "flex"}}>
+                                <Button
+                                    style={{
+                                        marginInlineStart: "auto",
+                                        marginBlockStart: sizing.size_100,
+                                    }}
+                                >
+                                    A button
+                                </Button>
+                            </BodyText>
                         </>
                     }
                 />
