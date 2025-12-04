@@ -44,6 +44,10 @@ const meta: Meta<typeof DatePickerOverlay> = {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
     },
 };
 
