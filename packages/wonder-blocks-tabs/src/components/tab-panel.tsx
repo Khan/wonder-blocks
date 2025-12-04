@@ -1,6 +1,7 @@
 import * as React from "react";
 import {addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
 import {StyleSheet} from "aphrodite";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {findFocusableNodes} from "../../../wonder-blocks-core/src/util/focus";
 
 type Props = {
@@ -48,12 +49,16 @@ export const TabPanel = (props: Props) => {
     } = props;
 
     const ref = React.useRef<HTMLDivElement>(null);
-    const [hasFocusableElement, setHasFocusableElement] = React.useState(false);
+    // Initialize to null to indicate that the focusable element status is not
+    // yet determined
+    const [hasFocusableElement, setHasFocusableElement] = React.useState<
+        boolean | null
+    >(null);
 
     React.useEffect(() => {
         // Whenever tab panel contents change, determine if the panel has a
-        // focusable element
-        if (ref.current) {
+        // focusable element (only if the tab panel has children)
+        if (ref.current && children) {
             setHasFocusableElement(findFocusableNodes(ref.current).length > 0);
         }
     }, [active, ref, children]);
@@ -64,9 +69,10 @@ export const TabPanel = (props: Props) => {
             role="tabpanel"
             id={id}
             aria-labelledby={ariaLabelledby}
-            // If the tab panel doesn't have focusable elements, it should be
-            // focusable so that it is included in the tab sequence of the page
-            tabIndex={hasFocusableElement ? undefined : 0}
+            // If the tab panel doesn't have focusable elements after being
+            // determined, it should be focusable so that it is included in the
+            // tab sequence of the page
+            tabIndex={hasFocusableElement === false ? 0 : undefined}
             // Only show the tab panel if it is active
             hidden={!active}
             data-testid={testId}
@@ -82,5 +88,6 @@ const styles = StyleSheet.create({
     tabPanel: {
         // Apply flex so that panel supports rtl
         display: "flex",
+        ...focusStyles.focus,
     },
 });
