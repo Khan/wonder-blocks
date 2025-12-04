@@ -366,6 +366,8 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                 month: "short",
             },
         ).format;
+        // eslint-disable-next-line no-console
+        console.log("format: ", format, this.props.locale, navigator.language);
         return [...Array(12).keys()].map((m) =>
             // TODO: use Temporal.PlainDate.from() once the linter lets
             // format() accept a Temporal object

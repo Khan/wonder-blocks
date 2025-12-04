@@ -27,7 +27,7 @@ jobs:
     if: |
       github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]' &&
       !startsWith(github.head_ref, 'changeset-release/')
-    name: Chromatic - Build on regular PRs
+    name: Build on regular PRs
     uses: ./.github/workflows/chromatic-build.yml
     with:
       target: 'review'
@@ -39,7 +39,7 @@ jobs:
     if: |
       github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]' &&
       !startsWith(github.head_ref, 'changeset-release/')
-    name: Chromatic - Get results on regular PRs
+    name: Get results on regular PRs
     needs: chromatic_review
     runs-on: ${{ matrix.os }}
     strategy:
@@ -82,7 +82,7 @@ jobs:
     if: |
       github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]' &&
       !startsWith(github.head_ref, 'changeset-release/')
-    name: Chromatic - Run Storybook tests
+    name: Run Storybook tests
     needs: chromatic_review
     runs-on: ${{ matrix.os }}
     strategy:

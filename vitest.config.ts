@@ -1,4 +1,6 @@
 import {mergeConfig} from "vitest/config";
+import {playwright} from "@vitest/browser-playwright";
+
 import {storybookTest} from "@storybook/addon-vitest/vitest-plugin";
 import viteConfig from "./vite.config";
 
@@ -17,7 +19,7 @@ export default mergeConfig(viteConfig, {
             enabled: true,
             instances: [{browser: "chromium"}],
             headless: true,
-            provider: "playwright",
+            provider: playwright({}),
         },
         // Make sure to adjust this pattern to match your stories files.
         stories: ["./__docs__/**/*.stories.@(ts|tsx)"],
