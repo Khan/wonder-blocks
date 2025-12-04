@@ -121,6 +121,10 @@ const meta: Meta<typeof DatePicker> = {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // Disabling because these stories require user interaction to open date picker
+            disableSnapshot: true,
+        },
     },
 };
 
@@ -177,5 +181,66 @@ export const DontCloseOnSelect: Story = {
         minDate: Temporal.Now.plainDateISO().subtract({days: 2}),
         selectedDate: Temporal.Now.plainDateISO(),
         updateDate: () => {},
+    },
+};
+
+/**
+ * Component that opens the calendar overlay automatically for visual testing
+ */
+const DatePickerWithOpenOverlay = (props: Props) => {
+    const [selectedDate, setSelectedDate] = React.useState<
+        Temporal.PlainDate | null | undefined
+    >(props.selectedDate);
+    const containerRef = React.useRef<HTMLDivElement>(null);
+
+    React.useEffect(() => {
+        // Wait for the component to render, then click the input to open the calendar
+        const timer = setTimeout(() => {
+            const input = containerRef.current?.querySelector("input");
+            if (input) {
+                input.click();
+            }
+        }, 100);
+
+        return () => clearTimeout(timer);
+    }, []);
+
+    return (
+        <View
+            ref={containerRef}
+            style={{
+                padding: spacing.large_24,
+                minHeight: 400,
+            }}
+        >
+            <DatePicker
+                {...props}
+                updateDate={setSelectedDate}
+                selectedDate={selectedDate}
+            />
+        </View>
+    );
+};
+
+/**
+ * DatePicker with the calendar overlay already open. This story is useful for
+ * visual regression testing and taking snapshots of the calendar popup.
+ *
+ * The calendar automatically opens when the story loads, showing a month view
+ * with the current date selection and available dates within the min/max range.
+ */
+export const OpenCalendarOverlay: Story = {
+    render: (args) => <DatePickerWithOpenOverlay {...args} />,
+    args: {
+        selectedDate: Temporal.PlainDate.from("2024-01-15"),
+        minDate: Temporal.PlainDate.from("2024-01-01"),
+        maxDate: Temporal.PlainDate.from("2024-01-31"),
+        updateDate: () => {},
+    },
+    parameters: {
+        chromatic: {
+            // Re-enable snapshots for this story since the calendar is visible
+            disableSnapshot: false,
+        },
     },
 };

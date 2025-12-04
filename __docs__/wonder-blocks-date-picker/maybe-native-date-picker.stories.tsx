@@ -170,22 +170,9 @@ const meta: Meta<typeof MaybeNativeDatePicker> = {
                 version={packageConfig.version}
             />
         ),
-        // Enable mobile viewport options in Storybook toolbar
-        viewport: {
-            viewports: {
-                mobile: {
-                    name: "Mobile",
-                    styles: {width: "375px", height: "667px"},
-                },
-                tablet: {
-                    name: "Tablet",
-                    styles: {width: "768px", height: "1024px"},
-                },
-                desktop: {
-                    name: "Desktop",
-                    styles: {width: "1280px", height: "800px"},
-                },
-            },
+        chromatic: {
+            // Disabling these snapshots intended for device testing
+            disableSnapshot: true,
         },
     },
 };
