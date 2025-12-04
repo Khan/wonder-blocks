@@ -75,7 +75,10 @@ function DocsContainerWithTheme({children, context, ...props}) {
 
 const parameters: Preview["parameters"] = {
     a11y: {
-        // Fails the CI check if there are any a11y violations
+        /*
+         * Configure test behavior
+         * See: https://storybook.js.org/docs/next/writing-tests/accessibility-testing#test-behavior
+         */
         test: "error",
         /*
          * Axe's configuration

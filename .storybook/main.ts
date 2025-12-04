@@ -1,4 +1,3 @@
-// This file has been automatically migrated to valid ESM format by Storybook.
 import remarkGfm from "remark-gfm";
 import type {StorybookConfig} from "@storybook/react-vite";
 
@@ -38,6 +37,9 @@ const config: StorybookConfig = {
                 assetsInlineLimit: 0,
             },
         });
+    },
+    features: {
+        developmentModeForBuild: true,
     },
 };
 

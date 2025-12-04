@@ -96,6 +96,9 @@ jobs:
         projectToken: ${{ secrets.projectToken }}
         storybookBuildDir: storybook-static
         autoAcceptChanges: "main"
+        # Exit with status 0 (OK) once the built version has been published to
+        # Chromatic.
+        exitOnceUploaded: true
         # Generate snapshots for only changed stories
         # See: https://www.chromatic.com/docs/turbosnap
         onlyChanged: true
