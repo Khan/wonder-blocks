@@ -5,7 +5,6 @@ import path from "path";
 import {nodeExternals} from "rollup-plugin-node-externals";
 import swc from "@rollup/plugin-swc";
 import resolve from "@rollup/plugin-node-resolve";
-import postcss from "rollup-plugin-postcss";
 
 const createConfig = (pkgName) => {
     const packageJsonPath = path.join("packages", pkgName, "package.json");
@@ -16,6 +15,7 @@ const createConfig = (pkgName) => {
     const extensions = [".js", ".jsx", ".ts", ".tsx"];
 
     return {
+        external: (id) => id.endsWith(".css"),
         output: [
             {
                 file: `packages/${pkgName}/dist/es/index.js`,
@@ -29,15 +29,6 @@ const createConfig = (pkgName) => {
         ],
         input: `packages/${pkgName}/src/index.ts`,
         plugins: [
-            postcss({
-                // Extract CSS to a separate file
-                extract: path.resolve(`packages/${pkgName}/dist/index.css`),
-                // Inject CSS into <head> automatically (alternative to extract)
-                // inject: true,
-                minimize: true,
-                // Include CSS from node_modules (like react-day-picker)
-                modules: false,
-            }),
             swc({
                 swc: {
                     swcrc: true,
@@ -49,7 +40,7 @@ const createConfig = (pkgName) => {
                     // aren't supported in this browser list).
                     // "env": {...}
                 },
-                exclude: ["node_modules/**"],
+                exclude: ["node_modules/**", "**/*.css"],
             }),
             resolve({
                 browser: true,
