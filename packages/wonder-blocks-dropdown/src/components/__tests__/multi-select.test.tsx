@@ -3491,7 +3491,7 @@ describe("MultiSelect", () => {
                         <OptionItem label="item 2" value="2" />
                     </MultiSelect>,
                 );
-                const combobox = await screen.findByRole("combobox");
+                const combobox = screen.getByRole("combobox");
 
                 // Act
                 await userEvent.click(combobox);
@@ -3550,7 +3550,7 @@ describe("MultiSelect", () => {
                 await userEvent.tab();
 
                 // Assert
-                expect(await screen.findByRole("combobox")).toHaveFocus();
+                expect(screen.getByRole("combobox")).toHaveFocus();
             });
         });
     });

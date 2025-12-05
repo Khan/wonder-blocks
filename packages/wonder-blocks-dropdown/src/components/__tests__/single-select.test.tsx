@@ -2763,7 +2763,7 @@ describe("SingleSelect", () => {
                         <OptionItem label="item 2" value="2" />
                     </SingleSelect>,
                 );
-                const combobox = await screen.findByRole("combobox");
+                const combobox = screen.getByRole("combobox");
 
                 // Act
                 await userEvent.click(combobox);
@@ -2824,7 +2824,7 @@ describe("SingleSelect", () => {
                 await userEvent.tab();
 
                 // Assert
-                expect(await screen.findByRole("combobox")).toHaveFocus();
+                expect(screen.getByRole("combobox")).toHaveFocus();
             });
         });
     });
