@@ -1,0 +1,6 @@
+@import "react-day-picker/style.css";
+@import "@khanacademy/wonder-blocks-tokens/styles.css";
+
+.rdp-root {
+    --rdp-accent-color: var(--wb-semanticColor-core-border-instructive-default);
+}
