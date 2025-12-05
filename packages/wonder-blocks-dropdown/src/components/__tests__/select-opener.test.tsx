@@ -350,7 +350,7 @@ describe("SelectOpener", () => {
             );
 
             // Act
-            await userEvent.keyboard("{Tab}");
+            await userEvent.tab();
             await userEvent.keyboard("{Enter}");
 
             // Assert
