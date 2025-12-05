@@ -29,6 +29,15 @@ const argTypes: ArgTypes = {
         },
     },
 
+    readOnly: {
+        defaultValue: false,
+        description: `Specifies if the dropdown is read-only. Defaults to false.`,
+        table: {
+            category: "States",
+            defaultValue: {summary: "false"},
+        },
+    },
+
     error: {
         description: `Whether this component is in an error state. Use this for
             errors that are triggered by something external to the component

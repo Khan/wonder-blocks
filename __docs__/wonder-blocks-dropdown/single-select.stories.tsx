@@ -88,6 +88,7 @@ export default {
         isFilterable: true,
         opened: false,
         disabled: false,
+        readOnly: false,
         "aria-label": "Fruit",
         placeholder: "Choose a fruit",
         selectedValue: "",
@@ -448,6 +449,50 @@ export const Disabled: StoryComponentType = {
             />
         </View>
     ),
+};
+
+/**
+ * A SingleSelect can be set to read-only by passing `readOnly` to `true`.
+ * When `true`, read-only styling is applied and the aria-disabled attribute is
+ * set to "true". A user won't be able to open the dropdown or change the
+ * selected value.
+ *
+ * We recommend using the SingleSelect with `LabeledField`. The
+ * `readOnlyMessage` prop in `LabeledField` can be set so that users know why
+ * the field is marked as read only.
+ *
+ * Note: We set `aria-disabled` instead of `aria-readonly` due to low
+ * browser + screen reader support for `aria-readonly`.
+ */
+export const ReadOnly: StoryComponentType = {
+    render: function ReadOnlyStory(args) {
+        const [selectedValue, setSelectedValue] = React.useState(
+            items[0].props.value,
+        );
+        return (
+            <LabeledField
+                label="Example Label"
+                field={
+                    <SingleSelect
+                        {...args}
+                        placeholder="Choose a fruit"
+                        readOnly={true}
+                        onChange={setSelectedValue}
+                        selectedValue={selectedValue}
+                    >
+                        {items}
+                    </SingleSelect>
+                }
+                readOnlyMessage="Message about why it is read only"
+            />
+        );
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this is covered in testing snapshots story
+            disableSnapshot: true,
+        },
+    },
 };
 
 const ControlledSingleSelect = (

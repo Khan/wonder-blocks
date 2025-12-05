@@ -267,7 +267,7 @@ export default function LabeledField(props: Props) {
                 .join(" "),
             error: hasError,
             testId: testId ? `${testId}-field` : undefined,
-            readOnly: readOnlyMessage || field.props.readOnly,
+            readOnly: !!readOnlyMessage || field.props.readOnly,
         });
     }
 

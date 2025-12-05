@@ -186,3 +186,26 @@ export const UsingKeyboardSelection = {
         chromatic: {disableSnapshot: true},
     },
 };
+
+export const UsingLabeledFieldForReadOnly = {
+    render: function UsingLabeledFieldForReadOnlyStory() {
+        return (
+            <LabeledField
+                field={
+                    <SingleSelect
+                        placeholder="Choose"
+                        readOnly={true}
+                        onChange={() => {}}
+                        selectedValue="1"
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                        <OptionItem label="item 3" value="3" />
+                    </SingleSelect>
+                }
+                label="Example Label"
+                readOnlyMessage="Message about why it is read only"
+            />
+        );
+    },
+};

@@ -66,6 +66,7 @@ export default {
         error: false,
         opened: false,
         disabled: false,
+        readOnly: false,
         shortcuts: false,
         implicitAllEnabled: false,
         id: "",
@@ -638,6 +639,52 @@ export const Disabled: StoryComponentType = {
             />
         </View>
     ),
+};
+
+/**
+ * A MultiSelect can be set to read-only by passing `readOnly` to `true`.
+ * When `true`, read-only styling is applied and the aria-disabled attribute is
+ * set to "true". A user won't be able to open the dropdown or change the
+ * selected values.
+ *
+ * We recommend using the MultiSelect with `LabeledField`. The
+ * `readOnlyMessage` prop in `LabeledField` can be set so that users know why
+ * the field is marked as read only.
+ *
+ * Note: We set `aria-disabled` instead of `aria-readonly` due to low
+ * browser + screen reader support for `aria-readonly`.
+ *
+ * If it is expected that the user will select multiple values, consider using
+ * a custom opener to display the selected values.
+ */
+export const ReadOnly: StoryComponentType = {
+    render: function ReadOnlyStory(args) {
+        const [selectedValue, setSelectedValue] = React.useState([
+            items[0].props.value,
+        ]);
+        return (
+            <LabeledField
+                field={
+                    <MultiSelect
+                        {...args}
+                        readOnly={true}
+                        onChange={setSelectedValue}
+                        selectedValues={selectedValue}
+                    >
+                        {items}
+                    </MultiSelect>
+                }
+                label="Example Label"
+                readOnlyMessage="Message about why it is read only"
+            />
+        );
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this is covered in testing snapshots story
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**

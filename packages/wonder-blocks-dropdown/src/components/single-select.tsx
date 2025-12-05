@@ -61,6 +61,10 @@ type DefaultProps = Readonly<{
      */
     disabled?: boolean;
     /**
+     * Specifies if the dropdown is read-only. Defaults to false.
+     */
+    readOnly?: boolean;
+    /**
      * Whether to enable the type-ahead suggestions feature. Defaults to true.
      *
      * This feature allows to navigate the listbox using the keyboard.
@@ -288,6 +292,7 @@ const SingleSelect = (props: Props) => {
         "aria-invalid": ariaInvalid,
         "aria-required": ariaRequired,
         disabled = false,
+        readOnly = false,
         dropdownId,
         validate,
         onValidate,
@@ -320,13 +325,13 @@ const SingleSelect = (props: Props) => {
 
     React.useEffect(() => {
         // Used to sync the `opened` state when this component acts as a controlled
-        if (disabled) {
-            // open should always be false if select is disabled
+        if (disabled || readOnly) {
+            // open should always be false if select is disabled or readOnly
             setOpen(false);
         } else if (typeof opened === "boolean") {
             setOpen(opened);
         }
-    }, [disabled, opened]);
+    }, [disabled, opened, readOnly]);
 
     const handleOpenChanged = (opened: boolean) => {
         setOpen(opened);
@@ -506,6 +511,7 @@ const SingleSelect = (props: Props) => {
                             opened={open}
                             error={hasError}
                             onBlur={onOpenerBlurValidation}
+                            readOnly={readOnly}
                         >
                             {opener}
                         </DropdownOpener>
@@ -524,6 +530,7 @@ const SingleSelect = (props: Props) => {
                             ref={handleOpenerRef}
                             testId={testId}
                             onBlur={onOpenerBlurValidation}
+                            readOnly={readOnly}
                         >
                             {menuContent}
                         </SelectOpener>
@@ -545,6 +552,7 @@ const SingleSelect = (props: Props) => {
     ).length;
     const items = getMenuItems(allChildren);
     const isDisabled = numEnabledOptions === 0 || disabled;
+    const disableInteraction = isDisabled || readOnly;
 
     // Extract out someResults. When we put labels in the dependency array,
     // useEffect happens on every render (I think because labels is a new object)
@@ -590,7 +598,10 @@ const SingleSelect = (props: Props) => {
                     labels={labels}
                     aria-invalid={ariaInvalid}
                     aria-required={ariaRequired}
-                    disabled={isDisabled}
+                    // If readOnly is true, DropdownCore should be disabled to
+                    // prevent interactions. Note: SingleSelect is responsible
+                    // for adding attributes to the opener
+                    disabled={disableInteraction}
                 />
             )}
         </Id>
