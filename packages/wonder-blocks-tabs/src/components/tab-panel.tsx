@@ -55,13 +55,38 @@ export const TabPanel = (props: Props) => {
         boolean | null
     >(null);
 
+    const updateHasFocusableElement = React.useCallback(
+        (element: HTMLElement) => {
+            setHasFocusableElement(findFocusableNodes(element).length > 0);
+        },
+        [setHasFocusableElement],
+    );
+
     React.useEffect(() => {
         // Whenever tab panel contents change, determine if the panel has a
         // focusable element (only if the tab panel has children)
         if (ref.current && children) {
-            setHasFocusableElement(findFocusableNodes(ref.current).length > 0);
+            updateHasFocusableElement(ref.current);
+
+            if (active) {
+                // Watch for changes to focusable elements within the tabpanel
+                const mutationObserver = new MutationObserver(() => {
+                    if (ref.current) {
+                        updateHasFocusableElement(ref.current);
+                    }
+                });
+                mutationObserver.observe(ref.current, {
+                    // Monitor any changes to descendants of the tab panel
+                    childList: true,
+                    subtree: true,
+                });
+
+                return () => {
+                    mutationObserver.disconnect();
+                };
+            }
         }
-    }, [active, ref, children]);
+    }, [active, ref, children, updateHasFocusableElement]);
 
     return (
         <StyledDiv
