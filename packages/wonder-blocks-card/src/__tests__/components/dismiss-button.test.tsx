@@ -36,6 +36,19 @@ describe("DismissButton", () => {
             ).toBeInTheDocument();
         });
 
+        it("should use custom aria-describedby when provided", () => {
+            // Arrange & Act
+            render(
+                <DismissButton aria-describedby="dismiss-button-describedby" />,
+            );
+
+            // Assert
+            expect(screen.getByRole("button")).toHaveAttribute(
+                "aria-describedby",
+                "dismiss-button-describedby",
+            );
+        });
+
         it("should be keyboard accessible", () => {
             // Arrange
             render(<DismissButton aria-label="Close" />);

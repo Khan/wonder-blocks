@@ -52,12 +52,17 @@ type BaseCardProps = {
  * a dismiss button with an X icon will be rendered.
  *
  * When `onDismiss` is provided, `labels.dismissButtonAriaLabel` must also be
- * provided for accessibility and localization.
+ * provided for accessibility and localization. `labels.dismissButtonAriaDescribedBy`
+ * can be provided to pass an aria-describedby attribute to the dismiss button if
+ * more context is needed for the dismiss button.
  */
 type DismissProps =
     | {
           onDismiss: (e?: React.SyntheticEvent) => void;
-          labels: {dismissButtonAriaLabel: string} & Record<string, any>;
+          labels: {
+              dismissButtonAriaLabel: string;
+              dismissButtonAriaDescribedBy?: string;
+          } & Record<string, any>;
       }
     | {
           onDismiss?: never;
@@ -240,6 +245,7 @@ const Card = React.forwardRef(function Card(
             {onDismiss ? (
                 <DismissButton
                     aria-label={labels?.dismissButtonAriaLabel || "Close"}
+                    aria-describedby={labels?.dismissButtonAriaDescribedBy}
                     onClick={(e) => onDismiss?.(e)}
                     testId={testId && `${testId}-dismiss-button`}
                 />

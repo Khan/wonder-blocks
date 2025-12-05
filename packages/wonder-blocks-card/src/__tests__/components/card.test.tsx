@@ -151,6 +151,33 @@ describe("Card", () => {
             expect(dismissButton).toBeInTheDocument();
         });
 
+        it("should pass custom aria-describedby to dismiss button", () => {
+            // Arrange
+            render(
+                <Card
+                    onDismiss={() => {}}
+                    labels={{
+                        dismissButtonAriaLabel: "Custom Close",
+                        dismissButtonAriaDescribedBy:
+                            "dismiss-button-describedby",
+                    }}
+                >
+                    <div>Content</div>
+                </Card>,
+            );
+
+            // Act
+            const dismissButton = screen.getByRole("button", {
+                name: "Custom Close",
+            });
+
+            // Assert
+            expect(dismissButton).toHaveAttribute(
+                "aria-describedby",
+                "dismiss-button-describedby",
+            );
+        });
+
         it("should render with a custom tag", () => {
             // Arrange
             render(

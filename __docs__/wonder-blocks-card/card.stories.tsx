@@ -150,13 +150,16 @@ export const WithDismissButton: StoryComponentType = {
             return (
                 <View ref={wrapperRef} tabIndex={-1}>
                     <Card
-                        labels={{dismissButtonAriaLabel: "Dismiss"}}
+                        labels={{
+                            dismissButtonAriaLabel: "Dismiss",
+                            dismissButtonAriaDescribedBy: "dismiss-button-body",
+                        }}
                         onDismiss={onDismiss}
                         ref={cardRef}
                         styles={{root: styles.card}}
                     >
                         <Heading>Dismissable Card</Heading>
-                        <BodyText>
+                        <BodyText id="dismiss-button-body">
                             This is a card with a close button. Click the button
                             to dismiss.
                         </BodyText>
