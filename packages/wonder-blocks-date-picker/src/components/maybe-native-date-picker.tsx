@@ -9,7 +9,7 @@
 import type {CSSProperties} from "aphrodite";
 import {Temporal} from "temporal-polyfill";
 import * as React from "react";
-import {temporalDateToJsDate} from "../util/temporal-locale-utils";
+import {TemporalLocaleUtils} from "../util/temporal-locale-utils";
 
 import MaybeNativeDayPickerDisplay from "./maybe-native-date-picker-display";
 
@@ -87,7 +87,7 @@ const MaybeNativeDatePicker = (props: MaybeNativeDatePickerProps) => {
                    is what we have.
                  */
                 alert(
-                    `Selected date cannot be before ${formatter.format(temporalDateToJsDate(minDate))}`, // TODO: add i18n
+                    `Selected date cannot be before ${formatter.format(TemporalLocaleUtils.temporalDateToJsDate(minDate))}`, // TODO: add i18n
                 );
                 return;
             }
@@ -103,7 +103,7 @@ const MaybeNativeDatePicker = (props: MaybeNativeDatePickerProps) => {
                    is what we have.
                  */
                 alert(
-                    `Selected date cannot be after ${formatter.format(temporalDateToJsDate(maxDate))}`, //TODO: add i18n
+                    `Selected date cannot be after ${formatter.format(TemporalLocaleUtils.temporalDateToJsDate(maxDate))}`, //TODO: add i18n
                 );
                 return;
             }
