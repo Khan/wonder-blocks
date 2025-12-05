@@ -8,7 +8,6 @@ import Button from "@khanacademy/wonder-blocks-button";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {Heading} from "@khanacademy/wonder-blocks-typography";
 import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import type {LabelsValues} from "@khanacademy/wonder-blocks-dropdown";
 
@@ -25,6 +24,7 @@ import {OpenerProps} from "../../packages/wonder-blocks-dropdown/src/util/types"
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {StatusBadge} from "@khanacademy/wonder-blocks-badge";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 type StoryComponentType = StoryObj<typeof MultiSelect>;
 
@@ -124,19 +124,21 @@ const styles = StyleSheet.create({
      * Custom opener styles
      */
     customOpener: {
-        borderLeft: `${border.width.thick} solid ${semanticColor.status.warning.foreground}`,
+        borderLeft: `${border.width.thick} solid ${semanticColor.core.border.instructive.default}`,
         borderRadius: border.radius.radius_040,
-        background: semanticColor.status.warning.background,
-        color: semanticColor.core.foreground.neutral.strong,
+        background: semanticColor.core.background.instructive.subtle,
+        color: semanticColor.core.foreground.instructive.default,
         padding: sizing.size_160,
     },
     focused: focusStyles.focus[":focus-visible"],
     hovered: {
+        background: semanticColor.core.background.instructive.subtle,
         textDecoration: "underline",
         cursor: "pointer",
     },
     pressed: {
-        color: semanticColor.status.warning.foreground,
+        background: semanticColor.core.background.instructive.subtle,
+        color: semanticColor.core.foreground.instructive.strong,
     },
 });
 
@@ -738,8 +740,8 @@ export const CustomOpener: StoryComponentType = {
             );
 
             return (
-                <Heading
-                    size="xlarge"
+                <Button
+                    kind="secondary"
                     onClick={() => {
                         // eslint-disable-next-line no-console
                         console.log("custom click!!!!!");
@@ -750,10 +752,8 @@ export const CustomOpener: StoryComponentType = {
                         hovered && styles.hovered,
                         pressed && styles.pressed,
                     ]}
-                >
-                    {text}
-                    {opened ? ": opened" : ""}
-                </Heading>
+                    startIcon={IconMappings.plusCircle}
+                >{`${text} ${opened ? ": opened" : ""}`}</Button>
             );
         },
     } as MultiSelectArgs,

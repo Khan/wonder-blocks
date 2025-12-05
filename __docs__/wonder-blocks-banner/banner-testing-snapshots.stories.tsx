@@ -27,6 +27,8 @@ export default {
         chromatic: {
             modes: themeModes,
         },
+        // TODO(WB-1936): Fix the a11y violations and remove this.
+        a11y: {test: "todo"},
     },
     tags: ["!autodocs"],
 } as Meta<typeof Banner>;

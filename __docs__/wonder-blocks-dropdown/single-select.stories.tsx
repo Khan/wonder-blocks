@@ -12,7 +12,7 @@ import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
-import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {
     SingleSelect,
     OptionItem,
@@ -34,6 +34,7 @@ import {
 import {OpenerProps} from "../../packages/wonder-blocks-dropdown/src/util/types";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {StatusBadge} from "@khanacademy/wonder-blocks-badge";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 
 type StoryComponentType = StoryObj<typeof SingleSelect>;
 type SingleSelectArgs = Partial<typeof SingleSelect>;
@@ -127,22 +128,21 @@ const styles = StyleSheet.create({
      * Custom opener styles
      */
     customOpener: {
-        borderLeft: `${border.width.thick} solid ${semanticColor.status.warning.foreground}`,
+        borderLeft: `${border.width.thick} solid ${semanticColor.core.border.instructive.default}`,
         borderRadius: border.radius.radius_040,
-        background: semanticColor.status.warning.background,
-        color: semanticColor.core.foreground.neutral.strong,
+        background: semanticColor.core.background.instructive.subtle,
+        color: semanticColor.core.foreground.instructive.default,
         padding: sizing.size_160,
     },
-    focused: {
-        outlineColor: semanticColor.focus.outer,
-        outlineOffset: sizing.size_020,
-    },
+    focused: focusStyles.focus[":focus-visible"],
     hovered: {
+        background: semanticColor.core.background.instructive.subtle,
         textDecoration: "underline",
         cursor: "pointer",
     },
     pressed: {
-        color: semanticColor.status.warning.foreground,
+        background: semanticColor.core.background.instructive.subtle,
+        color: semanticColor.core.foreground.instructive.strong,
     },
 
     fullBleed: {
@@ -814,8 +814,8 @@ export const CustomOpener: StoryComponentType = {
             );
 
             return (
-                <Heading
-                    size="xlarge"
+                <Button
+                    kind="secondary"
                     onClick={() => {
                         // eslint-disable-next-line no-console
                         console.log("custom click!!!!!");
@@ -825,12 +825,9 @@ export const CustomOpener: StoryComponentType = {
                         focused && styles.focused,
                         hovered && styles.hovered,
                         pressed && styles.pressed,
-                        opened && styles.focused,
                     ]}
-                >
-                    {text}
-                    {opened ? ": opened" : ""}
-                </Heading>
+                    startIcon={IconMappings.plusCircle}
+                >{`${text} ${opened ? ": opened" : ""}`}</Button>
             );
         },
     } as SingleSelectArgs,
