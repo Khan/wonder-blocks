@@ -161,7 +161,13 @@ const ComponentWithInitialLoadWrapper = () => {
  * When a tab panel has focusable elements, pressing `Tab` from the tablist
  * will move focus to the first focusable element in the tab panel. If there
  * are no focusable elements in the active tab panel, the tab panel will be
- * focused instead.
+ * focusable instead.
+ *
+ * Note: When any descendant elements of the tab panel change, the focusability
+ * of the tab panel will be updated to reflect if it has focusable elements.
+ * This applies to when the tab panel changes from having no
+ * focusable elements in a loading state to having focusable elements once loading
+ * is complete.
  */
 export const WithFocusableContent: StoryComponentType = {
     render: function WithFocusableContent() {
