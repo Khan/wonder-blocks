@@ -232,9 +232,9 @@ const DatePickerWithOpenOverlay = (props: Props) => {
 export const OpenCalendarOverlay: Story = {
     render: (args) => <DatePickerWithOpenOverlay {...args} />,
     args: {
-        selectedDate: Temporal.PlainDate.from("2024-01-15"),
-        minDate: Temporal.PlainDate.from("2024-01-01"),
-        maxDate: Temporal.PlainDate.from("2024-01-31"),
+        selectedDate: Temporal.PlainDate.from("2025-01-15"),
+        minDate: Temporal.PlainDate.from("2025-01-01"),
+        maxDate: Temporal.PlainDate.from("2026-01-31"),
         updateDate: () => {},
     },
     parameters: {
