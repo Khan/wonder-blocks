@@ -11,6 +11,27 @@ import {CustomModifiers} from "./types";
 /**
  * Format a Temporal.PlainDate using a format string.
  * Supports a subset of moment.js format tokens for compatibility.
+ *
+ * @param date - The Temporal.PlainDate to format
+ * @param format - The format string(s) to use for formatting:
+ *   - **string**: Uses the specified format (e.g., "YYYY-MM-DD", "MMM D, YYYY")
+ *   - **Array<string>**: Uses the **first** format in the array (ignores the rest)
+ *   - **null**: Returns ISO 8601 format (YYYY-MM-DD)
+ *   - **undefined**: Returns ISO 8601 format (YYYY-MM-DD)
+ * @param locale - The locale to use for formatting (default: "en")
+ * @returns The formatted date string
+ *
+ * @example
+ * formatDate(date, "YYYY-MM-DD", "en") // => "2024-01-15"
+ * formatDate(date, ["MMM D, YYYY", "M/D/YYYY"], "en") // => "Jan 15, 2024" (uses first format)
+ * formatDate(date, null, "en") // => "2024-01-15" (ISO format)
+ * formatDate(date, undefined, "en") // => "2024-01-15" (ISO format)
+ * formatDate(date, "MMM D", "invalid-locale") // => "2024-01-15" (falls back to ISO on error)
+ *
+ * @remarks
+ * If formatting fails (e.g., invalid locale, unsupported format), the function
+ * automatically falls back to ISO 8601 format and logs a warning to the console.
+ * This ensures the function never throws errors and always returns a valid date string.
  */
 export function formatDate(
     date: Temporal.PlainDate,
@@ -32,10 +53,23 @@ export function formatDate(
 
     // For complex formats, use Intl.DateTimeFormat with approximations
     // Convert Temporal.PlainDate to a Date for formatting
-    const jsDate = temporalDateToJsDate(date);
-    const formatter = getFormatterForFormat(formatString, locale);
-
-    return formatter.format(jsDate);
+    try {
+        const jsDate = temporalDateToJsDate(date);
+        const formatter = getFormatterForFormat(formatString, locale);
+        return formatter.format(jsDate);
+    } catch (error) {
+        // If formatting fails (invalid locale, unsupported format, etc.),
+        // fall back to ISO format
+        /* eslint-disable-next-line no-console
+           --
+           This warning helps developers debug format/locale issues
+         */
+        console.warn(
+            `Failed to format date with format "${formatString}" and locale "${locale}". Falling back to ISO format.`,
+            error,
+        );
+        return date.toString();
+    }
 }
 
 /**
@@ -323,8 +357,8 @@ function parseWithFormat(
                 const [monthDay, yearStr] = parts;
                 const year = parseInt(yearStr.trim(), 10);
 
-                // Get month names for the locale
-                const months = getMonthNamesForLocale(localeStr);
+                // Get month names for the locale (use long names from getMonths)
+                const months = getMonths(localeStr).map((m) => m[0]);
 
                 // Parse month and day
                 const monthDayParts = monthDay.trim().split(" ");
@@ -358,16 +392,6 @@ function parseWithFormat(
     // or implement more format patterns as needed
 
     return undefined;
-}
-
-function getMonthNamesForLocale(locale: string): string[] {
-    const format = new Intl.DateTimeFormat(locale, {month: "long"});
-    const months: string[] = [];
-    for (let i = 0; i < 12; i++) {
-        const date = new Date(2021, i, 15);
-        months.push(format.format(date));
-    }
-    return months;
 }
 
 /**
