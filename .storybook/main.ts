@@ -38,9 +38,6 @@ const config: StorybookConfig = {
             },
         });
     },
-    features: {
-        developmentModeForBuild: true,
-    },
 };
 
 export default config;
