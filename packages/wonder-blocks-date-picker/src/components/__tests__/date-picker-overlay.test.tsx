@@ -2,7 +2,7 @@ import * as React from "react";
 import {describe, it} from "@jest/globals";
 import {render, screen} from "@testing-library/react";
 
-import {DatePickerOverlay} from "@khanacademy/wonder-blocks-date-picker";
+import DatePickerOverlay from "../date-picker-overlay";
 
 describe("DatePickerOverlay", () => {
     it("renders the children if valid props are passed in", () => {
