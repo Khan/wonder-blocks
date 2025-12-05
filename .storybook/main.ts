@@ -1,9 +1,5 @@
-import { createRequire } from "node:module";
-import { dirname, join } from "node:path";
 import remarkGfm from "remark-gfm";
 import type {StorybookConfig} from "@storybook/react-vite";
-
-const require = createRequire(import.meta.url);
 
 const config: StorybookConfig = {
     stories: [
@@ -11,11 +7,11 @@ const config: StorybookConfig = {
         "../__docs__/**/*.mdx",
     ],
     addons: [
-        getAbsolutePath("@storybook/addon-a11y"),
-        getAbsolutePath("storybook-addon-pseudo-states"),
-        getAbsolutePath("@storybook/addon-vitest"),
+        "@storybook/addon-a11y",
+        "storybook-addon-pseudo-states",
+        "@storybook/addon-vitest",
         {
-            name: getAbsolutePath("@storybook/addon-docs"),
+            name: "@storybook/addon-docs",
             options: {
                 mdxPluginOptions: {
                     mdxCompileOptions: {
@@ -23,14 +19,14 @@ const config: StorybookConfig = {
                     },
                 },
             },
-        }
+        },
     ],
     staticDirs: ["../static"],
     core: {
-        builder: getAbsolutePath("@storybook/builder-vite"),
+        builder: "@storybook/builder-vite",
         disableTelemetry: true,
     },
-    framework: getAbsolutePath("@storybook/react-vite"),
+    framework: "@storybook/react-vite",
     async viteFinal(config) {
         // Merge custom configuration into the default config
         const {mergeConfig} = await import("vite");
@@ -45,7 +41,3 @@ const config: StorybookConfig = {
 };
 
 export default config;
-
-function getAbsolutePath(value: string): any {
-    return dirname(require.resolve(join(value, "package.json")));
-}

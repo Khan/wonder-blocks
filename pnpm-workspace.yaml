@@ -31,5 +31,3 @@ catalog:
     react-window: ^1.8.11
     # Codemods
     jscodeshift: ^17.3.0
-    # Storybook
-    storybook: ^9.1.8

@@ -16,6 +16,9 @@ const meta: Meta<typeof BirthdayPicker> = {
     title: "Packages / BirthdayPicker",
     component: BirthdayPicker,
     argTypes: ArgTypes,
+    args: {
+        locale: "en-US",
+    },
     parameters: {
         componentSubtitle: (
             <ComponentInfo
