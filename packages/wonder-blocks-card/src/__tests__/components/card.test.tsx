@@ -131,7 +131,27 @@ describe("Card", () => {
     });
 
     describe("Accessibility", () => {
-        it("should pass custom aria attributes to dismiss button", () => {
+        it("should pass custom aria-label to dismiss button", () => {
+            // Arrange
+            render(
+                <Card
+                    onDismiss={() => {}}
+                    labels={{dismissButtonAriaLabel: "Custom Close"}}
+                >
+                    <div>Content</div>
+                </Card>,
+            );
+
+            // Act
+            const dismissButton = screen.getByRole("button", {
+                name: "Custom Close",
+            });
+
+            // Assert
+            expect(dismissButton).toBeInTheDocument();
+        });
+
+        it("should pass custom aria-describedby to dismiss button", () => {
             // Arrange
             render(
                 <Card
@@ -152,7 +172,6 @@ describe("Card", () => {
             });
 
             // Assert
-            expect(dismissButton).toBeInTheDocument();
             expect(dismissButton).toHaveAttribute(
                 "aria-describedby",
                 "dismiss-button-describedby",
