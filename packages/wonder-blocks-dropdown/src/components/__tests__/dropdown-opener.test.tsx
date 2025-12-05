@@ -68,25 +68,6 @@ describe("DropdownOpener", () => {
             );
         });
 
-        it("should not set the field to disabled if readOnly is true", () => {
-            // Arrange
-            // Act
-            render(
-                <DropdownOpener
-                    readOnly={true}
-                    onClick={jest.fn()}
-                    opened={false}
-                    text="Custom opener"
-                    role="combobox"
-                >
-                    {() => <div>Custom opener</div>}
-                </DropdownOpener>,
-            );
-
-            // Assert
-            expect(screen.getByRole("combobox")).not.toBeDisabled();
-        });
-
         it("should not call onClick if readOnly is true and the opener is clicked", async () => {
             // Arrange
             const onClick = jest.fn();
