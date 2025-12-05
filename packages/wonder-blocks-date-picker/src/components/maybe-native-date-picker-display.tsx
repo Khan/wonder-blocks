@@ -5,7 +5,7 @@ import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
-import {temporalDateToJsDate} from "../util/temporal-locale-utils";
+import {TemporalLocaleUtils} from "../util/temporal-locale-utils";
 
 import DatePickerInput from "./date-picker-input";
 
@@ -64,7 +64,10 @@ const MaybeNativeDayPickerDisplay = (props: Props) => {
     const getDateAsJsDate = (
         date?: Temporal.PlainDate | null,
     ): undefined | Date => {
-        return (date && temporalDateToJsDate(date)) || undefined;
+        return (
+            (date && TemporalLocaleUtils.temporalDateToJsDate(date)) ||
+            undefined
+        );
     };
 
     const updateDateNative = (

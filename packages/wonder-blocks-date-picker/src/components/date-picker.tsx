@@ -6,12 +6,7 @@ import {enUS} from "react-day-picker/locale";
 
 import {View, type StyleType} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
-import {
-    formatDate,
-    temporalDateToJsDate,
-    jsDateToTemporalDate,
-    TemporalLocaleUtils,
-} from "../util/temporal-locale-utils";
+import {TemporalLocaleUtils} from "../util/temporal-locale-utils";
 import type {CustomModifiers} from "../util/types";
 // eslint-disable-next-line import/no-unassigned-import
 import "react-day-picker/style.css";
@@ -166,7 +161,8 @@ const DatePicker = (props: Props) => {
         if (!selectedDate || modifiers.disabled) {
             return;
         }
-        const wrappedDate = jsDateToTemporalDate(selectedDate);
+        const wrappedDate =
+            TemporalLocaleUtils.jsDateToTemporalDate(selectedDate);
         setCurrentDate(wrappedDate);
         updateDate(wrappedDate);
     };
@@ -204,7 +200,7 @@ const DatePicker = (props: Props) => {
             return;
         }
         datePickerInputRef.current?.focus();
-        const wrappedDate = jsDateToTemporalDate(date);
+        const wrappedDate = TemporalLocaleUtils.jsDateToTemporalDate(date);
         setCurrentDate(selected ? undefined : wrappedDate);
         setShowOverlay(!closeOnSelect);
         updateDate(wrappedDate);
@@ -215,7 +211,7 @@ const DatePicker = (props: Props) => {
     ): React.ReactNode => {
         const locale = navigator.language || "en";
         const selectedDateAsValue = currentDate
-            ? formatDate(currentDate, dateFormat, locale)
+            ? TemporalLocaleUtils.formatDate(currentDate, dateFormat, locale)
             : "";
 
         return (
@@ -253,21 +249,21 @@ const DatePicker = (props: Props) => {
 
     // Calculate selectedDate and minDateToShow
     const selectedDateValue = currentDate
-        ? temporalDateToJsDate(currentDate)
+        ? TemporalLocaleUtils.temporalDateToJsDate(currentDate)
         : undefined;
     const minDateToShow =
         minDate && selectedDateValue
             ? Temporal.PlainDate.compare(minDate, currentDate!) < 0
-                ? temporalDateToJsDate(minDate)
+                ? TemporalLocaleUtils.temporalDateToJsDate(minDate)
                 : selectedDateValue
             : minDate
-              ? temporalDateToJsDate(minDate)
+              ? TemporalLocaleUtils.temporalDateToJsDate(minDate)
               : undefined;
 
     const modifiers: Partial<CustomModifiers> = {
         selected: selectedDateValue,
         disabled: (date: Date) => {
-            const temporalDate = jsDateToTemporalDate(date);
+            const temporalDate = TemporalLocaleUtils.jsDateToTemporalDate(date);
             return (
                 (minDate &&
                     Temporal.PlainDate.compare(temporalDate, minDate) < 0) ||
@@ -292,7 +288,9 @@ const DatePicker = (props: Props) => {
                             startMonth={minDateToShow ?? undefined}
                             endMonth={
                                 maxDate
-                                    ? temporalDateToJsDate(maxDate)
+                                    ? TemporalLocaleUtils.temporalDateToJsDate(
+                                          maxDate,
+                                      )
                                     : undefined
                             }
                             modifiers={modifiers}

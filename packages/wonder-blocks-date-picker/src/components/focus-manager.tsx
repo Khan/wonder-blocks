@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import {findFocusableNodes} from "./find-focusable-nodes";
+import {findFocusableNodes} from "@khanacademy/wonder-blocks-core";
 
 interface Props {
     /**
