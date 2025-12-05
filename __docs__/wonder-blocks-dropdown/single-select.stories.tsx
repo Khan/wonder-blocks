@@ -470,15 +470,21 @@ export const ReadOnly: StoryComponentType = {
             items[0].props.value,
         );
         return (
-            <SingleSelect
-                {...args}
-                placeholder="Choose a fruit"
-                readOnly={true}
-                onChange={setSelectedValue}
-                selectedValue={selectedValue}
-            >
-                {items}
-            </SingleSelect>
+            <LabeledField
+                label="Example Label"
+                field={
+                    <SingleSelect
+                        {...args}
+                        placeholder="Choose a fruit"
+                        readOnly={true}
+                        onChange={setSelectedValue}
+                        selectedValue={selectedValue}
+                    >
+                        {items}
+                    </SingleSelect>
+                }
+                readOnlyMessage="Message about why it is read only"
+            />
         );
     },
     parameters: {

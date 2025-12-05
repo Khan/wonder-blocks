@@ -663,14 +663,20 @@ export const ReadOnly: StoryComponentType = {
             items[0].props.value,
         ]);
         return (
-            <MultiSelect
-                {...args}
-                readOnly={true}
-                onChange={setSelectedValue}
-                selectedValues={selectedValue}
-            >
-                {items}
-            </MultiSelect>
+            <LabeledField
+                field={
+                    <MultiSelect
+                        {...args}
+                        readOnly={true}
+                        onChange={setSelectedValue}
+                        selectedValues={selectedValue}
+                    >
+                        {items}
+                    </MultiSelect>
+                }
+                label="Example Label"
+                readOnlyMessage="Message about why it is read only"
+            />
         );
     },
     parameters: {
