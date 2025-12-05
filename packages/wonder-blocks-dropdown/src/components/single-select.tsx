@@ -552,6 +552,7 @@ const SingleSelect = (props: Props) => {
     ).length;
     const items = getMenuItems(allChildren);
     const isDisabled = numEnabledOptions === 0 || disabled;
+    const disableInteraction = isDisabled || readOnly;
 
     // Extract out someResults. When we put labels in the dependency array,
     // useEffect happens on every render (I think because labels is a new object)
@@ -597,7 +598,10 @@ const SingleSelect = (props: Props) => {
                     labels={labels}
                     aria-invalid={ariaInvalid}
                     aria-required={ariaRequired}
-                    disabled={isDisabled}
+                    // If readOnly is true, DropdownCore should be disabled to
+                    // prevent interactions. Note: SingleSelect is responsible
+                    // for adding attributes to the opener
+                    disabled={disableInteraction}
                 />
             )}
         </Id>

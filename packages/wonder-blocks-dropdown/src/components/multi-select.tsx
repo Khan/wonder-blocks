@@ -673,6 +673,7 @@ const MultiSelect = (props: Props) => {
     ).length;
     const filteredItems = getMenuItems(allChildren);
     const isDisabled = numEnabledOptions === 0 || disabled;
+    const disableInteraction = isDisabled || readOnly;
 
     React.useEffect(() => {
         if (open) {
@@ -719,7 +720,10 @@ const MultiSelect = (props: Props) => {
                     }}
                     aria-invalid={ariaInvalid}
                     aria-required={computedRequired}
-                    disabled={isDisabled}
+                    // If readOnly is true, DropdownCore should be disabled to
+                    // prevent interactions. Note: MultiSelect is responsible
+                    // for adding attributes to the opener
+                    disabled={disableInteraction}
                 />
             )}
         </Id>
