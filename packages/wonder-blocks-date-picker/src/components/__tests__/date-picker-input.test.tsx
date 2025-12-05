@@ -3,10 +3,8 @@ import {describe, it} from "@jest/globals";
 import {fireEvent, render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {Temporal} from "temporal-polyfill";
-import {
-    TemporalLocaleUtils,
-    DatePickerInput,
-} from "@khanacademy/wonder-blocks-date-picker";
+import {TemporalLocaleUtils} from "@khanacademy/wonder-blocks-date-picker";
+import DatePickerInput from "../date-picker-input";
 
 describe("DatePickerInput", () => {
     it("adds a default value as initial date", async () => {

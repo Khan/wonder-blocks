@@ -109,10 +109,11 @@ const ControlledDatePicker = (props: Props) => {
 };
 
 /**
- * DatePicker component for selecting dates
+ * DatePicker component for selecting dates. It opens a calendar overlay when
+ * interacting with the input field.
  */
 const meta: Meta<typeof DatePicker> = {
-    title: "Packages / Date Picker / DatePicker",
+    title: "Packages / DatePicker",
     component: DatePicker,
     parameters: {
         componentSubtitle: (

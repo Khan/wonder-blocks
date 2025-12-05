@@ -803,9 +803,6 @@ importers:
       '@khanacademy/wonder-blocks-styles':
         specifier: workspace:*
         version: link:../wonder-blocks-styles
-      '@khanacademy/wonder-blocks-timing':
-        specifier: workspace:*
-        version: link:../wonder-blocks-timing
       '@khanacademy/wonder-blocks-tokens':
         specifier: workspace:*
         version: link:../wonder-blocks-tokens
@@ -830,18 +827,6 @@ importers:
       react-popper:
         specifier: 'catalog:'
         version: 2.3.0(@popperjs/core@2.11.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      react-router:
-        specifier: 'catalog:'
-        version: 5.3.4(react@18.2.0)
-      react-router-dom:
-        specifier: 'catalog:'
-        version: 5.3.4(react@18.2.0)
-      react-router-dom-v5-compat:
-        specifier: 'catalog:'
-        version: 6.30.0(patch_hash=a5aa3aa17ce8dee8928732ae0a22bd6e9e3c0c458e4c2024a78e155de1060245)(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
-      react-window:
-        specifier: 'catalog:'
-        version: 1.8.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       temporal-polyfill:
         specifier: 'catalog:'
         version: 0.3.0
