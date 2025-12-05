@@ -261,7 +261,8 @@ const styles = StyleSheet.create({
         cursor: "pointer",
         ":focus": {
             // Using :focus instead of :focus-visible to ensure the focus ring is
-            // visible when the button is focused (even when clicked).
+            // visible when the button is focused (even when clicked). This makes
+            // the focus behaviour more consistent with the other field components.
             ...focusStyles.focus[":focus-visible"],
         },
         ":active": {
