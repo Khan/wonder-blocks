@@ -2772,27 +2772,37 @@ describe("SingleSelect", () => {
                 expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
             });
 
-            it("should not open the dropdown if readOnly is true and the opener is clicked using the enter key", async () => {
-                // Arrange
-                const {userEvent} = doRender(
-                    <SingleSelect
-                        readOnly={true}
-                        onChange={jest.fn()}
-                        placeholder="Choose"
-                        opener={opener}
-                    >
-                        <OptionItem label="item 1" value="1" />
-                        <OptionItem label="item 2" value="2" />
-                    </SingleSelect>,
-                );
+            it.each([
+                {key: "{Enter}", name: "Enter"},
+                {key: " ", name: "Space"},
+                {key: "{ArrowDown}", name: "Down arrow"},
+                {key: "{ArrowUp}", name: "Up arrow"},
+            ])(
+                "should not open the dropdown if readOnly is true and the opener is clicked using the $name key",
+                async ({key}) => {
+                    // Arrange
+                    const {userEvent} = doRender(
+                        <SingleSelect
+                            readOnly={true}
+                            onChange={jest.fn()}
+                            placeholder="Choose"
+                            opener={opener}
+                        >
+                            <OptionItem label="item 1" value="1" />
+                            <OptionItem label="item 2" value="2" />
+                        </SingleSelect>,
+                    );
 
-                // Act
-                await userEvent.tab();
-                await userEvent.keyboard("{Enter}");
+                    // Act
+                    await userEvent.tab();
+                    await userEvent.keyboard(key);
 
-                // Assert
-                expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
-            });
+                    // Assert
+                    expect(
+                        screen.queryByRole("listbox"),
+                    ).not.toBeInTheDocument();
+                },
+            );
 
             it("should be focusable when readOnly is true", async () => {
                 // Arrange

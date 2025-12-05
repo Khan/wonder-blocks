@@ -31,6 +31,19 @@ const doRender = (element: React.ReactElement) => {
     };
 };
 
+jest.mock("react-popper", () => ({
+    ...jest.requireActual("react-popper"),
+    Popper: jest.fn().mockImplementation(({children}) => {
+        // Mock `isReferenceHidden` to always return false (or true for testing visibility)
+        return children({
+            ref: jest.fn(),
+            style: {},
+            placement: "bottom",
+            isReferenceHidden: false, // Mocking isReferenceHidden
+        });
+    }),
+}));
+
 const defaultLabels: LabelsValues = {
     ...builtinLabels,
     selectAllLabel: (numOptions: any) => `Select all (${numOptions})`,
@@ -3487,26 +3500,36 @@ describe("MultiSelect", () => {
                 expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
             });
 
-            it("should not open the dropdown if readOnly is true and the opener is clicked using the enter key", async () => {
-                // Arrange
-                const {userEvent} = doRender(
-                    <MultiSelect
-                        readOnly={true}
-                        onChange={jest.fn()}
-                        opener={opener}
-                    >
-                        <OptionItem label="item 1" value="1" />
-                        <OptionItem label="item 2" value="2" />
-                    </MultiSelect>,
-                );
+            it.each([
+                {key: "{Enter}", name: "Enter"},
+                {key: " ", name: "Space"},
+                {key: "{ArrowDown}", name: "Down arrow"},
+                {key: "{ArrowUp}", name: "Up arrow"},
+            ])(
+                "should not open the dropdown if readOnly is true and the opener is clicked using the $name key",
+                async ({key}) => {
+                    // Arrange
+                    const {userEvent} = doRender(
+                        <MultiSelect
+                            readOnly={true}
+                            onChange={jest.fn()}
+                            opener={opener}
+                        >
+                            <OptionItem label="item 1" value="1" />
+                            <OptionItem label="item 2" value="2" />
+                        </MultiSelect>,
+                    );
 
-                // Act
-                await userEvent.tab();
-                await userEvent.keyboard("{Enter}");
+                    // Act
+                    await userEvent.tab();
+                    await userEvent.keyboard(key);
 
-                // Assert
-                expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
-            });
+                    // Assert
+                    expect(
+                        screen.queryByRole("listbox"),
+                    ).not.toBeInTheDocument();
+                },
+            );
 
             it("should be focusable when readOnly is true", async () => {
                 // Arrange
