@@ -113,7 +113,7 @@ const ControlledDatePicker = (props: Props) => {
  * interacting with the input field.
  */
 const meta: Meta<typeof DatePicker> = {
-    title: "Packages / DatePicker",
+    title: "Packages / DatePicker / DatePicker",
     component: DatePicker,
     parameters: {
         componentSubtitle: (
