@@ -167,6 +167,7 @@ const SingleSelectKeyboardSelection = () => {
     return (
         <View>
             <SingleSelect
+                aria-label="Fruits"
                 placeholder="Choose"
                 onChange={setSelectedValue}
                 selectedValue={selectedValue}

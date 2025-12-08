@@ -74,6 +74,26 @@ function DocsContainerWithTheme({children, context, ...props}) {
 }
 
 const parameters: Preview["parameters"] = {
+    // Accessibility testing configuration
+    a11y: {
+        /*
+         * Configure test behavior. Error means that any a11y violations will fail the tests in CI.
+         * See: https://storybook.js.org/docs/next/writing-tests/accessibility-testing#test-behavior
+         */
+        test: "error",
+        /*
+         * Axe's configuration
+         * See https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#api-name-axeconfigure
+         * to learn more about the available properties.
+         */
+        config: {},
+        /*
+         * Axe's options parameter
+         * See https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#options-parameter
+         * to learn more about the available options.
+         */
+        options: {},
+    },
     backgrounds: {
         default: "baseDefault",
         options: {

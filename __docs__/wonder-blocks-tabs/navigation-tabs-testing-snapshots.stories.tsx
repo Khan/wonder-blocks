@@ -198,7 +198,7 @@ export const StateSheetStory: Story = {
     name: "StateSheet",
     render: (args) => (
         <>
-            <StateSheet rows={rows} columns={columns} title="">
+            <StateSheet rows={rows} columns={columns} title="States">
                 {({props, name}) => (
                     <View style={styles.container}>
                         <NavigationTabs
@@ -210,7 +210,7 @@ export const StateSheetStory: Story = {
                 )}
             </StateSheet>
             <div dir="rtl">
-                <StateSheet rows={rtlRows} columns={columns}>
+                <StateSheet rows={rtlRows} columns={columns} title="States">
                     {({props, name}) => (
                         <View style={styles.container}>
                             <NavigationTabs
