@@ -1134,6 +1134,7 @@ export const CustomOptionItemsVirtualized: StoryComponentType = {
                                 icon={planetIcon}
                                 role="img"
                                 size="medium"
+                                aria-hidden={true}
                             />
                         }
                     />

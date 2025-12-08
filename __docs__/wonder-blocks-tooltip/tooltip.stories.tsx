@@ -464,7 +464,7 @@ export const InTopCorner = {
                 <PhosphorIcon
                     icon={info}
                     size="small"
-                    aria-hidden
+                    aria-label="Info"
                     style={{
                         ":hover": {
                             backgroundColor:
