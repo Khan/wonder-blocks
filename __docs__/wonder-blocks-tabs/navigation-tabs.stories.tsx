@@ -474,3 +474,28 @@ export const Tag: StoryComponentType = {
         },
     },
 };
+
+/**
+ * When there is not enough horizontal space to render all the navigation tabs,
+ * and ActionMenu is used to render the links.
+ */
+export const ResponsiveBehaviour: StoryComponentType = {
+    args: {
+        children: Array(10)
+            .fill(0)
+            .map((_, index) => {
+                const count = index + 1;
+                return (
+                    <NavigationTabItem current={true} key={`default-${count}`}>
+                        <Link href="#link-1">{`Navigation tab item ${count}`}</Link>
+                    </NavigationTabItem>
+                );
+            }),
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this story doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
+};
