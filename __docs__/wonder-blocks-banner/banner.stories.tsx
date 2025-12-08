@@ -65,10 +65,20 @@ export default {
             // Disable snapshots for this story because it is covered by testing snapshots
             disableSnapshot: true,
         },
-        // This component's accessibility tests will not fail, so we set the
-        // test to "todo" to avoid failing the CI tests.
         // TODO(WB-1936): Fix the a11y violations and remove this.
-        a11y: {test: "todo"},
+        a11y: {
+            config: {
+                rules: [
+                    // Disabling a11y violation: ""Elements must meet minimum
+                    // color contrast ratio thresholds (color-contrast)".
+                    // Banner.critical with links have low contrast ratios.
+                    {
+                        id: "color-contrast",
+                        enabled: false,
+                    },
+                ],
+            },
+        },
     },
     argTypes: BannerArgTypes,
 } as Meta<typeof Banner>;
@@ -422,6 +432,7 @@ export const WithMixedActions: StoryComponentType = {
                             size="small"
                             onClick={() => {}}
                             spinner={true}
+                            aria-label="Loading"
                         >
                             Spinner Button
                         </Button>
@@ -612,6 +623,7 @@ export const WithCustomStyles: StoryComponentType = {
                     flexGrow: 1,
                     overflowY: "auto",
                 }}
+                tabIndex={0}
             >
                 <View style={{padding: sizing.size_160}}>
                     {reallyLongText}

@@ -28,7 +28,19 @@ export default {
             modes: themeModes,
         },
         // TODO(WB-1936): Fix the a11y violations and remove this.
-        a11y: {test: "todo"},
+        a11y: {
+            config: {
+                rules: [
+                    // Disabling a11y violation: ""Elements must meet minimum
+                    // color contrast ratio thresholds (color-contrast)".
+                    // Banner.critical with links have low contrast ratios.
+                    {
+                        id: "color-contrast",
+                        enabled: false,
+                    },
+                ],
+            },
+        },
     },
     tags: ["!autodocs"],
 } as Meta<typeof Banner>;

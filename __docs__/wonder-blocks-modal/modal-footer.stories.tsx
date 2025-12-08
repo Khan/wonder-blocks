@@ -110,7 +110,17 @@ export default {
         },
         a11y: {
             // TODO(WB-1834): Fix the a11y violations and remove this.
-            test: "todo",
+            config: {
+                rules: [
+                    // Disabling a11y violation: "Scrollable region must have
+                    // keyboard access (scrollable-region-focusable)".
+                    // ModalContent's scrollOverflow element is not focusable.
+                    {
+                        id: "scrollable-region-focusable",
+                        enabled: false,
+                    },
+                ],
+            },
         },
     },
     argTypes: {
