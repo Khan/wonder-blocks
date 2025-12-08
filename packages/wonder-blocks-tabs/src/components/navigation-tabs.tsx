@@ -1,60 +1,9 @@
-import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
 import {useTabIndicator} from "../hooks/use-tab-indicator";
-
-type Props = AriaProps & {
-    /**
-     * The NavigationTabItem components to render.
-     */
-    children: React.ReactElement | Array<React.ReactElement>;
-    /**
-     * An id for the navigation element.
-     */
-    id?: string;
-    /**
-     * Optional test ID for e2e testing.
-     */
-    testId?: string;
-    /**
-     * Accessible label for the navigation element.
-     *
-     * It is important to provide a unique aria-label if there are multiple
-     * navigation elements on the page.
-     *
-     * If there is a visual label for the navigation tabs already, use
-     * `aria-labelledby` instead.
-     */
-    "aria-label"?: string;
-    /**
-     * If there is a visual label for the navigation tabs already, set
-     * `aria-labelledby` to the `id` of the element that labels the navigation
-     * tabs.
-     */
-    "aria-labelledby"?: string;
-    /**
-     * Custom styles for the elements in NavigationTabs.
-     * - `root`: Styles the root `nav` element.
-     * - `list`: Styles the underlying `ul` element that wraps the
-     * `NavigationTabItem` components
-     */
-    styles?: {
-        root?: StyleType;
-        list?: StyleType;
-    };
-
-    /**
-     * Whether to include animation in the `NavigationTabs`. This should be false
-     * if the user has `prefers-reduced-motion` opted in. Defaults to `false`.
-     */
-    animated?: boolean;
-
-    /**
-     * The HTML tag to render. Defaults to `nav`.
-     */
-    tag?: keyof JSX.IntrinsicElements;
-};
+import {NavigationTabsProps} from "./types";
 
 const StyledUl = addStyle("ul");
 const StyledDiv = addStyle("div");
@@ -83,7 +32,7 @@ const StyledDiv = addStyle("div");
  * ```
  */
 export const NavigationTabs = React.forwardRef(function NavigationTabs(
-    props: Props,
+    props: NavigationTabsProps,
     ref: React.ForwardedRef<HTMLElement>,
 ) {
     const {
