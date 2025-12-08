@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.6.0
+
+### Minor Changes
+
+- 0530fb2: Add `readOnly` prop for `SingleSelect` and `MultiSelect`. It applies read only styling for the TB theme, adds aria-disabled=true to the combobox element and disables interactions on the field
+
 ## 10.5.6
 
 ### Patch Changes
