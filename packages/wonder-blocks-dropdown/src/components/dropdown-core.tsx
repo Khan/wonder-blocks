@@ -1071,6 +1071,7 @@ class DropdownCore extends React.Component<Props, State> {
 const styles = StyleSheet.create({
     menuWrapper: {
         width: "fit-content",
+        maxWidth: "100%",
     },
 
     dropdown: {

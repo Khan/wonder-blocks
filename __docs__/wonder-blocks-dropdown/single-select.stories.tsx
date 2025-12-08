@@ -12,7 +12,7 @@ import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
-import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {
     SingleSelect,
     OptionItem,
@@ -34,6 +34,7 @@ import {
 import {OpenerProps} from "../../packages/wonder-blocks-dropdown/src/util/types";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {StatusBadge} from "@khanacademy/wonder-blocks-badge";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 
 type StoryComponentType = StoryObj<typeof SingleSelect>;
 type SingleSelectArgs = Partial<typeof SingleSelect>;
@@ -88,6 +89,7 @@ export default {
         isFilterable: true,
         opened: false,
         disabled: false,
+        readOnly: false,
         "aria-label": "Fruit",
         placeholder: "Choose a fruit",
         selectedValue: "",
@@ -127,22 +129,21 @@ const styles = StyleSheet.create({
      * Custom opener styles
      */
     customOpener: {
-        borderLeft: `${border.width.thick} solid ${semanticColor.status.warning.foreground}`,
+        borderLeft: `${border.width.thick} solid ${semanticColor.core.border.instructive.default}`,
         borderRadius: border.radius.radius_040,
-        background: semanticColor.status.warning.background,
-        color: semanticColor.core.foreground.neutral.strong,
+        background: semanticColor.core.background.instructive.subtle,
+        color: semanticColor.core.foreground.instructive.default,
         padding: sizing.size_160,
     },
-    focused: {
-        outlineColor: semanticColor.focus.outer,
-        outlineOffset: sizing.size_020,
-    },
+    focused: focusStyles.focus[":focus-visible"],
     hovered: {
+        background: semanticColor.core.background.instructive.subtle,
         textDecoration: "underline",
         cursor: "pointer",
     },
     pressed: {
-        color: semanticColor.status.warning.foreground,
+        background: semanticColor.core.background.instructive.subtle,
+        color: semanticColor.core.foreground.instructive.strong,
     },
 
     fullBleed: {
@@ -448,6 +449,50 @@ export const Disabled: StoryComponentType = {
             />
         </View>
     ),
+};
+
+/**
+ * A SingleSelect can be set to read-only by passing `readOnly` to `true`.
+ * When `true`, read-only styling is applied and the aria-disabled attribute is
+ * set to "true". A user won't be able to open the dropdown or change the
+ * selected value.
+ *
+ * We recommend using the SingleSelect with `LabeledField`. The
+ * `readOnlyMessage` prop in `LabeledField` can be set so that users know why
+ * the field is marked as read only.
+ *
+ * Note: We set `aria-disabled` instead of `aria-readonly` due to low
+ * browser + screen reader support for `aria-readonly`.
+ */
+export const ReadOnly: StoryComponentType = {
+    render: function ReadOnlyStory(args) {
+        const [selectedValue, setSelectedValue] = React.useState(
+            items[0].props.value,
+        );
+        return (
+            <LabeledField
+                label="Example Label"
+                field={
+                    <SingleSelect
+                        {...args}
+                        placeholder="Choose a fruit"
+                        readOnly={true}
+                        onChange={setSelectedValue}
+                        selectedValue={selectedValue}
+                    >
+                        {items}
+                    </SingleSelect>
+                }
+                readOnlyMessage="Message about why it is read only"
+            />
+        );
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this is covered in testing snapshots story
+            disableSnapshot: true,
+        },
+    },
 };
 
 const ControlledSingleSelect = (
@@ -814,8 +859,8 @@ export const CustomOpener: StoryComponentType = {
             );
 
             return (
-                <Heading
-                    size="xlarge"
+                <Button
+                    kind="secondary"
                     onClick={() => {
                         // eslint-disable-next-line no-console
                         console.log("custom click!!!!!");
@@ -825,12 +870,9 @@ export const CustomOpener: StoryComponentType = {
                         focused && styles.focused,
                         hovered && styles.hovered,
                         pressed && styles.pressed,
-                        opened && styles.focused,
                     ]}
-                >
-                    {text}
-                    {opened ? ": opened" : ""}
-                </Heading>
+                    startIcon={IconMappings.plusCircle}
+                >{`${text} ${opened ? ": opened" : ""}`}</Button>
             );
         },
     } as SingleSelectArgs,
@@ -1137,6 +1179,7 @@ export const CustomOptionItemsVirtualized: StoryComponentType = {
                                 icon={planetIcon}
                                 role="img"
                                 size="medium"
+                                aria-hidden={true}
                             />
                         }
                     />

@@ -179,7 +179,7 @@ export const Scenarios: Story = {
                                 ...focusStyles.focus,
                             }}
                         >
-                            Custom button
+                            Custom button merging styles
                         </StyledButton>
                     ),
                 },
@@ -190,6 +190,9 @@ export const Scenarios: Story = {
                     children: (
                         <StyledButton
                             style={{
+                                backgroundColor:
+                                    semanticColor.action.secondary.progressive
+                                        .default.background,
                                 color: semanticColor.action.secondary
                                     .progressive.default.foreground,
                                 ":focus-visible": {
@@ -202,7 +205,7 @@ export const Scenarios: Story = {
                                 },
                             }}
                         >
-                            Custom button
+                            Custom button overriding :focus-visible
                         </StyledButton>
                     ),
                 },

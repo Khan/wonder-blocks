@@ -205,7 +205,7 @@ export type ButtonProps = BaseButtonProps & {
 
 export type ActivityButtonProps = BaseButtonProps & {
     /**
-     * Custom styles for the elements in the Badge component.
+     * Custom styles for the elements in the ActivityButton component.
      * - `root`: Styles the root element (button)
      * - `box`: Styles the "chonky" box element
      * - `startIcon`: Styles the start icon element

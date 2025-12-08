@@ -24,4 +24,14 @@ export default {
             type: undefined,
         },
     },
+    tag: {
+        control: {
+            type: "text",
+        },
+        table: {
+            type: {
+                summary: "keyof JSX.IntrinsicElements",
+            },
+        },
+    },
 } satisfies ArgTypes;

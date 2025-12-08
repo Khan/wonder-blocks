@@ -161,3 +161,25 @@ export const WithVisibleAnnouncer = {
         chromatic: {disableSnapshot: true},
     },
 };
+
+export const UsingLabeledFieldForReadOnly = {
+    render: function UsingLabeledFieldForReadOnlyStory() {
+        return (
+            <LabeledField
+                field={
+                    <MultiSelect
+                        readOnly={true}
+                        onChange={() => {}}
+                        selectedValues={["1"]}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                        <OptionItem label="item 3" value="3" />
+                    </MultiSelect>
+                }
+                label="Example Label"
+                readOnlyMessage="Message about why it is read only"
+            />
+        );
+    },
+};

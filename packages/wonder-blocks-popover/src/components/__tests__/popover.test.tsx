@@ -1,11 +1,10 @@
 import * as React from "react";
-import {render, screen, waitFor} from "@testing-library/react";
+import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import {userEvent, PointerEventsCheckLevel} from "@testing-library/user-event";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 
-import {fireEvent} from "storybook/test";
 import Popover from "../popover";
 import PopoverContent from "../popover-content";
 import {PopoverContentCore} from "../../index";

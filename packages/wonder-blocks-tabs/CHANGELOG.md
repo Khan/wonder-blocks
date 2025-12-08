@@ -1,5 +1,23 @@
 # @khanacademy/wonder-blocks-tabs
 
+## 0.4.0
+
+### Minor Changes
+
+- 42c0f72: NavigationTabs: Add tag prop to allow overriding the underlying nav element
+
+### Patch Changes
+
+- 5db127a: Fix issue where TabPanel is set with tabIndex=0 before it has determined if it has focusable elements within it (related to a focus management bug when Tabs are used inside a Popover). Also apply WB focus styling to the tabpanel element since it is focusbale when there are no interactive elements in it.
+
+## 0.3.37
+
+### Patch Changes
+
+- Updated dependencies [70d6c08]
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-typography@4.2.27
+
 ## 0.3.36
 
 ### Patch Changes

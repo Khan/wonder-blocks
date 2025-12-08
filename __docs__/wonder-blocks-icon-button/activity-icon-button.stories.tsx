@@ -11,7 +11,7 @@ import {ActivityIconButton} from "@khanacademy/wonder-blocks-icon-button";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon-button/package.json";
 import iconButtonSharedArgtypes from "./icon-button-shared.argtypes";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {Icon} from "@khanacademy/wonder-blocks-icon";
 
@@ -245,5 +245,48 @@ export const WithCustomIcon: StoryComponentType = {
                 />
             </View>
         );
+    },
+};
+
+/**
+ * You can use the `styles` prop to apply custom styles to speicific parts of
+ * the ActivityIconButton component.
+ *
+ * The following parts can be styled:
+ * - `root`: Styles the root element (button)
+ * - `box`: Styles the "chonky" box element
+ * - `label`: Styles the text in the button
+ */
+export const WithStyles: StoryComponentType = {
+    render: () => {
+        return (
+            <ActivityIconButton
+                icon={IconMappings.info}
+                label="More information"
+                styles={{
+                    root: {
+                        width: "200px",
+                        maxWidth: "unset",
+                        maxHeight: "unset",
+                    },
+                    box: {
+                        width: "100%",
+                        backgroundColor:
+                            semanticColor.learning.background.streaks.default,
+                        justifyContent: "center",
+                        alignItems: "center",
+                    },
+                    label: {
+                        fontWeight: "bold",
+                    },
+                }}
+            />
+        );
+    },
+    parameters: {
+        chromatic: {
+            // Keep snapshots to confirm custom styles are working
+            disableSnapshot: false,
+        },
     },
 };

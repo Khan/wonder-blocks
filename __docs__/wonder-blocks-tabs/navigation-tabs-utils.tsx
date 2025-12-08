@@ -12,7 +12,7 @@ export const generateChildren = (
     return Array(numItems)
         .fill(0)
         .map((_, index) => (
-            <NavigationTabItem current={index === 0}>
+            <NavigationTabItem current={index === 0} key={index}>
                 <Link
                     href={`#link-${index + 1}`}
                     startIcon={

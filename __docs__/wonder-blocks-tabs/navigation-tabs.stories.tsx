@@ -37,13 +37,13 @@ export default {
 type StoryComponentType = StoryObj<typeof NavigationTabs>;
 
 const navigationTabItems = [
-    <NavigationTabItem current={true}>
+    <NavigationTabItem current={true} key="default-1">
         <Link href="#link-1">Navigation tab item 1</Link>
     </NavigationTabItem>,
-    <NavigationTabItem>
+    <NavigationTabItem key="default-2">
         <Link href="#link-2">Navigation tab item 2</Link>
     </NavigationTabItem>,
-    <NavigationTabItem>
+    <NavigationTabItem key="default-3">
         <Link href="#link-3">Navigation tab item 3</Link>
     </NavigationTabItem>,
 ];
@@ -66,12 +66,12 @@ export const Default: StoryComponentType = {
 export const WithIcons: StoryComponentType = {
     args: {
         children: [
-            <NavigationTabItem>
+            <NavigationTabItem key="with-icons-1">
                 <Link href="https://khanacademy.org" target="_blank">
                     External Link
                 </Link>
             </NavigationTabItem>,
-            <NavigationTabItem>
+            <NavigationTabItem key="with-icons-2">
                 <Link
                     href="#link2"
                     startIcon={
@@ -81,7 +81,7 @@ export const WithIcons: StoryComponentType = {
                     Start Icon
                 </Link>
             </NavigationTabItem>,
-            <NavigationTabItem>
+            <NavigationTabItem key="with-icons-3">
                 <Link
                     href="#link3"
                     endIcon={
@@ -94,7 +94,7 @@ export const WithIcons: StoryComponentType = {
                     End Icon
                 </Link>
             </NavigationTabItem>,
-            <NavigationTabItem current={true}>
+            <NavigationTabItem current={true} key="with-icons-4">
                 <Link
                     href="#link4"
                     startIcon={
@@ -454,5 +454,23 @@ export const ChildrenRenderFunction: StoryComponentType = {
     parameters: {
         // Added to ensure that the popover/tooltip is rendered using PopperJS.
         chromatic: {delay: 500},
+    },
+};
+
+/**
+ * By default, the `NavigationTabs` component renders as a `nav` element. If
+ * the underlying element needs to be changed, the `tag` prop can be used to
+ * specify the HTML tag to render.
+ */
+export const Tag: StoryComponentType = {
+    args: {
+        children: navigationTabItems,
+        tag: "div",
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this story doesn't test anything visual.
+            disableSnapshot: true,
+        },
     },
 };

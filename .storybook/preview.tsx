@@ -2,7 +2,6 @@ import * as React from "react";
 import wonderBlocksTheme from "./wonder-blocks-theme";
 import {Decorator} from "@storybook/react-vite";
 import {DocsContainer} from "@storybook/addon-docs/blocks";
-import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {initAnnouncer} from "@khanacademy/wonder-blocks-announcer";
 import Link from "@khanacademy/wonder-blocks-link";
@@ -11,7 +10,7 @@ import {
     ThemeSwitcher,
     THEME_DATA_ATTRIBUTE,
 } from "@khanacademy/wonder-blocks-theming";
-import {Preview} from "@storybook/react-vite";
+import type {Preview} from "@storybook/react-vite";
 
 // Import the Wonder Blocks CSS variables
 import "@khanacademy/wonder-blocks-tokens/styles.css";
@@ -75,8 +74,26 @@ function DocsContainerWithTheme({children, context, ...props}) {
 }
 
 const parameters: Preview["parameters"] = {
-    // Enable the RenderStateRoot decorator by default.
-    enableRenderStateRootDecorator: true,
+    // Accessibility testing configuration
+    a11y: {
+        /*
+         * Configure test behavior. Error means that any a11y violations will fail the tests in CI.
+         * See: https://storybook.js.org/docs/next/writing-tests/accessibility-testing#test-behavior
+         */
+        test: "error",
+        /*
+         * Axe's configuration
+         * See https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#api-name-axeconfigure
+         * to learn more about the available properties.
+         */
+        config: {},
+        /*
+         * Axe's options parameter
+         * See https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#options-parameter
+         * to learn more about the available options.
+         */
+        options: {},
+    },
     backgrounds: {
         default: "baseDefault",
         options: {
@@ -109,6 +126,7 @@ const parameters: Preview["parameters"] = {
         },
     },
     docs: {
+        codePanel: true,
         // Customize the DocsContainer to use the WB theme in MDX pages.
         container: DocsContainerWithTheme,
         toc: {
@@ -129,10 +147,7 @@ const parameters: Preview["parameters"] = {
     },
 };
 
-const withThemeSwitcher: Decorator = (
-    Story,
-    {globals: {theme}, parameters: {enableRenderStateRootDecorator}},
-) => {
+const withThemeSwitcher: Decorator = (Story, {globals: {theme}}) => {
     // Keep track of the theme locally so we can re-render the story after the
     // attribute is updated.
     const [localTheme, setLocalTheme] = React.useState(null);
@@ -143,18 +158,6 @@ const withThemeSwitcher: Decorator = (
             setLocalTheme(theme);
         }
     }, [theme]);
-
-    if (enableRenderStateRootDecorator) {
-        return (
-            <RenderStateRoot key={localTheme}>
-                <ThemeSwitcherContext.Provider value={theme}>
-                    <ThemeSwitcher theme={theme}>
-                        <Story />
-                    </ThemeSwitcher>
-                </ThemeSwitcherContext.Provider>
-            </RenderStateRoot>
-        );
-    }
 
     return (
         <ThemeSwitcherContext.Provider value={theme} key={localTheme}>

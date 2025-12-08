@@ -121,8 +121,18 @@ export const ColorContrast = {
             </Body>
         </View>
     ),
-
-    name: "Color contrast",
+    parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    // Disabling warning: "The color contrast between text and
+                    // its background meets WCAG AA contrast ratio." since this
+                    // is a demonstration of a low contrast color.
+                    {id: "color-contrast", enabled: false},
+                ],
+            },
+        },
+    },
 };
 
 export const LineSpacing = {

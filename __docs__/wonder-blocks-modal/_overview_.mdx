@@ -77,6 +77,10 @@ A specialized dialog for drawer interfaces that slides in from the side. Built o
 
 ## Launcher Components
 
+Modal dialogs are typically rendered using WB launcher components that handle modal dialog lifecycles, focus management, and user interactions.
+
+For conditionally rendering modals, ensure there is only one `ModalLauncher` or `DrawerLauncher` in your component tree. A launcher needs to stay mounted on the current page to properly handle the user's keyboard focus on close of modals. Read [more details on Confluence](https://khanacademy.atlassian.net/wiki/spaces/FRONTEND/blog/2025/11/24/4454383789/Wonder+Blocks+Modal+Tips+Tricks).
+
 ### ModalLauncher
 
 The primary component for launching modals. Handles backdrop clicks, focus management, keyboard navigation, and modal lifecycle.

@@ -8,7 +8,6 @@ import Button from "@khanacademy/wonder-blocks-button";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {Heading} from "@khanacademy/wonder-blocks-typography";
 import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import type {LabelsValues} from "@khanacademy/wonder-blocks-dropdown";
 
@@ -25,6 +24,7 @@ import {OpenerProps} from "../../packages/wonder-blocks-dropdown/src/util/types"
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {StatusBadge} from "@khanacademy/wonder-blocks-badge";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 type StoryComponentType = StoryObj<typeof MultiSelect>;
 
@@ -66,6 +66,7 @@ export default {
         error: false,
         opened: false,
         disabled: false,
+        readOnly: false,
         shortcuts: false,
         implicitAllEnabled: false,
         id: "",
@@ -124,19 +125,21 @@ const styles = StyleSheet.create({
      * Custom opener styles
      */
     customOpener: {
-        borderLeft: `${border.width.thick} solid ${semanticColor.status.warning.foreground}`,
+        borderLeft: `${border.width.thick} solid ${semanticColor.core.border.instructive.default}`,
         borderRadius: border.radius.radius_040,
-        background: semanticColor.status.warning.background,
-        color: semanticColor.core.foreground.neutral.strong,
+        background: semanticColor.core.background.instructive.subtle,
+        color: semanticColor.core.foreground.instructive.default,
         padding: sizing.size_160,
     },
     focused: focusStyles.focus[":focus-visible"],
     hovered: {
+        background: semanticColor.core.background.instructive.subtle,
         textDecoration: "underline",
         cursor: "pointer",
     },
     pressed: {
-        color: semanticColor.status.warning.foreground,
+        background: semanticColor.core.background.instructive.subtle,
+        color: semanticColor.core.foreground.instructive.strong,
     },
 });
 
@@ -641,6 +644,52 @@ export const Disabled: StoryComponentType = {
 };
 
 /**
+ * A MultiSelect can be set to read-only by passing `readOnly` to `true`.
+ * When `true`, read-only styling is applied and the aria-disabled attribute is
+ * set to "true". A user won't be able to open the dropdown or change the
+ * selected values.
+ *
+ * We recommend using the MultiSelect with `LabeledField`. The
+ * `readOnlyMessage` prop in `LabeledField` can be set so that users know why
+ * the field is marked as read only.
+ *
+ * Note: We set `aria-disabled` instead of `aria-readonly` due to low
+ * browser + screen reader support for `aria-readonly`.
+ *
+ * If it is expected that the user will select multiple values, consider using
+ * a custom opener to display the selected values.
+ */
+export const ReadOnly: StoryComponentType = {
+    render: function ReadOnlyStory(args) {
+        const [selectedValue, setSelectedValue] = React.useState([
+            items[0].props.value,
+        ]);
+        return (
+            <LabeledField
+                field={
+                    <MultiSelect
+                        {...args}
+                        readOnly={true}
+                        onChange={setSelectedValue}
+                        selectedValues={selectedValue}
+                    >
+                        {items}
+                    </MultiSelect>
+                }
+                label="Example Label"
+                readOnlyMessage="Message about why it is read only"
+            />
+        );
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this is covered in testing snapshots story
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
  * When nothing is selected, show the menu text as "All selected". Note that the
  * actual selection logic doesn't change. (Only the menu text)
  */
@@ -738,8 +787,8 @@ export const CustomOpener: StoryComponentType = {
             );
 
             return (
-                <Heading
-                    size="xlarge"
+                <Button
+                    kind="secondary"
                     onClick={() => {
                         // eslint-disable-next-line no-console
                         console.log("custom click!!!!!");
@@ -750,10 +799,8 @@ export const CustomOpener: StoryComponentType = {
                         hovered && styles.hovered,
                         pressed && styles.pressed,
                     ]}
-                >
-                    {text}
-                    {opened ? ": opened" : ""}
-                </Heading>
+                    startIcon={IconMappings.plusCircle}
+                >{`${text} ${opened ? ": opened" : ""}`}</Button>
             );
         },
     } as MultiSelectArgs,

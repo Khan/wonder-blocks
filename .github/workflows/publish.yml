@@ -156,13 +156,10 @@ jobs:
   # PR code in a host applicaiton without doing a release.
   publish_snapshot:
     name: Publish npm snapshot
-    # [FEI-7341] DISABLED: Snapshots temporarily disabled due to security concerns (shai-halud worm)
-    # To re-enable, replace the condition below with the original multi-line condition
-    if: false
-    # Original condition (commented out):
-    # if: |
-    #   (github.event_name == 'workflow_dispatch' && inputs.run_type == 'snapshot') ||
-    #   (github.event_name == 'pull_request' && !startsWith(github.head_ref, 'changeset-release/'))
+    # We don't publish snapshots on Changeset "Version Packages" PRs
+    if: |
+      (github.event_name == 'workflow_dispatch' && inputs.run_type == 'snapshot') ||
+      (github.event_name == 'pull_request' && !startsWith(github.head_ref, 'changeset-release/'))
     runs-on: ${{ matrix.os }}
     permissions:
       id-token: write # required for publishing to npm with provenance
