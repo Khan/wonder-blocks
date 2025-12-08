@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-labeled-field
 
+## 4.0.12
+
+### Patch Changes
+
+- 0530fb2: LabeledField: Fix passing down readOnly prop so it is a boolean
+
 ## 4.0.11
 
 ### Patch Changes
