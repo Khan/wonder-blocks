@@ -486,7 +486,10 @@ export const ResponsiveBehaviour: StoryComponentType = {
             .map((_, index) => {
                 const count = index + 1;
                 return (
-                    <NavigationTabItem current={true} key={`default-${count}`}>
+                    <NavigationTabItem
+                        current={index === 0}
+                        key={`default-${count}`}
+                    >
                         <Link href="#link-1">{`Navigation tab item ${count}`}</Link>
                     </NavigationTabItem>
                 );
