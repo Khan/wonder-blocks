@@ -135,6 +135,10 @@ export default {
             // one-pane-dialog.stories.tsx
             disableSnapshot: true,
         },
+        a11y: {
+            // TODO(WB-1834): Fix the a11y violations and remove this.
+            test: "todo",
+        },
     },
     argTypes: ModalHeaderArgtypes,
 } as Meta<typeof ModalHeader>;

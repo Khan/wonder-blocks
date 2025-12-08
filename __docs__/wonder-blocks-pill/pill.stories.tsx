@@ -211,7 +211,7 @@ export const Variants: StoryComponentType = {
 };
 
 export const WithTypography: StoryComponentType = () => (
-    <Pill size="large">
+    <Pill size="large" kind="info">
         <BodySerif>
             This is a {<Link href="#link">link example</Link>} inside the text
             of a pill.
@@ -289,6 +289,7 @@ export const InList: StoryComponentType = () => {
                         size="large"
                         kind={option === selected ? "accent" : "neutral"}
                         onClick={() => setSelected(option)}
+                        aria-checked={option === selected}
                         role="radio"
                         style={{marginRight: tokens.spacing.xSmall_8}}
                     >

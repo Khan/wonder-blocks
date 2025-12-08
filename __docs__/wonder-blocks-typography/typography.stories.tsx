@@ -306,7 +306,7 @@ export const NotoForNonLatin: StoryObj<any> = () => {
     return (
         <View>
             <SingleSelect
-                aria-labelledby="language-selector"
+                aria-label="Language selector"
                 id="unique-language-selector"
                 placeholder="Select language"
                 onChange={(selectedValue) => updateValue(selectedValue)}

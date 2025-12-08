@@ -61,22 +61,26 @@ export const InverseOutline: Story = {
                     kind="primary"
                     icon={info}
                     style={actionStyles.inverse}
+                    aria-label="Primary info button"
                 />
                 <IconButton
                     kind="secondary"
                     icon={info}
                     style={actionStyles.inverse}
+                    aria-label="Secondary info button"
                 />
                 <IconButton
                     kind="tertiary"
                     icon={info}
                     style={actionStyles.inverse}
+                    aria-label="Tertiary info button"
                 />
                 <IconButton
                     kind="primary"
                     disabled
                     icon={info}
                     style={actionStyles.inverse}
+                    aria-label="Disabled primary info button"
                 />
 
                 <Clickable onClick={() => {}} style={actionStyles.inverse}>
