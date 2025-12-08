@@ -48,6 +48,10 @@ const columns = [
         props: {disabled: true},
     },
     {
+        name: "Readonly",
+        props: {readOnly: true},
+    },
+    {
         name: "Error",
         props: {error: true},
     },
@@ -66,6 +70,10 @@ const columns = [
     {
         name: "With selection (All selected) + Disabled",
         props: {selectedValues: ["1", "2", "3"], disabled: true},
+    },
+    {
+        name: "With selection (All selected) + Readonly",
+        props: {selectedValues: ["1", "2", "3"], readOnly: true},
     },
 ];
 
@@ -86,7 +94,12 @@ export const StateSheetStory: Story = {
         );
     },
     parameters: {
-        pseudo: defaultPseudoStates,
+        pseudo: {
+            ...defaultPseudoStates,
+            // Using the focus selector instead so that the focus outline is shown
+            // when the select opener is clicked
+            focus: [...defaultPseudoStates.focusVisible],
+        },
     },
 };
 
