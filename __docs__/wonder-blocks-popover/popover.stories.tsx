@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
+import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingMedium, LabelLarge} from "@khanacademy/wonder-blocks-typography";
@@ -96,6 +96,10 @@ const styles = StyleSheet.create({
 
 type StoryComponentType = StoryObj<typeof Popover>;
 
+// NOTE: Adding arg types to be able to use the union types defined by the
+// component.
+type PopoverArgs = Partial<typeof Popover>;
+
 export const Default: StoryComponentType = {
     args: {
         children: <Button>Open default popover</Button>,
@@ -106,7 +110,7 @@ export const Default: StoryComponentType = {
         initialFocusId: "",
         testId: "",
         onClose: () => {},
-    },
+    } as PopoverArgs,
     parameters: {
         chromatic: {
             // Popover is closed by default, so we don't need to test it.
@@ -136,7 +140,7 @@ export const NoTail: StoryComponentType = {
         testId: "",
         onClose: () => {},
         showTail: false,
-    },
+    } as PopoverArgs,
     parameters: {
         chromatic: {
             // Popover is closed by default, so we don't need to test it.
@@ -181,6 +185,12 @@ export const TriggerElement: StoryComponentType = {
             {({open}) => <Button onClick={open}>Trigger element</Button>}
         </Popover>
     ),
+    parameters: {
+        chromatic: {
+            // Popover is closed by default, so we don't need to test it.
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**
@@ -283,6 +293,12 @@ export const WithActions: StoryComponentType = {
             </Popover>
         );
     },
+    parameters: {
+        chromatic: {
+            // Popover is closed by default, so we don't need to test it.
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**
@@ -325,7 +341,7 @@ export const WithInitialFocusId: StoryComponentType = {
         placement: "top",
         dismissEnabled: true,
         initialFocusId: "popover-button-2",
-    },
+    } as PopoverArgs,
 };
 
 /**
@@ -379,6 +395,12 @@ export const CustomPopoverContent: StoryComponentType = {
         children: <Button>Open custom popover</Button>,
         content: ContentMappings.coreWithIcon,
         id: "custom-popover",
+    } as PopoverArgs,
+    parameters: {
+        chromatic: {
+            // Popover is closed by default, so we don't need to test it.
+            disableSnapshot: true,
+        },
     },
 };
 
@@ -703,38 +725,41 @@ export const PopoverAlignment: StoryComponentType = {
     ),
 };
 
-export const WithDocumentRootBoundary: StoryComponentType = () => {
-    return (
-        <View style={{paddingBottom: "500px"}}>
-            <Popover
-                rootBoundary="document"
-                content={() => (
-                    <PopoverContent
-                        title="Popover with rootBoundary='document'"
-                        content="This example shows a popover with the rootBoundary='document'. This means that instead of aligning the popover to the viewport, it will instead place the popover where there is room in the DOM. This is a useful tool for popovers with large content that might not fit in small screen sizes or at 400% zoom."
-                        actions={
-                            <View style={[styles.row, styles.actions]}>
-                                <Strut size={spacing.medium_16} />
-                            </View>
-                        }
-                    />
-                )}
-                placement="top"
-            >
-                <Button>Open popover with document rootBoundary</Button>
-            </Popover>
-        </View>
-    );
-};
-
-WithDocumentRootBoundary.parameters = {
-    docs: {
-        description: {
-            story: `Sometimes you need to change the underlining behavior to position the
-                Popover by the whole webpage (document) instead of by the viewport. This is a
-                useful tool for popovers with large content that might not fit in small screen
-                sizes or at 400% zoom. For this reason, you can make use of the
-                \`rootBoundary\` prop:`,
+/**
+ * Sometimes you need to change the underlining behavior to position the Popover
+ * by the whole webpage (document) instead of by the viewport. This is a useful
+ * tool for popovers with large content that might not fit in small screen sizes
+ * or at 400% zoom. For this reason, you can make use of the \`rootBoundary\`
+ * prop:
+ */
+export const WithDocumentRootBoundary: StoryComponentType = {
+    render: () => {
+        return (
+            <View style={{paddingBottom: "500px"}}>
+                <Popover
+                    rootBoundary="document"
+                    content={() => (
+                        <PopoverContent
+                            title="Popover with rootBoundary='document'"
+                            content="This example shows a popover with the rootBoundary='document'. This means that instead of aligning the popover to the viewport, it will instead place the popover where there is room in the DOM. This is a useful tool for popovers with large content that might not fit in small screen sizes or at 400% zoom."
+                            actions={
+                                <View style={[styles.row, styles.actions]}>
+                                    <Strut size={spacing.medium_16} />
+                                </View>
+                            }
+                        />
+                    )}
+                    placement="top"
+                >
+                    <Button>Open popover with document rootBoundary</Button>
+                </Popover>
+            </View>
+        );
+    },
+    parameters: {
+        chromatic: {
+            // Popover is closed by default, so we don't need to test it.
+            disableSnapshot: true,
         },
     },
 };
@@ -754,52 +779,63 @@ export const WithCustomAriaLabel: StoryComponentType = {
         testId: "",
         onClose: () => {},
         "aria-label": "Popover with custom aria label",
+    } as PopoverArgs,
+    parameters: {
+        chromatic: {
+            // Popover is closed by default, so we don't need to test it.
+            disableSnapshot: true,
+        },
     },
 };
 
 /**
  * With custom aria-describedby - overrides the default aria-describedby
  */
-export const WithCustomAriaDescribedBy = ({
-    placement,
-}: {
-    placement: Placement;
-}) => {
-    const [opened, setOpened] = React.useState(false);
+export const WithCustomAriaDescribedBy: StoryComponentType = {
+    render: function Render() {
+        const [opened, setOpened] = React.useState(false);
 
-    return (
-        <View style={styles.example}>
-            <Popover
-                aria-describedby="custom-popover-description"
-                placement={placement}
-                opened={opened}
-                onClose={() => setOpened(false)}
-                content={
-                    <>
-                        <HeadingMedium
-                            id="custom-popover-description"
-                            style={styles.srOnly}
-                        >
-                            Hidden text that would describe the popover content
-                        </HeadingMedium>
-                        <PopoverContent
-                            title="Title"
-                            content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo."
-                            closeButtonVisible
-                        />
-                    </>
-                }
-            >
-                <Button
-                    onClick={() => {
-                        setOpened(true);
-                    }}
+        return (
+            <View style={styles.example}>
+                <Popover
+                    aria-describedby="custom-popover-description"
+                    placement="bottom"
+                    opened={opened}
+                    onClose={() => setOpened(false)}
+                    content={
+                        <>
+                            <HeadingMedium
+                                id="custom-popover-description"
+                                style={styles.srOnly}
+                            >
+                                Hidden text that would describe the popover
+                                content
+                            </HeadingMedium>
+                            <PopoverContent
+                                title="Title"
+                                content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo."
+                                closeButtonVisible
+                            />
+                        </>
+                    }
                 >
-                    {`Open popover`}
-                </Button>
-            </Popover>
-        </View>
-    );
+                    <Button
+                        onClick={() => {
+                            setOpened(true);
+                        }}
+                    >
+                        {`Open popover`}
+                    </Button>
+                </Popover>
+            </View>
+        );
+    },
+    parameters: {
+        chromatic: {
+            // Popover is closed by default, so we don't need to test it.
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**
@@ -810,58 +846,60 @@ export const WithCustomAriaDescribedBy = ({
  * Note: The `viewportPadding` prop is only applied when `rootBoundary` is
  * `viewport`.
  */
-export const InCorners = (args: PropsFor<typeof Popover>) => {
-    const [openedIndex, setOpenedIndex] = React.useState<number>(0);
-    const renderPopover = (index: number) => {
+export const InCorners: StoryComponentType = {
+    render: function Render(args) {
+        const [openedIndex, setOpenedIndex] = React.useState<number>(0);
+        const renderPopover = (index: number) => {
+            return (
+                <Popover
+                    {...args}
+                    content={
+                        <PopoverContent
+                            closeButtonVisible
+                            content="The default version only includes text."
+                            title="A simple popover"
+                        />
+                    }
+                    dismissEnabled
+                    onClose={() => setOpenedIndex(-1)}
+                    opened={openedIndex === index}
+                >
+                    <Button onClick={() => setOpenedIndex(index)}>
+                        Open default popover
+                    </Button>
+                </Popover>
+            );
+        };
         return (
-            <Popover
-                {...args}
-                content={
-                    <PopoverContent
-                        closeButtonVisible
-                        content="The default version only includes text."
-                        title="A simple popover"
-                    />
-                }
-                dismissEnabled
-                onClose={() => setOpenedIndex(-1)}
-                opened={openedIndex === index}
+            <View
+                style={{
+                    height: "100%",
+                    width: "100vw",
+                    justifyContent: "space-between",
+                }}
             >
-                <Button onClick={() => setOpenedIndex(index)}>
-                    Open default popover
-                </Button>
-            </Popover>
+                <View
+                    style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                    }}
+                >
+                    {renderPopover(0)}
+                    {renderPopover(1)}
+                </View>
+                <View
+                    style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                    }}
+                >
+                    {renderPopover(2)}
+                    {renderPopover(3)}
+                </View>
+            </View>
         );
-    };
-    return (
-        <View
-            style={{
-                height: "100vh",
-                width: "100vw",
-                justifyContent: "space-between",
-            }}
-        >
-            <View
-                style={{
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                }}
-            >
-                {renderPopover(0)}
-                {renderPopover(1)}
-            </View>
-            <View
-                style={{
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                }}
-            >
-                {renderPopover(2)}
-                {renderPopover(3)}
-            </View>
-        </View>
-    );
-};
-InCorners.parameters = {
-    layout: "fullscreen",
+    },
+    parameters: {
+        layout: "fullscreen",
+    },
 };
