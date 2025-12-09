@@ -1,4 +1,4 @@
-import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
