@@ -4,8 +4,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingMedium, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
 
@@ -62,6 +61,7 @@ const styles = StyleSheet.create({
         display: "grid",
         gridTemplateColumns: "repeat(2, 1fr)",
         height: `calc(100vh - 16px)`,
+        width: "100vw",
     },
     example: {
         alignItems: "center",
@@ -77,10 +77,10 @@ const styles = StyleSheet.create({
     },
     playground: {
         border: `1px dashed ${semanticColor.core.border.neutral.subtle}`,
-        marginTop: spacing.large_24,
-        padding: spacing.large_24,
+        marginTop: sizing.size_240,
+        padding: sizing.size_240,
         flexDirection: "row",
-        gap: spacing.medium_16,
+        gap: sizing.size_160,
     },
     srOnly: {
         border: 0,
@@ -208,7 +208,7 @@ export const Controlled: StoryComponentType = {
     render: function Render() {
         const [opened, setOpened] = React.useState(true);
         return (
-            <View style={styles.row}>
+            <View style={[styles.row, {gap: sizing.size_320}]}>
                 <Popover
                     opened={opened}
                     onClose={() => {
@@ -239,7 +239,7 @@ export const Controlled: StoryComponentType = {
                         Anchor element (it does not open the popover)
                     </Button>
                 </Popover>
-                <Strut size={spacing.xLarge_32} />
+
                 <Button onClick={() => setOpened(true)}>
                     Outside button (click here to re-open the popover)
                 </Button>
@@ -264,11 +264,16 @@ export const WithActions: StoryComponentType = {
                         title="Popover with actions"
                         content="This example shows a popover which contains a set of actions that can be used to control the popover itself."
                         actions={
-                            <View style={[styles.row, styles.actions]}>
+                            <View
+                                style={[
+                                    styles.row,
+                                    styles.actions,
+                                    {gap: sizing.size_160},
+                                ]}
+                            >
                                 <LabelLarge>
                                     Step {step} of {totalSteps}
                                 </LabelLarge>
-                                <Strut size={spacing.medium_16} />
                                 <Button
                                     kind="tertiary"
                                     onClick={() => {
@@ -326,11 +331,10 @@ export const WithInitialFocusId: StoryComponentType = {
             Setting initialFocusId"
                 content="The focus will be set on the second button"
                 actions={
-                    <View style={styles.row}>
+                    <View style={[styles.row, {gap: sizing.size_160}]}>
                         <Button kind="tertiary" id="popover-button-1">
                             No focus
                         </Button>
-                        <Strut size={spacing.medium_16} />
                         <Button kind="tertiary" id="popover-button-2">
                             It is focused!
                         </Button>
@@ -438,7 +442,7 @@ export const KeyboardNavigation: StoryComponentType = {
 
         return (
             <View>
-                <View style={[styles.row, {gap: spacing.medium_16}]}>
+                <View style={[styles.row, {gap: sizing.size_160}]}>
                     <Button
                         kind="secondary"
                         onClick={() => {
@@ -558,7 +562,7 @@ export const CustomKeyboardNavigation: StoryComponentType = {
 
         return (
             <View style={[{padding: "120px 0"}]}>
-                <View style={[styles.row, {gap: spacing.medium_16}]}>
+                <View style={[styles.row, {gap: sizing.size_160}]}>
                     <Button
                         kind="secondary"
                         onClick={() => {
@@ -723,10 +727,10 @@ const BasePopoverExample = ({placement}: {placement: Placement}) => {
 export const PopoverAlignment: StoryComponentType = {
     render: () => (
         <View style={styles.container}>
-            <BasePopoverExample placement="left" />
-            <BasePopoverExample placement="bottom" />
             <BasePopoverExample placement="right" />
+            <BasePopoverExample placement="bottom" />
             <BasePopoverExample placement="top" />
+            <BasePopoverExample placement="left" />
         </View>
     ),
 };
@@ -748,11 +752,6 @@ export const WithDocumentRootBoundary: StoryComponentType = {
                         <PopoverContent
                             title="Popover with rootBoundary='document'"
                             content="This example shows a popover with the rootBoundary='document'. This means that instead of aligning the popover to the viewport, it will instead place the popover where there is room in the DOM. This is a useful tool for popovers with large content that might not fit in small screen sizes or at 400% zoom."
-                            actions={
-                                <View style={[styles.row, styles.actions]}>
-                                    <Strut size={spacing.medium_16} />
-                                </View>
-                            }
                         />
                     )}
                     placement="top"
@@ -773,7 +772,6 @@ export const WithDocumentRootBoundary: StoryComponentType = {
 /**
  * With custom aria-label - overrides the default aria-labelledby
  */
-
 export const WithCustomAriaLabel: StoryComponentType = {
     args: {
         children: <Button>Open popover</Button>,
