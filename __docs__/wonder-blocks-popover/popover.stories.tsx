@@ -159,8 +159,6 @@ export const NoTail: StoryComponentType = {
  *   when and/or from where to open the popover dialog.
  * - For this example, if you use the `image` prop, make sure to avoid using
  *   `icon` at the same time. Doing so will throw an error.
- * - This example uses the `dismissEnabled` prop. This means that the user can
- *   close the Popover by pressing `Esc` or clicking in the trigger element.
  */
 export const TriggerElement: StoryComponentType = {
     render: () => (
@@ -188,6 +186,47 @@ export const TriggerElement: StoryComponentType = {
     parameters: {
         chromatic: {
             // Popover is closed by default, so we don't need to test it.
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * Povoper can be closed via light dismiss. This means that the popover will be
+ * closed under the following conditions:
+ * - Keyboard: The user presses `Esc`.
+ * - Click outside: The user clicks outside of the popover.
+ * - Focus out: The user tabs before the trigger element or after the last
+ *   focusable element inside the popover.
+ *
+ * The `dismissEnabled` prop can be used to enable or disable light dismiss
+ * (default is `false`).
+ */
+export const DismissEnabled: StoryComponentType = {
+    args: {
+        dismissEnabled: true,
+        children: <Button>Open popover with light dismiss</Button>,
+        content: (
+            <PopoverContent
+                closeButtonVisible
+                title="Title"
+                content="The popover content. This popover has light dismiss enabled."
+                actions={
+                    <View style={[styles.row, {gap: sizing.size_160}]}>
+                        <Button kind="tertiary" onClick={() => {}}>
+                            Action 1
+                        </Button>
+                        <Button kind="tertiary" onClick={() => {}}>
+                            Action 2
+                        </Button>
+                    </View>
+                }
+            />
+        ),
+    } as PopoverArgs,
+    parameters: {
+        chromatic: {
+            // This story tests behavior, so we don't need create a snapshot.
             disableSnapshot: true,
         },
     },

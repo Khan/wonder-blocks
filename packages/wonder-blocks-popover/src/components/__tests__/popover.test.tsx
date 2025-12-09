@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import * as React from "react";
 import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import {userEvent, PointerEventsCheckLevel} from "@testing-library/user-event";
@@ -383,9 +384,7 @@ describe("Popover", () => {
             });
         });
 
-        // TODO(FEI-5533): Key press events aren't working correctly with
-        // user-event v14. We need to investigate and fix this.
-        it.skip("should return focus to the anchor element when pressing Esc", async () => {
+        it("should return focus to the anchor element when pressing Esc", async () => {
             // Arrange
             render(
                 <Popover
@@ -410,7 +409,7 @@ describe("Popover", () => {
 
             // Act
             // we try to close it pressing the Escape key
-            await userEvent.keyboard("{esc}");
+            await userEvent.keyboard("{Escape}");
 
             // Assert
             expect(
@@ -501,6 +500,87 @@ describe("Popover", () => {
                     name: "Next button outside",
                 }),
             ).toHaveFocus();
+        });
+
+        it("should close the popover when the user tabs before the trigger element", async () => {
+            // Arrange
+            render(
+                <Popover
+                    dismissEnabled={true}
+                    placement="top"
+                    content={
+                        <PopoverContent
+                            title="Title"
+                            content="content"
+                            closeButtonVisible={true}
+                        />
+                    }
+                >
+                    {({open}: any) => (
+                        <button data-anchor onClick={open}>
+                            Open default popover
+                        </button>
+                    )}
+                </Popover>,
+            );
+
+            // open the popover
+            await userEvent.click(
+                await screen.findByRole("button", {
+                    name: "Open default popover",
+                }),
+            );
+
+            // Act
+            // Focus on the reference element
+            await userEvent.tab({shift: true});
+            // Focus on the previous element before the popover (triggers
+            // closing the popover)
+            await userEvent.tab({shift: true});
+
+            // Assert
+            await waitFor(() => {
+                expect(screen.queryByText("Title")).not.toBeInTheDocument();
+            });
+        });
+
+        it("should close the popover when the user tabs after the last focusable element inside the popover", async () => {
+            // Arrange
+            render(
+                <div>
+                    <Popover
+                        dismissEnabled={true}
+                        placement="top"
+                        content={
+                            <PopoverContent
+                                title="Title"
+                                content="content"
+                                closeButtonVisible={true}
+                            />
+                        }
+                    >
+                        <Button>Open default popover</Button>
+                    </Popover>
+                    <Button>Next button outside</Button>
+                </div>,
+            );
+
+            // open the popover
+            // open the popover by focusing on the trigger element
+            await userEvent.click(
+                await screen.findByRole("button", {
+                    name: "Open default popover",
+                }),
+            );
+
+            // Focus on the last focusable element inside the popover (dismiss button)
+            await userEvent.tab();
+
+            // Focus on the next element after the popover
+            await userEvent.tab();
+
+            // Assert
+            expect(screen.queryByText("Title")).not.toBeInTheDocument();
         });
     });
 

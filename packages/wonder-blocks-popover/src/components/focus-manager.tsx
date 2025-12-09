@@ -24,6 +24,11 @@ type Props = {
      * Defaults to 0.
      */
     initialFocusDelay?: number;
+    /**
+     * The callback to be called when the focus is lost (tabbing out of the
+     * popover).
+     */
+    onFocusOut?: () => void;
 };
 
 /**
@@ -204,6 +209,11 @@ export default class FocusManager extends React.Component<Props> {
             e.preventDefault();
             this.nextElementAfterPopover?.focus();
         }
+
+        // The user is tabbing out of the popover.
+        if (e.key === "Tab" && !e.shiftKey) {
+            this.props.onFocusOut?.();
+        }
     };
 
     /**
@@ -268,16 +278,6 @@ export default class FocusManager extends React.Component<Props> {
     };
 
     /**
-     * Triggered when the focus is set to the first sentinel. This way, the
-     * focus will be redirected to the anchor element.
-     */
-    handleFocusPreviousFocusableElement: () => void = () => {
-        if (this.props.anchorElement) {
-            this.props.anchorElement.focus();
-        }
-    };
-
-    /**
      * Toggle focusability for all the focusable elements inside the popover.
      * This is useful to prevent the user from tabbing into the popover when it
      * reaches to the last focusable element within the document.
@@ -293,16 +293,6 @@ export default class FocusManager extends React.Component<Props> {
     };
 
     /**
-     * Triggered when the focus is set to the last sentinel. This way, the focus
-     * will be redirected to next element after the anchor element.
-     */
-    handleFocusNextFocusableElement: () => void = () => {
-        if (this.nextElementAfterPopover) {
-            this.nextElementAfterPopover.focus();
-        }
-    };
-
-    /**
      * Triggered when the focus is leaving the previous focusable element. This
      * way, the focus is redirected to the first focusable element inside the
      * popover.
@@ -312,6 +302,11 @@ export default class FocusManager extends React.Component<Props> {
         if (e.key === "Tab" && !e.shiftKey) {
             e.preventDefault();
             this.firstFocusableElementInPopover?.focus();
+        }
+
+        // The user is tabbing before the trigger element.
+        if (e.key === "Tab" && e.shiftKey) {
+            this.props.onFocusOut?.();
         }
     };
 
