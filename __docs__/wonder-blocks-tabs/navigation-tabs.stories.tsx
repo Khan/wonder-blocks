@@ -32,6 +32,9 @@ export default {
         ),
     },
     argTypes,
+    args: {
+        ariaLabel: "Navigation Tabs",
+    },
 } as Meta<typeof NavigationTabs>;
 
 type StoryComponentType = StoryObj<typeof NavigationTabs>;
@@ -480,20 +483,29 @@ export const Tag: StoryComponentType = {
  * and ActionMenu is used to render the links.
  */
 export const ResponsiveBehaviour: StoryComponentType = {
-    args: {
-        children: Array(10)
-            .fill(0)
-            .map((_, index) => {
-                const count = index + 1;
-                return (
-                    <NavigationTabItem
-                        current={index === 0}
-                        key={`default-${count}`}
-                    >
-                        <Link href="#link-1">{`Navigation tab item ${count}`}</Link>
-                    </NavigationTabItem>
-                );
-            }),
+    render: function ResponsiveBehaviour(args) {
+        const [selectedIndex, setSelectedIndex] = React.useState(0);
+
+        const children = React.useMemo(() => {
+            return Array(10)
+                .fill(0)
+                .map((_, index) => {
+                    const count = index + 1;
+                    return (
+                        <NavigationTabItem
+                            current={index === selectedIndex}
+                            key={index}
+                        >
+                            <Link
+                                href={`#link-${count}`}
+                                onClick={() => setSelectedIndex(index)}
+                            >{`Navigation tab item ${count}`}</Link>
+                        </NavigationTabItem>
+                    );
+                });
+        }, [selectedIndex]);
+
+        return <NavigationTabs {...args}>{children}</NavigationTabs>;
     },
     parameters: {
         chromatic: {
