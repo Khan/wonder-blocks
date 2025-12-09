@@ -8,8 +8,6 @@ import {View, type StyleType} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {TemporalLocaleUtils} from "../util/temporal-locale-utils";
 import type {CustomModifiers} from "../util/types";
-// eslint-disable-next-line import/no-unassigned-import
-import "./styles/react-day-picker.css";
 
 import DatePickerInput from "./date-picker-input";
 import DatePickerOverlay from "./date-picker-overlay";
