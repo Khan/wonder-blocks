@@ -11,6 +11,9 @@ import {DatePicker} from "@khanacademy/wonder-blocks-date-picker";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-date-picker/package.json";
 
+// eslint-disable-next-line import/no-unassigned-import
+import "../../packages/wonder-blocks-date-picker/src/components/styles/react-day-picker.css";
+
 type Props = PropsFor<typeof DatePicker>;
 
 const DatePickerWrapper = (props: Props) => {
