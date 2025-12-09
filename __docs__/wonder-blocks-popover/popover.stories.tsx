@@ -342,6 +342,12 @@ export const WithInitialFocusId: StoryComponentType = {
         dismissEnabled: true,
         initialFocusId: "popover-button-2",
     } as PopoverArgs,
+    parameters: {
+        chromatic: {
+            // Popover is closed by default, so we don't need to test it.
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**
@@ -873,7 +879,7 @@ export const InCorners: StoryComponentType = {
         return (
             <View
                 style={{
-                    height: "100%",
+                    height: "80vh",
                     width: "100vw",
                     justifyContent: "space-between",
                 }}
