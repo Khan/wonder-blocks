@@ -6,6 +6,7 @@ import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import Button from "@khanacademy/wonder-blocks-button";
 import {StyleSheet} from "aphrodite";
 import okIcon from "@phosphor-icons/core/fill/check-circle-fill.svg";
+import {PropsFor} from "@khanacademy/wonder-blocks-core";
 import {NavigationTabsProps} from "./types";
 
 function getLabelFromNavigationTabItem(navTabItem: React.ReactElement): string {
@@ -14,10 +15,18 @@ function getLabelFromNavigationTabItem(navTabItem: React.ReactElement): string {
     return label;
 }
 
-function getHrefFromNavigationTabItem(navTabItem: React.ReactElement): string {
+function getActionItemProps(
+    navTabItem: React.ReactElement,
+): PropsFor<typeof ActionItem> {
     const link = navTabItem.props.children;
+    const label = link.props.children;
     const href = link.props.href;
-    return href;
+    return {
+        href,
+        label,
+        onClick: link.props.onClick,
+        active: navTabItem.props.current,
+    };
 }
 
 export const NavigationTabsDropdown = React.forwardRef(
@@ -25,6 +34,7 @@ export const NavigationTabsDropdown = React.forwardRef(
         props: NavigationTabsProps,
         ref: React.ForwardedRef<HTMLElement>,
     ) {
+        const {ariaLabel} = props;
         const children = React.useMemo(
             () =>
                 Array.isArray(props.children)
@@ -39,8 +49,8 @@ export const NavigationTabsDropdown = React.forwardRef(
             );
             return currentTabItem
                 ? getLabelFromNavigationTabItem(currentTabItem)
-                : "";
-        }, [children]);
+                : ariaLabel;
+        }, [children, ariaLabel]);
 
         return (
             <ActionMenu
@@ -57,13 +67,13 @@ export const NavigationTabsDropdown = React.forwardRef(
                 )}
             >
                 {children.map((navTabItem: React.ReactElement) => {
+                    const actionItemProps = getActionItemProps(navTabItem);
                     return (
                         <ActionItem
-                            label={getLabelFromNavigationTabItem(navTabItem)}
-                            href={getHrefFromNavigationTabItem(navTabItem)}
-                            active={navTabItem.props.current}
+                            key={actionItemProps.href}
+                            {...actionItemProps}
                             rightAccessory={
-                                navTabItem.props.current ? (
+                                actionItemProps.active ? (
                                     <PhosphorIcon icon={okIcon} size="medium" />
                                 ) : undefined
                             }
