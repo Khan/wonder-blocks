@@ -297,6 +297,7 @@ export default class Popover extends React.Component<Props, State> {
 
     renderPopper(uniqueId: string): React.ReactNode {
         const {
+            dismissEnabled,
             initialFocusId,
             placement,
             showTail,
@@ -342,6 +343,7 @@ export default class Popover extends React.Component<Props, State> {
                     anchorElement={anchorElement}
                     initialFocusId={initialFocusId}
                     initialFocusDelay={initialFocusDelay}
+                    onFocusOut={dismissEnabled ? this.handleClose : undefined}
                 >
                     {popperContent}
                 </FocusManager>

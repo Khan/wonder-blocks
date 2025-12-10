@@ -1,5 +1,5 @@
 import * as React from "react";
-import {render, screen} from "@testing-library/react";
+import {fireEvent, render, screen} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
 import FocusManager from "../focus-manager";
@@ -176,5 +176,89 @@ describe("FocusManager", () => {
 
         // Assert
         expect(focusableElementInside).toHaveAttribute("tabIndex", "-1");
+    });
+
+    it("should call the onFocusOut callback when the user tabs before the trigger element", async () => {
+        // Arrange
+        const onFocusOut = jest.fn();
+        const externalNodes = (
+            <div>
+                <button>Prev focusable element outside</button>
+                <button>Open popover</button>
+                <button>Next focusable element outside</button>
+            </div>
+        );
+        render(externalNodes);
+
+        // get the anchor reference to be able pass it to the FocusManager
+        const anchorElementNode = await screen.findByRole("button", {
+            name: "Open popover",
+        });
+
+        render(
+            <FocusManager
+                anchorElement={anchorElementNode}
+                onFocusOut={onFocusOut}
+            >
+                <div>
+                    <button>first focusable element inside</button>
+                </div>
+            </FocusManager>,
+        );
+
+        // Act
+        // Focus on the trigger element
+        anchorElementNode.focus();
+        // Use fireEvent instead of userEvent to test the keydown event defined
+        // in FocusManager.
+        // eslint-disable-next-line testing-library/prefer-user-event
+        fireEvent.keyDown(anchorElementNode, {key: "Tab", shiftKey: true});
+
+        // Assert
+        expect(onFocusOut).toHaveBeenCalled();
+    });
+
+    it("should call the onFocusOut callback when the user tabs after the last focusable element inside the popover", async () => {
+        // Arrange
+        const onFocusOut = jest.fn();
+        const externalNodes = (
+            <div>
+                <button>Prev focusable element outside</button>
+                <button>Open popover</button>
+                <button>Next focusable element outside</button>
+            </div>
+        );
+        render(externalNodes);
+
+        // get the anchor reference to be able pass it to the FocusManager
+        const anchorElementNode = await screen.findByRole("button", {
+            name: "Open popover",
+        });
+
+        render(
+            <FocusManager
+                anchorElement={anchorElementNode}
+                onFocusOut={onFocusOut}
+            >
+                <div>
+                    <button>first focusable element inside</button>
+                </div>
+            </FocusManager>,
+        );
+
+        // Act
+        // Focus on the last focusable element inside the popover
+        const lastFocusableElementInside = await screen.findByText(
+            "first focusable element inside",
+        );
+        lastFocusableElementInside.focus();
+
+        // Use fireEvent instead of userEvent to test the keydown event defined
+        // in FocusManager.
+        // eslint-disable-next-line testing-library/prefer-user-event
+        fireEvent.keyDown(lastFocusableElementInside, {key: "Tab"});
+
+        // Assert
+        expect(onFocusOut).toHaveBeenCalled();
     });
 });
