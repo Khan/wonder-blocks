@@ -852,8 +852,8 @@ export const WithCustomAriaDescribedBy: StoryComponentType = {
  */
 export const InCorners: StoryComponentType = {
     render: function Render(args) {
-        const [openedIndex, setOpenedIndex] = React.useState<number>(0);
-        const renderPopover = (index: number) => {
+        const PopoverInCorner = () => {
+            const [opened, setOpened] = React.useState(true);
             return (
                 <Popover
                     {...args}
@@ -865,10 +865,10 @@ export const InCorners: StoryComponentType = {
                         />
                     }
                     dismissEnabled
-                    onClose={() => setOpenedIndex(-1)}
-                    opened={openedIndex === index}
+                    onClose={() => setOpened(false)}
+                    opened={opened}
                 >
-                    <Button onClick={() => setOpenedIndex(index)}>
+                    <Button onClick={() => setOpened(true)}>
                         Open default popover
                     </Button>
                 </Popover>
@@ -888,8 +888,8 @@ export const InCorners: StoryComponentType = {
                         justifyContent: "space-between",
                     }}
                 >
-                    {renderPopover(0)}
-                    {renderPopover(1)}
+                    <PopoverInCorner />
+                    <PopoverInCorner />
                 </View>
                 <View
                     style={{
@@ -897,8 +897,8 @@ export const InCorners: StoryComponentType = {
                         justifyContent: "space-between",
                     }}
                 >
-                    {renderPopover(2)}
-                    {renderPopover(3)}
+                    <PopoverInCorner />
+                    <PopoverInCorner />
                 </View>
             </View>
         );
