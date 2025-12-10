@@ -11,21 +11,6 @@ import type {BaseIconButtonProps} from "../util/icon-button.types";
 
 import {IconButtonUnstyled} from "./icon-button-unstyled";
 
-/**
- * The object containing the CSS variables that can be overridden to customize
- * the appearance of the NodeIconButton component.
- */
-type Tokens = Partial<{
-    "--box-foreground": string;
-    "--box-background": string;
-    "--box-shadow-color": string;
-    "--box-padding": string | number;
-    "--box-shadow-y-rest": string | number;
-    "--box-shadow-y-hover": string | number;
-    "--box-shadow-y-press": string | number;
-    "--icon-size": string | number;
-}>;
-
 type Props = Omit<BaseIconButtonProps, "kind" | "style"> & {
     /**
      * The action type of the button. This determines the visual style of
@@ -61,8 +46,22 @@ type Props = Omit<BaseIconButtonProps, "kind" | "style"> & {
         root?: StyleType;
         box?: StyleType;
         icon?: StyleType;
-        tokens?: Tokens;
+        // tokens?: Tokens;
     };
+
+    /**
+     * Style props
+     */
+    background?: string;
+    color?: string;
+    boxShadowColor?: string;
+    boxShadowY?: {
+        rest: string;
+        hover: string;
+        press: string;
+    };
+    boxPadding?: string;
+    iconSize?: string;
 };
 
 /**
@@ -96,6 +95,13 @@ export const NodeIconButton: React.ForwardRefExoticComponent<
         size = "large",
         styles: stylesProp,
         type = "button",
+        // style props
+        background,
+        color,
+        boxShadowColor,
+        boxShadowY,
+        boxPadding,
+        iconSize,
         // labeling
         "aria-label": ariaLabel,
         ...restProps
@@ -103,21 +109,48 @@ export const NodeIconButton: React.ForwardRefExoticComponent<
 
     const [pressed, setPressed] = React.useState(false);
 
+    const chonkyPressed = {
+        boxShadow: getBoxShadow(
+            boxShadowY?.press ?? styleMap.boxShadowY.large.press,
+            boxShadowColor ?? styleMap.boxShadowColor[actionType],
+        ),
+        transform: `translateY(${boxShadowY?.rest ?? styleMap.boxShadowY.large.rest})`,
+    };
+
+    const dynamicButtonStyles = {
+        [":is(:hover) .chonky" as any]: {
+            boxShadow: getBoxShadow(
+                boxShadowY?.hover ?? styleMap.boxShadowY.large.hover,
+                boxShadowColor ?? styleMap.boxShadowColor[actionType],
+            ),
+            transform: `translateY(calc((${boxShadowY?.hover ?? styleMap.boxShadowY.large.hover} - ${boxShadowY?.rest ?? styleMap.boxShadowY.large.rest}) * -1))`,
+        },
+        [":is(:active) .chonky" as any]: chonkyPressed,
+    };
+
     const buttonStyles = [
         styles.button,
+        dynamicButtonStyles,
         disabled && styles.disabled,
-        !disabled && pressed && styles.pressed,
-        tokens.size[size] as any,
-        tokens.actionType[actionType] as any,
         stylesProp?.root,
-        stylesProp?.tokens,
     ];
+
+    const dynamicChonkyStyles = {
+        background: background ?? styleMap.backgroundColor[actionType],
+        color: color ?? styleMap.color[actionType],
+        boxShadow: getBoxShadow(
+            boxShadowY?.rest ?? styleMap.boxShadowY.large.rest,
+            boxShadowColor ?? styleMap.boxShadowColor[actionType],
+        ),
+        padding: boxPadding ?? styleMap.boxPadding[size],
+    };
 
     const chonkyStyles = [
         styles.chonky,
-        !disabled && pressed && styles.chonkyPressed,
+        !disabled && pressed && chonkyPressed,
+        dynamicChonkyStyles,
         stylesProp?.box,
-        disabled && styles.chonkyDisabled,
+        disabled && chonkyDisabled,
     ];
 
     const handlePress = React.useCallback((isPressing: boolean) => {
@@ -128,7 +161,12 @@ export const NodeIconButton: React.ForwardRefExoticComponent<
         if (typeof icon === "string") {
             return (
                 <PhosphorIcon
-                    style={[styles.icon, stylesProp?.icon]}
+                    style={[
+                        iconSize
+                            ? {inlineSize: iconSize, blockSize: iconSize}
+                            : styles.icon,
+                        stylesProp?.icon,
+                    ]}
                     color="currentColor"
                     icon={icon}
                 />
@@ -136,9 +174,14 @@ export const NodeIconButton: React.ForwardRefExoticComponent<
         }
 
         return React.cloneElement(icon, {
-            style: [styles.icon, stylesProp?.icon],
+            style: [
+                iconSize
+                    ? {inlineSize: iconSize, blockSize: iconSize}
+                    : styles.icon,
+                stylesProp?.icon,
+            ],
         });
-    }, [icon, stylesProp?.icon]);
+    }, [icon, iconSize, stylesProp?.icon]);
 
     return (
         <IconButtonUnstyled
@@ -160,57 +203,49 @@ export const NodeIconButton: React.ForwardRefExoticComponent<
     );
 });
 
-const tokens: {
-    size: Record<string, Tokens>;
-    actionType: Record<string, Tokens>;
-} = {
-    size: {
-        // Default size.
+function getBoxShadow(y: string | number, color: string) {
+    return `0 ${y} 0 0 ${color}`;
+}
+
+const styleMap = {
+    backgroundColor: {
+        notStarted:
+            semanticColor.learning.background.progress.notStarted.default,
+        attempted: semanticColor.learning.background.progress.attempted.default,
+        complete: semanticColor.learning.background.progress.complete.default,
+    },
+    color: {
+        notStarted:
+            semanticColor.learning.foreground.progress.notStarted.strong,
+        attempted: semanticColor.learning.foreground.progress.attempted.strong,
+        complete: semanticColor.learning.foreground.progress.complete.strong,
+    },
+    boxShadowColor: {
+        notStarted: semanticColor.learning.shadow.progress.notStarted.default,
+        attempted: semanticColor.learning.shadow.progress.attempted.default,
+        complete: semanticColor.learning.shadow.progress.complete.default,
+    },
+    boxShadowY: {
         large: {
-            "--icon-size": sizing.size_480,
-            "--box-padding": sizing.size_100,
-            // NOTE: We use px units to prevent a bug in Safari where the shadow
-            // animation flickers when using rem units.
-            "--box-shadow-y-rest": 6,
-            "--box-shadow-y-hover": 8,
-            "--box-shadow-y-press": sizing.size_0,
+            rest: "6px",
+            hover: "8px",
+            press: sizing.size_0,
         },
         small: {
-            "--icon-size": sizing.size_240,
-            "--box-padding": sizing.size_0,
-            "--box-shadow-y-rest": 2,
-            "--box-shadow-y-hover": 4,
-            "--box-shadow-y-press": sizing.size_0,
+            rest: "2px",
+            hover: "4px",
+            press: sizing.size_0,
         },
     },
-    actionType: {
-        // Default action type.
-        notStarted: {
-            "--box-foreground":
-                semanticColor.learning.foreground.progress.notStarted.strong,
-            "--box-background":
-                semanticColor.learning.background.progress.notStarted.default,
-            "--box-shadow-color":
-                semanticColor.learning.shadow.progress.notStarted.default,
-        },
-        attempted: {
-            "--box-foreground":
-                semanticColor.learning.foreground.progress.attempted.strong,
-            "--box-background":
-                semanticColor.learning.background.progress.attempted.default,
-            "--box-shadow-color":
-                semanticColor.learning.shadow.progress.attempted.default,
-        },
-        complete: {
-            "--box-foreground":
-                semanticColor.learning.foreground.progress.complete.strong,
-            "--box-background":
-                semanticColor.learning.background.progress.complete.default,
-            "--box-shadow-color":
-                semanticColor.learning.shadow.progress.complete.default,
-        },
+    iconSize: {
+        large: sizing.size_480,
+        small: sizing.size_240,
     },
-};
+    boxPadding: {
+        large: sizing.size_100,
+        small: sizing.size_0,
+    },
+} as const;
 
 const disabledStatesStyles = {
     outline: "none",
@@ -219,13 +254,8 @@ const disabledStatesStyles = {
 const chonkyDisabled = {
     background: semanticColor.chonky.disabled.background.primary,
     color: semanticColor.chonky.disabled.foreground.primary,
-    boxShadow: `0 var(--box-shadow-y-rest) 0 0 ${semanticColor.chonky.disabled.shadow.primary}`,
+    boxShadow: `0 ${styleMap.boxShadowY.large.rest} 0 0 ${semanticColor.chonky.disabled.shadow.primary}`,
     transform: "none",
-};
-
-const chonkyPressed = {
-    boxShadow: `0 var(--box-shadow-y-press) 0 0 var(--box-shadow-color)`,
-    transform: `translateY(var(--box-shadow-y-rest))`,
 };
 
 const styles = StyleSheet.create({
@@ -249,13 +279,6 @@ const styles = StyleSheet.create({
          * This is important as we want to give more priority to the
          * :focus-visible styles.
          */
-        [":is(:hover) .chonky" as any]: {
-            boxShadow: `0 var(--box-shadow-y-hover) 0 0 var(--box-shadow-color)`,
-            transform: `translateY(calc((var(--box-shadow-y-hover) - var(--box-shadow-y-rest)) * -1))`,
-        },
-
-        [":is(:active) .chonky" as any]: chonkyPressed,
-
         // :focus-visible -> Provide focus styles for keyboard users only.
         ...focusStyles.focus,
     },
@@ -273,11 +296,7 @@ const styles = StyleSheet.create({
             ...chonkyDisabled,
             ...disabledStatesStyles,
         },
-        // [":is(:active) .chonky" as any]: chonkyDisabled,
-    },
-    // Enable keyboard support for press styles.
-    pressed: {
-        [".chonky" as any]: chonkyPressed,
+        [":is(:active) .chonky" as any]: chonkyDisabled,
     },
 
     /**
@@ -288,13 +307,10 @@ const styles = StyleSheet.create({
         borderRadius: border.radius.radius_full,
         justifyContent: "center",
         alignItems: "center",
-        padding: "var(--box-padding)",
-        // theming
-        background: "var(--box-background)",
-        color: "var(--box-foreground)",
+        padding: styleMap.boxPadding.large,
         // Gives the button a "chonky" look and feel.
-        marginBlockEnd: "var(--box-shadow-y-rest)",
-        boxShadow: `0 var(--box-shadow-y-rest) 0 0 var(--box-shadow-color)`,
+        marginBlockEnd: styleMap.boxShadowY.large.rest,
+
         // motion
         transition: "all 0.12s ease-out",
 
@@ -302,14 +318,12 @@ const styles = StyleSheet.create({
             transition: "none",
         },
     },
-    chonkyPressed,
-    chonkyDisabled,
 
     /**
      * Icon Styles (icon)
      */
     icon: {
-        inlineSize: "var(--icon-size)",
-        blockSize: "var(--icon-size)",
+        inlineSize: styleMap.iconSize.large,
+        blockSize: styleMap.iconSize.large,
     },
 });
