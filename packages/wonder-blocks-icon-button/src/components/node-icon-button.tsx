@@ -26,28 +26,25 @@ type Tokens = Partial<{
 type Props = Omit<BaseIconButtonProps, "kind" | "style"> & {
     /**
      * The action type of the button. This determines the visual style of
-     * the button.
+     * the button. Defaults to `notStarted`.
      *
-     * - `notStarted` is used for buttons that indicate a not started
+     * - `notStarted` is used for buttons that indicate a not started action.
+     * - `attempted` is used for buttons that indicate an attempted (in progress)
      *   action.
-     * - `attempted` is used for buttons that indicate an attempted (in
-     *   progress) action.
      * - `complete` is used for buttons that indicate a complete action.
      */
     actionType?: "notStarted" | "attempted" | "complete";
     /**
-     * The alternative text for the icon button. Use `aria-label` for when
-     * there's no visible label for the button, such as when the button only
-     * contains an icon.
+     * The alternative text for the icon button. Required for accessibility.
      */
     "aria-label": string;
 
     /**
      * The size of the icon button.
-     * One of `small` (16 icon, 24 target) or `medium` (48 icon, 48 target).
-     * Defaults to `medium`.
+     * One of `small` (24) or `large` (68).
+     * Defaults to `large`.
      */
-    size?: "small" | "medium";
+    size?: "small" | "large";
 
     /**
      * Custom styles for the elements in the ActivityIconButton component.
@@ -93,7 +90,7 @@ export const NodeIconButton: React.ForwardRefExoticComponent<
         actionType = "notStarted",
         disabled = false,
         icon,
-        size = "medium",
+        size = "large",
         styles: stylesProp,
         type = "button",
         // labeling
@@ -107,20 +104,14 @@ export const NodeIconButton: React.ForwardRefExoticComponent<
         styles.button,
         disabled && styles.disabled,
         !disabled && pressed && styles.pressed,
+        tokens.size[size] as any,
         stylesProp?.root,
-        // size === "medium" ? styles.sizeMedium : styles.sizeSmall,
-        tokens.default,
-        size === "small" && tokens.small,
-        stylesProp?.tokens as any,
     ];
 
     const chonkyStyles = [
         styles.chonky,
         !disabled && pressed && styles.chonkyPressed,
-        tokens[actionType] as any,
-        // actionType === "notStarted" && styles.notStarted,
-        // actionType === "attempted" && styles.attempted,
-        // actionType === "complete" && styles.complete,
+        tokens.actionType[actionType] as any,
         stylesProp?.box,
         disabled && styles.chonkyDisabled,
     ];
@@ -165,62 +156,57 @@ export const NodeIconButton: React.ForwardRefExoticComponent<
     );
 });
 
-const tokens: Record<string, Tokens> = {
-    default: {
-        /**
-         * size="medium"
-         */
-        // Icon
-        "--icon-inline-size": sizing.size_480,
-        "--icon-block-size": sizing.size_480,
-        // Box
-        "--box-padding": sizing.size_100,
-        // NOTE: We use px units to prevent a bug in Safari where the shadow
-        // animation flickers when using rem units.
-        "--box-shadow-y-rest": 6,
-        "--box-shadow-y-hover": 8,
-        "--box-shadow-y-press": sizing.size_0,
-        /**
-         * actionType="notStarted"
-         */
-        "--box-foreground":
-            semanticColor.learning.foreground.progress.notStarted.strong,
-        "--box-background":
-            semanticColor.learning.background.progress.notStarted.default,
-        "--box-shadow-color":
-            semanticColor.learning.shadow.progress.notStarted.default,
+const tokens: {
+    size: Record<string, Tokens>;
+    actionType: Record<string, Tokens>;
+} = {
+    size: {
+        // Default size.
+        large: {
+            "--icon-inline-size": sizing.size_480,
+            "--icon-block-size": sizing.size_480,
+            "--box-padding": sizing.size_100,
+            // NOTE: We use px units to prevent a bug in Safari where the shadow
+            // animation flickers when using rem units.
+            "--box-shadow-y-rest": 6,
+            "--box-shadow-y-hover": 8,
+            "--box-shadow-y-press": sizing.size_0,
+        },
+        small: {
+            "--icon-inline-size": sizing.size_240,
+            "--icon-block-size": sizing.size_240,
+            "--box-padding": sizing.size_0,
+            "--box-shadow-y-rest": 2,
+            "--box-shadow-y-hover": 4,
+            "--box-shadow-y-press": sizing.size_0,
+        },
     },
-    /**
-     * Variants
-     */
-    // size="small"
-    small: {
-        "--icon-inline-size": sizing.size_240,
-        "--icon-block-size": sizing.size_240,
-        "--box-padding": sizing.size_0,
-        // NOTE: We use px units to prevent a bug in Safari where the shadow
-        // animation flickers when using rem units.
-        "--box-shadow-y-rest": 2,
-        "--box-shadow-y-hover": 4,
-        "--box-shadow-y-press": sizing.size_0,
-    },
-    // actionType="attempted"
-    attempted: {
-        "--box-foreground":
-            semanticColor.learning.foreground.progress.attempted.strong,
-        "--box-background":
-            semanticColor.learning.background.progress.attempted.default,
-        "--box-shadow-color":
-            semanticColor.learning.shadow.progress.attempted.default,
-    },
-    // actionType="complete"
-    complete: {
-        "--box-foreground":
-            semanticColor.learning.foreground.progress.complete.strong,
-        "--box-background":
-            semanticColor.learning.background.progress.complete.default,
-        "--box-shadow-color":
-            semanticColor.learning.shadow.progress.complete.default,
+    actionType: {
+        // Default action type.
+        notStarted: {
+            "--box-foreground":
+                semanticColor.learning.foreground.progress.notStarted.strong,
+            "--box-background":
+                semanticColor.learning.background.progress.notStarted.default,
+            "--box-shadow-color":
+                semanticColor.learning.shadow.progress.notStarted.default,
+        },
+        attempted: {
+            "--box-foreground":
+                semanticColor.learning.foreground.progress.attempted.strong,
+            "--box-background":
+                semanticColor.learning.background.progress.attempted.default,
+            "--box-shadow-color":
+                semanticColor.learning.shadow.progress.attempted.default,
+        },
+        complete: {
+            "--box-foreground":
+                semanticColor.learning.foreground.progress.complete.strong,
+            "--box-background":
+                semanticColor.learning.background.progress.complete.default,
+            "--box-shadow-color":
+                semanticColor.learning.shadow.progress.complete.default,
+        },
     },
 };
 
@@ -236,7 +222,7 @@ const chonkyDisabled = {
 };
 
 const chonkyPressed = {
-    boxShadow: `0 var(--box-shadow-y-press) 0 0 ${semanticColor.learning.shadow.progress.notStarted.default}`,
+    boxShadow: `0 var(--box-shadow-y-press) 0 0 var(--box-shadow-color)`,
     transform: `translateY(var(--box-shadow-y-rest))`,
 };
 

@@ -18,24 +18,22 @@ export default {
     title: "Packages / IconButton / Testing / Snapshots / NodeIconButton",
     tags: ["!autodocs"],
     args: {
-        "aria-label": "Send",
-        icon: IconMappings.iceCream,
+        "aria-label": "Node path",
+        icon: IconMappings.lightningFill,
         onClick: action("clicked"),
-        actionType: "progressive",
-        size: "medium",
     },
     parameters: {
         chromatic: {
             modes: themeModes,
         },
     },
-} as Meta;
+} as Meta<typeof NodeIconButton>;
 
 type Story = StoryObj<typeof NodeIconButton>;
 
 const sizes = [
     {name: "Small", props: {size: "small"}},
-    {name: "Medium", props: {size: "medium"}},
+    {name: "Large", props: {size: "large"}},
 ];
 
 const actionTypes = [

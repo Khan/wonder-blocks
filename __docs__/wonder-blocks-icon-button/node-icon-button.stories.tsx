@@ -2,8 +2,6 @@ import * as React from "react";
 
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
-
 import {action} from "storybook/actions";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {NodeIconButton} from "@khanacademy/wonder-blocks-icon-button";
@@ -29,7 +27,7 @@ export default {
         ),
         chromatic: {
             // Disabling all snapshots because we are testing all the variants
-            // in `activity-icon-button-testing-snapshots.stories.tsx`.
+            // in `node-icon-button-testing-snapshots.stories.tsx`.
             disableSnapshot: true,
         },
         docs: {
@@ -43,7 +41,8 @@ export default {
             control: {
                 type: "select",
             },
-            options: IconMappings as any,
+            mapping: IconMappings,
+            options: Object.keys(IconMappings),
             table: {
                 type: {
                     // NOTE: We document `Icon` instead of `ReactElement`
@@ -55,7 +54,7 @@ export default {
         },
     },
     args: {
-        "aria-label": "Search",
+        "aria-label": "Node path",
         actionType: "notStarted",
     },
 } as Meta<typeof NodeIconButton>;
@@ -63,13 +62,13 @@ export default {
 type StoryComponentType = StoryObj<typeof NodeIconButton>;
 
 /**
- * Minimal activity icon button. The only props specified in this example are
- * `icon` and `onClick`.
+ * Minimal node icon button. The only props specified in this example are
+ * `icon`, `onClick`, and `aria-label`. Note that `aria-label` is required for
+ * accessibility, as it provides a text alternative for the icon button.
  */
 export const Default: StoryComponentType = {
     args: {
-        icon: magnifyingGlass,
-        actionType: "notStarted",
+        icon: IconMappings.pencilSimple,
         disabled: false,
         onClick: (e: React.SyntheticEvent) => {
             action("clicked")(e);
@@ -113,15 +112,18 @@ export const ActionType: StoryComponentType = {
     ),
 };
 
-const sizes = ["small", "medium"] as const;
+const sizes = ["small", "large"] as const;
 
 /**
- * NodeIconButton has a `size` prop that is either `small` (16 icon, 24 target) or `medium` (48 icon, 48 target).
+ * NodeIconButton has a `size` prop that is either `small` (16 icon, 24 target)
+ * or `medium` (48 icon, 48 target).
  *
- * - `small` is used for smaller buttons that are used in smaller contexts, such as in a menu.
- * - `medium` is used for larger buttons that are used in larger contexts, such as in a header.
+ * - `small` is used for smaller buttons that are used in smaller contexts, such
+ *   as in a menu.
+ * - `large` is used for larger buttons that are used in larger contexts, such
+ *   as in a header.
  *
- * Defaults to `medium`.
+ * Defaults to `large`.
  */
 export const Size: StoryComponentType = {
     render: (args) => (
@@ -151,37 +153,12 @@ export const UsingHref: StoryComponentType = {
     render: () => {
         return (
             <NodeIconButton
-                icon={IconMappings.info}
+                icon={IconMappings.clock}
                 aria-label="More information"
                 href="/"
                 target="_blank"
                 onClick={(e) => action("clicked")(e)}
             />
-        );
-    },
-};
-
-/**
- * There are two ways to provide accessible names to `NodeIconButton`. One
- * approach is using the `aria-label` prop that can be used to explain the
- * function of the button. Remember to keep the description concise but
- * understandable.
- */
-export const WithAriaLabel: StoryComponentType = {
-    render: () => {
-        return (
-            <View style={{gap: sizing.size_160, flexDirection: "row"}}>
-                <NodeIconButton
-                    icon={IconMappings.caretLeftBold}
-                    onClick={(e) => action("clicked")(e)}
-                    aria-label="Previous page"
-                />
-                <NodeIconButton
-                    icon={IconMappings.caretRightBold}
-                    onClick={(e) => action("clicked")(e)}
-                    aria-label="Next page"
-                />
-            </View>
         );
     },
 };
