@@ -16,8 +16,7 @@ type Tokens = Partial<{
     "--box-background": string;
     "--box-shadow-color": string;
     "--box-padding": string | number;
-    "--icon-inline-size": string | number;
-    "--icon-block-size": string | number;
+    "--icon-size": string | number;
     "--box-shadow-y-rest": string | number;
     "--box-shadow-y-hover": string | number;
     "--box-shadow-y-press": string | number;
@@ -164,8 +163,7 @@ const tokens: {
     size: {
         // Default size.
         large: {
-            "--icon-inline-size": sizing.size_480,
-            "--icon-block-size": sizing.size_480,
+            "--icon-size": sizing.size_480,
             "--box-padding": sizing.size_100,
             // NOTE: We use px units to prevent a bug in Safari where the shadow
             // animation flickers when using rem units.
@@ -174,8 +172,7 @@ const tokens: {
             "--box-shadow-y-press": sizing.size_0,
         },
         small: {
-            "--icon-inline-size": sizing.size_240,
-            "--icon-block-size": sizing.size_240,
+            "--icon-size": sizing.size_240,
             "--box-padding": sizing.size_0,
             "--box-shadow-y-rest": 2,
             "--box-shadow-y-hover": 4,
@@ -308,7 +305,7 @@ const styles = StyleSheet.create({
      * Icon Styles (icon)
      */
     icon: {
-        inlineSize: "var(--icon-inline-size)",
-        blockSize: "var(--icon-block-size)",
+        inlineSize: "var(--icon-size)",
+        blockSize: "var(--icon-size)",
     },
 });

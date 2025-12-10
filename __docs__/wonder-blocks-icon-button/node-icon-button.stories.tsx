@@ -219,8 +219,7 @@ export const WithStyles: StoryComponentType = {
                             semanticColor.learning.background.gems.default,
                         "--box-shadow-color":
                             semanticColor.learning.math.foreground.pink,
-                        "--icon-inline-size": sizing.size_960,
-                        "--icon-block-size": sizing.size_960,
+                        "--icon-size": sizing.size_960,
                     },
                 }}
             />
