@@ -231,7 +231,7 @@ const disabledStatesStyles = {
 const chonkyDisabled = {
     background: semanticColor.chonky.disabled.background.primary,
     color: semanticColor.chonky.disabled.foreground.primary,
-    boxShadow: `0 var(--box-shadow-y-rest) 0 0 var(--box-shadow-color)`,
+    boxShadow: `0 var(--box-shadow-y-rest) 0 0 ${semanticColor.chonky.disabled.shadow.primary}`,
     transform: "none",
 };
 
@@ -282,7 +282,7 @@ const styles = StyleSheet.create({
         },
         // Reset hover and active styles on the chonky element.
         [":is(:hover) .chonky" as any]: {
-            // ...chonkyDisabled,
+            ...chonkyDisabled,
             ...disabledStatesStyles,
         },
         // [":is(:active) .chonky" as any]: chonkyDisabled,
@@ -308,7 +308,7 @@ const styles = StyleSheet.create({
         marginBlockEnd: "var(--box-shadow-y-rest)",
         boxShadow: `0 var(--box-shadow-y-rest) 0 0 var(--box-shadow-color)`,
         // motion
-        transition: "box-shadow 0.12s ease-out",
+        transition: "all 0.12s ease-out",
 
         ["@media not (hover: hover)" as any]: {
             transition: "none",
