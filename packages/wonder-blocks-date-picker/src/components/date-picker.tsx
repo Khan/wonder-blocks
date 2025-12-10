@@ -286,7 +286,7 @@ const DatePicker = (props: Props) => {
                 >
                     <View ref={datePickerRef}>
                         <DayPicker
-                            month={selectedDateValue ?? undefined}
+                            defaultMonth={selectedDateValue ?? undefined}
                             startMonth={minDateToShow ?? undefined}
                             endMonth={
                                 maxDate
