@@ -12,7 +12,7 @@ import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-date-picker/package.json";
 
 // eslint-disable-next-line import/no-unassigned-import
-import "../../packages/wonder-blocks-date-picker/src/components/styles/react-day-picker.css";
+import "react-day-picker/style.css";
 
 type Props = PropsFor<typeof DatePicker>;
 

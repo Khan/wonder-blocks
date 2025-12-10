@@ -5,7 +5,7 @@ import {DayPicker} from "react-day-picker";
 import {enUS} from "react-day-picker/locale";
 
 import {View, type StyleType} from "@khanacademy/wonder-blocks-core";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {TemporalLocaleUtils} from "../util/temporal-locale-utils";
 import type {CustomModifiers} from "../util/types";
 
@@ -71,6 +71,10 @@ type RootWithEscProps = React.HTMLAttributes<Element> & {
     rootRef?: unknown;
     onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;
 };
+
+const customRootStyle = {
+    "--rdp-accent-color": semanticColor.core.border.instructive.default,
+} as React.CSSProperties & Record<string, string>;
 
 /**
  * A UI component that allows the user to pick a date by using an input element
@@ -295,6 +299,14 @@ const DatePicker = (props: Props) => {
                             onDayClick={handleDayClick}
                             components={{Root: RootWithEsc}}
                             locale={enUS}
+                            styles={{
+                                // Override the React Day Picker accent color.
+                                // This requires some trickery to override a CSS variable key
+                                root: {...customRootStyle},
+                                // Override frontend repo style that causes the nav buttons
+                                // to overlap the month name.
+                                nav: {width: "auto"},
+                            }}
                             // localeUtils={TemporalLocaleUtils} TODO: determine if we still need formatters/labels for custom text
                         />
                         {maybeRenderFooter()}
