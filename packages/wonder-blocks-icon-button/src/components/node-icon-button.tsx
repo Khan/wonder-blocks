@@ -105,13 +105,14 @@ export const NodeIconButton: React.ForwardRefExoticComponent<
         disabled && styles.disabled,
         !disabled && pressed && styles.pressed,
         tokens.size[size] as any,
+        tokens.actionType[actionType] as any,
         stylesProp?.root,
+        stylesProp?.tokens,
     ];
 
     const chonkyStyles = [
         styles.chonky,
         !disabled && pressed && styles.chonkyPressed,
-        tokens.actionType[actionType] as any,
         stylesProp?.box,
         disabled && styles.chonkyDisabled,
     ];

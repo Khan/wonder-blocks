@@ -201,7 +201,9 @@ export const WithCustomIcon: StoryComponentType = {
  * The following parts can be styled:
  * - `root`: Styles the root element (button)
  * - `box`: Styles the "chonky" box element
- * - `label`: Styles the text in the button
+ * - `icon`: Styles the icon element
+ * - `tokens`: The CSS variables that control the visual appearance of the
+ *   button.
  */
 export const WithStyles: StoryComponentType = {
     render: () => {
@@ -210,11 +212,6 @@ export const WithStyles: StoryComponentType = {
                 icon={IconMappings.info}
                 aria-label="More information"
                 styles={{
-                    box: {
-                        backgroundColor:
-                            semanticColor.learning.background.gems.default,
-                        color: semanticColor.learning.foreground.gems.default,
-                    },
                     tokens: {
                         "--box-foreground":
                             semanticColor.learning.foreground.gems.default,
