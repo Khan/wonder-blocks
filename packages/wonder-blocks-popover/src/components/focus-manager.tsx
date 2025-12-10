@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import {keys} from "@khanacademy/wonder-blocks-core";
 import {findFocusableNodes} from "../util/util";
 import InitialFocus from "./initial-focus";
 
@@ -197,7 +198,7 @@ export default class FocusManager extends React.Component<Props> {
 
     handleKeydownFirstFocusableElement: (e: KeyboardEvent) => void = (e) => {
         // It will try focus only if the user is pressing `Shift+tab`
-        if (e.key === "Tab" && e.shiftKey) {
+        if (e.key === keys.tab && e.shiftKey) {
             e.preventDefault();
             this.props.anchorElement?.focus();
         }
@@ -205,13 +206,13 @@ export default class FocusManager extends React.Component<Props> {
 
     handleKeydownLastFocusableElement: (e: KeyboardEvent) => void = (e) => {
         // It will try focus only if the user is pressing `Shift+tab`
-        if (this.nextElementAfterPopover && e.key === "Tab" && !e.shiftKey) {
+        if (this.nextElementAfterPopover && e.key === keys.tab && !e.shiftKey) {
             e.preventDefault();
             this.nextElementAfterPopover?.focus();
         }
 
         // The user is tabbing out of the popover.
-        if (e.key === "Tab" && !e.shiftKey) {
+        if (e.key === keys.tab && !e.shiftKey) {
             this.props.onFocusOut?.();
         }
     };
@@ -299,13 +300,13 @@ export default class FocusManager extends React.Component<Props> {
      */
     handleKeydownPreviousFocusableElement: (e: KeyboardEvent) => void = (e) => {
         // It will try focus only if the user is pressing `tab`
-        if (e.key === "Tab" && !e.shiftKey) {
+        if (e.key === keys.tab && !e.shiftKey) {
             e.preventDefault();
             this.firstFocusableElementInPopover?.focus();
         }
 
         // The user is tabbing before the trigger element.
-        if (e.key === "Tab" && e.shiftKey) {
+        if (e.key === keys.tab && e.shiftKey) {
             this.props.onFocusOut?.();
         }
     };
@@ -316,7 +317,7 @@ export default class FocusManager extends React.Component<Props> {
      */
     handleKeydownNextFocusableElement: (e: KeyboardEvent) => void = (e) => {
         // It will try focus only if the user is pressing `Shift+tab`
-        if (e.key === "Tab" && e.shiftKey) {
+        if (e.key === keys.tab && e.shiftKey) {
             e.preventDefault();
             this.lastFocusableElementInPopover?.focus();
         }

@@ -582,6 +582,45 @@ describe("Popover", () => {
             // Assert
             expect(screen.queryByText("Title")).not.toBeInTheDocument();
         });
+
+        it("should NOT close the popover when dismissEnabled is set to false", async () => {
+            // Arrange
+            render(
+                <div>
+                    <Popover
+                        dismissEnabled={false}
+                        placement="top"
+                        content={
+                            <PopoverContent
+                                title="Title"
+                                content="content"
+                                closeButtonVisible={true}
+                            />
+                        }
+                    >
+                        <Button>Open default popover</Button>
+                    </Popover>
+                    <Button>Next button outside</Button>
+                </div>,
+            );
+
+            // open the popover
+            // open the popover by focusing on the trigger element
+            await userEvent.click(
+                await screen.findByRole("button", {
+                    name: "Open default popover",
+                }),
+            );
+
+            // Focus on the last focusable element inside the popover (dismiss button)
+            await userEvent.tab();
+
+            // Focus on the next element after the popover
+            await userEvent.tab();
+
+            // Assert
+            expect(screen.getByText("Title")).toBeInTheDocument();
+        });
     });
 
     describe("a11y", () => {
