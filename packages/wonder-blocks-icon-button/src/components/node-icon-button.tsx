@@ -11,15 +11,19 @@ import type {BaseIconButtonProps} from "../util/icon-button.types";
 
 import {IconButtonUnstyled} from "./icon-button-unstyled";
 
+/**
+ * The object containing the CSS variables that can be overridden to customize
+ * the appearance of the NodeIconButton component.
+ */
 type Tokens = Partial<{
     "--box-foreground": string;
     "--box-background": string;
     "--box-shadow-color": string;
     "--box-padding": string | number;
-    "--icon-size": string | number;
     "--box-shadow-y-rest": string | number;
     "--box-shadow-y-hover": string | number;
     "--box-shadow-y-press": string | number;
+    "--icon-size": string | number;
 }>;
 
 type Props = Omit<BaseIconButtonProps, "kind" | "style"> & {
