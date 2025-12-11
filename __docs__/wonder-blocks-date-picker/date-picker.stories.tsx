@@ -2,6 +2,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 import {Temporal} from "temporal-polyfill";
 import * as React from "react";
 
+import {fr} from "react-day-picker/locale";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View, type PropsFor} from "@khanacademy/wonder-blocks-core";
 import {sizing, spacing} from "@khanacademy/wonder-blocks-tokens";
@@ -296,10 +297,32 @@ const DatePickerWithOpenOverlay = (props: Props) => {
 export const OpenCalendarOverlay: Story = {
     render: (args) => <DatePickerWithOpenOverlay {...args} />,
     args: {
-        selectedDate: Temporal.PlainDate.from("2025-11-01"),
-        minDate: Temporal.PlainDate.from("2025-11-01"),
+        selectedDate: Temporal.PlainDate.from("2025-12-01"),
+        minDate: Temporal.PlainDate.from("2025-12-01"),
         maxDate: Temporal.PlainDate.from("2026-12-31"),
         updateDate: () => {},
+    },
+    parameters: {
+        chromatic: {
+            // Re-enable snapshots for this story since the calendar is visible
+            disableSnapshot: false,
+        },
+    },
+};
+
+/**
+ * DatePicker with a different locale than US English. This story is useful for
+ * testing localization functionality.
+ */
+export const WithAlternateLocale: Story = {
+    render: (args) => <DatePickerWithOpenOverlay {...args} />,
+    args: {
+        selectedDate: Temporal.PlainDate.from("2025-12-01"),
+        minDate: Temporal.PlainDate.from("2025-12-01"),
+        maxDate: Temporal.PlainDate.from("2027-12-31"),
+        updateDate: () => {},
+        locale: fr,
+        inputAriaLabel: "Choisir ou entrer une date",
     },
     parameters: {
         chromatic: {
