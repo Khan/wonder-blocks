@@ -7,9 +7,11 @@ import {sizing} from "@khanacademy/wonder-blocks-tokens";
 export default {
     title: "Packages / Tabs / TabsDropdown",
     component: TabsDropdown,
-    chromatic: {
-        // Visual regression testing is done in the testing snapshots stories
-        disableSnapshot: true,
+    parameters: {
+        chromatic: {
+            // Visual regression testing is done in the testing snapshots stories
+            disableSnapshot: true,
+        },
     },
 } as Meta<typeof TabsDropdown>;
 
