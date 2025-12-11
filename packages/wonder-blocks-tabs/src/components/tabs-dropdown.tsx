@@ -172,7 +172,9 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, Props>(
                         );
                     })}
                 </ActionMenu>
-                <View id={panelId}>{selectedTabItem?.panel}</View>
+                <View id={panelId} role="group" aria-labelledby={openerId}>
+                    {selectedTabItem?.panel}
+                </View>
             </View>
         );
     },
