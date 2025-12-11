@@ -16,14 +16,14 @@ import {IconButtonUnstyled} from "./icon-button-unstyled";
  * the appearance of the NodeIconButton component.
  */
 type Tokens = Partial<{
-    "--box-foreground": string;
-    "--box-background": string;
-    "--box-shadow-color": string;
-    "--box-padding": string | number;
-    "--box-shadow-y-rest": string | number;
-    "--box-shadow-y-hover": string | number;
-    "--box-shadow-y-press": string | number;
-    "--icon-size": string | number;
+    "--wb-ib-node-box-foreground": string;
+    "--wb-ib-node-box-background": string;
+    "--wb-ib-node-box-shadow-color": string;
+    "--wb-ib-node-box-padding": string | number;
+    "--wb-ib-node-box-shadow-y-rest": string | number;
+    "--wb-ib-node-box-shadow-y-hover": string | number;
+    "--wb-ib-node-box-shadow-y-press": string | number;
+    "--wb-ib-node-icon-size": string | number;
 }>;
 
 type Props = Omit<BaseIconButtonProps, "kind" | "style"> & {
@@ -54,14 +54,11 @@ type Props = Omit<BaseIconButtonProps, "kind" | "style"> & {
      * - `root`: Styles the root element (button)
      * - `box`: Styles the "chonky" box element
      * - `icon`: Styles the icon element
-     * - `tokens`: The CSS variables that control the visual appearance of the
-     *   button.
      */
     styles?: {
         root?: StyleType;
         box?: StyleType;
         icon?: StyleType;
-        tokens?: Tokens;
     };
 };
 
@@ -107,10 +104,9 @@ export const NodeIconButton: React.ForwardRefExoticComponent<
         styles.button,
         disabled && styles.disabled,
         !disabled && pressed && styles.pressed,
-        tokens.size[size] as any,
-        tokens.actionType[actionType] as any,
+        variants.size[size] as any,
+        variants.actionType[actionType] as any,
         stylesProp?.root,
-        stylesProp?.tokens,
     ];
 
     const chonkyStyles = [
@@ -160,53 +156,53 @@ export const NodeIconButton: React.ForwardRefExoticComponent<
     );
 });
 
-const tokens: {
+const variants: {
     size: Record<string, Tokens>;
     actionType: Record<string, Tokens>;
 } = {
     size: {
         // Default size.
         large: {
-            "--icon-size": sizing.size_480,
-            "--box-padding": sizing.size_100,
+            "--wb-ib-node-icon-size": sizing.size_480,
+            "--wb-ib-node-box-padding": sizing.size_100,
             // NOTE: We use px units to prevent a bug in Safari where the shadow
             // animation flickers when using rem units.
-            "--box-shadow-y-rest": 6,
-            "--box-shadow-y-hover": 8,
-            "--box-shadow-y-press": sizing.size_0,
+            "--wb-ib-node-box-shadow-y-rest": "6px",
+            "--wb-ib-node-box-shadow-y-hover": "8px",
+            "--wb-ib-node-box-shadow-y-press": sizing.size_0,
         },
         small: {
-            "--icon-size": sizing.size_240,
-            "--box-padding": sizing.size_0,
-            "--box-shadow-y-rest": 2,
-            "--box-shadow-y-hover": 4,
-            "--box-shadow-y-press": sizing.size_0,
+            "--wb-ib-node-icon-size": sizing.size_240,
+            "--wb-ib-node-box-padding": sizing.size_0,
+            "--wb-ib-node-box-shadow-y-rest": "2px",
+            "--wb-ib-node-box-shadow-y-hover": "4px",
+            "--wb-ib-node-box-shadow-y-press": sizing.size_0,
         },
     },
     actionType: {
         // Default action type.
         notStarted: {
-            "--box-foreground":
+            "--wb-ib-node-box-foreground":
                 semanticColor.learning.foreground.progress.notStarted.strong,
-            "--box-background":
+            "--wb-ib-node-box-background":
                 semanticColor.learning.background.progress.notStarted.default,
-            "--box-shadow-color":
+            "--wb-ib-node-box-shadow-color":
                 semanticColor.learning.shadow.progress.notStarted.default,
         },
         attempted: {
-            "--box-foreground":
+            "--wb-ib-node-box-foreground":
                 semanticColor.learning.foreground.progress.attempted.strong,
-            "--box-background":
+            "--wb-ib-node-box-background":
                 semanticColor.learning.background.progress.attempted.default,
-            "--box-shadow-color":
+            "--wb-ib-node-box-shadow-color":
                 semanticColor.learning.shadow.progress.attempted.default,
         },
         complete: {
-            "--box-foreground":
+            "--wb-ib-node-box-foreground":
                 semanticColor.learning.foreground.progress.complete.strong,
-            "--box-background":
+            "--wb-ib-node-box-background":
                 semanticColor.learning.background.progress.complete.default,
-            "--box-shadow-color":
+            "--wb-ib-node-box-shadow-color":
                 semanticColor.learning.shadow.progress.complete.default,
         },
     },
@@ -219,13 +215,13 @@ const disabledStatesStyles = {
 const chonkyDisabled = {
     background: semanticColor.chonky.disabled.background.primary,
     color: semanticColor.chonky.disabled.foreground.primary,
-    boxShadow: `0 var(--box-shadow-y-rest) 0 0 ${semanticColor.chonky.disabled.shadow.primary}`,
+    boxShadow: `0 var(--wb-ib-node-box-shadow-y-rest) 0 0 ${semanticColor.chonky.disabled.shadow.primary}`,
     transform: "none",
 };
 
 const chonkyPressed = {
-    boxShadow: `0 var(--box-shadow-y-press) 0 0 var(--box-shadow-color)`,
-    transform: `translateY(var(--box-shadow-y-rest))`,
+    boxShadow: `0 var(--wb-ib-node-box-shadow-y-press) 0 0 var(--wb-ib-node-box-shadow-color)`,
+    transform: `translateY(var(--wb-ib-node-box-shadow-y-rest))`,
 };
 
 const styles = StyleSheet.create({
@@ -250,8 +246,8 @@ const styles = StyleSheet.create({
          * :focus-visible styles.
          */
         [":is(:hover) .chonky" as any]: {
-            boxShadow: `0 var(--box-shadow-y-hover) 0 0 var(--box-shadow-color)`,
-            transform: `translateY(calc((var(--box-shadow-y-hover) - var(--box-shadow-y-rest)) * -1))`,
+            boxShadow: `0 var(--wb-ib-node-box-shadow-y-hover) 0 0 var(--wb-ib-node-box-shadow-color)`,
+            transform: `translateY(calc((var(--wb-ib-node-box-shadow-y-hover) - var(--wb-ib-node-box-shadow-y-rest)) * -1))`,
         },
 
         [":is(:active) .chonky" as any]: chonkyPressed,
@@ -288,15 +284,20 @@ const styles = StyleSheet.create({
         borderRadius: border.radius.radius_full,
         justifyContent: "center",
         alignItems: "center",
-        padding: "var(--box-padding)",
+        padding: "var(--wb-ib-node-box-padding)",
+        width: "100%",
+        height: "100%",
         // theming
-        background: "var(--box-background)",
-        color: "var(--box-foreground)",
+        background: "var(--wb-ib-node-box-background)",
+        color: "var(--wb-ib-node-box-foreground)",
         // Gives the button a "chonky" look and feel.
-        marginBlockEnd: "var(--box-shadow-y-rest)",
-        boxShadow: `0 var(--box-shadow-y-rest) 0 0 var(--box-shadow-color)`,
+        marginBlockEnd: "var(--wb-ib-node-box-shadow-y-rest)",
+        boxShadow: `0 var(--wb-ib-node-box-shadow-y-rest) 0 0 var(--wb-ib-node-box-shadow-color)`,
         // motion
-        transition: "all 0.12s ease-out",
+        transition: "0.12s ease-out",
+        // NOTE: We only want to transition the properties that are being
+        // animated.
+        transitionProperty: "box-shadow, transform, margin-block-end",
 
         ["@media not (hover: hover)" as any]: {
             transition: "none",
@@ -309,7 +310,7 @@ const styles = StyleSheet.create({
      * Icon Styles (icon)
      */
     icon: {
-        inlineSize: "var(--icon-size)",
-        blockSize: "var(--icon-size)",
+        inlineSize: "var(--wb-ib-node-icon-size)",
+        blockSize: "var(--wb-ib-node-icon-size)",
     },
 });

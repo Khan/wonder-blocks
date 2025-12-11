@@ -196,30 +196,32 @@ export const WithCustomIcon: StoryComponentType = {
 
 /**
  * You can use the `styles` prop to apply custom styles to speicific parts of
- * the NodeIconButton component.
+ * the `NodeIconButton` component.
  *
  * The following parts can be styled:
  * - `root`: Styles the root element (button)
  * - `box`: Styles the "chonky" box element
  * - `icon`: Styles the icon element
- * - `tokens`: The CSS variables that control the visual appearance of the
- *   button.
  */
-export const WithStyles: StoryComponentType = {
+export const WithCustomStyles: StoryComponentType = {
     render: () => {
         return (
             <NodeIconButton
                 icon={IconMappings.info}
                 aria-label="More information"
                 styles={{
-                    tokens: {
-                        "--box-foreground":
-                            semanticColor.learning.foreground.gems.default,
-                        "--box-background":
-                            semanticColor.learning.background.gems.default,
-                        "--box-shadow-color":
-                            semanticColor.learning.math.foreground.pink,
-                        "--icon-size": sizing.size_960,
+                    root: {
+                        width: sizing.size_960,
+                        height: sizing.size_960,
+                    },
+                    box: {
+                        background:
+                            semanticColor.learning.background.streaks.default,
+                    },
+                    icon: {
+                        color: semanticColor.learning.foreground.streaks
+                            .default,
+                        margin: sizing.size_120,
                     },
                 }}
             />
