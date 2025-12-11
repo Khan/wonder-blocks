@@ -73,6 +73,18 @@ function flattenThemeContract<T>(
     return result;
 }
 
+function cleanObject(obj: any) {
+    const t = obj;
+    for (const v in t) {
+        if (typeof t[v] === "object") {
+            cleanObject(t[v]);
+        } else if (t[v] === undefined) {
+            delete t[v];
+        }
+    }
+    return t;
+}
+
 function mapTokensToCssVars(tokens: RecursivePartial<Tokens>) {
     return flattenThemeContract(tokens, "--", "-");
 }
@@ -112,8 +124,21 @@ type Props = Omit<BaseIconButtonProps, "kind" | "style"> & {
         root?: StyleType;
         box?: StyleType;
         icon?: StyleType;
-        tokens?: RecursivePartial<Tokens>;
     };
+
+    /**
+     * Style props
+     */
+    background?: string;
+    foreground?: string;
+    boxShadowColor?: string;
+    boxShadowY?: {
+        rest: string;
+        hover: string;
+        press: string;
+    };
+    boxPadding?: string;
+    iconSize?: string;
 };
 
 /**
@@ -147,6 +172,13 @@ export const NodeIconButton: React.ForwardRefExoticComponent<
         size = "large",
         styles: stylesProp,
         type = "button",
+        // style props
+        background,
+        foreground,
+        boxShadowColor,
+        boxShadowY,
+        boxPadding,
+        iconSize,
         // labeling
         "aria-label": ariaLabel,
         ...restProps
@@ -158,6 +190,39 @@ export const NodeIconButton: React.ForwardRefExoticComponent<
     const currentActionType = mapTokensToCssVars(
         variants.actionType[actionType],
     );
+    const stylePropsOverrides = React.useMemo(() => {
+        // map style props to our tokens contract
+        const styleTokens = {
+            box: {
+                padding: boxPadding,
+                background,
+                foreground,
+                shadow: {
+                    y: {
+                        rest: boxShadowY?.rest,
+                        hover: boxShadowY?.hover,
+                        press: boxShadowY?.press,
+                    },
+                    color: boxShadowColor,
+                },
+            },
+            icon: {
+                size: iconSize,
+            },
+        } as Tokens;
+
+        // Only include the keys with values that are not undefined
+        const partialStyleTokens = cleanObject(styleTokens);
+
+        return mapTokensToCssVars(partialStyleTokens);
+    }, [
+        background,
+        foreground,
+        boxShadowColor,
+        boxShadowY,
+        boxPadding,
+        iconSize,
+    ]);
 
     const buttonStyles = [
         styles.button,
@@ -166,7 +231,8 @@ export const NodeIconButton: React.ForwardRefExoticComponent<
         currentSize as any,
         currentActionType as any,
         stylesProp?.root,
-        stylesProp?.tokens && mapTokensToCssVars(stylesProp.tokens),
+        // Include style props overrides as CSS variables
+        stylePropsOverrides,
     ];
 
     const chonkyStyles = [

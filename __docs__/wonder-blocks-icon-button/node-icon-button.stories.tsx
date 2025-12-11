@@ -211,28 +211,10 @@ export const WithStyles: StoryComponentType = {
             <NodeIconButton
                 icon={IconMappings.info}
                 aria-label="More information"
-                styles={{
-                    tokens: {
-                        box: {
-                            foreground:
-                                semanticColor.learning.foreground.gems.default,
-                            background:
-                                semanticColor.learning.background.gems.default,
-                            shadow: {
-                                color: semanticColor.learning.math.foreground
-                                    .pink,
-                                y: {
-                                    rest: 12,
-                                    hover: 16,
-                                    press: sizing.size_0,
-                                },
-                            },
-                        },
-                        icon: {
-                            size: sizing.size_960,
-                        },
-                    },
-                }}
+                background={semanticColor.learning.background.gems.default}
+                foreground={semanticColor.learning.foreground.gems.default}
+                boxShadowColor={semanticColor.learning.math.foreground.pink}
+                iconSize={sizing.size_960}
             />
         );
     },
