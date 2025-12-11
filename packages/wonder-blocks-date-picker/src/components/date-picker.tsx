@@ -318,7 +318,6 @@ const DatePicker = (props: Props) => {
                             modifiers={modifiers}
                             onDayClick={handleDayClick}
                             components={{Root: RootWithEsc}}
-                            mode="single"
                             locale={computedLocale}
                             styles={{
                                 // Override the React Day Picker accent color.
