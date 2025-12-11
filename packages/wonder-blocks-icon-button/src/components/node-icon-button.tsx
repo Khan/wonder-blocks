@@ -5,7 +5,12 @@ import {Link} from "react-router-dom-v5-compat";
 import {StyleType, View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    mapValuesToCssVars,
+    semanticColor,
+    sizing,
+} from "@khanacademy/wonder-blocks-tokens";
 
 import type {BaseIconButtonProps} from "../util/icon-button.types";
 
@@ -15,16 +20,62 @@ import {IconButtonUnstyled} from "./icon-button-unstyled";
  * The object containing the CSS variables that can be overridden to customize
  * the appearance of the NodeIconButton component.
  */
-type Tokens = Partial<{
-    "--box-foreground": string;
-    "--box-background": string;
-    "--box-shadow-color": string;
-    "--box-padding": string | number;
-    "--box-shadow-y-rest": string | number;
-    "--box-shadow-y-hover": string | number;
-    "--box-shadow-y-press": string | number;
-    "--icon-size": string | number;
-}>;
+const themeContract = {
+    box: {
+        padding: "",
+        shadow: {
+            y: {
+                rest: "",
+                hover: "",
+                press: "",
+            },
+            color: "",
+        },
+        foreground: "",
+        background: "",
+    },
+    icon: {
+        size: "",
+    },
+};
+
+const theme = mapValuesToCssVars(themeContract, "--");
+
+type Tokens = typeof theme;
+
+type RecursivePartial<T> = {
+    [P in keyof T]?: RecursivePartial<T[P]> | string | number | boolean;
+};
+
+function flattenThemeContract<T>(
+    obj: RecursivePartial<T>,
+    prefix = "--",
+    sep = "-",
+) {
+    const result: Record<string, string | number | boolean> = {};
+    for (const key of Object.keys(obj)) {
+        if (typeof obj[key as keyof T] === "object") {
+            const nested = flattenThemeContract(
+                obj[key as keyof T] as RecursivePartial<T>,
+                "",
+                sep,
+            );
+            for (const nestedKey of Object.keys(nested)) {
+                result[`${prefix}${key}${sep}${nestedKey}`] = nested[nestedKey];
+            }
+        } else {
+            result[`${prefix}${key}`] = obj[key as keyof T] as
+                | string
+                | number
+                | boolean;
+        }
+    }
+    return result;
+}
+
+function mapTokensToCssVars(tokens: RecursivePartial<Tokens>) {
+    return flattenThemeContract(tokens, "--", "-");
+}
 
 type Props = Omit<BaseIconButtonProps, "kind" | "style"> & {
     /**
@@ -61,7 +112,7 @@ type Props = Omit<BaseIconButtonProps, "kind" | "style"> & {
         root?: StyleType;
         box?: StyleType;
         icon?: StyleType;
-        tokens?: Tokens;
+        tokens?: RecursivePartial<Tokens>;
     };
 };
 
@@ -103,14 +154,19 @@ export const NodeIconButton: React.ForwardRefExoticComponent<
 
     const [pressed, setPressed] = React.useState(false);
 
+    const currentSize = mapTokensToCssVars(variants.size[size]);
+    const currentActionType = mapTokensToCssVars(
+        variants.actionType[actionType],
+    );
+
     const buttonStyles = [
         styles.button,
         disabled && styles.disabled,
         !disabled && pressed && styles.pressed,
-        tokens.size[size] as any,
-        tokens.actionType[actionType] as any,
+        currentSize as any,
+        currentActionType as any,
         stylesProp?.root,
-        stylesProp?.tokens,
+        stylesProp?.tokens && mapTokensToCssVars(stylesProp.tokens),
     ];
 
     const chonkyStyles = [
@@ -160,54 +216,83 @@ export const NodeIconButton: React.ForwardRefExoticComponent<
     );
 });
 
-const tokens: {
-    size: Record<string, Tokens>;
-    actionType: Record<string, Tokens>;
+const variants: {
+    size: Record<string, RecursivePartial<Tokens>>;
+    actionType: Record<string, RecursivePartial<Tokens>>;
 } = {
     size: {
-        // Default size.
         large: {
-            "--icon-size": sizing.size_480,
-            "--box-padding": sizing.size_100,
-            // NOTE: We use px units to prevent a bug in Safari where the shadow
-            // animation flickers when using rem units.
-            "--box-shadow-y-rest": 6,
-            "--box-shadow-y-hover": 8,
-            "--box-shadow-y-press": sizing.size_0,
+            icon: {
+                size: sizing.size_480,
+            },
+            box: {
+                padding: sizing.size_100,
+                shadow: {
+                    y: {
+                        rest: 6,
+                        hover: 8,
+                        press: sizing.size_0,
+                    },
+                },
+            },
         },
         small: {
-            "--icon-size": sizing.size_240,
-            "--box-padding": sizing.size_0,
-            "--box-shadow-y-rest": 2,
-            "--box-shadow-y-hover": 4,
-            "--box-shadow-y-press": sizing.size_0,
+            icon: {
+                size: sizing.size_240,
+            },
+            box: {
+                padding: sizing.size_0,
+                shadow: {
+                    y: {
+                        rest: 2,
+                        hover: 4,
+                        press: sizing.size_0,
+                    },
+                    color: semanticColor.learning.shadow.progress.notStarted
+                        .default,
+                },
+            },
         },
     },
     actionType: {
-        // Default action type.
         notStarted: {
-            "--box-foreground":
-                semanticColor.learning.foreground.progress.notStarted.strong,
-            "--box-background":
-                semanticColor.learning.background.progress.notStarted.default,
-            "--box-shadow-color":
-                semanticColor.learning.shadow.progress.notStarted.default,
+            box: {
+                foreground:
+                    semanticColor.learning.foreground.progress.notStarted
+                        .strong,
+                background:
+                    semanticColor.learning.background.progress.notStarted
+                        .default,
+                shadow: {
+                    color: semanticColor.learning.shadow.progress.notStarted
+                        .default,
+                },
+            },
         },
         attempted: {
-            "--box-foreground":
-                semanticColor.learning.foreground.progress.attempted.strong,
-            "--box-background":
-                semanticColor.learning.background.progress.attempted.default,
-            "--box-shadow-color":
-                semanticColor.learning.shadow.progress.attempted.default,
+            box: {
+                foreground:
+                    semanticColor.learning.foreground.progress.attempted.strong,
+                background:
+                    semanticColor.learning.background.progress.attempted
+                        .default,
+                shadow: {
+                    color: semanticColor.learning.shadow.progress.attempted
+                        .default,
+                },
+            },
         },
         complete: {
-            "--box-foreground":
-                semanticColor.learning.foreground.progress.complete.strong,
-            "--box-background":
-                semanticColor.learning.background.progress.complete.default,
-            "--box-shadow-color":
-                semanticColor.learning.shadow.progress.complete.default,
+            box: {
+                foreground:
+                    semanticColor.learning.foreground.progress.complete.strong,
+                background:
+                    semanticColor.learning.background.progress.complete.default,
+                shadow: {
+                    color: semanticColor.learning.shadow.progress.complete
+                        .default,
+                },
+            },
         },
     },
 };
@@ -219,13 +304,13 @@ const disabledStatesStyles = {
 const chonkyDisabled = {
     background: semanticColor.chonky.disabled.background.primary,
     color: semanticColor.chonky.disabled.foreground.primary,
-    boxShadow: `0 var(--box-shadow-y-rest) 0 0 ${semanticColor.chonky.disabled.shadow.primary}`,
+    boxShadow: `0 ${theme.box.shadow.y.rest} 0 0 ${semanticColor.chonky.disabled.shadow.primary}`,
     transform: "none",
 };
 
 const chonkyPressed = {
-    boxShadow: `0 var(--box-shadow-y-press) 0 0 var(--box-shadow-color)`,
-    transform: `translateY(var(--box-shadow-y-rest))`,
+    boxShadow: `0 ${theme.box.shadow.y.press} 0 0 ${theme.box.shadow.color}`,
+    transform: `translateY(${theme.box.shadow.y.rest})`,
 };
 
 const styles = StyleSheet.create({
@@ -250,8 +335,8 @@ const styles = StyleSheet.create({
          * :focus-visible styles.
          */
         [":is(:hover) .chonky" as any]: {
-            boxShadow: `0 var(--box-shadow-y-hover) 0 0 var(--box-shadow-color)`,
-            transform: `translateY(calc((var(--box-shadow-y-hover) - var(--box-shadow-y-rest)) * -1))`,
+            boxShadow: `0 ${theme.box.shadow.y.hover} 0 0 ${theme.box.shadow.color}`,
+            transform: `translateY(calc((${theme.box.shadow.y.hover} - ${theme.box.shadow.y.rest}) * -1))`,
         },
 
         [":is(:active) .chonky" as any]: chonkyPressed,
@@ -288,13 +373,13 @@ const styles = StyleSheet.create({
         borderRadius: border.radius.radius_full,
         justifyContent: "center",
         alignItems: "center",
-        padding: "var(--box-padding)",
+        padding: `${theme.box.padding}`,
         // theming
-        background: "var(--box-background)",
-        color: "var(--box-foreground)",
+        background: `${theme.box.background}`,
+        color: `${theme.box.foreground}`,
         // Gives the button a "chonky" look and feel.
-        marginBlockEnd: "var(--box-shadow-y-rest)",
-        boxShadow: `0 var(--box-shadow-y-rest) 0 0 var(--box-shadow-color)`,
+        marginBlockEnd: `${theme.box.shadow.y.rest}`,
+        boxShadow: `0 ${theme.box.shadow.y.rest} 0 0 ${theme.box.shadow.color}`,
         // motion
         transition: "all 0.12s ease-out",
 
@@ -309,7 +394,7 @@ const styles = StyleSheet.create({
      * Icon Styles (icon)
      */
     icon: {
-        inlineSize: "var(--icon-size)",
-        blockSize: "var(--icon-size)",
+        inlineSize: `${theme.icon.size}`,
+        blockSize: `${theme.icon.size}`,
     },
 });

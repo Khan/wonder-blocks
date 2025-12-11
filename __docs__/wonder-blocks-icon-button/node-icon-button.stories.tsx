@@ -213,13 +213,24 @@ export const WithStyles: StoryComponentType = {
                 aria-label="More information"
                 styles={{
                     tokens: {
-                        "--box-foreground":
-                            semanticColor.learning.foreground.gems.default,
-                        "--box-background":
-                            semanticColor.learning.background.gems.default,
-                        "--box-shadow-color":
-                            semanticColor.learning.math.foreground.pink,
-                        "--icon-size": sizing.size_960,
+                        box: {
+                            foreground:
+                                semanticColor.learning.foreground.gems.default,
+                            background:
+                                semanticColor.learning.background.gems.default,
+                            shadow: {
+                                color: semanticColor.learning.math.foreground
+                                    .pink,
+                                y: {
+                                    rest: 12,
+                                    hover: 16,
+                                    press: sizing.size_0,
+                                },
+                            },
+                        },
+                        icon: {
+                            size: sizing.size_960,
+                        },
                     },
                 }}
             />
