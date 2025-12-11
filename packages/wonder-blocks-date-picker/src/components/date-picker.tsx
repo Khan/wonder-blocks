@@ -23,6 +23,13 @@ interface Props {
      */
     locale?: Locale;
     /**
+     * Optional writing direction to pass in as a prop.
+
+     * Useful for overlays that render outside of normal tree with `dir="rtl"`,
+     * such as in consumer stories.
+     */
+    dir?: "ltr" | "rtl";
+    /**
      * When the selected date changes, this callback is passsed a Temporal object
      * for midnight on the selected date, set to the user's local time zone.
      */
@@ -93,6 +100,7 @@ const customRootStyle = {
 const DatePicker = (props: Props) => {
     const {
         locale,
+        dir,
         updateDate,
         dateFormat,
         disabled,
@@ -319,6 +327,7 @@ const DatePicker = (props: Props) => {
                             onDayClick={handleDayClick}
                             components={{Root: RootWithEsc}}
                             locale={computedLocale}
+                            dir={dir}
                             styles={{
                                 // Override the React Day Picker accent color.
                                 // This requires some trickery to override a CSS variable key
