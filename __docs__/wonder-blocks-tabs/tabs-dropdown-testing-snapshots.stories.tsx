@@ -7,14 +7,16 @@ import {
     longTextWithNoWordBreak,
 } from "../components/text-for-testing";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {themeModes} from "../../.storybook/modes";
+import {allModes, themeModes} from "../../.storybook/modes";
 
 export default {
     title: "Packages / Tabs / TabsDropdown / Testing / TabsDropdown - Snapshots",
     component: TabsDropdown,
     tags: ["!autodocs"],
-    chromatic: {
-        modes: themeModes,
+    parameters: {
+        chromatic: {
+            modes: {...themeModes, small: allModes.small},
+        },
     },
 } as Meta<typeof TabsDropdown>;
 
@@ -197,6 +199,13 @@ export const SmallScreenScenarios = {
     globals: {
         viewport: {
             value: "small",
+        },
+    },
+    parameters: {
+        chromatic: {
+            // Disabling snapshots for this because small screen is covered by
+            // the modes for the main Scenarios story
+            disableSnapshot: true,
         },
     },
 };
