@@ -49,6 +49,11 @@ interface Props {
      */
     minDate?: Temporal.PlainDate | null | undefined;
     /**
+     * The aria-label to be used for the date picker. This is only needed if there
+     * is no visible label associated with the date picker, such as with LabeledField.
+     */
+    inputAriaLabel?: string;
+    /**
      * The placeholder assigned to the date field
      */
     placeholder?: string;
@@ -70,11 +75,6 @@ interface Props {
      * the date picker.
      */
     footer?: (arg1: {close: () => unknown}) => React.ReactNode;
-    /**
-     * The aria-label to be used for the date picker. This is only needed if there
-     * is no visible label associated with the date picker, such as with LabeledField.
-     */
-    inputAriaLabel?: string;
 }
 
 type RootWithEscProps = React.HTMLAttributes<Element> & {
@@ -328,7 +328,6 @@ const DatePicker = (props: Props) => {
                                 // to overlap the month name.
                                 nav: {width: "auto"},
                             }}
-                            //localeUtils={TemporalLocaleUtils} //TODO: determine if we still need formatters/labels for custom text
                         />
                         {maybeRenderFooter()}
                     </View>
