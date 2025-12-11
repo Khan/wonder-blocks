@@ -25,7 +25,13 @@ type TabDropdownItem = {
 
 type Props = {
     /**
-     * A unique id for the component.
+     * A unique id for the component. If not provided, a unique base id will be
+     * generated automatically.
+     *
+     * Here is how the id is used for the different elements in the component:
+     * - The root will have an id of `${id}`
+     * - The opener will have an id of `${id}-opener`
+     * - The panel will have an id of `${id}-panel`
      */
     id?: string;
     /**
@@ -97,7 +103,7 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, Props>(
             onTabSelected,
             labels: labelsProp,
             opened,
-            id,
+            id: idProp,
             testId,
             styles: stylesProp,
         } = props;
@@ -105,6 +111,11 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, Props>(
         const labels = React.useMemo(() => {
             return {...defaultLabels, ...labelsProp};
         }, [labelsProp]);
+
+        const generatedUniqueId = React.useId();
+        const uniqueId = idProp ?? generatedUniqueId;
+        const openerId = `${uniqueId}-opener`;
+        const panelId = `${uniqueId}-panel`;
 
         const selectedTabItem = React.useMemo(() => {
             return tabs.find(
@@ -117,9 +128,16 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, Props>(
         }
 
         return (
-            <View ref={ref} id={id} testId={testId} style={stylesProp?.root}>
+            <View
+                ref={ref}
+                id={uniqueId}
+                data-testid={testId}
+                style={stylesProp?.root}
+            >
                 <ActionMenu
                     opened={opened}
+                    // ActionMenu's id prop is used to set the id on the opener element
+                    id={openerId}
                     menuText="Tabs"
                     opener={() => (
                         <Button
@@ -154,7 +172,7 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, Props>(
                         );
                     })}
                 </ActionMenu>
-                <View>{selectedTabItem?.panel}</View>
+                <View id={panelId}>{selectedTabItem?.panel}</View>
             </View>
         );
     },
