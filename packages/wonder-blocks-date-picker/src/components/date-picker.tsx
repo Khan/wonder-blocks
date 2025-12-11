@@ -2,17 +2,26 @@ import {StyleSheet} from "aphrodite";
 import {Temporal} from "temporal-polyfill";
 import * as React from "react";
 import {DayPicker} from "react-day-picker";
-import {enUS} from "react-day-picker/locale";
+import {enUS, type Locale} from "react-day-picker/locale";
 
 import {View, type StyleType} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {TemporalLocaleUtils} from "../util/temporal-locale-utils";
+import {
+    TemporalLocaleUtils,
+    enUSLocaleCode,
+} from "../util/temporal-locale-utils";
 import type {CustomModifiers} from "../util/types";
 
 import DatePickerInput from "./date-picker-input";
 import DatePickerOverlay from "./date-picker-overlay";
 
 interface Props {
+    /**
+     * The locale to use for the dates: a string name matching a Locale object
+     * imported from react-day-picker.
+     * If not provided, it will fall back to enUS.
+     */
+    locale?: Locale;
     /**
      * When the selected date changes, this callback is passsed a Temporal object
      * for midnight on the selected date, set to the user's local time zone.
@@ -40,6 +49,11 @@ interface Props {
      */
     minDate?: Temporal.PlainDate | null | undefined;
     /**
+     * The aria-label to be used for the date picker. This is only needed if there
+     * is no visible label associated with the date picker, such as with LabeledField.
+     */
+    inputAriaLabel?: string;
+    /**
      * The placeholder assigned to the date field
      */
     placeholder?: string;
@@ -61,11 +75,6 @@ interface Props {
      * the date picker.
      */
     footer?: (arg1: {close: () => unknown}) => React.ReactNode;
-    /**
-     * The aria-label to be used for the date picker. This is only needed if there
-     * is no visible label associated with the date picker, such as with LabeledField.
-     */
-    inputAriaLabel?: string;
 }
 
 type RootWithEscProps = React.HTMLAttributes<Element> & {
@@ -83,6 +92,7 @@ const customRootStyle = {
  */
 const DatePicker = (props: Props) => {
     const {
+        locale,
         updateDate,
         dateFormat,
         disabled,
@@ -101,6 +111,8 @@ const DatePicker = (props: Props) => {
     const [currentDate, setCurrentDate] = React.useState<
         Temporal.PlainDate | null | undefined
     >(selectedDate);
+
+    const computedLocale = locale ?? enUS;
 
     const datePickerInputRef = React.useRef<HTMLInputElement | null>(null);
     const datePickerRef = React.useRef<HTMLElement | null>(null);
@@ -216,9 +228,12 @@ const DatePicker = (props: Props) => {
     const renderInput = (
         modifiers: Partial<CustomModifiers>,
     ): React.ReactNode => {
-        const locale = navigator.language || "en";
         const selectedDateAsValue = currentDate
-            ? TemporalLocaleUtils.formatDate(currentDate, dateFormat, locale)
+            ? TemporalLocaleUtils.formatDate(
+                  currentDate,
+                  dateFormat,
+                  enUSLocaleCode,
+              )
             : "";
 
         return (
@@ -235,7 +250,7 @@ const DatePicker = (props: Props) => {
                 value={selectedDateAsValue}
                 ref={datePickerInputRef}
                 dateFormat={dateFormat}
-                locale={locale}
+                locale={computedLocale.code} // e.g. "en-US"
                 parseDate={TemporalLocaleUtils.parseDateToJsDate}
                 modifiers={modifiers}
                 testId={id && `${id}-input`}
@@ -303,7 +318,7 @@ const DatePicker = (props: Props) => {
                             modifiers={modifiers}
                             onDayClick={handleDayClick}
                             components={{Root: RootWithEsc}}
-                            locale={enUS}
+                            locale={computedLocale}
                             styles={{
                                 // Override the React Day Picker accent color.
                                 // This requires some trickery to override a CSS variable key
@@ -312,7 +327,6 @@ const DatePicker = (props: Props) => {
                                 // to overlap the month name.
                                 nav: {width: "auto"},
                             }}
-                            // localeUtils={TemporalLocaleUtils} TODO: determine if we still need formatters/labels for custom text
                         />
                         {maybeRenderFooter()}
                     </View>
