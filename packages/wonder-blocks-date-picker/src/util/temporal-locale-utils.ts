@@ -51,12 +51,10 @@ export function formatDate(
         return date.toString(); // ISO format
     }
 
-    // For complex formats, use Intl.DateTimeFormat with approximations
-    // Convert Temporal.PlainDate to a Date for formatting
+    // For complex formats, use toLocaleString with Intl options
     try {
-        const jsDate = temporalDateToJsDate(date);
-        const formatter = getFormatterForFormat(formatString, locale);
-        return formatter.format(jsDate);
+        const options = getOptionsForFormat(formatString);
+        return date.toLocaleString(locale, options);
     } catch (error) {
         // If formatting fails (invalid locale, unsupported format, etc.),
         // fall back to ISO format
@@ -184,34 +182,13 @@ export function parseDateToJsDate(
 }
 
 /**
- * Get the first day of the week for a given locale.
- * Returns 0 for Sunday, 1 for Monday, etc.
- */
-export function getFirstDayOfWeek(locale?: string): number {
-    // Most locales use Monday (1), but some like US use Sunday (0)
-    // If no locale is provided, default to Monday
-    if (!locale) {
-        return 1; // Monday (most of the world)
-    }
-
-    // US, Canada, and some others use Sunday
-    if (
-        locale.startsWith("en-US") ||
-        locale.startsWith("en-CA") ||
-        locale.startsWith("ja") ||
-        locale.startsWith("ko")
-    ) {
-        return 0; // Sunday
-    }
-
-    return 1; // Monday (most of the world)
-}
-
-/**
  * Get month names for a given locale.
+ * Used internally by parseWithFormat() for parsing locale-specific month names.
  */
-export function getMonths(locale?: string): string[][] {
-    const format = new Intl.DateTimeFormat(locale || "en", {month: "long"});
+function getMonths(locale?: string): string[][] {
+    const format = new Intl.DateTimeFormat(locale || "en", {
+        month: "long",
+    });
     const formatShort = new Intl.DateTimeFormat(locale || "en", {
         month: "short",
     });
@@ -225,44 +202,13 @@ export function getMonths(locale?: string): string[][] {
     return months;
 }
 
-/**
- * Get weekday names for a given locale.
- */
-export function getWeekdaysLong(locale?: string): string[] {
-    const format = new Intl.DateTimeFormat(locale || "en", {weekday: "long"});
-    const weekdays: string[] = [];
-
-    // Start with Sunday (day 0) through Saturday (day 6)
-    for (let i = 0; i < 7; i++) {
-        const date = new Date(2021, 0, 3 + i); // Jan 3, 2021 is a Sunday
-        weekdays.push(format.format(date));
-    }
-
-    return weekdays;
-}
-
-/**
- * Get short weekday names for a given locale.
- */
-export function getWeekdaysShort(locale?: string): string[] {
-    const format = new Intl.DateTimeFormat(locale || "en", {weekday: "short"});
-    const weekdays: string[] = [];
-
-    for (let i = 0; i < 7; i++) {
-        const date = new Date(2021, 0, 3 + i);
-        weekdays.push(format.format(date));
-    }
-
-    return weekdays;
-}
-
 // Helper functions
 
-function getFormatterForFormat(
-    format: string,
-    locale: string,
-): Intl.DateTimeFormat {
-    // Map common moment format patterns to Intl.DateTimeFormat options
+/**
+ * Map moment.js format patterns to Intl.DateTimeFormat options.
+ * Used by toLocaleString() to format Temporal.PlainDate.
+ */
+function getOptionsForFormat(format: string): Intl.DateTimeFormatOptions {
     const options: Intl.DateTimeFormatOptions = {};
 
     // Detect year
@@ -297,7 +243,7 @@ function getFormatterForFormat(
         options.weekday = "short";
     }
 
-    return new Intl.DateTimeFormat(locale, options);
+    return options;
 }
 
 function parseWithFormat(
@@ -395,8 +341,12 @@ function parseWithFormat(
 }
 
 /**
- * LocaleUtils object compatible with react-day-picker's expected interface.
- * Includes all utility functions for working with Temporal dates.
+ * Utility functions for working with Temporal dates.
+ *
+ * NOTE: Locale-specific utilities (getMonths, getWeekdaysLong, etc.) were
+ * removed as they are no longer needed for react-day-picker v9. These may
+ * be added to a shared wonder-blocks-dates package in a future update to
+ * support both DatePicker and BirthdayPicker.
  */
 export const TemporalLocaleUtils = {
     // Core date formatting and parsing
@@ -408,12 +358,6 @@ export const TemporalLocaleUtils = {
     temporalDateToJsDate,
     jsDateToTemporalDate,
 
-    // Modifier utilities
+    // Modifier utilities (react-day-picker specific)
     getModifiersForDay,
-
-    // Locale-specific utilities
-    getFirstDayOfWeek,
-    getMonths,
-    getWeekdaysLong,
-    getWeekdaysShort,
 };

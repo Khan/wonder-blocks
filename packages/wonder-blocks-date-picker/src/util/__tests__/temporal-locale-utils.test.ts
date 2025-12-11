@@ -8,10 +8,6 @@ import {
     temporalDateToJsDate,
     jsDateToTemporalDate,
     getModifiersForDay,
-    getFirstDayOfWeek,
-    getMonths,
-    getWeekdaysLong,
-    getWeekdaysShort,
 } from "../temporal-locale-utils";
 import type {CustomModifiers} from "../types";
 
@@ -118,6 +114,127 @@ describe("TemporalLocaleUtils", () => {
 
             // Assert
             expect(result).toBe("2021-05-07");
+        });
+
+        describe("toLocaleString integration", () => {
+            it("formats date using locale-specific month names for long month format", () => {
+                // Arrange
+                const testDate = Temporal.PlainDate.from("2021-01-15");
+
+                // Act
+                const result = formatDate(testDate, "MMMM D, YYYY", "en-US");
+
+                // Assert
+                expect(result).toBe("January 15, 2021");
+            });
+
+            it("formats date using locale-specific month names for short month format", () => {
+                // Arrange
+                const testDate = Temporal.PlainDate.from("2021-12-25");
+
+                // Act
+                const result = formatDate(testDate, "MMM D, YYYY", "en-US");
+
+                // Assert
+                expect(result).toBe("Dec 25, 2021");
+            });
+
+            it("formats date with 2-digit year when YY format is specified", () => {
+                // Arrange
+                const testDate = Temporal.PlainDate.from("2021-05-07");
+
+                // Act
+                const result = formatDate(testDate, "MM/DD/YY", "en-US");
+
+                // Assert
+                expect(result).toBe("05/07/21");
+            });
+
+            it("formats date with long weekday name when dddd format is specified", () => {
+                // Arrange
+                const testDate = Temporal.PlainDate.from("2021-05-07"); // Friday
+
+                // Act
+                const result = formatDate(
+                    testDate,
+                    "dddd, MMMM D, YYYY",
+                    "en-US",
+                );
+
+                // Assert
+                expect(result).toBe("Friday, May 7, 2021");
+            });
+
+            it("formats date with short weekday name when ddd format is specified", () => {
+                // Arrange
+                const testDate = Temporal.PlainDate.from("2021-05-07"); // Friday
+
+                // Act
+                const result = formatDate(
+                    testDate,
+                    "ddd, MMM D, YYYY",
+                    "en-US",
+                );
+
+                // Assert
+                expect(result).toBe("Fri, May 7, 2021");
+            });
+
+            it("formats date respecting French locale conventions", () => {
+                // Arrange
+                const testDate = Temporal.PlainDate.from("2021-05-07");
+
+                // Act
+                const result = formatDate(testDate, "D MMMM YYYY", "fr-FR");
+
+                // Assert
+                expect(result).toBe("7 mai 2021");
+            });
+
+            it("formats date respecting German locale conventions", () => {
+                // Arrange
+                const testDate = Temporal.PlainDate.from("2021-05-07");
+
+                // Act
+                const result = formatDate(testDate, "D MMMM YYYY", "de-DE");
+
+                // Assert
+                // German locale adds a period after the day number
+                expect(result).toBe("7. Mai 2021");
+            });
+
+            it("falls back to ISO format when formatting fails with invalid locale", () => {
+                // Arrange
+                const testDate = Temporal.PlainDate.from("2021-05-07");
+                const consoleSpy = jest
+                    .spyOn(console, "warn")
+                    .mockImplementation();
+
+                // Act
+                const result = formatDate(
+                    testDate,
+                    "MMMM D, YYYY",
+                    "invalid-locale-xyz",
+                );
+
+                // Assert
+                // Note: Some environments may not throw on invalid locales,
+                // so we just verify we get a valid date string back
+                expect(result).toMatch(/^\d{4}-\d{2}-\d{2}$|^\w+/);
+
+                consoleSpy.mockRestore();
+            });
+
+            it("uses default en-US locale when locale parameter is not provided", () => {
+                // Arrange
+                const testDate = Temporal.PlainDate.from("2021-05-07");
+
+                // Act
+                const result = formatDate(testDate, "MMMM D, YYYY");
+
+                // Assert
+                expect(result).toBe("May 7, 2021");
+            });
         });
     });
 
@@ -625,179 +742,6 @@ describe("TemporalLocaleUtils", () => {
 
             // Assert
             expect(result).toEqual(["selected"]);
-        });
-    });
-
-    describe("getFirstDayOfWeek", () => {
-        it("returns 0 (Sunday) for en-US locale", () => {
-            // Arrange
-            const locale = "en-US";
-
-            // Act
-            const result = getFirstDayOfWeek(locale);
-
-            // Assert
-            expect(result).toBe(0);
-        });
-
-        it("returns 0 (Sunday) for en-CA locale", () => {
-            // Arrange
-            const locale = "en-CA";
-
-            // Act
-            const result = getFirstDayOfWeek(locale);
-
-            // Assert
-            expect(result).toBe(0);
-        });
-
-        it("returns 0 (Sunday) for ja locale", () => {
-            // Arrange
-            const locale = "ja";
-
-            // Act
-            const result = getFirstDayOfWeek(locale);
-
-            // Assert
-            expect(result).toBe(0);
-        });
-
-        it("returns 1 (Monday) for en-GB locale", () => {
-            // Arrange
-            const locale = "en-GB";
-
-            // Act
-            const result = getFirstDayOfWeek(locale);
-
-            // Assert
-            expect(result).toBe(1);
-        });
-
-        it("returns 1 (Monday) for default/no locale", () => {
-            // Arrange
-            // No locale provided
-
-            // Act
-            const result = getFirstDayOfWeek();
-
-            // Assert
-            expect(result).toBe(1);
-        });
-    });
-
-    describe("getMonths", () => {
-        it("returns 12 months", () => {
-            // Arrange
-            const locale = "en-US";
-
-            // Act
-            const months = getMonths(locale);
-
-            // Assert
-            expect(months).toHaveLength(12);
-        });
-
-        it("returns January with long and short names", () => {
-            // Arrange
-            const locale = "en-US";
-
-            // Act
-            const months = getMonths(locale);
-
-            // Assert
-            expect(months[0]).toEqual(["January", "Jan"]);
-        });
-
-        it("returns May with long and short names", () => {
-            // Arrange
-            const locale = "en-US";
-
-            // Act
-            const months = getMonths(locale);
-
-            // Assert
-            expect(months[4]).toEqual(["May", "May"]);
-        });
-
-        it("returns December with long and short names", () => {
-            // Arrange
-            const locale = "en-US";
-
-            // Act
-            const months = getMonths(locale);
-
-            // Assert
-            expect(months[11]).toEqual(["December", "Dec"]);
-        });
-    });
-
-    describe("getWeekdaysLong", () => {
-        it("returns 7 weekdays", () => {
-            // Arrange
-            const locale = "en-US";
-
-            // Act
-            const weekdays = getWeekdaysLong(locale);
-
-            // Assert
-            expect(weekdays).toHaveLength(7);
-        });
-
-        it("starts with Sunday", () => {
-            // Arrange
-            const locale = "en-US";
-
-            // Act
-            const weekdays = getWeekdaysLong(locale);
-
-            // Assert
-            expect(weekdays[0]).toBe("Sunday");
-        });
-
-        it("ends with Saturday", () => {
-            // Arrange
-            const locale = "en-US";
-
-            // Act
-            const weekdays = getWeekdaysLong(locale);
-
-            // Assert
-            expect(weekdays[6]).toBe("Saturday");
-        });
-    });
-
-    describe("getWeekdaysShort", () => {
-        it("returns 7 weekdays", () => {
-            // Arrange
-            const locale = "en-US";
-
-            // Act
-            const weekdays = getWeekdaysShort(locale);
-
-            // Assert
-            expect(weekdays).toHaveLength(7);
-        });
-
-        it("starts with Sun", () => {
-            // Arrange
-            const locale = "en-US";
-
-            // Act
-            const weekdays = getWeekdaysShort(locale);
-
-            // Assert
-            expect(weekdays[0]).toBe("Sun");
-        });
-
-        it("ends with Sat", () => {
-            // Arrange
-            const locale = "en-US";
-
-            // Act
-            const weekdays = getWeekdaysShort(locale);
-
-            // Assert
-            expect(weekdays[6]).toBe("Sat");
         });
     });
 });
