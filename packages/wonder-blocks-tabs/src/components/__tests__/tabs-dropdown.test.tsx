@@ -36,24 +36,116 @@ const tabs = [
 
 describe("TabsDropdown", () => {
     describe("Props", () => {
-        it("should use the id prop for the root element", () => {
-            // Arrange
-            // Act
-            const {container} = render(
-                <TabsDropdown
-                    id="tabs-dropdown-id"
-                    tabs={tabs}
-                    selectedTabId="tab-1"
-                    onTabSelected={jest.fn()}
-                />,
-            );
+        describe("id", () => {
+            describe("when id is provided", () => {
+                it("should use the provided id on the root element", () => {
+                    // Arrange
+                    // Act
+                    const {container} = render(
+                        <TabsDropdown
+                            id="tabs-dropdown-id"
+                            tabs={tabs}
+                            selectedTabId="tab-1"
+                            onTabSelected={jest.fn()}
+                        />,
+                    );
 
-            // Assert
-            // eslint-disable-next-line testing-library/no-node-access -- explicitlychecking the root element
-            expect(container.firstChild).toHaveAttribute(
-                "id",
-                "tabs-dropdown-id",
-            );
+                    // Assert
+                    // eslint-disable-next-line testing-library/no-node-access -- explicitly checking the root element
+                    expect(container.firstChild).toHaveAttribute(
+                        "id",
+                        "tabs-dropdown-id",
+                    );
+                });
+
+                it("should use the provided id on the opener element with '-opener' suffix", () => {
+                    // Arrange
+                    // Act
+                    render(
+                        <TabsDropdown
+                            id="tabs-dropdown-id"
+                            tabs={tabs}
+                            selectedTabId="tab-1"
+                            onTabSelected={jest.fn()}
+                        />,
+                    );
+
+                    // Assert
+                    expect(screen.getByRole("button")).toHaveAttribute(
+                        "id",
+                        "tabs-dropdown-id-opener",
+                    );
+                });
+
+                it("should use the provided id on the panel element with '-panel' suffix", () => {
+                    // Arrange
+                    // Act
+                    render(
+                        <TabsDropdown
+                            id="tabs-dropdown-id"
+                            tabs={tabs}
+                            selectedTabId="tab-1"
+                            onTabSelected={jest.fn()}
+                        />,
+                    );
+
+                    // Assert
+                    expect(
+                        screen.getByRole("group", {name: "Tab 1"}),
+                    ).toHaveAttribute("id", "tabs-dropdown-id-panel");
+                });
+            });
+
+            describe("when id is not provided", () => {
+                it("should auto-generate an id on the root element", () => {
+                    // Arrange
+                    // Act
+                    const {container} = render(
+                        <TabsDropdown
+                            tabs={tabs}
+                            selectedTabId="tab-1"
+                            onTabSelected={jest.fn()}
+                        />,
+                    );
+
+                    // Assert
+                    // eslint-disable-next-line testing-library/no-node-access -- explicitly checking the root element
+                    expect(container.firstChild).toHaveAttribute("id");
+                });
+
+                it("should auto-generate an id on the opener element with '-opener' suffix", () => {
+                    // Arrange
+                    render(
+                        <TabsDropdown
+                            tabs={tabs}
+                            selectedTabId="tab-1"
+                            onTabSelected={jest.fn()}
+                        />,
+                    );
+                    // Act
+                    const opener = screen.getByRole("button");
+
+                    // Assert
+                    expect(opener.id.endsWith("-opener")).toBe(true);
+                });
+
+                it("should auto-generate an id on the panel element with '-panel' suffix", () => {
+                    // Arrange
+                    render(
+                        <TabsDropdown
+                            tabs={tabs}
+                            selectedTabId="tab-1"
+                            onTabSelected={jest.fn()}
+                        />,
+                    );
+
+                    // Act
+                    const panel = screen.getByRole("group", {name: "Tab 1"});
+
+                    // Assert
+                    expect(panel.id.endsWith("-panel")).toBe(true);
+                });
+            });
         });
 
         it("should use the testId prop for the root element", () => {
