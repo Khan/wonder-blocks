@@ -413,4 +413,26 @@ describe("TabsDropdown", () => {
             });
         });
     });
+
+    describe("Accessibility", () => {
+        describe("ARIA", () => {
+            it("should set aria-labelledby on the panel to the opener's id", () => {
+                // Arrange
+                render(
+                    <TabsDropdown
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+                const opener = screen.getByRole("button");
+
+                // Act
+                const panel = screen.getByRole("group", {name: "Tab 1"});
+
+                // Assert
+                expect(panel).toHaveAttribute("aria-labelledby", opener.id);
+            });
+        });
+    });
 });
