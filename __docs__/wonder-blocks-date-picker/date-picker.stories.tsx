@@ -15,6 +15,7 @@ import packageConfig from "../../packages/wonder-blocks-date-picker/package.json
 
 // eslint-disable-next-line import/no-unassigned-import
 import "react-day-picker/style.css";
+import {allModes} from "../../.storybook/modes";
 
 type Props = PropsFor<typeof DatePicker>;
 
@@ -306,6 +307,12 @@ export const OpenCalendarOverlay: Story = {
         chromatic: {
             // Re-enable snapshots for this story since the calendar is visible
             disableSnapshot: false,
+            modes: {
+                small: allModes.small,
+                large: allModes.large,
+                thunderblocks: allModes.themeThunderBlocks,
+                "default rtl": allModes["themeDefault rtl"],
+            },
         },
     },
 };
@@ -328,6 +335,12 @@ export const WithAlternateLocale: Story = {
         chromatic: {
             // Re-enable snapshots for this story since the calendar is visible
             disableSnapshot: false,
+            modes: {
+                small: allModes.small,
+                large: allModes.large,
+                thunderblocks: allModes.themeThunderBlocks,
+                "default rtl": allModes["themeDefault rtl"],
+            },
         },
     },
 };
