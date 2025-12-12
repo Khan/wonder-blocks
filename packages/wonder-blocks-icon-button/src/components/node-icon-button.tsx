@@ -16,14 +16,14 @@ import {IconButtonUnstyled} from "./icon-button-unstyled";
  * the appearance of the NodeIconButton component.
  */
 type Tokens = Partial<{
-    "--wb-node-icon-button--box-foreground": string;
-    "--wb-node-icon-button--box-background": string;
-    "--wb-node-icon-button--box-shadow-color": string;
-    "--wb-node-icon-button--box-padding": string | number;
-    "--wb-node-icon-button--box-shadow-y-rest": string | number;
-    "--wb-node-icon-button--box-shadow-y-hover": string | number;
-    "--wb-node-icon-button--box-shadow-y-press": string | number;
-    "--wb-node-icon-button--icon-size": string | number;
+    "--wb-c-node-icon-button--box-foreground": string;
+    "--wb-c-node-icon-button--box-background": string;
+    "--wb-c-node-icon-button--box-shadow-color": string;
+    "--wb-c-node-icon-button--box-padding": string | number;
+    "--wb-c-node-icon-button--box-shadow-y-rest": string | number;
+    "--wb-c-node-icon-button--box-shadow-y-hover": string | number;
+    "--wb-c-node-icon-button--box-shadow-y-press": string | number;
+    "--wb-c-node-icon-button--icon-size": string | number;
 }>;
 
 type Props = Omit<BaseIconButtonProps, "kind" | "style"> & {
@@ -50,7 +50,7 @@ type Props = Omit<BaseIconButtonProps, "kind" | "style"> & {
     size?: "small" | "large";
 
     /**
-     * Custom styles for the elements in the ActivityIconButton component.
+     * Custom styles for the elements in the NodeIconButton component.
      * - `root`: Styles the root element (button)
      * - `box`: Styles the "chonky" box element
      * - `icon`: Styles the icon element
@@ -64,17 +64,16 @@ type Props = Omit<BaseIconButtonProps, "kind" | "style"> & {
 
 /**
  * Node buttons are visual representations of activities along in a Learning
- * Path. When a represented Node is a button that launches the activity. Nodes
+ * Path. When a represented No  de is a button that launches the activity. Nodes
  * use the Chonky shadow style.
  *
  * ```tsx
- * import magnifyingGlassIcon from
- * "@phosphor-icons/core/regular/magnifying-glass.svg";
+ * import pencilSimpleIcon from "@phosphor-icons/core/regular/pencil-simple.svg";
  * import {NodeIconButton} from "@khanacademy/wonder-blocks-icon-button";
  *
  * <NodeIconButton
- *     icon={magnifyingGlassIcon}
- *     aria-label="An Icon"
+ *     icon={pencilSimpleIcon}
+ *     aria-label="Edit"
  *     onClick={(e) => console.log("Hello, world!")}
  * />
  * ```
@@ -104,8 +103,8 @@ export const NodeIconButton: React.ForwardRefExoticComponent<
         styles.button,
         disabled && styles.disabled,
         !disabled && pressed && styles.pressed,
-        variants.size[size] as any,
-        variants.actionType[actionType] as any,
+        variants.size[size] as StyleType,
+        variants.actionType[actionType] as StyleType,
         stylesProp?.root,
     ];
 
@@ -163,46 +162,46 @@ const variants: {
     size: {
         // Default size.
         large: {
-            "--wb-node-icon-button--icon-size": sizing.size_480,
-            "--wb-node-icon-button--box-padding": sizing.size_100,
+            "--wb-c-node-icon-button--icon-size": sizing.size_480,
+            "--wb-c-node-icon-button--box-padding": sizing.size_100,
             // NOTE: We use px units to prevent a bug in Safari where the shadow
             // animation flickers when using rem units.
-            "--wb-node-icon-button--box-shadow-y-rest": "6px",
-            "--wb-node-icon-button--box-shadow-y-hover": "8px",
-            "--wb-node-icon-button--box-shadow-y-press": sizing.size_0,
+            "--wb-c-node-icon-button--box-shadow-y-rest": "6px",
+            "--wb-c-node-icon-button--box-shadow-y-hover": "8px",
+            "--wb-c-node-icon-button--box-shadow-y-press": sizing.size_0,
         },
         small: {
-            "--wb-node-icon-button--icon-size": sizing.size_240,
-            "--wb-node-icon-button--box-padding": sizing.size_0,
-            "--wb-node-icon-button--box-shadow-y-rest": "2px",
-            "--wb-node-icon-button--box-shadow-y-hover": "4px",
-            "--wb-node-icon-button--box-shadow-y-press": sizing.size_0,
+            "--wb-c-node-icon-button--icon-size": sizing.size_240,
+            "--wb-c-node-icon-button--box-padding": sizing.size_0,
+            "--wb-c-node-icon-button--box-shadow-y-rest": "2px",
+            "--wb-c-node-icon-button--box-shadow-y-hover": "4px",
+            "--wb-c-node-icon-button--box-shadow-y-press": sizing.size_0,
         },
     },
     actionType: {
         // Default action type.
         notStarted: {
-            "--wb-node-icon-button--box-foreground":
+            "--wb-c-node-icon-button--box-foreground":
                 semanticColor.learning.foreground.progress.notStarted.strong,
-            "--wb-node-icon-button--box-background":
+            "--wb-c-node-icon-button--box-background":
                 semanticColor.learning.background.progress.notStarted.default,
-            "--wb-node-icon-button--box-shadow-color":
+            "--wb-c-node-icon-button--box-shadow-color":
                 semanticColor.learning.shadow.progress.notStarted.default,
         },
         attempted: {
-            "--wb-node-icon-button--box-foreground":
+            "--wb-c-node-icon-button--box-foreground":
                 semanticColor.learning.foreground.progress.attempted.strong,
-            "--wb-node-icon-button--box-background":
+            "--wb-c-node-icon-button--box-background":
                 semanticColor.learning.background.progress.attempted.default,
-            "--wb-node-icon-button--box-shadow-color":
+            "--wb-c-node-icon-button--box-shadow-color":
                 semanticColor.learning.shadow.progress.attempted.default,
         },
         complete: {
-            "--wb-node-icon-button--box-foreground":
+            "--wb-c-node-icon-button--box-foreground":
                 semanticColor.learning.foreground.progress.complete.strong,
-            "--wb-node-icon-button--box-background":
+            "--wb-c-node-icon-button--box-background":
                 semanticColor.learning.background.progress.complete.default,
-            "--wb-node-icon-button--box-shadow-color":
+            "--wb-c-node-icon-button--box-shadow-color":
                 semanticColor.learning.shadow.progress.complete.default,
         },
     },
@@ -215,13 +214,13 @@ const disabledStatesStyles = {
 const chonkyDisabled = {
     background: semanticColor.chonky.disabled.background.primary,
     color: semanticColor.chonky.disabled.foreground.primary,
-    boxShadow: `0 var(--wb-node-icon-button--box-shadow-y-rest) 0 0 ${semanticColor.chonky.disabled.shadow.primary}`,
+    boxShadow: `0 var(--wb-c-node-icon-button--box-shadow-y-rest) 0 0 ${semanticColor.chonky.disabled.shadow.primary}`,
     transform: "none",
 };
 
 const chonkyPressed = {
-    boxShadow: `0 var(--wb-node-icon-button--box-shadow-y-press) 0 0 var(--wb-node-icon-button--box-shadow-color)`,
-    transform: `translateY(var(--wb-node-icon-button--box-shadow-y-rest))`,
+    boxShadow: `0 var(--wb-c-node-icon-button--box-shadow-y-press) 0 0 var(--wb-c-node-icon-button--box-shadow-color)`,
+    transform: `translateY(var(--wb-c-node-icon-button--box-shadow-y-rest))`,
 };
 
 const styles = StyleSheet.create({
@@ -246,8 +245,8 @@ const styles = StyleSheet.create({
          * :focus-visible styles.
          */
         [":is(:hover) .chonky" as any]: {
-            boxShadow: `0 var(--wb-node-icon-button--box-shadow-y-hover) 0 0 var(--wb-node-icon-button--box-shadow-color)`,
-            transform: `translateY(calc((var(--wb-node-icon-button--box-shadow-y-hover) - var(--wb-node-icon-button--box-shadow-y-rest)) * -1))`,
+            boxShadow: `0 var(--wb-c-node-icon-button--box-shadow-y-hover) 0 0 var(--wb-c-node-icon-button--box-shadow-color)`,
+            transform: `translateY(calc((var(--wb-c-node-icon-button--box-shadow-y-hover) - var(--wb-c-node-icon-button--box-shadow-y-rest)) * -1))`,
         },
 
         [":is(:active) .chonky" as any]: chonkyPressed,
@@ -284,15 +283,15 @@ const styles = StyleSheet.create({
         borderRadius: border.radius.radius_full,
         justifyContent: "center",
         alignItems: "center",
-        padding: "var(--wb-node-icon-button--box-padding)",
+        padding: "var(--wb-c-node-icon-button--box-padding)",
         width: "100%",
         height: "100%",
         // theming
-        background: "var(--wb-node-icon-button--box-background)",
-        color: "var(--wb-node-icon-button--box-foreground)",
+        background: "var(--wb-c-node-icon-button--box-background)",
+        color: "var(--wb-c-node-icon-button--box-foreground)",
         // Gives the button a "chonky" look and feel.
-        marginBlockEnd: "var(--wb-node-icon-button--box-shadow-y-rest)",
-        boxShadow: `0 var(--wb-node-icon-button--box-shadow-y-rest) 0 0 var(--wb-node-icon-button--box-shadow-color)`,
+        marginBlockEnd: "var(--wb-c-node-icon-button--box-shadow-y-rest)",
+        boxShadow: `0 var(--wb-c-node-icon-button--box-shadow-y-rest) 0 0 var(--wb-c-node-icon-button--box-shadow-color)`,
         // motion
         transition: "0.12s ease-out",
         // NOTE: We only want to transition the properties that are being
@@ -310,7 +309,7 @@ const styles = StyleSheet.create({
      * Icon Styles (icon)
      */
     icon: {
-        inlineSize: "var(--wb-node-icon-button--icon-size)",
-        blockSize: "var(--wb-node-icon-button--icon-size)",
+        inlineSize: "var(--wb-c-node-icon-button--icon-size)",
+        blockSize: "var(--wb-c-node-icon-button--icon-size)",
     },
 });
