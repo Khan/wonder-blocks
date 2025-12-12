@@ -139,6 +139,8 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, Props>(
             return <React.Fragment />;
         }
 
+        const menuText = selectedTabItem?.label || labels.defaultOpenerLabel;
+
         return (
             <View
                 ref={ref}
@@ -153,7 +155,7 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, Props>(
                     opened={opened}
                     // ActionMenu's id prop is used to set the id on the opener element
                     id={openerId}
-                    menuText="Tabs"
+                    menuText={menuText}
                     opener={() => (
                         <Button
                             testId={testId ? `${testId}-opener` : undefined}
@@ -161,8 +163,7 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, Props>(
                             endIcon={caretDown}
                             style={[styles.opener, stylesProp?.opener]}
                         >
-                            {selectedTabItem?.label ||
-                                labels.defaultOpenerLabel}
+                            {menuText}
                         </Button>
                     )}
                     style={[styles.actionMenu, stylesProp?.actionMenu]}
@@ -182,6 +183,7 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, Props>(
                                         <PhosphorIcon
                                             icon={checkCircleIcon}
                                             size="medium"
+                                            aria-hidden="true"
                                         />
                                     ) : undefined
                                 }
