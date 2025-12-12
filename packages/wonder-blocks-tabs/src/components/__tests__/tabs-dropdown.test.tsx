@@ -553,5 +553,53 @@ describe("TabsDropdown", () => {
                 ).toHaveAttribute("aria-labelledby", "tabs-heading");
             });
         });
+
+        describe("Keyboard Navigation", () => {
+            it("should call onTabSelected when pressing Enter on a menu item", async () => {
+                // Arrange
+                const onTabSelected = jest.fn();
+                render(
+                    <TabsDropdown
+                        aria-label="Test tabs"
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={onTabSelected}
+                    />,
+                );
+                // Open the dropdown and pick the second tab
+                await userEvent.tab();
+                await userEvent.keyboard("{ArrowDown}");
+                await userEvent.keyboard("{ArrowDown}");
+
+                // Act
+                await userEvent.keyboard("{Enter}");
+
+                // Assert
+                expect(onTabSelected).toHaveBeenCalledWith("tab-2");
+            });
+
+            it("should call onTabSelected when pressing Space on a menu item", async () => {
+                // Arrange
+                const onTabSelected = jest.fn();
+                render(
+                    <TabsDropdown
+                        aria-label="Test tabs"
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={onTabSelected}
+                    />,
+                );
+                // Open the dropdown and pick the second tab
+                await userEvent.tab();
+                await userEvent.keyboard("{ArrowDown}");
+                await userEvent.keyboard("{ArrowDown}");
+
+                // Act
+                await userEvent.keyboard(" ");
+
+                // Assert
+                expect(onTabSelected).toHaveBeenCalledWith("tab-2");
+            });
+        });
     });
 });
