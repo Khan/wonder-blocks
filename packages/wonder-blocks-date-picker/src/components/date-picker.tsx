@@ -136,7 +136,11 @@ const DatePicker = (props: Props) => {
 
     const refWrapper = React.useRef<HTMLDivElement>(null);
 
-    const open = React.useCallback(() => setShowOverlay(true), []);
+    const open = React.useCallback(() => {
+        if (!disabled) {
+            setShowOverlay(true);
+        }
+    }, [disabled]);
     const close = React.useCallback(() => setShowOverlay(false), []);
 
     const isLeavingDropdown = (e: React.FocusEvent): boolean => {
