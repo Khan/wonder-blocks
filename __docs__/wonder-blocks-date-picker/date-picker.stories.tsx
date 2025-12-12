@@ -5,7 +5,8 @@ import * as React from "react";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View, type PropsFor} from "@khanacademy/wonder-blocks-core";
 import {sizing, spacing} from "@khanacademy/wonder-blocks-tokens";
-
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
+import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {DatePicker} from "@khanacademy/wonder-blocks-date-picker";
 
 import ComponentInfo from "../components/component-info";
@@ -157,6 +158,48 @@ export const DisabledState: Story = {
         disabled: true,
         dateFormat: "MMMM D, YYYY",
         selectedDate: Temporal.PlainDate.from("2021-05-07"),
+        updateDate: () => {},
+    },
+};
+
+/**
+ * Example with an explicit label and id pairing.
+ * Note: using LabeledField is preferred!
+ */
+export const WithLabel: Story = {
+    render: (args) => (
+        <>
+            <BodyText
+                tag="label"
+                htmlFor="labeled-date-picker"
+                style={{marginBlockEnd: sizing.size_100}}
+            >
+                Choose or enter a date
+            </BodyText>
+            <DatePicker {...args} />
+        </>
+    ),
+    args: {
+        dateFormat: "MMMM D, YYYY",
+        placeholder: "Select a date",
+        updateDate: () => {},
+        id: "labeled-date-picker",
+    },
+};
+
+/**
+ * Example using LabeledField
+ */
+export const WithLabeledField: Story = {
+    render: (args) => (
+        <LabeledField
+            label="Labeled field example"
+            field={<ControlledDatePicker {...args} />}
+        />
+    ),
+    args: {
+        dateFormat: "MMMM D, YYYY",
+        placeholder: "Select a date",
         updateDate: () => {},
     },
 };
