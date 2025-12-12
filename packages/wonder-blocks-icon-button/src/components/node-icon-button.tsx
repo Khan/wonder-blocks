@@ -10,21 +10,39 @@ import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import type {BaseIconButtonProps} from "../util/icon-button.types";
 
 import {IconButtonUnstyled} from "./icon-button-unstyled";
+import {
+    mapTokensToVariables,
+    TokensAsCssVariable,
+    TokensAsJsVariable,
+} from "../util/map-tokens-to-variables";
 
 /**
- * The object containing the CSS variables that can be overridden to customize
- * the appearance of the NodeIconButton component.
+ * The prefix for the CSS variables used in the NodeIconButton component.
+ *
+ * This allows us to avoid collisions with other CSS variables in the
+ * application.
  */
-type Tokens = Partial<{
-    "--wb-ib-node-box-foreground": string;
-    "--wb-ib-node-box-background": string;
-    "--wb-ib-node-box-shadow-color": string;
-    "--wb-ib-node-box-padding": string | number;
-    "--wb-ib-node-box-shadow-y-rest": string | number;
-    "--wb-ib-node-box-shadow-y-hover": string | number;
-    "--wb-ib-node-box-shadow-y-press": string | number;
-    "--wb-ib-node-icon-size": string | number;
-}>;
+const VAR_PREFIX = "--wb-ib-node-";
+
+/**
+ * The valid component-level tokens for the NodeIconButton component.
+ */
+type TokenKeys =
+    // Box tokens
+    | "box-foreground"
+    | "box-background"
+    | "box-shadow-color"
+    | "box-padding"
+    | "box-shadow-y-rest"
+    | "box-shadow-y-hover"
+    | "box-shadow-y-press"
+    // Icon tokens
+    | "icon-size";
+
+/**
+ * A subset of tokens that can be included in different variants.
+ */
+type PartialTokens = Partial<TokensAsCssVariable<typeof VAR_PREFIX, TokenKeys>>;
 
 type Props = Omit<BaseIconButtonProps, "kind" | "style"> & {
     /**
@@ -60,6 +78,22 @@ type Props = Omit<BaseIconButtonProps, "kind" | "style"> & {
         box?: StyleType;
         icon?: StyleType;
     };
+
+    /**
+     * The token object that contains the CSS variables that can be overridden
+     * to customize the appearance of the NodeIconButton component.
+     *
+     * Valid keys are:
+     * - `boxForeground`
+     * - `boxBackground`
+     * - `boxShadowColor`
+     * - `boxPadding`
+     * - `boxShadowYRest`
+     * - `boxShadowYHover`
+     * - `boxShadowYPress`
+     * - `iconSize`
+     */
+    tokens?: Partial<TokensAsJsVariable<TokenKeys>>;
 };
 
 /**
@@ -92,6 +126,7 @@ export const NodeIconButton: React.ForwardRefExoticComponent<
         icon,
         size = "large",
         styles: stylesProp,
+        tokens,
         type = "button",
         // labeling
         "aria-label": ariaLabel,
@@ -100,14 +135,19 @@ export const NodeIconButton: React.ForwardRefExoticComponent<
 
     const [pressed, setPressed] = React.useState(false);
 
-    const buttonStyles = [
-        styles.button,
-        disabled && styles.disabled,
-        !disabled && pressed && styles.pressed,
-        variants.size[size] as any,
-        variants.actionType[actionType] as any,
-        stylesProp?.root,
-    ];
+    const buttonStyles = React.useMemo(
+        () => [
+            styles.button,
+            disabled && styles.disabled,
+            !disabled && pressed && styles.pressed,
+            variants.size[size] as any,
+            variants.actionType[actionType] as any,
+            stylesProp?.root,
+            // Token overrides.
+            tokens && mapTokensToVariables(tokens, VAR_PREFIX),
+        ],
+        [actionType, disabled, pressed, size, stylesProp?.root, tokens],
+    );
 
     const chonkyStyles = [
         styles.chonky,
@@ -157,8 +197,8 @@ export const NodeIconButton: React.ForwardRefExoticComponent<
 });
 
 const variants: {
-    size: Record<string, Tokens>;
-    actionType: Record<string, Tokens>;
+    size: Record<string, PartialTokens>;
+    actionType: Record<string, PartialTokens>;
 } = {
     size: {
         // Default size.

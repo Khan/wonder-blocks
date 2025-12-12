@@ -195,13 +195,60 @@ export const WithCustomIcon: StoryComponentType = {
 };
 
 /**
- * You can use the `styles` prop to apply custom styles to speicific parts of
- * the `NodeIconButton` component.
+ * The recommended way to customize the appearance of the `NodeIconButton`
+ * component is to use the `tokens` prop. This prop accepts a token object that
+ * contains the CSS variables that can be overridden to customize the appearance
+ * of the `NodeIconButton` component.
+ *
+ * The following tokens can be overridden:
+ * - `boxForeground`: The foreground color of the "chonky" box element.
+ * - `boxBackground`: The background color of the "chonky" box element.
+ * - `boxShadowColor`: The color of the shadow of the "chonky" box element.
+ * - `boxPadding`: The padding of the "chonky" box element.
+ * - `boxShadowYRest`: The y-offset of the rest state shadow of the "chonky" box
+ *   element.
+ * - `boxShadowYHover`: The y-offset of the hover state shadow of the "chonky"
+ *   box element.
+ * - `boxShadowYPress`: The y-offset of the press state shadow of the "chonky"
+ *   box element.
+ * - `iconSize`: The size of the icon element.
+ */
+export const WithCustomTokens: StoryComponentType = {
+    render: () => {
+        return (
+            <NodeIconButton
+                icon={IconMappings.info}
+                aria-label="More information"
+                tokens={{
+                    boxForeground:
+                        semanticColor.learning.foreground.streaks.default,
+                    boxBackground:
+                        semanticColor.learning.background.streaks.default,
+                    boxShadowColor: semanticColor.learning.math.foreground.pink,
+                    boxPadding: sizing.size_120,
+                    boxShadowYRest: sizing.size_080,
+                    boxShadowYHover: sizing.size_100,
+                    boxShadowYPress: sizing.size_0,
+                    iconSize: sizing.size_960,
+                }}
+            />
+        );
+    },
+};
+
+/**
+ * Alternatively, you can use the `styles` prop to apply custom styles to
+ * speicific parts of the `NodeIconButton` component.
  *
  * The following parts can be styled:
  * - `root`: Styles the root element (button)
  * - `box`: Styles the "chonky" box element
  * - `icon`: Styles the icon element
+ *
+ * **Note:** The `styles` prop is not recommended for most use cases. Instead,
+ * we recommend using the `tokens` prop to customize the appearance of the
+ * `NodeIconButton` component. If you still need to provide more specific
+ * styles, you can use the `styles` prop.
  */
 export const WithCustomStyles: StoryComponentType = {
     render: () => {
