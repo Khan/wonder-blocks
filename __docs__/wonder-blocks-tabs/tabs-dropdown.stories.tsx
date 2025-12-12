@@ -13,6 +13,9 @@ export default {
             disableSnapshot: true,
         },
     },
+    args: {
+        "aria-label": "Tabs Dropdown Component",
+    },
 } as Meta<typeof TabsDropdown>;
 
 type Story = StoryObj<typeof TabsDropdown>;
