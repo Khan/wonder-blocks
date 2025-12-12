@@ -23,13 +23,6 @@ interface Props {
      */
     locale?: Locale;
     /**
-     * Optional writing direction to pass in as a prop.
-
-     * Useful for overlays that render outside of normal tree with `dir="rtl"`,
-     * such as in consumer stories.
-     */
-    dir?: "ltr" | "rtl";
-    /**
      * When the selected date changes, this callback is passsed a Temporal object
      * for midnight on the selected date, set to the user's local time zone.
      */
@@ -100,7 +93,6 @@ const customRootStyle = {
 const DatePicker = (props: Props) => {
     const {
         locale,
-        dir,
         updateDate,
         dateFormat,
         disabled,
@@ -120,10 +112,20 @@ const DatePicker = (props: Props) => {
         Temporal.PlainDate | null | undefined
     >(selectedDate);
 
-    const computedLocale = locale ?? enUS;
-
     const datePickerInputRef = React.useRef<HTMLInputElement | null>(null);
     const datePickerRef = React.useRef<HTMLElement | null>(null);
+    const refWrapper = React.useRef<HTMLDivElement>(null);
+
+    const open = React.useCallback(() => {
+        if (!disabled) {
+            setShowOverlay(true);
+        }
+    }, [disabled]);
+    const close = React.useCallback(() => setShowOverlay(false), []);
+
+    const computedLocale = locale ?? enUS;
+    const dir =
+        refWrapper.current?.closest("[dir]")?.getAttribute("dir") || "ltr";
 
     // Keep currentDate in sync with selectedDate prop
     React.useEffect(() => {
@@ -154,15 +156,6 @@ const DatePicker = (props: Props) => {
             document.removeEventListener("mouseup", handleClick);
         };
     }, [showOverlay, closeOnSelect]);
-
-    const refWrapper = React.useRef<HTMLDivElement>(null);
-
-    const open = React.useCallback(() => {
-        if (!disabled) {
-            setShowOverlay(true);
-        }
-    }, [disabled]);
-    const close = React.useCallback(() => setShowOverlay(false), []);
 
     const isLeavingDropdown = (e: React.FocusEvent): boolean => {
         const dayPickerCalendar = datePickerRef.current;
