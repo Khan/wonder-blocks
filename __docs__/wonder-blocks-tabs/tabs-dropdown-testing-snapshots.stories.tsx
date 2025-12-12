@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Meta, StoryObj} from "@storybook/react-vite";
-import {TabsDropdown} from "@khanacademy/wonder-blocks-tabs";
+import {TabsDropdown} from "../../packages/wonder-blocks-tabs/src/components/tabs-dropdown";
 import {ScenariosLayout} from "../components/scenarios-layout";
 import {
     longText,
@@ -10,7 +10,7 @@ import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {allModes, themeModes} from "../../.storybook/modes";
 
 export default {
-    title: "Packages / Tabs / TabsDropdown / Testing / TabsDropdown - Snapshots",
+    title: "Packages / Tabs / Tabs / Subcomponents / TabsDropdown / Testing / TabsDropdown - Snapshots",
     component: TabsDropdown,
     tags: ["!autodocs"],
     parameters: {
