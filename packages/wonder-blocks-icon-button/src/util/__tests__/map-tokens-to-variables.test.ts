@@ -12,22 +12,22 @@ describe("mapTokensToVariables", () => {
             boxForeground: "#fff",
             iconSize: 24,
         };
-        const prefix = "--wb-ib-node-";
+        const prefix = "--wb-node-icon-button--";
 
         // Act
         const result = mapTokensToVariables(tokens, prefix);
 
         // Assert
         expect(result).toEqual({
-            "--wb-ib-node-box-foreground": "#fff",
-            "--wb-ib-node-icon-size": 24,
+            "--wb-node-icon-button--box-foreground": "#fff",
+            "--wb-node-icon-button--icon-size": 24,
         });
     });
 
     it("returns an empty object for empty tokens", () => {
         // Arrange
         const tokens: Partial<TokensAsJsVariable<"box-background">> = {};
-        const prefix = "--wb-ib-node-";
+        const prefix = "--wb-node-icon-button--";
 
         // Act
         const result = mapTokensToVariables(tokens, prefix);
