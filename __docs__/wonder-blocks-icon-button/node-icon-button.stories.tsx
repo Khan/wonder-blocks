@@ -234,6 +234,12 @@ export const WithCustomTokens: StoryComponentType = {
             />
         );
     },
+    parameters: {
+        chromatic: {
+            // Keep snapshots to confirm token overrides are working
+            disableSnapshot: false,
+        },
+    },
 };
 
 /**
