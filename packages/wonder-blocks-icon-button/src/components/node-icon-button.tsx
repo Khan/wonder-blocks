@@ -16,14 +16,14 @@ import {IconButtonUnstyled} from "./icon-button-unstyled";
  * the appearance of the NodeIconButton component.
  */
 type Tokens = Partial<{
-    "--wb-ib-node-box-foreground": string;
-    "--wb-ib-node-box-background": string;
-    "--wb-ib-node-box-shadow-color": string;
-    "--wb-ib-node-box-padding": string | number;
-    "--wb-ib-node-box-shadow-y-rest": string | number;
-    "--wb-ib-node-box-shadow-y-hover": string | number;
-    "--wb-ib-node-box-shadow-y-press": string | number;
-    "--wb-ib-node-icon-size": string | number;
+    "--wb-node-icon-button--box-foreground": string;
+    "--wb-node-icon-button--box-background": string;
+    "--wb-node-icon-button--box-shadow-color": string;
+    "--wb-node-icon-button--box-padding": string | number;
+    "--wb-node-icon-button--box-shadow-y-rest": string | number;
+    "--wb-node-icon-button--box-shadow-y-hover": string | number;
+    "--wb-node-icon-button--box-shadow-y-press": string | number;
+    "--wb-node-icon-button--icon-size": string | number;
 }>;
 
 type Props = Omit<BaseIconButtonProps, "kind" | "style"> & {
@@ -163,46 +163,46 @@ const variants: {
     size: {
         // Default size.
         large: {
-            "--wb-ib-node-icon-size": sizing.size_480,
-            "--wb-ib-node-box-padding": sizing.size_100,
+            "--wb-node-icon-button--icon-size": sizing.size_480,
+            "--wb-node-icon-button--box-padding": sizing.size_100,
             // NOTE: We use px units to prevent a bug in Safari where the shadow
             // animation flickers when using rem units.
-            "--wb-ib-node-box-shadow-y-rest": "6px",
-            "--wb-ib-node-box-shadow-y-hover": "8px",
-            "--wb-ib-node-box-shadow-y-press": sizing.size_0,
+            "--wb-node-icon-button--box-shadow-y-rest": "6px",
+            "--wb-node-icon-button--box-shadow-y-hover": "8px",
+            "--wb-node-icon-button--box-shadow-y-press": sizing.size_0,
         },
         small: {
-            "--wb-ib-node-icon-size": sizing.size_240,
-            "--wb-ib-node-box-padding": sizing.size_0,
-            "--wb-ib-node-box-shadow-y-rest": "2px",
-            "--wb-ib-node-box-shadow-y-hover": "4px",
-            "--wb-ib-node-box-shadow-y-press": sizing.size_0,
+            "--wb-node-icon-button--icon-size": sizing.size_240,
+            "--wb-node-icon-button--box-padding": sizing.size_0,
+            "--wb-node-icon-button--box-shadow-y-rest": "2px",
+            "--wb-node-icon-button--box-shadow-y-hover": "4px",
+            "--wb-node-icon-button--box-shadow-y-press": sizing.size_0,
         },
     },
     actionType: {
         // Default action type.
         notStarted: {
-            "--wb-ib-node-box-foreground":
+            "--wb-node-icon-button--box-foreground":
                 semanticColor.learning.foreground.progress.notStarted.strong,
-            "--wb-ib-node-box-background":
+            "--wb-node-icon-button--box-background":
                 semanticColor.learning.background.progress.notStarted.default,
-            "--wb-ib-node-box-shadow-color":
+            "--wb-node-icon-button--box-shadow-color":
                 semanticColor.learning.shadow.progress.notStarted.default,
         },
         attempted: {
-            "--wb-ib-node-box-foreground":
+            "--wb-node-icon-button--box-foreground":
                 semanticColor.learning.foreground.progress.attempted.strong,
-            "--wb-ib-node-box-background":
+            "--wb-node-icon-button--box-background":
                 semanticColor.learning.background.progress.attempted.default,
-            "--wb-ib-node-box-shadow-color":
+            "--wb-node-icon-button--box-shadow-color":
                 semanticColor.learning.shadow.progress.attempted.default,
         },
         complete: {
-            "--wb-ib-node-box-foreground":
+            "--wb-node-icon-button--box-foreground":
                 semanticColor.learning.foreground.progress.complete.strong,
-            "--wb-ib-node-box-background":
+            "--wb-node-icon-button--box-background":
                 semanticColor.learning.background.progress.complete.default,
-            "--wb-ib-node-box-shadow-color":
+            "--wb-node-icon-button--box-shadow-color":
                 semanticColor.learning.shadow.progress.complete.default,
         },
     },
@@ -215,13 +215,13 @@ const disabledStatesStyles = {
 const chonkyDisabled = {
     background: semanticColor.chonky.disabled.background.primary,
     color: semanticColor.chonky.disabled.foreground.primary,
-    boxShadow: `0 var(--wb-ib-node-box-shadow-y-rest) 0 0 ${semanticColor.chonky.disabled.shadow.primary}`,
+    boxShadow: `0 var(--wb-node-icon-button--box-shadow-y-rest) 0 0 ${semanticColor.chonky.disabled.shadow.primary}`,
     transform: "none",
 };
 
 const chonkyPressed = {
-    boxShadow: `0 var(--wb-ib-node-box-shadow-y-press) 0 0 var(--wb-ib-node-box-shadow-color)`,
-    transform: `translateY(var(--wb-ib-node-box-shadow-y-rest))`,
+    boxShadow: `0 var(--wb-node-icon-button--box-shadow-y-press) 0 0 var(--wb-node-icon-button--box-shadow-color)`,
+    transform: `translateY(var(--wb-node-icon-button--box-shadow-y-rest))`,
 };
 
 const styles = StyleSheet.create({
@@ -246,8 +246,8 @@ const styles = StyleSheet.create({
          * :focus-visible styles.
          */
         [":is(:hover) .chonky" as any]: {
-            boxShadow: `0 var(--wb-ib-node-box-shadow-y-hover) 0 0 var(--wb-ib-node-box-shadow-color)`,
-            transform: `translateY(calc((var(--wb-ib-node-box-shadow-y-hover) - var(--wb-ib-node-box-shadow-y-rest)) * -1))`,
+            boxShadow: `0 var(--wb-node-icon-button--box-shadow-y-hover) 0 0 var(--wb-node-icon-button--box-shadow-color)`,
+            transform: `translateY(calc((var(--wb-node-icon-button--box-shadow-y-hover) - var(--wb-node-icon-button--box-shadow-y-rest)) * -1))`,
         },
 
         [":is(:active) .chonky" as any]: chonkyPressed,
@@ -284,15 +284,15 @@ const styles = StyleSheet.create({
         borderRadius: border.radius.radius_full,
         justifyContent: "center",
         alignItems: "center",
-        padding: "var(--wb-ib-node-box-padding)",
+        padding: "var(--wb-node-icon-button--box-padding)",
         width: "100%",
         height: "100%",
         // theming
-        background: "var(--wb-ib-node-box-background)",
-        color: "var(--wb-ib-node-box-foreground)",
+        background: "var(--wb-node-icon-button--box-background)",
+        color: "var(--wb-node-icon-button--box-foreground)",
         // Gives the button a "chonky" look and feel.
-        marginBlockEnd: "var(--wb-ib-node-box-shadow-y-rest)",
-        boxShadow: `0 var(--wb-ib-node-box-shadow-y-rest) 0 0 var(--wb-ib-node-box-shadow-color)`,
+        marginBlockEnd: "var(--wb-node-icon-button--box-shadow-y-rest)",
+        boxShadow: `0 var(--wb-node-icon-button--box-shadow-y-rest) 0 0 var(--wb-node-icon-button--box-shadow-color)`,
         // motion
         transition: "0.12s ease-out",
         // NOTE: We only want to transition the properties that are being
@@ -310,7 +310,7 @@ const styles = StyleSheet.create({
      * Icon Styles (icon)
      */
     icon: {
-        inlineSize: "var(--wb-ib-node-icon-size)",
-        blockSize: "var(--wb-ib-node-icon-size)",
+        inlineSize: "var(--wb-node-icon-button--icon-size)",
+        blockSize: "var(--wb-node-icon-button--icon-size)",
     },
 });
