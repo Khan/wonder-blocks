@@ -13,7 +13,7 @@ import * as DateMock from "jest-date-mock";
 import {Temporal} from "temporal-polyfill";
 
 import Button from "@khanacademy/wonder-blocks-button";
-
+import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {
     DatePicker,
     TemporalLocaleUtils,
@@ -349,15 +349,20 @@ describe("DatePicker", () => {
         );
     });
 
-    it("uses default aria-label when no inputAriaLabel prop is provided", async () => {
+    it("uses receives an accessible name from an outside label", async () => {
         // Arrange
-        render(<DatePicker updateDate={() => {}} />);
+        render(
+            <LabeledField
+                label="Rainier McCheddarton"
+                field={<DatePicker updateDate={() => {}} />}
+            />,
+        );
 
         // Act
         const input = screen.getByRole("textbox");
 
         // Assert
-        expect(input).toHaveAttribute("aria-label", "Choose or enter a date");
+        expect(input).toHaveAccessibleName("Rainier McCheddarton");
     });
 
     it("uses custom aria-label when inputAriaLabel prop is provided for start date", async () => {

@@ -88,12 +88,12 @@ const DatePicker = (props: Props) => {
         id,
         maxDate,
         minDate,
+        inputAriaLabel,
         placeholder,
         selectedDate,
         style,
         closeOnSelect = true,
         footer,
-        inputAriaLabel,
     } = props;
 
     const [showOverlay, setShowOverlay] = React.useState(false);
