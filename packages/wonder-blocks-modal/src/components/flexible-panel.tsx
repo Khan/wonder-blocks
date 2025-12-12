@@ -96,13 +96,21 @@ export default function FlexiblePanel({
         const mainContent = ModalContent.isComponentOf(contentNode) ? (
             (contentNode as React.ReactElement<PropsFor<typeof ModalContent>>)
         ) : (
-            <ModalContent style={styles?.content}>{contentNode}</ModalContent>
+            <ModalContent
+                style={styles?.content}
+                applySmallHeightStyles={false}
+            >
+                {contentNode}
+            </ModalContent>
         );
         if (!mainContent) {
             return mainContent;
         }
 
         return React.cloneElement(mainContent, {
+            // FlexibleDialog/DrawerDialog need scrolling at all times,
+            // so we disable the small-height media query override
+            applySmallHeightStyles: false,
             style: [mainContent.props.style],
         });
     }, [title, content, styles?.content]);
