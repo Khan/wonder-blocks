@@ -7,8 +7,8 @@ packages:
     - "wb-codemod"
 catalog:
     # Wonder Stuff
-    "@khanacademy/wonder-stuff-core": ^1.5.4
-    "@khanacademy/wonder-stuff-testing": ^3.0.5
+    "@khanacademy/wonder-stuff-core": ^3.0.0
+    "@khanacademy/wonder-stuff-testing": ^4.0.3
     # Icons library
     "@phosphor-icons/core": ^2.0.2
     # Positioning

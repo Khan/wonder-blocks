@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-testing
 
+## 17.0.0
+
+### Major Changes
+
+- cf6ddda: Updated Wonder Stuff peer dependencies to latest major releases
+
+### Patch Changes
+
+- Updated dependencies [cf6ddda]
+    - @khanacademy/wonder-blocks-data@15.0.0
+    - @khanacademy/wonder-blocks-testing-core@5.0.0
+    - @khanacademy/wonder-blocks-core@12.4.2
+
 ## 16.0.3
 
 ### Patch Changes
