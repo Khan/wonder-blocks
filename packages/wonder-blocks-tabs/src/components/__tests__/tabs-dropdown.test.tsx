@@ -148,24 +148,63 @@ describe("TabsDropdown", () => {
             });
         });
 
-        it("should use the testId prop for the root element", () => {
-            // Arrange
-            // Act
-            const {container} = render(
-                <TabsDropdown
-                    testId="tabs-dropdown-test-id"
-                    tabs={tabs}
-                    selectedTabId="tab-1"
-                    onTabSelected={jest.fn()}
-                />,
-            );
+        describe("testId", () => {
+            it("should use the testId prop for the root element", () => {
+                // Arrange
+                // Act
+                const {container} = render(
+                    <TabsDropdown
+                        testId="tabs-dropdown-test-id"
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
 
-            // Assert
-            // eslint-disable-next-line testing-library/no-node-access -- explicitly checking the root element
-            expect(container.firstChild).toHaveAttribute(
-                "data-testid",
-                "tabs-dropdown-test-id",
-            );
+                // Assert
+                // eslint-disable-next-line testing-library/no-node-access -- explicitly checking the root element
+                expect(container.firstChild).toHaveAttribute(
+                    "data-testid",
+                    "tabs-dropdown-test-id",
+                );
+            });
+
+            it("should use the testId prop for the opener element with '-opener' suffix", () => {
+                // Arrange
+                // Act
+                render(
+                    <TabsDropdown
+                        testId="tabs-dropdown-test-id"
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Assert
+                expect(screen.getByRole("button")).toHaveAttribute(
+                    "data-testid",
+                    "tabs-dropdown-test-id-opener",
+                );
+            });
+
+            it("should use the testId prop for the panel element with '-panel' suffix", () => {
+                // Arrange
+                // Act
+                render(
+                    <TabsDropdown
+                        testId="tabs-dropdown-test-id"
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Assert
+                expect(
+                    screen.getByRole("group", {name: "Tab 1"}),
+                ).toHaveAttribute("data-testid", "tabs-dropdown-test-id-panel");
+            });
         });
 
         it("should set the ref", () => {

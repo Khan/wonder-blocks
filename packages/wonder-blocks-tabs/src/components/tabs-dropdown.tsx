@@ -36,6 +36,11 @@ type Props = {
     id?: string;
     /**
      * Optional test ID for e2e testing.
+     *
+     * Here is how the testId is used for the different elements in the component:
+     * - The root will have a testId of `${testId}`
+     * - The opener will have a testId of `${testId}-opener`
+     * - The panel will have a testId of `${testId}-panel`
      */
     testId?: string;
     /**
@@ -141,6 +146,7 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, Props>(
                     menuText="Tabs"
                     opener={() => (
                         <Button
+                            testId={testId ? `${testId}-opener` : undefined}
                             kind="tertiary"
                             endIcon={caretDown}
                             style={[styles.opener, stylesProp?.opener]}
@@ -172,7 +178,12 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, Props>(
                         );
                     })}
                 </ActionMenu>
-                <View id={panelId} role="group" aria-labelledby={openerId}>
+                <View
+                    id={panelId}
+                    role="group"
+                    aria-labelledby={openerId}
+                    data-testid={testId ? `${testId}-panel` : undefined}
+                >
                     {selectedTabItem?.panel}
                 </View>
             </View>
