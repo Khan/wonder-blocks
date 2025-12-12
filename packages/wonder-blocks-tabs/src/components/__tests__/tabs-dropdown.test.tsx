@@ -44,6 +44,7 @@ describe("TabsDropdown", () => {
                     const {container} = render(
                         <TabsDropdown
                             id="tabs-dropdown-id"
+                            aria-label="Test tabs"
                             tabs={tabs}
                             selectedTabId="tab-1"
                             onTabSelected={jest.fn()}
@@ -64,6 +65,7 @@ describe("TabsDropdown", () => {
                     render(
                         <TabsDropdown
                             id="tabs-dropdown-id"
+                            aria-label="Test tabs"
                             tabs={tabs}
                             selectedTabId="tab-1"
                             onTabSelected={jest.fn()}
@@ -83,6 +85,7 @@ describe("TabsDropdown", () => {
                     render(
                         <TabsDropdown
                             id="tabs-dropdown-id"
+                            aria-label="Test tabs"
                             tabs={tabs}
                             selectedTabId="tab-1"
                             onTabSelected={jest.fn()}
@@ -102,6 +105,7 @@ describe("TabsDropdown", () => {
                     // Act
                     const {container} = render(
                         <TabsDropdown
+                            aria-label="Test tabs"
                             tabs={tabs}
                             selectedTabId="tab-1"
                             onTabSelected={jest.fn()}
@@ -117,6 +121,7 @@ describe("TabsDropdown", () => {
                     // Arrange
                     render(
                         <TabsDropdown
+                            aria-label="Test tabs"
                             tabs={tabs}
                             selectedTabId="tab-1"
                             onTabSelected={jest.fn()}
@@ -133,6 +138,7 @@ describe("TabsDropdown", () => {
                     // Arrange
                     render(
                         <TabsDropdown
+                            aria-label="Test tabs"
                             tabs={tabs}
                             selectedTabId="tab-1"
                             onTabSelected={jest.fn()}
@@ -155,6 +161,7 @@ describe("TabsDropdown", () => {
                 const {container} = render(
                     <TabsDropdown
                         testId="tabs-dropdown-test-id"
+                        aria-label="Test tabs"
                         tabs={tabs}
                         selectedTabId="tab-1"
                         onTabSelected={jest.fn()}
@@ -175,6 +182,7 @@ describe("TabsDropdown", () => {
                 render(
                     <TabsDropdown
                         testId="tabs-dropdown-test-id"
+                        aria-label="Test tabs"
                         tabs={tabs}
                         selectedTabId="tab-1"
                         onTabSelected={jest.fn()}
@@ -194,6 +202,7 @@ describe("TabsDropdown", () => {
                 render(
                     <TabsDropdown
                         testId="tabs-dropdown-test-id"
+                        aria-label="Test tabs"
                         tabs={tabs}
                         selectedTabId="tab-1"
                         onTabSelected={jest.fn()}
@@ -213,6 +222,7 @@ describe("TabsDropdown", () => {
             const ref = React.createRef<HTMLDivElement>();
             const {container} = render(
                 <TabsDropdown
+                    aria-label="Test tabs"
                     tabs={tabs}
                     selectedTabId="tab-1"
                     onTabSelected={jest.fn()}
@@ -230,6 +240,7 @@ describe("TabsDropdown", () => {
                 // Arrange
                 render(
                     <TabsDropdown
+                        aria-label="Test tabs"
                         tabs={tabs}
                         selectedTabId="tab-1"
                         onTabSelected={jest.fn()}
@@ -256,6 +267,7 @@ describe("TabsDropdown", () => {
                 // Act
                 const {container} = render(
                     <TabsDropdown
+                        aria-label="Test tabs"
                         tabs={[]}
                         selectedTabId=""
                         onTabSelected={jest.fn()}
@@ -273,6 +285,7 @@ describe("TabsDropdown", () => {
                 // Act
                 render(
                     <TabsDropdown
+                        aria-label="Test tabs"
                         tabs={[
                             {
                                 id: "tab-1",
@@ -302,6 +315,7 @@ describe("TabsDropdown", () => {
                 // Arrange
                 render(
                     <TabsDropdown
+                        aria-label="Test tabs"
                         tabs={[
                             {
                                 id: "tab-1",
@@ -332,6 +346,7 @@ describe("TabsDropdown", () => {
                 // Act
                 render(
                     <TabsDropdown
+                        aria-label="Test tabs"
                         tabs={tabs}
                         selectedTabId="tab-1"
                         onTabSelected={jest.fn()}
@@ -346,6 +361,7 @@ describe("TabsDropdown", () => {
                 // Arrange
                 render(
                     <TabsDropdown
+                        aria-label="Test tabs"
                         tabs={tabs}
                         selectedTabId="tab-1"
                         onTabSelected={jest.fn()}
@@ -367,6 +383,7 @@ describe("TabsDropdown", () => {
                 // Act
                 render(
                     <TabsDropdown
+                        aria-label="Test tabs"
                         tabs={tabs}
                         selectedTabId="tab-1"
                         onTabSelected={jest.fn()}
@@ -382,6 +399,7 @@ describe("TabsDropdown", () => {
                 // Act
                 render(
                     <TabsDropdown
+                        aria-label="Test tabs"
                         tabs={tabs}
                         selectedTabId="tab-1"
                         onTabSelected={jest.fn()}
@@ -399,6 +417,7 @@ describe("TabsDropdown", () => {
                 // Act
                 render(
                     <TabsDropdown
+                        aria-label="Test tabs"
                         tabs={tabs}
                         selectedTabId=""
                         onTabSelected={jest.fn()}
@@ -414,6 +433,7 @@ describe("TabsDropdown", () => {
                 // Act
                 render(
                     <TabsDropdown
+                        aria-label="Test tabs"
                         tabs={tabs}
                         selectedTabId=""
                         onTabSelected={jest.fn()}
@@ -436,6 +456,7 @@ describe("TabsDropdown", () => {
                 const onTabSelected = jest.fn();
                 render(
                     <TabsDropdown
+                        aria-label="Test tabs"
                         tabs={tabs}
                         selectedTabId="tab-1"
                         onTabSelected={onTabSelected}
@@ -454,11 +475,31 @@ describe("TabsDropdown", () => {
     });
 
     describe("Accessibility", () => {
+        describe("Semantics", () => {
+            it("should have role='region' on the root element", () => {
+                // Arrange
+                // Act
+                const {container} = render(
+                    <TabsDropdown
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                        aria-label="Tabs for testing"
+                    />,
+                );
+
+                // Assert
+                // eslint-disable-next-line testing-library/no-node-access -- explicitly checking the root element
+                expect(container.firstChild).toHaveAttribute("role", "region");
+            });
+        });
+
         describe("ARIA", () => {
             it("should set aria-labelledby on the panel to the opener's id", () => {
                 // Arrange
                 render(
                     <TabsDropdown
+                        aria-label="Test tabs"
                         tabs={tabs}
                         selectedTabId="tab-1"
                         onTabSelected={jest.fn()}
@@ -471,6 +512,45 @@ describe("TabsDropdown", () => {
 
                 // Assert
                 expect(panel).toHaveAttribute("aria-labelledby", opener.id);
+            });
+
+            it("should set aria-label on the region", () => {
+                // Arrange
+                // Act
+                render(
+                    <TabsDropdown
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                        aria-label="Tabs for testing"
+                    />,
+                );
+
+                // Assert
+                expect(
+                    screen.getByRole("region", {name: "Tabs for testing"}),
+                ).toHaveAttribute("aria-label", "Tabs for testing");
+            });
+
+            it("should set aria-labelledby on the region when provided", () => {
+                // Arrange
+                // Act
+                render(
+                    <>
+                        <h1 id="tabs-heading">Tabs for testing</h1>
+                        <TabsDropdown
+                            tabs={tabs}
+                            selectedTabId="tab-1"
+                            onTabSelected={jest.fn()}
+                            aria-labelledby="tabs-heading"
+                        />
+                    </>,
+                );
+
+                // Assert
+                expect(
+                    screen.getByRole("region", {name: "Tabs for testing"}),
+                ).toHaveAttribute("aria-labelledby", "tabs-heading");
             });
         });
     });

@@ -6,7 +6,8 @@ import {StyleSheet} from "aphrodite";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import checkCircleIcon from "@phosphor-icons/core/fill/check-circle-fill.svg";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {StyleType, View} from "@khanacademy/wonder-blocks-core";
+import {View, StyleType} from "@khanacademy/wonder-blocks-core";
+import {AriaLabelOrAriaLabelledby} from "./types";
 
 type TabDropdownItem = {
     /**
@@ -23,7 +24,7 @@ type TabDropdownItem = {
     panel: React.ReactNode;
 };
 
-type Props = {
+type Props = AriaLabelOrAriaLabelledby & {
     /**
      * A unique id for the component. If not provided, a unique base id will be
      * generated automatically.
@@ -110,6 +111,8 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, Props>(
             opened,
             id: idProp,
             testId,
+            "aria-label": ariaLabel,
+            "aria-labelledby": ariaLabelledby,
             styles: stylesProp,
         } = props;
 
@@ -138,6 +141,9 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, Props>(
                 id={uniqueId}
                 data-testid={testId}
                 style={stylesProp?.root}
+                role="region"
+                aria-label={ariaLabel}
+                aria-labelledby={ariaLabelledby}
             >
                 <ActionMenu
                     opened={opened}
