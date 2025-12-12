@@ -233,7 +233,7 @@ export const WithLongContents: StoryComponentType = {
                 >
                     <ModalPanel
                         content={
-                            <View style={{gap: sizing.size_240}}>
+                            <View style={{gap: sizing.size_240}} tabIndex={0}>
                                 <Heading size="xxlarge" id="modal-title-4">
                                     Terms of Service
                                 </Heading>
