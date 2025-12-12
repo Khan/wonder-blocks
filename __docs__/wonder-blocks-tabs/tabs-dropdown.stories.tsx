@@ -1,0 +1,98 @@
+import * as React from "react";
+import {Meta, StoryObj} from "@storybook/react-vite";
+import {TabsDropdown} from "../../packages/wonder-blocks-tabs/src/components/tabs-dropdown";
+import {PropsFor} from "@khanacademy/wonder-blocks-core";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+
+export default {
+    title: "Packages / Tabs / Tabs / Subcomponents / TabsDropdown",
+    component: TabsDropdown,
+    parameters: {
+        chromatic: {
+            // Visual regression testing is done in the testing snapshots stories
+            disableSnapshot: true,
+        },
+    },
+} as Meta<typeof TabsDropdown>;
+
+type Story = StoryObj<typeof TabsDropdown>;
+
+const tabs = [
+    {
+        label: "Tab Dropdown Item 1",
+        id: "tab-1",
+        panel: <div>Tab contents 1</div>,
+    },
+    {
+        label: "Tab Dropdown Item 2",
+        id: "tab-2",
+        panel: <div>Tab contents 2</div>,
+    },
+];
+
+function ControlledTabsDropdown(props: PropsFor<typeof TabsDropdown>) {
+    const [selectedTabId, setSelectedTabId] = React.useState(
+        props.selectedTabId,
+    );
+
+    const [opened, setOpened] = React.useState<boolean | undefined>(undefined);
+    React.useEffect(() => {
+        // Update opened after initial render so that the dropdown popper is
+        // placed correctly
+        if (props.opened !== undefined) {
+            setOpened(props.opened);
+        }
+    }, [props.opened]);
+
+    return (
+        <TabsDropdown
+            {...props}
+            selectedTabId={selectedTabId}
+            onTabSelected={setSelectedTabId}
+            opened={opened}
+        />
+    );
+}
+
+export const Default: Story = {
+    args: {
+        tabs,
+        selectedTabId: "tab-1",
+    },
+    render: ControlledTabsDropdown,
+};
+
+/**
+ * The TabsDropdown component supports explicitly setting the opened state of
+ * the dropdown.
+ */
+export const Opened: Story = {
+    args: {
+        tabs,
+        selectedTabId: "tab-1",
+        opened: true,
+        styles: {
+            root: {
+                paddingBlockEnd: sizing.size_800,
+            },
+        },
+    },
+    render: ControlledTabsDropdown,
+};
+
+/**
+ * Normally, the label of the selected tab is displayed in the opener. However,
+ * if the selected tab id is invalid, the `labels.defaultOpenerLabel` will be
+ * used to label the opener. If the `labels.defaultOpenerLabel` is not set, a
+ * default untranslated string is used.
+ */
+export const InvalidSelectedTabId: Story = {
+    args: {
+        tabs,
+        selectedTabId: "invalid-tab-id",
+        labels: {
+            defaultOpenerLabel: "Custom Tabs Label",
+        },
+    },
+    render: ControlledTabsDropdown,
+};
