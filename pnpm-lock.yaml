@@ -7,11 +7,11 @@ settings:
 catalogs:
   default:
     '@khanacademy/wonder-stuff-core':
-      specifier: ^1.5.4
-      version: 1.5.4
+      specifier: ^3.0.0
+      version: 3.0.0
     '@khanacademy/wonder-stuff-testing':
-      specifier: ^3.0.5
-      version: 3.0.5
+      specifier: ^4.0.3
+      version: 4.0.3
     '@phosphor-icons/core':
       specifier: ^2.0.2
       version: 2.1.1
@@ -67,7 +67,7 @@ importers:
     dependencies:
       '@khanacademy/wonder-stuff-core':
         specifier: 'catalog:'
-        version: 1.5.4
+        version: 3.0.0
       '@phosphor-icons/core':
         specifier: 'catalog:'
         version: 2.1.1
@@ -756,7 +756,7 @@ importers:
         version: link:../wonder-blocks-core
       '@khanacademy/wonder-stuff-core':
         specifier: 'catalog:'
-        version: 1.5.4
+        version: 3.0.0
       react:
         specifier: 'catalog:'
         version: 18.2.0
@@ -769,7 +769,7 @@ importers:
         version: link:../wonder-blocks-testing-core
       '@khanacademy/wonder-stuff-testing':
         specifier: 'catalog:'
-        version: 3.0.5(jest@29.7.0(@types/node@22.13.0))
+        version: 4.0.3(jest@29.7.0(@types/node@22.13.0))
 
   packages/wonder-blocks-dropdown:
     dependencies:
@@ -1307,7 +1307,7 @@ importers:
         version: link:../wonder-blocks-testing-core
       '@khanacademy/wonder-stuff-core':
         specifier: 'catalog:'
-        version: 1.5.4
+        version: 3.0.0
       aphrodite:
         specifier: 'catalog:'
         version: 1.2.5
@@ -1332,13 +1332,13 @@ importers:
         version: link:../../build-settings
       '@khanacademy/wonder-stuff-testing':
         specifier: 'catalog:'
-        version: 3.0.5(jest@29.7.0(@types/node@22.13.0))
+        version: 4.0.3(jest@29.7.0(@types/node@22.13.0))
 
   packages/wonder-blocks-testing-core:
     dependencies:
       '@khanacademy/wonder-stuff-core':
         specifier: 'catalog:'
-        version: 1.5.4
+        version: 3.0.0
       aphrodite:
         specifier: 'catalog:'
         version: 1.2.5
@@ -1363,7 +1363,7 @@ importers:
         version: link:../../build-settings
       '@khanacademy/wonder-stuff-testing':
         specifier: 'catalog:'
-        version: 3.0.5(jest@29.7.0(@types/node@22.13.0))
+        version: 4.0.3(jest@29.7.0(@types/node@22.13.0))
 
   packages/wonder-blocks-theming:
     dependencies:
@@ -2534,11 +2534,21 @@ packages:
     resolution: {integrity: sha512-Z1DOHdSNrXyIKCgYsq6XKT6ZTRq5bb7Daof8mN31O30twStrwBynP5fS0lARS9qgxycaueThEcmeCF8AXyU21g==}
     engines: {node: '>=16'}
 
+  '@khanacademy/wonder-stuff-core@3.0.0':
+    resolution: {integrity: sha512-lkq28lY/z/Y4kEhYTMCrbG1ZsZUc0QVbBpz6xHC/4TMCdrwaN6PEeFX2mX4DVaE7bcwi3Y22ZXQmjdxnBpvc2A==}
+    engines: {node: '>=20'}
+
   '@khanacademy/wonder-stuff-testing@3.0.5':
     resolution: {integrity: sha512-Eh273V7FVcA+L4wv1mkoWZKiItKR6tEQlOt+0klGpg8UKx2XYBb72iHCFV6+ZRamOqFQHwPJ7jGC6FO0IjB1IQ==}
     engines: {node: '>=16'}
     peerDependencies:
       jest: ^29
+
+  '@khanacademy/wonder-stuff-testing@4.0.3':
+    resolution: {integrity: sha512-QcPatmr49ypAynsNRBfo6WwfDYMOAMNgXn74d3ba0OQoVAootmuAKLOWjQlOtWvJxgv2ZGmNr83ggEVVwtW7nA==}
+    engines: {node: '>=20'}
+    peerDependencies:
+      jest: ^30.2.0
 
   '@manypkg/find-root@1.1.0':
     resolution: {integrity: sha512-mki5uBvhHzO8kYYix/WRy2WX8S3B5wdVSc9D6KcU5lQNglP2yt58/VfLuAK49glRXChosY8ap2oJ1qgma3GUVA==}
@@ -9007,9 +9017,16 @@ snapshots:
 
   '@khanacademy/wonder-stuff-core@1.5.4': {}
 
+  '@khanacademy/wonder-stuff-core@3.0.0': {}
+
   '@khanacademy/wonder-stuff-testing@3.0.5(jest@29.7.0(@types/node@22.13.0))':
     dependencies:
       '@khanacademy/wonder-stuff-core': 1.5.4
+      jest: 29.7.0(@types/node@22.13.0)
+
+  '@khanacademy/wonder-stuff-testing@4.0.3(jest@29.7.0(@types/node@22.13.0))':
+    dependencies:
+      '@khanacademy/wonder-stuff-core': 3.0.0
       jest: 29.7.0(@types/node@22.13.0)
 
   '@manypkg/find-root@1.1.0':
