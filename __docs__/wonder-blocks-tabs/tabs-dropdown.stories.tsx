@@ -1,11 +1,11 @@
 import * as React from "react";
 import {Meta, StoryObj} from "@storybook/react-vite";
-import {TabsDropdown} from "@khanacademy/wonder-blocks-tabs";
+import {TabsDropdown} from "../../packages/wonder-blocks-tabs/src/components/tabs-dropdown";
 import {PropsFor} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 export default {
-    title: "Packages / Tabs / TabsDropdown",
+    title: "Packages / Tabs / Tabs / Subcomponents / TabsDropdown",
     component: TabsDropdown,
     parameters: {
         chromatic: {

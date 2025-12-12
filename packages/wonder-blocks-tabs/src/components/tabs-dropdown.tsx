@@ -86,6 +86,10 @@ const defaultLabels: Required<Props["labels"]> = {
 /**
  * The TabsDropdown component is used to represent tabs in an ActionMenu when
  * there is not enough horizontal space to render the tabs as a horizontal layout.
+ *
+ * Note: This component is meant to be used internally to address responsiveness
+ * in the ResponsiveTabs component. Please reach out to the WB team if there is
+ * a need to use this component directly.
  */
 export const TabsDropdown = React.forwardRef<HTMLDivElement, Props>(
     (props, ref) => {
