@@ -214,6 +214,31 @@ describe("TabsDropdown", () => {
                     screen.getByRole("group", {name: "Tab 1"}),
                 ).toHaveAttribute("data-testid", "tabs-dropdown-test-id-panel");
             });
+
+            it("should use the testId prop on tab items for the menu items", async () => {
+                // Arrange
+                render(
+                    <TabsDropdown
+                        aria-label="Test tabs"
+                        tabs={[
+                            {
+                                id: "tab-1",
+                                label: "Tab 1",
+                                panel: <div>Tab contents 1</div>,
+                                testId: "tab-1-test-id",
+                            },
+                        ]}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Act
+                await userEvent.click(screen.getByRole("button"));
+
+                // Assert
+                expect(screen.getByTestId("tab-1-test-id")).toBeInTheDocument();
+            });
         });
 
         it("should set the ref", () => {

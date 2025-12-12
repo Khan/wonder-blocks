@@ -24,6 +24,10 @@ type TabDropdownItem = {
      * The contents for the tab
      */
     panel: React.ReactNode;
+    /**
+     * Optional test ID for e2e testing of the menu item.
+     */
+    testId?: string;
 };
 
 type Props = AriaLabelOrAriaLabelledby & {
@@ -174,6 +178,7 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, Props>(
                                     onTabSelected(tab.id);
                                 }}
                                 active={tab.id === selectedTabId}
+                                testId={tab.testId}
                                 rightAccessory={
                                     tab.id === selectedTabId ? (
                                         <PhosphorIcon
