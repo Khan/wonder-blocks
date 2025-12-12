@@ -4,7 +4,7 @@ import * as React from "react";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {View, type PropsFor} from "@khanacademy/wonder-blocks-core";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import {DatePicker} from "@khanacademy/wonder-blocks-date-picker";
 
@@ -30,7 +30,7 @@ const DatePickerWrapper = (props: Props) => {
             style={{
                 flexDirection: "row",
                 justifyContent: "space-between",
-                padding: 32,
+                padding: sizing.size_320,
             }}
         >
             <Button>prev</Button>
@@ -162,19 +162,19 @@ export const DisabledState: Story = {
 };
 
 /**
- * No selected date, no min, showing placeholder
+ * Example with no selected date and a placeholder
  */
 export const WithPlaceholder: Story = {
     args: {
         dateFormat: "MMMM D, YYYY",
         placeholder: "Select a date",
         updateDate: () => {},
-        style: {width: "300px"},
     },
 };
 
 /**
- * Don't close on select example with custom footer
+ * This example shows how we can preserve the date picker element open with the
+ * closeOnSelect prop.
  */
 export const DontCloseOnSelect: Story = {
     render: (args) => <ControlledDatePicker {...args} />,
