@@ -59,6 +59,19 @@ describe("DatePicker", () => {
         expect(screen.getByTestId("focus-sentinel-prev")).toBeInTheDocument();
     });
 
+    it("does not show the date picker overlay if disabled", async () => {
+        // Arrange
+        render(<DatePicker disabled updateDate={() => {}} />);
+
+        // Act
+        await userEvent.click(screen.getByRole("textbox"));
+
+        // Assert
+        expect(
+            screen.queryByTestId("focus-sentinel-prev"),
+        ).not.toBeInTheDocument();
+    });
+
     it("shows the date picker overlay if the input is focused", async () => {
         // Arrange
         render(<DatePicker updateDate={() => {}} />);
