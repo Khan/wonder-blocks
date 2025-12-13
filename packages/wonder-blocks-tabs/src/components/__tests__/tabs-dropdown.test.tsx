@@ -517,6 +517,24 @@ describe("TabsDropdown", () => {
                 // eslint-disable-next-line testing-library/no-node-access -- explicitly checking the root element
                 expect(container.firstChild).toHaveAttribute("role", "region");
             });
+
+            it("should have a role='group' on the panel", () => {
+                // Arrange
+                // Act
+                render(
+                    <TabsDropdown
+                        aria-label="Test tabs"
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Assert
+                expect(
+                    screen.getByRole("group", {name: "Tab 1"}),
+                ).toHaveAttribute("role", "group");
+            });
         });
 
         describe("ARIA", () => {
@@ -576,6 +594,25 @@ describe("TabsDropdown", () => {
                 expect(
                     screen.getByRole("region", {name: "Tabs for testing"}),
                 ).toHaveAttribute("aria-labelledby", "tabs-heading");
+            });
+
+            it("should set aria-labelledby on the panel to the opener's id", () => {
+                // Arrange
+                render(
+                    <TabsDropdown
+                        aria-label="Test tabs"
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+                const opener = screen.getByRole("button");
+
+                // Act
+                const panel = screen.getByRole("group", {name: "Tab 1"});
+
+                // Assert
+                expect(panel).toHaveAttribute("aria-labelledby", opener.id);
             });
         });
 
