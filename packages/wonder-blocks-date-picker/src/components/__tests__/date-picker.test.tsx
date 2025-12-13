@@ -13,7 +13,6 @@ import * as DateMock from "jest-date-mock";
 import {Temporal} from "temporal-polyfill";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {
     DatePicker,
     TemporalLocaleUtils,
@@ -352,10 +351,10 @@ describe("DatePicker", () => {
     it("uses receives an accessible name from an outside label", async () => {
         // Arrange
         render(
-            <LabeledField
-                label="Rainier McCheddarton"
-                field={<DatePicker updateDate={() => {}} />}
-            />,
+            <label htmlFor="label-example">
+                Rainier McCheddarton
+                <DatePicker id="label-example" updateDate={() => {}} />
+            </label>,
         );
 
         // Act
