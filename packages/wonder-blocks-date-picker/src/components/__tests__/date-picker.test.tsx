@@ -401,4 +401,38 @@ describe("DatePicker", () => {
             "Choose or enter an end date",
         );
     });
+
+    it("adds a dir attribute from an ancestor", async () => {
+        // Arrange
+        render(
+            <div dir="rtl">
+                <DatePicker updateDate={() => {}} />
+            </div>,
+        );
+        await userEvent.click(screen.getByRole("textbox"));
+
+        // Act
+        const wrapper = screen.getByTestId("date-picker-overlay");
+        const hasDirRtl = within(wrapper)
+            .getAllByRole("generic")
+            .some((div) => div.getAttribute("dir") === "rtl");
+
+        // Assert
+        expect(hasDirRtl).toBe(true);
+    });
+
+    it("adds uses dir=ltr by default", async () => {
+        // Arrange
+        render(<DatePicker updateDate={() => {}} />);
+        await userEvent.click(screen.getByRole("textbox"));
+
+        // Act
+        const wrapper = screen.getByTestId("date-picker-overlay");
+        const hasDirLTR = within(wrapper)
+            .getAllByRole("generic")
+            .some((div) => div.getAttribute("dir") === "ltr");
+
+        // Assert
+        expect(hasDirLTR).toBe(true);
+    });
 });
