@@ -7,6 +7,7 @@ import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import checkCircleIcon from "@phosphor-icons/core/fill/check-circle-fill.svg";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
+import {AriaLabelOrAriaLabelledby} from "./types";
 
 const StyledDiv = addStyle("div");
 
@@ -23,15 +24,30 @@ type TabDropdownItem = {
      * The contents for the tab
      */
     panel: React.ReactNode;
+    /**
+     * Optional test ID for e2e testing of the menu item.
+     */
+    testId?: string;
 };
 
-type Props = {
+type Props = AriaLabelOrAriaLabelledby & {
     /**
-     * A unique id for the component.
+     * A unique id for the component. If not provided, a unique base id will be
+     * generated automatically.
+     *
+     * Here is how the id is used for the different elements in the component:
+     * - The root will have an id of `${id}`
+     * - The opener will have an id of `${id}-opener`
+     * - The panel will have an id of `${id}-panel`
      */
     id?: string;
     /**
      * Optional test ID for e2e testing.
+     *
+     * Here is how the testId is used for the different elements in the component:
+     * - The root will have a testId of `${testId}`
+     * - The opener will have a testId of `${testId}-opener`
+     * - The panel will have a testId of `${testId}-panel`
      */
     testId?: string;
     /**
@@ -99,14 +115,21 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, Props>(
             onTabSelected,
             labels: labelsProp,
             opened,
-            id,
+            id: idProp,
             testId,
+            "aria-label": ariaLabel,
+            "aria-labelledby": ariaLabelledby,
             styles: stylesProp,
         } = props;
 
         const labels = React.useMemo(() => {
             return {...defaultLabels, ...labelsProp};
         }, [labelsProp]);
+
+        const generatedUniqueId = React.useId();
+        const uniqueId = idProp ?? generatedUniqueId;
+        const openerId = `${uniqueId}-opener`;
+        const panelId = `${uniqueId}-panel`;
 
         const selectedTabItem = React.useMemo(() => {
             return tabs.find(
@@ -118,24 +141,31 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, Props>(
             return <React.Fragment />;
         }
 
+        const menuText = selectedTabItem?.label || labels.defaultOpenerLabel;
+
         return (
             <StyledDiv
                 ref={ref}
-                id={id}
+                id={uniqueId}
                 data-testid={testId}
                 style={stylesProp?.root}
+                role="region"
+                aria-label={ariaLabel}
+                aria-labelledby={ariaLabelledby}
             >
                 <ActionMenu
                     opened={opened}
-                    menuText="Tabs"
+                    // ActionMenu's id prop is used to set the id on the opener element
+                    id={openerId}
+                    menuText={menuText}
                     opener={() => (
                         <Button
+                            testId={testId ? `${testId}-opener` : undefined}
                             kind="tertiary"
                             endIcon={caretDown}
                             style={[styles.opener, stylesProp?.opener]}
                         >
-                            {selectedTabItem?.label ||
-                                labels.defaultOpenerLabel}
+                            {menuText}
                         </Button>
                     )}
                     style={[styles.actionMenu, stylesProp?.actionMenu]}
@@ -149,11 +179,13 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, Props>(
                                     onTabSelected(tab.id);
                                 }}
                                 active={tab.id === selectedTabId}
+                                testId={tab.testId}
                                 rightAccessory={
                                     tab.id === selectedTabId ? (
                                         <PhosphorIcon
                                             icon={checkCircleIcon}
                                             size="medium"
+                                            aria-hidden="true"
                                         />
                                     ) : undefined
                                 }
@@ -161,7 +193,14 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, Props>(
                         );
                     })}
                 </ActionMenu>
-                <StyledDiv>{selectedTabItem?.panel}</StyledDiv>
+                <StyledDiv
+                    id={panelId}
+                    role="group"
+                    aria-labelledby={openerId}
+                    data-testid={testId ? `${testId}-panel` : undefined}
+                >
+                    {selectedTabItem?.panel}
+                </StyledDiv>
             </StyledDiv>
         );
     },
