@@ -51,9 +51,11 @@
     "@khanacademy/wonder-blocks-birthday-picker": "workspace:*",
     "@khanacademy/wonder-blocks-breadcrumbs": "workspace:*",
     "@khanacademy/wonder-blocks-button": "workspace:*",
+    "@khanacademy/wonder-blocks-card": "workspace:*",
     "@khanacademy/wonder-blocks-cell": "workspace:*",
     "@khanacademy/wonder-blocks-clickable": "workspace:*",
     "@khanacademy/wonder-blocks-core": "workspace:*",
+    "@khanacademy/wonder-blocks-date-picker": "workspace:*",
     "@khanacademy/wonder-blocks-dropdown": "workspace:*",
     "@khanacademy/wonder-blocks-form": "workspace:*",
     "@khanacademy/wonder-blocks-icon": "workspace:*",
@@ -159,7 +161,9 @@
     "react-router": "catalog:",
     "react-router-dom": "catalog:",
     "react-router-dom-v5-compat": "catalog:",
-    "react-window": "catalog:"
+    "react-window": "catalog:",
+    "react-day-picker": "catalog:",
+    "temporal-polyfill": "catalog:"
   },
   "resolutions": {
     "@types/react": "18",

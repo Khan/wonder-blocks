@@ -1,0 +1,320 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+
+<Meta title="Packages / DatePicker / Temporal API Guide" />
+
+# Working with the Temporal API
+
+The Date Picker components use the [Temporal API](https://tc39.es/proposal-temporal/docs/)
+via the `temporal-polyfill` package. All dates are handled as `Temporal.PlainDate` objects
+instead of JavaScript's legacy `Date` object.
+
+## Why Temporal?
+
+### Benefits Over JavaScript Date
+
+- **More accurate and reliable** - No weird timezone bugs
+- **No timezone confusion** - Dates are always in local time
+- **Better API** - Immutable, chainable methods
+- **Future standard** - TC39 Stage 3 proposal
+- **Explicit operations** - No implicit conversions
+
+### Common Date Issues Solved
+
+```javascript
+// ❌ JavaScript Date problems:
+const date = new Date("2024-01-15"); // Creates at midnight UTC, not local time!
+date.setDate(20); // Mutates the original date!
+date.getMonth(); // Returns 0-11, not 1-12 (confusing!)
+
+// ✅ Temporal solutions:
+const date = Temporal.PlainDate.from("2024-01-15"); // Local date, no timezone
+const newDate = date.with({ day: 20 }); // Returns new date, original unchanged
+date.month; // Returns 1-12 (intuitive!)
+```
+
+## Creating Dates
+
+### From String (ISO Format)
+
+```typescript
+import { Temporal } from "temporal-polyfill";
+
+const date = Temporal.PlainDate.from("2024-01-15");
+// => 2024-01-15
+```
+
+### From Object
+
+```typescript
+const date = Temporal.PlainDate.from({
+    year: 2024,
+    month: 1,
+    day: 15,
+});
+```
+
+### Current Date
+
+```typescript
+const today = Temporal.Now.plainDateISO();
+```
+
+## Date Arithmetic
+
+### Adding Time
+
+```typescript
+const today = Temporal.Now.plainDateISO();
+
+const tomorrow = today.add({ days: 1 });
+const nextWeek = today.add({ days: 7 });
+const nextMonth = today.add({ months: 1 });
+const nextYear = today.add({ years: 1 });
+
+// Combine multiple units
+const future = today.add({ years: 1, months: 2, days: 3 });
+```
+
+### Subtracting Time
+
+```typescript
+const today = Temporal.Now.plainDateISO();
+
+const yesterday = today.subtract({ days: 1 });
+const lastWeek = today.subtract({ days: 7 });
+const lastMonth = today.subtract({ months: 1 });
+const lastYear = today.subtract({ years: 1 });
+```
+
+## Comparing Dates
+
+### Using compare()
+
+```typescript
+const date1 = Temporal.PlainDate.from("2024-01-15");
+const date2 = Temporal.PlainDate.from("2024-01-20");
+
+const comparison = Temporal.PlainDate.compare(date1, date2);
+// Returns:
+//   < 0 if date1 is before date2
+//   = 0 if dates are equal
+//   > 0 if date1 is after date2
+
+if (Temporal.PlainDate.compare(date1, date2) < 0) {
+    console.log("date1 is before date2");
+}
+```
+
+### Using equals()
+
+```typescript
+const date1 = Temporal.PlainDate.from("2024-01-15");
+const date2 = Temporal.PlainDate.from("2024-01-15");
+
+if (date1.equals(date2)) {
+    console.log("Dates are the same!");
+}
+```
+
+## Modifying Dates
+
+### Replace Specific Fields
+
+```typescript
+const date = Temporal.PlainDate.from("2024-01-15");
+
+const sameMonthDifferentDay = date.with({ day: 20 });
+// => 2024-01-20
+
+const sameYearDifferentMonth = date.with({ month: 6 });
+// => 2024-06-15
+
+const differentYear = date.with({ year: 2025 });
+// => 2025-01-15
+```
+
+## Getting Date Information
+
+### Accessing Properties
+
+```typescript
+const date = Temporal.PlainDate.from("2024-01-15");
+
+date.year;        // => 2024
+date.month;       // => 1 (1-12, not 0-11!)
+date.day;         // => 15
+date.dayOfWeek;   // => 1 (Monday), 1-7
+date.dayOfYear;   // => 15
+date.weekOfYear;  // => 3
+```
+
+### Day of Week
+
+```typescript
+const date = Temporal.PlainDate.from("2024-01-15");
+
+const dayOfWeek = date.dayOfWeek;
+// 1 = Monday
+// 2 = Tuesday
+// ...
+// 7 = Sunday
+
+// Check if it's a weekend
+const isWeekend = dayOfWeek === 6 || dayOfWeek === 7;
+```
+
+## Converting Dates
+
+### To String (ISO Format)
+
+```typescript
+const date = Temporal.PlainDate.from("2024-01-15");
+
+const isoString = date.toString();
+// => "2024-01-15"
+```
+
+### To JavaScript Date
+
+```typescript
+import { temporalDateToJsDate } from "@khanacademy/wonder-blocks-date-picker";
+
+const temporalDate = Temporal.PlainDate.from("2024-01-15");
+const jsDate = temporalDateToJsDate(temporalDate);
+// => Date object at midnight local time
+```
+
+### From JavaScript Date
+
+```typescript
+import { jsDateToTemporalDate } from "@khanacademy/wonder-blocks-date-picker";
+
+const jsDate = new Date(2024, 0, 15); // January 15, 2024
+const temporalDate = jsDateToTemporalDate(jsDate);
+// => Temporal.PlainDate "2024-01-15"
+```
+
+## Duration and Difference
+
+### Calculate Duration Between Dates
+
+```typescript
+const startDate = Temporal.PlainDate.from("2024-01-15");
+const endDate = Temporal.PlainDate.from("2024-02-20");
+
+const duration = startDate.until(endDate);
+
+duration.days;   // => 36
+duration.weeks;  // => 5
+duration.months; // => 1
+
+// Total days including the start date
+const totalDays = duration.days + 1; // => 37
+```
+
+### Since (Reverse of Until)
+
+```typescript
+const startDate = Temporal.PlainDate.from("2024-01-15");
+const endDate = Temporal.PlainDate.from("2024-02-20");
+
+const duration = endDate.since(startDate);
+// Same as startDate.until(endDate)
+```
+
+## Common Patterns
+
+### Date Range Validation
+
+```typescript
+function isDateInRange(
+    date: Temporal.PlainDate,
+    minDate: Temporal.PlainDate,
+    maxDate: Temporal.PlainDate,
+): boolean {
+    return (
+        Temporal.PlainDate.compare(date, minDate) >= 0 &&
+        Temporal.PlainDate.compare(date, maxDate) <= 0
+    );
+}
+```
+
+### Finding First/Last Day of Month
+
+```typescript
+const date = Temporal.PlainDate.from("2024-01-15");
+
+// First day of month
+const firstDay = date.with({ day: 1 });
+// => 2024-01-01
+
+// Last day of month
+const lastDay = date.add({ months: 1 }).with({ day: 1 }).subtract({ days: 1 });
+// => 2024-01-31
+```
+
+### Finding Start/End of Week
+
+```typescript
+const date = Temporal.PlainDate.from("2024-01-15"); // Monday
+
+// Monday of this week
+const startOfWeek = date.subtract({ days: date.dayOfWeek - 1 });
+
+// Sunday of this week
+const endOfWeek = date.add({ days: 7 - date.dayOfWeek });
+```
+
+### Age Calculation
+
+```typescript
+function calculateAge(birthDate: Temporal.PlainDate): number {
+    const today = Temporal.Now.plainDateISO();
+    const duration = birthDate.until(today, { largestUnit: "year" });
+    return duration.years;
+}
+```
+
+## Common Gotchas
+
+### Month Numbers (1-12, not 0-11!)
+
+```typescript
+// ❌ JavaScript Date (0-indexed months)
+const jsDate = new Date(2024, 0, 15); // January!
+
+// ✅ Temporal (1-indexed months)
+const temporal = Temporal.PlainDate.from({ year: 2024, month: 1, day: 15 }); // January!
+```
+
+### Immutability
+
+```typescript
+const date = Temporal.PlainDate.from("2024-01-15");
+
+// ❌ This doesn't work (Temporal is immutable)
+date.day = 20; // Error!
+
+// ✅ Use .with() to create a new date
+const newDate = date.with({ day: 20 });
+```
+
+### Timezones Don't Exist
+
+```typescript
+// Temporal.PlainDate has NO timezone
+// It's just a calendar date (year, month, day)
+
+// ✅ For dates: Use PlainDate
+const date = Temporal.PlainDate.from("2024-01-15");
+
+// ✅ For times with timezone: Use ZonedDateTime
+const zoned = Temporal.Now.zonedDateTimeISO();
+```
+
+## Learn More
+
+- [Temporal Documentation](https://tc39.es/proposal-temporal/docs/)
+- [Temporal Cookbook](https://tc39.es/proposal-temporal/docs/cookbook.html)
+- [Temporal Polyfill](https://github.com/js-temporal/temporal-polyfill)
+
