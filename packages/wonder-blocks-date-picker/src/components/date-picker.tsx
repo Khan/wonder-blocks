@@ -62,7 +62,8 @@ interface Props {
      */
     footer?: (arg1: {close: () => unknown}) => React.ReactNode;
     /**
-     * The aria-label to be used for the date picker.
+     * The aria-label to be used for the date picker. This is only needed if there
+     * is no visible label associated with the date picker, such as with LabeledField.
      */
     inputAriaLabel?: string;
 }
