@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 11.1.0
+
+### Minor Changes
+
+- 2f842b1: NodeIconButton: Adds a new `tokens` prop to support overriding component-level tokens
+- 59aba89: Adds a new `NodeIconButton` component for learning path.
+
 ## 11.0.1
 
 ### Patch Changes
