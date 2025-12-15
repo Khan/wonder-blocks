@@ -79,39 +79,43 @@ export const ResponsiveTabs = (props: Props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps -- explicitly only depend on tabsSignature. We don't need this to respond to changes in showDropdown
     }, [tabsSignature]);
 
+    const checkOverflow = React.useCallback(() => {
+        const container = containerRef.current;
+        if (!container) {
+            return;
+        }
+        if (!showDropdown && tabsRef.current) {
+            // Currently showing tabs - check for overflow
+            // The tablist wrapper is the first child of the tabs root
+            const tablistWrapper = tabsRef.current.firstElementChild;
+
+            if (tablistWrapper) {
+                const hasOverflow =
+                    tablistWrapper.scrollWidth > tablistWrapper.clientWidth;
+
+                if (hasOverflow) {
+                    // Store the width before switching
+                    tabsWidthRef.current = tablistWrapper.scrollWidth;
+                    setShowDropdown(true);
+                }
+            }
+        } else if (showDropdown && tabsWidthRef.current) {
+            // Currently showing dropdown - check if we have enough space
+            const containerWidth = container.clientWidth;
+
+            // Switch back to tabs if container is wide enough
+            if (containerWidth >= tabsWidthRef.current) {
+                setShowDropdown(false);
+            }
+        }
+    }, [showDropdown, containerRef]);
+
     React.useEffect(() => {
         const container = containerRef.current;
         // ResizeObserver is supported in browsers we support, but not in jsdom
         if (!container || !window.ResizeObserver) {
             return;
         }
-
-        const checkOverflow = () => {
-            if (!showDropdown && tabsRef.current) {
-                // Currently showing tabs - check for overflow
-                // The tablist wrapper is the first child of the tabs root
-                const tablistWrapper = tabsRef.current.firstElementChild;
-
-                if (tablistWrapper) {
-                    const hasOverflow =
-                        tablistWrapper.scrollWidth > tablistWrapper.clientWidth;
-
-                    if (hasOverflow) {
-                        // Store the width before switching
-                        tabsWidthRef.current = tablistWrapper.scrollWidth;
-                        setShowDropdown(true);
-                    }
-                }
-            } else if (showDropdown && tabsWidthRef.current !== null) {
-                // Currently showing dropdown - check if we have enough space
-                const containerWidth = container.clientWidth;
-
-                // Switch back to tabs if container is wide enough
-                if (containerWidth >= tabsWidthRef.current) {
-                    setShowDropdown(false);
-                }
-            }
-        };
 
         const resizeObserver = new ResizeObserver(() => {
             checkOverflow();
@@ -122,7 +126,7 @@ export const ResponsiveTabs = (props: Props) => {
         return () => {
             resizeObserver.disconnect();
         };
-    }, [showDropdown]);
+    }, [checkOverflow]);
 
     const ariaProps: AriaLabelOrAriaLabelledby = {
         "aria-label": ariaLabel,
