@@ -10,11 +10,7 @@ import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import type {BaseIconButtonProps} from "../util/icon-button.types";
 
 import {IconButtonUnstyled} from "./icon-button-unstyled";
-import {
-    mapTokensToVariables,
-    TokensAsCssVariable,
-    TokensAsJsVariable,
-} from "../util/map-tokens-to-variables";
+import {mapTokensToVariables} from "../util/map-tokens-to-variables";
 
 /**
  * The prefix for the CSS variables used in the NodeIconButton component.
@@ -27,22 +23,36 @@ const VAR_PREFIX = "--wb-c-node-icon-button--";
 /**
  * The valid component-level tokens for the NodeIconButton component.
  */
-type TokenKeys =
-    // Box tokens
-    | "box-foreground"
-    | "box-background"
-    | "box-shadow-color"
-    | "box-padding"
-    | "box-shadow-y-rest"
-    | "box-shadow-y-hover"
-    | "box-shadow-y-press"
-    // Icon tokens
-    | "icon-size";
+type Tokens = {
+    "--wb-c-node-icon-button--box-foreground": string;
+    "--wb-c-node-icon-button--box-background": string;
+    "--wb-c-node-icon-button--box-shadow-color": string;
+    "--wb-c-node-icon-button--box-padding": string | number;
+    "--wb-c-node-icon-button--box-shadow-y-rest": string | number;
+    "--wb-c-node-icon-button--box-shadow-y-hover": string | number;
+    "--wb-c-node-icon-button--box-shadow-y-press": string | number;
+    "--wb-c-node-icon-button--icon-size": string | number;
+};
 
 /**
- * A subset of tokens that can be included in different variants.
+ * The default tokens that are assigned to the root element.
+ *
+ * These tokens could be overridden by baked-in variants and/or the `tokens`
+ * prop.
  */
-type PartialTokens = Partial<TokensAsCssVariable<typeof VAR_PREFIX, TokenKeys>>;
+const DEFAULT_TOKENS: Tokens = {
+    "--wb-c-node-icon-button--box-padding": sizing.size_100,
+    "--wb-c-node-icon-button--box-shadow-y-rest": "6px",
+    "--wb-c-node-icon-button--box-shadow-y-hover": "8px",
+    "--wb-c-node-icon-button--box-shadow-y-press": sizing.size_0,
+    "--wb-c-node-icon-button--icon-size": sizing.size_480,
+    "--wb-c-node-icon-button--box-foreground":
+        semanticColor.learning.foreground.progress.notStarted.strong,
+    "--wb-c-node-icon-button--box-background":
+        semanticColor.learning.background.progress.notStarted.default,
+    "--wb-c-node-icon-button--box-shadow-color":
+        semanticColor.learning.shadow.progress.notStarted.default,
+};
 
 type Props = Omit<BaseIconButtonProps, "kind" | "style"> & {
     /**
@@ -84,21 +94,30 @@ type Props = Omit<BaseIconButtonProps, "kind" | "style"> & {
      * to customize the appearance of the NodeIconButton component.
      *
      * Valid keys are:
-     * - `boxForeground`
-     * - `boxBackground`
-     * - `boxShadowColor`
-     * - `boxPadding`
-     * - `boxShadowYRest`
-     * - `boxShadowYHover`
-     * - `boxShadowYPress`
-     * - `iconSize`
+     * - `box-foreground`
+     * - `box-background`
+     * - `box-shadow-color`
+     * - `box-padding`
+     * - `box-shadow-y-rest`
+     * - `box-shadow-y-hover`
+     * - `box-shadow-y-press`
+     * - `icon-size`
      */
-    tokens?: Partial<TokensAsJsVariable<TokenKeys>>;
+    tokens?: Partial<{
+        boxForeground: string;
+        boxBackground: string;
+        boxShadowColor: string;
+        boxPadding: string | number;
+        boxShadowYRest: string | number;
+        boxShadowYHover: string | number;
+        boxShadowYPress: string | number;
+        iconSize: string | number;
+    }>;
 };
 
 /**
  * Node buttons are visual representations of activities along in a Learning
- * Path. When a represented No  de is a button that launches the activity. Nodes
+ * Path. When a represented Node is a button that launches the activity. Nodes
  * use the Chonky shadow style.
  *
  * ```tsx
@@ -181,7 +200,7 @@ export const NodeIconButton: React.ForwardRefExoticComponent<
             disabled={disabled}
             onPress={handlePress}
             ref={ref}
-            style={buttonStyles}
+            style={buttonStyles as StyleType}
             type={type}
             aria-label={ariaLabel}
         >
@@ -195,9 +214,13 @@ export const NodeIconButton: React.ForwardRefExoticComponent<
     );
 });
 
+/**
+ * An object containing all the different combinations of tokens for the
+ * NodeIconButton component.
+ */
 const variants: {
-    size: Record<string, PartialTokens>;
-    actionType: Record<string, PartialTokens>;
+    size: Record<string, Partial<Tokens>>;
+    actionType: Record<string, Partial<Tokens>>;
 } = {
     size: {
         // Default size.
@@ -275,6 +298,7 @@ const styles = StyleSheet.create({
         alignSelf: "flex-start",
         justifySelf: "center",
         gap: sizing.size_020,
+        ...DEFAULT_TOKENS,
 
         /**
          * States
@@ -308,7 +332,6 @@ const styles = StyleSheet.create({
             ...chonkyDisabled,
             ...disabledStatesStyles,
         },
-        // [":is(:active) .chonky" as any]: chonkyDisabled,
     },
     // Enable keyboard support for press styles.
     pressed: {
