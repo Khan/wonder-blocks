@@ -94,14 +94,14 @@ type Props = Omit<BaseIconButtonProps, "kind" | "style"> & {
      * to customize the appearance of the NodeIconButton component.
      *
      * Valid keys are:
-     * - `box-foreground`
-     * - `box-background`
-     * - `box-shadow-color`
-     * - `box-padding`
-     * - `box-shadow-y-rest`
-     * - `box-shadow-y-hover`
-     * - `box-shadow-y-press`
-     * - `icon-size`
+     * - `boxForeground`
+     * - `boxBackground`
+     * - `boxShadowColor`
+     * - `boxPadding`
+     * - `boxShadowYRest`
+     * - `boxShadowYHover`
+     * - `boxShadowYPress`
+     * - `iconSize`
      */
     tokens?: Partial<{
         boxForeground: string;
