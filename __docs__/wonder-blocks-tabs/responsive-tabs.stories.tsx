@@ -38,14 +38,29 @@ export const Default: Story = {
             panel: <div>Tab contents {index + 1}</div>,
         }));
 
+        const [containerWidth, setContainerWidth] = React.useState<
+            string | undefined
+        >(undefined);
+
         return (
-            <View style={{gap: sizing.size_360}}>
+            <View
+                style={{
+                    gap: sizing.size_360,
+                    width: containerWidth,
+                }}
+            >
                 <ControlledResponsiveTabs
                     selectedTabId="tab-1"
                     onTabSelected={() => {}}
                     tabs={tabs}
                 />
-                <View style={{flexDirection: "row", gap: sizing.size_160}}>
+                <View
+                    style={{
+                        flexDirection: "row",
+                        gap: sizing.size_160,
+                        flexWrap: "wrap",
+                    }}
+                >
                     <Button onClick={() => setShowLongLabels(!showLongLabels)}>
                         Dynamically change tab labels
                     </Button>
@@ -60,6 +75,17 @@ export const Default: Story = {
                         }}
                     >
                         Remove a tab
+                    </Button>
+                    <Button
+                        onClick={() => {
+                            setContainerWidth(
+                                containerWidth === undefined
+                                    ? "200px"
+                                    : undefined,
+                            );
+                        }}
+                    >
+                        Change container width
                     </Button>
                 </View>
             </View>

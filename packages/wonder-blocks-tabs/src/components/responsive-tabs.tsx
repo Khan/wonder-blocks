@@ -4,17 +4,48 @@ import {Tabs} from "./tabs";
 import {TabsDropdown} from "./tabs-dropdown";
 
 type ResponsiveTabItem = {
+    /**
+     * The label of the tab.
+     */
     label: string;
+    /**
+     * The id of the tab.
+     */
     id: string;
+    /**
+     * The panel of the tab.
+     */
     panel: React.ReactNode;
 };
 
 type Props = {
+    /**
+     * The tabs to render.
+     */
     tabs: ResponsiveTabItem[];
+    /**
+     * The id of the tab that is selected.
+     */
     selectedTabId: string;
+    /**
+     * Called when a tab is selected.
+     */
     onTabSelected: (id: string) => void;
 };
 
+/**
+ * Renders the Tabs component when there is enough space to display the tabs as
+ * a horizontal layout. When there is not enough space, it renders the
+ * tabs as a dropdown.
+ *
+ * Note: This component switches layouts depending on factors like the container
+ * width, the number of tabs, the length of tab labels, zoom level, etc. Once the
+ * horizontal Tabs need to start scrolling horizontally, the component will
+ * switch to the dropdown.
+ *
+ * For cases where the tabs should always be in a horizontal layout, use the
+ * Tabs component directly.
+ */
 export const ResponsiveTabs = (props: Props) => {
     const {tabs, selectedTabId, onTabSelected} = props;
 

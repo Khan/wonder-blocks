@@ -158,6 +158,9 @@ const StyledDiv = addStyle("div");
  * tabs have `role=”tab”` and keyboard users can change tabs using arrow keys.
  * For a tabbed interface where the tabs are links, see the NavigationTabs
  * component.
+ *
+ * For responsive cases where the tabs should switch to a dropdown when there is
+ * not enough horizontal space, use the `ResponsiveTabs` component.
  */
 export const Tabs = React.forwardRef(function Tabs(
     props: Props,
