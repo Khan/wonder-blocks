@@ -10,12 +10,20 @@ import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import type {BaseIconButtonProps} from "../util/icon-button.types";
 
 import {IconButtonUnstyled} from "./icon-button-unstyled";
+import {mapTokensToVariables} from "../util/map-tokens-to-variables";
 
 /**
- * The object containing the CSS variables that can be overridden to customize
- * the appearance of the NodeIconButton component.
+ * The prefix for the CSS variables used in the NodeIconButton component.
+ *
+ * This allows us to avoid collisions with other CSS variables in the
+ * application.
  */
-type Tokens = Partial<{
+const VAR_PREFIX = "--wb-c-node-icon-button--";
+
+/**
+ * The valid component-level tokens for the NodeIconButton component.
+ */
+type Tokens = {
     "--wb-c-node-icon-button--box-foreground": string;
     "--wb-c-node-icon-button--box-background": string;
     "--wb-c-node-icon-button--box-shadow-color": string;
@@ -24,16 +32,33 @@ type Tokens = Partial<{
     "--wb-c-node-icon-button--box-shadow-y-hover": string | number;
     "--wb-c-node-icon-button--box-shadow-y-press": string | number;
     "--wb-c-node-icon-button--icon-size": string | number;
-}>;
+};
+
+/**
+ * The default tokens that are assigned to the root element.
+ *
+ * These tokens could be overridden by baked-in variants and/or the `tokens`
+ * prop.
+ */
+const DEFAULT_TOKENS: Tokens = {
+    "--wb-c-node-icon-button--box-padding": sizing.size_100,
+    "--wb-c-node-icon-button--box-shadow-y-rest": "6px",
+    "--wb-c-node-icon-button--box-shadow-y-hover": "8px",
+    "--wb-c-node-icon-button--box-shadow-y-press": sizing.size_0,
+    "--wb-c-node-icon-button--icon-size": sizing.size_480,
+    "--wb-c-node-icon-button--box-foreground":
+        semanticColor.learning.foreground.progress.notStarted.strong,
+    "--wb-c-node-icon-button--box-background":
+        semanticColor.learning.background.progress.notStarted.default,
+    "--wb-c-node-icon-button--box-shadow-color":
+        semanticColor.learning.shadow.progress.notStarted.default,
+};
 
 type Props = Omit<BaseIconButtonProps, "kind" | "style"> & {
     /**
      * The action type of the button. This determines the visual style of
      * the button. Defaults to `notStarted`.
      *
-     * - `notStarted` is used for buttons that indicate a not started action.
-     * - `attempted` is used for buttons that indicate an attempted (in progress)
-     *   action.
      * - `complete` is used for buttons that indicate a complete action.
      */
     actionType?: "notStarted" | "attempted" | "complete";
@@ -60,11 +85,26 @@ type Props = Omit<BaseIconButtonProps, "kind" | "style"> & {
         box?: StyleType;
         icon?: StyleType;
     };
+
+    /**
+     * The token object that contains the CSS variables that can be overridden
+     * to customize the appearance of the NodeIconButton component.
+     */
+    tokens?: {
+        boxForeground?: string;
+        boxBackground?: string;
+        boxShadowColor?: string;
+        boxPadding?: string | number;
+        boxShadowYRest?: string | number;
+        boxShadowYHover?: string | number;
+        boxShadowYPress?: string | number;
+        iconSize?: string | number;
+    };
 };
 
 /**
  * Node buttons are visual representations of activities along in a Learning
- * Path. When a represented No  de is a button that launches the activity. Nodes
+ * Path. When a represented Node is a button that launches the activity. Nodes
  * use the Chonky shadow style.
  *
  * ```tsx
@@ -91,6 +131,7 @@ export const NodeIconButton: React.ForwardRefExoticComponent<
         icon,
         size = "large",
         styles: stylesProp,
+        tokens,
         type = "button",
         // labeling
         "aria-label": ariaLabel,
@@ -99,14 +140,19 @@ export const NodeIconButton: React.ForwardRefExoticComponent<
 
     const [pressed, setPressed] = React.useState(false);
 
-    const buttonStyles = [
-        styles.button,
-        disabled && styles.disabled,
-        !disabled && pressed && styles.pressed,
-        variants.size[size] as StyleType,
-        variants.actionType[actionType] as StyleType,
-        stylesProp?.root,
-    ];
+    const buttonStyles = React.useMemo(
+        () => [
+            styles.button,
+            disabled && styles.disabled,
+            !disabled && pressed && styles.pressed,
+            variants.size[size] as StyleType,
+            variants.actionType[actionType] as StyleType,
+            stylesProp?.root,
+            // Token overrides.
+            tokens && mapTokensToVariables(tokens, VAR_PREFIX),
+        ],
+        [actionType, disabled, pressed, size, stylesProp?.root, tokens],
+    );
 
     const chonkyStyles = [
         styles.chonky,
@@ -141,7 +187,7 @@ export const NodeIconButton: React.ForwardRefExoticComponent<
             disabled={disabled}
             onPress={handlePress}
             ref={ref}
-            style={buttonStyles}
+            style={buttonStyles as StyleType}
             type={type}
             aria-label={ariaLabel}
         >
@@ -155,9 +201,13 @@ export const NodeIconButton: React.ForwardRefExoticComponent<
     );
 });
 
+/**
+ * An object containing all the different combinations of tokens for the
+ * NodeIconButton component.
+ */
 const variants: {
-    size: Record<string, Tokens>;
-    actionType: Record<string, Tokens>;
+    size: Record<string, Partial<Tokens>>;
+    actionType: Record<string, Partial<Tokens>>;
 } = {
     size: {
         // Default size.
@@ -235,6 +285,7 @@ const styles = StyleSheet.create({
         alignSelf: "flex-start",
         justifySelf: "center",
         gap: sizing.size_020,
+        ...DEFAULT_TOKENS,
 
         /**
          * States
@@ -268,7 +319,6 @@ const styles = StyleSheet.create({
             ...chonkyDisabled,
             ...disabledStatesStyles,
         },
-        // [":is(:active) .chonky" as any]: chonkyDisabled,
     },
     // Enable keyboard support for press styles.
     pressed: {
