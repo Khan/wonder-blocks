@@ -53,8 +53,9 @@ export const ResponsiveTabs = (props: Props) => {
     const tabsRef = React.useRef<HTMLDivElement>(null);
     const containerRef = React.useRef<HTMLDivElement>(null);
 
-    // Store the natural width needed for tabs to display without scrolling
-    const tabsNaturalWidthRef = React.useRef<number | null>(null);
+    // Store the width needed for tabs to display without scrolling. This is so
+    // we can switch back to the tabs view when the container width is wide enough.
+    const tabsWidthRef = React.useRef<number | null>(null);
 
     // Create a signature of the tabs to detect changes (tab added/removed, label changed)
     const tabsSignature = React.useMemo(
@@ -62,10 +63,10 @@ export const ResponsiveTabs = (props: Props) => {
         [tabs],
     );
 
-    // Reset to tabs view when tabs change so we can re-measure
     React.useEffect(() => {
+        // When the tabs signature change, reset to tabs view so we can re-measure
         if (showDropdown) {
-            tabsNaturalWidthRef.current = null;
+            tabsWidthRef.current = null;
             setShowDropdown(false);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps -- explicitly only depend on tabsSignature. We don't need this to respond to changes in showDropdown
@@ -89,18 +90,17 @@ export const ResponsiveTabs = (props: Props) => {
                         tablistWrapper.scrollWidth > tablistWrapper.clientWidth;
 
                     if (hasOverflow) {
-                        // Store the natural width before switching
-                        tabsNaturalWidthRef.current =
-                            tablistWrapper.scrollWidth;
+                        // Store the width before switching
+                        tabsWidthRef.current = tablistWrapper.scrollWidth;
                         setShowDropdown(true);
                     }
                 }
-            } else if (showDropdown && tabsNaturalWidthRef.current !== null) {
+            } else if (showDropdown && tabsWidthRef.current !== null) {
                 // Currently showing dropdown - check if we have enough space
                 const containerWidth = container.clientWidth;
 
                 // Switch back to tabs if container is wide enough
-                if (containerWidth >= tabsNaturalWidthRef.current) {
+                if (containerWidth >= tabsWidthRef.current) {
                     setShowDropdown(false);
                 }
             }
