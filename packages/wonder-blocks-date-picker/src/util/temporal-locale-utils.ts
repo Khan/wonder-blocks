@@ -341,6 +341,12 @@ function parseWithFormat(
     return undefined;
 }
 
+// Helper: Get start of ISO week (Monday) for a given date
+const startOfIsoWeek = (date: Temporal.PlainDate): Temporal.PlainDate => {
+    const dayOfWeek = date.dayOfWeek; // 1 = Monday, 7 = Sunday
+    return date.subtract({days: dayOfWeek - 1});
+};
+
 /**
  * Utility functions for working with Temporal dates.
  *
@@ -354,6 +360,7 @@ export const TemporalLocaleUtils = {
     formatDate,
     parseDate,
     parseDateToJsDate,
+    startOfIsoWeek,
 
     // Date conversion utilities
     temporalDateToJsDate,
