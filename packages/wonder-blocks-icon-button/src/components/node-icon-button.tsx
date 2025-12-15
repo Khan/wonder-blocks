@@ -59,9 +59,6 @@ type Props = Omit<BaseIconButtonProps, "kind" | "style"> & {
      * The action type of the button. This determines the visual style of
      * the button. Defaults to `notStarted`.
      *
-     * - `notStarted` is used for buttons that indicate a not started action.
-     * - `attempted` is used for buttons that indicate an attempted (in progress)
-     *   action.
      * - `complete` is used for buttons that indicate a complete action.
      */
     actionType?: "notStarted" | "attempted" | "complete";
