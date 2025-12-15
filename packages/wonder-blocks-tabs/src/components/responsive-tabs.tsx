@@ -70,15 +70,6 @@ export const ResponsiveTabs = (props: Props) => {
         [tabs],
     );
 
-    React.useEffect(() => {
-        // When the tabs signature change, reset to tabs view so we can re-measure
-        if (showDropdown) {
-            tabsWidthRef.current = null;
-            setShowDropdown(false);
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps -- explicitly only depend on tabsSignature. We don't need this to respond to changes in showDropdown
-    }, [tabsSignature]);
-
     const checkOverflow = React.useCallback(() => {
         const container = containerRef.current;
         if (!container) {
@@ -109,6 +100,23 @@ export const ResponsiveTabs = (props: Props) => {
             }
         }
     }, [showDropdown, containerRef]);
+
+    React.useEffect(() => {
+        // This effect handles the case where the length of tabs or the tabs
+        // labels change. This determines whether to switch to the dropdown or
+        // tabs view.
+        if (showDropdown) {
+            // When tabsSignature changes and dropdown is shown, reset to tabs
+            // view so we can re-measure and see if we can switch back to tabs
+            tabsWidthRef.current = null;
+            setShowDropdown(false);
+        } else {
+            // When tabsSignature changes and tabs view is shown, check for
+            // overflow
+            checkOverflow();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps -- explicitly only depend on tabsSignature. We don't need this to respond to changes in showDropdown or checkOverflow
+    }, [tabsSignature]);
 
     React.useEffect(() => {
         const container = containerRef.current;
