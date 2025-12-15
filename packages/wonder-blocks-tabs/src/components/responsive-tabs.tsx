@@ -2,6 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {Tabs} from "./tabs";
 import {TabsDropdown} from "./tabs-dropdown";
+import {AriaLabelOrAriaLabelledby} from "./types";
 
 type ResponsiveTabItem = {
     /**
@@ -18,7 +19,7 @@ type ResponsiveTabItem = {
     panel: React.ReactNode;
 };
 
-type Props = {
+type Props = AriaLabelOrAriaLabelledby & {
     /**
      * The tabs to render.
      */
@@ -47,7 +48,13 @@ type Props = {
  * Tabs component directly.
  */
 export const ResponsiveTabs = (props: Props) => {
-    const {tabs, selectedTabId, onTabSelected} = props;
+    const {
+        tabs,
+        selectedTabId,
+        onTabSelected,
+        "aria-label": ariaLabel,
+        "aria-labelledby": ariaLabelledby,
+    } = props;
 
     const [showDropdown, setShowDropdown] = React.useState(false);
     const tabsRef = React.useRef<HTMLDivElement>(null);
@@ -117,10 +124,16 @@ export const ResponsiveTabs = (props: Props) => {
         };
     }, [showDropdown]);
 
+    const ariaProps: AriaLabelOrAriaLabelledby = {
+        "aria-label": ariaLabel,
+        "aria-labelledby": ariaLabelledby,
+    };
+
     return (
         <div ref={containerRef} style={{width: "100%"}}>
             {showDropdown ? (
                 <TabsDropdown
+                    {...ariaProps}
                     key="dropdown"
                     tabs={tabs}
                     selectedTabId={selectedTabId}
@@ -133,7 +146,7 @@ export const ResponsiveTabs = (props: Props) => {
                 <Tabs
                     key="tabs"
                     ref={tabsRef}
-                    aria-label="Responsive Tabs"
+                    {...ariaProps}
                     tabs={tabs}
                     selectedTabId={selectedTabId}
                     onTabSelected={onTabSelected}
