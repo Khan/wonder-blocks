@@ -92,27 +92,17 @@ type Props = Omit<BaseIconButtonProps, "kind" | "style"> & {
     /**
      * The token object that contains the CSS variables that can be overridden
      * to customize the appearance of the NodeIconButton component.
-     *
-     * Valid keys are:
-     * - `boxForeground`
-     * - `boxBackground`
-     * - `boxShadowColor`
-     * - `boxPadding`
-     * - `boxShadowYRest`
-     * - `boxShadowYHover`
-     * - `boxShadowYPress`
-     * - `iconSize`
      */
-    tokens?: Partial<{
-        boxForeground: string;
-        boxBackground: string;
-        boxShadowColor: string;
-        boxPadding: string | number;
-        boxShadowYRest: string | number;
-        boxShadowYHover: string | number;
-        boxShadowYPress: string | number;
-        iconSize: string | number;
-    }>;
+    tokens?: {
+        boxForeground?: string;
+        boxBackground?: string;
+        boxShadowColor?: string;
+        boxPadding?: string | number;
+        boxShadowYRest?: string | number;
+        boxShadowYHover?: string | number;
+        boxShadowYPress?: string | number;
+        iconSize?: string | number;
+    };
 };
 
 /**
