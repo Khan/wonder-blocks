@@ -18,7 +18,7 @@ type KebabToCamelCase<S extends string> = S extends `${infer T}-${infer U}`
  * type TokensAsJsVariable = {
  *     boxForeground: string;
  */
-type TokensAsJsVariable<K extends string> = {
+export type TokensAsJsVariable<K extends string> = {
     [key in KebabToCamelCase<K>]: string | number | boolean;
 };
 
