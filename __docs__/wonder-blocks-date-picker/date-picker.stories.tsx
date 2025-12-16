@@ -37,6 +37,7 @@ const DatePickerWrapper = (props: Props) => {
             <Button>prev</Button>
             <DatePicker
                 {...props}
+                inputAriaLabel="Choose or enter a date"
                 updateDate={handleUpdateDate}
                 selectedDate={selectedDate}
             />
@@ -80,6 +81,7 @@ const ControlledDatePicker = (props: Props) => {
     return (
         <DatePicker
             {...props}
+            inputAriaLabel="Choose or enter a date"
             updateDate={setSelectedDate}
             selectedDate={selectedDate}
             footer={({close}) => {
@@ -159,6 +161,7 @@ export const DisabledState: Story = {
         dateFormat: "MMMM D, YYYY",
         selectedDate: Temporal.PlainDate.from("2021-05-07"),
         updateDate: () => {},
+        inputAriaLabel: "Disabled date picker",
     },
 };
 
@@ -201,6 +204,19 @@ export const WithLabeledField: Story = {
         dateFormat: "MMMM D, YYYY",
         placeholder: "Select a date",
         updateDate: () => {},
+    },
+};
+
+/**
+ * Example using the inputAriaLabel prop
+ */
+export const WithInputAriaLabel: Story = {
+    render: (args) => <ControlledDatePicker {...args} />,
+    args: {
+        dateFormat: "MMMM D, YYYY",
+        placeholder: "Select a date",
+        updateDate: () => {},
+        inputAriaLabel: "Super fancy input label",
     },
 };
 
@@ -262,6 +278,7 @@ const DatePickerWithOpenOverlay = (props: Props) => {
         >
             <DatePicker
                 {...props}
+                inputAriaLabel="Choose or enter a date"
                 updateDate={setSelectedDate}
                 selectedDate={selectedDate}
             />
