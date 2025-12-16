@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Meta, StoryObj} from "@storybook/react-vite";
-import {ResponsiveTabs} from "../../packages/wonder-blocks-tabs/src/components/responsive-tabs";
+import {ResponsiveTabs} from "@khanacademy/wonder-blocks-tabs";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
