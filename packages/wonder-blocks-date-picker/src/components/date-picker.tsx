@@ -15,6 +15,9 @@ import type {CustomModifiers} from "../util/types";
 import DatePickerInput from "./date-picker-input";
 import DatePickerOverlay from "./date-picker-overlay";
 
+// eslint-disable-next-line import/no-unassigned-import
+import "react-day-picker/style.css";
+
 interface Props {
     /**
      * The locale to use for the dates: a string name matching a Locale object
