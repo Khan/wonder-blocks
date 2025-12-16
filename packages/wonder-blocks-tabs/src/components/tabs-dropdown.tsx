@@ -6,9 +6,7 @@ import {StyleSheet} from "aphrodite";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import checkCircleIcon from "@phosphor-icons/core/fill/check-circle-fill.svg";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
-
-const StyledDiv = addStyle("div");
+import {StyleType, View} from "@khanacademy/wonder-blocks-core";
 
 type TabDropdownItem = {
     /**
@@ -119,12 +117,7 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, Props>(
         }
 
         return (
-            <StyledDiv
-                ref={ref}
-                id={id}
-                data-testid={testId}
-                style={stylesProp?.root}
-            >
+            <View ref={ref} id={id} testId={testId} style={stylesProp?.root}>
                 <ActionMenu
                     opened={opened}
                     menuText="Tabs"
@@ -161,8 +154,8 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, Props>(
                         );
                     })}
                 </ActionMenu>
-                <StyledDiv>{selectedTabItem?.panel}</StyledDiv>
-            </StyledDiv>
+                <View>{selectedTabItem?.panel}</View>
+            </View>
         );
     },
 );
