@@ -53,14 +53,8 @@ type Props = AriaLabelOrAriaLabelledby & {
  * Tabs component directly.
  */
 export const ResponsiveTabs = (props: Props) => {
-    const {
-        tabs,
-        selectedTabId,
-        onTabSelected,
-        "aria-label": ariaLabel,
-        "aria-labelledby": ariaLabelledby,
-        onLayoutChange,
-    } = props;
+    const {tabs, selectedTabId, onTabSelected, onLayoutChange, ...ariaProps} =
+        props;
 
     const [showDropdown, setShowDropdown] = React.useState(false);
     const tabsRef = React.useRef<HTMLDivElement>(null);
@@ -142,11 +136,6 @@ export const ResponsiveTabs = (props: Props) => {
         };
     }, [checkOverflow]);
 
-    const ariaProps: AriaLabelOrAriaLabelledby = {
-        "aria-label": ariaLabel,
-        "aria-labelledby": ariaLabelledby,
-    };
-
     React.useEffect(() => {
         onLayoutChange?.(showDropdown ? "dropdown" : "tabs");
     }, [showDropdown, onLayoutChange]);
@@ -166,9 +155,9 @@ export const ResponsiveTabs = (props: Props) => {
                 />
             ) : (
                 <Tabs
+                    {...ariaProps}
                     key="tabs"
                     ref={tabsRef}
-                    {...ariaProps}
                     tabs={tabs}
                     selectedTabId={selectedTabId}
                     onTabSelected={onTabSelected}
