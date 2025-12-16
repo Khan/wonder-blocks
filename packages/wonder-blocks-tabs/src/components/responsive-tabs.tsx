@@ -180,6 +180,10 @@ const fadeInKeyframes = {
 };
 
 const styles = StyleSheet.create({
+    // Apply fade in animation to Tabs and TabsDropdown to ease into the
+    // transition between the two layouts. Since this is a fade animation to
+    // smoothen the transition, we apply it always, even if prefers reduced motion
+    // is enabled
     fadeIn: {
         // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
         animationName: fadeInKeyframes,
