@@ -341,12 +341,36 @@ function parseWithFormat(
     return undefined;
 }
 
-// Helper: Get start of ISO week (Monday) for a given date
-const startOfIsoWeek = (date: Temporal.PlainDate): Temporal.PlainDate => {
+/**
+ * Get the start of the ISO week (Monday) for a given date.
+ * ISO weeks start on Monday (dayOfWeek = 1) and end on Sunday (dayOfWeek = 7).
+ */
+export const startOfIsoWeek = (
+    date: Temporal.PlainDate,
+): Temporal.PlainDate => {
     const dayOfWeek = date.dayOfWeek; // 1 = Monday, 7 = Sunday
     return date.subtract({days: dayOfWeek - 1});
 };
 
+/**
+ * Get the start of day (00:00:00.000) for a given JS Date.
+ * Returns a new Date object; does not mutate the original.
+ */
+export const startOfDay = (date: Date): Date => {
+    const result = new Date(date);
+    result.setHours(0, 0, 0, 0);
+    return result;
+};
+
+/**
+ * Get the end of day (23:59:59.999) for a given JS Date.
+ * Returns a new Date object; does not mutate the original.
+ */
+export const endOfDay = (date: Date): Date => {
+    const result = new Date(date);
+    result.setHours(23, 59, 59, 999);
+    return result;
+};
 /**
  * Utility functions for working with Temporal dates.
  *
@@ -361,6 +385,8 @@ export const TemporalLocaleUtils = {
     parseDate,
     parseDateToJsDate,
     startOfIsoWeek,
+    startOfDay,
+    endOfDay,
 
     // Date conversion utilities
     temporalDateToJsDate,
