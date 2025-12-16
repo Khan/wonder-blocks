@@ -4,7 +4,7 @@ import {Tabs} from "./tabs";
 import {TabsDropdown} from "./tabs-dropdown";
 import {AriaLabelOrAriaLabelledby} from "./types";
 
-type ResponsiveTabItem = {
+export type ResponsiveTabItem = {
     /**
      * The label of the tab.
      */
