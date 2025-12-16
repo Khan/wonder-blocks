@@ -348,7 +348,7 @@ describe("DatePicker", () => {
         );
     });
 
-    it("uses receives an accessible name from an outside label", async () => {
+    it("receives an accessible name from an outside label", async () => {
         // Arrange
         render(
             <label htmlFor="label-example">

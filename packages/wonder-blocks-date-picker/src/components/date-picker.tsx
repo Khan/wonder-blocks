@@ -228,7 +228,7 @@ const DatePicker = (props: Props) => {
                 onClick={open}
                 onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
-                aria-label={inputAriaLabel ?? "Choose or enter a date"} // TODO: add i18n
+                aria-label={inputAriaLabel}
                 disabled={disabled}
                 id={id}
                 placeholder={placeholder}
