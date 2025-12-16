@@ -2,7 +2,19 @@ import * as React from "react";
 import {render, screen, within} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {ResponsiveTabItem, ResponsiveTabs} from "../responsive-tabs";
-import {longTextWithNoWordBreak} from "../../../../../__docs__/components/text-for-testing";
+
+jest.mock("react-popper", () => ({
+    ...jest.requireActual("react-popper"),
+    Popper: jest.fn().mockImplementation(({children}) => {
+        // Mock `isReferenceHidden` to always return false (or true for testing visibility)
+        return children({
+            ref: jest.fn(),
+            style: {},
+            placement: "bottom",
+            isReferenceHidden: false, // Mocking isReferenceHidden
+        });
+    }),
+}));
 
 describe("ResponsiveTabs", () => {
     const tabs: ResponsiveTabItem[] = [
@@ -19,24 +31,6 @@ describe("ResponsiveTabs", () => {
         {
             id: "tab-3",
             label: "Tab 3",
-            panel: <div>Contents of tab 3</div>,
-        },
-    ];
-
-    const tabsWithLongLabels: ResponsiveTabItem[] = [
-        {
-            id: "tab-1",
-            label: longTextWithNoWordBreak,
-            panel: <div>Contents of tab 1</div>,
-        },
-        {
-            id: "tab-2",
-            label: longTextWithNoWordBreak,
-            panel: <div>Contents of tab 2</div>,
-        },
-        {
-            id: "tab-3",
-            label: longTextWithNoWordBreak,
             panel: <div>Contents of tab 3</div>,
         },
     ];
@@ -149,23 +143,156 @@ describe("ResponsiveTabs", () => {
     });
 
     describe("Dropdown layout", () => {
-        it("should render the tabs in a dropdown", async () => {});
+        let clientWidthSpy: jest.SpyInstance;
+        let scrollWidthSpy: jest.SpyInstance;
 
-        it("should render the selected tab panel based on the selectedTabId prop", () => {});
+        beforeAll(() => {
+            // Dropdown is triggered when the tabs scrollWidth > clientWidth
+            clientWidthSpy = jest
+                .spyOn(HTMLElement.prototype, "clientWidth", "get")
+                .mockImplementation(() => 10);
+            scrollWidthSpy = jest
+                .spyOn(HTMLElement.prototype, "scrollWidth", "get")
+                .mockImplementation(() => 20);
+        });
+
+        afterAll(() => {
+            clientWidthSpy.mockRestore();
+            scrollWidthSpy.mockRestore();
+        });
+
+        it("should render the tabs in a dropdown", async () => {
+            // Arrange
+            render(
+                <ResponsiveTabs
+                    aria-label="Responsive Tabs"
+                    tabs={tabs}
+                    selectedTabId="tab-1"
+                    onTabSelected={jest.fn()}
+                />,
+            );
+
+            const dropdownOpener = screen.getByRole("button", {name: "Tab 1"});
+            await userEvent.click(dropdownOpener);
+
+            // Act
+            const menuItems = screen.getAllByRole("menuitem");
+
+            // Assert
+            expect(menuItems).toEqual([
+                expect.objectContaining({textContent: "Tab 1"}),
+                expect.objectContaining({textContent: "Tab 2"}),
+                expect.objectContaining({textContent: "Tab 3"}),
+            ]);
+        });
+
+        it("should render the selected tab panel based on the selectedTabId prop", () => {
+            // Arrange
+            // Act
+            render(
+                <ResponsiveTabs
+                    aria-label="Responsive Tabs"
+                    tabs={tabs}
+                    selectedTabId="tab-1"
+                    onTabSelected={jest.fn()}
+                />,
+            );
+
+            const selectedTabPanel = screen.getByText("Contents of tab 1");
+
+            // Assert
+            expect(selectedTabPanel).toBeInTheDocument();
+        });
 
         describe("Events", () => {
-            it("should call the onTabSelected handler with the tab id when a tab is clicked", () => {});
+            it("should call the onTabSelected handler with the tab id when a tab is clicked", async () => {
+                // Arrange
+                const onTabSelected = jest.fn();
+                render(
+                    <ResponsiveTabs
+                        aria-label="Responsive Tabs"
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={onTabSelected}
+                    />,
+                );
+                // Open the dropdown
+                const dropdownOpener = screen.getByRole("button", {
+                    name: "Tab 1",
+                });
+                await userEvent.click(dropdownOpener);
+
+                // Get the second tab
+                const tab = screen.getByRole("menuitem", {name: "Tab 2"});
+
+                // Act
+                await userEvent.click(tab);
+
+                // Assert
+                expect(onTabSelected).toHaveBeenCalledWith("tab-2");
+            });
+
+            it("should call the onLayoutChange handler with the new dropdown layout when the layout changes", async () => {
+                // Arrange
+                const onLayoutChange = jest.fn();
+                // Act
+                render(
+                    <ResponsiveTabs
+                        aria-label="Responsive Tabs"
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                        onLayoutChange={onLayoutChange}
+                    />,
+                );
+
+                // Assert
+                expect(onLayoutChange.mock.calls).toStrictEqual([
+                    ["tabs"], // Initially render as tabs
+                    ["dropdown"], // Update to dropdown layout after measuring
+                ]);
+            });
         });
 
         describe("Accessibility", () => {
-            it("should use the aria-label prop", () => {});
+            it("should use the aria-label prop", () => {
+                // Arrange
+                // Act
+                render(
+                    <ResponsiveTabs
+                        aria-label="Responsive Tabs"
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
 
-            it("should use the aria-labelledby prop", () => {});
+                // Assert
+                expect(
+                    screen.getByRole("region", {name: "Responsive Tabs"}),
+                ).toHaveAttribute("aria-label", "Responsive Tabs");
+            });
+
+            it("should use the aria-labelledby prop", () => {
+                // Arrange
+                // Act
+                render(
+                    <div>
+                        <h1 id="tabs-heading">Responsive Tabs</h1>
+                        <ResponsiveTabs
+                            aria-labelledby="tabs-heading"
+                            tabs={tabs}
+                            selectedTabId="tab-1"
+                            onTabSelected={jest.fn()}
+                        />
+                    </div>,
+                );
+
+                // Assert
+                expect(
+                    screen.getByRole("region", {name: "Responsive Tabs"}),
+                ).toHaveAttribute("aria-labelledby", "tabs-heading");
+            });
         });
-    });
-
-    describe("Layout changes", () => {
-        // TODO: zoom, adding/removing tabs, etc. might be better to test in Storybook
-        it("should call the onLayoutChange handler with the new layout when the layout changes", () => {});
     });
 });
