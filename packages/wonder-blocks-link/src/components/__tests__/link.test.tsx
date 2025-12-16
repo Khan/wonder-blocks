@@ -422,7 +422,11 @@ describe("Link", () => {
         test("external icon has aria-label 'Open in new tab'", async () => {
             // Arrange
             render(
-                <Link href="https://www.google.com/" target="_blank">
+                <Link
+                    href="https://www.google.com/"
+                    target="_blank"
+                    externalIconAriaLabel="Open in new tab"
+                >
                     Click me!
                 </Link>,
             );

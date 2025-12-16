@@ -75,7 +75,11 @@ export const Default: StoryComponentType = {
 export const OpensInANewTab: StoryComponentType = {
     render: () => (
         <View>
-            <Link href="https://cat-bounce.com/" target="_blank">
+            <Link
+                href="https://cat-bounce.com/"
+                target="_blank"
+                externalIconAriaLabel="Open cat bounce in new tab"
+            >
                 This is a link that opens in a new tab
             </Link>
         </View>

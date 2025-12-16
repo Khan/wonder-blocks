@@ -50,6 +50,7 @@ const LinkCore = React.forwardRef(function LinkCore(
         target,
         startIcon,
         endIcon,
+        externalIconAriaLabel,
         viewTransition,
         ...restProps
     } = props;
@@ -79,7 +80,7 @@ const LinkCore = React.forwardRef(function LinkCore(
             size="small"
             style={[styles.endIcon, styles.centered]}
             testId="external-icon"
-            aria-label="Open in new tab"
+            aria-label={externalIconAriaLabel}
         />
     );
 
