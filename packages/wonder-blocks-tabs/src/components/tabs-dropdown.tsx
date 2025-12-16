@@ -164,15 +164,7 @@ const styles = StyleSheet.create({
     actionMenu: {
         width: "100%",
         alignItems: "flex-start",
-        ":after": {
-            borderBlockEnd: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
-            content: "''",
-            position: "absolute",
-            left: 0,
-            right: 0,
-            bottom: 0,
-            zIndex: -1, // This is to ensure focus outline can go on top of the separator
-        },
+        borderBlockEnd: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
     },
     opener: {
         position: "relative",
