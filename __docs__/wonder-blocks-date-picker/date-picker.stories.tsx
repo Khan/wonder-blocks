@@ -13,8 +13,6 @@ import {DatePicker} from "@khanacademy/wonder-blocks-date-picker";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-date-picker/package.json";
 
-// eslint-disable-next-line import/no-unassigned-import
-import "react-day-picker/style.css";
 import {allModes} from "../../.storybook/modes";
 
 type Props = PropsFor<typeof DatePicker>;
