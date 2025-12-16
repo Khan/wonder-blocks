@@ -419,6 +419,21 @@ describe("Link", () => {
             });
         });
 
+        test("external icon has aria-label 'Open in new tab'", async () => {
+            // Arrange
+            render(
+                <Link href="https://www.google.com/" target="_blank">
+                    Click me!
+                </Link>,
+            );
+
+            // Act
+            const icon = await screen.findByTestId("external-icon");
+
+            // Assert
+            expect(icon).toHaveAttribute("aria-label", "Open in new tab");
+        });
+
         test("does not render external icon when `target=_blank` and link is relative", async () => {
             // Arrange
             render(
