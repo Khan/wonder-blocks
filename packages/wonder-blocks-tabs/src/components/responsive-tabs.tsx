@@ -32,6 +32,11 @@ type Props = AriaLabelOrAriaLabelledby & {
      * Called when a tab is selected.
      */
     onTabSelected: (id: string) => void;
+
+    /**
+     * Called when the layout changes.
+     */
+    onLayoutChange?: (layout: "tabs" | "dropdown") => void;
 };
 
 /**
@@ -54,6 +59,7 @@ export const ResponsiveTabs = (props: Props) => {
         onTabSelected,
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledby,
+        onLayoutChange,
     } = props;
 
     const [showDropdown, setShowDropdown] = React.useState(false);
@@ -140,6 +146,10 @@ export const ResponsiveTabs = (props: Props) => {
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledby,
     };
+
+    React.useEffect(() => {
+        onLayoutChange?.(showDropdown ? "dropdown" : "tabs");
+    }, [showDropdown, onLayoutChange]);
 
     return (
         <div ref={containerRef} style={{width: "100%"}}>
