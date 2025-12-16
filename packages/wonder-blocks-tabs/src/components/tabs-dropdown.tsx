@@ -145,7 +145,7 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, Props>(
             <View
                 ref={ref}
                 id={uniqueId}
-                data-testid={testId}
+                testId={testId}
                 style={stylesProp?.root}
                 role="region"
                 aria-label={ariaLabel}
@@ -195,7 +195,7 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, Props>(
                     id={panelId}
                     role="group"
                     aria-labelledby={openerId}
-                    data-testid={testId ? `${testId}-panel` : undefined}
+                    testId={testId ? `${testId}-panel` : undefined}
                 >
                     {selectedTabItem?.panel}
                 </View>
