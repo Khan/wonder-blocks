@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-popover
 
+## 6.1.48
+
+### Patch Changes
+
+- 6c60466: Changes the `dismissEnabled` behavior to close/dismiss the popover once the focus moves outside of it.
+- Updated dependencies [2f842b1]
+- Updated dependencies [59aba89]
+    - @khanacademy/wonder-blocks-icon-button@11.1.0
+    - @khanacademy/wonder-blocks-modal@8.5.10
+    - @khanacademy/wonder-blocks-tooltip@4.1.61
+
 ## 6.1.47
 
 ### Patch Changes

@@ -1,5 +1,23 @@
 # @khanacademy/wonder-blocks-card
 
+## 1.4.1
+
+### Patch Changes
+
+- Updated dependencies [2f842b1]
+- Updated dependencies [59aba89]
+    - @khanacademy/wonder-blocks-icon-button@11.1.0
+
+## 1.4.0
+
+### Minor Changes
+
+- 0a5444d: Expose aria-describedby attribute of the Dismiss button
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-core@12.4.2
+
 ## 1.3.2
 
 ### Patch Changes

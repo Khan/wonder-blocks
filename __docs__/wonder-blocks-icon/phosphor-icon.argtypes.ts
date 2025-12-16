@@ -62,6 +62,7 @@ import arrowElbowLeftDown from "@phosphor-icons/core/regular/arrow-elbow-left-do
 import arrowElbowLeftUp from "@phosphor-icons/core/regular/arrow-elbow-left-up.svg";
 import arrowElbowRightDown from "@phosphor-icons/core/regular/arrow-elbow-right-down.svg";
 import arrowElbowRightUp from "@phosphor-icons/core/regular/arrow-elbow-right-up.svg";
+import lightningFill from "@phosphor-icons/core/fill/lightning-fill.svg";
 
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {flattenNestedTokens} from "../components/tokens-util";
@@ -132,6 +133,7 @@ export const IconMappings = {
     arrowElbowLeftUp,
     arrowElbowRightDown,
     arrowElbowRightUp,
+    lightningFill,
 } as const;
 
 // We flatten the tokens and filter out the colors that are not relevant to

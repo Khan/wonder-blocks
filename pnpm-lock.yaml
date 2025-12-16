@@ -10,11 +10,11 @@ catalogs:
       specifier: ^0.27.16
       version: 0.27.16
     '@khanacademy/wonder-stuff-core':
-      specifier: ^1.5.4
-      version: 1.5.4
+      specifier: ^3.0.0
+      version: 3.0.0
     '@khanacademy/wonder-stuff-testing':
-      specifier: ^3.0.5
-      version: 3.0.5
+      specifier: ^4.0.3
+      version: 4.0.3
     '@phosphor-icons/core':
       specifier: ^2.0.2
       version: 2.1.1
@@ -73,7 +73,7 @@ importers:
         version: 0.27.16(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@khanacademy/wonder-stuff-core':
         specifier: 'catalog:'
-        version: 1.5.4
+        version: 3.0.0
       '@phosphor-icons/core':
         specifier: 'catalog:'
         version: 2.1.1
@@ -299,7 +299,7 @@ importers:
         version: 4.0.15(msw@2.7.0(@types/node@22.13.0)(typescript@5.7.3))(vite@6.0.11(@types/node@22.13.0)(terser@5.39.0)(yaml@2.7.0))(vitest@4.0.15)
       '@vitest/browser-playwright':
         specifier: ^4.0.15
-        version: 4.0.15(msw@2.7.0(@types/node@22.13.0)(typescript@5.7.3))(playwright@1.50.1)(vite@6.0.11(@types/node@22.13.0)(terser@5.39.0)(yaml@2.7.0))(vitest@4.0.15)
+        version: 4.0.15(msw@2.7.0(@types/node@22.13.0)(typescript@5.7.3))(playwright@1.57.0)(vite@6.0.11(@types/node@22.13.0)(terser@5.39.0)(yaml@2.7.0))(vitest@4.0.15)
       alex:
         specifier: ^11.0.1
         version: 11.0.1
@@ -385,8 +385,8 @@ importers:
         specifier: ^8.0.0
         version: 8.0.0(typescript@5.7.3)
       playwright:
-        specifier: ^1.50.1
-        version: 1.50.1
+        specifier: ^1.57.0
+        version: 1.57.0
       prettier:
         specifier: ^3.4.2
         version: 3.4.2
@@ -762,7 +762,7 @@ importers:
         version: link:../wonder-blocks-core
       '@khanacademy/wonder-stuff-core':
         specifier: 'catalog:'
-        version: 1.5.4
+        version: 3.0.0
       react:
         specifier: 'catalog:'
         version: 18.2.0
@@ -775,7 +775,7 @@ importers:
         version: link:../wonder-blocks-testing-core
       '@khanacademy/wonder-stuff-testing':
         specifier: 'catalog:'
-        version: 3.0.5(jest@29.7.0(@types/node@22.13.0))
+        version: 4.0.3(jest@29.7.0(@types/node@22.13.0))
 
   packages/wonder-blocks-dropdown:
     dependencies:
@@ -1335,7 +1335,7 @@ importers:
         version: link:../wonder-blocks-testing-core
       '@khanacademy/wonder-stuff-core':
         specifier: 'catalog:'
-        version: 1.5.4
+        version: 3.0.0
       aphrodite:
         specifier: 'catalog:'
         version: 1.2.5
@@ -1360,13 +1360,13 @@ importers:
         version: link:../../build-settings
       '@khanacademy/wonder-stuff-testing':
         specifier: 'catalog:'
-        version: 3.0.5(jest@29.7.0(@types/node@22.13.0))
+        version: 4.0.3(jest@29.7.0(@types/node@22.13.0))
 
   packages/wonder-blocks-testing-core:
     dependencies:
       '@khanacademy/wonder-stuff-core':
         specifier: 'catalog:'
-        version: 1.5.4
+        version: 3.0.0
       aphrodite:
         specifier: 'catalog:'
         version: 1.2.5
@@ -1391,7 +1391,7 @@ importers:
         version: link:../../build-settings
       '@khanacademy/wonder-stuff-testing':
         specifier: 'catalog:'
-        version: 3.0.5(jest@29.7.0(@types/node@22.13.0))
+        version: 4.0.3(jest@29.7.0(@types/node@22.13.0))
 
   packages/wonder-blocks-theming:
     dependencies:
@@ -2583,11 +2583,21 @@ packages:
     resolution: {integrity: sha512-Z1DOHdSNrXyIKCgYsq6XKT6ZTRq5bb7Daof8mN31O30twStrwBynP5fS0lARS9qgxycaueThEcmeCF8AXyU21g==}
     engines: {node: '>=16'}
 
+  '@khanacademy/wonder-stuff-core@3.0.0':
+    resolution: {integrity: sha512-lkq28lY/z/Y4kEhYTMCrbG1ZsZUc0QVbBpz6xHC/4TMCdrwaN6PEeFX2mX4DVaE7bcwi3Y22ZXQmjdxnBpvc2A==}
+    engines: {node: '>=20'}
+
   '@khanacademy/wonder-stuff-testing@3.0.5':
     resolution: {integrity: sha512-Eh273V7FVcA+L4wv1mkoWZKiItKR6tEQlOt+0klGpg8UKx2XYBb72iHCFV6+ZRamOqFQHwPJ7jGC6FO0IjB1IQ==}
     engines: {node: '>=16'}
     peerDependencies:
       jest: ^29
+
+  '@khanacademy/wonder-stuff-testing@4.0.3':
+    resolution: {integrity: sha512-QcPatmr49ypAynsNRBfo6WwfDYMOAMNgXn74d3ba0OQoVAootmuAKLOWjQlOtWvJxgv2ZGmNr83ggEVVwtW7nA==}
+    engines: {node: '>=20'}
+    peerDependencies:
+      jest: ^30.2.0
 
   '@manypkg/find-root@1.1.0':
     resolution: {integrity: sha512-mki5uBvhHzO8kYYix/WRy2WX8S3B5wdVSc9D6KcU5lQNglP2yt58/VfLuAK49glRXChosY8ap2oJ1qgma3GUVA==}
@@ -6243,13 +6253,13 @@ packages:
     resolution: {integrity: sha512-HRDzbaKjC+AOWVXxAU/x54COGeIv9eb+6CkDSQoNTt4XyWoIJvuPsXizxu/Fr23EiekbtZwmh1IcIG/l/a10GQ==}
     engines: {node: '>=8'}
 
-  playwright-core@1.50.1:
-    resolution: {integrity: sha512-ra9fsNWayuYumt+NiM069M6OkcRb1FZSK8bgi66AtpFoWkg2+y0bJSNmkFrWhMbEBbVKC/EruAHH3g0zmtwGmQ==}
+  playwright-core@1.57.0:
+    resolution: {integrity: sha512-agTcKlMw/mjBWOnD6kFZttAAGHgi/Nw0CZ2o6JqWSbMlI219lAFLZZCyqByTsvVAJq5XA5H8cA6PrvBRpBWEuQ==}
     engines: {node: '>=18'}
     hasBin: true
 
-  playwright@1.50.1:
-    resolution: {integrity: sha512-G8rwsOQJ63XG6BbKj2w5rHeavFjy5zynBA9zsJMMtBoe/Uf757oG12NXz6e6OirF7RCrTVAKFXbLmn1RbL7Qaw==}
+  playwright@1.57.0:
+    resolution: {integrity: sha512-ilYQj1s8sr2ppEJ2YVadYBN0Mb3mdo9J0wQ+UuDhzYqURwSoW4n1Xs5vs7ORwgDGmyEh33tRMeS8KhdkMoLXQw==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -9084,9 +9094,16 @@ snapshots:
 
   '@khanacademy/wonder-stuff-core@1.5.4': {}
 
+  '@khanacademy/wonder-stuff-core@3.0.0': {}
+
   '@khanacademy/wonder-stuff-testing@3.0.5(jest@29.7.0(@types/node@22.13.0))':
     dependencies:
       '@khanacademy/wonder-stuff-core': 1.5.4
+      jest: 29.7.0(@types/node@22.13.0)
+
+  '@khanacademy/wonder-stuff-testing@4.0.3(jest@29.7.0(@types/node@22.13.0))':
+    dependencies:
+      '@khanacademy/wonder-stuff-core': 3.0.0
       jest: 29.7.0(@types/node@22.13.0)
 
   '@manypkg/find-root@1.1.0':
@@ -9369,7 +9386,7 @@ snapshots:
       storybook: 10.1.4(@testing-library/dom@10.4.0)(prettier@3.4.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     optionalDependencies:
       '@vitest/browser': 4.0.15(msw@2.7.0(@types/node@22.13.0)(typescript@5.7.3))(vite@6.0.11(@types/node@22.13.0)(terser@5.39.0)(yaml@2.7.0))(vitest@4.0.15)
-      '@vitest/browser-playwright': 4.0.15(msw@2.7.0(@types/node@22.13.0)(typescript@5.7.3))(playwright@1.50.1)(vite@6.0.11(@types/node@22.13.0)(terser@5.39.0)(yaml@2.7.0))(vitest@4.0.15)
+      '@vitest/browser-playwright': 4.0.15(msw@2.7.0(@types/node@22.13.0)(typescript@5.7.3))(playwright@1.57.0)(vite@6.0.11(@types/node@22.13.0)(terser@5.39.0)(yaml@2.7.0))(vitest@4.0.15)
       '@vitest/runner': 4.0.15
       vitest: 4.0.15(@types/node@22.13.0)(@vitest/browser-playwright@4.0.15)(jsdom@20.0.3)(msw@2.7.0(@types/node@22.13.0)(typescript@5.7.3))(terser@5.39.0)(yaml@2.7.0)
     transitivePeerDependencies:
@@ -9905,11 +9922,11 @@ snapshots:
     transitivePeerDependencies:
       - '@swc/helpers'
 
-  '@vitest/browser-playwright@4.0.15(msw@2.7.0(@types/node@22.13.0)(typescript@5.7.3))(playwright@1.50.1)(vite@6.0.11(@types/node@22.13.0)(terser@5.39.0)(yaml@2.7.0))(vitest@4.0.15)':
+  '@vitest/browser-playwright@4.0.15(msw@2.7.0(@types/node@22.13.0)(typescript@5.7.3))(playwright@1.57.0)(vite@6.0.11(@types/node@22.13.0)(terser@5.39.0)(yaml@2.7.0))(vitest@4.0.15)':
     dependencies:
       '@vitest/browser': 4.0.15(msw@2.7.0(@types/node@22.13.0)(typescript@5.7.3))(vite@6.0.11(@types/node@22.13.0)(terser@5.39.0)(yaml@2.7.0))(vitest@4.0.15)
       '@vitest/mocker': 4.0.15(msw@2.7.0(@types/node@22.13.0)(typescript@5.7.3))(vite@6.0.11(@types/node@22.13.0)(terser@5.39.0)(yaml@2.7.0))
-      playwright: 1.50.1
+      playwright: 1.57.0
       tinyrainbow: 3.0.3
       vitest: 4.0.15(@types/node@22.13.0)(@vitest/browser-playwright@4.0.15)(jsdom@20.0.3)(msw@2.7.0(@types/node@22.13.0)(typescript@5.7.3))(terser@5.39.0)(yaml@2.7.0)
     transitivePeerDependencies:
@@ -13790,11 +13807,11 @@ snapshots:
     dependencies:
       find-up: 4.1.0
 
-  playwright-core@1.50.1: {}
+  playwright-core@1.57.0: {}
 
-  playwright@1.50.1:
+  playwright@1.57.0:
     dependencies:
-      playwright-core: 1.50.1
+      playwright-core: 1.57.0
     optionalDependencies:
       fsevents: 2.3.2
 
@@ -15267,7 +15284,7 @@ snapshots:
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 22.13.0
-      '@vitest/browser-playwright': 4.0.15(msw@2.7.0(@types/node@22.13.0)(typescript@5.7.3))(playwright@1.50.1)(vite@6.0.11(@types/node@22.13.0)(terser@5.39.0)(yaml@2.7.0))(vitest@4.0.15)
+      '@vitest/browser-playwright': 4.0.15(msw@2.7.0(@types/node@22.13.0)(typescript@5.7.3))(playwright@1.57.0)(vite@6.0.11(@types/node@22.13.0)(terser@5.39.0)(yaml@2.7.0))(vitest@4.0.15)
       jsdom: 20.0.3
     transitivePeerDependencies:
       - jiti

@@ -24,13 +24,15 @@ When using semantic tags like `tag="section"` or `tag="figure"`, you should prov
 
 Only one labeling mechanism can be used at a time. Refer to the [Accessible Name Computation specification](https://www.w3.org/TR/accname-1.2/#computation-steps) to understand how this is standardized.
 
-When the `onDismiss` prop is provided, a dismiss button will be rendered. In this case, the `labels.dismissButtonAriaLabel` prop is required to provide a translatable, accessible label for the dismiss button.
+When the `onDismiss` prop is provided, a dismiss button will be rendered. In this case, the `labels.dismissButtonAriaLabel` prop is required to provide a translatable, accessible label for the dismiss button.  `labels.dismissButtonAriaDescribedBy` is also available as an optional argument to provide supplemental context.
 
 ## Dismiss Button
 
 When `onDismiss` is provided, an accessible dismiss button is automatically added:
 
 - The button has `aria-label` set from `labels.dismissButtonAriaLabel`
+- The button has `aria-describedby` set from the optional `labels.dismissButtonAriaDescribedBy`
+  - Use `labels.dismissButtonAriaDescribedBy` only when `labels.dismissButtonAriaLabel` alone does not provide sufficient context within a reasonable string length.  For example, when there are multiple similar cards on the same page whose distinctions become clear only via the body content of the Card.
 - The button is positioned in the top-right corner of the card (with support for RTL languages)
 - Focus management should be handled by the consuming application when the card is dismissed
 
