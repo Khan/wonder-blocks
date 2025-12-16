@@ -79,6 +79,7 @@ const LinkCore = React.forwardRef(function LinkCore(
             size="small"
             style={[styles.endIcon, styles.centered]}
             testId="external-icon"
+            aria-label="Open in new tab"
         />
     );
 
