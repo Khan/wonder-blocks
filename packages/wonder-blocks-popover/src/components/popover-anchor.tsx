@@ -1,15 +1,28 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 
+// Allow merging multiple refs (forwarded + user-supplied)
+// Internal helper to merge refs
+function mergeRefs<T = any>(
+    ...refs: Array<React.Ref<T> | undefined>
+): React.RefCallback<T> {
+    return (value: T) => {
+        refs.forEach((ref) => {
+            if (!ref) {
+                return;
+            }
+            if (typeof ref === "function") {
+                ref(value);
+            } else if (typeof ref === "object" && ref !== null) {
+                // @ts-expect-error: TS doesn't recognize the shape, but it's safe
+                ref.current = value;
+            }
+        });
+    };
+}
+
 type Props = AriaProps & {
-    /**
-     * Callback to be invoked when the anchored content is mounted.
-     * This provides a reference to the anchored content, which can then be
-     * used for calculating popover content positioning.
-     */
-    anchorRef: (arg1?: HTMLElement) => unknown;
     /**
      * The element that triggers the popover. This element will be used to
      * position the popover. It can be either a Node or a function using the
@@ -35,24 +48,15 @@ type Props = AriaProps & {
  * The element that triggers the popover dialog. This is also used as reference
  * to position the dialog itself.
  */
-export default class PopoverAnchor extends React.Component<Props> {
-    componentDidMount() {
-        // eslint-disable-next-line import/no-deprecated
-        const anchorNode = ReactDOM.findDOMNode(this) as HTMLElement;
-
-        if (anchorNode) {
-            this.props.anchorRef(anchorNode);
-        }
-    }
-
-    render(): React.ReactNode {
+const PopoverAnchor = React.forwardRef<HTMLElement, Props>(
+    function PopoverAnchor(props: Props, ref) {
         const {
             children,
             id,
             onClick,
             "aria-controls": ariaControls,
             "aria-expanded": ariaExpanded,
-        } = this.props;
+        } = props;
 
         // props that will be injected to both children versions
         const sharedProps = {
@@ -66,17 +70,25 @@ export default class PopoverAnchor extends React.Component<Props> {
                 open: onClick,
             });
 
+            const childrenRef = renderedChildren.ref as any;
+
             // we clone it to allow injecting the sharedProps defined before
-            return React.cloneElement(renderedChildren, sharedProps);
+            return React.cloneElement(renderedChildren, {
+                ...sharedProps,
+                ref: childrenRef ? mergeRefs(ref, childrenRef) : ref,
+            });
         } else {
+            const childrenRef = children.ref as any;
+
             // add onClick handler to automatically open the dialog after
             // clicking on this anchor element
             return React.cloneElement(children, {
                 ...children.props,
                 ...sharedProps,
+                ref: childrenRef ? mergeRefs(ref, childrenRef) : ref,
+
                 onClick: children.props.onClick
-                    ? // @ts-expect-error [FEI-5019] - TS7006 - Parameter 'e' implicitly has an 'any' type.
-                      (e) => {
+                    ? (e: React.SyntheticEvent) => {
                           e.stopPropagation();
                           // This is done to avoid overriding a custom onClick
                           // handler inside the children node
@@ -86,5 +98,9 @@ export default class PopoverAnchor extends React.Component<Props> {
                     : onClick,
             });
         }
-    }
-}
+    },
+);
+
+PopoverAnchor.displayName = "PopoverAnchor";
+
+export default PopoverAnchor;

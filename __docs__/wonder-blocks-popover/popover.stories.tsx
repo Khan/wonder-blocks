@@ -14,32 +14,9 @@ import packageConfig from "../../packages/wonder-blocks-popover/package.json";
 import ComponentInfo from "../components/component-info";
 import PopoverArgtypes, {ContentMappings} from "./popover.argtypes";
 
-/**
- * Popovers provide additional information that is related to a particular
- * element and/or content. They can include text, links, icons and
- * illustrations. The main difference with `Tooltip` is that they must be
- * dismissed by clicking an element.
- *
- * This component uses the `PopoverPopper` component to position the
- * `PopoverContentCore` component according to the children it is wrapping.
- *
- * ### Usage
- *
- * ```jsx
- * import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
- *
- * <Popover
- *  onClose={() => {}}
- *  content={
- *      <PopoverContent title="Title" content="Some content" closeButtonVisible />
- *  }>
- *      <Button>Open popover</Button>
- *  </Popover>
- * ```
- */
 export default {
     title: "Packages / Popover / Popover",
-    component: Popover as unknown as React.ComponentType<any>,
+    component: Popover,
     argTypes: PopoverArgtypes,
     parameters: {
         componentSubtitle: (
