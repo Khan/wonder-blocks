@@ -107,7 +107,7 @@ export const Default: Story = {
                     <Button
                         onClick={() => {
                             setZoomLevel(
-                                zoomLevel === undefined ? 400 : undefined,
+                                zoomLevel === undefined ? 115 : undefined,
                             );
                         }}
                     >
