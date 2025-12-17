@@ -122,23 +122,25 @@ describe("ResponsiveTabs", () => {
         });
 
         describe("Props", () => {
-            it("should use the provided id as a base for the ids of the elements within the tabs component", () => {
+            it("should use the provided id from tabsProps", () => {
                 // Arrange
                 // Act
                 render(
                     <ResponsiveTabs
-                        id="responsive-tabs-id"
                         aria-label="Responsive Tabs"
                         tabs={tabs}
                         selectedTabId="tab-1"
                         onTabSelected={jest.fn()}
+                        tabsProps={{
+                            id: "test-id",
+                        }}
                     />,
                 );
 
                 // Assert
                 expect(screen.getByRole("tablist")).toHaveAttribute(
                     "id",
-                    "responsive-tabs-id-tabs-tablist",
+                    "test-id-tablist",
                 );
             });
 
@@ -147,20 +149,20 @@ describe("ResponsiveTabs", () => {
                 // Act
                 render(
                     <ResponsiveTabs
-                        testId="responsive-tabs-test-id"
                         aria-label="Responsive Tabs"
                         tabs={tabs}
                         selectedTabId="tab-1"
                         onTabSelected={jest.fn()}
+                        tabsProps={{
+                            testId: "test-id",
+                        }}
                     />,
                 );
 
                 // Assert
-                expect(
-                    screen.getByTestId("responsive-tabs-test-id-tabs"),
-                ).toHaveAttribute(
+                expect(screen.getByTestId("test-id")).toHaveAttribute(
                     "data-testid",
-                    "responsive-tabs-test-id-tabs",
+                    "test-id",
                 );
             });
 
@@ -319,43 +321,45 @@ describe("ResponsiveTabs", () => {
         });
 
         describe("Props", () => {
-            it("should use the provided id as a base for the ids of the elements within the dropdown component", () => {
+            it("should use the provided id in dropdownProps", () => {
                 // Arrange
                 // Act
                 render(
                     <ResponsiveTabs
-                        id="responsive-tabs-id"
                         aria-label="Responsive Tabs"
                         tabs={tabs}
                         selectedTabId="tab-1"
                         onTabSelected={jest.fn()}
+                        dropdownProps={{
+                            id: "test-id",
+                        }}
                     />,
                 );
                 // Assert
                 expect(screen.getByRole("region")).toHaveAttribute(
                     "id",
-                    "responsive-tabs-id-dropdown",
+                    "test-id",
                 );
             });
 
-            it("should use the provided testId as a base for the testIds of the elements within the dropdown component", () => {
+            it("should use the provided testId in dropdownProps", () => {
                 // Arrange
                 // Act
                 render(
                     <ResponsiveTabs
-                        testId="responsive-tabs-test-id"
                         aria-label="Responsive Tabs"
                         tabs={tabs}
                         selectedTabId="tab-1"
                         onTabSelected={jest.fn()}
+                        dropdownProps={{
+                            testId: "test-id",
+                        }}
                     />,
                 );
                 // Assert
-                expect(
-                    screen.getByTestId("responsive-tabs-test-id-dropdown"),
-                ).toHaveAttribute(
+                expect(screen.getByTestId("test-id")).toHaveAttribute(
                     "data-testid",
-                    "responsive-tabs-test-id-dropdown",
+                    "test-id",
                 );
             });
 

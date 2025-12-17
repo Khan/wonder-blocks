@@ -1,8 +1,8 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Tabs} from "./tabs";
-import {TabsDropdown} from "./tabs-dropdown";
+import {Tabs, TabsProps} from "./tabs";
+import {TabsDropdown, TabsDropdownProps} from "./tabs-dropdown";
 import {AriaLabelOrAriaLabelledby} from "./types";
 
 export type ResponsiveTabItem = {
@@ -30,11 +30,9 @@ type Props = AriaLabelOrAriaLabelledby & {
      *
      * Here is how the id is used for the different elements in the component:
      * - The root will have an id of `${id}`
-     * - The tabs will have an id of `${id}-tabs`
-     * - The dropdown will have an id of `${id}-dropdown`
      *
-     * For more information about how the id is applied to elements within the
-     * tabs or dropdown, see the Tabs and TabsDropdown component docs.
+     * To set the id of the tabs or dropdown, set the `id` prop in the props:
+     * `tabsProps` or `dropdownProps`.
      */
     id?: string;
 
@@ -43,11 +41,9 @@ type Props = AriaLabelOrAriaLabelledby & {
      *
      * Here is how the test id is used for the different elements in the component:
      * - The root will have a testId of `${testId}`
-     * - The tabs will have a testId of `${testId}-tabs`
-     * - The dropdown will have a testId of `${testId}-dropdown`
      *
-     * For more information about how the test id is applied to elements within the
-     * tabs or dropdown, see the Tabs and TabsDropdown component docs.
+     * To set the test id of the tabs or dropdown, set the `testId` prop in the props:
+     * `tabsProps` or `dropdownProps`.
      */
     testId?: string;
     /**
@@ -67,6 +63,35 @@ type Props = AriaLabelOrAriaLabelledby & {
      * Called when the layout changes.
      */
     onLayoutChange?: (layout: "tabs" | "dropdown") => void;
+
+    /**
+     * Additional props to pass to the Tabs component when it is used.
+     *
+     * Note: This prop doesn't include the props that are available on the
+     * ResponsiveTabs component already.
+     */
+    tabsProps?: Omit<
+        TabsProps,
+        | "tabs"
+        | "selectedTabId"
+        | "onTabSelected"
+        | "aria-label"
+        | "aria-labelledby"
+    >;
+    /**
+     * Additional props to pass to the TabsDropdown component when it is used.
+     *
+     * Note: This prop doesn't include the props that are available on the
+     * ResponsiveTabs component already.
+     */
+    dropdownProps?: Omit<
+        TabsDropdownProps,
+        | "tabs"
+        | "selectedTabId"
+        | "onTabSelected"
+        | "aria-label"
+        | "aria-labelledby"
+    >;
 };
 
 /**
@@ -90,6 +115,8 @@ export const ResponsiveTabs = (props: Props) => {
         onLayoutChange,
         id,
         testId,
+        tabsProps,
+        dropdownProps,
         ...ariaProps
     } = props;
 
@@ -186,6 +213,7 @@ export const ResponsiveTabs = (props: Props) => {
         >
             {showDropdown ? (
                 <TabsDropdown
+                    {...dropdownProps}
                     {...ariaProps}
                     key="dropdown"
                     tabs={tabs}
@@ -194,11 +222,10 @@ export const ResponsiveTabs = (props: Props) => {
                     styles={{
                         root: styles.fadeIn,
                     }}
-                    id={id ? `${id}-dropdown` : undefined}
-                    testId={testId ? `${testId}-dropdown` : undefined}
                 />
             ) : (
                 <Tabs
+                    {...tabsProps}
                     {...ariaProps}
                     key="tabs"
                     ref={tabsRef}
@@ -212,8 +239,6 @@ export const ResponsiveTabs = (props: Props) => {
                             {maxWidth: "100%", width: "100%"},
                         ],
                     }}
-                    id={id ? `${id}-tabs` : undefined}
-                    testId={testId ? `${testId}-tabs` : undefined}
                 />
             )}
         </View>
