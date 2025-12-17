@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-tabs
 
+## 0.4.1
+
+### Patch Changes
+
+- a838a4a: Tabs: Keep track of descendant changes to determine if a tab panel has focusable elements
+    - @khanacademy/wonder-blocks-core@12.4.2
+
 ## 0.4.0
 
 ### Minor Changes

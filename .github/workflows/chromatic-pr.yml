@@ -85,6 +85,10 @@ jobs:
     name: Run Storybook tests
     needs: chromatic_review
     runs-on: ${{ matrix.os }}
+    container:
+      # Make sure to grab the latest version of the Playwright image
+      # https://playwright.dev/docs/docker#pull-the-image
+      image: mcr.microsoft.com/playwright:v1.57.0-noble
     strategy:
       fail-fast: false
       matrix:
@@ -104,10 +108,6 @@ jobs:
         uses: ./.github/actions/shared-node-cache
         with:
           node-version: ${{ matrix.node-version }}
-
-      # Install Playwright browsers so Vitest browser mode can run story tests
-      - name: Install playwright dependencies
-        run: pnpm exec playwright install chromium --with-deps
 
       # Build the project
       - name: Generate WB build artifacts
