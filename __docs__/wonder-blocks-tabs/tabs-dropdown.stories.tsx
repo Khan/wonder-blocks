@@ -3,6 +3,7 @@ import {Meta, StoryObj} from "@storybook/react-vite";
 import {TabsDropdown} from "../../packages/wonder-blocks-tabs/src/components/tabs-dropdown";
 import {PropsFor} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import tabsDropdownArgTypes from "./tabs-dropdown.argtypes";
 
 export default {
     title: "Packages / Tabs / Tabs / Subcomponents / TabsDropdown",
@@ -12,6 +13,10 @@ export default {
             // Visual regression testing is done in the testing snapshots stories
             disableSnapshot: true,
         },
+    },
+    argTypes: tabsDropdownArgTypes,
+    args: {
+        "aria-label": "Tabs Dropdown Component",
     },
 } as Meta<typeof TabsDropdown>;
 

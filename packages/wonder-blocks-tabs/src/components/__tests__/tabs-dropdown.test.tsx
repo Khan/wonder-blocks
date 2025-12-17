@@ -36,44 +36,209 @@ const tabs = [
 
 describe("TabsDropdown", () => {
     describe("Props", () => {
-        it("should use the id prop for the root element", () => {
-            // Arrange
-            // Act
-            const {container} = render(
-                <TabsDropdown
-                    id="tabs-dropdown-id"
-                    tabs={tabs}
-                    selectedTabId="tab-1"
-                    onTabSelected={jest.fn()}
-                />,
-            );
+        describe("id", () => {
+            describe("when id is provided", () => {
+                it("should use the provided id on the root element", () => {
+                    // Arrange
+                    // Act
+                    const {container} = render(
+                        <TabsDropdown
+                            id="tabs-dropdown-id"
+                            aria-label="Test tabs"
+                            tabs={tabs}
+                            selectedTabId="tab-1"
+                            onTabSelected={jest.fn()}
+                        />,
+                    );
 
-            // Assert
-            // eslint-disable-next-line testing-library/no-node-access -- explicitlychecking the root element
-            expect(container.firstChild).toHaveAttribute(
-                "id",
-                "tabs-dropdown-id",
-            );
+                    // Assert
+                    // eslint-disable-next-line testing-library/no-node-access -- explicitly checking the root element
+                    expect(container.firstChild).toHaveAttribute(
+                        "id",
+                        "tabs-dropdown-id",
+                    );
+                });
+
+                it("should use the provided id on the opener element with '-opener' suffix", () => {
+                    // Arrange
+                    // Act
+                    render(
+                        <TabsDropdown
+                            id="tabs-dropdown-id"
+                            aria-label="Test tabs"
+                            tabs={tabs}
+                            selectedTabId="tab-1"
+                            onTabSelected={jest.fn()}
+                        />,
+                    );
+
+                    // Assert
+                    expect(screen.getByRole("button")).toHaveAttribute(
+                        "id",
+                        "tabs-dropdown-id-opener",
+                    );
+                });
+
+                it("should use the provided id on the panel element with '-panel' suffix", () => {
+                    // Arrange
+                    // Act
+                    render(
+                        <TabsDropdown
+                            id="tabs-dropdown-id"
+                            aria-label="Test tabs"
+                            tabs={tabs}
+                            selectedTabId="tab-1"
+                            onTabSelected={jest.fn()}
+                        />,
+                    );
+
+                    // Assert
+                    expect(
+                        screen.getByRole("group", {name: "Tab 1"}),
+                    ).toHaveAttribute("id", "tabs-dropdown-id-panel");
+                });
+            });
+
+            describe("when id is not provided", () => {
+                it("should auto-generate an id on the root element", () => {
+                    // Arrange
+                    // Act
+                    const {container} = render(
+                        <TabsDropdown
+                            aria-label="Test tabs"
+                            tabs={tabs}
+                            selectedTabId="tab-1"
+                            onTabSelected={jest.fn()}
+                        />,
+                    );
+
+                    // Assert
+                    // eslint-disable-next-line testing-library/no-node-access -- explicitly checking the root element
+                    expect(container.firstChild).toHaveAttribute("id");
+                });
+
+                it("should auto-generate an id on the opener element with '-opener' suffix", () => {
+                    // Arrange
+                    render(
+                        <TabsDropdown
+                            aria-label="Test tabs"
+                            tabs={tabs}
+                            selectedTabId="tab-1"
+                            onTabSelected={jest.fn()}
+                        />,
+                    );
+                    // Act
+                    const opener = screen.getByRole("button");
+
+                    // Assert
+                    expect(opener.id.endsWith("-opener")).toBe(true);
+                });
+
+                it("should auto-generate an id on the panel element with '-panel' suffix", () => {
+                    // Arrange
+                    render(
+                        <TabsDropdown
+                            aria-label="Test tabs"
+                            tabs={tabs}
+                            selectedTabId="tab-1"
+                            onTabSelected={jest.fn()}
+                        />,
+                    );
+
+                    // Act
+                    const panel = screen.getByRole("group", {name: "Tab 1"});
+
+                    // Assert
+                    expect(panel.id.endsWith("-panel")).toBe(true);
+                });
+            });
         });
 
-        it("should use the testId prop for the root element", () => {
-            // Arrange
-            // Act
-            const {container} = render(
-                <TabsDropdown
-                    testId="tabs-dropdown-test-id"
-                    tabs={tabs}
-                    selectedTabId="tab-1"
-                    onTabSelected={jest.fn()}
-                />,
-            );
+        describe("testId", () => {
+            it("should use the testId prop for the root element", () => {
+                // Arrange
+                // Act
+                const {container} = render(
+                    <TabsDropdown
+                        testId="tabs-dropdown-test-id"
+                        aria-label="Test tabs"
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
 
-            // Assert
-            // eslint-disable-next-line testing-library/no-node-access -- explicitly checking the root element
-            expect(container.firstChild).toHaveAttribute(
-                "data-testid",
-                "tabs-dropdown-test-id",
-            );
+                // Assert
+                // eslint-disable-next-line testing-library/no-node-access -- explicitly checking the root element
+                expect(container.firstChild).toHaveAttribute(
+                    "data-testid",
+                    "tabs-dropdown-test-id",
+                );
+            });
+
+            it("should use the testId prop for the opener element with '-opener' suffix", () => {
+                // Arrange
+                // Act
+                render(
+                    <TabsDropdown
+                        testId="tabs-dropdown-test-id"
+                        aria-label="Test tabs"
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Assert
+                expect(screen.getByRole("button")).toHaveAttribute(
+                    "data-testid",
+                    "tabs-dropdown-test-id-opener",
+                );
+            });
+
+            it("should use the testId prop for the panel element with '-panel' suffix", () => {
+                // Arrange
+                // Act
+                render(
+                    <TabsDropdown
+                        testId="tabs-dropdown-test-id"
+                        aria-label="Test tabs"
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Assert
+                expect(
+                    screen.getByRole("group", {name: "Tab 1"}),
+                ).toHaveAttribute("data-testid", "tabs-dropdown-test-id-panel");
+            });
+
+            it("should use the testId prop on tab items for the menu items", async () => {
+                // Arrange
+                render(
+                    <TabsDropdown
+                        aria-label="Test tabs"
+                        tabs={[
+                            {
+                                id: "tab-1",
+                                label: "Tab 1",
+                                panel: <div>Tab contents 1</div>,
+                                testId: "tab-1-test-id",
+                            },
+                        ]}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Act
+                await userEvent.click(screen.getByRole("button"));
+
+                // Assert
+                expect(screen.getByTestId("tab-1-test-id")).toBeInTheDocument();
+            });
         });
 
         it("should set the ref", () => {
@@ -82,6 +247,7 @@ describe("TabsDropdown", () => {
             const ref = React.createRef<HTMLDivElement>();
             const {container} = render(
                 <TabsDropdown
+                    aria-label="Test tabs"
                     tabs={tabs}
                     selectedTabId="tab-1"
                     onTabSelected={jest.fn()}
@@ -99,6 +265,7 @@ describe("TabsDropdown", () => {
                 // Arrange
                 render(
                     <TabsDropdown
+                        aria-label="Test tabs"
                         tabs={tabs}
                         selectedTabId="tab-1"
                         onTabSelected={jest.fn()}
@@ -125,6 +292,7 @@ describe("TabsDropdown", () => {
                 // Act
                 const {container} = render(
                     <TabsDropdown
+                        aria-label="Test tabs"
                         tabs={[]}
                         selectedTabId=""
                         onTabSelected={jest.fn()}
@@ -142,6 +310,7 @@ describe("TabsDropdown", () => {
                 // Act
                 render(
                     <TabsDropdown
+                        aria-label="Test tabs"
                         tabs={[
                             {
                                 id: "tab-1",
@@ -171,6 +340,7 @@ describe("TabsDropdown", () => {
                 // Arrange
                 render(
                     <TabsDropdown
+                        aria-label="Test tabs"
                         tabs={[
                             {
                                 id: "tab-1",
@@ -201,6 +371,7 @@ describe("TabsDropdown", () => {
                 // Act
                 render(
                     <TabsDropdown
+                        aria-label="Test tabs"
                         tabs={tabs}
                         selectedTabId="tab-1"
                         onTabSelected={jest.fn()}
@@ -215,6 +386,7 @@ describe("TabsDropdown", () => {
                 // Arrange
                 render(
                     <TabsDropdown
+                        aria-label="Test tabs"
                         tabs={tabs}
                         selectedTabId="tab-1"
                         onTabSelected={jest.fn()}
@@ -236,6 +408,7 @@ describe("TabsDropdown", () => {
                 // Act
                 render(
                     <TabsDropdown
+                        aria-label="Test tabs"
                         tabs={tabs}
                         selectedTabId="tab-1"
                         onTabSelected={jest.fn()}
@@ -251,6 +424,7 @@ describe("TabsDropdown", () => {
                 // Act
                 render(
                     <TabsDropdown
+                        aria-label="Test tabs"
                         tabs={tabs}
                         selectedTabId="tab-1"
                         onTabSelected={jest.fn()}
@@ -268,6 +442,7 @@ describe("TabsDropdown", () => {
                 // Act
                 render(
                     <TabsDropdown
+                        aria-label="Test tabs"
                         tabs={tabs}
                         selectedTabId=""
                         onTabSelected={jest.fn()}
@@ -283,6 +458,7 @@ describe("TabsDropdown", () => {
                 // Act
                 render(
                     <TabsDropdown
+                        aria-label="Test tabs"
                         tabs={tabs}
                         selectedTabId=""
                         onTabSelected={jest.fn()}
@@ -305,6 +481,7 @@ describe("TabsDropdown", () => {
                 const onTabSelected = jest.fn();
                 render(
                     <TabsDropdown
+                        aria-label="Test tabs"
                         tabs={tabs}
                         selectedTabId="tab-1"
                         onTabSelected={onTabSelected}
@@ -315,6 +492,172 @@ describe("TabsDropdown", () => {
                 await userEvent.click(
                     screen.getByRole("menuitem", {name: "Tab 2"}),
                 );
+
+                // Assert
+                expect(onTabSelected).toHaveBeenCalledWith("tab-2");
+            });
+        });
+    });
+
+    describe("Accessibility", () => {
+        describe("Semantics", () => {
+            it("should have role='region' on the root element", () => {
+                // Arrange
+                // Act
+                const {container} = render(
+                    <TabsDropdown
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                        aria-label="Tabs for testing"
+                    />,
+                );
+
+                // Assert
+                // eslint-disable-next-line testing-library/no-node-access -- explicitly checking the root element
+                expect(container.firstChild).toHaveAttribute("role", "region");
+            });
+
+            it("should have a role='group' on the panel", () => {
+                // Arrange
+                // Act
+                render(
+                    <TabsDropdown
+                        aria-label="Test tabs"
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Assert
+                expect(
+                    screen.getByRole("group", {name: "Tab 1"}),
+                ).toHaveAttribute("role", "group");
+            });
+        });
+
+        describe("ARIA", () => {
+            it("should set aria-labelledby on the panel to the opener's id", () => {
+                // Arrange
+                render(
+                    <TabsDropdown
+                        aria-label="Test tabs"
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+                const opener = screen.getByRole("button");
+
+                // Act
+                const panel = screen.getByRole("group", {name: "Tab 1"});
+
+                // Assert
+                expect(panel).toHaveAttribute("aria-labelledby", opener.id);
+            });
+
+            it("should set aria-label on the region", () => {
+                // Arrange
+                // Act
+                render(
+                    <TabsDropdown
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                        aria-label="Tabs for testing"
+                    />,
+                );
+
+                // Assert
+                expect(
+                    screen.getByRole("region", {name: "Tabs for testing"}),
+                ).toHaveAttribute("aria-label", "Tabs for testing");
+            });
+
+            it("should set aria-labelledby on the region when provided", () => {
+                // Arrange
+                // Act
+                render(
+                    <>
+                        <h1 id="tabs-heading">Tabs for testing</h1>
+                        <TabsDropdown
+                            tabs={tabs}
+                            selectedTabId="tab-1"
+                            onTabSelected={jest.fn()}
+                            aria-labelledby="tabs-heading"
+                        />
+                    </>,
+                );
+
+                // Assert
+                expect(
+                    screen.getByRole("region", {name: "Tabs for testing"}),
+                ).toHaveAttribute("aria-labelledby", "tabs-heading");
+            });
+
+            it("should set aria-labelledby on the panel to the opener's id", () => {
+                // Arrange
+                render(
+                    <TabsDropdown
+                        aria-label="Test tabs"
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+                const opener = screen.getByRole("button");
+
+                // Act
+                const panel = screen.getByRole("group", {name: "Tab 1"});
+
+                // Assert
+                expect(panel).toHaveAttribute("aria-labelledby", opener.id);
+            });
+        });
+
+        describe("Keyboard Navigation", () => {
+            it("should call onTabSelected when pressing Enter on a menu item", async () => {
+                // Arrange
+                const onTabSelected = jest.fn();
+                render(
+                    <TabsDropdown
+                        aria-label="Test tabs"
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={onTabSelected}
+                    />,
+                );
+                // Open the dropdown and pick the second tab
+                await userEvent.tab();
+                await userEvent.keyboard("{ArrowDown}");
+                await userEvent.keyboard("{ArrowDown}");
+
+                // Act
+                await userEvent.keyboard("{Enter}");
+
+                // Assert
+                expect(onTabSelected).toHaveBeenCalledWith("tab-2");
+            });
+
+            it("should call onTabSelected when pressing Space on a menu item", async () => {
+                // Arrange
+                const onTabSelected = jest.fn();
+                render(
+                    <TabsDropdown
+                        aria-label="Test tabs"
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={onTabSelected}
+                    />,
+                );
+                // Open the dropdown and pick the second tab
+                await userEvent.tab();
+                await userEvent.keyboard("{ArrowDown}");
+                await userEvent.keyboard("{ArrowDown}");
+
+                // Act
+                await userEvent.keyboard(" ");
 
                 // Assert
                 expect(onTabSelected).toHaveBeenCalledWith("tab-2");
