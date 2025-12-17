@@ -163,6 +163,32 @@ describe("ResponsiveTabs", () => {
                     "responsive-tabs-test-id-tabs",
                 );
             });
+
+            it("should use the testId prop on tab items for the tabs", () => {
+                // Arrange
+                // Act
+                render(
+                    <ResponsiveTabs
+                        aria-label="Responsive Tabs"
+                        tabs={[
+                            {
+                                id: "tab-1",
+                                label: "Tab 1",
+                                panel: <div>Tab contents 1</div>,
+                                testId: "tab-1-test-id",
+                            },
+                        ]}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Assert
+                expect(screen.getByTestId("tab-1-test-id-tab")).toHaveAttribute(
+                    "data-testid",
+                    "tab-1-test-id-tab",
+                );
+            });
         });
 
         describe("Events", () => {
@@ -330,6 +356,37 @@ describe("ResponsiveTabs", () => {
                 ).toHaveAttribute(
                     "data-testid",
                     "responsive-tabs-test-id-dropdown",
+                );
+            });
+
+            it("should use the testId prop on tab items for the menu items", async () => {
+                // Arrange
+                render(
+                    <ResponsiveTabs
+                        aria-label="Responsive Tabs"
+                        tabs={[
+                            {
+                                id: "tab-1",
+                                label: "Tab 1",
+                                panel: <div>Tab contents 1</div>,
+                                testId: "tab-1-test-id",
+                            },
+                        ]}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Open the dropdown
+                const dropdownOpener = screen.getByRole("button", {
+                    name: "Tab 1",
+                });
+                // Act
+                await userEvent.click(dropdownOpener);
+                // Assert
+                expect(screen.getByTestId("tab-1-test-id")).toHaveAttribute(
+                    "data-testid",
+                    "tab-1-test-id",
                 );
             });
         });

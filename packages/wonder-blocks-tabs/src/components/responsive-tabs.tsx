@@ -18,6 +18,10 @@ export type ResponsiveTabItem = {
      * The panel of the tab.
      */
     panel: React.ReactNode;
+    /**
+     * Optional test ID for e2e testing of the tab.
+     */
+    testId?: string;
 };
 
 type Props = AriaLabelOrAriaLabelledby & {
