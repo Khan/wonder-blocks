@@ -121,10 +121,18 @@ type CommonProps = AriaProps & {
     endIcon?: React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>;
 
     /**
-     * An optional aria-label for the external link icon. This is used to
-     * provide a translatable description for screen readers.
+     * The object containing the custom labels used inside this component.
+     *
+     * This is useful for internationalization. Defaults to English.
      */
-    externalIconAriaLabel?: string;
+    labels?: {
+        /**
+         * An optional aria-label for the external link icon. This is used to
+         * provide a translatable description for screen readers. Defaults to
+         * "opens in a new tab".
+         */
+        externalIconAriaLabel?: string;
+    };
 
     /**
      * An optional prop that enables a

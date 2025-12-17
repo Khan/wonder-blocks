@@ -50,10 +50,12 @@ const LinkCore = React.forwardRef(function LinkCore(
         target,
         startIcon,
         endIcon,
-        externalIconAriaLabel = "opens in a new tab",
+        labels = {externalIconAriaLabel: "opens in a new tab"},
         viewTransition,
         ...restProps
     } = props;
+
+    const {externalIconAriaLabel} = labels;
 
     const defaultStyles = [
         styles.shared,

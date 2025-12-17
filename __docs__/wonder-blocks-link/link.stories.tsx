@@ -78,7 +78,7 @@ export const OpensInANewTab: StoryComponentType = {
             <Link
                 href="https://cat-bounce.com/"
                 target="_blank"
-                externalIconAriaLabel="Open cat bounce in new tab"
+                labels={{externalIconAriaLabel: "Open cat bounce in new tab"}}
             >
                 This is a link that opens in a new tab
             </Link>

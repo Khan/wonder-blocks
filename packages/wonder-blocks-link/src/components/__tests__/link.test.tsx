@@ -440,7 +440,7 @@ describe("Link", () => {
                 <Link
                     href="https://www.google.com/"
                     target="_blank"
-                    externalIconAriaLabel="opens in a new cool tab"
+                    labels={{externalIconAriaLabel: "opens in a new cool tab"}}
                 >
                     Click me!
                 </Link>,
