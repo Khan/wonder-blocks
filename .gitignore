@@ -8,6 +8,7 @@ utils/**/*.d.ts
 !.vscode
 .DS_Store
 changeset-status.json
+.env
 # Pnpm errors
 pnpm-debug.log
 .swc/
