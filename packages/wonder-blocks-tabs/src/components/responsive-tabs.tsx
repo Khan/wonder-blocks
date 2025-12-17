@@ -1,5 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
+import {View} from "@khanacademy/wonder-blocks-core";
 import {Tabs} from "./tabs";
 import {TabsDropdown} from "./tabs-dropdown";
 import {AriaLabelOrAriaLabelledby} from "./types";
@@ -20,6 +21,18 @@ export type ResponsiveTabItem = {
 };
 
 type Props = AriaLabelOrAriaLabelledby & {
+    /**
+     * A unique id for the component.
+     *
+     * Here is how the id is used for the different elements in the component:
+     * - The root will have an id of `${id}`
+     * - The tabs will have an id of `${id}-tabs`
+     * - The dropdown will have an id of `${id}-dropdown`
+     *
+     * For more information about how the id is applied to elements within the
+     * tabs or dropdown, see the Tabs and TabsDropdown component docs.
+     */
+    id?: string;
     /**
      * The tabs to render.
      */
@@ -53,8 +66,14 @@ type Props = AriaLabelOrAriaLabelledby & {
  * Tabs component directly.
  */
 export const ResponsiveTabs = (props: Props) => {
-    const {tabs, selectedTabId, onTabSelected, onLayoutChange, ...ariaProps} =
-        props;
+    const {
+        tabs,
+        selectedTabId,
+        onTabSelected,
+        onLayoutChange,
+        id,
+        ...ariaProps
+    } = props;
 
     const [showDropdown, setShowDropdown] = React.useState(false);
     const tabsRef = React.useRef<HTMLDivElement>(null);
@@ -141,7 +160,7 @@ export const ResponsiveTabs = (props: Props) => {
     }, [showDropdown, onLayoutChange]);
 
     return (
-        <div ref={containerRef} style={{width: "100%"}}>
+        <View ref={containerRef} style={styles.container} id={id}>
             {showDropdown ? (
                 <TabsDropdown
                     {...ariaProps}
@@ -152,6 +171,7 @@ export const ResponsiveTabs = (props: Props) => {
                     styles={{
                         root: styles.fadeIn,
                     }}
+                    id={id ? `${id}-dropdown` : undefined}
                 />
             ) : (
                 <Tabs
@@ -168,9 +188,10 @@ export const ResponsiveTabs = (props: Props) => {
                             {maxWidth: "100%", width: "100%"},
                         ],
                     }}
+                    id={id ? `${id}-tabs` : undefined}
                 />
             )}
-        </div>
+        </View>
     );
 };
 
@@ -189,5 +210,8 @@ const styles = StyleSheet.create({
         animationName: fadeInKeyframes,
         animationDuration: "150ms",
         animationTimingFunction: "ease-in-out",
+    },
+    container: {
+        width: "100%",
     },
 });

@@ -35,6 +35,29 @@ describe("ResponsiveTabs", () => {
         },
     ];
 
+    describe("Props", () => {
+        it("should use the provided id on the root element", () => {
+            // Arrange
+            // Act
+            const {container} = render(
+                <ResponsiveTabs
+                    id="responsive-tabs-id"
+                    aria-label="Responsive Tabs"
+                    tabs={tabs}
+                    selectedTabId="tab-1"
+                    onTabSelected={jest.fn()}
+                />,
+            );
+
+            // Assert
+            // eslint-disable-next-line testing-library/no-node-access -- explicitly checking the root element
+            expect(container.firstChild).toHaveAttribute(
+                "id",
+                "responsive-tabs-id",
+            );
+        });
+    });
+
     describe("Tabs layout", () => {
         it("should render the tabs in a tablist", () => {
             // Arrange
@@ -75,6 +98,28 @@ describe("ResponsiveTabs", () => {
 
             // Assert
             expect(selectedTabPanel).toBeInTheDocument();
+        });
+
+        describe("Props", () => {
+            it("should use the provided id as a base for the ids of the elements within the tabs component", () => {
+                // Arrange
+                // Act
+                render(
+                    <ResponsiveTabs
+                        id="responsive-tabs-id"
+                        aria-label="Responsive Tabs"
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Assert
+                expect(screen.getByRole("tablist")).toHaveAttribute(
+                    "id",
+                    "responsive-tabs-id-tabs-tablist",
+                );
+            });
         });
 
         describe("Events", () => {
@@ -204,6 +249,26 @@ describe("ResponsiveTabs", () => {
             expect(selectedTabPanel).toBeInTheDocument();
         });
 
+        describe("Props", () => {
+            it("should use the provided id as a base for the ids of the elements within the dropdown component", () => {
+                // Arrange
+                // Act
+                render(
+                    <ResponsiveTabs
+                        id="responsive-tabs-id"
+                        aria-label="Responsive Tabs"
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+                // Assert
+                expect(screen.getByRole("region")).toHaveAttribute(
+                    "id",
+                    "responsive-tabs-id-dropdown",
+                );
+            });
+        });
         describe("Events", () => {
             it("should call the onTabSelected handler with the tab id when a tab is clicked", async () => {
                 // Arrange
