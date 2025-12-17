@@ -56,6 +56,27 @@ describe("ResponsiveTabs", () => {
                 "responsive-tabs-id",
             );
         });
+
+        it("should use the provided testId on the root element", () => {
+            // Arrange
+            // Act
+            const {container} = render(
+                <ResponsiveTabs
+                    testId="responsive-tabs-test-id"
+                    aria-label="Responsive Tabs"
+                    tabs={tabs}
+                    selectedTabId="tab-1"
+                    onTabSelected={jest.fn()}
+                />,
+            );
+
+            // Assert
+            // eslint-disable-next-line testing-library/no-node-access -- explicitly checking the root element
+            expect(container.firstChild).toHaveAttribute(
+                "data-testid",
+                "responsive-tabs-test-id",
+            );
+        });
     });
 
     describe("Tabs layout", () => {
@@ -118,6 +139,28 @@ describe("ResponsiveTabs", () => {
                 expect(screen.getByRole("tablist")).toHaveAttribute(
                     "id",
                     "responsive-tabs-id-tabs-tablist",
+                );
+            });
+
+            it("should use the provided testId as a base for the testIds of the elements within the tabs component", () => {
+                // Arrange
+                // Act
+                render(
+                    <ResponsiveTabs
+                        testId="responsive-tabs-test-id"
+                        aria-label="Responsive Tabs"
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Assert
+                expect(
+                    screen.getByTestId("responsive-tabs-test-id-tabs"),
+                ).toHaveAttribute(
+                    "data-testid",
+                    "responsive-tabs-test-id-tabs",
                 );
             });
         });
@@ -266,6 +309,27 @@ describe("ResponsiveTabs", () => {
                 expect(screen.getByRole("region")).toHaveAttribute(
                     "id",
                     "responsive-tabs-id-dropdown",
+                );
+            });
+
+            it("should use the provided testId as a base for the testIds of the elements within the dropdown component", () => {
+                // Arrange
+                // Act
+                render(
+                    <ResponsiveTabs
+                        testId="responsive-tabs-test-id"
+                        aria-label="Responsive Tabs"
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+                // Assert
+                expect(
+                    screen.getByTestId("responsive-tabs-test-id-dropdown"),
+                ).toHaveAttribute(
+                    "data-testid",
+                    "responsive-tabs-test-id-dropdown",
                 );
             });
         });

@@ -33,6 +33,19 @@ type Props = AriaLabelOrAriaLabelledby & {
      * tabs or dropdown, see the Tabs and TabsDropdown component docs.
      */
     id?: string;
+
+    /**
+     * Optional test ID for e2e testing.
+     *
+     * Here is how the test id is used for the different elements in the component:
+     * - The root will have a testId of `${testId}`
+     * - The tabs will have a testId of `${testId}-tabs`
+     * - The dropdown will have a testId of `${testId}-dropdown`
+     *
+     * For more information about how the test id is applied to elements within the
+     * tabs or dropdown, see the Tabs and TabsDropdown component docs.
+     */
+    testId?: string;
     /**
      * The tabs to render.
      */
@@ -72,6 +85,7 @@ export const ResponsiveTabs = (props: Props) => {
         onTabSelected,
         onLayoutChange,
         id,
+        testId,
         ...ariaProps
     } = props;
 
@@ -160,7 +174,12 @@ export const ResponsiveTabs = (props: Props) => {
     }, [showDropdown, onLayoutChange]);
 
     return (
-        <View ref={containerRef} style={styles.container} id={id}>
+        <View
+            ref={containerRef}
+            style={styles.container}
+            id={id}
+            testId={testId}
+        >
             {showDropdown ? (
                 <TabsDropdown
                     {...ariaProps}
@@ -172,6 +191,7 @@ export const ResponsiveTabs = (props: Props) => {
                         root: styles.fadeIn,
                     }}
                     id={id ? `${id}-dropdown` : undefined}
+                    testId={testId ? `${testId}-dropdown` : undefined}
                 />
             ) : (
                 <Tabs
@@ -189,6 +209,7 @@ export const ResponsiveTabs = (props: Props) => {
                         ],
                     }}
                     id={id ? `${id}-tabs` : undefined}
+                    testId={testId ? `${testId}-tabs` : undefined}
                 />
             )}
         </View>
