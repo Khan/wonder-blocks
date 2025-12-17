@@ -8,9 +8,12 @@ import {sizing} from "@khanacademy/wonder-blocks-tokens";
 export default {
     title: "Packages / Tabs / ResponsiveTabs",
     component: ResponsiveTabs,
+    excludeStories: ["INITIAL_TABS_COUNT"],
 } as Meta<typeof ResponsiveTabs>;
 
 type Story = StoryObj<typeof ResponsiveTabs>;
+
+export const INITIAL_TABS_COUNT = 15;
 
 const ControlledResponsiveTabs = (args: PropsFor<typeof ResponsiveTabs>) => {
     const [selectedTabId, setSelectedTabId] = React.useState(
@@ -28,7 +31,7 @@ const ControlledResponsiveTabs = (args: PropsFor<typeof ResponsiveTabs>) => {
 };
 export const Default: Story = {
     render: function Render(args) {
-        const [tabsCount, setTabsCount] = React.useState(10);
+        const [tabsCount, setTabsCount] = React.useState(INITIAL_TABS_COUNT);
         const [showLongLabels, setShowLongLabels] = React.useState(false);
         const tabs = new Array(tabsCount).fill(0).map((_, index) => ({
             label: showLongLabels
@@ -42,6 +45,17 @@ export const Default: Story = {
             string | undefined
         >(undefined);
 
+        const [zoomLevel, setZoomLevel] = React.useState<number | undefined>(
+            undefined,
+        );
+
+        React.useEffect(() => {
+            if (zoomLevel !== undefined) {
+                document.body.style.zoom = `${zoomLevel}%`;
+            } else {
+                document.body.style.zoom = "100%";
+            }
+        }, [zoomLevel]);
         return (
             <View
                 style={{
@@ -63,7 +77,7 @@ export const Default: Story = {
                     }}
                 >
                     <Button onClick={() => setShowLongLabels(!showLongLabels)}>
-                        Dynamically change tab labels
+                        Update tab labels
                     </Button>
                     <Button onClick={() => setTabsCount(tabsCount + 1)}>
                         Add a tab
@@ -87,6 +101,15 @@ export const Default: Story = {
                         }}
                     >
                         Change container width
+                    </Button>
+                    <Button
+                        onClick={() => {
+                            setZoomLevel(
+                                zoomLevel === undefined ? 400 : undefined,
+                            );
+                        }}
+                    >
+                        Simulate zoom
                     </Button>
                 </View>
             </View>
