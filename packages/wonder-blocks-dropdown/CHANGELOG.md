@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.6.2
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-pill@3.1.49
+
 ## 10.6.1
 
 ### Patch Changes
