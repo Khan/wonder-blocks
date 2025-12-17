@@ -419,13 +419,28 @@ describe("Link", () => {
             });
         });
 
-        test("external icon has aria-label 'Open in new tab'", async () => {
+        test("external icon has default aria-label '(opens in a new tab)'", async () => {
+            // Arrange
+            render(
+                <Link href="https://www.google.com/" target="_blank">
+                    Click me!
+                </Link>,
+            );
+
+            // Act
+            const icon = await screen.findByTestId("external-icon");
+
+            // Assert
+            expect(icon).toHaveAttribute("aria-label", "(opens in a new tab)");
+        });
+
+        test("external icon has custom aria-label '(opens in a new cool tab)'", async () => {
             // Arrange
             render(
                 <Link
                     href="https://www.google.com/"
                     target="_blank"
-                    externalIconAriaLabel="Open in new tab"
+                    externalIconAriaLabel="opens in a new cool tab"
                 >
                     Click me!
                 </Link>,
@@ -435,7 +450,10 @@ describe("Link", () => {
             const icon = await screen.findByTestId("external-icon");
 
             // Assert
-            expect(icon).toHaveAttribute("aria-label", "Open in new tab");
+            expect(icon).toHaveAttribute(
+                "aria-label",
+                "(opens in a new cool tab)",
+            );
         });
 
         test("does not render external icon when `target=_blank` and link is relative", async () => {
