@@ -64,7 +64,7 @@ export const Default: Story = {
                 }}
             >
                 <ControlledResponsiveTabs
-                    aria-label="Responsive Tabs"
+                    {...args}
                     selectedTabId="tab-1"
                     onTabSelected={() => {}}
                     tabs={tabs}
