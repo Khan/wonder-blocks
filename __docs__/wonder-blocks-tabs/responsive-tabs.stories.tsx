@@ -4,11 +4,13 @@ import {ResponsiveTabs} from "@khanacademy/wonder-blocks-tabs";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import responsiveTabsArgtypes from "./responsive-tabs.argtypes";
 
 export default {
     title: "Packages / Tabs / ResponsiveTabs",
     component: ResponsiveTabs,
     excludeStories: ["INITIAL_TABS_COUNT"],
+    argTypes: responsiveTabsArgtypes,
 } as Meta<typeof ResponsiveTabs>;
 
 type Story = StoryObj<typeof ResponsiveTabs>;
