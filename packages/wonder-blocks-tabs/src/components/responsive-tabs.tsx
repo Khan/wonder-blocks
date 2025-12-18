@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleType, View} from "@khanacademy/wonder-blocks-core";
 import {Tabs, TabsProps} from "./tabs";
 import {TabsDropdown, TabsDropdownProps} from "./tabs-dropdown";
 import {AriaLabelOrAriaLabelledby} from "./types";
@@ -92,6 +92,14 @@ type Props = AriaLabelOrAriaLabelledby & {
         | "aria-label"
         | "aria-labelledby"
     >;
+
+    /**
+     * Custom styles for the ResponsiveTabs component.
+     * - `root`: Styles the root `div` element.
+     */
+    styles?: {
+        root?: StyleType;
+    };
 };
 
 /**
@@ -117,6 +125,7 @@ export const ResponsiveTabs = (props: Props) => {
         testId,
         tabsProps,
         dropdownProps,
+        styles: stylesProp,
         ...ariaProps
     } = props;
 
@@ -207,7 +216,7 @@ export const ResponsiveTabs = (props: Props) => {
     return (
         <View
             ref={containerRef}
-            style={styles.container}
+            style={[styles.container, stylesProp?.root]}
             id={id}
             testId={testId}
         >
@@ -220,7 +229,7 @@ export const ResponsiveTabs = (props: Props) => {
                     selectedTabId={selectedTabId}
                     onTabSelected={onTabSelected}
                     styles={{
-                        root: styles.fadeIn,
+                        root: [styles.fadeIn],
                     }}
                 />
             ) : (
