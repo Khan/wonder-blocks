@@ -2,7 +2,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 import {Temporal} from "temporal-polyfill";
 import * as React from "react";
 
-import {fr} from "react-day-picker/locale";
+import {fr} from "date-fns/locale";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View, type PropsFor} from "@khanacademy/wonder-blocks-core";
 import {sizing, spacing} from "@khanacademy/wonder-blocks-tokens";

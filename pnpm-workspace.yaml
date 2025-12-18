@@ -13,6 +13,8 @@ catalog:
     "@phosphor-icons/core": ^2.0.2
     # Positioning
     "@popperjs/core": ^2.10.1
+    # Date picker locales
+    date-fns: ^4.1.0
     react-popper: ^2.3.0
     # Styling
     aphrodite: ^1.2.5
