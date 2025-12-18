@@ -266,10 +266,10 @@ describe("ResponsiveTabs", () => {
             // Dropdown is triggered when the tabs scrollWidth > clientWidth
             clientWidthSpy = jest
                 .spyOn(HTMLElement.prototype, "clientWidth", "get")
-                .mockImplementation(() => 10);
+                .mockImplementation(() => 100);
             scrollWidthSpy = jest
                 .spyOn(HTMLElement.prototype, "scrollWidth", "get")
-                .mockImplementation(() => 20);
+                .mockImplementation(() => 200);
         });
 
         afterAll(() => {
