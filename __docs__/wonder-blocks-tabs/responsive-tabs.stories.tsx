@@ -3,7 +3,7 @@ import {Meta, StoryObj} from "@storybook/react-vite";
 import {ResponsiveTabs} from "@khanacademy/wonder-blocks-tabs";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import responsiveTabsArgtypes from "./responsive-tabs.argtypes";
 
 export default {
@@ -31,6 +31,17 @@ const ControlledResponsiveTabs = (args: PropsFor<typeof ResponsiveTabs>) => {
         </View>
     );
 };
+
+/**
+ * ResponsiveTabs will switch between the tabs and dropdown layouts based on if
+ * there is enough horizontal space to display the tabs.
+ *
+ * Some things that can affect this are:
+ * - the length of tab labels, especially with translated text
+ * - the number of tabs
+ * - the width of the container or screen
+ * - the zoom level
+ */
 export const Default: Story = {
     render: function Render(args) {
         const [tabsCount, setTabsCount] = React.useState(INITIAL_TABS_COUNT);
@@ -112,5 +123,41 @@ export const Default: Story = {
                 </View>
             </View>
         );
+    },
+};
+
+/**
+ * Custom styles can be set for the ResponsiveTabs component using the `styles` prop.
+ *
+ * The following parts can be styled:
+ * - `root`: Styles the root `div` element.
+ *
+ * To customize the styles of the tabs or dropdown, set the `styles` prop on
+ * the `tabsProps` or `dropdownProps` props. See the `Tabs` and `TabsDropdown`
+ * docs for more details.
+ */
+export const CustomStyles: Story = {
+    render: Default.render,
+    args: {
+        styles: {
+            root: {
+                outline: `${border.width.medium} dashed ${semanticColor.core.border.instructive.subtle}`,
+                outlineOffset: border.width.medium,
+            },
+        },
+        tabsProps: {
+            styles: {
+                root: {
+                    outline: `${border.width.medium} solid ${semanticColor.core.border.success.subtle}`,
+                },
+            },
+        },
+        dropdownProps: {
+            styles: {
+                root: {
+                    outline: `${border.width.medium} solid ${semanticColor.core.border.critical.subtle}`,
+                },
+            },
+        },
     },
 };

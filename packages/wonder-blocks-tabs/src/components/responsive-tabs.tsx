@@ -96,6 +96,10 @@ type Props = AriaLabelOrAriaLabelledby & {
     /**
      * Custom styles for the ResponsiveTabs component.
      * - `root`: Styles the root `div` element.
+     *
+     * To customize the styles of the tabs or dropdown, set the `styles` prop on
+     * the `tabsProps` or `dropdownProps` props. See the `Tabs` and `TabsDropdown`
+     * docs for more details.
      */
     styles?: {
         root?: StyleType;
@@ -229,7 +233,8 @@ export const ResponsiveTabs = (props: Props) => {
                     selectedTabId={selectedTabId}
                     onTabSelected={onTabSelected}
                     styles={{
-                        root: [styles.fadeIn],
+                        ...dropdownProps?.styles,
+                        root: [styles.fadeIn, dropdownProps?.styles?.root],
                     }}
                 />
             ) : (
@@ -242,10 +247,12 @@ export const ResponsiveTabs = (props: Props) => {
                     selectedTabId={selectedTabId}
                     onTabSelected={onTabSelected}
                     styles={{
+                        ...tabsProps?.styles,
                         // Constrain tabs to container width so overflow can be detected
                         root: [
                             styles.fadeIn,
                             {maxWidth: "100%", width: "100%"},
+                            tabsProps?.styles?.root,
                         ],
                     }}
                 />
