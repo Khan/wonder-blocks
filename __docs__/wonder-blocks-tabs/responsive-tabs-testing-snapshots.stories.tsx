@@ -13,9 +13,7 @@ export default {
     tags: ["!autodocs"],
     parameters: {
         chromatic: {
-            chromatic: {
-                modes: {...themeModes, small: allModes.small},
-            },
+            modes: {...themeModes, small: allModes.small},
         },
     },
 } as Meta<typeof ResponsiveTabs>;
