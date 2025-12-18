@@ -248,12 +248,7 @@ export const ResponsiveTabs = (props: Props) => {
                     onTabSelected={onTabSelected}
                     styles={{
                         ...tabsProps?.styles,
-                        // Constrain tabs to container width so overflow can be detected
-                        root: [
-                            styles.fadeIn,
-                            {maxWidth: "100%", width: "100%"},
-                            tabsProps?.styles?.root,
-                        ],
+                        root: [styles.fadeIn, tabsProps?.styles?.root],
                     }}
                 />
             )}
