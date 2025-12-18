@@ -21,6 +21,9 @@ catalogs:
     aphrodite:
       specifier: ^1.2.5
       version: 1.2.5
+    date-fns:
+      specifier: ^4.1.0
+      version: 4.1.0
     jscodeshift:
       specifier: ^17.3.0
       version: 17.3.0
@@ -80,6 +83,9 @@ importers:
       aphrodite:
         specifier: 'catalog:'
         version: 1.2.5
+      date-fns:
+        specifier: 'catalog:'
+        version: 4.1.0
       node-fetch:
         specifier: 'catalog:'
         version: 2.7.0
