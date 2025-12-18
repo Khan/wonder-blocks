@@ -11,6 +11,12 @@ export default {
     component: ResponsiveTabs,
     excludeStories: ["INITIAL_TABS_COUNT"],
     argTypes: responsiveTabsArgtypes,
+    parameters: {
+        chromatic: {
+            // Disabling snapshots in favour of snapshot stories
+            disableSnapshot: true,
+        },
+    },
 } as Meta<typeof ResponsiveTabs>;
 
 type Story = StoryObj<typeof ResponsiveTabs>;

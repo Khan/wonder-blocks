@@ -4,11 +4,20 @@ import {ResponsiveTabs} from "@khanacademy/wonder-blocks-tabs";
 import {ScenariosLayout} from "../components/scenarios-layout";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {longText} from "../components/text-for-testing";
+import {allModes, themeModes} from "../../.storybook/modes";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 export default {
     title: "Packages / Tabs / ResponsiveTabs / Testing / ResponsiveTabs - Snapshots",
     component: ResponsiveTabs,
     tags: ["!autodocs"],
+    parameters: {
+        chromatic: {
+            chromatic: {
+                modes: {...themeModes, small: allModes.small},
+            },
+        },
+    },
 } as Meta<typeof ResponsiveTabs>;
 
 type Story = StoryObj<typeof ResponsiveTabs>;
@@ -67,12 +76,45 @@ export const Scenarios: Story = {
                     selectedTabId: "tab-1",
                 },
             },
+            {
+                name: "Custom styles",
+                props: {
+                    tabs: generateTabs(3),
+                    selectedTabId: "tab-1",
+                    styles: {
+                        root: {
+                            outline: `${border.width.medium} dashed ${semanticColor.core.border.instructive.subtle}`,
+                            outlineOffset: border.width.medium,
+                        },
+                    },
+                    tabsProps: {
+                        styles: {
+                            root: {
+                                outline: `${border.width.medium} solid ${semanticColor.core.border.success.subtle}`,
+                            },
+                        },
+                    },
+                    dropdownProps: {
+                        styles: {
+                            root: {
+                                outline: `${border.width.medium} solid ${semanticColor.core.border.critical.subtle}`,
+                            },
+                        },
+                    },
+                },
+            },
         ];
 
         return (
             <ScenariosLayout
                 scenarios={scenarios}
-                styles={{root: {width: "100%", alignItems: "stretch"}}}
+                styles={{
+                    root: {
+                        width: "100%",
+                        alignItems: "stretch",
+                        padding: sizing.size_080,
+                    },
+                }}
             >
                 {(props, name) => (
                     <ControlledResponsiveTabs {...props} aria-label={name} />
