@@ -51,26 +51,22 @@ export const Default: Story = {
             undefined,
         );
 
-        React.useEffect(() => {
-            if (zoomLevel !== undefined) {
-                document.body.style.zoom = `${zoomLevel}%`;
-            } else {
-                document.body.style.zoom = "100%";
-            }
-        }, [zoomLevel]);
         return (
             <View
                 style={{
                     gap: sizing.size_360,
-                    width: containerWidth,
                 }}
             >
-                <ControlledResponsiveTabs
-                    {...args}
-                    selectedTabId="tab-1"
-                    onTabSelected={() => {}}
-                    tabs={tabs}
-                />
+                <View
+                    style={{width: containerWidth, zoom: zoomLevel ?? "100%"}}
+                >
+                    <ControlledResponsiveTabs
+                        {...args}
+                        selectedTabId="tab-1"
+                        onTabSelected={() => {}}
+                        tabs={tabs}
+                    />
+                </View>
                 <View
                     style={{
                         flexDirection: "row",
@@ -107,7 +103,7 @@ export const Default: Story = {
                     <Button
                         onClick={() => {
                             setZoomLevel(
-                                zoomLevel === undefined ? 115 : undefined,
+                                zoomLevel === undefined ? 4 : undefined,
                             );
                         }}
                     >
