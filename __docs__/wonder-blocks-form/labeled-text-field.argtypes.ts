@@ -19,13 +19,13 @@ export default {
             "Determines the type of input. Defaults to text. This may change the appearance or type of characters allowed.",
         table: {
             type: {
-                summary: `"text" | "password" | "email" | "number" | "tel" | "integer"`,
+                summary: `"text" | "password" | "email" | "number" | "tel" | "whole-number"`,
             },
             defaultValue: {
                 summary: "text",
             },
         },
-        options: ["text", "password", "email", "number", "tel", "integer"],
+        options: ["text", "password", "email", "number", "tel", "whole-number"],
         control: {
             type: "select",
         },

@@ -138,14 +138,14 @@ describe("TextField", () => {
         expect(input).toHaveAttribute("type", type);
     });
 
-    it("type=integer ignores non-numeric characters", async () => {
+    it("type=whole-number ignores non-numeric characters", async () => {
         // Arrange
         const handleChange = jest.fn();
         const Controlled = () => {
             const [value, setValue] = React.useState("");
             return (
                 <TextField
-                    type="integer"
+                    type="whole-number"
                     value={value}
                     onChange={(newValue) => {
                         handleChange(newValue);
@@ -165,14 +165,14 @@ describe("TextField", () => {
         expect(handleChange).toHaveBeenLastCalledWith("123");
     });
 
-    it("type=integer ignores decimals, plus/minus signs, exponential notation", async () => {
+    it("type=whole-number ignores decimals, plus/minus signs, exponential notation", async () => {
         // Arrange
         const handleChange = jest.fn();
         const Controlled = () => {
             const [value, setValue] = React.useState("");
             return (
                 <TextField
-                    type="integer"
+                    type="whole-number"
                     value={value}
                     onChange={(newValue) => {
                         handleChange(newValue);

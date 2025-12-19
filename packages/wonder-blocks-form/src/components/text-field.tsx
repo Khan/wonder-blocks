@@ -16,7 +16,7 @@ export type TextFieldType =
     | "password"
     | "email"
     | "number"
-    | "integer"
+    | "whole-number"
     | "tel";
 
 type WithForwardRef = {
@@ -148,12 +148,12 @@ type CommonProps = AriaProps & {
 };
 
 type OtherInputProps = CommonProps & {
-    type?: "text" | "password" | "email" | "tel" | "integer";
+    type?: "text" | "password" | "email" | "tel" | "whole-number";
 };
 
-// Props that are only available for inputs of type "number" or "integer".
+// Props that are only available for inputs of type "number" or "whole-number".
 export type NumericInputProps = {
-    type: "number" | "integer";
+    type: "number" | "whole-number";
     /**
      * The minimum numeric value for the input.
      */
@@ -215,7 +215,7 @@ const TextField = (props: PropsWithForwardRef) => {
     const hasError = error || !!errorMessage;
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (type === "integer") {
+        if (type === "whole-number") {
             const newValue = event.target.value.replace(/[^0-9]/g, "");
             onChangeValidation(newValue);
             onChange(newValue);
@@ -241,7 +241,7 @@ const TextField = (props: PropsWithForwardRef) => {
     };
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (type === "integer") {
+        if (type === "whole-number") {
             // We're not using a digit-only regex here because that would
             // disallow the use of arrow keys, backspace, delete, etc.
             if (
@@ -271,7 +271,7 @@ const TextField = (props: PropsWithForwardRef) => {
                         style,
                     ]}
                     id={uniqueId}
-                    type={type === "integer" ? "number" : type}
+                    type={type === "whole-number" ? "number" : type}
                     placeholder={placeholder}
                     value={value}
                     name={name}
