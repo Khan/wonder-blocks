@@ -154,6 +154,7 @@
     "@phosphor-icons/core": "catalog:",
     "@popperjs/core": "catalog:",
     "aphrodite": "catalog:",
+    "date-fns": "catalog:",
     "node-fetch": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
