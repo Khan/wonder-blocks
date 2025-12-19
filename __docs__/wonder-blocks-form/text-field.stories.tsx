@@ -248,6 +248,41 @@ export const Number: StoryComponentType = {
 };
 
 /**
+ * An input field with type `whole-number` is identical to a number input, but it
+ * will only take positive whole number characters as input.
+ */
+export const WholeNumber: StoryComponentType = {
+    render: function Render() {
+        const [value, setValue] = React.useState("1234");
+
+        const handleChange = (newValue: string) => {
+            setValue(newValue);
+        };
+
+        const handleKeyDown = (
+            event: React.KeyboardEvent<HTMLInputElement>,
+        ) => {
+            if (event.key === "Enter") {
+                event.currentTarget.blur();
+            }
+        };
+
+        return (
+            <View>
+                <TextField
+                    id="tf-3"
+                    type="whole-number"
+                    value={value}
+                    placeholder="Whole Number"
+                    onChange={handleChange}
+                    onKeyDown={handleKeyDown}
+                />
+            </View>
+        );
+    },
+};
+
+/**
  * An input field with type `password` will obscure the input value. It also
  * often contains validation. In this example, the password must be over 8
  * characters long and must contain a numeric value.
