@@ -4,6 +4,8 @@ import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 
 // Allow merging multiple refs (forwarded + user-supplied)
 // Internal helper to merge refs
+// TODO(WB-2119.2): This will be replaced with floating-ui's useMergeRefs
+// @see https://floating-ui.com/docs/react-utils#usemergerefs
 function mergeRefs<T = any>(
     ...refs: Array<React.Ref<T> | undefined>
 ): React.RefCallback<T> {
@@ -70,7 +72,7 @@ const PopoverAnchor = React.forwardRef<HTMLElement, Props>(
                 open: onClick,
             });
 
-            const childrenRef = renderedChildren.ref as any;
+            const {ref: childrenRef} = renderedChildren as any;
 
             // we clone it to allow injecting the sharedProps defined before
             return React.cloneElement(renderedChildren, {
@@ -78,7 +80,7 @@ const PopoverAnchor = React.forwardRef<HTMLElement, Props>(
                 ref: childrenRef ? mergeRefs(ref, childrenRef) : ref,
             });
         } else {
-            const childrenRef = children.ref as any;
+            const childrenRef = (children as any).ref;
 
             // add onClick handler to automatically open the dialog after
             // clicking on this anchor element
