@@ -11,6 +11,24 @@ export default {
     parameters: {
         /** These stories are used for testing purposes only so we disable snapshots */
         chromatic: {disableSnapshot: true},
+        a11y: {
+            config: {
+                rules: [
+                    // Disabling a11y violation: ""Elements must meet minimum
+                    // color contrast ratio thresholds (color-contrast)".
+                    // This is because the playtesting stories include switching
+                    // between layouts with a fade in animation. Because of this,
+                    // the a11y check will fail on an in between state where the
+                    // color is not yet updated to the final color. Note: This
+                    // a11y check is fully enabled for other ResponsiveTabs
+                    // stories.
+                    {
+                        id: "color-contrast",
+                        enabled: false,
+                    },
+                ],
+            },
+        },
     },
     args: {
         onLayoutChange: fn(),
