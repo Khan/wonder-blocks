@@ -17,6 +17,9 @@ export default {
         "aria-label": "Responsive Tabs",
     },
     tags: ["!autodocs"],
+    globals: {
+        theme: "thunderblocks",
+    },
 } as Meta<typeof ResponsiveTabs>;
 
 type Story = StoryObj<typeof ResponsiveTabs>;
