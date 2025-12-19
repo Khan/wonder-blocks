@@ -81,26 +81,38 @@ const ModalDialog = React.forwardRef(function ModalDialog(
     } = props;
 
     return (
-        <View style={[componentStyles.wrapper, style]}>
-            {below && <View style={componentStyles.below}>{below}</View>}
-            <View
-                role={role}
-                aria-modal="true"
-                aria-label={ariaLabel}
-                aria-labelledby={ariaLabelledBy}
-                aria-describedby={ariaDescribedBy}
-                ref={ref}
-                style={[componentStyles.dialog]}
-                testId={testId}
-            >
-                {children}
+        <View style={componentStyles.paddingLayer}>
+            <View style={[componentStyles.wrapper, style]}>
+                {below && <View style={componentStyles.below}>{below}</View>}
+                <View
+                    role={role}
+                    aria-modal="true"
+                    aria-label={ariaLabel}
+                    aria-labelledby={ariaLabelledBy}
+                    aria-describedby={ariaDescribedBy}
+                    ref={ref}
+                    style={[componentStyles.dialog]}
+                    testId={testId}
+                >
+                    {children}
+                </View>
+                {above && <View style={componentStyles.above}>{above}</View>}
             </View>
-            {above && <View style={componentStyles.above}>{above}</View>}
         </View>
     );
 });
 
 const componentStyles = StyleSheet.create({
+    // pad outside of the shadow layer so the background color stays aligned
+    paddingLayer: {
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100%",
+        width: "100%",
+        [modalMediaQuery.midOrSmaller as any]: {
+            padding: theme.dialog.layout.padding,
+        },
+    },
     wrapper: {
         // Allows propagating the text color to all the children.
         color: semanticColor.core.foreground.neutral.strong,
@@ -112,13 +124,10 @@ const componentStyles = StyleSheet.create({
         boxShadow: theme.dialog.shadow.default,
         borderRadius: theme.root.border.radius,
         [modalMediaQuery.midOrSmaller as any]: {
-            padding: theme.dialog.layout.padding,
             flexDirection: "column",
         },
         [modalMediaQuery.smMinOrSmallerHeight as any]: {
             overflow: "auto",
-            // fix for shadow showing on wrapper at shorter height viewport sizes
-            boxShadow: "none",
         },
     },
 

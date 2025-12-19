@@ -225,10 +225,10 @@ export const WithLauncher: StoryComponentType = {
  * header and footer fixed while the main content scrolls.
  */
 export const WithLongContents: StoryComponentType = {
-    render: () => (
+    render: (args) => (
         <View style={styles.previewSizer}>
             <View style={styles.modalPositioner}>
-                <ModalDialog aria-labelledby="modal-title-4">
+                <ModalDialog {...args}>
                     <ModalPanel
                         content={
                             <View style={{gap: sizing.size_240}} tabIndex={0}>
@@ -243,6 +243,13 @@ export const WithLongContents: StoryComponentType = {
             </View>
         </View>
     ),
+    args: {
+        style: {
+            maxWidth: 500,
+            maxHeight: 500,
+        },
+        "aria-labelledby": "modal-title-4",
+    },
 };
 
 const styles = StyleSheet.create({
