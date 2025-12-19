@@ -225,5 +225,10 @@ const styles = StyleSheet.create({
             height: "100%",
             overflow: "hidden",
         },
+        [modalMediaQuery.smMinOrSmallerHeight as any]: {
+            // prevent container from adding white space below footer
+            // at shorter heights
+            height: "auto",
+        },
     },
 });

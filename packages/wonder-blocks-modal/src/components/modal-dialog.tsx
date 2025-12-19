@@ -117,6 +117,8 @@ const componentStyles = StyleSheet.create({
         },
         [modalMediaQuery.smMinOrSmallerHeight as any]: {
             overflow: "auto",
+            // fix for shadow showing on wrapper at shorter height viewport sizes
+            boxShadow: "none",
         },
     },
 
