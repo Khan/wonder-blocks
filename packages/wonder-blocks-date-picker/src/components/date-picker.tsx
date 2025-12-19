@@ -2,11 +2,14 @@ import {StyleSheet} from "aphrodite";
 import {Temporal} from "temporal-polyfill";
 import * as React from "react";
 import {DayPicker} from "react-day-picker";
-import {enUS} from "react-day-picker/locale";
+import {enUS, type Locale} from "react-day-picker/locale";
 
 import {View, type StyleType} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {TemporalLocaleUtils} from "../util/temporal-locale-utils";
+import {
+    TemporalLocaleUtils,
+    enUSLocaleCode,
+} from "../util/temporal-locale-utils";
 import type {CustomModifiers} from "../util/types";
 
 import DatePickerInput from "./date-picker-input";
