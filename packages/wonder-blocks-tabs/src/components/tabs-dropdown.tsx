@@ -28,7 +28,7 @@ type TabDropdownItem = {
     testId?: string;
 };
 
-type Props = AriaLabelOrAriaLabelledby & {
+export type TabsDropdownProps = AriaLabelOrAriaLabelledby & {
     /**
      * A unique id for the component. If not provided, a unique base id will be
      * generated automatically.
@@ -93,7 +93,7 @@ type Props = AriaLabelOrAriaLabelledby & {
     };
 };
 
-const defaultLabels: Required<Props["labels"]> = {
+const defaultLabels: Required<TabsDropdownProps["labels"]> = {
     defaultOpenerLabel: "Tabs",
 };
 
@@ -105,7 +105,7 @@ const defaultLabels: Required<Props["labels"]> = {
  * in the ResponsiveTabs component. Please reach out to the WB team if there is
  * a need to use this component directly.
  */
-export const TabsDropdown = React.forwardRef<HTMLDivElement, Props>(
+export const TabsDropdown = React.forwardRef<HTMLDivElement, TabsDropdownProps>(
     (props, ref) => {
         const {
             tabs,
