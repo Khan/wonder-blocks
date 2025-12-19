@@ -11,7 +11,13 @@ import {OmitConstrained} from "../util/types";
 import {useFieldValidation} from "../hooks/use-field-validation";
 import theme from "../theme";
 
-export type TextFieldType = "text" | "password" | "email" | "number" | "tel";
+export type TextFieldType =
+    | "text"
+    | "password"
+    | "email"
+    | "number"
+    | "integer"
+    | "tel";
 
 type WithForwardRef = {
     forwardedRef: React.ForwardedRef<HTMLInputElement>;
@@ -142,12 +148,12 @@ type CommonProps = AriaProps & {
 };
 
 type OtherInputProps = CommonProps & {
-    type?: "text" | "password" | "email" | "tel";
+    type?: "text" | "password" | "email" | "tel" | "integer";
 };
 
-// Props that are only available for inputs of type "number".
+// Props that are only available for inputs of type "number" or "integer".
 export type NumericInputProps = {
-    type: "number";
+    type: "number" | "integer";
     /**
      * The minimum numeric value for the input.
      */
@@ -209,6 +215,12 @@ const TextField = (props: PropsWithForwardRef) => {
     const hasError = error || !!errorMessage;
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (type === "integer") {
+            const newValue = event.target.value.replace(/[^0-9]/g, "");
+            onChangeValidation(newValue);
+            onChange(newValue);
+            return;
+        }
         const newValue = event.target.value;
         onChangeValidation(newValue);
         onChange(newValue);
@@ -228,6 +240,23 @@ const TextField = (props: PropsWithForwardRef) => {
         }
     };
 
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (type === "integer") {
+            // We're not using a digit-only regex here because that would
+            // disallow the use of arrow keys, backspace, delete, etc.
+            if (
+                event.key === "." ||
+                event.key === "+" ||
+                event.key === "-" ||
+                event.key === "e" ||
+                event.key === "E"
+            ) {
+                event.preventDefault();
+            }
+        }
+        onKeyDown?.(event);
+    };
+
     return (
         <Id id={id}>
             {(uniqueId) => (
@@ -242,14 +271,14 @@ const TextField = (props: PropsWithForwardRef) => {
                         style,
                     ]}
                     id={uniqueId}
-                    type={type}
+                    type={type === "integer" ? "number" : type}
                     placeholder={placeholder}
                     value={value}
                     name={name}
                     aria-disabled={disabled}
                     aria-required={!!required}
                     onChange={handleChange}
-                    onKeyDown={disabled ? undefined : onKeyDown}
+                    onKeyDown={disabled ? undefined : handleKeyDown}
                     onFocus={handleFocus} // TextField can be focused if disabled
                     onBlur={handleBlur} // TextField can be blurred if disabled
                     onPaste={disabled ? undefined : onPaste}

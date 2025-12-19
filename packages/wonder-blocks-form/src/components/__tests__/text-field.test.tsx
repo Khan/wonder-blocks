@@ -138,6 +138,60 @@ describe("TextField", () => {
         expect(input).toHaveAttribute("type", type);
     });
 
+    it("type=integer ignores non-numeric characters", async () => {
+        // Arrange
+        const handleChange = jest.fn();
+        const Controlled = () => {
+            const [value, setValue] = React.useState("");
+            return (
+                <TextField
+                    type="integer"
+                    value={value}
+                    onChange={(newValue) => {
+                        handleChange(newValue);
+                        setValue(newValue);
+                    }}
+                />
+            );
+        };
+        render(<Controlled />);
+
+        // Act
+        const input = await screen.findByRole("spinbutton");
+        await userEvent.type(input, "abc123");
+
+        // Assert
+        expect(input).toHaveDisplayValue("123");
+        expect(handleChange).toHaveBeenLastCalledWith("123");
+    });
+
+    it("type=integer ignores decimals, plus/minus signs, exponential notation", async () => {
+        // Arrange
+        const handleChange = jest.fn();
+        const Controlled = () => {
+            const [value, setValue] = React.useState("");
+            return (
+                <TextField
+                    type="integer"
+                    value={value}
+                    onChange={(newValue) => {
+                        handleChange(newValue);
+                        setValue(newValue);
+                    }}
+                />
+            );
+        };
+        render(<Controlled />);
+
+        // Act
+        const input = await screen.findByRole("spinbutton");
+        await userEvent.type(input, "-12.34+56e7-89");
+
+        // Assert
+        expect(input).toHaveDisplayValue("123456789");
+        expect(handleChange).toHaveBeenLastCalledWith("123456789");
+    });
+
     it("name prop is passed to the input element", async () => {
         // Arrange
         const name = "some-name";
