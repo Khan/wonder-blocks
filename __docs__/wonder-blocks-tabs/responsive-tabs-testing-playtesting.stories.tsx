@@ -45,7 +45,6 @@ export const ChangingLabelLength: Story = {
         );
 
         // Confirm the dropdown layout is used
-        expect(canvas.queryByRole("tablist")).not.toBeInTheDocument();
         const opener = canvas.getByRole("button", {
             name: "Tab 1 with a long label",
         });
@@ -54,6 +53,7 @@ export const ChangingLabelLength: Story = {
             INITIAL_TABS_COUNT,
         );
         expect(args.onLayoutChange).toHaveBeenLastCalledWith("dropdown");
+        expect(canvas.queryByRole("tablist")).not.toBeInTheDocument();
 
         // Reset the tab labels
         await userEvent.click(
@@ -89,13 +89,13 @@ export const AddingAndRemovingTabs: Story = {
         await userEvent.click(canvas.getByRole("button", {name: "Add a tab"}));
 
         // Confirm the dropdown layout is used
-        expect(canvas.queryByRole("tablist")).not.toBeInTheDocument();
         const opener = canvas.getByRole("button", {name: "Tab 1"});
         await userEvent.click(opener);
         expect(canvas.getAllByRole("menuitem")).toHaveLength(
             INITIAL_TABS_COUNT + 1,
         );
         expect(args.onLayoutChange).toHaveBeenLastCalledWith("dropdown");
+        expect(canvas.queryByRole("tablist")).not.toBeInTheDocument();
 
         // Remove a tab
         await userEvent.click(
@@ -133,13 +133,13 @@ export const ChangingContainerWidth: Story = {
         );
 
         // Confirm the dropdown layout is used
-        expect(canvas.queryByRole("tablist")).not.toBeInTheDocument();
         const opener = canvas.getByRole("button", {name: "Tab 1"});
         await userEvent.click(opener);
         expect(canvas.getAllByRole("menuitem")).toHaveLength(
             INITIAL_TABS_COUNT,
         );
         expect(args.onLayoutChange).toHaveBeenLastCalledWith("dropdown");
+        expect(canvas.queryByRole("tablist")).not.toBeInTheDocument();
 
         // Change the container width back
         await userEvent.click(
@@ -177,13 +177,13 @@ export const ChangingZoomLevel: Story = {
         );
 
         // Confirm the dropdown layout is used
-        expect(canvas.queryByRole("tablist")).not.toBeInTheDocument();
         const opener = canvas.getByRole("button", {name: "Tab 1"});
         await userEvent.click(opener);
         expect(canvas.getAllByRole("menuitem")).toHaveLength(
             INITIAL_TABS_COUNT,
         );
         expect(args.onLayoutChange).toHaveBeenLastCalledWith("dropdown");
+        expect(canvas.queryByRole("tablist")).not.toBeInTheDocument();
 
         // Change the zoom level back
         await userEvent.click(
