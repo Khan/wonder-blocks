@@ -16,6 +16,7 @@
         {"path": "./packages/wonder-blocks-cell/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-clickable/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-core/tsconfig-build.json"},
+        {"path": "./packages/wonder-blocks-date-picker/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-data/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-dropdown/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-form/tsconfig-build.json"},
