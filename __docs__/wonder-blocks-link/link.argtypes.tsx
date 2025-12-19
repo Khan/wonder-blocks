@@ -186,4 +186,16 @@ export default {
             type: {summary: "(e: SyntheticKeyboardEvent<>) => mixed"},
         },
     },
+
+    labels: {
+        control: {type: "object"},
+        description: `The object containing the custom labels used inside this component. This is useful for internationalization. Defaults to English.`,
+        table: {
+            category: "Accessibility",
+            type: {
+                summary: "{externalIconAriaLabel?: string}",
+                detail: `externalIconAriaLabel: An optional aria-label for the external link icon. This is used to provide a translatable description for screen readers. Defaults to "(opens in a new tab)".`,
+            },
+        },
+    },
 } satisfies ArgTypes;

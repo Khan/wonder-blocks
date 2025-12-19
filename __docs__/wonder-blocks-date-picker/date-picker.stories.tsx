@@ -14,6 +14,8 @@ import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-date-picker/package.json";
 
 import {allModes} from "../../.storybook/modes";
+// eslint-disable-next-line import/no-unassigned-import
+import "react-day-picker/style.css";
 
 type Props = PropsFor<typeof DatePicker>;
 
