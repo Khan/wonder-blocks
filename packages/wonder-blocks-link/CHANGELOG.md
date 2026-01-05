@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-link
 
+## 10.0.7
+
+### Patch Changes
+
+- d483d86: External Icon in Link communicates '(opens in a new tab)' to screen readers by default and allows overrides to support internationalization.
+
 ## 10.0.6
 
 ### Patch Changes
