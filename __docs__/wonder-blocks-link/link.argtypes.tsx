@@ -194,7 +194,7 @@ export default {
             category: "Accessibility",
             type: {
                 summary: "{externalIconAriaLabel?: string}",
-                detail: `externalIconAriaLabel: An optional aria-label for the external link icon. This is used to provide a translatable description for screen readers. Defaults to "(opens in a new tab)".`,
+                detail: `externalIconAriaLabel: An optional aria-label for the external link icon. This is used to provide a translatable description for screen readers.`,
             },
         },
     },
