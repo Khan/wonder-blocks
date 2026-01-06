@@ -120,7 +120,7 @@ const DropdownOpener = React.forwardRef<HTMLElement, Props>((props, ref) => {
                       // custom onClick handler inside the
                       // children node
                       childrenProps.onClick(e);
-                      clickableChildrenProps.onClick(e);
+                      clickableChildrenProps.onClick?.(e);
                   }
                 : clickableChildrenProps.onClick,
             // try to get the testId from the child element
@@ -131,7 +131,7 @@ const DropdownOpener = React.forwardRef<HTMLElement, Props>((props, ref) => {
                       // This is done to avoid overriding a custom onBlur
                       // handler inside the children node
                       onBlur(e);
-                      clickableChildrenProps.onBlur(e);
+                      clickableChildrenProps.onBlur?.(e);
                   }
                 : clickableChildrenProps.onBlur,
         });

@@ -7,7 +7,11 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 import getClickableBehavior from "../util/get-clickable-behavior";
-import type {ClickableRole, ClickableState} from "./clickable-behavior";
+import type {
+    ClickableRole,
+    ClickableState,
+    ExposedEventHandlers,
+} from "./clickable-behavior";
 import {isClientSideUrl} from "../util/is-client-side-url";
 
 type CommonProps =
@@ -23,14 +27,6 @@ type CommonProps =
          * three boolean properties: hovered, focused, and pressed.
          */
         children: (clickableState: ClickableState) => React.ReactNode;
-        /**
-         * An onClick function which Clickable can execute when clicked
-         */
-        onClick?: (e: React.SyntheticEvent) => unknown;
-        /**
-         * An onFocus function which Clickable can execute when focused
-         */
-        onFocus?: (e: React.FocusEvent) => unknown;
         /**
          * Optional href which Clickable should direct to, uses client-side routing
          * by default if react-router is present
@@ -72,30 +68,6 @@ type CommonProps =
          */
         testId?: string;
         /**
-         * Respond to raw "keydown" event.
-         */
-        onKeyDown?: (e: React.KeyboardEvent) => unknown;
-        /**
-         * Respond to raw "keyup" event.
-         */
-        onKeyUp?: (e: React.KeyboardEvent) => unknown;
-        /**
-         * Respond to raw "mousedown" event.
-         */
-        onMouseDown?: (e: React.MouseEvent) => unknown;
-        /**
-         * Respond to raw "mouseup" event.
-         */
-        onMouseUp?: (e: React.MouseEvent) => unknown;
-        /**
-         * Respond to raw "mouseenter" event.
-         */
-        onMouseEnter?: (e: React.MouseEvent) => unknown;
-        /**
-         * Respond to raw "mouseleave" event.
-         */
-        onMouseLeave?: (e: React.MouseEvent) => unknown;
-        /**
          * Don't show the default focus ring.  This should be used when implementing
          * a custom focus ring within your own component that uses Clickable.
          */
@@ -126,7 +98,7 @@ type CommonProps =
          * navigation is guaranteed to succeed.
          */
         safeWithNav?: () => Promise<unknown>;
-    };
+    } & ExposedEventHandlers;
 
 type Props =
     | (CommonProps & {
@@ -278,6 +250,7 @@ const Clickable = React.forwardRef(function Clickable(
         href,
         onClick,
         onFocus,
+        onBlur,
         onKeyDown,
         onKeyUp,
         onMouseDown,
@@ -291,7 +264,7 @@ const Clickable = React.forwardRef(function Clickable(
         target = undefined,
         testId,
         hideDefaultFocusRing,
-        disabled,
+        disabled = false,
         tabIndex,
         ...restProps
     } = props;
@@ -309,23 +282,25 @@ const Clickable = React.forwardRef(function Clickable(
         style,
     ];
 
+    const sharedProps = {
+        href,
+        onClick,
+        safeWithNav,
+        onFocus,
+        onBlur,
+        onKeyDown,
+        onKeyUp,
+        onMouseDown,
+        onMouseUp,
+        onMouseEnter,
+        onMouseLeave,
+        disabled,
+        tabIndex,
+    };
+
     if (beforeNav) {
         return (
-            <ClickableBehavior
-                href={href}
-                onClick={onClick}
-                beforeNav={beforeNav}
-                safeWithNav={safeWithNav}
-                onFocus={onFocus}
-                onKeyDown={onKeyDown}
-                onKeyUp={onKeyUp}
-                onMouseDown={onMouseDown}
-                onMouseUp={onMouseUp}
-                onMouseEnter={onMouseEnter}
-                onMouseLeave={onMouseLeave}
-                disabled={disabled}
-                tabIndex={tabIndex}
-            >
+            <ClickableBehavior {...sharedProps} beforeNav={beforeNav}>
                 {(state, childrenProps) =>
                     getCorrectTag(state, inRouterContext, {
                         ...restProps,
@@ -338,21 +313,7 @@ const Clickable = React.forwardRef(function Clickable(
         );
     } else {
         return (
-            <ClickableBehavior
-                href={href}
-                onClick={onClick}
-                safeWithNav={safeWithNav}
-                onFocus={onFocus}
-                onKeyDown={onKeyDown}
-                onKeyUp={onKeyUp}
-                onMouseDown={onMouseDown}
-                onMouseUp={onMouseUp}
-                onMouseEnter={onMouseEnter}
-                onMouseLeave={onMouseLeave}
-                target={target}
-                disabled={disabled}
-                tabIndex={tabIndex}
-            >
+            <ClickableBehavior {...sharedProps} target={target}>
                 {(state, childrenProps) =>
                     getCorrectTag(state, inRouterContext, {
                         ...restProps,
@@ -365,10 +326,6 @@ const Clickable = React.forwardRef(function Clickable(
         );
     }
 });
-
-Clickable.defaultProps = {
-    disabled: false,
-};
 
 export default Clickable;
 

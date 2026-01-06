@@ -45,7 +45,46 @@ const getAppropriateTriggersForRole = (role?: ClickableRole | null) => {
     }
 };
 
-type CommonProps = Readonly<{
+export interface ExposedEventHandlers {
+    /**
+     * A function to be executed `onclick`.
+     */
+    onClick?: (e: React.SyntheticEvent) => unknown;
+    /**
+     * Respond to raw "onfocus" event.
+     */
+    onFocus?: (e: React.FocusEvent) => unknown;
+    /**
+     * Respont to raw "onblur" event.
+     */
+    onBlur?: (e: React.FocusEvent) => unknown;
+    /**
+     * Respond to raw "keydown" event.
+     */
+    onKeyDown?: (e: React.KeyboardEvent) => unknown;
+    /**
+     * Respond to raw "keyup" event.
+     */
+    onKeyUp?: (e: React.KeyboardEvent) => unknown;
+    /**
+     * Respond to a raw "mousedown" event.
+     */
+    onMouseDown?: (e: React.MouseEvent) => unknown;
+    /**
+     * Respond to a raw "mouseup" event.
+     */
+    onMouseUp?: (e: React.MouseEvent) => unknown;
+    /**
+     * Respond to raw "mouseenter" event.
+     */
+    onMouseEnter?: (e: React.MouseEvent) => unknown;
+    /**
+     * Respond to raw "mouseleave" event.
+     */
+    onMouseLeave?: (e: React.MouseEvent) => unknown;
+}
+
+interface CommonProps extends ExposedEventHandlers {
     /**
      * A function that returns the a React `Element`.
      *
@@ -92,10 +131,6 @@ type CommonProps = Readonly<{
      */
     tabIndex?: number;
     /**
-     * A function to be executed `onclick`.
-     */
-    onClick?: (e: React.SyntheticEvent) => unknown;
-    /**
      * Run async code in the background while client-side navigating. If the
      * browser does a full page load navigation, the callback promise must be
      * settled before the navigation will occur. Errors are ignored so that
@@ -115,34 +150,6 @@ type CommonProps = Readonly<{
      */
     role?: ClickableRole;
     /**
-     * Respond to raw "onfocus" event.
-     */
-    onFocus?: (e: React.FocusEvent) => unknown;
-    /**
-     * Respond to raw "keydown" event.
-     */
-    onKeyDown?: (e: React.KeyboardEvent) => unknown;
-    /**
-     * Respond to raw "keyup" event.
-     */
-    onKeyUp?: (e: React.KeyboardEvent) => unknown;
-    /**
-     * Respond to a raw "mousedown" event.
-     */
-    onMouseDown?: (e: React.MouseEvent) => unknown;
-    /**
-     * Respond to a raw "mouseup" event.
-     */
-    onMouseUp?: (e: React.MouseEvent) => unknown;
-    /**
-     * Respond to raw "mouseenter" event.
-     */
-    onMouseEnter?: (e: React.MouseEvent) => unknown;
-    /**
-     * Respond to raw "mouseleave" event.
-     */
-    onMouseLeave?: (e: React.MouseEvent) => unknown;
-    /**
      * An optional prop that enables a
      * [https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API](View
      * Transition) for this navigation by wrapping the final state update in
@@ -151,7 +158,7 @@ type CommonProps = Readonly<{
      * @see https://reactrouter.com/6.30.0/components/link#viewtransition
      */
     viewTransition?: boolean;
-}>;
+}
 
 type Props =
     | (CommonProps &
@@ -218,22 +225,13 @@ type DefaultProps = Readonly<{
     disabled: Props["disabled"];
 }>;
 
-export type ChildrenProps = Readonly<{
-    onClick: (e: React.SyntheticEvent) => unknown;
-    onMouseEnter: (e: React.MouseEvent) => unknown;
-    onMouseLeave: (e: React.MouseEvent) => unknown;
-    onMouseDown: (e: React.MouseEvent) => unknown;
-    onMouseUp: (e: React.MouseEvent) => unknown;
+export interface ChildrenProps extends ExposedEventHandlers {
     onTouchStart: () => unknown;
     onTouchEnd: () => unknown;
     onTouchCancel: () => unknown;
-    onKeyDown: (e: React.KeyboardEvent) => unknown;
-    onKeyUp: (e: React.KeyboardEvent) => unknown;
-    onFocus: (e: React.FocusEvent) => unknown;
-    onBlur: (e: React.FocusEvent) => unknown;
     tabIndex?: number;
     rel?: string;
-}>;
+}
 
 const disabledHandlers = {
     onClick: () => void 0,
@@ -431,7 +429,7 @@ export default class ClickableBehavior extends React.Component<
                     }
                     return;
                 })
-                .catch((error) => {
+                .catch((_) => {
                     // We ignore the error here so that we always
                     // navigate when using safeWithNav regardless of
                     // whether we're doing a client-side nav or not.
@@ -455,9 +453,7 @@ export default class ClickableBehavior extends React.Component<
         let shouldNavigate = true;
         let canSubmit = true;
 
-        if (onClick) {
-            onClick(e);
-        }
+        onClick?.(e);
 
         // If onClick() has called e.preventDefault() then we shouldn't
         // navigate.
@@ -535,34 +531,26 @@ export default class ClickableBehavior extends React.Component<
     };
 
     handleMouseEnter: (e: React.MouseEvent) => void = (e) => {
-        if (this.props.onMouseEnter) {
-            this.props.onMouseEnter(e);
-        }
+        this.props.onMouseEnter?.(e);
         if (!this.waitingForClick) {
             this.setState({hovered: true});
         }
     };
 
     handleMouseLeave: (e: React.MouseEvent) => void = (e) => {
-        if (this.props.onMouseLeave) {
-            this.props.onMouseLeave(e);
-        }
+        this.props.onMouseLeave?.(e);
         if (!this.waitingForClick) {
             this.setState({hovered: false, pressed: false, focused: false});
         }
     };
 
     handleMouseDown: (e: React.MouseEvent) => void = (e) => {
-        if (this.props.onMouseDown) {
-            this.props.onMouseDown(e);
-        }
+        this.props.onMouseDown?.(e);
         this.setState({pressed: true});
     };
 
     handleMouseUp: (e: React.MouseEvent) => void = (e) => {
-        if (this.props.onMouseUp) {
-            this.props.onMouseUp(e);
-        }
+        this.props.onMouseUp?.(e);
         this.setState({pressed: false, focused: false});
     };
 
@@ -582,9 +570,7 @@ export default class ClickableBehavior extends React.Component<
 
     handleKeyDown: (e: React.KeyboardEvent) => void = (e) => {
         const {onKeyDown, role} = this.props;
-        if (onKeyDown) {
-            onKeyDown(e);
-        }
+        onKeyDown?.(e);
         const keyName = e.key;
         const {triggerOnEnter, triggerOnSpace} =
             getAppropriateTriggersForRole(role);
@@ -607,9 +593,7 @@ export default class ClickableBehavior extends React.Component<
 
     handleKeyUp: (e: React.KeyboardEvent) => void = (e) => {
         const {onKeyUp, role} = this.props;
-        if (onKeyUp) {
-            onKeyUp(e);
-        }
+        onKeyUp?.(e);
 
         const keyName = e.key;
         const {triggerOnEnter, triggerOnSpace} =
@@ -629,14 +613,15 @@ export default class ClickableBehavior extends React.Component<
     handleFocus: (e: React.FocusEvent) => void = (e) => {
         const {onFocus} = this.props;
         this.setState({focused: true}, () => {
-            if (onFocus) {
-                onFocus(e);
-            }
+            onFocus?.(e);
         });
     };
 
     handleBlur: (e: React.FocusEvent) => void = (e) => {
-        this.setState({focused: false, pressed: false});
+        const {onBlur} = this.props;
+        this.setState({focused: false, pressed: false}, () => {
+            onBlur?.(e);
+        });
     };
 
     render(): React.ReactNode {
