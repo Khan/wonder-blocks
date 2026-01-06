@@ -225,7 +225,7 @@ type DefaultProps = Readonly<{
     disabled: Props["disabled"];
 }>;
 
-export interface ChildrenProps extends ExposedEventHandlers {
+export interface ChildrenProps extends Required<ExposedEventHandlers> {
     onTouchStart: () => unknown;
     onTouchEnd: () => unknown;
     onTouchCancel: () => unknown;
