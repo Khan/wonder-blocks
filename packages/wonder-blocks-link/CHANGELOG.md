@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-link
 
+## 10.1.0
+
+### Minor Changes
+
+- ca1cc9f: Link: Removes default aria label for external icon
+
 ## 10.0.7
 
 ### Patch Changes
