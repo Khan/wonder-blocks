@@ -123,12 +123,12 @@ export const WithLongContentsAndFooter: StoryComponentType = {
                 <OnePaneDialog
                     title="Hello, world! Here is an example of a long title that wraps to the next line."
                     content={
-                        <>
+                        <View tabIndex={0}>
                             <BodyText>{reallyLongText}</BodyText>
                             <BodyText>{reallyLongText}</BodyText>
                             <BodyText>{reallyLongText}</BodyText>
                             <BodyText>{reallyLongText}</BodyText>
-                        </>
+                        </View>
                     }
                     footer={
                         <View style={styles.footer}>
