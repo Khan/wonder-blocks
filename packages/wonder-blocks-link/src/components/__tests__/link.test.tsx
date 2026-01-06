@@ -419,7 +419,7 @@ describe("Link", () => {
             });
         });
 
-        test("external icon has default aria-label '(opens in a new tab)'", async () => {
+        test("external icon has no aria-label by default", async () => {
             // Arrange
             render(
                 <Link href="https://www.google.com/" target="_blank">
@@ -431,10 +431,10 @@ describe("Link", () => {
             const icon = await screen.findByTestId("external-icon");
 
             // Assert
-            expect(icon).toHaveAttribute("aria-label", "(opens in a new tab)");
+            expect(icon).not.toHaveAttribute("aria-label");
         });
 
-        test("external icon has custom aria-label '(opens in a new cool tab)'", async () => {
+        test("external icon uses provided aria-label", async () => {
             // Arrange
             render(
                 <Link

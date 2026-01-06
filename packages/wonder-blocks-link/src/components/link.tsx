@@ -128,8 +128,7 @@ type CommonProps = AriaProps & {
     labels?: {
         /**
          * An optional aria-label for the external link icon. This is used to
-         * provide a translatable description for screen readers. Defaults to
-         * "(opens in a new tab)".
+         * provide a translatable description for screen readers.
          */
         externalIconAriaLabel?: string;
     };
