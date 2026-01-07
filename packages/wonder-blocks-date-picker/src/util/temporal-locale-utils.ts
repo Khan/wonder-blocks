@@ -1,10 +1,7 @@
 import {Temporal} from "temporal-polyfill";
 import {CustomModifiers} from "./types";
 
-<<<<<<< HEAD
 export const enUSLocaleCode = "en-US";
-=======
->>>>>>> 4a0f097ab (WB Date Picker: initial migration (#2876))
 /**
  * Utility functions for working with Temporal dates in react-day-picker.
  * These replace the MomentLocaleUtils that were previously used.
@@ -22,7 +19,6 @@ export const enUSLocaleCode = "en-US";
  *   - **Array<string>**: Uses the **first** format in the array (ignores the rest)
  *   - **null**: Returns ISO 8601 format (YYYY-MM-DD)
  *   - **undefined**: Returns ISO 8601 format (YYYY-MM-DD)
-<<<<<<< HEAD
  * @param locale - The locale to use for formatting (default: "en-US")
  * @returns The formatted date string
  *
@@ -31,16 +27,6 @@ export const enUSLocaleCode = "en-US";
  * formatDate(date, ["MMM D, YYYY", "M/D/YYYY"], "en-US") // => "Jan 15, 2024" (uses first format)
  * formatDate(date, null, "en-US") // => "2024-01-15" (ISO format)
  * formatDate(date, undefined, "en-US") // => "2024-01-15" (ISO format)
-=======
- * @param locale - The locale to use for formatting (default: "en")
- * @returns The formatted date string
- *
- * @example
- * formatDate(date, "YYYY-MM-DD", "en") // => "2024-01-15"
- * formatDate(date, ["MMM D, YYYY", "M/D/YYYY"], "en") // => "Jan 15, 2024" (uses first format)
- * formatDate(date, null, "en") // => "2024-01-15" (ISO format)
- * formatDate(date, undefined, "en") // => "2024-01-15" (ISO format)
->>>>>>> 4a0f097ab (WB Date Picker: initial migration (#2876))
  * formatDate(date, "MMM D", "invalid-locale") // => "2024-01-15" (falls back to ISO on error)
  *
  * @remarks
@@ -51,11 +37,7 @@ export const enUSLocaleCode = "en-US";
 export function formatDate(
     date: Temporal.PlainDate,
     format: string | Array<string> | null | undefined,
-<<<<<<< HEAD
     locale: string = enUSLocaleCode,
-=======
-    locale: string = "en",
->>>>>>> 4a0f097ab (WB Date Picker: initial migration (#2876))
 ): string {
     // If format is an array, use the first one
     const formatString = Array.isArray(format) ? format[0] : format;
@@ -205,17 +187,10 @@ export function parseDateToJsDate(
  * Used internally by parseWithFormat() for parsing locale-specific month names.
  */
 function getMonths(locale?: string): string[][] {
-<<<<<<< HEAD
     const format = new Intl.DateTimeFormat(locale || enUSLocaleCode, {
         month: "long",
     });
     const formatShort = new Intl.DateTimeFormat(locale || enUSLocaleCode, {
-=======
-    const format = new Intl.DateTimeFormat(locale || "en", {
-        month: "long",
-    });
-    const formatShort = new Intl.DateTimeFormat(locale || "en", {
->>>>>>> 4a0f097ab (WB Date Picker: initial migration (#2876))
         month: "short",
     });
 
