@@ -124,11 +124,7 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
             onKeyDown,
             onChange,
             dateFormat,
-<<<<<<< HEAD
             locale = enUSLocaleCode,
-=======
-            locale = "en",
->>>>>>> 4a0f097ab (WB Date Picker: initial migration (#2876))
             modifiers,
             getModifiersForDay,
             parseDate,
