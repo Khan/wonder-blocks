@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-card
 
+## 1.4.2
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-icon-button@11.1.1
+
 ## 1.4.1
 
 ### Patch Changes
