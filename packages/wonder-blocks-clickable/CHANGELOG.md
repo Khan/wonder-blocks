@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 8.1.0
+
+### Minor Changes
+
+- 6e257eb: Add `onBlur` event handler to Clickable API
+
 ## 8.0.5
 
 ### Patch Changes
