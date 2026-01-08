@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-modal
 
+## 8.5.11
+
+### Patch Changes
+
+- f6457be: Adjust scroll behavior for small screens in DrawerDialog and FlexibleDialog
+    - @khanacademy/wonder-blocks-icon-button@11.1.1
+
 ## 8.5.10
 
 ### Patch Changes
