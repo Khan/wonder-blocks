@@ -264,7 +264,7 @@ const Clickable = React.forwardRef(function Clickable(
         target = undefined,
         testId,
         hideDefaultFocusRing,
-        disabled = false,
+        disabled,
         tabIndex,
         ...restProps
     } = props;
