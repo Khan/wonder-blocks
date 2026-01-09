@@ -293,6 +293,7 @@ describe("SingleSelect", () => {
 
                 // Act
                 await userEvent.click(opener);
+                jest.advanceTimersByTime(1);
 
                 // Assert
                 const options = screen.getAllByRole("option", {hidden: true});
@@ -392,6 +393,7 @@ describe("SingleSelect", () => {
 
                         // Act
                         await userEvent.keyboard(key);
+                        jest.advanceTimersByTime(1);
 
                         // Assert
                         const options = screen.getAllByRole("option", {
@@ -409,6 +411,7 @@ describe("SingleSelect", () => {
 
                 // Act
                 await userEvent.keyboard("{Enter}"); // open
+                jest.advanceTimersByTime(1);
 
                 // Ensure first option is focused, not the opener
                 const firstItem = await screen.findByRole("option", {
@@ -423,6 +426,7 @@ describe("SingleSelect", () => {
                 const {userEvent} = doRender(uncontrolledSingleSelect);
                 await userEvent.tab();
                 await userEvent.keyboard("{Enter}"); // open
+                jest.advanceTimersByTime(1);
 
                 // Act
                 await userEvent.keyboard("{Enter}");
@@ -444,6 +448,7 @@ describe("SingleSelect", () => {
 
                 // Act
                 await userEvent.keyboard(" "); // open
+                jest.advanceTimersByTime(1);
 
                 // Ensure first option is focused, not the opener
                 const firstItem = await screen.findByRole("option", {
@@ -459,6 +464,7 @@ describe("SingleSelect", () => {
                 const {userEvent} = doRender(uncontrolledSingleSelect);
                 await userEvent.tab();
                 await userEvent.keyboard("{Enter}"); // open
+                jest.advanceTimersByTime(1);
 
                 const firstItem = await screen.findByRole("option", {
                     name: /item 1/,
