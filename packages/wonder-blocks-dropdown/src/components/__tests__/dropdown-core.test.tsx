@@ -733,6 +733,46 @@ describe("DropdownCore", () => {
         });
     });
 
+    describe("focus timeout behavior for ARIA performance", () => {
+        beforeEach(() => {
+            jest.useFakeTimers();
+        });
+
+        afterEach(() => {
+            jest.runOnlyPendingTimers();
+            jest.useRealTimers();
+        });
+
+        it("should delay focus by 1ms when navigating to next item", async () => {
+            // Arrange
+            const focusSpy = jest.spyOn(HTMLElement.prototype, "focus");
+            render(
+                <DropdownCore
+                    initialFocusedIndex={0}
+                    items={items}
+                    role="listbox"
+                    open={true}
+                    opener={<button />}
+                    onOpenChanged={jest.fn()}
+                />,
+            );
+            focusSpy.mockClear();
+
+            // Act
+            const user = userEvent.setup({
+                advanceTimers: jest.advanceTimersByTime,
+            });
+            await user.keyboard("{ArrowDown}");
+            jest.advanceTimersByTime(1);
+
+            // Assert
+            await waitFor(() => {
+                expect(focusSpy).toHaveBeenCalled();
+            });
+            focusSpy.mockRestore();
+        });
+    });
+
     describe("onOpenChanged", () => {
         it("Should be triggered when the down key is pressed and the menu is closed", async () => {
             // Arrange
