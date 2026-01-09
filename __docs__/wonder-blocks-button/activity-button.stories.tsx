@@ -112,7 +112,7 @@ export const WithCustomIcons: Story = {
 };
 
 /**
- * In this example, we have `primary (default), `secondary`, `tertiary` and
+ * In this example, we have `primary (default)`, `secondary`, `tertiary` and
  * `disabled` `ActivityButton`'s from left to right.
  */
 export const Kinds: Story = {
