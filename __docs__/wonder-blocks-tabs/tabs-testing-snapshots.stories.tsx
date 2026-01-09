@@ -158,6 +158,7 @@ const meta = {
     parameters: {
         chromatic: {
             modes: themeModes,
+            delay: 500, // Delay to allow focus to settle
         },
     },
     tags: ["!autodocs"],
