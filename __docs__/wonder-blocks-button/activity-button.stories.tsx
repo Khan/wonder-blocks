@@ -128,6 +128,43 @@ export const Kinds: Story = {
     },
 };
 
+const kinds = ["primary", "secondary", "tertiary"] as const;
+const actionTypes = ["progressive", "neutral"] as const;
+/**
+ * ActivityButton has an `actionType` prop that is either `progressive` (the
+ * default) or `neutral`:
+ */
+export const ActionType: Story = {
+    name: "ActionType",
+    render: (args) => (
+        <View style={{gap: sizing.size_160}}>
+            {actionTypes.map((actionType, index) => (
+                <View
+                    key={index}
+                    style={{gap: sizing.size_160, flexDirection: "row"}}
+                >
+                    {kinds.map((kind, index) => (
+                        <ActivityButton
+                            {...args}
+                            onClick={() => {}}
+                            actionType={actionType}
+                            kind={kind}
+                            key={`${kind}-${actionType}-${index}`}
+                        />
+                    ))}
+                    <ActivityButton
+                        {...args}
+                        disabled={true}
+                        onClick={(e) => action("clicked")(e)}
+                        actionType={actionType}
+                        key={`disabled-${actionType}-${index}`}
+                    />
+                </View>
+            ))}
+        </View>
+    ),
+};
+
 /**
  * Sometimes you may want to apply custom styles to the button. In this
  * example, we apply this by passing a `style` prop to the button.

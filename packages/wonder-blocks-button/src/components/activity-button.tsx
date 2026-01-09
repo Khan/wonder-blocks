@@ -31,6 +31,7 @@ const ActivityButtonCore: React.ForwardRefExoticComponent<
     ref,
 ) {
     const {
+        actionType = "progressive",
         children,
         disabled = false,
         kind = "primary",
@@ -46,7 +47,7 @@ const ActivityButtonCore: React.ForwardRefExoticComponent<
     } = props;
 
     // NOTE: `progressive` is the only action type supported by this component.
-    const buttonStyles = _generateStyles("progressive", disabled, kind);
+    const buttonStyles = _generateStyles(actionType, disabled, kind);
 
     const sharedStyles = [
         buttonStyles.button,
