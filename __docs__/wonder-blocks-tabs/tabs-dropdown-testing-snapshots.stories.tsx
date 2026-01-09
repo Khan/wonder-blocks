@@ -169,6 +169,10 @@ export const Scenarios: Story = {
                             backgroundColor:
                                 semanticColor.core.background.base.subtle,
                         },
+                        tabPanel: {
+                            backgroundColor:
+                                semanticColor.core.background.neutral.subtle,
+                        },
                     },
                 },
             },
@@ -177,6 +181,25 @@ export const Scenarios: Story = {
                 props: {
                     tabs: [],
                     selectedTabId: "",
+                },
+            },
+            {
+                name: "Opener in RTL",
+                decorator: <div dir="rtl" />,
+                props: {
+                    tabs: [
+                        {
+                            label: "Tab 1",
+                            id: "tab-1",
+                            panel: <div>Tab contents 1</div>,
+                        },
+                        {
+                            label: "Tab 2",
+                            id: "tab-2",
+                            panel: <div>Tab contents 2</div>,
+                        },
+                    ],
+                    selectedTabId: "tab-1",
                 },
             },
         ];
