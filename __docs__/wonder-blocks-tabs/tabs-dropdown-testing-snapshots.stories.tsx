@@ -169,6 +169,10 @@ export const Scenarios: Story = {
                             backgroundColor:
                                 semanticColor.core.background.base.subtle,
                         },
+                        tabPanel: {
+                            backgroundColor:
+                                semanticColor.core.background.neutral.subtle,
+                        },
                     },
                 },
             },

@@ -90,6 +90,11 @@ export type TabsDropdownProps = AriaLabelOrAriaLabelledby & {
 
         // Styling for the opener.
         opener?: StyleType;
+
+        // Styling for the tab panel wrapper. If styles need to be applied to a
+        // specific tab panel, set the style on the `panel` content for the
+        // `tabs` prop.
+        tabPanel?: StyleType;
     };
 };
 
@@ -196,6 +201,7 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, TabsDropdownProps>(
                     role="group"
                     aria-labelledby={openerId}
                     testId={testId ? `${testId}-panel` : undefined}
+                    style={stylesProp?.tabPanel}
                 >
                     {selectedTabItem?.panel}
                 </View>
