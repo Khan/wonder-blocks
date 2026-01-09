@@ -41,7 +41,8 @@ const kinds = [
 ];
 
 const actionTypes = [
-    {name: "Progressive", props: {}},
+    {name: "Progressive", props: {actionType: "progressive"}},
+    {name: "Neutral", props: {actionType: "neutral"}},
     {name: "Disabled", props: {disabled: true}},
 ];
 
