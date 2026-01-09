@@ -190,7 +190,7 @@ function Popover(props: Props) {
     const [placement, setPlacement] = React.useState<Placement>(placementProp);
 
     // Content ref
-    const contentRef = React.useRef<PopoverContent | PopoverContentCore>(null);
+    const contentRef = React.useRef<HTMLElement | null>(null);
 
     // Determine if controlled or uncontrolled
     const isControlled = typeof openedProp === "boolean";
