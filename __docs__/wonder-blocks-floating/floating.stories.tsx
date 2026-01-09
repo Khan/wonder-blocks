@@ -46,6 +46,7 @@ export default {
         content: (
             <View style={{padding: sizing.size_160}}>Floating content</View>
         ),
+        focusManagerEnabled: false,
     },
 } as Meta<typeof Floating>;
 
@@ -149,6 +150,15 @@ export const Middlewares: StoryComponentType = {
                                 offset={offset}
                                 hide={hide}
                                 showArrow={showArrow}
+                                // NOTE: The strategy is set to absolute to
+                                // ensure that the floating element applies
+                                // middlewares correctly within the scrolling
+                                // container.
+                                strategy="absolute"
+                                // Also portal is set to false to ensure that
+                                // the floating element boundaries are set to
+                                // the scrolling container.
+                                portal={false}
                                 open
                             >
                                 <View style={styles.reference}>Ref</View>
@@ -333,7 +343,6 @@ export const FocusManager: StoryComponentType = {
 export const DismissEnabled: StoryComponentType = {
     ...Default,
     args: {
-        open: true,
         focusManagerEnabled: true,
         dismissEnabled: true,
     },
