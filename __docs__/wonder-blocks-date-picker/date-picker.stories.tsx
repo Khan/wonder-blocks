@@ -2,6 +2,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 import {Temporal} from "temporal-polyfill";
 import * as React from "react";
 
+import {fr} from "date-fns/locale";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View, type PropsFor} from "@khanacademy/wonder-blocks-core";
 import {sizing, spacing} from "@khanacademy/wonder-blocks-tokens";
@@ -12,8 +13,7 @@ import {DatePicker} from "@khanacademy/wonder-blocks-date-picker";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-date-picker/package.json";
 
-// eslint-disable-next-line import/no-unassigned-import
-import "react-day-picker/style.css";
+import {allModes} from "../../.storybook/modes";
 
 type Props = PropsFor<typeof DatePicker>;
 
@@ -159,7 +159,7 @@ export const DisabledState: Story = {
     args: {
         disabled: true,
         dateFormat: "MMMM D, YYYY",
-        selectedDate: Temporal.PlainDate.from("2021-05-07"),
+        selectedDate: Temporal.PlainDate.from("2025-05-07"),
         updateDate: () => {},
         inputAriaLabel: "Disabled date picker",
     },
@@ -305,6 +305,40 @@ export const OpenCalendarOverlay: Story = {
         chromatic: {
             // Re-enable snapshots for this story since the calendar is visible
             disableSnapshot: false,
+            modes: {
+                small: allModes.small,
+                large: allModes.large,
+                thunderblocks: allModes.themeThunderBlocks,
+                "default rtl": allModes["themeDefault rtl"],
+            },
+        },
+    },
+};
+
+/**
+ * DatePicker with a different locale than US English. This story is useful for
+ * testing localization functionality.
+ */
+export const WithAlternateLocale: Story = {
+    render: (args) => <DatePickerWithOpenOverlay {...args} />,
+    args: {
+        selectedDate: Temporal.PlainDate.from("2025-11-01"),
+        minDate: Temporal.PlainDate.from("2025-11-01"),
+        maxDate: Temporal.PlainDate.from("2026-12-31"),
+        updateDate: () => {},
+        locale: fr,
+        inputAriaLabel: "Choisir ou entrer une date",
+    },
+    parameters: {
+        chromatic: {
+            // Re-enable snapshots for this story since the calendar is visible
+            disableSnapshot: false,
+            modes: {
+                small: allModes.small,
+                large: allModes.large,
+                thunderblocks: allModes.themeThunderBlocks,
+                "default rtl": allModes["themeDefault rtl"],
+            },
         },
     },
 };

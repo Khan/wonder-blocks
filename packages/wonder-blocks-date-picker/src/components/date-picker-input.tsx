@@ -6,6 +6,7 @@ import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import calendarIcon from "@phosphor-icons/core/bold/calendar-blank-bold.svg";
+import {enUSLocaleCode} from "../util/temporal-locale-utils";
 import type {CustomModifiers} from "../util/types";
 
 interface Props {
@@ -123,7 +124,7 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
             onKeyDown,
             onChange,
             dateFormat,
-            locale = "en",
+            locale = enUSLocaleCode,
             modifiers,
             getModifiersForDay,
             parseDate,

@@ -8,6 +8,9 @@ import {
     temporalDateToJsDate,
     jsDateToTemporalDate,
     getModifiersForDay,
+    startOfIsoWeek,
+    startOfDay,
+    endOfDay,
 } from "../temporal-locale-utils";
 import type {CustomModifiers} from "../types";
 
@@ -742,6 +745,201 @@ describe("TemporalLocaleUtils", () => {
 
             // Assert
             expect(result).toEqual(["selected"]);
+        });
+    });
+
+    describe("startOfIsoWeek", () => {
+        it("returns Monday when given a Monday", () => {
+            // Arrange
+            const monday = Temporal.PlainDate.from("2021-05-03"); // Monday
+
+            // Act
+            const result = startOfIsoWeek(monday);
+
+            // Assert
+            expect(result.toString()).toBe("2021-05-03");
+        });
+
+        it("returns Monday when given a Wednesday", () => {
+            // Arrange
+            const wednesday = Temporal.PlainDate.from("2021-05-05"); // Wednesday
+
+            // Act
+            const result = startOfIsoWeek(wednesday);
+
+            // Assert
+            expect(result.toString()).toBe("2021-05-03");
+        });
+
+        it("returns Monday when given a Sunday", () => {
+            // Arrange
+            const sunday = Temporal.PlainDate.from("2021-05-09"); // Sunday
+
+            // Act
+            const result = startOfIsoWeek(sunday);
+
+            // Assert
+            expect(result.toString()).toBe("2021-05-03");
+        });
+
+        it("returns Monday of previous month when week spans months", () => {
+            // Arrange
+            const wednesday = Temporal.PlainDate.from("2021-06-02"); // Wednesday
+
+            // Act
+            const result = startOfIsoWeek(wednesday);
+
+            // Assert
+            expect(result.toString()).toBe("2021-05-31"); // Monday of that week
+        });
+
+        it("returns Monday of previous year when week spans years", () => {
+            // Arrange
+            const friday = Temporal.PlainDate.from("2021-01-01"); // Friday
+
+            // Act
+            const result = startOfIsoWeek(friday);
+
+            // Assert
+            expect(result.toString()).toBe("2020-12-28"); // Monday of that week
+        });
+    });
+
+    describe("startOfDay", () => {
+        it("sets time to 00:00:00.000 for a date with afternoon time", () => {
+            // Arrange
+            const date = new Date(2021, 4, 7, 15, 30, 45, 500);
+
+            // Act
+            const result = startOfDay(date);
+
+            // Assert
+            expect(result.getHours()).toBe(0);
+        });
+
+        it("sets minutes to 0", () => {
+            // Arrange
+            const date = new Date(2021, 4, 7, 15, 30, 45, 500);
+
+            // Act
+            const result = startOfDay(date);
+
+            // Assert
+            expect(result.getMinutes()).toBe(0);
+        });
+
+        it("sets seconds to 0", () => {
+            // Arrange
+            const date = new Date(2021, 4, 7, 15, 30, 45, 500);
+
+            // Act
+            const result = startOfDay(date);
+
+            // Assert
+            expect(result.getSeconds()).toBe(0);
+        });
+
+        it("sets milliseconds to 0", () => {
+            // Arrange
+            const date = new Date(2021, 4, 7, 15, 30, 45, 500);
+
+            // Act
+            const result = startOfDay(date);
+
+            // Assert
+            expect(result.getMilliseconds()).toBe(0);
+        });
+
+        it("preserves the date portion", () => {
+            // Arrange
+            const date = new Date(2021, 4, 7, 15, 30, 45, 500);
+
+            // Act
+            const result = startOfDay(date);
+
+            // Assert
+            expect(result.toDateString()).toBe("Fri May 07 2021");
+        });
+
+        it("does not mutate the original date", () => {
+            // Arrange
+            const date = new Date(2021, 4, 7, 15, 30, 45, 500);
+            const originalTime = date.getTime();
+
+            // Act
+            startOfDay(date);
+
+            // Assert
+            expect(date.getTime()).toBe(originalTime);
+        });
+    });
+
+    describe("endOfDay", () => {
+        it("sets hours to 23", () => {
+            // Arrange
+            const date = new Date(2021, 4, 7, 10, 15, 30, 250);
+
+            // Act
+            const result = endOfDay(date);
+
+            // Assert
+            expect(result.getHours()).toBe(23);
+        });
+
+        it("sets minutes to 59", () => {
+            // Arrange
+            const date = new Date(2021, 4, 7, 10, 15, 30, 250);
+
+            // Act
+            const result = endOfDay(date);
+
+            // Assert
+            expect(result.getMinutes()).toBe(59);
+        });
+
+        it("sets seconds to 59", () => {
+            // Arrange
+            const date = new Date(2021, 4, 7, 10, 15, 30, 250);
+
+            // Act
+            const result = endOfDay(date);
+
+            // Assert
+            expect(result.getSeconds()).toBe(59);
+        });
+
+        it("sets milliseconds to 999", () => {
+            // Arrange
+            const date = new Date(2021, 4, 7, 10, 15, 30, 250);
+
+            // Act
+            const result = endOfDay(date);
+
+            // Assert
+            expect(result.getMilliseconds()).toBe(999);
+        });
+
+        it("preserves the date portion", () => {
+            // Arrange
+            const date = new Date(2021, 4, 7, 10, 15, 30, 250);
+
+            // Act
+            const result = endOfDay(date);
+
+            // Assert
+            expect(result.toDateString()).toBe("Fri May 07 2021");
+        });
+
+        it("does not mutate the original date", () => {
+            // Arrange
+            const date = new Date(2021, 4, 7, 10, 15, 30, 250);
+            const originalTime = date.getTime();
+
+            // Act
+            endOfDay(date);
+
+            // Assert
+            expect(date.getTime()).toBe(originalTime);
         });
     });
 });
