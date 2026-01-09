@@ -562,7 +562,7 @@ class DropdownCore extends React.Component<Props, State> {
             // the node *is* mounted.
             if (node) {
                 // WB-2143: Add a delay to ensure expanded state is announced in NVDA/JAWS
-                setTimeout(() => {
+                this.props.schedule.timeout(() => {
                     node.focus();
                 }, 1);
                 // Keep track of the original index of the newly focused item.
