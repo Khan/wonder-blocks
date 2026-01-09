@@ -103,6 +103,26 @@ export default {
         },
         action: "clicked",
     },
+    onFocus: {
+        description: "Respond to raw `focus` event.",
+        table: {
+            category: "Events",
+            type: {
+                summary: "(e: SyntheticFocusEvent<>) => mixed",
+            },
+        },
+        action: "focused",
+    },
+    onBlur: {
+        description: "Respond to raw `blur` event.",
+        table: {
+            category: "Events",
+            type: {
+                summary: "(e: SyntheticFocusEvent<>) => mixed",
+            },
+        },
+        action: "blurred",
+    },
     onkeyDown: {
         description: "Respond to raw `keydown` event.",
         table: {

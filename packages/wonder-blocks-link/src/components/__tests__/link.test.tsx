@@ -419,6 +419,45 @@ describe("Link", () => {
             });
         });
 
+        test("external icon has no aria-label by default", async () => {
+            // Arrange
+            render(
+                <Link href="https://www.google.com/" target="_blank">
+                    Click me!
+                </Link>,
+            );
+
+            // Act
+            const icon = await screen.findByTestId("external-icon");
+
+            // Assert
+            expect(icon).not.toHaveAttribute("aria-label");
+        });
+
+        test("external icon uses provided aria-label", async () => {
+            // Arrange
+            render(
+                <Link
+                    href="https://www.google.com/"
+                    target="_blank"
+                    labels={{
+                        externalIconAriaLabel: "(opens in a new cool tab)",
+                    }}
+                >
+                    Click me!
+                </Link>,
+            );
+
+            // Act
+            const icon = await screen.findByTestId("external-icon");
+
+            // Assert
+            expect(icon).toHaveAttribute(
+                "aria-label",
+                "(opens in a new cool tab)",
+            );
+        });
+
         test("does not render external icon when `target=_blank` and link is relative", async () => {
             // Arrange
             render(

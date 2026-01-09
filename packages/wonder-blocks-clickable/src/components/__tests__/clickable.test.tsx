@@ -625,6 +625,8 @@ describe("Clickable", () => {
             onKeyUp?: (e: React.KeyboardEvent) => unknown;
             onMouseDown?: (e: React.MouseEvent) => unknown;
             onMouseUp?: (e: React.MouseEvent) => unknown;
+            onFocus?: (e: React.FocusEvent) => unknown;
+            onBlur?: (e: React.FocusEvent) => unknown;
         }) => {
             return <Clickable {...restProps}>{() => children}</Clickable>;
         };
@@ -697,6 +699,41 @@ describe("Clickable", () => {
 
             // Assert
             expect(clientX).toEqual(10);
+        });
+
+        test("onFocus", async () => {
+            // Arrange
+            let focused = false;
+            render(
+                <Clickable onFocus={() => (focused = true)}>
+                    {() => "Click me!"}
+                </Clickable>,
+            );
+
+            // Act
+            await screen.findByRole("button");
+            await userEvent.tab();
+
+            // Assert
+            expect(focused).toBe(true);
+        });
+
+        test("onBlur", async () => {
+            // Arrange
+            let blurred = false;
+            render(
+                <Clickable onBlur={() => (blurred = true)}>
+                    {() => "Click me!"}
+                </Clickable>,
+            );
+
+            // Act
+            await screen.findByRole("button");
+            await userEvent.tab(); // focus
+            await userEvent.tab(); // blur
+
+            // Assert
+            expect(blurred).toBe(true);
         });
     });
 });
