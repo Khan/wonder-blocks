@@ -167,3 +167,33 @@ export const CustomStyles: Story = {
         },
     },
 };
+
+/**
+ * The tab items can be provided with an aria-label.
+ */
+export const TabItemAriaLabel: Story = {
+    args: {
+        tabs: [
+            {
+                label: "Tab 1",
+                id: "tab-1",
+                panel: <div>Tab contents 1</div>,
+                "aria-label": "Tab 1 aria-label",
+            },
+            {
+                label: "Tab 2",
+                id: "tab-2",
+                panel: <div>Tab contents 2</div>,
+                "aria-label": "Tab 2 aria-label",
+            },
+            {
+                label: "Tab 3",
+                id: "tab-3",
+                panel: <div>Tab contents 3</div>,
+                "aria-label": "Tab 3 aria-label",
+            },
+        ],
+        selectedTabId: "tab-1",
+    },
+    render: ControlledResponsiveTabs,
+};
