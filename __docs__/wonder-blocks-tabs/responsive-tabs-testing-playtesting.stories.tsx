@@ -59,9 +59,7 @@ export const ChangingLabelLength: Story = {
         const tabs = await canvas.findAllByRole("tab");
         expect(tabs).toHaveLength(INITIAL_TABS_COUNT);
 
-        await waitFor(() => {
-            expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
-        });
+        expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
 
         // Update the tab labels to long labels to trigger the dropdown layout
         await userEvent.click(
@@ -82,9 +80,7 @@ export const ChangingLabelLength: Story = {
         const menuItems = await canvas.findAllByRole("menuitem");
         expect(menuItems).toHaveLength(INITIAL_TABS_COUNT);
 
-        await waitFor(() => {
-            expect(args.onLayoutChange).toHaveBeenLastCalledWith("dropdown");
-        });
+        expect(args.onLayoutChange).toHaveBeenLastCalledWith("dropdown");
 
         // Reset the tab labels
         await userEvent.click(
@@ -97,9 +93,7 @@ export const ChangingLabelLength: Story = {
         const tabsAfterReset = await canvas.findAllByRole("tab");
         expect(tabsAfterReset).toHaveLength(INITIAL_TABS_COUNT);
 
-        await waitFor(() => {
-            expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
-        });
+        expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
     },
 };
 
@@ -120,9 +114,7 @@ export const AddingAndRemovingTabs: Story = {
         const tabs = await canvas.findAllByRole("tab");
         expect(tabs).toHaveLength(INITIAL_TABS_COUNT);
 
-        await waitFor(() => {
-            expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
-        });
+        expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
 
         // Add a tab
         await userEvent.click(canvas.getByRole("button", {name: "Add a tab"}));
@@ -138,9 +130,7 @@ export const AddingAndRemovingTabs: Story = {
         const menuItems = await canvas.findAllByRole("menuitem");
         expect(menuItems).toHaveLength(INITIAL_TABS_COUNT + 1);
 
-        await waitFor(() => {
-            expect(args.onLayoutChange).toHaveBeenLastCalledWith("dropdown");
-        });
+        expect(args.onLayoutChange).toHaveBeenLastCalledWith("dropdown");
 
         // Remove a tab
         await userEvent.click(
@@ -153,9 +143,7 @@ export const AddingAndRemovingTabs: Story = {
         const tabsAfterRemove = await canvas.findAllByRole("tab");
         expect(tabsAfterRemove).toHaveLength(INITIAL_TABS_COUNT);
 
-        await waitFor(() => {
-            expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
-        });
+        expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
     },
 };
 
@@ -176,9 +164,7 @@ export const ChangingContainerWidth: Story = {
         const tabs = await canvas.findAllByRole("tab");
         expect(tabs).toHaveLength(INITIAL_TABS_COUNT);
 
-        await waitFor(() => {
-            expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
-        });
+        expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
 
         // Change the container width
         await userEvent.click(
@@ -196,9 +182,7 @@ export const ChangingContainerWidth: Story = {
         const menuItems = await canvas.findAllByRole("menuitem");
         expect(menuItems).toHaveLength(INITIAL_TABS_COUNT);
 
-        await waitFor(() => {
-            expect(args.onLayoutChange).toHaveBeenLastCalledWith("dropdown");
-        });
+        expect(args.onLayoutChange).toHaveBeenLastCalledWith("dropdown");
 
         // Change the container width back
         await userEvent.click(
@@ -211,9 +195,7 @@ export const ChangingContainerWidth: Story = {
         const tabsAfterWidthChange = await canvas.findAllByRole("tab");
         expect(tabsAfterWidthChange).toHaveLength(INITIAL_TABS_COUNT);
 
-        await waitFor(() => {
-            expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
-        });
+        expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
     },
 };
 
@@ -234,9 +216,7 @@ export const ChangingZoomLevel: Story = {
         const tabs = await canvas.findAllByRole("tab");
         expect(tabs).toHaveLength(INITIAL_TABS_COUNT);
 
-        await waitFor(() => {
-            expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
-        });
+        expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
 
         // Change the zoom level
         await userEvent.click(
@@ -254,9 +234,7 @@ export const ChangingZoomLevel: Story = {
         const menuItems = await canvas.findAllByRole("menuitem");
         expect(menuItems).toHaveLength(INITIAL_TABS_COUNT);
 
-        await waitFor(() => {
-            expect(args.onLayoutChange).toHaveBeenLastCalledWith("dropdown");
-        });
+        expect(args.onLayoutChange).toHaveBeenLastCalledWith("dropdown");
 
         // Change the zoom level back
         await userEvent.click(
@@ -269,8 +247,6 @@ export const ChangingZoomLevel: Story = {
         const tabsAfterZoomChange = await canvas.findAllByRole("tab");
         expect(tabsAfterZoomChange).toHaveLength(INITIAL_TABS_COUNT);
 
-        await waitFor(() => {
-            expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
-        });
+        expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
     },
 };
