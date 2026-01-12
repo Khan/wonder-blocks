@@ -144,7 +144,7 @@ describe("ResponsiveTabs", () => {
                 );
             });
 
-            it("should use the provided testId as a base for the testIds of the elements within the tabs component", () => {
+            it("should use the provided testId as a base for the testIds of the elements within the tabs component", async () => {
                 // Arrange
                 // Act
                 render(
@@ -160,10 +160,8 @@ describe("ResponsiveTabs", () => {
                 );
 
                 // Assert
-                expect(screen.getByTestId("test-id")).toHaveAttribute(
-                    "data-testid",
-                    "test-id",
-                );
+                // Make sure test id is present in the dropdown. Throws an error if not found
+                await screen.findByTestId("test-id");
             });
 
             it("should use the testId prop on tab items for the tabs", () => {
@@ -186,7 +184,7 @@ describe("ResponsiveTabs", () => {
                 );
 
                 // Assert
-                expect(screen.getByTestId("tab-1-test-id-tab")).toHaveAttribute(
+                expect(screen.getByText("Tab 1")).toHaveAttribute(
                     "data-testid",
                     "tab-1-test-id-tab",
                 );
@@ -342,7 +340,7 @@ describe("ResponsiveTabs", () => {
                 );
             });
 
-            it("should use the provided testId in dropdownProps", () => {
+            it("should use the provided testId in dropdownProps", async () => {
                 // Arrange
                 // Act
                 render(
@@ -356,11 +354,10 @@ describe("ResponsiveTabs", () => {
                         }}
                     />,
                 );
+
                 // Assert
-                expect(screen.getByTestId("test-id")).toHaveAttribute(
-                    "data-testid",
-                    "test-id",
-                );
+                // Make sure test id is present in the dropdown. Throws an error if not found
+                await screen.findByTestId("test-id");
             });
 
             it("should use the testId prop on tab items for the menu items", async () => {
@@ -387,11 +384,10 @@ describe("ResponsiveTabs", () => {
                 });
                 // Act
                 await userEvent.click(dropdownOpener);
+
                 // Assert
-                expect(screen.getByTestId("tab-1-test-id")).toHaveAttribute(
-                    "data-testid",
-                    "tab-1-test-id",
-                );
+                // Make sure test id is present in the dropdown. Throws an error if not found
+                await screen.findByTestId("tab-1-test-id");
             });
         });
         describe("Events", () => {
