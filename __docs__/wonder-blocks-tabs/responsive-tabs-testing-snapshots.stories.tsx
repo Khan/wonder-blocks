@@ -49,7 +49,7 @@ export const Scenarios: Story = {
             {
                 name: "Default",
                 props: {
-                    tabs: generateTabs(3),
+                    tabs: generateTabs(5),
                     selectedTabId: "tab-1",
                 },
             },
