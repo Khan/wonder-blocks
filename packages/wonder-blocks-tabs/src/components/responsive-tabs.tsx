@@ -22,6 +22,10 @@ export type ResponsiveTabItem = {
      * Optional test ID for e2e testing of the tab.
      */
     testId?: string;
+    /**
+     * Optional aria-label for the tab.
+     */
+    "aria-label"?: string;
 };
 
 type Props = AriaLabelOrAriaLabelledby & {

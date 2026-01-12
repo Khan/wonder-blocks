@@ -253,6 +253,30 @@ describe("ResponsiveTabs", () => {
                     screen.getByRole("tablist", {name: "Responsive Tabs"}),
                 ).toHaveAttribute("aria-labelledby", "tabs-heading");
             });
+            it("should set aria-label on a tab item when provided", () => {
+                // Arrange
+                // Act
+                render(
+                    <ResponsiveTabs
+                        aria-label="Test tabs"
+                        tabs={[
+                            {
+                                id: "tab-1",
+                                label: "Tab 1",
+                                panel: <div>Tab contents 1</div>,
+                                "aria-label": "Tab 1 aria-label",
+                            },
+                        ]}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Assert
+                expect(
+                    screen.getByRole("tab", {name: "Tab 1 aria-label"}),
+                ).toHaveAttribute("aria-label", "Tab 1 aria-label");
+            });
         });
     });
 
@@ -478,6 +502,37 @@ describe("ResponsiveTabs", () => {
                 expect(
                     screen.getByRole("region", {name: "Responsive Tabs"}),
                 ).toHaveAttribute("aria-labelledby", "tabs-heading");
+            });
+
+            it("should set aria-label on a tab item when provided", async () => {
+                // Arrange
+                render(
+                    <ResponsiveTabs
+                        aria-label="Test tabs"
+                        tabs={[
+                            {
+                                id: "tab-1",
+                                label: "Tab 1",
+                                panel: <div>Tab contents 1</div>,
+                                "aria-label": "Tab 1 aria-label",
+                            },
+                        ]}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Act
+                // Open the dropdown
+                const dropdownOpener = screen.getByRole("button", {
+                    name: "Tab 1 aria-label",
+                });
+                await userEvent.click(dropdownOpener);
+
+                // Assert
+                expect(
+                    screen.getByRole("menuitem", {name: "Tab 1 aria-label"}),
+                ).toHaveAttribute("aria-label", "Tab 1 aria-label");
             });
         });
     });
