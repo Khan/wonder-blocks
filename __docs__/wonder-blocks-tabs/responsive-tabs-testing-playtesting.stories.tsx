@@ -53,15 +53,12 @@ export const ChangingLabelLength: Story = {
         const canvas = within(canvasElement.ownerDocument.body);
 
         // Confirm the initial state using horizontal tabs
-        await waitFor(() => {
-            expect(canvas.getByRole("tablist")).toHaveAttribute(
-                "aria-label",
-                "Responsive Tabs",
-            );
-        });
-        await waitFor(() => {
-            expect(canvas.getAllByRole("tab")).toHaveLength(INITIAL_TABS_COUNT);
-        });
+        const tablist = await canvas.findByRole("tablist");
+        expect(tablist).toHaveAttribute("aria-label", "Responsive Tabs");
+
+        const tabs = await canvas.findAllByRole("tab");
+        expect(tabs).toHaveLength(INITIAL_TABS_COUNT);
+
         await waitFor(() => {
             expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
         });
@@ -75,22 +72,16 @@ export const ChangingLabelLength: Story = {
         await waitFor(() => {
             expect(canvas.queryByRole("tablist")).not.toBeInTheDocument();
         });
-        await waitFor(() => {
-            expect(
-                canvas.getByRole("button", {
-                    name: "Tab 1 with a long label",
-                }),
-            ).toBeInTheDocument();
+        await canvas.findByRole("button", {
+            name: "Tab 1 with a long label",
         });
         const opener = canvas.getByRole("button", {
             name: "Tab 1 with a long label",
         });
         await userEvent.click(opener);
-        await waitFor(() => {
-            expect(canvas.getAllByRole("menuitem")).toHaveLength(
-                INITIAL_TABS_COUNT,
-            );
-        });
+        const menuItems = await canvas.findAllByRole("menuitem");
+        expect(menuItems).toHaveLength(INITIAL_TABS_COUNT);
+
         await waitFor(() => {
             expect(args.onLayoutChange).toHaveBeenLastCalledWith("dropdown");
         });
@@ -101,12 +92,11 @@ export const ChangingLabelLength: Story = {
         );
 
         // Confirm the horizontal tabs layout is used
-        await waitFor(() => {
-            expect(canvas.getByRole("tablist")).toBeInTheDocument();
-        });
-        await waitFor(() => {
-            expect(canvas.getAllByRole("tab")).toHaveLength(INITIAL_TABS_COUNT);
-        });
+        await canvas.findByRole("tablist");
+
+        const tabsAfterReset = await canvas.findAllByRole("tab");
+        expect(tabsAfterReset).toHaveLength(INITIAL_TABS_COUNT);
+
         await waitFor(() => {
             expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
         });
@@ -124,15 +114,12 @@ export const AddingAndRemovingTabs: Story = {
         const canvas = within(canvasElement.ownerDocument.body);
 
         // Confirm the initial state using horizontal tabs
-        await waitFor(() => {
-            expect(canvas.getByRole("tablist")).toHaveAttribute(
-                "aria-label",
-                "Responsive Tabs",
-            );
-        });
-        await waitFor(() => {
-            expect(canvas.getAllByRole("tab")).toHaveLength(INITIAL_TABS_COUNT);
-        });
+        const tablist = await canvas.findByRole("tablist");
+        expect(tablist).toHaveAttribute("aria-label", "Responsive Tabs");
+
+        const tabs = await canvas.findAllByRole("tab");
+        expect(tabs).toHaveLength(INITIAL_TABS_COUNT);
+
         await waitFor(() => {
             expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
         });
@@ -144,18 +131,13 @@ export const AddingAndRemovingTabs: Story = {
         await waitFor(() => {
             expect(canvas.queryByRole("tablist")).not.toBeInTheDocument();
         });
-        await waitFor(() => {
-            expect(
-                canvas.getByRole("button", {name: "Tab 1"}),
-            ).toBeInTheDocument();
-        });
+        await canvas.findByRole("button", {name: "Tab 1"});
+
         const opener = canvas.getByRole("button", {name: "Tab 1"});
         await userEvent.click(opener);
-        await waitFor(() => {
-            expect(canvas.getAllByRole("menuitem")).toHaveLength(
-                INITIAL_TABS_COUNT + 1,
-            );
-        });
+        const menuItems = await canvas.findAllByRole("menuitem");
+        expect(menuItems).toHaveLength(INITIAL_TABS_COUNT + 1);
+
         await waitFor(() => {
             expect(args.onLayoutChange).toHaveBeenLastCalledWith("dropdown");
         });
@@ -166,12 +148,11 @@ export const AddingAndRemovingTabs: Story = {
         );
 
         // Confirm the horizontal tabs layout is used
-        await waitFor(() => {
-            expect(canvas.getByRole("tablist")).toBeInTheDocument();
-        });
-        await waitFor(() => {
-            expect(canvas.getAllByRole("tab")).toHaveLength(INITIAL_TABS_COUNT);
-        });
+        await canvas.findByRole("tablist");
+
+        const tabsAfterRemove = await canvas.findAllByRole("tab");
+        expect(tabsAfterRemove).toHaveLength(INITIAL_TABS_COUNT);
+
         await waitFor(() => {
             expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
         });
@@ -189,15 +170,12 @@ export const ChangingContainerWidth: Story = {
         const canvas = within(canvasElement.ownerDocument.body);
 
         // Confirm the initial state using horizontal tabs
-        await waitFor(() => {
-            expect(canvas.getByRole("tablist")).toHaveAttribute(
-                "aria-label",
-                "Responsive Tabs",
-            );
-        });
-        await waitFor(() => {
-            expect(canvas.getAllByRole("tab")).toHaveLength(INITIAL_TABS_COUNT);
-        });
+        const tablist = await canvas.findByRole("tablist");
+        expect(tablist).toHaveAttribute("aria-label", "Responsive Tabs");
+
+        const tabs = await canvas.findAllByRole("tab");
+        expect(tabs).toHaveLength(INITIAL_TABS_COUNT);
+
         await waitFor(() => {
             expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
         });
@@ -211,18 +189,13 @@ export const ChangingContainerWidth: Story = {
         await waitFor(() => {
             expect(canvas.queryByRole("tablist")).not.toBeInTheDocument();
         });
-        await waitFor(() => {
-            expect(
-                canvas.getByRole("button", {name: "Tab 1"}),
-            ).toBeInTheDocument();
-        });
+        await canvas.findByRole("button", {name: "Tab 1"});
+
         const opener = canvas.getByRole("button", {name: "Tab 1"});
         await userEvent.click(opener);
-        await waitFor(() => {
-            expect(canvas.getAllByRole("menuitem")).toHaveLength(
-                INITIAL_TABS_COUNT,
-            );
-        });
+        const menuItems = await canvas.findAllByRole("menuitem");
+        expect(menuItems).toHaveLength(INITIAL_TABS_COUNT);
+
         await waitFor(() => {
             expect(args.onLayoutChange).toHaveBeenLastCalledWith("dropdown");
         });
@@ -233,12 +206,11 @@ export const ChangingContainerWidth: Story = {
         );
 
         // Confirm the horizontal tabs layout is used
-        await waitFor(() => {
-            expect(canvas.getByRole("tablist")).toBeInTheDocument();
-        });
-        await waitFor(() => {
-            expect(canvas.getAllByRole("tab")).toHaveLength(INITIAL_TABS_COUNT);
-        });
+        await canvas.findByRole("tablist");
+
+        const tabsAfterWidthChange = await canvas.findAllByRole("tab");
+        expect(tabsAfterWidthChange).toHaveLength(INITIAL_TABS_COUNT);
+
         await waitFor(() => {
             expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
         });
@@ -256,15 +228,12 @@ export const ChangingZoomLevel: Story = {
         const canvas = within(canvasElement.ownerDocument.body);
 
         // Confirm the initial state using horizontal tabs
-        await waitFor(() => {
-            expect(canvas.getByRole("tablist")).toHaveAttribute(
-                "aria-label",
-                "Responsive Tabs",
-            );
-        });
-        await waitFor(() => {
-            expect(canvas.getAllByRole("tab")).toHaveLength(INITIAL_TABS_COUNT);
-        });
+        const tablist = await canvas.findByRole("tablist");
+        expect(tablist).toHaveAttribute("aria-label", "Responsive Tabs");
+
+        const tabs = await canvas.findAllByRole("tab");
+        expect(tabs).toHaveLength(INITIAL_TABS_COUNT);
+
         await waitFor(() => {
             expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
         });
@@ -278,18 +247,13 @@ export const ChangingZoomLevel: Story = {
         await waitFor(() => {
             expect(canvas.queryByRole("tablist")).not.toBeInTheDocument();
         });
-        await waitFor(() => {
-            expect(
-                canvas.getByRole("button", {name: "Tab 1"}),
-            ).toBeInTheDocument();
-        });
+        await canvas.findByRole("button", {name: "Tab 1"});
+
         const opener = canvas.getByRole("button", {name: "Tab 1"});
         await userEvent.click(opener);
-        await waitFor(() => {
-            expect(canvas.getAllByRole("menuitem")).toHaveLength(
-                INITIAL_TABS_COUNT,
-            );
-        });
+        const menuItems = await canvas.findAllByRole("menuitem");
+        expect(menuItems).toHaveLength(INITIAL_TABS_COUNT);
+
         await waitFor(() => {
             expect(args.onLayoutChange).toHaveBeenLastCalledWith("dropdown");
         });
@@ -300,12 +264,11 @@ export const ChangingZoomLevel: Story = {
         );
 
         // Confirm the horizontal tabs layout is used
-        await waitFor(() => {
-            expect(canvas.getByRole("tablist")).toBeInTheDocument();
-        });
-        await waitFor(() => {
-            expect(canvas.getAllByRole("tab")).toHaveLength(INITIAL_TABS_COUNT);
-        });
+        await canvas.findByRole("tablist");
+
+        const tabsAfterZoomChange = await canvas.findAllByRole("tab");
+        expect(tabsAfterZoomChange).toHaveLength(INITIAL_TABS_COUNT);
+
         await waitFor(() => {
             expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
         });
