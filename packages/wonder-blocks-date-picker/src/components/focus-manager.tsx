@@ -188,7 +188,9 @@ export default function FocusManager(props: Props) {
                 onFocus={handleFocusPreviousFocusableElement}
                 style={{position: "fixed"}}
             />
-            <div ref={setComponentRootNode}>{children}</div>
+            <div data-testid="date-picker-overlay" ref={setComponentRootNode}>
+                {children}
+            </div>
             {/* Last sentinel */}
             {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions
                 --
