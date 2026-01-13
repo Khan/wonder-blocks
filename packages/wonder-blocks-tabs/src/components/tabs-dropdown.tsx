@@ -30,6 +30,10 @@ type TabDropdownItem = {
      * Optional aria-label for the tab.
      */
     "aria-label"?: string;
+    /**
+     * Optional icon to display in the tab.
+     */
+    icon?: React.ReactElement;
 };
 
 export type TabsDropdownProps = AriaLabelOrAriaLabelledby & {
@@ -171,9 +175,11 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, TabsDropdownProps>(
                             kind="tertiary"
                             endIcon={caretDown}
                             style={[styles.opener, stylesProp?.opener]}
+                            labelStyle={styles.labelStyle}
                             // If the selected tab has an aria-label, use it for
                             // the opener when it is selected
                             aria-label={selectedTabItem?.["aria-label"]}
+                            startIcon={selectedTabItem?.icon}
                         >
                             {menuText}
                         </Button>
@@ -200,6 +206,7 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, TabsDropdownProps>(
                                         />
                                     ) : undefined
                                 }
+                                leftAccessory={tab.icon}
                             />
                         );
                     })}
@@ -232,5 +239,10 @@ const styles = StyleSheet.create({
         paddingInline: sizing.size_180,
         width: "100%",
         justifyContent: "space-between",
+        gap: sizing.size_020,
+    },
+    labelStyle: {
+        flexGrow: 1,
+        display: "inline-flex",
     },
 });

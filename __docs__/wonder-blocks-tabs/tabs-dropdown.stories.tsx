@@ -4,6 +4,8 @@ import {TabsDropdown} from "../../packages/wonder-blocks-tabs/src/components/tab
 import {PropsFor} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import tabsDropdownArgTypes from "./tabs-dropdown.argtypes";
+import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
     title: "Packages / Tabs / Tabs / Subcomponents / TabsDropdown",
@@ -119,6 +121,52 @@ export const TabAriaLabel: Story = {
                 id: "tab-2",
                 panel: <div>Tab contents 2</div>,
                 "aria-label": "Tab 2 aria-label",
+            },
+        ],
+        selectedTabId: "tab-1",
+    },
+    render: ControlledTabsDropdown,
+};
+
+/**
+ * The tab items can be provided with an icon.
+ */
+export const TabIcons: Story = {
+    args: {
+        tabs: [
+            {
+                label: "Tab 1 with Phosphor icon",
+                id: "tab-1",
+                panel: <div>Tab contents 1</div>,
+                icon: (
+                    <PhosphorIcon
+                        size="medium"
+                        icon={IconMappings.cookieBold}
+                        aria-label="Cookie"
+                    />
+                ),
+            },
+            {
+                label: "Tab 2 with custom icon",
+                id: "tab-2",
+                panel: <div>Tab contents 2</div>,
+                icon: (
+                    <Icon size="medium">
+                        <img src="logo.svg" alt="Wonder Blocks" />
+                    </Icon>
+                ),
+            },
+            {
+                label: "Tab 3 with presentational icon",
+                id: "tab-3",
+                panel: <div>Tab contents 3</div>,
+                icon: (
+                    <PhosphorIcon
+                        size="medium"
+                        icon={IconMappings.iceCream}
+                        aria-hidden={true}
+                    />
+                ),
             },
         ],
         selectedTabId: "tab-1",
