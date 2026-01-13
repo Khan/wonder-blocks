@@ -205,6 +205,14 @@ export type ButtonProps = BaseButtonProps & {
 
 export type ActivityButtonProps = BaseButtonProps & {
     /**
+     * The action type of the button. This determines the visual style of the
+     * button.
+     *
+     * - `progressive` is used for actions that move the user forward in a flow.
+     * - `neutral` is used for buttons that indicate a neutral action.
+     */
+    actionType?: ActivityButtonActionType;
+    /**
      * Custom styles for the elements in the ActivityButton component.
      * - `root`: Styles the root element (button)
      * - `box`: Styles the "chonky" box element
