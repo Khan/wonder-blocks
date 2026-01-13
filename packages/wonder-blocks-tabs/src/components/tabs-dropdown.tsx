@@ -26,6 +26,10 @@ type TabDropdownItem = {
      * Optional test ID for e2e testing of the menu item.
      */
     testId?: string;
+    /**
+     * Optional aria-label for the tab.
+     */
+    "aria-label"?: string;
 };
 
 export type TabsDropdownProps = AriaLabelOrAriaLabelledby & {
@@ -167,6 +171,9 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, TabsDropdownProps>(
                             kind="tertiary"
                             endIcon={caretDown}
                             style={[styles.opener, stylesProp?.opener]}
+                            // If the selected tab has an aria-label, use it for
+                            // the opener when it is selected
+                            aria-label={selectedTabItem?.["aria-label"]}
                         >
                             {menuText}
                         </Button>
@@ -178,6 +185,7 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, TabsDropdownProps>(
                             <ActionItem
                                 key={tab.id}
                                 label={tab.label}
+                                aria-label={tab["aria-label"]}
                                 onClick={() => {
                                     onTabSelected(tab.id);
                                 }}

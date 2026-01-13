@@ -614,6 +614,59 @@ describe("TabsDropdown", () => {
                 // Assert
                 expect(panel).toHaveAttribute("aria-labelledby", opener.id);
             });
+
+            it("should set aria-label on a tab item when provided", async () => {
+                // Arrange
+                render(
+                    <TabsDropdown
+                        aria-label="Test tabs"
+                        tabs={[
+                            {
+                                id: "tab-1",
+                                label: "Tab 1",
+                                panel: <div>Tab contents 1</div>,
+                                "aria-label": "Tab 1 aria-label",
+                            },
+                        ]}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Act
+                await userEvent.click(screen.getByRole("button"));
+
+                // Assert
+                expect(
+                    screen.getByRole("menuitem", {name: "Tab 1 aria-label"}),
+                ).toHaveAttribute("aria-label", "Tab 1 aria-label");
+            });
+
+            it("should use the tab item aria label for the opener when that tab is selected", () => {
+                // Arrange
+                // Act
+                render(
+                    <TabsDropdown
+                        aria-label="Test tabs"
+                        tabs={[
+                            {
+                                id: "tab-1",
+                                label: "Tab 1",
+                                panel: <div>Tab contents 1</div>,
+                                "aria-label": "Tab 1 aria-label",
+                            },
+                        ]}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Assert
+                expect(screen.getByRole("button")).toHaveAttribute(
+                    "aria-label",
+                    "Tab 1 aria-label",
+                );
+            });
         });
 
         describe("Keyboard Navigation", () => {
