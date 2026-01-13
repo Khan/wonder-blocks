@@ -31,7 +31,7 @@ type TabDropdownItem = {
      */
     "aria-label"?: string;
     /**
-     * Optional icon to display in the tab.
+     * Optional icon to display in the tab. Should be a PhosphorIcon or Icon component.
      */
     icon?: React.ReactElement;
 };
@@ -210,7 +210,16 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, TabsDropdownProps>(
                                         />
                                     ) : undefined
                                 }
-                                leftAccessory={tab.icon}
+                                leftAccessory={
+                                    tab.icon
+                                        ? React.cloneElement(tab.icon, {
+                                              // By default, use the medium size for icon components
+                                              size:
+                                                  tab.icon.props.size ??
+                                                  "medium",
+                                          })
+                                        : undefined
+                                }
                             />
                         );
                     })}

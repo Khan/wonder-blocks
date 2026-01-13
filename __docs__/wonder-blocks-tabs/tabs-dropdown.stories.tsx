@@ -140,7 +140,6 @@ export const TabIcons: Story = {
                 panel: <div>Tab contents 1</div>,
                 icon: (
                     <PhosphorIcon
-                        size="medium"
                         icon={IconMappings.cookieBold}
                         aria-label="Cookie"
                     />
@@ -151,7 +150,7 @@ export const TabIcons: Story = {
                 id: "tab-2",
                 panel: <div>Tab contents 2</div>,
                 icon: (
-                    <Icon size="medium">
+                    <Icon>
                         <img src="logo.svg" alt="Wonder Blocks" />
                     </Icon>
                 ),
@@ -162,7 +161,6 @@ export const TabIcons: Story = {
                 panel: <div>Tab contents 3</div>,
                 icon: (
                     <PhosphorIcon
-                        size="medium"
                         icon={IconMappings.iceCream}
                         aria-hidden={true}
                     />

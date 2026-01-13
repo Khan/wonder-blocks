@@ -5,6 +5,8 @@ import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import responsiveTabsArgtypes from "./responsive-tabs.argtypes";
+import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
     title: "Packages / Tabs / ResponsiveTabs",
@@ -196,4 +198,50 @@ export const TabItemAriaLabel: Story = {
         selectedTabId: "tab-1",
     },
     render: ControlledResponsiveTabs,
+};
+
+export const TabIcons: Story = {
+    render: ControlledResponsiveTabs,
+    args: {
+        selectedTabId: "tab-1",
+        tabs: [
+            {
+                label: "Tab 1 with Phosphor icon",
+                id: "tab-1",
+                panel: <div>Tab contents 1</div>,
+                icon: (
+                    <PhosphorIcon
+                        icon={IconMappings.cookieBold}
+                        aria-label="Cookie"
+                    />
+                ),
+            },
+            {
+                label: "Tab 2 with custom icon",
+                id: "tab-2",
+                panel: <div>Tab contents 2</div>,
+                icon: (
+                    <Icon>
+                        <img src="logo.svg" alt="Wonder Blocks" />
+                    </Icon>
+                ),
+            },
+            {
+                label: "Tab 3 with presentational icon",
+                id: "tab-3",
+                panel: <div>Tab contents 3</div>,
+                icon: (
+                    <PhosphorIcon
+                        icon={IconMappings.iceCream}
+                        aria-hidden={true}
+                    />
+                ),
+            },
+            {
+                label: "Tab 4 with no icon",
+                id: "tab-4",
+                panel: <div>Tab contents 4</div>,
+            },
+        ],
+    },
 };

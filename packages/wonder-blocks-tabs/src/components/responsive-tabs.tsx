@@ -28,7 +28,8 @@ export type ResponsiveTabItem = {
     "aria-label"?: string;
 
     /**
-     * Optional icon to display in the tab.
+     * Optional icon to display in the tab. Should be a PhosphorIcon or Icon
+     * component.
      */
     icon?: React.ReactNode;
 };
