@@ -201,6 +201,11 @@ export type ButtonProps = BaseButtonProps & {
      * Optional custom styles.
      */
     style?: StyleType;
+    /**
+     * Whether the start icon is presentational only. Defaults to true. Set to
+     * false if the start icon has an accessible name.
+     */
+    startIconIsPresentationalOnly?: boolean;
 };
 
 export type ActivityButtonProps = BaseButtonProps & {

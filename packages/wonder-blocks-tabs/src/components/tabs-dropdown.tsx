@@ -180,6 +180,10 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, TabsDropdownProps>(
                             // the opener when it is selected
                             aria-label={selectedTabItem?.["aria-label"]}
                             startIcon={selectedTabItem?.icon}
+                            // Disable the wrapping of aria-hidden=true around the
+                            // start icon. It is up to consumers to set the
+                            // alternative text on the startIcon element itself
+                            startIconIsPresentationalOnly={false}
                         >
                             {menuText}
                         </Button>

@@ -13,11 +13,13 @@ export function ButtonIcon({
     size,
     style,
     testId,
+    "aria-hidden": ariaHidden = true,
 }: {
     icon: PhosphorIconAsset | React.ReactElement;
     size: "small" | "medium";
     style?: StyleType;
     testId?: string;
+    "aria-hidden"?: boolean;
 }) {
     // We set the icon size based on the theme object. This is necessary
     // because the icon size could change based on the theme.
@@ -27,7 +29,7 @@ export function ButtonIcon({
     };
 
     const commonProps = {
-        "aria-hidden": true,
+        "aria-hidden": ariaHidden,
         style: [style, iconStyle],
         testId,
     };
@@ -40,7 +42,12 @@ export function ButtonIcon({
     if (typeof icon !== "string") {
         // If the icon is not a string, it is a custom icon that can be rendered
         // directly with the corresponding styles
-        return React.cloneElement(icon, commonProps);
+        return React.cloneElement(icon, {
+            ...commonProps,
+            "aria-hidden":
+                // If the icon props explicitly sets aria-hidden, use that value
+                icon.props["aria-hidden"] ?? commonProps["aria-hidden"],
+        });
     }
 
     switch (size) {

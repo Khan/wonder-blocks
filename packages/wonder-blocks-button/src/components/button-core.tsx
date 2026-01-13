@@ -54,6 +54,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
         onMouseUp,
         onMouseEnter,
         onMouseLeave,
+        startIconIsPresentationalOnly = true,
         ...restProps
     } = props;
 
@@ -121,6 +122,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
                                 sharedStyles.tertiaryStartIcon,
                         ]}
                         testId={testId ? `${testId}-start-icon` : undefined}
+                        aria-hidden={startIconIsPresentationalOnly}
                     />
                 </View>
             )}
