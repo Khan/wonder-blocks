@@ -1,4 +1,9 @@
-import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import {
+    addStyle,
+    AriaProps,
+    StyleType,
+    View,
+} from "@khanacademy/wonder-blocks-core";
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
@@ -38,6 +43,10 @@ type Props = AriaProps & {
      * Custom styles for the `Tab` component.
      */
     style?: StyleType;
+    /**
+     * Optional icon to display before the tab label.
+     */
+    icon?: React.ReactElement;
 };
 
 const StyledButton = addStyle("button");
@@ -59,6 +68,7 @@ export const Tab = React.forwardRef(function Tab(
         onKeyDown,
         testId,
         style,
+        icon,
         // Should only include aria related props
         ...otherProps
     } = props;
@@ -84,6 +94,7 @@ export const Tab = React.forwardRef(function Tab(
                 style,
             ]}
         >
+            {icon && <View>{icon}</View>}
             {children}
         </StyledButton>
     );
@@ -102,6 +113,7 @@ export const styles = StyleSheet.create({
         cursor: "pointer",
         marginBlockStart: sizing.size_080,
         marginBlockEnd: bottomSpacing,
+        gap: sizing.size_080,
         position: "relative",
         color: semanticColor.core.foreground.neutral.subtle,
         ...focusStyles.focus,
