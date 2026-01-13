@@ -28,7 +28,7 @@ type TabDropdownItem = {
     testId?: string;
 };
 
-type Props = AriaLabelOrAriaLabelledby & {
+export type TabsDropdownProps = AriaLabelOrAriaLabelledby & {
     /**
      * A unique id for the component. If not provided, a unique base id will be
      * generated automatically.
@@ -90,10 +90,15 @@ type Props = AriaLabelOrAriaLabelledby & {
 
         // Styling for the opener.
         opener?: StyleType;
+
+        // Styling for the tab panel wrapper. If styles need to be applied to a
+        // specific tab panel, set the style on the `panel` content for the
+        // `tabs` prop.
+        tabPanel?: StyleType;
     };
 };
 
-const defaultLabels: Required<Props["labels"]> = {
+const defaultLabels: Required<TabsDropdownProps["labels"]> = {
     defaultOpenerLabel: "Tabs",
 };
 
@@ -105,7 +110,7 @@ const defaultLabels: Required<Props["labels"]> = {
  * in the ResponsiveTabs component. Please reach out to the WB team if there is
  * a need to use this component directly.
  */
-export const TabsDropdown = React.forwardRef<HTMLDivElement, Props>(
+export const TabsDropdown = React.forwardRef<HTMLDivElement, TabsDropdownProps>(
     (props, ref) => {
         const {
             tabs,
@@ -196,6 +201,7 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, Props>(
                     role="group"
                     aria-labelledby={openerId}
                     testId={testId ? `${testId}-panel` : undefined}
+                    style={stylesProp?.tabPanel}
                 >
                     {selectedTabItem?.panel}
                 </View>

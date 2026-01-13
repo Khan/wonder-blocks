@@ -50,7 +50,7 @@ export type TabItem = AriaProps & {
     testId?: string;
 };
 
-type Props = {
+export type TabsProps = {
     /**
      * A unique id to use as the base of the ids for the elements within the
      * component. If the `id` prop is not provided, a base unique id will be
@@ -158,9 +158,12 @@ const StyledDiv = addStyle("div");
  * tabs have `role=”tab”` and keyboard users can change tabs using arrow keys.
  * For a tabbed interface where the tabs are links, see the NavigationTabs
  * component.
+ *
+ * For responsive cases where the tabs should switch to a dropdown when there is
+ * not enough horizontal space, use the `ResponsiveTabs` component.
  */
 export const Tabs = React.forwardRef(function Tabs(
-    props: Props,
+    props: TabsProps,
     ref: React.ForwardedRef<HTMLDivElement>,
 ) {
     const {
