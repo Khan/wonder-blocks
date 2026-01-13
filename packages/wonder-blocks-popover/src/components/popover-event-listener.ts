@@ -71,7 +71,7 @@ export default class PopoverEventListener extends React.Component<
         }
 
         const node = this.props.contentRef?.current;
-        if (node && !node.contains(e.target as Node)) {
+        if (node && !node.contains(e.target as HTMLElement)) {
             // Stop the event going any further.
             // Only allow click to cancel one thing at a time.
             e.preventDefault();
