@@ -26,6 +26,11 @@ export type ResponsiveTabItem = {
      * Optional aria-label for the tab.
      */
     "aria-label"?: string;
+
+    /**
+     * Optional icon to display in the tab.
+     */
+    icon?: React.ReactNode;
 };
 
 type Props = AriaLabelOrAriaLabelledby & {
