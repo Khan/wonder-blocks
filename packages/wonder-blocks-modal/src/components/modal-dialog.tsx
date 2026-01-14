@@ -82,6 +82,7 @@ const ModalDialog = React.forwardRef(function ModalDialog(
 
     return (
         <View style={componentStyles.paddingLayer} data-modal-padding-layer>
+            {/* WB-2197: We add a data attribute for identifying this layer on backdrop clicks */}
             <View style={[componentStyles.wrapper, style]}>
                 {below && <View style={componentStyles.below}>{below}</View>}
                 <View
