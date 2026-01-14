@@ -288,9 +288,7 @@ export default function Floating({
                         context={context}
                         modal={false}
                         initialFocus={initialFocusRef}
-                        // TODO(WB-1987): Determine if we want to close the
-                        // floating element when the user focuses outside of it.
-                        closeOnFocusOut={false}
+                        closeOnFocusOut={dismissEnabled}
                         visuallyHiddenDismiss={dismissEnabled}
                     >
                         <StyledDiv
