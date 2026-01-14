@@ -21,6 +21,9 @@ catalogs:
     aphrodite:
       specifier: ^1.2.5
       version: 1.2.5
+    date-fns:
+      specifier: ^4.1.0
+      version: 4.1.0
     jscodeshift:
       specifier: ^17.3.0
       version: 17.3.0
@@ -30,6 +33,9 @@ catalogs:
     react:
       specifier: 18.2.0
       version: 18.2.0
+    react-day-picker:
+      specifier: ^9.11.1
+      version: 9.11.1
     react-dom:
       specifier: 18.2.0
       version: 18.2.0
@@ -77,6 +83,9 @@ importers:
       aphrodite:
         specifier: 'catalog:'
         version: 1.2.5
+      date-fns:
+        specifier: 'catalog:'
+        version: 4.1.0
       node-fetch:
         specifier: 'catalog:'
         version: 2.7.0
@@ -101,6 +110,9 @@ importers:
       react-window:
         specifier: 'catalog:'
         version: 1.8.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      temporal-polyfill:
+        specifier: 'catalog:'
+        version: 0.3.0
     devDependencies:
       '@changesets/cli':
         specifier: ^2.27.12
@@ -135,6 +147,9 @@ importers:
       '@khanacademy/wonder-blocks-button':
         specifier: workspace:*
         version: link:packages/wonder-blocks-button
+      '@khanacademy/wonder-blocks-card':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-card
       '@khanacademy/wonder-blocks-cell':
         specifier: workspace:*
         version: link:packages/wonder-blocks-cell
@@ -144,6 +159,9 @@ importers:
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:packages/wonder-blocks-core
+      '@khanacademy/wonder-blocks-date-picker':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-date-picker
       '@khanacademy/wonder-blocks-dropdown':
         specifier: workspace:*
         version: link:packages/wonder-blocks-dropdown
@@ -770,6 +788,55 @@ importers:
       '@khanacademy/wonder-stuff-testing':
         specifier: 'catalog:'
         version: 4.0.3(jest@29.7.0(@types/node@22.13.0))
+
+  packages/wonder-blocks-date-picker:
+    dependencies:
+      '@khanacademy/wonder-blocks-core':
+        specifier: workspace:*
+        version: link:../wonder-blocks-core
+      '@khanacademy/wonder-blocks-form':
+        specifier: workspace:*
+        version: link:../wonder-blocks-form
+      '@khanacademy/wonder-blocks-icon':
+        specifier: workspace:*
+        version: link:../wonder-blocks-icon
+      '@khanacademy/wonder-blocks-modal':
+        specifier: workspace:*
+        version: link:../wonder-blocks-modal
+      '@khanacademy/wonder-blocks-styles':
+        specifier: workspace:*
+        version: link:../wonder-blocks-styles
+      '@khanacademy/wonder-blocks-tokens':
+        specifier: workspace:*
+        version: link:../wonder-blocks-tokens
+      '@phosphor-icons/core':
+        specifier: 'catalog:'
+        version: 2.1.1
+      '@popperjs/core':
+        specifier: 'catalog:'
+        version: 2.11.8
+      aphrodite:
+        specifier: 'catalog:'
+        version: 1.2.5
+      react:
+        specifier: 'catalog:'
+        version: 18.2.0
+      react-day-picker:
+        specifier: 'catalog:'
+        version: 9.11.1(react@18.2.0)
+      react-dom:
+        specifier: 'catalog:'
+        version: 18.2.0(react@18.2.0)
+      react-popper:
+        specifier: 'catalog:'
+        version: 2.3.0(@popperjs/core@2.11.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      temporal-polyfill:
+        specifier: 'catalog:'
+        version: 0.3.0
+    devDependencies:
+      '@khanacademy/wb-dev-build-settings':
+        specifier: workspace:*
+        version: link:../../build-settings
 
   packages/wonder-blocks-dropdown:
     dependencies:
@@ -2173,6 +2240,9 @@ packages:
   '@colors/colors@1.5.0':
     resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
     engines: {node: '>=0.1.90'}
+
+  '@date-fns/tz@1.4.1':
+    resolution: {integrity: sha512-P5LUNhtbj6YfI3iJjw5EL9eUAG6OitD0W3fWQcpQjDRc/QIsL0tRNuO1PcDvPccWL1fSTXXdE1ds+l95DV/OFA==}
 
   '@emnapi/core@1.4.3':
     resolution: {integrity: sha512-4m62DuCE07lw01soJwPiBGC0nAww0Q+RY70VZ+n49yDIO13yyinhbWCeNnaob0lakDtWQzSdtNWzJeOJt2ma+g==}
@@ -3974,6 +4044,12 @@ packages:
   data-view-byte-offset@1.0.1:
     resolution: {integrity: sha512-BS8PfmtDGnrgYdOonGZQdLZslWIeCGFP9tpan0hi1Co2Zr2NKADsvGYA8XxuG/4UWgJ6Cjtv+YJnB6MM69QGlQ==}
     engines: {node: '>= 0.4'}
+
+  date-fns-jalali@4.1.0-0:
+    resolution: {integrity: sha512-hTIP/z+t+qKwBDcmmsnmjWTduxCg+5KfdqWQvb2X/8C9+knYY6epN/pfxdDuyVlSVeFz0sM5eEfwIUQ70U4ckg==}
+
+  date-fns@4.1.0:
+    resolution: {integrity: sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==}
 
   debug@3.2.7:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
@@ -6392,6 +6468,12 @@ packages:
     resolution: {integrity: sha512-y3bGgqKj3QBdxLbLkomlohkvsA8gdAiUQlSBJnBhfn+BPxg4bc62d8TcBW15wavDfgexCgccckhcZvywyQYPOw==}
     hasBin: true
 
+  react-day-picker@9.11.1:
+    resolution: {integrity: sha512-l3ub6o8NlchqIjPKrRFUCkTUEq6KwemQlfv3XZzzwpUeGwmDJ+0u0Upmt38hJyd7D/vn2dQoOoLV/qAp0o3uUw==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      react: '>=16.8.0'
+
   react-docgen-typescript@2.2.2:
     resolution: {integrity: sha512-tvg2ZtOpOi6QDwsb3GZhOjDkkX0h8Z2gipvTg6OVMUyoYoURhEiRNePT8NZItTVCDh39JJHnLdfCOkzoLbFnTg==}
     peerDependencies:
@@ -8683,6 +8765,8 @@ snapshots:
   '@colors/colors@1.5.0':
     optional: true
 
+  '@date-fns/tz@1.4.1': {}
+
   '@emnapi/core@1.4.3':
     dependencies:
       '@emnapi/wasi-threads': 1.0.2
@@ -10664,6 +10748,10 @@ snapshots:
       call-bound: 1.0.3
       es-errors: 1.3.0
       is-data-view: 1.0.2
+
+  date-fns-jalali@4.1.0-0: {}
+
+  date-fns@4.1.0: {}
 
   debug@3.2.7:
     dependencies:
@@ -13975,6 +14063,13 @@ snapshots:
       ini: 1.3.8
       minimist: 1.2.8
       strip-json-comments: 2.0.1
+
+  react-day-picker@9.11.1(react@18.2.0):
+    dependencies:
+      '@date-fns/tz': 1.4.1
+      date-fns: 4.1.0
+      date-fns-jalali: 4.1.0-0
+      react: 18.2.0
 
   react-docgen-typescript@2.2.2(typescript@5.7.3):
     dependencies:
