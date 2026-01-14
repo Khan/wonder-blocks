@@ -243,13 +243,17 @@ describe("ModalLauncher", () => {
 
         render(<ModalLauncherWrapper />);
 
+        await screen.findByRole("dialog");
+        const backdrop = await screen.findByTestId("modal-launcher-backdrop");
+
         // Act
-        // Click on the backdrop's first child (the paddingLayer that wraps the modal)
+        // Click at top-left corner of the backdrop (outside the modal dialog)
         // This simulates a real user clicking outside the dialog
-        const backdrop = screen.getByTestId("modal-launcher-backdrop");
-        // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
-        const paddingLayer = backdrop.firstChild as HTMLElement;
-        await userEvent.click(paddingLayer);
+        await userEvent.pointer([
+            {target: backdrop, coords: {clientX: 10, clientY: 10}},
+            {keys: "[MouseLeft>]", target: backdrop},
+            {keys: "[/MouseLeft]", target: backdrop},
+        ]);
 
         // Assert - modal should be removed from DOM
         await expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
@@ -273,13 +277,16 @@ describe("ModalLauncher", () => {
 
         render(<ModalLauncherWrapper />);
 
-        // Act
-        // Click on the backdrop's first child (the paddingLayer that wraps the modal)
-        // This simulates a real user clicking outside the dialog
         const backdrop = screen.getByTestId("modal-launcher-backdrop");
-        // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
-        const paddingLayer = backdrop.firstChild as HTMLElement;
-        await userEvent.click(paddingLayer);
+
+        // Act
+        // Click at top-left corner of the backdrop (outside the modal dialog)
+        // This simulates a real user clicking outside the dialog
+        await userEvent.pointer([
+            {target: backdrop, coords: {clientX: 10, clientY: 10}},
+            {keys: "[MouseLeft>]", target: backdrop},
+            {keys: "[/MouseLeft]", target: backdrop},
+        ]);
 
         // Assert - modal should be removed from DOM
         await expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
@@ -303,13 +310,16 @@ describe("ModalLauncher", () => {
 
         render(<ModalLauncherWrapper />);
 
-        // Act
-        // Click on the backdrop's first child (the paddingLayer that wraps the modal)
-        // This simulates a real user clicking outside the dialog
         const backdrop = screen.getByTestId("modal-launcher-backdrop");
-        // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
-        const paddingLayer = backdrop.firstChild as HTMLElement;
-        await userEvent.click(paddingLayer);
+
+        // Act
+        // Click at top-left corner of the backdrop (outside the modal dialog)
+        // This simulates a real user clicking outside the dialog
+        await userEvent.pointer([
+            {target: backdrop, coords: {clientX: 10, clientY: 10}},
+            {keys: "[MouseLeft>]", target: backdrop},
+            {keys: "[/MouseLeft]", target: backdrop},
+        ]);
 
         // Assert - modal should still be in DOM
         expect(screen.getByRole("dialog")).toBeInTheDocument();
@@ -327,15 +337,18 @@ describe("ModalLauncher", () => {
         );
 
         // Open the modal
-        await userEvent.click(await screen.findByRole("button"));
+        await userEvent.click(screen.getByRole("button"));
+
+        const backdrop = screen.getByTestId("modal-launcher-backdrop");
 
         // Act
-        // Click on the backdrop's first child (the paddingLayer that wraps the modal)
+        // Click at top-left corner of the backdrop (outside the modal dialog)
         // This simulates a real user clicking outside the dialog
-        const backdrop = screen.getByTestId("modal-launcher-backdrop");
-        // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
-        const paddingLayer = backdrop.firstChild as HTMLElement;
-        await userEvent.click(paddingLayer);
+        await userEvent.pointer([
+            {target: backdrop, coords: {clientX: 10, clientY: 10}},
+            {keys: "[MouseLeft>]", target: backdrop},
+            {keys: "[/MouseLeft]", target: backdrop},
+        ]);
 
         // Assert - modal should be removed from DOM
         await expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
