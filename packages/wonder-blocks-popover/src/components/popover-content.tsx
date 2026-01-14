@@ -78,10 +78,6 @@ type Props = CommonProps & {
         | React.ReactElement<React.ComponentProps<"svg">>;
 };
 
-type DefaultProps = {
-    closeButtonVisible: Props["closeButtonVisible"];
-};
-
 // Created to add custom styles to the icon or image elements
 const StyledImg = addStyle("img");
 
@@ -101,157 +97,142 @@ const StyledImg = addStyle("img");
  * />
  * ```
  */
-export default class PopoverContent extends React.Component<Props> {
-    static defaultProps: DefaultProps = {
-        closeButtonVisible: false,
-    };
-
-    componentDidMount() {
-        const {icon, image} = this.props;
-
-        // this runtime check is added to support <svg> and <img> elements
-        // inside the image prop
-        if (image && icon) {
-            throw new Error(
-                "'image' and 'icon' cannot be used at the same time. You can fix this by either removing 'image' or 'icon' from your instance.",
-            );
-        }
-    }
-
-    /**
-     * Runtime validation in case we try to use an invalid shape
-     */
-    validateProps({placement}: PopoverContextType) {
-        // illustration popover can't be placed horizontally
-        if (
-            this.props.image &&
-            (placement === "left" || placement === "right")
-        ) {
-            throw new Error(
-                "'image' can only be vertically placed. You can fix this by either changing `placement` to `top` or `bottom` or removing the `image` prop inside `content`.",
-            );
-        }
-    }
-
-    // @ts-expect-error [FEI-5019] - TS2322 - Type '({ placement, }: PopoverContextType) => Element | null' is not assignable to type '(context: PopoverContextType) => ReactElement<any, string | JSXElementConstructor<any>>'.
-    maybeRenderImage: (context: PopoverContextType) => React.ReactElement = ({
-        placement,
-    }) => {
-        const {image} = this.props;
-
-        if (!image) {
-            return null;
-        }
-
-        return (
-            <View
-                style={[
-                    styles.image,
-                    placement === "bottom" && styles.imageToBottom,
-                ]}
-            >
-                {image}
-            </View>
-        );
-    };
-
-    // @ts-expect-error [FEI-5019] - TS2322 - Type '() => JSX.Element | null' is not assignable to type '() => ReactElement<any, string | JSXElementConstructor<any>>'.
-    maybeRenderIcon: () => React.ReactElement = () => {
-        const {icon, iconAlt} = this.props;
-
-        if (!icon) {
-            return null;
-        }
-
-        return (
-            <View style={styles.iconContainer}>
-                {typeof icon !== "string" ? (
-                    icon
-                ) : (
-                    <StyledImg
-                        src={icon}
-                        style={styles.icon}
-                        alt={iconAlt || ""}
-                    />
-                )}
-            </View>
-        );
-    };
-
-    // @ts-expect-error [FEI-5019] - TS2322 - Type '(close: () => unknown) => Element | null' is not assignable to type '(close: () => unknown) => ReactElement<any, string | JSXElementConstructor<any>>'.
-    maybeRenderActions: (close: () => unknown) => React.ReactElement = (
-        close,
-    ) => {
-        const {actions} = this.props;
-
-        if (!actions) {
-            return null;
-        }
-
-        return (
-            <View style={styles.actions}>
-                {typeof actions === "function"
-                    ? actions({
-                          close: close,
-                      })
-                    : actions}
-            </View>
-        );
-    };
-
-    render(): React.ReactNode {
+const PopoverContent = React.forwardRef<HTMLElement, Props>(
+    function PopoverContent(props, ref): React.ReactElement {
         const {
+            actions,
             closeButtonLabel,
-            closeButtonVisible,
+            closeButtonVisible = false,
             content,
             icon,
+            iconAlt,
             image,
             style,
             title,
             testId,
             uniqueId,
-        } = this.props;
+        } = props;
+
+        const {close, placement} = React.useContext(PopoverContext);
+
+        // Runtime check for mutually exclusive props
+        React.useEffect(() => {
+            if (image && icon) {
+                throw new Error(
+                    "'image' and 'icon' cannot be used at the same time. You can fix this by either removing 'image' or 'icon' from your instance.",
+                );
+            }
+        }, [image, icon]);
+
+        /**
+         * Runtime validation in case we try to use an invalid shape
+         */
+        const validateProps = React.useCallback(
+            ({placement}: PopoverContextType) => {
+                // illustration popover can't be placed horizontally
+                if (image && (placement === "left" || placement === "right")) {
+                    throw new Error(
+                        "'image' can only be vertically placed. You can fix this by either changing `placement` to `top` or `bottom` or removing the `image` prop inside `content`.",
+                    );
+                }
+            },
+            [image],
+        );
+
+        const maybeRenderImage = (
+            context: PopoverContextType,
+        ): React.ReactElement | null => {
+            if (!image) {
+                return null;
+            }
+
+            return (
+                <View
+                    style={[
+                        styles.image,
+                        context.placement === "bottom" && styles.imageToBottom,
+                    ]}
+                >
+                    {image}
+                </View>
+            );
+        };
+
+        const maybeRenderIcon = (): React.ReactElement | null => {
+            if (!icon) {
+                return null;
+            }
+
+            return (
+                <View style={styles.iconContainer}>
+                    {typeof icon !== "string" ? (
+                        icon
+                    ) : (
+                        <StyledImg
+                            src={icon}
+                            style={styles.icon}
+                            alt={iconAlt || ""}
+                        />
+                    )}
+                </View>
+            );
+        };
+
+        const maybeRenderActions = (
+            close: () => unknown,
+        ): React.ReactElement | null => {
+            if (!actions) {
+                return null;
+            }
+
+            return (
+                <View style={styles.actions}>
+                    {typeof actions === "function"
+                        ? actions({
+                              close: close,
+                          })
+                        : actions}
+                </View>
+            );
+        };
+
+        // Verify if the props are correct
+        validateProps({close, placement});
 
         return (
-            <PopoverContext.Consumer>
-                {({close, placement}) => {
-                    // verify if the props are correct
-                    this.validateProps({close, placement});
+            <PopoverContentCore
+                closeButtonLight={!!image && placement === "top"}
+                closeButtonLabel={closeButtonLabel}
+                closeButtonVisible={closeButtonVisible}
+                style={style}
+                testId={testId}
+                ref={ref}
+            >
+                <View style={!!icon && styles.withIcon}>
+                    {maybeRenderImage({placement})}
 
-                    return (
-                        <PopoverContentCore
-                            closeButtonLight={image && placement === "top"}
-                            closeButtonLabel={closeButtonLabel}
-                            closeButtonVisible={closeButtonVisible}
-                            style={style}
-                            testId={testId}
+                    {maybeRenderIcon()}
+
+                    <View style={styles.text}>
+                        <HeadingSmall
+                            id={`${uniqueId}-title`}
+                            style={styles.title}
                         >
-                            <View style={!!icon && styles.withIcon}>
-                                {this.maybeRenderImage({placement})}
+                            {title}
+                        </HeadingSmall>
+                        <Body id={`${uniqueId}-content`}>{content}</Body>
+                    </View>
+                </View>
 
-                                {this.maybeRenderIcon()}
-
-                                <View style={styles.text}>
-                                    <HeadingSmall
-                                        id={`${uniqueId}-title`}
-                                        style={styles.title}
-                                    >
-                                        {title}
-                                    </HeadingSmall>
-                                    <Body id={`${uniqueId}-content`}>
-                                        {content}
-                                    </Body>
-                                </View>
-                            </View>
-
-                            {this.maybeRenderActions(close as any)}
-                        </PopoverContentCore>
-                    );
-                }}
-            </PopoverContext.Consumer>
+                {maybeRenderActions(close as () => unknown)}
+            </PopoverContentCore>
         );
-    }
-}
+    },
+);
+
+PopoverContent.displayName = "PopoverContent";
+
+export default PopoverContent;
 
 const styles = StyleSheet.create({
     /**
