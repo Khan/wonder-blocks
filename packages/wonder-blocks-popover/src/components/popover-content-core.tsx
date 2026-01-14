@@ -40,11 +40,6 @@ type Props = AriaProps & {
     testId?: string;
 };
 
-type DefaultProps = {
-    closeButtonLight: Props["closeButtonLight"];
-    closeButtonVisible: Props["closeButtonVisible"];
-};
-
 /**
  * This is the base popover container. It’s used internally by all the variants.
  * Also, it can be used to create flexible popovers.
@@ -61,28 +56,25 @@ type DefaultProps = {
  * </PopoverContentCore>
  * ```
  */
-export default class PopoverContentCore extends React.Component<Props> {
-    static defaultProps: DefaultProps = {
-        closeButtonLight: false,
-        closeButtonVisible: false,
-    };
-
-    render(): React.ReactNode {
-        const {
+const PopoverContentCore = React.forwardRef<HTMLElement, Props>(
+    function PopoverContentCore(
+        {
             "aria-label": ariaLabel,
             children,
-            closeButtonLight,
+            closeButtonLight = false,
             closeButtonLabel,
-            closeButtonVisible,
+            closeButtonVisible = false,
             style,
             testId,
-        } = this.props;
-
+        }: Props,
+        ref,
+    ): React.ReactElement {
         return (
             <View
                 testId={testId}
                 style={[styles.content, style]}
                 aria-label={ariaLabel}
+                ref={ref}
             >
                 {closeButtonVisible && (
                     <CloseButton
@@ -97,8 +89,12 @@ export default class PopoverContentCore extends React.Component<Props> {
                 {children}
             </View>
         );
-    }
-}
+    },
+);
+
+PopoverContentCore.displayName = "PopoverContentCore";
+
+export default PopoverContentCore;
 
 const styles = StyleSheet.create({
     content: {
