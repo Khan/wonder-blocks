@@ -43,12 +43,21 @@ export default {
             type: "select",
             options: ["top", "bottom", "right", "left"],
         },
+        table: {
+            type: {summary: "Placement"},
+            defaultValue: {summary: "top"},
+        },
     },
     content: {
         control: {type: "select"},
         defaultValue: ContentMappings.withTextOnly,
         options: Object.keys(ContentMappings) as Array<React.ReactNode>,
         mapping: ContentMappings,
+        table: {
+            type: {
+                summary: `PopoverContents | ((close: {close: () => void}) => PopoverContents)`,
+            },
+        },
     },
 
     closedFocusId: {
@@ -71,10 +80,16 @@ export default {
             type: "select",
             options: ["viewport", "document"],
         },
+        table: {
+            defaultValue: {summary: "viewport"},
+        },
     },
     portal: {
         control: {
             type: "boolean",
+        },
+        table: {
+            defaultValue: {summary: "true"},
         },
     },
     viewportPadding: {
