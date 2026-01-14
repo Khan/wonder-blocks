@@ -81,7 +81,7 @@ const ModalDialog = React.forwardRef(function ModalDialog(
     } = props;
 
     return (
-        <View style={componentStyles.paddingLayer}>
+        <View style={componentStyles.paddingLayer} data-modal-padding-layer>
             <View style={[componentStyles.wrapper, style]}>
                 {below && <View style={componentStyles.below}>{below}</View>}
                 <View
@@ -106,23 +106,23 @@ const componentStyles = StyleSheet.create({
     // pad outside of the shadow layer so the background color stays aligned
     paddingLayer: {
         alignItems: "center",
-        justifyContent: "center",
         height: "100%",
+        justifyContent: "center",
         width: "100%",
         [modalMediaQuery.midOrSmaller as any]: {
             padding: theme.dialog.layout.padding,
         },
     },
     wrapper: {
+        alignItems: "stretch",
+        borderRadius: theme.root.border.radius,
+        boxShadow: theme.dialog.shadow.default,
         // Allows propagating the text color to all the children.
         color: semanticColor.core.foreground.neutral.strong,
         flexDirection: "row",
-        alignItems: "stretch",
-        width: "100%",
         height: "100%",
         position: "relative",
-        boxShadow: theme.dialog.shadow.default,
-        borderRadius: theme.root.border.radius,
+        width: "100%",
         [modalMediaQuery.midOrSmaller as any]: {
             flexDirection: "column",
         },

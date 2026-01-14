@@ -226,26 +226,145 @@ describe("ModalLauncher", () => {
         );
     });
 
-    test("If backdropDismissEnabled set to false, clicking the backdrop does not trigger `onClose`", async () => {
+    test("Clicking outside the modal dialog closes it by default", async () => {
         // Arrange
-        const onClose = jest.fn();
+        const ModalLauncherWrapper = () => {
+            const [opened, setOpened] = React.useState(true);
 
-        render(
-            <ModalLauncher
-                onClose={onClose}
-                modal={exampleModal}
-                opened={true}
-                backdropDismissEnabled={false}
-                testId="modal-launcher-backdrop"
-            />,
-        );
+            return (
+                <ModalLauncher
+                    modal={exampleModal}
+                    opened={opened}
+                    onClose={() => setOpened(false)}
+                    testId="modal-launcher-backdrop"
+                />
+            );
+        };
+
+        render(<ModalLauncherWrapper />);
 
         // Act
-        const backdrop = await screen.findByTestId("modal-launcher-backdrop");
-        await userEvent.click(backdrop);
+        // Click on the backdrop's first child (the paddingLayer that wraps the modal)
+        // This simulates a real user clicking outside the dialog
+        const backdrop = screen.getByTestId("modal-launcher-backdrop");
+        // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
+        const paddingLayer = backdrop.firstChild as HTMLElement;
+        await userEvent.click(paddingLayer);
 
-        // Assert
-        expect(onClose).not.toHaveBeenCalled();
+        // Assert - modal should be removed from DOM
+        await expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    });
+
+    test("Clicking outside the modal dialog closes it when backdropDismissEnabled is true", async () => {
+        // Arrange
+        const ModalLauncherWrapper = () => {
+            const [opened, setOpened] = React.useState(true);
+
+            return (
+                <ModalLauncher
+                    modal={exampleModal}
+                    opened={opened}
+                    onClose={() => setOpened(false)}
+                    backdropDismissEnabled={true}
+                    testId="modal-launcher-backdrop"
+                />
+            );
+        };
+
+        render(<ModalLauncherWrapper />);
+
+        // Act
+        // Click on the backdrop's first child (the paddingLayer that wraps the modal)
+        // This simulates a real user clicking outside the dialog
+        const backdrop = screen.getByTestId("modal-launcher-backdrop");
+        // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
+        const paddingLayer = backdrop.firstChild as HTMLElement;
+        await userEvent.click(paddingLayer);
+
+        // Assert - modal should be removed from DOM
+        await expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    });
+
+    test("If backdropDismissEnabled set to false, clicking outside the modal does not close it", async () => {
+        // Arrange
+        const ModalLauncherWrapper = () => {
+            const [opened, setOpened] = React.useState(true);
+
+            return (
+                <ModalLauncher
+                    modal={exampleModal}
+                    opened={opened}
+                    onClose={() => setOpened(false)}
+                    backdropDismissEnabled={false}
+                    testId="modal-launcher-backdrop"
+                />
+            );
+        };
+
+        render(<ModalLauncherWrapper />);
+
+        // Act
+        // Click on the backdrop's first child (the paddingLayer that wraps the modal)
+        // This simulates a real user clicking outside the dialog
+        const backdrop = screen.getByTestId("modal-launcher-backdrop");
+        // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
+        const paddingLayer = backdrop.firstChild as HTMLElement;
+        await userEvent.click(paddingLayer);
+
+        // Assert - modal should still be in DOM
+        expect(screen.getByRole("dialog")).toBeInTheDocument();
+    });
+
+    test("Clicking outside the modal closes it with children render prop pattern", async () => {
+        // Arrange
+        render(
+            <ModalLauncher
+                modal={exampleModal}
+                testId="modal-launcher-backdrop"
+            >
+                {({openModal}: any) => <button onClick={openModal} />}
+            </ModalLauncher>,
+        );
+
+        // Open the modal
+        await userEvent.click(await screen.findByRole("button"));
+
+        // Act
+        // Click on the backdrop's first child (the paddingLayer that wraps the modal)
+        // This simulates a real user clicking outside the dialog
+        const backdrop = screen.getByTestId("modal-launcher-backdrop");
+        // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
+        const paddingLayer = backdrop.firstChild as HTMLElement;
+        await userEvent.click(paddingLayer);
+
+        // Assert - modal should be removed from DOM
+        await expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    });
+
+    test("Clicking modal content does not close the modal", async () => {
+        // Arrange
+        const ModalLauncherWrapper = () => {
+            const [opened, setOpened] = React.useState(true);
+
+            return (
+                <ModalLauncher
+                    modal={exampleModal}
+                    opened={opened}
+                    onClose={() => setOpened(false)}
+                    testId="modal-launcher-backdrop"
+                />
+            );
+        };
+
+        render(<ModalLauncherWrapper />);
+
+        const dialog = screen.getByRole("dialog");
+
+        // Act
+        await userEvent.click(dialog);
+
+        // Assert - modal should still be in DOM
+        expect(screen.getByRole("dialog")).toBeInTheDocument();
     });
 
     test("if modal is launched, move focus to first focusable element inside dialog", async () => {
