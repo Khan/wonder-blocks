@@ -103,21 +103,12 @@ export const DynamicIcon: Story = {
                     aria-label="Dynamic icon example"
                     tabs={[
                         {
-                            label: (
-                                <span>
-                                    {showIcon && (
-                                        <PhosphorIcon
-                                            icon={iceCreamBold}
-                                            style={{
-                                                marginRight: sizing.size_040,
-                                            }}
-                                        />
-                                    )}
-                                    Tab 1
-                                </span>
-                            ),
+                            label: "Tab 1",
                             id: "tab-1",
                             panel: <Placeholder>Tab contents 1</Placeholder>,
+                            icon: showIcon ? (
+                                <PhosphorIcon icon={iceCreamBold} />
+                            ) : undefined,
                         },
                         {
                             label: "Tab 2",

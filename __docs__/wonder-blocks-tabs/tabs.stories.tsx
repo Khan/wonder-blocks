@@ -20,6 +20,8 @@ import {generateTabs, ControlledTabs} from "./tabs-utils";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
+import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 const tabs: TabItem[] = [
     {
@@ -100,11 +102,36 @@ export const AutomaticActivation: StoryComponentType = {
 };
 
 /**
- * The tab label can be customized to include icons.
+ * Tab items support an `icon` prop to display in the tab. This should use a
+ * `PhosphorIcon` or `Icon` component. Prefer using the `icon`
+ * prop over providing a custom element in the `label` prop.
  */
 export const WithIcons: StoryComponentType = {
     args: {
-        tabs: generateTabs(3, "Tab", true),
+        tabs: [
+            {
+                label: "Tab 1",
+                id: "tab-1",
+                panel: <Placeholder>Tab contents 1</Placeholder>,
+                icon: <PhosphorIcon icon={IconMappings.cookie} />,
+            },
+            {
+                label: "Tab 2",
+                id: "tab-2",
+                panel: <Placeholder>Tab contents 2</Placeholder>,
+                icon: <PhosphorIcon icon={IconMappings.iceCream} />,
+            },
+            {
+                label: "Tab 3",
+                id: "tab-3",
+                panel: <Placeholder>Tab contents 3</Placeholder>,
+                icon: (
+                    <Icon>
+                        <img src="logo.svg" alt="Wonder Blocks" />
+                    </Icon>
+                ),
+            },
+        ],
         selectedTabId: "tab-1",
     },
     parameters: {
@@ -531,6 +558,12 @@ export const TabLabelRenderFunction: StoryComponentType = {
                 },
                 id: "tab-1",
                 panel: <Placeholder>Tab contents 1</Placeholder>,
+                icon: (
+                    <PhosphorIcon
+                        icon={IconMappings.cookie}
+                        aria-label="Cookie"
+                    />
+                ),
             },
             {
                 label(tabProps: TabRenderProps) {

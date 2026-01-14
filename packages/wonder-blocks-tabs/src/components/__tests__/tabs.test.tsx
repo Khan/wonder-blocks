@@ -505,6 +505,7 @@ describe("Tabs", () => {
                                     panel: "Panel",
                                     "aria-label": "Tab 1 Aria Label",
                                     testId: "tab-1-test-id",
+                                    icon: <img src="icon.svg" alt="icon" />,
                                 },
                             ]}
                             selectedTabId="tab-1"
@@ -520,6 +521,7 @@ describe("Tabs", () => {
                         selected: true,
                         "aria-controls": "tab-1-panel",
                         "aria-label": "Tab 1 Aria Label",
+                        icon: <img src="icon.svg" alt="icon" />,
                         onClick: expect.any(Function),
                         onKeyDown: expect.any(Function),
                         ref: expect.any(Function),

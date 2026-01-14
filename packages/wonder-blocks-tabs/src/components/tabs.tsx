@@ -48,6 +48,10 @@ export type TabItem = AriaProps & {
      * - The associated tab panel will have a testId formatted as `${testId}-panel`
      */
     testId?: string;
+    /**
+     * Optional icon to display in the tab. Should be a PhosphorIcon or Icon component.
+     */
+    icon?: React.ReactElement;
 };
 
 export type TabsProps = {
@@ -344,6 +348,7 @@ export const Tabs = React.forwardRef(function Tabs(
                             label,
                             panel: _,
                             testId: tabTestId,
+                            icon,
                             ...otherProps // Should only include aria related props
                         } = tab;
 
@@ -353,6 +358,7 @@ export const Tabs = React.forwardRef(function Tabs(
                             id: getTabId(id),
                             testId: tabTestId && getTabId(tabTestId),
                             selected: id === selectedTabId,
+                            icon,
                             "aria-controls": getTabPanelId(id),
                             onClick: () => {
                                 onTabSelected(id);
