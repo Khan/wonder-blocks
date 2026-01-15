@@ -78,4 +78,10 @@ export default {
             defaultValue: {summary: "undefined"},
         },
     },
+    rootBoundary: {
+        table: {
+            type: {summary: "viewport | document"},
+            defaultValue: {summary: "viewport"},
+        },
+    },
 } satisfies ArgTypes;

@@ -3,14 +3,9 @@ import {StyleSheet} from "aphrodite";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {
-    border,
-    boxShadow,
-    semanticColor,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
-import {actionStyles} from "@khanacademy/wonder-blocks-styles";
+import {actionStyles, focusStyles} from "@khanacademy/wonder-blocks-styles";
 import CloseButton from "./close-button";
 
 type Props = AriaProps & {
@@ -98,12 +93,7 @@ export default PopoverContentCore;
 
 const styles = StyleSheet.create({
     content: {
-        borderRadius: border.radius.radius_040,
-        border: `solid 1px ${semanticColor.core.border.neutral.subtle}`,
-        backgroundColor: semanticColor.core.background.base.default,
-        boxShadow: boxShadow.mid,
-        margin: 0,
-        maxWidth: spacing.medium_16 * 18, // 288px
+        maxInlineSize: spacing.medium_16 * 18, // 288px
         padding: spacing.large_24,
         overflow: "hidden",
         justifyContent: "center",
@@ -115,9 +105,13 @@ const styles = StyleSheet.create({
     closeButton: {
         margin: 0,
         position: "absolute",
-        right: spacing.xxxSmall_4,
-        top: spacing.xxxSmall_4,
+        insetInlineEnd: spacing.xxxSmall_4,
+        insetBlockStart: spacing.xxxSmall_4,
         // Allows the button to be above the title and/or custom content
         zIndex: 1,
+        // NOTE: IconButton uses :focus-visible, which is not supported for
+        // programmatic focus. This is a workaround to make sure the focus
+        // outline is visible when this control is focused.
+        ":focus": focusStyles.focus[":focus-visible"],
     },
 });

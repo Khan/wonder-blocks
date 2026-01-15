@@ -6,7 +6,7 @@ import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingMedium, LabelLarge} from "@khanacademy/wonder-blocks-typography";
-import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
+import type {Placement} from "@khanacademy/wonder-blocks-popover";
 
 import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import packageConfig from "../../packages/wonder-blocks-popover/package.json";
