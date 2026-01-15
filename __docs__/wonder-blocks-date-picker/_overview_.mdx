@@ -1,0 +1,151 @@
+import {Meta, Canvas} from "@storybook/addon-docs/blocks";
+import Banner from "@khanacademy/wonder-blocks-banner";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import * as DatePickerStories from "./date-picker.stories";
+
+<Meta title="Packages / DatePicker / Overview" />
+
+# Date Picker
+
+The `wonder-blocks-date-picker` package provides date picker components that
+allow users to select dates using either a custom calendar overlay or native
+browser date pickers. These components use the Temporal API for accurate,
+timezone-safe date handling.
+
+<View style={{marginBlock: spacing.medium_16}}>
+    <Banner
+        kind="warning"
+        text="CSS import required: You must import react-day-picker/style.css in your application for the date picker to display correctly. See the Setup section below."
+    />
+</View>
+
+## Components
+
+### DatePicker
+
+A date picker with a custom calendar overlay that opens when the input is clicked.
+Best for desktop experiences where you need full control over styling and behavior.
+
+<Canvas of={DatePickerStories.SelectedDateIsNow} />
+
+## Setup
+
+### CSS Import Required
+
+The date picker uses `react-day-picker` which requires its CSS to be imported.
+Choose one of these options:
+
+#### Option 1: Global CSS File
+
+```css
+@import "react-day-picker/style.css";
+```
+
+#### Option 2: JavaScript Entry Point
+
+```javascript
+import "react-day-picker/style.css";
+```
+
+#### Option 3: Component-Level Import
+
+```javascript
+import { DatePicker } from "@khanacademy/wonder-blocks-date-picker";
+import "react-day-picker/style.css";
+```
+
+### Peer Dependencies
+
+Make sure you have these installed:
+- `react` and `react-dom`
+- `aphrodite`
+- `react-day-picker`
+- `react-popper` and `@popperjs/core`
+- `@phosphor-icons/core`
+- `temporal-polyfill`
+
+## Basic Usage
+
+```typescript
+import { DatePicker } from "@khanacademy/wonder-blocks-date-picker";
+import { Temporal } from "temporal-polyfill";
+import { useState } from "react";
+
+function MyComponent() {
+    const [selectedDate, setSelectedDate] = useState<Temporal.PlainDate | null>(null);
+
+    return (
+        <DatePicker
+            selectedDate={selectedDate}
+            updateDate={setSelectedDate}
+            placeholder="Select a date"
+        />
+    );
+}
+```
+
+## Date Formats
+
+The date picker supports moment.js-style format strings:
+
+- `YYYY-MM-DD` - ISO format: "2024-01-15"
+- `MMMM D, YYYY` - Long month: "January 15, 2024"
+- `MMM D, YYYY` - Short month: "Jan 15, 2024"
+- `M/D/YYYY` - Numeric: "1/15/2024"
+- `MM/DD/YYYY` - Zero-padded: "01/15/2024"
+
+You can provide an array of formats for parsing multiple input formats:
+
+```typescript
+<DatePicker
+    dateFormat={["YYYY-MM-DD", "M/D/YYYY", "MMM D, YYYY"]}
+    selectedDate={selectedDate}
+    updateDate={setSelectedDate}
+/>
+```
+
+## Date Range Constraints
+
+Limit selectable dates using `minDate` and `maxDate`:
+
+```typescript
+const today = Temporal.Now.plainDateISO();
+
+<DatePicker
+    selectedDate={selectedDate}
+    updateDate={setSelectedDate}
+    minDate={today.subtract({ days: 7 })}
+    maxDate={today.add({ days: 14 })}
+/>
+```
+
+## Custom Footer
+
+Add custom actions in the calendar footer (like Cancel/Confirm buttons):
+
+<Canvas of={DatePickerStories.DontCloseOnSelect} />
+
+## Temporal API
+
+This component uses the [Temporal API](https://tc39.es/proposal-temporal/docs/)
+via the `temporal-polyfill` package. All dates are handled as
+`Temporal.PlainDate` objects instead of JavaScript's legacy `Date` object.
+
+**📚 For detailed examples and patterns, see the [Temporal API Guide](?path=/docs/packages-date-picker-temporal-api-guide--docs)**
+
+## Accessibility
+
+The date picker components are built with accessibility in mind:
+
+- **Keyboard navigation**: Tab to focus, Enter/Space to open, Esc to close
+- **ARIA labels**: Configurable via `inputAriaLabel` prop
+- **Screen reader support**: Calendar uses proper ARIA grid role
+- **Focus management**: Focus returns to input after closing calendar
+
+## For More Information
+
+- **[Temporal API Guide](?path=/docs/packages-date-picker-temporal-api-guide--docs)** - Complete guide to working with Temporal dates
+- See individual component stories for interactive examples
+- Check the component prop tables for detailed API documentation
+- Review the Storybook examples for common use cases
