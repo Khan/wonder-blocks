@@ -763,8 +763,6 @@ describe("DropdownCore", () => {
                 advanceTimers: jest.advanceTimersByTime,
             });
             await user.keyboard("{ArrowDown}");
-            jest.advanceTimersByTime(1);
-
             // Assert
             await waitFor(() => {
                 expect(focusSpy).toHaveBeenCalled();
