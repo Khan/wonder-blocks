@@ -211,6 +211,10 @@ export const TabItemAriaLabel: Story = {
     render: ControlledResponsiveTabs,
 };
 
+/**
+ * Tab items can be provided with an icon. They can be a `PhosphorIcon` or
+ * `Icon` component.
+ */
 export const TabIcons: Story = {
     render: ControlledResponsiveTabs,
     args: {
