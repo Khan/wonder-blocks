@@ -1,12 +1,14 @@
 import * as React from "react";
 import {createPortal} from "react-dom";
 import {Popper} from "react-popper";
+import {StyleSheet, css} from "aphrodite";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
 import {
     border,
     boxShadow,
+    breakpoint,
     font,
     semanticColor,
     sizing,
@@ -21,18 +23,6 @@ const DEFAULT_STYLE = {
     border: `solid ${border.width.thin} ${semanticColor.core.border.neutral.subtle}`,
     boxShadow: boxShadow.mid,
 } as const;
-
-// Static base styles for the overlay container - cached outside component
-const BASE_CONTAINER_STYLES = {
-    fontFamily: font.family.sans,
-    padding: sizing.size_100,
-} as const;
-
-// Static styles for when content is out of boundaries - cached outside component
-const OUT_OF_BOUNDARIES_STYLES = {
-    pointerEvents: "none" as const,
-    visibility: "hidden" as const,
-};
 
 interface Props {
     /**
@@ -121,18 +111,21 @@ const DatePickerOverlay = ({
                         !isTestEnvironment &&
                         (isReferenceHidden || hasPopperEscaped);
 
-                    // Combine styles: base -> popper positioning -> custom -> boundary hiding
-                    const combinedStyles = {
-                        ...BASE_CONTAINER_STYLES,
+                    // Inline styles for positioning and visibility
+                    const inlineStyles = {
                         ...popperStyle,
                         ...style,
-                        ...(outOfBoundaries && OUT_OF_BOUNDARIES_STYLES),
+                        ...(outOfBoundaries && {
+                            pointerEvents: "none" as const,
+                            visibility: "hidden" as const,
+                        }),
                     } as React.CSSProperties;
 
                     return (
                         <div
                             ref={ref}
-                            style={combinedStyles}
+                            className={css(styles.overlay)}
+                            style={inlineStyles}
                             data-placement={placement}
                         >
                             {children}
@@ -144,5 +137,18 @@ const DatePickerOverlay = ({
         modalHost,
     );
 };
+
+const styles = StyleSheet.create({
+    overlay: {
+        fontFamily: font.family.sans,
+        padding: sizing.size_100,
+        [breakpoint.mediaQuery.xsOrSmaller]: {
+            // On smallest viewports, pin to edges to prevent cutoff
+            insetInlineStart: "0 !important",
+            insetInlineEnd: "0 !important",
+            maxWidth: "100vw",
+        },
+    },
+});
 
 export default DatePickerOverlay;
