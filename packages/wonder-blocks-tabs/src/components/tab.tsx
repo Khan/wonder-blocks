@@ -94,7 +94,14 @@ export const Tab = React.forwardRef(function Tab(
                 style,
             ]}
         >
-            {icon && <View>{icon}</View>}
+            {icon && (
+                <View>
+                    {React.cloneElement(icon, {
+                        // By default, use the medium size for icon components
+                        size: icon.props.size ?? "medium",
+                    })}
+                </View>
+            )}
             {children}
         </StyledButton>
     );
