@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-card
 
+## 1.4.3
+
+### Patch Changes
+
+- d6ae5fb: Adds npmignore to Card package
+- Updated dependencies [d6ae5fb]
+    - @khanacademy/wonder-blocks-core@12.4.3
+    - @khanacademy/wonder-blocks-icon-button@11.1.2
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+
 ## 1.4.2
 
 ### Patch Changes

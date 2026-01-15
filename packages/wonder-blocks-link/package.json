@@ -3,7 +3,7 @@
   "description": "Link component for Wonder Blocks design system.",
   "author": "Khan Academy",
   "license": "MIT",
-  "version": "10.1.1",
+  "version": "10.1.2",
   "publishConfig": {
     "access": "public"
   },

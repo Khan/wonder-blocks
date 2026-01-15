@@ -3,7 +3,7 @@
   "description": "Form components for Wonder Blocks.",
   "author": "Khan Academy",
   "license": "MIT",
-  "version": "7.5.1",
+  "version": "7.5.2",
   "publishConfig": {
     "access": "public"
   },
