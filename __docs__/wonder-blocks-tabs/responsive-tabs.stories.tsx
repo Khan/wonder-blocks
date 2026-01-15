@@ -54,12 +54,16 @@ export const Default: Story = {
     render: function Render(args) {
         const [tabsCount, setTabsCount] = React.useState(INITIAL_TABS_COUNT);
         const [showLongLabels, setShowLongLabels] = React.useState(false);
+        const [showIcons, setShowIcons] = React.useState(false);
         const tabs = new Array(tabsCount).fill(0).map((_, index) => ({
             label: showLongLabels
                 ? `Tab ${index + 1} with a long label`
                 : `Tab ${index + 1}`,
             id: `tab-${index + 1}`,
             panel: <div>Tab contents {index + 1}</div>,
+            icon: showIcons ? (
+                <PhosphorIcon icon={IconMappings.cookieBold} />
+            ) : undefined,
         }));
 
         const [containerWidth, setContainerWidth] = React.useState<
@@ -127,6 +131,13 @@ export const Default: Story = {
                         }}
                     >
                         Simulate zoom
+                    </Button>
+                    <Button
+                        onClick={() => {
+                            setShowIcons(!showIcons);
+                        }}
+                    >
+                        Toggle icons
                     </Button>
                 </View>
             </View>
