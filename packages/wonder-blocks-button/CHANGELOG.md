@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-button
 
+## 11.3.0
+
+### Minor Changes
+
+- 5e61bf3: `ActitivyButton`: Adds actionType prop to include neutral variant
+
 ## 11.2.11
 
 ### Patch Changes

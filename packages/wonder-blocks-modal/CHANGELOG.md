@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-modal
 
+## 8.5.12
+
+### Patch Changes
+
+- 673432c: Allows clicks to paddingLayer to pass through, re-enabling backdropDismissEnabled=true
+
 ## 8.5.11
 
 ### Patch Changes

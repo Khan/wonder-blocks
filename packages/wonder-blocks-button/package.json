@@ -3,7 +3,7 @@
   "description": "",
   "author": "Khan Academy",
   "license": "MIT",
-  "version": "11.2.11",
+  "version": "11.3.0",
   "publishConfig": {
     "access": "public"
   },
