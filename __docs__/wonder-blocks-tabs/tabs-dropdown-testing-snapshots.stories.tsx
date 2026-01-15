@@ -8,6 +8,8 @@ import {
 } from "../components/text-for-testing";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {allModes, themeModes} from "../../.storybook/modes";
+import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
     title: "Packages / Tabs / Tabs / Subcomponents / TabsDropdown / Testing / TabsDropdown - Snapshots",
@@ -200,6 +202,97 @@ export const Scenarios: Story = {
                         },
                     ],
                     selectedTabId: "tab-1",
+                },
+            },
+            {
+                name: "With icons",
+                props: {
+                    opened: true,
+                    tabs: [
+                        {
+                            label: "Tab 1",
+                            id: "tab-1",
+                            panel: <div>Tab contents 1</div>,
+                            icon: <PhosphorIcon icon={IconMappings.cookie} />,
+                        },
+                        {
+                            label: "Tab 2",
+                            id: "tab-2",
+                            panel: <div>Tab contents 2</div>,
+                            icon: <PhosphorIcon icon={IconMappings.iceCream} />,
+                        },
+                        {
+                            label: "Tab 3",
+                            id: "tab-3",
+                            panel: <div>Tab contents 3</div>,
+                            icon: (
+                                <Icon>
+                                    <img src="logo.svg" alt="Wonder Blocks" />
+                                </Icon>
+                            ),
+                        },
+                    ],
+                    selectedTabId: "tab-1",
+                    styles: {
+                        root: {
+                            paddingBlockEnd: sizing.size_960,
+                            marginBlockEnd: sizing.size_960,
+                        },
+                    },
+                },
+            },
+            {
+                name: "With icons and long labels",
+                props: {
+                    opened: true,
+                    tabs: [
+                        {
+                            label: longText,
+                            id: "tab-1",
+                            panel: <div>Tab contents 1</div>,
+                            icon: <PhosphorIcon icon={IconMappings.cookie} />,
+                        },
+                        {
+                            label: longText,
+                            id: "tab-2",
+                            panel: <div>Tab contents 2</div>,
+                            icon: <PhosphorIcon icon={IconMappings.iceCream} />,
+                        },
+                    ],
+                    selectedTabId: "tab-1",
+                    styles: {
+                        root: {
+                            paddingBlockEnd: sizing.size_960,
+                            marginBlockEnd: sizing.size_960,
+                        },
+                    },
+                },
+            },
+            {
+                name: "With icons and long labels with no word break",
+                props: {
+                    opened: true,
+                    tabs: [
+                        {
+                            label: longTextWithNoWordBreak,
+                            id: "tab-1",
+                            panel: <div>Tab contents 1</div>,
+                            icon: <PhosphorIcon icon={IconMappings.cookie} />,
+                        },
+                        {
+                            label: longTextWithNoWordBreak,
+                            id: "tab-2",
+                            panel: <div>Tab contents 2</div>,
+                            icon: <PhosphorIcon icon={IconMappings.iceCream} />,
+                        },
+                    ],
+                    selectedTabId: "tab-1",
+                    styles: {
+                        root: {
+                            paddingBlockEnd: sizing.size_960,
+                            marginBlockEnd: sizing.size_960,
+                        },
+                    },
                 },
             },
         ];
