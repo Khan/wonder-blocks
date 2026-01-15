@@ -241,6 +241,9 @@ function Popover(props: Props) {
                     </View>
                 }
                 strategy="fixed"
+                rootBoundary={rootBoundary}
+                flip={rootBoundary === "document"}
+                shift={rootBoundary === "viewport"}
             >
                 <PopoverAnchor
                     id={`${uniqueId}-anchor`}
