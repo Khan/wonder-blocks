@@ -1,5 +1,30 @@
 # @khanacademy/wonder-blocks-form
 
+## 7.5.2
+
+### Patch Changes
+
+- Updated dependencies [d6ae5fb]
+    - @khanacademy/wonder-blocks-core@12.4.3
+    - @khanacademy/wonder-blocks-clickable@8.1.1
+    - @khanacademy/wonder-blocks-icon@5.3.6
+    - @khanacademy/wonder-blocks-layout@3.1.43
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-typography@4.2.28
+
+## 7.5.1
+
+### Patch Changes
+
+- Updated dependencies [6e257eb]
+    - @khanacademy/wonder-blocks-clickable@8.1.0
+
+## 7.5.0
+
+### Minor Changes
+
+- 12169b4: Added a whole-number type to the text-field component
+
 ## 7.4.6
 
 ### Patch Changes

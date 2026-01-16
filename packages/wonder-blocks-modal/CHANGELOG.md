@@ -1,5 +1,32 @@
 # @khanacademy/wonder-blocks-modal
 
+## 8.5.13
+
+### Patch Changes
+
+- Updated dependencies [d6ae5fb]
+    - @khanacademy/wonder-blocks-core@12.4.3
+    - @khanacademy/wonder-blocks-breadcrumbs@3.2.10
+    - @khanacademy/wonder-blocks-icon-button@11.1.2
+    - @khanacademy/wonder-blocks-layout@3.1.43
+    - @khanacademy/wonder-blocks-styles@0.2.37
+    - @khanacademy/wonder-blocks-timing@7.0.4
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-typography@4.2.28
+
+## 8.5.12
+
+### Patch Changes
+
+- 673432c: Allows clicks to paddingLayer to pass through, re-enabling backdropDismissEnabled=true
+
+## 8.5.11
+
+### Patch Changes
+
+- f6457be: Adjust scroll behavior for small screens in DrawerDialog and FlexibleDialog
+    - @khanacademy/wonder-blocks-icon-button@11.1.1
+
 ## 8.5.10
 
 ### Patch Changes

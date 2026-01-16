@@ -1,5 +1,11 @@
 # wb-dev-build-settings
 
+## 3.3.0
+
+### Minor Changes
+
+- d6ae5fb: Add new Date Picker package and related dev settings
+
 ## 3.2.0
 
 ### Minor Changes

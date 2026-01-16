@@ -1,5 +1,36 @@
 # @khanacademy/wonder-blocks-link
 
+## 10.1.2
+
+### Patch Changes
+
+- Updated dependencies [d6ae5fb]
+    - @khanacademy/wonder-blocks-core@12.4.3
+    - @khanacademy/wonder-blocks-clickable@8.1.1
+    - @khanacademy/wonder-blocks-icon@5.3.6
+    - @khanacademy/wonder-blocks-styles@0.2.37
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-typography@4.2.28
+
+## 10.1.1
+
+### Patch Changes
+
+- Updated dependencies [6e257eb]
+    - @khanacademy/wonder-blocks-clickable@8.1.0
+
+## 10.1.0
+
+### Minor Changes
+
+- ca1cc9f: Link: Removes default aria label for external icon
+
+## 10.0.7
+
+### Patch Changes
+
+- d483d86: External Icon in Link communicates '(opens in a new tab)' to screen readers by default and allows overrides to support internationalization.
+
 ## 10.0.6
 
 ### Patch Changes

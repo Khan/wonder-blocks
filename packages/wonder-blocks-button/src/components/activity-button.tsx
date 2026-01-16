@@ -31,6 +31,7 @@ const ActivityButtonCore: React.ForwardRefExoticComponent<
     ref,
 ) {
     const {
+        actionType = "progressive",
         children,
         disabled = false,
         kind = "primary",
@@ -45,8 +46,7 @@ const ActivityButtonCore: React.ForwardRefExoticComponent<
         ...restProps
     } = props;
 
-    // NOTE: `progressive` is the only action type supported by this component.
-    const buttonStyles = _generateStyles("progressive", disabled, kind);
+    const buttonStyles = _generateStyles(actionType, disabled, kind);
 
     const sharedStyles = [
         buttonStyles.button,
@@ -180,7 +180,8 @@ export const ActivityButton = React.forwardRef(function ActivityButton(
     const extraClickableProps = beforeNav ? {beforeNav} : {target};
     // Invoke link or button clickable behavior
     const roleForEvents = href ? "link" : "button";
-    // prevent redundant roles for links and buttons, while allowing other roles like `tab` or `menuitem`
+    // prevent redundant roles for links and buttons, while allowing other roles
+    // like `tab` or `menuitem`
     const renderedRole =
         role === "link" || role === "button" ? undefined : role;
 

@@ -81,38 +81,50 @@ const ModalDialog = React.forwardRef(function ModalDialog(
     } = props;
 
     return (
-        <View style={[componentStyles.wrapper, style]}>
-            {below && <View style={componentStyles.below}>{below}</View>}
-            <View
-                role={role}
-                aria-modal="true"
-                aria-label={ariaLabel}
-                aria-labelledby={ariaLabelledBy}
-                aria-describedby={ariaDescribedBy}
-                ref={ref}
-                style={[componentStyles.dialog]}
-                testId={testId}
-            >
-                {children}
+        <View style={componentStyles.paddingLayer} data-modal-padding-layer>
+            {/* WB-2197: We add a data attribute for identifying this layer on backdrop clicks */}
+            <View style={[componentStyles.wrapper, style]}>
+                {below && <View style={componentStyles.below}>{below}</View>}
+                <View
+                    role={role}
+                    aria-modal="true"
+                    aria-label={ariaLabel}
+                    aria-labelledby={ariaLabelledBy}
+                    aria-describedby={ariaDescribedBy}
+                    ref={ref}
+                    style={[componentStyles.dialog]}
+                    testId={testId}
+                >
+                    {children}
+                </View>
+                {above && <View style={componentStyles.above}>{above}</View>}
             </View>
-            {above && <View style={componentStyles.above}>{above}</View>}
         </View>
     );
 });
 
 const componentStyles = StyleSheet.create({
+    // pad outside of the shadow layer so the background color stays aligned
+    paddingLayer: {
+        alignItems: "center",
+        height: "100%",
+        justifyContent: "center",
+        width: "100%",
+        [modalMediaQuery.midOrSmaller as any]: {
+            padding: theme.dialog.layout.padding,
+        },
+    },
     wrapper: {
+        alignItems: "stretch",
+        borderRadius: theme.root.border.radius,
+        boxShadow: theme.dialog.shadow.default,
         // Allows propagating the text color to all the children.
         color: semanticColor.core.foreground.neutral.strong,
         flexDirection: "row",
-        alignItems: "stretch",
-        width: "100%",
         height: "100%",
         position: "relative",
-        boxShadow: theme.dialog.shadow.default,
-        borderRadius: theme.root.border.radius,
+        width: "100%",
         [modalMediaQuery.midOrSmaller as any]: {
-            padding: theme.dialog.layout.padding,
             flexDirection: "column",
         },
         [modalMediaQuery.smMinOrSmallerHeight as any]: {
