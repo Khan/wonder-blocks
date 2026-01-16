@@ -3,7 +3,7 @@
   "description": "Date picker component for Wonder Blocks.",
   "author": "Khan Academy",
   "license": "MIT",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "publishConfig": {
     "access": "public"
   },
