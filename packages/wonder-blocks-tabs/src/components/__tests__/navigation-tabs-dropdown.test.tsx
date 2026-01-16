@@ -520,5 +520,58 @@ describe("NavigationTabsDropdown", () => {
             // eslint-disable-next-line testing-library/no-node-access -- explicitly checking the root element
             expect(container.firstChild?.nodeName).toBe("DIV");
         });
+
+        it("should set aria-label on a tab item when provided", async () => {
+            // Arrange
+            render(
+                <NavigationTabsDropdown
+                    aria-label="Navigation tabs"
+                    tabs={[
+                        {
+                            id: "tab-1",
+                            label: "Tab 1",
+                            href: "#tab-1",
+                            "aria-label": "Tab 1 aria-label",
+                        },
+                    ]}
+                    selectedTabId="tab-1"
+                    onTabSelected={jest.fn()}
+                />,
+            );
+
+            // Act
+            await userEvent.click(screen.getByRole("button"));
+
+            // Assert
+            expect(
+                screen.getByRole("menuitem", {name: "Tab 1 aria-label"}),
+            ).toHaveAttribute("aria-label", "Tab 1 aria-label");
+        });
+
+        it("should use the tab item aria label for the opener when that tab is selected", () => {
+            // Arrange
+            // Act
+            render(
+                <NavigationTabsDropdown
+                    aria-label="Navigation tabs"
+                    tabs={[
+                        {
+                            id: "tab-1",
+                            label: "Tab 1",
+                            href: "#tab-1",
+                            "aria-label": "Tab 1 aria-label",
+                        },
+                    ]}
+                    selectedTabId="tab-1"
+                    onTabSelected={jest.fn()}
+                />,
+            );
+
+            // Assert
+            expect(screen.getByRole("button")).toHaveAttribute(
+                "aria-label",
+                "Tab 1 aria-label",
+            );
+        });
     });
 });

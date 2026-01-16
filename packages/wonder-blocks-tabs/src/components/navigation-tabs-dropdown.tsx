@@ -24,6 +24,10 @@ type NavigationTabDropdownItem = {
      * Optional test ID for e2e testing of the menu item.
      */
     testId?: string;
+    /**
+     * Optional aria-label for the navigation tab.
+     */
+    "aria-label"?: string;
 };
 
 type NavigationTabsDropdownProps = {
@@ -163,6 +167,9 @@ export const NavigationTabsDropdown = React.forwardRef<
                         kind="tertiary"
                         endIcon={caretDown}
                         style={styles.opener}
+                        // If the selected tab has an aria-label, use it for
+                        // the opener when it is selected
+                        aria-label={selectedTabItem?.["aria-label"]}
                     >
                         {menuText}
                     </Button>
@@ -175,6 +182,7 @@ export const NavigationTabsDropdown = React.forwardRef<
                             key={tab.id}
                             label={tab.label}
                             href={tab.href}
+                            aria-label={tab["aria-label"]}
                             active={tab.id === selectedTabId}
                             testId={tab.testId}
                             onClick={
