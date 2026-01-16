@@ -37,6 +37,15 @@ type NavigationTabsDropdownProps = {
      * Called when a navigation tab is selected.
      */
     onTabSelected: (id: string) => unknown;
+    /**
+     * A unique id for the component. If not provided, a unique base id will be
+     * generated automatically.
+     *
+     * Here is how the id is used for the different elements in the component:
+     * - The root will have an id of `${id}`
+     * - The opener will have an id of `${id}-opener`
+     */
+    id?: string;
 };
 
 /**
@@ -49,13 +58,17 @@ export const NavigationTabsDropdown = React.forwardRef<
     HTMLDivElement,
     NavigationTabsDropdownProps
 >((props, ref) => {
-    const {tabs, selectedTabId, onTabSelected} = props;
+    const {tabs, selectedTabId, onTabSelected, id: idProp} = props;
 
     const selectedTabItem = React.useMemo(() => {
         return tabs.find(
             (tab: NavigationTabDropdownItem) => tab.id === selectedTabId,
         );
     }, [tabs, selectedTabId]);
+
+    const generatedUniqueId = React.useId();
+    const uniqueId = idProp ?? generatedUniqueId;
+    const openerId = `${uniqueId}-opener`;
 
     if (tabs.length === 0) {
         return <React.Fragment />;
@@ -64,8 +77,10 @@ export const NavigationTabsDropdown = React.forwardRef<
     const menuText = selectedTabItem?.label || "Tabs";
 
     return (
-        <View ref={ref}>
+        <View ref={ref} id={uniqueId}>
             <ActionMenu
+                // ActionMenu's id prop is used to set the id on the opener element
+                id={openerId}
                 menuText={menuText}
                 opener={() => (
                     <Button

@@ -171,6 +171,83 @@ describe("NavigationTabsDropdown", () => {
                 expect(screen.getByRole("button")).toHaveTextContent("Tabs");
             });
         });
+
+        describe("id", () => {
+            describe("when id is provided", () => {
+                it("should use the provided id on the root element", () => {
+                    // Arrange
+                    // Act
+                    const {container} = render(
+                        <NavigationTabsDropdown
+                            id="navigation-tabs-dropdown-id"
+                            tabs={tabs}
+                            selectedTabId="tab-1"
+                            onTabSelected={jest.fn()}
+                        />,
+                    );
+
+                    // Assert
+                    // eslint-disable-next-line testing-library/no-node-access -- explicitly checking the root element
+                    expect(container.firstChild).toHaveAttribute(
+                        "id",
+                        "navigation-tabs-dropdown-id",
+                    );
+                });
+
+                it("should use the provided id on the opener element with '-opener' suffix", () => {
+                    // Arrange
+                    // Act
+                    render(
+                        <NavigationTabsDropdown
+                            id="navigation-tabs-dropdown-id"
+                            tabs={tabs}
+                            selectedTabId="tab-1"
+                            onTabSelected={jest.fn()}
+                        />,
+                    );
+
+                    // Assert
+                    expect(screen.getByRole("button")).toHaveAttribute(
+                        "id",
+                        "navigation-tabs-dropdown-id-opener",
+                    );
+                });
+            });
+
+            describe("when id is not provided", () => {
+                it("should auto-generate an id on the root element", () => {
+                    // Arrange
+                    // Act
+                    const {container} = render(
+                        <NavigationTabsDropdown
+                            tabs={tabs}
+                            selectedTabId="tab-1"
+                            onTabSelected={jest.fn()}
+                        />,
+                    );
+
+                    // Assert
+                    // eslint-disable-next-line testing-library/no-node-access -- explicitly checking the root element
+                    expect(container.firstChild).toHaveAttribute("id");
+                });
+
+                it("should auto-generate an id on the opener element with '-opener' suffix", () => {
+                    // Arrange
+                    render(
+                        <NavigationTabsDropdown
+                            tabs={tabs}
+                            selectedTabId="tab-1"
+                            onTabSelected={jest.fn()}
+                        />,
+                    );
+                    // Act
+                    const opener = screen.getByRole("button");
+
+                    // Assert
+                    expect(opener.id.endsWith("-opener")).toBe(true);
+                });
+            });
+        });
     });
 
     describe("Events", () => {
