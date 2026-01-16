@@ -5,6 +5,7 @@ import caretDown from "@phosphor-icons/core/bold/caret-down-bold.svg";
 import {StyleSheet} from "aphrodite";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {View} from "@khanacademy/wonder-blocks-core";
+import {TabsDropdownProps} from "./tabs-dropdown";
 
 type NavigationTabDropdownItem = {
     /**
@@ -58,6 +59,20 @@ type NavigationTabsDropdownProps = {
      * - The opener will have a testId of `${testId}-opener`
      */
     testId?: string;
+    /**
+     * Labels for the dropdown.
+     */
+    labels?: {
+        /**
+         * The label used for the opener when there is no selected tab. Defaults
+         * to an untranslated "Tabs" string.
+         */
+        defaultOpenerLabel?: string;
+    };
+};
+
+const defaultLabels: Required<TabsDropdownProps["labels"]> = {
+    defaultOpenerLabel: "Tabs",
 };
 
 /**
@@ -70,7 +85,18 @@ export const NavigationTabsDropdown = React.forwardRef<
     HTMLDivElement,
     NavigationTabsDropdownProps
 >((props, ref) => {
-    const {tabs, selectedTabId, onTabSelected, id: idProp, testId} = props;
+    const {
+        tabs,
+        selectedTabId,
+        onTabSelected,
+        id: idProp,
+        testId,
+        labels: labelsProp,
+    } = props;
+
+    const labels = React.useMemo(() => {
+        return {...defaultLabels, ...labelsProp};
+    }, [labelsProp]);
 
     const selectedTabItem = React.useMemo(() => {
         return tabs.find(
@@ -86,7 +112,7 @@ export const NavigationTabsDropdown = React.forwardRef<
         return <React.Fragment />;
     }
 
-    const menuText = selectedTabItem?.label || "Tabs";
+    const menuText = selectedTabItem?.label || labels.defaultOpenerLabel;
 
     return (
         <View ref={ref} id={uniqueId} testId={testId}>

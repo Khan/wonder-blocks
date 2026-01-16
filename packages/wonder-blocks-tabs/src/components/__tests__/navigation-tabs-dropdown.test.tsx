@@ -313,6 +313,57 @@ describe("NavigationTabsDropdown", () => {
                 expect(screen.getByTestId("tab-1-test-id")).toBeInTheDocument();
             });
         });
+
+        describe("labels prop", () => {
+            it("should use default 'Tabs' label when there is no selected tab and no custom label", () => {
+                // Arrange
+                // Act
+                render(
+                    <NavigationTabsDropdown
+                        tabs={tabs}
+                        selectedTabId="invalid-id"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Assert
+                expect(screen.getByRole("button")).toHaveTextContent("Tabs");
+            });
+
+            it("should use custom defaultOpenerLabel when provided and there is no selected tab", () => {
+                // Arrange
+                // Act
+                render(
+                    <NavigationTabsDropdown
+                        tabs={tabs}
+                        selectedTabId="invalid-id"
+                        onTabSelected={jest.fn()}
+                        labels={{defaultOpenerLabel: "Custom Navigation"}}
+                    />,
+                );
+
+                // Assert
+                expect(screen.getByRole("button")).toHaveTextContent(
+                    "Custom Navigation",
+                );
+            });
+
+            it("should prioritize selected tab label over default label", () => {
+                // Arrange
+                // Act
+                render(
+                    <NavigationTabsDropdown
+                        tabs={tabs}
+                        selectedTabId="tab-2"
+                        onTabSelected={jest.fn()}
+                        labels={{defaultOpenerLabel: "Custom Navigation"}}
+                    />,
+                );
+
+                // Assert
+                expect(screen.getByRole("button")).toHaveTextContent("Tab 2");
+            });
+        });
     });
 
     describe("Events", () => {
