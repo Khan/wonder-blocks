@@ -30,6 +30,10 @@ type TabDropdownItem = {
      * Optional aria-label for the tab.
      */
     "aria-label"?: string;
+    /**
+     * Optional icon to display in the tab. Should be a PhosphorIcon or Icon component.
+     */
+    icon?: React.ReactElement;
 };
 
 export type TabsDropdownProps = AriaLabelOrAriaLabelledby & {
@@ -171,9 +175,15 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, TabsDropdownProps>(
                             kind="tertiary"
                             endIcon={caretDown}
                             style={[styles.opener, stylesProp?.opener]}
+                            labelStyle={styles.labelStyle}
                             // If the selected tab has an aria-label, use it for
                             // the opener when it is selected
                             aria-label={selectedTabItem?.["aria-label"]}
+                            startIcon={selectedTabItem?.icon}
+                            // Disable the wrapping of aria-hidden=true around the
+                            // start icon. It is up to consumers to set the
+                            // alternative text on the startIcon element itself
+                            startIconIsPresentationalOnly={false}
                         >
                             {menuText}
                         </Button>
@@ -199,6 +209,16 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, TabsDropdownProps>(
                                             aria-hidden="true"
                                         />
                                     ) : undefined
+                                }
+                                leftAccessory={
+                                    tab.icon
+                                        ? React.cloneElement(tab.icon, {
+                                              // By default, use the medium size for icon components
+                                              size:
+                                                  tab.icon.props.size ??
+                                                  "medium",
+                                          })
+                                        : undefined
                                 }
                             />
                         );
@@ -232,5 +252,11 @@ const styles = StyleSheet.create({
         paddingInline: sizing.size_180,
         width: "100%",
         justifyContent: "space-between",
+        gap: sizing.size_020,
+    },
+    labelStyle: {
+        flexGrow: 1,
+        maxWidth: "100%",
+        textAlign: "start",
     },
 });

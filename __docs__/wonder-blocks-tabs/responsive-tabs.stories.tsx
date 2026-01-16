@@ -5,6 +5,8 @@ import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import responsiveTabsArgtypes from "./responsive-tabs.argtypes";
+import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
     title: "Packages / Tabs / ResponsiveTabs",
@@ -52,12 +54,16 @@ export const Default: Story = {
     render: function Render(args) {
         const [tabsCount, setTabsCount] = React.useState(INITIAL_TABS_COUNT);
         const [showLongLabels, setShowLongLabels] = React.useState(false);
+        const [showIcons, setShowIcons] = React.useState(false);
         const tabs = new Array(tabsCount).fill(0).map((_, index) => ({
             label: showLongLabels
                 ? `Tab ${index + 1} with a long label`
                 : `Tab ${index + 1}`,
             id: `tab-${index + 1}`,
             panel: <div>Tab contents {index + 1}</div>,
+            icon: showIcons ? (
+                <PhosphorIcon icon={IconMappings.cookieBold} />
+            ) : undefined,
         }));
 
         const [containerWidth, setContainerWidth] = React.useState<
@@ -125,6 +131,13 @@ export const Default: Story = {
                         }}
                     >
                         Simulate zoom
+                    </Button>
+                    <Button
+                        onClick={() => {
+                            setShowIcons(!showIcons);
+                        }}
+                    >
+                        Toggle icons
                     </Button>
                 </View>
             </View>
@@ -196,4 +209,54 @@ export const TabItemAriaLabel: Story = {
         selectedTabId: "tab-1",
     },
     render: ControlledResponsiveTabs,
+};
+
+/**
+ * Tab items can be provided with an icon. They can be a `PhosphorIcon` or
+ * `Icon` component.
+ */
+export const TabIcons: Story = {
+    render: ControlledResponsiveTabs,
+    args: {
+        selectedTabId: "tab-1",
+        tabs: [
+            {
+                label: "Tab 1 with Phosphor icon",
+                id: "tab-1",
+                panel: <div>Tab contents 1</div>,
+                icon: (
+                    <PhosphorIcon
+                        icon={IconMappings.cookieBold}
+                        aria-label="Cookie"
+                    />
+                ),
+            },
+            {
+                label: "Tab 2 with custom icon",
+                id: "tab-2",
+                panel: <div>Tab contents 2</div>,
+                icon: (
+                    <Icon>
+                        <img src="logo.svg" alt="Wonder Blocks" />
+                    </Icon>
+                ),
+            },
+            {
+                label: "Tab 3 with presentational icon",
+                id: "tab-3",
+                panel: <div>Tab contents 3</div>,
+                icon: (
+                    <PhosphorIcon
+                        icon={IconMappings.iceCream}
+                        aria-hidden={true}
+                    />
+                ),
+            },
+            {
+                label: "Tab 4 with no icon",
+                id: "tab-4",
+                panel: <div>Tab contents 4</div>,
+            },
+        ],
+    },
 };

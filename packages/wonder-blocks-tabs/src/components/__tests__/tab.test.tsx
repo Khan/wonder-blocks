@@ -105,6 +105,23 @@ describe("Tab", () => {
             // Assert
             expect(tab).toHaveAttribute("data-testid", testId);
         });
+
+        it("should render the provided icon", async () => {
+            // Arrange
+            const icon = <img src="icon.svg" alt="icon example" />;
+
+            // Act
+            render(
+                <Tab {...props} icon={icon}>
+                    Tab
+                </Tab>,
+            );
+
+            // Assert
+            await screen.findByRole("img", {
+                name: "icon example",
+            });
+        });
     });
 
     describe("Event Handlers", () => {

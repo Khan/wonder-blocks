@@ -4,6 +4,7 @@ import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
 import {render, screen, waitFor} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
+import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Button from "../button";
 
 describe("Button", () => {
@@ -745,6 +746,104 @@ describe("Button", () => {
             await waitFor(() => {
                 expect(window.location.assign).toHaveBeenCalledWith("/foo");
             });
+        });
+    });
+
+    describe("Props", () => {
+        it("should by default hide the startIcon from screen readers", async () => {
+            // Arrange
+            // Act
+            render(
+                <Button
+                    startIcon={
+                        <Icon>
+                            <img src="icon.svg" alt="icon example" />
+                        </Icon>
+                    }
+                >
+                    Label
+                </Button>,
+            );
+
+            // Assert
+            // expect the icon to be hidden from screen readers by default
+            await screen.findByRole("img", {
+                hidden: true,
+                name: "icon example",
+            });
+        });
+
+        it("should hide the startIcon from screen readers when startIconIsPresentationalOnly is true", async () => {
+            // Arrange
+            // Act
+            render(
+                <Button
+                    startIconIsPresentationalOnly={true}
+                    startIcon={
+                        <Icon>
+                            <img src="icon.svg" alt="icon example" />
+                        </Icon>
+                    }
+                >
+                    Label
+                </Button>,
+            );
+
+            // Assert
+            // expect the icon to be hidden from screen readers by default
+            await screen.findByRole("img", {
+                hidden: true,
+                name: "icon example",
+            });
+        });
+
+        it("should allow the startIcon to be visible to screen readers by setting startIconIsPresentationalOnly to false", async () => {
+            // Arrange
+            render(
+                <Button
+                    startIconIsPresentationalOnly={false}
+                    startIcon={
+                        <Icon>
+                            <img src="icon.svg" alt="icon example" />
+                        </Icon>
+                    }
+                >
+                    Label
+                </Button>,
+            );
+
+            // Assert
+            await screen.findByRole("img", {
+                hidden: false,
+                name: "icon example",
+            });
+        });
+
+        it("should allow an icon's aria-hidden attribute override the startIconIsPresentationalOnly behaviour", async () => {
+            // Arrange
+            render(
+                <Button
+                    startIconIsPresentationalOnly={false}
+                    testId="button-test-id"
+                    startIcon={
+                        <PhosphorIcon
+                            icon="icon.svg"
+                            aria-hidden={true}
+                            role="img"
+                        />
+                    }
+                >
+                    Label
+                </Button>,
+            );
+
+            // Act
+            const icon = await screen.findByTestId("button-test-id-start-icon");
+
+            // Assert
+            // Icon can still have aria-hidden=true, even if
+            // startIconIsPresentationalOnly is false
+            expect(icon).toHaveAttribute("aria-hidden", "true");
         });
     });
 });

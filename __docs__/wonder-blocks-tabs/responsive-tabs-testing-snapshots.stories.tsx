@@ -6,6 +6,8 @@ import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {longText} from "../components/text-for-testing";
 import {allModes, themeModes} from "../../.storybook/modes";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
     title: "Packages / Tabs / ResponsiveTabs / Testing / ResponsiveTabs - Snapshots",
@@ -99,6 +101,64 @@ export const Scenarios: Story = {
                             },
                         },
                     },
+                },
+            },
+            {
+                name: "With icons",
+                props: {
+                    tabs: [
+                        {
+                            label: "Tab 1",
+                            id: "tab-1",
+                            panel: <div>Tab contents 1</div>,
+                            icon: <PhosphorIcon icon={IconMappings.cookie} />,
+                        },
+                        {
+                            label: "Tab 2",
+                            id: "tab-2",
+                            panel: <div>Tab contents 2</div>,
+                            icon: <PhosphorIcon icon={IconMappings.iceCream} />,
+                        },
+                        {
+                            label: "Tab 3",
+                            id: "tab-3",
+                            panel: <div>Tab contents 3</div>,
+                            icon: (
+                                <Icon>
+                                    <img src="logo.svg" alt="Wonder Blocks" />
+                                </Icon>
+                            ),
+                        },
+                        {
+                            label: "Tab 4",
+                            id: "tab-4",
+                            panel: <div>Tab contents 4</div>,
+                            icon: (
+                                <PhosphorIcon icon={IconMappings.lightbulb} />
+                            ),
+                        },
+                    ],
+                    selectedTabId: "tab-1",
+                },
+            },
+            {
+                name: "With icons and long labels",
+                props: {
+                    tabs: [
+                        {
+                            label: longText,
+                            id: "tab-1",
+                            panel: <div>Tab contents 1</div>,
+                            icon: <PhosphorIcon icon={IconMappings.cookie} />,
+                        },
+                        {
+                            label: longText,
+                            id: "tab-2",
+                            panel: <div>Tab contents 2</div>,
+                            icon: <PhosphorIcon icon={IconMappings.iceCream} />,
+                        },
+                    ],
+                    selectedTabId: "tab-1",
                 },
             },
         ];
