@@ -11,6 +11,7 @@ import {
 import userEvent from "@testing-library/user-event";
 import * as DateMock from "jest-date-mock";
 import {Temporal} from "temporal-polyfill";
+import {es, fr} from "date-fns/locale";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {
@@ -434,5 +435,331 @@ describe("DatePicker", () => {
 
         // Assert
         expect(hasDirLTR).toBe(true);
+    });
+
+    describe("Localization", () => {
+        describe("dateFormat prop override", () => {
+            it("displays date in MMMM D, YYYY format when dateFormat prop is set", () => {
+                // Arrange
+                const selectedDate = Temporal.PlainDate.from("2026-01-16");
+                const dateFormat = "MMMM D, YYYY";
+
+                // Act
+                render(
+                    <DatePicker
+                        selectedDate={selectedDate}
+                        updateDate={() => {}}
+                        dateFormat={dateFormat}
+                    />,
+                );
+
+                // Assert
+                expect(
+                    screen.getByDisplayValue("January 16, 2026"),
+                ).toBeInTheDocument();
+            });
+
+            it("displays same date in MM/DD/YYYY format when dateFormat prop is changed", () => {
+                // Arrange
+                const selectedDate = Temporal.PlainDate.from("2026-01-16");
+                const dateFormat = "MM/DD/YYYY";
+
+                // Act
+                render(
+                    <DatePicker
+                        selectedDate={selectedDate}
+                        updateDate={() => {}}
+                        dateFormat={dateFormat}
+                    />,
+                );
+
+                // Assert
+                expect(
+                    screen.getByDisplayValue("01/16/2026"),
+                ).toBeInTheDocument();
+            });
+
+            it("displays same date in MMM D, YYYY format when dateFormat prop is set to abbreviated", () => {
+                // Arrange
+                const selectedDate = Temporal.PlainDate.from("2026-01-16");
+                const dateFormat = "MMM D, YYYY";
+
+                // Act
+                render(
+                    <DatePicker
+                        selectedDate={selectedDate}
+                        updateDate={() => {}}
+                        dateFormat={dateFormat}
+                    />,
+                );
+
+                // Assert
+                expect(
+                    screen.getByDisplayValue("Jan 16, 2026"),
+                ).toBeInTheDocument();
+            });
+
+            it("displays same date in ISO format when dateFormat prop is set to YYYY-MM-DD", () => {
+                // Arrange
+                const selectedDate = Temporal.PlainDate.from("2026-01-16");
+                const dateFormat = "YYYY-MM-DD";
+
+                // Act
+                render(
+                    <DatePicker
+                        selectedDate={selectedDate}
+                        updateDate={() => {}}
+                        dateFormat={dateFormat}
+                    />,
+                );
+
+                // Assert
+                expect(
+                    screen.getByDisplayValue("2026-01-16"),
+                ).toBeInTheDocument();
+            });
+        });
+
+        describe("MM/DD/YYYY format (English)", () => {
+            it("displays English numeric date in MM/DD/YYYY format", () => {
+                // Arrange
+                const selectedDate = Temporal.PlainDate.from("2026-02-12");
+                const dateFormat = "MM/DD/YYYY";
+
+                // Act
+                render(
+                    <DatePicker
+                        selectedDate={selectedDate}
+                        updateDate={() => {}}
+                        dateFormat={dateFormat}
+                    />,
+                );
+
+                // Assert
+                expect(
+                    screen.getByDisplayValue("02/12/2026"),
+                ).toBeInTheDocument();
+            });
+
+            it("displays another English numeric date in MM/DD/YYYY format", () => {
+                // Arrange
+                const selectedDate = Temporal.PlainDate.from("2026-01-22");
+                const dateFormat = "MM/DD/YYYY";
+
+                // Act
+                render(
+                    <DatePicker
+                        selectedDate={selectedDate}
+                        updateDate={() => {}}
+                        dateFormat={dateFormat}
+                    />,
+                );
+
+                // Assert
+                expect(
+                    screen.getByDisplayValue("01/22/2026"),
+                ).toBeInTheDocument();
+            });
+        });
+
+        describe("Text-based format (MMMM D, YYYY)", () => {
+            it("displays English text date as January 16, 2026", () => {
+                // Arrange
+                const selectedDate = Temporal.PlainDate.from("2026-01-16");
+                const dateFormat = "MMMM D, YYYY";
+
+                // Act
+                render(
+                    <DatePicker
+                        selectedDate={selectedDate}
+                        updateDate={() => {}}
+                        dateFormat={dateFormat}
+                    />,
+                );
+
+                // Assert
+                expect(
+                    screen.getByDisplayValue("January 16, 2026"),
+                ).toBeInTheDocument();
+            });
+
+            it("displays Spanish text date as enero 16, 2026", () => {
+                // Arrange
+                const selectedDate = Temporal.PlainDate.from("2026-01-16");
+                const dateFormat = "MMMM D, YYYY";
+
+                // Act
+                render(
+                    <DatePicker
+                        selectedDate={selectedDate}
+                        updateDate={() => {}}
+                        dateFormat={dateFormat}
+                        locale={es}
+                    />,
+                );
+
+                // Assert
+                expect(
+                    screen.getByDisplayValue("enero 16, 2026"),
+                ).toBeInTheDocument();
+            });
+
+            it("displays French text date as janvier 16, 2026", () => {
+                // Arrange
+                const selectedDate = Temporal.PlainDate.from("2026-01-16");
+                const dateFormat = "MMMM D, YYYY";
+
+                // Act
+                render(
+                    <DatePicker
+                        selectedDate={selectedDate}
+                        updateDate={() => {}}
+                        dateFormat={dateFormat}
+                        locale={fr}
+                    />,
+                );
+
+                // Assert
+                expect(
+                    screen.getByDisplayValue("janvier 16, 2026"),
+                ).toBeInTheDocument();
+            });
+
+            it("displays abbreviated Spanish month names with MMM format", () => {
+                // Arrange
+                const selectedDate = Temporal.PlainDate.from("2026-01-16");
+                const dateFormat = "MMM D, YYYY";
+
+                // Act
+                render(
+                    <DatePicker
+                        selectedDate={selectedDate}
+                        updateDate={() => {}}
+                        dateFormat={dateFormat}
+                        locale={es}
+                    />,
+                );
+
+                // Assert
+                expect(
+                    screen.getByDisplayValue("ene 16, 2026"),
+                ).toBeInTheDocument();
+            });
+
+            it("updates input to Spanish text format when date is selected from calendar", async () => {
+                // Arrange
+                const selectedDate = Temporal.PlainDate.from("2026-01-05");
+                const updateDateMock = jest.fn();
+                const dateFormat = "MMMM D, YYYY";
+
+                render(
+                    <DatePicker
+                        selectedDate={selectedDate}
+                        updateDate={updateDateMock}
+                        dateFormat={dateFormat}
+                        locale={es}
+                    />,
+                );
+
+                // Act
+                await userEvent.tab();
+                await userEvent.click(screen.getByText("15"));
+
+                // Assert
+                expect(
+                    screen.getByDisplayValue("enero 15, 2026"),
+                ).toBeInTheDocument();
+            });
+        });
+
+        describe("Numeric formats (MM/DD/YYYY)", () => {
+            it("displays Spanish numeric date as 01/22/2026", () => {
+                // Arrange
+                const selectedDate = Temporal.PlainDate.from("2026-01-22");
+                const dateFormat = "DD/MM/YYYY";
+
+                // Act
+                render(
+                    <DatePicker
+                        selectedDate={selectedDate}
+                        updateDate={() => {}}
+                        dateFormat={dateFormat}
+                        locale={es}
+                    />,
+                );
+
+                // Assert
+                expect(
+                    screen.getByDisplayValue("01/22/2026"),
+                ).toBeInTheDocument();
+            });
+
+            it("displays another Spanish date as 01/16/2026", () => {
+                // Arrange
+                const selectedDate = Temporal.PlainDate.from("2026-01-16");
+                const dateFormat = "DD/MM/YYYY";
+
+                // Act
+                render(
+                    <DatePicker
+                        selectedDate={selectedDate}
+                        updateDate={() => {}}
+                        dateFormat={dateFormat}
+                        locale={es}
+                    />,
+                );
+
+                // Assert
+                expect(
+                    screen.getByDisplayValue("01/16/2026"),
+                ).toBeInTheDocument();
+            });
+
+            it("displays French numeric date as 01/16/2026", () => {
+                // Arrange
+                const selectedDate = Temporal.PlainDate.from("2026-01-16");
+                const dateFormat = "DD/MM/YYYY";
+
+                // Act
+                render(
+                    <DatePicker
+                        selectedDate={selectedDate}
+                        updateDate={() => {}}
+                        dateFormat={dateFormat}
+                        locale={fr}
+                    />,
+                );
+
+                // Assert
+                expect(
+                    screen.getByDisplayValue("01/16/2026"),
+                ).toBeInTheDocument();
+            });
+
+            it("updates input to 01/15/2026 when date is selected from Spanish calendar", async () => {
+                // Arrange
+                const selectedDate = Temporal.PlainDate.from("2026-01-05");
+                const updateDateMock = jest.fn();
+                const dateFormat = "DD/MM/YYYY";
+
+                render(
+                    <DatePicker
+                        selectedDate={selectedDate}
+                        updateDate={updateDateMock}
+                        dateFormat={dateFormat}
+                        locale={es}
+                    />,
+                );
+
+                // Act
+                await userEvent.tab();
+                await userEvent.click(screen.getByText("15"));
+
+                // Assert
+                expect(
+                    screen.getByDisplayValue("01/15/2026"),
+                ).toBeInTheDocument();
+            });
+        });
     });
 });

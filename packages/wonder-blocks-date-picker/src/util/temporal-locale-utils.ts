@@ -52,7 +52,39 @@ export function formatDate(
         return date.toString(); // ISO format
     }
 
-    // For complex formats, use toLocaleString with Intl options
+    // For text formats (MMMM D, YYYY or MMM D, YYYY), build custom format
+    // to maintain consistent ordering regardless of locale
+    if (formatString === "MMMM D, YYYY" || formatString === "MMM D, YYYY") {
+        try {
+            const monthFormat =
+                formatString === "MMMM D, YYYY" ? "long" : "short";
+            const monthName = date.toLocaleString(locale, {month: monthFormat});
+            return `${monthName} ${date.day}, ${date.year}`;
+        } catch (error) {
+            // Fall back to ISO format on error
+            return date.toString();
+        }
+    }
+
+    // For numeric date formats, build manually to maintain consistent MM/DD/YYYY ordering
+    // regardless of locale (preventing DD/MM/YYYY for non-US locales)
+    if (
+        formatString === "MM/DD/YYYY" ||
+        formatString === "M/D/YYYY" ||
+        formatString === "DD/MM/YYYY"
+    ) {
+        const shouldPad =
+            formatString.includes("MM") || formatString.includes("DD");
+        const month = shouldPad
+            ? String(date.month).padStart(2, "0")
+            : String(date.month);
+        const day = shouldPad
+            ? String(date.day).padStart(2, "0")
+            : String(date.day);
+        return `${month}/${day}/${date.year}`;
+    }
+
+    // For other patterns, use toLocaleString with Intl options
     try {
         const options = getOptionsForFormat(formatString);
         return date.toLocaleString(locale, options);
