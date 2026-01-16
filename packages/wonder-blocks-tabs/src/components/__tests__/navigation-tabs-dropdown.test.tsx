@@ -35,6 +35,19 @@ const tabs = [
 ];
 
 describe("NavigationTabsDropdown", () => {
+    it("should set the ref", () => {
+        // Arrange
+        // Act
+        const ref = React.createRef<HTMLDivElement>();
+        const {container} = render(
+            <NavigationTabsDropdown tabs={tabs} ref={ref} />,
+        );
+
+        // Assert
+        // eslint-disable-next-line testing-library/no-node-access -- check ref is on root element
+        expect(ref.current).toBe(container.firstChild);
+    });
+
     describe("Props", () => {
         describe("tabs prop", () => {
             it("should render the tabs when the dropdown is opened", async () => {

@@ -34,7 +34,10 @@ type NavigationTabsDropdownProps = {
  * tabs as a horizontal layout. Unlike TabsDropdown, this component uses links
  * for navigation instead of managing tab panels.
  */
-export const NavigationTabsDropdown = (props: NavigationTabsDropdownProps) => {
+export const NavigationTabsDropdown = React.forwardRef<
+    HTMLDivElement,
+    NavigationTabsDropdownProps
+>((props, ref) => {
     const {tabs} = props;
 
     if (tabs.length === 0) {
@@ -46,7 +49,7 @@ export const NavigationTabsDropdown = (props: NavigationTabsDropdownProps) => {
     const menuText = tabs[0]?.label || "Tabs";
 
     return (
-        <View>
+        <View ref={ref}>
             <ActionMenu
                 menuText={menuText}
                 opener={() => (
@@ -72,7 +75,7 @@ export const NavigationTabsDropdown = (props: NavigationTabsDropdownProps) => {
             </ActionMenu>
         </View>
     );
-};
+});
 
 const styles = StyleSheet.create({
     actionMenu: {
