@@ -4,7 +4,7 @@ import Button from "@khanacademy/wonder-blocks-button";
 import caretDown from "@phosphor-icons/core/bold/caret-down-bold.svg";
 import {StyleSheet} from "aphrodite";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {TabsDropdownProps} from "./tabs-dropdown";
 
 type NavigationTabDropdownItem = {
@@ -60,6 +60,22 @@ type NavigationTabsDropdownProps = {
      */
     testId?: string;
     /**
+     * Accessible label for the navigation element.
+     *
+     * It is important to provide a unique aria-label if there are multiple
+     * navigation elements on the page.
+     *
+     * If there is a visual label for the navigation tabs already, use
+     * `aria-labelledby` instead.
+     */
+    "aria-label"?: string;
+    /**
+     * If there is a visual label for the navigation tabs already, set
+     * `aria-labelledby` to the `id` of the element that labels the navigation
+     * tabs.
+     */
+    "aria-labelledby"?: string;
+    /**
      * Labels for the dropdown.
      */
     labels?: {
@@ -73,6 +89,10 @@ type NavigationTabsDropdownProps = {
      * Can be used to override the opened state for the dropdown.
      */
     opened?: boolean;
+    /**
+     * The HTML tag to use for the root element. Defaults to "nav".
+     */
+    tag?: keyof JSX.IntrinsicElements;
 };
 
 const defaultLabels: Required<TabsDropdownProps["labels"]> = {
@@ -86,7 +106,7 @@ const defaultLabels: Required<TabsDropdownProps["labels"]> = {
  * for navigation instead of managing tab panels.
  */
 export const NavigationTabsDropdown = React.forwardRef<
-    HTMLDivElement,
+    HTMLElement,
     NavigationTabsDropdownProps
 >((props, ref) => {
     const {
@@ -97,7 +117,12 @@ export const NavigationTabsDropdown = React.forwardRef<
         testId,
         labels: labelsProp,
         opened,
+        "aria-label": ariaLabel,
+        "aria-labelledby": ariaLabelledby,
+        tag = "nav",
     } = props;
+
+    const StyledTag = React.useMemo(() => addStyle(tag), [tag]);
 
     const labels = React.useMemo(() => {
         return {...defaultLabels, ...labelsProp};
@@ -120,7 +145,13 @@ export const NavigationTabsDropdown = React.forwardRef<
     const menuText = selectedTabItem?.label || labels.defaultOpenerLabel;
 
     return (
-        <View ref={ref} id={uniqueId} testId={testId}>
+        <StyledTag
+            ref={ref}
+            id={uniqueId}
+            data-testid={testId}
+            aria-label={ariaLabel}
+            aria-labelledby={ariaLabelledby}
+        >
             <ActionMenu
                 opened={opened}
                 // ActionMenu's id prop is used to set the id on the opener element
@@ -157,7 +188,7 @@ export const NavigationTabsDropdown = React.forwardRef<
                     );
                 })}
             </ActionMenu>
-        </View>
+        </StyledTag>
     );
 });
 

@@ -38,7 +38,7 @@ describe("NavigationTabsDropdown", () => {
     it("should set the ref", () => {
         // Arrange
         // Act
-        const ref = React.createRef<HTMLDivElement>();
+        const ref = React.createRef<HTMLElement>();
         const {container} = render(
             <NavigationTabsDropdown
                 tabs={tabs}
@@ -444,6 +444,81 @@ describe("NavigationTabsDropdown", () => {
                 // Assert
                 expect(onTabSelected).toHaveBeenCalledWith("tab-2");
             });
+        });
+    });
+
+    describe("Accessibility", () => {
+        it("should render root as a nav element by default", () => {
+            // Arrange
+            // Act
+            const {container} = render(
+                <NavigationTabsDropdown
+                    tabs={tabs}
+                    selectedTabId="tab-1"
+                    onTabSelected={jest.fn()}
+                    aria-label="Navigation tabs"
+                />,
+            );
+
+            // Assert
+            // eslint-disable-next-line testing-library/no-node-access -- explicitly checking the root element
+            expect(container.firstChild?.nodeName).toBe("NAV");
+        });
+
+        it("should set aria-label on navigation when provided", () => {
+            // Arrange
+            // Act
+            render(
+                <NavigationTabsDropdown
+                    tabs={tabs}
+                    selectedTabId="tab-1"
+                    onTabSelected={jest.fn()}
+                    aria-label="Main navigation"
+                />,
+            );
+
+            // Assert
+            expect(
+                screen.getByRole("navigation", {name: "Main navigation"}),
+            ).toBeInTheDocument();
+        });
+
+        it("should set aria-labelledby on navigation when provided", () => {
+            // Arrange
+            // Act
+            render(
+                <>
+                    <h1 id="nav-heading">Site Navigation</h1>
+                    <NavigationTabsDropdown
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                        aria-labelledby="nav-heading"
+                    />
+                </>,
+            );
+
+            // Assert
+            expect(
+                screen.getByRole("navigation", {name: "Site Navigation"}),
+            ).toHaveAttribute("aria-labelledby", "nav-heading");
+        });
+
+        it("should render as custom tag when tag prop is provided", () => {
+            // Arrange
+            // Act
+            const {container} = render(
+                <NavigationTabsDropdown
+                    tabs={tabs}
+                    selectedTabId="tab-1"
+                    onTabSelected={jest.fn()}
+                    tag="div"
+                />,
+            );
+
+            // Assert
+            // eslint-disable-next-line testing-library/no-node-access -- explicitly checking the root element
+            expect(container.firstChild?.nodeName).toBe("DIV");
         });
     });
 });
