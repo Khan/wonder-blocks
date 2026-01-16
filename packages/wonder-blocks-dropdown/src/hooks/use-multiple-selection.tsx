@@ -8,13 +8,13 @@ type Props = {
      */
     selected: MaybeValueOrValues;
     /**
-     * Function to set the selected items.
-     */
-    setSelected: (value: MaybeValueOrValues) => void;
-    /**
      * The current value of the input.
      */
     inputValue: string;
+    /**
+     * Notify the parent component that an item has been removed.
+     */
+    onRemove: (value: MaybeValueOrValues) => void;
 };
 
 /**
@@ -23,11 +23,7 @@ type Props = {
  * It manages keyboard navigation and selection management for the multi-select
  * selected values.
  */
-export function useMultipleSelection({
-    inputValue,
-    selected,
-    setSelected,
-}: Props) {
+export function useMultipleSelection({inputValue, selected, onRemove}: Props) {
     // Index of the currently focused pill in the multi-select combobox.
     const [focusedMultiSelectIndex, setFocusedMultiSelectIndex] =
         React.useState<number>(-1);
@@ -71,8 +67,8 @@ export function useMultipleSelection({
                     );
                 }
 
-                setSelected(newSelected);
                 setFocusedMultiSelectIndex(-1);
+                onRemove?.(newSelected);
             }
 
             if (focusedMultiSelectIndex >= 0 && key === "Enter") {
@@ -81,7 +77,7 @@ export function useMultipleSelection({
                 );
 
                 // remove current selected option
-                setSelected(newSelected);
+                onRemove?.(newSelected);
                 setFocusedMultiSelectIndex(-1);
             }
 
@@ -96,7 +92,7 @@ export function useMultipleSelection({
                 setFocusedMultiSelectIndex(-1);
             }
         },
-        [focusedMultiSelectIndex, inputValue, selected, setSelected],
+        [focusedMultiSelectIndex, inputValue, selected, onRemove],
     );
 
     return {
