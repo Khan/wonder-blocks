@@ -11,6 +11,7 @@ import {TabPanel} from "./tab-panel";
 import {Tab} from "./tab";
 import {Tablist} from "./tablist";
 import {useTabIndicator} from "../hooks/use-tab-indicator";
+import {AriaLabelOrAriaLabelledby} from "./types";
 
 export type TabRenderProps = Omit<PropsFor<typeof Tab>, "children">;
 
@@ -49,28 +50,7 @@ export type TabItem = AriaProps & {
     testId?: string;
 };
 
-/**
- * Type to help ensure aria-label or aria-labelledby is set.
- */
-type AriaLabelOrAriaLabelledby =
-    | {
-          /**
-           * If there is no visible label for the tabs, set aria-label to a
-           * label describing the tabs.
-           */
-          "aria-label": string;
-          "aria-labelledby"?: never;
-      }
-    | {
-          /**
-           * If the tabs have a visible label, set aria-labelledby to a value
-           * that refers to the labelling element.
-           */
-          "aria-labelledby": string;
-          "aria-label"?: never;
-      };
-
-type Props = {
+export type TabsProps = {
     /**
      * A unique id to use as the base of the ids for the elements within the
      * component. If the `id` prop is not provided, a base unique id will be
@@ -178,9 +158,12 @@ const StyledDiv = addStyle("div");
  * tabs have `role=”tab”` and keyboard users can change tabs using arrow keys.
  * For a tabbed interface where the tabs are links, see the NavigationTabs
  * component.
+ *
+ * For responsive cases where the tabs should switch to a dropdown when there is
+ * not enough horizontal space, use the `ResponsiveTabs` component.
  */
 export const Tabs = React.forwardRef(function Tabs(
-    props: Props,
+    props: TabsProps,
     ref: React.ForwardedRef<HTMLDivElement>,
 ) {
     const {
