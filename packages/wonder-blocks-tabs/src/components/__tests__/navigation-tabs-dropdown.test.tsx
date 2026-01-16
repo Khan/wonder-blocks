@@ -40,7 +40,11 @@ describe("NavigationTabsDropdown", () => {
         // Act
         const ref = React.createRef<HTMLDivElement>();
         const {container} = render(
-            <NavigationTabsDropdown tabs={tabs} ref={ref} />,
+            <NavigationTabsDropdown
+                tabs={tabs}
+                selectedTabId="tab-1"
+                ref={ref}
+            />,
         );
 
         // Assert
@@ -52,7 +56,12 @@ describe("NavigationTabsDropdown", () => {
         describe("tabs prop", () => {
             it("should render the tabs when the dropdown is opened", async () => {
                 // Arrange
-                render(<NavigationTabsDropdown tabs={tabs} />);
+                render(
+                    <NavigationTabsDropdown
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                    />,
+                );
 
                 // Act
                 await userEvent.click(screen.getByRole("button"));
@@ -73,7 +82,7 @@ describe("NavigationTabsDropdown", () => {
                 // Arrange
                 // Act
                 const {container} = render(
-                    <NavigationTabsDropdown tabs={[]} />,
+                    <NavigationTabsDropdown tabs={[]} selectedTabId="" />,
                 );
 
                 // Assert
@@ -82,7 +91,12 @@ describe("NavigationTabsDropdown", () => {
 
             it("should render tabs with correct href attributes", async () => {
                 // Arrange
-                render(<NavigationTabsDropdown tabs={tabs} />);
+                render(
+                    <NavigationTabsDropdown
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                    />,
+                );
 
                 // Act
                 await userEvent.click(screen.getByRole("button"));
@@ -97,6 +111,54 @@ describe("NavigationTabsDropdown", () => {
                 expect(
                     screen.getByRole("menuitem", {name: "Tab 3"}),
                 ).toHaveAttribute("href", "/tab-3");
+            });
+        });
+
+        describe("selectedTabId prop", () => {
+            it("should display selected tab label in opener", () => {
+                // Arrange
+                // Act
+                render(
+                    <NavigationTabsDropdown
+                        tabs={tabs}
+                        selectedTabId="tab-2"
+                    />,
+                );
+
+                // Assert
+                expect(screen.getByRole("button")).toHaveTextContent("Tab 2");
+            });
+
+            it("should mark selected tab as active in menu", async () => {
+                // Arrange
+                render(
+                    <NavigationTabsDropdown
+                        tabs={tabs}
+                        selectedTabId="tab-2"
+                    />,
+                );
+
+                // Act
+                await userEvent.click(screen.getByRole("button"));
+
+                // Assert
+                expect(
+                    screen.getByRole("menuitem", {current: true}),
+                ).toHaveTextContent("Tab 2");
+            });
+
+            it("should use default label when selectedTabId is invalid", () => {
+                // Arrange
+                // Act
+                render(
+                    <NavigationTabsDropdown
+                        tabs={tabs}
+                        selectedTabId="invalid-id"
+                    />,
+                );
+
+                // Assert
+                expect(screen.getByRole("button")).toHaveTextContent("Tabs");
             });
         });
     });

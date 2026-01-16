@@ -26,6 +26,13 @@ type NavigationTabsDropdownProps = {
      * The navigation tabs to render in the dropdown.
      */
     tabs: Array<NavigationTabDropdownItem>;
+    /**
+     * The id of the tab that is selected (current page).
+     *
+     * If the selectedTabId is not valid, the `labels.defaultOpenerLabel` will
+     * be used to label the dropdown opener.
+     */
+    selectedTabId: string;
 };
 
 /**
@@ -38,15 +45,19 @@ export const NavigationTabsDropdown = React.forwardRef<
     HTMLDivElement,
     NavigationTabsDropdownProps
 >((props, ref) => {
-    const {tabs} = props;
+    const {tabs, selectedTabId} = props;
+
+    const selectedTabItem = React.useMemo(() => {
+        return tabs.find(
+            (tab: NavigationTabDropdownItem) => tab.id === selectedTabId,
+        );
+    }, [tabs, selectedTabId]);
 
     if (tabs.length === 0) {
         return <React.Fragment />;
     }
 
-    // Use first tab label as default opener text
-    // TODO: update default menuText
-    const menuText = tabs[0]?.label || "Tabs";
+    const menuText = selectedTabItem?.label || "Tabs";
 
     return (
         <View ref={ref}>
@@ -69,6 +80,7 @@ export const NavigationTabsDropdown = React.forwardRef<
                             key={tab.id}
                             label={tab.label}
                             href={tab.href}
+                            active={tab.id === selectedTabId}
                         />
                     );
                 })}
