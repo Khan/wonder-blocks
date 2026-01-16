@@ -364,6 +364,62 @@ describe("NavigationTabsDropdown", () => {
                 expect(screen.getByRole("button")).toHaveTextContent("Tab 2");
             });
         });
+
+        describe("opened", () => {
+            it("should not be opened by default", () => {
+                // Arrange
+                // Act
+                render(
+                    <NavigationTabsDropdown
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Assert
+                expect(screen.queryByRole("menu")).not.toBeInTheDocument();
+            });
+
+            it("should be opened when opened={true}", () => {
+                // Arrange
+                // Act
+                render(
+                    <NavigationTabsDropdown
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                        opened={true}
+                    />,
+                );
+
+                // Assert
+                expect(screen.getByRole("menu")).toBeInTheDocument();
+            });
+
+            it("should render menu items when opened", async () => {
+                // Arrange
+                render(
+                    <NavigationTabsDropdown
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                        opened={true}
+                    />,
+                );
+
+                // Assert
+                expect(
+                    screen.getByRole("menuitem", {name: "Tab 1"}),
+                ).toBeInTheDocument();
+                expect(
+                    screen.getByRole("menuitem", {name: "Tab 2"}),
+                ).toBeInTheDocument();
+                expect(
+                    screen.getByRole("menuitem", {name: "Tab 3"}),
+                ).toBeInTheDocument();
+            });
+        });
     });
 
     describe("Events", () => {

@@ -69,6 +69,10 @@ type NavigationTabsDropdownProps = {
          */
         defaultOpenerLabel?: string;
     };
+    /**
+     * Can be used to override the opened state for the dropdown.
+     */
+    opened?: boolean;
 };
 
 const defaultLabels: Required<TabsDropdownProps["labels"]> = {
@@ -92,6 +96,7 @@ export const NavigationTabsDropdown = React.forwardRef<
         id: idProp,
         testId,
         labels: labelsProp,
+        opened,
     } = props;
 
     const labels = React.useMemo(() => {
@@ -117,6 +122,7 @@ export const NavigationTabsDropdown = React.forwardRef<
     return (
         <View ref={ref} id={uniqueId} testId={testId}>
             <ActionMenu
+                opened={opened}
                 // ActionMenu's id prop is used to set the id on the opener element
                 id={openerId}
                 menuText={menuText}
