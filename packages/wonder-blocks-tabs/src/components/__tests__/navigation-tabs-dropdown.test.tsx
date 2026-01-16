@@ -248,6 +248,71 @@ describe("NavigationTabsDropdown", () => {
                 });
             });
         });
+
+        describe("testId", () => {
+            it("should use the testId prop for the root element", () => {
+                // Arrange
+                // Act
+                const {container} = render(
+                    <NavigationTabsDropdown
+                        testId="navigation-tabs-dropdown-test-id"
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Assert
+                // eslint-disable-next-line testing-library/no-node-access -- explicitly checking the root element
+                expect(container.firstChild).toHaveAttribute(
+                    "data-testid",
+                    "navigation-tabs-dropdown-test-id",
+                );
+            });
+
+            it("should use the testId prop for the opener element with '-opener' suffix", () => {
+                // Arrange
+                // Act
+                render(
+                    <NavigationTabsDropdown
+                        testId="navigation-tabs-dropdown-test-id"
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Assert
+                expect(screen.getByRole("button")).toHaveAttribute(
+                    "data-testid",
+                    "navigation-tabs-dropdown-test-id-opener",
+                );
+            });
+
+            it("should use the testId prop on tab items for the menu items", async () => {
+                // Arrange
+                render(
+                    <NavigationTabsDropdown
+                        tabs={[
+                            {
+                                id: "tab-1",
+                                label: "Tab 1",
+                                href: "#tab-1",
+                                testId: "tab-1-test-id",
+                            },
+                        ]}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Act
+                await userEvent.click(screen.getByRole("button"));
+
+                // Assert
+                expect(screen.getByTestId("tab-1-test-id")).toBeInTheDocument();
+            });
+        });
     });
 
     describe("Events", () => {

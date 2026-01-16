@@ -19,6 +19,10 @@ type NavigationTabDropdownItem = {
      * The URL to navigate to
      */
     href: string;
+    /**
+     * Optional test ID for e2e testing of the menu item.
+     */
+    testId?: string;
 };
 
 type NavigationTabsDropdownProps = {
@@ -46,6 +50,14 @@ type NavigationTabsDropdownProps = {
      * - The opener will have an id of `${id}-opener`
      */
     id?: string;
+    /**
+     * Optional test ID for e2e testing.
+     *
+     * Here is how the testId is used for the different elements in the component:
+     * - The root will have a testId of `${testId}`
+     * - The opener will have a testId of `${testId}-opener`
+     */
+    testId?: string;
 };
 
 /**
@@ -58,7 +70,7 @@ export const NavigationTabsDropdown = React.forwardRef<
     HTMLDivElement,
     NavigationTabsDropdownProps
 >((props, ref) => {
-    const {tabs, selectedTabId, onTabSelected, id: idProp} = props;
+    const {tabs, selectedTabId, onTabSelected, id: idProp, testId} = props;
 
     const selectedTabItem = React.useMemo(() => {
         return tabs.find(
@@ -77,13 +89,14 @@ export const NavigationTabsDropdown = React.forwardRef<
     const menuText = selectedTabItem?.label || "Tabs";
 
     return (
-        <View ref={ref} id={uniqueId}>
+        <View ref={ref} id={uniqueId} testId={testId}>
             <ActionMenu
                 // ActionMenu's id prop is used to set the id on the opener element
                 id={openerId}
                 menuText={menuText}
                 opener={() => (
                     <Button
+                        testId={testId ? `${testId}-opener` : undefined}
                         kind="tertiary"
                         endIcon={caretDown}
                         style={styles.opener}
@@ -100,6 +113,7 @@ export const NavigationTabsDropdown = React.forwardRef<
                             label={tab.label}
                             href={tab.href}
                             active={tab.id === selectedTabId}
+                            testId={tab.testId}
                             onClick={
                                 onTabSelected
                                     ? () => {
