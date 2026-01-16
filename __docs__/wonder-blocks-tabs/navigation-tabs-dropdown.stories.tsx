@@ -27,7 +27,11 @@ const ControlledNavigationTabsDropdown = (
         React.useState(initialSelectedTabId);
 
     return (
-        <NavigationTabsDropdown {...restProps} selectedTabId={selectedTabId} />
+        <NavigationTabsDropdown
+            {...restProps}
+            selectedTabId={selectedTabId}
+            onTabSelected={setSelectedTabId}
+        />
     );
 };
 

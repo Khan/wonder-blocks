@@ -20,17 +20,17 @@ const tabs = [
     {
         id: "tab-1",
         label: "Tab 1",
-        href: "/tab-1",
+        href: "#tab-1",
     },
     {
         id: "tab-2",
         label: "Tab 2",
-        href: "/tab-2",
+        href: "#tab-2",
     },
     {
         id: "tab-3",
         label: "Tab 3",
-        href: "/tab-3",
+        href: "#tab-3",
     },
 ];
 
@@ -43,6 +43,7 @@ describe("NavigationTabsDropdown", () => {
             <NavigationTabsDropdown
                 tabs={tabs}
                 selectedTabId="tab-1"
+                onTabSelected={jest.fn()}
                 ref={ref}
             />,
         );
@@ -60,6 +61,7 @@ describe("NavigationTabsDropdown", () => {
                     <NavigationTabsDropdown
                         tabs={tabs}
                         selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
                     />,
                 );
 
@@ -82,7 +84,11 @@ describe("NavigationTabsDropdown", () => {
                 // Arrange
                 // Act
                 const {container} = render(
-                    <NavigationTabsDropdown tabs={[]} selectedTabId="" />,
+                    <NavigationTabsDropdown
+                        tabs={[]}
+                        selectedTabId=""
+                        onTabSelected={jest.fn()}
+                    />,
                 );
 
                 // Assert
@@ -95,6 +101,7 @@ describe("NavigationTabsDropdown", () => {
                     <NavigationTabsDropdown
                         tabs={tabs}
                         selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
                     />,
                 );
 
@@ -104,13 +111,13 @@ describe("NavigationTabsDropdown", () => {
                 // Assert
                 expect(
                     screen.getByRole("menuitem", {name: "Tab 1"}),
-                ).toHaveAttribute("href", "/tab-1");
+                ).toHaveAttribute("href", "#tab-1");
                 expect(
                     screen.getByRole("menuitem", {name: "Tab 2"}),
-                ).toHaveAttribute("href", "/tab-2");
+                ).toHaveAttribute("href", "#tab-2");
                 expect(
                     screen.getByRole("menuitem", {name: "Tab 3"}),
-                ).toHaveAttribute("href", "/tab-3");
+                ).toHaveAttribute("href", "#tab-3");
             });
         });
 
@@ -122,6 +129,7 @@ describe("NavigationTabsDropdown", () => {
                     <NavigationTabsDropdown
                         tabs={tabs}
                         selectedTabId="tab-2"
+                        onTabSelected={jest.fn()}
                     />,
                 );
 
@@ -135,6 +143,7 @@ describe("NavigationTabsDropdown", () => {
                     <NavigationTabsDropdown
                         tabs={tabs}
                         selectedTabId="tab-2"
+                        onTabSelected={jest.fn()}
                     />,
                 );
 
@@ -154,11 +163,37 @@ describe("NavigationTabsDropdown", () => {
                     <NavigationTabsDropdown
                         tabs={tabs}
                         selectedTabId="invalid-id"
+                        onTabSelected={jest.fn()}
                     />,
                 );
 
                 // Assert
                 expect(screen.getByRole("button")).toHaveTextContent("Tabs");
+            });
+        });
+    });
+
+    describe("Events", () => {
+        describe("onTabSelected", () => {
+            it("should call the onTabSelected handler with the tab id when a tab is clicked", async () => {
+                // Arrange
+                const onTabSelected = jest.fn();
+                render(
+                    <NavigationTabsDropdown
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={onTabSelected}
+                    />,
+                );
+                await userEvent.click(screen.getByRole("button"));
+
+                // Act
+                await userEvent.click(
+                    screen.getByRole("menuitem", {name: "Tab 2"}),
+                );
+
+                // Assert
+                expect(onTabSelected).toHaveBeenCalledWith("tab-2");
             });
         });
     });

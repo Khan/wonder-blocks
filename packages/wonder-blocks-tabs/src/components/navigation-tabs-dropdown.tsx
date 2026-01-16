@@ -33,6 +33,10 @@ type NavigationTabsDropdownProps = {
      * be used to label the dropdown opener.
      */
     selectedTabId: string;
+    /**
+     * Called when a navigation tab is selected.
+     */
+    onTabSelected: (id: string) => unknown;
 };
 
 /**
@@ -45,7 +49,7 @@ export const NavigationTabsDropdown = React.forwardRef<
     HTMLDivElement,
     NavigationTabsDropdownProps
 >((props, ref) => {
-    const {tabs, selectedTabId} = props;
+    const {tabs, selectedTabId, onTabSelected} = props;
 
     const selectedTabItem = React.useMemo(() => {
         return tabs.find(
@@ -81,6 +85,13 @@ export const NavigationTabsDropdown = React.forwardRef<
                             label={tab.label}
                             href={tab.href}
                             active={tab.id === selectedTabId}
+                            onClick={
+                                onTabSelected
+                                    ? () => {
+                                          onTabSelected(tab.id);
+                                      }
+                                    : undefined
+                            }
                         />
                     );
                 })}
