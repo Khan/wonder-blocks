@@ -2,7 +2,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 import {Temporal} from "temporal-polyfill";
 import * as React from "react";
 
-import {fr} from "date-fns/locale";
+import {fr, es} from "date-fns/locale";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View, type PropsFor} from "@khanacademy/wonder-blocks-core";
 import {sizing, spacing} from "@khanacademy/wonder-blocks-tokens";
@@ -338,6 +338,57 @@ export const WithAlternateLocale: Story = {
                 large: allModes.large,
                 thunderblocks: allModes.themeThunderBlocks,
                 "default rtl": allModes["themeDefault rtl"],
+            },
+        },
+    },
+};
+
+/**
+ * DatePicker with Spanish localization showing text-based date format.
+ * For example, "January 16, 2026" displays as "enero 16, 2026" in the input field.
+ * The calendar overlay also shows Spanish month names and day abbreviations.
+ * This uses the "MMMM D, YYYY" format which displays the full month name in Spanish.
+ */
+export const SpanishLocalizationTextFormat: Story = {
+    render: (args) => <DatePickerWithOpenOverlay {...args} />,
+    args: {
+        selectedDate: Temporal.PlainDate.from("2026-01-16"),
+        dateFormat: "MMMM D, YYYY",
+        updateDate: () => {},
+        locale: es,
+        inputAriaLabel: "Elegir o introducir una fecha",
+    },
+    parameters: {
+        chromatic: {
+            disableSnapshot: false,
+            modes: {
+                small: allModes.small,
+                large: allModes.large,
+            },
+        },
+    },
+};
+
+/**
+ * DatePicker with Spanish localization showing numeric date format.
+ * Displays dates in MM/DD/YYYY format for consistency across locales.
+ * For example, January 16, 2026 displays as "01/16/2026" in the input field.
+ */
+export const SpanishLocalizationNumericFormat: Story = {
+    render: (args) => <DatePickerWithOpenOverlay {...args} />,
+    args: {
+        selectedDate: Temporal.PlainDate.from("2026-01-16"),
+        dateFormat: "DD/MM/YYYY",
+        updateDate: () => {},
+        locale: es,
+        inputAriaLabel: "Elegir o introducir una fecha",
+    },
+    parameters: {
+        chromatic: {
+            disableSnapshot: false,
+            modes: {
+                small: allModes.small,
+                large: allModes.large,
             },
         },
     },

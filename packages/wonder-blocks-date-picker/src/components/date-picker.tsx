@@ -6,10 +6,7 @@ import {enUS, type Locale} from "react-day-picker/locale";
 
 import {View, type StyleType} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {
-    TemporalLocaleUtils,
-    enUSLocaleCode,
-} from "../util/temporal-locale-utils";
+import {TemporalLocaleUtils} from "../util/temporal-locale-utils";
 import type {CustomModifiers} from "../util/types";
 
 import DatePickerInput from "./date-picker-input";
@@ -236,7 +233,7 @@ const DatePicker = (props: Props) => {
             ? TemporalLocaleUtils.formatDate(
                   currentDate,
                   dateFormat,
-                  enUSLocaleCode,
+                  computedLocale.code,
               )
             : "";
 
