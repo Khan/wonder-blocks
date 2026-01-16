@@ -4,7 +4,7 @@ import {NavigationTabsDropdown} from "../../packages/wonder-blocks-tabs/src/comp
 import {PropsFor} from "@khanacademy/wonder-blocks-core";
 
 export default {
-    title: "Packages / Tabs / NavigationTabs / Subcomponents / TabsDropdown",
+    title: "Packages / Tabs / NavigationTabs / Subcomponents / NavigationTabsDropdown",
     component: NavigationTabsDropdown,
     parameters: {
         chromatic: {
