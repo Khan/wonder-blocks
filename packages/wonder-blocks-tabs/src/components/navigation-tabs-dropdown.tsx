@@ -4,7 +4,7 @@ import Button from "@khanacademy/wonder-blocks-button";
 import caretDown from "@phosphor-icons/core/bold/caret-down-bold.svg";
 import {StyleSheet} from "aphrodite";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
 import {TabsDropdownProps} from "./tabs-dropdown";
 
 type NavigationTabDropdownItem = {
@@ -97,6 +97,17 @@ type NavigationTabsDropdownProps = {
      * The HTML tag to use for the root element. Defaults to "nav".
      */
     tag?: keyof JSX.IntrinsicElements;
+    /**
+     * Custom styles for the elements in NavigationTabsDropdown.
+     * - `root`: Styles the root element.
+     * - `actionMenu`: Styles the ActionMenu.
+     * - `opener`: Styles the opener button.
+     */
+    styles?: {
+        root?: StyleType;
+        actionMenu?: StyleType;
+        opener?: StyleType;
+    };
 };
 
 const defaultLabels: Required<TabsDropdownProps["labels"]> = {
@@ -124,6 +135,7 @@ export const NavigationTabsDropdown = React.forwardRef<
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledby,
         tag = "nav",
+        styles: stylesProp,
     } = props;
 
     const StyledTag = React.useMemo(() => addStyle(tag), [tag]);
@@ -153,6 +165,7 @@ export const NavigationTabsDropdown = React.forwardRef<
             ref={ref}
             id={uniqueId}
             data-testid={testId}
+            style={stylesProp?.root}
             aria-label={ariaLabel}
             aria-labelledby={ariaLabelledby}
         >
@@ -166,7 +179,7 @@ export const NavigationTabsDropdown = React.forwardRef<
                         testId={testId ? `${testId}-opener` : undefined}
                         kind="tertiary"
                         endIcon={caretDown}
-                        style={styles.opener}
+                        style={[styles.opener, stylesProp?.opener]}
                         // If the selected tab has an aria-label, use it for
                         // the opener when it is selected
                         aria-label={selectedTabItem?.["aria-label"]}
@@ -174,7 +187,7 @@ export const NavigationTabsDropdown = React.forwardRef<
                         {menuText}
                     </Button>
                 )}
-                style={styles.actionMenu}
+                style={[styles.actionMenu, stylesProp?.actionMenu]}
             >
                 {tabs.map((tab: NavigationTabDropdownItem) => {
                     return (
