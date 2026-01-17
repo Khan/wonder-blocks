@@ -28,10 +28,18 @@ const ControlledNavigationTabsDropdown = (
     const [selectedTabId, setSelectedTabId] = React.useState(
         props.selectedTabId,
     );
-
+    const [opened, setOpened] = React.useState<boolean | undefined>(undefined);
+    React.useEffect(() => {
+        // Update opened after initial render so that the dropdown popper is
+        // placed correctly
+        if (props.opened !== undefined) {
+            setOpened(props.opened);
+        }
+    }, [props.opened]);
     return (
         <NavigationTabsDropdown
             {...props}
+            opened={opened}
             selectedTabId={selectedTabId}
             onTabSelected={setSelectedTabId}
         />
@@ -41,6 +49,103 @@ const ControlledNavigationTabsDropdown = (
 export const Scenarios: Story = {
     render: () => {
         const scenarios = [
+            {
+                name: "Opened with long tab names",
+                props: {
+                    tabs: [
+                        {
+                            label: longText,
+                            id: "tab-1",
+                            href: "#tab-1",
+                        },
+                        {
+                            label: longTextWithNoWordBreak,
+                            id: "tab-2",
+                            href: "#tab-2",
+                        },
+                    ],
+                    selectedTabId: "tab-1",
+                    opened: true,
+                    styles: {root: {paddingBlockEnd: sizing.size_960}},
+                },
+            },
+            {
+                name: "Opened with short tab names",
+                props: {
+                    tabs: [
+                        {
+                            label: "1",
+                            id: "tab-1",
+                            href: "#tab-1",
+                        },
+                    ],
+                    selectedTabId: "tab-1",
+                    opened: true,
+                    styles: {root: {paddingBlockEnd: sizing.size_560}},
+                },
+            },
+            {
+                name: "With long tab name that is selected",
+                props: {
+                    tabs: [
+                        {
+                            label: longText,
+                            id: "tab-1",
+                            href: "#tab-1",
+                        },
+                    ],
+                    selectedTabId: "tab-1",
+                },
+            },
+            {
+                name: "With long tab name with no word break that is selected",
+                props: {
+                    tabs: [
+                        {
+                            label: longTextWithNoWordBreak,
+                            id: "tab-1",
+                            href: "#tab-1",
+                        },
+                    ],
+                    selectedTabId: "tab-1",
+                },
+            },
+            {
+                name: "Invalid selected tab id",
+                props: {
+                    tabs: [
+                        {
+                            label: "Tab 1",
+                            id: "tab-1",
+                            href: "#tab-1",
+                        },
+                        {
+                            label: "Tab 2",
+                            id: "tab-2",
+                            href: "#tab-2",
+                        },
+                        {
+                            label: "Tab 3",
+                            id: "tab-3",
+                            href: "#tab-3",
+                        },
+                    ],
+                    selectedTabId: "tab-invalid",
+                },
+            },
+            {
+                name: "Short selected tab name",
+                props: {
+                    tabs: [
+                        {
+                            label: "1",
+                            id: "tab-1",
+                            href: "#tab-1",
+                        },
+                    ],
+                    selectedTabId: "tab-1",
+                },
+            },
             {
                 name: "With custom styles",
                 props: {
@@ -64,6 +169,32 @@ export const Scenarios: Story = {
                                 semanticColor.core.background.base.subtle,
                         },
                     },
+                },
+            },
+            {
+                name: "No tabs",
+                props: {
+                    tabs: [],
+                    selectedTabId: "",
+                },
+            },
+            {
+                name: "Opener in RTL",
+                decorator: <div dir="rtl" />,
+                props: {
+                    tabs: [
+                        {
+                            label: "Tab 1",
+                            id: "tab-1",
+                            href: "#tab-1",
+                        },
+                        {
+                            label: "Tab 2",
+                            id: "tab-2",
+                            href: "#tab-2",
+                        },
+                    ],
+                    selectedTabId: "tab-1",
                 },
             },
         ];
