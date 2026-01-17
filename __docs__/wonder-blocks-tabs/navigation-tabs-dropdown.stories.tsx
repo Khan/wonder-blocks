@@ -40,17 +40,17 @@ export const Default: Story = {
         tabs: [
             {
                 id: "tab-1",
-                label: "Tab 1",
+                label: "Tab Dropdown Item 1",
                 href: "#tab-1",
             },
             {
                 id: "tab-2",
-                label: "Tab 2",
+                label: "Tab Dropdown Item 2",
                 href: "#tab-2",
             },
             {
                 id: "tab-3",
-                label: "Tab 3",
+                label: "Tab Dropdown Item 3",
                 href: "#tab-3",
             },
         ],
