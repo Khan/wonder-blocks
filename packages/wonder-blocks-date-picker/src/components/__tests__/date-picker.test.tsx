@@ -438,6 +438,45 @@ describe("DatePicker", () => {
     });
 
     describe("Localization", () => {
+        describe("locale prop accepts Locale object directly", () => {
+            it("accepts Locale object from react-day-picker without needing .code", () => {
+                // Arrange
+                const selectedDate = Temporal.PlainDate.from("2026-01-16");
+                const dateFormat = "MMMM D, YYYY";
+
+                // Act
+                render(
+                    <DatePicker
+                        selectedDate={selectedDate}
+                        updateDate={() => {}}
+                        dateFormat={dateFormat}
+                        locale={es}
+                    />,
+                );
+
+                // Assert
+                expect(
+                    screen.getByDisplayValue("enero 16, 2026"),
+                ).toBeInTheDocument();
+            });
+
+            it("also accepts locale code string for backward compatibility", () => {
+                // Arrange
+                const selectedDate = Temporal.PlainDate.from("2026-01-16");
+                const dateFormat = "MMMM D, YYYY";
+
+                // Act - Pass the Locale object to formatDate in the test
+                const formatted = TemporalLocaleUtils.formatDate(
+                    selectedDate,
+                    dateFormat,
+                    "es",
+                );
+
+                // Assert
+                expect(formatted).toBe("enero 16, 2026");
+            });
+        });
+
         describe("dateFormat prop override", () => {
             it("displays date in MMMM D, YYYY format when dateFormat prop is set", () => {
                 // Arrange

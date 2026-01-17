@@ -1,4 +1,5 @@
 import {Temporal} from "temporal-polyfill";
+import type {Locale} from "react-day-picker/locale";
 import {CustomModifiers} from "./types";
 
 export const enUSLocaleCode = "en-US";
@@ -19,11 +20,15 @@ export const enUSLocaleCode = "en-US";
  *   - **Array<string>**: Uses the **first** format in the array (ignores the rest)
  *   - **null**: Returns ISO 8601 format (YYYY-MM-DD)
  *   - **undefined**: Returns ISO 8601 format (YYYY-MM-DD)
- * @param locale - The locale to use for formatting (default: "en-US")
+ * @param locale - The locale to use for formatting. Accepts:
+ *   - **Locale object** from react-day-picker (e.g., `es`, `fr`)
+ *   - **string** locale code (e.g., "en-US", "es")
+ *   - **undefined**: defaults to "en-US"
  * @returns The formatted date string
  *
  * @example
  * formatDate(date, "YYYY-MM-DD", "en-US") // => "2024-01-15"
+ * formatDate(date, "YYYY-MM-DD", es) // => "2024-01-15" (using Locale object)
  * formatDate(date, ["MMM D, YYYY", "M/D/YYYY"], "en-US") // => "Jan 15, 2024" (uses first format)
  * formatDate(date, null, "en-US") // => "2024-01-15" (ISO format)
  * formatDate(date, undefined, "en-US") // => "2024-01-15" (ISO format)
@@ -37,8 +42,12 @@ export const enUSLocaleCode = "en-US";
 export function formatDate(
     date: Temporal.PlainDate,
     format: string | Array<string> | null | undefined,
-    locale: string = enUSLocaleCode,
+    locale?: Locale | string,
 ): string {
+    // Extract locale code string from Locale object or use string directly
+    const localeCode =
+        typeof locale === "string" ? locale : (locale?.code ?? enUSLocaleCode);
+
     // If format is an array, use the first one
     const formatString = Array.isArray(format) ? format[0] : format;
 
@@ -58,7 +67,9 @@ export function formatDate(
         try {
             const monthFormat =
                 formatString === "MMMM D, YYYY" ? "long" : "short";
-            const monthName = date.toLocaleString(locale, {month: monthFormat});
+            const monthName = date.toLocaleString(localeCode, {
+                month: monthFormat,
+            });
             return `${monthName} ${date.day}, ${date.year}`;
         } catch (error) {
             // Fall back to ISO format on error
@@ -87,7 +98,7 @@ export function formatDate(
     // For other patterns, use toLocaleString with Intl options
     try {
         const options = getOptionsForFormat(formatString);
-        return date.toLocaleString(locale, options);
+        return date.toLocaleString(localeCode, options);
     } catch (error) {
         // If formatting fails (invalid locale, unsupported format, etc.),
         // fall back to ISO format
@@ -96,7 +107,7 @@ export function formatDate(
            This warning helps developers debug format/locale issues
          */
         console.warn(
-            `Failed to format date with format "${formatString}" and locale "${locale}". Falling back to ISO format.`,
+            `Failed to format date with format "${formatString}" and locale "${localeCode}". Falling back to ISO format.`,
             error,
         );
         return date.toString();

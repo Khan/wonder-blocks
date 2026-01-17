@@ -233,7 +233,7 @@ const DatePicker = (props: Props) => {
             ? TemporalLocaleUtils.formatDate(
                   currentDate,
                   dateFormat,
-                  computedLocale.code,
+                  computedLocale,
               )
             : "";
 

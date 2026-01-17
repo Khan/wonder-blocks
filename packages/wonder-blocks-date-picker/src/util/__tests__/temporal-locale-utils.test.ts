@@ -1,5 +1,6 @@
 import {describe, it} from "@jest/globals";
 import {Temporal} from "temporal-polyfill";
+import {es, fr} from "react-day-picker/locale";
 
 import {
     formatDate,
@@ -237,6 +238,97 @@ describe("TemporalLocaleUtils", () => {
 
                 // Assert
                 expect(result).toBe("May 7, 2021");
+            });
+        });
+
+        describe("Locale object support", () => {
+            it("accepts Locale object from react-day-picker and extracts locale code", () => {
+                // Arrange
+                const testDate = Temporal.PlainDate.from("2026-01-16");
+
+                // Act
+                const result = formatDate(testDate, "MMMM D, YYYY", es);
+
+                // Assert
+                expect(result).toBe("enero 16, 2026");
+            });
+
+            it("formats Spanish month names when Spanish Locale object is provided", () => {
+                // Arrange
+                const testDate = Temporal.PlainDate.from("2026-12-25");
+
+                // Act
+                const result = formatDate(testDate, "MMMM D, YYYY", es);
+
+                // Assert
+                expect(result).toBe("diciembre 25, 2026");
+            });
+
+            it("formats French month names when French Locale object is provided", () => {
+                // Arrange
+                const testDate = Temporal.PlainDate.from("2026-03-15");
+
+                // Act
+                const result = formatDate(testDate, "MMMM D, YYYY", fr);
+
+                // Assert
+                expect(result).toBe("mars 15, 2026");
+            });
+
+            it("formats abbreviated Spanish month names with Locale object", () => {
+                // Arrange
+                const testDate = Temporal.PlainDate.from("2026-01-16");
+
+                // Act
+                const result = formatDate(testDate, "MMM D, YYYY", es);
+
+                // Assert
+                expect(result).toBe("ene 16, 2026");
+            });
+
+            it("formats abbreviated French month names with Locale object", () => {
+                // Arrange
+                const testDate = Temporal.PlainDate.from("2026-06-20");
+
+                // Act
+                const result = formatDate(testDate, "MMM D, YYYY", fr);
+
+                // Assert
+                expect(result).toBe("juin 20, 2026");
+            });
+
+            it("still accepts string locale codes for backward compatibility", () => {
+                // Arrange
+                const testDate = Temporal.PlainDate.from("2026-01-16");
+
+                // Act
+                const result = formatDate(testDate, "MMMM D, YYYY", "es");
+
+                // Assert
+                expect(result).toBe("enero 16, 2026");
+            });
+
+            it("falls back to en-US when undefined locale is provided", () => {
+                // Arrange
+                const testDate = Temporal.PlainDate.from("2026-01-16");
+
+                // Act
+                const result = formatDate(testDate, "MMMM D, YYYY", undefined);
+
+                // Assert
+                expect(result).toBe("January 16, 2026");
+            });
+
+            it("extracts code from Locale object with .code property", () => {
+                // Arrange
+                const testDate = Temporal.PlainDate.from("2026-02-14");
+                const customLocale = {code: "de"} as any;
+
+                // Act
+                const result = formatDate(testDate, "MMMM D, YYYY", customLocale);
+
+                // Assert - German month name
+                expect(result).toBe("Februar 14, 2026");
             });
         });
     });
