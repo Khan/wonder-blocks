@@ -28,6 +28,10 @@ type NavigationTabDropdownItem = {
      * Optional aria-label for the navigation tab.
      */
     "aria-label"?: string;
+    /**
+     * Optional icon to display in the navigation tab. Should be a PhosphorIcon or Icon component.
+     */
+    icon?: React.ReactElement;
 };
 
 type NavigationTabsDropdownProps = {
@@ -183,6 +187,11 @@ export const NavigationTabsDropdown = React.forwardRef<
                         // If the selected tab has an aria-label, use it for
                         // the opener when it is selected
                         aria-label={selectedTabItem?.["aria-label"]}
+                        startIcon={selectedTabItem?.icon}
+                        // Disable the wrapping of aria-hidden=true around the
+                        // start icon. It is up to consumers to set the
+                        // alternative text on the startIcon element itself
+                        startIconIsPresentationalOnly={false}
                     >
                         {menuText}
                     </Button>
@@ -198,6 +207,14 @@ export const NavigationTabsDropdown = React.forwardRef<
                             aria-label={tab["aria-label"]}
                             active={tab.id === selectedTabId}
                             testId={tab.testId}
+                            leftAccessory={
+                                tab.icon
+                                    ? React.cloneElement(tab.icon, {
+                                          // By default, use the medium size for icon components
+                                          size: tab.icon.props.size ?? "medium",
+                                      })
+                                    : undefined
+                            }
                             onClick={
                                 onTabSelected
                                     ? () => {

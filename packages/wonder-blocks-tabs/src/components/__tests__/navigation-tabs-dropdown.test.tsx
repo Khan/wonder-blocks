@@ -1,6 +1,7 @@
 import * as React from "react";
-import {render, screen} from "@testing-library/react";
+import {render, screen, within} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
+import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {NavigationTabsDropdown} from "../navigation-tabs-dropdown";
 
 jest.mock("react-popper", () => ({
@@ -118,6 +119,219 @@ describe("NavigationTabsDropdown", () => {
                 expect(
                     screen.getByRole("menuitem", {name: "Tab 3"}),
                 ).toHaveAttribute("href", "#tab-3");
+            });
+
+            describe("tab icon", () => {
+                describe.each([
+                    {
+                        icon: (
+                            <Icon>
+                                <img src="icon.svg" alt="icon example" />
+                            </Icon>
+                        ),
+                        name: "Icon component",
+                    },
+                    {
+                        icon: (
+                            <PhosphorIcon
+                                icon="icon.svg"
+                                aria-label="icon example"
+                            />
+                        ),
+                        name: "PhosphorIcon component",
+                    },
+                ])(
+                    "when the tab has an icon that is a $name and has an accessible name",
+                    ({icon}) => {
+                        it("should include the accessible name of the tab icon in the name for the dropdown menu item", async () => {
+                            // Arrange
+                            render(
+                                <NavigationTabsDropdown
+                                    tabs={[
+                                        {
+                                            id: "tab-1",
+                                            label: "Tab 1",
+                                            href: "#tab-1",
+                                            icon,
+                                        },
+                                    ]}
+                                    selectedTabId="tab-1"
+                                    onTabSelected={jest.fn()}
+                                />,
+                            );
+
+                            // Act
+                            await userEvent.click(screen.getByRole("button"));
+
+                            // Assert
+                            // Expect the menu item includes the icon and the tab label
+                            await screen.findByRole("menuitem", {
+                                name: "icon example Tab 1",
+                            });
+                        });
+
+                        it("should include the accessible name of the tab icon in the name of the dropdown opener when the tab is selected", async () => {
+                            // Arrange
+                            // Act
+                            render(
+                                <NavigationTabsDropdown
+                                    tabs={[
+                                        {
+                                            id: "tab-1",
+                                            label: "Tab 1",
+                                            href: "#tab-1",
+                                            icon,
+                                        },
+                                    ]}
+                                    selectedTabId="tab-1"
+                                    onTabSelected={jest.fn()}
+                                />,
+                            );
+
+                            // Assert
+                            await screen.findByRole("button", {
+                                name: "icon example Tab 1",
+                            });
+                        });
+
+                        it("should render the tab icon in the dropdown menu item", async () => {
+                            // Arrange
+                            render(
+                                <NavigationTabsDropdown
+                                    tabs={[
+                                        {
+                                            id: "tab-1",
+                                            label: "Tab 1",
+                                            href: "#tab-1",
+                                            icon,
+                                        },
+                                    ]}
+                                    selectedTabId="tab-1"
+                                    onTabSelected={jest.fn()}
+                                />,
+                            );
+
+                            // Act
+                            await userEvent.click(screen.getByRole("button"));
+                            const menuItem = await screen.findByRole(
+                                "menuitem",
+                                {
+                                    name: "icon example Tab 1",
+                                },
+                            );
+
+                            // Assert
+                            expect(
+                                within(menuItem).getByRole("img", {
+                                    name: "icon example",
+                                }),
+                            ).toBeInTheDocument();
+                        });
+
+                        it("should render the tab icon in the dropdown menu opener", async () => {
+                            // Arrange
+                            render(
+                                <NavigationTabsDropdown
+                                    tabs={[
+                                        {
+                                            id: "tab-1",
+                                            label: "Tab 1",
+                                            href: "#tab-1",
+                                            icon,
+                                        },
+                                    ]}
+                                    selectedTabId="tab-1"
+                                    onTabSelected={jest.fn()}
+                                />,
+                            );
+
+                            // Act
+                            const opener = screen.getByRole("button");
+
+                            // Assert
+                            expect(
+                                within(opener).getByRole("img", {
+                                    name: "icon example",
+                                }),
+                            ).toBeInTheDocument();
+                        });
+                    },
+                );
+
+                describe.each([
+                    {
+                        icon: (
+                            <Icon>
+                                <img src="icon.svg" alt="" />
+                            </Icon>
+                        ),
+                        name: "Icon component",
+                    },
+                    {
+                        icon: (
+                            <PhosphorIcon
+                                icon="icon.svg"
+                                aria-hidden={true}
+                                role="img"
+                            />
+                        ),
+                        name: "PhosphorIcon component",
+                    },
+                ])(
+                    "when the tab has an icon that is a $name and is presentational only",
+                    ({icon}) => {
+                        it("should not have an image role in the dropdown opener", async () => {
+                            // Arrange
+                            render(
+                                <NavigationTabsDropdown
+                                    tabs={[
+                                        {
+                                            id: "tab-1",
+                                            label: "Tab 1",
+                                            href: "#tab-1",
+                                            icon,
+                                        },
+                                    ]}
+                                    selectedTabId="tab-1"
+                                    onTabSelected={jest.fn()}
+                                />,
+                            );
+
+                            // Act
+                            const image = screen.queryByRole("img");
+
+                            // Assert
+                            // Expect there to be no image role
+                            expect(image).not.toBeInTheDocument();
+                        });
+
+                        it("should not have an image role in the dropdown menu items", async () => {
+                            // Arrange
+                            render(
+                                <NavigationTabsDropdown
+                                    tabs={[
+                                        {
+                                            id: "tab-1",
+                                            label: "Tab 1",
+                                            href: "#tab-1",
+                                            icon,
+                                        },
+                                    ]}
+                                    selectedTabId="tab-1"
+                                    onTabSelected={jest.fn()}
+                                />,
+                            );
+
+                            // Act
+                            await userEvent.click(screen.getByRole("button"));
+                            const image = screen.queryByRole("img");
+
+                            // Assert
+                            // Expect there to be no image role
+                            expect(image).not.toBeInTheDocument();
+                        });
+                    },
+                );
             });
         });
 
