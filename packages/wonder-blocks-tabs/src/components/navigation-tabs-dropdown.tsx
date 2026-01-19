@@ -5,7 +5,6 @@ import caretDown from "@phosphor-icons/core/bold/caret-down-bold.svg";
 import {StyleSheet} from "aphrodite";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
-import {TabsDropdownProps} from "./tabs-dropdown";
 
 type NavigationTabDropdownItem = {
     /**
@@ -114,7 +113,7 @@ type NavigationTabsDropdownProps = {
     };
 };
 
-const defaultLabels: Required<TabsDropdownProps["labels"]> = {
+const defaultLabels: Required<NavigationTabsDropdownProps["labels"]> = {
     defaultOpenerLabel: "Tabs",
 };
 
@@ -153,6 +152,19 @@ export const NavigationTabsDropdown = React.forwardRef<
             (tab: NavigationTabDropdownItem) => tab.id === selectedTabId,
         );
     }, [tabs, selectedTabId]);
+
+    // Memoize the processed tabs with cloned icons to avoid cloning on every render
+    const processedTabs = React.useMemo(() => {
+        return tabs.map((tab) => ({
+            ...tab,
+            leftAccessory: tab.icon
+                ? React.cloneElement(tab.icon, {
+                      // By default, use the medium size for icon components
+                      size: tab.icon.props.size ?? "medium",
+                  })
+                : undefined,
+        }));
+    }, [tabs]);
 
     const generatedUniqueId = React.useId();
     const uniqueId = idProp ?? generatedUniqueId;
@@ -195,7 +207,7 @@ export const NavigationTabsDropdown = React.forwardRef<
                 )}
                 style={[styles.actionMenu, stylesProp?.actionMenu]}
             >
-                {tabs.map((tab: NavigationTabDropdownItem) => {
+                {processedTabs.map((tab) => {
                     return (
                         <ActionItem
                             key={tab.id}
@@ -204,14 +216,7 @@ export const NavigationTabsDropdown = React.forwardRef<
                             aria-label={tab["aria-label"]}
                             active={tab.id === selectedTabId}
                             testId={tab.testId}
-                            leftAccessory={
-                                tab.icon
-                                    ? React.cloneElement(tab.icon, {
-                                          // By default, use the medium size for icon components
-                                          size: tab.icon.props.size ?? "medium",
-                                      })
-                                    : undefined
-                            }
+                            leftAccessory={tab.leftAccessory}
                             onClick={
                                 onTabSelected
                                     ? () => {
