@@ -17,7 +17,7 @@ export default {
         },
     },
     args: {
-        "aria-label": "Tabs Dropdown Component",
+        "aria-label": "Navigation Tabs Dropdown Component",
     },
 } as Meta<typeof NavigationTabsDropdown>;
 
