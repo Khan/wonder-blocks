@@ -4,10 +4,12 @@ import {NavigationTabsDropdown} from "../../packages/wonder-blocks-tabs/src/comp
 import {PropsFor} from "@khanacademy/wonder-blocks-core";
 import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
+import navigationTabsDropdownArgTypes from "./navigation-tabs-dropdown.argtypes";
 
 export default {
     title: "Packages / Tabs / NavigationTabs / Subcomponents / NavigationTabsDropdown",
     component: NavigationTabsDropdown,
+    argTypes: navigationTabsDropdownArgTypes,
     parameters: {
         chromatic: {
             // Visual regression testing is done in the testing snapshots stories
