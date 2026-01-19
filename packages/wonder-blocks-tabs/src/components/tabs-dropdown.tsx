@@ -148,6 +148,19 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, TabsDropdownProps>(
             );
         }, [tabs, selectedTabId]);
 
+        // Memoize the processed tabs with cloned icons to avoid cloning on every render
+        const processedTabs = React.useMemo(() => {
+            return tabs.map((tab) => ({
+                ...tab,
+                leftAccessory: tab.icon
+                    ? React.cloneElement(tab.icon, {
+                          // By default, use the medium size for icon components
+                          size: tab.icon.props.size ?? "medium",
+                      })
+                    : undefined,
+            }));
+        }, [tabs]);
+
         if (tabs.length === 0) {
             return <React.Fragment />;
         }
@@ -186,7 +199,7 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, TabsDropdownProps>(
                     )}
                     style={[styles.actionMenu, stylesProp?.actionMenu]}
                 >
-                    {tabs.map((tab: TabDropdownItem) => {
+                    {processedTabs.map((tab) => {
                         return (
                             <ActionItem
                                 key={tab.id}
@@ -206,16 +219,7 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, TabsDropdownProps>(
                                         />
                                     ) : undefined
                                 }
-                                leftAccessory={
-                                    tab.icon
-                                        ? React.cloneElement(tab.icon, {
-                                              // By default, use the medium size for icon components
-                                              size:
-                                                  tab.icon.props.size ??
-                                                  "medium",
-                                          })
-                                        : undefined
-                                }
+                                leftAccessory={tab.leftAccessory}
                             />
                         );
                     })}
