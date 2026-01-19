@@ -1,4 +1,5 @@
 import * as React from "react";
+import Plus from "@phosphor-icons/core/regular/plus.svg";
 import {MemoryRouter} from "react-router-dom";
 import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
 import {render, screen, waitFor} from "@testing-library/react";
@@ -749,101 +750,122 @@ describe("Button", () => {
         });
     });
 
-    describe("Props", () => {
-        it("should by default hide the startIcon from screen readers", async () => {
-            // Arrange
-            // Act
-            render(
-                <Button
-                    startIcon={
-                        <Icon>
-                            <img src="icon.svg" alt="icon example" />
-                        </Icon>
-                    }
-                >
-                    Label
-                </Button>,
-            );
+    describe("Accessibility", () => {
+        describe("Icons", () => {
+            describe("With Icon components", () => {
+                it("should include the accessible name of the start and end icons in the accessible name of the button", () => {
+                    // Arrange
+                    // Act
+                    render(
+                        <Button
+                            startIcon={
+                                <Icon>
+                                    <img src="icon.svg" alt="Start icon" />
+                                </Icon>
+                            }
+                            endIcon={
+                                <Icon>
+                                    <img src="icon.svg" alt="End icon" />
+                                </Icon>
+                            }
+                        >
+                            Label
+                        </Button>,
+                    );
 
-            // Assert
-            // expect the icon to be hidden from screen readers by default
-            await screen.findByRole("img", {
-                hidden: true,
-                name: "icon example",
+                    // Assert
+                    expect(screen.getByRole("button")).toHaveAccessibleName(
+                        "Start icon Label End icon",
+                    );
+                });
+
+                it("should not include image roles in the button if the icons are marked as decorative only", () => {
+                    // Arrange
+                    // Act
+                    render(
+                        <Button
+                            startIcon={
+                                <Icon>
+                                    <img src="icon.svg" alt="" />
+                                </Icon>
+                            }
+                            endIcon={
+                                <Icon>
+                                    <img src="icon.svg" alt="" />
+                                </Icon>
+                            }
+                        >
+                            Label
+                        </Button>,
+                    );
+
+                    // Assert
+                    expect(screen.queryByRole("img")).not.toBeInTheDocument();
+                });
             });
-        });
 
-        it("should hide the startIcon from screen readers when startIconIsPresentationalOnly is true", async () => {
-            // Arrange
-            // Act
-            render(
-                <Button
-                    startIconIsPresentationalOnly={true}
-                    startIcon={
-                        <Icon>
-                            <img src="icon.svg" alt="icon example" />
-                        </Icon>
-                    }
-                >
-                    Label
-                </Button>,
-            );
+            describe("With PhosphorIcon components", () => {
+                it("should include the accessible name of the start and end icons in the accessible name of the button", () => {
+                    // Arrange
+                    // Act
+                    render(
+                        <Button
+                            startIcon={
+                                <PhosphorIcon
+                                    icon={Plus}
+                                    aria-label="Start icon"
+                                    role="img"
+                                />
+                            }
+                            endIcon={
+                                <PhosphorIcon
+                                    icon={Plus}
+                                    aria-label="End icon"
+                                    role="img"
+                                />
+                            }
+                        >
+                            Label
+                        </Button>,
+                    );
 
-            // Assert
-            // expect the icon to be hidden from screen readers by default
-            await screen.findByRole("img", {
-                hidden: true,
-                name: "icon example",
+                    // Assert
+                    expect(screen.getByRole("button")).toHaveAccessibleName(
+                        "Start icon Label End icon",
+                    );
+                });
+
+                it("should not include image roles in the button if the icons are not marked with an accessible name", () => {
+                    // Arrange
+                    // Act
+                    render(
+                        <Button
+                            startIcon={<PhosphorIcon icon={Plus} />}
+                            endIcon={<PhosphorIcon icon={Plus} />}
+                        >
+                            Label
+                        </Button>,
+                    );
+
+                    // Assert
+                    expect(screen.queryByRole("img")).not.toBeInTheDocument();
+                });
             });
-        });
 
-        it("should allow the startIcon to be visible to screen readers by setting startIconIsPresentationalOnly to false", async () => {
-            // Arrange
-            render(
-                <Button
-                    startIconIsPresentationalOnly={false}
-                    startIcon={
-                        <Icon>
-                            <img src="icon.svg" alt="icon example" />
-                        </Icon>
-                    }
-                >
-                    Label
-                </Button>,
-            );
+            describe("With phosphor icon asset", () => {
+                it("should not include image roles in the button if a phosphor icon asset is used directly", () => {
+                    // Arrange
+                    // Act
+                    render(
+                        <Button startIcon={Plus} endIcon={Plus}>
+                            Label
+                        </Button>,
+                    );
 
-            // Assert
-            await screen.findByRole("img", {
-                hidden: false,
-                name: "icon example",
+                    // Assert
+                    expect(screen.queryByRole("img")).not.toBeInTheDocument();
+                });
             });
-        });
-
-        it("should allow an icon's aria-hidden attribute override the startIconIsPresentationalOnly behaviour", async () => {
-            // Arrange
-            render(
-                <Button
-                    startIconIsPresentationalOnly={false}
-                    testId="button-test-id"
-                    startIcon={
-                        <PhosphorIcon
-                            icon="icon.svg"
-                            aria-hidden={true}
-                            role="img"
-                        />
-                    }
-                >
-                    Label
-                </Button>,
-            );
-
-            // Act
-            const icon = await screen.findByTestId("button-test-id-start-icon");
-
-            // Assert
-            // Icon can still have aria-hidden=true, even if
-            // startIconIsPresentationalOnly is false
-            expect(icon).toHaveAttribute("aria-hidden", "true");
         });
     });
 });

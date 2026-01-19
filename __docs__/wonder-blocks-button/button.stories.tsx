@@ -30,9 +30,10 @@ import ComponentInfo from "../components/component-info";
 
 import ButtonArgTypes from "./button.argtypes";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
-import {Icon} from "@khanacademy/wonder-blocks-icon";
+import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {themeModes} from "../../.storybook/modes";
 import {TextField} from "@khanacademy/wonder-blocks-form";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
     title: "Packages / Button / Button",
@@ -381,6 +382,43 @@ const IconExample = () => (
                     {`${kind} small`}
                 </Button>
             ))}
+        </View>
+        <BodyText weight="bold" style={styles.label}>
+            Icons with accessible names
+        </BodyText>
+        <View style={styles.row}>
+            <Button
+                style={styles.button}
+                startIcon={
+                    <PhosphorIcon
+                        icon={IconMappings.cookie}
+                        aria-label="Cookie"
+                    />
+                }
+                endIcon={
+                    <PhosphorIcon
+                        icon={IconMappings.iceCream}
+                        aria-label="Ice Cream"
+                    />
+                }
+            >
+                With PhosphorIcon aria-label
+            </Button>
+            <Button
+                style={styles.button}
+                startIcon={
+                    <Icon>
+                        <img src={"logo.svg"} alt="Wonder Blocks start icon" />
+                    </Icon>
+                }
+                endIcon={
+                    <Icon>
+                        <img src={"logo.svg"} alt="Wonder Blocks end icon" />
+                    </Icon>
+                }
+            >
+                With Icon and img alt
+            </Button>
         </View>
     </View>
 );
