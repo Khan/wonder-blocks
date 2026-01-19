@@ -237,6 +237,7 @@ export default function Combobox({
         inputValue,
         selected,
         onRemove: updateAfterSelectionChange,
+        isComboboxOpen: openState,
     });
 
     /**
