@@ -184,6 +184,7 @@ export const NavigationTabsDropdown = React.forwardRef<
                         kind="tertiary"
                         endIcon={caretDown}
                         style={[styles.opener, stylesProp?.opener]}
+                        labelStyle={styles.labelStyle}
                         // If the selected tab has an aria-label, use it for
                         // the opener when it is selected
                         aria-label={selectedTabItem?.["aria-label"]}
@@ -240,5 +241,11 @@ const styles = StyleSheet.create({
         paddingInline: sizing.size_180,
         width: "100%",
         justifyContent: "space-between",
+        gap: sizing.size_020,
+    },
+    labelStyle: {
+        flexGrow: 1,
+        maxWidth: "100%",
+        textAlign: "start",
     },
 });
