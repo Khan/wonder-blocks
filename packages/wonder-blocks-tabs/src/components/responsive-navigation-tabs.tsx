@@ -1,8 +1,37 @@
 import * as React from "react";
+import {NavigationTabsDropdown} from "./navigation-tabs-dropdown";
 
-export type ResponsiveNavigationTabItem = {};
+export type ResponsiveNavigationTabItem = {
+    /**
+     * The label of the navigation tab.
+     */
+    label: string;
+    /**
+     * The id of the navigation tab.
+     */
+    id: string;
+    /**
+     * The URL to navigate to.
+     */
+    href: string;
+};
 
-type Props = {};
+type Props = {
+    /**
+     * The navigation tabs to render.
+     */
+    tabs: ResponsiveNavigationTabItem[];
+
+    /**
+     * The id of the tab that is selected (current page).
+     */
+    selectedTabId: string;
+
+    /**
+     * Called when a navigation tab is selected.
+     */
+    onTabSelected: (id: string) => void;
+};
 
 /**
  * Renders NavigationTabs when there is enough horizontal space to display the
@@ -17,6 +46,13 @@ type Props = {};
  * NavigationTabs component directly.
  */
 export const ResponsiveNavigationTabs = (props: Props) => {
-    // TODO: Implement in subsequent steps
-    return <div>ResponsiveNavigationTabs</div>;
+    const {tabs, selectedTabId, onTabSelected} = props;
+
+    return (
+        <NavigationTabsDropdown
+            tabs={tabs}
+            selectedTabId={selectedTabId}
+            onTabSelected={onTabSelected}
+        />
+    );
 };
