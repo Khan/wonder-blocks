@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {action} from "storybook/actions";
@@ -383,43 +384,6 @@ const IconExample = () => (
                 </Button>
             ))}
         </View>
-        <BodyText weight="bold" style={styles.label}>
-            Icons with accessible names
-        </BodyText>
-        <View style={styles.row}>
-            <Button
-                style={styles.button}
-                startIcon={
-                    <PhosphorIcon
-                        icon={IconMappings.cookie}
-                        aria-label="Cookie"
-                    />
-                }
-                endIcon={
-                    <PhosphorIcon
-                        icon={IconMappings.iceCream}
-                        aria-label="Ice Cream"
-                    />
-                }
-            >
-                With PhosphorIcon aria-label
-            </Button>
-            <Button
-                style={styles.button}
-                startIcon={
-                    <Icon>
-                        <img src={"logo.svg"} alt="Wonder Blocks start icon" />
-                    </Icon>
-                }
-                endIcon={
-                    <Icon>
-                        <img src={"logo.svg"} alt="Wonder Blocks end icon" />
-                    </Icon>
-                }
-            >
-                With Icon and img alt
-            </Button>
-        </View>
     </View>
 );
 
@@ -464,6 +428,67 @@ export const WithIcon: StoryComponentType = {
     parameters: {
         chromatic: {
             modes: themeModes,
+        },
+    },
+};
+
+/**
+ * If the `startIcon` or `endIcon` provide meaning, you can provide an accessible
+ * name for the icons so that it is included in the accessible name of the button.
+ *
+ * For example, when using a `PhosphorIcon`, you can use the `aria-label` prop
+ * to provide an accessible name. When using a `Icon` component, you can provide
+ * the accessible name to the `children` element (ie the `alt` attribute on the
+ * `img` element).
+ */
+export const IconsWithAccessibleNames: StoryComponentType = {
+    render: () => {
+        return (
+            <View style={styles.row}>
+                <Button
+                    style={styles.button}
+                    startIcon={
+                        <PhosphorIcon
+                            icon={IconMappings.cookie}
+                            aria-label="Cookie"
+                        />
+                    }
+                    endIcon={
+                        <PhosphorIcon
+                            icon={IconMappings.iceCream}
+                            aria-label="Ice Cream"
+                        />
+                    }
+                >
+                    With PhosphorIcon aria-label
+                </Button>
+                <Button
+                    style={styles.button}
+                    startIcon={
+                        <Icon>
+                            <img
+                                src={"logo.svg"}
+                                alt="Wonder Blocks start icon"
+                            />
+                        </Icon>
+                    }
+                    endIcon={
+                        <Icon>
+                            <img
+                                src={"logo.svg"}
+                                alt="Wonder Blocks end icon"
+                            />
+                        </Icon>
+                    }
+                >
+                    With Icon and img alt
+                </Button>
+            </View>
+        );
+    },
+    parameters: {
+        chromatic: {
+            disableSnapshot: true,
         },
     },
 };
