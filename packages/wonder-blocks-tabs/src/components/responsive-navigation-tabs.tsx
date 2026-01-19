@@ -1,5 +1,8 @@
 import * as React from "react";
+import Link from "@khanacademy/wonder-blocks-link";
 import {NavigationTabsDropdown} from "./navigation-tabs-dropdown";
+import {NavigationTabs} from "./navigation-tabs";
+import {NavigationTabItem} from "./navigation-tab-item";
 
 export type ResponsiveNavigationTabItem = {
     /**
@@ -48,6 +51,26 @@ type Props = {
 export const ResponsiveNavigationTabs = (props: Props) => {
     const {tabs, selectedTabId, onTabSelected} = props;
 
+    if (true) {
+        return (
+            <NavigationTabs>
+                {tabs.map((tab) => (
+                    <NavigationTabItem
+                        key={tab.id}
+                        id={tab.id}
+                        current={tab.id === selectedTabId}
+                    >
+                        <Link
+                            href={tab.href}
+                            onClick={() => onTabSelected(tab.id)}
+                        >
+                            {tab.label}
+                        </Link>
+                    </NavigationTabItem>
+                ))}
+            </NavigationTabs>
+        );
+    }
     return (
         <NavigationTabsDropdown
             tabs={tabs}
