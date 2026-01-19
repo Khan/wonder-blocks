@@ -8,13 +8,20 @@ type Props = {
      */
     selected: MaybeValueOrValues;
     /**
-     * Function to set the selected items.
-     */
-    setSelected: (value: MaybeValueOrValues) => void;
-    /**
      * The current value of the input.
      */
     inputValue: string;
+    /**
+     * Wheter the combobox is open or not.
+     *
+     * This is used to determine if the visual focus should remain on the
+     * selected items when the combobox is open.
+     */
+    isComboboxOpen: boolean;
+    /**
+     * Notify the parent component that an item has been removed.
+     */
+    onRemove: (value: MaybeValueOrValues) => void;
 };
 
 /**
@@ -25,12 +32,20 @@ type Props = {
  */
 export function useMultipleSelection({
     inputValue,
+    isComboboxOpen,
     selected,
-    setSelected,
+    onRemove,
 }: Props) {
-    // Index of the currently focused pill in the multi-select combobox.
+    // Index of the currently focused item in the multi-select combobox.
     const [focusedMultiSelectIndex, setFocusedMultiSelectIndex] =
         React.useState<number>(-1);
+
+    React.useEffect(() => {
+        // Reset the focused index when the combobox is closed.
+        if (!isComboboxOpen) {
+            setFocusedMultiSelectIndex(-1);
+        }
+    }, [isComboboxOpen]);
 
     /**
      * Keyboard specific behaviors for the multi-select combobox.
@@ -44,14 +59,14 @@ export function useMultipleSelection({
                 return;
             }
 
-            if (key === "ArrowLeft") {
+            if (inputValue === "" && key === "ArrowLeft") {
                 setFocusedMultiSelectIndex((prev) => {
                     const newIndex = prev - 1;
                     return newIndex < 0 ? selected?.length - 1 : newIndex;
                 });
             }
 
-            if (key === "ArrowRight") {
+            if (inputValue === "" && key === "ArrowRight") {
                 setFocusedMultiSelectIndex((prev) => {
                     const newIndex = prev + 1;
                     return newIndex >= selected?.length ? 0 : newIndex;
@@ -71,8 +86,8 @@ export function useMultipleSelection({
                     );
                 }
 
-                setSelected(newSelected);
                 setFocusedMultiSelectIndex(-1);
+                onRemove?.(newSelected);
             }
 
             if (focusedMultiSelectIndex >= 0 && key === "Enter") {
@@ -81,7 +96,7 @@ export function useMultipleSelection({
                 );
 
                 // remove current selected option
-                setSelected(newSelected);
+                onRemove?.(newSelected);
                 setFocusedMultiSelectIndex(-1);
             }
 
@@ -96,7 +111,7 @@ export function useMultipleSelection({
                 setFocusedMultiSelectIndex(-1);
             }
         },
-        [focusedMultiSelectIndex, inputValue, selected, setSelected],
+        [focusedMultiSelectIndex, inputValue, selected, onRemove],
     );
 
     return {
