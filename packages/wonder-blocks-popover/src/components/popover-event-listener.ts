@@ -1,9 +1,5 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 import {isFocusable} from "../util/util";
-
-import PopoverContent from "./popover-content";
-import PopoverContentCore from "./popover-content-core";
 
 type Props = {
     /**
@@ -14,7 +10,7 @@ type Props = {
      * Popover Content ref.
      * Will close the popover when clicking outside this element.
      */
-    contentRef?: React.RefObject<PopoverContentCore | PopoverContent>;
+    contentRef?: React.RefObject<HTMLElement | null>;
 };
 
 type State = {
@@ -74,9 +70,8 @@ export default class PopoverEventListener extends React.Component<
             return;
         }
 
-        // eslint-disable-next-line import/no-deprecated
-        const node = ReactDOM.findDOMNode(this.props.contentRef?.current);
-        if (node && !node.contains(e.target as any)) {
+        const node = this.props.contentRef?.current;
+        if (node && !node.contains(e.target as HTMLElement)) {
             // Stop the event going any further.
             // Only allow click to cancel one thing at a time.
             e.preventDefault();
@@ -84,7 +79,7 @@ export default class PopoverEventListener extends React.Component<
 
             // Determine if the focus must go to a focusable/interactive
             // element.
-            const shouldReturnFocus = !isFocusable(e.target as any);
+            const shouldReturnFocus = !isFocusable(e.target as HTMLElement);
             // If that's the case, we need to prevent the default behavior of
             // returning the focus to the trigger button.
             this.props.onClose(shouldReturnFocus);

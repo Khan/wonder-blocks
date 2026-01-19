@@ -25,7 +25,7 @@ describe("PopoverKeypressListener", () => {
     it("should call onClose if clicked outside content ref", async () => {
         // Arrange
         const onCloseMock = jest.fn();
-        const contentRef: React.RefObject<PopoverContent> = React.createRef();
+        const contentRef: React.RefObject<HTMLElement> = React.createRef();
 
         const wrapper = render(
             <View>
@@ -54,7 +54,7 @@ describe("PopoverKeypressListener", () => {
     it("should not call onClose if clicked inside content ref", async () => {
         // Arrange
         const onCloseMock = jest.fn();
-        const contentRef: React.RefObject<PopoverContent> = React.createRef();
+        const contentRef: React.RefObject<HTMLElement> = React.createRef();
 
         render(
             <View>
