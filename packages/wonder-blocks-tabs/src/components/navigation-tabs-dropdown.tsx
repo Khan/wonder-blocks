@@ -163,8 +163,11 @@ export const NavigationTabsDropdown = React.forwardRef<
                       size: tab.icon.props.size ?? "medium",
                   })
                 : undefined,
+            handleClick: () => {
+                onTabSelected(tab.id);
+            },
         }));
-    }, [tabs]);
+    }, [tabs, onTabSelected]);
 
     const generatedUniqueId = React.useId();
     const uniqueId = idProp ?? generatedUniqueId;
@@ -217,13 +220,7 @@ export const NavigationTabsDropdown = React.forwardRef<
                             active={tab.id === selectedTabId}
                             testId={tab.testId}
                             leftAccessory={tab.leftAccessory}
-                            onClick={
-                                onTabSelected
-                                    ? () => {
-                                          onTabSelected(tab.id);
-                                      }
-                                    : undefined
-                            }
+                            onClick={tab.handleClick}
                         />
                     );
                 })}

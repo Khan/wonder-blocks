@@ -158,8 +158,11 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, TabsDropdownProps>(
                           size: tab.icon.props.size ?? "medium",
                       })
                     : undefined,
+                handleClick: () => {
+                    onTabSelected(tab.id);
+                },
             }));
-        }, [tabs]);
+        }, [tabs, onTabSelected]);
 
         if (tabs.length === 0) {
             return <React.Fragment />;
@@ -205,9 +208,7 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, TabsDropdownProps>(
                                 key={tab.id}
                                 label={tab.label}
                                 aria-label={tab["aria-label"]}
-                                onClick={() => {
-                                    onTabSelected(tab.id);
-                                }}
+                                onClick={tab.handleClick}
                                 active={tab.id === selectedTabId}
                                 testId={tab.testId}
                                 rightAccessory={
