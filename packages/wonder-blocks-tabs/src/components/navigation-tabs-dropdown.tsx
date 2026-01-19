@@ -5,6 +5,8 @@ import caretDown from "@phosphor-icons/core/bold/caret-down-bold.svg";
 import {StyleSheet} from "aphrodite";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import checkCircleIcon from "@phosphor-icons/core/fill/check-circle-fill.svg";
 
 type NavigationTabDropdownItem = {
     /**
@@ -221,6 +223,15 @@ export const NavigationTabsDropdown = React.forwardRef<
                             testId={tab.testId}
                             leftAccessory={tab.leftAccessory}
                             onClick={tab.handleClick}
+                            rightAccessory={
+                                tab.id === selectedTabId ? (
+                                    <PhosphorIcon
+                                        icon={checkCircleIcon}
+                                        size="medium"
+                                        aria-hidden="true"
+                                    />
+                                ) : undefined
+                            }
                         />
                     );
                 })}
