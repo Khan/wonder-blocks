@@ -8,6 +8,8 @@ import {
 } from "../components/text-for-testing";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {allModes, themeModes} from "../../.storybook/modes";
+import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
     title: "Packages / Tabs / Tabs / Subcomponents / TabsDropdown / Testing / TabsDropdown - Snapshots",
@@ -231,4 +233,44 @@ export const SmallScreenScenarios = {
             disableSnapshot: true,
         },
     },
+};
+
+// Keeping opened dropdown with icons in a separate story from Scenarios
+// so we can capture the opened state in the viewport for the snapshot
+export const OpenedWithIcons = {
+    args: {
+        opened: true,
+        tabs: [
+            {
+                label: "Tab 1",
+                id: "tab-1",
+                panel: <div>Tab contents 1</div>,
+                icon: <PhosphorIcon icon={IconMappings.cookie} />,
+            },
+            {
+                label: longText,
+                id: "tab-2",
+                panel: <div>Tab contents 2</div>,
+                icon: <PhosphorIcon icon={IconMappings.iceCream} />,
+            },
+            {
+                label: longTextWithNoWordBreak,
+                id: "tab-3",
+                panel: <div>Tab contents 3</div>,
+                icon: (
+                    <Icon>
+                        <img src="logo.svg" alt="Wonder Blocks" />
+                    </Icon>
+                ),
+            },
+        ],
+        selectedTabId: "tab-1",
+        styles: {
+            root: {
+                paddingBlockEnd: sizing.size_960,
+                marginBlockEnd: sizing.size_960,
+            },
+        },
+    },
+    render: ControlledTabsDropdown,
 };

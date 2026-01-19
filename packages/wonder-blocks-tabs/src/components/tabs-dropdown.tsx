@@ -30,6 +30,10 @@ type TabDropdownItem = {
      * Optional aria-label for the tab.
      */
     "aria-label"?: string;
+    /**
+     * Optional icon to display in the tab. Should be a PhosphorIcon or Icon component.
+     */
+    icon?: React.ReactElement;
 };
 
 export type TabsDropdownProps = AriaLabelOrAriaLabelledby & {
@@ -144,6 +148,19 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, TabsDropdownProps>(
             );
         }, [tabs, selectedTabId]);
 
+        // Memoize the processed tabs with cloned icons to avoid cloning on every render
+        const processedTabs = React.useMemo(() => {
+            return tabs.map((tab) => ({
+                ...tab,
+                leftAccessory: tab.icon
+                    ? React.cloneElement(tab.icon, {
+                          // By default, use the medium size for icon components
+                          size: tab.icon.props.size ?? "medium",
+                      })
+                    : undefined,
+            }));
+        }, [tabs]);
+
         if (tabs.length === 0) {
             return <React.Fragment />;
         }
@@ -171,16 +188,18 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, TabsDropdownProps>(
                             kind="tertiary"
                             endIcon={caretDown}
                             style={[styles.opener, stylesProp?.opener]}
+                            labelStyle={styles.labelStyle}
                             // If the selected tab has an aria-label, use it for
                             // the opener when it is selected
                             aria-label={selectedTabItem?.["aria-label"]}
+                            startIcon={selectedTabItem?.icon}
                         >
                             {menuText}
                         </Button>
                     )}
                     style={[styles.actionMenu, stylesProp?.actionMenu]}
                 >
-                    {tabs.map((tab: TabDropdownItem) => {
+                    {processedTabs.map((tab) => {
                         return (
                             <ActionItem
                                 key={tab.id}
@@ -200,6 +219,7 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, TabsDropdownProps>(
                                         />
                                     ) : undefined
                                 }
+                                leftAccessory={tab.leftAccessory}
                             />
                         );
                     })}
@@ -232,5 +252,11 @@ const styles = StyleSheet.create({
         paddingInline: sizing.size_180,
         width: "100%",
         justifyContent: "space-between",
+        gap: sizing.size_020,
+    },
+    labelStyle: {
+        flexGrow: 1,
+        maxWidth: "100%",
+        textAlign: "start",
     },
 });
