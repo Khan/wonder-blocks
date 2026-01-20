@@ -151,11 +151,8 @@ export const ResponsiveTabs = (props: Props) => {
         tabs,
         horizontalLayoutRef: tabsRef,
         containerRef,
+        onLayoutChange,
     });
-
-    React.useEffect(() => {
-        onLayoutChange?.(showDropdown ? "dropdown" : "tabs");
-    }, [showDropdown, onLayoutChange]);
 
     return (
         <View

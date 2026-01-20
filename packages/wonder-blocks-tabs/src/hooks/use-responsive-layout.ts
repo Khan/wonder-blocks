@@ -11,13 +11,18 @@ type UseResponsiveLayoutOptions<T extends HTMLElement> = {
      */
     tabs: TabItem[];
     /**
-     * Reference to the horizontal layout element (e.g., Tabs or NavigationTabs).
+     * Reference to the tabs layout element (e.g., Tabs or NavigationTabs).
      */
     horizontalLayoutRef: React.RefObject<T>;
     /**
      * Reference to the container element that wraps both layouts.
      */
     containerRef: React.RefObject<HTMLDivElement>;
+    /**
+     * Optional callback that is called when the layout changes between
+     * tabs and dropdown layouts.
+     */
+    onLayoutChange?: (layout: "tabs" | "dropdown") => void;
 };
 
 type UseResponsiveLayoutResult = {
@@ -29,19 +34,19 @@ type UseResponsiveLayoutResult = {
 
 /**
  * Custom hook that manages the responsive layout logic for switching between
- * a horizontal layout and a dropdown layout based on available space.
+ * a horizontal tabs layout and a dropdown layout based on available space.
  *
  * This hook handles:
- * - Detecting overflow in the horizontal layout
+ * - Detecting overflow in the horizontal tabs  layout
  * - Switching to dropdown when overflow is detected
- * - Switching back to horizontal layout when space is available
+ * - Switching back to horizontal tabs layout when space is available
  * - Re-measuring when tabs change
  * - Observing container resize events
  */
 export function useResponsiveLayout<T extends HTMLElement>(
     options: UseResponsiveLayoutOptions<T>,
 ): UseResponsiveLayoutResult {
-    const {tabs, horizontalLayoutRef, containerRef} = options;
+    const {tabs, horizontalLayoutRef, containerRef, onLayoutChange} = options;
 
     const [showDropdown, setShowDropdown] = React.useState(false);
 
@@ -81,7 +86,7 @@ export function useResponsiveLayout<T extends HTMLElement>(
             // Currently showing dropdown - check if we have enough space
             const containerWidth = container.clientWidth;
 
-            // Switch back to horizontal layout if container is wide enough
+            // Switch back to tabs layout if container is wide enough
             if (containerWidth >= tabsWidthRef.current) {
                 setShowDropdown(false);
             }
@@ -91,15 +96,15 @@ export function useResponsiveLayout<T extends HTMLElement>(
     React.useEffect(() => {
         // This effect handles the case where the length of tabs or the tabs
         // labels change. This determines whether to switch to the dropdown or
-        // horizontal layout.
+        // tabs layout.
         if (showDropdown) {
             // When tabsSignature changes and dropdown is shown, reset to
-            // horizontal layout so we can re-measure and see if we can switch
+            // tabs layout so we can re-measure and see if we can switch
             // back
             tabsWidthRef.current = null;
             setShowDropdown(false);
         } else {
-            // When tabsSignature changes and horizontal layout is shown, check
+            // When tabsSignature changes and tabs layout is shown, check
             // for overflow
             checkOverflow();
         }
@@ -123,6 +128,10 @@ export function useResponsiveLayout<T extends HTMLElement>(
             resizeObserver.disconnect();
         };
     }, [checkOverflow, containerRef]);
+
+    React.useEffect(() => {
+        onLayoutChange?.(showDropdown ? "dropdown" : "tabs");
+    }, [showDropdown, onLayoutChange]);
 
     return {
         showDropdown,

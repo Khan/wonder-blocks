@@ -1,5 +1,5 @@
 import {Meta, StoryObj} from "@storybook/react-vite";
-import {expect, waitFor, within} from "storybook/test";
+import {expect, fn, waitFor, within} from "storybook/test";
 import {ResponsiveNavigationTabs} from "@khanacademy/wonder-blocks-tabs";
 import {
     Default as ResponsiveNavigationTabsDefault,
@@ -30,6 +30,9 @@ export default {
             },
         },
     },
+    args: {
+        onLayoutChange: fn(),
+    },
     tags: ["!autodocs"],
     globals: {
         theme: "thunderblocks",
@@ -45,13 +48,15 @@ export const ChangingLabelLength: Story = {
             value: "large",
         },
     },
-    play: async ({canvasElement, userEvent}) => {
+    play: async ({args, canvasElement, userEvent}) => {
         const canvas = within(canvasElement.ownerDocument.body);
 
         // Confirm the initial state is using horizontal navigation tabs and showing
         // all links
         const links = await canvas.findAllByRole("link");
         expect(links).toHaveLength(INITIAL_TABS_COUNT);
+
+        expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
 
         // Update the tab labels to long labels to trigger the dropdown layout
         await userEvent.click(
@@ -69,6 +74,8 @@ export const ChangingLabelLength: Story = {
         const menuItems = await canvas.findAllByRole("menuitem");
         expect(menuItems).toHaveLength(INITIAL_TABS_COUNT);
 
+        expect(args.onLayoutChange).toHaveBeenLastCalledWith("dropdown");
+
         // Reset the tab labels
         await userEvent.click(
             canvas.getByRole("button", {name: "Update tab labels"}),
@@ -77,6 +84,8 @@ export const ChangingLabelLength: Story = {
         // Confirm the horizontal navigation tabs layout is used
         const linksAfterReset = await canvas.findAllByRole("link");
         expect(linksAfterReset).toHaveLength(INITIAL_TABS_COUNT);
+
+        expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
     },
 };
 
@@ -87,12 +96,14 @@ export const AddingAndRemovingTabs: Story = {
             value: "large",
         },
     },
-    play: async ({canvasElement, userEvent}) => {
+    play: async ({args, canvasElement, userEvent}) => {
         const canvas = within(canvasElement.ownerDocument.body);
 
         // Confirm the initial state using horizontal navigation tabs
         const links = await canvas.findAllByRole("link");
         expect(links).toHaveLength(INITIAL_TABS_COUNT);
+
+        expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
 
         // Add a tab
         await userEvent.click(canvas.getByRole("button", {name: "Add a tab"}));
@@ -109,6 +120,8 @@ export const AddingAndRemovingTabs: Story = {
         const menuItems = await canvas.findAllByRole("menuitem");
         expect(menuItems).toHaveLength(INITIAL_TABS_COUNT + 1);
 
+        expect(args.onLayoutChange).toHaveBeenLastCalledWith("dropdown");
+
         // Remove a tab
         await userEvent.click(
             canvas.getByRole("button", {name: "Remove a tab"}),
@@ -117,6 +130,8 @@ export const AddingAndRemovingTabs: Story = {
         // Confirm the horizontal navigation tabs layout is used
         const linksAfterRemove = await canvas.findAllByRole("link");
         expect(linksAfterRemove).toHaveLength(INITIAL_TABS_COUNT);
+
+        expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
     },
 };
 
@@ -127,12 +142,14 @@ export const ChangingContainerWidth: Story = {
             value: "large",
         },
     },
-    play: async ({canvasElement, userEvent}) => {
+    play: async ({args, canvasElement, userEvent}) => {
         const canvas = within(canvasElement.ownerDocument.body);
 
         // Confirm the initial state using horizontal navigation tabs
         const links = await canvas.findAllByRole("link");
         expect(links).toHaveLength(INITIAL_TABS_COUNT);
+
+        expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
 
         // Change the container width
         await userEvent.click(
@@ -151,6 +168,8 @@ export const ChangingContainerWidth: Story = {
         const menuItems = await canvas.findAllByRole("menuitem");
         expect(menuItems).toHaveLength(INITIAL_TABS_COUNT);
 
+        expect(args.onLayoutChange).toHaveBeenLastCalledWith("dropdown");
+
         // Change the container width back
         await userEvent.click(
             canvas.getByRole("button", {name: "Change container width"}),
@@ -159,6 +178,8 @@ export const ChangingContainerWidth: Story = {
         // Confirm the horizontal navigation tabs layout is used
         const linksAfterWidthChange = await canvas.findAllByRole("link");
         expect(linksAfterWidthChange).toHaveLength(INITIAL_TABS_COUNT);
+
+        expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
     },
 };
 
@@ -169,12 +190,14 @@ export const ChangingZoomLevel: Story = {
             value: "large",
         },
     },
-    play: async ({canvasElement, userEvent}) => {
+    play: async ({args, canvasElement, userEvent}) => {
         const canvas = within(canvasElement.ownerDocument.body);
 
         // Confirm the initial state using horizontal navigation tabs
         const links = await canvas.findAllByRole("link");
         expect(links).toHaveLength(INITIAL_TABS_COUNT);
+
+        expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
 
         // Change the zoom level
         await userEvent.click(
@@ -192,6 +215,8 @@ export const ChangingZoomLevel: Story = {
         const menuItems = await canvas.findAllByRole("menuitem");
         expect(menuItems).toHaveLength(INITIAL_TABS_COUNT);
 
+        expect(args.onLayoutChange).toHaveBeenLastCalledWith("dropdown");
+
         // Change the zoom level back
         await userEvent.click(
             canvas.getByRole("button", {name: "Simulate zoom"}),
@@ -200,5 +225,7 @@ export const ChangingZoomLevel: Story = {
         // Confirm the horizontal navigation tabs layout is used
         const linksAfterZoomChange = await canvas.findAllByRole("link");
         expect(linksAfterZoomChange).toHaveLength(INITIAL_TABS_COUNT);
+
+        expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
     },
 };

@@ -37,6 +37,12 @@ type Props = {
      * Called when a navigation tab is selected.
      */
     onTabSelected: (id: string) => void;
+
+    /**
+     * Called when the layout changes between NavigationTabs and
+     * NavigationTabsDropdown.
+     */
+    onLayoutChange?: (layout: "tabs" | "dropdown") => void;
 };
 
 /**
@@ -52,7 +58,7 @@ type Props = {
  * NavigationTabs component directly.
  */
 export const ResponsiveNavigationTabs = (props: Props) => {
-    const {tabs, selectedTabId, onTabSelected} = props;
+    const {tabs, selectedTabId, onTabSelected, onLayoutChange} = props;
 
     const navigationTabsRef = React.useRef<HTMLElement>(null);
     const containerRef = React.useRef<HTMLDivElement>(null);
@@ -61,6 +67,7 @@ export const ResponsiveNavigationTabs = (props: Props) => {
         tabs,
         horizontalLayoutRef: navigationTabsRef,
         containerRef,
+        onLayoutChange,
     });
 
     return (
