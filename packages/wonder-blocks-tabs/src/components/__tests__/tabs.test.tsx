@@ -165,6 +165,23 @@ describe("Tabs", () => {
         expect(ref.current).toBe(container.firstChild);
     });
 
+    it("should set scrollableElementRef on an element with overflow-x: auto", () => {
+        // Arrange
+        const ref = React.createRef<HTMLDivElement>();
+        render(
+            <Tabs
+                scrollableElementRef={ref}
+                tabs={tabs}
+                selectedTabId={tabs[0].id}
+                onTabSelected={jest.fn()}
+                aria-label={tabsAriaLabel}
+            />,
+        );
+
+        // Assert
+        expect(ref.current).toHaveStyle("overflow-x: auto");
+    });
+
     describe("Props", () => {
         describe("id", () => {
             it("should use the provided id for the root element", async () => {
