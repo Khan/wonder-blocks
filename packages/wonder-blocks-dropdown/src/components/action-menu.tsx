@@ -83,11 +83,9 @@ type Props = AriaProps &
          */
         dropdownId?: string;
         /**
-         * Unique identifier attached to the field control.
-         *
-         * If this is used, we need to guarantee that the ID is unique within
-         * everything rendered on a page. If one is not provided, one is
-         * auto-generated.
+         * Unique identifier attached to the field control. If this is used, we
+         * need to guarantee that the ID is unique within everything rendered on
+         * a page. If one is not provided, one is auto-generated.
          */
         id?: string;
     }>;
