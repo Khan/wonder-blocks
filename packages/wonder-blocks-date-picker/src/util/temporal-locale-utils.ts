@@ -327,43 +327,31 @@ function parseWithFormat(
     // MMMM D, YYYY (e.g., "May 7, 2021")
     if (format === "MMMM D, YYYY" || format === "MMM D, YYYY") {
         try {
-            // Parse using Intl.DateTimeFormat
-            // This is a bit of a hack but works for most locales
             const cleaned = str.trim();
             const localeStr = locale || enUSLocaleCode;
 
-            // Try to parse the date using Date constructor
-            // which can handle many locale-specific formats
-            const jsDate = new Date(cleaned);
-
-            // Validate the date is valid
-            if (!isNaN(jsDate.getTime())) {
-                return jsDateToTemporalDate(jsDate);
-            }
-
-            // Alternative approach: split by comma and parse parts
+            // Use strict manual parsing
             const parts = cleaned.split(",");
             if (parts.length === 2) {
                 const [monthDay, yearStr] = parts;
                 const year = parseInt(yearStr.trim(), 10);
 
-                // Get month names for the locale (use long names from getMonths)
-                const months = getMonths(localeStr).map((m) => m[0]);
+                // Validate year is 4 digits (1000-9999)
+                if (year < 1000 || year > 9999) {
+                    return undefined;
+                }
 
-                // Parse month and day
+                const months = getMonths(localeStr).map((m) => m[0]);
                 const monthDayParts = monthDay.trim().split(" ");
                 if (monthDayParts.length === 2) {
                     const monthName = monthDayParts[0];
                     const day = parseInt(monthDayParts[1], 10);
-
-                    // Find month index
                     const monthIndex = months.findIndex(
                         (m) =>
                             m.toLowerCase() === monthName.toLowerCase() ||
                             m.slice(0, 3).toLowerCase() ===
                                 monthName.toLowerCase(),
                     );
-
                     if (monthIndex >= 0 && !isNaN(day) && !isNaN(year)) {
                         return Temporal.PlainDate.from({
                             year,
