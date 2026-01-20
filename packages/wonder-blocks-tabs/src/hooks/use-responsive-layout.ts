@@ -1,0 +1,130 @@
+import * as React from "react";
+
+type TabItem = {
+    id: string;
+    label: string;
+};
+
+type UseResponsiveLayoutOptions<T extends HTMLElement> = {
+    /**
+     * The tabs to display. Used to create a signature for detecting changes.
+     */
+    tabs: TabItem[];
+    /**
+     * Reference to the horizontal layout element (e.g., Tabs or NavigationTabs).
+     */
+    horizontalLayoutRef: React.RefObject<T>;
+    /**
+     * Reference to the container element that wraps both layouts.
+     */
+    containerRef: React.RefObject<HTMLDivElement>;
+};
+
+type UseResponsiveLayoutResult = {
+    /**
+     * Whether to show the dropdown layout instead of the horizontal layout.
+     */
+    showDropdown: boolean;
+};
+
+/**
+ * Custom hook that manages the responsive layout logic for switching between
+ * a horizontal layout and a dropdown layout based on available space.
+ *
+ * This hook handles:
+ * - Detecting overflow in the horizontal layout
+ * - Switching to dropdown when overflow is detected
+ * - Switching back to horizontal layout when space is available
+ * - Re-measuring when tabs change
+ * - Observing container resize events
+ */
+export function useResponsiveLayout<T extends HTMLElement>(
+    options: UseResponsiveLayoutOptions<T>,
+): UseResponsiveLayoutResult {
+    const {tabs, horizontalLayoutRef, containerRef} = options;
+
+    const [showDropdown, setShowDropdown] = React.useState(false);
+
+    // Store the width needed for tabs to display without scrolling. This is so
+    // we can switch back to the tabs view when the container width is wide enough.
+    const tabsWidthRef = React.useRef<number | null>(null);
+
+    // Create a signature of the tabs to detect changes (tab added/removed, label changed)
+    const tabsSignature = React.useMemo(
+        () => tabs.map((t) => `${t.id}:${t.label}`).join("|"),
+        [tabs],
+    );
+
+    const checkOverflow = React.useCallback(() => {
+        const container = containerRef.current;
+        if (!container) {
+            return;
+        }
+        if (!showDropdown && horizontalLayoutRef.current) {
+            // Currently showing horizontal layout - check for overflow
+            // Get the first child which is the scrollable wrapper
+            const scrollableWrapper =
+                horizontalLayoutRef.current.firstElementChild;
+
+            if (scrollableWrapper) {
+                const hasOverflow =
+                    scrollableWrapper.scrollWidth >
+                    scrollableWrapper.clientWidth;
+
+                if (hasOverflow) {
+                    // Store the width before switching
+                    tabsWidthRef.current = scrollableWrapper.scrollWidth;
+                    setShowDropdown(true);
+                }
+            }
+        } else if (showDropdown && tabsWidthRef.current) {
+            // Currently showing dropdown - check if we have enough space
+            const containerWidth = container.clientWidth;
+
+            // Switch back to horizontal layout if container is wide enough
+            if (containerWidth >= tabsWidthRef.current) {
+                setShowDropdown(false);
+            }
+        }
+    }, [showDropdown, horizontalLayoutRef, containerRef]);
+
+    React.useEffect(() => {
+        // This effect handles the case where the length of tabs or the tabs
+        // labels change. This determines whether to switch to the dropdown or
+        // horizontal layout.
+        if (showDropdown) {
+            // When tabsSignature changes and dropdown is shown, reset to
+            // horizontal layout so we can re-measure and see if we can switch
+            // back
+            tabsWidthRef.current = null;
+            setShowDropdown(false);
+        } else {
+            // When tabsSignature changes and horizontal layout is shown, check
+            // for overflow
+            checkOverflow();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps -- explicitly only depend on tabsSignature
+    }, [tabsSignature]);
+
+    React.useEffect(() => {
+        const container = containerRef.current;
+        // ResizeObserver is supported in browsers we support, but not in jsdom
+        if (!container || !window.ResizeObserver) {
+            return;
+        }
+
+        const resizeObserver = new ResizeObserver(() => {
+            checkOverflow();
+        });
+
+        resizeObserver.observe(container);
+
+        return () => {
+            resizeObserver.disconnect();
+        };
+    }, [checkOverflow, containerRef]);
+
+    return {
+        showDropdown,
+    };
+}
