@@ -1,5 +1,5 @@
 import {Meta, Story, Canvas} from "@storybook/addon-docs/blocks";
-import * as MultiSelectAccessibilityStories from './multi-select.accessibility.stories';
+import * as ActionMenuStories from './action-menu.stories';
 
 import {OptionItem, MultiSelect} from "@khanacademy/wonder-blocks-dropdown";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -43,3 +43,15 @@ complex menus and action items.
 | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | role="menu"          | Indicates that the element is a menu.                                                                                                                    |
 | aria-labelledby="opener-id"   | Indicates that the element is labelled by the element with the given id.                                                                        |
+
+## Labeling the ActionMenu component
+
+In certain situations where the menu button text doesn't provide enough context
+about the menu's purpose, you can use the `aria-label` prop to provide a more
+descriptive label.
+
+**NOTE:** `ActionMenu` internally associates the `menu` element with the
+`opener` element using the `aria-labelledby` attribute, that way Screenreaders
+will announce the menu text when the menu is opened.
+
+<Canvas of={ActionMenuStories.AriaLabel} />
