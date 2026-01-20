@@ -12,13 +12,17 @@ type UseResponsiveLayoutOptions = {
      */
     tabs: TabItem[];
     /**
-     * Reference to the element with horizontal scroll (element withoverflow-x: auto set).
+     * Reference to the element with horizontal scroll (element with `overflow-x: auto` set).
      * This ref is used to check for horizontal overflow to determine if the
      * layout should be switched.
      */
     elementWithOverflowRef: React.RefObject<HTMLElement>;
     /**
      * Reference to the container element that wraps both layouts.
+     *
+     * Used for determining if there is enough space in the container to
+     * display the tabs in a horizontal layout. Also used to observe resize
+     * events.
      */
     containerRef: React.RefObject<HTMLDivElement>;
     /**
@@ -39,12 +43,12 @@ type UseResponsiveLayoutResult = {
  * Custom hook that manages the responsive layout logic for switching between
  * a horizontal tabs layout and a dropdown layout based on available space.
  *
- * This hook handles:
- * - Detecting overflow in the horizontal tabs  layout
- * - Switching to dropdown when overflow is detected
- * - Switching back to horizontal tabs layout when space is available
- * - Re-measuring when tabs change
- * - Observing container resize events
+ * Changes that can trigger a layout change:
+ * - The number of tabs
+ * - The length of the tab labels
+ * - The width of the container
+ * - The zoom level
+ * - The presence of icons in the tabs
  */
 export function useResponsiveLayout(
     options: UseResponsiveLayoutOptions,
@@ -58,7 +62,7 @@ export function useResponsiveLayout(
     // we can switch back to the tabs view when the container width is wide enough.
     const tabsWidthRef = React.useRef<number | null>(null);
 
-    // Create a signature of the tabs to detect changes (tab added/removed, label changed)
+    // Create a signature of the tabs to detect changes (tab added/removed, label changed, presence of tab icon)
     const tabsSignature = React.useMemo(
         () =>
             tabs
