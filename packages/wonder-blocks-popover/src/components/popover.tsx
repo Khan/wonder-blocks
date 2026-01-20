@@ -3,12 +3,11 @@ import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 
-import {Floating} from "@khanacademy/wonder-blocks-floating";
+import {Floating, type Placement} from "@khanacademy/wonder-blocks-floating";
 import PopoverContent from "./popover-content";
 import PopoverContentCore from "./popover-content-core";
 import PopoverContext from "./popover-context";
 import PopoverAnchor from "./popover-anchor";
-import {Placement} from "../util/types";
 
 type PopoverContents =
     | React.ReactElement<React.ComponentProps<typeof PopoverContent>>
@@ -156,8 +155,6 @@ function Popover(props: Props) {
 
     // Internal opened state for uncontrolled mode
     const [internalOpened, setInternalOpened] = React.useState(!!openedProp);
-    // Current placement
-    // const [placement, setPlacement] = React.useState<Placement>(placementProp);
 
     // Determine if controlled or uncontrolled
     const isControlled = typeof openedProp === "boolean";
@@ -218,7 +215,6 @@ function Popover(props: Props) {
         <PopoverContext.Provider
             value={{
                 close: handleClose,
-                placement: placement,
             }}
         >
             <Floating
@@ -242,8 +238,8 @@ function Popover(props: Props) {
                 }
                 strategy="fixed"
                 rootBoundary={rootBoundary}
-                flip={rootBoundary === "document"}
-                shift={rootBoundary === "viewport"}
+                // flip={rootBoundary === "document"}
+                // shift={rootBoundary === "viewport"}
             >
                 <PopoverAnchor
                     id={`${uniqueId}-anchor`}

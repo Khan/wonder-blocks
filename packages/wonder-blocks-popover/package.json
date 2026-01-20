@@ -25,11 +25,11 @@
   },
   "dependencies": {
     "@khanacademy/wonder-blocks-core": "workspace:*",
+    "@khanacademy/wonder-blocks-floating": "workspace:*",
     "@khanacademy/wonder-blocks-icon-button": "workspace:*",
     "@khanacademy/wonder-blocks-modal": "workspace:*",
     "@khanacademy/wonder-blocks-styles": "workspace:*",
     "@khanacademy/wonder-blocks-tokens": "workspace:*",
-    "@khanacademy/wonder-blocks-tooltip": "workspace:*",
     "@khanacademy/wonder-blocks-typography": "workspace:*"
   },
   "peerDependencies": {

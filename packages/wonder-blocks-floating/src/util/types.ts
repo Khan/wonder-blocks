@@ -1,5 +1,5 @@
-import {Floating} from "@khanacademy/wonder-blocks-floating";
 import React from "react";
+import Floating from "../components/floating";
 
 type FloatingProps = React.ComponentProps<typeof Floating>;
 

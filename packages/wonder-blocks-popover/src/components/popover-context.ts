@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import {Placement} from "../util/types";
+import {type Placement} from "@khanacademy/wonder-blocks-floating";
 
 export type PopoverContextType = {
     /**
