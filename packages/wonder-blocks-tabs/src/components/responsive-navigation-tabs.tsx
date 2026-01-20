@@ -1,4 +1,6 @@
 import * as React from "react";
+import {StyleSheet} from "aphrodite";
+import {View} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
 import {NavigationTabsDropdown} from "./navigation-tabs-dropdown";
 import {NavigationTabs} from "./navigation-tabs";
@@ -51,31 +53,141 @@ type Props = {
 export const ResponsiveNavigationTabs = (props: Props) => {
     const {tabs, selectedTabId, onTabSelected} = props;
 
-    if (true) {
-        return (
-            <NavigationTabs>
-                {tabs.map((tab) => (
-                    <NavigationTabItem
-                        key={tab.id}
-                        id={tab.id}
-                        current={tab.id === selectedTabId}
-                    >
-                        <Link
-                            href={tab.href}
-                            onClick={() => onTabSelected(tab.id)}
-                        >
-                            {tab.label}
-                        </Link>
-                    </NavigationTabItem>
-                ))}
-            </NavigationTabs>
-        );
-    }
+    const [showDropdown, setShowDropdown] = React.useState(false);
+    const navigationTabsRef = React.useRef<HTMLElement>(null);
+    const containerRef = React.useRef<HTMLDivElement>(null);
+
+    // Store the width needed for tabs to display without scrolling. This is so
+    // we can switch back to the tabs view when the container width is wide enough.
+    const tabsWidthRef = React.useRef<number | null>(null);
+
+    // Create a signature of the tabs to detect changes (tab added/removed, label changed)
+    const tabsSignature = React.useMemo(
+        () => tabs.map((t) => `${t.id}:${t.label}`).join("|"),
+        [tabs],
+    );
+
+    const checkOverflow = React.useCallback(() => {
+        const container = containerRef.current;
+        if (!container) {
+            return;
+        }
+        if (!showDropdown && navigationTabsRef.current) {
+            // Currently showing tabs - check for overflow
+            // The nav element contains the list wrapper
+            const navElement = navigationTabsRef.current;
+            // Get the first child which is the contents wrapper div
+            const contentsWrapper = navElement.firstElementChild;
+
+            if (contentsWrapper) {
+                const hasOverflow =
+                    contentsWrapper.scrollWidth > contentsWrapper.clientWidth;
+
+                if (hasOverflow) {
+                    // Store the width before switching
+                    tabsWidthRef.current = contentsWrapper.scrollWidth;
+                    setShowDropdown(true);
+                }
+            }
+        } else if (showDropdown && tabsWidthRef.current) {
+            // Currently showing dropdown - check if we have enough space
+            const containerWidth = container.clientWidth;
+
+            // Switch back to tabs if container is wide enough
+            if (containerWidth >= tabsWidthRef.current) {
+                setShowDropdown(false);
+            }
+        }
+    }, [showDropdown]);
+
+    React.useEffect(() => {
+        // This effect handles the case where the length of tabs or the tabs
+        // labels change. This determines whether to switch to the dropdown or
+        // tabs view.
+        if (showDropdown) {
+            // When tabsSignature changes and dropdown is shown, reset to tabs
+            // view so we can re-measure and see if we can switch back to tabs
+            tabsWidthRef.current = null;
+            setShowDropdown(false);
+        } else {
+            // When tabsSignature changes and tabs view is shown, check for
+            // overflow
+            checkOverflow();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [tabsSignature]);
+
+    React.useEffect(() => {
+        const container = containerRef.current;
+        // ResizeObserver is supported in browsers we support, but not in jsdom
+        if (!container || !window.ResizeObserver) {
+            return;
+        }
+
+        const resizeObserver = new ResizeObserver(() => {
+            checkOverflow();
+        });
+
+        resizeObserver.observe(container);
+
+        return () => {
+            resizeObserver.disconnect();
+        };
+    }, [checkOverflow]);
+
     return (
-        <NavigationTabsDropdown
-            tabs={tabs}
-            selectedTabId={selectedTabId}
-            onTabSelected={onTabSelected}
-        />
+        <View ref={containerRef} style={styles.container}>
+            {showDropdown ? (
+                <NavigationTabsDropdown
+                    key="dropdown"
+                    tabs={tabs}
+                    selectedTabId={selectedTabId}
+                    onTabSelected={onTabSelected}
+                    styles={{root: styles.fadeIn}}
+                />
+            ) : (
+                <NavigationTabs
+                    key="tabs"
+                    ref={navigationTabsRef}
+                    styles={{root: styles.fadeIn}}
+                >
+                    {tabs.map((tab) => (
+                        <NavigationTabItem
+                            key={tab.id}
+                            current={tab.id === selectedTabId}
+                        >
+                            <Link
+                                href={tab.href}
+                                onClick={() => onTabSelected(tab.id)}
+                            >
+                                {tab.label}
+                            </Link>
+                        </NavigationTabItem>
+                    ))}
+                </NavigationTabs>
+            )}
+        </View>
     );
 };
+
+const fadeInKeyframes = {
+    from: {opacity: 0},
+    to: {opacity: 1},
+};
+
+const styles = StyleSheet.create({
+    // Apply fade in animation to NavigationTabs and NavigationTabsDropdown to
+    // ease into the transition between the two layouts. Since this is a fade
+    // animation to smoothen the transition, we apply it always, even if prefers
+    // reduced motion is enabled
+    fadeIn: {
+        // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
+        animationName: fadeInKeyframes,
+        animationDuration: "150ms",
+        animationTimingFunction: "ease-in-out",
+    },
+    container: {
+        width: "100%",
+        minHeight: "auto", // override setting the min height: 0 style
+    },
+});
