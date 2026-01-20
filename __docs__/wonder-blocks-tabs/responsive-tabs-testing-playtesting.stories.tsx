@@ -296,8 +296,8 @@ export const TogglingIconInLabels: Story = {
         // Confirm the horizontal tabs layout is used
         await canvas.findByRole("tablist");
 
-        const tabsAfterWidthChange = await canvas.findAllByRole("tab");
-        expect(tabsAfterWidthChange).toHaveLength(INITIAL_TABS_COUNT);
+        const tabsAfterChange = await canvas.findAllByRole("tab");
+        expect(tabsAfterChange).toHaveLength(INITIAL_TABS_COUNT);
 
         expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
     },

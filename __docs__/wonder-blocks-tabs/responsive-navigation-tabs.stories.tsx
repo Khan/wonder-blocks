@@ -4,6 +4,8 @@ import {ResponsiveNavigationTabs} from "@khanacademy/wonder-blocks-tabs";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
     title: "Packages / Tabs / ResponsiveNavigationTabs",
@@ -51,12 +53,17 @@ export const Default: Story = {
     render: function Render(args) {
         const [tabsCount, setTabsCount] = React.useState(INITIAL_TABS_COUNT);
         const [showLongLabels, setShowLongLabels] = React.useState(false);
+        const [showIcons, setShowIcons] = React.useState(false);
+
         const tabs = new Array(tabsCount).fill(0).map((_, index) => ({
             label: showLongLabels
                 ? `Navigation tab ${index + 1} with a long label`
                 : `Navigation tab ${index + 1}`,
             id: `tab-${index + 1}`,
             href: `#tab-${index + 1}`,
+            icon: showIcons ? (
+                <PhosphorIcon icon={IconMappings.cookieBold} />
+            ) : undefined,
         }));
 
         const [containerWidth, setContainerWidth] = React.useState<
@@ -125,8 +132,62 @@ export const Default: Story = {
                     >
                         Simulate zoom
                     </Button>
+
+                    <Button onClick={() => setShowIcons(!showIcons)}>
+                        Toggle icons
+                    </Button>
                 </View>
             </View>
         );
+    },
+};
+
+/**
+ * ResponsiveNavigationTabs can include icons to provide visual context.
+ * Icons are displayed in both tabs and dropdown layouts.
+ */
+export const WithIcons: Story = {
+    render: ControlledResponsiveNavigationTabs,
+    args: {
+        selectedTabId: "tab-1",
+        tabs: [
+            {
+                label: "Tab 1 with Phosphor icon",
+                id: "tab-1",
+                href: "#tab-1",
+                icon: (
+                    <PhosphorIcon
+                        icon={IconMappings.cookieBold}
+                        aria-label="Cookie"
+                    />
+                ),
+            },
+            {
+                label: "Tab 2 with custom icon",
+                id: "tab-2",
+                href: "#tab-2",
+                icon: (
+                    <Icon>
+                        <img src="logo.svg" alt="Wonder Blocks" />
+                    </Icon>
+                ),
+            },
+            {
+                label: "Tab 3 with presentational icon",
+                id: "tab-3",
+                href: "#tab-3",
+                icon: (
+                    <PhosphorIcon
+                        icon={IconMappings.iceCream}
+                        aria-hidden={true}
+                    />
+                ),
+            },
+            {
+                label: "Tab 4 with no icon",
+                id: "tab-4",
+                href: "#tab-4",
+            },
+        ],
     },
 };

@@ -20,6 +20,11 @@ export type ResponsiveNavigationTabItem = {
      * The URL to navigate to.
      */
     href: string;
+    /**
+     * Optional icon to display in the navigation tab. Should be a PhosphorIcon
+     * or Icon component.
+     */
+    icon?: React.ReactElement;
 };
 
 type Props = {
@@ -70,6 +75,17 @@ export const ResponsiveNavigationTabs = (props: Props) => {
         onLayoutChange,
     });
 
+    const processedTabs = React.useMemo(() => {
+        return tabs.map((tab) => ({
+            ...tab,
+            startIcon: tab.icon
+                ? React.cloneElement(tab.icon, {
+                      size: tab.icon.props.size ?? "medium",
+                  })
+                : undefined,
+        }));
+    }, [tabs]);
+
     return (
         <View ref={containerRef} style={styles.container}>
             {showDropdown ? (
@@ -86,7 +102,7 @@ export const ResponsiveNavigationTabs = (props: Props) => {
                     ref={navigationTabsRef}
                     styles={{root: styles.fadeIn}}
                 >
-                    {tabs.map((tab) => (
+                    {processedTabs.map((tab) => (
                         <NavigationTabItem
                             key={tab.id}
                             current={tab.id === selectedTabId}
@@ -94,6 +110,7 @@ export const ResponsiveNavigationTabs = (props: Props) => {
                             <Link
                                 href={tab.href}
                                 onClick={() => onTabSelected(tab.id)}
+                                startIcon={tab.startIcon}
                             >
                                 {tab.label}
                             </Link>

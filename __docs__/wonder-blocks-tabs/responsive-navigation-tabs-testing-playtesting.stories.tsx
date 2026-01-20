@@ -229,3 +229,50 @@ export const ChangingZoomLevel: Story = {
         expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
     },
 };
+
+export const TogglingIconInLabels: Story = {
+    ...ResponsiveNavigationTabsDefault,
+    globals: {
+        viewport: {
+            value: "large",
+        },
+    },
+    play: async ({args, canvasElement, userEvent}) => {
+        const canvas = within(canvasElement.ownerDocument.body);
+
+        // Confirm the initial state is using horizontal tabs
+        const links = await canvas.findAllByRole("link");
+        expect(links).toHaveLength(INITIAL_TABS_COUNT);
+
+        expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
+
+        // Toggle the icons
+        await userEvent.click(
+            canvas.getByRole("button", {name: "Toggle icons"}),
+        );
+
+        // Confirm the dropdown layout is used
+        await waitFor(() => {
+            expect(canvas.queryByRole("link")).not.toBeInTheDocument();
+        });
+        const opener = await canvas.findByRole("button", {
+            name: "Navigation tab 1",
+        });
+        await userEvent.click(opener);
+        const menuItems = await canvas.findAllByRole("menuitem");
+        expect(menuItems).toHaveLength(INITIAL_TABS_COUNT);
+
+        expect(args.onLayoutChange).toHaveBeenLastCalledWith("dropdown");
+
+        // Toggle the icons back
+        await userEvent.click(
+            canvas.getByRole("button", {name: "Toggle icons"}),
+        );
+
+        // Confirm the horizontal tabs layout is used
+        const linksAfterChange = await canvas.findAllByRole("link");
+        expect(linksAfterChange).toHaveLength(INITIAL_TABS_COUNT);
+
+        expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
+    },
+};
