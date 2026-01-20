@@ -536,7 +536,6 @@ export const TabLabelRenderFunction: StoryComponentType = {
                 label(tabProps: TabRenderProps) {
                     return (
                         <Popover
-                            initialFocusId="action-button"
                             content={
                                 <PopoverContent
                                     title="Title"
@@ -545,7 +544,6 @@ export const TabLabelRenderFunction: StoryComponentType = {
                                 />
                             }
                             key={tabProps.id}
-                            initialFocusDelay={100}
                         >
                             <Tab {...tabProps}>Tab with a Popover on it</Tab>
                         </Popover>
@@ -574,7 +572,6 @@ export const TabLabelRenderFunction: StoryComponentType = {
                 label(tabProps: TabRenderProps) {
                     return (
                         <Popover
-                            initialFocusId="action-button"
                             content={
                                 <PopoverContent
                                     title="Title"
@@ -585,7 +582,6 @@ export const TabLabelRenderFunction: StoryComponentType = {
                             opened={true}
                             key={tabProps.id}
                             placement="top"
-                            initialFocusDelay={100}
                         >
                             <Tab {...tabProps}>Tab with an opened Popover</Tab>
                         </Popover>

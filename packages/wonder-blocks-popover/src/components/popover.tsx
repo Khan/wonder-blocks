@@ -1,24 +1,13 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 
-import {TooltipPopper} from "@khanacademy/wonder-blocks-tooltip";
-import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
-
+import {View} from "@khanacademy/wonder-blocks-core";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
-import type {
-    Placement,
-    PopperElementProps,
-} from "@khanacademy/wonder-blocks-tooltip";
-import type {RootBoundary} from "@popperjs/core";
 
+import {Floating, type Placement} from "@khanacademy/wonder-blocks-floating";
 import PopoverContent from "./popover-content";
 import PopoverContentCore from "./popover-content-core";
 import PopoverContext from "./popover-context";
 import PopoverAnchor from "./popover-anchor";
-import PopoverDialog from "./popover-dialog";
-import PopoverEventListener from "./popover-event-listener";
-import InitialFocus from "./initial-focus";
-import FocusManager from "./focus-manager";
 
 type PopoverContents =
     | React.ReactElement<React.ComponentProps<typeof PopoverContent>>
@@ -79,14 +68,7 @@ type Props = AriaProps & {
      * content shows. When not set, the first focusable element within the
      * popover content will be used.
      */
-    initialFocusId?: string;
-    /**
-     * The delay in milliseconds before the initial focus is set.
-     * This allows any active event listeners to finish before focusing.
-     *
-     * Defaults to 0.
-     */
-    initialFocusDelay?: number;
+    initialFocusRef?: React.RefObject<HTMLElement>;
     /**
      * Renders the popover when true, renders nothing when false.
      *
@@ -127,13 +109,7 @@ type Props = AriaProps & {
      * on the user's viewport. If set to "document", it will position itself based
      * on where there is available room within the document body.
      */
-    rootBoundary?: RootBoundary;
-    /**
-     * If `rootBoundary` is `viewport`, this padding value is used to provide
-     * spacing between the popper and the viewport. If not provided, default
-     * spacing of 12px is applied.
-     */
-    viewportPadding?: number;
+    rootBoundary?: "viewport" | "document";
 };
 
 /**
@@ -163,31 +139,22 @@ function Popover(props: Props) {
     const {
         children,
         content,
-        placement: placementProp = "top",
+        placement = "top",
         dismissEnabled,
         id,
-        closedFocusId,
-        initialFocusId,
-        initialFocusDelay,
+        // closedFocusId,
+        initialFocusRef,
         opened: openedProp,
         onClose,
         showTail = true,
         portal = true,
         rootBoundary = "viewport",
-        viewportPadding,
         "aria-label": ariaLabel,
         "aria-describedby": ariaDescribedBy,
     } = props;
 
     // Internal opened state for uncontrolled mode
     const [internalOpened, setInternalOpened] = React.useState(!!openedProp);
-    // Anchor element reference
-    const [anchorElement, setAnchorElement] = React.useState<HTMLElement>();
-    // Current placement
-    const [placement, setPlacement] = React.useState<Placement>(placementProp);
-
-    // Content ref
-    const contentRef = React.useRef<HTMLElement | null>(null);
 
     // Determine if controlled or uncontrolled
     const isControlled = typeof openedProp === "boolean";
@@ -201,61 +168,25 @@ function Popover(props: Props) {
     }, [isControlled, openedProp]);
 
     /**
-     * Returns focus to a given element.
-     */
-    const maybeReturnFocus = React.useCallback(() => {
-        // Focus on the specified element after dismissing the popover.
-        if (closedFocusId) {
-            const focusElement = document.getElementById(closedFocusId);
-            focusElement?.focus();
-            return;
-        }
-
-        // If no element is specified, focus on the element that triggered the
-        // popover.
-        if (anchorElement) {
-            anchorElement.focus();
-        }
-    }, [closedFocusId, anchorElement]);
-
-    /**
      * Popover dialog closed
      */
-    const handleClose = React.useCallback(
-        (shouldReturnFocus = true) => {
-            if (!isControlled) {
-                setInternalOpened(false);
-            }
-            onClose?.();
-            if (shouldReturnFocus) {
-                maybeReturnFocus();
-            }
-        },
-        [isControlled, onClose, maybeReturnFocus],
-    );
+    const handleClose = React.useCallback(() => {
+        if (!isControlled) {
+            setInternalOpened(false);
+        }
+        onClose?.();
+    }, [isControlled, onClose]);
 
     /**
      * Popover dialog opened
      */
     const handleOpen = React.useCallback(() => {
-        if (dismissEnabled && opened) {
-            handleClose(true);
+        if (opened) {
+            handleClose();
         } else if (!isControlled) {
             setInternalOpened(true);
         }
-    }, [dismissEnabled, opened, handleClose, isControlled]);
-
-    /**
-     * Update anchor element reference
-     */
-    const updateRef = React.useCallback(
-        (node: HTMLElement | null) => {
-            if (node && anchorElement !== node) {
-                setAnchorElement(node);
-            }
-        },
-        [anchorElement],
-    );
+    }, [opened, handleClose, isControlled]);
 
     /**
      * Render popover content
@@ -268,128 +199,57 @@ function Popover(props: Props) {
 
         // @ts-expect-error: TS2769 - No overload matches this call.
         return React.cloneElement(popoverContents, {
-            ref: contentRef,
             // internal prop: only injected by Popover
             // This allows us to announce the popover content when it is opened.
             uniqueId,
         });
     };
 
-    /**
-     * Render popper with content
-     */
-    const renderPopper = (uniqueId: string): React.ReactNode => {
-        const describedBy = ariaDescribedBy || `${uniqueId}-content`;
-        const ariaLabelledBy = ariaLabel ? undefined : `${uniqueId}-title`;
-
-        const popperContent = (
-            <TooltipPopper
-                anchorElement={anchorElement}
-                placement={placementProp}
-                rootBoundary={rootBoundary}
-                viewportPadding={viewportPadding}
-            >
-                {(popperProps: PopperElementProps) => (
-                    <PopoverDialog
-                        {...popperProps}
-                        aria-label={ariaLabel}
-                        aria-describedby={describedBy}
-                        aria-labelledby={ariaLabelledBy}
-                        id={uniqueId}
-                        onUpdate={setPlacement}
-                        showTail={showTail}
-                    >
-                        {renderContent(uniqueId)}
-                    </PopoverDialog>
-                )}
-            </TooltipPopper>
-        );
-
-        if (portal) {
-            return (
-                <FocusManager
-                    anchorElement={anchorElement}
-                    initialFocusId={initialFocusId}
-                    initialFocusDelay={initialFocusDelay}
-                    onFocusOut={dismissEnabled ? handleClose : undefined}
-                >
-                    {popperContent}
-                </FocusManager>
-            );
-        } else {
-            return (
-                // Ensures the user is focused on the first available element
-                // when popover is rendered without the focus manager.
-                <InitialFocus
-                    initialFocusId={initialFocusId}
-                    delay={initialFocusDelay}
-                >
-                    {popperContent}
-                </InitialFocus>
-            );
-        }
-    };
-
-    /**
-     * Get portal host element
-     */
-    const getHost = (): Element | null => {
-        // If we are in a modal, we find where we should be portalling the
-        // popover by using the helper function from the modal package on the
-        // trigger element. If we are not in a modal, we use body as the
-        // location to portal to.
-        return (
-            maybeGetPortalMountedModalHostElement(anchorElement) ||
-            document.body
-        );
-    };
-
-    /**
-     * Render portal with popover content
-     */
-    const renderPortal = (uniqueId: string, isOpened: boolean) => {
-        if (!isOpened) {
-            return null;
-        }
-
-        const popperHost = getHost();
-
-        // Attach the popover to a Portal
-        if (portal && popperHost) {
-            return ReactDOM.createPortal(renderPopper(uniqueId), popperHost);
-        }
-
-        // Otherwise, append the dialog next to the trigger element
-        return renderPopper(uniqueId);
-    };
-
     const generatedUniqueId = React.useId();
     const uniqueId = id ?? generatedUniqueId;
+
+    const describedBy = ariaDescribedBy || `${uniqueId}-content`;
+    const ariaLabelledBy = ariaLabel ? undefined : `${uniqueId}-title`;
 
     return (
         <PopoverContext.Provider
             value={{
                 close: handleClose,
-                placement: placement,
             }}
         >
-            <PopoverAnchor
-                ref={updateRef}
-                id={`${uniqueId}-anchor`}
-                aria-controls={uniqueId}
-                aria-expanded={opened ? "true" : "false"}
-                onClick={handleOpen}
+            <Floating
+                open={opened}
+                onOpenChange={setInternalOpened}
+                placement={placement}
+                showArrow={showTail}
+                dismissEnabled={dismissEnabled}
+                portal={portal}
+                initialFocusRef={initialFocusRef}
+                content={
+                    <View
+                        aria-label={ariaLabel}
+                        aria-describedby={describedBy}
+                        aria-labelledby={ariaLabelledBy}
+                        id={uniqueId}
+                        role="dialog"
+                    >
+                        {renderContent(uniqueId)}
+                    </View>
+                }
+                strategy="fixed"
+                rootBoundary={rootBoundary}
+                // flip={rootBoundary === "document"}
+                // shift={rootBoundary === "viewport"}
             >
-                {children}
-            </PopoverAnchor>
-            {renderPortal(uniqueId, opened)}
-
-            {dismissEnabled && opened && (
-                <PopoverEventListener
-                    onClose={handleClose}
-                    contentRef={contentRef}
-                />
-            )}
+                <PopoverAnchor
+                    id={`${uniqueId}-anchor`}
+                    aria-controls={uniqueId}
+                    aria-expanded={opened ? "true" : "false"}
+                    onClick={handleOpen}
+                >
+                    {children}
+                </PopoverAnchor>
+            </Floating>
         </PopoverContext.Provider>
     );
 }

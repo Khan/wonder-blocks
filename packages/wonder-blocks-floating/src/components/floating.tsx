@@ -133,6 +133,12 @@ type FloatingProps = {
      * @default false
      */
     dismissEnabled?: boolean;
+
+    /**
+     * This describes the root boundary that the element will be checked for overflow relative to. The default is 'viewport', which is the area of the page the user can see on the screen.
+     * @default "viewport"
+     */
+    rootBoundary?: "viewport" | "document";
 };
 
 type FocusManagerProps =
@@ -214,6 +220,7 @@ export default function Floating({
     hide: hideProp = true,
     offset: offsetProp = 20,
     flip: flipProp = true,
+    rootBoundary = "viewport",
     shift: shiftProp = true,
     showArrow = true,
     styles: stylesProp,
@@ -234,16 +241,21 @@ export default function Floating({
                 // Add offset from the reference element
                 offset({mainAxis: offsetProp}),
                 // Flip to the opposite side if there's not enough space
-                flipProp ? flip() : undefined,
+                flipProp
+                    ? flip({
+                          rootBoundary,
+                      })
+                    : undefined,
                 // Shift along the axis to keep it in view
                 shiftProp
                     ? shift({
                           padding: SHIFT_PADDING,
                           crossAxis: true,
+                          rootBoundary,
                       })
                     : undefined,
                 showArrow ? arrow({element: arrowRef}) : undefined,
-                hideProp ? hide() : undefined,
+                hideProp ? hide({rootBoundary}) : undefined,
                 // Mirror the floating element in RTL when placement is left/right
                 rtlMirror(),
             ],
@@ -288,9 +300,7 @@ export default function Floating({
                         context={context}
                         modal={false}
                         initialFocus={initialFocusRef}
-                        // TODO(WB-1987): Determine if we want to close the
-                        // floating element when the user focuses outside of it.
-                        closeOnFocusOut={false}
+                        closeOnFocusOut={dismissEnabled}
                         visuallyHiddenDismiss={dismissEnabled}
                     >
                         <StyledDiv

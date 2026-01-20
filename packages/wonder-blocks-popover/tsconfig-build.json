@@ -7,12 +7,12 @@
     },
     "references": [
         {"path": "../wonder-blocks-core/tsconfig-build.json"},
+        {"path": "../wonder-blocks-floating/tsconfig-build.json"},
         {"path": "../wonder-blocks-icon/tsconfig-build.json"},
         {"path": "../wonder-blocks-icon-button/tsconfig-build.json"},
         {"path": "../wonder-blocks-modal/tsconfig-build.json"},
         {"path": "../wonder-blocks-styles/tsconfig-build.json"},
         {"path": "../wonder-blocks-tokens/tsconfig-build.json"},
-        {"path": "../wonder-blocks-tooltip/tsconfig-build.json"},
         {"path": "../wonder-blocks-typography/tsconfig-build.json"},
     ]
 }
