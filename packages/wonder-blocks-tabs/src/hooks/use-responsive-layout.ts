@@ -5,7 +5,7 @@ type TabItem = {
     label: string;
 };
 
-type UseResponsiveLayoutOptions<T extends HTMLElement> = {
+type UseResponsiveLayoutOptions = {
     /**
      * The tabs to display. Used to create a signature for detecting changes.
      */
@@ -13,7 +13,7 @@ type UseResponsiveLayoutOptions<T extends HTMLElement> = {
     /**
      * Reference to the tabs layout element (e.g., Tabs or NavigationTabs).
      */
-    horizontalLayoutRef: React.RefObject<T>;
+    horizontalLayoutRef: React.RefObject<HTMLElement>;
     /**
      * Reference to the container element that wraps both layouts.
      */
@@ -43,8 +43,8 @@ type UseResponsiveLayoutResult = {
  * - Re-measuring when tabs change
  * - Observing container resize events
  */
-export function useResponsiveLayout<T extends HTMLElement>(
-    options: UseResponsiveLayoutOptions<T>,
+export function useResponsiveLayout(
+    options: UseResponsiveLayoutOptions,
 ): UseResponsiveLayoutResult {
     const {tabs, horizontalLayoutRef, containerRef, onLayoutChange} = options;
 
@@ -68,8 +68,7 @@ export function useResponsiveLayout<T extends HTMLElement>(
         if (!showDropdown && horizontalLayoutRef.current) {
             // Currently showing horizontal layout - check for overflow
             // Get the first child which is the scrollable wrapper
-            const scrollableWrapper =
-                horizontalLayoutRef.current.firstElementChild;
+            const scrollableWrapper = horizontalLayoutRef.current;
 
             if (scrollableWrapper) {
                 const hasOverflow =

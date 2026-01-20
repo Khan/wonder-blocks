@@ -145,11 +145,12 @@ export const ResponsiveTabs = (props: Props) => {
     } = props;
 
     const tabsRef = React.useRef<HTMLDivElement>(null);
+    const scrollableRef = React.useRef<HTMLDivElement>(null);
     const containerRef = React.useRef<HTMLDivElement>(null);
 
     const {showDropdown} = useResponsiveLayout({
         tabs,
-        horizontalLayoutRef: tabsRef,
+        horizontalLayoutRef: scrollableRef,
         containerRef,
         onLayoutChange,
     });
@@ -180,6 +181,7 @@ export const ResponsiveTabs = (props: Props) => {
                     {...ariaProps}
                     key="tabs"
                     ref={tabsRef}
+                    scrollableElementRef={scrollableRef}
                     tabs={tabs}
                     selectedTabId={selectedTabId}
                     onTabSelected={onTabSelected}
