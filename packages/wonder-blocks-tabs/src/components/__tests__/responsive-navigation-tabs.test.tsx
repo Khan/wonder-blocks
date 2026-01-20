@@ -1,6 +1,7 @@
 import * as React from "react";
 import {render, screen, within} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {
     ResponsiveNavigationTabItem,
     ResponsiveNavigationTabs,
@@ -117,6 +118,122 @@ describe("ResponsiveNavigationTabs", () => {
 
                 // Assert
                 expect(onTabSelected).toHaveBeenCalledWith("tab-2");
+            });
+        });
+
+        describe("Icons", () => {
+            // Note: Test for icons in the dropdown layout can be found in the
+            // NavigationTabsDropdown tests.
+            it("should render the icon for tab links", () => {
+                // Arrange
+                render(
+                    <ResponsiveNavigationTabs
+                        tabs={[
+                            {
+                                id: "tab-1",
+                                label: "Tab 1",
+                                href: "#tab-1",
+                                icon: (
+                                    <Icon>
+                                        <img src="icon.svg" alt="tab 1 icon" />
+                                    </Icon>
+                                ),
+                            },
+                            {
+                                id: "tab-2",
+                                label: "Tab 2",
+                                href: "#tab-2",
+                                icon: (
+                                    <PhosphorIcon
+                                        icon="icon.svg"
+                                        aria-label="tab 2 icon"
+                                    />
+                                ),
+                            },
+                        ]}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Act
+                const images = screen.getAllByRole("img");
+
+                // Assert
+                expect(images).toHaveLength(2);
+            });
+
+            it("should include the accessible name of the icons in the accessible name of the tab links", async () => {
+                // Arrange
+                // Act
+                render(
+                    <ResponsiveNavigationTabs
+                        tabs={[
+                            {
+                                id: "tab-1",
+                                label: "Tab 1",
+                                href: "#tab-1",
+                                icon: (
+                                    <Icon>
+                                        <img src="icon.svg" alt="tab 1 icon" />
+                                    </Icon>
+                                ),
+                            },
+                            {
+                                id: "tab-2",
+                                label: "Tab 2",
+                                href: "#tab-2",
+                                icon: (
+                                    <PhosphorIcon
+                                        icon="icon.svg"
+                                        aria-label="tab 2 icon"
+                                    />
+                                ),
+                            },
+                        ]}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Assert
+                await screen.findByRole("link", {
+                    name: "tab 1 icon Tab 1",
+                });
+                await screen.findByRole("link", {
+                    name: "tab 2 icon Tab 2",
+                });
+            });
+
+            it("should not include image roles in the tab links if the icons are marked as decorative only", () => {
+                // Arrange
+                render(
+                    <ResponsiveNavigationTabs
+                        tabs={[
+                            {
+                                id: "tab-1",
+                                label: "Tab 1",
+                                href: "#tab-1",
+                                icon: (
+                                    <Icon>
+                                        <img src="icon.svg" alt="" />
+                                    </Icon>
+                                ),
+                            },
+                            {
+                                id: "tab-2",
+                                label: "Tab 2",
+                                href: "#tab-2",
+                                icon: <PhosphorIcon icon="icon.svg" />,
+                            },
+                        ]}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Assert
+                expect(screen.queryByRole("img")).not.toBeInTheDocument();
             });
         });
     });
