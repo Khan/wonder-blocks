@@ -667,7 +667,7 @@ export const OpeningModal: StoryComponentType = {
 export const AriaLabel: StoryComponentType = {
     args: {
         menuText: "Actions",
-        "aria-label": "Open actions menu",
+        "aria-label": "Actions menu with links",
         children: [
             <ActionItem
                 label="Profile"
