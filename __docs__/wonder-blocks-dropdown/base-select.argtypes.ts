@@ -4,8 +4,8 @@ const argTypes: ArgTypes = {
     alignment: {
         control: {type: "select"},
         defaultValue: "info",
-        description: `Whether this dropdown should be left-aligned or
-            right-aligned with the opener component.`,
+        description:
+            "Whether this dropdown should be left-aligned or right-aligned with the opener component.",
         options: ["left", "right"],
         table: {
             category: "Layout",
@@ -21,8 +21,8 @@ const argTypes: ArgTypes = {
 
     disabled: {
         defaultValue: false,
-        description: `Whether the dropdown is disabled. A disabled dropdown may
-            not be opened and does not support interaction.`,
+        description:
+            "Whether the dropdown is disabled. A disabled dropdown may not be opened and does not support interaction.",
         table: {
             category: "States",
             defaultValue: {summary: "false"},
@@ -39,9 +39,10 @@ const argTypes: ArgTypes = {
     },
 
     error: {
-        description: `Whether this component is in an error state. Use this for
-            errors that are triggered by something external to the component
-            (example: an error after form submission).`,
+        description:
+            `Whether this component is in an error state. Use this for ` +
+            `errors that are triggered by something external to the component ` +
+            `(example: an error after form submission).`,
         table: {
             category: "States",
             defaultValue: {summary: "false"},
@@ -49,9 +50,10 @@ const argTypes: ArgTypes = {
     },
 
     required: {
-        description: `Whether this field is required to to continue, or the
-            error message to render if the select is left blank. Pass in a
-            message instead of "true" if possible.`,
+        description:
+            `Whether this field is required to to continue, or the ` +
+            `error message to render if the select is left blank. Pass in a ` +
+            `message instead of "true" if possible.`,
         table: {
             category: "States",
             type: {
@@ -64,10 +66,11 @@ const argTypes: ArgTypes = {
     },
 
     validate: {
-        description: `Provide a validation for the selected value. Return a
-            string error message or null | void for a valid input.
-            \n Use this for errors that are shown to the user while they are
-            filling out a form.`,
+        description:
+            `Provide a validation for the selected value. Return a ` +
+            `string error message or null | void for a valid input. ` +
+            `Use this for errors that are shown to the user while they are ` +
+            `filling out a form.`,
         table: {
             category: "States",
             type: {
@@ -87,9 +90,10 @@ const argTypes: ArgTypes = {
     },
 
     isFilterable: {
-        description: `When this is true, the dropdown body shows a search text
-            input top. The items will be filtered by the input. Selected items
-            will be moved to the top when the dropdown is re-opened.`,
+        description:
+            `When this is true, the dropdown body shows a search text ` +
+            `input top. The items will be filtered by the input. Selected items ` +
+            `will be moved to the top when the dropdown is re-opened.`,
         table: {
             category: "States",
         },
@@ -105,8 +109,9 @@ const argTypes: ArgTypes = {
     },
 
     onToggle: {
-        description: `In controlled mode, use this prop in case the parent
-            needs to be notified when the menu opens/closes.`,
+        description:
+            `In controlled mode, use this prop in case the parent ` +
+            `needs to be notified when the menu opens/closes.`,
         table: {
             category: "Events",
             type: {summary: "(opened: boolean) => unknown"},
@@ -114,8 +119,8 @@ const argTypes: ArgTypes = {
     },
 
     onChange: {
-        description: `Callback for when the selection changes. Parameter is an
-            updated array of selected values.`,
+        description:
+            "Callback for when the selection changes. Parameter is an updated array of selected values.",
         table: {
             category: "Events",
             type: {summary: "(selectedValues: Array<string>) => unknown"},
@@ -125,10 +130,10 @@ const argTypes: ArgTypes = {
     dropdownStyle: {
         control: {type: "object"},
         description:
-            `Optional custom styles applied to the dropdown container.
-            This is useful for setting a custom width or a custom height.\n\n` +
-            `**NOTE:** we don't recommend setting a custom height, as the
-            dropdown should be able to grow to fit its contents.`,
+            `Optional custom styles applied to the dropdown container. ` +
+            `This is useful for setting a custom width or a custom height. ` +
+            `\n\n**NOTE:** we don't recommend setting a custom height, as the ` +
+            `dropdown should be able to grow to fit its contents.`,
         table: {
             category: "Styling",
             type: {summary: "StyleType"},
@@ -155,11 +160,12 @@ const argTypes: ArgTypes = {
 
     id: {
         control: {type: "text"},
-        description: `Unique identifier attached to the field control. If used,
-            we need to guarantee that the ID is unique within everything
-            rendered on a page. If one is not provided, one is auto-generated.
-            Used to match \`<label>\` with \`<button>\` elements for
-            screenreaders.`,
+        description:
+            `Unique identifier attached to the field control. If used, ` +
+            `we need to guarantee that the ID is unique within everything ` +
+            `rendered on a page. If one is not provided, one is auto-generated. ` +
+            `Used to match \`<label>\` with \`<button>\` elements for ` +
+            `screenreaders.`,
         table: {
             type: {summary: "string"},
         },
@@ -168,11 +174,12 @@ const argTypes: ArgTypes = {
 
     dropdownId: {
         control: {type: "text"},
-        description: `Unique identifier attached to the dropdown. If used,
-            we need to guarantee that the ID is unique within everything
-            rendered on a page. If one is not provided, one is auto-generated.
-            It is used for the opener's \`aria-controls\` attribute for
-            screenreaders.`,
+        description:
+            `Unique identifier attached to the dropdown. If used, ` +
+            `we need to guarantee that the ID is unique within everything ` +
+            `rendered on a page. If one is not provided, one is auto-generated. ` +
+            `It is used for the opener's \`aria-controls\` attribute for ` +
+            `screenreaders.`,
         table: {
             type: {summary: "string"},
         },

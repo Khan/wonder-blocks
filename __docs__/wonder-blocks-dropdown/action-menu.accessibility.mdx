@@ -1,0 +1,45 @@
+import {Meta, Story, Canvas} from "@storybook/addon-docs/blocks";
+import * as MultiSelectAccessibilityStories from './multi-select.accessibility.stories';
+
+import {OptionItem, MultiSelect} from "@khanacademy/wonder-blocks-dropdown";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
+
+<Meta title="Packages / Dropdown / ActionMenu / Accessibility" />
+
+# Accessibility
+
+The `ActionMenu` component is designed to be accessible and follows the
+[WAI-ARIA Menu Button
+links](https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/examples/menu-button-links/)
+pattern. It enables both mouse and keyboard users to efficiently interact with
+complex menus and action items.
+
+## Keyboard interactions
+
+| Key            | Action                          |
+| -------------- | ------------------------------- |
+| Enter or Space | Opens the menu                   |
+| ArrowDown      | Moves focus to the next item     |
+| ArrowUp        | Moves focus to the previous item |
+| Escape         | Closes the menu                  |
+
+## Attributes
+
+### Menu button (opener)
+
+| Attribute            | Usage                                                                                                                                                    |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| role="button"        | Indicates that the element is a button.                                                                                                                  |
+| aria-label="value"   | Defines a string value that labels the UsingOpenerAriaLabel element. Use it in case the opener element doesn't include any descriptive text (e.g. Icons, images) |
+| aria-expanded="true" | Indicates that the element is expanded.                                                                                                                  |
+| aria-haspopup="menu" | Indicates that the element has a popup menu.                                                                                                             |
+| aria-controls="value" | Indicates that the element controls the popup menu with the given id.                                                                                   |
+| aria-disabled="true" | Indicates that the element is disabled.                                                                                                                  |
+
+### Menu (items)
+
+| Attribute            | Usage                                                                                                                                                    |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| role="menu"          | Indicates that the element is a menu.                                                                                                                    |
+| aria-labelledby="opener-id"   | Indicates that the element is labelled by the element with the given id.                                                                        |

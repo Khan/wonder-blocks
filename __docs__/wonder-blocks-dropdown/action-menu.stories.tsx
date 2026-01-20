@@ -403,12 +403,7 @@ export const WithPopperPlacement: StoryComponentType = {
         }, []);
 
         return (
-            <ActionMenu
-                menuText="Betsy Appleseed"
-                {...args}
-                opened={opened}
-                onToggle={setOpened}
-            >
+            <ActionMenu {...args} opened={opened} onToggle={setOpened}>
                 {actionItems.map((actionItem, index) => actionItem)}
             </ActionMenu>
         );
@@ -590,7 +585,7 @@ export const OpeningModal: StoryComponentType = {
 
         return (
             <>
-                <ActionMenu menuText="Betsy Appleseed" {...args}>
+                <ActionMenu {...args}>
                     <ActionItem
                         key="1"
                         label="Profile"
@@ -654,6 +649,45 @@ export const OpeningModal: StoryComponentType = {
                 icon={IconMappings.dotsThreeBold}
             />
         ),
+    } as Partial<typeof ActionMenu>,
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test visuals.
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * This example shows how to use `aria-label` on the ActionMenu opener and
+ * `ActionItem` children. This is especially useful if you do **not** have a
+ * visible label component but want to ensure accessibility. For more details,
+ * see the [accessibility documentation](./action-menu.accessibility.mdx).
+ */
+export const AriaLabel: StoryComponentType = {
+    args: {
+        menuText: "Actions",
+        "aria-label": "Open actions menu",
+        children: [
+            <ActionItem
+                label="Profile"
+                aria-label="Go to your profile"
+                onClick={action("Selected Profile")}
+                testId="aria-label-profile"
+            />,
+            <ActionItem
+                label="Settings"
+                aria-label="Account settings"
+                onClick={action("Selected Settings")}
+                testId="aria-label-settings"
+            />,
+            <ActionItem
+                label="Log out"
+                aria-label="Log out of your account"
+                onClick={action("Selected Log out")}
+                testId="aria-label-logout"
+            />,
+        ],
     } as Partial<typeof ActionMenu>,
     parameters: {
         chromatic: {

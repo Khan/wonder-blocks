@@ -1,11 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
-import {
-    Id,
-    type AriaProps,
-    type StyleType,
-} from "@khanacademy/wonder-blocks-core";
+import {type AriaProps, type StyleType} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {Placement} from "@popperjs/core";
 import DropdownOpener from "./dropdown-opener";
@@ -50,12 +46,12 @@ type Props = AriaProps &
          * component. Defaults to "left", which is below the opener and left
          * aligned. Any valid Popper placement is also supported.
          */
-        alignment: "left" | "right" | Placement;
+        alignment?: "left" | "right" | Placement;
         /**
          * Whether this component is disabled. A disabled dropdown may not be opened
          * and does not support interaction. Defaults to false.
          */
-        disabled: boolean;
+        disabled?: boolean;
         /**
          * Test ID used for e2e testing.
          */
@@ -87,24 +83,14 @@ type Props = AriaProps &
          */
         dropdownId?: string;
         /**
-         * Unique identifier attached to the field control. If used, we need to
-         * guarantee that the ID is unique within everything rendered on a page.
-         * If one is not provided, one is auto-generated.
+         * Unique identifier attached to the field control.
+         *
+         * If this is used, we need to guarantee that the ID is unique within
+         * everything rendered on a page. If one is not provided, one is
+         * auto-generated.
          */
         id?: string;
     }>;
-
-type State = Readonly<{
-    /**
-     * Whether or not the dropdown is open.
-     */
-    opened: boolean;
-}>;
-
-type DefaultProps = Readonly<{
-    alignment: Props["alignment"];
-    disabled: Props["disabled"];
-}>;
 
 /**
  * A menu that consists of various types of items.
@@ -120,76 +106,79 @@ type DefaultProps = Readonly<{
  * </ActionMenu>
  * ```
  */
-export default class ActionMenu extends React.Component<Props, State> {
-    openerElement?: HTMLElement;
+function ActionMenu({
+    alignment = "left",
+    "aria-label": ariaLabel,
+    disabled = false,
+    children,
+    menuText,
+    opened: openedProp,
+    onToggle,
+    onChange,
+    selectedValues,
+    testId,
+    dropdownStyle,
+    style,
+    className,
+    opener,
+    dropdownId,
+    id,
+}: Props): React.ReactNode {
+    const [internalOpened, setInternalOpened] = React.useState(false);
+    const openerElementRef = React.useRef<HTMLElement | undefined>(undefined);
+    const generatedUniqueOpenerId = React.useId();
+    const generatedUniqueDropdownId = React.useId();
+    const uniqueOpenerId = id ?? generatedUniqueOpenerId;
+    const uniqueDropdownId = dropdownId ?? generatedUniqueDropdownId;
 
-    static defaultProps: DefaultProps = {
-        alignment: "left",
-        disabled: false,
-    };
+    // Support controlled and uncontrolled mode
+    const opened =
+        typeof openedProp === "boolean" ? openedProp : internalOpened;
 
-    state: State = {
-        opened: false,
-    };
+    const handleOpenChanged = React.useCallback(
+        (newOpened: boolean) => {
+            setInternalOpened(newOpened);
+            if (onToggle) {
+                onToggle(newOpened);
+            }
+        },
+        [onToggle],
+    );
 
-    /**
-     * Used to sync the `opened` state when this component acts as a controlled
-     * component
-     */
-    static getDerivedStateFromProps(
-        props: Props,
-        state: State,
-    ): Partial<State> | null {
-        return {
-            opened:
-                typeof props.opened === "boolean" ? props.opened : state.opened,
-        };
-    }
-
-    handleItemSelected: () => void = () => {
+    const handleItemSelected = React.useCallback(() => {
         // close menu
-        this.handleOpenChanged(false);
+        handleOpenChanged(false);
 
         // Bring focus back to the opener element.
-        if (this.openerElement) {
-            this.openerElement.focus();
+        if (openerElementRef.current) {
+            openerElementRef.current.focus();
         }
-    };
+    }, [handleOpenChanged]);
 
-    handleOpenChanged: (opened: boolean) => void = (opened) => {
-        this.setState({
-            opened,
-        });
+    const handleOptionSelected = React.useCallback(
+        (selectedValue: string) => {
+            // If either of these are not defined, return.
+            if (!onChange || !selectedValues) {
+                return;
+            }
 
-        if (this.props.onToggle) {
-            this.props.onToggle(opened);
-        }
-    };
+            if (selectedValues.includes(selectedValue)) {
+                const index = selectedValues.indexOf(selectedValue);
+                const updatedSelection = [
+                    ...selectedValues.slice(0, index),
+                    ...selectedValues.slice(index + 1),
+                ];
+                onChange(updatedSelection);
+            } else {
+                // Item was newly selected
+                onChange([...selectedValues, selectedValue]);
+            }
+            handleItemSelected();
+        },
+        [onChange, selectedValues, handleItemSelected],
+    );
 
-    handleOptionSelected: (selectedValue: string) => void = (selectedValue) => {
-        const {onChange, selectedValues} = this.props;
-
-        // If either of these are not defined, return.
-        if (!onChange || !selectedValues) {
-            return;
-        }
-
-        if (selectedValues.includes(selectedValue)) {
-            const index = selectedValues.indexOf(selectedValue);
-            const updatedSelection = [
-                ...selectedValues.slice(0, index),
-                ...selectedValues.slice(index + 1),
-            ];
-            onChange(updatedSelection);
-        } else {
-            // Item was newly selected
-            onChange([...selectedValues, selectedValue]);
-        }
-        this.handleItemSelected();
-    };
-
-    getMenuItems(): Array<DropdownItem> {
-        const {children, selectedValues} = this.props;
+    const getMenuItems = React.useCallback((): Array<DropdownItem> => {
         const allChildren = React.Children.toArray(children).filter(Boolean);
 
         // verify if there's at least one OptionItem element to indent the
@@ -218,7 +207,7 @@ export default class ActionMenu extends React.Component<Props, State> {
                     ...itemObject,
                     populatedProps: {
                         indent: isOptionItemIncluded,
-                        onClick: this.handleItemSelected,
+                        onClick: handleItemSelected,
                     },
                 };
                 // @ts-expect-error [FEI-5019] - TS2345 - Argument of type 'ReactChild | ReactFragment | ReactPortal' is not assignable to parameter of type 'ReactElement<any, string | JSXElementConstructor<any>>'.
@@ -229,7 +218,7 @@ export default class ActionMenu extends React.Component<Props, State> {
                 return {
                     ...itemObject,
                     populatedProps: {
-                        onToggle: this.handleOptionSelected,
+                        onToggle: handleOptionSelected,
                         selected,
                         variant: "check",
                         role: "menuitemcheckbox",
@@ -241,93 +230,80 @@ export default class ActionMenu extends React.Component<Props, State> {
                 return itemObject;
             }
         });
-    }
+    }, [children, selectedValues, handleItemSelected, handleOptionSelected]);
 
-    handleOpenerRef: (node?: any) => void = (node) => {
+    const handleOpenerRef = React.useCallback((node?: any) => {
         // eslint-disable-next-line import/no-deprecated
-        this.openerElement = ReactDOM.findDOMNode(node) as HTMLElement;
-    };
+        openerElementRef.current = ReactDOM.findDOMNode(node) as HTMLElement;
+    }, []);
 
-    handleClick: (e: React.SyntheticEvent) => void = (e) => {
-        this.handleOpenChanged(!this.state.opened);
-    };
+    const handleClick = React.useCallback(
+        (e: React.SyntheticEvent) => {
+            handleOpenChanged(!opened);
+        },
+        [handleOpenChanged, opened],
+    );
 
-    renderOpener(
+    const renderOpener = (
         numItems: number,
         dropdownId: string,
-    ): React.ReactElement<React.ComponentProps<typeof DropdownOpener>> {
-        const {disabled, menuText, opener, testId, id} = this.props;
-
+    ): React.ReactElement<React.ComponentProps<typeof DropdownOpener>> => {
         return (
-            <Id id={id}>
-                {(uniqueOpenerId) => (
-                    <DropdownOpener
-                        id={uniqueOpenerId}
-                        aria-controls={dropdownId}
-                        aria-haspopup="menu"
-                        onClick={this.handleClick}
-                        disabled={numItems === 0 || disabled}
-                        text={menuText}
-                        ref={this.handleOpenerRef}
-                        testId={opener ? undefined : testId}
-                        opened={this.state.opened}
-                        role="button"
-                    >
-                        {opener
-                            ? opener
-                            : (openerProps) => {
-                                  const {
-                                      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                                      text,
-                                      opened,
-                                      ...eventState
-                                  } = openerProps;
-                                  return (
-                                      <ActionMenuOpenerCore
-                                          {...eventState}
-                                          disabled={disabled}
-                                          opened={!!opened}
-                                          testId={testId}
-                                      >
-                                          {menuText}
-                                      </ActionMenuOpenerCore>
-                                  );
-                              }}
-                    </DropdownOpener>
-                )}
-            </Id>
+            <DropdownOpener
+                id={uniqueOpenerId}
+                aria-controls={dropdownId}
+                aria-haspopup="menu"
+                onClick={handleClick}
+                disabled={numItems === 0 || disabled}
+                text={menuText}
+                ref={handleOpenerRef}
+                testId={opener ? undefined : testId}
+                opened={opened}
+                role="button"
+                aria-label={ariaLabel}
+            >
+                {opener
+                    ? opener
+                    : (openerProps) => {
+                          const {
+                              // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                              text,
+                              opened,
+                              ...eventState
+                          } = openerProps;
+                          return (
+                              <ActionMenuOpenerCore
+                                  {...eventState}
+                                  disabled={disabled}
+                                  opened={!!opened}
+                                  testId={testId}
+                              >
+                                  {menuText}
+                              </ActionMenuOpenerCore>
+                          );
+                      }}
+            </DropdownOpener>
         );
-    }
+    };
 
-    render(): React.ReactNode {
-        const {alignment, dropdownStyle, style, className, dropdownId} =
-            this.props;
+    const items = getMenuItems();
 
-        const items = this.getMenuItems();
-
-        return (
-            <Id id={dropdownId}>
-                {(uniqueDropdownId) => (
-                    <DropdownCore
-                        id={uniqueDropdownId}
-                        role="menu"
-                        style={style}
-                        className={className}
-                        opener={this.renderOpener(
-                            items.length,
-                            uniqueDropdownId,
-                        )}
-                        alignment={alignment}
-                        open={this.state.opened}
-                        items={items}
-                        openerElement={this.openerElement}
-                        onOpenChanged={this.handleOpenChanged}
-                        dropdownStyle={[styles.menuTopSpace, dropdownStyle]}
-                    />
-                )}
-            </Id>
-        );
-    }
+    return (
+        <DropdownCore
+            id={uniqueDropdownId}
+            role="menu"
+            style={style}
+            className={className}
+            opener={renderOpener(items.length, uniqueDropdownId)}
+            alignment={alignment}
+            open={opened}
+            items={items}
+            openerElement={openerElementRef.current}
+            onOpenChanged={handleOpenChanged}
+            dropdownStyle={[styles.menuTopSpace, dropdownStyle]}
+            aria-labelledby={uniqueOpenerId}
+        />
+    );
 }
 
 const styles = StyleSheet.create({
@@ -346,3 +322,5 @@ const styles = StyleSheet.create({
         top: `calc(-1 * ${sizing.size_040})`,
     },
 });
+
+export default ActionMenu;
