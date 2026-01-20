@@ -250,3 +250,55 @@ export const ChangingZoomLevel: Story = {
         expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
     },
 };
+
+export const TogglingIconInLabels: Story = {
+    ...ResponsiveTabsDefault,
+    globals: {
+        viewport: {
+            value: "large",
+        },
+    },
+    play: async ({args, canvasElement, userEvent}) => {
+        const canvas = within(canvasElement.ownerDocument.body);
+
+        // Confirm the initial state using horizontal tabs
+        const tablist = await canvas.findByRole("tablist");
+        expect(tablist).toHaveAttribute("aria-label", "Responsive Tabs");
+
+        const tabs = await canvas.findAllByRole("tab");
+        expect(tabs).toHaveLength(INITIAL_TABS_COUNT);
+
+        expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
+
+        // Toggle the icons
+        await userEvent.click(
+            canvas.getByRole("button", {name: "Toggle icons"}),
+        );
+
+        // Confirm the dropdown layout is used
+        await waitFor(() => {
+            expect(canvas.queryByRole("tablist")).not.toBeInTheDocument();
+        });
+        await canvas.findByRole("button", {name: "Tab 1"});
+
+        const opener = canvas.getByRole("button", {name: "Tab 1"});
+        await userEvent.click(opener);
+        const menuItems = await canvas.findAllByRole("menuitem");
+        expect(menuItems).toHaveLength(INITIAL_TABS_COUNT);
+
+        expect(args.onLayoutChange).toHaveBeenLastCalledWith("dropdown");
+
+        // Toggle the icons back
+        await userEvent.click(
+            canvas.getByRole("button", {name: "Toggle icons"}),
+        );
+
+        // Confirm the horizontal tabs layout is used
+        await canvas.findByRole("tablist");
+
+        const tabsAfterWidthChange = await canvas.findAllByRole("tab");
+        expect(tabsAfterWidthChange).toHaveLength(INITIAL_TABS_COUNT);
+
+        expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
+    },
+};
