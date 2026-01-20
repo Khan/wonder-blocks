@@ -3,6 +3,7 @@ import * as React from "react";
 type TabItem = {
     id: string;
     label: string;
+    icon?: React.ReactElement;
 };
 
 type UseResponsiveLayoutOptions = {
@@ -56,7 +57,13 @@ export function useResponsiveLayout(
 
     // Create a signature of the tabs to detect changes (tab added/removed, label changed)
     const tabsSignature = React.useMemo(
-        () => tabs.map((t) => `${t.id}:${t.label}`).join("|"),
+        () =>
+            tabs
+                .map(
+                    (t) =>
+                        `${t.id}:${t.label}-${t.icon ? "with-icon" : "without-icon"}`,
+                )
+                .join("|"),
         [tabs],
     );
 
