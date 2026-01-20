@@ -12,9 +12,11 @@ type UseResponsiveLayoutOptions = {
      */
     tabs: TabItem[];
     /**
-     * Reference to the tabs layout element (e.g., Tabs or NavigationTabs).
+     * Reference to the element with horizontal scroll (element withoverflow-x: auto set).
+     * This ref is used to check for horizontal overflow to determine if the
+     * layout should be switched.
      */
-    horizontalLayoutRef: React.RefObject<HTMLElement>;
+    elementWithOverflowRef: React.RefObject<HTMLElement>;
     /**
      * Reference to the container element that wraps both layouts.
      */
@@ -47,7 +49,8 @@ type UseResponsiveLayoutResult = {
 export function useResponsiveLayout(
     options: UseResponsiveLayoutOptions,
 ): UseResponsiveLayoutResult {
-    const {tabs, horizontalLayoutRef, containerRef, onLayoutChange} = options;
+    const {tabs, elementWithOverflowRef, containerRef, onLayoutChange} =
+        options;
 
     const [showDropdown, setShowDropdown] = React.useState(false);
 
@@ -72,10 +75,9 @@ export function useResponsiveLayout(
         if (!container) {
             return;
         }
-        if (!showDropdown && horizontalLayoutRef.current) {
+        if (!showDropdown && elementWithOverflowRef.current) {
             // Currently showing horizontal layout - check for overflow
-            // Get the first child which is the scrollable wrapper
-            const scrollableWrapper = horizontalLayoutRef.current;
+            const scrollableWrapper = elementWithOverflowRef.current;
 
             if (scrollableWrapper) {
                 const hasOverflow =
@@ -97,7 +99,7 @@ export function useResponsiveLayout(
                 setShowDropdown(false);
             }
         }
-    }, [showDropdown, horizontalLayoutRef, containerRef]);
+    }, [showDropdown, elementWithOverflowRef, containerRef]);
 
     React.useEffect(() => {
         // This effect handles the case where the length of tabs or the tabs

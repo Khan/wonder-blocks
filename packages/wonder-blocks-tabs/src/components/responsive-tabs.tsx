@@ -145,12 +145,12 @@ export const ResponsiveTabs = (props: Props) => {
     } = props;
 
     const tabsRef = React.useRef<HTMLDivElement>(null);
-    const scrollableRef = React.useRef<HTMLDivElement>(null);
+    const scrollableTabsRef = React.useRef<HTMLDivElement>(null);
     const containerRef = React.useRef<HTMLDivElement>(null);
 
     const {showDropdown} = useResponsiveLayout({
         tabs,
-        horizontalLayoutRef: scrollableRef,
+        elementWithOverflowRef: scrollableTabsRef, // scrollableTabsRef is set on the element in Tabs with overflow-x: auto set
         containerRef,
         onLayoutChange,
     });
@@ -181,7 +181,7 @@ export const ResponsiveTabs = (props: Props) => {
                     {...ariaProps}
                     key="tabs"
                     ref={tabsRef}
-                    scrollableElementRef={scrollableRef}
+                    scrollableElementRef={scrollableTabsRef}
                     tabs={tabs}
                     selectedTabId={selectedTabId}
                     onTabSelected={onTabSelected}

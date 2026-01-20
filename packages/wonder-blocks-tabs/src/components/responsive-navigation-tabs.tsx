@@ -65,7 +65,7 @@ export const ResponsiveNavigationTabs = (props: Props) => {
 
     const {showDropdown} = useResponsiveLayout({
         tabs,
-        horizontalLayoutRef: navigationTabsRef,
+        elementWithOverflowRef: navigationTabsRef, // The navigation tabs root element has overflow-x: auto set
         containerRef,
         onLayoutChange,
     });
