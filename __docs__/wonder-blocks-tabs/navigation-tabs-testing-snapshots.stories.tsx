@@ -326,7 +326,6 @@ export const Scenarios: Story = {
                     root: {
                         width: "100%",
                         alignItems: "stretch",
-                        padding: sizing.size_080,
                     },
                 }}
             >
