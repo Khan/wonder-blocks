@@ -65,6 +65,13 @@ export const Scenarios: Story = {
                 },
             },
             {
+                name: "Few items",
+                props: {
+                    tabs: generateTabs(3),
+                    selectedTabId: "tab-1",
+                },
+            },
+            {
                 name: "Zero items",
                 props: {
                     tabs: [],
@@ -139,7 +146,7 @@ export const Scenarios: Story = {
             {
                 name: "Custom styles",
                 props: {
-                    tabs: generateTabs(3),
+                    tabs: generateTabs(5),
                     selectedTabId: "tab-1",
                     styles: {
                         root: {
