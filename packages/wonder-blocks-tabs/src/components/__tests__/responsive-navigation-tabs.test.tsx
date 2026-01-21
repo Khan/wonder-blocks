@@ -39,6 +39,48 @@ describe("ResponsiveNavigationTabs", () => {
         },
     ];
 
+    describe("Props", () => {
+        it("should use the provided id on the root element", () => {
+            // Arrange
+            // Act
+            const {container} = render(
+                <ResponsiveNavigationTabs
+                    id="responsive-navigation-tabs-id"
+                    tabs={tabs}
+                    selectedTabId="tab-1"
+                    onTabSelected={jest.fn()}
+                />,
+            );
+
+            // Assert
+            // eslint-disable-next-line testing-library/no-node-access -- explicitly checking the root element
+            expect(container.firstChild).toHaveAttribute(
+                "id",
+                "responsive-navigation-tabs-id",
+            );
+        });
+
+        it("should use the provided testId on the root element", () => {
+            // Arrange
+            // Act
+            const {container} = render(
+                <ResponsiveNavigationTabs
+                    testId="responsive-navigation-tabs-test-id"
+                    tabs={tabs}
+                    selectedTabId="tab-1"
+                    onTabSelected={jest.fn()}
+                />,
+            );
+
+            // Assert
+            // eslint-disable-next-line testing-library/no-node-access -- explicitly checking the root element
+            expect(container.firstChild).toHaveAttribute(
+                "data-testid",
+                "responsive-navigation-tabs-test-id",
+            );
+        });
+    });
+
     describe("NavigationTabs layout", () => {
         it("should render the tabs in a navigation", () => {
             // Arrange

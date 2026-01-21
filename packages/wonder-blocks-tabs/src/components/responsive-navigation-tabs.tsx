@@ -29,6 +29,28 @@ export type ResponsiveNavigationTabItem = {
 
 type Props = {
     /**
+     * A unique id for the component.
+     *
+     * Here is how the id is used for the different elements in the component:
+     * - The root will have an id of `${id}`
+     *
+     * To set the id of the navigation tabs or dropdown, set the `id` prop in
+     * the props: `tabsProps` or `dropdownProps`.
+     */
+    id?: string;
+
+    /**
+     * Optional test ID for e2e testing.
+     *
+     * Here is how the test id is used for the different elements in the component:
+     * - The root will have a testId of `${testId}`
+     *
+     * To set the test id of the navigation tabs or dropdown, set the `testId`
+     * prop in the props: `tabsProps` or `dropdownProps`.
+     */
+    testId?: string;
+
+    /**
      * The navigation tabs to render.
      */
     tabs: ResponsiveNavigationTabItem[];
@@ -63,7 +85,8 @@ type Props = {
  * NavigationTabs component directly.
  */
 export const ResponsiveNavigationTabs = (props: Props) => {
-    const {tabs, selectedTabId, onTabSelected, onLayoutChange} = props;
+    const {tabs, selectedTabId, onTabSelected, onLayoutChange, id, testId} =
+        props;
 
     const navigationTabsRef = React.useRef<HTMLElement>(null);
     const containerRef = React.useRef<HTMLDivElement>(null);
@@ -87,7 +110,12 @@ export const ResponsiveNavigationTabs = (props: Props) => {
     }, [tabs]);
 
     return (
-        <View ref={containerRef} style={styles.container}>
+        <View
+            ref={containerRef}
+            style={styles.container}
+            id={id}
+            testId={testId}
+        >
             {showDropdown ? (
                 <NavigationTabsDropdown
                     key="dropdown"
