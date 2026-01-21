@@ -35,7 +35,7 @@ type NavigationTabDropdownItem = {
     icon?: React.ReactElement;
 };
 
-type NavigationTabsDropdownProps = {
+export type NavigationTabsDropdownProps = {
     /**
      * The navigation tabs to render in the dropdown.
      */

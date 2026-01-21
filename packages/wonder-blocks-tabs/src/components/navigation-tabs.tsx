@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import * as React from "react";
 import {useTabIndicator} from "../hooks/use-tab-indicator";
 
-type Props = AriaProps & {
+export type NavigationTabsProps = AriaProps & {
     /**
      * The NavigationTabItem components to render.
      */
@@ -83,7 +83,7 @@ const StyledDiv = addStyle("div");
  * ```
  */
 export const NavigationTabs = React.forwardRef(function NavigationTabs(
-    props: Props,
+    props: NavigationTabsProps,
     ref: React.ForwardedRef<HTMLElement>,
 ) {
     const {

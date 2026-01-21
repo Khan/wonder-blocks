@@ -2,8 +2,11 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {StyleType, View} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
-import {NavigationTabsDropdown} from "./navigation-tabs-dropdown";
-import {NavigationTabs} from "./navigation-tabs";
+import {
+    NavigationTabsDropdown,
+    type NavigationTabsDropdownProps,
+} from "./navigation-tabs-dropdown";
+import {NavigationTabs, type NavigationTabsProps} from "./navigation-tabs";
 import {NavigationTabItem} from "./navigation-tab-item";
 import {useResponsiveLayout} from "../hooks/use-responsive-layout";
 
@@ -74,13 +77,40 @@ type Props = {
     tag?: keyof JSX.IntrinsicElements;
 
     /**
+     * Additional props to pass to the NavigationTabs component when it is used.
+     *
+     * Note: This prop doesn't include the props that are available on the
+     * ResponsiveNavigationTabs component already.
+     */
+    tabsProps?: Omit<
+        NavigationTabsProps,
+        "children" | "aria-label" | "aria-labelledby" | "tag"
+    >;
+
+    /**
+     * Additional props to pass to the NavigationTabsDropdown component when it
+     * is used.
+     *
+     * Note: This prop doesn't include the props that are available on the
+     * ResponsiveNavigationTabs component already.
+     */
+    dropdownProps?: Omit<
+        NavigationTabsDropdownProps,
+        | "tabs"
+        | "selectedTabId"
+        | "onTabSelected"
+        | "aria-label"
+        | "aria-labelledby"
+        | "tag"
+    >;
+
+    /**
      * Custom styles for the ResponsiveNavigationTabs component.
      * - `root`: Styles the root container element.
      *
      * To customize the styles of the navigation tabs or dropdown, set the
-     * `styles` prop on the `navigationTabsProps` or `navigationTabsDropdownProps`
-     * props. See the `NavigationTabs` and `NavigationTabsDropdown` docs for
-     * more details.
+     * `styles` prop on the `tabsProps` or `dropdownProps` props. See the
+     * `NavigationTabs` and `NavigationTabsDropdown` docs for more details.
      */
     styles?: {
         root?: StyleType;
@@ -131,6 +161,8 @@ export const ResponsiveNavigationTabs = (props: Props) => {
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledby,
         tag,
+        tabsProps,
+        dropdownProps,
         styles: stylesProp,
     } = props;
 
@@ -164,6 +196,7 @@ export const ResponsiveNavigationTabs = (props: Props) => {
         >
             {showDropdown ? (
                 <NavigationTabsDropdown
+                    {...dropdownProps}
                     key="dropdown"
                     tabs={tabs}
                     selectedTabId={selectedTabId}
@@ -171,16 +204,23 @@ export const ResponsiveNavigationTabs = (props: Props) => {
                     aria-label={ariaLabel}
                     aria-labelledby={ariaLabelledby}
                     tag={tag}
-                    styles={{root: styles.fadeIn}}
+                    styles={{
+                        ...dropdownProps?.styles,
+                        root: [styles.fadeIn, dropdownProps?.styles?.root],
+                    }}
                 />
             ) : (
                 <NavigationTabs
+                    {...tabsProps}
                     key="tabs"
                     ref={navigationTabsRef}
                     aria-label={ariaLabel}
                     aria-labelledby={ariaLabelledby}
                     tag={tag}
-                    styles={{root: styles.fadeIn}}
+                    styles={{
+                        ...tabsProps?.styles,
+                        root: [styles.fadeIn, tabsProps?.styles?.root],
+                    }}
                 >
                     {processedTabs.map((tab) => (
                         <NavigationTabItem
