@@ -5,7 +5,7 @@ import {ScenariosLayout} from "../components/scenarios-layout";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {longText} from "../components/text-for-testing";
 import {allModes, themeModes} from "../../.storybook/modes";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
@@ -134,6 +134,33 @@ export const Scenarios: Story = {
                         },
                     ],
                     selectedTabId: "tab-1",
+                },
+            },
+            {
+                name: "Custom styles",
+                props: {
+                    tabs: generateTabs(3),
+                    selectedTabId: "tab-1",
+                    styles: {
+                        root: {
+                            outline: `${border.width.medium} dashed ${semanticColor.core.border.instructive.subtle}`,
+                            outlineOffset: border.width.medium,
+                        },
+                    },
+                    tabsProps: {
+                        styles: {
+                            root: {
+                                outline: `${border.width.medium} solid ${semanticColor.core.border.success.subtle}`,
+                            },
+                        },
+                    },
+                    dropdownProps: {
+                        styles: {
+                            root: {
+                                outline: `${border.width.medium} solid ${semanticColor.core.border.critical.subtle}`,
+                            },
+                        },
+                    },
                 },
             },
         ];

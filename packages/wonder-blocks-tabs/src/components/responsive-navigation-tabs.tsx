@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleType, View} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
 import {NavigationTabsDropdown} from "./navigation-tabs-dropdown";
 import {NavigationTabs} from "./navigation-tabs";
@@ -74,6 +74,19 @@ type Props = {
     tag?: keyof JSX.IntrinsicElements;
 
     /**
+     * Custom styles for the ResponsiveNavigationTabs component.
+     * - `root`: Styles the root container element.
+     *
+     * To customize the styles of the navigation tabs or dropdown, set the
+     * `styles` prop on the `navigationTabsProps` or `navigationTabsDropdownProps`
+     * props. See the `NavigationTabs` and `NavigationTabsDropdown` docs for
+     * more details.
+     */
+    styles?: {
+        root?: StyleType;
+    };
+
+    /**
      * The navigation tabs to render.
      */
     tabs: ResponsiveNavigationTabItem[];
@@ -118,6 +131,7 @@ export const ResponsiveNavigationTabs = (props: Props) => {
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledby,
         tag,
+        styles: stylesProp,
     } = props;
 
     const navigationTabsRef = React.useRef<HTMLElement>(null);
@@ -144,7 +158,7 @@ export const ResponsiveNavigationTabs = (props: Props) => {
     return (
         <View
             ref={containerRef}
-            style={styles.container}
+            style={[styles.container, stylesProp?.root]}
             id={id}
             testId={testId}
         >

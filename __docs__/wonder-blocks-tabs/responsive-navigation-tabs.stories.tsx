@@ -3,7 +3,7 @@ import {Meta, StoryObj} from "@storybook/react-vite";
 import {ResponsiveNavigationTabs} from "@khanacademy/wonder-blocks-tabs";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
@@ -189,5 +189,42 @@ export const WithIcons: Story = {
                 href: "#tab-4",
             },
         ],
+    },
+};
+
+/**
+ * Custom styles can be applied to ResponsiveNavigationTabs using the `styles`
+ * prop.
+ *
+ * The following parts can be styled:
+ * - `root`: Styles the root container element.
+ *
+ * To customize the styles of the navigation tabs or dropdown, set the `styles`
+ * prop on the `tabsProps` or `dropdownProps` props.
+ * See the `NavigationTabs` and `NavigationTabsDropdown` docs for more details.
+ */
+export const CustomStyles: Story = {
+    render: Default.render,
+    args: {
+        styles: {
+            root: {
+                outline: `${border.width.medium} dashed ${semanticColor.core.border.instructive.subtle}`,
+                outlineOffset: border.width.medium,
+            },
+        },
+        tabsProps: {
+            styles: {
+                root: {
+                    outline: `${border.width.medium} solid ${semanticColor.core.border.success.subtle}`,
+                },
+            },
+        },
+        dropdownProps: {
+            styles: {
+                root: {
+                    outline: `${border.width.medium} solid ${semanticColor.core.border.critical.subtle}`,
+                },
+            },
+        },
     },
 };
