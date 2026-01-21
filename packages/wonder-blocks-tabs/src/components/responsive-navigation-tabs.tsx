@@ -63,6 +63,21 @@ type Props = {
     testId?: string;
 
     /**
+     * The navigation tabs to render.
+     */
+    tabs: ResponsiveNavigationTabItem[];
+
+    /**
+     * The id of the tab that is selected (current page).
+     */
+    selectedTabId: string;
+
+    /**
+     * Called when a navigation tab is selected.
+     */
+    onTabSelected: (id: string) => void;
+
+    /**
      * Accessible label for the navigation element.
      *
      * It is important to provide a unique aria-label if there are multiple
@@ -124,21 +139,6 @@ type Props = {
     styles?: {
         root?: StyleType;
     };
-
-    /**
-     * The navigation tabs to render.
-     */
-    tabs: ResponsiveNavigationTabItem[];
-
-    /**
-     * The id of the tab that is selected (current page).
-     */
-    selectedTabId: string;
-
-    /**
-     * Called when a navigation tab is selected.
-     */
-    onTabSelected: (id: string) => void;
 
     /**
      * Called when the layout changes between NavigationTabs and

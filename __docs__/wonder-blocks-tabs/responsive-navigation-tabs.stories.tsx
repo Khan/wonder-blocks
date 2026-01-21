@@ -4,6 +4,7 @@ import {ResponsiveNavigationTabs} from "@khanacademy/wonder-blocks-tabs";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import responsiveNavigationTabsArgtypes from "./responsive-navigation-tabs.argtypes";
 import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
@@ -11,6 +12,7 @@ export default {
     title: "Packages / Tabs / ResponsiveNavigationTabs",
     component: ResponsiveNavigationTabs,
     excludeStories: ["INITIAL_TABS_COUNT"],
+    argTypes: responsiveNavigationTabsArgtypes,
     parameters: {
         chromatic: {
             // Disabling snapshots in favour of snapshot stories
