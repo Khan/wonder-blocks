@@ -69,6 +69,11 @@ type Props = {
     "aria-labelledby"?: string;
 
     /**
+     * The HTML tag to use. Defaults to `nav` in both layouts.
+     */
+    tag?: keyof JSX.IntrinsicElements;
+
+    /**
      * The navigation tabs to render.
      */
     tabs: ResponsiveNavigationTabItem[];
@@ -112,6 +117,7 @@ export const ResponsiveNavigationTabs = (props: Props) => {
         testId,
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledby,
+        tag,
     } = props;
 
     const navigationTabsRef = React.useRef<HTMLElement>(null);
@@ -150,6 +156,7 @@ export const ResponsiveNavigationTabs = (props: Props) => {
                     onTabSelected={onTabSelected}
                     aria-label={ariaLabel}
                     aria-labelledby={ariaLabelledby}
+                    tag={tag}
                     styles={{root: styles.fadeIn}}
                 />
             ) : (
@@ -158,6 +165,7 @@ export const ResponsiveNavigationTabs = (props: Props) => {
                     ref={navigationTabsRef}
                     aria-label={ariaLabel}
                     aria-labelledby={ariaLabelledby}
+                    tag={tag}
                     styles={{root: styles.fadeIn}}
                 >
                     {processedTabs.map((tab) => (

@@ -40,6 +40,43 @@ describe("ResponsiveNavigationTabs", () => {
     ];
 
     describe("Props", () => {
+        it("should use nav as the default tag", () => {
+            // Arrange
+            // Act
+            render(
+                <ResponsiveNavigationTabs
+                    aria-label="Responsive Navigation Tabs"
+                    tabs={tabs}
+                    selectedTabId="tab-1"
+                    onTabSelected={jest.fn()}
+                />,
+            );
+
+            // Assert
+            const nav = screen.getByRole("navigation", {
+                name: "Responsive Navigation Tabs",
+            });
+            expect(nav).toHaveProperty("tagName", "NAV");
+        });
+
+        it("should use the tag prop if provided", () => {
+            // Arrange
+            // Act
+            render(
+                <ResponsiveNavigationTabs
+                    tag="div"
+                    aria-label="Responsive Navigation Tabs"
+                    tabs={tabs}
+                    selectedTabId="tab-1"
+                    onTabSelected={jest.fn()}
+                />,
+            );
+
+            // Assert
+            const element = screen.getByLabelText("Responsive Navigation Tabs");
+            expect(element).toHaveProperty("tagName", "DIV");
+        });
+
         it("should use the provided id on the root element", () => {
             // Arrange
             // Act
@@ -433,6 +470,45 @@ describe("ResponsiveNavigationTabs", () => {
 
                 // Assert
                 expect(onTabSelected).toHaveBeenCalledWith("tab-2");
+            });
+        });
+
+        describe("Props", () => {
+            it("should use nav as the default tag in dropdown layout", async () => {
+                // Arrange
+                // Act
+                render(
+                    <ResponsiveNavigationTabs
+                        aria-label="Responsive Navigation Tabs"
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Assert
+                const nav = screen.getByRole("navigation", {
+                    name: "Responsive Navigation Tabs",
+                });
+                expect(nav).toHaveProperty("tagName", "NAV");
+            });
+
+            it("should use the tag prop if provided in dropdown layout", async () => {
+                // Arrange
+                // Act
+                render(
+                    <ResponsiveNavigationTabs
+                        tag="div"
+                        aria-label="Responsive Tabs"
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Assert
+                const element = screen.getByLabelText("Responsive Tabs");
+                expect(element).toHaveProperty("tagName", "DIV");
             });
         });
 
