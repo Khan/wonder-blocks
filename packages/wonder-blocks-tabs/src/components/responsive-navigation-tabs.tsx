@@ -28,6 +28,11 @@ export type ResponsiveNavigationTabItem = {
      * or Icon component.
      */
     icon?: React.ReactElement;
+    /**
+     * Optional aria-label for the navigation tab. This will be used as the
+     * accessible label for the tab link or menu item.
+     */
+    "aria-label"?: string;
 };
 
 type Props = {
@@ -231,6 +236,7 @@ export const ResponsiveNavigationTabs = (props: Props) => {
                                 href={tab.href}
                                 onClick={() => onTabSelected(tab.id)}
                                 startIcon={tab.startIcon}
+                                aria-label={tab["aria-label"]}
                             >
                                 {tab.label}
                             </Link>

@@ -143,10 +143,77 @@ export const Default: Story = {
 };
 
 /**
+ * Custom styles can be applied to ResponsiveNavigationTabs using the `styles`
+ * prop.
+ *
+ * The following parts can be styled:
+ * - `root`: Styles the root container element.
+ *
+ * To customize the styles of the navigation tabs or dropdown, set the `styles`
+ * prop on the `tabsProps` or `dropdownProps` props.
+ * See the `NavigationTabs` and `NavigationTabsDropdown` docs for more details.
+ */
+export const CustomStyles: Story = {
+    render: Default.render,
+    args: {
+        styles: {
+            root: {
+                outline: `${border.width.medium} dashed ${semanticColor.core.border.instructive.subtle}`,
+                outlineOffset: border.width.medium,
+            },
+        },
+        tabsProps: {
+            styles: {
+                root: {
+                    outline: `${border.width.medium} solid ${semanticColor.core.border.success.subtle}`,
+                },
+            },
+        },
+        dropdownProps: {
+            styles: {
+                root: {
+                    outline: `${border.width.medium} solid ${semanticColor.core.border.critical.subtle}`,
+                },
+            },
+        },
+    },
+};
+
+/**
+ * The tab items can be provided with an aria-label.
+ */
+export const TabItemAriaLabel: Story = {
+    render: ControlledResponsiveNavigationTabs,
+    args: {
+        tabs: [
+            {
+                label: "Tab 1",
+                id: "tab-1",
+                href: "#tab-1",
+                "aria-label": "Tab 1 aria-label",
+            },
+            {
+                label: "Tab 2",
+                id: "tab-2",
+                href: "#tab-2",
+                "aria-label": "Tab 2 aria-label",
+            },
+            {
+                label: "Tab 3",
+                id: "tab-3",
+                href: "#tab-3",
+                "aria-label": "Tab 3 aria-label",
+            },
+        ],
+        selectedTabId: "tab-1",
+    },
+};
+
+/**
  * ResponsiveNavigationTabs can include icons to provide visual context.
  * Icons are displayed in both tabs and dropdown layouts.
  */
-export const WithIcons: Story = {
+export const TabIcons: Story = {
     render: ControlledResponsiveNavigationTabs,
     args: {
         selectedTabId: "tab-1",
@@ -189,42 +256,5 @@ export const WithIcons: Story = {
                 href: "#tab-4",
             },
         ],
-    },
-};
-
-/**
- * Custom styles can be applied to ResponsiveNavigationTabs using the `styles`
- * prop.
- *
- * The following parts can be styled:
- * - `root`: Styles the root container element.
- *
- * To customize the styles of the navigation tabs or dropdown, set the `styles`
- * prop on the `tabsProps` or `dropdownProps` props.
- * See the `NavigationTabs` and `NavigationTabsDropdown` docs for more details.
- */
-export const CustomStyles: Story = {
-    render: Default.render,
-    args: {
-        styles: {
-            root: {
-                outline: `${border.width.medium} dashed ${semanticColor.core.border.instructive.subtle}`,
-                outlineOffset: border.width.medium,
-            },
-        },
-        tabsProps: {
-            styles: {
-                root: {
-                    outline: `${border.width.medium} solid ${semanticColor.core.border.success.subtle}`,
-                },
-            },
-        },
-        dropdownProps: {
-            styles: {
-                root: {
-                    outline: `${border.width.medium} solid ${semanticColor.core.border.critical.subtle}`,
-                },
-            },
-        },
     },
 };

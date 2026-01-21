@@ -401,6 +401,42 @@ describe("ResponsiveNavigationTabs", () => {
                     screen.getByRole("navigation", {name: "Site Navigation"}),
                 ).toHaveAttribute("aria-labelledby", "nav-heading");
             });
+
+            it("should apply aria-label to tab links when provided on tab items", () => {
+                // Arrange
+                render(
+                    <ResponsiveNavigationTabs
+                        tabs={[
+                            {
+                                id: "tab-1",
+                                label: "Tab 1",
+                                href: "#tab-1",
+                                "aria-label": "Tab 1 aria-label",
+                            },
+                            {
+                                id: "tab-2",
+                                label: "Tab 2",
+                                href: "#tab-2",
+                                "aria-label": "Tab 2 aria-label",
+                            },
+                        ]}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Act
+                const link1 = screen.getByRole("link", {
+                    name: "Tab 1 aria-label",
+                });
+                const link2 = screen.getByRole("link", {
+                    name: "Tab 2 aria-label",
+                });
+
+                // Assert
+                expect(link1).toHaveAttribute("aria-label", "Tab 1 aria-label");
+                expect(link2).toHaveAttribute("aria-label", "Tab 2 aria-label");
+            });
         });
     });
 
@@ -639,6 +675,54 @@ describe("ResponsiveNavigationTabs", () => {
                 expect(
                     screen.getByRole("navigation", {name: "Site Navigation"}),
                 ).toHaveAttribute("aria-labelledby", "nav-heading");
+            });
+
+            it("should apply aria-label to menu items when provided on tab items", async () => {
+                // Arrange
+                render(
+                    <ResponsiveNavigationTabs
+                        tabs={[
+                            {
+                                id: "tab-1",
+                                label: "Tab 1",
+                                href: "#tab-1",
+                                "aria-label": "Tab 1 aria-label",
+                            },
+                            {
+                                id: "tab-2",
+                                label: "Tab 2",
+                                href: "#tab-2",
+                                "aria-label": "Tab 2 aria-label",
+                            },
+                        ]}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Open the dropdown
+                const dropdownOpener = screen.getByRole("button", {
+                    name: "Tab 1 aria-label",
+                });
+                await userEvent.click(dropdownOpener);
+
+                // Act
+                const menuItem1 = screen.getByRole("menuitem", {
+                    name: "Tab 1 aria-label",
+                });
+                const menuItem2 = screen.getByRole("menuitem", {
+                    name: "Tab 2 aria-label",
+                });
+
+                // Assert
+                expect(menuItem1).toHaveAttribute(
+                    "aria-label",
+                    "Tab 1 aria-label",
+                );
+                expect(menuItem2).toHaveAttribute(
+                    "aria-label",
+                    "Tab 2 aria-label",
+                );
             });
         });
     });
