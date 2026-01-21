@@ -7,7 +7,6 @@ import {userEvent} from "@testing-library/user-event";
 import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import plusIcon from "@phosphor-icons/core/bold/plus-bold.svg";
 
-import {P} from "storybook/internal/components";
 import Link from "../link";
 
 describe("Link", () => {
