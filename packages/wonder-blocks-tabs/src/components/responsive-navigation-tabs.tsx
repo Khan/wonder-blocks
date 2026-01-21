@@ -33,6 +33,10 @@ export type ResponsiveNavigationTabItem = {
      * accessible label for the tab link or menu item.
      */
     "aria-label"?: string;
+    /**
+     * Optional test ID for e2e testing of the tab link or menu item.
+     */
+    testId?: string;
 };
 
 type Props = {
@@ -237,6 +241,7 @@ export const ResponsiveNavigationTabs = (props: Props) => {
                                 onClick={() => onTabSelected(tab.id)}
                                 startIcon={tab.startIcon}
                                 aria-label={tab["aria-label"]}
+                                testId={tab.testId}
                             >
                                 {tab.label}
                             </Link>

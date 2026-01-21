@@ -437,6 +437,30 @@ describe("ResponsiveNavigationTabs", () => {
                 expect(link1).toHaveAttribute("aria-label", "Tab 1 aria-label");
                 expect(link2).toHaveAttribute("aria-label", "Tab 2 aria-label");
             });
+
+            it("should apply testId to tab links when provided on tab items", () => {
+                // Arrange
+                render(
+                    <ResponsiveNavigationTabs
+                        tabs={[
+                            {
+                                id: "tab-1",
+                                label: "Tab 1",
+                                href: "#tab-1",
+                                testId: "tab-1-link",
+                            },
+                        ]}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Act
+                const link = screen.getByTestId("tab-1-link");
+
+                // Assert
+                expect(link).toBeInTheDocument();
+            });
         });
     });
 
@@ -723,6 +747,36 @@ describe("ResponsiveNavigationTabs", () => {
                     "aria-label",
                     "Tab 2 aria-label",
                 );
+            });
+
+            it("should apply testId to menu items when provided on tab items", async () => {
+                // Arrange
+                render(
+                    <ResponsiveNavigationTabs
+                        tabs={[
+                            {
+                                id: "tab-1",
+                                label: "Tab 1",
+                                href: "#tab-1",
+                                testId: "tab-1-item",
+                            },
+                        ]}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Open the dropdown
+                const dropdownOpener = screen.getByRole("button", {
+                    name: "Tab 1",
+                });
+                await userEvent.click(dropdownOpener);
+
+                // Act
+                const menuItem = screen.getByTestId("tab-1-item");
+
+                // Assert
+                expect(menuItem).toBeInTheDocument();
             });
         });
     });
