@@ -78,27 +78,10 @@ type Props = {
     onTabSelected: (id: string) => void;
 
     /**
-     * Accessible label for the navigation element.
-     *
-     * It is important to provide a unique aria-label if there are multiple
-     * navigation elements on the page.
-     *
-     * If there is a visual label for the navigation tabs already, use
-     * `aria-labelledby` instead.
+     * Called when the layout changes between NavigationTabs and
+     * NavigationTabsDropdown.
      */
-    "aria-label"?: string;
-
-    /**
-     * If there is a visual label for the navigation tabs already, set
-     * `aria-labelledby` to the `id` of the element that labels the navigation
-     * tabs.
-     */
-    "aria-labelledby"?: string;
-
-    /**
-     * The HTML tag to use. Defaults to `nav` in both layouts.
-     */
-    tag?: keyof JSX.IntrinsicElements;
+    onLayoutChange?: (layout: "tabs" | "dropdown") => void;
 
     /**
      * Additional props to pass to the NavigationTabs component when it is used.
@@ -141,10 +124,27 @@ type Props = {
     };
 
     /**
-     * Called when the layout changes between NavigationTabs and
-     * NavigationTabsDropdown.
+     * Accessible label for the navigation element.
+     *
+     * It is important to provide a unique aria-label if there are multiple
+     * navigation elements on the page.
+     *
+     * If there is a visual label for the navigation tabs already, use
+     * `aria-labelledby` instead.
      */
-    onLayoutChange?: (layout: "tabs" | "dropdown") => void;
+    "aria-label"?: string;
+
+    /**
+     * If there is a visual label for the navigation tabs already, set
+     * `aria-labelledby` to the `id` of the element that labels the navigation
+     * tabs.
+     */
+    "aria-labelledby"?: string;
+
+    /**
+     * The HTML tag to use. Defaults to `nav` in both layouts.
+     */
+    tag?: keyof JSX.IntrinsicElements;
 };
 
 /**
