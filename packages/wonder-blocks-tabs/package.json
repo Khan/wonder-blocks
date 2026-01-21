@@ -28,6 +28,7 @@
     "@khanacademy/wonder-blocks-core": "workspace:*",
     "@khanacademy/wonder-blocks-dropdown": "workspace:*",
     "@khanacademy/wonder-blocks-icon": "workspace:*",
+    "@khanacademy/wonder-blocks-link": "workspace:*",
     "@khanacademy/wonder-blocks-tokens": "workspace:*",
     "@khanacademy/wonder-blocks-typography": "workspace:*",
     "@phosphor-icons/core": "catalog:"
