@@ -1,5 +1,5 @@
 import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
 import {useTabIndicator} from "../hooks/use-tab-indicator";
@@ -54,6 +54,11 @@ export type NavigationTabsProps = AriaProps & {
      * The HTML tag to render. Defaults to `nav`.
      */
     tag?: keyof JSX.IntrinsicElements;
+
+    /**
+     * Whether to show a divider under the tabs. Defaults to `false`.
+     */
+    showDivider?: boolean;
 };
 
 const StyledUl = addStyle("ul");
@@ -95,6 +100,7 @@ export const NavigationTabs = React.forwardRef(function NavigationTabs(
         styles: stylesProp,
         animated = false,
         tag = "nav",
+        showDivider = false,
         ...otherProps
     } = props;
 
@@ -130,7 +136,11 @@ export const NavigationTabs = React.forwardRef(function NavigationTabs(
             aria-label={ariaLabel}
             aria-labelledby={ariaLabelledBy}
             ref={ref}
-            style={[styles.nav, stylesProp?.root]}
+            style={[
+                styles.nav,
+                showDivider && styles.divider,
+                stylesProp?.root,
+            ]}
             {...otherProps}
         >
             {/* Wrap the contents so that any custom styles (like padding) set
@@ -162,5 +172,8 @@ const styles = StyleSheet.create({
         display: "flex",
         gap: sizing.size_160,
         flexWrap: "nowrap",
+    },
+    divider: {
+        borderBlockEnd: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
     },
 });

@@ -145,6 +145,11 @@ type Props = {
      * The HTML tag to use. Defaults to `nav` in both layouts.
      */
     tag?: keyof JSX.IntrinsicElements;
+
+    /**
+     * Whether to show a divider under the tabs. Defaults to `false`.
+     */
+    showDivider?: boolean;
 };
 
 /**
@@ -173,6 +178,7 @@ export const ResponsiveNavigationTabs = (props: Props) => {
         tabsProps,
         dropdownProps,
         styles: stylesProp,
+        showDivider = false,
     } = props;
 
     const navigationTabsRef = React.useRef<HTMLElement>(null);
@@ -220,6 +226,7 @@ export const ResponsiveNavigationTabs = (props: Props) => {
                         ...dropdownProps?.styles,
                         root: [styles.fadeIn, dropdownProps?.styles?.root],
                     }}
+                    showDivider={showDivider}
                 />
             ) : (
                 <NavigationTabs
@@ -233,6 +240,7 @@ export const ResponsiveNavigationTabs = (props: Props) => {
                         ...tabsProps?.styles,
                         root: [styles.fadeIn, tabsProps?.styles?.root],
                     }}
+                    showDivider={showDivider}
                 >
                     {processedTabs.map((tab) => (
                         <NavigationTabItem

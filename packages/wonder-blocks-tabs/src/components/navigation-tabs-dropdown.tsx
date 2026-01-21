@@ -113,6 +113,10 @@ export type NavigationTabsDropdownProps = {
         actionMenu?: StyleType;
         opener?: StyleType;
     };
+    /**
+     * Whether to show a divider under the tabs. Defaults to `false`.
+     */
+    showDivider?: boolean;
 };
 
 const defaultLabels: Required<NavigationTabsDropdownProps["labels"]> = {
@@ -141,6 +145,7 @@ export const NavigationTabsDropdown = React.forwardRef<
         "aria-labelledby": ariaLabelledby,
         tag = "nav",
         styles: stylesProp,
+        showDivider = false,
     } = props;
 
     const StyledTag = React.useMemo(() => addStyle(tag), [tag]);
@@ -186,7 +191,7 @@ export const NavigationTabsDropdown = React.forwardRef<
             ref={ref}
             id={uniqueId}
             data-testid={testId}
-            style={stylesProp?.root}
+            style={[showDivider && styles.divider, stylesProp?.root]}
             aria-label={ariaLabel}
             aria-labelledby={ariaLabelledby}
         >
@@ -244,6 +249,8 @@ const styles = StyleSheet.create({
     actionMenu: {
         width: "100%",
         alignItems: "flex-start",
+    },
+    divider: {
         borderBlockEnd: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
     },
     opener: {

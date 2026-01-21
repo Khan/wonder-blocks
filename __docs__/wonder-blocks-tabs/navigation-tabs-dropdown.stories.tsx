@@ -44,17 +44,17 @@ export const Default: Story = {
         tabs: [
             {
                 id: "tab-1",
-                label: "Tab Dropdown Item 1",
+                label: "Navigation tab 1",
                 href: "#tab-1",
             },
             {
                 id: "tab-2",
-                label: "Tab Dropdown Item 2",
+                label: "Navigation tab 2",
                 href: "#tab-2",
             },
             {
                 id: "tab-3",
-                label: "Tab Dropdown Item 3",
+                label: "Navigation tab 3",
                 href: "#tab-3",
             },
         ],
@@ -103,6 +103,35 @@ export const TabIcons: Story = {
             },
         ],
         selectedTabId: "tab-1",
+    },
+    render: ControlledNavigationTabsDropdown,
+};
+
+/**
+ * Use the `showDivider` prop to show a divider under the tabs. `showDivider` is
+ * `false` by default.
+ */
+export const ShowDivider: Story = {
+    args: {
+        tabs: [
+            {
+                label: "Navigation tab 1",
+                id: "tab-1",
+                href: "#tab-1",
+            },
+            {
+                label: "Navigation tab 2",
+                id: "tab-2",
+                href: "#tab-2",
+            },
+            {
+                label: "Navigation tab 3",
+                id: "tab-3",
+                href: "#tab-3",
+            },
+        ],
+        selectedTabId: "tab-1",
+        showDivider: true,
     },
     render: ControlledNavigationTabsDropdown,
 };

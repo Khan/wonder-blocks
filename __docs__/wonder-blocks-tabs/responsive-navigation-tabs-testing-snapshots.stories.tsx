@@ -170,6 +170,14 @@ export const Scenarios: Story = {
                     },
                 },
             },
+            {
+                name: "Show divider",
+                props: {
+                    tabs: generateTabs(5),
+                    selectedTabId: "tab-1",
+                    showDivider: true,
+                },
+            },
         ];
 
         return (

@@ -189,19 +189,19 @@ export const TabItemAriaLabel: Story = {
     args: {
         tabs: [
             {
-                label: "Tab 1",
+                label: "Navigation tab 1",
                 id: "tab-1",
                 href: "#tab-1",
                 "aria-label": "Tab 1 aria-label",
             },
             {
-                label: "Tab 2",
+                label: "Navigation tab 2",
                 id: "tab-2",
                 href: "#tab-2",
                 "aria-label": "Tab 2 aria-label",
             },
             {
-                label: "Tab 3",
+                label: "Navigation tab 3",
                 id: "tab-3",
                 href: "#tab-3",
                 "aria-label": "Tab 3 aria-label",
@@ -258,5 +258,34 @@ export const TabIcons: Story = {
                 href: "#tab-4",
             },
         ],
+    },
+};
+
+/**
+ * Use the `showDivider` prop to show a divider under the tabs. `showDivider` is
+ * `false` by default.
+ */
+export const ShowDivider: Story = {
+    render: ControlledResponsiveNavigationTabs,
+    args: {
+        tabs: [
+            {
+                label: "Navigation tab 1",
+                id: "tab-1",
+                href: "#tab-1",
+            },
+            {
+                label: "Navigation tab 2",
+                id: "tab-2",
+                href: "#tab-2",
+            },
+            {
+                label: "Navigation tab 3",
+                id: "tab-3",
+                href: "#tab-3",
+            },
+        ],
+        selectedTabId: "tab-1",
+        showDivider: true,
     },
 };

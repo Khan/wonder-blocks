@@ -474,3 +474,14 @@ export const Tag: StoryComponentType = {
         },
     },
 };
+
+/**
+ * Use the `showDivider` prop to show a divider under the tabs. `showDivider` is
+ * `false` by default.
+ */
+export const ShowDivider: StoryComponentType = {
+    args: {
+        children: navigationTabItems,
+        showDivider: true,
+    },
+};

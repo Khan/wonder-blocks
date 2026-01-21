@@ -199,6 +199,30 @@ export const Scenarios: Story = {
                     selectedTabId: "tab-1",
                 },
             },
+            {
+                name: "Show divider",
+                props: {
+                    tabs: [
+                        {
+                            label: "Navigation tab 1",
+                            id: "tab-1",
+                            href: "#tab-1",
+                        },
+                        {
+                            label: "Navigation tab 2",
+                            id: "tab-2",
+                            href: "#tab-2",
+                        },
+                        {
+                            label: "Navigation tab 3",
+                            id: "tab-3",
+                            href: "#tab-3",
+                        },
+                    ],
+                    selectedTabId: "tab-1",
+                    showDivider: true,
+                },
+            },
         ];
 
         return (
