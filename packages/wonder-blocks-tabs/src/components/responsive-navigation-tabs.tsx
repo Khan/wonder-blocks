@@ -75,7 +75,7 @@ type Props = {
     /**
      * Called when a navigation tab is selected.
      */
-    onTabSelected: (id: string) => void;
+    onTabSelected?: (id: string) => void;
 
     /**
      * Called when the layout changes between NavigationTabs and
@@ -193,8 +193,11 @@ export const ResponsiveNavigationTabs = (props: Props) => {
                       size: tab.icon.props.size ?? "medium",
                   })
                 : undefined,
+            handleClick: onTabSelected
+                ? () => onTabSelected(tab.id)
+                : undefined,
         }));
-    }, [tabs]);
+    }, [tabs, onTabSelected]);
 
     return (
         <View
@@ -238,7 +241,7 @@ export const ResponsiveNavigationTabs = (props: Props) => {
                         >
                             <Link
                                 href={tab.href}
-                                onClick={() => onTabSelected(tab.id)}
+                                onClick={tab.handleClick}
                                 startIcon={tab.startIcon}
                                 aria-label={tab["aria-label"]}
                                 testId={tab.testId}

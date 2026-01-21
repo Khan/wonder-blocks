@@ -50,7 +50,7 @@ export type NavigationTabsDropdownProps = {
     /**
      * Called when a navigation tab is selected.
      */
-    onTabSelected: (id: string) => unknown;
+    onTabSelected?: (id: string) => unknown;
     /**
      * A unique id for the component. If not provided, a unique base id will be
      * generated automatically.
@@ -165,9 +165,9 @@ export const NavigationTabsDropdown = React.forwardRef<
                       size: tab.icon.props.size ?? "medium",
                   })
                 : undefined,
-            handleClick: () => {
-                onTabSelected(tab.id);
-            },
+            handleClick: onTabSelected
+                ? () => onTabSelected(tab.id)
+                : undefined,
         }));
     }, [tabs, onTabSelected]);
 
