@@ -183,7 +183,12 @@ export const Scenarios: Story = {
                     },
                 }}
             >
-                {(props) => <ControlledResponsiveNavigationTabs {...props} />}
+                {(props, name) => (
+                    <ControlledResponsiveNavigationTabs
+                        {...props}
+                        aria-label={name}
+                    />
+                )}
             </ScenariosLayout>
         );
     },
