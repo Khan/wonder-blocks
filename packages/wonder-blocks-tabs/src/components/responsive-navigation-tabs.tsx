@@ -51,6 +51,24 @@ type Props = {
     testId?: string;
 
     /**
+     * Accessible label for the navigation element.
+     *
+     * It is important to provide a unique aria-label if there are multiple
+     * navigation elements on the page.
+     *
+     * If there is a visual label for the navigation tabs already, use
+     * `aria-labelledby` instead.
+     */
+    "aria-label"?: string;
+
+    /**
+     * If there is a visual label for the navigation tabs already, set
+     * `aria-labelledby` to the `id` of the element that labels the navigation
+     * tabs.
+     */
+    "aria-labelledby"?: string;
+
+    /**
      * The navigation tabs to render.
      */
     tabs: ResponsiveNavigationTabItem[];
@@ -85,8 +103,16 @@ type Props = {
  * NavigationTabs component directly.
  */
 export const ResponsiveNavigationTabs = (props: Props) => {
-    const {tabs, selectedTabId, onTabSelected, onLayoutChange, id, testId} =
-        props;
+    const {
+        tabs,
+        selectedTabId,
+        onTabSelected,
+        onLayoutChange,
+        id,
+        testId,
+        "aria-label": ariaLabel,
+        "aria-labelledby": ariaLabelledby,
+    } = props;
 
     const navigationTabsRef = React.useRef<HTMLElement>(null);
     const containerRef = React.useRef<HTMLDivElement>(null);
@@ -122,12 +148,16 @@ export const ResponsiveNavigationTabs = (props: Props) => {
                     tabs={tabs}
                     selectedTabId={selectedTabId}
                     onTabSelected={onTabSelected}
+                    aria-label={ariaLabel}
+                    aria-labelledby={ariaLabelledby}
                     styles={{root: styles.fadeIn}}
                 />
             ) : (
                 <NavigationTabs
                     key="tabs"
                     ref={navigationTabsRef}
+                    aria-label={ariaLabel}
+                    aria-labelledby={ariaLabelledby}
                     styles={{root: styles.fadeIn}}
                 >
                     {processedTabs.map((tab) => (

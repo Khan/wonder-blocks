@@ -278,6 +278,47 @@ describe("ResponsiveNavigationTabs", () => {
                 expect(screen.queryByRole("img")).not.toBeInTheDocument();
             });
         });
+
+        describe("Accessibility", () => {
+            it("should use the aria-label prop", () => {
+                // Arrange
+                // Act
+                render(
+                    <ResponsiveNavigationTabs
+                        aria-label="Main navigation"
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Assert
+                expect(
+                    screen.getByRole("navigation", {name: "Main navigation"}),
+                ).toHaveAttribute("aria-label", "Main navigation");
+            });
+
+            it("should use the aria-labelledby prop", () => {
+                // Arrange
+                // Act
+                render(
+                    <div>
+                        <h1 id="nav-heading">Site Navigation</h1>
+                        <ResponsiveNavigationTabs
+                            aria-labelledby="nav-heading"
+                            tabs={tabs}
+                            selectedTabId="tab-1"
+                            onTabSelected={jest.fn()}
+                        />
+                    </div>,
+                );
+
+                // Assert
+                expect(
+                    screen.getByRole("navigation", {name: "Site Navigation"}),
+                ).toHaveAttribute("aria-labelledby", "nav-heading");
+            });
+        });
     });
 
     describe("NavigationTabsDropdown layout", () => {
@@ -392,6 +433,47 @@ describe("ResponsiveNavigationTabs", () => {
 
                 // Assert
                 expect(onTabSelected).toHaveBeenCalledWith("tab-2");
+            });
+        });
+
+        describe("Accessibility", () => {
+            it("should use the aria-label prop", async () => {
+                // Arrange
+                // Act
+                render(
+                    <ResponsiveNavigationTabs
+                        aria-label="Main navigation"
+                        tabs={tabs}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />,
+                );
+
+                // Assert
+                expect(
+                    screen.getByRole("navigation", {name: "Main navigation"}),
+                ).toHaveAttribute("aria-label", "Main navigation");
+            });
+
+            it("should use the aria-labelledby prop", async () => {
+                // Arrange
+                // Act
+                render(
+                    <div>
+                        <h1 id="nav-heading">Site Navigation</h1>
+                        <ResponsiveNavigationTabs
+                            aria-labelledby="nav-heading"
+                            tabs={tabs}
+                            selectedTabId="tab-1"
+                            onTabSelected={jest.fn()}
+                        />
+                    </div>,
+                );
+
+                // Assert
+                expect(
+                    screen.getByRole("navigation", {name: "Site Navigation"}),
+                ).toHaveAttribute("aria-labelledby", "nav-heading");
             });
         });
     });
