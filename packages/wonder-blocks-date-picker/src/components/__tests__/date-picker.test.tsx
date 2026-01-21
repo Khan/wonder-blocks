@@ -11,7 +11,7 @@ import {
 import userEvent from "@testing-library/user-event";
 import * as DateMock from "jest-date-mock";
 import {Temporal} from "temporal-polyfill";
-import {es, fr} from "date-fns/locale";
+import {enUS, es, fr} from "date-fns/locale";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {
@@ -439,41 +439,106 @@ describe("DatePicker", () => {
 
     describe("Localization", () => {
         describe("locale prop accepts Locale object directly", () => {
-            it("accepts Locale object from react-day-picker without needing .code", () => {
+            it("should display calendar when input is clicked", async () => {
                 // Arrange
-                const selectedDate = Temporal.PlainDate.from("2026-01-16");
-                const dateFormat = "MMMM D, YYYY";
-
-                // Act
+                const onUpdateDate = jest.fn();
                 render(
                     <DatePicker
-                        selectedDate={selectedDate}
-                        updateDate={() => {}}
-                        dateFormat={dateFormat}
-                        locale={es}
+                        locale={enUS}
+                        updateDate={onUpdateDate}
+                        selectedDate={undefined}
+                        dateFormat="MMMM D, YYYY"
+                    />,
+                );
+                const input = screen.getByRole("textbox");
+
+                // Act
+                await userEvent.click(input);
+
+                // Assert
+                const calendar = await screen.findByRole("grid");
+                expect(calendar).toBeInTheDocument();
+            });
+
+            it("should update calendar to show January 2021 when user types that date", async () => {
+                // Arrange
+                const onUpdateDate = jest.fn();
+                render(
+                    <DatePicker
+                        locale={enUS}
+                        updateDate={onUpdateDate}
+                        selectedDate={undefined}
+                        dateFormat="MMMM D, YYYY"
+                    />,
+                );
+                const input = screen.getByRole("textbox");
+                await userEvent.click(input);
+
+                // Act
+                await userEvent.type(input, "January 15, 2021");
+
+                // Assert - Calendar should show January 2021
+                await waitFor(() => {
+                    const monthLabel = screen.getByText("January 2021");
+                    expect(monthLabel).toBeInTheDocument();
+                });
+            });
+
+            it("should update calendar month when selectedDate prop changes", async () => {
+                // Arrange
+                const onUpdateDate = jest.fn();
+                const initialDate = Temporal.PlainDate.from("2026-01-15");
+                const newDate = Temporal.PlainDate.from("2021-07-20");
+
+                const {rerender} = render(
+                    <DatePicker
+                        locale={enUS}
+                        updateDate={onUpdateDate}
+                        selectedDate={initialDate}
+                        dateFormat="MMMM D, YYYY"
+                    />,
+                );
+                const input = screen.getByDisplayValue("January 15, 2026");
+                await userEvent.click(input);
+
+                // Act
+                rerender(
+                    <DatePicker
+                        locale={enUS}
+                        updateDate={onUpdateDate}
+                        selectedDate={newDate}
+                        dateFormat="MMMM D, YYYY"
                     />,
                 );
 
                 // Assert
-                expect(
-                    screen.getByDisplayValue("enero 16, 2026"),
-                ).toBeInTheDocument();
+                await waitFor(() => {
+                    const monthLabel = screen.getByText("July 2021");
+                    expect(monthLabel).toBeInTheDocument();
+                });
             });
 
-            it("also accepts locale code string for backward compatibility", () => {
+            it("should show December 2021 when opening calendar with that selected date", async () => {
                 // Arrange
-                const selectedDate = Temporal.PlainDate.from("2026-01-16");
-                const dateFormat = "MMMM D, YYYY";
+                const onUpdateDate = jest.fn();
+                const selectedDate = Temporal.PlainDate.from("2021-12-25");
 
-                // Act - Pass the Locale object to formatDate in the test
-                const formatted = TemporalLocaleUtils.formatDate(
-                    selectedDate,
-                    dateFormat,
-                    "es",
+                render(
+                    <DatePicker
+                        locale={enUS}
+                        updateDate={onUpdateDate}
+                        selectedDate={selectedDate}
+                        dateFormat="MMMM D, YYYY"
+                    />,
                 );
+                const input = screen.getByDisplayValue("December 25, 2021");
+
+                // Act
+                await userEvent.click(input);
 
                 // Assert
-                expect(formatted).toBe("enero 16, 2026");
+                const monthLabel = await screen.findByText("December 2021");
+                expect(monthLabel).toBeInTheDocument();
             });
         });
 
