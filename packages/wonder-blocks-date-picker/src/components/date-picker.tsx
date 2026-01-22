@@ -66,7 +66,8 @@ interface Props {
      */
     style?: StyleType;
     /**
-     * Whether the date picker should close when a date is selected.
+     * Whether the date picker overlay should close when a date is selected
+     * or when Enter key is pressed in the input.
      * Defaults to true.
      */
     closeOnSelect?: boolean;
@@ -214,6 +215,10 @@ const DatePicker = (props: Props) => {
             close();
             datePickerInputRef.current?.focus();
         }
+        if (e.key === "Enter" && closeOnSelect && showOverlay) {
+            e.preventDefault();
+            close();
+        }
     };
 
     const RootWithEsc = (props: RootWithEscProps) => {
@@ -228,6 +233,10 @@ const DatePicker = (props: Props) => {
                     if (e.key === "Escape") {
                         close();
                         datePickerInputRef.current?.focus();
+                    }
+                    if (e.key === "Enter" && closeOnSelect) {
+                        e.preventDefault();
+                        close();
                     }
                 }}
             />

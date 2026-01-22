@@ -145,6 +145,32 @@ describe("DatePicker", () => {
         ).not.toBeInTheDocument();
     });
 
+    it("closes the date picker if Enter is pressed in input", async () => {
+        // Arrange
+        render(<DatePicker updateDate={() => {}} />);
+        await userEvent.tab();
+
+        // Act
+        await userEvent.type(screen.getByRole("textbox"), "{Enter}");
+
+        // Assert
+        expect(
+            screen.queryByTestId("focus-sentinel-prev"),
+        ).not.toBeInTheDocument();
+    });
+
+    it("does not close overlay on Enter if closeOnSelect is false", async () => {
+        // Arrange
+        render(<DatePicker updateDate={() => {}} closeOnSelect={false} />);
+        await userEvent.tab();
+
+        // Act
+        await userEvent.type(screen.getByRole("textbox"), "{Enter}");
+
+        // Assert
+        expect(screen.getByTestId("focus-sentinel-prev")).toBeInTheDocument();
+    });
+
     it("closes the date picker if the input is blurred", async () => {
         // Arrange
         render(<DatePicker updateDate={() => {}} />);
