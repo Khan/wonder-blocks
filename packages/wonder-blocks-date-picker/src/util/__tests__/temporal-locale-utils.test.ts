@@ -588,6 +588,28 @@ describe("TemporalLocaleUtils", () => {
             // Assert
             expect(result).toBeInstanceOf(Date);
         });
+
+        it("should reject partial input that doesn't match format", () => {
+            // Arrange - User typed partial year
+            const input = "2026";
+
+            // Act
+            const result = parseDateToJsDate(input, "MM/DD/YYYY", "en-US");
+
+            // Assert
+            expect(result).toBeUndefined();
+        });
+
+        it("should reject input in wrong format", () => {
+            // Arrange - ISO format when expecting US format
+            const input = "2026-01-28";
+
+            // Act
+            const result = parseDateToJsDate(input, "MM/DD/YYYY", "en-US");
+
+            // Assert
+            expect(result).toBeUndefined();
+        });
     });
 
     describe("getModifiersForDay", () => {

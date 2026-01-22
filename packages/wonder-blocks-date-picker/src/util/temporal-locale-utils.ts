@@ -210,6 +210,12 @@ export function jsDateToTemporalDate(date: Date): Temporal.PlainDate {
  * This is a convenience wrapper around parseDate that converts the result
  * to a Date object for compatibility with react-day-picker.
  * If a Date is passed in, it's returned as-is.
+ *
+ * @example
+ * // With format "MM/DD/YYYY":
+ * parseDateToJsDate("1/28/2026", "M/D/YYYY") // ✓ Returns Date
+ * parseDateToJsDate("1/28", "M/D/YYYY")      // ✗ Returns undefined (incomplete)
+ * parseDateToJsDate("2026-01-28", "M/D/YYYY") // ✗ Returns undefined (wrong format)
  */
 export function parseDateToJsDate(
     value: string | Date,
@@ -222,7 +228,19 @@ export function parseDateToJsDate(
     }
 
     const temporalDate = parseDate(value, format, locale || undefined);
-    return temporalDate ? temporalDateToJsDate(temporalDate) : undefined;
+
+    // STRICT VALIDATION: Verify the parsed date, when formatted back,
+    // exactly matches the original input. This prevents partial/lenient parsing.
+    if (temporalDate) {
+        const formatted = formatDate(temporalDate, format, locale || undefined);
+        if (formatted === value) {
+            return temporalDateToJsDate(temporalDate);
+        }
+        // Date was parsed but doesn't match format - return undefined
+        return undefined;
+    }
+
+    return undefined;
 }
 
 /**
