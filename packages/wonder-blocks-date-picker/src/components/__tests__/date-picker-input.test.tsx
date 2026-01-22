@@ -304,4 +304,85 @@ describe("DatePickerInput", () => {
         // Assert
         expect(screen.getByTestId("date-picker-input")).toHaveValue(validDate);
     });
+
+    it("does not reformat input while user is typing", async () => {
+        // Arrange
+        const onChangeSpy = jest.fn();
+        render(
+            <DatePickerInput
+                dateFormat="M/D/YYYY"
+                value=""
+                parseDate={TemporalLocaleUtils.parseDateToJsDate}
+                onChange={onChangeSpy}
+                testId="date-picker-input"
+            />,
+        );
+
+        const input = screen.getByTestId("date-picker-input");
+        await userEvent.click(input);
+
+        // Act - type partial date while focused
+        await userEvent.type(input, "1/28/20");
+
+        // Assert - input should keep raw typed value, not be reformatted
+        expect(input).toHaveValue("1/28/20");
+    });
+
+    it("calls onChange with parsed date while typing for live validation", async () => {
+        // Arrange
+        const onChangeSpy = jest.fn();
+        render(
+            <DatePickerInput
+                dateFormat="M/D/YYYY"
+                value=""
+                parseDate={TemporalLocaleUtils.parseDateToJsDate}
+                onChange={onChangeSpy}
+                testId="date-picker-input"
+            />,
+        );
+
+        const input = screen.getByTestId("date-picker-input");
+        await userEvent.click(input);
+
+        // Act - type complete valid date
+        await userEvent.type(input, "1/28/2026");
+
+        // Assert - onChange should be called with the parsed date
+        expect(onChangeSpy).toHaveBeenLastCalledWith(
+            TemporalLocaleUtils.temporalDateToJsDate(
+                Temporal.PlainDate.from("2026-01-28"),
+            ),
+            {},
+        );
+    });
+
+    it("keeps raw input value while focused even when prop value changes", async () => {
+        // Arrange
+        const {rerender} = render(
+            <DatePickerInput
+                dateFormat="YYYY-MM-DD"
+                value="2021-05-15"
+                parseDate={TemporalLocaleUtils.parseDateToJsDate}
+                testId="date-picker-input"
+            />,
+        );
+
+        const input = screen.getByTestId("date-picker-input");
+        await userEvent.click(input);
+        await userEvent.clear(input);
+        await userEvent.type(input, "2021-05-");
+
+        // Act - parent tries to update with formatted value while user is typing
+        rerender(
+            <DatePickerInput
+                dateFormat="YYYY-MM-DD"
+                value="2021-05-15"
+                parseDate={TemporalLocaleUtils.parseDateToJsDate}
+                testId="date-picker-input"
+            />,
+        );
+
+        // Assert - input should keep the user's partial input
+        expect(input).toHaveValue("2021-05-");
+    });
 });

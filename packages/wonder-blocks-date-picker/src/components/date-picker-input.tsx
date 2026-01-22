@@ -137,6 +137,9 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
         const [value, setValue] = React.useState<string | null | undefined>(
             propValue,
         );
+        const [isFocused, setIsFocused] = React.useState(false);
+        // Track if the last change was from user typing
+        const isUserTypingRef = React.useRef(false);
 
         // Helper to process modifiers
         const processModifiers = React.useCallback(
@@ -218,10 +221,15 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
             return true;
         }, [value, processDate, processModifiers]);
 
-        // Sync state with propValue
+        // Sync state with propValue, but prevent reformatting while user is typing
         React.useEffect(() => {
-            setValue(propValue);
-        }, [propValue]);
+            // If not focused or the last change wasn't from user typing, sync with prop
+            if (!isFocused || !isUserTypingRef.current) {
+                setValue(propValue);
+            }
+            // Reset the flag after processing
+            isUserTypingRef.current = false;
+        }, [propValue, isFocused]);
 
         // On mount, notify parent if initial value is invalid
         useOnMountEffect(() => {
@@ -230,7 +238,17 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
             }
         });
 
+        const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+            setIsFocused(true);
+            if (onFocus) {
+                onFocus(e);
+            }
+        };
+
         const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+            setIsFocused(false);
+
+            // Revert to previous valid value if current value is invalid
             if (!isValid()) {
                 setValue(propValue);
             }
@@ -240,6 +258,12 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
         };
 
         const handleChange = (newValue: string) => {
+            // Mark that this change is from user typing
+            isUserTypingRef.current = true;
+
+            // Update the date as the user types (for live validation)
+            // But the input won't be reformatted while focused due to the
+            // isUserTypingRef flag in the useEffect above
             maybeUpdateDate(newValue);
             setValue(newValue);
         };
@@ -257,7 +281,7 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
                     ref={ref}
                     {...restProps}
                     onBlur={handleBlur}
-                    onFocus={onFocus}
+                    onFocus={handleFocus}
                     onKeyDown={onKeyDown}
                     onChange={handleChange}
                     disabled={restProps.disabled}
