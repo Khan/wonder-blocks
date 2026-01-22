@@ -111,6 +111,11 @@ const DatePicker = (props: Props) => {
     const [currentDate, setCurrentDate] = React.useState<
         Temporal.PlainDate | null | undefined
     >(selectedDate);
+    const [displayMonth, setDisplayMonth] = React.useState<Date | undefined>(
+        selectedDate
+            ? TemporalLocaleUtils.temporalDateToJsDate(selectedDate)
+            : undefined,
+    );
 
     const datePickerInputRef = React.useRef<HTMLInputElement | null>(null);
     const datePickerRef = React.useRef<HTMLElement | null>(null);
@@ -130,6 +135,11 @@ const DatePicker = (props: Props) => {
     // Keep currentDate in sync with selectedDate prop
     React.useEffect(() => {
         setCurrentDate(selectedDate);
+        if (selectedDate) {
+            setDisplayMonth(
+                TemporalLocaleUtils.temporalDateToJsDate(selectedDate),
+            );
+        }
     }, [selectedDate]);
 
     // Add/remove mouseup event listener for outside click
@@ -139,14 +149,25 @@ const DatePicker = (props: Props) => {
             const thisElement = refWrapper.current;
             const dayPickerCalendar = datePickerRef.current;
 
-            if (
+            // Check if target is a valid Element (not document)
+            const isElement = target instanceof Element;
+            const inThisElement = isElement && thisElement?.contains(target);
+            const inCalendar = isElement && dayPickerCalendar?.contains(target);
+
+            // Also check if target is in a portal (calendar overlay)
+            const inPortal =
+                isElement &&
+                (target as HTMLElement).closest("[data-placement]") !== null;
+
+            const shouldClose =
                 showOverlay &&
                 closeOnSelect &&
                 thisElement &&
-                !thisElement.contains(target) &&
-                dayPickerCalendar &&
-                !dayPickerCalendar.contains(target)
-            ) {
+                !inThisElement &&
+                !inCalendar &&
+                !inPortal;
+
+            if (shouldClose) {
                 setShowOverlay(false);
             }
         };
@@ -184,6 +205,7 @@ const DatePicker = (props: Props) => {
         const wrappedDate =
             TemporalLocaleUtils.jsDateToTemporalDate(selectedDate);
         setCurrentDate(wrappedDate);
+        setDisplayMonth(selectedDate);
         updateDate(wrappedDate);
     };
 
@@ -222,8 +244,9 @@ const DatePicker = (props: Props) => {
         datePickerInputRef.current?.focus();
         const wrappedDate = TemporalLocaleUtils.jsDateToTemporalDate(date);
         setCurrentDate(selected ? undefined : wrappedDate);
-        setShowOverlay(!closeOnSelect);
+        setDisplayMonth(date);
         updateDate(wrappedDate);
+        setShowOverlay(!closeOnSelect);
     };
 
     const renderInput = (
@@ -307,7 +330,8 @@ const DatePicker = (props: Props) => {
                 >
                     <View ref={datePickerRef}>
                         <DayPicker
-                            month={selectedDateValue}
+                            month={displayMonth}
+                            onMonthChange={setDisplayMonth}
                             startMonth={minDateToShow ?? undefined}
                             endMonth={
                                 maxDate

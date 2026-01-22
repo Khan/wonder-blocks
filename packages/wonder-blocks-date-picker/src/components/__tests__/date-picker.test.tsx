@@ -1,23 +1,13 @@
 import * as React from "react";
 import {describe, it} from "@jest/globals";
-import {
-    act,
-    fireEvent,
-    render,
-    screen,
-    waitFor,
-    within,
-} from "@testing-library/react";
+import {render, screen, waitFor, within} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import * as DateMock from "jest-date-mock";
 import {Temporal} from "temporal-polyfill";
 import {enUS, es, fr} from "date-fns/locale";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {
-    DatePicker,
-    TemporalLocaleUtils,
-} from "@khanacademy/wonder-blocks-date-picker";
+import {DatePicker} from "@khanacademy/wonder-blocks-date-picker";
 
 describe("DatePicker", () => {
     beforeEach(() => {
@@ -79,9 +69,19 @@ describe("DatePicker", () => {
         // Act
         await userEvent.tab();
 
-        await expect(screen.getByRole("grid")).toBeVisible();
         // Assert
         expect(screen.getByTestId("focus-sentinel-prev")).toBeInTheDocument();
+    });
+
+    it("shows the calendar grid when input is focused", async () => {
+        // Arrange
+        render(<DatePicker updateDate={() => {}} />);
+
+        // Act
+        await userEvent.tab();
+
+        // Assert
+        await expect(screen.getByRole("grid")).toBeVisible();
     });
 
     it("includes a footer if set", async () => {
@@ -148,12 +148,11 @@ describe("DatePicker", () => {
     it("closes the date picker if the input is blurred", async () => {
         // Arrange
         render(<DatePicker updateDate={() => {}} />);
-
-        // We need first to focus on the input so we can display the picker.
-        await userEvent.tab();
+        const input = screen.getByRole("textbox");
+        await userEvent.click(input);
 
         // Act
-        fireEvent.blur(screen.getByRole("textbox"));
+        await userEvent.click(document.body);
 
         // Assert
         expect(
@@ -164,13 +163,10 @@ describe("DatePicker", () => {
     it("closes the date picker if we click outside the container", async () => {
         // Arrange
         render(<DatePicker updateDate={() => {}} />);
-
-        // We need first to focus on the input so we can display the picker.
         await userEvent.tab();
 
         // Act
-        // Click outside the picker and input
-        act(() => document.dispatchEvent(new MouseEvent("mouseup")));
+        await userEvent.click(document.body);
 
         // Assert
         await waitFor(() => {
@@ -253,7 +249,7 @@ describe("DatePicker", () => {
         const updateDateMock = jest.fn();
         const dateFormat = "YYYY-MM-DD";
 
-        render(
+        const {container} = render(
             <DatePicker
                 selectedDate={selectedDate}
                 updateDate={updateDateMock}
@@ -265,19 +261,15 @@ describe("DatePicker", () => {
         await userEvent.tab();
 
         // Act
+        // Calendar is in a portal, so use screen not within(container)
         await userEvent.click(screen.getByText("15"));
 
         // Assert
         // We'd want to ensure that the input is updated with the picker value.
-        expect(
-            screen.getByDisplayValue(
-                TemporalLocaleUtils.formatDate(
-                    Temporal.PlainDate.from("2021-05-15"),
-                    dateFormat,
-                    "en-US",
-                ),
-            ),
-        ).toBeInTheDocument();
+        await waitFor(() => {
+            const input = within(container).getByRole("textbox");
+            expect(input).toHaveValue("2021-05-15");
+        });
     });
 
     it("changes the date in the picker if we type in a valid date", async () => {
@@ -305,6 +297,7 @@ describe("DatePicker", () => {
         // Act
         await userEvent.clear(input);
         await userEvent.type(input, "2021-05-10");
+        await userEvent.tab();
 
         // Assert
         const gridcell = screen.getByRole("gridcell", {selected: true});
@@ -312,7 +305,7 @@ describe("DatePicker", () => {
             within(gridcell).getByRole("button", {
                 name: "Monday, May 10th, 2021, selected",
             }),
-        );
+        ).toBeInTheDocument();
     });
 
     it("does not modify the current date if current input contains an invalid format", async () => {
@@ -435,6 +428,50 @@ describe("DatePicker", () => {
 
         // Assert
         expect(hasDirLTR).toBe(true);
+    });
+
+    it("navigates to next month when next button is clicked", async () => {
+        // Arrange
+        const selectedDate = Temporal.PlainDate.from("2021-05-15");
+        render(
+            <DatePicker
+                selectedDate={selectedDate}
+                updateDate={() => {}}
+                dateFormat="MMMM D, YYYY"
+            />,
+        );
+        await userEvent.click(screen.getByRole("textbox"));
+
+        // Act
+        const nextButton = screen.getByLabelText(/next month/i);
+        await userEvent.click(nextButton);
+
+        // Assert
+        await waitFor(() => {
+            expect(screen.getByText("June 2021")).toBeInTheDocument();
+        });
+    });
+
+    it("navigates to previous month when previous button is clicked", async () => {
+        // Arrange
+        const selectedDate = Temporal.PlainDate.from("2021-05-15");
+        render(
+            <DatePicker
+                selectedDate={selectedDate}
+                updateDate={() => {}}
+                dateFormat="MMMM D, YYYY"
+            />,
+        );
+        await userEvent.click(screen.getByRole("textbox"));
+
+        // Act
+        const prevButton = screen.getByLabelText(/previous month/i);
+        await userEvent.click(prevButton);
+
+        // Assert
+        await waitFor(() => {
+            expect(screen.getByText("April 2021")).toBeInTheDocument();
+        });
     });
 
     describe("Localization", () => {
@@ -750,6 +787,27 @@ describe("DatePicker", () => {
                 ).toBeInTheDocument();
             });
 
+            it("displays initial Spanish text date in input", () => {
+                // Arrange
+                const selectedDate = Temporal.PlainDate.from("2026-01-05");
+                const dateFormat = "MMMM D, YYYY";
+
+                // Act
+                render(
+                    <DatePicker
+                        selectedDate={selectedDate}
+                        updateDate={() => {}}
+                        dateFormat={dateFormat}
+                        locale={es}
+                    />,
+                );
+
+                // Assert
+                expect(screen.getByRole("textbox")).toHaveValue(
+                    "enero 5, 2026",
+                );
+            });
+
             it("updates input to Spanish text format when date is selected from calendar", async () => {
                 // Arrange
                 const selectedDate = Temporal.PlainDate.from("2026-01-05");
@@ -764,15 +822,17 @@ describe("DatePicker", () => {
                         locale={es}
                     />,
                 );
+                const input = screen.getByRole("textbox");
 
                 // Act
-                await userEvent.tab();
+                await userEvent.click(input);
+                await screen.findByTestId("date-picker-overlay");
                 await userEvent.click(screen.getByText("15"));
 
                 // Assert
-                expect(
-                    screen.getByDisplayValue("enero 15, 2026"),
-                ).toBeInTheDocument();
+                await waitFor(() => {
+                    expect(input).toHaveValue("enero 15, 2026");
+                });
             });
         });
 

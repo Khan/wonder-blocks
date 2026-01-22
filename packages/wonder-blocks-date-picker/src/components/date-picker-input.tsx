@@ -137,9 +137,10 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
         const [value, setValue] = React.useState<string | null | undefined>(
             propValue,
         );
-        const [isFocused, setIsFocused] = React.useState(false);
-        // Track if the last change was from user typing
         const isUserTypingRef = React.useRef(false);
+        const lastPropValueRef = React.useRef<string | null | undefined>(
+            propValue,
+        );
 
         // Helper to process modifiers
         const processModifiers = React.useCallback(
@@ -221,15 +222,19 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
             return true;
         }, [value, processDate, processModifiers]);
 
-        // Sync state with propValue, but prevent reformatting while user is typing
+        // Sync with propValue except when user is actively typing their own value
+        // This matches native input: show what user types, but allow external updates
         React.useEffect(() => {
-            // If not focused or the last change wasn't from user typing, sync with prop
-            if (!isFocused || !isUserTypingRef.current) {
+            const propValueChanged = lastPropValueRef.current !== propValue;
+            lastPropValueRef.current = propValue;
+
+            // If propValue changed to something different (calendar click, external update),
+            // clear the typing flag and sync immediately
+            if (propValueChanged) {
+                isUserTypingRef.current = false;
                 setValue(propValue);
             }
-            // Reset the flag after processing
-            isUserTypingRef.current = false;
-        }, [propValue, isFocused]);
+        }, [propValue]);
 
         // On mount, notify parent if initial value is invalid
         useOnMountEffect(() => {
@@ -239,14 +244,30 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
         });
 
         const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-            setIsFocused(true);
+            // Don't reset typing flag on focus - user might refocus to continue editing
             if (onFocus) {
                 onFocus(e);
             }
         };
 
         const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-            setIsFocused(false);
+            // If focus is moving to the calendar overlay, skip blur handling
+            // to prevent re-renders that would destroy click handlers
+            const movingToCalendar =
+                e.relatedTarget instanceof HTMLElement &&
+                e.relatedTarget.closest(
+                    '[data-testid="date-picker-overlay"]',
+                ) !== null;
+
+            if (movingToCalendar) {
+                if (onBlur) {
+                    onBlur(e);
+                }
+                return;
+            }
+
+            // Clear typing flag on blur - user is done editing
+            isUserTypingRef.current = false;
 
             // Revert to previous valid value if current value is invalid
             if (!isValid()) {
@@ -258,14 +279,11 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
         };
 
         const handleChange = (newValue: string) => {
-            // Mark that this change is from user typing
+            // Mark as user typing to prevent prop sync during typing
             isUserTypingRef.current = true;
-
-            // Update the date as the user types (for live validation)
-            // But the input won't be reformatted while focused due to the
-            // isUserTypingRef flag in the useEffect above
-            maybeUpdateDate(newValue);
             setValue(newValue);
+            // Validate on every change - strict parsing prevents partial dates
+            maybeUpdateDate(newValue);
         };
 
         return (
