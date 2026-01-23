@@ -1,0 +1,538 @@
+---
+description: Storybook best practices for Wonder Blocks component stories
+globs: *.stories.tsx,*.stories.ts
+alwaysApply: false
+---
+# Storybook Best Practices
+
+This guide covers conventions and best practices for creating Storybook stories (`.stories.tsx` or `.stories.ts`) in the Wonder Blocks design system.
+
+## File Structure and Organization
+
+### Import Order
+
+**✅ Follow this import order:**
+
+1. React imports
+2. Third-party libraries (aphrodite, storybook actions/types)
+3. Phosphor icons
+4. Wonder Blocks packages (sorted by purpose)
+5. Local imports (package config, argtypes, components)
+6. Types and interfaces
+
+```tsx
+// ✅ Good
+import * as React from "react";
+import {StyleSheet} from "aphrodite";
+import {action} from "storybook/actions";
+import type {Meta, StoryObj} from "@storybook/react-vite";
+
+import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
+
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+
+import packageConfig from "../../packages/wonder-blocks-button/package.json";
+import ComponentInfo from "../components/component-info";
+import ButtonArgTypes from "./button.argtypes";
+```
+
+### TypeScript Types
+
+**✅ Define story types consistently:**
+
+```tsx
+// ✅ Good - Use StoryObj for type safety
+type StoryComponentType = StoryObj<typeof Component>;
+
+export const Default: StoryComponentType = {
+    args: {
+        // props here
+    },
+};
+```
+
+**❌ Avoid using `any` types:**
+
+```tsx
+// ❌ Bad
+export const Default: any = {
+    args: {
+        // props here
+    },
+};
+```
+
+## Default Export Configuration
+
+### Meta Configuration
+
+**✅ Include all relevant meta properties:**
+
+```tsx
+export default {
+    title: "Packages / ComponentName / SubComponent",
+    component: ComponentName,
+    subcomponents: {SubComponent1, SubComponent2}, // If applicable
+    parameters: {
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
+        chromatic: {
+            disableSnapshot: false, // or true with reason
+        },
+    },
+    argTypes: ComponentArgTypes,
+    args: {
+        // Default args for all stories
+    },
+    decorators: [
+        // Optional decorators
+    ],
+} as Meta<typeof ComponentName>;
+```
+
+**Key properties:**
+- **`title`**: Hierarchical path in Storybook sidebar
+- **`component`**: The main component being documented
+- **`subcomponents`**: Related components shown in docs
+- **`parameters`**: Meta-level configuration (Chromatic, a11y, etc.)
+- **`argTypes`**: Control definitions (usually imported from separate file)
+- **`args`**: Default values applied to all stories
+- **`decorators`**: Layout wrappers applied to all stories
+
+### Title Naming Convention
+
+**✅ Follow the hierarchy:**
+
+```tsx
+// ✅ Good - Clear hierarchy
+title: "Packages / Button / Button"
+title: "Packages / Dropdown / SingleSelect"
+title: "Packages / Button / Testing / Snapshots / ActivityButton"
+```
+
+**❌ Avoid flat or unclear titles:**
+
+```tsx
+// ❌ Bad
+title: "Button Stories"
+title: "Components"
+```
+
+## Story Patterns
+
+### Basic Story Structure
+
+**✅ Export stories with descriptive JSDoc comments:**
+
+```tsx
+/**
+ * This is the default state of the button showing standard usage.
+ * It demonstrates the basic props and expected behavior.
+ */
+export const Default: StoryComponentType = {
+    args: {
+        children: "Click me",
+        onClick: () => {},
+    },
+};
+```
+
+### Interactive Stories with State
+
+**✅ Use render functions for stateful stories:**
+
+```tsx
+export const WithState: StoryComponentType = {
+    render: function Render(args) {
+        const [value, setValue] = React.useState(args.value || "");
+
+        return (
+            <Component
+                {...args}
+                value={value}
+                onChange={setValue}
+            />
+        );
+    },
+    args: {
+        // initial args
+    },
+};
+```
+
+**⚠️ Important: Use function declarations, not arrow functions:**
+
+```tsx
+// ✅ Good - Named function for better debugging
+render: function Render(args) {
+    // ...
+}
+
+// ❌ Avoid - Arrow functions don't have clear names
+render: (args) => {
+    // ...
+}
+```
+
+### Variant Stories
+
+**✅ Show different variants in a single story:**
+
+```tsx
+/**
+ * Buttons have three kinds: `primary` (default), `secondary`, and `tertiary`.
+ */
+export const Kinds: StoryComponentType = {
+    render: () => (
+        <View style={{gap: spacing.medium_16}}>
+            <Button onClick={() => {}}>Primary</Button>
+            <Button kind="secondary" onClick={() => {}}>Secondary</Button>
+            <Button kind="tertiary" onClick={() => {}}>Tertiary</Button>
+        </View>
+    ),
+};
+```
+
+## JSDoc Documentation
+
+### Story Comments
+
+**✅ Include comprehensive JSDoc comments:**
+
+```tsx
+/**
+ * This example demonstrates how SingleSelect behaves with an initial value.
+ * The screen reader will not announce the initial value on mount, but will
+ * announce when the value changes through user interaction.
+ */
+export const WithInitialValue: StoryComponentType = {
+    // story configuration
+};
+```
+
+
+## Styling in Stories
+
+### Aphrodite Styles
+
+**✅ Define styles using StyleSheet.create:**
+
+```tsx
+const styles = StyleSheet.create({
+    container: {
+        width: "100%",
+        gap: sizing.size_160,
+    },
+    row: {
+        flexDirection: "row",
+        alignItems: "center",
+        gap: spacing.medium_16,
+    },
+});
+```
+
+**✅ Use Wonder Blocks tokens for values:**
+
+```tsx
+// ✅ Good - Use tokens
+const styles = StyleSheet.create({
+    container: {
+        gap: sizing.medium_16,
+        padding: sizing.size_160,
+        backgroundColor: semanticColor.core.background.base.subtle,
+    },
+});
+
+// ❌ Avoid - Hard-coded values
+const styles = StyleSheet.create({
+    container: {
+        gap: 16,
+        padding: 10,
+        backgroundColor: "#f0f0f0",
+    },
+});
+```
+
+## Parameters Configuration
+
+### Chromatic Configuration
+
+**✅ Disable snapshots with clear reasoning:**
+
+```tsx
+export const Interactive: StoryComponentType = {
+    render: () => {/* ... */},
+    parameters: {
+        chromatic: {
+            // Disabling because this is for manual testing purposes
+            disableSnapshot: true,
+        },
+    },
+};
+```
+
+**✅ Configure snapshot timing when needed:**
+
+```tsx
+export const ControlledOpened: StoryComponentType = {
+    render: (args) => <Component {...args} />,
+    parameters: {
+        // Added to ensure that the dropdown menu is rendered using PopperJS.
+        chromatic: {delay: 500},
+    },
+};
+```
+
+**✅ Enable snapshots for important visual states:**
+
+```tsx
+export const WithIcon: StoryComponentType = {
+    render: () => <IconExample />,
+    parameters: {
+        chromatic: {
+            modes: themeModes, // Test in multiple themes
+        },
+    },
+};
+```
+
+## Testing-Specific Stories
+
+### Snapshot Stories
+
+**✅ Create dedicated snapshot stories:**
+
+```tsx
+/**
+ * The following stories are used to generate the pseudo states for the
+ * ActivityButton component. This is only used for visual testing in Chromatic.
+ */
+export default {
+    title: "Packages / Button / Testing / Snapshots / ActivityButton",
+    tags: ["!autodocs"], // Exclude from auto-generated docs
+    parameters: {
+        chromatic: {
+            modes: themeModes,
+        },
+    },
+} as Meta;
+```
+
+**✅ Use StateSheet for pseudo-state testing:**
+
+```tsx
+export const StateSheetStory: Story = {
+    name: "StateSheet",
+    render: (args) => {
+        return (
+            <StateSheet
+                rows={kinds}
+                columns={actionTypes}
+                title="Kind / Action Type"
+            >
+                {({props, className, name}) => (
+                    <Component
+                        {...args}
+                        {...props}
+                        className={className}
+                    />
+                )}
+            </StateSheet>
+        );
+    },
+    parameters: {
+        pseudo: defaultPseudoStates,
+    },
+};
+```
+
+### Scenario Stories
+
+**✅ Test specific scenarios:**
+
+```tsx
+export const Scenarios: Story = {
+    render() {
+        const scenarios = [
+            {
+                name: "Long label",
+                props: {
+                    children: (
+                        <Component>{longText}</Component>
+                    ),
+                },
+            },
+            {
+                name: "Long label overflowing",
+                props: {
+                    children: (
+                        <Component styles={{root: {maxWidth: 200}}}>
+                            {longTextWithNoWordBreak}
+                        </Component>
+                    ),
+                },
+            },
+        ];
+        return (
+            <ScenariosLayout scenarios={scenarios}>
+                {(props) => props.children}
+            </ScenariosLayout>
+        );
+    },
+};
+```
+
+## Advanced Patterns
+
+### Custom Openers and Complex Props
+
+**✅ Document custom implementations:**
+
+```tsx
+/**
+ * In case you need to use a custom opener with the `SingleSelect`, you can use
+ * the opener property to achieve this. In this example, the opener prop accepts
+ * a function with the following arguments:
+ *  - `eventState`: lets you customize the style for different states
+ *  - `text`: Passes the menu label defined in the parent component
+ *  - `opened`: Whether the dropdown is opened
+ */
+export const CustomOpener: StoryComponentType = {
+    render: Template,
+    args: {
+        opener: ({focused, hovered, pressed, text, opened}: OpenerProps) => {
+            return (
+                <Button
+                    style={[
+                        styles.customOpener,
+                        focused && styles.focused,
+                        hovered && styles.hovered,
+                        pressed && styles.pressed,
+                    ]}
+                >{`${text} ${opened ? ": opened" : ""}`}</Button>
+            );
+        },
+    },
+};
+```
+
+## Story Naming Conventions
+
+**✅ Use clear, descriptive names:**
+
+```tsx
+// ✅ Good - Clear and descriptive
+export const Default: StoryComponentType = {/* ... */};
+export const WithIcon: StoryComponentType = {/* ... */};
+export const Disabled: StoryComponentType = {/* ... */};
+export const LongOptionLabels: StoryComponentType = {/* ... */};
+export const ErrorFromValidation: StoryComponentType = {/* ... */};
+```
+
+**✅ Override story names when needed:**
+
+```tsx
+export const WithRouter: StoryComponentType = {
+    name: "Navigation with React Router", // Overrides story name in UI
+    render: () => {/* ... */},
+};
+```
+
+## Actions and Event Handlers
+
+**✅ Use storybook actions for event logging:**
+
+```tsx
+import {action} from "storybook/actions";
+
+export const Default: StoryComponentType = {
+    args: {
+        onClick: action("clicked"),
+        onChange: action("changed"),
+    },
+};
+```
+
+**✅ Combine actions with state updates:**
+
+```tsx
+export const Interactive: StoryComponentType = {
+    render: function Render(args) {
+        const [value, setValue] = React.useState("");
+
+        const handleChange = (newValue: string) => {
+            action("onChange")(newValue);
+            setValue(newValue);
+        };
+
+        return <Component value={value} onChange={handleChange} />;
+    },
+};
+```
+
+## Common Pitfalls to Avoid
+
+**❌ Don't mix testing snapshots with documentation stories:**
+
+```tsx
+// ❌ Bad - Testing story in documentation
+export default {
+    title: "Packages / Button", // Main docs path
+    // ... testing configurations
+};
+
+// ✅ Good - Separate testing stories
+export default {
+    title: "Packages / Button / Testing / Snapshots",
+    tags: ["!autodocs"],
+};
+```
+
+**❌ Don't forget to disable snapshots when appropriate:**
+
+```tsx
+// ❌ Bad - No chromatic config for interactive-only story
+export const WithForm: StoryComponentType = {
+    render: () => <form>{/* ... */}</form>,
+};
+
+// ✅ Good - Explicitly disable snapshots
+export const WithForm: StoryComponentType = {
+    render: () => <form>{/* ... */}</form>,
+    parameters: {
+        chromatic: {
+            // Form submission requires user interaction
+            disableSnapshot: true,
+        },
+    },
+};
+```
+
+**❌ Don't use `React.FC` for component props:**
+
+```tsx
+// ❌ Bad
+const Component: React.FC<Props> = (props) => {/* ... */};
+
+// ✅ Good
+const Component = (props: Props) => {/* ... */};
+```
+
+## Best Practices Summary
+
+1. **✅ Structure**: Follow consistent import order and file organization
+2. **✅ Types**: Use TypeScript types for story definitions
+3. **✅ Documentation**: Include comprehensive JSDoc comments with usage examples
+4. **✅ Variants**: Show all important component variants
+5. **✅ Accessibility**: Test and document a11y considerations
+6. **✅ Visual Testing**: Configure Chromatic appropriately
+7. **✅ State Management**: Use proper patterns for stateful stories
+8. **✅ Naming**: Use clear, descriptive names for stories
+9. **✅ Tokens**: Use Wonder Blocks tokens instead of hard-coded values
+10. **✅ Testing**: Separate documentation stories from visual testing stories
