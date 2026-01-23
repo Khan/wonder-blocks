@@ -11,9 +11,9 @@ alwaysApply: true
 * Framework: React (Functional Components and Hooks are standard).
 * Styling: Aphrodite (`aphrodite`) for CSS-in-JS, leveraging Wonder Blocks tokens (`@khanacademy/wonder-blocks-tokens`) and themes.
 * State Management: Primarily local state (`useState`) and React Context API (`useContext` with custom provider hooks).
-* Data Fetching: There should be no data fetching in the design system UI components
-* Routing: Design system components that have link functionality should also support React-Router routes
-* Testing: Jest, React Testing Library (RTL), Storybook.
+* Data Fetching: There should be no data fetching in the design system UI components.
+* Routing: Design system components that have link functionality should also support React-Router routes.
+* Testing: Jest, React Testing Library (RTL), `@testing-library/user-event`, Storybook.
 
 ## Coding Conventions & Style
 
@@ -33,36 +33,50 @@ alwaysApply: true
 * Use `strict` mode. Avoid `any`; use `unknown` or specific types.
 * Define clear interfaces/types (colocated or in `types.ts`). Use `type` for props and state, `interface` for shared structures where appropriate.
 * Use utility types (`Partial`, `Omit`, `Pick`, `Readonly`, etc.).
+* Use the `satisfies` operator for type-safe object literals when you want both type checking and type inference.
+* Prefer type-only imports where applicable: `import type {...}` for types.
 
 4. React:
 
+* Imports: Always use `import * as React from "react"` (required for JSX transformation).
 * Functional Components & Hooks: Standard practice. Use `useState`, `useEffect`, `useContext`, `useCallback`, `useMemo`, custom hooks extensively.
 * Legacy Class Components: Avoid creating new ones. Refactor if making significant changes to existing ones.
 * Props: Define explicit `Props` types. Use object destructuring. Pass complex objects/callbacks with stable references (`useCallback`, `useMemo`) if they are dependencies of effects or memoized children.
 * State: Keep component state minimal. Lift state up when necessary.
 * Keys: Provide stable `key` props for lists (use item IDs if available).
 * Composition: Build complex UI by composing smaller Wonder Blocks or custom components.
-* Don't use `React.FC<Props>` when defining functional components, use `(props: Props) =>` instead
-* When convert a class-based component to a functional component, is there is a `willComponentUnmount` method, the corresponding `useEffect` should either not have any dependencies or it should make call the `isMounted` function returned by the `useIsMounted` hook (this can be imported from `@khanacademy/wonder-blocks-core`).
+* Component Definition: Don't use `React.FC<Props>` when defining functional components, use `(props: Props) =>` instead.
+* Refs: Use `React.forwardRef` when components need to expose DOM refs. Properly type the ref with `React.ForwardRefExoticComponent`.
+* Custom Hooks: Extract reusable logic into custom hooks (e.g., `useFieldValidation`, `useIsMounted` from `@khanacademy/wonder-blocks-core`).
+* Event Handlers: Internal handlers should be prefixed with `handle` (e.g., `handleClick`, `handleChange`). Callback props should be prefixed with `on` (e.g., `onClick`, `onChange`).
+* Class to Functional Migration: When converting a class-based component to a functional component, if there is a `componentWillUnmount` method, the corresponding `useEffect` should either not have any dependencies or it should call the `isMounted` function returned by the `useIsMounted` hook (this can be imported from `@khanacademy/wonder-blocks-core`).
 
 5. Styling (Aphrodite):
 
 * Define styles using `StyleSheet.create` from `aphrodite`. Colocate styles with the component.
+* Use `addStyle` from `@khanacademy/wonder-blocks-core` to create styled HTML elements (e.g., `addStyle("div")`, `addStyle("input")`).
+* Use the `focusStyles` utility from `@khanacademy/wonder-blocks-styles` for consistent focus indicators.
 
-6. Wonder Blocks
-* Use Wonder Blocks components for layout, typography, color, spacing, etc., leveraging their props and tokens.
-* Tokens: Use `semanticColor`, `font`, and `sizing` tokens
-* Use `Heading` and `BodyText` components for typography
-* Avoid using `Strut` components
+6. Wonder Blocks Core Utilities:
 
-6. Imports:
+* `View`: Use the `View` component from `@khanacademy/wonder-blocks-core` for layout containers instead of plain divs.
+* `Id`: Use the `useId` hook from React to generate unique ids
+* `addStyle`: Use to create styled HTML elements with Aphrodite styles applied.
+* Tokens: Use `semanticColor`, `font`, and `sizing` tokens from `@khanacademy/wonder-blocks-tokens`.
+* Typography: Use `Heading` and `BodyText` components from `@khanacademy/wonder-blocks-typography` for text.
+* Icons: Import Phosphor icons from `@phosphor-icons/core` (e.g., `import plusIcon from "@phosphor-icons/core/regular/plus.svg"`). Use the `PhosphorIcon` component from `@khanacademy/wonder-blocks-icon` to render them.
+* Avoid using deprecated components like `Strut`.
+
+7. Imports:
 
 * Organize imports: React, third-party libs, internal absolute paths (`@khan/`, `@khanacademy/`), hash-based paths (`#`), relative paths (`./`, `../`).
 * Use absolute paths (`@khan/`, `@khanacademy/`) for cross-package imports.
 
-7. Linting & Formatting:
+8. Linting & Formatting:
 
 * Strictly adhere to ESLint and Prettier.
+* The project enforces import order: React, third-party libs, then internal imports.
+* JSDoc comments should be used for complex functions, but TypeScript types are preferred over JSDoc type annotations.
 * Run `pnpm lint` before submitting changes.
 
 ## Key Patterns
@@ -72,6 +86,7 @@ alwaysApply: true
 * Small, single-responsibility components.
 * Use Storybook (`*.stories.tsx`) for isolated development, documentation, and visual testing.
 * Separate logic hooks from presentational components.
+* Export named components with proper TypeScript types, especially when using `forwardRef`.
 
 ### Error Handling
 
@@ -83,16 +98,69 @@ alwaysApply: true
 * Ensure keyboard navigation and focus indicators work correctly.
 * Use tools for automated checks and perform manual testing (keyboard, screen reader).
 * Ensure components follow best practices. Common accessible patterns can be referenced: <https://www.w3.org/WAI/ARIA/apg/patterns/>
-* Components should often support `AriaProps`
+* Use `aria-disabled` instead of the `disabled` attribute to keep elements focusable while communicating disabled state. Make sure disabled styles are applied and any interactions should be disabled. The disabled element should be able to receive focus and blur events
+* Always provide accessible labels via `aria-label`, `aria-labelledby`, or associated label elements.
+* Animations should be disabled by default and enabled using an `animated` prop
 
 ### Internationalization (i18n)
 
-* Any copy (visible or screen reader text like aria-label, alt text, etc) should be provided via a `labels` prop. Defaults are to be provided by the component in `en-us`
+* Any copy (visible or screen reader text like aria-label, alt text, etc) should be provided via a `labels` prop. Defaults are to be provided by the component in `en-us`.
+* Use logical CSS properties to support RTL
+
+### Common Component Props Patterns
+
+* `testId`: Optional string for e2e testing identification.
+* `id`: Optional unique identifier. Use the `Id` component to auto-generate if not provided.
+* `style`: Accept custom Aphrodite styles via a `style` prop of type `StyleType`.
+* `disabled`: Boolean to disable interactivity. Prefer `aria-disabled` for accessibility.
+* `onChange`: Callback handlers should use descriptive names and provide the new value/state.
+* `validate`: For form inputs, provide validation functions that return error messages or null/void.
+* `ref`: When components need DOM refs, use `forwardRef` and properly type with `React.ForwardRefExoticComponent`.
+* `skipClientNav`: For link-like components, provide this boolean prop to skip client-side routing and use regular navigation.
+* `styles`: An object of custom styles for different elements of a component
+
+### Documentation
+
+* Document all public props using JSDoc comments (/** ... */).
+* Provide clear descriptions for each prop, especially for complex or non-obvious props.
+* Include default values and usage examples where helpful.
+* Main component should have a JSDoc comment describing its purpose and basic usage.
+
+### Performance
+
+* Use `React.memo` sparingly and only when profiling shows benefit.
+* Use `useCallback` and `useMemo` to stabilize references passed to child components, especially when those values are dependencies in effects or used in memoized children.
+* Avoid premature optimization - measure first.
+
+### React Router Integration
+
+* Components with navigation (links, buttons with hrefs) should support both regular navigation and React Router client-side navigation.
+* Provide a `skipClientNav` prop to opt-out of client-side navigation.
+* Use the appropriate link component from `react-router-dom` when client-side navigation is enabled.
 
 ## Tools & Commands
 
-* Start Dev Server: `pnpm start`
+* Start Dev Server: `pnpm start` (runs Storybook)
 * Install/Update Deps: `pnpm install`
+* Build All Packages: `pnpm build`
 * Lint Check: `pnpm lint`
 * Type Check: `pnpm typecheck`
 * Run Tests: `pnpm test`
+* Run Tests with Coverage: `pnpm coverage`
+* Build Storybook: `pnpm build:storybook`
+
+## Versioning & Publishing
+
+* This project uses [Changesets](https://github.com/changesets/changesets) for version management.
+* When making changes, create a changeset: `pnpm changeset` (describe your changes and select affected packages).
+* Changesets are committed with your PR and used to generate changelogs and bump versions on release.
+
+## Package Structure
+
+* Each package is located in `packages/wonder-blocks-*/`
+* Package entry point: `src/index.ts` (exports public API)
+* Components: `src/components/*.tsx`
+* Utilities: `src/util/*.ts`
+* Types: `src/util/*.types.ts` or colocated with components
+* Tests: `src/**/__tests__/*.test.tsx`
+* Stories: `__docs__/*.stories.tsx` (in the root __docs__ folder)
