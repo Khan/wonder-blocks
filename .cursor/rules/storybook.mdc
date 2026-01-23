@@ -234,6 +234,68 @@ export const WithInitialValue: StoryComponentType = {
 * If the auto-generated type for a prop is not helpful (e.g., something generic like `"union"`), the type can be overridden in an `argTypes.ts` file.
 * Props in the table can be grouped into categories like `Visual style`, `Events`, `Accessibility`. Use the `table.category` property in argTypes to group props.
 
+### ArgTypes Files
+
+**When to use:** Override auto-generated prop types when they're not helpful or need customization.
+
+**✅ Create an argTypes file for your component:**
+
+```tsx
+// __docs__/wonder-blocks-button/button.argtypes.ts
+import type {ArgTypes} from "@storybook/react-vite";
+
+export default {
+    // Override type display for union types
+    kind: {
+        control: {type: "select"},
+        options: ["primary", "secondary", "tertiary"],
+        table: {
+            category: "Visual style",
+            type: {summary: `"primary" | "secondary" | "tertiary"`},
+            defaultValue: {summary: `"primary"`},
+        },
+    },
+    // Group related props
+    size: {
+        control: {type: "select"},
+        table: {
+            category: "Layout",
+            type: {summary: `"medium" | "small" | "large"`},
+        },
+    },
+    // Improve descriptions for complex props
+    style: {
+        table: {
+            category: "Layout",
+            type: {summary: "StyleType"},
+        },
+    },
+} satisfies ArgTypes;
+```
+
+**✅ Use argTypes in your story's meta:**
+
+```tsx
+import ComponentArgTypes from "./component.argtypes";
+
+export default {
+    title: "Packages / Component",
+    component: Component,
+    argTypes: ComponentArgTypes,
+} as Meta<typeof Component>;
+```
+
+**Common argTypes configurations:**
+
+| Property | Purpose |
+|----------|---------|
+| `control.type` | Control widget (`"select"`, `"boolean"`, `"text"`, etc.) |
+| `options` | Available options for select controls |
+| `table.category` | Group props in the docs table |
+| `table.type.summary` | Override the displayed type |
+| `table.defaultValue.summary` | Show default value in docs |
+| `mapping` | Map control values to actual prop values |
+
 ### Examples in Stories
 
 * The stories should showcase the different ways a component can be used.
@@ -333,6 +395,30 @@ export const WithIcon: StoryComponentType = {
     },
 };
 ```
+
+### Theme Modes Configuration
+
+Theme modes allow Chromatic to capture snapshots of components in multiple themes (e.g., default and Khanmigo/ThunderBlocks themes).
+
+**✅ Import and use `themeModes` for visual regression testing:**
+
+```tsx
+import {themeModes} from "../../.storybook/modes";
+
+export default {
+    title: "Packages / Component / Testing / Snapshots",
+    parameters: {
+        chromatic: {
+            modes: themeModes, // Captures snapshots in all themes
+        },
+    },
+    tags: ["!autodocs"],
+} as Meta<typeof Component>;
+```
+
+**Available modes (defined in `.storybook/modes.ts`):**
+
+**⚠️ Use theme modes sparingly** - Each mode multiplies the number of Chromatic snapshots. Only add theme modes to snapshot stories that specifically test theming or visual appearance.
 
 ## Testing-Specific Stories
 
