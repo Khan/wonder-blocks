@@ -1,5 +1,5 @@
 ---
-description:
+description: Wonder Blocks design system conventions, component patterns, and coding standards
 globs:
 alwaysApply: true
 ---
@@ -17,78 +17,80 @@ alwaysApply: true
 
 ## Coding Conventions & Style
 
-1. File Naming:
+### 1. File Naming
 
-* Use kebab-case for files and directories (e.g., `activity-button.tsx`, `utils.ts`).
-* Test files: `*.test.ts(x)`.
-* Storybook files: `*.stories.tsx`.
+* ✅ Use kebab-case for files and directories (e.g., `activity-button.tsx`, `utils.ts`)
+* ✅ Test files: `*.test.ts(x)`
+* ✅ Storybook files: `*.stories.tsx`
 
-2. Export Naming:
+### 2. Export Naming
 
-* PascalCase for React components and TSX types/interfaces (e.g., `Button`, `type ButtonProps`).
-* camelCase for functions, variables, hooks (e.g., `getButtonProps`, `useButtonFunctionality`).
+* ✅ PascalCase for React components and TSX types/interfaces (e.g., `Button`, `type ButtonProps`)
+* ✅ camelCase for functions, variables, hooks (e.g., `getButtonProps`, `useButtonFunctionality`)
 
-3. TypeScript:
+### 3. TypeScript
 
-* Use `strict` mode. Avoid `any`; use `unknown` or specific types.
-* Define clear interfaces/types (colocated or in `types.ts`). Use `type` for props and state, `interface` for shared structures where appropriate.
-* Use utility types (`Partial`, `Omit`, `Pick`, `Readonly`, etc.).
-* Use the `satisfies` operator for type-safe object literals when you want both type checking and type inference.
-* Prefer type-only imports where applicable: `import type {...}` for types.
+* ✅ Use `strict` mode
+* ✅ Define clear interfaces/types (colocated or in `types.ts`). Use `type` for props and state, `interface` for shared structures where appropriate
+* ✅ Use utility types (`Partial`, `Omit`, `Pick`, `Readonly`, etc.)
+* ✅ Use the `satisfies` operator for type-safe object literals when you want both type checking and type inference
+* ✅ Prefer type-only imports where applicable: `import type {...}` for types
+* ❌ Avoid `any`; use `unknown` or specific types instead
 
-4. React:
+### 4. React
 
-* Imports: Always use `import * as React from "react"` (required for JSX transformation).
-* Functional Components & Hooks: Standard practice. Use `useState`, `useEffect`, `useContext`, `useCallback`, `useMemo`, custom hooks extensively.
-* Legacy Class Components: Avoid creating new ones. Refactor if making significant changes to existing ones.
-* Props: Define explicit `Props` types. Use object destructuring. Pass complex objects/callbacks with stable references (`useCallback`, `useMemo`) if they are dependencies of effects or memoized children.
-* State: Keep component state minimal. Lift state up when necessary.
-* Keys: Provide stable `key` props for lists (use item IDs if available).
-* Composition: Build complex UI by composing smaller Wonder Blocks or custom components.
-* Component Definition: Don't use `React.FC<Props>` when defining functional components, use `(props: Props) =>` instead.
-* Refs: Use `React.forwardRef` when components need to expose DOM refs. Properly type the ref with `React.ForwardRefExoticComponent`.
-* Custom Hooks: Extract reusable logic into custom hooks (e.g., `useFieldValidation`, `useIsMounted` from `@khanacademy/wonder-blocks-core`).
-* Event Handlers: Internal handlers should be prefixed with `handle` (e.g., `handleClick`, `handleChange`). Callback props should be prefixed with `on` (e.g., `onClick`, `onChange`).
-* Class to Functional Migration: When converting a class-based component to a functional component, if there is a `componentWillUnmount` method, the corresponding `useEffect` should either not have any dependencies or it should call the `isMounted` function returned by the `useIsMounted` hook (this can be imported from `@khanacademy/wonder-blocks-core`).
+* ✅ Imports: Always use `import * as React from "react"` (required for JSX transformation)
+* ✅ Functional Components & Hooks: Use `useState`, `useEffect`, `useContext`, `useCallback`, `useMemo`, and custom hooks
+* ✅ Props: Define explicit `Props` types. Use object destructuring. Pass complex objects/callbacks with stable references (`useCallback`, `useMemo`) if they are dependencies of effects or memoized children
+* ✅ State: Keep component state minimal. Lift state up when necessary
+* ✅ Keys: Provide stable `key` props for lists (use item IDs if available)
+* ✅ Composition: Build complex UI by composing smaller Wonder Blocks or custom components
+* ✅ Refs: Use `React.forwardRef` when components need to expose DOM refs. Properly type the ref with `React.ForwardRefExoticComponent`
+* ✅ Custom Hooks: Extract reusable logic into custom hooks (e.g., `useFieldValidation`, `useIsMounted` from `@khanacademy/wonder-blocks-core`)
+* ✅ Event Handlers: Internal handlers should be prefixed with `handle` (e.g., `handleClick`, `handleChange`). Callback props should be prefixed with `on` (e.g., `onClick`, `onChange`)
+* ❌ Don't use `React.FC<Props>` when defining functional components, use `(props: Props) =>` instead
+* ❌ Avoid creating new class components. Refactor existing ones if making significant changes
 
-5. Styling (Aphrodite):
+⚠️ **Class to Functional Migration**: When converting a class-based component to a functional component, if there is a `componentWillUnmount` method, the corresponding `useEffect` should either not have any dependencies or it should call the `isMounted` function returned by the `useIsMounted` hook (this can be imported from `@khanacademy/wonder-blocks-core`).
 
-* Define styles using `StyleSheet.create` from `aphrodite`. Colocate styles with the component.
-* Use `addStyle` from `@khanacademy/wonder-blocks-core` to create styled HTML elements (e.g., `addStyle("div")`, `addStyle("input")`).
-* Use semantic color tokens from `@khanacademy/wonder-blocks-tokens` (e.g., `semanticColor.core.background.base`). See the Theming section for more details.
-* Use the `focusStyles` utility from `@khanacademy/wonder-blocks-styles` for consistent focus indicators. See the Focused State section for implementation details.
-* Make sure styling across different components is consistent throughout the design system.
+### 5. Styling (Aphrodite)
 
-6. Wonder Blocks Core Utilities:
+* ✅ Define styles using `StyleSheet.create` from `aphrodite`. Colocate styles with the component
+* ✅ Use `addStyle` from `@khanacademy/wonder-blocks-core` to create styled HTML elements (e.g., `addStyle("div")`, `addStyle("input")`)
+* ✅ Use semantic color tokens from `@khanacademy/wonder-blocks-tokens` (e.g., `semanticColor.core.background.base`). See the Theming section for more details
+* ✅ Use the `focusStyles` utility from `@khanacademy/wonder-blocks-styles` for consistent focus indicators. See the Focused State section for implementation details
+* ✅ Ensure styling consistency across different components throughout the design system
 
-* `View`: Use the `View` component from `@khanacademy/wonder-blocks-core` for layout containers instead of plain divs.
-* `Id`: Use the `useId` hook from React to generate unique ids (auto-generated if not provided).
-* `addStyle`: Use to create styled HTML elements with Aphrodite styles applied (see Styling section).
-* Tokens: Use `semanticColor`, `font`, and `sizing` tokens from `@khanacademy/wonder-blocks-tokens`.
-* Typography: Use `Heading` and `BodyText` components from `@khanacademy/wonder-blocks-typography` for text.
-* Icons: Import Phosphor icons from `@phosphor-icons/core` (e.g., `import plusIcon from "@phosphor-icons/core/regular/plus.svg"`). Use the `PhosphorIcon` component from `@khanacademy/wonder-blocks-icon` to render them.
-* Avoid using deprecated components like `Strut`.
+### 6. Wonder Blocks Core Utilities
 
-7. Imports:
+* ✅ `View`: Use the `View` component from `@khanacademy/wonder-blocks-core` for layout containers instead of plain divs
+* ✅ `Id`: Use the `useId` hook from React to generate unique ids (auto-generated if not provided)
+* ✅ `addStyle`: Use to create styled HTML elements with Aphrodite styles applied (see Styling section)
+* ✅ Tokens: Use `semanticColor`, `font`, and `sizing` tokens from `@khanacademy/wonder-blocks-tokens`
+* ✅ Typography: Use `Heading` and `BodyText` components from `@khanacademy/wonder-blocks-typography` for text
+* ✅ Icons: Import Phosphor icons from `@phosphor-icons/core` (e.g., `import plusIcon from "@phosphor-icons/core/regular/plus.svg"`). Use the `PhosphorIcon` component from `@khanacademy/wonder-blocks-icon` to render them
+* ❌ Avoid using deprecated components like `Strut`
 
-* Organize imports: React, third-party libs, internal absolute paths (`@khan/`, `@khanacademy/`), hash-based paths (`#`), relative paths (`./`, `../`).
-* Use absolute paths (`@khan/`, `@khanacademy/`) for cross-package imports.
+### 7. Imports
 
-8. Linting & Formatting:
+* ✅ Organize imports: React, third-party libs, internal absolute paths (`@khan/`, `@khanacademy/`), hash-based paths (`#`), relative paths (`./`, `../`)
+* ✅ Use absolute paths (`@khan/`, `@khanacademy/`) for cross-package imports
 
-* Strictly adhere to ESLint and Prettier.
-* The project enforces import order: React, third-party libs, then internal imports.
-* JSDoc comments should be used for complex functions, but TypeScript types are preferred over JSDoc type annotations.
-* Run `pnpm lint` before submitting changes.
+### 8. Linting & Formatting
+
+* ✅ Strictly adhere to ESLint and Prettier
+* ✅ The project enforces import order: React, third-party libs, then internal imports
+* ✅ JSDoc comments should be used for complex functions, but TypeScript types are preferred over JSDoc type annotations
+* ✅ Run `pnpm lint` before submitting changes
 
 ## Component Design Fundamentals
 
 ### Design Principles
 
-* Small, single-responsibility components.
-* Use Storybook (`*.stories.tsx`) for isolated development, documentation, and visual testing.
-* Separate logic hooks from presentational components.
-* Export named components with proper TypeScript types, especially when using `forwardRef`.
+* ✅ Small, single-responsibility components
+* ✅ Use Storybook (`*.stories.tsx`) for isolated development, documentation, and visual testing
+* ✅ Separate logic hooks from presentational components
+* ✅ Export named components with proper TypeScript types, especially when using `forwardRef`
 
 ### Composition vs Configuration
 
@@ -189,50 +191,51 @@ Wonder Blocks components often support the following states:
 
 #### Disabled State
 
-* When disabled, the component should still be focusable using the `aria-disabled` attribute instead of the `disabled` attribute.
-* Apply `cursor: not-allowed` so the cursor is updated when hovered on a disabled element.
-* Make sure disabled styles are applied and any interactions should be disabled.
-* The disabled element should be able to receive focus and blur events.
-* Consider the focused state in combination with disabled (disabled + focused).
+* ✅ Use `aria-disabled` attribute instead of `disabled` to keep components focusable when disabled
+* ✅ Apply `cursor: not-allowed` so the cursor is updated when hovered on a disabled element
+* ✅ Apply disabled styles and disable all interactions
+* ✅ Allow the disabled element to receive focus and blur events
+* ✅ Consider the focused state in combination with disabled (disabled + focused)
+* ❌ Don't use the `disabled` attribute (it removes the element from focus order)
 
 #### Focused State
 
-* Use `:focus-visible` instead of `:focus` for focus indicators (some components may need to be updated).
-* Use the `focusStyles` utility from `@khanacademy/wonder-blocks-styles` for consistent focus indicators.
-* Use a combination of the `border` and `outline` CSS properties (avoid using `box-shadow` for focus indicators).
-* Make sure the outline is still visible if an ancestor element has `overflow: hidden` applied. This can be addressed by using a negative `outline-offset` so that the outline appears within the component.
-* Consider the focused state in combination with other states (disabled + focused, error + focused).
-* Reference: [PR where the TextField and TextArea state styles were updated](https://github.com/Khan/wonder-blocks/pull/XXX)
+* ✅ Use `:focus-visible` instead of `:focus` for focus indicators
+* ✅ Use the `focusStyles` utility from `@khanacademy/wonder-blocks-styles` for consistent focus indicators
+* ✅ Use a combination of the `border` and `outline` CSS properties for focus indicators
+* ✅ Use a negative `outline-offset` so the outline appears within the component (handles `overflow: hidden` ancestors)
+* ✅ Consider the focused state in combination with other states (disabled + focused, error + focused)
+* ❌ Avoid using `box-shadow` for focus indicators
 
 #### Hover State
 
-* Style hover states appropriately for interactive components.
-* Consider hover in combination with other states.
+* ✅ Style hover states appropriately for interactive components
+* ✅ Consider hover in combination with other states
 
 #### Active/Pressed State
 
-* Provide visual feedback when an element is being clicked or pressed.
-* Use CSS pseudo-classes (`:active`) where possible instead of JavaScript state tracking.
+* ✅ Provide visual feedback when an element is being clicked or pressed
+* ✅ Use CSS pseudo-classes (`:active`) where possible instead of JavaScript state tracking
 
 #### Readonly State
 
-* For form components, support a readonly state that prevents editing but allows focus and selection.
-* Make sure the readonly attribute is well supported on the certain element/role
+* ✅ For form components, support a readonly state that prevents editing but allows focus and selection
+* ✅ Make sure the readonly attribute is well supported on the certain element/role
 
 #### Error/Invalid State
 
-* For form components, provide clear visual indication of validation errors.
-* See the Validation Props section for error validation patterns.
+* ✅ For form components, provide clear visual indication of validation errors
+* ✅ See the Validation Props section for error validation patterns
 
 #### Handling Browser Inconsistencies
 
-* Test states across different browsers to ensure consistent behavior.
-* Use CSS normalization where needed.
+* ✅ Test states across different browsers to ensure consistent behavior
+* ✅ Use CSS normalization where needed
 
-**Important Notes:**
+⚠️ **Important Notes:**
 
-* Visual regression tests for all possible states and prop combinations are very helpful in making sure components look as expected and are not changed unintentionally. See the Storybook section for more details.
-* Use CSS pseudo-classes (`:hover`, `:focus-visible`, `:active`) for applying styles to certain states instead of using JavaScript to keep track of states. This enables us to utilize the browser dev tools for debugging state styles and the Storybook Pseudo States add-on for visual regression tests.
+* ✅ Visual regression tests for all possible states and prop combinations are very helpful in making sure components look as expected and are not changed unintentionally. See the Storybook rules for more details.
+* ✅ Use CSS pseudo-classes (`:hover`, `:focus-visible`, `:active`) for applying styles to certain states instead of using JavaScript to keep track of states. This enables us to utilize the browser dev tools for debugging state styles and the Storybook Pseudo States add-on for visual regression tests.
 
 ### Error Handling
 
@@ -240,12 +243,12 @@ Wonder Blocks components often support the following states:
 
 ### Performance
 
-* Evaluate if there are any unnecessary renders.
-* Ensure that event listeners that are added are also removed when no longer needed (i.e., when a component unmounts).
-* Bundle size increases should be reasonable.
-* Use `React.memo` sparingly and only when profiling shows benefit.
-* Use `useCallback` and `useMemo` to stabilize references passed to child components, especially when those values are dependencies in effects or used in memoized children.
-* Avoid premature optimization - measure first.
+* ✅ Evaluate if there are any unnecessary renders
+* ✅ Ensure that event listeners that are added are also removed when no longer needed (i.e., when a component unmounts)
+* ✅ Bundle size increases should be reasonable
+* ✅ Use `useCallback` and `useMemo` to stabilize references passed to child components, especially when those values are dependencies in effects or used in memoized children
+* ⚠️ Use `React.memo` sparingly and only when profiling shows benefit
+* ⚠️ Avoid premature optimization - measure first
 
 ### React Router Integration
 
@@ -255,41 +258,45 @@ Wonder Blocks components often support the following states:
 
 ## Accessibility (a11y)
 
-* Include accessibility considerations when writing Implementation Specs.
-* Use semantic HTML or appropriate ARIA roles/attributes.
-* Ensure keyboard navigation and focus indicators work correctly.
-* Use tools for automated checks and perform manual testing (keyboard, screen reader).
-* Ensure components follow best practices. Common accessible patterns can be referenced:
-  * [ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/patterns/)
-  * [Inclusive Components](https://inclusive-components.design/)
-  * [A11Y Style Guide](https://a11y-style-guide.com/)
-  * [MagentaA11y](https://www.magentaa11y.com/)
-* Use `aria-disabled` instead of the `disabled` attribute to keep elements focusable while communicating disabled state (see Disabled State section for details).
-* Always provide accessible labels via `aria-label`, `aria-labelledby`, or associated label elements.
-* Animations should be disabled by default and enabled using an `animated` prop (see Styling Props section).
-* Components should work well using screen readers and keyboard navigation.
-* Use accessibility testing tools:
-  * The Storybook Accessibility addon
-  * Unit tests that use `jest-axe` with the `.toHaveNoA11yViolations` matcher
-  * [Axe DevTools](https://www.deque.com/axe/devtools/) browser extension
-* Document accessibility guidelines in Storybook (create separate accessibility pages for components)
+* ✅ Include accessibility considerations when writing Implementation Specs
+* ✅ Use semantic HTML or appropriate ARIA roles/attributes
+* ✅ Ensure keyboard navigation and focus indicators work correctly
+* ✅ Use tools for automated checks and perform manual testing (keyboard, screen reader)
+* ✅ Use `aria-disabled` instead of the `disabled` attribute to keep elements focusable while communicating disabled state (see Disabled State section)
+* ✅ Always provide accessible labels via `aria-label`, `aria-labelledby`, or associated label elements
+* ✅ Animations should be disabled by default and enabled using an `animated` prop (see Styling Props section)
+* ✅ Components should work well using screen readers and keyboard navigation
+* ✅ Document accessibility guidelines in Storybook (create separate accessibility pages for components)
+
+**Common accessible patterns can be referenced:**
+* [ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/patterns/)
+* [Inclusive Components](https://inclusive-components.design/)
+* [A11Y Style Guide](https://a11y-style-guide.com/)
+* [MagentaA11y](https://www.magentaa11y.com/)
+
+**Accessibility testing tools:**
+* ✅ The Storybook Accessibility addon
+* ✅ Unit tests that use `jest-axe` with the `.toHaveNoA11yViolations` matcher (see Unit Tests rules for details)
+* ✅ [Axe DevTools](https://www.deque.com/axe/devtools/) browser extension
 
 ## Internationalization (i18n)
 
-* Components may have built-in labels used for error messages, aria-labels, or screen reader announcements.
-* By default, these labels are in English (`en-us`) and can be overridden using a `labels` prop.
-* All instances of visual or non-visual labels (visible text, aria-label, alt text, etc.) should have the option to be overridden via the `labels` prop.
-* It is up to the parent component to provide translations for the component.
-* Use logical CSS properties to support RTL layouts.
+* ✅ Components may have built-in labels used for error messages, aria-labels, or screen reader announcements
+* ✅ By default, these labels are in English (`en-us`) and can be overridden using a `labels` prop
+* ✅ All instances of visual or non-visual labels (visible text, aria-label, alt text, etc.) should have the option to be overridden via the `labels` prop
+* ✅ It is up to the parent component to provide translations for the component
+* ✅ Use logical CSS properties to support RTL layouts
 
 ## Theming
 
-* Consider if the component should support theming (e.g., Khanmigo Theme).
-* Use semantic color tokens from `@khanacademy/wonder-blocks-tokens` (e.g., `semanticColor.core.background.base`).
-* Ensure that color tokens make semantic sense for their usage (e.g., use `semanticColor.interactive.primary` for primary interactive elements).
-* Theming is separate from supporting a `light` prop (which is for when a component is used on a dark background).
-* Examples of components that support themes: `Switch`
-* Reference: [ADR #657: Wonder Blocks Theming](https://khanacademy.atlassian.net/wiki/spaces/ENG/pages/2594078789/ADR+657+Wonder+Blocks+Theming)
+* ✅ Consider if the component should support theming (e.g., Khanmigo Theme)
+* ✅ Use semantic color tokens from `@khanacademy/wonder-blocks-tokens` (e.g., `semanticColor.core.background.base`)
+* ✅ Ensure that color tokens make semantic sense for their usage (e.g., use `semanticColor.interactive.primary` for primary interactive elements)
+* ⚠️ Theming is separate from supporting a `light` prop (which is for when a component is used on a dark background)
+
+**Examples of components that support themes:** `Switch`
+
+**Reference:** [ADR #657: Wonder Blocks Theming](https://khanacademy.atlassian.net/wiki/spaces/ENG/pages/2594078789/ADR+657+Wonder+Blocks+Theming)
 
 ## Documentation
 
@@ -297,56 +304,69 @@ We document Wonder Blocks components using Storybook. Documentation includes:
 
 ### Prop Documentation
 
-* Document all public props using JSDoc comments (`/** ... */`).
-* The props table on the autodocs page for Storybook should be extracted from the JSDoc comments on the props for a component.
-* Provide clear descriptions for each prop, especially for complex or non-obvious props.
-* Include default values and usage examples where helpful.
-* If the auto-generated type for a prop is not helpful (e.g., something generic like `"union"`), the type can be overridden in an `argTypes.ts` file.
-* Props in the table can be grouped into categories like `Visual style`, `Events`, `Accessibility`.
-* Main component should have a JSDoc comment describing its purpose and basic usage.
+* ✅ Document all public props using JSDoc comments (`/** ... */`)
+* ✅ The props table on the autodocs page for Storybook should be extracted from the JSDoc comments on the props for a component
+* ✅ Provide clear descriptions for each prop, especially for complex or non-obvious props
+* ✅ Include default values and usage examples where helpful
+* ✅ If the auto-generated type for a prop is not helpful (e.g., something generic like `"union"`), the type can be overridden in an `argTypes.ts` file
+* ✅ Props in the table can be grouped into categories like `Visual style`, `Events`, `Accessibility`
+* ✅ Main component should have a JSDoc comment describing its purpose and basic usage
 
 ### Examples in Stories
 
-* The stories should showcase the different ways a component can be used.
-* The comment block before a story declaration can be used to document more about a specific prop or behavior highlighted in the example in the story.
-* Snapshot stories should include scenarios and state sheets for showing the different variations and states of a component
+* ✅ The stories should showcase the different ways a component can be used
+* ✅ The comment block before a story declaration can be used to document more about a specific prop or behavior highlighted in the example
+* ✅ Snapshot stories should include scenarios and state sheets for showing the different variations and states of a component
 
 ### Accessibility Guidelines and Descriptions
 
-* Document what's been implemented in the component for accessibility.
-* Create separate pages in Storybook to describe the accessibility for a component (examples: Accordion Accessibility, Combobox Accessibility, TextArea Accessibility).
+* ✅ Document what's been implemented in the component for accessibility
+* ✅ Create separate pages in Storybook to describe the accessibility for a component (examples: Accordion Accessibility, Combobox Accessibility, TextArea Accessibility)
 
-See the Storybook rules for more details on documentation.
+⚠️ See the Storybook rules (`storybook.mdc`) for more details on documentation.
 
 ## Package Structure
 
-* Each package is located in `packages/wonder-blocks-*/`
-* Package entry point: `src/index.ts` (exports public API)
-* Components: `src/components/*.tsx`
-* Utilities: `src/util/*.ts`
-* Types: `src/util/*.types.ts` or colocated with components
-* Tests: `src/**/__tests__/*.test.tsx`
-* Stories: `__docs__/*.stories.tsx` (in the root __docs__ folder)
-* Components in a package should be exported as **named exports** (not default exports). This allows multiple components to be exported from the same package and ensures components are used by the correct name.
+```
+packages/wonder-blocks-*/
+├── src/
+│   ├── index.ts              # Package entry point (exports public API)
+│   ├── components/
+│   │   ├── component-name.tsx
+│   │   └── __tests__/
+│   │       └── component-name.test.tsx
+│   └── util/
+│       ├── utils.ts
+│       └── utils.types.ts
+└── package.json
+```
+
+* ✅ Each package is located in `packages/wonder-blocks-*/`
+* ✅ Package entry point: `src/index.ts` (exports public API)
+* ✅ Stories: `__docs__/*.stories.tsx` (in the root `__docs__` folder)
+* ✅ Components in a package should be exported as **named exports** (not default exports). This allows multiple components to be exported from the same package and ensures components are used by the correct name
+* ❌ Don't use default exports for components
 
 ## Development Workflow
 
 ### Tools & Commands
 
-* Start Dev Server: `pnpm start` (runs Storybook)
-* Install/Update Deps: `pnpm install`
-* Build All Packages: `pnpm build`
-* Lint Check: `pnpm lint`
-* Type Check: `pnpm typecheck`
-* Run Tests: `pnpm test`
-* Run Tests with Coverage: `pnpm coverage`
-* Build Storybook: `pnpm build:storybook`
+| Command | Description |
+|---------|-------------|
+| `pnpm start` | Start dev server (runs Storybook) |
+| `pnpm install` | Install/update dependencies |
+| `pnpm build` | Build all packages |
+| `pnpm lint` | Lint check |
+| `pnpm typecheck` | Type check |
+| `pnpm test` | Run tests |
+| `pnpm coverage` | Run tests with coverage |
+| `pnpm build:storybook` | Build Storybook |
 
 ### Versioning & Publishing
 
-* This project uses [Changesets](https://github.com/changesets/changesets) for version management.
-* When making changes, create a changeset: `pnpm changeset` (describe your changes and select affected packages).
-* Changesets are committed with your PR and used to generate changelogs and bump versions on release.
+* ✅ This project uses [Changesets](https://github.com/changesets/changesets) for version management
+* ✅ When making changes, create a changeset: `pnpm changeset` (describe your changes and select affected packages)
+* ✅ Changesets are committed with your PR and used to generate changelogs and bump versions on release
 
 ### Pull Requests for New Components
 
@@ -388,7 +408,3 @@ Here are some things that we have been improving while working in a specific are
 
 * Adding `jest-axe` tests using the `.toHaveNoA11yViolations` matcher
 
-## Browser Support
-
-* See the Browser Support documentation for details on which browsers Wonder Blocks supports
-* Test components across supported browsers to ensure consistent behavior
