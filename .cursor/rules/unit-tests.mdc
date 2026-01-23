@@ -304,8 +304,6 @@ jest.mock("node:fs/promises", () => jest.requireActual("memfs").fs.promises);
 - ✅ **Use spies** for 1-2 simple fs calls (read/write/exists)
 - ✅ **Use memfs** when testing complex file operations, directory structures, or multiple files
 
-## Component Testing
-
 ### Hook Testing
 
 **✅ Use `renderHook`:**
@@ -356,35 +354,21 @@ container.querySelector("#my-id");
 
 ## Wonder Blocks Component Testing
 
-### Accessibility Testing
-
-**✅ ALWAYS test accessibility features:**
-
-```typescript
-// Check disabled state
-expect(button).toHaveAttribute("aria-disabled", "true");
-
-// Verify ARIA labels
-expect(dialog).toHaveAttribute("aria-labelledby", "dialog-title");
-
-// Test keyboard navigation
-await userEvent.tab();
-expect(screen.getByRole("button")).toHaveFocus();
-```
-
-**Required accessibility tests:**
-- ✅ Disabled states with `aria-disabled`
-- ✅ Keyboard navigation and focus management
-- ✅ ARIA attributes and roles
-- ✅ Screen reader labels
-
-### MultiSelect Testing
-
-**✅ Test selection states:**
-- ✅ **Multiple selections**: Select at least 2 items when testing multi-select mode
-- ✅ **Single selection**: Test single-item selection
-- ✅ **Empty state**: Test with no selections
-- ✅ **All selected**: Test maximum selection scenarios
+Unit tests for a component should cover:
+- Base tests
+  - ref is forwarded
+- Props
+  - Cover expected behaviour when certain props are set. Exclude when the props are related to styles only, since this should be covered by visual regression tests instead
+  - Cover expected behaviour with default prop values
+- Events
+  - Check that any event handlers are triggered by the expected conditions
+- Accessibility
+  - Confirm that roles, semantics, and aria attributes are correctly set and wired together
+  - Use the `.toHaveNoA11yViolations` jest matcher to confirm that a component doesn't have accessibility warnings
+  - Confirm keyboard interactions and navigation
+  - Focus management
+  - Confirm accessible names
+  - Check for `aria-disabled=true` for determining disabled state
 
 ## Tools and Commands
 
