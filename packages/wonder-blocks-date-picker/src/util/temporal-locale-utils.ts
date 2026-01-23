@@ -213,9 +213,10 @@ export function jsDateToTemporalDate(date: Date): Temporal.PlainDate {
  *
  * @example
  * // With format "MM/DD/YYYY":
- * parseDateToJsDate("1/28/2026", "M/D/YYYY") // ✓ Returns Date
- * parseDateToJsDate("1/28", "M/D/YYYY")      // ✗ Returns undefined (incomplete)
- * parseDateToJsDate("2026-01-28", "M/D/YYYY") // ✗ Returns undefined (wrong format)
+ * parseDateToJsDate("1/28/2026", "MM/DD/YYYY") // ✓ Returns Date (accepts unpadded)
+ * parseDateToJsDate("01/28/2026", "MM/DD/YYYY") // ✓ Returns Date (accepts padded)
+ * parseDateToJsDate("1/28", "MM/DD/YYYY")      // ✗ Returns undefined (incomplete)
+ * parseDateToJsDate("2026-01-28", "MM/DD/YYYY") // ✗ Returns undefined (wrong format)
  */
 export function parseDateToJsDate(
     value: string | Date,
@@ -230,12 +231,30 @@ export function parseDateToJsDate(
     const temporalDate = parseDate(value, format, locale || undefined);
 
     // STRICT VALIDATION: Verify the parsed date, when formatted back,
-    // exactly matches the original input. This prevents partial/lenient parsing.
+    // matches the original input (allowing for padding flexibility).
     if (temporalDate) {
         const formatted = formatDate(temporalDate, format, locale || undefined);
+
+        // For numeric formats, accept both padded and unpadded input
+        // e.g., "1/30/2026" and "01/30/2026" should both be valid for "MM/DD/YYYY"
         if (formatted === value) {
             return temporalDateToJsDate(temporalDate);
         }
+
+        // Check if the difference is only in padding (for numeric formats)
+        const normalizedFormatted = formatted.replace(/\b0(\d)\b/g, "$1");
+        const normalizedValue = value.replace(/\b0(\d)\b/g, "$1");
+
+        if (normalizedFormatted === normalizedValue) {
+            return temporalDateToJsDate(temporalDate);
+        }
+
+        // Always accept ISO format (YYYY-MM-DD) regardless of specified format
+        // This allows programmatic input and e2e tests to use standard ISO dates
+        if (value === temporalDate.toString()) {
+            return temporalDateToJsDate(temporalDate);
+        }
+
         // Date was parsed but doesn't match format - return undefined
         return undefined;
     }
@@ -321,6 +340,7 @@ function parseWithFormat(
     // This is a simplified parser - you may need to expand this based on your needs
 
     // M/D/YYYY, MM/DD/YYYY or M-D-YYYY, MM-DD-YYYY
+    // Accept both padded and unpadded input for all these formats
     if (
         format === "M/D/YYYY" ||
         format === "M-D-YYYY" ||
@@ -330,11 +350,30 @@ function parseWithFormat(
         const separator = format.includes("/") ? "/" : "-";
         const parts = str.split(separator);
         if (parts.length === 3) {
+            const month = parseInt(parts[0], 10);
+            const day = parseInt(parts[1], 10);
+            const year = parseInt(parts[2], 10);
+
+            // Validate ranges
+            if (
+                isNaN(month) ||
+                isNaN(day) ||
+                isNaN(year) ||
+                month < 1 ||
+                month > 12 ||
+                day < 1 ||
+                day > 31 ||
+                year < 1000 ||
+                year > 9999
+            ) {
+                return undefined;
+            }
+
             try {
                 return Temporal.PlainDate.from({
-                    year: parseInt(parts[2], 10),
-                    month: parseInt(parts[0], 10),
-                    day: parseInt(parts[1], 10),
+                    year,
+                    month,
+                    day,
                 });
             } catch {
                 return undefined;

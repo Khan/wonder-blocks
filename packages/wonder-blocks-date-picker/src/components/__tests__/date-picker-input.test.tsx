@@ -1,6 +1,6 @@
 import React from "react";
 import {describe, it} from "@jest/globals";
-import {fireEvent, render, screen} from "@testing-library/react";
+import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {Temporal} from "temporal-polyfill";
 import {TemporalLocaleUtils} from "@khanacademy/wonder-blocks-date-picker";
@@ -290,17 +290,14 @@ describe("DatePickerInput", () => {
             />,
         );
 
-        // Passing in an invalid day (43)
-        await userEvent.type(
-            await screen.findByTestId("date-picker-input"),
-            "{selectall}2021-05-43",
-        );
+        const input = await screen.findByTestId("date-picker-input");
+        await userEvent.type(input, "{selectall}2021-05-43");
 
-        // Act
-        fireEvent.blur(screen.getByTestId("date-picker-input"));
+        // Act - blur by clicking outside
+        await userEvent.click(document.body);
 
         // Assert
-        expect(screen.getByTestId("date-picker-input")).toHaveValue(validDate);
+        expect(input).toHaveValue(validDate);
     });
 
     it("does not reformat input while user is typing", async () => {
@@ -492,7 +489,7 @@ describe("DatePickerInput", () => {
         expect(onChangeSpy).toHaveBeenCalledWith(null, {});
     });
 
-    it("strict parsing: rejects wrong format", async () => {
+    it("strict parsing: accepts ISO format regardless of specified format", async () => {
         // Arrange
         const onChangeSpy = jest.fn();
         render(
@@ -508,11 +505,15 @@ describe("DatePickerInput", () => {
         const input = screen.getByTestId("date-picker-input");
         await userEvent.click(input);
 
-        // Act - type ISO format when expecting M/D/YYYY
+        // Act - type ISO format (common for e2e/programmatic input)
         await userEvent.type(input, "2026-01-28");
-        await userEvent.tab(); // blur
 
-        // Assert - wrong format is rejected
-        expect(onChangeSpy).toHaveBeenCalledWith(null, {});
+        // Assert - ISO format is accepted
+        expect(onChangeSpy).toHaveBeenCalledWith(
+            TemporalLocaleUtils.temporalDateToJsDate(
+                Temporal.PlainDate.from("2026-01-28"),
+            ),
+            {},
+        );
     });
 });

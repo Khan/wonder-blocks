@@ -389,6 +389,37 @@ describe("DatePicker", () => {
         ).toBeInTheDocument();
     });
 
+    it("accepts unpadded date input for MM/DD/YYYY format", async () => {
+        // Arrange
+        const selectedDate = Temporal.PlainDate.from("2026-01-16");
+        const updateDateMock = jest.fn();
+
+        render(
+            <DatePicker
+                selectedDate={selectedDate}
+                updateDate={updateDateMock}
+                dateFormat="MM/DD/YYYY"
+            />,
+        );
+
+        // Act
+        await userEvent.tab();
+        const input = screen.getByRole("textbox");
+        await userEvent.clear(input);
+        await userEvent.type(input, "1/30/2026");
+
+        // Assert - updateDate should be called with the new date
+        await waitFor(() => {
+            expect(updateDateMock).toHaveBeenCalledWith(
+                expect.objectContaining({
+                    year: 2026,
+                    month: 1,
+                    day: 30,
+                }),
+            );
+        });
+    });
+
     it("does not modify the current date if current input contains an invalid format", async () => {
         // Arrange
         const minDate = Temporal.PlainDate.from("2021-05-05");

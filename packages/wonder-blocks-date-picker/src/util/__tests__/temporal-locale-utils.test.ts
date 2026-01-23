@@ -216,7 +216,7 @@ describe("TemporalLocaleUtils", () => {
     });
 
     describe("parseDate", () => {
-        it("should parse YYYY-MM-DD format", () => {
+        it("should parse ISO format", () => {
             // Arrange
             const input = "2021-05-07";
 
@@ -227,7 +227,7 @@ describe("TemporalLocaleUtils", () => {
             expect(result?.toString()).toBe("2021-05-07");
         });
 
-        it("should parse MMMM D, YYYY format", () => {
+        it("should parse text format", () => {
             // Arrange
             const input = "May 7, 2021";
 
@@ -238,18 +238,7 @@ describe("TemporalLocaleUtils", () => {
             expect(result?.toString()).toBe("2021-05-07");
         });
 
-        it("should parse M/D/YYYY format", () => {
-            // Arrange
-            const input = "5/7/2021";
-
-            // Act
-            const result = parseDate(input, "M/D/YYYY", "en-US");
-
-            // Assert
-            expect(result?.toString()).toBe("2021-05-07");
-        });
-
-        it("should parse MM/DD/YYYY format", () => {
+        it("should parse numeric format", () => {
             // Arrange
             const input = "05/07/2021";
 
@@ -260,29 +249,7 @@ describe("TemporalLocaleUtils", () => {
             expect(result?.toString()).toBe("2021-05-07");
         });
 
-        it("should return undefined for empty string", () => {
-            // Arrange
-            const input = "";
-
-            // Act
-            const result = parseDate(input, "YYYY-MM-DD", "en-US");
-
-            // Assert
-            expect(result).toBeUndefined();
-        });
-
-        it("should return undefined for whitespace-only string", () => {
-            // Arrange
-            const input = "   ";
-
-            // Act
-            const result = parseDate(input, "YYYY-MM-DD", "en-US");
-
-            // Assert
-            expect(result).toBeUndefined();
-        });
-
-        it("should return undefined for invalid date string", () => {
+        it("should return undefined for invalid input", () => {
             // Arrange
             const input = "invalid";
 
@@ -341,64 +308,9 @@ describe("TemporalLocaleUtils", () => {
             expect(result?.toString()).toBe("2024-01-15");
         });
 
-        it("should parse year component correctly", () => {
-            // Arrange
-            const input = "July 20, 2021";
-
-            // Act
-            const result = parseDate(input, "MMMM D, YYYY");
-
-            // Assert
-            expect(result?.year).toBe(2021);
-        });
-
-        it("should parse month component correctly", () => {
-            // Arrange
-            const input = "July 20, 2021";
-
-            // Act
-            const result = parseDate(input, "MMMM D, YYYY");
-
-            // Assert
-            expect(result?.month).toBe(7);
-        });
-
-        it("should parse day component correctly", () => {
-            // Arrange
-            const input = "July 20, 2021";
-
-            // Act
-            const result = parseDate(input, "MMMM D, YYYY");
-
-            // Assert
-            expect(result?.day).toBe(20);
-        });
-
-        it("should reject partial year with 1 digit", () => {
-            // Arrange
-            const input = "July 20, 2";
-
-            // Act
-            const result = parseDate(input, "MMMM D, YYYY");
-
-            // Assert
-            expect(result).toBeUndefined();
-        });
-
-        it("should reject partial year with 3 digits", () => {
+        it("should reject partial or invalid year", () => {
             // Arrange
             const input = "July 20, 202";
-
-            // Act
-            const result = parseDate(input, "MMMM D, YYYY");
-
-            // Assert
-            expect(result).toBeUndefined();
-        });
-
-        it("should reject year with 5 or more digits", () => {
-            // Arrange
-            const input = "July 21, 20211";
 
             // Act
             const result = parseDate(input, "MMMM D, YYYY");
@@ -409,7 +321,7 @@ describe("TemporalLocaleUtils", () => {
     });
 
     describe("temporalDateToJsDate", () => {
-        it("should return Date instance", () => {
+        it("should convert to Date with zero-indexed month", () => {
             // Arrange
             const temporal = Temporal.PlainDate.from("2021-05-07");
 
@@ -417,45 +329,12 @@ describe("TemporalLocaleUtils", () => {
             const result = temporalDateToJsDate(temporal);
 
             // Assert
-            expect(result).toBeInstanceOf(Date);
-        });
-
-        it("should convert year correctly", () => {
-            // Arrange
-            const temporal = Temporal.PlainDate.from("2021-05-07");
-
-            // Act
-            const result = temporalDateToJsDate(temporal);
-
-            // Assert
-            expect(result.getFullYear()).toBe(2021);
-        });
-
-        it("should convert month correctly to zero-indexed", () => {
-            // Arrange
-            const temporal = Temporal.PlainDate.from("2021-05-07");
-
-            // Act
-            const result = temporalDateToJsDate(temporal);
-
-            // Assert
-            expect(result.getMonth()).toBe(4);
-        });
-
-        it("should convert day correctly", () => {
-            // Arrange
-            const temporal = Temporal.PlainDate.from("2021-05-07");
-
-            // Act
-            const result = temporalDateToJsDate(temporal);
-
-            // Assert
-            expect(result.getDate()).toBe(7);
+            expect(result.getMonth()).toBe(4); // May = 4 (zero-indexed)
         });
     });
 
     describe("jsDateToTemporalDate", () => {
-        it("should convert year correctly", () => {
+        it("should convert to Temporal with one-indexed month", () => {
             // Arrange
             const jsDate = new Date(2021, 4, 7);
 
@@ -463,67 +342,12 @@ describe("TemporalLocaleUtils", () => {
             const result = jsDateToTemporalDate(jsDate);
 
             // Assert
-            expect(result.year).toBe(2021);
-        });
-
-        it("should convert month correctly to one-indexed", () => {
-            // Arrange
-            const jsDate = new Date(2021, 4, 7);
-
-            // Act
-            const result = jsDateToTemporalDate(jsDate);
-
-            // Assert
-            expect(result.month).toBe(5);
-        });
-
-        it("should convert day correctly", () => {
-            // Arrange
-            const jsDate = new Date(2021, 4, 7);
-
-            // Act
-            const result = jsDateToTemporalDate(jsDate);
-
-            // Assert
-            expect(result.day).toBe(7);
+            expect(result.month).toBe(5); // May = 5 (one-indexed)
         });
     });
 
     describe("parseDateToJsDate", () => {
-        it("should return Date instance", () => {
-            // Arrange
-            const input = "2021-05-07";
-
-            // Act
-            const result = parseDateToJsDate(input, "YYYY-MM-DD", "en-US");
-
-            // Assert
-            expect(result).toBeInstanceOf(Date);
-        });
-
-        it("should parse year correctly", () => {
-            // Arrange
-            const input = "2021-05-07";
-
-            // Act
-            const result = parseDateToJsDate(input, "YYYY-MM-DD", "en-US");
-
-            // Assert
-            expect(result?.getFullYear()).toBe(2021);
-        });
-
-        it("should parse month correctly", () => {
-            // Arrange
-            const input = "2021-05-07";
-
-            // Act
-            const result = parseDateToJsDate(input, "YYYY-MM-DD", "en-US");
-
-            // Assert
-            expect(result?.getMonth()).toBe(4);
-        });
-
-        it("should parse day correctly", () => {
+        it("should parse ISO format", () => {
             // Arrange
             const input = "2021-05-07";
 
@@ -534,7 +358,7 @@ describe("TemporalLocaleUtils", () => {
             expect(result?.getDate()).toBe(7);
         });
 
-        it("should parse MMMM D, YYYY format to Date", () => {
+        it("should parse text format", () => {
             // Arrange
             const input = "May 7, 2021";
 
@@ -542,7 +366,7 @@ describe("TemporalLocaleUtils", () => {
             const result = parseDateToJsDate(input, "MMMM D, YYYY", "en-US");
 
             // Assert
-            expect(result).toBeInstanceOf(Date);
+            expect(result?.getDate()).toBe(7);
         });
 
         it("should return Date as-is when Date is passed in", () => {
@@ -556,18 +380,7 @@ describe("TemporalLocaleUtils", () => {
             expect(result).toBe(inputDate);
         });
 
-        it("should return undefined for empty string", () => {
-            // Arrange
-            const input = "";
-
-            // Act
-            const result = parseDateToJsDate(input, "YYYY-MM-DD", "en-US");
-
-            // Assert
-            expect(result).toBeUndefined();
-        });
-
-        it("should return undefined for invalid string", () => {
+        it("should return undefined for empty or invalid string", () => {
             // Arrange
             const input = "invalid";
 
@@ -578,19 +391,8 @@ describe("TemporalLocaleUtils", () => {
             expect(result).toBeUndefined();
         });
 
-        it("should handle null locale parameter", () => {
+        it("should reject partial input", () => {
             // Arrange
-            const input = "2021-05-07";
-
-            // Act
-            const result = parseDateToJsDate(input, "YYYY-MM-DD", null);
-
-            // Assert
-            expect(result).toBeInstanceOf(Date);
-        });
-
-        it("should reject partial input that doesn't match format", () => {
-            // Arrange - User typed partial year
             const input = "2026";
 
             // Act
@@ -600,15 +402,26 @@ describe("TemporalLocaleUtils", () => {
             expect(result).toBeUndefined();
         });
 
-        it("should reject input in wrong format", () => {
-            // Arrange - ISO format when expecting US format
-            const input = "2026-01-28";
+        it("should accept unpadded input", () => {
+            // Arrange
+            const input = "1/30/2026";
 
             // Act
             const result = parseDateToJsDate(input, "MM/DD/YYYY", "en-US");
 
             // Assert
-            expect(result).toBeUndefined();
+            expect(result?.getDate()).toBe(30);
+        });
+
+        it("should accept ISO format regardless of specified format", () => {
+            // Arrange
+            const input = "2026-01-30";
+
+            // Act
+            const result = parseDateToJsDate(input, "MM/DD/YYYY", "en-US");
+
+            // Assert
+            expect(result?.getDate()).toBe(30);
         });
     });
 

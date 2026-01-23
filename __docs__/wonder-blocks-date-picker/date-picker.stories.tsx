@@ -378,7 +378,7 @@ export const SpanishLocalizationNumericFormat: Story = {
     render: (args) => <DatePickerWithOpenOverlay {...args} />,
     args: {
         selectedDate: Temporal.PlainDate.from("2026-01-16"),
-        dateFormat: "DD/MM/YYYY",
+        dateFormat: "MM/DD/YYYY",
         updateDate: () => {},
         locale: es,
         inputAriaLabel: "Elegir o introducir una fecha",

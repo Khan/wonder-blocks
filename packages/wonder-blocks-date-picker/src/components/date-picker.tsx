@@ -200,7 +200,15 @@ const DatePicker = (props: Props) => {
         selectedDate: Date | null | undefined,
         modifiers: Partial<CustomModifiers>,
     ) => {
-        if (!selectedDate || modifiers.disabled) {
+        if (!selectedDate) {
+            return;
+        }
+        // Check if date is disabled (modifiers.disabled can be a function)
+        const isDisabled =
+            typeof modifiers.disabled === "function"
+                ? modifiers.disabled(selectedDate)
+                : modifiers.disabled;
+        if (isDisabled) {
             return;
         }
         const wrappedDate =
@@ -293,6 +301,7 @@ const DatePicker = (props: Props) => {
                 dateFormat={dateFormat}
                 locale={computedLocale.code} // e.g. "en-US"
                 parseDate={TemporalLocaleUtils.parseDateToJsDate}
+                getModifiersForDay={TemporalLocaleUtils.getModifiersForDay}
                 modifiers={modifiers}
                 testId={id && `${id}-input`}
             />
