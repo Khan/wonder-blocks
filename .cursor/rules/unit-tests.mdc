@@ -72,6 +72,63 @@ it("should throw an error when input is invalid", () => {
 });
 ```
 
+### Be Concise and Avoid Over-Testing
+
+**⚠️ Focus on what matters - don't overdo it:**
+
+**DO Test:**
+- ✅ **Non-trivial business logic** - Complex calculations, data transformations, validation rules
+- ✅ **User interactions** - Click handlers, form submissions, keyboard navigation
+- ✅ **Accessibility** - ARIA attributes, keyboard support, focus management
+- ✅ **Edge cases and error conditions** - Null values, empty states, error handling
+- ✅ **Integration points** - API calls, event callbacks, state changes
+
+**DON'T Test:**
+- ❌ **Trivial implementations** - Simple getters/setters, pass-through functions
+- ❌ **Style-only props** - Visual appearance is covered by visual regression tests in Storybook
+- ❌ **Third-party libraries** - Assume they work; test your usage of them
+- ❌ **Implementation details** - Internal state that doesn't affect output/behavior
+
+```typescript
+// ❌ DON'T: Testing style-only props (use visual regression tests instead)
+it("should apply primary color when kind is primary", () => {
+    render(<Button kind="primary" />);
+    expect(screen.getByRole("button")).toHaveStyle({ backgroundColor: "blue" });
+});
+
+// ✅ DO: Test meaningful behavior
+it("should call onClick when clicked", async () => {
+    // Arrange
+    const handleClick = jest.fn();
+    render(<Button onClick={handleClick}>Click me</Button>);
+
+    // Act
+    await userEvent.click(screen.getByRole("button"));
+
+    // Assert
+    expect(handleClick).toHaveBeenCalledTimes(1);
+});
+
+// ✅ DO: Test non-trivial logic
+it("should validate email format and return error message", () => {
+    // Arrange
+    const invalidEmail = "not-an-email";
+
+    // Act
+    const result = validateEmail(invalidEmail);
+
+    // Assert
+    expect(result).toBe("Please enter a valid email address");
+});
+```
+
+**Key Principles:**
+- ✅ **Test behavior, not implementation** - Focus on what the component does, not how
+- ✅ **Prioritize critical paths** - Test the most important user flows first
+- ✅ **Keep tests simple and readable** - Each test should have a clear, single purpose
+- ✅ **Use visual regression tests for styling** - Storybook snapshot tests handle visual appearance
+- ✅ **Balance coverage with maintainability** - More tests ≠ better tests
+
 ### Assertions
 
 **Best Practices:**
@@ -79,6 +136,37 @@ it("should throw an error when input is invalid", () => {
 - ✅ **Use `.toMatchInlineSnapshot()`** for complex output validation (auto-updates)
 - ✅ **Prefer explicit assertions** over implicit ones
 - ✅ Use semantic matchers from RTL: `toBeInTheDocument()`, `toBeVisible()`, `toHaveAttribute()`
+
+### One Expect Per Test
+
+**⚠️ Prefer a single assertion per test when possible:**
+
+```typescript
+// ✅ DO: Single assertion per test
+it("should have the correct role", () => {
+    // Arrange
+    render(<Button>Click me</Button>);
+
+    // Act
+    const button = screen.getByRole("button");
+
+    // Assert
+    expect(button).toBeInTheDocument();
+});
+
+it("should have the correct text", () => {
+    // Arrange
+    render(<Button>Click me</Button>);
+
+    // Act
+    const button = screen.getByRole("button");
+
+    // Assert
+    expect(button).toHaveTextContent("Click me");
+});
+```
+
+**Key Principle:** If assertions test different behaviors or could fail independently, split them into separate tests. This makes test failures clearer and easier to debug.
 
 ### Parameterized Tests with `it.each`
 
