@@ -42,20 +42,22 @@ alwaysApply: true
 * State: Keep component state minimal. Lift state up when necessary.
 * Keys: Provide stable `key` props for lists (use item IDs if available).
 * Composition: Build complex UI by composing smaller Wonder Blocks or custom components.
-* Code Splitting: Use `React.lazy` for non-critical components or route-based splitting.
 * Don't use `React.FC<Props>` when defining functional components, use `(props: Props) =>` instead
 * When convert a class-based component to a functional component, is there is a `willComponentUnmount` method, the corresponding `useEffect` should either not have any dependencies or it should make call the `isMounted` function returned by the `useIsMounted` hook (this can be imported from `@khanacademy/wonder-blocks-core`).
 
-5. Styling (Aphrodite & Wonder Blocks):
+5. Styling (Aphrodite):
 
 * Define styles using `StyleSheet.create` from `aphrodite`. Colocate styles with the component.
+
+6. Wonder Blocks
 * Use Wonder Blocks components for layout, typography, color, spacing, etc., leveraging their props and tokens.
 * Tokens: Use `semanticColor`, `font`, and `sizing` tokens
+* Use `Heading` and `BodyText` components for typography
+* Avoid using `Strut` components
 
 6. Imports:
 
 * Organize imports: React, third-party libs, internal absolute paths (`@khan/`, `@khanacademy/`), hash-based paths (`#`), relative paths (`./`, `../`).
-* Use hash-based paths (e.g. `#components/button`) for internal imports within a package/app where configured.
 * Use absolute paths (`@khan/`, `@khanacademy/`) for cross-package imports.
 
 7. Linting & Formatting:
