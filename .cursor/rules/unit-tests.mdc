@@ -108,6 +108,7 @@ describe("Calculator", () => {
 - ✅ **Clear Test Names**: Each test shows specific values being tested
 - ✅ **Easy to Extend**: Simply add new arrays to test data
 - ✅ **Better Coverage**: Test edge cases and boundary conditions efficiently
+- ✅ **Comprehensive Testing**: Essential for testing all prop combinations and states in Wonder Blocks components
 
 #### Alternative Syntax
 
@@ -354,21 +355,84 @@ container.querySelector("#my-id");
 
 ## Wonder Blocks Component Testing
 
+### Test Organization
+
+**✅ Group related tests together using `describe` blocks:**
+
+When writing jest unit tests for a component, it is helpful to group related tests together. Here is an example structure:
+
+```typescript
+describe("MyComponent", () => {
+    describe("Props", () => {
+        it("should do X when Y prop is set to Z", () => {});
+
+        it.each([
+            ["primary", "blue"],
+            ["secondary", "gray"],
+            ["tertiary", "transparent"],
+        ])("should apply %s color when kind is %s", (kind, expectedColor) => {
+            // Test implementation
+        });
+    });
+
+    describe("Event Handlers", () => {
+        it("should call onClick prop when clicked", () => {});
+        it("should call onChange prop when value changes", () => {});
+    });
+
+    describe("Accessibility", () => {
+        describe("axe", () => {
+            it("should have no a11y violations", async () => {
+                // Arrange
+                // Act
+                const {container} = render(<MyComponent />);
+
+                // Assert
+                await expect(container).toHaveNoA11yViolations();
+            });
+
+            it("should have no a11y violations when disabled", async () => {});
+        });
+
+        describe("ARIA", () => {
+            it("should set aria props on the correct element", () => {});
+            it("should set aria-disabled when disabled", () => {});
+        });
+
+        describe("Focus", () => {
+            it("should focus element when autoFocus is true", () => {});
+        });
+
+        describe("Keyboard Interactions", () => {
+            it("should trigger action when Enter is pressed", () => {});
+        });
+    });
+});
+```
+
+### Test Coverage
+
 Unit tests for a component should cover:
-- Base tests
-  - ref is forwarded
-- Props
-  - Cover expected behaviour when certain props are set. Exclude when the props are related to styles only, since this should be covered by visual regression tests instead
-  - Cover expected behaviour with default prop values
-- Events
-  - Check that any event handlers are triggered by the expected conditions
-- Accessibility
-  - Confirm that roles, semantics, and aria attributes are correctly set and wired together
-  - Use the `.toHaveNoA11yViolations` jest matcher to confirm that a component doesn't have accessibility warnings
-  - Confirm keyboard interactions and navigation
-  - Focus management
-  - Confirm accessible names
-  - Check for `aria-disabled=true` for determining disabled state
+
+#### Base Tests
+- ref is forwarded
+
+#### Props
+- Cover expected behaviour when certain props are set. **Exclude when the props are related to styles only**, since this should be covered by visual regression tests instead
+- Cover expected behaviour with default prop values
+- Use `it.each` when there are multiple combinations of things you want to test together
+
+#### Event Handlers
+- Check that any event handlers are triggered by the expected conditions
+- Verify callbacks are called with correct arguments
+
+#### Accessibility
+- Confirm that roles, semantics, and aria attributes are correctly set and wired together
+- Use the `.toHaveNoA11yViolations` jest matcher to confirm that a component doesn't have accessibility warnings
+- Confirm keyboard interactions and navigation
+- Focus management
+- Confirm accessible names
+- Check for `aria-disabled="true"` for determining disabled state (not the `disabled` attribute)
 
 ## Tools and Commands
 

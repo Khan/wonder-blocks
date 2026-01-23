@@ -126,6 +126,18 @@ title: "Components"
 
 ## Story Patterns
 
+### General Tips for Stories
+
+**✅ Follow these best practices when writing stories:**
+
+* **The Default story** should be interactive and work with the Storybook controls. Users should be able to modify props using the controls panel.
+* **Write stories for all possible prop combinations/states**. This is very helpful for identifying that all states are styled correctly and any changes can be confirmed in visual regression tests.
+* **Disable Chromatic for stories that don't need visual regression tests** (we have a limited number of Chromatic snapshots monthly). For example:
+  * Stories already covered by another story
+  * Stories for testing purposes only
+  * Stories that don't have any visual differences from other stories
+* **Avoid including specific background colors in Stories** so that we can dynamically change the background in Storybook using the Storybook background control in the toolbar. Let users control the background through Storybook's built-in controls.
+
 ### Basic Story Structure
 
 **✅ Export stories with descriptive JSDoc comments:**
@@ -215,6 +227,28 @@ export const WithInitialValue: StoryComponentType = {
     // story configuration
 };
 ```
+
+The comment block before a story declaration can be used to document more about a specific prop or behavior highlighted in the example in the story.
+
+### Prop Documentation
+
+* The props table on the autodocs page for Storybook should be extracted from the JSDoc comments on the props for a component.
+* If the auto-generated type for a prop is not helpful (e.g., something generic like `"union"`), the type can be overridden in an `argTypes.ts` file.
+* Props in the table can be grouped into categories like `Visual style`, `Events`, `Accessibility`. Use the `table.category` property in argTypes to group props.
+
+### Examples in Stories
+
+* The stories should showcase the different ways a component can be used.
+* The comment block before a story declaration documents specific props or behaviors highlighted in the example.
+
+### Accessibility Guidelines Documentation
+
+* Document accessibility guidelines and what's been implemented in the component.
+* Create separate pages in Storybook to describe the accessibility for a component.
+* Examples of accessibility documentation pages:
+  * Accordion Accessibility
+  * Combobox Accessibility
+  * TextArea Accessibility
 
 
 ## Styling in Stories

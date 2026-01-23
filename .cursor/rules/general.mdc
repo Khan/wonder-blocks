@@ -55,7 +55,9 @@ alwaysApply: true
 
 * Define styles using `StyleSheet.create` from `aphrodite`. Colocate styles with the component.
 * Use `addStyle` from `@khanacademy/wonder-blocks-core` to create styled HTML elements (e.g., `addStyle("div")`, `addStyle("input")`).
-* Use the `focusStyles` utility from `@khanacademy/wonder-blocks-styles` for consistent focus indicators.
+* Use semantic color tokens from `@khanacademy/wonder-blocks-tokens` (e.g., `semanticColor.core.background.base`).
+* Use the `focusStyles` utility from `@khanacademy/wonder-blocks-styles` for consistent focus indicators. This provides shared focus styles across all components.
+* Make sure styling across different components is consistent throughout the design system.
 
 6. Wonder Blocks Core Utilities:
 
@@ -88,46 +90,200 @@ alwaysApply: true
 * Separate logic hooks from presentational components.
 * Export named components with proper TypeScript types, especially when using `forwardRef`.
 
+#### Composition vs Configuration
+
+When designing the component interface, determine whether it should use **composition** or **configuration**:
+
+* **Configuration (Preferred)**: Components accept props that control rendering. This enables more control over how elements are rendered within the component.
+  * Example: `Button` has `startIcon` and `endIcon` props rather than accepting icon components as children
+  * Use when: You need precise control over styling, positioning, or behavior of child elements
+* **Composition**: Components accept other components as children or props.
+  * Example: `SingleSelect` with `OptionItem` components as children
+  * Use when: The component contains many similar items or when flexibility in structure is needed
+
+**Default to configuration** unless composition provides clear benefits for the use case.
+
 ### Error Handling
 
 * Make sure undefined / null values are handled.
 
 ### Accessibility (a11y)
 
+* Include accessibility considerations when writing Implementation Specs.
 * Use semantic HTML or appropriate ARIA roles/attributes.
 * Ensure keyboard navigation and focus indicators work correctly.
 * Use tools for automated checks and perform manual testing (keyboard, screen reader).
-* Ensure components follow best practices. Common accessible patterns can be referenced: <https://www.w3.org/WAI/ARIA/apg/patterns/>
-* Use `aria-disabled` instead of the `disabled` attribute to keep elements focusable while communicating disabled state. Make sure disabled styles are applied and any interactions should be disabled. The disabled element should be able to receive focus and blur events
+* Ensure components follow best practices. Common accessible patterns can be referenced:
+  * [ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/patterns/)
+  * [Inclusive Components](https://inclusive-components.design/)
+  * [A11Y Style Guide](https://a11y-style-guide.com/)
+  * [MagentaA11y](https://www.magentaa11y.com/)
+* Use `aria-disabled` instead of the `disabled` attribute to keep elements focusable while communicating disabled state. Make sure disabled styles are applied and any interactions should be disabled. The disabled element should be able to receive focus and blur events.
 * Always provide accessible labels via `aria-label`, `aria-labelledby`, or associated label elements.
-* Animations should be disabled by default and enabled using an `animated` prop
+* Animations should be disabled by default and enabled using an `animated` prop (see Styling Props section).
+* Components should work well using screen readers and keyboard navigation.
+* Use accessibility testing tools:
+  * The Storybook Accessibility addon
+  * Unit tests that use `jest-axe` with the `.toHaveNoA11yViolations` matcher
+  * [Axe DevTools](https://www.deque.com/axe/devtools/) browser extension
+* Document accessibility guidelines in Storybook (create separate accessibility pages for components)
 
 ### Internationalization (i18n)
 
+* Some parts of a component have built-in labels used for things like error messages, aria-labels, or screen reader announcements.
+* By default, these labels are in English and can be overridden using a `labels` prop.
+* It is up to the parent component to provide translations for the component.
+* All instances of visual or non-visual labels in a component should have the option to be overridden.
 * Any copy (visible or screen reader text like aria-label, alt text, etc) should be provided via a `labels` prop. Defaults are to be provided by the component in `en-us`.
-* Use logical CSS properties to support RTL
+* Use logical CSS properties to support RTL.
+
+### Theming
+
+* Consider if the component should support theming (e.g., Khanmigo Theme).
+* Use semantic color tokens from `@khanacademy/wonder-blocks-tokens` (e.g., `semanticColor.core.background.base`).
+* Ensure that color tokens make semantic sense for their usage (e.g., use `semanticColor.interactive.primary` for primary interactive elements).
 
 ### Common Component Props Patterns
 
-* `testId`: Optional string for e2e testing identification.
-* `id`: Optional unique identifier. Use the `Id` component to auto-generate if not provided.
-* `style`: Accept custom Aphrodite styles via a `style` prop of type `StyleType`.
-* `disabled`: Boolean to disable interactivity. Prefer `aria-disabled` for accessibility.
-* `onChange`: Callback handlers should use descriptive names and provide the new value/state.
-* `validate`: For form inputs, provide validation functions that return error messages or null/void.
-* `ref`: When components need DOM refs, use `forwardRef` and properly type with `React.ForwardRefExoticComponent`.
-* `skipClientNav`: For link-like components, provide this boolean prop to skip client-side routing and use regular navigation.
-* `styles`: An object of custom styles for different elements of a component
+Here are the props that Wonder Blocks components commonly have:
+
+#### General Props
+
+* `id?: string` - The unique identifier for the component. If not provided, a unique id will be auto-generated using React's `useId` hook.
+* `testId?: string` - Optional test ID for e2e testing.
+* `ref?: React.Ref<T>` - Reference to the underlying DOM element. Use `React.forwardRef` when components need to expose DOM refs.
+* `kind?: string` - Usually a union type (e.g., `'primary' | 'secondary' | 'tertiary'`). Depends on the component:
+  * Button, IconButton, Link: `primary`, `secondary`, `tertiary`
+  * Banner: `info`, `success`, `warning`, `critical`
+  * Pill: same as Banner plus `neutral`, `accent`, `transparent`
+* `value?: T` - The value of the component. Only included if it makes sense for the component (i.e., form components).
+* `disabled?: boolean` - If the component should be disabled. Only included if the component is interactive. The `disabled` prop should set the `aria-disabled` attribute instead of the `disabled` attribute so that disabled elements can still be focusable. Apply `cursor: not-allowed` style when disabled.
+* `autoFocus?: boolean` - If true, this element should have input focus when the page loads. Only included if the component is interactive.
+* `labels?: CustomLabelsType` - The object containing custom labels used inside this component. Useful for internationalization. Defaults to English (en-us).
+* `initialFocusRef?: Ref | null` - The element that should receive focus initially. Prefer passing a reference to an element rather than an element id (i.e., avoid `initialFocusId` props).
+* `ref` - A forwarded ref to the underlying component element
+
+#### ARIA-related Props
+
+If it makes sense for a component to support ARIA-related props, include `AriaProps` type with the component props. `AriaProps` includes common ARIA attributes like `role`, `aria-label`, `aria-labelledby`, `aria-describedby`, etc.
+
+Examples: `Breadcrumbs`, `TextField`
+
+#### Styling Props
+
+* `styles?: {[elementName]?: StyleType}` - Custom styles applied to different elements in the component. Use when multiple elements can be styled. Common element names:
+  * `root?` - Styles for the root element
+  * `icon?` - Styles for the icon
+* `animated?: boolean` - Whether to include animations. Defaults to `false`. Animations are off by default. Use an `animated` prop instead of the `prefers-reduced-motion` CSS feature because users can configure this setting on the site at the account level (`/settings/account`), not just at the OS level.
+* `size?: SizeUnion` - The size of the component. Usually a union like `'small' | 'medium' | 'large'`.
+* `icon?: ReactElement` - `icon` props should be a ReactElement so that it supports both PhosphorIcon and Icon components
+
+#### Event Handler Props
+
+If the component is interactive, it could have the following event handlers. Expose event handlers on a per-need basis:
+
+* `onChange?: (value: T) => void` - Called when the value changes. Often required if the component is controlled and the `value` prop is also required. Note: `onChange` uses the value as an argument instead of the event.
+* `onClick?: (event: React.MouseEvent) => void` - Called when the element is clicked.
+* `onKeyDown?: (event: React.KeyboardEvent) => void` - Called when a key is pressed down.
+* `onKeyUp?: (event: React.KeyboardEvent) => void` - Called when a key is released.
+* `onFocus?: (event: React.FocusEvent) => void` - Called when the element receives focus.
+* `onBlur?: (event: React.FocusEvent) => void` - Called when the element loses focus.
+
+#### Validation Props (Form Components)
+
+For form components, provide validation functions that follow an API similar to components in the `@khanacademy/wonder-blocks-form` package:
+
+* `validate?: (value: T) => string | null | void` - Validation function that returns an error message or null/void if valid.
+* `onValidate?: (errorMessage: string | null) => void` - Callback when validation occurs.
+* `error?: boolean` - Whether the component is in an error state.
+
+#### Navigation Props (Link Components)
+
+* `href: string` and `target: "_blank"` should be supported
 
 ### Documentation
 
-* Document all public props using JSDoc comments (/** ... */).
+We document Wonder Blocks components using Storybook. Documentation includes:
+
+#### Prop Documentation
+
+* Document all public props using JSDoc comments (`/** ... */`).
+* The props table on the autodocs page for Storybook should be extracted from the JSDoc comments on the props for a component.
 * Provide clear descriptions for each prop, especially for complex or non-obvious props.
 * Include default values and usage examples where helpful.
+* If the auto-generated type for a prop is not helpful (e.g., something generic like `"union"`), the type can be overridden in an `argTypes.ts` file.
+* Props in the table can be grouped into categories like `Visual style`, `Events`, `Accessibility`.
 * Main component should have a JSDoc comment describing its purpose and basic usage.
+
+#### Examples in Stories
+
+* The stories should showcase the different ways a component can be used.
+* The comment block before a story declaration can be used to document more about a specific prop or behavior highlighted in the example in the story.
+* Snapshot stories should include scenarios and state sheets for showing the different variations and states of a component
+
+#### Accessibility Guidelines and Descriptions
+
+* Document what's been implemented in the component for accessibility.
+* Create separate pages in Storybook to describe the accessibility for a component (examples: Accordion Accessibility, Combobox Accessibility, TextArea Accessibility).
+
+See the Storybook rules for more details on documentation.
+
+### Component States
+
+Wonder Blocks components often support the following states:
+
+#### Disabled State
+
+* When disabled, the component should still be focusable using the `aria-disabled` attribute instead of the `disabled` attribute.
+* Apply `cursor: not-allowed` so the cursor is updated when hovered on a disabled element.
+* Make sure disabled styles are applied and any interactions should be disabled.
+* The disabled element should be able to receive focus and blur events.
+* Consider the focused state in combination with disabled (disabled + focused).
+
+#### Focused State
+
+* Use `:focus-visible` instead of `:focus` for focus indicators (some components may need to be updated).
+* Use the `focusStyles` utility from `@khanacademy/wonder-blocks-styles` for consistent focus indicators.
+* Use a combination of the `border` and `outline` CSS properties (avoid using `box-shadow` for focus indicators).
+* Make sure the outline is still visible if an ancestor element has `overflow: hidden` applied. This can be addressed by using a negative `outline-offset` so that the outline appears within the component.
+* Consider the focused state in combination with other states (disabled + focused, error + focused).
+* Reference: [PR where the TextField and TextArea state styles were updated](https://github.com/Khan/wonder-blocks/pull/XXX)
+
+#### Hover State
+
+* Style hover states appropriately for interactive components.
+* Consider hover in combination with other states.
+
+#### Active/Pressed State
+
+* Provide visual feedback when an element is being clicked or pressed.
+* Use CSS pseudo-classes (`:active`) where possible instead of JavaScript state tracking.
+
+#### Readonly State
+
+* For form components, support a readonly state that prevents editing but allows focus and selection.
+* Make sure the readonly attribute is well supported on the certain element/role
+
+#### Error/Invalid State
+
+* For form components, provide clear visual indication of validation errors.
+* See the Validation Props section for error validation patterns.
+
+#### Handling Browser Inconsistencies
+
+* Test states across different browsers to ensure consistent behavior.
+* Use CSS normalization where needed.
+
+**Important Notes:**
+
+* Visual regression tests for all possible states and prop combinations are very helpful in making sure components look as expected and are not changed unintentionally. See the Storybook section for more details.
+* Use CSS pseudo-classes (`:hover`, `:focus-visible`, `:active`) for applying styles to certain states instead of using JavaScript to keep track of states. This enables us to utilize the browser dev tools for debugging state styles and the Storybook Pseudo States add-on for visual regression tests.
 
 ### Performance
 
+* Evaluate if there are any unnecessary renders.
+* Ensure that event listeners that are added are also removed when no longer needed (i.e., when a component unmounts).
+* Bundle size increases should be reasonable.
 * Use `React.memo` sparingly and only when profiling shows benefit.
 * Use `useCallback` and `useMemo` to stabilize references passed to child components, especially when those values are dependencies in effects or used in memoized children.
 * Avoid premature optimization - measure first.
@@ -164,3 +320,44 @@ alwaysApply: true
 * Types: `src/util/*.types.ts` or colocated with components
 * Tests: `src/**/__tests__/*.test.tsx`
 * Stories: `__docs__/*.stories.tsx` (in the root __docs__ folder)
+* Components in a package should be exported as **named exports** (not default exports). This allows multiple components to be exported from the same package and ensures components are used by the correct name.
+
+## Pull Requests for New Components
+
+When working on a new component, it is easier for the team to review if it is broken down into smaller pull requests. Here is a suggested breakdown:
+
+1. **Basic skeleton** of the component and HTML attributes
+2. **States** (e.g., hover, focus, pressed, disabled, etc.)
+3. **Specific features** that have more logic (example: validation). Depending on how many there are, these could be grouped into separate PRs.
+
+Include code documentation and accessibility documentation as they are implemented.
+
+## Iterative Improvements
+
+Here are some things that we have been improving while working in a specific area in Wonder Blocks:
+
+### Code
+
+* Refactoring React class components to functional components and hooks
+* Refactoring away from using `ClickableBehaviour` component
+* Adding auto-generated IDs for components if an `id` is not provided (helpful for accessibility when elements need to be wired up)
+
+### Styling
+
+* Using semantic color tokens from `@khanacademy/wonder-blocks-tokens`
+* Making sure styling across different components is consistent throughout the design system
+* There is a ticket ([WB-1753](https://khanacademy.atlassian.net/browse/WB-1753)) to consolidate and simplify common state styles, which would help make state styling consistent across all components
+* Using CSS pseudo-classes (`:hover`, `:focus-visible`, `:active`) for applying styles to certain states instead of using JavaScript to keep track of states. This enables us to utilize the browser dev tools for debugging state styles and the Storybook Pseudo States add-on for visual regression tests.
+
+### Accessibility
+
+* Allowing interactive elements to be focusable when they are disabled (use `aria-disabled` instead of `disabled` attribute)
+
+### Documentation
+
+* Adding documentation, especially around accessibility and general guidelines
+* Creating stories with all variants and states for visual regression tests
+
+### Tests
+
+* Adding `jest-axe` tests using the `.toHaveNoA11yViolations` matcher
