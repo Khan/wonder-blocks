@@ -137,7 +137,6 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
         const [value, setValue] = React.useState<string | null | undefined>(
             propValue,
         );
-        const isUserTypingRef = React.useRef(false);
         const lastPropValueRef = React.useRef<string | null | undefined>(
             propValue,
         );
@@ -222,16 +221,13 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
             return true;
         }, [value, processDate, processModifiers]);
 
-        // Sync with propValue except when user is actively typing their own value
-        // This matches native input: show what user types, but allow external updates
+        // Sync with propValue when it changes from an external source
+        // Allow prop updates to override local state (e.g., calendar selection, programmatic updates)
         React.useEffect(() => {
             const propValueChanged = lastPropValueRef.current !== propValue;
             lastPropValueRef.current = propValue;
 
-            // If propValue changed to something different (calendar click, external update),
-            // clear the typing flag and sync immediately
             if (propValueChanged) {
-                isUserTypingRef.current = false;
                 setValue(propValue);
             }
         }, [propValue]);
@@ -266,9 +262,6 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
                 return;
             }
 
-            // Clear typing flag on blur - user is done editing
-            isUserTypingRef.current = false;
-
             // Revert to previous valid value if current value is invalid
             if (!isValid()) {
                 setValue(propValue);
@@ -279,8 +272,6 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
         };
 
         const handleChange = (newValue: string) => {
-            // Mark as user typing to prevent prop sync during typing
-            isUserTypingRef.current = true;
             setValue(newValue);
             // Validate on every change - strict parsing prevents partial dates
             maybeUpdateDate(newValue);

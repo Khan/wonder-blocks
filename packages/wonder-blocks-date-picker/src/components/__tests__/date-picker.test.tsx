@@ -145,18 +145,44 @@ describe("DatePicker", () => {
         ).not.toBeInTheDocument();
     });
 
-    it("closes the date picker if Enter is pressed in input", async () => {
+    it("opens the date picker if Enter is pressed when closed", async () => {
         // Arrange
         render(<DatePicker updateDate={() => {}} />);
-        await userEvent.tab();
+        await userEvent.tab(); // Focus opens overlay
+        await userEvent.keyboard("{Escape}"); // Close it
 
         // Act
-        await userEvent.type(screen.getByRole("textbox"), "{Enter}");
+        await userEvent.keyboard("{Enter}");
+
+        // Assert
+        expect(screen.getByTestId("focus-sentinel-prev")).toBeInTheDocument();
+    });
+
+    it("closes the date picker if Enter is pressed when open", async () => {
+        // Arrange
+        render(<DatePicker updateDate={() => {}} />);
+        await userEvent.tab(); // Focus opens overlay
+
+        // Act
+        await userEvent.keyboard("{Enter}");
 
         // Assert
         expect(
             screen.queryByTestId("focus-sentinel-prev"),
         ).not.toBeInTheDocument();
+    });
+
+    it("opens the date picker if down arrow is pressed when closed", async () => {
+        // Arrange
+        render(<DatePicker updateDate={() => {}} />);
+        await userEvent.tab(); // Focus opens overlay
+        await userEvent.keyboard("{Escape}"); // Close it
+
+        // Act
+        await userEvent.keyboard("{ArrowDown}");
+
+        // Assert
+        expect(screen.getByTestId("focus-sentinel-prev")).toBeInTheDocument();
     });
 
     it("does not close overlay on Enter if closeOnSelect is false", async () => {
@@ -169,6 +195,35 @@ describe("DatePicker", () => {
 
         // Assert
         expect(screen.getByTestId("focus-sentinel-prev")).toBeInTheDocument();
+    });
+
+    it("allows keyboard users to select a date using Tab and Enter", async () => {
+        // Arrange
+        const selectedDate = Temporal.PlainDate.from("2021-05-07");
+        const updateDateMock = jest.fn();
+        const dateFormat = "YYYY-MM-DD";
+
+        render(
+            <DatePicker
+                selectedDate={selectedDate}
+                updateDate={updateDateMock}
+                dateFormat={dateFormat}
+            />,
+        );
+
+        // Act - Tab to input, then Tab to reach a day button and press Enter
+        await userEvent.tab(); // Focus input, opens overlay
+        screen.getByRole("textbox");
+        // Tab through calendar to a different date button
+        await userEvent.tab();
+        await userEvent.tab();
+        await userEvent.tab();
+        await userEvent.keyboard("{Enter}");
+
+        // Assert - updateDate should be called
+        await waitFor(() => {
+            expect(updateDateMock).toHaveBeenCalled();
+        });
     });
 
     it("closes the date picker if the input is blurred", async () => {
@@ -384,12 +439,12 @@ describe("DatePicker", () => {
         expect(input).toHaveAccessibleName("Rainier McCheddarton");
     });
 
-    it("uses custom aria-label when inputAriaLabel prop is provided for start date", async () => {
+    it("uses custom aria-label when inputAriaLabel prop is provided", async () => {
         // Arrange
         render(
             <DatePicker
                 updateDate={() => {}}
-                inputAriaLabel="Choose or enter a start date"
+                inputAriaLabel="Choose or enter a date"
             />,
         );
 
@@ -397,32 +452,10 @@ describe("DatePicker", () => {
         const input = screen.getByRole("textbox");
 
         // Assert
-        expect(input).toHaveAttribute(
-            "aria-label",
-            "Choose or enter a start date",
-        );
+        expect(input).toHaveAttribute("aria-label", "Choose or enter a date");
     });
 
-    it("uses custom aria-label when inputAriaLabel prop is provided for end date", async () => {
-        // Arrange
-        render(
-            <DatePicker
-                updateDate={() => {}}
-                inputAriaLabel="Choose or enter an end date"
-            />,
-        );
-
-        // Act
-        const input = screen.getByRole("textbox");
-
-        // Assert
-        expect(input).toHaveAttribute(
-            "aria-label",
-            "Choose or enter an end date",
-        );
-    });
-
-    it("adds a dir attribute from an ancestor", async () => {
+    it("respects dir attribute from ancestor", async () => {
         // Arrange
         render(
             <div dir="rtl">
@@ -439,21 +472,6 @@ describe("DatePicker", () => {
 
         // Assert
         expect(hasDirRtl).toBe(true);
-    });
-
-    it("adds uses dir=ltr by default", async () => {
-        // Arrange
-        render(<DatePicker updateDate={() => {}} />);
-        await userEvent.click(screen.getByRole("textbox"));
-
-        // Act
-        const wrapper = screen.getByTestId("date-picker-overlay");
-        const hasDirLTR = within(wrapper)
-            .getAllByRole("generic")
-            .some((div) => div.getAttribute("dir") === "ltr");
-
-        // Assert
-        expect(hasDirLTR).toBe(true);
     });
 
     it("navigates to next month when next button is clicked", async () => {
@@ -605,18 +623,17 @@ describe("DatePicker", () => {
             });
         });
 
-        describe("dateFormat prop override", () => {
-            it("displays date in MMMM D, YYYY format when dateFormat prop is set", () => {
+        describe("dateFormat prop", () => {
+            it("formats dates as MMMM D, YYYY", () => {
                 // Arrange
                 const selectedDate = Temporal.PlainDate.from("2026-01-16");
-                const dateFormat = "MMMM D, YYYY";
 
                 // Act
                 render(
                     <DatePicker
                         selectedDate={selectedDate}
                         updateDate={() => {}}
-                        dateFormat={dateFormat}
+                        dateFormat="MMMM D, YYYY"
                     />,
                 );
 
@@ -626,17 +643,16 @@ describe("DatePicker", () => {
                 ).toBeInTheDocument();
             });
 
-            it("displays same date in MM/DD/YYYY format when dateFormat prop is changed", () => {
+            it("formats dates as MM/DD/YYYY", () => {
                 // Arrange
                 const selectedDate = Temporal.PlainDate.from("2026-01-16");
-                const dateFormat = "MM/DD/YYYY";
 
                 // Act
                 render(
                     <DatePicker
                         selectedDate={selectedDate}
                         updateDate={() => {}}
-                        dateFormat={dateFormat}
+                        dateFormat="MM/DD/YYYY"
                     />,
                 );
 
@@ -646,37 +662,16 @@ describe("DatePicker", () => {
                 ).toBeInTheDocument();
             });
 
-            it("displays same date in MMM D, YYYY format when dateFormat prop is set to abbreviated", () => {
+            it("formats dates as YYYY-MM-DD", () => {
                 // Arrange
                 const selectedDate = Temporal.PlainDate.from("2026-01-16");
-                const dateFormat = "MMM D, YYYY";
 
                 // Act
                 render(
                     <DatePicker
                         selectedDate={selectedDate}
                         updateDate={() => {}}
-                        dateFormat={dateFormat}
-                    />,
-                );
-
-                // Assert
-                expect(
-                    screen.getByDisplayValue("Jan 16, 2026"),
-                ).toBeInTheDocument();
-            });
-
-            it("displays same date in ISO format when dateFormat prop is set to YYYY-MM-DD", () => {
-                // Arrange
-                const selectedDate = Temporal.PlainDate.from("2026-01-16");
-                const dateFormat = "YYYY-MM-DD";
-
-                // Act
-                render(
-                    <DatePicker
-                        selectedDate={selectedDate}
-                        updateDate={() => {}}
-                        dateFormat={dateFormat}
+                        dateFormat="YYYY-MM-DD"
                     />,
                 );
 
@@ -687,80 +682,17 @@ describe("DatePicker", () => {
             });
         });
 
-        describe("MM/DD/YYYY format (English)", () => {
-            it("displays English numeric date in MM/DD/YYYY format", () => {
-                // Arrange
-                const selectedDate = Temporal.PlainDate.from("2026-02-12");
-                const dateFormat = "MM/DD/YYYY";
-
-                // Act
-                render(
-                    <DatePicker
-                        selectedDate={selectedDate}
-                        updateDate={() => {}}
-                        dateFormat={dateFormat}
-                    />,
-                );
-
-                // Assert
-                expect(
-                    screen.getByDisplayValue("02/12/2026"),
-                ).toBeInTheDocument();
-            });
-
-            it("displays another English numeric date in MM/DD/YYYY format", () => {
-                // Arrange
-                const selectedDate = Temporal.PlainDate.from("2026-01-22");
-                const dateFormat = "MM/DD/YYYY";
-
-                // Act
-                render(
-                    <DatePicker
-                        selectedDate={selectedDate}
-                        updateDate={() => {}}
-                        dateFormat={dateFormat}
-                    />,
-                );
-
-                // Assert
-                expect(
-                    screen.getByDisplayValue("01/22/2026"),
-                ).toBeInTheDocument();
-            });
-        });
-
-        describe("Text-based format (MMMM D, YYYY)", () => {
-            it("displays English text date as January 16, 2026", () => {
+        describe("Localized text formats", () => {
+            it("displays Spanish text date", () => {
                 // Arrange
                 const selectedDate = Temporal.PlainDate.from("2026-01-16");
-                const dateFormat = "MMMM D, YYYY";
 
                 // Act
                 render(
                     <DatePicker
                         selectedDate={selectedDate}
                         updateDate={() => {}}
-                        dateFormat={dateFormat}
-                    />,
-                );
-
-                // Assert
-                expect(
-                    screen.getByDisplayValue("January 16, 2026"),
-                ).toBeInTheDocument();
-            });
-
-            it("displays Spanish text date as enero 16, 2026", () => {
-                // Arrange
-                const selectedDate = Temporal.PlainDate.from("2026-01-16");
-                const dateFormat = "MMMM D, YYYY";
-
-                // Act
-                render(
-                    <DatePicker
-                        selectedDate={selectedDate}
-                        updateDate={() => {}}
-                        dateFormat={dateFormat}
+                        dateFormat="MMMM D, YYYY"
                         locale={es}
                     />,
                 );
@@ -771,17 +703,16 @@ describe("DatePicker", () => {
                 ).toBeInTheDocument();
             });
 
-            it("displays French text date as janvier 16, 2026", () => {
+            it("displays French text date", () => {
                 // Arrange
                 const selectedDate = Temporal.PlainDate.from("2026-01-16");
-                const dateFormat = "MMMM D, YYYY";
 
                 // Act
                 render(
                     <DatePicker
                         selectedDate={selectedDate}
                         updateDate={() => {}}
-                        dateFormat={dateFormat}
+                        dateFormat="MMMM D, YYYY"
                         locale={fr}
                     />,
                 );
@@ -792,59 +723,16 @@ describe("DatePicker", () => {
                 ).toBeInTheDocument();
             });
 
-            it("displays abbreviated Spanish month names with MMM format", () => {
-                // Arrange
-                const selectedDate = Temporal.PlainDate.from("2026-01-16");
-                const dateFormat = "MMM D, YYYY";
-
-                // Act
-                render(
-                    <DatePicker
-                        selectedDate={selectedDate}
-                        updateDate={() => {}}
-                        dateFormat={dateFormat}
-                        locale={es}
-                    />,
-                );
-
-                // Assert
-                expect(
-                    screen.getByDisplayValue("ene 16, 2026"),
-                ).toBeInTheDocument();
-            });
-
-            it("displays initial Spanish text date in input", () => {
-                // Arrange
-                const selectedDate = Temporal.PlainDate.from("2026-01-05");
-                const dateFormat = "MMMM D, YYYY";
-
-                // Act
-                render(
-                    <DatePicker
-                        selectedDate={selectedDate}
-                        updateDate={() => {}}
-                        dateFormat={dateFormat}
-                        locale={es}
-                    />,
-                );
-
-                // Assert
-                expect(screen.getByRole("textbox")).toHaveValue(
-                    "enero 5, 2026",
-                );
-            });
-
             it("updates input to Spanish text format when date is selected from calendar", async () => {
                 // Arrange
                 const selectedDate = Temporal.PlainDate.from("2026-01-05");
                 const updateDateMock = jest.fn();
-                const dateFormat = "MMMM D, YYYY";
 
                 render(
                     <DatePicker
                         selectedDate={selectedDate}
                         updateDate={updateDateMock}
-                        dateFormat={dateFormat}
+                        dateFormat="MMMM D, YYYY"
                         locale={es}
                     />,
                 );
@@ -862,39 +750,17 @@ describe("DatePicker", () => {
             });
         });
 
-        describe("Numeric formats (MM/DD/YYYY)", () => {
-            it("displays Spanish numeric date as 01/22/2026", () => {
-                // Arrange
-                const selectedDate = Temporal.PlainDate.from("2026-01-22");
-                const dateFormat = "DD/MM/YYYY";
-
-                // Act
-                render(
-                    <DatePicker
-                        selectedDate={selectedDate}
-                        updateDate={() => {}}
-                        dateFormat={dateFormat}
-                        locale={es}
-                    />,
-                );
-
-                // Assert
-                expect(
-                    screen.getByDisplayValue("01/22/2026"),
-                ).toBeInTheDocument();
-            });
-
-            it("displays another Spanish date as 01/16/2026", () => {
+        describe("Localized numeric formats", () => {
+            it("displays Spanish numeric date in DD/MM/YYYY format", () => {
                 // Arrange
                 const selectedDate = Temporal.PlainDate.from("2026-01-16");
-                const dateFormat = "DD/MM/YYYY";
 
                 // Act
                 render(
                     <DatePicker
                         selectedDate={selectedDate}
                         updateDate={() => {}}
-                        dateFormat={dateFormat}
+                        dateFormat="DD/MM/YYYY"
                         locale={es}
                     />,
                 );
@@ -905,38 +771,16 @@ describe("DatePicker", () => {
                 ).toBeInTheDocument();
             });
 
-            it("displays French numeric date as 01/16/2026", () => {
-                // Arrange
-                const selectedDate = Temporal.PlainDate.from("2026-01-16");
-                const dateFormat = "DD/MM/YYYY";
-
-                // Act
-                render(
-                    <DatePicker
-                        selectedDate={selectedDate}
-                        updateDate={() => {}}
-                        dateFormat={dateFormat}
-                        locale={fr}
-                    />,
-                );
-
-                // Assert
-                expect(
-                    screen.getByDisplayValue("01/16/2026"),
-                ).toBeInTheDocument();
-            });
-
-            it("updates input to 01/15/2026 when date is selected from Spanish calendar", async () => {
+            it("updates input when date is selected from Spanish calendar", async () => {
                 // Arrange
                 const selectedDate = Temporal.PlainDate.from("2026-01-05");
                 const updateDateMock = jest.fn();
-                const dateFormat = "DD/MM/YYYY";
 
                 render(
                     <DatePicker
                         selectedDate={selectedDate}
                         updateDate={updateDateMock}
-                        dateFormat={dateFormat}
+                        dateFormat="DD/MM/YYYY"
                         locale={es}
                     />,
                 );

@@ -215,9 +215,20 @@ const DatePicker = (props: Props) => {
             close();
             datePickerInputRef.current?.focus();
         }
-        if (e.key === "Enter" && closeOnSelect && showOverlay) {
+        if (e.key === "ArrowDown" && !showOverlay) {
             e.preventDefault();
-            close();
+            open();
+        }
+        if (e.key === "Enter") {
+            e.preventDefault();
+            // Toggle overlay: open if closed, close if open (respecting closeOnSelect)
+            if (showOverlay) {
+                if (closeOnSelect) {
+                    close();
+                }
+            } else {
+                open();
+            }
         }
     };
 
@@ -234,10 +245,7 @@ const DatePicker = (props: Props) => {
                         close();
                         datePickerInputRef.current?.focus();
                     }
-                    if (e.key === "Enter" && closeOnSelect) {
-                        e.preventDefault();
-                        close();
-                    }
+                    // Don't handle Enter in the calendar overlay - let buttons handle it naturally
                 }}
             />
         );
