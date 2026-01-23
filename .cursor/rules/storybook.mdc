@@ -228,8 +228,6 @@ export const WithInitialValue: StoryComponentType = {
 };
 ```
 
-The comment block before a story declaration can be used to document more about a specific prop or behavior highlighted in the example in the story.
-
 ### Prop Documentation
 
 * The props table on the autodocs page for Storybook should be extracted from the JSDoc comments on the props for a component.
@@ -239,7 +237,7 @@ The comment block before a story declaration can be used to document more about 
 ### Examples in Stories
 
 * The stories should showcase the different ways a component can be used.
-* The comment block before a story declaration documents specific props or behaviors highlighted in the example.
+* The comment block before a story declaration can be used to document more about a specific prop or behavior highlighted in the example.
 
 ### Accessibility Guidelines Documentation
 
@@ -395,7 +393,7 @@ export const StateSheetStory: Story = {
 - **Disabled state** - Test with `disabled` prop set to `true`
 - **Relevant prop combinations** - Test all important combinations of `kind`, `actionType`, `size`, etc.
 
-Example of comprehensive state coverage:
+**Example of comprehensive state coverage:**
 
 ```tsx
 const kinds = [
@@ -501,7 +499,6 @@ export const Scenarios: Story = {
 - **RTL cases**: Test right-to-left layouts when component supports directional content. Use the `decorator: <div dir="rtl" />` property to wrap the scenario.
 - **Custom styles**: Test components with custom style overrides to ensure flexibility
 - **Edge cases**: Long text, overflow, truncation, empty states
-
 
 ## Advanced Patterns
 
