@@ -350,9 +350,7 @@ const spy = jest.spyOn(module, "functionName").mockImplementation((arg) => {
 - ❌ Never mock `console.error` - this hides real implementation issues
 - ❌ Never treat original functions as spies without `jest.spyOn()`
 - ❌ Never store spies in variables if you won't assert on them (causes unused variable linter errors)
-- ❌ Never use `jest.spyOn()` to mock `khanFetch` - use `setKhanFetchOverride` instead (see HTTP/API Mocking section)
 - ❌ Avoid mocking outside of tests, even if it means code duplication
-- ❌ Avoid using `withVariables` and `withContext` unless exact variable/context matches are absolutely necessary (leads to brittle tests)
 
 ### File System Mocking
 
