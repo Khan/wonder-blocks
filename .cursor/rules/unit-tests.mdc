@@ -551,3 +551,16 @@ pnpm jest --verbose --runInBand
 - Use `--verbose` flag for detailed output
 - Use `--runInBand` for sequential execution (easier to debug)
 - Use Node debugger with `debugger` statements
+
+## Best Practices Summary
+
+1. ✅ **Structure**: Use Arrange-Act-Assert pattern with comments
+2. ✅ **Focus**: Test behavior, not implementation details
+3. ✅ **Queries**: Use semantic queries (`getByRole`, `getByLabelText`) over test IDs
+4. ✅ **Interactions**: Use `userEvent` instead of `fireEvent`
+5. ✅ **Spies**: Use `jest.spyOn()` and only store in variables when asserting
+6. ✅ **Accessibility**: Include `toHaveNoA11yViolations` tests
+7. ✅ **Organization**: Group related tests with `describe` blocks
+8. ✅ **Assertions**: One expect per test when possible
+9. ✅ **Parameterized**: Use `it.each` for testing multiple input/output combinations
+10. ❌ **Avoid**: Testing style-only props, mocking `console.error`, over-testing trivial code

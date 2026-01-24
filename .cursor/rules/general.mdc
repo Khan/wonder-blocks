@@ -408,3 +408,16 @@ Here are some things that we have been improving while working in a specific are
 
 * Adding `jest-axe` tests using the `.toHaveNoA11yViolations` matcher
 
+## Best Practices Summary
+
+1. ✅ **TypeScript**: Use strict mode, avoid `any`, prefer type-only imports
+2. ✅ **React**: Use functional components and hooks, avoid `React.FC`
+3. ✅ **Styling**: Use semantic color tokens and `StyleSheet.create` from Aphrodite
+4. ✅ **Accessibility**: Use `aria-disabled` instead of `disabled`, ensure keyboard navigation works
+5. ✅ **Components**: Small, single-responsibility, with proper TypeScript types
+6. ✅ **Props**: Follow common patterns (`id`, `testId`, `disabled`, `onChange`, etc.)
+7. ✅ **States**: Use CSS pseudo-classes for hover/focus/active styling
+8. ✅ **Documentation**: JSDoc comments for props, Storybook stories for examples
+9. ✅ **Testing**: Jest + RTL for behavior, Storybook for visual regression
+10. ✅ **Tokens**: Use `semanticColor`, `font`, and `sizing` from `@khanacademy/wonder-blocks-tokens`
+
