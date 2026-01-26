@@ -386,7 +386,8 @@ Unit tests for a component should cover:
 - ref is forwarded
 
 #### Props
-- Cover expected behaviour when certain props are set. **Exclude when the props are related to styles only**, since this should be covered by visual regression tests instead
+- Cover expected behaviour when certain props are set.
+- **Exclude tests for props that are related to styles only**, since this should be covered by visual regression tests instead
 - Cover expected behaviour with default prop values
 - Use `it.each` when there are multiple combinations of things you want to test together
 
