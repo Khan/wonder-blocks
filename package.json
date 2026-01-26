@@ -14,6 +14,7 @@
     "build:css": "node -r @swc-node/register ./build-settings/build-css.ts",
     "build:types": "pnpm tsc --build tsconfig-build.json && ./build-settings/check-type-definitions.ts",
     "build:storybook": "storybook build --stats-json",
+    "build:mcp": "tsc mcp/server.ts --esModuleInterop",
     "clean": "rm -rf packages/wonder-blocks-*/dist && rm -rf packages/wonder-blocks-*/node_modules && rm -f packages/*/*.tsbuildinfo && rm -f utils/tsconfig.tsbuildinfo",
     "coverage": "pnpm run test:coverage && open coverage/lcov-report/index.html",
     "coveragefor": "bash -c 'pnpm --silent jest --coverage --collectCoverageFrom=**/$0 $(node ./utils/test-file-for.js \"$0\")'",
@@ -76,6 +77,7 @@
     "@khanacademy/wonder-blocks-tooltip": "workspace:*",
     "@khanacademy/wonder-blocks-typography": "workspace:*",
     "@khanacademy/wonder-stuff-testing": "^3.0.5",
+    "@modelcontextprotocol/sdk": "^1.25.3",
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-swc": "^0.4.0",
     "@storybook/addon-a11y": "^10.1.10",
@@ -147,7 +149,8 @@
     "typescript": "5.7.3",
     "typescript-coverage-report": "^1.1.0",
     "vite": "^6.0.11",
-    "vitest": "^4.0.15"
+    "vitest": "^4.0.15",
+    "zod": "^4.3.6"
   },
   "dependencies": {
     "@khanacademy/wonder-stuff-core": "catalog:",
