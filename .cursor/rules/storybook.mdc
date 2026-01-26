@@ -7,38 +7,7 @@ alwaysApply: false
 
 This guide covers conventions and best practices for creating Storybook stories (`.stories.tsx` or `.stories.ts`) in the Wonder Blocks design system.
 
-## File Structure and Organization
-
-### Import Order
-
-**✅ Follow this import order:**
-
-1. React imports
-2. Third-party libraries (aphrodite, storybook actions/types)
-3. Phosphor icons
-4. Wonder Blocks packages (sorted by purpose)
-5. Local imports (package config, argtypes, components)
-6. Types and interfaces
-
-```tsx
-// ✅ Good
-import * as React from "react";
-import {StyleSheet} from "aphrodite";
-import {action} from "storybook/actions";
-import type {Meta, StoryObj} from "@storybook/react-vite";
-
-import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
-
-import Button from "@khanacademy/wonder-blocks-button";
-import {View} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
-
-import packageConfig from "../../packages/wonder-blocks-button/package.json";
-import ComponentInfo from "../components/component-info";
-import ButtonArgTypes from "./button.argtypes";
-```
-
-### TypeScript Types
+## TypeScript Types
 
 **✅ Define story types consistently (avoid `any`):**
 
@@ -288,21 +257,6 @@ export default {
   * Accordion Accessibility
   * Combobox Accessibility
   * TextArea Accessibility
-
-
-## Styling in Stories
-
-**✅ Use `StyleSheet.create` with Wonder Blocks tokens (avoid hard-coded values):**
-
-```tsx
-const styles = StyleSheet.create({
-    container: {
-        gap: sizing.medium_16,
-        padding: sizing.size_160,
-        backgroundColor: semanticColor.core.background.base.subtle,
-    },
-});
-```
 
 ## Parameters Configuration
 

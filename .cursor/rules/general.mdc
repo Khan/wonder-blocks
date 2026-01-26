@@ -44,8 +44,8 @@ alwaysApply: true
 * ✅ Props: Define explicit `Props` types. Use object destructuring. Pass complex objects/callbacks with stable references (`useCallback`, `useMemo`) if they are dependencies of effects or memoized children
 * ✅ State: Keep component state minimal. Lift state up when necessary
 * ✅ Keys: Provide stable `key` props for lists (use item IDs if available)
-* ✅ Composition: Build complex UI by composing smaller Wonder Blocks or custom components
-* ✅ Refs: Use `React.forwardRef` when components need to expose DOM refs. Properly type the ref with `React.ForwardRefExoticComponent`
+* ✅ Composition: Build complex UI by composing smaller Wonder Blocks when possible
+* ✅ Refs: Use `React.forwardRef` when components need to expose DOM refs
 * ✅ Custom Hooks: Extract reusable logic into custom hooks (e.g., `useFieldValidation`, `useIsMounted` from `@khanacademy/wonder-blocks-core`)
 * ✅ Event Handlers: Internal handlers should be prefixed with `handle` (e.g., `handleClick`, `handleChange`). Callback props should be prefixed with `on` (e.g., `onClick`, `onChange`)
 * ❌ Don't use `React.FC<Props>` when defining functional components, use `(props: Props) =>` instead
@@ -57,14 +57,14 @@ alwaysApply: true
 
 * ✅ Define styles using `StyleSheet.create` from `aphrodite`. Colocate styles with the component
 * ✅ Use `addStyle` from `@khanacademy/wonder-blocks-core` to create styled HTML elements (e.g., `addStyle("div")`, `addStyle("input")`)
-* ✅ Use semantic color tokens from `@khanacademy/wonder-blocks-tokens` (e.g., `semanticColor.core.background.base`). See the Theming section for more details
-* ✅ Use the `focusStyles` utility from `@khanacademy/wonder-blocks-styles` for consistent focus indicators. See the Focused State section for implementation details
+* ✅ Use semantic color tokens from `@khanacademy/wonder-blocks-tokens` (e.g., `semanticColor.core.background.base`)
+* ✅ Use the `focusStyles` utility from `@khanacademy/wonder-blocks-styles` for consistent focus indicators
 * ✅ Ensure styling consistency across different components throughout the design system
 
-### 6. Wonder Blocks Core Utilities
+### 6. Wonder Blocks Usage
 
 * ✅ `View`: Use the `View` component from `@khanacademy/wonder-blocks-core` for layout containers instead of plain divs
-* ✅ `Id`: Use the `useId` hook from React to generate unique ids (auto-generated if not provided)
+* ✅ Use the `useId` hook from React to generate unique ids (auto-generated if not provided). The `Id` component should not be used
 * ✅ `addStyle`: Use to create styled HTML elements with Aphrodite styles applied (see Styling section)
 * ✅ Tokens: Use `semanticColor`, `font`, and `sizing` tokens from `@khanacademy/wonder-blocks-tokens`
 * ✅ Typography: Use `Heading` and `BodyText` components from `@khanacademy/wonder-blocks-typography` for text
@@ -90,7 +90,6 @@ alwaysApply: true
 * ✅ Small, single-responsibility components
 * ✅ Use Storybook (`*.stories.tsx`) for isolated development, documentation, and visual testing
 * ✅ Separate logic hooks from presentational components
-* ✅ Export named components with proper TypeScript types, especially when using `forwardRef`
 
 ### Composition vs Configuration
 
@@ -198,8 +197,6 @@ Wonder Blocks components often support the following states:
 
 * ✅ Use `:focus-visible` instead of `:focus` for focus indicators
 * ✅ Use the `focusStyles` utility from `@khanacademy/wonder-blocks-styles` for consistent focus indicators
-* ✅ Use a combination of the `border` and `outline` CSS properties for focus indicators
-* ✅ Use a negative `outline-offset` so the outline appears within the component (handles `overflow: hidden` ancestors)
 * ✅ Consider the focused state in combination with other states (disabled + focused, error + focused)
 * ❌ Avoid using `box-shadow` for focus indicators
 
@@ -229,21 +226,15 @@ Wonder Blocks components often support the following states:
 * ⚠️ Use `React.memo` sparingly and only when profiling shows benefit
 * ⚠️ Avoid premature optimization - measure first
 
-### React Router Integration
-
-* Components with navigation (links, buttons with hrefs) should support both regular navigation and React Router client-side navigation.
-* Provide a `skipClientNav` prop to opt-out of client-side navigation.
-* Use the appropriate link component from `react-router-dom` when client-side navigation is enabled.
-
 ## Accessibility (a11y)
 
-* ✅ Include accessibility considerations when writing Implementation Specs
+* ✅ Include accessibility considerations
 * ✅ Use semantic HTML or appropriate ARIA roles/attributes
 * ✅ Ensure keyboard navigation and focus indicators work correctly
 * ✅ Use tools for automated checks and perform manual testing (keyboard, screen reader)
 * ✅ Use `aria-disabled` instead of the `disabled` attribute to keep elements focusable while communicating disabled state (see Disabled State section)
 * ✅ Always provide accessible labels via `aria-label`, `aria-labelledby`, or associated label elements
-* ✅ Animations should be disabled by default and enabled using an `animated` prop (see Styling Props section)
+* ✅ Animations should be disabled by default and enabled using an `animated` prop
 * ✅ Components should work well using screen readers and keyboard navigation
 * ✅ Document accessibility guidelines in Storybook (create separate accessibility pages for components)
 
@@ -268,14 +259,8 @@ Wonder Blocks components often support the following states:
 
 ## Theming
 
-* ✅ Consider if the component should support theming (e.g., Khanmigo Theme)
 * ✅ Use semantic color tokens from `@khanacademy/wonder-blocks-tokens` (e.g., `semanticColor.core.background.base`)
 * ✅ Ensure that color tokens make semantic sense for their usage (e.g., use `semanticColor.interactive.primary` for primary interactive elements)
-* ⚠️ Theming is separate from supporting a `light` prop (which is for when a component is used on a dark background)
-
-**Examples of components that support themes:** `Switch`
-
-**Reference:** [ADR #657: Wonder Blocks Theming](https://khanacademy.atlassian.net/wiki/spaces/ENG/pages/2594078789/ADR+657+Wonder+Blocks+Theming)
 
 ## Documentation
 
@@ -338,7 +323,6 @@ packages/wonder-blocks-*/
 | `pnpm lint` | Lint check |
 | `pnpm typecheck` | Type check |
 | `pnpm test` | Run tests |
-| `pnpm coverage` | Run tests with coverage |
 | `pnpm build:storybook` | Build Storybook |
 
 ### Versioning & Publishing
