@@ -378,36 +378,6 @@ When working on a new component, it is easier for the team to review if it is br
 
 Include code documentation and accessibility documentation as they are implemented.
 
-### Iterative Improvements
-
-Here are some things that we have been improving while working in a specific area in Wonder Blocks:
-
-#### Code
-
-* Refactoring React class components to functional components and hooks
-* Refactoring away from using `ClickableBehaviour` component
-* Adding auto-generated IDs for components if an `id` is not provided (helpful for accessibility when elements need to be wired up)
-
-#### Styling
-
-* Using semantic color tokens (see Styling and Theming sections)
-* Ensuring styling consistency across different components throughout the design system
-* Consolidating and simplifying common state styles ([WB-1753](https://khanacademy.atlassian.net/browse/WB-1753))
-* Using CSS pseudo-classes for state styling (see Component States section)
-
-#### Accessibility
-
-* Allowing interactive elements to be focusable when disabled (see Disabled State section)
-
-#### Documentation
-
-* Adding documentation, especially around accessibility and general guidelines
-* Creating stories with all variants and states for visual regression tests
-
-#### Tests
-
-* Adding `jest-axe` tests using the `.toHaveNoA11yViolations` matcher
-
 ## Best Practices Summary
 
 1. ✅ **TypeScript**: Use strict mode, avoid `any`, prefer type-only imports

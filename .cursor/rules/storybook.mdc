@@ -40,24 +40,12 @@ import ButtonArgTypes from "./button.argtypes";
 
 ### TypeScript Types
 
-**✅ Define story types consistently:**
+**✅ Define story types consistently (avoid `any`):**
 
 ```tsx
-// ✅ Good - Use StoryObj for type safety
 type StoryComponentType = StoryObj<typeof Component>;
 
 export const Default: StoryComponentType = {
-    args: {
-        // props here
-    },
-};
-```
-
-**❌ Avoid using `any` types:**
-
-```tsx
-// ❌ Bad
-export const Default: any = {
     args: {
         // props here
     },
@@ -447,41 +435,6 @@ export default {
 **✅ Use StateSheet for pseudo-state testing (Chromatic visual regression):**
 
 ```tsx
-export const StateSheetStory: Story = {
-    name: "StateSheet",
-    render: (args) => {
-        return (
-            <StateSheet
-                rows={kinds}
-                columns={actionTypes}
-                title="Kind / Action Type"
-            >
-                {({props, className, name}) => (
-                    <Component
-                        {...args}
-                        {...props}
-                        className={className}
-                    />
-                )}
-            </StateSheet>
-        );
-    },
-    parameters: {
-        pseudo: defaultPseudoStates,
-    },
-};
-```
-
-**⚠️ Important: StateSheet stories should cover:**
-- **Focus state** (`:focus-visible`) - Test keyboard navigation and focus indicators
-- **Hover state** (`:hover`) - Test mouse hover interactions
-- **Pressed/Active state** (`:active`) - Test click/press feedback
-- **Disabled state** - Test with `disabled` prop set to `true`
-- **Relevant prop combinations** - Test all important combinations of `kind`, `actionType`, `size`, etc.
-
-**Example of comprehensive state coverage:**
-
-```tsx
 const kinds = [
     {name: "Primary", props: {kind: "primary"}},
     {name: "Secondary", props: {kind: "secondary"}},
@@ -496,81 +449,31 @@ const actionTypes = [
 
 export const StateSheetStory: Story = {
     name: "StateSheet",
-    render: (args) => {
-        return (
-            <StateSheet
-                rows={kinds}
-                columns={actionTypes}
-                title="Kind / Action Type"
-            >
-                {({props, className, name}) => (
-                    <Component
-                        {...args}
-                        {...props}
-                        className={className}
-                    />
-                )}
-            </StateSheet>
-        );
-    },
+    render: (args) => (
+        <StateSheet rows={kinds} columns={actionTypes} title="Kind / Action Type">
+            {({props, className}) => (
+                <Component {...args} {...props} className={className} />
+            )}
+        </StateSheet>
+    ),
     parameters: {
         pseudo: defaultPseudoStates, // Includes focus, hover, active states
     },
 };
 ```
 
+**⚠️ StateSheet stories should cover:** focus (`:focus-visible`), hover, active, disabled states, and relevant prop combinations (`kind`, `actionType`, `size`, etc.)
+
 ### Scenario Stories
 
-**✅ Test specific scenarios (Chromatic visual regression):**
+**✅ Test edge cases with ScenariosLayout (Chromatic visual regression):**
 
 ```tsx
 export const Scenarios: Story = {
     render() {
         const scenarios = [
-            {
-                name: "Long label",
-                props: {
-                    children: (
-                        <Component>{longText}</Component>
-                    ),
-                },
-            },
-            {
-                name: "Long label overflowing",
-                props: {
-                    children: (
-                        <Component styles={{root: {maxWidth: 200}}}>
-                            {longTextWithNoWordBreak}
-                        </Component>
-                    ),
-                },
-            },
-            {
-                name: "Right-to-left (RTL)",
-                decorator: <div dir="rtl" />,
-                props: {
-                    children: (
-                        <Component>یہ اردو میں لکھا ہے۔</Component>
-                    ),
-                },
-            },
-            {
-                name: "With custom styles",
-                props: {
-                    children: (
-                        <Component
-                            styles={{
-                                root: {
-                                    maxWidth: 300,
-                                    backgroundColor: semanticColor.core.background.base.subtle,
-                                }
-                            }}
-                        >
-                            Custom styled component
-                        </Component>
-                    ),
-                },
-            },
+            {name: "Long label", props: {children: <Component>{longText}</Component>}},
+            {name: "RTL", decorator: <div dir="rtl" />, props: {children: <Component>یہ اردو میں لکھا ہے۔</Component>}},
         ];
         return (
             <ScenariosLayout scenarios={scenarios}>
@@ -581,44 +484,7 @@ export const Scenarios: Story = {
 };
 ```
 
-**⚠️ Important: Scenario stories should include:**
-- **RTL cases**: Test right-to-left layouts when component supports directional content. Use the `decorator: <div dir="rtl" />` property to wrap the scenario.
-- **Custom styles**: Test components with custom style overrides to ensure flexibility
-- **Edge cases**: Long text, overflow, truncation, empty states
-
-## Advanced Patterns
-
-### Custom Openers and Complex Props
-
-**✅ Document custom implementations:**
-
-```tsx
-/**
- * In case you need to use a custom opener with the `SingleSelect`, you can use
- * the opener property to achieve this. In this example, the opener prop accepts
- * a function with the following arguments:
- *  - `eventState`: lets you customize the style for different states
- *  - `text`: Passes the menu label defined in the parent component
- *  - `opened`: Whether the dropdown is opened
- */
-export const CustomOpener: StoryComponentType = {
-    render: Template,
-    args: {
-        opener: ({focused, hovered, pressed, text, opened}: OpenerProps) => {
-            return (
-                <Button
-                    style={[
-                        styles.customOpener,
-                        focused && styles.focused,
-                        hovered && styles.hovered,
-                        pressed && styles.pressed,
-                    ]}
-                >{`${text} ${opened ? ": opened" : ""}`}</Button>
-            );
-        },
-    },
-};
-```
+**⚠️ Scenario stories should include:** RTL layouts (use `decorator: <div dir="rtl" />`), custom style overrides, and edge cases (long text, long text with no word break, overflow, truncation, empty states).
 
 ## Story Naming Conventions
 

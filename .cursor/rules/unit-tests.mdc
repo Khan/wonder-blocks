@@ -139,34 +139,7 @@ it("should validate email format and return error message", () => {
 
 ### One Expect Per Test
 
-**⚠️ Prefer a single assertion per test when possible:**
-
-```typescript
-// ✅ DO: Single assertion per test
-it("should have the correct role", () => {
-    // Arrange
-    render(<Button>Click me</Button>);
-
-    // Act
-    const button = screen.getByRole("button");
-
-    // Assert
-    expect(button).toBeInTheDocument();
-});
-
-it("should have the correct text", () => {
-    // Arrange
-    render(<Button>Click me</Button>);
-
-    // Act
-    const button = screen.getByRole("button");
-
-    // Assert
-    expect(button).toHaveTextContent("Click me");
-});
-```
-
-**Key Principle:** If assertions test different behaviors or could fail independently, split them into separate tests. This makes test failures clearer and easier to debug.
+**⚠️ Prefer a single assertion per test when possible.** If assertions test different behaviors or could fail independently, split them into separate tests. This makes test failures clearer and easier to debug.
 
 ### Parameterized Tests with `it.each`
 
@@ -197,20 +170,6 @@ describe("Calculator", () => {
 - ✅ **Easy to Extend**: Simply add new arrays to test data
 - ✅ **Better Coverage**: Test edge cases and boundary conditions efficiently
 - ✅ **Comprehensive Testing**: Essential for testing all prop combinations and states in Wonder Blocks components
-
-#### Alternative Syntax
-
-```typescript
-it.each`
-    a    | b    | expected
-    ${2} | ${3} | ${5}
-    ${0} | ${0} | ${0}
-    ${-1} | ${1} | ${0}
-    `("should add $a and $b to equal $expected", ({ a, b, expected }) => {
-    const result = add(a, b);
-    expect(result).toBe(expected);
-});
-```
 
 ## Mocking and Spying
 
@@ -351,45 +310,6 @@ const spy = jest.spyOn(module, "functionName").mockImplementation((arg) => {
 - ❌ Never treat original functions as spies without `jest.spyOn()`
 - ❌ Never store spies in variables if you won't assert on them (causes unused variable linter errors)
 - ❌ Avoid mocking outside of tests, even if it means code duplication
-
-### File System Mocking
-
-**When to use each approach:**
-
-**✅ Simple file operations: Use `jest.spyOn` on `fs` module**
-
-```typescript
-import * as FS from "fs";
-
-describe("File operations", () => {
-    it("should read file", () => {
-        // Arrange
-        const readFileSyncSpy = jest
-            .spyOn(FS, "readFileSync")
-            .mockReturnValue("file contents");
-
-        // Act
-        const result = myFileReader("path/to/file");
-
-        // Assert
-        expect(readFileSyncSpy).toHaveBeenCalledWith("path/to/file", "utf-8");
-    });
-});
-```
-
-**✅ Complex file operations: Use `memfs` for in-memory filesystem**
-
-```typescript
-// At the top of test file - mock entire fs modules
-jest.mock("node:fs", () => jest.requireActual("memfs").fs);
-jest.mock("node:fs/promises", () => jest.requireActual("memfs").fs.promises);
-
-// Now you can read/write files in tests without touching real filesystem
-```
-
-**When to use which:**
-- ✅ **Use spies** for 1-2 simple fs calls (read/write/exists)
-- ✅ **Use memfs** when testing complex file operations, directory structures, or multiple files
 
 ### Hook Testing
 
