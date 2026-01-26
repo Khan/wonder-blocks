@@ -663,32 +663,56 @@ export const OpeningModal: StoryComponentType = {
  * `ActionItem` children. This is especially useful if you do **not** have a
  * visible label component but want to ensure accessibility. For more details,
  * see the [accessibility documentation](./action-menu.accessibility.mdx).
+ *
+ * As you can see, the `ActionMenu` opener visually shows the selected item, but
+ * the `aria-label` attribute on the opener provides a more descriptive label
+ * for the action menu.
  */
 export const AriaLabel: StoryComponentType = {
-    args: {
-        menuText: "Actions",
-        "aria-label": "Actions menu with links",
-        children: [
-            <ActionItem
-                label="Profile"
-                aria-label="Go to your profile"
-                onClick={action("Selected Profile")}
-                testId="aria-label-profile"
-            />,
-            <ActionItem
-                label="Settings"
-                aria-label="Account settings"
-                onClick={action("Selected Settings")}
-                testId="aria-label-settings"
-            />,
-            <ActionItem
-                label="Log out"
-                aria-label="Log out of your account"
-                onClick={action("Selected Log out")}
-                testId="aria-label-logout"
-            />,
-        ],
-    } as Partial<typeof ActionMenu>,
+    render: function Render(args) {
+        const [selectedItem, setSelectedItem] = React.useState<string | null>(
+            null,
+        );
+
+        const classOptions = [
+            {
+                label: "Math",
+                ariaLabel: "Select Math class",
+            },
+            {
+                label: "Science",
+                ariaLabel: "Select Science class",
+            },
+            {
+                label: "History",
+                ariaLabel: "Select History class",
+            },
+        ];
+
+        return (
+            <ActionMenu
+                {...args}
+                aria-label="List of classes"
+                opener={() => (
+                    <Button endIcon={IconMappings.caretDown}>
+                        {selectedItem ? selectedItem : "List of classes"}
+                    </Button>
+                )}
+            >
+                {classOptions.map((opt) => (
+                    <ActionItem
+                        key={opt.label}
+                        label={opt.label}
+                        aria-label={opt.ariaLabel}
+                        onClick={() => {
+                            setSelectedItem(opt.label);
+                            action(`Selected ${opt.label}`);
+                        }}
+                    />
+                ))}
+            </ActionMenu>
+        );
+    },
     parameters: {
         chromatic: {
             // Disabling because this doesn't test visuals.
