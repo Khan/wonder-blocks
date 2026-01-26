@@ -160,14 +160,10 @@ Examples: `Breadcrumbs`, `TextField`
 
 #### Event Handler Props
 
-If the component is interactive, it could have the following event handlers. Expose event handlers on a per-need basis:
+Expose event handlers on a per-need basis. Common handlers:
 
-* `onChange?: (value: T) => void` - Called when the value changes. Often required if the component is controlled and the `value` prop is also required. Note: `onChange` uses the value as an argument instead of the event.
-* `onClick?: (event: React.MouseEvent) => void` - Called when the element is clicked.
-* `onKeyDown?: (event: React.KeyboardEvent) => void` - Called when a key is pressed down.
-* `onKeyUp?: (event: React.KeyboardEvent) => void` - Called when a key is released.
-* `onFocus?: (event: React.FocusEvent) => void` - Called when the element receives focus.
-* `onBlur?: (event: React.FocusEvent) => void` - Called when the element loses focus.
+* `onChange?: (value: T) => void` - Value changes. Note: uses value as argument, not event.
+* `onClick`, `onKeyDown`, `onKeyUp`, `onFocus`, `onBlur` - Standard React event handlers with appropriate event types.
 
 #### Validation Props (Form Components)
 
@@ -207,30 +203,13 @@ Wonder Blocks components often support the following states:
 * ✅ Consider the focused state in combination with other states (disabled + focused, error + focused)
 * ❌ Avoid using `box-shadow` for focus indicators
 
-#### Hover State
+#### Other States
 
-* ✅ Style hover states appropriately for interactive components
-* ✅ Consider hover in combination with other states
-
-#### Active/Pressed State
-
-* ✅ Provide visual feedback when an element is being clicked or pressed
-* ✅ Use CSS pseudo-classes (`:active`) where possible instead of JavaScript state tracking
-
-#### Readonly State
-
-* ✅ For form components, support a readonly state that prevents editing but allows focus and selection
-* ✅ Make sure the readonly attribute is well supported on the certain element/role
-
-#### Error/Invalid State
-
-* ✅ For form components, provide clear visual indication of validation errors
-* ✅ See the Validation Props section for error validation patterns
-
-#### Handling Browser Inconsistencies
-
-* ✅ Test states across different browsers to ensure consistent behavior
-* ✅ Use CSS normalization where needed
+* **Hover**: Style appropriately for interactive components; consider in combination with other states
+* **Active/Pressed**: Use CSS `:active` pseudo-class instead of JavaScript state tracking
+* **Readonly**: For form components, prevent editing but allow focus and selection. Make sure the readonly attribute is well supported on the certain element/role
+* **Error/Invalid**: Provide clear visual indication of validation errors (see Validation Props section)
+* **Browser Inconsistencies**: Test across browsers; use CSS normalization where needed
 
 ⚠️ **Important Notes:**
 

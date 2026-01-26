@@ -363,55 +363,17 @@ container.querySelector("#my-id");
 
 ### Test Organization
 
-**✅ Group related tests together using `describe` blocks:**
-
-When writing jest unit tests for a component, it is helpful to group related tests together. Here is an example structure:
+**✅ Group related tests using `describe` blocks:**
 
 ```typescript
 describe("MyComponent", () => {
-    describe("Props", () => {
-        it("should do X when Y prop is set to Z", () => {});
-
-        it.each([
-            ["primary", "blue"],
-            ["secondary", "gray"],
-            ["tertiary", "transparent"],
-        ])("should apply %s color when kind is %s", (kind, expectedColor) => {
-            // Test implementation
-        });
-    });
-
-    describe("Event Handlers", () => {
-        it("should call onClick prop when clicked", () => {});
-        it("should call onChange prop when value changes", () => {});
-    });
-
+    describe("Props", () => { /* prop tests */ });
+    describe("Event Handlers", () => { /* onClick, onChange tests */ });
     describe("Accessibility", () => {
-        describe("axe", () => {
-            it("should have no a11y violations", async () => {
-                // Arrange
-                // Act
-                const {container} = render(<MyComponent />);
-
-                // Assert
-                await expect(container).toHaveNoA11yViolations();
-            });
-
-            it("should have no a11y violations when disabled", async () => {});
-        });
-
-        describe("ARIA", () => {
-            it("should set aria props on the correct element", () => {});
-            it("should set aria-disabled when disabled", () => {});
-        });
-
-        describe("Focus", () => {
-            it("should focus element when autoFocus is true", () => {});
-        });
-
-        describe("Keyboard Interactions", () => {
-            it("should trigger action when Enter is pressed", () => {});
-        });
+        describe("axe", () => { /* toHaveNoA11yViolations tests */ });
+        describe("ARIA", () => { /* aria attribute tests */ });
+        describe("Focus", () => { /* focus management tests */ });
+        describe("Keyboard Interactions", () => { /* keyboard nav tests */ });
     });
 });
 ```

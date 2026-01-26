@@ -95,21 +95,12 @@ export default {
 
 ### Title Naming Convention
 
-**✅ Follow the hierarchy:**
+**✅ Follow the hierarchy (avoid flat titles like "Button Stories"):**
 
 ```tsx
-// ✅ Good - Clear hierarchy
 title: "Packages / Button / Button"
 title: "Packages / Dropdown / SingleSelect"
 title: "Packages / Button / Testing / Snapshots / ActivityButton"
-```
-
-**❌ Avoid flat or unclear titles:**
-
-```tsx
-// ❌ Bad
-title: "Button Stories"
-title: "Components"
 ```
 
 ## Story Patterns
@@ -301,42 +292,14 @@ export default {
 
 ## Styling in Stories
 
-### Aphrodite Styles
-
-**✅ Define styles using StyleSheet.create:**
+**✅ Use `StyleSheet.create` with Wonder Blocks tokens (avoid hard-coded values):**
 
 ```tsx
-const styles = StyleSheet.create({
-    container: {
-        width: "100%",
-        gap: sizing.size_160,
-    },
-    row: {
-        flexDirection: "row",
-        alignItems: "center",
-        gap: spacing.medium_16,
-    },
-});
-```
-
-**✅ Use Wonder Blocks tokens for values:**
-
-```tsx
-// ✅ Good - Use tokens
 const styles = StyleSheet.create({
     container: {
         gap: sizing.medium_16,
         padding: sizing.size_160,
         backgroundColor: semanticColor.core.background.base.subtle,
-    },
-});
-
-// ❌ Avoid - Hard-coded values
-const styles = StyleSheet.create({
-    container: {
-        gap: 16,
-        padding: 10,
-        backgroundColor: "#f0f0f0",
     },
 });
 ```
@@ -523,70 +486,13 @@ export const Default: StoryComponentType = {
 };
 ```
 
-**✅ Combine actions with state updates:**
-
-```tsx
-export const Interactive: StoryComponentType = {
-    render: function Render(args) {
-        const [value, setValue] = React.useState("");
-
-        const handleChange = (newValue: string) => {
-            action("onChange")(newValue);
-            setValue(newValue);
-        };
-
-        return <Component value={value} onChange={handleChange} />;
-    },
-};
-```
+For stateful stories, combine actions with state updates: `action("onChange")(newValue); setValue(newValue);`
 
 ## Common Pitfalls to Avoid
 
-**❌ Don't mix testing snapshots with documentation stories:**
-
-```tsx
-// ❌ Bad - Testing story in documentation
-export default {
-    title: "Packages / Button", // Main docs path
-    // ... testing configurations
-};
-
-// ✅ Good - Separate testing stories
-export default {
-    title: "Packages / Button / Testing / Snapshots",
-    tags: ["!autodocs"],
-};
-```
-
-**❌ Don't forget to disable snapshots when appropriate:**
-
-```tsx
-// ❌ Bad - No chromatic config for interactive-only story
-export const WithForm: StoryComponentType = {
-    render: () => <form>{/* ... */}</form>,
-};
-
-// ✅ Good - Explicitly disable snapshots
-export const WithForm: StoryComponentType = {
-    render: () => <form>{/* ... */}</form>,
-    parameters: {
-        chromatic: {
-            // Form submission requires user interaction
-            disableSnapshot: true,
-        },
-    },
-};
-```
-
-**❌ Don't use `React.FC` for component props:**
-
-```tsx
-// ❌ Bad
-const Component: React.FC<Props> = (props) => {/* ... */};
-
-// ✅ Good
-const Component = (props: Props) => {/* ... */};
-```
+- ❌ **Don't mix testing snapshots with documentation stories** - Use `title: "Packages / Button / Testing / Snapshots"` with `tags: ["!autodocs"]` for snapshot stories
+- ❌ **Don't forget to disable snapshots** - Add `chromatic: {disableSnapshot: true}` for interactive-only stories
+- ❌ **Don't use `React.FC`** - Use `(props: Props) =>` instead
 
 ## Best Practices Summary
 
