@@ -329,18 +329,6 @@ export const WithAlternateLocale: Story = {
         locale: fr,
         inputAriaLabel: "Choisir ou entrer une date",
     },
-    parameters: {
-        chromatic: {
-            // Re-enable snapshots for this story since the calendar is visible
-            disableSnapshot: false,
-            modes: {
-                small: allModes.small,
-                large: allModes.large,
-                thunderblocks: allModes.themeThunderBlocks,
-                "default rtl": allModes["themeDefault rtl"],
-            },
-        },
-    },
 };
 
 /**
@@ -358,15 +346,6 @@ export const SpanishLocalizationTextFormat: Story = {
         locale: es,
         inputAriaLabel: "Elegir o introducir una fecha",
     },
-    parameters: {
-        chromatic: {
-            disableSnapshot: false,
-            modes: {
-                small: allModes.small,
-                large: allModes.large,
-            },
-        },
-    },
 };
 
 /**
@@ -382,14 +361,5 @@ export const SpanishLocalizationNumericFormat: Story = {
         updateDate: () => {},
         locale: es,
         inputAriaLabel: "Elegir o introducir una fecha",
-    },
-    parameters: {
-        chromatic: {
-            disableSnapshot: false,
-            modes: {
-                small: allModes.small,
-                large: allModes.large,
-            },
-        },
     },
 };
