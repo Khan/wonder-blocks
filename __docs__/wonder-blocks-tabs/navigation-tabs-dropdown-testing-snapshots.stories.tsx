@@ -12,7 +12,7 @@ import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
-    title: "Packages / Tabs / NavigationTabs / Subcomponents / NavigationTabsDropdown / Testing / NavigationTabsDropdown - Snapshots",
+    title: "Packages / Tabs / Testing / NavigationTabsDropdown - Snapshots",
     component: NavigationTabsDropdown,
     tags: ["!autodocs"],
     parameters: {

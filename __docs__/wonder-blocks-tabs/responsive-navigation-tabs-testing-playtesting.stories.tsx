@@ -7,7 +7,7 @@ import {
 } from "./responsive-navigation-tabs.stories";
 
 export default {
-    title: "Packages / Tabs / ResponsiveNavigationTabs / Testing / Responsive Navigation Tabs - Playtesting",
+    title: "Packages / Tabs / Testing / ResponsiveNavigationTabs - Playtesting",
     parameters: {
         /** These stories are used for testing purposes only so we disable snapshots */
         chromatic: {disableSnapshot: true},

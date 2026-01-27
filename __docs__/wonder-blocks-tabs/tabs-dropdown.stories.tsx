@@ -8,7 +8,7 @@ import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
-    title: "Packages / Tabs / Tabs / Subcomponents / TabsDropdown",
+    title: "Packages / Tabs / ResponsiveTabs / Subcomponents / TabsDropdown",
     component: TabsDropdown,
     parameters: {
         chromatic: {
