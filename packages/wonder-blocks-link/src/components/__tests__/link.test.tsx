@@ -692,6 +692,27 @@ describe("Link", () => {
                 // Assert
                 expect(screen.queryByRole("img")).not.toBeInTheDocument();
             });
+
+            it("should only include the label in the accessible name if the icons are marked as decorative only", () => {
+                // Arrange
+                // Act
+                render(
+                    <Link
+                        href="/"
+                        startIcon={
+                            <Icon>
+                                <img src="icon.svg" alt="" />
+                            </Icon>
+                        }
+                        endIcon={<PhosphorIcon icon={plusIcon} />}
+                    >
+                        Label
+                    </Link>,
+                );
+
+                // Assert
+                expect(screen.getByRole("link")).toHaveAccessibleName("Label");
+            });
         });
     });
 });
