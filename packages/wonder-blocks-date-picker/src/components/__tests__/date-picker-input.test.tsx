@@ -220,6 +220,33 @@ describe("DatePickerInput", () => {
         );
     });
 
+    it("calls onChange when a valid date is pasted", async () => {
+        // Arrange
+        const onChangeSpy = jest.fn();
+        render(
+            <DatePickerInput
+                dateFormat="YYYY-MM-DD"
+                value=""
+                parseDate={TemporalLocaleUtils.parseDateToJsDate}
+                onChange={onChangeSpy}
+                testId="date-picker-input"
+            />,
+        );
+
+        // Act
+        const input = screen.getByTestId("date-picker-input");
+        await userEvent.click(input);
+        await userEvent.paste("2021-05-14");
+
+        // Assert
+        expect(onChangeSpy).toHaveBeenCalledWith(
+            TemporalLocaleUtils.temporalDateToJsDate(
+                Temporal.PlainDate.from("2021-05-14"),
+            ),
+            {},
+        );
+    });
+
     it("should allow clicking the input by default", async () => {
         // Arrange
         const onClickSpy = jest.fn();

@@ -381,9 +381,8 @@ describe("DatePicker", () => {
         await userEvent.tab();
 
         // Assert
-        const gridcell = screen.getByRole("gridcell", {selected: true});
         expect(
-            within(gridcell).getByRole("button", {
+            screen.getByRole("button", {
                 name: "Monday, May 10th, 2021, selected",
             }),
         ).toBeInTheDocument();
