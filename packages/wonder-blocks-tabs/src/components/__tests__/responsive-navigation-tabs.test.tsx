@@ -376,9 +376,10 @@ describe("ResponsiveNavigationTabs", () => {
                 );
 
                 // Assert
-                expect(
-                    screen.getByRole("navigation", {name: "Main navigation"}),
-                ).toHaveAttribute("aria-label", "Main navigation");
+                expect(screen.getByRole("navigation")).toHaveAttribute(
+                    "aria-label",
+                    "Main navigation",
+                );
             });
 
             it("should use the aria-labelledby prop", () => {
