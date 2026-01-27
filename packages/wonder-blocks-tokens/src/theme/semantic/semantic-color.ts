@@ -93,9 +93,9 @@ const core = {
      */
     foreground: {
         instructive: {
-            subtle: color.blue,
-            default: color.activeBlue,
-            strong: color.offBlack,
+            subtle: color.fadedBlue,
+            default: color.blue,
+            strong: color.activeBlue,
         },
         neutral: {
             subtle: color.fadedOffBlack64,
@@ -103,19 +103,19 @@ const core = {
             strong: color.offBlack,
         },
         critical: {
-            subtle: color.red,
-            default: color.activeRed,
-            strong: color.offBlack,
+            subtle: color.fadedRed,
+            default: color.red,
+            strong: color.activeRed,
         },
         success: {
-            subtle: color.green,
-            default: color.activeGreen,
-            strong: color.offBlack,
+            subtle: color.fadedGreen24,
+            default: color.green,
+            strong: color.activeGreen,
         },
         warning: {
-            subtle: color.gold,
-            default: color.activeGold,
-            strong: color.offBlack,
+            subtle: color.fadedGold24,
+            default: color.gold,
+            strong: color.activeGold,
         },
         disabled: {
             subtle: color.fadedOffBlack16,
@@ -747,7 +747,7 @@ export const semanticColor = {
                 background: core.background.instructive.subtle,
                 border: core.border.instructive.subtle,
                 icon: core.foreground.instructive.default,
-                text: core.foreground.instructive.strong,
+                text: core.foreground.neutral.strong,
             },
             strong: {
                 ...sharedFeedbackStrongTokens,
@@ -759,7 +759,7 @@ export const semanticColor = {
                 background: core.background.success.subtle,
                 border: core.border.success.subtle,
                 icon: core.foreground.success.default,
-                text: core.foreground.success.strong,
+                text: core.foreground.neutral.strong,
             },
             strong: {
                 ...sharedFeedbackStrongTokens,
@@ -771,7 +771,7 @@ export const semanticColor = {
                 background: core.background.warning.subtle,
                 border: core.border.warning.default,
                 icon: core.foreground.warning.default,
-                text: core.foreground.warning.strong,
+                text: core.foreground.neutral.strong,
             },
             strong: {
                 ...sharedFeedbackStrongTokens,
@@ -783,7 +783,7 @@ export const semanticColor = {
                 background: core.background.critical.subtle,
                 border: core.border.critical.subtle,
                 icon: core.foreground.critical.default,
-                text: core.foreground.critical.strong,
+                text: core.foreground.neutral.strong,
             },
             strong: {
                 ...sharedFeedbackStrongTokens,
