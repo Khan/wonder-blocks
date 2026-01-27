@@ -61,7 +61,7 @@ describe("TemporalLocaleUtils", () => {
             expect(result).toBe("05/07/2021");
         });
 
-        it("should use ISO format when format is null", () => {
+        it("should use locale-aware format when format is null", () => {
             // Arrange
             const testDate = Temporal.PlainDate.from("2021-05-07");
 
@@ -69,10 +69,10 @@ describe("TemporalLocaleUtils", () => {
             const result = formatDate(testDate, null, "en-US");
 
             // Assert
-            expect(result).toBe("2021-05-07");
+            expect(result).toBe("5/7/2021");
         });
 
-        it("should use ISO format when format is undefined", () => {
+        it("should use locale-aware format when format is undefined", () => {
             // Arrange
             const testDate = Temporal.PlainDate.from("2021-05-07");
 
@@ -80,10 +80,10 @@ describe("TemporalLocaleUtils", () => {
             const result = formatDate(testDate, undefined, "en-US");
 
             // Assert
-            expect(result).toBe("2021-05-07");
+            expect(result).toBe("5/7/2021");
         });
 
-        it("should use ISO format when format is empty array", () => {
+        it("should use locale-aware format when format is empty array", () => {
             // Arrange
             const testDate = Temporal.PlainDate.from("2021-05-07");
 
@@ -91,7 +91,7 @@ describe("TemporalLocaleUtils", () => {
             const result = formatDate(testDate, [] as any, "en-US");
 
             // Assert
-            expect(result).toBe("2021-05-07");
+            expect(result).toBe("5/7/2021");
         });
 
         it("should use first format when format is an array", () => {
@@ -213,6 +213,96 @@ describe("TemporalLocaleUtils", () => {
             // Assert
             expect(result).toBe("May 7, 2021");
         });
+
+        it("should format date with L format (locale-aware short date) for en-US", () => {
+            // Arrange
+            const testDate = Temporal.PlainDate.from("2026-01-20");
+
+            // Act
+            const result = formatDate(testDate, "L", "en-US");
+
+            // Assert
+            expect(result).toBe("1/20/2026");
+        });
+
+        it("should format date with L format (locale-aware short date) for de-DE", () => {
+            // Arrange
+            const testDate = Temporal.PlainDate.from("2026-01-20");
+
+            // Act
+            const result = formatDate(testDate, "L", "de-DE");
+
+            // Assert
+            expect(result).toBe("20.1.2026");
+        });
+
+        it("should format date with L format (locale-aware short date) for bg", () => {
+            // Arrange
+            const testDate = Temporal.PlainDate.from("2026-01-20");
+
+            // Act
+            const result = formatDate(testDate, "L", "bg");
+
+            // Assert
+            // Bulgarian includes " г." (abbreviation for "година" = year) suffix
+            expect(result).toMatch(/^20\.0?1\.2026/);
+        });
+
+        it("should format date with LL format (locale-aware long date) for en-US", () => {
+            // Arrange
+            const testDate = Temporal.PlainDate.from("2026-01-20");
+
+            // Act
+            const result = formatDate(testDate, "LL", "en-US");
+
+            // Assert
+            expect(result).toBe("January 20, 2026");
+        });
+
+        it("should default to locale-aware short date when format is undefined", () => {
+            // Arrange
+            const testDate = Temporal.PlainDate.from("2026-01-20");
+
+            // Act
+            const result = formatDate(testDate, undefined, "de-DE");
+
+            // Assert
+            expect(result).toBe("20.1.2026");
+        });
+
+        it("should default to locale-aware short date when format is null", () => {
+            // Arrange
+            const testDate = Temporal.PlainDate.from("2026-01-20");
+
+            // Act
+            const result = formatDate(testDate, null, "en-US");
+
+            // Assert
+            expect(result).toBe("1/20/2026");
+        });
+
+        it("should format date with explicit dateStyle:short", () => {
+            // Arrange
+            const testDate = Temporal.PlainDate.from("2026-01-20");
+
+            // Act
+            const result = formatDate(testDate, "dateStyle:short", "de-DE");
+
+            // Assert
+            // dateStyle:short uses 2-digit year by default
+            expect(result).toMatch(/20\.0?1\.26/);
+        });
+
+        it("should format date with explicit dateStyle:long", () => {
+            // Arrange
+            const testDate = Temporal.PlainDate.from("2026-01-20");
+
+            // Act
+            const result = formatDate(testDate, "dateStyle:long", "en-US");
+
+            // Assert
+            expect(result).toBe("January 20, 2026");
+        });
     });
 
     describe("parseDate", () => {
@@ -306,6 +396,50 @@ describe("TemporalLocaleUtils", () => {
 
             // Assert
             expect(result?.toString()).toBe("2024-01-15");
+        });
+
+        it("should parse locale-aware date with L format for en-US", () => {
+            // Arrange
+            const input = "1/20/2026";
+
+            // Act
+            const result = parseDate(input, "L", "en-US");
+
+            // Assert
+            expect(result?.toString()).toBe("2026-01-20");
+        });
+
+        it("should parse locale-aware date with L format for de-DE", () => {
+            // Arrange
+            const input = "20.1.2026";
+
+            // Act
+            const result = parseDate(input, "L", "de-DE");
+
+            // Assert
+            expect(result?.toString()).toBe("2026-01-20");
+        });
+
+        it("should parse locale-aware date with L format for bg (with era suffix)", () => {
+            // Arrange
+            const input = "20.01.2026";
+
+            // Act
+            const result = parseDate(input, "L", "bg");
+
+            // Assert
+            expect(result?.toString()).toBe("2026-01-20");
+        });
+
+        it("should parse padded locale-aware date for de-DE", () => {
+            // Arrange
+            const input = "05.07.2021";
+
+            // Act
+            const result = parseDate(input, "L", "de-DE");
+
+            // Assert
+            expect(result?.toString()).toBe("2021-07-05");
         });
 
         it("should reject partial or invalid year", () => {

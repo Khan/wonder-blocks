@@ -5,34 +5,46 @@ import {CustomModifiers} from "./types";
 export const enUSLocaleCode = "en-US";
 /**
  * Utility functions for working with Temporal dates in react-day-picker.
- * These replace the MomentLocaleUtils that were previously used.
+ * Uses Intl.DateTimeFormat for locale-aware date formatting and parsing.
  *
  * Question: Should we move this to a separate package?
  */
 
 /**
  * Format a Temporal.PlainDate using a format string.
- * Supports a subset of moment.js format tokens for compatibility.
+ * Supports locale-aware formatting using Intl.DateTimeFormat and fixed format tokens.
  *
  * @param date - The Temporal.PlainDate to format
  * @param format - The format string(s) to use for formatting:
- *   - **string**: Uses the specified format (e.g., "YYYY-MM-DD", "MMM D, YYYY")
+ *   - **"L"**: Locale-aware short date with full year (e.g., "1/20/2026" in en-US, "20.01.2026" in de-DE, "20/01/2026" in bg)
+ *   - **"LL"**: Locale-aware long date with full month name (e.g., "January 20, 2026" in en-US, "20 януари 2026 г." in bg)
+ *   - **"dateStyle:short|medium|long|full"**: Explicit Intl.DateTimeFormat dateStyle values
+ *   - **"YYYY-MM-DD"**: ISO 8601 format (e.g., "2024-01-15")
+ *   - **"MM/DD/YYYY"**: Fixed US numeric format (always month/day/year regardless of locale)
+ *   - **"MMMM D, YYYY"**: Text format with localized month name but US order
  *   - **Array<string>**: Uses the **first** format in the array (ignores the rest)
- *   - **null**: Returns ISO 8601 format (YYYY-MM-DD)
- *   - **undefined**: Returns ISO 8601 format (YYYY-MM-DD)
+ *   - **null/undefined**: Defaults to locale-aware short date (same as "L")
  * @param locale - The locale to use for formatting. Accepts:
  *   - **Locale object** from react-day-picker (e.g., `es`, `fr`)
- *   - **string** locale code (e.g., "en-US", "es")
+ *   - **string** locale code (e.g., "en-US", "de-DE", "bg")
  *   - **undefined**: defaults to "en-US"
  * @returns The formatted date string
  *
  * @example
- * formatDate(date, "YYYY-MM-DD", "en-US") // => "2024-01-15"
- * formatDate(date, "YYYY-MM-DD", es) // => "2024-01-15" (using Locale object)
- * formatDate(date, ["MMM D, YYYY", "M/D/YYYY"], "en-US") // => "Jan 15, 2024" (uses first format)
- * formatDate(date, null, "en-US") // => "2024-01-15" (ISO format)
- * formatDate(date, undefined, "en-US") // => "2024-01-15" (ISO format)
- * formatDate(date, "MMM D", "invalid-locale") // => "2024-01-15" (falls back to ISO on error)
+ * // Locale-aware formatting (recommended for international apps)
+ * formatDate(date, "L", "en-US") // => "1/15/2024"
+ * formatDate(date, "L", "de-DE") // => "15.01.2024"
+ * formatDate(date, "L", "bg") // => "15.01.2024"
+ * formatDate(date, "LL", "en-US") // => "January 15, 2024"
+ * formatDate(date, "LL", "bg") // => "15 януари 2024 г."
+ *
+ * // Fixed format (always same order regardless of locale)
+ * formatDate(date, "MM/DD/YYYY", "de-DE") // => "01/15/2024" (US order even in German locale)
+ * formatDate(date, "YYYY-MM-DD", "en-US") // => "2024-01-15" (ISO format)
+ *
+ * // Default behavior
+ * formatDate(date, undefined, "de-DE") // => "15.01.2024" (locale-aware short date)
+ * formatDate(date, null, "en-US") // => "1/15/2024" (locale-aware short date)
  *
  * @remarks
  * If formatting fails (e.g., invalid locale, unsupported format), the function
@@ -52,8 +64,42 @@ export function formatDate(
     const formatString = Array.isArray(format) ? format[0] : format;
 
     if (!formatString) {
-        // Default format: ISO 8601 (YYYY-MM-DD)
-        return date.toString();
+        // Default format: Locale-aware short date with 4-digit year
+        return date.toLocaleString(localeCode, {
+            year: "numeric",
+            month: "numeric",
+            day: "numeric",
+        });
+    }
+
+    // "L" format: Locale-aware short date with 4-digit year
+    // (e.g., "1/20/2026" in en-US, "20.01.2026" in de-DE)
+    if (formatString === "L") {
+        return date.toLocaleString(localeCode, {
+            year: "numeric",
+            month: "numeric",
+            day: "numeric",
+        });
+    }
+
+    // "LL" format: Locale-aware long date (e.g., "January 20, 2026" in en-US)
+    if (formatString === "LL") {
+        return date.toLocaleString(localeCode, {dateStyle: "long"});
+    }
+
+    // Support explicit dateStyle values
+    if (
+        formatString === "dateStyle:short" ||
+        formatString === "dateStyle:medium" ||
+        formatString === "dateStyle:long" ||
+        formatString === "dateStyle:full"
+    ) {
+        const style = formatString.split(":")[1] as
+            | "short"
+            | "medium"
+            | "long"
+            | "full";
+        return date.toLocaleString(localeCode, {dateStyle: style});
     }
 
     // Common format patterns
@@ -286,7 +332,7 @@ function getMonths(locale?: string): string[][] {
 // Helper functions
 
 /**
- * Map moment.js format patterns to Intl.DateTimeFormat options.
+ * Map format pattern tokens to Intl.DateTimeFormat options.
  * Used by toLocaleString() to format Temporal.PlainDate.
  */
 function getOptionsForFormat(format: string): Intl.DateTimeFormatOptions {
@@ -327,6 +373,101 @@ function getOptionsForFormat(format: string): Intl.DateTimeFormatOptions {
     return options;
 }
 
+/**
+ * Parse a locale-aware date string (format "L" or dateStyle).
+ * Uses Intl.DateTimeFormat to understand the locale's date pattern.
+ */
+function parseLocaleAwareDate(
+    str: string,
+    locale?: string,
+): Temporal.PlainDate | undefined {
+    const localeStr = locale || enUSLocaleCode;
+    const cleaned = str.trim();
+
+    if (!cleaned) {
+        return undefined;
+    }
+
+    try {
+        // Create a formatter with short date style to get the locale's pattern
+        const formatter = new Intl.DateTimeFormat(localeStr, {
+            dateStyle: "short",
+        });
+
+        // Use a known date to analyze the pattern
+        const testDate = new Date(2020, 0, 15); // Jan 15, 2020
+        const parts = formatter.formatToParts(testDate);
+
+        // Extract the order and separators
+        type PartType = "day" | "month" | "year" | "literal";
+        const pattern: Array<{type: PartType; value: string}> = parts.map(
+            (p) => ({
+                type: p.type as PartType,
+                value: p.value,
+            }),
+        );
+
+        // Find separators (literals between date parts)
+        const separators = pattern
+            .filter((p) => p.type === "literal")
+            .map((p) => p.value);
+
+        // Split input by all possible separators
+        const inputParts = cleaned.split(
+            new RegExp(`[${separators.map((s) => `\\${s}`).join("")}]`),
+        );
+
+        if (inputParts.length !== 3) {
+            return undefined;
+        }
+
+        // Map parts to day/month/year based on locale pattern
+        const dateComponents: {
+            day?: number;
+            month?: number;
+            year?: number;
+        } = {};
+        let partIndex = 0;
+
+        for (const patternPart of pattern) {
+            if (patternPart.type === "literal") {
+                continue;
+            }
+
+            const value = parseInt(inputParts[partIndex], 10);
+            if (isNaN(value)) {
+                return undefined;
+            }
+
+            dateComponents[patternPart.type] = value;
+            partIndex++;
+        }
+
+        // Validate ranges
+        if (
+            !dateComponents.year ||
+            !dateComponents.month ||
+            !dateComponents.day ||
+            dateComponents.month < 1 ||
+            dateComponents.month > 12 ||
+            dateComponents.day < 1 ||
+            dateComponents.day > 31 ||
+            dateComponents.year < 1000 ||
+            dateComponents.year > 9999
+        ) {
+            return undefined;
+        }
+
+        return Temporal.PlainDate.from({
+            year: dateComponents.year,
+            month: dateComponents.month,
+            day: dateComponents.day,
+        });
+    } catch {
+        return undefined;
+    }
+}
+
 function parseWithFormat(
     str: string,
     format: string | null | undefined,
@@ -334,6 +475,11 @@ function parseWithFormat(
 ): Temporal.PlainDate | undefined {
     if (!format) {
         return undefined;
+    }
+
+    // Handle locale-aware formats ("L", "LL", or dateStyle)
+    if (format === "L" || format === "LL" || format.startsWith("dateStyle:")) {
+        return parseLocaleAwareDate(str, locale);
     }
 
     // Handle common formats manually

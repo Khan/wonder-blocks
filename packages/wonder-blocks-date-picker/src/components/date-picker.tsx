@@ -29,6 +29,15 @@ interface Props {
     updateDate: (arg1?: Temporal.PlainDate | null | undefined) => any;
     /**
      * Used to format the value as a valid Date.
+     * If not specified, defaults to locale-aware short date format.
+     *
+     * Supported formats:
+     * - **undefined**: Locale-aware short date (default - uses Intl.DateTimeFormat with full year)
+     * - **"L"**: Locale-aware short date (e.g., "1/20/2026" in en-US, "20.01.2026" in de-DE, "20/01/2026" in bg)
+     * - **"LL"**: Locale-aware long date (e.g., "January 20, 2026" in en-US, "20 януари 2026 г." in bg)
+     * - **"MM/DD/YYYY"**: Fixed US format (e.g., "01/20/2026") - always US order regardless of locale
+     * - **"MMMM D, YYYY"**: Text format (e.g., "January 20, 2026") - month name localized but US order
+     * - **"dateStyle:short|medium|long|full"**: Explicit Intl.DateTimeFormat dateStyle values
      */
     dateFormat?: Array<string> | string;
     /**

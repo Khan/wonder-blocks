@@ -335,29 +335,28 @@ export const WithAlternateLocale: Story = {
  * DatePicker with Spanish localization showing text-based date format.
  * For example, "January 16, 2026" displays as "enero 16, 2026" in the input field.
  * The calendar overlay also shows Spanish month names and day abbreviations.
- * This uses the "MMMM D, YYYY" format which displays the full month name in Spanish.
+ * This uses the "LL" dateFormat which displays the full month name in Spanish.
  */
 export const SpanishLocalizationTextFormat: Story = {
     render: (args) => <DatePickerWithOpenOverlay {...args} />,
     args: {
         selectedDate: Temporal.PlainDate.from("2026-01-16"),
-        dateFormat: "MMMM D, YYYY",
         updateDate: () => {},
         locale: es,
+        dateFormat: "LL",
         inputAriaLabel: "Elegir o introducir una fecha",
     },
 };
 
 /**
  * DatePicker with Spanish localization showing numeric date format.
- * Displays dates in MM/DD/YYYY format for consistency across locales.
+ * Displays dates in "L"" format for accuracy across locales.
  * For example, January 16, 2026 displays as "01/16/2026" in the input field.
  */
 export const SpanishLocalizationNumericFormat: Story = {
     render: (args) => <DatePickerWithOpenOverlay {...args} />,
     args: {
         selectedDate: Temporal.PlainDate.from("2026-01-16"),
-        dateFormat: "MM/DD/YYYY",
         updateDate: () => {},
         locale: es,
         inputAriaLabel: "Elegir o introducir una fecha",
