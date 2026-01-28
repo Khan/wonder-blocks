@@ -25,7 +25,7 @@ const Check = function (props: CheckProps): React.ReactElement {
     // Using `strong` for disabled as we are applying an alpha to the listbox.
     const iconColor = disabled
         ? semanticColor.core.foreground.disabled.strong
-        : semanticColor.core.foreground.instructive.strong;
+        : semanticColor.core.foreground.instructive.default;
     return (
         <PhosphorIcon
             color={iconColor}
