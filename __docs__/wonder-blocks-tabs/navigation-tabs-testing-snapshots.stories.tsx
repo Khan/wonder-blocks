@@ -311,9 +311,24 @@ export const Scenarios: Story = {
                     ],
                 },
             },
+            {
+                name: "Show divider",
+                props: {
+                    children: generateChildren(4, "Navigation Tab Item"),
+                    showDivider: true,
+                },
+            },
         ];
         return (
-            <ScenariosLayout scenarios={scenarios}>
+            <ScenariosLayout
+                scenarios={scenarios}
+                styles={{
+                    root: {
+                        width: "100%",
+                        alignItems: "stretch",
+                    },
+                }}
+            >
                 {(props, name) => (
                     <NavigationTabs {...props} aria-label={name} />
                 )}

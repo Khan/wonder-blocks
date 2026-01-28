@@ -4,6 +4,7 @@ import {StyleType, View} from "@khanacademy/wonder-blocks-core";
 import {Tabs, TabsProps} from "./tabs";
 import {TabsDropdown, TabsDropdownProps} from "./tabs-dropdown";
 import {AriaLabelOrAriaLabelledby} from "./types";
+import {useResponsiveLayout} from "../hooks/use-responsive-layout";
 
 export type ResponsiveTabItem = {
     /**
@@ -143,89 +144,16 @@ export const ResponsiveTabs = (props: Props) => {
         ...ariaProps
     } = props;
 
-    const [showDropdown, setShowDropdown] = React.useState(false);
     const tabsRef = React.useRef<HTMLDivElement>(null);
+    const scrollableTabsRef = React.useRef<HTMLDivElement>(null);
     const containerRef = React.useRef<HTMLDivElement>(null);
 
-    // Store the width needed for tabs to display without scrolling. This is so
-    // we can switch back to the tabs view when the container width is wide enough.
-    const tabsWidthRef = React.useRef<number | null>(null);
-
-    // Create a signature of the tabs to detect changes (tab added/removed, label changed)
-    const tabsSignature = React.useMemo(
-        () => tabs.map((t) => `${t.id}:${t.label}`).join("|"),
-        [tabs],
-    );
-
-    const checkOverflow = React.useCallback(() => {
-        const container = containerRef.current;
-        if (!container) {
-            return;
-        }
-        if (!showDropdown && tabsRef.current) {
-            // Currently showing tabs - check for overflow
-            // The tablist wrapper is the first child of the tabs root
-            const tablistWrapper = tabsRef.current.firstElementChild;
-
-            if (tablistWrapper) {
-                const hasOverflow =
-                    tablistWrapper.scrollWidth > tablistWrapper.clientWidth;
-
-                if (hasOverflow) {
-                    // Store the width before switching
-                    tabsWidthRef.current = tablistWrapper.scrollWidth;
-                    setShowDropdown(true);
-                }
-            }
-        } else if (showDropdown && tabsWidthRef.current) {
-            // Currently showing dropdown - check if we have enough space
-            const containerWidth = container.clientWidth;
-
-            // Switch back to tabs if container is wide enough
-            if (containerWidth >= tabsWidthRef.current) {
-                setShowDropdown(false);
-            }
-        }
-    }, [showDropdown, containerRef]);
-
-    React.useEffect(() => {
-        // This effect handles the case where the length of tabs or the tabs
-        // labels change. This determines whether to switch to the dropdown or
-        // tabs view.
-        if (showDropdown) {
-            // When tabsSignature changes and dropdown is shown, reset to tabs
-            // view so we can re-measure and see if we can switch back to tabs
-            tabsWidthRef.current = null;
-            setShowDropdown(false);
-        } else {
-            // When tabsSignature changes and tabs view is shown, check for
-            // overflow
-            checkOverflow();
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps -- explicitly only depend on tabsSignature. We don't need this to respond to changes in showDropdown or checkOverflow
-    }, [tabsSignature]);
-
-    React.useEffect(() => {
-        const container = containerRef.current;
-        // ResizeObserver is supported in browsers we support, but not in jsdom
-        if (!container || !window.ResizeObserver) {
-            return;
-        }
-
-        const resizeObserver = new ResizeObserver(() => {
-            checkOverflow();
-        });
-
-        resizeObserver.observe(container);
-
-        return () => {
-            resizeObserver.disconnect();
-        };
-    }, [checkOverflow]);
-
-    React.useEffect(() => {
-        onLayoutChange?.(showDropdown ? "dropdown" : "tabs");
-    }, [showDropdown, onLayoutChange]);
+    const {showDropdown} = useResponsiveLayout({
+        tabs,
+        elementWithOverflowRef: scrollableTabsRef, // scrollableTabsRef is set on the element in Tabs with overflow-x: auto set
+        containerRef,
+        onLayoutChange,
+    });
 
     return (
         <View
@@ -253,6 +181,7 @@ export const ResponsiveTabs = (props: Props) => {
                     {...ariaProps}
                     key="tabs"
                     ref={tabsRef}
+                    scrollableElementRef={scrollableTabsRef}
                     tabs={tabs}
                     selectedTabId={selectedTabId}
                     onTabSelected={onTabSelected}

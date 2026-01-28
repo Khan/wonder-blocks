@@ -1,13 +1,13 @@
 import {Meta, StoryObj} from "@storybook/react-vite";
 import {expect, fn, waitFor, within} from "storybook/test";
-import {ResponsiveTabs} from "@khanacademy/wonder-blocks-tabs";
+import {ResponsiveNavigationTabs} from "@khanacademy/wonder-blocks-tabs";
 import {
-    Default as ResponsiveTabsDefault,
+    Default as ResponsiveNavigationTabsDefault,
     INITIAL_TABS_COUNT,
-} from "./responsive-tabs.stories";
+} from "./responsive-navigation-tabs.stories";
 
 export default {
-    title: "Packages / Tabs / ResponsiveTabs / Testing / Responsive Tabs - Playtesting",
+    title: "Packages / Tabs / ResponsiveNavigationTabs / Testing / Responsive Navigation Tabs - Playtesting",
     parameters: {
         /** These stories are used for testing purposes only so we disable snapshots */
         chromatic: {disableSnapshot: true},
@@ -20,7 +20,7 @@ export default {
                     // between layouts with a fade in animation. Because of this,
                     // the a11y check will fail on an in between state where the
                     // color is not yet updated to the final color. Note: This
-                    // a11y check is fully enabled for other ResponsiveTabs
+                    // a11y check is fully enabled for other ResponsiveNavigationTabs
                     // stories.
                     {
                         id: "color-contrast",
@@ -32,18 +32,17 @@ export default {
     },
     args: {
         onLayoutChange: fn(),
-        "aria-label": "Responsive Tabs",
     },
     tags: ["!autodocs"],
     globals: {
         theme: "thunderblocks",
     },
-} as Meta<typeof ResponsiveTabs>;
+} as Meta<typeof ResponsiveNavigationTabs>;
 
-type Story = StoryObj<typeof ResponsiveTabs>;
+type Story = StoryObj<typeof ResponsiveNavigationTabs>;
 
 export const ChangingLabelLength: Story = {
-    ...ResponsiveTabsDefault,
+    ...ResponsiveNavigationTabsDefault,
     globals: {
         viewport: {
             value: "large",
@@ -52,12 +51,10 @@ export const ChangingLabelLength: Story = {
     play: async ({args, canvasElement, userEvent}) => {
         const canvas = within(canvasElement.ownerDocument.body);
 
-        // Confirm the initial state using horizontal tabs
-        const tablist = await canvas.findByRole("tablist");
-        expect(tablist).toHaveAttribute("aria-label", "Responsive Tabs");
-
-        const tabs = await canvas.findAllByRole("tab");
-        expect(tabs).toHaveLength(INITIAL_TABS_COUNT);
+        // Confirm the initial state is using horizontal navigation tabs and showing
+        // all links
+        const links = await canvas.findAllByRole("link");
+        expect(links).toHaveLength(INITIAL_TABS_COUNT);
 
         expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
 
@@ -68,13 +65,10 @@ export const ChangingLabelLength: Story = {
 
         // Confirm the dropdown layout is used
         await waitFor(() => {
-            expect(canvas.queryByRole("tablist")).not.toBeInTheDocument();
+            expect(canvas.queryByRole("link")).not.toBeInTheDocument();
         });
-        await canvas.findByRole("button", {
-            name: "Tab 1 with a long label",
-        });
-        const opener = canvas.getByRole("button", {
-            name: "Tab 1 with a long label",
+        const opener = await canvas.findByRole("button", {
+            name: "Navigation tab 1 with a long label",
         });
         await userEvent.click(opener);
         const menuItems = await canvas.findAllByRole("menuitem");
@@ -87,18 +81,16 @@ export const ChangingLabelLength: Story = {
             canvas.getByRole("button", {name: "Update tab labels"}),
         );
 
-        // Confirm the horizontal tabs layout is used
-        await canvas.findByRole("tablist");
-
-        const tabsAfterReset = await canvas.findAllByRole("tab");
-        expect(tabsAfterReset).toHaveLength(INITIAL_TABS_COUNT);
+        // Confirm the horizontal navigation tabs layout is used
+        const linksAfterReset = await canvas.findAllByRole("link");
+        expect(linksAfterReset).toHaveLength(INITIAL_TABS_COUNT);
 
         expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
     },
 };
 
 export const AddingAndRemovingTabs: Story = {
-    ...ResponsiveTabsDefault,
+    ...ResponsiveNavigationTabsDefault,
     globals: {
         viewport: {
             value: "large",
@@ -107,12 +99,9 @@ export const AddingAndRemovingTabs: Story = {
     play: async ({args, canvasElement, userEvent}) => {
         const canvas = within(canvasElement.ownerDocument.body);
 
-        // Confirm the initial state using horizontal tabs
-        const tablist = await canvas.findByRole("tablist");
-        expect(tablist).toHaveAttribute("aria-label", "Responsive Tabs");
-
-        const tabs = await canvas.findAllByRole("tab");
-        expect(tabs).toHaveLength(INITIAL_TABS_COUNT);
+        // Confirm the initial state using horizontal navigation tabs
+        const links = await canvas.findAllByRole("link");
+        expect(links).toHaveLength(INITIAL_TABS_COUNT);
 
         expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
 
@@ -121,11 +110,12 @@ export const AddingAndRemovingTabs: Story = {
 
         // Confirm the dropdown layout is used
         await waitFor(() => {
-            expect(canvas.queryByRole("tablist")).not.toBeInTheDocument();
+            expect(canvas.queryByRole("link")).not.toBeInTheDocument();
         });
-        await canvas.findByRole("button", {name: "Tab 1"});
 
-        const opener = canvas.getByRole("button", {name: "Tab 1"});
+        const opener = await canvas.findByRole("button", {
+            name: "Navigation tab 1",
+        });
         await userEvent.click(opener);
         const menuItems = await canvas.findAllByRole("menuitem");
         expect(menuItems).toHaveLength(INITIAL_TABS_COUNT + 1);
@@ -137,18 +127,16 @@ export const AddingAndRemovingTabs: Story = {
             canvas.getByRole("button", {name: "Remove a tab"}),
         );
 
-        // Confirm the horizontal tabs layout is used
-        await canvas.findByRole("tablist");
-
-        const tabsAfterRemove = await canvas.findAllByRole("tab");
-        expect(tabsAfterRemove).toHaveLength(INITIAL_TABS_COUNT);
+        // Confirm the horizontal navigation tabs layout is used
+        const linksAfterRemove = await canvas.findAllByRole("link");
+        expect(linksAfterRemove).toHaveLength(INITIAL_TABS_COUNT);
 
         expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
     },
 };
 
 export const ChangingContainerWidth: Story = {
-    ...ResponsiveTabsDefault,
+    ...ResponsiveNavigationTabsDefault,
     globals: {
         viewport: {
             value: "large",
@@ -157,12 +145,9 @@ export const ChangingContainerWidth: Story = {
     play: async ({args, canvasElement, userEvent}) => {
         const canvas = within(canvasElement.ownerDocument.body);
 
-        // Confirm the initial state using horizontal tabs
-        const tablist = await canvas.findByRole("tablist");
-        expect(tablist).toHaveAttribute("aria-label", "Responsive Tabs");
-
-        const tabs = await canvas.findAllByRole("tab");
-        expect(tabs).toHaveLength(INITIAL_TABS_COUNT);
+        // Confirm the initial state using horizontal navigation tabs
+        const links = await canvas.findAllByRole("link");
+        expect(links).toHaveLength(INITIAL_TABS_COUNT);
 
         expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
 
@@ -173,11 +158,12 @@ export const ChangingContainerWidth: Story = {
 
         // Confirm the dropdown layout is used
         await waitFor(() => {
-            expect(canvas.queryByRole("tablist")).not.toBeInTheDocument();
+            expect(canvas.queryByRole("link")).not.toBeInTheDocument();
         });
-        await canvas.findByRole("button", {name: "Tab 1"});
 
-        const opener = canvas.getByRole("button", {name: "Tab 1"});
+        const opener = await canvas.findByRole("button", {
+            name: "Navigation tab 1",
+        });
         await userEvent.click(opener);
         const menuItems = await canvas.findAllByRole("menuitem");
         expect(menuItems).toHaveLength(INITIAL_TABS_COUNT);
@@ -189,18 +175,16 @@ export const ChangingContainerWidth: Story = {
             canvas.getByRole("button", {name: "Change container width"}),
         );
 
-        // Confirm the horizontal tabs layout is used
-        await canvas.findByRole("tablist");
-
-        const tabsAfterWidthChange = await canvas.findAllByRole("tab");
-        expect(tabsAfterWidthChange).toHaveLength(INITIAL_TABS_COUNT);
+        // Confirm the horizontal navigation tabs layout is used
+        const linksAfterWidthChange = await canvas.findAllByRole("link");
+        expect(linksAfterWidthChange).toHaveLength(INITIAL_TABS_COUNT);
 
         expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
     },
 };
 
 export const ChangingZoomLevel: Story = {
-    ...ResponsiveTabsDefault,
+    ...ResponsiveNavigationTabsDefault,
     globals: {
         viewport: {
             value: "large",
@@ -209,12 +193,9 @@ export const ChangingZoomLevel: Story = {
     play: async ({args, canvasElement, userEvent}) => {
         const canvas = within(canvasElement.ownerDocument.body);
 
-        // Confirm the initial state using horizontal tabs
-        const tablist = await canvas.findByRole("tablist");
-        expect(tablist).toHaveAttribute("aria-label", "Responsive Tabs");
-
-        const tabs = await canvas.findAllByRole("tab");
-        expect(tabs).toHaveLength(INITIAL_TABS_COUNT);
+        // Confirm the initial state using horizontal navigation tabs
+        const links = await canvas.findAllByRole("link");
+        expect(links).toHaveLength(INITIAL_TABS_COUNT);
 
         expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
 
@@ -225,11 +206,11 @@ export const ChangingZoomLevel: Story = {
 
         // Confirm the dropdown layout is used
         await waitFor(() => {
-            expect(canvas.queryByRole("tablist")).not.toBeInTheDocument();
+            expect(canvas.queryByRole("link")).not.toBeInTheDocument();
         });
-        await canvas.findByRole("button", {name: "Tab 1"});
-
-        const opener = canvas.getByRole("button", {name: "Tab 1"});
+        const opener = await canvas.findByRole("button", {
+            name: "Navigation tab 1",
+        });
         await userEvent.click(opener);
         const menuItems = await canvas.findAllByRole("menuitem");
         expect(menuItems).toHaveLength(INITIAL_TABS_COUNT);
@@ -241,18 +222,16 @@ export const ChangingZoomLevel: Story = {
             canvas.getByRole("button", {name: "Simulate zoom"}),
         );
 
-        // Confirm the horizontal tabs layout is used
-        await canvas.findByRole("tablist");
-
-        const tabsAfterZoomChange = await canvas.findAllByRole("tab");
-        expect(tabsAfterZoomChange).toHaveLength(INITIAL_TABS_COUNT);
+        // Confirm the horizontal navigation tabs layout is used
+        const linksAfterZoomChange = await canvas.findAllByRole("link");
+        expect(linksAfterZoomChange).toHaveLength(INITIAL_TABS_COUNT);
 
         expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
     },
 };
 
 export const TogglingIconInLabels: Story = {
-    ...ResponsiveTabsDefault,
+    ...ResponsiveNavigationTabsDefault,
     globals: {
         viewport: {
             value: "large",
@@ -261,12 +240,9 @@ export const TogglingIconInLabels: Story = {
     play: async ({args, canvasElement, userEvent}) => {
         const canvas = within(canvasElement.ownerDocument.body);
 
-        // Confirm the initial state using horizontal tabs
-        const tablist = await canvas.findByRole("tablist");
-        expect(tablist).toHaveAttribute("aria-label", "Responsive Tabs");
-
-        const tabs = await canvas.findAllByRole("tab");
-        expect(tabs).toHaveLength(INITIAL_TABS_COUNT);
+        // Confirm the initial state is using horizontal tabs
+        const links = await canvas.findAllByRole("link");
+        expect(links).toHaveLength(INITIAL_TABS_COUNT);
 
         expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
 
@@ -277,11 +253,11 @@ export const TogglingIconInLabels: Story = {
 
         // Confirm the dropdown layout is used
         await waitFor(() => {
-            expect(canvas.queryByRole("tablist")).not.toBeInTheDocument();
+            expect(canvas.queryByRole("link")).not.toBeInTheDocument();
         });
-        await canvas.findByRole("button", {name: "Tab 1"});
-
-        const opener = canvas.getByRole("button", {name: "Tab 1"});
+        const opener = await canvas.findByRole("button", {
+            name: "Navigation tab 1",
+        });
         await userEvent.click(opener);
         const menuItems = await canvas.findAllByRole("menuitem");
         expect(menuItems).toHaveLength(INITIAL_TABS_COUNT);
@@ -294,10 +270,8 @@ export const TogglingIconInLabels: Story = {
         );
 
         // Confirm the horizontal tabs layout is used
-        await canvas.findByRole("tablist");
-
-        const tabsAfterChange = await canvas.findAllByRole("tab");
-        expect(tabsAfterChange).toHaveLength(INITIAL_TABS_COUNT);
+        const linksAfterChange = await canvas.findAllByRole("link");
+        expect(linksAfterChange).toHaveLength(INITIAL_TABS_COUNT);
 
         expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
     },

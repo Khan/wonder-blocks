@@ -139,6 +139,11 @@ export type TabsProps = {
      * Defaults to `false`.
      */
     mountAllPanels?: boolean;
+    /**
+     * Optional ref to the scrollable wrapper element.
+     * This is useful for components that need to detect horizontal overflow.
+     */
+    scrollableElementRef?: React.RefObject<HTMLDivElement>;
 } & AriaLabelOrAriaLabelledby;
 
 /**
@@ -182,6 +187,7 @@ export const Tabs = React.forwardRef(function Tabs(
         animated = false,
         styles: stylesProp,
         mountAllPanels = false,
+        scrollableElementRef,
     } = props;
 
     /**
@@ -332,7 +338,7 @@ export const Tabs = React.forwardRef(function Tabs(
             style={[styles.tabs, stylesProp?.root]}
         >
             {/* Wrap the tablist so we can set relative positioning for the tab indicator */}
-            <StyledDiv style={styles.tablistWrapper}>
+            <StyledDiv ref={scrollableElementRef} style={styles.tablistWrapper}>
                 <Tablist
                     aria-label={ariaLabel}
                     aria-labelledby={ariaLabelledby}
