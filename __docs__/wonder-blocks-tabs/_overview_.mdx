@@ -1,0 +1,65 @@
+import {Meta, Canvas} from "@storybook/addon-docs/blocks";
+import * as ResponsiveNavigationTabs from "./responsive-navigation-tabs.stories";
+import * as ResponsiveTabs from "./responsive-tabs.stories";
+
+<Meta
+    title="Packages / Tabs / Overview"
+/>
+
+# wonder-blocks-tabs
+
+There are 2 types of components available to implement a tabbed layout:
+**ResponsiveTabs** and **ResponsiveNavigationTabs**.
+
+## ResponsiveNavigationTabs
+
+If the tabs in the layout are links, use `ResponsiveNavigationTabs`.
+
+
+<Canvas of={ResponsiveNavigationTabs.Default} />
+
+## ResponsiveTabs
+
+If the tabs are not links, use `ResponsiveTabs`. It follows the
+[ARIA APG Tabs Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/)
+and uses elements with `role=”tab”` and handles keyboard navigation for
+switching between tabs.
+
+<Canvas of={ResponsiveTabs.Default} />
+
+## Responsive Behaviour
+
+As described by the names of these components, `ResponsiveTabs` and
+`ResponsiveNavigationTabs` will change its layout based on if there is enough
+space for the traditional horizontal tabs layout. If there is not enough space,
+it will render the tabs in a dropdown instead using the Wonder Blocks
+ActionMenu component.
+
+Some things that could trigger the component to change layouts are:
+- zoom level
+- screen width or parent element width
+- the length of the tab labels
+- the number of labels
+
+Note: Be sure to test out both layouts when implementing these responsive
+components. For automated tests, note that the interactions and semantics to
+trigger tabs will be different in the dropdown layout since the dropdown needs
+to be opened before a tab can be selected.
+
+### Customization
+
+If you need to configure the behaviour of the tabs or dropdown layout, use the
+`tabsProps` or `dropdownProps` props for `ResponsiveTabs` and
+`ResponsiveNavigationTabs`. These props will configure the underlying tabs and
+dropdown components. For more details about what can be configured, see docs for
+`Tabs` and `NavigationTabs`.
+
+### Opting out of responsive behaviour
+
+For most cases, we strongly suggest using the `ResponsiveTabs` and `ResponsiveNavigationTabs`
+components. If there is a specific case where the tabs should not be responsive,
+use the `NavigationTabs` or `Tabs` components directly. Reach out to the
+Wonder Blocks team if you are running into limitations with the responsive
+components!
+
+

@@ -40,6 +40,21 @@ const ControlledResponsiveTabs = (args: PropsFor<typeof ResponsiveTabs>) => {
     );
 };
 
+export const Default: Story = {
+    render: ControlledResponsiveTabs,
+    args: {
+        selectedTabId: "tab-1",
+        tabs: [
+            {label: "Tab 1", id: "tab-1", panel: <div>Tab contents 1</div>},
+            {label: "Tab 2", id: "tab-2", panel: <div>Tab contents 2</div>},
+            {label: "Tab 3", id: "tab-3", panel: <div>Tab contents 3</div>},
+            {label: "Tab 4", id: "tab-4", panel: <div>Tab contents 4</div>},
+            {label: "Tab 5", id: "tab-5", panel: <div>Tab contents 5</div>},
+            {label: "Tab 6", id: "tab-6", panel: <div>Tab contents 6</div>},
+        ],
+    },
+};
+
 /**
  * ResponsiveTabs will switch between the tabs and dropdown layouts based on if
  * there is enough horizontal space to display the tabs.
@@ -50,7 +65,7 @@ const ControlledResponsiveTabs = (args: PropsFor<typeof ResponsiveTabs>) => {
  * - the width of the container or screen
  * - the zoom level
  */
-export const Default: Story = {
+export const Interactive: Story = {
     render: function Render(args) {
         const [tabsCount, setTabsCount] = React.useState(INITIAL_TABS_COUNT);
         const [showLongLabels, setShowLongLabels] = React.useState(false);
@@ -156,7 +171,7 @@ export const Default: Story = {
  * docs for more details.
  */
 export const CustomStyles: Story = {
-    render: Default.render,
+    render: Interactive.render,
     args: {
         styles: {
             root: {
