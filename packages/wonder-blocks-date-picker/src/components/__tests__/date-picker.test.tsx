@@ -419,6 +419,28 @@ describe("DatePicker", () => {
         });
     });
 
+    it("preserves partial input while editing date", async () => {
+        // Arrange
+        const selectedDate = Temporal.PlainDate.from("2026-01-16");
+        const updateDateMock = jest.fn();
+
+        render(
+            <DatePicker
+                selectedDate={selectedDate}
+                updateDate={updateDateMock}
+            />,
+        );
+
+        // Act - Select and delete the day portion "16" to replace it
+        await userEvent.tab();
+        const input = screen.getByRole("textbox");
+        await userEvent.clear(input);
+        await userEvent.type(input, "1/");
+
+        // Assert - Input should preserve partial value, not clear completely
+        expect(input).toHaveValue("1/");
+    });
+
     it("does not modify the current date if current input contains an invalid format", async () => {
         // Arrange
         const minDate = Temporal.PlainDate.from("2021-05-05");
@@ -919,10 +941,13 @@ describe("DatePicker", () => {
                 await userEvent.type(input, "January 20, 2026");
 
                 // Assert
-                const validCalls = updateDateMock.mock.calls.filter(
-                    (call) => call[0]?.toString() === "2026-01-20",
+                expect(updateDateMock).toHaveBeenLastCalledWith(
+                    expect.objectContaining({
+                        year: 2026,
+                        month: 1,
+                        day: 20,
+                    }),
                 );
-                expect(validCalls.length).toBeGreaterThan(0);
             });
 
             it("parses edited LL format text in Spanish", async () => {
@@ -943,10 +968,13 @@ describe("DatePicker", () => {
                 await userEvent.type(input, "20 de enero de 2026");
 
                 // Assert
-                const validCalls = updateDateMock.mock.calls.filter(
-                    (call) => call[0]?.toString() === "2026-01-20",
+                expect(updateDateMock).toHaveBeenLastCalledWith(
+                    expect.objectContaining({
+                        year: 2026,
+                        month: 1,
+                        day: 20,
+                    }),
                 );
-                expect(validCalls.length).toBeGreaterThan(0);
             });
         });
     });

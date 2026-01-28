@@ -441,6 +441,8 @@ function parseLocaleAwareDate(
         );
 
         if (inputParts.length !== 3) {
+            // Not a numeric format - trigger fallback to text parser
+            // (This error is caught internally, never shown to users)
             throw new Error("Not a numeric date format");
         }
 
@@ -506,6 +508,8 @@ function parseTextDate(
         const months = getMonths(locale);
 
         // Extract all numbers from the string (day and year)
+        // Note: \d matches ASCII digits 0-9 only, which is correct since
+        // Intl.DateTimeFormat always outputs ASCII digits regardless of locale
         const numbers = str.match(/\d+/g);
         if (!numbers || numbers.length < 2) {
             return undefined;

@@ -195,19 +195,6 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
             [parseDate, dateFormat, locale],
         );
 
-        // Helper to maybe update date
-        const maybeUpdateDate = React.useCallback(
-            (inputValue?: string | null) => {
-                const date = processDate(inputValue);
-                if (date) {
-                    updateDate(date, inputValue);
-                } else {
-                    updateDateAsInvalid();
-                }
-            },
-            [processDate, updateDate, updateDateAsInvalid],
-        );
-
         // Helper to check if value is valid
         const isValid = React.useCallback((): boolean => {
             const date = processDate(value);
@@ -264,13 +251,14 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
                 return;
             }
 
-            // For LL format, try one final parse on blur without clearing parent state
-            if (dateFormat === "LL") {
-                const date = processDate(value);
-                if (date) {
-                    updateDate(date, value);
-                }
-                // Don't call updateDateAsInvalid() - just revert locally if needed
+            // On blur, validate the current value
+            const date = processDate(value);
+            if (date) {
+                updateDate(date, value);
+            } else if (value && value.trim() !== "") {
+                // User typed something invalid - notify parent and revert locally
+                updateDateAsInvalid();
+                setValue(propValue);
             }
 
             // Revert to previous valid value if current value is invalid
@@ -285,18 +273,13 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
         const handleChange = (newValue: string) => {
             setValue(newValue);
 
-            if (dateFormat === "LL") {
-                // For LL format: try to parse and update, but don't clear field on parse failure
-                // (text dates can't be incrementally validated)
-                const date = processDate(newValue);
-                if (date) {
-                    updateDate(date, newValue);
-                }
-                // Don't call updateDateAsInvalid() - let user keep typing
-            } else {
-                // For other formats: validate on every change
-                maybeUpdateDate(newValue);
+            // For all formats: try to parse and update if valid, but preserve
+            // partial input during typing. Only validate on blur, not on every keystroke.
+            const date = processDate(newValue);
+            if (date) {
+                updateDate(date, newValue);
             }
+            // Don't call updateDateAsInvalid() during typing - let user edit freely
         };
 
         return (
