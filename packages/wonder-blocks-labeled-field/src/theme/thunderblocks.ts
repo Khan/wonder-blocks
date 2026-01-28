@@ -30,9 +30,6 @@ export default mergeTheme(defaultTheme, {
         },
     },
     error: {
-        color: {
-            foreground: semanticColor.core.foreground.critical.default,
-        },
         font: {
             weight: font.weight.bold,
         },

@@ -62,9 +62,6 @@ export default mergeTheme(defaultTheme, {
             default: {
                 foreground: semanticColor.core.foreground.neutral.subtle,
             },
-            selected: {
-                foreground: semanticColor.core.foreground.instructive.default,
-            },
         },
     },
     // Hide the horizontal rule in Thunderblocks.

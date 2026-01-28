@@ -15,12 +15,12 @@ const styles = StyleSheet.create({
         marginTop: spacing.xSmall_8,
     },
     correct: {
-        color: semanticColor.core.foreground.success.subtle,
+        color: semanticColor.core.foreground.success.default,
         marginRight: spacing.xxxSmall_4,
         paddingTop: spacing.xxxxSmall_2,
     },
     incorrect: {
-        color: semanticColor.core.foreground.critical.subtle,
+        color: semanticColor.core.foreground.critical.default,
         marginRight: spacing.xxxSmall_4,
         paddingTop: spacing.xxxxSmall_2,
     },

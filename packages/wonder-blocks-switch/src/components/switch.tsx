@@ -65,7 +65,7 @@ const baseStyles = {
                 off: semanticColor.core.foreground.knockout.default,
             },
             icon: {
-                on: semanticColor.core.foreground.instructive.subtle,
+                on: semanticColor.core.foreground.instructive.default,
                 disabledOn: semanticColor.core.border.instructive.subtle,
                 off: semanticColor.core.border.neutral.default,
                 disabledOff: semanticColor.core.foreground.disabled.default,

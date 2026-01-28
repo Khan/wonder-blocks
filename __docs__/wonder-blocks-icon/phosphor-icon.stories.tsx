@@ -267,7 +267,7 @@ export const WithColor: StoryComponentType = {
     args: {
         size: "small",
         icon: IconMappings.infoBold,
-        color: semanticColor.core.foreground.critical.subtle,
+        color: semanticColor.core.foreground.critical.default,
     },
 };
 

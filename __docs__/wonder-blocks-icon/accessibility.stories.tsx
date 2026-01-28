@@ -38,7 +38,7 @@ export const IconContrast = {
             <PhosphorIcon
                 icon={IconMappings.checkCircle}
                 style={{
-                    color: semanticColor.core.foreground.instructive.subtle,
+                    color: semanticColor.core.foreground.instructive.default,
                     marginInlineStart: spacing.xSmall_8,
                 }}
             />
