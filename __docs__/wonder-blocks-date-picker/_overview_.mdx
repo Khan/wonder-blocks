@@ -87,23 +87,36 @@ function MyComponent() {
 
 ## Date Formats
 
-The date picker supports moment.js-style format strings:
+The date picker supports both locale-aware and fixed date formats:
 
-- `YYYY-MM-DD` - ISO format: "2024-01-15"
-- `MMMM D, YYYY` - Long month: "January 15, 2024"
-- `MMM D, YYYY` - Short month: "Jan 15, 2024"
-- `M/D/YYYY` - Numeric: "1/15/2024"
-- `MM/DD/YYYY` - Zero-padded: "01/15/2024"
+### Locale-Aware Formats (Recommended)
 
-You can provide an array of formats for parsing multiple input formats:
+- **`"L"`** (default) - Short date in user's locale
+  - `en-US`: "1/15/2024"
+  - `de-DE`: "15.1.2024"
+  - `fr-FR`: "15/01/2024"
+- **`"LL"`** - Long date in user's locale
+  - `en-US`: "January 15, 2024"
+  - `es-ES`: "15 de enero de 2024"
+  - `fr-FR`: "15 janvier 2024"
+
+### Fixed Formats
+
+- **`"YYYY-MM-DD"`** - ISO format: "2024-01-15"
+- **`"MM/DD/YYYY"`** - US format: "01/15/2024"
+- **`"MMMM D, YYYY"`** - Text format: "January 15, 2024" (month name localized, but US date order)
+
+### Example
 
 ```typescript
 <DatePicker
-    dateFormat={["YYYY-MM-DD", "M/D/YYYY", "MMM D, YYYY"]}
+    dateFormat="L"  // Locale-aware short date (default)
     selectedDate={selectedDate}
     updateDate={setSelectedDate}
 />
 ```
+
+**💡 Tip**: Use `"L"` or `"LL"` for international applications to respect users' locale preferences.
 
 ## Date Range Constraints
 
