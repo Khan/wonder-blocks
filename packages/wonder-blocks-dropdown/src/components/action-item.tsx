@@ -108,6 +108,11 @@ type ActionProps = {
      * Optional; applies aria-current to the cell.
      */
     active?: CellProps["active"];
+
+    /**
+     * Optional aria-label for the action item.
+     */
+    "aria-label"?: string;
 };
 
 type DefaultProps = {
@@ -153,6 +158,7 @@ export default class ActionItem extends React.Component<ActionProps> {
             subtitle2,
             testId,
             active,
+            "aria-label": ariaLabel,
         } = this.props;
 
         const defaultStyle = [
@@ -196,6 +202,7 @@ export default class ActionItem extends React.Component<ActionProps> {
                 target={target}
                 onClick={onClick}
                 active={active}
+                aria-label={ariaLabel}
             />
         );
     }
