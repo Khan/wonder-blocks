@@ -11,7 +11,7 @@ More information: https://khan.github.io/wonder-blocks/
 
 ### Prerequisites
 
-- [Node.JS v16.x](https://nodejs.org/download/release/v16.16.0/)
+- [Node.JS v20.x](https://nodejs.org/en/download)
 - [Yarn](https://yarnpkg.com/lang/en/docs/install/)
 
 ### Installation
