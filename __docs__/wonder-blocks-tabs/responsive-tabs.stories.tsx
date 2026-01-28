@@ -275,3 +275,26 @@ export const TabIcons: Story = {
         ],
     },
 };
+
+/**
+ * Use the `tabsProps` and `dropdownProps` props to customize the tabs and
+ * dropdown. For example, you can enable animation or change the activation mode
+ * for the tabs layout.
+ *
+ * See the `Tabs` and `TabsDropdown` docs for more details.
+ */
+export const CustomizingTabsAndDropdownProps: Story = {
+    render: ControlledResponsiveTabs,
+    args: {
+        selectedTabId: "tab-1",
+        tabs: [
+            {label: "Tab 1", id: "tab-1", panel: <div>Tab contents 1</div>},
+            {label: "Tab 2", id: "tab-2", panel: <div>Tab contents 2</div>},
+            {label: "Tab 3", id: "tab-3", panel: <div>Tab contents 3</div>},
+        ],
+        tabsProps: {
+            animated: true,
+            activationMode: "automatic",
+        },
+    },
+};
