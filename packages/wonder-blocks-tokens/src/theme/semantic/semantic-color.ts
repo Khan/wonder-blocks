@@ -363,17 +363,17 @@ export const semanticColor = {
                 default: {
                     border: core.border.neutral.default,
                     background: core.transparent,
-                    foreground: core.foreground.critical.subtle,
+                    foreground: core.foreground.critical.default,
                 },
                 hover: {
                     border: core.border.critical.default,
                     background: core.transparent,
-                    foreground: core.foreground.critical.subtle,
+                    foreground: core.foreground.critical.default,
                 },
                 press: {
                     border: core.border.critical.strong,
                     background: core.background.critical.subtle,
-                    foreground: core.foreground.critical.default,
+                    foreground: core.foreground.critical.strong,
                 },
             },
             neutral: {
@@ -424,17 +424,17 @@ export const semanticColor = {
                 default: {
                     border: core.transparent,
                     background: core.transparent,
-                    foreground: core.foreground.critical.subtle,
+                    foreground: core.foreground.critical.default,
                 },
                 hover: {
                     border: core.border.critical.default,
                     background: core.transparent,
-                    foreground: core.foreground.critical.subtle,
+                    foreground: core.foreground.critical.default,
                 },
                 press: {
                     border: core.border.critical.strong,
                     background: core.transparent,
-                    foreground: core.foreground.critical.default,
+                    foreground: core.foreground.critical.strong,
                 },
             },
             neutral: {
@@ -693,19 +693,19 @@ export const semanticColor = {
     status: {
         critical: {
             background: core.background.critical.subtle,
-            foreground: core.foreground.critical.subtle,
+            foreground: core.foreground.critical.default,
         },
         warning: {
             background: core.background.warning.subtle,
-            foreground: core.foreground.warning.subtle,
+            foreground: core.foreground.warning.default,
         },
         success: {
             background: core.background.success.subtle,
-            foreground: core.foreground.success.subtle,
+            foreground: core.foreground.success.default,
         },
         notice: {
             background: core.background.instructive.subtle,
-            foreground: core.foreground.instructive.subtle,
+            foreground: core.foreground.instructive.default,
         },
         neutral: {
             background: core.background.neutral.subtle,
@@ -758,24 +758,24 @@ export const semanticColor = {
             subtle: {
                 background: core.background.success.subtle,
                 border: core.border.success.subtle,
-                icon: core.foreground.success.default,
+                icon: core.foreground.success.strong,
                 text: core.foreground.neutral.strong,
             },
             strong: {
                 ...sharedFeedbackStrongTokens,
-                icon: core.foreground.success.subtle,
+                icon: core.foreground.success.default,
             },
         },
         warning: {
             subtle: {
                 background: core.background.warning.subtle,
                 border: core.border.warning.default,
-                icon: core.foreground.warning.default,
+                icon: core.foreground.warning.strong,
                 text: core.foreground.neutral.strong,
             },
             strong: {
                 ...sharedFeedbackStrongTokens,
-                icon: core.foreground.warning.subtle,
+                icon: core.foreground.warning.default,
             },
         },
         critical: {
