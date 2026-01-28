@@ -120,15 +120,15 @@ type Props = AriaLabelOrAriaLabelledby & {
 /**
  * Renders the Tabs component when there is enough space to display the tabs as
  * a horizontal layout. When there is not enough space, it renders the
- * tabs as a dropdown.
+ * tabs as a dropdown. If the tabs are links, use ResponsiveNavigationTabs instead.
+ *
+ * Prefer using ResponsiveTabs instead of Tabs. For cases where the tabs should
+ * always be in a horizontal layout, use the Tabs component directly.
  *
  * Note: This component switches layouts depending on factors like the container
  * width, the number of tabs, the length of tab labels, zoom level, etc. Once the
  * horizontal Tabs need to start scrolling horizontally, the component will
  * switch to the dropdown.
- *
- * For cases where the tabs should always be in a horizontal layout, use the
- * Tabs component directly.
  */
 export const ResponsiveTabs = (props: Props) => {
     const {

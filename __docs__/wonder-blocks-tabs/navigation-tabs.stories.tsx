@@ -20,7 +20,7 @@ import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import {HeadingMedium} from "@khanacademy/wonder-blocks-typography";
 
 export default {
-    title: "Packages / Tabs / NavigationTabs",
+    title: "Packages / Tabs / ResponsiveNavigationTabs / Subcomponents / NavigationTabs",
     component: NavigationTabs,
     subcomponents: {NavigationTabItem},
     parameters: {

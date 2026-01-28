@@ -10,7 +10,7 @@ import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
-    title: "Packages / Tabs / ResponsiveTabs / Testing / ResponsiveTabs - Snapshots",
+    title: "Packages / Tabs / Testing / ResponsiveTabs - Snapshots",
     component: ResponsiveTabs,
     tags: ["!autodocs"],
     parameters: {

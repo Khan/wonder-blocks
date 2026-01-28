@@ -11,7 +11,7 @@ import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {Popover, PopoverContentCore} from "@khanacademy/wonder-blocks-popover";
 
 export default {
-    title: "Packages / Tabs / Tabs / Testing / Tabs - Playtesting",
+    title: "Packages / Tabs / Testing / Tabs - Playtesting",
     parameters: {
         /** These stories are used for testing purposes only so we disable snapshots */
         chromatic: {disableSnapshot: true},

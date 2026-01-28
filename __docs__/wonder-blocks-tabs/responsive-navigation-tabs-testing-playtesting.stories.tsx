@@ -2,12 +2,12 @@ import {Meta, StoryObj} from "@storybook/react-vite";
 import {expect, fn, waitFor, within} from "storybook/test";
 import {ResponsiveNavigationTabs} from "@khanacademy/wonder-blocks-tabs";
 import {
-    Default as ResponsiveNavigationTabsDefault,
+    Interactive as InteractiveStory,
     INITIAL_TABS_COUNT,
 } from "./responsive-navigation-tabs.stories";
 
 export default {
-    title: "Packages / Tabs / ResponsiveNavigationTabs / Testing / Responsive Navigation Tabs - Playtesting",
+    title: "Packages / Tabs / Testing / ResponsiveNavigationTabs - Playtesting",
     parameters: {
         /** These stories are used for testing purposes only so we disable snapshots */
         chromatic: {disableSnapshot: true},
@@ -42,7 +42,7 @@ export default {
 type Story = StoryObj<typeof ResponsiveNavigationTabs>;
 
 export const ChangingLabelLength: Story = {
-    ...ResponsiveNavigationTabsDefault,
+    ...InteractiveStory,
     globals: {
         viewport: {
             value: "large",
@@ -90,7 +90,7 @@ export const ChangingLabelLength: Story = {
 };
 
 export const AddingAndRemovingTabs: Story = {
-    ...ResponsiveNavigationTabsDefault,
+    ...InteractiveStory,
     globals: {
         viewport: {
             value: "large",
@@ -136,7 +136,7 @@ export const AddingAndRemovingTabs: Story = {
 };
 
 export const ChangingContainerWidth: Story = {
-    ...ResponsiveNavigationTabsDefault,
+    ...InteractiveStory,
     globals: {
         viewport: {
             value: "large",
@@ -184,7 +184,7 @@ export const ChangingContainerWidth: Story = {
 };
 
 export const ChangingZoomLevel: Story = {
-    ...ResponsiveNavigationTabsDefault,
+    ...InteractiveStory,
     globals: {
         viewport: {
             value: "large",
@@ -231,7 +231,7 @@ export const ChangingZoomLevel: Story = {
 };
 
 export const TogglingIconInLabels: Story = {
-    ...ResponsiveNavigationTabsDefault,
+    ...InteractiveStory,
     globals: {
         viewport: {
             value: "large",
