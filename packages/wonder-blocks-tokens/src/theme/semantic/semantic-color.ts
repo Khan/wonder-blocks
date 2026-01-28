@@ -346,17 +346,17 @@ export const semanticColor = {
                 default: {
                     border: core.border.neutral.default,
                     background: core.transparent,
-                    foreground: core.foreground.instructive.subtle,
+                    foreground: core.foreground.instructive.default,
                 },
                 hover: {
                     border: core.border.instructive.default,
                     background: core.transparent,
-                    foreground: core.foreground.instructive.subtle,
+                    foreground: core.foreground.instructive.default,
                 },
                 press: {
                     border: core.border.instructive.strong,
                     background: core.background.instructive.subtle,
-                    foreground: core.foreground.instructive.default,
+                    foreground: core.foreground.instructive.strong,
                 },
             },
             destructive: {
@@ -406,17 +406,17 @@ export const semanticColor = {
                 default: {
                     border: core.transparent,
                     background: core.transparent,
-                    foreground: core.foreground.instructive.subtle,
+                    foreground: core.foreground.instructive.default,
                 },
                 hover: {
                     border: core.border.instructive.default,
                     background: core.transparent,
-                    foreground: core.foreground.instructive.subtle,
+                    foreground: core.foreground.instructive.default,
                 },
                 press: {
                     border: core.border.instructive.strong,
                     background: core.transparent,
-                    foreground: core.foreground.instructive.default,
+                    foreground: core.foreground.instructive.strong,
                 },
             },
 
@@ -517,14 +517,14 @@ export const semanticColor = {
                 secondary: {
                     rest: core.foreground.instructive.default,
                     hover: core.foreground.instructive.default,
-                    press: core.foreground.instructive.default,
-                    selected: core.foreground.instructive.default,
+                    press: core.foreground.instructive.strong,
+                    selected: core.foreground.instructive.strong,
                 },
                 tertiary: {
                     rest: core.foreground.instructive.default,
                     hover: core.foreground.instructive.default,
-                    press: core.foreground.instructive.default,
-                    selected: core.foreground.instructive.default,
+                    press: core.foreground.instructive.strong,
+                    selected: core.foreground.instructive.strong,
                 },
             },
             shadow: {
@@ -719,9 +719,9 @@ export const semanticColor = {
     },
 
     link: {
-        rest: core.foreground.instructive.subtle,
-        hover: core.foreground.instructive.subtle,
-        press: core.foreground.instructive.default,
+        rest: core.foreground.instructive.default,
+        hover: core.foreground.instructive.default,
+        press: core.foreground.instructive.strong,
         disabled: core.foreground.disabled.default,
     },
     /**
@@ -751,7 +751,7 @@ export const semanticColor = {
             },
             strong: {
                 ...sharedFeedbackStrongTokens,
-                icon: core.foreground.instructive.subtle,
+                icon: core.foreground.instructive.default,
             },
         },
         success: {

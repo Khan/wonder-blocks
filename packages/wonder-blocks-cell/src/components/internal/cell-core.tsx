@@ -368,7 +368,7 @@ const styles = StyleSheet.create({
     },
 
     accessoryActive: {
-        color: theme.accessoryRight.color.selected.foreground,
+        color: semanticColor.core.foreground.instructive.default,
     },
 
     accessoryDisabled: {
