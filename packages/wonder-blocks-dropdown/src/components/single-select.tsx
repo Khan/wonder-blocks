@@ -58,6 +58,9 @@ type DefaultProps = Readonly<{
     /**
      * Whether this component is disabled. A disabled dropdown may not be opened
      * and does not support interaction. Defaults to false.
+     *
+     * Internally, the `aria-disabled` attribute will be set so that the
+     * element remains focusable and will be included in the tab order.
      */
     disabled?: boolean;
     /**
