@@ -787,7 +787,7 @@ export const semanticColor = {
             },
             strong: {
                 ...sharedFeedbackStrongTokens,
-                icon: core.foreground.critical.subtle,
+                icon: core.foreground.critical.default,
             },
         },
         neutral: {
