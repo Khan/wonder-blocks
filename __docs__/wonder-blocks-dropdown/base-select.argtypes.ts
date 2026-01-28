@@ -21,8 +21,8 @@ const argTypes: ArgTypes = {
 
     disabled: {
         defaultValue: false,
-        description: `Whether the dropdown is disabled. A disabled dropdown may
-            not be opened and does not support interaction.`,
+        description:
+            "Whether the dropdown is disabled. A disabled dropdown may not be opened and does not support interaction. Internally, the `aria-disabled` attribute will be set so that the element remains focusable and will be included in the tab order.",
         table: {
             category: "States",
             defaultValue: {summary: "false"},
