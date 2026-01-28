@@ -20,6 +20,9 @@ type ActionProps = {
     label: string | CellProps["title"];
     /**
      * Whether this action item is disabled.
+     *
+     * Internally, the `aria-disabled` attribute will be set so that the
+     * element remains focusable and will be included in the tab order.
      */
     disabled: boolean;
     /**
