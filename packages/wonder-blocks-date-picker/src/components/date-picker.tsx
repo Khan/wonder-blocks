@@ -82,6 +82,21 @@ interface Props {
      */
     closeOnSelect?: boolean;
     /**
+     * Whether to keep invalid/unparseable text in the input field on blur
+     * to allow for external validation feedback (e.g., with LabeledField).
+     *
+     * When true:
+     * - Invalid text stays in field and updateDate(null) is called
+     * - Useful with LabeledField to show error messages
+     *
+     * When false (default):
+     * - Invalid text is auto-reverted to the last valid date
+     * - Cleaner UX when not using external validation
+     *
+     * Note: Dates outside min/max range always revert regardless of this setting.
+     */
+    keepInvalidText?: boolean;
+    /**
      * Allows including elements below the date selection area that can close
      * the date picker.
      */
@@ -115,6 +130,7 @@ const DatePicker = (props: Props) => {
         selectedDate,
         style,
         closeOnSelect = true,
+        keepInvalidText = false,
         footer,
     } = props;
 
@@ -216,16 +232,23 @@ const DatePicker = (props: Props) => {
             updateDate(null);
             return;
         }
+
+        const wrappedDate =
+            TemporalLocaleUtils.jsDateToTemporalDate(selectedDate);
+
         // Check if date is disabled (modifiers.disabled can be a function)
         const isDisabled =
             typeof modifiers.disabled === "function"
                 ? modifiers.disabled(selectedDate)
                 : modifiers.disabled;
+
+        // Always notify parent via updateDate so they can show validation errors
+        // But only update internal state (currentDate, displayMonth) if not disabled
         if (isDisabled) {
+            updateDate(wrappedDate);
             return;
         }
-        const wrappedDate =
-            TemporalLocaleUtils.jsDateToTemporalDate(selectedDate);
+
         setCurrentDate(wrappedDate);
         setDisplayMonth(selectedDate);
         updateDate(wrappedDate);
@@ -316,6 +339,7 @@ const DatePicker = (props: Props) => {
                 parseDate={TemporalLocaleUtils.parseDateToJsDate}
                 getModifiersForDay={TemporalLocaleUtils.getModifiersForDay}
                 modifiers={modifiers}
+                keepInvalidText={keepInvalidText}
                 testId={id && `${id}-input`}
             />
         );

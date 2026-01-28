@@ -441,6 +441,97 @@ describe("DatePicker", () => {
         expect(input).toHaveValue("1/");
     });
 
+    it("reverts and notifies parent when date is outside min/max range", async () => {
+        // Arrange
+        const selectedDate = Temporal.PlainDate.from("2026-01-16");
+        const minDate = Temporal.PlainDate.from("2026-01-10");
+        const updateDateMock = jest.fn();
+
+        render(
+            <>
+                <DatePicker
+                    selectedDate={selectedDate}
+                    updateDate={updateDateMock}
+                    minDate={minDate}
+                />
+                <button>Other element</button>
+            </>,
+        );
+
+        // Act - Type a date before minDate and blur
+        await userEvent.tab();
+        const input = screen.getByRole("textbox");
+        await userEvent.clear(input);
+        await userEvent.type(input, "1/5/2026");
+        await userEvent.keyboard("{Escape}"); // Close overlay first
+        await userEvent.tab(); // Tab to the button to trigger blur
+
+        // Assert - Input should revert to previous valid value
+        await waitFor(() => {
+            expect(input).toHaveValue("1/16/2026");
+        });
+    });
+
+    it("reverts malformed text by default on blur", async () => {
+        // Arrange
+        const selectedDate = Temporal.PlainDate.from("2026-01-16");
+        const updateDateMock = jest.fn();
+
+        render(
+            <>
+                <DatePicker
+                    selectedDate={selectedDate}
+                    updateDate={updateDateMock}
+                />
+                <button>Other element</button>
+            </>,
+        );
+
+        // Act - Type a malformed date and blur
+        await userEvent.tab();
+        const input = screen.getByRole("textbox");
+        await userEvent.clear(input);
+        await userEvent.type(input, "invalid date");
+        await userEvent.keyboard("{Escape}"); // Close overlay first
+        await userEvent.tab(); // Tab to the button to trigger blur
+
+        // Assert - Input should revert to last valid value (default behavior)
+        await waitFor(() => {
+            expect(input).toHaveValue("1/16/2026");
+        });
+    });
+
+    it("keeps malformed text with keepInvalidText prop", async () => {
+        // Arrange
+        const selectedDate = Temporal.PlainDate.from("2026-01-16");
+        const updateDateMock = jest.fn();
+
+        render(
+            <>
+                <DatePicker
+                    selectedDate={selectedDate}
+                    updateDate={updateDateMock}
+                    keepInvalidText
+                />
+                <button>Other element</button>
+            </>,
+        );
+
+        // Act - Type a malformed date and blur
+        await userEvent.tab();
+        const input = screen.getByRole("textbox");
+        await userEvent.clear(input);
+        await userEvent.type(input, "invalid date");
+        await userEvent.keyboard("{Escape}"); // Close overlay first
+        await userEvent.tab(); // Tab to the button to trigger blur
+
+        // Assert - Invalid text should stay and parent is notified
+        await waitFor(() => {
+            expect(input).toHaveValue("invalid date");
+        });
+        expect(updateDateMock).toHaveBeenCalledWith(null);
+    });
+
     it("does not modify the current date if current input contains an invalid format", async () => {
         // Arrange
         const minDate = Temporal.PlainDate.from("2021-05-05");
@@ -676,139 +767,71 @@ describe("DatePicker", () => {
         });
 
         describe("dateFormat prop", () => {
-            it("defaults to locale-aware format when not specified", () => {
-                // Arrange
-                const selectedDate = Temporal.PlainDate.from("2026-01-16");
-
-                // Act
+            it.each([
+                {
+                    format: undefined,
+                    locale: undefined,
+                    expected: "1/16/2026",
+                    desc: "defaults to locale-aware",
+                },
+                {
+                    format: undefined,
+                    locale: de,
+                    expected: "16.1.2026",
+                    desc: "locale-aware for de-DE",
+                },
+                {
+                    format: "MMMM D, YYYY",
+                    locale: undefined,
+                    expected: "January 16, 2026",
+                    desc: "MMMM D, YYYY",
+                },
+                {
+                    format: "MM/DD/YYYY",
+                    locale: undefined,
+                    expected: "01/16/2026",
+                    desc: "MM/DD/YYYY",
+                },
+                {
+                    format: "YYYY-MM-DD",
+                    locale: undefined,
+                    expected: "2026-01-16",
+                    desc: "YYYY-MM-DD",
+                },
+            ])("formats date: $desc", ({format, locale, expected}) => {
                 render(
                     <DatePicker
-                        selectedDate={selectedDate}
+                        selectedDate={Temporal.PlainDate.from("2026-01-16")}
                         updateDate={() => {}}
+                        dateFormat={format}
+                        locale={locale}
                     />,
                 );
-
-                // Assert
-                expect(
-                    screen.getByDisplayValue("1/16/2026"),
-                ).toBeInTheDocument();
-            });
-
-            it("defaults to locale-aware format matching the locale prop", () => {
-                // Arrange
-                const selectedDate = Temporal.PlainDate.from("2026-01-16");
-
-                // Act
-                render(
-                    <DatePicker
-                        selectedDate={selectedDate}
-                        updateDate={() => {}}
-                        locale={de}
-                    />,
-                );
-
-                // Assert
                 const input = screen.getByRole("textbox");
-                expect(input).toHaveValue("16.1.2026");
-            });
-
-            it("formats dates as MMMM D, YYYY", () => {
-                // Arrange
-                const selectedDate = Temporal.PlainDate.from("2026-01-16");
-
-                // Act
-                render(
-                    <DatePicker
-                        selectedDate={selectedDate}
-                        updateDate={() => {}}
-                        dateFormat="MMMM D, YYYY"
-                    />,
-                );
-
-                // Assert
-                expect(
-                    screen.getByDisplayValue("January 16, 2026"),
-                ).toBeInTheDocument();
-            });
-
-            it("formats dates as MM/DD/YYYY", () => {
-                // Arrange
-                const selectedDate = Temporal.PlainDate.from("2026-01-16");
-
-                // Act
-                render(
-                    <DatePicker
-                        selectedDate={selectedDate}
-                        updateDate={() => {}}
-                        dateFormat="MM/DD/YYYY"
-                    />,
-                );
-
-                // Assert
-                expect(
-                    screen.getByDisplayValue("01/16/2026"),
-                ).toBeInTheDocument();
-            });
-
-            it("formats dates as YYYY-MM-DD", () => {
-                // Arrange
-                const selectedDate = Temporal.PlainDate.from("2026-01-16");
-
-                // Act
-                render(
-                    <DatePicker
-                        selectedDate={selectedDate}
-                        updateDate={() => {}}
-                        dateFormat="YYYY-MM-DD"
-                    />,
-                );
-
-                // Assert
-                expect(
-                    screen.getByDisplayValue("2026-01-16"),
-                ).toBeInTheDocument();
+                if (expected.includes(".")) {
+                    expect(input).toHaveValue(expected);
+                } else {
+                    expect(
+                        screen.getByDisplayValue(expected),
+                    ).toBeInTheDocument();
+                }
             });
         });
 
         describe("Localized text formats", () => {
-            it("displays Spanish text date", () => {
-                // Arrange
-                const selectedDate = Temporal.PlainDate.from("2026-01-16");
-
-                // Act
+            it.each([
+                {locale: es, expected: "enero 16, 2026", name: "Spanish"},
+                {locale: fr, expected: "janvier 16, 2026", name: "French"},
+            ])("displays $name text date", ({locale, expected}) => {
                 render(
                     <DatePicker
-                        selectedDate={selectedDate}
+                        selectedDate={Temporal.PlainDate.from("2026-01-16")}
                         updateDate={() => {}}
                         dateFormat="MMMM D, YYYY"
-                        locale={es}
+                        locale={locale}
                     />,
                 );
-
-                // Assert
-                expect(
-                    screen.getByDisplayValue("enero 16, 2026"),
-                ).toBeInTheDocument();
-            });
-
-            it("displays French text date", () => {
-                // Arrange
-                const selectedDate = Temporal.PlainDate.from("2026-01-16");
-
-                // Act
-                render(
-                    <DatePicker
-                        selectedDate={selectedDate}
-                        updateDate={() => {}}
-                        dateFormat="MMMM D, YYYY"
-                        locale={fr}
-                    />,
-                );
-
-                // Assert
-                expect(
-                    screen.getByDisplayValue("janvier 16, 2026"),
-                ).toBeInTheDocument();
+                expect(screen.getByDisplayValue(expected)).toBeInTheDocument();
             });
 
             it("updates input to Spanish text format when date is selected from calendar", async () => {
@@ -885,42 +908,28 @@ describe("DatePicker", () => {
         });
 
         describe("LL format (locale-aware long date)", () => {
-            it("displays LL format in English", () => {
-                // Arrange
-                const selectedDate = Temporal.PlainDate.from("2026-01-16");
-
-                // Act
+            it.each([
+                {
+                    locale: undefined,
+                    expected: /January\s+16,?\s+2026/,
+                    name: "English",
+                },
+                {
+                    locale: es,
+                    expected: /16\s+de\s+enero\s+de\s+2026/,
+                    name: "Spanish",
+                },
+            ])("displays LL format in $name", ({locale, expected}) => {
                 render(
                     <DatePicker
-                        selectedDate={selectedDate}
+                        selectedDate={Temporal.PlainDate.from("2026-01-16")}
                         updateDate={() => {}}
                         dateFormat="LL"
+                        locale={locale}
                     />,
                 );
-
-                // Assert
                 expect(screen.getByRole("textbox")).toHaveDisplayValue(
-                    /January\s+16,?\s+2026/,
-                );
-            });
-
-            it("displays LL format in Spanish", () => {
-                // Arrange
-                const selectedDate = Temporal.PlainDate.from("2026-01-16");
-
-                // Act
-                render(
-                    <DatePicker
-                        selectedDate={selectedDate}
-                        updateDate={() => {}}
-                        dateFormat="LL"
-                        locale={es}
-                    />,
-                );
-
-                // Assert
-                expect(screen.getByRole("textbox")).toHaveDisplayValue(
-                    /16\s+de\s+enero\s+de\s+2026/,
+                    expected,
                 );
             });
 

@@ -318,12 +318,13 @@ describe("DatePickerInput", () => {
         );
 
         const input = await screen.findByTestId("date-picker-input");
-        await userEvent.type(input, "{selectall}2021-05-43");
+        await userEvent.clear(input);
+        await userEvent.type(input, "2021-05-43");
 
         // Act - blur by clicking outside
         await userEvent.click(document.body);
 
-        // Assert
+        // Assert - Invalid date text reverts to last valid value (default behavior)
         expect(input).toHaveValue(validDate);
     });
 

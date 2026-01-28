@@ -102,6 +102,15 @@ interface Props {
      */
     testId?: string;
     /**
+     * Whether to keep invalid (unparseable) text in the input field on blur.
+     *
+     * - If `true`: Invalid text stays in the field and onChange is called with null
+     * - If `false` (default): Invalid text reverts to the last valid value
+     *
+     * Note: Dates outside the min/max range always revert, regardless of this prop.
+     */
+    keepInvalidText?: boolean;
+    /**
      * Used to define a string that labels the current element.
      */
     ["aria-label"]?: string;
@@ -130,6 +139,7 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
             parseDate,
             placeholder,
             testId,
+            keepInvalidText = false,
             ["aria-label"]: ariaLabel,
             ...restProps
         } = props;
@@ -140,6 +150,7 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
         const lastPropValueRef = React.useRef<string | null | undefined>(
             propValue,
         );
+        const keepInvalidTextRef = React.useRef(false);
 
         // Helper to process modifiers
         const processModifiers = React.useCallback(
@@ -210,12 +221,18 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
 
         // Sync with propValue when it changes from an external source
         // Allow prop updates to override local state (e.g., calendar selection, programmatic updates)
+        // Skip sync if we're intentionally keeping invalid text for validation
         React.useEffect(() => {
             const propValueChanged = lastPropValueRef.current !== propValue;
             lastPropValueRef.current = propValue;
 
             if (propValueChanged) {
-                setValue(propValue);
+                if (!keepInvalidTextRef.current) {
+                    setValue(propValue);
+                } else {
+                    // Reset the flag only after we skip a prop sync
+                    keepInvalidTextRef.current = false;
+                }
             }
         }, [propValue]);
 
@@ -253,16 +270,30 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
 
             // On blur, validate the current value
             const date = processDate(value);
-            if (date) {
-                updateDate(date, value);
-            } else if (value && value.trim() !== "") {
-                // User typed something invalid - notify parent and revert locally
-                updateDateAsInvalid();
-                setValue(propValue);
-            }
 
-            // Revert to previous valid value if current value is invalid
-            if (!isValid()) {
+            if (date) {
+                // Date parsed successfully - check if it's within bounds
+                const modifiersResult = processModifiers(date, value);
+                if (!modifiersResult.disabled) {
+                    // Valid and within bounds - update parent
+                    updateDate(date, value);
+                } else {
+                    // Parsed but out of bounds (disabled) - just revert locally
+                    // (Parent was already notified during typing via handleChange)
+                    setValue(propValue);
+                }
+            } else if (value && value.trim() !== "") {
+                // Could not parse date - check if we should keep invalid text
+                if (keepInvalidText) {
+                    // Keep text for validation and notify parent
+                    keepInvalidTextRef.current = true;
+                    updateDateAsInvalid();
+                } else {
+                    // Revert to last valid value (default safer behavior)
+                    setValue(propValue);
+                }
+            } else {
+                // Empty value - just revert to last valid value
                 setValue(propValue);
             }
             if (onBlur) {
