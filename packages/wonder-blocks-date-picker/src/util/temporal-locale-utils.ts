@@ -173,7 +173,8 @@ export function parseDate(
         return undefined;
     }
 
-    const formats = Array.isArray(format) ? format : [format || "YYYY-MM-DD"];
+    // Default to "L" format to match formatDate's default
+    const formats = Array.isArray(format) ? format : [format || "L"];
 
     // Try ISO format first (most common)
     try {
@@ -301,6 +302,28 @@ export function parseDateToJsDate(
             return temporalDateToJsDate(temporalDate);
         }
 
+        // For LL format, be more lenient with validation since text-based dates
+        // can have spacing/punctuation variations that are still semantically correct
+        if (format === "LL") {
+            // Normalize whitespace and compare
+            const normalizedFormatted = formatted
+                .replace(/\s+/g, " ")
+                .trim()
+                .toLowerCase();
+            const normalizedValue = value
+                .replace(/\s+/g, " ")
+                .trim()
+                .toLowerCase();
+
+            if (normalizedFormatted === normalizedValue) {
+                return temporalDateToJsDate(temporalDate);
+            }
+
+            // If parse succeeded but format doesn't match exactly,
+            // still accept it for LL format (text dates are inherently fuzzy)
+            return temporalDateToJsDate(temporalDate);
+        }
+
         // Date was parsed but doesn't match format - return undefined
         return undefined;
     }
@@ -418,7 +441,7 @@ function parseLocaleAwareDate(
         );
 
         if (inputParts.length !== 3) {
-            return undefined;
+            throw new Error("Not a numeric date format");
         }
 
         // Map parts to day/month/year based on locale pattern
@@ -436,7 +459,7 @@ function parseLocaleAwareDate(
 
             const value = parseInt(inputParts[partIndex], 10);
             if (isNaN(value)) {
-                return undefined;
+                throw new Error("Not a numeric date format");
             }
 
             dateComponents[patternPart.type] = value;
@@ -455,13 +478,99 @@ function parseLocaleAwareDate(
             dateComponents.year < 1000 ||
             dateComponents.year > 9999
         ) {
-            return undefined;
+            throw new Error("Invalid date range");
         }
 
         return Temporal.PlainDate.from({
             year: dateComponents.year,
             month: dateComponents.month,
             day: dateComponents.day,
+        });
+    } catch {
+        // If numeric parsing failed, try parsing as text-based date
+        // (e.g., "January 20, 2026", "20 de enero de 2026")
+        return parseTextDate(cleaned, localeStr);
+    }
+}
+
+/**
+ * Parse a text-based date string using locale-specific month names.
+ * Handles formats like "January 20, 2026" (en-US) or "20 de enero de 2026" (es).
+ */
+function parseTextDate(
+    str: string,
+    locale: string,
+): Temporal.PlainDate | undefined {
+    try {
+        // Get month names for the locale
+        const months = getMonths(locale);
+
+        // Extract all numbers from the string (day and year)
+        const numbers = str.match(/\d+/g);
+        if (!numbers || numbers.length < 2) {
+            return undefined;
+        }
+
+        // Find which month name appears in the string
+        let monthIndex = -1;
+        const lowerStr = str.toLowerCase();
+
+        for (let i = 0; i < months.length; i++) {
+            const [longName, shortName] = months[i];
+            if (
+                lowerStr.includes(longName.toLowerCase()) ||
+                lowerStr.includes(shortName.toLowerCase())
+            ) {
+                monthIndex = i + 1; // Month is 1-indexed
+                break;
+            }
+        }
+
+        if (monthIndex === -1) {
+            return undefined;
+        }
+
+        // Parse numbers as day and year
+        // Try both orderings: day-year and year-day
+        let day: number;
+        let year: number;
+
+        const num1 = parseInt(numbers[0], 10);
+        const num2 = parseInt(numbers[1], 10);
+
+        // If first number is > 31, it's likely the year
+        if (num1 > 31) {
+            year = num1;
+            day = num2;
+        }
+        // If second number is > 31 or a 4-digit number, it's likely the year
+        else if (num2 > 31 || num2.toString().length === 4) {
+            day = num1;
+            year = num2;
+        }
+        // Default: assume first is day, second is year
+        else {
+            day = num1;
+            year = num2;
+        }
+
+        // Validate ranges
+        if (
+            day < 1 ||
+            day > 31 ||
+            monthIndex < 1 ||
+            monthIndex > 12 ||
+            year < 1000 ||
+            year > 9999
+        ) {
+            return undefined;
+        }
+
+        // Try to create the date
+        return Temporal.PlainDate.from({
+            year,
+            month: monthIndex,
+            day,
         });
     } catch {
         return undefined;

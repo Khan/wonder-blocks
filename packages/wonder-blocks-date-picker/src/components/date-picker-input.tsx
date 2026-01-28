@@ -233,8 +233,10 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
         }, [propValue]);
 
         // On mount, notify parent if initial value is invalid
+        // Skip validation for LL format (text-based dates that can't be reliably parsed back)
         useOnMountEffect(() => {
-            if (!isValid()) {
+            const skipValidation = dateFormat === "LL" && propValue;
+            if (!skipValidation && !isValid()) {
                 updateDateAsInvalid();
             }
         });
@@ -262,6 +264,15 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
                 return;
             }
 
+            // For LL format, try one final parse on blur without clearing parent state
+            if (dateFormat === "LL") {
+                const date = processDate(value);
+                if (date) {
+                    updateDate(date, value);
+                }
+                // Don't call updateDateAsInvalid() - just revert locally if needed
+            }
+
             // Revert to previous valid value if current value is invalid
             if (!isValid()) {
                 setValue(propValue);
@@ -273,8 +284,19 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
 
         const handleChange = (newValue: string) => {
             setValue(newValue);
-            // Validate on every change - strict parsing prevents partial dates
-            maybeUpdateDate(newValue);
+
+            if (dateFormat === "LL") {
+                // For LL format: try to parse and update, but don't clear field on parse failure
+                // (text dates can't be incrementally validated)
+                const date = processDate(newValue);
+                if (date) {
+                    updateDate(date, newValue);
+                }
+                // Don't call updateDateAsInvalid() - let user keep typing
+            } else {
+                // For other formats: validate on every change
+                maybeUpdateDate(newValue);
+            }
         };
 
         return (

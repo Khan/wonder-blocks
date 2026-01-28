@@ -4,7 +4,7 @@ import {render, screen, waitFor, within} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import * as DateMock from "jest-date-mock";
 import {Temporal} from "temporal-polyfill";
-import {enUS, es, fr} from "date-fns/locale";
+import {enUS, es, fr, de} from "date-fns/locale";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {DatePicker} from "@khanacademy/wonder-blocks-date-picker";
@@ -654,6 +654,42 @@ describe("DatePicker", () => {
         });
 
         describe("dateFormat prop", () => {
+            it("defaults to locale-aware format when not specified", () => {
+                // Arrange
+                const selectedDate = Temporal.PlainDate.from("2026-01-16");
+
+                // Act
+                render(
+                    <DatePicker
+                        selectedDate={selectedDate}
+                        updateDate={() => {}}
+                    />,
+                );
+
+                // Assert
+                expect(
+                    screen.getByDisplayValue("1/16/2026"),
+                ).toBeInTheDocument();
+            });
+
+            it("defaults to locale-aware format matching the locale prop", () => {
+                // Arrange
+                const selectedDate = Temporal.PlainDate.from("2026-01-16");
+
+                // Act
+                render(
+                    <DatePicker
+                        selectedDate={selectedDate}
+                        updateDate={() => {}}
+                        locale={de}
+                    />,
+                );
+
+                // Assert
+                const input = screen.getByRole("textbox");
+                expect(input).toHaveValue("16.1.2026");
+            });
+
             it("formats dates as MMMM D, YYYY", () => {
                 // Arrange
                 const selectedDate = Temporal.PlainDate.from("2026-01-16");
@@ -823,6 +859,94 @@ describe("DatePicker", () => {
                 expect(
                     screen.getByDisplayValue("01/15/2026"),
                 ).toBeInTheDocument();
+            });
+        });
+
+        describe("LL format (locale-aware long date)", () => {
+            it("displays LL format in English", () => {
+                // Arrange
+                const selectedDate = Temporal.PlainDate.from("2026-01-16");
+
+                // Act
+                render(
+                    <DatePicker
+                        selectedDate={selectedDate}
+                        updateDate={() => {}}
+                        dateFormat="LL"
+                    />,
+                );
+
+                // Assert
+                expect(screen.getByRole("textbox")).toHaveDisplayValue(
+                    /January\s+16,?\s+2026/,
+                );
+            });
+
+            it("displays LL format in Spanish", () => {
+                // Arrange
+                const selectedDate = Temporal.PlainDate.from("2026-01-16");
+
+                // Act
+                render(
+                    <DatePicker
+                        selectedDate={selectedDate}
+                        updateDate={() => {}}
+                        dateFormat="LL"
+                        locale={es}
+                    />,
+                );
+
+                // Assert
+                expect(screen.getByRole("textbox")).toHaveDisplayValue(
+                    /16\s+de\s+enero\s+de\s+2026/,
+                );
+            });
+
+            it("parses edited LL format text in English", async () => {
+                // Arrange
+                const updateDateMock = jest.fn();
+                render(
+                    <DatePicker
+                        selectedDate={Temporal.PlainDate.from("2026-01-16")}
+                        updateDate={updateDateMock}
+                        dateFormat="LL"
+                    />,
+                );
+
+                // Act
+                const input = screen.getByRole("textbox");
+                await userEvent.clear(input);
+                await userEvent.type(input, "January 20, 2026");
+
+                // Assert
+                const validCalls = updateDateMock.mock.calls.filter(
+                    (call) => call[0]?.toString() === "2026-01-20",
+                );
+                expect(validCalls.length).toBeGreaterThan(0);
+            });
+
+            it("parses edited LL format text in Spanish", async () => {
+                // Arrange
+                const updateDateMock = jest.fn();
+                render(
+                    <DatePicker
+                        selectedDate={Temporal.PlainDate.from("2026-01-16")}
+                        updateDate={updateDateMock}
+                        dateFormat="LL"
+                        locale={es}
+                    />,
+                );
+
+                // Act
+                const input = screen.getByRole("textbox");
+                await userEvent.clear(input);
+                await userEvent.type(input, "20 de enero de 2026");
+
+                // Assert
+                const validCalls = updateDateMock.mock.calls.filter(
+                    (call) => call[0]?.toString() === "2026-01-20",
+                );
+                expect(validCalls.length).toBeGreaterThan(0);
             });
         });
     });

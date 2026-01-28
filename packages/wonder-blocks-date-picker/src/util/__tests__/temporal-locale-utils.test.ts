@@ -259,6 +259,17 @@ describe("TemporalLocaleUtils", () => {
             expect(result).toBe("January 20, 2026");
         });
 
+        it("should format date with LL format (locale-aware long date) for es", () => {
+            // Arrange
+            const testDate = Temporal.PlainDate.from("2026-01-20");
+
+            // Act
+            const result = formatDate(testDate, "LL", "es");
+
+            // Assert
+            expect(result).toMatch(/20\s+de\s+enero\s+de\s+2026/);
+        });
+
         it("should default to locale-aware short date when format is undefined", () => {
             // Arrange
             const testDate = Temporal.PlainDate.from("2026-01-20");
@@ -451,6 +462,39 @@ describe("TemporalLocaleUtils", () => {
 
             // Assert
             expect(result).toBeUndefined();
+        });
+
+        it("should parse LL format text date in English", () => {
+            // Arrange
+            const input = "January 20, 2026";
+
+            // Act
+            const result = parseDate(input, "LL", "en-US");
+
+            // Assert
+            expect(result?.toString()).toBe("2026-01-20");
+        });
+
+        it("should parse LL format text date in Spanish", () => {
+            // Arrange
+            const input = "20 de enero de 2026";
+
+            // Act
+            const result = parseDate(input, "LL", "es");
+
+            // Assert
+            expect(result?.toString()).toBe("2026-01-20");
+        });
+
+        it("should parse LL format text date in German", () => {
+            // Arrange
+            const input = "20. Januar 2026";
+
+            // Act
+            const result = parseDate(input, "LL", "de-DE");
+
+            // Assert
+            expect(result?.toString()).toBe("2026-01-20");
         });
     });
 

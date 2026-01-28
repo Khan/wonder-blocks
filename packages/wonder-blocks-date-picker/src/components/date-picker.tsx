@@ -34,7 +34,8 @@ interface Props {
      * Supported formats:
      * - **undefined**: Locale-aware short date (default - uses Intl.DateTimeFormat with full year)
      * - **"L"**: Locale-aware short date (e.g., "1/20/2026" in en-US, "20.01.2026" in de-DE, "20/01/2026" in bg)
-     * - **"LL"**: Locale-aware long date (e.g., "January 20, 2026" in en-US, "20 януари 2026 г." in bg)
+     * - **"LL"**: Locale-aware long date (e.g., "January 20, 2026" in en-US, "20 de enero de 2026" in es)
+     *   - Supports manual text editing using locale-specific month names
      * - **"MM/DD/YYYY"**: Fixed US format (e.g., "01/20/2026") - always US order regardless of locale
      * - **"MMMM D, YYYY"**: Text format (e.g., "January 20, 2026") - month name localized but US order
      * - **"dateStyle:short|medium|long|full"**: Explicit Intl.DateTimeFormat dateStyle values
@@ -209,7 +210,10 @@ const DatePicker = (props: Props) => {
         selectedDate: Date | null | undefined,
         modifiers: Partial<CustomModifiers>,
     ) => {
+        // Handle invalid/incomplete dates by clearing currentDate
         if (!selectedDate) {
+            setCurrentDate(null);
+            updateDate(null);
             return;
         }
         // Check if date is disabled (modifiers.disabled can be a function)
