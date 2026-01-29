@@ -1,8 +1,19 @@
 import type {ArgTypes} from "@storybook/react-vite";
 
+import {enUS, es, fr, arMA} from "date-fns/locale";
+
+export const LocaleMappings = {
+    enUS,
+    es,
+    fr,
+    arMA,
+} as const;
+
 export default {
     locale: {
-        control: {type: "object"},
+        options: Object.keys(LocaleMappings),
+        mapping: LocaleMappings,
+        control: {type: "select"},
         table: {
             category: "Localization",
         },
