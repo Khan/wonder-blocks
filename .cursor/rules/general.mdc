@@ -328,9 +328,23 @@ packages/wonder-blocks-*/
 
 ### Versioning & Publishing
 
+Wonder Blocks follows [Semantic Versioning 2.0.0](https://semver.org/) (semver). Each change must declare how it affects the public API:
+
+| Version | When to Use | Example |
+|---------|-------------|---------|
+| **Major** (`X.0.0`) | Breaking changes | Renaming a prop from `enabled` to `disabled` |
+| **Minor** (`0.X.0`) | New features (backward compatible) | Adding a new `error` prop to a component |
+| **Patch** (`0.0.X`) | Bug fixes, internal changes | Fixing incorrect border color, upgrading internal dependencies |
+
+In general, if consumers must make changes to their code for Wonder Blocks to work as expected, it should be a major change to signal that action needs to be taken.
+
+Don't hesitate to bump major or minor versions when appropriate—following semver correctly is more valuable than trying to minimize version number changes.
+
+#### Changesets
+
 * ✅ This project uses [Changesets](https://github.com/changesets/changesets) for version management
-* ✅ When making changes, create a changeset: `pnpm changeset` (describe your changes and select affected packages)
-* ✅ Changesets are committed with your PR and used to generate changelogs and bump versions on release
+* ✅ Create a changeset with `pnpm changeset` (describe changes and select affected packages)
+* ✅ For changes that don't affect consumers (tests, stories, tooling), use an empty changeset: `pnpm changeset --empty`
 
 ### Pull Requests for New Components
 
