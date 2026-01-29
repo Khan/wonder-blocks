@@ -23,8 +23,22 @@ interface Props {
      */
     locale?: Locale;
     /**
-     * When the selected date changes, this callback is passsed a Temporal object
+     * When the selected date changes, this callback is passed a Temporal object
      * for midnight on the selected date, set to the user's local time zone.
+     *
+     * Note: This callback is called as the user types based on keepInvalidText:
+     *
+     * With keepInvalidText={true}:
+     * - Called immediately for all parsed dates (valid or out-of-range)
+     * - Called immediately with null for invalid/unparseable text
+     * - Enables real-time validation feedback
+     *
+     * With keepInvalidText={false} (default):
+     * - Called immediately only for valid in-range dates
+     * - Out-of-range dates and invalid text only notify on blur (will auto-revert)
+     *
+     * For validation feedback, use keepInvalidText={true} and always update selectedDate
+     * in your callback to display invalid values with error messages.
      */
     updateDate: (arg1?: Temporal.PlainDate | null | undefined) => any;
     /**
@@ -86,14 +100,14 @@ interface Props {
      * to allow for external validation feedback (e.g., with LabeledField).
      *
      * When true:
-     * - Invalid text stays in field and updateDate(null) is called
-     * - Useful with LabeledField to show error messages
+     * - Invalid values stay in field and updateDate is called immediately as user types
+     * - Enables real-time validation feedback with LabeledField error messages
+     * - Parent should always update selectedDate to show errors
      *
      * When false (default):
-     * - Invalid text is auto-reverted to the last valid date
+     * - Invalid values (out-of-range dates and unparseable text) auto-revert on blur
+     * - updateDate only called on blur for invalid values (not during typing)
      * - Cleaner UX when not using external validation
-     *
-     * Note: Dates outside min/max range always revert regardless of this setting.
      */
     keepInvalidText?: boolean;
     /**
@@ -153,7 +167,11 @@ const DatePicker = (props: Props) => {
             setShowOverlay(true);
         }
     }, [disabled]);
-    const close = React.useCallback(() => setShowOverlay(false), []);
+    const close = React.useCallback(() => {
+        setShowOverlay(false);
+        // Trigger any pending validation when closing overlay
+        (datePickerInputRef.current as any)?.validateInput?.();
+    }, []);
 
     const computedLocale = locale ?? enUS;
     const dir =
@@ -297,14 +315,14 @@ const DatePicker = (props: Props) => {
 
     const handleDayClick = (
         date: Date | null | undefined,
-        {disabled, selected}: CustomModifiers,
+        {disabled}: CustomModifiers,
     ) => {
         if (disabled || !date) {
             return;
         }
         datePickerInputRef.current?.focus();
         const wrappedDate = TemporalLocaleUtils.jsDateToTemporalDate(date);
-        setCurrentDate(selected ? undefined : wrappedDate);
+        setCurrentDate(wrappedDate);
         setDisplayMonth(date);
         updateDate(wrappedDate);
         setShowOverlay(!closeOnSelect);

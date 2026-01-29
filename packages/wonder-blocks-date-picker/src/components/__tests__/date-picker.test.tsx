@@ -441,97 +441,125 @@ describe("DatePicker", () => {
         expect(input).toHaveValue("1/");
     });
 
-    it("reverts and notifies parent when date is outside min/max range", async () => {
-        // Arrange
-        const selectedDate = Temporal.PlainDate.from("2026-01-16");
-        const minDate = Temporal.PlainDate.from("2026-01-10");
-        const updateDateMock = jest.fn();
+    it.each([
+        {
+            testInput: "1/5/2026",
+            desc: "out-of-range date",
+            selectedDate: Temporal.PlainDate.from("2026-01-16"),
+            minDate: Temporal.PlainDate.from("2026-01-10"),
+            maxDate: undefined,
+            expected: "1/16/2026",
+        },
+        {
+            testInput: "invalid date",
+            desc: "malformed text",
+            selectedDate: Temporal.PlainDate.from("2026-01-16"),
+            minDate: undefined,
+            maxDate: undefined,
+            expected: "1/16/2026",
+        },
+        {
+            testInput: "1/20/2026",
+            desc: "editing to out-of-range",
+            selectedDate: Temporal.PlainDate.from("2026-01-28"),
+            minDate: Temporal.PlainDate.from("2026-01-25"),
+            maxDate: Temporal.PlainDate.from("2026-01-31"),
+            expected: "1/28/2026",
+        },
+    ])(
+        "reverts $desc by default on blur",
+        async ({testInput, selectedDate, minDate, maxDate, expected}) => {
+            render(
+                <>
+                    <DatePicker
+                        selectedDate={selectedDate}
+                        updateDate={jest.fn()}
+                        minDate={minDate}
+                        maxDate={maxDate}
+                    />
+                    <button>Other element</button>
+                </>,
+            );
+            await userEvent.tab();
+            const input = screen.getByRole("textbox");
+            await userEvent.clear(input);
+            await userEvent.type(input, testInput);
+            await userEvent.keyboard("{Escape}{Tab}");
+            await waitFor(() => {
+                expect(input).toHaveValue(expected);
+            });
+        },
+    );
 
-        render(
-            <>
+    it.each([
+        {
+            testInput: "invalid date",
+            expectedValue: "invalid date",
+            desc: "malformed text",
+            minDate: undefined,
+            expectedCall: null,
+        },
+        {
+            testInput: "1/5/2026",
+            expectedValue: "1/5/2026",
+            desc: "out-of-range date",
+            minDate: Temporal.PlainDate.from("2026-01-10"),
+            expectedCall: expect.objectContaining({
+                year: 2026,
+                month: 1,
+                day: 5,
+            }),
+        },
+    ])(
+        "keeps $desc with keepInvalidText prop",
+        async ({testInput, expectedValue, minDate, expectedCall}) => {
+            const updateDateMock = jest.fn();
+            render(
+                <>
+                    <DatePicker
+                        selectedDate={Temporal.PlainDate.from("2026-01-16")}
+                        updateDate={updateDateMock}
+                        minDate={minDate}
+                        keepInvalidText
+                    />
+                    <button>Other element</button>
+                </>,
+            );
+
+            await userEvent.tab();
+            const input = screen.getByRole("textbox");
+            await userEvent.clear(input);
+            await userEvent.type(input, testInput);
+            await userEvent.keyboard("{Escape}");
+            await userEvent.tab();
+
+            await waitFor(() => {
+                expect(input).toHaveValue(expectedValue);
+            });
+            expect(updateDateMock).toHaveBeenLastCalledWith(expectedCall);
+        },
+    );
+
+    it.each([{keepInvalidText: false}, {keepInvalidText: true}])(
+        "clicking calendar clears invalid text (keepInvalidText=$keepInvalidText)",
+        async ({keepInvalidText}) => {
+            render(
                 <DatePicker
-                    selectedDate={selectedDate}
-                    updateDate={updateDateMock}
-                    minDate={minDate}
-                />
-                <button>Other element</button>
-            </>,
-        );
-
-        // Act - Type a date before minDate and blur
-        await userEvent.tab();
-        const input = screen.getByRole("textbox");
-        await userEvent.clear(input);
-        await userEvent.type(input, "1/5/2026");
-        await userEvent.keyboard("{Escape}"); // Close overlay first
-        await userEvent.tab(); // Tab to the button to trigger blur
-
-        // Assert - Input should revert to previous valid value
-        await waitFor(() => {
-            expect(input).toHaveValue("1/16/2026");
-        });
-    });
-
-    it("reverts malformed text by default on blur", async () => {
-        // Arrange
-        const selectedDate = Temporal.PlainDate.from("2026-01-16");
-        const updateDateMock = jest.fn();
-
-        render(
-            <>
-                <DatePicker
-                    selectedDate={selectedDate}
-                    updateDate={updateDateMock}
-                />
-                <button>Other element</button>
-            </>,
-        );
-
-        // Act - Type a malformed date and blur
-        await userEvent.tab();
-        const input = screen.getByRole("textbox");
-        await userEvent.clear(input);
-        await userEvent.type(input, "invalid date");
-        await userEvent.keyboard("{Escape}"); // Close overlay first
-        await userEvent.tab(); // Tab to the button to trigger blur
-
-        // Assert - Input should revert to last valid value (default behavior)
-        await waitFor(() => {
-            expect(input).toHaveValue("1/16/2026");
-        });
-    });
-
-    it("keeps malformed text with keepInvalidText prop", async () => {
-        // Arrange
-        const selectedDate = Temporal.PlainDate.from("2026-01-16");
-        const updateDateMock = jest.fn();
-
-        render(
-            <>
-                <DatePicker
-                    selectedDate={selectedDate}
-                    updateDate={updateDateMock}
-                    keepInvalidText
-                />
-                <button>Other element</button>
-            </>,
-        );
-
-        // Act - Type a malformed date and blur
-        await userEvent.tab();
-        const input = screen.getByRole("textbox");
-        await userEvent.clear(input);
-        await userEvent.type(input, "invalid date");
-        await userEvent.keyboard("{Escape}"); // Close overlay first
-        await userEvent.tab(); // Tab to the button to trigger blur
-
-        // Assert - Invalid text should stay and parent is notified
-        await waitFor(() => {
-            expect(input).toHaveValue("invalid date");
-        });
-        expect(updateDateMock).toHaveBeenCalledWith(null);
-    });
-
+                    selectedDate={Temporal.PlainDate.from("2026-01-16")}
+                    updateDate={jest.fn()}
+                    keepInvalidText={keepInvalidText}
+                />,
+            );
+            const input = screen.getByRole("textbox");
+            await userEvent.clear(input);
+            await userEvent.type(input, "asdf");
+            await userEvent.click(input);
+            await userEvent.click(await screen.findByText("20"));
+            await waitFor(() => {
+                expect(input).toHaveValue("1/20/2026");
+            });
+        },
+    );
     it("does not modify the current date if current input contains an invalid format", async () => {
         // Arrange
         const minDate = Temporal.PlainDate.from("2021-05-05");
@@ -833,12 +861,10 @@ describe("DatePicker", () => {
                 );
                 expect(screen.getByDisplayValue(expected)).toBeInTheDocument();
             });
-
             it("updates input to Spanish text format when date is selected from calendar", async () => {
                 // Arrange
                 const selectedDate = Temporal.PlainDate.from("2026-01-05");
                 const updateDateMock = jest.fn();
-
                 render(
                     <DatePicker
                         selectedDate={selectedDate}
@@ -848,24 +874,20 @@ describe("DatePicker", () => {
                     />,
                 );
                 const input = screen.getByRole("textbox");
-
                 // Act
                 await userEvent.click(input);
                 await screen.findByTestId("date-picker-overlay");
                 await userEvent.click(screen.getByText("15"));
-
                 // Assert
                 await waitFor(() => {
                     expect(input).toHaveValue("enero 15, 2026");
                 });
             });
         });
-
         describe("Localized numeric formats", () => {
             it("displays Spanish numeric date in DD/MM/YYYY format", () => {
                 // Arrange
                 const selectedDate = Temporal.PlainDate.from("2026-01-16");
-
                 // Act
                 render(
                     <DatePicker
@@ -875,18 +897,15 @@ describe("DatePicker", () => {
                         locale={es}
                     />,
                 );
-
                 // Assert
                 expect(
                     screen.getByDisplayValue("01/16/2026"),
                 ).toBeInTheDocument();
             });
-
             it("updates input when date is selected from Spanish calendar", async () => {
                 // Arrange
                 const selectedDate = Temporal.PlainDate.from("2026-01-05");
                 const updateDateMock = jest.fn();
-
                 render(
                     <DatePicker
                         selectedDate={selectedDate}
@@ -895,18 +914,15 @@ describe("DatePicker", () => {
                         locale={es}
                     />,
                 );
-
                 // Act
                 await userEvent.tab();
                 await userEvent.click(screen.getByText("15"));
-
                 // Assert
                 expect(
                     screen.getByDisplayValue("01/15/2026"),
                 ).toBeInTheDocument();
             });
         });
-
         describe("LL format (locale-aware long date)", () => {
             it.each([
                 {
@@ -932,7 +948,6 @@ describe("DatePicker", () => {
                     expected,
                 );
             });
-
             it("parses edited LL format text in English", async () => {
                 // Arrange
                 const updateDateMock = jest.fn();
@@ -943,12 +958,10 @@ describe("DatePicker", () => {
                         dateFormat="LL"
                     />,
                 );
-
                 // Act
                 const input = screen.getByRole("textbox");
                 await userEvent.clear(input);
                 await userEvent.type(input, "January 20, 2026");
-
                 // Assert
                 expect(updateDateMock).toHaveBeenLastCalledWith(
                     expect.objectContaining({
@@ -958,7 +971,6 @@ describe("DatePicker", () => {
                     }),
                 );
             });
-
             it("parses edited LL format text in Spanish", async () => {
                 // Arrange
                 const updateDateMock = jest.fn();
@@ -970,12 +982,10 @@ describe("DatePicker", () => {
                         locale={es}
                     />,
                 );
-
                 // Act
                 const input = screen.getByRole("textbox");
                 await userEvent.clear(input);
                 await userEvent.type(input, "20 de enero de 2026");
-
                 // Assert
                 expect(updateDateMock).toHaveBeenLastCalledWith(
                     expect.objectContaining({
