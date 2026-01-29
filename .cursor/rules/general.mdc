@@ -70,10 +70,11 @@ alwaysApply: true
 * ✅ Typography: Use `Heading` and `BodyText` components from `@khanacademy/wonder-blocks-typography` for text
 * ✅ Icons: Import Phosphor icons from `@phosphor-icons/core` (e.g., `import plusIcon from "@phosphor-icons/core/regular/plus.svg"`). Use the `PhosphorIcon` component from `@khanacademy/wonder-blocks-icon` to render them
 * ❌ Avoid using deprecated components like `Strut`
+* ❌ Avoid using primitive `color` tokens. Use `semanticColor` tokens instead.
 
 ### 7. Imports
 
-* ✅ Organize imports: React, third-party libs, internal absolute paths (`@khan/`, `@khanacademy/`), hash-based paths (`#`), relative paths (`./`, `../`)
+* ✅ Organize imports: React, third-party libs, internal absolute paths (`@khan/`, `@khanacademy/`), relative paths (`./`, `../`)
 * ✅ Use absolute paths (`@khan/`, `@khanacademy/`) for cross-package imports
 
 ### 8. Linting & Formatting
@@ -133,8 +134,7 @@ Here are the props that Wonder Blocks components commonly have:
 * `ref?: React.Ref<T>` - Reference to the underlying DOM element. Use `React.forwardRef` when components need to expose DOM refs.
 * `kind?: string` - Usually a union type (e.g., `'primary' | 'secondary' | 'tertiary'`). Depends on the component:
   * Button, IconButton, Link: `primary`, `secondary`, `tertiary`
-  * Banner: `info`, `success`, `warning`, `critical`
-  * Pill: same as Banner plus `neutral`, `accent`, `transparent`
+  * Banner and StatusBadge: `info`, `success`, `warning`, `critical`
 * `value?: T` - The value of the component. Only included if it makes sense for the component (i.e., form components).
 * `disabled?: boolean` - If the component should be disabled. Only included if the component is interactive. See the Disabled State section for implementation details.
 * `autoFocus?: boolean` - If true, this element should have input focus when the page loads. Only included if the component is interactive.
@@ -324,6 +324,7 @@ packages/wonder-blocks-*/
 | `pnpm typecheck` | Type check |
 | `pnpm test` | Run tests |
 | `pnpm build:storybook` | Build Storybook |
+| `pnpm dev` | Run for our custom CSS bundling |
 
 ### Versioning & Publishing
 
