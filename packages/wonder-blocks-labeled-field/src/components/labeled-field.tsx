@@ -391,7 +391,7 @@ const styles = StyleSheet.create({
         color: theme.helperText.color.disabled.foreground,
     },
     error: {
-        color: theme.error.color.foreground,
+        color: semanticColor.core.foreground.critical.default,
     },
     errorIcon: {
         marginTop: sizing.size_010, // This vertically aligns the icon with the text
