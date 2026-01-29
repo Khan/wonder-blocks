@@ -28,10 +28,8 @@ describe("DatePicker", () => {
 
     it("hides the date picker overlay by default", () => {
         // Arrange
-
         // Act
         render(<DatePicker updateDate={() => {}} />);
-
         // Assert
         expect(
             screen.queryByTestId("focus-sentinel-prev"),
@@ -41,10 +39,8 @@ describe("DatePicker", () => {
     it("shows the date picker overlay if the input is clicked", async () => {
         // Arrange
         render(<DatePicker updateDate={() => {}} />);
-
         // Act
         await userEvent.click(screen.getByRole("textbox"));
-
         // Assert
         expect(screen.getByTestId("focus-sentinel-prev")).toBeInTheDocument();
     });
@@ -511,7 +507,7 @@ describe("DatePicker", () => {
             }),
         },
     ])(
-        "keeps $desc with keepInvalidText prop",
+        "keeps $desc without clearInvalidValueOnBlur",
         async ({testInput, expectedValue, minDate, expectedCall}) => {
             const updateDateMock = jest.fn();
             render(
@@ -520,7 +516,7 @@ describe("DatePicker", () => {
                         selectedDate={Temporal.PlainDate.from("2026-01-16")}
                         updateDate={updateDateMock}
                         minDate={minDate}
-                        keepInvalidText
+                        clearInvalidValueOnBlur={false}
                     />
                     <button>Other element</button>
                 </>,
@@ -540,14 +536,17 @@ describe("DatePicker", () => {
         },
     );
 
-    it.each([{keepInvalidText: false}, {keepInvalidText: true}])(
-        "clicking calendar clears invalid text (keepInvalidText=$keepInvalidText)",
-        async ({keepInvalidText}) => {
+    it.each([
+        {clearInvalidValueOnBlur: true},
+        {clearInvalidValueOnBlur: false},
+    ])(
+        "clicking calendar clears invalid text (clearInvalidValueOnBlur=$clearInvalidValueOnBlur)",
+        async ({clearInvalidValueOnBlur}) => {
             render(
                 <DatePicker
                     selectedDate={Temporal.PlainDate.from("2026-01-16")}
                     updateDate={jest.fn()}
-                    keepInvalidText={keepInvalidText}
+                    clearInvalidValueOnBlur={clearInvalidValueOnBlur}
                 />,
             );
             const input = screen.getByRole("textbox");

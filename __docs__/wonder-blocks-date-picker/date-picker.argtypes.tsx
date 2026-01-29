@@ -33,7 +33,7 @@ export default {
             category: "Behavior",
         },
     },
-    keepInvalidText: {
+    clearInvalidValueOnBlur: {
         control: {type: "boolean"},
         table: {
             category: "Behavior",
