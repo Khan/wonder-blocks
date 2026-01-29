@@ -26,18 +26,18 @@ interface Props {
      * When the selected date changes, this callback is passed a Temporal object
      * for midnight on the selected date, set to the user's local time zone.
      *
-     * Note: This callback is called as the user types based on keepInvalidText:
+     * Note: This callback is called as the user types based on resetInvalidValueOnBlur:
      *
-     * With keepInvalidText={true}:
+     * With resetInvalidValueOnBlur={false}:
      * - Called immediately for all parsed dates (valid or out-of-range)
      * - Called immediately with null for invalid/unparseable text
      * - Enables real-time validation feedback
      *
-     * With keepInvalidText={false} (default):
+     * With resetInvalidValueOnBlur={true} (default):
      * - Called immediately only for valid in-range dates
-     * - Out-of-range dates and invalid text only notify on blur (will auto-revert)
+     * - Out-of-range dates and invalid text only notify on blur (will auto-reset)
      *
-     * For validation feedback, use keepInvalidText={true} and always update selectedDate
+     * For validation feedback, use resetInvalidValueOnBlur={false} and always update selectedDate
      * in your callback to display invalid values with error messages.
      */
     updateDate: (arg1?: Temporal.PlainDate | null | undefined) => any;
@@ -96,20 +96,19 @@ interface Props {
      */
     closeOnSelect?: boolean;
     /**
-     * Whether to keep invalid/unparseable text in the input field on blur
-     * to allow for external validation feedback (e.g., with LabeledField).
+     * Whether to reset invalid/unparseable text to the last valid value on blur.
      *
-     * When true:
+     * When true (default):
+     * - Invalid values (out-of-range dates and unparseable text) auto-reset to last valid value on blur
+     * - updateDate only called on blur for invalid values (not during typing)
+     * - Cleaner UX when not using external validation
+     *
+     * When false:
      * - Invalid values stay in field and updateDate is called immediately as user types
      * - Enables real-time validation feedback with LabeledField error messages
      * - Parent should always update selectedDate to show errors
-     *
-     * When false (default):
-     * - Invalid values (out-of-range dates and unparseable text) auto-revert on blur
-     * - updateDate only called on blur for invalid values (not during typing)
-     * - Cleaner UX when not using external validation
      */
-    keepInvalidText?: boolean;
+    resetInvalidValueOnBlur?: boolean;
     /**
      * Allows including elements below the date selection area that can close
      * the date picker.
@@ -144,7 +143,7 @@ const DatePicker = (props: Props) => {
         selectedDate,
         style,
         closeOnSelect = true,
-        keepInvalidText = false,
+        resetInvalidValueOnBlur = true,
         footer,
     } = props;
 
@@ -357,7 +356,7 @@ const DatePicker = (props: Props) => {
                 parseDate={TemporalLocaleUtils.parseDateToJsDate}
                 getModifiersForDay={TemporalLocaleUtils.getModifiersForDay}
                 modifiers={modifiers}
-                keepInvalidText={keepInvalidText}
+                resetInvalidValueOnBlur={resetInvalidValueOnBlur}
                 testId={id && `${id}-input`}
             />
         );

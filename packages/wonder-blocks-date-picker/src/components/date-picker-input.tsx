@@ -102,13 +102,13 @@ interface Props {
      */
     testId?: string;
     /**
-     * Whether to keep invalid text in the input field on blur.
+     * Whether to reset invalid text to the last valid value on blur.
      *
-     * - If `true`: Invalid/unparseable text and out-of-range dates stay in the field,
+     * - If `true` (default): Invalid text and out-of-range dates reset to the last valid value
+     * - If `false`: Invalid/unparseable text and out-of-range dates stay in the field,
      *   and onChange is called to notify the parent
-     * - If `false` (default): Invalid text and out-of-range dates revert to the last valid value
      */
-    keepInvalidText?: boolean;
+    resetInvalidValueOnBlur?: boolean;
     /**
      * Used to define a string that labels the current element.
      */
@@ -138,7 +138,7 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
             parseDate,
             placeholder,
             testId,
-            keepInvalidText = false,
+            resetInvalidValueOnBlur = true,
             ["aria-label"]: ariaLabel,
             ...restProps
         } = props;
@@ -149,7 +149,7 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
         const lastPropValueRef = React.useRef<string | null | undefined>(
             propValue,
         );
-        const keepInvalidTextRef = React.useRef(false);
+        const keepInvalidTextRef = React.useRef(false); // true when invalid text is kept for validation
 
         // Helper to process modifiers
         const processModifiers = React.useCallback(
@@ -272,34 +272,34 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
                     updateDate(date, value);
                 } else {
                     // Parsed but out of bounds (disabled)
-                    if (keepInvalidText) {
+                    if (!resetInvalidValueOnBlur) {
                         // Keep out-of-range date for validation and notify parent
                         keepInvalidTextRef.current = true;
                         updateDate(date, value);
                     } else {
-                        // Revert to last valid value (default behavior)
+                        // Reset to last valid value (default behavior)
                         setValue(propValue);
                     }
                 }
             } else if (value && value.trim() !== "") {
                 // Could not parse date - check if we should keep invalid text
-                if (keepInvalidText) {
+                if (!resetInvalidValueOnBlur) {
                     // Keep text for validation and notify parent
                     keepInvalidTextRef.current = true;
                     updateDateAsInvalid();
                 } else {
-                    // Revert to last valid value (default safer behavior)
+                    // Reset to last valid value (default behavior)
                     setValue(propValue);
                 }
             } else {
-                // Empty value - just revert to last valid value
+                // Empty value - just reset to last valid value
                 setValue(propValue);
             }
         }, [
             value,
             processDate,
             processModifiers,
-            keepInvalidText,
+            resetInvalidValueOnBlur,
             propValue,
             updateDate,
             updateDateAsInvalid,
@@ -339,20 +339,24 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
                 if (!modifiersResult.disabled) {
                     // Valid in-range date - always notify parent
                     updateDate(date, newValue);
-                } else if (keepInvalidText) {
-                    // Out-of-range date with keepInvalidText - notify for real-time validation
+                } else if (!resetInvalidValueOnBlur) {
+                    // Out-of-range date without auto-reset - notify for real-time validation
                     keepInvalidTextRef.current = true;
                     updateDate(date, newValue);
                 }
-                // For default case (keepInvalidText=false), out-of-range dates validated on blur
-            } else if (keepInvalidText && newValue && newValue.trim() !== "") {
-                // If keepInvalidText is enabled, notify parent immediately for invalid text
+                // For default case (resetInvalidValueOnBlur=true), out-of-range dates validated on blur
+            } else if (
+                !resetInvalidValueOnBlur &&
+                newValue &&
+                newValue.trim() !== ""
+            ) {
+                // If resetInvalidValueOnBlur is disabled, notify parent immediately for invalid text
                 // This enables real-time validation feedback for unparseable input
                 keepInvalidTextRef.current = true;
                 updateDateAsInvalid();
             }
-            // For default case (keepInvalidText=false), invalid text is validated on blur
-            // to avoid clearing parent state during partial input
+            // For default case (resetInvalidValueOnBlur=true), invalid text is validated on blur
+            // to avoid resetting parent state during partial input
         };
 
         const innerRef = React.useRef<HTMLInputElement>(null);

@@ -235,7 +235,7 @@ const DatePickerWithValidation = (props: Props) => {
                     updateDate={handleUpdateDate}
                     minDate={minDate}
                     maxDate={maxDate}
-                    keepInvalidText
+                    resetInvalidValueOnBlur={false}
                 />
             }
         />
@@ -244,7 +244,7 @@ const DatePickerWithValidation = (props: Props) => {
 
 /**
  * Example with validation feedback using LabeledField.
- * Relies on the keepInvalidText prop to retain user input for validation.
+ * Disables resetInvalidValueOnBlur to retain user input for validation.
  * Shows an error message when the user types a date outside the allowed range.
  * Try editing the date to be before January 10, 2026 or after January 31, 2026.
  */
