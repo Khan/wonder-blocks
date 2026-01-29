@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-cell
 
+## 6.1.8
+
+### Patch Changes
+
+- 8bb7ada: Update color tokens to use semanticColor.core.foreground.instructive changes
+- Updated dependencies [8bb7ada]
+    - @khanacademy/wonder-blocks-tokens@15.0.0
+    - @khanacademy/wonder-blocks-clickable@8.1.2
+    - @khanacademy/wonder-blocks-styles@0.2.38
+    - @khanacademy/wonder-blocks-typography@4.2.29
+
 ## 6.1.7
 
 ### Patch Changes

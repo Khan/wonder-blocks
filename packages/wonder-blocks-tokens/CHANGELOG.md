@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 15.0.0
+
+### Major Changes
+
+- 8bb7ada: Update core.foreground.x tokens to new values (default theme)
+
 ## 14.1.3
 
 ### Patch Changes
