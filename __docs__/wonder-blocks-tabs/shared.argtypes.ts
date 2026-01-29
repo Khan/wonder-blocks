@@ -25,4 +25,4 @@ export const AriaLabelOrAriaLabelledbyArgTypes = {
             category: "Accessibility",
         },
     },
-};
+} as const;
