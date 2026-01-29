@@ -1,5 +1,24 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.6.7
+
+### Patch Changes
+
+- 8bb7ada: Update color tokens to use semanticColor.core.foreground.instructive changes
+- Updated dependencies [8bb7ada]
+- Updated dependencies [8bb7ada]
+    - @khanacademy/wonder-blocks-tokens@15.0.0
+    - @khanacademy/wonder-blocks-cell@6.1.8
+    - @khanacademy/wonder-blocks-clickable@8.1.2
+    - @khanacademy/wonder-blocks-form@7.5.3
+    - @khanacademy/wonder-blocks-icon@5.3.7
+    - @khanacademy/wonder-blocks-icon-button@11.1.3
+    - @khanacademy/wonder-blocks-modal@8.5.14
+    - @khanacademy/wonder-blocks-pill@3.1.53
+    - @khanacademy/wonder-blocks-search-field@5.1.60
+    - @khanacademy/wonder-blocks-styles@0.2.38
+    - @khanacademy/wonder-blocks-typography@4.2.29
+
 ## 10.6.6
 
 ### Patch Changes

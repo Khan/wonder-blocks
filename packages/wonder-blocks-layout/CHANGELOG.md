@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-layout
 
+## 3.1.44
+
+### Patch Changes
+
+- Updated dependencies [8bb7ada]
+    - @khanacademy/wonder-blocks-tokens@15.0.0
+
 ## 3.1.43
 
 ### Patch Changes

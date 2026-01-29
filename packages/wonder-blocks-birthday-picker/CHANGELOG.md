@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 4.1.35
+
+### Patch Changes
+
+- 8bb7ada: Updates styles to reflect new core.foreground tokens
+- Updated dependencies [8bb7ada]
+- Updated dependencies [8bb7ada]
+    - @khanacademy/wonder-blocks-tokens@15.0.0
+    - @khanacademy/wonder-blocks-dropdown@10.6.7
+    - @khanacademy/wonder-blocks-icon@5.3.7
+    - @khanacademy/wonder-blocks-layout@3.1.44
+    - @khanacademy/wonder-blocks-typography@4.2.29
+
 ## 4.1.34
 
 ### Patch Changes

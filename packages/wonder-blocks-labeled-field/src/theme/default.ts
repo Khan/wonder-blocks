@@ -28,9 +28,6 @@ const theme = {
         },
     },
     error: {
-        color: {
-            foreground: semanticColor.core.foreground.critical.subtle,
-        },
         font: {
             weight: font.weight.regular,
         },

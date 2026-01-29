@@ -2,7 +2,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 import {Temporal} from "temporal-polyfill";
 import * as React from "react";
 
-import {fr} from "date-fns/locale";
+import {fr, es} from "date-fns/locale";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View, type PropsFor} from "@khanacademy/wonder-blocks-core";
 import {sizing, spacing} from "@khanacademy/wonder-blocks-tokens";
@@ -12,6 +12,7 @@ import {DatePicker} from "@khanacademy/wonder-blocks-date-picker";
 
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-date-picker/package.json";
+import DatePickerArgTypes from "./date-picker.argtypes";
 
 import {allModes} from "../../.storybook/modes";
 
@@ -133,6 +134,7 @@ const meta: Meta<typeof DatePicker> = {
             disableSnapshot: true,
         },
     },
+    argTypes: DatePickerArgTypes,
 };
 
 export default meta;
@@ -190,21 +192,64 @@ export const WithLabel: Story = {
     },
 };
 
-/**
- * Example using LabeledField
- */
-export const WithLabeledField: Story = {
-    render: (args) => (
+const DatePickerWithValidation = (props: Props) => {
+    const minDate = Temporal.PlainDate.from("2026-01-10");
+    const maxDate = Temporal.PlainDate.from("2026-01-31");
+
+    const [selectedDate, setSelectedDate] = React.useState<
+        Temporal.PlainDate | null | undefined
+    >(Temporal.PlainDate.from("2026-01-16"));
+
+    const [errorMessage, setErrorMessage] = React.useState<
+        string | undefined
+    >();
+
+    const handleUpdateDate = (date?: Temporal.PlainDate | null) => {
+        setSelectedDate(date);
+
+        // Validate the date
+        if (!date) {
+            setErrorMessage("Please enter a valid date");
+        } else if (Temporal.PlainDate.compare(date, minDate) < 0) {
+            setErrorMessage(
+                `Date must be on or after ${minDate.toLocaleString("en-US", {dateStyle: "long"})}`,
+            );
+        } else if (Temporal.PlainDate.compare(date, maxDate) > 0) {
+            setErrorMessage(
+                `Date must be on or before ${maxDate.toLocaleString("en-US", {dateStyle: "long"})}`,
+            );
+        } else {
+            setErrorMessage(undefined);
+        }
+    };
+
+    return (
         <LabeledField
-            label="Labeled field example"
-            field={<ControlledDatePicker {...args} />}
+            label="Class date"
+            description="Please select a date between January 10-31, 2026"
+            errorMessage={errorMessage}
+            field={
+                <DatePicker
+                    {...props}
+                    selectedDate={selectedDate}
+                    updateDate={handleUpdateDate}
+                    minDate={minDate}
+                    maxDate={maxDate}
+                    resetInvalidValueOnBlur={false}
+                />
+            }
         />
-    ),
-    args: {
-        dateFormat: "MMMM D, YYYY",
-        placeholder: "Select a date",
-        updateDate: () => {},
-    },
+    );
+};
+
+/**
+ * Example with validation feedback using LabeledField.
+ * Disables resetInvalidValueOnBlur to retain user input for validation.
+ * Shows an error message when the user types a date outside the allowed range.
+ * Try editing the date to be before January 10, 2026 or after January 31, 2026.
+ */
+export const WithLabeledFieldAndValidation: Story = {
+    render: (args) => <DatePickerWithValidation {...args} />,
 };
 
 /**
@@ -329,16 +374,36 @@ export const WithAlternateLocale: Story = {
         locale: fr,
         inputAriaLabel: "Choisir ou entrer une date",
     },
-    parameters: {
-        chromatic: {
-            // Re-enable snapshots for this story since the calendar is visible
-            disableSnapshot: false,
-            modes: {
-                small: allModes.small,
-                large: allModes.large,
-                thunderblocks: allModes.themeThunderBlocks,
-                "default rtl": allModes["themeDefault rtl"],
-            },
-        },
+};
+
+/**
+ * DatePicker with Spanish localization showing text-based date format.
+ * For example, "January 16, 2026" displays as "enero 16, 2026" in the input field.
+ * The calendar overlay also shows Spanish month names and day abbreviations.
+ * This uses the "LL" dateFormat which displays the full month name in Spanish.
+ */
+export const SpanishLocalizationTextFormat: Story = {
+    render: (args) => <DatePickerWithOpenOverlay {...args} />,
+    args: {
+        selectedDate: Temporal.PlainDate.from("2026-01-16"),
+        updateDate: () => {},
+        locale: es,
+        dateFormat: "LL",
+        inputAriaLabel: "Elegir o introducir una fecha",
+    },
+};
+
+/**
+ * DatePicker with Spanish localization showing numeric date format.
+ * Displays dates in "L"" format for accuracy across locales.
+ * For example, January 16, 2026 displays as "01/16/2026" in the input field.
+ */
+export const SpanishLocalizationNumericFormat: Story = {
+    render: (args) => <DatePickerWithOpenOverlay {...args} />,
+    args: {
+        selectedDate: Temporal.PlainDate.from("2026-01-16"),
+        updateDate: () => {},
+        locale: es,
+        inputAriaLabel: "Elegir o introducir una fecha",
     },
 };

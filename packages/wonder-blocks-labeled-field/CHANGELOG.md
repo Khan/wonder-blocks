@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-labeled-field
 
+## 4.0.14
+
+### Patch Changes
+
+- 8bb7ada: Updates styles to reflect new core.foreground tokens
+- Updated dependencies [8bb7ada]
+    - @khanacademy/wonder-blocks-tokens@15.0.0
+    - @khanacademy/wonder-blocks-layout@3.1.44
+    - @khanacademy/wonder-blocks-typography@4.2.29
+
 ## 4.0.13
 
 ### Patch Changes
