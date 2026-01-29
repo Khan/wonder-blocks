@@ -126,4 +126,22 @@ describe("ActionItem", () => {
         // Assert
         expect(screen.getByText("Subtitle 2")).toBeInTheDocument();
     });
+
+    it("should set aria-label if provided", () => {
+        // Arrange
+        // Act
+        render(
+            <ActionItem
+                label="ActionItem"
+                aria-label="ActionItem aria-label"
+                onClick={jest.fn()}
+            />,
+        );
+
+        // Assert
+        expect(screen.getByRole("menuitem")).toHaveAttribute(
+            "aria-label",
+            "ActionItem aria-label",
+        );
+    });
 });

@@ -4,7 +4,7 @@ import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
 import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
-import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import plusIcon from "@phosphor-icons/core/bold/plus-bold.svg";
 
 import Link from "../link";
@@ -640,5 +640,79 @@ describe("Link", () => {
 
         // Assert
         expect(link).toHaveAttribute("title", "Click me!");
+    });
+
+    describe("Accessibility", () => {
+        describe("Icons", () => {
+            it("should include the accessible name of the start and end icons in the accessible name of the link", () => {
+                // Arrange
+                // Act
+                render(
+                    <Link
+                        startIcon={
+                            <Icon>
+                                <img src="icon.svg" alt="Start icon" />
+                            </Icon>
+                        }
+                        endIcon={
+                            <PhosphorIcon
+                                icon={plusIcon}
+                                aria-label="End icon"
+                            />
+                        }
+                        href="/"
+                    >
+                        Label
+                    </Link>,
+                );
+
+                // Assert
+                expect(screen.getByRole("link")).toHaveAccessibleName(
+                    "Start icon Label End icon",
+                );
+            });
+
+            it("should not include image roles in the link if the icons are marked as decorative only", () => {
+                // Arrange
+                // Act
+                render(
+                    <Link
+                        startIcon={
+                            <Icon>
+                                <img src="icon.svg" alt="" />
+                            </Icon>
+                        }
+                        endIcon={<PhosphorIcon icon={plusIcon} />}
+                        href="/"
+                    >
+                        Label
+                    </Link>,
+                );
+
+                // Assert
+                expect(screen.queryByRole("img")).not.toBeInTheDocument();
+            });
+
+            it("should only include the label in the accessible name if the icons are marked as decorative only", () => {
+                // Arrange
+                // Act
+                render(
+                    <Link
+                        href="/"
+                        startIcon={
+                            <Icon>
+                                <img src="icon.svg" alt="" />
+                            </Icon>
+                        }
+                        endIcon={<PhosphorIcon icon={plusIcon} />}
+                    >
+                        Label
+                    </Link>,
+                );
+
+                // Assert
+                expect(screen.getByRole("link")).toHaveAccessibleName("Label");
+            });
+        });
     });
 });

@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {action} from "storybook/actions";
@@ -30,9 +31,10 @@ import ComponentInfo from "../components/component-info";
 
 import ButtonArgTypes from "./button.argtypes";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
-import {Icon} from "@khanacademy/wonder-blocks-icon";
+import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {themeModes} from "../../.storybook/modes";
 import {TextField} from "@khanacademy/wonder-blocks-form";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
     title: "Packages / Button / Button",
@@ -426,6 +428,67 @@ export const WithIcon: StoryComponentType = {
     parameters: {
         chromatic: {
             modes: themeModes,
+        },
+    },
+};
+
+/**
+ * If the `startIcon` or `endIcon` provide meaning, you can provide an accessible
+ * name for the icons so that it is included in the accessible name of the button.
+ *
+ * For example, when using a `PhosphorIcon`, you can use the `aria-label` prop
+ * to provide an accessible name. When using a `Icon` component, you can provide
+ * the accessible name to the `children` element (ie the `alt` attribute on the
+ * `img` element).
+ */
+export const IconsWithAccessibleNames: StoryComponentType = {
+    render: () => {
+        return (
+            <View style={styles.row}>
+                <Button
+                    style={styles.button}
+                    startIcon={
+                        <PhosphorIcon
+                            icon={IconMappings.cookie}
+                            aria-label="Cookie"
+                        />
+                    }
+                    endIcon={
+                        <PhosphorIcon
+                            icon={IconMappings.iceCream}
+                            aria-label="Ice Cream"
+                        />
+                    }
+                >
+                    With PhosphorIcon aria-label
+                </Button>
+                <Button
+                    style={styles.button}
+                    startIcon={
+                        <Icon>
+                            <img
+                                src={"logo.svg"}
+                                alt="Wonder Blocks start icon"
+                            />
+                        </Icon>
+                    }
+                    endIcon={
+                        <Icon>
+                            <img
+                                src={"logo.svg"}
+                                alt="Wonder Blocks end icon"
+                            />
+                        </Icon>
+                    }
+                >
+                    With Icon and img alt
+                </Button>
+            </View>
+        );
+    },
+    parameters: {
+        chromatic: {
+            disableSnapshot: true,
         },
     },
 };

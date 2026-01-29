@@ -91,7 +91,6 @@ const LinkCore = React.forwardRef(function LinkCore(
         startIconElement = React.cloneElement(startIcon, {
             style: [styles.startIcon, styles.centered],
             testId: "start-icon",
-            "aria-hidden": "true",
             ...startIcon.props,
         } as Partial<
             React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>
@@ -102,7 +101,6 @@ const LinkCore = React.forwardRef(function LinkCore(
         endIconElement = React.cloneElement(endIcon, {
             style: [styles.endIcon, styles.centered],
             testId: "end-icon",
-            "aria-hidden": "true",
             ...endIcon.props,
         } as Partial<
             React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>
