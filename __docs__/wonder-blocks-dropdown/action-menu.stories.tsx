@@ -662,11 +662,14 @@ export const OpeningModal: StoryComponentType = {
  * This example shows how to use `aria-label` on the ActionMenu opener and
  * `ActionItem` children. This is especially useful if you do **not** have a
  * visible label component but want to ensure accessibility. For more details,
- * see the [accessibility documentation](./action-menu.accessibility.mdx).
+ * see the [accessibility documentation](./?path=/docs/packages-dropdown-actionmenu-accessibility--docs).
  *
  * As you can see, the `ActionMenu` opener visually shows the selected item, but
  * the `aria-label` attribute on the opener provides a more descriptive label
  * for the action menu.
+ *
+ * **NOTE:** Make sure to include relevant information in `aria-label` if the
+ * ActionMenu is used to select an item from a list.
  */
 export const AriaLabel: StoryComponentType = {
     render: function Render(args) {
@@ -692,7 +695,11 @@ export const AriaLabel: StoryComponentType = {
         return (
             <ActionMenu
                 {...args}
-                aria-label="List of classes"
+                aria-label={
+                    selectedItem
+                        ? `${selectedItem} - List of classes`
+                        : "List of classes"
+                }
                 opener={() => (
                     <Button endIcon={IconMappings.caretDown}>
                         {selectedItem ? selectedItem : "List of classes"}
