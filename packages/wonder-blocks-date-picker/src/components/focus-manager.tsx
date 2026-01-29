@@ -94,16 +94,39 @@ export default function FocusManager(props: Props) {
 
         const handleKeydownReferenceElement = (e: KeyboardEvent) => {
             if (e.key === "Tab" && !e.shiftKey) {
-                e.preventDefault();
-                focusableElementsInsideRef.current[0]?.focus();
+                // Refresh focusable elements in case they weren't ready on mount
+                if (rootNodeRef.current) {
+                    focusableElementsInsideRef.current = findFocusableNodes(
+                        rootNodeRef.current,
+                    );
+                }
+
+                // Only prevent default if we have focusable elements to move to
+                if (focusableElementsInsideRef.current.length > 0) {
+                    e.preventDefault();
+                    focusableElementsInsideRef.current[0]?.focus();
+                }
+                // Otherwise, let Tab proceed normally to next element in page
             }
         };
 
         const handleKeydownNextFocusableElement = (e: KeyboardEvent) => {
             if (e.key === "Tab" && e.shiftKey) {
-                e.preventDefault();
-                const lastIndex = focusableElementsInsideRef.current.length - 1;
-                focusableElementsInsideRef.current[lastIndex]?.focus();
+                // Refresh focusable elements in case they changed
+                if (rootNodeRef.current) {
+                    focusableElementsInsideRef.current = findFocusableNodes(
+                        rootNodeRef.current,
+                    );
+                }
+
+                // Only prevent default if we have focusable elements to move to
+                if (focusableElementsInsideRef.current.length > 0) {
+                    e.preventDefault();
+                    const lastIndex =
+                        focusableElementsInsideRef.current.length - 1;
+                    focusableElementsInsideRef.current[lastIndex]?.focus();
+                }
+                // Otherwise, let Shift+Tab proceed normally
             }
         };
 

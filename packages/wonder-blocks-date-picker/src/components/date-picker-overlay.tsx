@@ -30,7 +30,6 @@ const BASE_CONTAINER_STYLES = {
 
 // Static styles for when content is out of boundaries - cached outside component
 const OUT_OF_BOUNDARIES_STYLES = {
-    pointerEvents: "none" as const,
     visibility: "hidden" as const,
 };
 

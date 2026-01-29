@@ -1,6 +1,6 @@
 import React from "react";
 import {describe, it} from "@jest/globals";
-import {fireEvent, render, screen} from "@testing-library/react";
+import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {Temporal} from "temporal-polyfill";
 import {TemporalLocaleUtils} from "@khanacademy/wonder-blocks-date-picker";
@@ -170,9 +170,8 @@ describe("DatePickerInput", () => {
         expect(onChangeSpy).toHaveBeenCalledWith(null, {});
     });
 
-    it("updates the value and calls onChange if the date is valid", async () => {
+    it("updates the value and calls onChange on blur if the date is valid", async () => {
         // Arrange
-        // Passing in a date 1 day before of the valid range
         const initialDate = "2021-05-12";
         const onChangeSpy = jest.fn();
         const minDate = Temporal.PlainDate.from(initialDate);
@@ -189,7 +188,6 @@ describe("DatePickerInput", () => {
                     selected: TemporalLocaleUtils.temporalDateToJsDate(
                         Temporal.PlainDate.from(initialDate),
                     ),
-                    // We want to disable past dates and dates after 10 days from now
                     disabled: (date) => {
                         const plain = Temporal.PlainDate.from({
                             year: date.getFullYear(),
@@ -206,11 +204,38 @@ describe("DatePickerInput", () => {
             />,
         );
 
-        // Act
-        // change the date to 2 days in the future
+        // Act - type new date and blur
         const input = screen.getByTestId("date-picker-input");
         await userEvent.click(input);
         await userEvent.clear(input);
+        await userEvent.type(input, "2021-05-14");
+        await userEvent.tab(); // blur
+
+        // Assert - onChange called on blur, not during typing
+        expect(onChangeSpy).toHaveBeenCalledWith(
+            TemporalLocaleUtils.temporalDateToJsDate(
+                Temporal.PlainDate.from("2021-05-14"),
+            ),
+            {},
+        );
+    });
+
+    it("calls onChange when a valid date is pasted", async () => {
+        // Arrange
+        const onChangeSpy = jest.fn();
+        render(
+            <DatePickerInput
+                dateFormat="YYYY-MM-DD"
+                value=""
+                parseDate={TemporalLocaleUtils.parseDateToJsDate}
+                onChange={onChangeSpy}
+                testId="date-picker-input"
+            />,
+        );
+
+        // Act
+        const input = screen.getByTestId("date-picker-input");
+        await userEvent.click(input);
         await userEvent.paste("2021-05-14");
 
         // Assert
@@ -292,16 +317,231 @@ describe("DatePickerInput", () => {
             />,
         );
 
-        // Passing in an invalid day (43)
-        await userEvent.type(
-            await screen.findByTestId("date-picker-input"),
-            "{selectall}2021-05-43",
+        const input = await screen.findByTestId("date-picker-input");
+        await userEvent.clear(input);
+        await userEvent.type(input, "2021-05-43");
+
+        // Act - blur by clicking outside
+        await userEvent.click(document.body);
+
+        // Assert - Invalid date text reverts to last valid value (default behavior)
+        expect(input).toHaveValue(validDate);
+    });
+
+    it("does not reformat input while user is typing", async () => {
+        // Arrange
+        const onChangeSpy = jest.fn();
+        render(
+            <DatePickerInput
+                dateFormat="M/D/YYYY"
+                value=""
+                parseDate={TemporalLocaleUtils.parseDateToJsDate}
+                onChange={onChangeSpy}
+                testId="date-picker-input"
+            />,
         );
 
-        // Act
-        fireEvent.blur(screen.getByTestId("date-picker-input"));
+        const input = screen.getByTestId("date-picker-input");
+        await userEvent.click(input);
 
-        // Assert
-        expect(screen.getByTestId("date-picker-input")).toHaveValue(validDate);
+        // Act - type partial date while focused
+        await userEvent.type(input, "1/28/20");
+
+        // Assert - input should keep raw typed value, not be reformatted
+        expect(input).toHaveValue("1/28/20");
+    });
+
+    it("keeps raw input value while focused even when prop value changes", async () => {
+        // Arrange
+        const {rerender} = render(
+            <DatePickerInput
+                dateFormat="YYYY-MM-DD"
+                value="2021-05-15"
+                parseDate={TemporalLocaleUtils.parseDateToJsDate}
+                testId="date-picker-input"
+            />,
+        );
+
+        const input = screen.getByTestId("date-picker-input");
+        await userEvent.click(input);
+        await userEvent.clear(input);
+        await userEvent.type(input, "2021-05-");
+
+        // Act - parent tries to update with formatted value while user is typing
+        rerender(
+            <DatePickerInput
+                dateFormat="YYYY-MM-DD"
+                value="2021-05-15"
+                parseDate={TemporalLocaleUtils.parseDateToJsDate}
+                testId="date-picker-input"
+            />,
+        );
+
+        // Assert - input should keep the user's partial input
+        expect(input).toHaveValue("2021-05-");
+    });
+
+    it("accepts ISO format input without reformatting while typing", async () => {
+        // Arrange
+        const handleChange = jest.fn();
+        render(
+            <DatePickerInput
+                value=""
+                onChange={handleChange}
+                dateFormat="M/D/YYYY"
+                parseDate={TemporalLocaleUtils.parseDateToJsDate}
+                testId="date-input"
+            />,
+        );
+
+        const input = screen.getByTestId("date-input");
+        await userEvent.click(input);
+
+        // Act - type ISO format date (common in programmatic/e2e tests)
+        await userEvent.type(input, "2026-01-28");
+
+        // Assert - input preserves the ISO format exactly as typed
+        expect(input).toHaveValue("2026-01-28");
+    });
+
+    it("does not corrupt ISO date when typed character-by-character (e2e scenario)", async () => {
+        // Arrange - simulates Cypress .type() which types one character at a time
+        const dateString = "2026-01-28";
+        render(
+            <DatePickerInput
+                value=""
+                onChange={jest.fn()}
+                dateFormat="M/D/YYYY"
+                parseDate={TemporalLocaleUtils.parseDateToJsDate}
+                testId="date-input"
+            />,
+        );
+
+        const input = screen.getByTestId("date-input");
+        await userEvent.click(input);
+
+        // Act - type each character individually (like e2e tests do)
+        for (const char of dateString) {
+            await userEvent.type(input, char);
+        }
+
+        // Assert - the exact string is preserved, not corrupted like "1/21/20269"
+        expect(input).toHaveValue(dateString);
+    });
+
+    it("keyboard navigation: Tab in, type, Tab out works properly", async () => {
+        // Arrange
+        const onChangeSpy = jest.fn();
+        render(
+            <>
+                <button>Before</button>
+                <DatePickerInput
+                    dateFormat="M/D/YYYY"
+                    value="1/1/2026"
+                    parseDate={TemporalLocaleUtils.parseDateToJsDate}
+                    onChange={onChangeSpy}
+                    testId="date-picker-input"
+                />
+                <button>After</button>
+            </>,
+        );
+
+        onChangeSpy.mockClear();
+
+        // Act - Tab to input and type a complete date
+        await userEvent.tab();
+        await userEvent.tab();
+        const input = screen.getByTestId("date-picker-input");
+        await userEvent.clear(input);
+        await userEvent.type(input, "1/28/2026");
+
+        // Assert - onChange called with valid date
+        expect(onChangeSpy).toHaveBeenCalledWith(
+            TemporalLocaleUtils.temporalDateToJsDate(
+                Temporal.PlainDate.from("2026-01-28"),
+            ),
+            {},
+        );
+    });
+
+    it("validates complete dates while typing", async () => {
+        // Arrange
+        const onChangeSpy = jest.fn();
+        render(
+            <DatePickerInput
+                dateFormat="M/D/YYYY"
+                value="1/1/2026"
+                parseDate={TemporalLocaleUtils.parseDateToJsDate}
+                onChange={onChangeSpy}
+                testId="date-picker-input"
+            />,
+        );
+
+        const input = screen.getByTestId("date-picker-input");
+        onChangeSpy.mockClear();
+
+        // Act - Type a complete valid date
+        await userEvent.clear(input);
+        await userEvent.type(input, "1/28/2026");
+
+        // Assert - onChange called when complete valid date is typed
+        expect(onChangeSpy).toHaveBeenCalledWith(
+            TemporalLocaleUtils.temporalDateToJsDate(
+                Temporal.PlainDate.from("2026-01-28"),
+            ),
+            {},
+        );
+    });
+
+    it("strict parsing: rejects partial dates", async () => {
+        // Arrange
+        const onChangeSpy = jest.fn();
+        render(
+            <DatePickerInput
+                dateFormat="M/D/YYYY"
+                value=""
+                parseDate={TemporalLocaleUtils.parseDateToJsDate}
+                onChange={onChangeSpy}
+                testId="date-picker-input"
+            />,
+        );
+
+        const input = screen.getByTestId("date-picker-input");
+        await userEvent.click(input);
+
+        // Act - type partial dates
+        await userEvent.type(input, "1/28");
+        await userEvent.tab(); // blur
+
+        // Assert - partial date is rejected (not parsed)
+        expect(onChangeSpy).toHaveBeenCalledWith(null, {});
+    });
+
+    it("strict parsing: accepts ISO format regardless of specified format", async () => {
+        // Arrange
+        const onChangeSpy = jest.fn();
+        render(
+            <DatePickerInput
+                dateFormat="M/D/YYYY"
+                value=""
+                parseDate={TemporalLocaleUtils.parseDateToJsDate}
+                onChange={onChangeSpy}
+                testId="date-picker-input"
+            />,
+        );
+
+        const input = screen.getByTestId("date-picker-input");
+        await userEvent.click(input);
+
+        // Act - type ISO format (common for e2e/programmatic input)
+        await userEvent.type(input, "2026-01-28");
+
+        // Assert - ISO format is accepted
+        expect(onChangeSpy).toHaveBeenCalledWith(
+            TemporalLocaleUtils.temporalDateToJsDate(
+                Temporal.PlainDate.from("2026-01-28"),
+            ),
+            {},
+        );
     });
 });
