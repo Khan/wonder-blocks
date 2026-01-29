@@ -403,6 +403,37 @@ export const Scenarios: Story = {
 
 **⚠️ Scenario stories should include:** RTL layouts (use `decorator: <div dir="rtl" />`), custom style overrides, and edge cases (long text, long text with no word break, overflow, truncation, empty states).
 
+### Playtesting Stories
+
+**✅ Create playtesting stories for testing of specific behaviors:**
+
+```tsx
+export default {
+    title: "Packages / Component / Testing / Component - Playtesting",
+    parameters: {
+        chromatic: {disableSnapshot: true}, // For testing purposes only, snapshots are not needed
+    },
+} as Meta<typeof Component>;
+
+/**
+ * Describe the scenario and what to test manually.
+ * Example: "When selecting a tab with Space/Enter, the page should not scroll."
+ */
+export const ScrollBehavior: Story = {
+    render: (args) => (
+        // Set up the scenario for manual testing
+    ),
+};
+```
+
+**Good candidates for playtesting stories:**
+- Scroll behavior that's difficult to assert programmatically
+- Complex keyboard interactions across multiple components
+- Browser-specific edge cases
+- Scenarios requiring visual confirmation by a human
+
+**⚠️ Playtesting stories should:** disable Chromatic snapshots, include clear JSDoc comments explaining what to test, and use the `Testing / Component - Playtesting` title pattern.
+
 ## Story Naming Conventions
 
 **✅ Use clear, descriptive names:**
@@ -442,10 +473,42 @@ export const Default: StoryComponentType = {
 
 For stateful stories, combine actions with state updates: `action("onChange")(newValue); setValue(newValue);`
 
+## Interaction Tests for Browser-Specific Behavior
+
+**⚠️ Use Storybook interaction tests for behaviors that rely on real browser APIs not available in jsdom** (scroll, layout/geometry, clipboard, complex focus management).
+
+**⚠️ Don't test styling in interaction tests** - visual appearance is covered by Chromatic snapshot tests.
+
+**✅ Use the `play` function:**
+
+```tsx
+import {expect, within} from "storybook/test";
+
+export const BrowserBehaviorTest: StoryComponentType = {
+    render: (args) => (
+        // Set up the DOM structure needed to test the behavior
+    ),
+    play: async ({canvasElement}) => {
+        const canvas = within(canvasElement);
+
+        // Interact with the component (if needed)
+
+        // Assert things based on browser-specific behavior
+        // (e.g., ResizeObserver, getBoundingClientRect, scrollIntoView)
+    },
+    parameters: {
+        /** These stories are used for testing purposes only so we disable snapshots */
+        chromatic: {disableSnapshot: true},
+    },
+};
+```
+
+**⚠️ It's okay to have both:** Unit tests with proper mocking work for browser behavior, but interaction tests provide additional confidence in a real browser. See `unit-tests.mdc` for mocking guidance.
+
 ## Common Pitfalls to Avoid
 
 - ❌ **Don't mix testing snapshots with documentation stories** - Use `title: "Packages / Button / Testing / Snapshots"` with `tags: ["!autodocs"]` for snapshot stories
-- ❌ **Don't forget to disable snapshots** - Add `chromatic: {disableSnapshot: true}` for interactive-only stories
+- ❌ **Don't forget to disable snapshots** - Add `chromatic: {disableSnapshot: true}` for interaction tests and playtesting stories
 - ❌ **Don't use `React.FC`** - Use `(props: Props) =>` instead
 
 ## Best Practices Summary
@@ -459,4 +522,6 @@ For stateful stories, combine actions with state updates: `action("onChange")(ne
 7. **✅ State Management**: Use proper patterns for stateful stories
 8. **✅ Naming**: Use clear, descriptive names for stories
 9. **✅ Tokens**: Use Wonder Blocks tokens instead of hard-coded values
-10. **✅ Testing**: Separate documentation stories from visual testing stories
+10. **✅ Testing**: Separate documentation, snapshot, interaction, and playtesting stories
+11. **✅ Interaction Tests**: Use `play` functions for browser-specific behavior that jsdom can't handle
+12. **✅ Playtesting**: Create manual testing stories for behaviors difficult to automate

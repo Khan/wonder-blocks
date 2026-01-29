@@ -337,6 +337,26 @@ await userEvent.type(screen.getByRole("textbox"), "hello");
 fireEvent.click(button);
 ```
 
+### Browser Behavior and jsdom Limitations
+
+**⚠️ jsdom does not fully implement all browser behaviors.** Common limitations include: `getBoundingClientRect()`, scroll positions, `offsetWidth`/`offsetHeight`, clipboard API, CSS animations, and Intersection/Resize Observers.
+
+**✅ Mock browser APIs when testing in unit tests:**
+
+```typescript
+// Mock scrollIntoView
+const scrollIntoViewMock = jest.fn();
+Element.prototype.scrollIntoView = scrollIntoViewMock;
+
+// Mock getBoundingClientRect
+jest.spyOn(Element.prototype, "getBoundingClientRect").mockReturnValue({
+    top: 100, left: 100, bottom: 200, right: 200,
+    width: 100, height: 100, x: 100, y: 100, toJSON: () => {},
+});
+```
+
+**✅ Use Storybook interaction tests** for behavior that's difficult to mock accurately (scroll, layout, clipboard, complex focus management). See `storybook.mdc` for details.
+
 ### Element Selection
 
 **Query priority (use in this order):**
@@ -446,4 +466,5 @@ pnpm jest --verbose --runInBand
 7. ✅ **Organization**: Group related tests with `describe` blocks
 8. ✅ **Assertions**: One expect per test when possible
 9. ✅ **Parameterized**: Use `it.each` for testing multiple input/output combinations
-10. ❌ **Avoid**: Testing style-only props, mocking `console.error`, over-testing trivial code
+10. ✅ **Browser APIs**: Mock jsdom limitations properly, or use Storybook interaction tests for browser-specific behavior
+11. ❌ **Avoid**: Testing style-only props, mocking `console.error`, over-testing trivial code
