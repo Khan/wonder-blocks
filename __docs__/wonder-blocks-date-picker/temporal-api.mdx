@@ -177,20 +177,20 @@ const isoString = date.toString();
 ### To JavaScript Date
 
 ```typescript
-import { temporalDateToJsDate } from "@khanacademy/wonder-blocks-date-picker";
+import { TemporalLocaleUtils } from "@khanacademy/wonder-blocks-date-picker";
 
 const temporalDate = Temporal.PlainDate.from("2024-01-15");
-const jsDate = temporalDateToJsDate(temporalDate);
+const jsDate = TemporalLocaleUtils.temporalDateToJsDate(temporalDate);
 // => Date object at midnight local time
 ```
 
 ### From JavaScript Date
 
 ```typescript
-import { jsDateToTemporalDate } from "@khanacademy/wonder-blocks-date-picker";
+import { TemporalLocaleUtils } from "@khanacademy/wonder-blocks-date-picker";
 
 const jsDate = new Date(2024, 0, 15); // January 15, 2024
-const temporalDate = jsDateToTemporalDate(jsDate);
+const temporalDate = TemporalLocaleUtils.jsDateToTemporalDate(jsDate);
 // => Temporal.PlainDate "2024-01-15"
 ```
 
