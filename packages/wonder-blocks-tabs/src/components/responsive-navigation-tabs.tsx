@@ -154,15 +154,18 @@ type Props = {
 
 /**
  * Renders NavigationTabs when there is enough horizontal space to display the
- * tabs. When there is not enough space, it renders NavigationTabsDropdown.
+ * tabs. When there is not enough space, it renders NavigationTabsDropdown. If
+ * the tabs are not links, use ResponsiveTabs instead, which implements different
+ * semantics and keyboard interactions.
+ *
+ * Prefer using ResponsiveNavigationTabs instead of NavigationTabs. For cases
+ * where the tabs should always be in a horizontal layout, use the NavigationTabs
+ * component directly.
  *
  * Note: This component switches layouts depending on factors like the container
  * width, the number of tabs, the length of tab labels, zoom level, etc. Once the
  * horizontal NavigationTabs need to start scrolling horizontally, the component
  * will switch to the dropdown.
- *
- * For cases where the tabs should always be in a horizontal layout, use the
- * NavigationTabs component directly.
  */
 export const ResponsiveNavigationTabs = (props: Props) => {
     const {

@@ -7,7 +7,7 @@ import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import navigationTabsDropdownArgTypes from "./navigation-tabs-dropdown.argtypes";
 
 export default {
-    title: "Packages / Tabs / NavigationTabs / Subcomponents / NavigationTabsDropdown",
+    title: "Packages / Tabs / ResponsiveNavigationTabs / Subcomponents / NavigationTabsDropdown",
     component: NavigationTabsDropdown,
     argTypes: navigationTabsDropdownArgTypes,
     parameters: {

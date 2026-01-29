@@ -40,6 +40,45 @@ const ControlledResponsiveNavigationTabs = (
     );
 };
 
+export const Default: Story = {
+    render: ControlledResponsiveNavigationTabs,
+    args: {
+        selectedTabId: "tab-1",
+        tabs: [
+            {
+                label: "Navigation Tab 1",
+                id: "tab-1",
+                href: "#tab-1",
+            },
+            {
+                label: "Navigation Tab 2",
+                id: "tab-2",
+                href: "#tab-2",
+            },
+            {
+                label: "Navigation Tab 3",
+                id: "tab-3",
+                href: "#tab-3",
+            },
+            {
+                label: "Navigation Tab 4",
+                id: "tab-4",
+                href: "#tab-4",
+            },
+            {
+                label: "Navigation Tab 5",
+                id: "tab-5",
+                href: "#tab-5",
+            },
+            {
+                label: "Navigation Tab 6",
+                id: "tab-6",
+                href: "#tab-6",
+            },
+        ],
+        showDivider: true,
+    },
+};
 /**
  * ResponsiveNavigationTabs will switch between the NavigationTabs and
  * NavigationTabsDropdown layouts based on if there is enough horizontal space
@@ -51,7 +90,7 @@ const ControlledResponsiveNavigationTabs = (
  * - the width of the container or screen
  * - the zoom level
  */
-export const Default: Story = {
+export const Interactive: Story = {
     render: function Render(args) {
         const [tabsCount, setTabsCount] = React.useState(INITIAL_TABS_COUNT);
         const [showLongLabels, setShowLongLabels] = React.useState(false);
@@ -156,7 +195,7 @@ export const Default: Story = {
  * See the `NavigationTabs` and `NavigationTabsDropdown` docs for more details.
  */
 export const CustomStyles: Story = {
-    render: Default.render,
+    render: Interactive.render,
     args: {
         styles: {
             root: {
@@ -287,5 +326,26 @@ export const ShowDivider: Story = {
         ],
         selectedTabId: "tab-1",
         showDivider: true,
+    },
+};
+
+/**
+ * Use the `tabsProps` and `dropdownProps` props to customize the tabs and
+ * dropdown. For example, you can enable animation for the tabs layout.
+ *
+ * See the `NavigationTabs` and `NavigationTabsDropdown` docs for more details.
+ */
+export const CustomizingTabsAndDropdownProps: Story = {
+    render: ControlledResponsiveNavigationTabs,
+    args: {
+        selectedTabId: "tab-1",
+        tabs: [
+            {label: "Navigation Tab 1", id: "tab-1", href: "#tab-1"},
+            {label: "Navigation Tab 2", id: "tab-2", href: "#tab-2"},
+            {label: "Navigation Tab 3", id: "tab-3", href: "#tab-3"},
+        ],
+        tabsProps: {
+            animated: true,
+        },
     },
 };
