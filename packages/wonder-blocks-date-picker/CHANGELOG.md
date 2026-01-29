@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-date-picker
 
+## 0.1.2
+
+### Patch Changes
+
+- 0cce8bf: Adds fixes for localized DatePicker inputs, which were hard-coded to English. Improves keyboard accessibility and validation for a variety of date formats.
+
 ## 0.1.1
 
 ### Patch Changes
