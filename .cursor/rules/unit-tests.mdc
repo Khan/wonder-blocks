@@ -133,9 +133,9 @@ it("should validate email format and return error message", () => {
 
 **Best Practices:**
 - ✅ **Use specific matchers** when possible (e.g., `toBe`, `toEqual`, `toHaveBeenCalledWith`)
-- ✅ **Use `.toMatchInlineSnapshot()`** for complex output validation (auto-updates)
 - ✅ **Prefer explicit assertions** over implicit ones
 - ✅ Use semantic matchers from RTL: `toBeInTheDocument()`, `toBeVisible()`, `toHaveAttribute()`
+- ❌ **Avoid Jest snapshots** (`.toMatchSnapshot()`, `.toMatchInlineSnapshot()`) - use Chromatic + Storybook for visual regression tests, or create unit tests for specific attribute assertions instead
 
 ### One Expect Per Test
 

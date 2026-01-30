@@ -325,6 +325,7 @@ packages/wonder-blocks-*/
 | `pnpm test` | Run tests |
 | `pnpm build:storybook` | Build Storybook |
 | `pnpm dev` | Run for our custom CSS bundling |
+| `pnpm test:storybook` | Run Storybook tests, including automated a11y checks |
 
 ### Versioning & Publishing
 
