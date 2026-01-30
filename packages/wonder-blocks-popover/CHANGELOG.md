@@ -1,5 +1,130 @@
 # @khanacademy/wonder-blocks-popover
 
+## 6.1.52
+
+### Patch Changes
+
+- Updated dependencies [8bb7ada]
+    - @khanacademy/wonder-blocks-tokens@15.0.0
+    - @khanacademy/wonder-blocks-icon-button@11.1.3
+    - @khanacademy/wonder-blocks-modal@8.5.14
+    - @khanacademy/wonder-blocks-styles@0.2.38
+    - @khanacademy/wonder-blocks-tooltip@4.1.65
+    - @khanacademy/wonder-blocks-typography@4.2.29
+
+## 6.1.51
+
+### Patch Changes
+
+- Updated dependencies [d6ae5fb]
+    - @khanacademy/wonder-blocks-core@12.4.3
+    - @khanacademy/wonder-blocks-icon-button@11.1.2
+    - @khanacademy/wonder-blocks-modal@8.5.13
+    - @khanacademy/wonder-blocks-styles@0.2.37
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-tooltip@4.1.64
+    - @khanacademy/wonder-blocks-typography@4.2.28
+
+## 6.1.50
+
+### Patch Changes
+
+- Updated dependencies [673432c]
+    - @khanacademy/wonder-blocks-modal@8.5.12
+    - @khanacademy/wonder-blocks-tooltip@4.1.63
+
+## 6.1.49
+
+### Patch Changes
+
+- Updated dependencies [f6457be]
+    - @khanacademy/wonder-blocks-modal@8.5.11
+    - @khanacademy/wonder-blocks-icon-button@11.1.1
+    - @khanacademy/wonder-blocks-tooltip@4.1.62
+
+## 6.1.48
+
+### Patch Changes
+
+- 6c60466: Changes the `dismissEnabled` behavior to close/dismiss the popover once the focus moves outside of it.
+- Updated dependencies [2f842b1]
+- Updated dependencies [59aba89]
+    - @khanacademy/wonder-blocks-icon-button@11.1.0
+    - @khanacademy/wonder-blocks-modal@8.5.10
+    - @khanacademy/wonder-blocks-tooltip@4.1.61
+
+## 6.1.47
+
+### Patch Changes
+
+- 5db127a: Fix issue where Popover focus management was interfering with Tabs focus management
+
+## 6.1.46
+
+### Patch Changes
+
+- Updated dependencies [70d6c08]
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-icon-button@11.0.1
+    - @khanacademy/wonder-blocks-modal@8.5.9
+    - @khanacademy/wonder-blocks-styles@0.2.37
+    - @khanacademy/wonder-blocks-tooltip@4.1.60
+    - @khanacademy/wonder-blocks-typography@4.2.27
+
+## 6.1.45
+
+### Patch Changes
+
+- Updated dependencies [0fd41cc]
+- Updated dependencies [d36860e]
+    - @khanacademy/wonder-blocks-icon-button@11.0.0
+    - @khanacademy/wonder-blocks-modal@8.5.8
+    - @khanacademy/wonder-blocks-tooltip@4.1.59
+
+## 6.1.44
+
+### Patch Changes
+
+- Updated dependencies [8b713e2]
+    - @khanacademy/wonder-blocks-modal@8.5.7
+    - @khanacademy/wonder-blocks-tooltip@4.1.58
+
+## 6.1.43
+
+### Patch Changes
+
+- Updated dependencies [40d1eb2]
+    - @khanacademy/wonder-blocks-modal@8.5.6
+    - @khanacademy/wonder-blocks-tooltip@4.1.57
+
+## 6.1.42
+
+### Patch Changes
+
+- 8a36c70: Re-publish to publish with Trusted Publishing
+- 3e0d137: Re-publishing via Trusted Publishing
+- Updated dependencies [8a36c70]
+- Updated dependencies [3e0d137]
+    - @khanacademy/wonder-blocks-core@12.4.2
+    - @khanacademy/wonder-blocks-icon-button@10.5.7
+    - @khanacademy/wonder-blocks-modal@8.5.5
+    - @khanacademy/wonder-blocks-styles@0.2.36
+    - @khanacademy/wonder-blocks-tokens@14.1.2
+    - @khanacademy/wonder-blocks-tooltip@4.1.56
+    - @khanacademy/wonder-blocks-typography@4.2.26
+
+## 6.1.41
+
+### Patch Changes
+
+- Updated dependencies [540371d]
+    - @khanacademy/wonder-blocks-tokens@14.1.1
+    - @khanacademy/wonder-blocks-icon-button@10.5.6
+    - @khanacademy/wonder-blocks-modal@8.5.4
+    - @khanacademy/wonder-blocks-styles@0.2.35
+    - @khanacademy/wonder-blocks-tooltip@4.1.55
+    - @khanacademy/wonder-blocks-typography@4.2.25
+
 ## 6.1.40
 
 ### Patch Changes

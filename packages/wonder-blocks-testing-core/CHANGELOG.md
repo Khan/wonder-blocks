@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-testing-core
 
+## 5.0.0
+
+### Major Changes
+
+- cf6ddda: Updated Wonder Stuff peer dependencies to latest major releases
+
+## 4.0.3
+
+### Patch Changes
+
+- 8a36c70: Re-publish to publish with Trusted Publishing
+- 3e0d137: Re-publishing via Trusted Publishing
+
 ## 4.0.2
 
 ### Patch Changes

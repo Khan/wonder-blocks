@@ -1,26 +1,38 @@
-import {mergeConfig} from "vitest/config";
+import {defineConfig, mergeConfig} from "vitest/config";
+import {playwright} from "@vitest/browser-playwright";
+
 import {storybookTest} from "@storybook/addon-vitest/vitest-plugin";
 import viteConfig from "./vite.config";
 
 // More info at: https://storybook.js.org/docs/writing-tests/vitest-plugin
-export default mergeConfig(viteConfig, {
-    plugins: [
-        // See options at: https://storybook.js.org/docs/writing-tests/vitest-plugin#storybooktest
-        storybookTest({
-            configDir: ".storybook",
-            storybookUrl: process.env.SB_URL || "http://localhost:6061",
-        }),
-    ],
-    test: {
-        name: "storybook",
-        browser: {
-            enabled: true,
-            name: "chromium",
-            headless: true,
-            provider: "playwright",
+export default mergeConfig(
+    viteConfig,
+    defineConfig({
+        test: {
+            projects: [
+                {
+                    extends: true,
+                    plugins: [
+                        // See options at: https://storybook.js.org/docs/writing-tests/vitest-plugin#storybooktest
+                        storybookTest({
+                            configDir: ".storybook",
+                            storybookUrl:
+                                process.env.SB_URL || "http://localhost:6061",
+                        }),
+                    ],
+
+                    test: {
+                        name: "storybook",
+                        browser: {
+                            enabled: true,
+                            instances: [{browser: "chromium"}],
+                            headless: true,
+                            provider: playwright({}),
+                        },
+                        setupFiles: ["./.storybook/vitest.setup.ts"],
+                    },
+                },
+            ],
         },
-        // Make sure to adjust this pattern to match your stories files.
-        stories: ["./__docs__/**/*.stories.@(ts|tsx)"],
-        setupFiles: [".storybook/vitest.setup.ts"],
-    },
-});
+    }),
+);

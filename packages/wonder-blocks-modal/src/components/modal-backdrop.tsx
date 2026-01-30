@@ -48,7 +48,7 @@ const getInitialFocusElement = (
     // eslint-disable-next-line import/no-deprecated
     return ReactDOM.findDOMNode(
         node.querySelector(`#${initialFocusId}`),
-    ) as any;
+    ) as HTMLElement | null;
 };
 
 /**
@@ -69,15 +69,15 @@ const getFirstFocusableElement = (node: HTMLElement): HTMLElement | null => {
 /**
  * Returns the dialog element
  */
-const getDialogElement = (node: HTMLElement): HTMLElement => {
+const getDialogElement = (node: HTMLElement): HTMLElement | null => {
     // If no focusable elements are found,
     // the dialog content element itself will receive focus.
     // eslint-disable-next-line import/no-deprecated
-    const dialogElement: HTMLElement = ReactDOM.findDOMNode(
+    const dialogElement = ReactDOM.findDOMNode(
         node.querySelector('[role="dialog"]'),
-    ) as any;
+    ) as HTMLElement | null;
     // add tabIndex to make the Dialog focusable
-    dialogElement.tabIndex = -1;
+    dialogElement?.setAttribute("tabindex", "-1");
 
     return dialogElement;
 };
@@ -101,32 +101,45 @@ const ModalBackdrop = ({
         const firstFocusableElement =
             // 1. try to get element specified by the user
             getInitialFocusElement(node, initialFocusId) ||
-            // 2. get first occurence from list of focusable elements
+            // 2. get first occurrence from list of focusable elements
             getFirstFocusableElement(node) ||
             // 3. get the dialog itself
             getDialogElement(node);
 
         // wait for styles to applied
         setTimeout(() => {
-            firstFocusableElement.focus();
+            firstFocusableElement?.focus();
         }, 0);
     }, [initialFocusId]);
 
     /**
      * When the user clicks on the gray backdrop area (i.e., the click came
-     * _directly_ from the positioner, not bubbled up from its children), close
-     * the modal.
+     * _directly_ from the positioner or the padding layer, not bubbled up
+     * from the modal content), close the modal.
      */
     const handleMouseDown = React.useCallback((e: React.SyntheticEvent) => {
-        // Confirm that it is the backdrop that is being clicked, not the child
-        setMousePressedOutside(e.target === e.currentTarget);
+        const target = e.target as HTMLElement;
+        // Confirm that it is the backdrop or the padding layer being clicked
+        const isBackdropClick = e.target === e.currentTarget;
+        const isPaddingLayerClick = target?.hasAttribute?.(
+            "data-modal-padding-layer",
+        );
+        setMousePressedOutside(isBackdropClick || isPaddingLayerClick);
     }, []);
 
     const handleMouseUp = React.useCallback(
         (e: React.SyntheticEvent) => {
-            // Confirm that it is the backdrop that is being clicked, not the child
-            // and that the mouse was pressed in the backdrop first.
-            if (e.target === e.currentTarget && mousePressedOutside) {
+            const target = e.target as HTMLElement;
+            // Confirm that it is the backdrop or padding layer being clicked
+            // and that the mouse was pressed outside the modal content first.
+            const isBackdropClick = e.target === e.currentTarget;
+            const isPaddingLayerClick = target?.hasAttribute?.(
+                "data-modal-padding-layer",
+            );
+            if (
+                (isBackdropClick || isPaddingLayerClick) &&
+                mousePressedOutside
+            ) {
                 onCloseModal();
             }
             setMousePressedOutside(false);
@@ -169,11 +182,6 @@ const styles = StyleSheet.create({
         // If the modal ends up being too big for the viewport (e.g., the min
         // height is triggered), add another scrollbar specifically for
         // scrolling modal content.
-        //
-        // TODO(mdr): The specified behavior is that the modal should scroll
-        //     with the rest of the page, rather than separately, if overflow
-        //     turns out to be necessary. That sounds hard to do; punting for
-        //     now!
         overflow: "auto",
 
         background: semanticColor.core.background.overlay.default,

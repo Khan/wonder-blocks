@@ -17,30 +17,7 @@ import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 import ComponentInfo from "../components/component-info";
 import modalPanelArgtypes from "./modal-panel.argtypes";
 import {allModes} from "../../.storybook/modes";
-
-const customViewports = {
-    phone: {
-        name: "phone",
-        styles: {
-            width: "320px",
-            height: "568px",
-        },
-    },
-    tablet: {
-        name: "tablet",
-        styles: {
-            width: "640px",
-            height: "960px",
-        },
-    },
-    desktop: {
-        name: "desktop",
-        styles: {
-            width: "1024px",
-            height: "768px",
-        },
-    },
-} as const;
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 
 const longBody = (
     <View style={{gap: sizing.size_160}}>
@@ -136,10 +113,6 @@ export default {
                 excludeDecorators: true,
             },
         },
-        viewport: {
-            viewports: customViewports,
-            defaultViewport: "desktop",
-        },
         chromatic: {
             modes: {
                 small: allModes.small,
@@ -163,7 +136,10 @@ export const Default: StoryComponentType = {
             <ModalPanel
                 {...args}
                 content={
-                    <View style={styles.content}>
+                    <View
+                        style={[styles.content, styles.scrollContainer]}
+                        tabIndex={0}
+                    >
                         <Heading size="xxlarge" id="modal-title-0">
                             Modal Title
                         </Heading>
@@ -193,7 +169,11 @@ export const WithHeader: StoryComponentType = {
                 header={
                     <ModalHeader titleId="modal-title-2" title="Modal Title" />
                 }
-                content={longBody}
+                content={
+                    <View tabIndex={0} style={styles.scrollContainer}>
+                        {longBody}
+                    </View>
+                }
             />
         </ModalDialog>
     ),
@@ -214,7 +194,10 @@ export const WithFooter: StoryComponentType = {
         <ModalDialog aria-labelledby="modal-title-3" style={styles.dialog}>
             <ModalPanel
                 content={
-                    <View style={styles.content}>
+                    <View
+                        style={[styles.content, styles.scrollContainer]}
+                        tabIndex={0}
+                    >
                         <Heading size="xxlarge" id="modal-title-3">
                             Modal Title
                         </Heading>
@@ -331,6 +314,18 @@ export const WithStyle: StoryComponentType = {
             borderRadius: 20,
         } as const;
 
+        const button = (
+            <BodyText style={{display: "flex"}}>
+                <Button
+                    style={{
+                        marginInlineStart: "auto",
+                        marginBlockStart: sizing.size_100,
+                    }}
+                >
+                    A button
+                </Button>
+            </BodyText>
+        );
         return (
             <ModalDialog aria-labelledby="modal-title-1" style={styles.dialog}>
                 <ModalPanel
@@ -340,7 +335,12 @@ export const WithStyle: StoryComponentType = {
                             title="Modal Title"
                         />
                     }
-                    content={longBody}
+                    content={
+                        <>
+                            {longBody}
+                            {button}
+                        </>
+                    }
                     style={modalStyles}
                 />
             </ModalDialog>
@@ -379,5 +379,8 @@ const styles = StyleSheet.create({
     },
     content: {
         gap: sizing.size_240,
+    },
+    scrollContainer: {
+        ":focus-visible": focusStyles.focus[":focus-visible"],
     },
 });

@@ -19,30 +19,7 @@ import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 import ComponentInfo from "../components/component-info";
 import OnePaneDialogArgTypes from "./one-pane-dialog.argtypes";
 import {allModes} from "../../.storybook/modes";
-
-const customViewports = {
-    phone: {
-        name: "phone",
-        styles: {
-            width: "320px",
-            height: "568px",
-        },
-    },
-    tablet: {
-        name: "tablet",
-        styles: {
-            width: "640px",
-            height: "960px",
-        },
-    },
-    desktop: {
-        name: "desktop",
-        styles: {
-            width: "1024px",
-            height: "768px",
-        },
-    },
-} as const;
+import {reallyLongText} from "../components/text-for-testing";
 
 export default {
     title: "Packages / Modal / OnePaneDialog",
@@ -69,10 +46,6 @@ export default {
                 // See https://github.com/storybookjs/storybook/issues/12596
                 excludeDecorators: true,
             },
-        },
-        viewport: {
-            viewports: customViewports,
-            defaultViewport: "desktop",
         },
         chromatic: {
             modes: {
@@ -112,287 +85,18 @@ export const Default: StoryComponentType = {
     },
 };
 
-export const Simple: StoryComponentType = () => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
-            <OnePaneDialog
-                title="Hello, world! Here is an example of a long title that wraps to the next line."
-                content={
-                    <BodyText>
-                        {`Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat. Duis aute irure
-                            dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur
-                            sint occaecat cupidatat non proident, sunt in culpa
-                            qui officia deserunt mollit anim id est.`}
-                    </BodyText>
-                }
-            />
-        </View>
-    </View>
-);
-
-Simple.parameters = {
-    docs: {
-        description: {
-            story: `This is the most basic OnePaneDialog, with just
-            the title and content.`,
-        },
-    },
-};
-
-export const WithLongContentsAndFooter: StoryComponentType = () => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
-            <OnePaneDialog
-                title="Hello, world! Here is an example of a long title that wraps to the next line."
-                content={
-                    <BodyText>
-                        {`Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat. Duis aute irure
-                            dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur
-                            sint occaecat cupidatat non proident, sunt in culpa
-                            qui officia deserunt mollit anim id est.`}
-                    </BodyText>
-                }
-                footer={
-                    <View style={styles.footer}>
-                        <View style={styles.row}>
-                            <Button kind="tertiary">Previous</Button>
-                            <Button kind="primary">Next</Button>
-                        </View>
-                    </View>
-                }
-            />
-        </View>
-    </View>
-);
-
-WithLongContentsAndFooter.parameters = {
-    docs: {
-        description: {
-            story: `This is the most basic OnePaneDialog, with just
-            the title and content.`,
-        },
-    },
-};
-
-export const WithFooter: StoryComponentType = () => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
-            <OnePaneDialog
-                title="Hello, world!"
-                content={
-                    <BodyText>
-                        {`Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat. Duis aute irure
-                            dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur
-                            sint occaecat cupidatat non proident, sunt in culpa
-                            qui officia deserunt mollit anim id est.`}
-                    </BodyText>
-                }
-                footer={
-                    <View style={styles.footer}>
-                        <BodyText weight="bold">Step 1 of 4</BodyText>
-                        <View style={styles.row}>
-                            <Button kind="tertiary">Previous</Button>
-                            <Button kind="primary">Next</Button>
-                        </View>
-                    </View>
-                }
-            />
-        </View>
-    </View>
-);
-
-WithFooter.parameters = {
-    docs: {
-        description: {story: `This OnePaneDialog includes a custom footer.`},
-    },
-};
-
-export const WithSubtitle: StoryComponentType = () => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
-            <OnePaneDialog
-                title="Hello, world!"
-                content={
-                    <BodyText>
-                        {`Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat. Duis aute irure
-                            dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur
-                            sint occaecat cupidatat non proident, sunt in culpa
-                            qui officia deserunt mollit anim id est.`}
-                    </BodyText>
-                }
-                subtitle={
-                    "Subtitle that provides additional context to the title"
-                }
-            />
-        </View>
-    </View>
-);
-
-WithSubtitle.parameters = {
-    docs: {
-        description: {story: `This OnePaneDialog includes a custom subtitle.`},
-    },
-};
-
-export const WithBreadcrumbs: StoryComponentType = () => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
-            <OnePaneDialog
-                title="Hello, world!"
-                content={
-                    <BodyText>
-                        {`Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat. Duis aute irure
-                            dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur
-                            sint occaecat cupidatat non proident, sunt in culpa
-                            qui officia deserunt mollit anim id est.`}
-                    </BodyText>
-                }
-                breadcrumbs={
-                    <Breadcrumbs>
-                        <BreadcrumbsItem>
-                            <Link href="#course">Course</Link>
-                        </BreadcrumbsItem>
-                        <BreadcrumbsItem>
-                            <Link href="#unit">Unit</Link>
-                        </BreadcrumbsItem>
-                        <BreadcrumbsItem>Lesson</BreadcrumbsItem>
-                    </Breadcrumbs>
-                }
-            />
-        </View>
-    </View>
-);
-
-WithBreadcrumbs.parameters = {
-    docs: {
-        description: {
-            story: `This OnePaneDialog includes a custom Breadcrumbs
-            element.`,
-        },
-    },
-};
-
-export const WithAboveAndBelow: StoryComponentType = () => {
-    const aboveStyle = {
-        background: "url(./modal-above.png)",
-        width: 874,
-        height: 551,
-        position: "absolute",
-        top: 40,
-        left: -140,
-    } as const;
-
-    const belowStyle = {
-        background: "url(./modal-below.png)",
-        width: 868,
-        height: 521,
-        position: "absolute",
-        top: -100,
-        left: -300,
-    } as const;
-
-    return (
+/**
+ * This is the most basic OnePaneDialog, with just the title and content.
+ */
+export const Simple: StoryComponentType = {
+    render: () => (
         <View style={styles.previewSizer}>
             <View style={styles.modalPositioner}>
                 <OnePaneDialog
-                    title="Single-line title"
+                    title="Hello, world! Here is an example of a long title that wraps to the next line."
                     content={
-                        <View style={{gap: sizing.size_160}} tabIndex={0}>
-                            <BodyText>
-                                {`Lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua. Ut enim ad minim
-                            veniam, quis nostrud exercitation ullamco laboris
-                            nisi ut aliquip ex ea commodo consequat. Duis aute
-                            irure dolor in reprehenderit in voluptate velit
-                            esse cillum dolore eu fugiat nulla pariatur.
-                            Excepteur sint occaecat cupidatat non proident,
-                            sunt in culpa qui officia deserunt mollit anim id
-                            est.`}
-                            </BodyText>
-                            <BodyText>
-                                {`Lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua. Ut enim ad minim
-                            veniam, quis nostrud exercitation ullamco laboris
-                            nisi ut aliquip ex ea commodo consequat. Duis aute
-                            irure dolor in reprehenderit in voluptate velit
-                            esse cillum dolore eu fugiat nulla pariatur.
-                            Excepteur sint occaecat cupidatat non proident,
-                            sunt in culpa qui officia deserunt mollit anim id
-                            est.`}
-                            </BodyText>
-                            <BodyText>
-                                {`Lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua. Ut enim ad minim
-                            veniam, quis nostrud exercitation ullamco laboris
-                            nisi ut aliquip ex ea commodo consequat. Duis aute
-                            irure dolor in reprehenderit in voluptate velit
-                            esse cillum dolore eu fugiat nulla pariatur.
-                            Excepteur sint occaecat cupidatat non proident,
-                            sunt in culpa qui officia deserunt mollit anim id
-                            est.`}
-                            </BodyText>
-                        </View>
-                    }
-                    above={<View style={aboveStyle} />}
-                    below={<View style={belowStyle} />}
-                />
-            </View>
-        </View>
-    );
-};
-
-WithAboveAndBelow.parameters = {
-    docs: {
-        description: {
-            story: `The element passed into the \`above\` prop is
-            rendered in front of the modal. The element passed into the
-            \`below\` prop is rendered behind the modal. In this example,
-            a \`<View>\` element with a background image of a person and an
-            orange blob is passed into the \`below\` prop. A \`<View>\`
-            element with a background image of an arc and a blue semicircle
-            is passed into the \`above\` prop. This results in the person's
-            head and the orange blob peeking out from behind the modal, and
-            the arc and semicircle going over the front of the modal.`,
-        },
-    },
-};
-
-export const WithStyle: StoryComponentType = () => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
-            <OnePaneDialog
-                title="Hello, world!"
-                content={
-                    <BodyText>
-                        {`Lorem ipsum dolor sit amet, consectetur adipiscing
+                        <BodyText>
+                            {`Lorem ipsum dolor sit amet, consectetur adipiscing
                             elit, sed do eiusmod tempor incididunt ut labore et
                             dolore magna aliqua. Ut enim ad minim veniam,
                             quis nostrud exercitation ullamco laboris nisi ut
@@ -401,27 +105,298 @@ export const WithStyle: StoryComponentType = () => (
                             cillum dolore eu fugiat nulla pariatur. Excepteur
                             sint occaecat cupidatat non proident, sunt in culpa
                             qui officia deserunt mollit anim id est.`}
-                    </BodyText>
-                }
-                style={{
-                    color: semanticColor.status.notice.foreground,
-                    maxInlineSize: 1000,
-                }}
-            />
+                        </BodyText>
+                    }
+                />
+            </View>
         </View>
-    </View>
-);
+    ),
+};
 
-WithStyle.parameters = {
-    docs: {
-        description: {
-            story: `A OnePaneDialog can have custom styles via the
-            \`style\` prop. Here, the modal has a \`maxWidth: 1000\` and
-            \`color: Color.blue\` in its custom styles.`,
-        },
+/**
+ * This is the most basic OnePaneDialog, with just the title and content.
+ */
+export const WithLongContentsAndFooter: StoryComponentType = {
+    render: () => (
+        <View style={styles.previewSizer}>
+            <View style={styles.modalPositioner}>
+                <OnePaneDialog
+                    title="Hello, world! Here is an example of a long title that wraps to the next line."
+                    content={
+                        <View tabIndex={0}>
+                            <BodyText>{reallyLongText}</BodyText>
+                            <BodyText>{reallyLongText}</BodyText>
+                            <BodyText>{reallyLongText}</BodyText>
+                            <BodyText>{reallyLongText}</BodyText>
+                        </View>
+                    }
+                    footer={
+                        <View style={styles.footer}>
+                            <View style={styles.row}>
+                                <Button kind="tertiary">Previous</Button>
+                                <Button kind="primary">Next</Button>
+                            </View>
+                        </View>
+                    }
+                />
+            </View>
+        </View>
+    ),
+};
+
+/**
+ * This OnePaneDialog includes a custom footer.
+ */
+export const WithFooter: StoryComponentType = {
+    render: () => (
+        <View style={styles.previewSizer}>
+            <View style={styles.modalPositioner}>
+                <OnePaneDialog
+                    title="Hello, world!"
+                    content={
+                        <BodyText>
+                            {`Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut
+                            aliquip ex ea commodo consequat. Duis aute irure
+                            dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. Excepteur
+                            sint occaecat cupidatat non proident, sunt in culpa
+                            qui officia deserunt mollit anim id est.`}
+                        </BodyText>
+                    }
+                    footer={
+                        <View style={styles.footer}>
+                            <BodyText weight="bold">Step 1 of 4</BodyText>
+                            <View style={styles.row}>
+                                <Button kind="tertiary">Previous</Button>
+                                <Button kind="primary">Next</Button>
+                            </View>
+                        </View>
+                    }
+                />
+            </View>
+        </View>
+    ),
+};
+
+/**
+ * This OnePaneDialog includes a custom subtitle.
+ */
+export const WithSubtitle: StoryComponentType = {
+    render: () => (
+        <View style={styles.previewSizer}>
+            <View style={styles.modalPositioner}>
+                <OnePaneDialog
+                    title="Hello, world!"
+                    content={
+                        <BodyText>
+                            {`Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut
+                            aliquip ex ea commodo consequat. Duis aute irure
+                            dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. Excepteur
+                            sint occaecat cupidatat non proident, sunt in culpa
+                            qui officia deserunt mollit anim id est.`}
+                        </BodyText>
+                    }
+                    subtitle={
+                        "Subtitle that provides additional context to the title"
+                    }
+                />
+            </View>
+        </View>
+    ),
+};
+
+/**
+ * This OnePaneDialog includes a custom Breadcrumbs element.
+ */
+export const WithBreadcrumbs: StoryComponentType = {
+    render: () => (
+        <View style={styles.previewSizer}>
+            <View style={styles.modalPositioner}>
+                <OnePaneDialog
+                    title="Hello, world!"
+                    content={
+                        <BodyText>
+                            {`Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut
+                            aliquip ex ea commodo consequat. Duis aute irure
+                            dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. Excepteur
+                            sint occaecat cupidatat non proident, sunt in culpa
+                            qui officia deserunt mollit anim id est.`}
+                        </BodyText>
+                    }
+                    breadcrumbs={
+                        <Breadcrumbs>
+                            <BreadcrumbsItem>
+                                <Link href="#course">Course</Link>
+                            </BreadcrumbsItem>
+                            <BreadcrumbsItem>
+                                <Link href="#unit">Unit</Link>
+                            </BreadcrumbsItem>
+                            <BreadcrumbsItem>Lesson</BreadcrumbsItem>
+                        </Breadcrumbs>
+                    }
+                />
+            </View>
+        </View>
+    ),
+};
+
+/**
+ * The element passed into the `above` prop is rendered in front of the modal.
+ * The element passed into the `below` prop is rendered behind the modal. In
+ * this example, a `<View>` element with a background image of a person and an
+ * orange blob is passed into the `below` prop. A `<View>` element with a
+ * background image of an arc and a blue semicircle is passed into the `above`
+ * prop. This results in the person's head and the orange blob peeking out from
+ * behind the modal, and the arc and semicircle going over the front of the modal.
+ */
+export const WithAboveAndBelow: StoryComponentType = {
+    render: () => {
+        const aboveStyle = {
+            background: "url(./modal-above.png)",
+            width: 874,
+            height: 551,
+            position: "absolute",
+            top: 40,
+            left: -140,
+        } as const;
+
+        const belowStyle = {
+            background: "url(./modal-below.png)",
+            width: 868,
+            height: 521,
+            position: "absolute",
+            top: -100,
+            left: -300,
+        } as const;
+
+        return (
+            <View style={styles.previewSizer}>
+                <View style={styles.modalPositioner}>
+                    <OnePaneDialog
+                        title="Single-line title"
+                        content={
+                            <View style={{gap: sizing.size_160}} tabIndex={0}>
+                                <BodyText>
+                                    {`Lorem ipsum dolor sit amet, consectetur
+                            adipiscing elit, sed do eiusmod tempor incididunt
+                            ut labore et dolore magna aliqua. Ut enim ad minim
+                            veniam, quis nostrud exercitation ullamco laboris
+                            nisi ut aliquip ex ea commodo consequat. Duis aute
+                            irure dolor in reprehenderit in voluptate velit
+                            esse cillum dolore eu fugiat nulla pariatur.
+                            Excepteur sint occaecat cupidatat non proident,
+                            sunt in culpa qui officia deserunt mollit anim id
+                            est.`}
+                                </BodyText>
+                                <BodyText>
+                                    {`Lorem ipsum dolor sit amet, consectetur
+                            adipiscing elit, sed do eiusmod tempor incididunt
+                            ut labore et dolore magna aliqua. Ut enim ad minim
+                            veniam, quis nostrud exercitation ullamco laboris
+                            nisi ut aliquip ex ea commodo consequat. Duis aute
+                            irure dolor in reprehenderit in voluptate velit
+                            esse cillum dolore eu fugiat nulla pariatur.
+                            Excepteur sint occaecat cupidatat non proident,
+                            sunt in culpa qui officia deserunt mollit anim id
+                            est.`}
+                                </BodyText>
+                                <BodyText>
+                                    {`Lorem ipsum dolor sit amet, consectetur
+                            adipiscing elit, sed do eiusmod tempor incididunt
+                            ut labore et dolore magna aliqua. Ut enim ad minim
+                            veniam, quis nostrud exercitation ullamco laboris
+                            nisi ut aliquip ex ea commodo consequat. Duis aute
+                            irure dolor in reprehenderit in voluptate velit
+                            esse cillum dolore eu fugiat nulla pariatur.
+                            Excepteur sint occaecat cupidatat non proident,
+                            sunt in culpa qui officia deserunt mollit anim id
+                            est.`}
+                                </BodyText>
+                            </View>
+                        }
+                        above={<View style={aboveStyle} />}
+                        below={<View style={belowStyle} />}
+                    />
+                </View>
+            </View>
+        );
     },
 };
 
+/**
+ * A OnePaneDialog can have custom styles via the `style` prop. Here, the modal
+ * has a `maxWidth: 1000` and `color: Color.blue` in its custom styles.
+ */
+export const WithStyle: StoryComponentType = {
+    render: () => (
+        <View style={styles.previewSizer}>
+            <View style={styles.modalPositioner}>
+                <OnePaneDialog
+                    title="Hello, world!"
+                    content={
+                        <BodyText>
+                            {`Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut
+                            aliquip ex ea commodo consequat. Duis aute irure
+                            dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. Excepteur
+                            sint occaecat cupidatat non proident, sunt in culpa
+                            qui officia deserunt mollit anim id est.`}
+                        </BodyText>
+                    }
+                    style={{
+                        color: semanticColor.status.notice.foreground,
+                        maxInlineSize: 1000,
+                    }}
+                />
+            </View>
+        </View>
+    ),
+};
+
+/**
+ * This example shows how to override the default styling of the modal, like a
+ * confirmation modal.
+ */
+export const WithStyleAndFooter: StoryComponentType = {
+    render: () => {
+        return (
+            <View style={styles.previewSizer}>
+                <View style={styles.modalPositioner}>
+                    <OnePaneDialog
+                        style={{
+                            blockSize: "fit-content",
+                            inlineSize: "fit-content",
+                            maxInlineSize: "100%",
+                        }}
+                        title="Title of the modal"
+                        content={"Content"}
+                        footer={<Button kind="primary">Confirm</Button>}
+                    />
+                </View>
+            </View>
+        );
+    },
+};
+
+/**
+ * This example illustrates how we can update the Modal's contents by wrapping
+ * it into a new component/container. `Modal` is built in a way that provides
+ * great flexibility and makes it work with different variations and/or layouts.
+ */
 export const MultiStepModal: StoryComponentType = () => {
     const styles = StyleSheet.create({
         example: {
@@ -539,16 +514,14 @@ MultiStepModal.parameters = {
         // This example is behavior based, not visual.
         disableSnapshot: true,
     },
-    docs: {
-        description: {
-            story: `This example illustrates how we can update the
-            Modal's contents by wrapping it into a new component/container.
-            \`Modal\` is built in a way that provides great flexibility and
-            makes it work with different variations and/or layouts.`,
-        },
-    },
 };
 
+/**
+ * A modal can be launched using a launcher. Here, the launcher is a `<Button>`
+ * element whose `onClick` function opens the modal. The modal passed into the
+ * `modal` prop of the `<ModalLauncher>` element is a `<OnePaneDialog>`. To turn
+ * an element into a launcher, wrap the element in a `<ModalLauncher>` element.
+ */
 export const WithLauncher: StoryComponentType = () => {
     type MyModalProps = {
         closeModal: () => void;
@@ -589,16 +562,6 @@ WithLauncher.parameters = {
         // Don't take screenshots of this story since it would only show a
         // button and not the actual modal.
         disableSnapshot: true,
-    },
-    docs: {
-        description: {
-            story: `A modal can be launched using a launcher. Here,
-            the launcher is a \`<Button>\` element whose \`onClick\` function
-            opens the modal. The modal passed into the \`modal\` prop of
-            the \`<ModalLauncher>\` element is a \`<OnePaneDialog>\`.
-            To turn an element into a launcher, wrap the element in a
-            \`<ModalLauncher>\` element.`,
-        },
     },
 };
 

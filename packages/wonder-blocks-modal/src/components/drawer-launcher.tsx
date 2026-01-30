@@ -375,6 +375,11 @@ function DrawerLauncherKeypressListener({onClose}: {onClose: () => unknown}) {
  * enter and exit animations. It is also used to coordinate timing of focus management
  * on open and close.
  *
+ * For conditionally rendering modals, ensure there is only one `DrawerLauncher` in
+ * your component tree. A launcher needs to stay mounted on the current page to
+ * properly handle the user's keyboard focus on close of modals.
+ * Read [more details on Confluence](https://khanacademy.atlassian.net/wiki/spaces/FRONTEND/blog/2025/11/24/4454383789/Wonder+Blocks+Modal+Tips+Tricks).
+ *
  * ### Usage
  *
  * ```jsx

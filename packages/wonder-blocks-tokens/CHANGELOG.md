@@ -1,5 +1,33 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 15.0.0
+
+### Major Changes
+
+- 8bb7ada: Update core.foreground.x tokens to new values (default theme)
+
+## 14.1.3
+
+### Patch Changes
+
+- 70d6c08: DetailCell: Use `semanticColor.core.foreground.neutral.default` for the subtitle in all themes. This removes the need for a component theme token for the subtitle color
+
+## 14.1.2
+
+### Patch Changes
+
+- 8a36c70: Re-publish to publish with Trusted Publishing
+- 3e0d137: Re-publishing via Trusted Publishing
+- Updated dependencies [8a36c70]
+- Updated dependencies [3e0d137]
+    - @khanacademy/wonder-blocks-theming@4.0.2
+
+## 14.1.1
+
+### Patch Changes
+
+- 540371d: Allow the 'default' theme to be nested within the 'thunderblocks' theme
+
 ## 14.1.0
 
 ### Minor Changes

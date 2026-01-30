@@ -15,30 +15,7 @@ import {
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 import modalDialogArgtypes from "./modal-dialog.argtypes";
-
-const customViewports = {
-    phone: {
-        name: "phone",
-        styles: {
-            width: "320px",
-            height: "568px",
-        },
-    },
-    tablet: {
-        name: "tablet",
-        styles: {
-            width: "640px",
-            height: "960px",
-        },
-    },
-    desktop: {
-        name: "desktop",
-        styles: {
-            width: "1024px",
-            height: "768px",
-        },
-    },
-} as const;
+import {reallyLongText} from "../components/text-for-testing";
 
 /**
  * `ModalDialog` is a component that contains these elements:
@@ -75,10 +52,6 @@ export default {
                 // See https://github.com/storybookjs/storybook/issues/12596
                 excludeDecorators: true,
             },
-        },
-        viewport: {
-            viewports: customViewports,
-            defaultViewport: "desktop",
         },
         chromatic: {
             // We already have screenshots in one-pane-dialog.stories.tsx
@@ -242,12 +215,40 @@ export const WithLauncher: StoryComponentType = {
             </ModalLauncher>
         );
     },
-    parameters: {
-        chromatic: {
-            // Don't take screenshots of this story since it would only show a
-            // button and not the actual modal.
-            disableSnapshot: true,
+};
+
+/**
+ * When the content in a modal is longer than the available space, the modal
+ * becomes scrollable by default. The `scrollOverflow` prop on `<ModalPanel>`
+ * controls this behavior (defaults to `true`). This example demonstrates how
+ * a modal with long contents will automatically enable scrolling, keeping the
+ * header and footer fixed while the main content scrolls.
+ */
+export const WithLongContents: StoryComponentType = {
+    render: (args) => (
+        <View style={styles.previewSizer}>
+            <View style={styles.modalPositioner}>
+                <ModalDialog {...args}>
+                    <ModalPanel
+                        content={
+                            <View style={{gap: sizing.size_240}} tabIndex={0}>
+                                <Heading size="xxlarge" id="modal-title-4">
+                                    Terms of Service
+                                </Heading>
+                                {reallyLongText}
+                            </View>
+                        }
+                    />
+                </ModalDialog>
+            </View>
+        </View>
+    ),
+    args: {
+        style: {
+            maxWidth: 500,
+            maxHeight: 500,
         },
+        "aria-labelledby": "modal-title-4",
     },
 };
 

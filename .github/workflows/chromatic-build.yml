@@ -90,32 +90,23 @@ jobs:
     - name: Publish to Chromatic for visual testing (review PRs only)
       id: chromatic_publish
       if: ${{ inputs.target == 'review' }}
-      uses: chromaui/action@v11
+      uses: chromaui/action@latest
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         projectToken: ${{ secrets.projectToken }}
         storybookBuildDir: storybook-static
         autoAcceptChanges: "main"
+        # Exit with status 0 (OK) once the built version has been published to
+        # Chromatic.
+        exitOnceUploaded: true
         # Generate snapshots for only changed stories
         # See: https://www.chromatic.com/docs/turbosnap
         onlyChanged: true
 
-    # TODO(WB-1936): Re-enable this check once the issue with Chromatic
-    # is resolved.
-    # Install Playwright browsers so Vitest browser mode can run story tests
-    # - name: Install playwright dependencies
-    #   if: ${{ inputs.target == 'review' }}
-    #   run: pnpm exec playwright install chromium --with-deps
-    # - name: Run Storybook tests
-    #   if: ${{ inputs.target == 'review' }}
-    #   run: pnpm test:storybook
-    #   env:
-    #     SB_URL: '${{ steps.chromatic_publish.outputs.storybookUrl }}'
-
     # (if) Run this step on dependabot or changesets PRs.
     - name: Skip Chromatic builds (dependabot or changesets PRs)
       if: ${{ inputs.target == 'bot' }}
-      uses: chromaui/action@v11
+      uses: chromaui/action@latest
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         projectToken: ${{ secrets.projectToken }}
@@ -128,7 +119,7 @@ jobs:
     # (if) Run this step on the main branch.
     - name: Auto-accept Chromatic build on main branch.
       if: ${{ inputs.target == 'main' }}
-      uses: chromaui/action@v11
+      uses: chromaui/action@latest
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         projectToken: ${{ secrets.projectToken }}

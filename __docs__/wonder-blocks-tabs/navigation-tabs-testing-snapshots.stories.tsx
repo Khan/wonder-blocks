@@ -30,22 +30,22 @@ const generateRows = (rtl: boolean = false) => [
         props: {
             "aria-label": "Default navigation tabs",
             children: [
-                <NavigationTabItem current={true}>
+                <NavigationTabItem current={true} key="default-1">
                     <Link href="#link1">
                         {rtl ? rtlText : "Navigation Tab Item 1"}
                     </Link>
                 </NavigationTabItem>,
-                <NavigationTabItem>
+                <NavigationTabItem key="default-2">
                     <Link href="#link2">
                         {rtl ? rtlText : "Navigation Tab Item 2"}
                     </Link>
                 </NavigationTabItem>,
-                <NavigationTabItem>
+                <NavigationTabItem key="default-3">
                     <Link href="#link3">
                         {rtl ? rtlText : "Navigation Tab Item 3"}
                     </Link>
                 </NavigationTabItem>,
-                <NavigationTabItem>
+                <NavigationTabItem key="default-4">
                     <Link href="#link4">
                         {rtl ? rtlText : "Navigation Tab Item 4"}
                     </Link>
@@ -58,12 +58,12 @@ const generateRows = (rtl: boolean = false) => [
         props: {
             "aria-label": "Navigation tabs with link capabilities",
             children: [
-                <NavigationTabItem>
+                <NavigationTabItem key="link-capabilities-1">
                     <Link href="https://khanacademy.org" target="_blank">
                         {rtl ? rtlText : "External Link"}
                     </Link>
                 </NavigationTabItem>,
-                <NavigationTabItem>
+                <NavigationTabItem key="link-capabilities-2">
                     <Link
                         href="#link2"
                         startIcon={
@@ -76,7 +76,7 @@ const generateRows = (rtl: boolean = false) => [
                         {rtl ? rtlText : "Start Icon"}
                     </Link>
                 </NavigationTabItem>,
-                <NavigationTabItem>
+                <NavigationTabItem key="link-capabilities-3">
                     <Link
                         href="#link3"
                         endIcon={
@@ -89,7 +89,7 @@ const generateRows = (rtl: boolean = false) => [
                         {rtl ? rtlText : "End Icon"}
                     </Link>
                 </NavigationTabItem>,
-                <NavigationTabItem current={true}>
+                <NavigationTabItem current={true} key="link-capabilities-4">
                     <Link
                         href="#link4"
                         startIcon={
@@ -115,7 +115,7 @@ const generateRows = (rtl: boolean = false) => [
         name: "Icon Only",
         props: {
             children: [
-                <NavigationTabItem current={true}>
+                <NavigationTabItem current={true} key="icon-only-1">
                     <IconButton
                         icon={IconMappings.iceCream}
                         aria-label="Ice cream"
@@ -124,7 +124,7 @@ const generateRows = (rtl: boolean = false) => [
                         href="#link-1"
                     />
                 </NavigationTabItem>,
-                <NavigationTabItem>
+                <NavigationTabItem key="icon-only-2">
                     <IconButton
                         icon={IconMappings.cookie}
                         aria-label="Cookie"
@@ -140,22 +140,22 @@ const generateRows = (rtl: boolean = false) => [
         name: "Native anchor links",
         props: {
             children: [
-                <NavigationTabItem current={true}>
+                <NavigationTabItem current={true} key="native-anchor-links-1">
                     <StyledA href="#link-1">
                         {rtl ? rtlText : "Anchor tag 1"}
                     </StyledA>
                 </NavigationTabItem>,
-                <NavigationTabItem>
+                <NavigationTabItem key="native-anchor-links-2">
                     <StyledA href="#link-2">
                         {rtl ? rtlText : "Anchor tag 2"}
                     </StyledA>
                 </NavigationTabItem>,
-                <NavigationTabItem>
+                <NavigationTabItem key="native-anchor-links-3">
                     <StyledA href="#link-3">
                         {rtl ? rtlText : "Anchor tag 3"}
                     </StyledA>
                 </NavigationTabItem>,
-                <NavigationTabItem>
+                <NavigationTabItem key="native-anchor-links-4">
                     <StyledA href="#link-4">
                         {rtl ? rtlText : "Anchor tag 4"}
                     </StyledA>
@@ -198,7 +198,7 @@ export const StateSheetStory: Story = {
     name: "StateSheet",
     render: (args) => (
         <>
-            <StateSheet rows={rows} columns={columns} title="">
+            <StateSheet rows={rows} columns={columns} title="States">
                 {({props, name}) => (
                     <View style={styles.container}>
                         <NavigationTabs
@@ -210,7 +210,7 @@ export const StateSheetStory: Story = {
                 )}
             </StateSheet>
             <div dir="rtl">
-                <StateSheet rows={rtlRows} columns={columns}>
+                <StateSheet rows={rtlRows} columns={columns} title="States">
                     {({props, name}) => (
                         <View style={styles.container}>
                             <NavigationTabs
@@ -297,13 +297,13 @@ export const Scenarios: Story = {
                 name: "Varying lengths",
                 props: {
                     children: [
-                        <NavigationTabItem current={true}>
+                        <NavigationTabItem current={true} key="1">
                             <Link href="#link-long">{longText}</Link>
                         </NavigationTabItem>,
-                        <NavigationTabItem>
+                        <NavigationTabItem key="2">
                             <Link href="#link-short">Short text</Link>
                         </NavigationTabItem>,
-                        <NavigationTabItem>
+                        <NavigationTabItem key="3">
                             <Link href="#link-long-no-break">
                                 {longTextWithNoWordBreak}
                             </Link>
@@ -342,10 +342,9 @@ export const Scenarios: Story = {
  */
 export const ScenariosSmallScreen: Story = {
     ...Scenarios,
-    parameters: {
-        ...Scenarios.parameters,
+    globals: {
         viewport: {
-            defaultViewport: "small",
+            value: "small",
         },
     },
 };

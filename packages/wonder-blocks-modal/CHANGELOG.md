@@ -1,5 +1,113 @@
 # @khanacademy/wonder-blocks-modal
 
+## 8.5.14
+
+### Patch Changes
+
+- Updated dependencies [8bb7ada]
+    - @khanacademy/wonder-blocks-tokens@15.0.0
+    - @khanacademy/wonder-blocks-breadcrumbs@3.2.11
+    - @khanacademy/wonder-blocks-icon-button@11.1.3
+    - @khanacademy/wonder-blocks-layout@3.1.44
+    - @khanacademy/wonder-blocks-styles@0.2.38
+    - @khanacademy/wonder-blocks-typography@4.2.29
+
+## 8.5.13
+
+### Patch Changes
+
+- Updated dependencies [d6ae5fb]
+    - @khanacademy/wonder-blocks-core@12.4.3
+    - @khanacademy/wonder-blocks-breadcrumbs@3.2.10
+    - @khanacademy/wonder-blocks-icon-button@11.1.2
+    - @khanacademy/wonder-blocks-layout@3.1.43
+    - @khanacademy/wonder-blocks-styles@0.2.37
+    - @khanacademy/wonder-blocks-timing@7.0.4
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-typography@4.2.28
+
+## 8.5.12
+
+### Patch Changes
+
+- 673432c: Allows clicks to paddingLayer to pass through, re-enabling backdropDismissEnabled=true
+
+## 8.5.11
+
+### Patch Changes
+
+- f6457be: Adjust scroll behavior for small screens in DrawerDialog and FlexibleDialog
+    - @khanacademy/wonder-blocks-icon-button@11.1.1
+
+## 8.5.10
+
+### Patch Changes
+
+- Updated dependencies [2f842b1]
+- Updated dependencies [59aba89]
+    - @khanacademy/wonder-blocks-icon-button@11.1.0
+
+## 8.5.9
+
+### Patch Changes
+
+- Updated dependencies [70d6c08]
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-breadcrumbs@3.2.9
+    - @khanacademy/wonder-blocks-icon-button@11.0.1
+    - @khanacademy/wonder-blocks-layout@3.1.42
+    - @khanacademy/wonder-blocks-styles@0.2.37
+    - @khanacademy/wonder-blocks-typography@4.2.27
+
+## 8.5.8
+
+### Patch Changes
+
+- Updated dependencies [0fd41cc]
+- Updated dependencies [d36860e]
+    - @khanacademy/wonder-blocks-icon-button@11.0.0
+
+## 8.5.7
+
+### Patch Changes
+
+- 8b713e2: Adds a bugfix for ModalBackdrop when dialogs are conditionally rendered
+
+## 8.5.6
+
+### Patch Changes
+
+- 40d1eb2: Fixes focus management for complex modals launched from tables
+
+## 8.5.5
+
+### Patch Changes
+
+- 8a36c70: Re-publish to publish with Trusted Publishing
+- 3e0d137: Re-publishing via Trusted Publishing
+- Updated dependencies [8a36c70]
+- Updated dependencies [3e0d137]
+    - @khanacademy/wonder-blocks-breadcrumbs@3.2.8
+    - @khanacademy/wonder-blocks-core@12.4.2
+    - @khanacademy/wonder-blocks-icon-button@10.5.7
+    - @khanacademy/wonder-blocks-layout@3.1.41
+    - @khanacademy/wonder-blocks-styles@0.2.36
+    - @khanacademy/wonder-blocks-timing@7.0.4
+    - @khanacademy/wonder-blocks-tokens@14.1.2
+    - @khanacademy/wonder-blocks-typography@4.2.26
+
+## 8.5.4
+
+### Patch Changes
+
+- Updated dependencies [540371d]
+    - @khanacademy/wonder-blocks-tokens@14.1.1
+    - @khanacademy/wonder-blocks-breadcrumbs@3.2.7
+    - @khanacademy/wonder-blocks-icon-button@10.5.6
+    - @khanacademy/wonder-blocks-layout@3.1.40
+    - @khanacademy/wonder-blocks-styles@0.2.35
+    - @khanacademy/wonder-blocks-typography@4.2.25
+
 ## 8.5.3
 
 ### Patch Changes

@@ -17,7 +17,11 @@ import clock from "@phosphor-icons/core/regular/clock.svg";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {color, sizing, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    semanticColor,
+    sizing,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import Button from "@khanacademy/wonder-blocks-button";
@@ -28,6 +32,7 @@ import ButtonArgTypes from "./button.argtypes";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {Icon} from "@khanacademy/wonder-blocks-icon";
 import {themeModes} from "../../.storybook/modes";
+import {TextField} from "@khanacademy/wonder-blocks-form";
 
 export default {
     title: "Packages / Button / Button",
@@ -91,7 +96,7 @@ export const styles: StyleDeclaration = StyleSheet.create({
         minWidth: 140,
     },
     example: {
-        background: color.offWhite,
+        background: semanticColor.core.background.base.subtle,
         padding: spacing.medium_16,
     },
     label: {
@@ -642,7 +647,9 @@ export const SubmittingForms: StoryComponentType = {
             <View>
                 <LabeledField
                     label="Foo"
-                    field={<input id="foo" value="bar" onChange={() => {}} />}
+                    field={
+                        <TextField id="foo" value="bar" onChange={() => {}} />
+                    }
                 />
                 <Button type="submit">Submit</Button>
             </View>
@@ -883,7 +890,8 @@ export const PressDurationTracking: StoryComponentType = {
                 <View
                     style={{
                         padding: spacing.medium_16,
-                        backgroundColor: color.offWhite,
+                        backgroundColor:
+                            semanticColor.core.background.base.subtle,
                         borderRadius: 4,
                         maxWidth: 400,
                     }}

@@ -6,7 +6,11 @@ import packageConfig from "../../packages/wonder-blocks-styles/package.json";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    semanticColor,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import Button from "@khanacademy/wonder-blocks-button";
 import Link from "@khanacademy/wonder-blocks-link";
@@ -61,22 +65,26 @@ export const InverseOutline: Story = {
                     kind="primary"
                     icon={info}
                     style={actionStyles.inverse}
+                    aria-label="Primary info button"
                 />
                 <IconButton
                     kind="secondary"
                     icon={info}
                     style={actionStyles.inverse}
+                    aria-label="Secondary info button"
                 />
                 <IconButton
                     kind="tertiary"
                     icon={info}
                     style={actionStyles.inverse}
+                    aria-label="Tertiary info button"
                 />
                 <IconButton
                     kind="primary"
                     disabled
                     icon={info}
                     style={actionStyles.inverse}
+                    aria-label="Disabled primary info button"
                 />
 
                 <Clickable onClick={() => {}} style={actionStyles.inverse}>
@@ -86,9 +94,9 @@ export const InverseOutline: Story = {
                 <StyledButton
                     style={[
                         {
-                            border: `1px solid ${semanticColor.status.success.background}`,
+                            border: `${border.width.thin} solid ${semanticColor.core.border.critical.default}`,
                             backgroundColor:
-                                semanticColor.status.success.foreground,
+                                semanticColor.core.background.critical.default,
                             color: semanticColor.status.success.background,
                         },
                         actionStyles.inverse,

@@ -1,5 +1,32 @@
 # @khanacademy/wonder-blocks-data
 
+## 15.0.1
+
+### Patch Changes
+
+- Updated dependencies [d6ae5fb]
+    - @khanacademy/wonder-blocks-core@12.4.3
+
+## 15.0.0
+
+### Major Changes
+
+- cf6ddda: Updated Wonder Stuff peer dependencies to latest major releases
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-core@12.4.2
+
+## 14.1.8
+
+### Patch Changes
+
+- 8a36c70: Re-publish to publish with Trusted Publishing
+- 3e0d137: Re-publishing via Trusted Publishing
+- Updated dependencies [8a36c70]
+- Updated dependencies [3e0d137]
+    - @khanacademy/wonder-blocks-core@12.4.2
+
 ## 14.1.7
 
 ### Patch Changes

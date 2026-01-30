@@ -62,9 +62,6 @@ export default mergeTheme(defaultTheme, {
             default: {
                 foreground: semanticColor.core.foreground.neutral.subtle,
             },
-            selected: {
-                foreground: semanticColor.core.foreground.instructive.default,
-            },
         },
     },
     // Hide the horizontal rule in Thunderblocks.
@@ -81,9 +78,6 @@ export default mergeTheme(defaultTheme, {
         },
     },
     subtitle: {
-        color: {
-            foreground: semanticColor.core.foreground.neutral.subtle,
-        },
         font: {
             size: font.body.size.xsmall,
             lineHeight: font.body.lineHeight.xsmall,

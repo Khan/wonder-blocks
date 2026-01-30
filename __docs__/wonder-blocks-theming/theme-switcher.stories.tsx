@@ -1,12 +1,13 @@
 import {Meta, StoryObj} from "@storybook/react-vite";
 import * as React from "react";
+import {StyleSheet} from "aphrodite";
+import {View} from "@khanacademy/wonder-blocks-core";
 
 import {
     SupportedThemes,
     ThemeSwitcher,
 } from "@khanacademy/wonder-blocks-theming";
-import {View} from "@khanacademy/wonder-blocks-core";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing, border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import Button from "@khanacademy/wonder-blocks-button";
 
 export default {
@@ -48,3 +49,34 @@ export const Default: Story = (() => {
         </>
     );
 }) as Story;
+
+export const Nested: Story = (() => {
+    return (
+        <ThemeSwitcher theme="default">
+            <View style={styles.container}>
+                <p>Default</p>
+                <Button>Themed button</Button>
+                <ThemeSwitcher theme="thunderblocks">
+                    <View style={styles.container}>
+                        <p>Thunder Blocks</p>
+                        <Button>Themed button</Button>
+                        <ThemeSwitcher theme="default">
+                            <View style={styles.container}>
+                                <p>Default</p>
+                                <Button>Themed button</Button>
+                            </View>
+                        </ThemeSwitcher>
+                    </View>
+                </ThemeSwitcher>
+            </View>
+        </ThemeSwitcher>
+    );
+}) as Story;
+
+const styles = StyleSheet.create({
+    container: {
+        padding: sizing.size_160,
+        margin: sizing.size_160,
+        border: `${border.width.thin} solid ${semanticColor.core.border.neutral.strong}`,
+    },
+});

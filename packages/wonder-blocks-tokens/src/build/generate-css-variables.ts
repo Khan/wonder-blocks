@@ -73,7 +73,7 @@ function generateCssVariablesDefinitions(folderPath: string, prefix?: string) {
             // Use the root selector for the default theme
             const selector =
                 theme.name === "default"
-                    ? ":root"
+                    ? `:root, [${THEME_DATA_ATTRIBUTE}='${theme.name}']`
                     : `[${THEME_DATA_ATTRIBUTE}='${theme.name}']`;
 
             return `${selector} {${cssVariables}}`;

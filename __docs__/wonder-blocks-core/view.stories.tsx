@@ -2,7 +2,11 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    semanticColor,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {
     HeadingMedium,
     LabelMedium,
@@ -45,46 +49,40 @@ export const Default: StoryComponentType = {
     },
 };
 
-export const InlineStyles: StoryComponentType = () => (
-    <View style={styles.container}>
-        <HeadingMedium>Hello, world!</HeadingMedium>
-        <View
-            style={[
-                styles.container,
-                {
-                    background: color.fadedPurple24,
-                    border: `1px solid ${color.blue}`,
-                    padding: spacing.xxxSmall_4,
-                },
-            ]}
-        >
-            The style prop can accept a (nested) array of Aphrodite styles and
-            inline styles.
+/**
+ * Styles can be applied inline to the component, or by passing an Aphrodite
+ * style object.
+ */
+export const InlineStyles: StoryComponentType = {
+    render: () => (
+        <View style={styles.container}>
+            <HeadingMedium>Hello, world!</HeadingMedium>
+            <View
+                style={[
+                    styles.container,
+                    {
+                        background:
+                            semanticColor.core.background.instructive.subtle,
+                        border: `1px solid ${semanticColor.core.border.instructive.default}`,
+                        padding: spacing.xxxSmall_4,
+                    },
+                ]}
+            >
+                The style prop can accept a (nested) array of Aphrodite styles
+                and inline styles.
+            </View>
         </View>
-    </View>
-);
-
-InlineStyles.parameters = {
-    docs: {
-        description: {
-            story: "Styles can be applied inline to the component, or by passing an Aphrodite style object.",
-        },
-    },
+    ),
 };
 
+/**
+ * Other props can be passed through `View`s as if they were normal tags.
+ */
 export const OtherProps: StoryComponentType = {
     name: "Using other props",
     render: () => (
         <View style={styles.container}>
-            <View
-                onClick={() => {
-                    // eslint-disable-next-line no-console
-                    console.log("View has been clicked!");
-                }}
-                style={styles.item}
-            >
-                Click me!
-            </View>
+            <View style={styles.item}>View with custom styles!</View>
 
             <View aria-hidden="true">
                 This text is hidden from screen readers.
@@ -93,61 +91,51 @@ export const OtherProps: StoryComponentType = {
     ),
 };
 
-OtherProps.parameters = {
-    docs: {
-        description: {
-            story: "Other props can be passed through `View`s as if they were normal tags.",
-        },
-    },
-};
-
-export const DefiningLayout: StoryComponentType = () => (
-    <View style={styles.container}>
-        <HeadingMedium>View as a column</HeadingMedium>
-        <View style={styles.view}>
-            <View style={styles.item}>
-                <LabelMedium>First item</LabelMedium>
+/**
+ * `View` can also be used to wrap elements and apply different flexbox layouts.
+ * By default, `View` uses `flexDirection: "column"`.
+ */
+export const DefiningLayout: StoryComponentType = {
+    render: () => (
+        <View style={styles.container}>
+            <HeadingMedium>View as a column</HeadingMedium>
+            <View style={styles.view}>
+                <View style={styles.item}>
+                    <LabelMedium>First item</LabelMedium>
+                </View>
+                <View style={styles.item}>
+                    <LabelMedium>Second item</LabelMedium>
+                </View>
             </View>
-            <View style={styles.item}>
-                <LabelMedium>Second item</LabelMedium>
+
+            <HeadingMedium>View as a row</HeadingMedium>
+            <View style={[styles.view, {flexDirection: "row"}]}>
+                <View style={styles.item}>
+                    <LabelMedium>First item</LabelMedium>
+                </View>
+                <View style={styles.item}>
+                    <LabelMedium>Second item</LabelMedium>
+                </View>
             </View>
         </View>
-
-        <HeadingMedium>View as a row</HeadingMedium>
-        <View style={[styles.view, {flexDirection: "row"}]}>
-            <View style={styles.item}>
-                <LabelMedium>First item</LabelMedium>
-            </View>
-            <View style={styles.item}>
-                <LabelMedium>Second item</LabelMedium>
-            </View>
-        </View>
-    </View>
-);
-
-DefiningLayout.parameters = {
-    docs: {
-        description: {
-            story: '`View` can also be used to wrap elements and apply different flexbox layouts. By default, `View` uses `flexDirection: "column"`.',
-        },
-    },
+    ),
 };
 
 const styles = StyleSheet.create({
     container: {
-        background: color.offBlack8,
+        background: semanticColor.core.background.neutral.subtle,
         gap: spacing.medium_16,
         padding: spacing.xLarge_32,
     },
 
     view: {
-        border: `1px dashed ${color.purple}`,
+        border: `${border.width.thin} dashed ${semanticColor.mastery.primary}`,
         gap: spacing.medium_16,
         padding: spacing.medium_16,
     },
 
     item: {
-        background: color.offBlack32,
+        background: semanticColor.core.background.instructive.subtle,
         padding: spacing.medium_16,
     },
 });

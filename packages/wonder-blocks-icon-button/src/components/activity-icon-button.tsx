@@ -10,7 +10,7 @@ import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {
     ActivityIconButtonActionType,
-    BaseIconButtonProps,
+    ActivityIconButtonProps,
     IconButtonKind,
 } from "../util/icon-button.types";
 
@@ -36,7 +36,7 @@ type LabelOnly = {
     label: string;
 };
 
-type Props = BaseIconButtonProps &
+type Props = ActivityIconButtonProps &
     (AriaLabelOnly | LabelOnly) & {
         /**
          * The action type of the button. This determines the visual style of the
@@ -77,7 +77,7 @@ export const ActivityIconButton: React.ForwardRefExoticComponent<
         disabled = false,
         icon,
         kind = "primary",
-        style,
+        styles: stylesProp,
         type = "button",
         // labeling
         "aria-label": ariaLabel,
@@ -93,13 +93,14 @@ export const ActivityIconButton: React.ForwardRefExoticComponent<
         buttonStyles.button,
         disabled && buttonStyles.disabled,
         !disabled && pressed && buttonStyles.pressed,
-        style,
+        stylesProp?.root,
     ];
 
     const chonkyStyles = [
         buttonStyles.chonky,
         disabled && buttonStyles.chonkyDisabled,
         !disabled && pressed && buttonStyles.chonkyPressed,
+        stylesProp?.box,
     ];
 
     const handlePress = React.useCallback((isPressing: boolean) => {
@@ -138,7 +139,7 @@ export const ActivityIconButton: React.ForwardRefExoticComponent<
                         tag="span"
                         size="medium"
                         weight="semi"
-                        style={buttonStyles.label}
+                        style={[buttonStyles.label, stylesProp?.label]}
                     >
                         {label}
                     </BodyText>
@@ -195,7 +196,7 @@ const theme = {
             disabled: semanticColor.core.foreground.disabled.default,
         },
         layout: {
-            width: sizing.size_640,
+            inlineSize: sizing.size_640,
         },
     },
 };
@@ -248,8 +249,9 @@ const _generateStyles = (
             // layout
             flexDirection: "column",
             gap: sizing.size_020,
-            // Prevent the button from stretching to fill the parent
-            maxWidth: theme.label.layout.width,
+            // Putting an arbitrary max inline size to prevent the button from
+            // stretching to fill the parent.
+            maxInlineSize: 200,
             alignSelf: "flex-start",
             justifySelf: "center",
             /**
@@ -301,6 +303,9 @@ const _generateStyles = (
             marginBlockEnd: theme.root.shadow.y.rest,
             paddingBlock: theme.root.layout.padding.block,
             paddingInline: theme.root.layout.padding.inline,
+            inlineSize: theme.label.layout.inlineSize,
+            justifyContent: "center",
+            alignItems: "center",
             // theming
             background: themeVariant.background[kind].rest,
             border: `${borderWidthKind.rest} solid ${themeVariant.border[kind].rest}`,

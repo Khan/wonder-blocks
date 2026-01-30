@@ -2,6 +2,9 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
+import pencilIcon from "@phosphor-icons/core/bold/pencil-bold.svg";
+import trashIcon from "@phosphor-icons/core/bold/trash-bold.svg";
+import dotsThreeIcon from "@phosphor-icons/core/regular/dots-three.svg";
 import Button from "@khanacademy/wonder-blocks-button";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {ActionMenu, ActionItem} from "@khanacademy/wonder-blocks-dropdown";
@@ -10,7 +13,7 @@ import {
     RadioGroup,
     Choice,
 } from "@khanacademy/wonder-blocks-form";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 
 import {
@@ -25,31 +28,9 @@ import type {ModalElement} from "../../packages/wonder-blocks-modal/src/util/typ
 import ModalLauncherArgTypes from "./modal-launcher.argtypes";
 
 import ComponentInfo from "../components/component-info";
-import {allModes} from "../../.storybook/modes";
-
-const customViewports = {
-    phone: {
-        name: "phone",
-        styles: {
-            width: "320px",
-            height: "568px",
-        },
-    },
-    tablet: {
-        name: "tablet",
-        styles: {
-            width: "640px",
-            height: "960px",
-        },
-    },
-    desktop: {
-        name: "desktop",
-        styles: {
-            width: "1024px",
-            height: "768px",
-        },
-    },
-} as const;
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {reallyLongText} from "../components/text-for-testing";
 
 const DefaultModal = (): ModalElement => (
     <OnePaneDialog
@@ -92,22 +73,40 @@ export default {
         ),
         docs: {
             description: {
-                component: null,
+                component: `A component that enables you to launch a modal, covering the screen.
+
+Intended for use with \`OnePaneDialog\`, \`FlexibleDialog\`, or modal Building Blocks.
+
+For conditionally rendering modals, ensure there is only one \`ModalLauncher\` in
+your component tree. A launcher needs to stay mounted on the current page to
+properly handle the user's keyboard focus on close of modals.
+Read [more details on Confluence](https://khanacademy.atlassian.net/wiki/spaces/FRONTEND/blog/2025/11/24/4454383789/Wonder+Blocks+Modal+Tips+Tricks).
+
+### Usage
+
+\`\`\`jsx
+import {ModalLauncher} from "@khanacademy/wonder-blocks-modal";
+import {FlexibleDialog} from "@khanacademy/wonder-blocks-modal";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
+
+<ModalLauncher
+     onClose={handleClose}
+     opened={opened}
+     animated={animated}
+     modal={({closeModal}) => (
+         <FlexibleDialog  />
+     )}
+/>
+\`\`\``,
             },
             source: {
                 // See https://github.com/storybookjs/storybook/issues/12596
                 excludeDecorators: true,
             },
         },
-        viewport: {
-            viewports: customViewports,
-            defaultViewport: "desktop",
-        },
         chromatic: {
-            modes: {
-                small: allModes.small,
-                large: allModes.large,
-            },
+            // All the examples for ModalLauncher are behavior based, not visual.
+            disableSnapshot: true,
         },
     },
     argTypes: ModalLauncherArgTypes,
@@ -125,13 +124,6 @@ export const Default: StoryComponentType = {
     ),
 };
 
-Default.parameters = {
-    chromatic: {
-        // All the examples for ModalLauncher are behavior based, not visual.
-        disableSnapshot: true,
-    },
-};
-
 export const Simple: StoryComponentType = () => (
     <ModalLauncher modal={DefaultModal}>
         {({openModal}) => (
@@ -141,10 +133,6 @@ export const Simple: StoryComponentType = () => (
 );
 
 Simple.parameters = {
-    chromatic: {
-        // All the examples for ModalLauncher are behavior based, not visual.
-        disableSnapshot: true,
-    },
     docs: {
         description: {
             story: "This is a basic modal launcher. Its child, the button, has access to the `openModal` function via the function-as-child pattern. It passes this into its `onClick` function, which causes the modal to launch when the button is clicked.",
@@ -158,17 +146,10 @@ export const WithLongContentsAndFooter: StoryComponentType = () => {
             title="Hello, world! Here is an example of a long title that wraps to the next line."
             content={
                 <View>
-                    <BodyText>
-                        {`Lorem ipsum dolor sit amet, consectetur adipiscing
-                                elit, sed do eiusmod tempor incididunt ut labore et
-                                dolore magna aliqua. Ut enim ad minim veniam,
-                                quis nostrud exercitation ullamco laboris nisi ut
-                                aliquip ex ea commodo consequat. Duis aute irure
-                                dolor in reprehenderit in voluptate velit esse
-                                cillum dolore eu fugiat nulla pariatur. Excepteur
-                                sint occaecat cupidatat non proident, sunt in culpa
-                                qui officia deserunt mollit anim id est.`}
-                    </BodyText>
+                    <BodyText>{reallyLongText}</BodyText>
+                    <BodyText>{reallyLongText}</BodyText>
+                    <BodyText>{reallyLongText}</BodyText>
+                    <BodyText>{reallyLongText}</BodyText>
                 </View>
             }
             footer={
@@ -191,10 +172,6 @@ export const WithLongContentsAndFooter: StoryComponentType = () => {
 };
 
 WithLongContentsAndFooter.parameters = {
-    chromatic: {
-        // All the examples for ModalLauncher are behavior based, not visual.
-        disableSnapshot: true,
-    },
     docs: {
         description: {
             story: "This example demonstrates how to handle long content in modals, especially at high zoom levels. The modal supports two modes: standard (fixed height with overflow hidden) and fullscreen (scrollable content). The fullscreen mode is particularly useful for accessibility, allowing users to read all content even at 400% zoom.",
@@ -244,10 +221,6 @@ export const WithCustomCloseButton: StoryComponentType = () => {
 };
 
 WithCustomCloseButton.parameters = {
-    chromatic: {
-        // All the examples for ModalLauncher are behavior based, not visual.
-        disableSnapshot: true,
-    },
     docs: {
         description: {
             story: 'This is an example of a modal that uses a close button other than the default "X" button in the top right corner. Here, the default "X" close button is not rendered because the `closeButtonVisible` prop on the `<OnePaneDialog>` is set to false. Instead, a custom close button has been added to the modal footer. The `modal` prop on `<ModalLauncher>` can either be a plain modal, or it can be a function that takes a `closeModal` function as a parameter and returns a modal. The latter is what we do in this case. Then the `closeModal` function is passed into the `onClick` prop on the button in the footer.',
@@ -264,10 +237,6 @@ export const WithBackdropDismissDisabled: StoryComponentType = () => (
 );
 
 WithBackdropDismissDisabled.parameters = {
-    chromatic: {
-        // All the examples for ModalLauncher are behavior based, not visual.
-        disableSnapshot: true,
-    },
     docs: {
         description: {
             story: "This is an example in which the modal _cannot_ be dismissed by clicking in in the backdrop. This is done by setting the `backdropDismissEnabled` prop on the `<ModalLauncher>` element to false.",
@@ -315,15 +284,138 @@ export const TriggeringProgrammatically: StoryComponentType = () => {
 };
 
 TriggeringProgrammatically.parameters = {
-    chromatic: {
-        // All the examples for ModalLauncher are behavior based, not visual.
-        disableSnapshot: true,
-    },
     docs: {
         description: {
             story: "Sometimes you'll want to trigger a modal programmatically. This can be done by rendering `<ModalLauncher>` without any children and instead setting its `opened` prop to true. In this situation, `ModalLauncher` is a controlled component which means you'll also have to update `opened` to false in response to the `onClose` callback being triggered. It is necessary to use this method in this example, as `ActionMenu` cannot have a `ModalLauncher` element as a child, (it can only have `Item` elements as children), so launching a modal from a dropdown must be done programatically.",
         },
     },
+};
+
+/*
+This story demonstrates a controlled modal with complex focus management.
+*/
+export const WithOpenedTrue = () => {
+    const [openedModal, setOpenedModal] = React.useState<
+        "EDIT" | "DELETE" | null
+    >(null);
+    const [, setSelectedItem] = React.useState<string | null>(null);
+
+    // Simulated data item
+    const item = {
+        id: "1",
+        title: "Example Assignment",
+        dueDate: new Date().toISOString(),
+    };
+
+    const handleClose = () => {
+        setOpenedModal(null);
+        setSelectedItem(null);
+    };
+
+    const editDialog = ({closeModal}: {closeModal: () => void}) => (
+        <OnePaneDialog
+            title="Edit Item"
+            content={
+                <View style={styles.modalContent}>
+                    <BodyText>
+                        This is a reproduction of the focus management issue.
+                        When this modal is closed, focus should return to the
+                        action menu button that opened it.
+                    </BodyText>
+                </View>
+            }
+            footer={
+                <View>
+                    <Button onClick={closeModal}>Close</Button>
+                </View>
+            }
+        />
+    );
+
+    const deleteDialog = ({closeModal}: {closeModal: () => void}) => (
+        <ModalDialog aria-labelledby="heading-id">
+            <ModalPanel
+                content={
+                    <View style={styles.modalContent}>
+                        <Heading id="heading-id">Delete Item</Heading>
+                        <BodyText>
+                            Are you sure you want to delete this item? When this
+                            modal is closed, focus should return to the action
+                            menu button.
+                        </BodyText>
+                    </View>
+                }
+                footer={
+                    <View style={styles.footer}>
+                        <Button onClick={closeModal}>Cancel</Button>
+                        <Button
+                            onClick={() => {
+                                closeModal();
+                            }}
+                        >
+                            Delete
+                        </Button>
+                    </View>
+                }
+            />
+        </ModalDialog>
+    );
+
+    return (
+        <View>
+            <View style={styles.actionMenuRow}>
+                <BodyText>Example Item</BodyText>
+                <ActionMenu
+                    menuText=""
+                    opener={() => (
+                        <IconButton
+                            aria-label="Actions"
+                            aria-haspopup="true"
+                            kind="secondary"
+                            icon={dotsThreeIcon}
+                            testId="item-actions-button"
+                            size="small"
+                        />
+                    )}
+                >
+                    <ActionItem
+                        onClick={() => {
+                            setSelectedItem(item.id);
+                            setOpenedModal("EDIT");
+                        }}
+                        label="Edit"
+                        leftAccessory={
+                            <PhosphorIcon icon={pencilIcon} size="small" />
+                        }
+                    />
+                    <ActionItem
+                        onClick={() => {
+                            setSelectedItem(item.id);
+                            setOpenedModal("DELETE");
+                        }}
+                        label="Delete"
+                        leftAccessory={
+                            <PhosphorIcon icon={trashIcon} size="small" />
+                        }
+                    />
+                </ActionMenu>
+            </View>
+
+            {/* Edit Modal */}
+            <ModalLauncher
+                opened={openedModal === "EDIT"}
+                onClose={handleClose}
+                modal={editDialog}
+            />
+
+            {/* Delete Modal */}
+            <ModalLauncher
+                opened={openedModal === "DELETE"}
+                onClose={handleClose}
+                modal={deleteDialog}
+            />
+        </View>
+    );
 };
 
 export const WithClosedFocusId: StoryComponentType = () => {
@@ -355,10 +447,6 @@ export const WithClosedFocusId: StoryComponentType = () => {
 };
 
 WithClosedFocusId.parameters = {
-    chromatic: {
-        // All the examples for ModalLauncher are behavior based, not visual.
-        disableSnapshot: true,
-    },
     docs: {
         description: {
             story: 'You can use the `closedFocusId` prop on the `ModalLauncher` to specify where to set the focus after the modal has been closed. Imagine the following situation: clicking on a dropdown menu option to open a modal causes the dropdown to close, and so all of the dropdown options are removed from the DOM. This can be a problem because by default, the focus shifts to the previously focused element after a modal is closed; in this case, the element that opened the modal cannot receive focus since it no longer exists in the DOM, so when you close the modal, it doesn\'t know where to focus on the page. When the previously focused element no longer exists, the focus shifts to the page body, which causes a jump to the top of the page. This can make it diffcult to find the original dropdown. A solution to this is to use the `closedFocusId` prop to specify where to set the focus after the modal has been closed. In this example, `closedFocusId` is set to the ID of the button labeled "Focus here after close." If the focus shifts to the button labeled "Top of page (should not receieve focus)," then the focus is on the page body, and the `closedFocusId` did not work.',
@@ -415,10 +503,6 @@ export const WithInitialFocusId: StoryComponentType = () => {
 };
 
 WithInitialFocusId.parameters = {
-    chromatic: {
-        // All the examples for ModalLauncher are behavior based, not visual.
-        disableSnapshot: true,
-    },
     docs: {
         description: {
             story: "Sometimes, you may want a specific element inside the modal to receive focus first. This can be done using the `initialFocusId` prop on the `<ModalLauncher>` element. Just pass in the ID of the element that should receive focus, and it will automatically receieve focus once the modal opens. In this example, the top text input would have received the focus by default, but the bottom text field receives focus instead since its ID is passed into the `initialFocusId` prop.",
@@ -449,6 +533,115 @@ const SubModal = () => (
         }
     />
 );
+
+/*
+A complex reproduction with a modal launched from within a table to test focus
+management issues on close.
+*/
+export const FocusManagementPattern: StoryComponentType = () => {
+    type Student = {
+        id: string;
+        name: string;
+        progress: number;
+    };
+
+    const mockStudents: Array<Student> = [
+        {id: "1", name: "Alice Smith", progress: 85},
+        {id: "2", name: "Bob Johnson", progress: 70},
+        {id: "3", name: "Charlie Brown", progress: 95},
+    ];
+
+    type CompletionModalProps = {
+        isOpen: boolean;
+        handleClose: () => void;
+        returnFocusToId: string | null;
+    };
+
+    // Separate modal component to match the pattern in MasteryCompletionModal
+    const CompletionModal = ({
+        isOpen,
+        handleClose,
+        returnFocusToId,
+    }: CompletionModalProps) => {
+        return (
+            <ModalLauncher
+                opened={isOpen}
+                onClose={handleClose}
+                closedFocusId={returnFocusToId || undefined}
+                modal={() => (
+                    <OnePaneDialog
+                        title="Unit: Sample Unit"
+                        content={
+                            <View style={styles.modalContent}>
+                                <BodyText>
+                                    This is a reproduction of the focus
+                                    management pattern. When this modal is
+                                    closed, focus should return to the button
+                                    that opened it.
+                                </BodyText>
+                            </View>
+                        }
+                        style={styles.modal}
+                    />
+                )}
+            />
+        );
+    };
+
+    const CompletionModalContainer = () => {
+        const [selectedItem, setSelectedItem] = React.useState<string | null>(
+            null,
+        );
+        const [modalTriggerId, setModalTriggerId] = React.useState<
+            string | null
+        >(null);
+
+        const handleOpenModal = (triggerId: string) => {
+            setModalTriggerId(triggerId);
+            setSelectedItem("sample-item");
+        };
+
+        const handleCloseModal = () => {
+            setSelectedItem(null);
+            setModalTriggerId(null);
+        };
+
+        return (
+            <View style={styles.container}>
+                <View style={styles.buttonRow}>
+                    {mockStudents.map((student) => {
+                        const triggerId = `completion-modal-trigger-${student.id}`;
+                        return (
+                            <Button
+                                key={student.id}
+                                id={triggerId}
+                                onClick={() => handleOpenModal(triggerId)}
+                            >
+                                {`${student.name} (${student.progress}%)`}
+                            </Button>
+                        );
+                    })}
+                </View>
+                {selectedItem && (
+                    <CompletionModal
+                        isOpen={true}
+                        handleClose={handleCloseModal}
+                        returnFocusToId={modalTriggerId}
+                    />
+                )}
+            </View>
+        );
+    };
+
+    return <CompletionModalContainer />;
+};
+
+FocusManagementPattern.parameters = {
+    chromatic: {
+        // All the examples for ModalLauncher are behavior based, not visual.
+        disableSnapshot: true,
+    },
+};
 
 export const FocusTrap: StoryComponentType = () => {
     const [selectedValue, setSelectedValue] = React.useState<any>(null);
@@ -509,10 +702,6 @@ export const FocusTrap: StoryComponentType = () => {
 FocusTrap.storyName = "Navigation with focus trap";
 
 FocusTrap.parameters = {
-    chromatic: {
-        // All the examples for ModalLauncher are behavior based, not visual.
-        disableSnapshot: true,
-    },
     docs: {
         description: {
             story: "All modals have a focus trap, which means that the focus is locked inside the modal. This is done to prevent the user from tabbing out of the modal and losing their place. The focus trap is also used to ensure that the focus is restored to the correct element when the modal is closed. In this example, the focus is trapped inside the modal, and the focus is restored to the button that opened the modal when the modal is closed.\n\nAlso, this example includes a sub-modal that is opened from the first modal so we can test how the focus trap works when multiple modals are open.",
@@ -529,7 +718,144 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         gap: sizing.size_160,
     },
+    storyContainer: {
+        display: "flex",
+        flexDirection: "column",
+        gap: sizing.size_240,
+        maxWidth: 600,
+    },
+    description: {
+        display: "flex",
+        flexDirection: "column",
+        gap: sizing.size_160,
+        padding: sizing.size_160,
+        backgroundColor: "rgba(33, 36, 44, 0.08)",
+        borderRadius: 4,
+    },
+    buttonRow: {
+        display: "flex",
+        flexDirection: "row",
+        gap: sizing.size_160,
+        alignItems: "center",
+    },
+    actionMenuRow: {
+        flexDirection: "row",
+        alignItems: "center",
+        gap: sizing.size_160,
+        justifyContent: "space-between",
+        padding: sizing.size_160,
+        borderColor: semanticColor.core.border.neutral.subtle,
+        borderStyle: "solid",
+        borderWidth: border.width.thin,
+        borderRadius: border.radius.radius_040,
+    },
+    container: {
+        display: "flex",
+        flexDirection: "column",
+        gap: sizing.size_160,
+        padding: sizing.size_160,
+        borderRadius: border.radius.radius_040,
+    },
+    modalContent: {
+        padding: sizing.size_160,
+    },
+    modal: {
+        minInlineSize: "80vw",
+    },
 });
+
+/**
+ * This story demonstrates using a single controlled ModalLauncher with
+ * conditional dialog content. Different buttons trigger different modal
+ * content, and focus management is handled correctly when the modal closes.
+ *
+ * This pattern is useful when you need to show different dialogs based on
+ * user interaction, but want to manage them through a single ModalLauncher
+ * instance.
+ */
+export const ConditionalDialogsWithFocusManagement: StoryComponentType = () => {
+    const [openedModal, setOpenedModal] = React.useState<
+        "REGULAR" | "WRAPPED" | null
+    >(null);
+
+    const handleClose = () => {
+        setOpenedModal(null);
+    };
+
+    const conditionalDialog = ({closeModal}: {closeModal: () => void}) => {
+        if (openedModal === "REGULAR") {
+            return (
+                <OnePaneDialog
+                    title="Regular Modal"
+                    content={<View>This is a regular modal</View>}
+                    footer={
+                        <Button onClick={() => closeModal()}>
+                            Close Modal
+                        </Button>
+                    }
+                />
+            );
+        }
+
+        if (openedModal === "WRAPPED") {
+            return (
+                <OnePaneDialog
+                    title="Alternative Modal"
+                    content={
+                        <View>
+                            This is an alternative modal with different content
+                        </View>
+                    }
+                    footer={<Button onClick={closeModal}>Close Modal</Button>}
+                />
+            );
+        }
+
+        // Fallback (should not be reached)
+        return null;
+    };
+
+    return (
+        <View style={styles.storyContainer}>
+            <BodyText>
+                This story demonstrates conditional dialogs within a single
+                ModalLauncher. Click either button to open different modal
+                content. When the modal closes, focus returns to the triggering
+                button using the `closedFocusId` prop.
+            </BodyText>
+
+            <View style={styles.buttonRow}>
+                <Button
+                    onClick={() => setOpenedModal("REGULAR")}
+                    testId="regular-modal-trigger"
+                >
+                    Open Regular Modal
+                </Button>
+
+                <Button
+                    onClick={() => setOpenedModal("WRAPPED")}
+                    id="alternative-modal-trigger"
+                >
+                    Open Alternative Modal
+                </Button>
+            </View>
+
+            {/* Single ModalLauncher with conditional dialogs */}
+            <ModalLauncher
+                opened={openedModal !== null}
+                onClose={handleClose}
+                closedFocusId={
+                    openedModal === "WRAPPED"
+                        ? "alternative-modal-trigger"
+                        : undefined
+                }
+                modal={conditionalDialog}
+            />
+        </View>
+    );
+};
+
+ConditionalDialogsWithFocusManagement.parameters = {};
 
 /**
  * This example demonstrates how to use `ModalLauncher` to launch a modal that
@@ -616,45 +942,6 @@ export const CreatingACustomModal: StoryComponentType = {
             <ModalLauncher modal={popoverModal}>
                 {({openModal}) => (
                     <Button onClick={openModal}>Open custom modal</Button>
-                )}
-            </ModalLauncher>
-        );
-    },
-    parameters: {
-        chromatic: {
-            // All the examples for ModalLauncher are behavior based, not
-            // visual.
-            disableSnapshot: true,
-        },
-    },
-};
-
-/**
- * The following example demonstrates how to use `ModalLauncher` to launch a
- * modal that is styled to be a confirmation modal.
- */
-export const ConfirmationModal: StoryComponentType = {
-    render: () => {
-        return (
-            <ModalLauncher
-                modal={
-                    <OnePaneDialog
-                        style={{
-                            blockSize: "fit-content",
-                            inlineSize: "fit-content",
-                            maxInlineSize: "100%",
-                        }}
-                        title="Title of the modal"
-                        content={"Content"}
-                        footer={<Button kind="primary">Confirm</Button>}
-                    />
-                }
-                opened={true}
-            >
-                {({openModal}) => (
-                    <Button onClick={openModal}>
-                        Click me to open the modal
-                    </Button>
                 )}
             </ModalLauncher>
         );

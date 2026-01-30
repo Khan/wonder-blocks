@@ -1,5 +1,131 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 4.1.35
+
+### Patch Changes
+
+- 8bb7ada: Updates styles to reflect new core.foreground tokens
+- Updated dependencies [8bb7ada]
+- Updated dependencies [8bb7ada]
+    - @khanacademy/wonder-blocks-tokens@15.0.0
+    - @khanacademy/wonder-blocks-dropdown@10.6.7
+    - @khanacademy/wonder-blocks-icon@5.3.7
+    - @khanacademy/wonder-blocks-layout@3.1.44
+    - @khanacademy/wonder-blocks-typography@4.2.29
+
+## 4.1.34
+
+### Patch Changes
+
+- Updated dependencies [d6ae5fb]
+    - @khanacademy/wonder-blocks-core@12.4.3
+    - @khanacademy/wonder-blocks-dropdown@10.6.6
+    - @khanacademy/wonder-blocks-icon@5.3.6
+    - @khanacademy/wonder-blocks-layout@3.1.43
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-typography@4.2.28
+
+## 4.1.33
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-dropdown@10.6.5
+
+## 4.1.32
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-dropdown@10.6.4
+
+## 4.1.31
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-dropdown@10.6.3
+
+## 4.1.30
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-dropdown@10.6.2
+
+## 4.1.29
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-dropdown@10.6.1
+
+## 4.1.28
+
+### Patch Changes
+
+- Updated dependencies [0530fb2]
+    - @khanacademy/wonder-blocks-dropdown@10.6.0
+
+## 4.1.27
+
+### Patch Changes
+
+- Updated dependencies [70d6c08]
+- Updated dependencies [6d35175]
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-dropdown@10.5.6
+    - @khanacademy/wonder-blocks-icon@5.3.5
+    - @khanacademy/wonder-blocks-layout@3.1.42
+    - @khanacademy/wonder-blocks-typography@4.2.27
+
+## 4.1.26
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-dropdown@10.5.5
+
+## 4.1.25
+
+### Patch Changes
+
+- Updated dependencies [415dd5a]
+    - @khanacademy/wonder-blocks-dropdown@10.5.4
+
+## 4.1.24
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-dropdown@10.5.3
+
+## 4.1.23
+
+### Patch Changes
+
+- 8a36c70: Re-publish to publish with Trusted Publishing
+- 3e0d137: Re-publishing via Trusted Publishing
+- Updated dependencies [8a36c70]
+- Updated dependencies [3e0d137]
+    - @khanacademy/wonder-blocks-core@12.4.2
+    - @khanacademy/wonder-blocks-dropdown@10.5.2
+    - @khanacademy/wonder-blocks-icon@5.3.4
+    - @khanacademy/wonder-blocks-layout@3.1.41
+    - @khanacademy/wonder-blocks-tokens@14.1.2
+    - @khanacademy/wonder-blocks-typography@4.2.26
+
+## 4.1.22
+
+### Patch Changes
+
+- Updated dependencies [540371d]
+    - @khanacademy/wonder-blocks-tokens@14.1.1
+    - @khanacademy/wonder-blocks-dropdown@10.5.1
+    - @khanacademy/wonder-blocks-icon@5.3.3
+    - @khanacademy/wonder-blocks-layout@3.1.40
+    - @khanacademy/wonder-blocks-typography@4.2.25
+
+## 4.1.21
+
+### Patch Changes
+
+- Updated dependencies [a784e6c]
+    - @khanacademy/wonder-blocks-dropdown@10.5.0
+
 ## 4.1.20
 
 ### Patch Changes

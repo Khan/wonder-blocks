@@ -18,30 +18,6 @@ import celebrationBg from "../../static/celebration_bg.svg";
 import celebrationChest from "../../static/celebration-chest.svg";
 import {longText, reallyLongText} from "../components/text-for-testing";
 
-const customViewports = {
-    phone: {
-        name: "phone",
-        styles: {
-            width: "320px",
-            height: "568px",
-        },
-    },
-    tablet: {
-        name: "tablet",
-        styles: {
-            width: "640px",
-            height: "960px",
-        },
-    },
-    desktop: {
-        name: "desktop",
-        styles: {
-            width: "1024px",
-            height: "768px",
-        },
-    },
-} as const;
-
 export default {
     title: "Packages / Modal / FlexibleDialog",
     component: FlexibleDialog,
@@ -67,10 +43,6 @@ export default {
                 // See https://github.com/storybookjs/storybook/issues/12596
                 excludeDecorators: true,
             },
-        },
-        viewport: {
-            viewports: customViewports,
-            defaultViewport: "desktop",
         },
         chromatic: {
             modes: {
@@ -263,7 +235,7 @@ export const WithAriaLabel: StoryComponentType = {
 
 /**
  *
- * A FlexibleDialog can have an aria-label as its accessible name.
+ * A FlexibleDialog can derive its accessible name from aria-labelledby.
  */
 export const WithAriaLabelledby: StoryComponentType = {
     render: () => (
@@ -271,11 +243,11 @@ export const WithAriaLabelledby: StoryComponentType = {
             <View style={styles.modalPositioner}>
                 <FlexibleDialog
                     aria-labelledby="main-heading"
+                    title={
+                        <Heading id="main-heading">Dogz are the best</Heading>
+                    }
                     content={
                         <View>
-                            <Heading id="main-heading">
-                                Dogz are the best
-                            </Heading>
                             <BodyText>This is some text</BodyText>
                         </View>
                     }
@@ -338,6 +310,16 @@ export const WithLongContents: StoryComponentType = {
                             <BodyText>{reallyLongText}</BodyText>
                             <BodyText>{reallyLongText}</BodyText>
                             <BodyText>{reallyLongText}</BodyText>
+                            <BodyText style={{display: "flex"}}>
+                                <Button
+                                    style={{
+                                        marginInlineStart: "auto",
+                                        marginBlockStart: sizing.size_100,
+                                    }}
+                                >
+                                    A button
+                                </Button>
+                            </BodyText>
                         </>
                     }
                 />

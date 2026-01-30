@@ -27,7 +27,7 @@ jobs:
     if: |
       github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]' &&
       !startsWith(github.head_ref, 'changeset-release/')
-    name: Chromatic - Build and test on regular PRs
+    name: Build on regular PRs
     uses: ./.github/workflows/chromatic-build.yml
     with:
       target: 'review'
@@ -39,7 +39,7 @@ jobs:
     if: |
       github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]' &&
       !startsWith(github.head_ref, 'changeset-release/')
-    name: Chromatic - Get results on regular PRs
+    name: Get results on regular PRs
     needs: chromatic_review
     runs-on: ${{ matrix.os }}
     strategy:
@@ -76,3 +76,44 @@ jobs:
             | Total stories | ${{ needs.chromatic_review.outputs.specCount }} |
             | Inherited (not captured) snapshots [TurboSnap] | ${{ needs.chromatic_review.outputs.inheritedCaptureCount }} |
             | Tests on the build | ${{ needs.chromatic_review.outputs.testCount }} |
+
+  storybook_tests:
+    # (if) Run this step on regular PRs.
+    if: |
+      github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]' &&
+      !startsWith(github.head_ref, 'changeset-release/')
+    name: Run Storybook tests
+    needs: chromatic_review
+    runs-on: ${{ matrix.os }}
+    container:
+      # Make sure to grab the latest version of the Playwright image
+      # https://playwright.dev/docs/docker#pull-the-image
+      image: mcr.microsoft.com/playwright:v1.57.0-noble
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [20.x]
+    steps:
+      - name: Checking out latest commit
+        uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      # Cache and install dependencies
+      - name: Install & cache node_modules
+        uses: ./.github/actions/shared-node-cache
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      # Build the project
+      - name: Generate WB build artifacts
+        run: pnpm build
+
+      - name: Run Storybook tests
+        run: pnpm test:storybook
+        env:
+          SB_URL: '${{ needs.chromatic_review.outputs.storybookUrl }}'

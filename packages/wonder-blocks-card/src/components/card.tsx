@@ -2,6 +2,7 @@ import * as React from "react";
 
 import {StyleSheet} from "aphrodite";
 import {StyleType, View} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 
 import {
     boxShadow,
@@ -39,6 +40,9 @@ type BaseCardProps = {
     inert?: boolean;
     /**
      * The test ID used to locate this component in automated tests.
+     *
+     * The test ID will also be passed to the dismiss button as
+     * `{testId}-dismiss-button` if the `onDismiss` prop is provided.
      */
     testId?: string;
 } & StyleProps;
@@ -48,12 +52,17 @@ type BaseCardProps = {
  * a dismiss button with an X icon will be rendered.
  *
  * When `onDismiss` is provided, `labels.dismissButtonAriaLabel` must also be
- * provided for accessibility and localization.
+ * provided for accessibility and localization. `labels.dismissButtonAriaDescribedBy`
+ * can be provided to pass an aria-describedby attribute to the dismiss button if
+ * more context is needed for the dismiss button.
  */
 type DismissProps =
     | {
           onDismiss: (e?: React.SyntheticEvent) => void;
-          labels: {dismissButtonAriaLabel: string} & Record<string, any>;
+          labels: {
+              dismissButtonAriaLabel: string;
+              dismissButtonAriaDescribedBy?: string;
+          } & Record<string, any>;
       }
     | {
           onDismiss?: never;
@@ -61,27 +70,50 @@ type DismissProps =
       };
 
 /**
- * Provide a specific HTML tag that overrides the default (`div`).
- *
- * Notes:
- * - When `tag="section"` or `"figure"`, `cardAriaLabel` is required for accessibility.
- * - `button` and `a` tags are not allowed - use Wonder Blocks Button and Link components as children instead.
  * Valid HTML tags for the Card component.
  * Excludes button and anchor tags which should use Wonder Blocks Button and Link components instead.
  */
-type ValidCardTags = Exclude<keyof JSX.IntrinsicElements, "button" | "a">;
 
-type TagProps =
+/**
+ * Accessibility props for the Card.
+ *
+ * Labeling methods (in order of preference):
+ * 1. `labels.cardAriaLabel` - For translatable strings, automatically applied to `aria-label`
+ * 2. `aria-labelledby` - For ID references to existing elements
+ *
+ * Only one labeling mechanism can be used at a time. The type system enforces this
+ * by using discriminated unions.
+ */
+type LabelingProps =
     | {
-          // Section and figure require an aria-label
-          tag: "section" | "figure";
-          labels: {cardAriaLabel: string} & Record<string, any>;
+          /** Translatable label string for aria-label */
+          labels?: {
+              cardAriaLabel?: string;
+              dismissButtonAriaLabel?: string;
+          };
+          "aria-labelledby"?: never;
       }
     | {
-          // All other valid tags except button and a
-          tag?: Exclude<ValidCardTags, "section" | "figure">;
-          labels?: Record<string, any>;
+          /** ID reference for aria-labelledby */
+          "aria-labelledby"?: string;
+          labels?: {
+              cardAriaLabel?: never;
+              dismissButtonAriaLabel?: string;
+          };
       };
+
+type AccessibilityProps = LabelingProps & {
+    "aria-busy"?: AriaProps["aria-busy"];
+    "aria-roledescription"?: AriaProps["aria-roledescription"];
+    role?: AriaProps["role"];
+};
+
+/**
+ * Tag and accessibility props combined.
+ */
+type TagProps = {
+    tag?: Exclude<keyof JSX.IntrinsicElements, "button" | "a">;
+} & AccessibilityProps;
 
 type StyleProps = {
     /**
@@ -152,7 +184,11 @@ type CardProps = BaseCardProps & TagProps & DismissProps;
  * </Card>
  * ```
  *
- * When the `onDismiss` prop is provided, a dismiss button will be rendered. In this case, the `labels.dismissButtonAriaLabel` prop is required to provide an accessible label for the dismiss button.
+ * ### Accessibility
+ *
+ * When the `onDismiss` prop is provided, a dismiss button will be rendered.
+ * In this case, the `labels.dismissButtonAriaLabel` prop is required to provide
+ * a translatable screen reader label for the dismiss button.
  *
  * See additional Accessibility docs.
  */
@@ -173,6 +209,9 @@ const Card = React.forwardRef(function Card(
         children,
         onDismiss,
         inert,
+        "aria-labelledby": ariaLabelledBy,
+        "aria-busy": ariaBusy,
+        role,
     } = props;
 
     const isBackgroundToken =
@@ -186,7 +225,9 @@ const Card = React.forwardRef(function Card(
 
     return (
         <View
+            aria-busy={ariaBusy}
             aria-label={labels?.cardAriaLabel}
+            aria-labelledby={ariaLabelledBy}
             style={[
                 componentStyles.root,
                 !isBackgroundToken && {
@@ -196,6 +237,7 @@ const Card = React.forwardRef(function Card(
                 styles?.root,
             ]}
             ref={ref}
+            role={role}
             tag={tag}
             testId={testId}
             {...{inert: inert ? "" : undefined}}
@@ -203,7 +245,9 @@ const Card = React.forwardRef(function Card(
             {onDismiss ? (
                 <DismissButton
                     aria-label={labels?.dismissButtonAriaLabel || "Close"}
+                    aria-describedby={labels?.dismissButtonAriaDescribedBy}
                     onClick={(e) => onDismiss?.(e)}
+                    testId={testId && `${testId}-dismiss-button`}
                 />
             ) : null}
             {children}

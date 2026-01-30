@@ -52,8 +52,10 @@ import gear from "@phosphor-icons/core/regular/gear.svg";
 import cookie from "@phosphor-icons/core/regular/cookie.svg";
 import cookieBold from "@phosphor-icons/core/bold/cookie-bold.svg";
 import iceCream from "@phosphor-icons/core/regular/ice-cream.svg";
+import lightningFill from "@phosphor-icons/core/fill/lightning-fill.svg";
 
-import {color} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {flattenNestedTokens} from "../components/tokens-util";
 
 /**
  * Some pre-defined icon examples to use in our stories.
@@ -111,7 +113,23 @@ export const IconMappings = {
     cookie,
     cookieBold,
     iceCream,
+    lightningFill,
 } as const;
+
+// We flatten the tokens and filter out the colors that are not relevant to
+// icons.
+const semanticIconColorsCollection = Object.entries(
+    flattenNestedTokens(semanticColor),
+).filter(
+    ([key]) =>
+        (key.includes("icon") || key.includes("foreground")) &&
+        // Deprecated/internal categories
+        !key.startsWith("action") &&
+        !key.startsWith("chonky") &&
+        !key.startsWith("status"),
+);
+
+const semanticIconColors = Object.fromEntries(semanticIconColorsCollection);
 
 export default {
     icon: {
@@ -129,8 +147,8 @@ export default {
         },
     },
     color: {
-        options: Object.keys(color),
-        mapping: color,
+        options: Object.keys(semanticIconColors),
+        mapping: semanticIconColors,
         control: {
             type: "select",
         },

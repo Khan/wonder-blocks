@@ -226,26 +226,158 @@ describe("ModalLauncher", () => {
         );
     });
 
-    test("If backdropDismissEnabled set to false, clicking the backdrop does not trigger `onClose`", async () => {
+    test("Clicking outside the modal dialog closes it by default", async () => {
         // Arrange
-        const onClose = jest.fn();
+        const ModalLauncherWrapper = () => {
+            const [opened, setOpened] = React.useState(true);
 
-        render(
-            <ModalLauncher
-                onClose={onClose}
-                modal={exampleModal}
-                opened={true}
-                backdropDismissEnabled={false}
-                testId="modal-launcher-backdrop"
-            />,
-        );
+            return (
+                <ModalLauncher
+                    modal={exampleModal}
+                    opened={opened}
+                    onClose={() => setOpened(false)}
+                    testId="modal-launcher-backdrop"
+                />
+            );
+        };
+
+        render(<ModalLauncherWrapper />);
+
+        await screen.findByRole("dialog");
+        const backdrop = await screen.findByTestId("modal-launcher-backdrop");
 
         // Act
-        const backdrop = await screen.findByTestId("modal-launcher-backdrop");
-        await userEvent.click(backdrop);
+        // Click at top-left corner of the backdrop (outside the modal dialog)
+        // This simulates a real user clicking outside the dialog
+        await userEvent.pointer([
+            {target: backdrop, coords: {clientX: 10, clientY: 10}},
+            {keys: "[MouseLeft>]", target: backdrop},
+            {keys: "[/MouseLeft]", target: backdrop},
+        ]);
 
-        // Assert
-        expect(onClose).not.toHaveBeenCalled();
+        // Assert - modal should be removed from DOM
+        await expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    });
+
+    test("Clicking outside the modal dialog closes it when backdropDismissEnabled is true", async () => {
+        // Arrange
+        const ModalLauncherWrapper = () => {
+            const [opened, setOpened] = React.useState(true);
+
+            return (
+                <ModalLauncher
+                    modal={exampleModal}
+                    opened={opened}
+                    onClose={() => setOpened(false)}
+                    backdropDismissEnabled={true}
+                    testId="modal-launcher-backdrop"
+                />
+            );
+        };
+
+        render(<ModalLauncherWrapper />);
+
+        const backdrop = screen.getByTestId("modal-launcher-backdrop");
+
+        // Act
+        // Click at top-left corner of the backdrop (outside the modal dialog)
+        // This simulates a real user clicking outside the dialog
+        await userEvent.pointer([
+            {target: backdrop, coords: {clientX: 10, clientY: 10}},
+            {keys: "[MouseLeft>]", target: backdrop},
+            {keys: "[/MouseLeft]", target: backdrop},
+        ]);
+
+        // Assert - modal should be removed from DOM
+        await expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    });
+
+    test("If backdropDismissEnabled set to false, clicking outside the modal does not close it", async () => {
+        // Arrange
+        const ModalLauncherWrapper = () => {
+            const [opened, setOpened] = React.useState(true);
+
+            return (
+                <ModalLauncher
+                    modal={exampleModal}
+                    opened={opened}
+                    onClose={() => setOpened(false)}
+                    backdropDismissEnabled={false}
+                    testId="modal-launcher-backdrop"
+                />
+            );
+        };
+
+        render(<ModalLauncherWrapper />);
+
+        const backdrop = screen.getByTestId("modal-launcher-backdrop");
+
+        // Act
+        // Click at top-left corner of the backdrop (outside the modal dialog)
+        // This simulates a real user clicking outside the dialog
+        await userEvent.pointer([
+            {target: backdrop, coords: {clientX: 10, clientY: 10}},
+            {keys: "[MouseLeft>]", target: backdrop},
+            {keys: "[/MouseLeft]", target: backdrop},
+        ]);
+
+        // Assert - modal should still be in DOM
+        expect(screen.getByRole("dialog")).toBeInTheDocument();
+    });
+
+    test("Clicking outside the modal closes it with children render prop pattern", async () => {
+        // Arrange
+        render(
+            <ModalLauncher
+                modal={exampleModal}
+                testId="modal-launcher-backdrop"
+            >
+                {({openModal}: any) => <button onClick={openModal} />}
+            </ModalLauncher>,
+        );
+
+        // Open the modal
+        await userEvent.click(screen.getByRole("button"));
+
+        const backdrop = screen.getByTestId("modal-launcher-backdrop");
+
+        // Act
+        // Click at top-left corner of the backdrop (outside the modal dialog)
+        // This simulates a real user clicking outside the dialog
+        await userEvent.pointer([
+            {target: backdrop, coords: {clientX: 10, clientY: 10}},
+            {keys: "[MouseLeft>]", target: backdrop},
+            {keys: "[/MouseLeft]", target: backdrop},
+        ]);
+
+        // Assert - modal should be removed from DOM
+        await expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    });
+
+    test("Clicking modal content does not close the modal", async () => {
+        // Arrange
+        const ModalLauncherWrapper = () => {
+            const [opened, setOpened] = React.useState(true);
+
+            return (
+                <ModalLauncher
+                    modal={exampleModal}
+                    opened={opened}
+                    onClose={() => setOpened(false)}
+                    testId="modal-launcher-backdrop"
+                />
+            );
+        };
+
+        render(<ModalLauncherWrapper />);
+
+        const dialog = screen.getByRole("dialog");
+
+        // Act
+        await userEvent.click(dialog);
+
+        // Assert - modal should still be in DOM
+        expect(screen.getByRole("dialog")).toBeInTheDocument();
     });
 
     test("if modal is launched, move focus to first focusable element inside dialog", async () => {
@@ -356,6 +488,69 @@ describe("ModalLauncher", () => {
         });
     });
 
+    test("if modal with opened=true is closed, return focus to the last element focused outside the modal", async () => {
+        // Arrange
+        const ModalLauncherWrapper = () => {
+            const [opened, setOpened] = React.useState(false);
+
+            const handleClose = () => {
+                setOpened(false);
+            };
+
+            return (
+                <MemoryRouter>
+                    <CompatRouter>
+                        <View>
+                            <Button>
+                                Top of page (should not receive focus)
+                            </Button>
+                            <Button
+                                testId="launcher-button"
+                                onClick={() => setOpened(true)}
+                            >
+                                Open modal
+                            </Button>
+                            <ModalLauncher
+                                onClose={() => handleClose()}
+                                opened={opened}
+                                modal={({closeModal}: any) => (
+                                    <OnePaneDialog
+                                        title="Regular modal"
+                                        content={<View>Hello World</View>}
+                                        footer={
+                                            <Button
+                                                testId="modal-close-button"
+                                                onClick={closeModal}
+                                            >
+                                                Close Modal
+                                            </Button>
+                                        }
+                                    />
+                                )}
+                            />
+                        </View>
+                    </CompatRouter>
+                </MemoryRouter>
+            );
+        };
+
+        render(<ModalLauncherWrapper />);
+
+        const lastButton = await screen.findByTestId("launcher-button");
+        await userEvent.click(lastButton);
+
+        // Act
+        // Close modal
+        const modalCloseButton =
+            await screen.findByTestId("modal-close-button");
+        await userEvent.click(modalCloseButton);
+
+        // Assert
+        await waitFor(() => {
+            expect(lastButton).toHaveFocus();
+        });
+    });
+
     test("if `closedFocusId` is passed, shift focus to specified element after the modal closes", async () => {
         // Arrange
         const ModalLauncherWrapper = () => {
@@ -439,5 +634,292 @@ describe("ModalLauncher", () => {
 
         // Assert
         expect(backdrop).toBeInTheDocument();
+    });
+
+    test("should handle focus correctly when opened programmatically through a wrapper component", async () => {
+        // Arrange
+        const WrappedModalLauncher = () => {
+            const [opened, setOpened] = React.useState(false);
+
+            const handleClose = () => {
+                setOpened(false);
+            };
+
+            return (
+                <View>
+                    <Button
+                        testId="focused-button"
+                        onClick={() => setOpened(true)}
+                    >
+                        Button that should receive focus
+                    </Button>
+                    <ModalLauncher
+                        onClose={handleClose}
+                        opened={opened}
+                        modal={({closeModal}) => (
+                            <OnePaneDialog
+                                title="Modal"
+                                content={<View>Content</View>}
+                                footer={
+                                    <Button
+                                        testId="modal-close-button"
+                                        onClick={closeModal}
+                                    >
+                                        Close Modal
+                                    </Button>
+                                }
+                            />
+                        )}
+                    />
+                </View>
+            );
+        };
+
+        render(<WrappedModalLauncher />);
+
+        // Focus the button before the modal opens
+        const buttonToFocus = await screen.findByTestId("focused-button");
+        await userEvent.click(buttonToFocus); // Move focus to the button
+
+        // Act
+        // Close modal
+        const modalCloseButton =
+            await screen.findByTestId("modal-close-button");
+        await userEvent.click(modalCloseButton);
+
+        // Assert
+        await waitFor(() => {
+            expect(buttonToFocus).toHaveFocus();
+        });
+    });
+
+    describe("Conditional modal content pattern", () => {
+        type Student = {
+            id: string;
+            name: string;
+            progress: number;
+        };
+
+        const mockStudents: Array<Student> = [
+            {id: "1", name: "Alice Smith", progress: 85},
+            {id: "2", name: "Bob Johnson", progress: 70},
+            {id: "3", name: "Charlie Brown", progress: 95},
+        ];
+
+        // Shared component for all tests
+        const ConditionalModalContainer = () => {
+            const [selectedItem, setSelectedItem] = React.useState<{
+                type: "content" | "mastery";
+                id: string;
+            } | null>(null);
+            const [modalTriggerId, setModalTriggerId] = React.useState<
+                string | null
+            >(null);
+
+            const handleOpenModal = (
+                type: "content" | "mastery",
+                triggerId: string,
+                studentId: string,
+            ) => {
+                setModalTriggerId(triggerId);
+                setSelectedItem({type, id: studentId});
+            };
+
+            const handleCloseModal = () => {
+                setSelectedItem(null);
+                setModalTriggerId(null);
+            };
+
+            const selectedStudent = mockStudents.find(
+                (s) => s.id === selectedItem?.id,
+            );
+
+            const conditionalModal = React.useMemo(() => {
+                if (selectedItem?.type === "content") {
+                    return (
+                        <OnePaneDialog
+                            title={`Content: ${selectedStudent?.name}`}
+                            content={
+                                <View testId="content-modal-content">
+                                    Content completion details
+                                </View>
+                            }
+                        />
+                    );
+                }
+                if (selectedItem?.type === "mastery") {
+                    return (
+                        <OnePaneDialog
+                            title={`Mastery: ${selectedStudent?.name}`}
+                            content={
+                                <View testId="mastery-modal-content">
+                                    Mastery progress details
+                                </View>
+                            }
+                        />
+                    );
+                }
+                return null;
+            }, [selectedItem, selectedStudent]);
+
+            return (
+                <View>
+                    {mockStudents.map((student) => {
+                        const contentTriggerId = `content-modal-trigger-${student.id}`;
+                        const masteryTriggerId = `mastery-modal-trigger-${student.id}`;
+                        return (
+                            <View key={student.id}>
+                                <Button
+                                    testId={contentTriggerId}
+                                    id={contentTriggerId}
+                                    onClick={() =>
+                                        handleOpenModal(
+                                            "content",
+                                            contentTriggerId,
+                                            student.id,
+                                        )
+                                    }
+                                >
+                                    {`${student.name} - Content`}
+                                </Button>
+                                <Button
+                                    testId={masteryTriggerId}
+                                    id={masteryTriggerId}
+                                    onClick={() =>
+                                        handleOpenModal(
+                                            "mastery",
+                                            masteryTriggerId,
+                                            student.id,
+                                        )
+                                    }
+                                >
+                                    {`${student.name} - Mastery`}
+                                </Button>
+                            </View>
+                        );
+                    })}
+                    <ModalLauncher
+                        opened={!!selectedItem}
+                        onClose={handleCloseModal}
+                        closedFocusId={modalTriggerId || undefined}
+                        modal={conditionalModal}
+                    />
+                </View>
+            );
+        };
+
+        // Parameterized tests for opening modals
+        [
+            {
+                name: "opens content modal when clicking content button",
+                triggerId: "content-modal-trigger-1",
+                expectedTitle: "Content: Alice Smith",
+            },
+            {
+                name: "opens mastery modal when clicking mastery button",
+                triggerId: "mastery-modal-trigger-2",
+                expectedTitle: "Mastery: Bob Johnson",
+            },
+        ].forEach(({name, triggerId, expectedTitle}) => {
+            test(name, async () => {
+                // Arrange
+                render(<ConditionalModalContainer />);
+
+                // Act
+                const button = await screen.findByTestId(triggerId);
+                await userEvent.click(button);
+
+                // Assert
+                expect(
+                    await screen.findByText(expectedTitle),
+                ).toBeInTheDocument();
+            });
+        });
+
+        // Parameterized tests for focus management
+        [
+            {
+                name: "returns focus to correct button after closing content modal",
+                triggerId: "content-modal-trigger-1",
+            },
+            {
+                name: "returns focus to correct button after closing mastery modal from different row",
+                triggerId: "mastery-modal-trigger-3",
+            },
+        ].forEach(({name, triggerId}) => {
+            test(name, async () => {
+                // Arrange
+                render(<ConditionalModalContainer />);
+                const button = await screen.findByTestId(triggerId);
+
+                // Act
+                await userEvent.click(button);
+                await userEvent.click(
+                    await screen.findByRole("button", {name: "Close modal"}),
+                );
+
+                // Assert
+                await waitFor(() => expect(button).toHaveFocus());
+            });
+        });
+
+        test("closes modal and removes it from DOM", async () => {
+            // Arrange
+            render(<ConditionalModalContainer />);
+            const contentButton = await screen.findByTestId(
+                "content-modal-trigger-1",
+            );
+            await userEvent.click(contentButton);
+
+            // Act
+            await userEvent.click(
+                await screen.findByRole("button", {name: "Close modal"}),
+            );
+
+            // Assert
+            await waitFor(() =>
+                expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),
+            );
+        });
+
+        test("opens different modal type after closing previous modal", async () => {
+            // Arrange
+            render(<ConditionalModalContainer />);
+            const contentButton = await screen.findByTestId(
+                "content-modal-trigger-1",
+            );
+            await userEvent.click(contentButton);
+            await userEvent.click(
+                await screen.findByRole("button", {name: "Close modal"}),
+            );
+
+            // Act
+            const masteryButton = await screen.findByTestId(
+                "mastery-modal-trigger-2",
+            );
+            await userEvent.click(masteryButton);
+
+            // Assert
+            expect(
+                await screen.findByText("Mastery: Bob Johnson"),
+            ).toBeInTheDocument();
+        });
+
+        test("returns focus to second button after closing its modal", async () => {
+            // Arrange
+            render(<ConditionalModalContainer />);
+            const masteryButton2 = await screen.findByTestId(
+                "mastery-modal-trigger-2",
+            );
+            await userEvent.click(masteryButton2);
+
+            // Act
+            await userEvent.click(
+                await screen.findByRole("button", {name: "Close modal"}),
+            );
+
+            // Assert
+            await waitFor(() => expect(masteryButton2).toHaveFocus());
+        });
     });
 });

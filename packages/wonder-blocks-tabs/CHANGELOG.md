@@ -1,5 +1,67 @@
 # @khanacademy/wonder-blocks-tabs
 
+## 0.4.3
+
+### Patch Changes
+
+- Updated dependencies [8bb7ada]
+    - @khanacademy/wonder-blocks-tokens@15.0.0
+    - @khanacademy/wonder-blocks-typography@4.2.29
+
+## 0.4.2
+
+### Patch Changes
+
+- Updated dependencies [d6ae5fb]
+    - @khanacademy/wonder-blocks-core@12.4.3
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-typography@4.2.28
+
+## 0.4.1
+
+### Patch Changes
+
+- a838a4a: Tabs: Keep track of descendant changes to determine if a tab panel has focusable elements
+    - @khanacademy/wonder-blocks-core@12.4.2
+
+## 0.4.0
+
+### Minor Changes
+
+- 42c0f72: NavigationTabs: Add tag prop to allow overriding the underlying nav element
+
+### Patch Changes
+
+- 5db127a: Fix issue where TabPanel is set with tabIndex=0 before it has determined if it has focusable elements within it (related to a focus management bug when Tabs are used inside a Popover). Also apply WB focus styling to the tabpanel element since it is focusbale when there are no interactive elements in it.
+
+## 0.3.37
+
+### Patch Changes
+
+- Updated dependencies [70d6c08]
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-typography@4.2.27
+
+## 0.3.36
+
+### Patch Changes
+
+- 8a36c70: Re-publish to publish with Trusted Publishing
+- 3e0d137: Re-publishing via Trusted Publishing
+- Updated dependencies [8a36c70]
+- Updated dependencies [3e0d137]
+    - @khanacademy/wonder-blocks-core@12.4.2
+    - @khanacademy/wonder-blocks-tokens@14.1.2
+    - @khanacademy/wonder-blocks-typography@4.2.26
+
+## 0.3.35
+
+### Patch Changes
+
+- Updated dependencies [540371d]
+    - @khanacademy/wonder-blocks-tokens@14.1.1
+    - @khanacademy/wonder-blocks-typography@4.2.25
+
 ## 0.3.34
 
 ### Patch Changes

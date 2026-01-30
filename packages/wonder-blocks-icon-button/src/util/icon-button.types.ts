@@ -146,3 +146,17 @@ export type IconButtonProps = BaseIconButtonProps & {
 };
 
 export type IconButtonRef = typeof Link | HTMLButtonElement | HTMLAnchorElement;
+
+export type ActivityIconButtonProps = Omit<BaseIconButtonProps, "style"> & {
+    /**
+     * Custom styles for the elements in the ActivityIconButton component.
+     * - `root`: Styles the root element (button)
+     * - `box`: Styles the "chonky" box element
+     * - `label`: Styles the text in the button
+     */
+    styles?: {
+        root?: StyleType;
+        box?: StyleType;
+        label?: StyleType;
+    };
+};

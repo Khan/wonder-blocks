@@ -1,5 +1,100 @@
 # @khanacademy/wonder-blocks-tooltip
 
+## 4.1.65
+
+### Patch Changes
+
+- Updated dependencies [8bb7ada]
+    - @khanacademy/wonder-blocks-tokens@15.0.0
+    - @khanacademy/wonder-blocks-layout@3.1.44
+    - @khanacademy/wonder-blocks-modal@8.5.14
+    - @khanacademy/wonder-blocks-typography@4.2.29
+
+## 4.1.64
+
+### Patch Changes
+
+- Updated dependencies [d6ae5fb]
+    - @khanacademy/wonder-blocks-core@12.4.3
+    - @khanacademy/wonder-blocks-layout@3.1.43
+    - @khanacademy/wonder-blocks-modal@8.5.13
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-typography@4.2.28
+
+## 4.1.63
+
+### Patch Changes
+
+- Updated dependencies [673432c]
+    - @khanacademy/wonder-blocks-modal@8.5.12
+
+## 4.1.62
+
+### Patch Changes
+
+- Updated dependencies [f6457be]
+    - @khanacademy/wonder-blocks-modal@8.5.11
+
+## 4.1.61
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-modal@8.5.10
+
+## 4.1.60
+
+### Patch Changes
+
+- Updated dependencies [70d6c08]
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-layout@3.1.42
+    - @khanacademy/wonder-blocks-modal@8.5.9
+    - @khanacademy/wonder-blocks-typography@4.2.27
+
+## 4.1.59
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-modal@8.5.8
+
+## 4.1.58
+
+### Patch Changes
+
+- Updated dependencies [8b713e2]
+    - @khanacademy/wonder-blocks-modal@8.5.7
+
+## 4.1.57
+
+### Patch Changes
+
+- Updated dependencies [40d1eb2]
+    - @khanacademy/wonder-blocks-modal@8.5.6
+
+## 4.1.56
+
+### Patch Changes
+
+- 8a36c70: Re-publish to publish with Trusted Publishing
+- 3e0d137: Re-publishing via Trusted Publishing
+- Updated dependencies [8a36c70]
+- Updated dependencies [3e0d137]
+    - @khanacademy/wonder-blocks-core@12.4.2
+    - @khanacademy/wonder-blocks-layout@3.1.41
+    - @khanacademy/wonder-blocks-modal@8.5.5
+    - @khanacademy/wonder-blocks-tokens@14.1.2
+    - @khanacademy/wonder-blocks-typography@4.2.26
+
+## 4.1.55
+
+### Patch Changes
+
+- Updated dependencies [540371d]
+    - @khanacademy/wonder-blocks-tokens@14.1.1
+    - @khanacademy/wonder-blocks-layout@3.1.40
+    - @khanacademy/wonder-blocks-modal@8.5.4
+    - @khanacademy/wonder-blocks-typography@4.2.25
+
 ## 4.1.54
 
 ### Patch Changes

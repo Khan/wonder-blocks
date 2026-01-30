@@ -167,6 +167,7 @@ const SingleSelectKeyboardSelection = () => {
     return (
         <View>
             <SingleSelect
+                aria-label="Fruits"
                 placeholder="Choose"
                 onChange={setSelectedValue}
                 selectedValue={selectedValue}
@@ -184,5 +185,28 @@ export const UsingKeyboardSelection = {
     name: "Using the keyboard",
     parameters: {
         chromatic: {disableSnapshot: true},
+    },
+};
+
+export const UsingLabeledFieldForReadOnly = {
+    render: function UsingLabeledFieldForReadOnlyStory() {
+        return (
+            <LabeledField
+                field={
+                    <SingleSelect
+                        placeholder="Choose"
+                        readOnly={true}
+                        onChange={() => {}}
+                        selectedValue="1"
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                        <OptionItem label="item 3" value="3" />
+                    </SingleSelect>
+                }
+                label="Example Label"
+                readOnlyMessage="Message about why it is read only"
+            />
+        );
     },
 };

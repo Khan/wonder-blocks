@@ -16,30 +16,6 @@ import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 
 import ComponentInfo from "../components/component-info";
 
-const customViewports = {
-    phone: {
-        name: "phone",
-        styles: {
-            width: "320px",
-            height: "568px",
-        },
-    },
-    tablet: {
-        name: "tablet",
-        styles: {
-            width: "640px",
-            height: "960px",
-        },
-    },
-    desktop: {
-        name: "desktop",
-        styles: {
-            width: "1024px",
-            height: "768px",
-        },
-    },
-} as const;
-
 const longBody = (
     <>
         <BodyText>
@@ -127,14 +103,24 @@ export default {
                 excludeDecorators: true,
             },
         },
-        viewport: {
-            viewports: customViewports,
-            defaultViewport: "desktop",
-        },
         chromatic: {
             // We already have screenshots of other stories in
             // one-pane-dialog.stories.tsx
             disableSnapshot: true,
+        },
+        a11y: {
+            // TODO(WB-1834): Fix the a11y violations and remove this.
+            config: {
+                rules: [
+                    // Disabling a11y violation: "Scrollable region must have
+                    // keyboard access (scrollable-region-focusable)".
+                    // ModalContent's scrollOverflow element is not focusable.
+                    {
+                        id: "scrollable-region-focusable",
+                        enabled: false,
+                    },
+                ],
+            },
         },
     },
     argTypes: {

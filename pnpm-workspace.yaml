@@ -7,12 +7,14 @@ packages:
     - "wb-codemod"
 catalog:
     # Wonder Stuff
-    "@khanacademy/wonder-stuff-core": ^1.5.4
-    "@khanacademy/wonder-stuff-testing": ^3.0.5
+    "@khanacademy/wonder-stuff-core": ^3.0.0
+    "@khanacademy/wonder-stuff-testing": ^4.0.3
     # Icons library
     "@phosphor-icons/core": ^2.0.2
     # Positioning
     "@popperjs/core": ^2.10.1
+    # Date picker locales
+    date-fns: ^4.1.0
     react-popper: ^2.3.0
     # Styling
     aphrodite: ^1.2.5
@@ -22,6 +24,7 @@ catalog:
     node-fetch: ^2.6.7
     # React
     "react": 18.2.0
+    "react-day-picker": ^9.11.1
     "react-dom": 18.2.0
     # React Router
     react-router: 5.3.4
@@ -32,5 +35,3 @@ catalog:
     # Codemods
     chalk: ^4.1.2
     jscodeshift: ^17.3.0
-    # Storybook
-    storybook: ^9.1.8

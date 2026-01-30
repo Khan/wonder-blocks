@@ -16,7 +16,11 @@ import {
     LabelMedium,
 } from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {border, color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    semanticColor,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon/package.json";
@@ -263,7 +267,7 @@ export const WithColor: StoryComponentType = {
     args: {
         size: "small",
         icon: IconMappings.infoBold,
-        color: color.red,
+        color: semanticColor.core.foreground.critical.default,
     },
 };
 
@@ -340,7 +344,7 @@ const styles = StyleSheet.create({
         width: 200,
     },
     row: {
-        backgroundColor: color.offWhite,
+        backgroundColor: semanticColor.core.background.base.subtle,
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
@@ -354,7 +358,7 @@ const styles = StyleSheet.create({
     },
 
     tableCell: {
-        border: `${border.width.thin} solid ${color.offBlack}`,
+        border: `${border.width.thin} solid ${semanticColor.core.border.neutral.strong}`,
         padding: spacing.medium_16,
     },
     inline: {

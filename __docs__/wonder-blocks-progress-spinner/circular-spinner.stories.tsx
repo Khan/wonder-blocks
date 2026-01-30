@@ -3,7 +3,7 @@ import {StyleSheet, css} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 
@@ -150,9 +150,9 @@ Inline.parameters = {
 
 export const WithStyle: StoryComponentType = () => {
     const spinnerStyle = {
-        border: `solid 5px ${color.teal}`,
+        border: `solid 5px ${semanticColor.core.border.instructive.default}`,
         borderRadius: "50%",
-        backgroundColor: color.offWhite,
+        backgroundColor: semanticColor.core.background.base.subtle,
     } as const;
 
     return <CircularSpinner style={spinnerStyle} />;
@@ -172,7 +172,7 @@ WithStyle.parameters = {
 
 const styles = StyleSheet.create({
     darkBackground: {
-        background: color.darkBlue,
+        background: semanticColor.core.background.instructive.strong,
         padding: spacing.xLarge_32,
         width: "100%",
         alignItems: "center",

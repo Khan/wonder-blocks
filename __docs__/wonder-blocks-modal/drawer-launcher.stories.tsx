@@ -21,30 +21,6 @@ import {allModes} from "../../.storybook/modes";
 import TextField from "../../packages/wonder-blocks-form/src/components/text-field";
 import {reallyLongText} from "../components/text-for-testing";
 
-const customViewports = {
-    phone: {
-        name: "phone",
-        styles: {
-            width: "320px",
-            height: "568px",
-        },
-    },
-    tablet: {
-        name: "tablet",
-        styles: {
-            width: "640px",
-            height: "960px",
-        },
-    },
-    desktop: {
-        name: "desktop",
-        styles: {
-            width: "1024px",
-            height: "768px",
-        },
-    },
-} as const;
-
 const DefaultModal = (): ModalElement => (
     <DrawerDialog
         title="Single-line title"
@@ -85,6 +61,11 @@ It can align a dialog on the \`inlineStart\` (left),  \`inlineEnd\` (right), or 
 **IMPORTANT**: This component should only be used with \`DrawerDialog\`. Using it with other
 dialog components may result in incorrect animations, positioning, and styling.
 
+For conditionally rendering modals, ensure there is only one \`DrawerLauncher\` in
+your component tree. A launcher needs to stay mounted on the current page to
+properly handle the user's keyboard focus on close of modals.
+Read [more details on Confluence](https://khanacademy.atlassian.net/wiki/spaces/FRONTEND/blog/2025/11/24/4454383789/Wonder+Blocks+Modal+Tips+Tricks).
+
 See available styling customizations in \`DrawerDialog\` docs.
 
 ### Usage
@@ -118,10 +99,6 @@ import {BodyText} from "@khanacademy/wonder-blocks-typography";
                 // See https://github.com/storybookjs/storybook/issues/12596
                 excludeDecorators: true,
             },
-        },
-        viewport: {
-            viewports: customViewports,
-            defaultViewport: "desktop",
         },
         chromatic: {
             modes: {
