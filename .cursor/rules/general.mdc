@@ -233,7 +233,7 @@ Wonder Blocks components often support the following states:
 * ✅ Ensure keyboard navigation and focus indicators work correctly
 * ✅ Use tools for automated checks and perform manual testing (keyboard, screen reader)
 * ✅ Use `aria-disabled` instead of the `disabled` attribute to keep elements focusable while communicating disabled state (see Disabled State section)
-* ✅ Prefer visual text for accessible names and paired label elements. Use `aria-label` or `aria-labeledby` where necessary
+* ✅ Prefer visual text for accessible names and paired label elements. Use `aria-label` or `aria-labelledby` where necessary
 * ✅ Animations should be disabled by default and enabled using an `animated` prop
 * ✅ Components should work well using screen readers and keyboard navigation
 * ✅ Document accessibility guidelines in Storybook (create separate accessibility pages for components)

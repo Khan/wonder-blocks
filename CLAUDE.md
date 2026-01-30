@@ -69,6 +69,13 @@ This file provides instructions for Claude when working on the Wonder Blocks des
 - Organize imports: React, third-party libs, internal absolute paths (`@khan/`, `@khanacademy/`), relative paths (`./`, `../`)
 - Use absolute paths for cross-package imports
 
+### Linting & Formatting
+
+- Strictly adhere to ESLint and Prettier
+- The project enforces import order: React, third-party libs, then internal imports
+- JSDoc comments should be used for complex functions, but TypeScript types are preferred over JSDoc type annotations
+- Run `pnpm lint` before submitting changes
+
 ## Component Design
 
 ### Composition vs Configuration
@@ -157,6 +164,31 @@ Use CSS pseudo-classes (`:hover`, `:focus-visible`, `:active`) for state styling
 - [Inclusive Components](https://inclusive-components.design/)
 - [A11Y Style Guide](https://a11y-style-guide.com/)
 - [MagentaA11y](https://www.magentaa11y.com/)
+
+## Documentation
+
+We document Wonder Blocks components using Storybook. Documentation includes:
+
+### Prop Documentation
+
+- Document all public props using JSDoc comments (`/** ... */`)
+- The props table on the autodocs page for Storybook should be extracted from the JSDoc comments on the props for a component
+- Provide clear descriptions for each prop, especially for complex or non-obvious props
+- Include default values and usage examples where helpful
+- If the auto-generated type for a prop is not helpful (e.g., something generic like `"union"`), the type can be overridden in an `argTypes.ts` file
+- Props in the table can be grouped into categories like `Visual style`, `Events`, `Accessibility`
+- Main component should have a JSDoc comment describing its purpose and basic usage
+
+### Examples in Stories
+
+- The stories should showcase the different ways a component can be used
+- The comment block before a story declaration can be used to document more about a specific prop or behavior highlighted in the example
+- Snapshot stories should include scenarios and state sheets for showing the different variations and states of a component
+
+### Accessibility Guidelines and Descriptions
+
+- Document what's been implemented in the component for accessibility
+- Create separate pages in Storybook to describe the accessibility for a component (examples: Accordion Accessibility, Combobox Accessibility, TextArea Accessibility)
 
 ## Package Structure
 
@@ -288,11 +320,36 @@ export const BrowserBehaviorTest: StoryComponentType = {
 };
 ```
 
+## Actions and Event Handlers
+
+Use Storybook actions for event logging:
+
+```tsx
+import {action} from "storybook/actions";
+
+export const Default: StoryComponentType = {
+    args: {
+        onClick: action("clicked"),
+        onChange: action("changed"),
+    },
+};
+```
+
+For stateful stories, combine actions with state updates:
+`action("onChange")(newValue); setValue(newValue);`
+
 ---
 
 # Jest Testing Best Practices
 
 ## Core Principles
+
+### Critical Setup Rules
+
+**Test Workflow Priority:**
+- Always fix failing tests before fixing linting errors
+- Focus on underlying errors, not `Unhandled console.error call` messages
+- When tests fail with `Unhandled console.error call`, look for the root cause error (e.g., `ReferenceError: window is not defined`)
 
 ### Arrange-Act-Assert Pattern
 
@@ -426,12 +483,30 @@ describe("MyComponent", () => {
 });
 ```
 
-### Test Coverage for Components
+### Test Coverage
 
-- **Base Tests**: ref is forwarded
-- **Props**: Expected behavior when props are set (exclude style-only props)
-- **Event Handlers**: Handlers triggered correctly, callbacks called with correct arguments
-- **Accessibility**: Roles, aria attributes, keyboard interactions, focus management, `toHaveNoA11yViolations`
+Unit tests for a component should cover:
+
+#### Base Tests
+- ref is forwarded
+
+#### Props
+- Cover expected behaviour when certain props are set
+- **Exclude tests for props that are related to styles only** - use visual regression tests instead
+- Cover expected behaviour with default prop values
+- Use `it.each` when there are multiple combinations of things you want to test together
+
+#### Event Handlers
+- Check that any event handlers are triggered by the expected conditions
+- Verify callbacks are called with correct arguments
+
+#### Accessibility
+- Confirm that roles, semantics, and aria attributes are correctly set and wired together
+- Use the `.toHaveNoA11yViolations` jest matcher to confirm that a component doesn't have accessibility warnings
+- Confirm keyboard interactions and navigation
+- Focus management
+- Confirm accessible names
+- Check for `aria-disabled="true"` for determining disabled state (not the `disabled` attribute)
 
 ## Parameterized Tests
 
@@ -466,9 +541,6 @@ it.each([
 | `pnpm lint` | Lint check |
 | `pnpm typecheck` | Type check |
 | `pnpm test` | Run tests |
-| `pnpm jest path/to/file.test.ts` | Run specific test |
-| `pnpm jest --watch` | Run tests in watch mode |
-| `pnpm jest --coverage` | Run tests with coverage |
 | `pnpm build:storybook` | Build Storybook |
 | `pnpm test:storybook` | Run Storybook tests with a11y checks |
 | `pnpm changeset` | Create a changeset |
