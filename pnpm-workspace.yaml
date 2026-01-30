@@ -33,4 +33,5 @@ catalog:
     # Virtualization
     react-window: ^1.8.11
     # Codemods
+    chalk: ^4.1.2
     jscodeshift: ^17.3.0
