@@ -19,7 +19,7 @@ const COLOR_TO_SEMANTIC_MAPPING: Record<
 > = {
     // Instructive colors (blue)
     blue: {
-        foreground: "core.foreground.instructive.subtle",
+        foreground: "core.foreground.instructive.default",
         background: "core.background.instructive.default",
         border: "core.border.instructive.default",
     },
@@ -29,7 +29,7 @@ const COLOR_TO_SEMANTIC_MAPPING: Record<
         border: "core.border.instructive.subtle",
     },
     activeBlue: {
-        foreground: "core.foreground.instructive.default",
+        foreground: "core.foreground.instructive.strong",
         background: "core.background.instructive.strong",
         border: "core.border.instructive.strong",
     },
@@ -113,12 +113,12 @@ const COLOR_TO_SEMANTIC_MAPPING: Record<
 
     // Critical colors (red)
     red: {
-        foreground: "core.foreground.critical.subtle",
+        foreground: "core.foreground.critical.default",
         background: "core.background.critical.default",
         border: "core.border.critical.default",
     },
     activeRed: {
-        foreground: "core.foreground.critical.default",
+        foreground: "core.foreground.critical.strong",
         background: "core.background.critical.strong",
         border: "core.border.critical.strong",
     },
@@ -140,12 +140,12 @@ const COLOR_TO_SEMANTIC_MAPPING: Record<
 
     // Success colors (green)
     green: {
-        foreground: "core.foreground.success.subtle",
+        foreground: "core.foreground.success.default",
         background: "core.background.success.default",
         border: "core.border.success.default",
     },
     activeGreen: {
-        foreground: "core.foreground.success.default",
+        foreground: "core.foreground.success.strong",
         background: "core.background.success.strong",
         border: "core.border.success.strong",
     },
@@ -168,12 +168,12 @@ const COLOR_TO_SEMANTIC_MAPPING: Record<
 
     // Warning colors (gold)
     gold: {
-        foreground: "core.foreground.warning.subtle",
+        foreground: "core.foreground.warning.default",
         background: "core.background.warning.default",
         border: "core.border.warning.default",
     },
     activeGold: {
-        foreground: "core.foreground.warning.default",
+        foreground: "core.foreground.warning.strong",
         background: "core.background.warning.strong",
         border: "core.border.warning.strong",
     },
