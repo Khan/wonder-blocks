@@ -471,6 +471,36 @@ If consumers must change their code for Wonder Blocks to work, it should be a ma
 
 ---
 
+# Cross-Platform Rule Synchronization
+
+**CRITICAL: Keep AI assistant rules in sync across platforms.**
+
+This project maintains rules for multiple AI assistants. When updating this file, also update the corresponding files for other platforms:
+
+| Claude File | Cursor File | Copilot File |
+|-------------|-------------|--------------|
+| `CLAUDE.md` | `.cursor/rules/general.mdc` | `.github/instructions/frontend-rules.instructions.md` |
+| `CLAUDE.md` (Storybook section) | `.cursor/rules/storybook.mdc` | `.github/instructions/storybook.instructions.md` |
+| `CLAUDE.md` (Jest section) | `.cursor/rules/unit-tests.mdc` | `.github/instructions/unit-tests.instructions.md` |
+
+**When making rule changes:**
+
+1. Make the change in this `CLAUDE.md` file
+2. Apply the same change to the corresponding `.cursor/rules/*.mdc` file for Cursor
+3. Apply the same change to the corresponding `.github/instructions/*.instructions.md` file for Copilot
+
+**Keep content semantically equivalent:**
+
+- The exact formatting may differ between platforms
+- The core rules and guidance should remain consistent
+- Cursor rules use YAML frontmatter with glob patterns
+- Copilot instructions use standard Markdown in `.github/instructions/`
+- This `CLAUDE.md` is a consolidated file with all major rules
+
+**Never update only one platform's rules** - this causes inconsistent behavior between AI assistants.
+
+---
+
 # Best Practices Summary
 
 1. **TypeScript**: Use strict mode, avoid `any`, prefer type-only imports

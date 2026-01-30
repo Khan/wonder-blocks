@@ -247,6 +247,33 @@ Break into smaller PRs:
 
 Include documentation and accessibility docs as implemented.
 
+## Cross-Platform Rule Synchronization
+
+**CRITICAL: Keep AI assistant rules in sync across platforms.**
+
+This project maintains rules for multiple AI assistants. When updating these instruction files, also update the corresponding files for other platforms:
+
+| Copilot File | Cursor File | Claude File |
+|--------------|-------------|-------------|
+| `.github/instructions/frontend-rules.instructions.md` | `.cursor/rules/general.mdc` | `CLAUDE.md` |
+| `.github/instructions/storybook.instructions.md` | `.cursor/rules/storybook.mdc` | `CLAUDE.md` (Storybook section) |
+| `.github/instructions/unit-tests.instructions.md` | `.cursor/rules/unit-tests.mdc` | `CLAUDE.md` (Jest section) |
+
+**When making rule changes:**
+
+1. Make the change in this Copilot `.instructions.md` file
+2. Apply the same change to the corresponding `.cursor/rules/*.mdc` file for Cursor
+3. Update `CLAUDE.md` if the change affects general guidance or major sections
+
+**Keep content semantically equivalent:**
+
+- The exact formatting may differ between platforms
+- The core rules and guidance should remain consistent
+- Cursor rules use YAML frontmatter; Copilot instructions use standard Markdown
+- `CLAUDE.md` is a consolidated file with all major rules
+
+**Never update only one platform's rules** - this causes inconsistent behavior between AI assistants.
+
 ## Best Practices Summary
 
 1. **TypeScript**: Use strict mode, avoid `any`, prefer type-only imports
