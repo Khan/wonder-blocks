@@ -8,6 +8,8 @@ This file provides frontend development instructions for the Wonder Blocks desig
 - **Framework**: React (Functional Components and Hooks)
 - **Styling**: Aphrodite (`aphrodite`) for CSS-in-JS with Wonder Blocks tokens (`@khanacademy/wonder-blocks-tokens`)
 - **State Management**: Local state (`useState`) and React Context API (`useContext`)
+- **Data Fetching**: There should be no data fetching in the design system UI components
+- **Routing**: Design system components with link functionality should also support React-Router routes
 - **Testing**: Jest, React Testing Library (RTL), `@testing-library/user-event`, Storybook
 - **Package Manager**: pnpm
 
@@ -24,7 +26,7 @@ This file provides frontend development instructions for the Wonder Blocks desig
 ### TypeScript
 
 - Use `strict` mode
-- Define clear interfaces/types. Use `type` for props and state
+- Define clear interfaces/types. Use `type` for props and state, `interface` for shared structures where appropriate
 - Use utility types (`Partial`, `Omit`, `Pick`, `Readonly`, etc.)
 - Use the `satisfies` operator for type-safe object literals
 - Prefer type-only imports: `import type {...}` for types
@@ -34,8 +36,12 @@ This file provides frontend development instructions for the Wonder Blocks desig
 
 - **Imports**: Always use `import * as React from "react"` (required for JSX transformation)
 - Use functional components and hooks (`useState`, `useEffect`, `useContext`, `useCallback`, `useMemo`)
-- Define explicit `Props` types with object destructuring
+- Define explicit `Props` types with object destructuring. Pass complex objects/callbacks with stable references (`useCallback`, `useMemo`) if they are dependencies of effects or memoized children
+- Keep component state minimal. Lift state up when necessary
+- Provide stable `key` props for lists (use item IDs if available)
+- Build complex UI by composing smaller Wonder Blocks when possible
 - Use `React.forwardRef` when components need to expose DOM refs
+- Extract reusable logic into custom hooks (e.g., `useFieldValidation`, `useIsMounted` from `@khanacademy/wonder-blocks-core`)
 - Event Handlers: Internal handlers prefixed with `handle` (e.g., `handleClick`), callback props prefixed with `on` (e.g., `onClick`)
 - **Don't use `React.FC<Props>`**, use `(props: Props) =>` instead
 - **Avoid creating new class components**
@@ -94,9 +100,16 @@ This file provides frontend development instructions for the Wonder Blocks desig
 - `testId?: string` - Test ID for e2e testing
 - `ref?: React.Ref<T>` - Reference to DOM element (use `React.forwardRef`)
 - `kind?: string` - Variant type (e.g., `'primary' | 'secondary' | 'tertiary'`)
+- `value?: T` - The value of the component (for form components)
 - `disabled?: boolean` - Disabled state
 - `autoFocus?: boolean` - Focus on page load
 - `labels?: CustomLabelsType` - Custom labels for i18n
+- `initialFocusRef?: Ref | null` - Element to receive initial focus (prefer refs over element ids)
+
+**ARIA-related Props:**
+- If a component supports ARIA props, include `AriaProps` type with component props
+- `AriaProps` includes: `role`, `aria-label`, `aria-labelledby`, `aria-describedby`, etc.
+- Examples: `Breadcrumbs`, `TextField`
 
 **Styling Props:**
 - `style?: StyleType` - Custom styles for root element
@@ -107,7 +120,7 @@ This file provides frontend development instructions for the Wonder Blocks desig
 
 **Event Handler Props:**
 - `onChange?: (value: T) => void` - Value change (uses value, not event)
-- `onClick`, `onKeyDown`, `onKeyUp`, `onFocus`, `onBlur` - Standard React event handlers
+- `onClick`, `onKeyDown`, `onKeyUp`, `onFocus`, `onBlur` - Standard React event handlers with appropriate event types
 
 **Validation Props (Form Components):**
 - `validate?: (value: T) => string | null | void` - Returns error message or null
@@ -140,8 +153,9 @@ This file provides frontend development instructions for the Wonder Blocks desig
 - **Active/Pressed**: Use CSS `:active` pseudo-class instead of JavaScript state tracking
 - **Readonly**: Prevent editing but allow focus and selection
 - **Error/Invalid**: Provide clear visual indication of validation errors
+- **Browser Inconsistencies**: Test across browsers; use CSS normalization where needed
 
-Use CSS pseudo-classes (`:hover`, `:focus-visible`, `:active`) for state styling instead of JavaScript state tracking.
+Use CSS pseudo-classes (`:hover`, `:focus-visible`, `:active`) for state styling instead of JavaScript state tracking. This enables browser dev tools debugging and Storybook Pseudo States add-on for visual regression tests.
 
 ### Error Handling
 
@@ -186,8 +200,8 @@ Use CSS pseudo-classes (`:hover`, `:focus-visible`, `:active`) for state styling
 
 ## Theming
 
-- Use semantic color tokens from `@khanacademy/wonder-blocks-tokens`
-- Ensure color tokens make semantic sense for their usage
+- Use semantic color tokens from `@khanacademy/wonder-blocks-tokens` (e.g., `semanticColor.core.background.base`)
+- Ensure color tokens make semantic sense for their usage (e.g., use `semanticColor.interactive.primary` for primary interactive elements)
 
 ## Package Structure
 
@@ -237,6 +251,8 @@ Wonder Blocks follows [Semantic Versioning 2.0.0](https://semver.org/):
 **Changesets:**
 - Create with `pnpm changeset`
 - For non-consumer changes (tests, stories, tooling): `pnpm changeset --empty`
+
+Don't hesitate to bump major or minor versions when appropriate—following semver correctly is more valuable than trying to minimize version number changes.
 
 ## Pull Requests for New Components
 
