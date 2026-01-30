@@ -1,0 +1,475 @@
+---
+description: Jest testing best practices and patterns for unit tests
+globs: *.test.ts,*.test.tsx
+alwaysApply: false
+---
+# Jest Testing Best Practices
+
+This guide covers testing patterns and best practices for Jest and React Testing Library in the Wonder Blocks codebase.
+
+## Core Testing Principles
+
+### ⚠️ Critical Setup Rules
+
+**Test Workflow Priority:**
+- ✅ **ALWAYS fix failing tests BEFORE fixing linting errors**
+- ✅ **Focus on underlying errors, not `Unhandled console.error call` messages**
+- ⚠️ When tests fail with `Unhandled console.error call`, look for the **root cause error** (e.g., `ReferenceError: window is not defined`)
+- ⚠️ The console.error messages are symptoms, not the actual problem - fix the underlying issue
+
+**File Structure:**
+- ✅ Name test files with `.test.ts` or `.test.tsx` suffix
+- ✅ Place in `__tests__/` directory OR colocate with source files (follow local conventions)
+
+**Test Framework Setup:**
+- ✅ Additional matchers from React Testing Library (RTL) and `jest-extended` are available
+- ✅ Use `describe`/`it` pattern for test organization
+- ✅ Use `globalThis` prefix when accessing global objects
+- ✅ **Prioritize testing non-trivial business logic** over trivial implementations
+
+### Arrange-Act-Assert Pattern
+
+**⚠️ ALWAYS use this three-section structure:**
+
+```typescript
+describe("Calculator", () => {
+    it("should add two numbers correctly", () => {
+        // Arrange
+        const a = 5;
+        const b = 3;
+
+        // Act
+        const result = add(a, b);
+
+        // Assert
+        expect(result).toBe(8);
+    });
+});
+```
+
+**Rules:**
+- ✅ **ALWAYS divide tests** into Arrange, Act, Assert sections with comments
+- ✅ **ALWAYS use separate comments** for each section (`// Arrange`, `// Act`, `// Assert`)
+- ❌ **NEVER combine sections** (e.g., don't write `// Act & Assert`)
+- ❌ **NEVER use multiple Act or Assert sections** in a single test (split into separate tests instead)
+
+**Exception - Testing Thrown Errors:**
+
+When testing errors, use an `underTest` variable in the Act section:
+
+```typescript
+it("should throw an error when input is invalid", () => {
+    // Arrange
+    const invalidInput = "invalid";
+
+    // Act
+    const underTest = () => {
+        processInput(invalidInput);
+    };
+
+    // Assert
+    expect(underTest).toThrow("Invalid input");
+});
+```
+
+### Be Concise and Avoid Over-Testing
+
+**⚠️ Focus on what matters - don't overdo it:**
+
+**DO Test:**
+- ✅ **Non-trivial business logic** - Complex calculations, data transformations, validation rules
+- ✅ **User interactions** - Click handlers, form submissions, keyboard navigation
+- ✅ **Accessibility** - ARIA attributes, keyboard support, focus management
+- ✅ **Edge cases and error conditions** - Null values, empty states, error handling
+- ✅ **Integration points** - API calls, event callbacks, state changes
+- ✅ **Bug fixes** - Add a test that reproduces the bug to prevent regressions
+
+**DON'T Test:**
+- ❌ **Trivial implementations** - Simple getters/setters, pass-through functions
+- ❌ **Style-only props** - Visual appearance is covered by visual regression tests in Storybook
+- ❌ **Third-party libraries** - Assume they work; test your usage of them
+- ❌ **Implementation details** - Internal state that doesn't affect output/behavior
+- ❌ **Additional logic in tests** - Use existing utility functions instead of reimplementing logic in tests
+
+```typescript
+// ❌ DON'T: Testing style-only props (use visual regression tests instead)
+it("should apply primary color when kind is primary", () => {
+    render(<Button kind="primary" />);
+    expect(screen.getByRole("button")).toHaveStyle({ backgroundColor: "blue" });
+});
+
+// ✅ DO: Test meaningful behavior
+it("should call onClick when clicked", async () => {
+    // Arrange
+    const handleClick = jest.fn();
+    render(<Button onClick={handleClick}>Click me</Button>);
+
+    // Act
+    await userEvent.click(screen.getByRole("button"));
+
+    // Assert
+    expect(handleClick).toHaveBeenCalledTimes(1);
+});
+
+// ✅ DO: Test non-trivial logic
+it("should validate email format and return error message", () => {
+    // Arrange
+    const invalidEmail = "not-an-email";
+
+    // Act
+    const result = validateEmail(invalidEmail);
+
+    // Assert
+    expect(result).toBe("Please enter a valid email address");
+});
+```
+
+**Key Principles:**
+- ✅ **Test behavior, not implementation** - Focus on what the component does, not how
+- ✅ **Prioritize critical paths** - Test the most important user flows first
+- ✅ **Keep tests simple and readable** - Each test should have a clear, single purpose
+- ✅ **Don't add logic to tests** - Tests should only test the component/function; use existing utility functions from the codebase instead of reimplementing logic in tests
+- ✅ **Use visual regression tests for styling** - Storybook snapshot tests handle visual appearance
+- ✅ **Balance coverage with maintainability** - More tests ≠ better tests
+
+### Assertions
+
+**Best Practices:**
+- ✅ **Use specific matchers** when possible (e.g., `toBe`, `toEqual`, `toHaveBeenCalledWith`)
+- ✅ **Prefer explicit assertions** over implicit ones
+- ✅ Use semantic matchers from RTL: `toBeInTheDocument()`, `toBeVisible()`, `toHaveAttribute()`
+- ❌ **Avoid Jest snapshots** (`.toMatchSnapshot()`, `.toMatchInlineSnapshot()`) - use Chromatic + Storybook for visual regression tests, or use specific attribute assertions instead
+- ❌ **Avoid direct node access** - Don't use `.parentElement`, `.children`, `.firstChild`, `.nextSibling`, etc.; use RTL queries to find elements directly
+
+### One Expect Per Test
+
+**⚠️ Prefer a single assertion per test when possible.** If assertions test different behaviors or could fail independently, split them into separate tests. This makes test failures clearer and easier to debug.
+
+### Parameterized Tests with `it.each`
+
+**When to use:** Testing the same logic with multiple input/output combinations
+
+**✅ DO: Use `it.each` for data-driven tests**
+
+```typescript
+describe("Calculator", () => {
+    it.each([
+        [2, 3, 5],
+        [0, 0, 0],
+        [-1, 1, 0],
+        [10, -5, 5],
+    ])("should add %i and %i to equal %i", (a, b, expected) => {
+        // Arrange & Act
+        const result = add(a, b);
+
+        // Assert
+        expect(result).toBe(expected);
+    });
+});
+```
+
+**Benefits:**
+- ✅ **Reduces Duplication**: Test same logic with different inputs
+- ✅ **Clear Test Names**: Each test shows specific values being tested
+- ✅ **Easy to Extend**: Simply add new arrays to test data
+- ✅ **Better Coverage**: Test edge cases and boundary conditions efficiently
+- ✅ **Comprehensive Testing**: Essential for testing all prop combinations and states in Wonder Blocks components
+
+## Mocking and Spying
+
+### ⚠️ Critical Rules - ALWAYS Follow These
+
+1. **NEVER mock `console.error`** - This hides real implementation issues and errors
+2. **ALWAYS use `jest.spyOn()` to create spies** - Never treat the original function as though it were a spy
+3. **Store spy return values in variables ONLY when asserting on them** - Avoids unused variable linter errors
+4. **NEVER mock outside of tests** - Even if it means code duplication, keep mocks inside test cases
+
+### Method Spying - Correct Pattern
+
+**✅ DO: Use jest.spyOn and store the result when asserting**
+
+```typescript
+import * as SomeFile from "./some-file.ts";
+
+describe("MyComponent", () => {
+    it("should call someMethod with correct args", () => {
+        // Arrange
+        // Store spy because we'll assert on it later
+        const spy = jest.spyOn(SomeFile, "someMethod").mockReturnValue(mockValue);
+
+        // Act
+        myFunction();
+
+        // Assert
+        expect(spy).toHaveBeenCalledWith(expectedArgs);
+    });
+});
+```
+
+**❌ DON'T: Treat the original function as a spy without jest.spyOn()**
+
+```typescript
+// ❌ WRONG - This will fail because someMethod is not a spy
+import * as SomeFile from "./some-file.ts";
+
+describe("MyComponent", () => {
+    it("should call someMethod", () => {
+        // Act
+        myFunction();
+
+        // Assert
+        expect(SomeFile.someMethod).toHaveBeenCalled(); // ❌ ERROR! Not a spy
+    });
+});
+```
+
+### When to Store Spies in Variables
+
+**Spies serve two purposes:**
+1. **Mocking behavior** - Replace function implementation or return value
+2. **Verification** - Assert the function was called with correct arguments
+
+**✅ Mocking only (no variable needed):**
+
+```typescript
+it("should process user data", () => {
+    // Arrange
+    // Mock the API call to return test data, but don't store it
+    jest.spyOn(API, "fetchUser").mockResolvedValue(mockUserData);
+
+    // Act
+    const result = processUserProfile();
+
+    // Assert
+    // We're testing processUserProfile's logic, not that fetchUser was called
+    expect(result.displayName).toBe("John Doe");
+    // No spy variable = no unused variable linter error
+});
+```
+
+**✅ Mocking AND verification (store in variable):**
+
+```typescript
+it("should call analytics when button is clicked", () => {
+    // Arrange
+    // Store the spy because we'll assert on it
+    const trackEventSpy = jest
+        .spyOn(Analytics, "trackEvent")
+        .mockReturnValue(undefined);
+
+    // Act
+    userEvent.click(screen.getByRole("button"));
+
+    // Assert
+    // We're testing that the analytics call happens correctly
+    expect(trackEventSpy).toHaveBeenCalledWith("button_click", {
+        buttonId: "submit",
+    });
+});
+```
+
+**Key point:** Only store the spy in a variable if you're going to assert on it. This avoids unused variable linter errors while still allowing you to verify calls when needed.
+
+### Common Spy Patterns
+
+**Mock only (no variable):**
+
+```typescript
+// When you only need to control the return value
+jest.spyOn(module, "functionName").mockReturnValue(mockValue);
+jest.spyOn(module, "asyncFunction").mockResolvedValue(mockValue);
+jest.spyOn(module, "asyncFunction").mockRejectedValue(new Error("Test error"));
+```
+
+**Mock and verify (store in variable):**
+
+```typescript
+// When you need to assert the spy was called
+const spy = jest.spyOn(module, "functionName").mockReturnValue(mockValue);
+// ... later in Assert section:
+expect(spy).toHaveBeenCalledWith(expectedArgs);
+```
+
+**Spy with mock implementation:**
+
+```typescript
+// Store only if you'll verify it was called
+const spy = jest.spyOn(module, "functionName").mockImplementation((arg) => {
+    return processedValue;
+});
+```
+
+### Mocking Guidelines
+
+**DO:**
+- ✅ Use `jest.spyOn()` for mocking functions and tracking calls
+- ✅ Store spy return values in variables ONLY when you need to assert on them
+- ✅ Chain `.mockReturnValue()` or similar directly on `jest.spyOn()` when only mocking behavior
+- ✅ Keep mocks and spies inside test cases when possible
+- ✅ Use mocking and spies to isolate the code under test at boundaries with other code
+- ✅ Clean up spies after tests (Jest does this automatically with `clearAllMocks`)
+
+**DON'T:**
+- ❌ Never mock `console.error` - this hides real implementation issues
+- ❌ Never treat original functions as spies without `jest.spyOn()`
+- ❌ Never store spies in variables if you won't assert on them (causes unused variable linter errors)
+- ❌ Avoid mocking outside of tests, even if it means code duplication
+
+### Hook Testing
+
+**✅ Use `renderHook`:**
+
+```typescript
+import {renderHook} from "@testing-library/react";
+
+// Direct for simple hooks
+const {result} = renderHook(() => useMyHook(params));
+```
+
+### User Interactions
+
+**✅ ALWAYS use `userEvent` for interactions:**
+
+```typescript
+import userEvent from "@testing-library/user-event";
+
+// ✅ DO: Use userEvent (realistic, includes focus/blur/typing)
+await userEvent.click(screen.getByRole("button"));
+await userEvent.type(screen.getByRole("textbox"), "hello");
+
+// ❌ DON'T: Use fireEvent (low-level, less realistic)
+fireEvent.click(button);
+```
+
+### Browser Behavior and jsdom Limitations
+
+**⚠️ jsdom does not fully implement all browser behaviors.** Common limitations include: `getBoundingClientRect()`, scroll positions, `offsetWidth`/`offsetHeight`, clipboard API, CSS animations, and Intersection/Resize Observers.
+
+**✅ Mock browser APIs when testing in unit tests:**
+
+```typescript
+// Mock scrollIntoView
+const scrollIntoViewMock = jest.fn();
+Element.prototype.scrollIntoView = scrollIntoViewMock;
+
+// Mock getBoundingClientRect
+jest.spyOn(Element.prototype, "getBoundingClientRect").mockReturnValue({
+    top: 100, left: 100, bottom: 200, right: 200,
+    width: 100, height: 100, x: 100, y: 100, toJSON: () => {},
+});
+```
+
+**✅ Use Storybook interaction tests** for behavior that's difficult to mock accurately (scroll, layout, clipboard, complex focus management). See `storybook.mdc` for details.
+
+### Element Selection
+
+**Query priority (use in this order):**
+
+1. ✅ **Semantic queries** (best): `getByRole`, `getByLabelText`, `getByText`
+2. ✅ **Test IDs** (fallback): `getByTestId` with `data-testid` attribute
+3. ❌ **NEVER use** CSS classes, IDs, or structural selectors (brittle)
+
+```typescript
+// ✅ DO: Semantic queries
+screen.getByRole("button", {name: /submit/i});
+screen.getByLabelText("Email address");
+screen.findByText("Welcome back");
+
+// ✅ DO: Test IDs when semantic queries don't work
+screen.getByTestId("custom-widget");
+
+// ❌ DON'T: CSS selectors or implementation details
+container.querySelector(".my-class");
+container.querySelector("#my-id");
+```
+
+## Wonder Blocks Component Testing
+
+### Test Organization
+
+**✅ Group related tests using `describe` blocks:**
+
+```typescript
+describe("MyComponent", () => {
+    describe("Props", () => { /* prop tests */ });
+    describe("Event Handlers", () => { /* onClick, onChange tests */ });
+    describe("Accessibility", () => {
+        describe("axe", () => { /* toHaveNoA11yViolations tests */ });
+        describe("ARIA", () => { /* aria attribute tests */ });
+        describe("Focus", () => { /* focus management tests */ });
+        describe("Keyboard Interactions", () => { /* keyboard nav tests */ });
+    });
+});
+```
+
+### Test Coverage
+
+Unit tests for a component should cover:
+
+#### Base Tests
+- ref is forwarded
+
+#### Props
+- Cover expected behaviour when certain props are set.
+- **Exclude tests for props that are related to styles only**, since this should be covered by visual regression tests instead
+- Cover expected behaviour with default prop values
+- Use `it.each` when there are multiple combinations of things you want to test together
+
+#### Event Handlers
+- Check that any event handlers are triggered by the expected conditions
+- Verify callbacks are called with correct arguments
+
+#### Accessibility
+- Confirm that roles, semantics, and aria attributes are correctly set and wired together
+- Use the `.toHaveNoA11yViolations` jest matcher to confirm that a component doesn't have accessibility warnings
+- Confirm keyboard interactions and navigation
+- Focus management
+- Confirm accessible names
+- Check for `aria-disabled="true"` for determining disabled state (not the `disabled` attribute)
+
+## Tools and Commands
+
+### Terminal Commands
+
+```bash
+# Run all tests
+pnpm jest
+
+# Run tests in watch mode
+pnpm jest --watch
+
+# Update snapshots
+pnpm jest -u
+
+# Run tests with coverage
+pnpm jest --coverage
+
+# Run specific test file
+pnpm jest path/to/test-file.test.ts
+
+# Debug with verbose output
+pnpm jest --verbose --runInBand
+```
+
+### Debugging Priority Order
+
+**Terminal Commands**
+- Add `console.log` statements for debugging
+- Use `--verbose` flag for detailed output
+- Use `--runInBand` for sequential execution (easier to debug)
+- Use Node debugger with `debugger` statements
+
+## Best Practices Summary
+
+1. ✅ **Structure**: Use Arrange-Act-Assert pattern with comments
+2. ✅ **Focus**: Test behavior, not implementation details
+3. ✅ **Queries**: Use semantic queries (`getByRole`, `getByLabelText`) over test IDs
+4. ✅ **Interactions**: Use `userEvent` instead of `fireEvent`
+5. ✅ **Spies**: Use `jest.spyOn()` and only store in variables when asserting
+6. ✅ **Accessibility**: Include `toHaveNoA11yViolations` tests
+7. ✅ **Organization**: Group related tests with `describe` blocks
+8. ✅ **Assertions**: One expect per test when possible
+9. ✅ **Parameterized**: Use `it.each` for testing multiple input/output combinations
+10. ✅ **Browser APIs**: Mock jsdom limitations properly, or use Storybook interaction tests for browser-specific behavior
+11. ✅ **Bug Fixes**: Add tests that reproduce bugs to prevent regressions
+12. ❌ **Avoid**: Testing style-only props, mocking `console.error`, over-testing trivial code, adding logic to tests
