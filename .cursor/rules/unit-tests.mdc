@@ -88,6 +88,7 @@ it("should throw an error when input is invalid", () => {
 - ❌ **Style-only props** - Visual appearance is covered by visual regression tests in Storybook
 - ❌ **Third-party libraries** - Assume they work; test your usage of them
 - ❌ **Implementation details** - Internal state that doesn't affect output/behavior
+- ❌ **Additional logic in tests** - Use existing utility functions instead of reimplementing logic in tests
 
 ```typescript
 // ❌ DON'T: Testing style-only props (use visual regression tests instead)
@@ -126,6 +127,7 @@ it("should validate email format and return error message", () => {
 - ✅ **Test behavior, not implementation** - Focus on what the component does, not how
 - ✅ **Prioritize critical paths** - Test the most important user flows first
 - ✅ **Keep tests simple and readable** - Each test should have a clear, single purpose
+- ✅ **Don't add logic to tests** - Tests should only test the component/function; use existing utility functions from the codebase instead of reimplementing logic in tests
 - ✅ **Use visual regression tests for styling** - Storybook snapshot tests handle visual appearance
 - ✅ **Balance coverage with maintainability** - More tests ≠ better tests
 
