@@ -1,3 +1,8 @@
+---
+description: Storybook best practices for Wonder Blocks component stories
+applyTo: "**/*.stories.tsx,**/*.stories.ts"
+---
+
 # Wonder Blocks - Storybook Best Practices
 
 This guide covers conventions and best practices for creating Storybook stories (`.stories.tsx` or `.stories.ts`) in the Wonder Blocks design system.

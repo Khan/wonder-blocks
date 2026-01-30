@@ -1,3 +1,8 @@
+---
+description: Wonder Blocks design system conventions, component patterns, and coding standards
+applyTo: "**/*.ts,**/*.tsx"
+---
+
 # Wonder Blocks Design System - Frontend Rules
 
 This file provides frontend development instructions for the Wonder Blocks design system.

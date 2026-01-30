@@ -1,3 +1,8 @@
+---
+description: Jest testing best practices and patterns for unit tests
+applyTo: "**/*.test.ts,**/*.test.tsx"
+---
+
 # Wonder Blocks - Jest Testing Best Practices
 
 This guide covers testing patterns and best practices for Jest and React Testing Library in the Wonder Blocks codebase.
