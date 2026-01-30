@@ -41,7 +41,8 @@ export default {
      * States
      */
     disabled: {
-        description: "Disables or enables the child; defaults to false",
+        description:
+            "Disables or enables the child; defaults to false. Internally, the `aria-disabled` attribute will be set so that the element remains focusable and will be included in the tab order.",
         defaultValue: false,
         type: {
             name: "boolean",

@@ -16,6 +16,9 @@ interface Props {
     value: string | null | undefined;
     /**
      * Whether the input element is disabled.
+     *
+     * Internally, the `aria-disabled` attribute will be set so that the
+     * element remains focusable and will be included in the tab order.
      */
     disabled?: boolean;
     /**

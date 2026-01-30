@@ -49,6 +49,9 @@ type TextAreaProps = AriaProps & {
     placeholder?: string;
     /**
      * Whether the text area should be disabled.
+     *
+     * Internally, the `aria-disabled` attribute will be set so that the
+     * element remains focusable and will be included in the tab order.
      */
     disabled?: boolean;
     /**

@@ -18,6 +18,9 @@ type Props = Pick<
     checked: boolean;
     /**
      * Whether the switch is disabled. Defaults to `false`.
+     *
+     * Internally, the `aria-disabled` attribute will be set so that the
+     * element remains focusable and will be included in the tab order.
      */
     disabled?: boolean;
     /**

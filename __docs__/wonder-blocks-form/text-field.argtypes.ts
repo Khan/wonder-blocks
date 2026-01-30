@@ -70,9 +70,8 @@ export default {
     },
 
     disabled: {
-        description: `Whether the input should be disabled. Defaults to false.
-            If the disabled prop is set to \`true\`, TextField will have disabled
-            styling and will not be interactable.`,
+        description:
+            "Whether the input should be disabled. Defaults to false. If the disabled prop is set to `true`, TextField will have disabled styling and will not be interactable. Internally, the `aria-disabled` attribute will be set so that the element remains focusable and will be included in the tab order.",
         table: {
             type: {
                 summary: "boolean",
