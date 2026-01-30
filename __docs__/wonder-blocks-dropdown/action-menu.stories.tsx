@@ -403,12 +403,7 @@ export const WithPopperPlacement: StoryComponentType = {
         }, []);
 
         return (
-            <ActionMenu
-                menuText="Betsy Appleseed"
-                {...args}
-                opened={opened}
-                onToggle={setOpened}
-            >
+            <ActionMenu {...args} opened={opened} onToggle={setOpened}>
                 {actionItems.map((actionItem, index) => actionItem)}
             </ActionMenu>
         );
@@ -590,7 +585,7 @@ export const OpeningModal: StoryComponentType = {
 
         return (
             <>
-                <ActionMenu menuText="Betsy Appleseed" {...args}>
+                <ActionMenu {...args}>
                     <ActionItem
                         key="1"
                         label="Profile"
@@ -655,6 +650,76 @@ export const OpeningModal: StoryComponentType = {
             />
         ),
     } as Partial<typeof ActionMenu>,
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test visuals.
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * This example shows how to use `aria-label` on the ActionMenu opener and
+ * `ActionItem` children. This is especially useful if you do **not** have a
+ * visible label component but want to ensure accessibility. For more details,
+ * see the [accessibility documentation](./?path=/docs/packages-dropdown-actionmenu-accessibility--docs).
+ *
+ * As you can see, the `ActionMenu` opener visually shows the selected item, but
+ * the `aria-label` attribute on the opener provides a more descriptive label
+ * for the action menu.
+ *
+ * **NOTE:** Make sure to include relevant information in `aria-label` if the
+ * ActionMenu is used to select an item from a list.
+ */
+export const AriaLabel: StoryComponentType = {
+    render: function Render(args) {
+        const [selectedItem, setSelectedItem] = React.useState<string | null>(
+            null,
+        );
+
+        const classOptions = [
+            {
+                label: "Math",
+                ariaLabel: "Select Math class",
+            },
+            {
+                label: "Science",
+                ariaLabel: "Select Science class",
+            },
+            {
+                label: "History",
+                ariaLabel: "Select History class",
+            },
+        ];
+
+        return (
+            <ActionMenu
+                {...args}
+                aria-label={
+                    selectedItem
+                        ? `${selectedItem} - List of classes`
+                        : "List of classes"
+                }
+                opener={() => (
+                    <Button endIcon={IconMappings.caretDown}>
+                        {selectedItem ? selectedItem : "List of classes"}
+                    </Button>
+                )}
+            >
+                {classOptions.map((opt) => (
+                    <ActionItem
+                        key={opt.label}
+                        label={opt.label}
+                        aria-label={opt.ariaLabel}
+                        onClick={() => {
+                            setSelectedItem(opt.label);
+                            action(`Selected ${opt.label}`);
+                        }}
+                    />
+                ))}
+            </ActionMenu>
+        );
+    },
     parameters: {
         chromatic: {
             // Disabling because this doesn't test visuals.
