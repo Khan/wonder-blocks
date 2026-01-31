@@ -8,6 +8,7 @@ import {View, type PropsFor} from "@khanacademy/wonder-blocks-core";
 import {sizing, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
+import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
 import {DatePicker} from "@khanacademy/wonder-blocks-date-picker";
 
 import ComponentInfo from "../components/component-info";
@@ -406,4 +407,137 @@ export const SpanishLocalizationNumericFormat: Story = {
         locale: es,
         inputAriaLabel: "Elegir o introducir una fecha",
     },
+};
+
+const DatePickerInsideModalExample = () => {
+    const [selectedDate, setSelectedDate] = React.useState<
+        Temporal.PlainDate | null | undefined
+    >(Temporal.PlainDate.from("2026-01-16"));
+
+    return (
+        <ModalLauncher
+            modal={({closeModal}) => (
+                <OnePaneDialog
+                    title="Date Picker in Modal"
+                    content={
+                        <View style={{gap: spacing.medium_16}}>
+                            <BodyText>
+                                This demonstrates a DatePicker inside a modal.
+                                Press Escape when focused on the date picker
+                                input to test that it only closes the calendar
+                                overlay, not the entire modal.
+                            </BodyText>
+                            <LabeledField
+                                label="Select Date"
+                                field={
+                                    <DatePicker
+                                        selectedDate={selectedDate}
+                                        updateDate={setSelectedDate}
+                                        placeholder="MM/DD/YYYY"
+                                    />
+                                }
+                            />
+                        </View>
+                    }
+                    footer={<Button onClick={closeModal}>Close Modal</Button>}
+                />
+            )}
+        >
+            {({openModal}) => <Button onClick={openModal}>Open Modal</Button>}
+        </ModalLauncher>
+    );
+};
+
+/**
+ * DatePicker inside a Modal to test that pressing Escape in the DatePicker
+ * input only closes the calendar overlay, not the modal itself.
+ *
+ * **Test instructions:**
+ * 1. Click "Open Modal" button
+ * 2. Click on the date picker input to open the calendar
+ * 3. Press Escape key
+ * 4. Expected: Only the calendar overlay closes, the modal stays open
+ * 5. Press Escape again to close the modal
+ */
+export const InsideModal: Story = {
+    render: () => <DatePickerInsideModalExample />,
+};
+
+const DatePickerWithCustomStylesExample = () => {
+    const [date1, setDate1] = React.useState<
+        Temporal.PlainDate | null | undefined
+    >(null);
+    const [date2, setDate2] = React.useState<
+        Temporal.PlainDate | null | undefined
+    >(null);
+    const [date3, setDate3] = React.useState<
+        Temporal.PlainDate | null | undefined
+    >(null);
+    const [date4, setDate4] = React.useState<
+        Temporal.PlainDate | null | undefined
+    >(null);
+
+    return (
+        <View style={{gap: spacing.large_24, maxWidth: 600}}>
+            <View style={{gap: spacing.xSmall_8}}>
+                <BodyText weight="bold">Default (225px × 40px)</BodyText>
+                <DatePicker
+                    selectedDate={date1}
+                    updateDate={setDate1}
+                    placeholder="MM/DD/YYYY"
+                    inputAriaLabel="Date with default size"
+                />
+            </View>
+
+            <View style={{gap: spacing.xSmall_8}}>
+                <BodyText weight="bold">Custom width (350px)</BodyText>
+                <DatePicker
+                    selectedDate={date2}
+                    updateDate={setDate2}
+                    placeholder="MM/DD/YYYY"
+                    inputAriaLabel="Date with custom width"
+                    style={{width: 350}}
+                />
+            </View>
+
+            <View style={{gap: spacing.xSmall_8}}>
+                <BodyText weight="bold">Full width (100%)</BodyText>
+                <DatePicker
+                    selectedDate={date3}
+                    updateDate={setDate3}
+                    placeholder="MM/DD/YYYY"
+                    inputAriaLabel="Date with full width"
+                    style={{width: "100%"}}
+                />
+            </View>
+
+            <View style={{gap: spacing.xSmall_8}}>
+                <BodyText weight="bold">
+                    Custom height for larger touch target (48px)
+                </BodyText>
+                <DatePicker
+                    selectedDate={date4}
+                    updateDate={setDate4}
+                    placeholder="MM/DD/YYYY"
+                    inputAriaLabel="Date with custom height"
+                    style={{height: sizing.size_480}}
+                />
+            </View>
+        </View>
+    );
+};
+
+/**
+ * DatePicker with custom styling to demonstrate that the style prop works.
+ * This example shows how to override the default width (225px) and height (40px)
+ * using the style prop.
+ *
+ * **Examples shown:**
+ * - Default width (225px) and height (40px)
+ * - Custom width (350px) with default height
+ * - Full width (100%) to fill parent container
+ * - Custom height (48px) for larger touch targets
+ */
+export const WithCustomStyles: Story = {
+    render: () => <DatePickerWithCustomStylesExample />,
 };
