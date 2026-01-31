@@ -1,7 +1,4 @@
 import {Meta, Canvas} from "@storybook/addon-docs/blocks";
-import Banner from "@khanacademy/wonder-blocks-banner";
-import {View} from "@khanacademy/wonder-blocks-core";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import * as DatePickerStories from "./date-picker.stories";
 
 <Meta title="Packages / DatePicker / Overview" />
@@ -12,13 +9,6 @@ The `wonder-blocks-date-picker` package provides date picker components that
 allow users to select dates using either a custom calendar overlay or native
 browser date pickers. These components use the Temporal API for accurate,
 timezone-safe date handling.
-
-<View style={{marginBlock: spacing.medium_16}}>
-    <Banner
-        kind="warning"
-        text="CSS import required: You must import react-day-picker/style.css in your application for the date picker to display correctly. See the Setup section below."
-    />
-</View>
 
 ## Components
 
@@ -31,30 +21,6 @@ Best for desktop experiences where you need full control over styling and behavi
 
 ## Setup
 
-### CSS Import Required
-
-The date picker uses `react-day-picker` which requires its CSS to be imported.
-Choose one of these options:
-
-#### Option 1: Global CSS File
-
-```css
-@import "react-day-picker/style.css";
-```
-
-#### Option 2: JavaScript Entry Point
-
-```javascript
-import "react-day-picker/style.css";
-```
-
-#### Option 3: Component-Level Import
-
-```javascript
-import { DatePicker } from "@khanacademy/wonder-blocks-date-picker";
-import "react-day-picker/style.css";
-```
-
 ### Peer Dependencies
 
 Make sure you have these installed:
@@ -62,8 +28,11 @@ Make sure you have these installed:
 - `aphrodite`
 - `react-day-picker`
 - `react-popper` and `@popperjs/core`
+- `date-fns`
 - `@phosphor-icons/core`
 - `temporal-polyfill`
+
+The required CSS styles for `react-day-picker` are bundled with this package, so no additional CSS imports are needed.
 
 ## Basic Usage
 
@@ -71,6 +40,7 @@ Make sure you have these installed:
 import { DatePicker } from "@khanacademy/wonder-blocks-date-picker";
 import { Temporal } from "temporal-polyfill";
 import { useState } from "react";
+import {enUS} from "date-fns/locale";
 
 function MyComponent() {
     const [selectedDate, setSelectedDate] = useState<Temporal.PlainDate | null>(null);
@@ -80,6 +50,7 @@ function MyComponent() {
             selectedDate={selectedDate}
             updateDate={setSelectedDate}
             placeholder="Select a date"
+            locale={enUS}
         />
     );
 }
