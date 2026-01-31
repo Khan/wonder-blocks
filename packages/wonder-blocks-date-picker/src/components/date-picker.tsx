@@ -186,6 +186,33 @@ const DatePicker = (props: Props) => {
         }
     }, [selectedDate]);
 
+    // Add/remove keyup listener to prevent Escape from reaching parent modals
+    React.useEffect(() => {
+        const handleKeyup = (e: KeyboardEvent) => {
+            // Stop Escape keyup from propagating to parent modals
+            if (e.key === "Escape") {
+                const target = e.target as Node;
+                const thisElement = refWrapper.current;
+                const dayPickerCalendar = datePickerRef.current;
+
+                // Check if the event originated from within this DatePicker
+                const isInThisElement = thisElement?.contains(target);
+                const isInCalendar = dayPickerCalendar?.contains(target);
+
+                if (isInThisElement || isInCalendar) {
+                    // Stop propagation to prevent modal from closing
+                    e.stopPropagation();
+                }
+            }
+        };
+
+        // Add listener to window to catch the event before modal's listener
+        window.addEventListener("keyup", handleKeyup, true); // Use capture phase
+        return () => {
+            window.removeEventListener("keyup", handleKeyup, true);
+        };
+    }, []);
+
     // Add/remove mouseup event listener for outside click
     React.useEffect(() => {
         const handleClick = (e: MouseEvent) => {
@@ -273,6 +300,8 @@ const DatePicker = (props: Props) => {
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
         if (e.key === "Escape") {
+            // Stop propagation to prevent closing parent modals
+            e.stopPropagation();
             close();
             datePickerInputRef.current?.focus();
         }
@@ -303,6 +332,8 @@ const DatePicker = (props: Props) => {
                 onKeyDown={(e) => {
                     onKeyDown?.(e);
                     if (e.key === "Escape") {
+                        // Stop propagation to prevent closing parent modals
+                        e.stopPropagation();
                         close();
                         datePickerInputRef.current?.focus();
                     }
