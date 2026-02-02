@@ -64,7 +64,15 @@ const ComponentTooltip = (props: {
             </ul>
         </TooltipContent>
     );
-    return <Tooltip content={content}>{children}</Tooltip>;
+    return (
+        <View
+            style={{
+                gap: sizing.size_040,
+            }}
+        >
+            <Tooltip content={content}>{children}</Tooltip>
+        </View>
+    );
 };
 
 const ComponentInfo = <Component extends React.ElementType>({
@@ -116,16 +124,12 @@ const ComponentInfo = <Component extends React.ElementType>({
                         };
 
                         return (
-                            <View
+                            <ComponentTooltip
+                                details={{State: state.name}}
                                 key={state.name}
-                                style={{
-                                    gap: sizing.size_040,
-                                }}
                             >
-                                <ComponentTooltip details={{State: state.name}}>
-                                    <Component {...(props as any)} />
-                                </ComponentTooltip>
-                            </View>
+                                <Component {...(props as any)} />
+                            </ComponentTooltip>
                         );
                     })}
                 </View>
@@ -164,18 +168,12 @@ const ComponentInfo = <Component extends React.ElementType>({
                                 };
 
                                 return (
-                                    <View
+                                    <ComponentTooltip
                                         key={String(option)}
-                                        style={{
-                                            gap: sizing.size_040,
-                                        }}
+                                        details={comboLabelItems}
                                     >
-                                        <ComponentTooltip
-                                            details={comboLabelItems}
-                                        >
-                                            <Component {...props} />
-                                        </ComponentTooltip>
-                                    </View>
+                                        <Component {...props} />
+                                    </ComponentTooltip>
                                 );
                             })}
                         </View>
@@ -259,20 +257,12 @@ const ComponentInfo = <Component extends React.ElementType>({
                                             );
 
                                             return (
-                                                <View
+                                                <ComponentTooltip
                                                     key={index}
-                                                    style={{
-                                                        gap: sizing.size_040,
-                                                    }}
+                                                    details={comboLabelItems}
                                                 >
-                                                    <ComponentTooltip
-                                                        details={
-                                                            comboLabelItems
-                                                        }
-                                                    >
-                                                        <Component {...props} />
-                                                    </ComponentTooltip>
-                                                </View>
+                                                    <Component {...props} />
+                                                </ComponentTooltip>
                                             );
                                         },
                                     )}
