@@ -40,6 +40,11 @@ type VariantProp<Component extends React.ElementType> = {
     };
 }[keyof React.ComponentProps<Component>];
 
+type StatesType<Component extends React.ElementType> = {
+    name: string;
+    props: Partial<React.ComponentProps<Component>>;
+}[];
+
 const ComponentInfo = <Component extends React.ElementType>({
     name,
     Component,
@@ -50,7 +55,7 @@ const ComponentInfo = <Component extends React.ElementType>({
     name: string;
     Component: Component;
     variantProps: VariantProp<Component>[];
-    states: {name: string; props: Partial<React.ComponentProps<Component>>}[];
+    states: StatesType<Component>;
     defaultProps: React.ComponentProps<Component>;
 }) => {
     const heading = (
@@ -65,6 +70,12 @@ const ComponentInfo = <Component extends React.ElementType>({
             {name}
         </Heading>
     );
+
+    const allStates: StatesType<Component> = [
+        {name: "Default", props: {}},
+        ...states,
+    ];
+
     if (variantProps.length === 0) {
         return (
             <View key={name}>
@@ -76,13 +87,7 @@ const ComponentInfo = <Component extends React.ElementType>({
                         flexWrap: "wrap",
                     }}
                 >
-                    {[
-                        {
-                            name: "Default",
-                            props: {},
-                        },
-                        ...states,
-                    ].map((state) => {
+                    {allStates.map((state) => {
                         const props = {
                             ...defaultProps,
                             ...state.props,
@@ -127,13 +132,7 @@ const ComponentInfo = <Component extends React.ElementType>({
             <View key={name}>
                 {heading}
                 <View style={{gap: sizing.size_280}}>
-                    {[
-                        {
-                            name: "Default",
-                            props: {},
-                        },
-                        ...states,
-                    ].map((state) => (
+                    {allStates.map((state) => (
                         <View
                             key={state.name}
                             style={{
@@ -143,7 +142,7 @@ const ComponentInfo = <Component extends React.ElementType>({
                             }}
                         >
                             {singleVariantProp.options.map((option) => {
-                                const props = {
+                                const props: React.ComponentProps<Component> = {
                                     ...defaultProps,
                                     ...state.props,
                                     [singleVariantProp.propName]: option,
@@ -177,7 +176,7 @@ const ComponentInfo = <Component extends React.ElementType>({
                                         }}
                                     >
                                         <Tooltip content={comboLabel}>
-                                            <Component {...(props as any)} />
+                                            <Component {...props} />
                                         </Tooltip>
                                     </View>
                                 );
@@ -204,7 +203,7 @@ const ComponentInfo = <Component extends React.ElementType>({
         <View key={name}>
             {heading}
             <View style={{gap: sizing.size_280}}>
-                {[{name: "Default", props: {}}, ...states].map((state) => (
+                {allStates.map((state) => (
                     <View
                         key={state.name}
                         style={{
