@@ -53,19 +53,22 @@ const ComponentInfo = <Component extends React.ElementType>({
     states: {name: string; props: Partial<React.ComponentProps<Component>>}[];
     defaultProps: React.ComponentProps<Component>;
 }) => {
+    const heading = (
+        <Heading
+            tag="h3"
+            style={{
+                marginBlockEnd: sizing.size_120,
+            }}
+            size="medium"
+            weight="medium"
+        >
+            {name}
+        </Heading>
+    );
     if (variantProps.length === 0) {
         return (
             <View key={name}>
-                <Heading
-                    tag="h3"
-                    style={{
-                        marginBlockEnd: sizing.size_120,
-                    }}
-                    size="medium"
-                    weight="medium"
-                >
-                    {name}
-                </Heading>
+                {heading}
                 <View
                     style={{
                         flexDirection: "row",
@@ -122,16 +125,7 @@ const ComponentInfo = <Component extends React.ElementType>({
 
         return (
             <View key={name}>
-                <Heading
-                    tag="h3"
-                    style={{
-                        marginBlockEnd: sizing.size_120,
-                    }}
-                    size="medium"
-                    weight="medium"
-                >
-                    {name}
-                </Heading>
+                {heading}
                 <View style={{gap: sizing.size_280}}>
                     {[
                         {
@@ -208,16 +202,7 @@ const ComponentInfo = <Component extends React.ElementType>({
 
     return (
         <View key={name}>
-            <Heading
-                tag="h3"
-                style={{
-                    marginBlockEnd: sizing.size_120,
-                }}
-                size="medium"
-                weight="medium"
-            >
-                {name}
-            </Heading>
+            {heading}
             <View style={{gap: sizing.size_280}}>
                 {[{name: "Default", props: {}}, ...states].map((state) => (
                     <View
