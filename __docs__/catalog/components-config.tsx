@@ -61,7 +61,7 @@ import {
 } from "@khanacademy/wonder-blocks-tabs";
 import Toolbar from "@khanacademy/wonder-blocks-toolbar";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
-import {IconMappings} from "./wonder-blocks-icon/phosphor-icon.argtypes";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import Link from "@khanacademy/wonder-blocks-link";
 import {
     Body,
@@ -84,8 +84,8 @@ import {
     Title,
 } from "@khanacademy/wonder-blocks-typography";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import customBackgroundImage from "../static/celebration_bg.svg";
-import {reallyLongText} from "./components/text-for-testing";
+import customBackgroundImage from "../../static/celebration_bg.svg";
+import {reallyLongText} from "../components/text-for-testing";
 
 export type VariantProp<T> = {
     [K in keyof T & string]: {

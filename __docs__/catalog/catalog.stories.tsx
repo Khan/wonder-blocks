@@ -4,10 +4,10 @@ import {Heading} from "@khanacademy/wonder-blocks-typography";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import Tooltip, {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 import {components} from "./components-config";
-import {themeModes} from "../.storybook/modes";
+import {themeModes} from "../../.storybook/modes";
 
 export default {
-    name: "All Components",
+    name: "Catalog",
     tags: ["!autodocs"],
     parameters: {
         chromatic: {
