@@ -33,18 +33,25 @@ const generateCombinations = (arrays: any[][]): any[][] => {
     );
 };
 
-const ComponentInfo = ({
+type VariantProp<Component extends React.ElementType> = {
+    [K in keyof React.ComponentProps<Component>]: {
+        propName: K;
+        options: Array<React.ComponentProps<Component>[K]>;
+    };
+}[keyof React.ComponentProps<Component>];
+
+const ComponentInfo = <Component extends React.ElementType>({
     name,
     Component,
     variantProps,
     states,
     defaultProps,
 }: {
-    Component: React.ComponentType<any>;
-    variantProps: {propName: string; options: any[]}[]; // TODO: propName should be keyof componentsProps, options be values
     name: string;
-    states: {name: string; props: any}; // TODO: any should be partial of component props
-    defaultProps: any; // TODO: any should be props for component
+    Component: Component;
+    variantProps: VariantProp<Component>[];
+    states: {name: string; props: Partial<React.ComponentProps<Component>>}[];
+    defaultProps: React.ComponentProps<Component>;
 }) => {
     if (variantProps.length === 0) {
         return (
