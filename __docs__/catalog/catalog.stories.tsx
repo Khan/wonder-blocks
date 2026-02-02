@@ -1,4 +1,5 @@
 import * as React from "react";
+import {StyleSheet} from "aphrodite";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
@@ -108,8 +109,8 @@ const ComponentInfo = <Component extends React.ElementType>({
 
     if (variantProps.length === 0) {
         return (
-            <View key={name}>
-                {heading}
+            <View key={name} style={{backgroundColor: "red"}}>
+                {heading} - variantProps.length === 0
                 <View
                     style={{
                         flexDirection: "row",
@@ -143,7 +144,7 @@ const ComponentInfo = <Component extends React.ElementType>({
 
         return (
             <View key={name}>
-                {heading}
+                {heading} - variantProps.length === 1
                 <View style={{gap: sizing.size_280}}>
                     {allStates.map((state) => (
                         <View
@@ -196,7 +197,7 @@ const ComponentInfo = <Component extends React.ElementType>({
 
     return (
         <View key={name}>
-            {heading}
+            {heading} - remaining
             <View style={{gap: sizing.size_280}}>
                 {allStates.map((state) => (
                     <View
@@ -276,6 +277,53 @@ const ComponentInfo = <Component extends React.ElementType>({
     );
 };
 
+const FinalComponentInfo = <Component extends React.ElementType>(props: {
+    name: string;
+    Component: React.ElementType;
+    variantProps: VariantProp<React.ElementType>[];
+    states: StatesType<React.ElementType>;
+    defaultProps: React.ComponentProps<React.ElementType>;
+}) => {
+    const {name, variantProps, states, defaultProps, Component} = props;
+
+    const heading = (
+        <Heading
+            tag="h3"
+            style={{
+                marginBlockEnd: sizing.size_120,
+            }}
+            size="medium"
+            weight="medium"
+        >
+            {name}
+        </Heading>
+    );
+
+    const allStates: StatesType<Component> = [
+        {name: "Default", props: {}},
+        ...states,
+    ];
+
+    if (variantProps.length === 0 || variantProps.length === 1) {
+        return <View key={name}>PLACEHOLDER</View>;
+    }
+
+    return (
+        <View key={name}>
+            {heading}
+            <View style={{gap: sizing.size_280}}>
+                {allStates.map((state) => (
+                    <View key={state.name} style={styles.stateGroup}>
+                        state: {state.name}
+                        <ComponentTooltip details={{State: state.name}}>
+                            <Component {...defaultProps} {...state.props} />
+                        </ComponentTooltip>
+                    </View>
+                ))}
+            </View>
+        </View>
+    );
+};
 const PackageInfo = ({name, components}: {name: string; components: any[]}) => {
     return (
         <View key={name} style={{gap: sizing.size_200}}>
@@ -283,14 +331,24 @@ const PackageInfo = ({name, components}: {name: string; components: any[]}) => {
                 {name}
             </Heading>
             {components.map((component) => (
-                <ComponentInfo
-                    key={component.name}
-                    name={component.name}
-                    Component={component.component}
-                    variantProps={component.variantProps}
-                    states={component.states}
-                    defaultProps={component.defaultProps}
-                />
+                <>
+                    <ComponentInfo
+                        key={component.name}
+                        name={component.name}
+                        Component={component.component}
+                        variantProps={component.variantProps}
+                        states={component.states}
+                        defaultProps={component.defaultProps}
+                    />
+                    <FinalComponentInfo
+                        key={component.name}
+                        name={component.name}
+                        Component={component.component}
+                        variantProps={component.variantProps}
+                        states={component.states}
+                        defaultProps={component.defaultProps}
+                    />
+                </>
             ))}
         </View>
     );
@@ -360,3 +418,10 @@ export const AllComponentsRTL = {
         direction: "rtl",
     },
 };
+
+const styles = StyleSheet.create({
+    stateGroup: {
+        gap: sizing.size_200,
+        border: "1px solid red",
+    },
+});
