@@ -47,7 +47,7 @@ type StatesType<Component extends React.ElementType> = {
 
 const ComponentTooltip = (props: {
     children: React.ReactElement;
-    details: string[];
+    details: Record<string, string>;
 }) => {
     const {children, details} = props;
     const content = (
@@ -58,8 +58,8 @@ const ComponentTooltip = (props: {
                     paddingLeft: "20px",
                 }}
             >
-                {details.map((item, i) => (
-                    <li key={i}>{item}</li>
+                {Object.entries(details).map(([key, value]) => (
+                    <li key={key}>{`${key}: ${value}`}</li>
                 ))}
             </ul>
         </TooltipContent>
@@ -122,9 +122,7 @@ const ComponentInfo = <Component extends React.ElementType>({
                                     gap: sizing.size_040,
                                 }}
                             >
-                                <ComponentTooltip
-                                    details={["State: " + state.name]}
-                                >
+                                <ComponentTooltip details={{State: state.name}}>
                                     <Component {...(props as any)} />
                                 </ComponentTooltip>
                             </View>
@@ -159,10 +157,11 @@ const ComponentInfo = <Component extends React.ElementType>({
                                     [singleVariantProp.propName]: option,
                                 };
 
-                                const comboLabelItems = [
-                                    `${singleVariantProp.propName}: ${option}`,
-                                    `State: ${state.name}`,
-                                ];
+                                const comboLabelItems = {
+                                    [String(singleVariantProp.propName)]:
+                                        String(option),
+                                    State: state.name,
+                                };
 
                                 return (
                                     <View
@@ -242,14 +241,22 @@ const ComponentInfo = <Component extends React.ElementType>({
                                             );
 
                                             // Create a label for the combination
-                                            const comboLabelItems = [
-                                                `${firstVariantProp.propName}: ${firstOption}`,
-                                                ...restVariantProps.map(
-                                                    (vp, vpIndex) =>
-                                                        `${vp.propName}: ${combo[vpIndex]}`,
-                                                ),
-                                                `State: ${state.name}`,
-                                            ];
+                                            const comboLabelItems: Record<
+                                                string,
+                                                string
+                                            > = {
+                                                [String(
+                                                    firstVariantProp.propName,
+                                                )]: String(firstOption),
+                                                State: state.name,
+                                            };
+                                            restVariantProps.forEach(
+                                                (vp, vpIndex) => {
+                                                    comboLabelItems[
+                                                        String(vp.propName)
+                                                    ] = String(combo[vpIndex]);
+                                                },
+                                            );
 
                                             return (
                                                 <View
