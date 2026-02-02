@@ -227,12 +227,13 @@ const ComponentInfo = <Component extends React.ElementType>({
                                 >
                                     {remainingPropCombinations.map(
                                         (combo, index) => {
-                                            const props = {
-                                                ...defaultProps,
-                                                [firstVariantProp.propName]:
-                                                    firstOption,
-                                                ...state.props,
-                                            };
+                                            const props: React.ComponentProps<Component> =
+                                                {
+                                                    ...defaultProps,
+                                                    [firstVariantProp.propName]:
+                                                        firstOption,
+                                                    ...state.props,
+                                                };
 
                                             // Add all the remaining prop values
                                             restVariantProps.forEach(
@@ -282,9 +283,7 @@ const ComponentInfo = <Component extends React.ElementType>({
                                                     <Tooltip
                                                         content={comboLabel}
                                                     >
-                                                        <Component
-                                                            {...(props as any)}
-                                                        />
+                                                        <Component {...props} />
                                                     </Tooltip>
                                                 </View>
                                             );
