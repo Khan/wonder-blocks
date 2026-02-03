@@ -277,6 +277,48 @@ const ComponentInfo = <Component extends React.ElementType>({
     );
 };
 
+function createCombinations(
+    variantProps: {propName: string; options: string[]}[],
+): Array<Array<Record<string, string>>> {
+    if (!variantProps.length) {
+        return [];
+    }
+
+    const buildCombinations = (variantProps: any) => {
+        return variantProps.reduce(
+            (acc: Array<Record<string, string>>, {propName, options}: any) => {
+                const next: Array<Record<string, string>> = [];
+                acc.forEach((combo) => {
+                    options.forEach((option: string) => {
+                        next.push({
+                            ...combo,
+                            [propName]: option,
+                        });
+                    });
+                });
+                return next;
+            },
+            [{}],
+        );
+    };
+
+    if (variantProps.length === 1) {
+        const {propName, options} = variantProps[0];
+        return [options.map((option: string) => ({[propName]: option}))];
+    }
+
+    const [{propName, options}, ...rest] = variantProps;
+    const restCombinations: Array<Record<string, string>> =
+        buildCombinations(rest);
+
+    return options.map((option: string) =>
+        restCombinations.map((combo: Record<string, string>) => ({
+            ...combo,
+            [propName]: option,
+        })),
+    );
+}
+
 const FinalComponentInfo = <Component extends React.ElementType>(props: {
     name: string;
     Component: React.ElementType;
@@ -304,20 +346,57 @@ const FinalComponentInfo = <Component extends React.ElementType>(props: {
         ...states,
     ];
 
-    if (variantProps.length === 0 || variantProps.length === 1) {
-        return <View key={name}>PLACEHOLDER</View>;
-    }
-
     return (
         <View key={name}>
             {heading}
-            <View style={{gap: sizing.size_280}}>
+            <View
+                style={{
+                    gap: sizing.size_280,
+                    // When there are no variant props, we need to render the component states in a row
+                    flexDirection: variantProps.length === 0 ? "row" : "column",
+                }}
+            >
                 {allStates.map((state) => (
                     <View key={state.name} style={styles.stateGroup}>
-                        state: {state.name}
-                        <ComponentTooltip details={{State: state.name}}>
+                        {/* When there are 0 variant props, render only the state props */}
+                        {variantProps.length === 0 && (
+                            <ComponentTooltip details={{State: state.name}}>
+                                <Component {...defaultProps} {...state.props} />
+                            </ComponentTooltip>
+                        )}
+                        {/* When there are 1 or more variant props, we need to create all combinations of the variant props and render each combination as a row */}
+                        {variantProps.length >= 1 &&
+                            createCombinations(variantProps).map(
+                                (
+                                    combinationGroup: Array<
+                                        Record<string, string>
+                                    >,
+                                ) => {
+                                    return (
+                                        <View style={styles.row}>
+                                            {combinationGroup.map((combo) => {
+                                                return (
+                                                    <ComponentTooltip
+                                                        details={{
+                                                            State: state.name,
+                                                            ...combo,
+                                                        }}
+                                                    >
+                                                        <Component
+                                                            {...defaultProps}
+                                                            {...state.props}
+                                                            {...combo}
+                                                        />
+                                                    </ComponentTooltip>
+                                                );
+                                            })}
+                                        </View>
+                                    );
+                                },
+                            )}
+                        {/* <ComponentTooltip details={{State: state.name}}>
                             <Component {...defaultProps} {...state.props} />
-                        </ComponentTooltip>
+                        </ComponentTooltip> */}
                     </View>
                 ))}
             </View>
@@ -423,5 +502,11 @@ const styles = StyleSheet.create({
     stateGroup: {
         gap: sizing.size_200,
         border: "1px solid red",
+    },
+    row: {
+        border: "4px solid blue",
+        flexDirection: "row",
+        gap: sizing.size_200,
+        flexWrap: "wrap",
     },
 });
