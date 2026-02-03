@@ -94,7 +94,7 @@ export type VariantProp<T> = {
     };
 }[keyof T & string];
 
-export type ComponentConfig<ComponentType extends React.ComponentType<any>> = {
+export type ComponentConfig<ComponentType extends React.ElementType> = {
     name: string;
     Component: ComponentType;
     variantProps: ReadonlyArray<VariantProp<PropsFor<ComponentType>>>;
@@ -108,7 +108,7 @@ export type ComponentConfig<ComponentType extends React.ComponentType<any>> = {
 
 // Helper function to create a type-safe component config
 // This function validates that variant prop options match the component's prop types
-const createComponentConfig = <C extends React.ComponentType<any>>(
+const createComponentConfig = <C extends React.ElementType>(
     config: ComponentConfig<C>,
 ): ComponentConfig<C> => config;
 
@@ -532,7 +532,11 @@ export const components = [
      */
     createComponentConfig({
         name: "ActionMenu",
-        Component: ActionMenu as any,
+        // Wrapping the component in a function component to normalize types
+        // since it is a class component with getDerivedStateFromProps
+        Component: (props: PropsFor<typeof ActionMenu>) => (
+            <ActionMenu {...props} />
+        ),
         variantProps: [
             {
                 propName: "disabled",
@@ -549,7 +553,11 @@ export const components = [
     }),
     createComponentConfig({
         name: "ActionMenu opened",
-        Component: ActionMenu as any,
+        // Wrapping the component in a function component to normalize types
+        // since it is a class component with getDerivedStateFromProps
+        Component: (props: PropsFor<typeof ActionMenu>) => (
+            <ActionMenu {...props} />
+        ),
         variantProps: [
             {
                 propName: "children",
@@ -1625,7 +1633,9 @@ export const components = [
      */
     createComponentConfig({
         name: "Tooltip",
-        Component: Tooltip as any,
+        // Wrapping the component in a function component to normalize types
+        // since it is a class component with getDerivedStateFromProps
+        Component: (props: PropsFor<typeof Tooltip>) => <Tooltip {...props} />,
         variantProps: [],
         defaultProps: {
             content: "This is a tooltip",
