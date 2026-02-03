@@ -304,7 +304,6 @@ const DatePicker = (props: Props) => {
                 // Stop propagation to prevent closing parent modals
                 // The overlay is open, so we close it first
                 e.stopPropagation();
-
                 // Mark that we handled this Escape keypress
                 handledEscapeRef.current = true;
                 close();

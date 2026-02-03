@@ -27,8 +27,7 @@ describe("DatePicker", () => {
     });
 
     it("hides the date picker overlay by default", () => {
-        // Arrange
-        // Act
+        // Arrange & Act
         render(<DatePicker updateDate={() => {}} />);
 
         // Assert
