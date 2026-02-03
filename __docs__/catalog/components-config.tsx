@@ -96,7 +96,7 @@ export type VariantProp<T> = {
 
 export type ComponentConfig<ComponentType extends React.ComponentType<any>> = {
     name: string;
-    component: ComponentType;
+    Component: ComponentType;
     variantProps: ReadonlyArray<VariantProp<PropsFor<ComponentType>>>;
     defaultProps: PropsFor<ComponentType>;
     states: ReadonlyArray<{
@@ -151,7 +151,7 @@ export const components = [
      */
     createComponentConfig({
         name: "Accordion",
-        component: Accordion,
+        Component: Accordion,
         variantProps: [
             {
                 propName: "caretPosition",
@@ -184,7 +184,7 @@ export const components = [
      */
     createComponentConfig({
         name: "StatusBadge",
-        component: StatusBadge,
+        Component: StatusBadge,
         variantProps: [
             {
                 propName: "showBorder",
@@ -211,7 +211,7 @@ export const components = [
     }),
     createComponentConfig({
         name: "NeutralBadge",
-        component: NeutralBadge,
+        Component: NeutralBadge,
         variantProps: [
             {
                 propName: "showBorder",
@@ -233,7 +233,7 @@ export const components = [
     }),
     createComponentConfig({
         name: "GemBadge",
-        component: GemBadge,
+        Component: GemBadge,
         variantProps: [
             {
                 propName: "label",
@@ -252,7 +252,7 @@ export const components = [
     }),
     createComponentConfig({
         name: "StreakBadge",
-        component: StreakBadge,
+        Component: StreakBadge,
         variantProps: [
             {
                 propName: "label",
@@ -271,7 +271,7 @@ export const components = [
     }),
     createComponentConfig({
         name: "DueBadge",
-        component: DueBadge,
+        Component: DueBadge,
         variantProps: [
             {
                 propName: "kind",
@@ -290,7 +290,7 @@ export const components = [
     }),
     createComponentConfig({
         name: "Badge",
-        component: Badge,
+        Component: Badge,
         variantProps: [
             {
                 propName: "showBorder",
@@ -315,7 +315,7 @@ export const components = [
      */
     createComponentConfig({
         name: "Banner",
-        component: Banner,
+        Component: Banner,
         variantProps: [
             {
                 propName: "kind",
@@ -350,7 +350,7 @@ export const components = [
      */
     createComponentConfig({
         name: "BirthdayPicker",
-        component: BirthdayPicker,
+        Component: BirthdayPicker,
         variantProps: [
             {
                 propName: "defaultValue",
@@ -375,7 +375,7 @@ export const components = [
      */
     createComponentConfig({
         name: "Breadcrumbs",
-        component: Breadcrumbs,
+        Component: Breadcrumbs,
         variantProps: [],
         defaultProps: {
             children: [
@@ -396,7 +396,7 @@ export const components = [
      */
     createComponentConfig({
         name: "Button",
-        component: Button,
+        Component: Button,
         variantProps: [
             {
                 propName: "size",
@@ -425,7 +425,7 @@ export const components = [
     }),
     createComponentConfig({
         name: "ActivityButton",
-        component: ActivityButton,
+        Component: ActivityButton,
         variantProps: [
             {
                 propName: "kind",
@@ -445,7 +445,7 @@ export const components = [
      */
     createComponentConfig({
         name: "Card",
-        component: Card,
+        Component: Card,
         variantProps: [
             {
                 propName: "paddingSize",
@@ -485,7 +485,7 @@ export const components = [
      */
     createComponentConfig({
         name: "CompactCell",
-        component: CompactCell,
+        Component: CompactCell,
         variantProps: [
             {
                 propName: "horizontalRule",
@@ -506,7 +506,7 @@ export const components = [
     }),
     createComponentConfig({
         name: "DetailCell",
-        component: DetailCell,
+        Component: DetailCell,
         variantProps: [
             {
                 propName: "horizontalRule",
@@ -532,7 +532,7 @@ export const components = [
      */
     createComponentConfig({
         name: "ActionMenu",
-        component: ActionMenu as any,
+        Component: ActionMenu as any,
         variantProps: [
             {
                 propName: "disabled",
@@ -549,7 +549,7 @@ export const components = [
     }),
     createComponentConfig({
         name: "ActionMenu opened",
-        component: ActionMenu as any,
+        Component: ActionMenu as any,
         variantProps: [
             {
                 propName: "children",
@@ -607,7 +607,7 @@ export const components = [
     }),
     createComponentConfig({
         name: "MultiSelect",
-        component: MultiSelect,
+        Component: MultiSelect,
         variantProps: [
             {
                 propName: "selectedValues",
@@ -631,7 +631,7 @@ export const components = [
     }),
     createComponentConfig({
         name: "MultiSelect opened",
-        component: MultiSelect,
+        Component: MultiSelect,
         variantProps: [
             {
                 propName: "children",
@@ -721,7 +721,7 @@ export const components = [
     }),
     createComponentConfig({
         name: "SingleSelect",
-        component: SingleSelect,
+        Component: SingleSelect,
         variantProps: [
             {
                 propName: "selectedValue",
@@ -746,7 +746,7 @@ export const components = [
     }),
     createComponentConfig({
         name: "SingleSelect opened",
-        component: SingleSelect,
+        Component: SingleSelect,
         variantProps: [
             {
                 propName: "children",
@@ -841,7 +841,7 @@ export const components = [
      */
     createComponentConfig({
         name: "TextField",
-        component: TextField,
+        Component: TextField,
         variantProps: [
             {
                 propName: "value",
@@ -866,7 +866,7 @@ export const components = [
     }),
     createComponentConfig({
         name: "TextArea",
-        component: TextArea,
+        Component: TextArea,
         variantProps: [
             {
                 propName: "value",
@@ -891,7 +891,7 @@ export const components = [
     }),
     createComponentConfig({
         name: "Checkbox",
-        component: Checkbox,
+        Component: Checkbox,
         variantProps: [
             {
                 propName: "checked",
@@ -912,7 +912,7 @@ export const components = [
     }),
     createComponentConfig({
         name: "CheckboxGroup",
-        component: CheckboxGroup,
+        Component: CheckboxGroup,
         variantProps: [
             {
                 propName: "errorMessage",
@@ -947,7 +947,7 @@ export const components = [
     }),
     createComponentConfig({
         name: "RadioGroup",
-        component: RadioGroup,
+        Component: RadioGroup,
         variantProps: [
             {
                 propName: "errorMessage",
@@ -985,7 +985,7 @@ export const components = [
      */
     createComponentConfig({
         name: "PhosphorIcon",
-        component: PhosphorIcon,
+        Component: PhosphorIcon,
         variantProps: [
             {
                 propName: "size",
@@ -1001,7 +1001,7 @@ export const components = [
     }),
     createComponentConfig({
         name: "Icon (with custom icons, GemIcon, StreakIcon)",
-        component: Icon,
+        Component: Icon,
         variantProps: [
             {
                 propName: "size",
@@ -1027,7 +1027,7 @@ export const components = [
      */
     createComponentConfig({
         name: "IconButton",
-        component: IconButton,
+        Component: IconButton,
         variantProps: [
             {
                 propName: "size",
@@ -1051,7 +1051,7 @@ export const components = [
     }),
     createComponentConfig({
         name: "ActivityIconButton",
-        component: ActivityIconButton,
+        Component: ActivityIconButton,
         variantProps: [
             {
                 propName: "actionType",
@@ -1072,7 +1072,7 @@ export const components = [
     }),
     createComponentConfig({
         name: "ConversationIconButton",
-        component: ConversationIconButton,
+        Component: ConversationIconButton,
         variantProps: [
             {
                 propName: "actionType",
@@ -1135,7 +1135,7 @@ export const components = [
     ].map(({componentName, FormComponent, componentProps}) =>
         createComponentConfig({
             name: `LabeledField with ${componentName}`,
-            component: LabeledField,
+            Component: LabeledField,
             variantProps: [],
             defaultProps: {
                 field: (
@@ -1186,7 +1186,7 @@ export const components = [
      */
     createComponentConfig({
         name: "Link",
-        component: Link,
+        Component: Link,
         variantProps: [
             {
                 propName: "inline",
@@ -1219,7 +1219,7 @@ export const components = [
      */
     createComponentConfig({
         name: "FlexibleDialog",
-        component: FlexibleDialog,
+        Component: FlexibleDialog,
         variantProps: [],
         defaultProps: {
             title: "Dialog Title",
@@ -1235,7 +1235,7 @@ export const components = [
     }),
     createComponentConfig({
         name: "OnePaneDialog",
-        component: OnePaneDialog,
+        Component: OnePaneDialog,
         variantProps: [],
         defaultProps: {
             title: "Dialog Title",
@@ -1256,7 +1256,7 @@ export const components = [
      */
     createComponentConfig({
         name: "Pill",
-        component: Pill,
+        Component: Pill,
         variantProps: [
             {
                 propName: "size",
@@ -1293,7 +1293,7 @@ export const components = [
      */
     createComponentConfig({
         name: "PopoverContent",
-        component: PopoverContent,
+        Component: PopoverContent,
         variantProps: [],
         defaultProps: {
             title: "Popover Title",
@@ -1333,7 +1333,7 @@ export const components = [
      */
     createComponentConfig({
         name: "CircularSpinner",
-        component: CircularSpinner,
+        Component: CircularSpinner,
         variantProps: [
             {
                 propName: "size",
@@ -1349,7 +1349,7 @@ export const components = [
      */
     createComponentConfig({
         name: "SearchField",
-        component: SearchField,
+        Component: SearchField,
         variantProps: [
             {
                 propName: "value",
@@ -1376,7 +1376,7 @@ export const components = [
      */
     createComponentConfig({
         name: "Switch",
-        component: Switch,
+        Component: Switch,
         variantProps: [
             {
                 propName: "icon",
@@ -1403,7 +1403,7 @@ export const components = [
      */
     createComponentConfig({
         name: "NavigationTabs",
-        component: NavigationTabs,
+        Component: NavigationTabs,
         variantProps: [],
         defaultProps: {
             "aria-label": "Navigation tabs",
@@ -1484,7 +1484,7 @@ export const components = [
     }),
     createComponentConfig({
         name: "Tabs",
-        component: Tabs,
+        Component: Tabs,
         variantProps: [],
         defaultProps: {
             "aria-label": "Tabs",
@@ -1587,7 +1587,7 @@ export const components = [
      */
     createComponentConfig({
         name: "Toolbar",
-        component: Toolbar,
+        Component: Toolbar,
         variantProps: [
             {
                 propName: "size",
@@ -1625,7 +1625,7 @@ export const components = [
      */
     createComponentConfig({
         name: "Tooltip",
-        component: Tooltip as any,
+        Component: Tooltip as any,
         variantProps: [],
         defaultProps: {
             content: "This is a tooltip",
@@ -1642,7 +1642,7 @@ export const components = [
      */
     createComponentConfig({
         name: "Heading",
-        component: Heading,
+        Component: Heading,
         variantProps: [
             {
                 propName: "size",
@@ -1670,7 +1670,7 @@ export const components = [
     }),
     createComponentConfig({
         name: "BodyText",
-        component: BodyText,
+        Component: BodyText,
         variantProps: [
             {
                 propName: "size",
@@ -1689,7 +1689,7 @@ export const components = [
     }),
     createComponentConfig({
         name: "Legacy Typography Components",
-        component: LegacyTypographyComponents,
+        Component: LegacyTypographyComponents,
         variantProps: [],
         defaultProps: {},
         states: [],

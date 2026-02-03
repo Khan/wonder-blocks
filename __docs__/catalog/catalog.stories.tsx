@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import Tooltip, {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
@@ -20,14 +20,14 @@ export default {
 type VariantProp<Component extends React.ElementType> = {
     [K in keyof React.ComponentProps<Component>]: {
         propName: K;
-        options: Array<React.ComponentProps<Component>[K]>;
+        options: ReadonlyArray<React.ComponentProps<Component>[K]>;
     };
 }[keyof React.ComponentProps<Component>];
 
-type StatesType<Component extends React.ElementType> = {
+type StatesType<Component extends React.ElementType> = ReadonlyArray<{
     name: string;
     props: Partial<React.ComponentProps<Component>>;
-}[];
+}>;
 
 const ComponentTooltip = (props: {
     children: React.ReactElement;
@@ -59,15 +59,29 @@ const ComponentTooltip = (props: {
     );
 };
 function createCombinations(
-    variantProps: {propName: string; options: string[]}[],
+    variantProps: ReadonlyArray<{
+        propName: string;
+        options: ReadonlyArray<string>;
+    }>,
 ): Array<Array<Record<string, string>>> {
     if (!variantProps.length) {
         return [];
     }
 
-    const buildCombinations = (variantProps: any) => {
-        return variantProps.reduce(
-            (acc: Array<Record<string, string>>, {propName, options}: any) => {
+    const buildCombinations = (
+        props: ReadonlyArray<{
+            propName: string;
+            options: ReadonlyArray<string>;
+        }>,
+    ): Array<Record<string, string>> =>
+        props.reduce(
+            (
+                acc: Array<Record<string, string>>,
+                {
+                    propName,
+                    options,
+                }: {propName: string; options: ReadonlyArray<string>},
+            ) => {
                 const next: Array<Record<string, string>> = [];
                 acc.forEach((combo) => {
                     options.forEach((option: string) => {
@@ -81,7 +95,6 @@ function createCombinations(
             },
             [{}],
         );
-    };
 
     if (variantProps.length === 1) {
         const {propName, options} = variantProps[0];
@@ -103,7 +116,7 @@ function createCombinations(
 const ComponentInfo = <Component extends React.ElementType>(props: {
     name: string;
     Component: React.ElementType;
-    variantProps: VariantProp<React.ElementType>[];
+    variantProps: ReadonlyArray<VariantProp<React.ElementType>>;
     states: StatesType<React.ElementType>;
     defaultProps: React.ComponentProps<React.ElementType>;
 }) => {
@@ -184,7 +197,13 @@ const ComponentInfo = <Component extends React.ElementType>(props: {
         </View>
     );
 };
-const PackageInfo = ({name, components}: {name: string; components: any[]}) => {
+const PackageInfo = ({
+    name,
+    components,
+}: {
+    name: string;
+    components: ReadonlyArray<PropsFor<typeof ComponentInfo>>;
+}) => {
     return (
         <View key={name} style={{gap: sizing.size_200}}>
             <Heading tag="h2" size="large" weight="bold">
@@ -194,7 +213,7 @@ const PackageInfo = ({name, components}: {name: string; components: any[]}) => {
                 <ComponentInfo
                     key={component.name}
                     name={component.name}
-                    Component={component.component}
+                    Component={component.Component}
                     variantProps={component.variantProps}
                     states={component.states}
                     defaultProps={component.defaultProps}
