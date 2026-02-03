@@ -1,0 +1,7 @@
+{
+  "codeConnect": {
+    "include": ["/packages/wonder-blocks-progress-spinner/**/*.{tsx,jsx}"],
+    "label": "React",
+    "interactiveSetupFigmaFileUrl": "https://www.figma.com/design/EuFu0U7gqc1koXm8ZhlOLp/%E2%9A%A1%EF%B8%8F-Components?m=auto"
+  }
+}
