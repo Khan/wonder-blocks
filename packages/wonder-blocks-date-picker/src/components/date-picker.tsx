@@ -163,6 +163,8 @@ const DatePicker = (props: Props) => {
     const datePickerInputRef = React.useRef<HTMLInputElement | null>(null);
     const datePickerRef = React.useRef<HTMLElement | null>(null);
     const refWrapper = React.useRef<HTMLDivElement>(null);
+    // Track if we handled Escape on keydown to prevent keyup from closing modal
+    const handledEscapeRef = React.useRef(false);
 
     const open = React.useCallback(() => {
         if (!disabled) {
@@ -189,10 +191,9 @@ const DatePicker = (props: Props) => {
         }
     }, [selectedDate]);
 
-    // Add/remove keyup listener to prevent Escape from reaching parent modals
+    // Add/remove keyup listener to handle Escape key properly
     React.useEffect(() => {
         const handleKeyup = (e: KeyboardEvent) => {
-            // Stop Escape keyup from propagating to parent modals
             if (e.key === "Escape") {
                 const target = e.target as Node;
                 const thisElement = refWrapper.current;
@@ -203,8 +204,14 @@ const DatePicker = (props: Props) => {
                 const isInCalendar = dayPickerCalendar?.contains(target);
 
                 if (isInThisElement || isInCalendar) {
-                    // Stop propagation to prevent modal from closing
-                    e.stopPropagation();
+                    // If we handled Escape on keydown (closed the overlay),
+                    // stop keyup from propagating to prevent modal from closing
+                    if (handledEscapeRef.current) {
+                        e.stopPropagation();
+                        handledEscapeRef.current = false; // Reset for next time
+                    }
+                    // If we didn't handle it (overlay was already closed),
+                    // allow propagation so modal can close
                 }
             }
         };
@@ -303,10 +310,18 @@ const DatePicker = (props: Props) => {
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
         if (e.key === "Escape") {
-            // Stop propagation to prevent closing parent modals
-            e.stopPropagation();
-            close();
-            datePickerInputRef.current?.focus();
+            // Only handle Escape if the overlay is open
+            if (showOverlay) {
+                // Stop propagation to prevent closing parent modals
+                // The overlay is open, so we close it first
+                e.stopPropagation();
+                // Mark that we handled this Escape keypress
+                handledEscapeRef.current = true;
+                close();
+                datePickerInputRef.current?.focus();
+            }
+            // If overlay is closed, don't stop propagation
+            // This allows Escape to close parent modals
         }
         if (e.key === "ArrowDown" && !showOverlay) {
             e.preventDefault();
@@ -337,6 +352,8 @@ const DatePicker = (props: Props) => {
                     if (e.key === "Escape") {
                         // Stop propagation to prevent closing parent modals
                         e.stopPropagation();
+                        // Mark that we handled this Escape keypress
+                        handledEscapeRef.current = true;
                         close();
                         datePickerInputRef.current?.focus();
                     }
