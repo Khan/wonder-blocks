@@ -264,7 +264,7 @@ const PackageInfo = ({
 };
 
 export const AllComponents = {
-    render: (args) => {
+    render: (args: {enableTooltips: boolean}) => {
         // Group components by package
         const componentsByPackage = components.reduce(
             (acc, component) => {
