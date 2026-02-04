@@ -4,7 +4,11 @@ import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import Tooltip, {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
-import {components, componentsNotIncluded} from "./components-config";
+import {
+    components,
+    componentsNotIncluded,
+    openedComponents,
+} from "./components-config";
 import {themeModes} from "../../.storybook/modes";
 
 export default {
@@ -299,9 +303,28 @@ export const AllComponentsRTL = {
     },
 };
 
+export const OpenedComponents = {
+    render: function Render() {
+        return (
+            <View
+                style={{
+                    flexDirection: "row",
+                    gap: sizing.size_200,
+                    flexWrap: "wrap",
+                }}
+            >
+                {openedComponents.map((component) => (
+                    <ComponentInfo {...component} key={component.name} />
+                ))}
+            </View>
+        );
+    },
+};
+
 const styles = StyleSheet.create({
     stateGroup: {
         gap: sizing.size_200,
+        flexWrap: "wrap",
     },
     row: {
         flexDirection: "row",
@@ -314,6 +337,7 @@ const styles = StyleSheet.create({
     },
     tooltipWrapper: {
         gap: sizing.size_040,
+        flexWrap: "wrap",
     },
     componentHeading: {
         marginBlockEnd: sizing.size_120,
@@ -321,8 +345,10 @@ const styles = StyleSheet.create({
     allComponents: {
         gap: sizing.size_480,
         padding: sizing.size_200,
+        flexWrap: "wrap",
     },
     packageInfo: {
         gap: sizing.size_200,
+        flexWrap: "wrap",
     },
 });
