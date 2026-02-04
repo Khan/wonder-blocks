@@ -49,20 +49,24 @@ type StatesType<Component extends React.ElementType> = ReadonlyArray<{
 const ComponentTooltip = (props: {
     children: React.ReactElement;
     details: Record<string, string>;
+    enableTooltips?: boolean;
 }) => {
-    const {children, details} = props;
+    const {children, details, enableTooltips = false} = props;
     const content = (
-        <TooltipContent>
-            <ul className={css(styles.tooltipList)}>
-                {Object.entries(details).map(([key, value]) => (
-                    <li key={key}>{`${key}: ${value}`}</li>
-                ))}
-            </ul>
-        </TooltipContent>
+        <ul className={css(styles.tooltipList)}>
+            {Object.entries(details).map(([key, value]) => (
+                <li key={key}>{`${key}: ${value}`}</li>
+            ))}
+        </ul>
     );
     return (
         <View style={styles.tooltipWrapper}>
-            <Tooltip content={content}>{children}</Tooltip>
+            {enableTooltips && (
+                <Tooltip content={<TooltipContent>{content}</TooltipContent>}>
+                    {children}
+                </Tooltip>
+            )}
+            {!enableTooltips && children}
         </View>
     );
 };
@@ -127,8 +131,16 @@ const ComponentInfo = <Component extends React.ElementType>(props: {
     variantProps: ReadonlyArray<VariantProp<React.ElementType>>;
     states: StatesType<React.ElementType>;
     defaultProps: React.ComponentProps<React.ElementType>;
+    enableTooltips?: boolean;
 }) => {
-    const {name, variantProps, states, defaultProps, Component} = props;
+    const {
+        name,
+        variantProps,
+        states,
+        defaultProps,
+        Component,
+        enableTooltips,
+    } = props;
 
     const heading = (
         <Heading
@@ -161,7 +173,10 @@ const ComponentInfo = <Component extends React.ElementType>(props: {
                     <View key={state.name} style={styles.stateGroup}>
                         {/* When there are 0 variant props, render only the state props */}
                         {variantProps.length === 0 && (
-                            <ComponentTooltip details={{State: state.name}}>
+                            <ComponentTooltip
+                                details={{State: state.name}}
+                                enableTooltips={enableTooltips}
+                            >
                                 <Component {...defaultProps} {...state.props} />
                             </ComponentTooltip>
                         )}
@@ -190,6 +205,9 @@ const ComponentInfo = <Component extends React.ElementType>(props: {
                                                                 ) +
                                                                 i
                                                             }
+                                                            enableTooltips={
+                                                                enableTooltips
+                                                            }
                                                         >
                                                             <Component
                                                                 {...defaultProps}
@@ -213,9 +231,11 @@ const ComponentInfo = <Component extends React.ElementType>(props: {
 const PackageInfo = ({
     name,
     components,
+    enableTooltips,
 }: {
     name: string;
     components: ReadonlyArray<PropsFor<typeof ComponentInfo>>;
+    enableTooltips?: boolean;
 }) => {
     return (
         <View key={name} style={styles.packageInfo}>
@@ -230,6 +250,7 @@ const PackageInfo = ({
                     variantProps={component.variantProps}
                     states={component.states}
                     defaultProps={component.defaultProps}
+                    enableTooltips={enableTooltips}
                 />
             ))}
         </View>
@@ -237,7 +258,7 @@ const PackageInfo = ({
 };
 
 export const AllComponents = {
-    render: () => {
+    render: (args) => {
         // Group components by package
         const componentsByPackage = components.reduce(
             (acc, component) => {
@@ -259,6 +280,7 @@ export const AllComponents = {
                             key={packageName}
                             name={packageName}
                             components={packageComponents}
+                            enableTooltips={args.enableTooltips}
                         />
                     ),
                 )}
@@ -276,6 +298,9 @@ export const AllComponents = {
                 </View>
             </View>
         );
+    },
+    args: {
+        enableTooltips: true,
     },
 };
 
