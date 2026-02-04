@@ -5,6 +5,7 @@ import Button, {ActivityButton} from "@khanacademy/wonder-blocks-button";
 import IconButton, {
     ActivityIconButton,
     ConversationIconButton,
+    NodeIconButton,
 } from "@khanacademy/wonder-blocks-icon-button";
 import {
     Accordion,
@@ -32,6 +33,7 @@ import {
     MultiSelect,
     SingleSelect,
     OptionItem,
+    Combobox,
 } from "@khanacademy/wonder-blocks-dropdown";
 import {
     TextField,
@@ -51,6 +53,7 @@ import {
 import {FlexibleDialog, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
 import Pill from "@khanacademy/wonder-blocks-pill";
 import {PopoverContent} from "@khanacademy/wonder-blocks-popover";
+import {DatePicker} from "@khanacademy/wonder-blocks-date-picker";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
 import Switch from "@khanacademy/wonder-blocks-switch";
@@ -561,6 +564,21 @@ export const components = [
         package: "wonder-blocks-cell",
     }),
     /**
+     * wonder-blocks-date-picker
+     */
+    createComponentConfig({
+        name: "DatePicker",
+        Component: DatePicker,
+        variantProps: [],
+        defaultProps: {
+            updateDate: () => {},
+            placeholder: "Select a date",
+            inputAriaLabel: "Select a date",
+        },
+        states: [{name: "Disabled", props: {disabled: true}}],
+        package: "wonder-blocks-date-picker",
+    }),
+    /**
      * wonder-blocks-dropdown
      */
     createComponentConfig({
@@ -880,6 +898,61 @@ export const components = [
         states: [],
         package: "wonder-blocks-dropdown",
     }),
+    createComponentConfig({
+        name: "Combobox",
+        Component: Combobox,
+        variantProps: [
+            {
+                propName: "selectionType",
+                options: ["single", "multiple"],
+            },
+        ],
+        defaultProps: {
+            value: "",
+            selectionType: "single",
+            placeholder: "Select an option",
+            children: [
+                <OptionItem key="option1" label="Option 1" value="option1" />,
+                <OptionItem key="option2" label="Option 2" value="option2" />,
+                <OptionItem key="option3" label="Option 3" value="option3" />,
+            ],
+        },
+        states: [
+            {name: "Disabled", props: {disabled: true}},
+            {name: "Error", props: {error: true}},
+        ],
+        package: "wonder-blocks-dropdown",
+    }),
+    createComponentConfig({
+        name: "Combobox (Opened)",
+        Component: Combobox,
+        variantProps: [
+            {
+                propName: "selectionType",
+                options: ["single", "multiple"],
+            },
+        ],
+        defaultProps: {
+            value: "option1",
+            selectionType: "single",
+            opened: true,
+            placeholder: "Select an option",
+            children: [
+                <OptionItem key="option1" label="Option 1" value="option1" />,
+                <OptionItem key="option2" label="Option 2" value="option2" />,
+                <OptionItem
+                    key="option3"
+                    label="Option 3"
+                    value="option3"
+                    disabled={true}
+                />,
+            ],
+            // Extra margin to show dropdown content in visual tests
+            style: {marginBlockEnd: "16rem"},
+        },
+        states: [],
+        package: "wonder-blocks-dropdown",
+    }),
     /**
      * wonder-blocks-form
      */
@@ -1130,6 +1203,26 @@ export const components = [
         defaultProps: {
             icon: IconMappings.cookieBold,
             "aria-label": "Conversation Icon Button",
+        },
+        states: [{name: "Disabled", props: {disabled: true}}],
+        package: "wonder-blocks-icon-button",
+    }),
+    createComponentConfig({
+        name: "NodeIconButton",
+        Component: NodeIconButton,
+        variantProps: [
+            {
+                propName: "size",
+                options: ["small", "large"],
+            },
+            {
+                propName: "actionType",
+                options: ["notStarted", "attempted", "complete"],
+            },
+        ],
+        defaultProps: {
+            icon: IconMappings.cookieBold,
+            "aria-label": "Node Icon Button",
         },
         states: [{name: "Disabled", props: {disabled: true}}],
         package: "wonder-blocks-icon-button",
