@@ -321,6 +321,10 @@ export const OpenedComponents = {
             </View>
         );
     },
+    parameters: {
+        // Use wide viewport so they are all captured in the initial viewport.
+        viewport: {value: "wide"},
+    },
 };
 
 const styles = StyleSheet.create({
