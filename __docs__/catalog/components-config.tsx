@@ -192,11 +192,11 @@ export const components = [
         variantProps: [
             {
                 propName: "caretPosition",
-                options: ["start", "end"] as const,
+                options: ["start", "end"],
             },
             {
                 propName: "cornerKind",
-                options: ["square", "rounded", "rounded-per-section"] as const,
+                options: ["square", "rounded", "rounded-per-section"],
             },
         ],
         defaultProps: {
@@ -225,18 +225,18 @@ export const components = [
         variantProps: [
             {
                 propName: "showBorder",
-                options: [true, false] as const,
+                options: [true, false],
             },
             {
                 propName: "kind",
-                options: ["info", "success", "warning", "critical"] as const,
+                options: ["info", "success", "warning", "critical"],
             },
             {
                 propName: "icon",
                 options: [
                     <PhosphorIcon icon={IconMappings.cookieBold} />,
                     undefined,
-                ] as const,
+                ],
             },
         ],
         defaultProps: {
@@ -252,14 +252,14 @@ export const components = [
         variantProps: [
             {
                 propName: "showBorder",
-                options: [true, false] as const,
+                options: [true, false],
             },
             {
                 propName: "icon",
                 options: [
                     <PhosphorIcon icon={IconMappings.cookieBold} />,
                     undefined,
-                ] as const,
+                ],
             },
         ],
         defaultProps: {
@@ -274,11 +274,11 @@ export const components = [
         variantProps: [
             {
                 propName: "label",
-                options: ["GemBadge", ""] as const,
+                options: ["GemBadge", ""],
             },
             {
                 propName: "showIcon",
-                options: [true, false] as const,
+                options: [true, false],
             },
         ],
         defaultProps: {
@@ -293,11 +293,11 @@ export const components = [
         variantProps: [
             {
                 propName: "label",
-                options: ["StreakBadge", ""] as const,
+                options: ["StreakBadge", ""],
             },
             {
                 propName: "showIcon",
-                options: [true, false] as const,
+                options: [true, false],
             },
         ],
         defaultProps: {
@@ -312,11 +312,11 @@ export const components = [
         variantProps: [
             {
                 propName: "kind",
-                options: ["due", "overdue"] as const,
+                options: ["due", "overdue"],
             },
             {
                 propName: "showIcon",
-                options: [true, false] as const,
+                options: [true, false],
             },
         ],
         defaultProps: {
@@ -331,14 +331,14 @@ export const components = [
         variantProps: [
             {
                 propName: "showBorder",
-                options: [true, false] as const,
+                options: [true, false],
             },
             {
                 propName: "icon",
                 options: [
                     <PhosphorIcon icon={IconMappings.cookieBold} />,
                     undefined,
-                ] as const,
+                ],
             },
         ],
         defaultProps: {
@@ -356,24 +356,24 @@ export const components = [
         variantProps: [
             {
                 propName: "kind",
-                options: ["info", "success", "warning", "critical"] as const,
+                options: ["info", "success", "warning", "critical"],
             },
             {
                 propName: "onDismiss",
-                options: [() => {}, undefined] as const,
+                options: [() => {}, undefined],
             },
             {
                 propName: "actions",
                 options: [
                     [
                         {
-                            type: "button" as const,
+                            type: "button",
                             title: "Action",
                             onClick: () => {},
                         },
                     ],
                     [],
-                ] as const,
+                ],
             },
         ],
         defaultProps: {
@@ -391,11 +391,11 @@ export const components = [
         variantProps: [
             {
                 propName: "defaultValue",
-                options: ["2021-05-26", undefined] as const,
+                options: ["2021-05-26", undefined],
             },
             {
                 propName: "monthYearOnly",
-                options: [true, false] as const,
+                options: [true, false],
             },
         ],
         defaultProps: {
@@ -437,15 +437,15 @@ export const components = [
         variantProps: [
             {
                 propName: "size",
-                options: ["small", "medium", "large"] as const,
+                options: ["small", "medium", "large"],
             },
             {
                 propName: "kind",
-                options: ["primary", "secondary", "tertiary"] as const,
+                options: ["primary", "secondary", "tertiary"],
             },
             {
                 propName: "actionType",
-                options: ["progressive", "destructive", "neutral"] as const,
+                options: ["progressive", "destructive", "neutral"],
             },
         ],
         defaultProps: {
@@ -466,7 +466,7 @@ export const components = [
         variantProps: [
             {
                 propName: "kind",
-                options: ["primary", "secondary", "tertiary"] as const,
+                options: ["primary", "secondary", "tertiary"],
             },
         ],
         defaultProps: {
@@ -474,7 +474,7 @@ export const components = [
             startIcon: IconMappings.cookieBold,
             endIcon: IconMappings.cookieBold,
         },
-        states: [{name: "Default", props: {disabled: true}}],
+        states: [{name: "Disabled", props: {disabled: true}}],
         package: "wonder-blocks-button",
     }),
     /**
@@ -486,23 +486,19 @@ export const components = [
         variantProps: [
             {
                 propName: "paddingSize",
-                options: ["medium", "small", "none"] as const,
+                options: ["medium", "small", "none"],
             },
             {
                 propName: "background",
-                options: [
-                    "base-subtle",
-                    "base-default",
-                    customBackgroundImage,
-                ] as const,
+                options: ["base-subtle", "base-default", customBackgroundImage],
             },
             {
                 propName: "elevation",
-                options: ["none", "low"] as const,
+                options: ["none", "low"],
             },
             {
                 propName: "borderRadius",
-                options: ["small", "medium"] as const,
+                options: ["small", "medium"],
             },
         ],
         defaultProps: {
@@ -526,7 +522,7 @@ export const components = [
         variantProps: [
             {
                 propName: "horizontalRule",
-                options: ["full-width", "inset", "none"] as const,
+                options: ["full-width", "inset", "none"],
             },
         ],
         defaultProps: {
@@ -547,7 +543,7 @@ export const components = [
         variantProps: [
             {
                 propName: "horizontalRule",
-                options: ["full-width", "inset", "none"] as const,
+                options: ["full-width", "inset", "none"],
             },
         ],
         defaultProps: {
@@ -577,7 +573,7 @@ export const components = [
         variantProps: [
             {
                 propName: "disabled",
-                options: [false, true] as const,
+                options: [false, true],
             },
         ],
         defaultProps: {
@@ -589,7 +585,7 @@ export const components = [
         package: "wonder-blocks-dropdown",
     }),
     createComponentConfig({
-        name: "ActionMenu opened",
+        name: "ActionMenu (Opened)",
         // Wrapping the component in a function component to normalize types
         // since it is a class component with getDerivedStateFromProps
         Component: (props: PropsFor<typeof ActionMenu>) => (
@@ -639,12 +635,13 @@ export const components = [
                             active={true}
                         />,
                     ],
-                ] as const,
+                ],
             },
         ],
         defaultProps: {
             opened: true,
             menuText: "ActionMenu",
+            // Extra margin to show dropdown content in visual tests
             style: {marginBlockEnd: "16rem"},
         },
         states: [],
@@ -675,7 +672,7 @@ export const components = [
         package: "wonder-blocks-dropdown",
     }),
     createComponentConfig({
-        name: "MultiSelect opened",
+        name: "MultiSelect (Opened)",
         Component: MultiSelect,
         variantProps: [
             {
@@ -746,7 +743,7 @@ export const components = [
                             }
                         />,
                     ],
-                ] as const,
+                ],
             },
         ],
         defaultProps: {
@@ -754,6 +751,7 @@ export const components = [
             opened: true,
             onChange: () => {},
             isFilterable: true,
+            // Extra spacing to show dropdown content in visual tests
             style: {
                 marginBlockEnd: "30rem",
                 paddingInlineEnd: sizing.size_960,
@@ -790,7 +788,7 @@ export const components = [
         package: "wonder-blocks-dropdown",
     }),
     createComponentConfig({
-        name: "SingleSelect opened",
+        name: "SingleSelect (Opened)",
         Component: SingleSelect,
         variantProps: [
             {
@@ -862,7 +860,7 @@ export const components = [
                             }
                         />,
                     ],
-                ] as const,
+                ],
             },
         ],
         defaultProps: {
@@ -871,6 +869,7 @@ export const components = [
             onChange: () => {},
             isFilterable: true,
             placeholder: "Select an option",
+            // Extra spacing to show dropdown content in visual tests
             style: {
                 marginBlockEnd: "30rem",
                 paddingInlineEnd: sizing.size_960,
@@ -940,7 +939,7 @@ export const components = [
         variantProps: [
             {
                 propName: "checked",
-                options: [false, true, null] as const,
+                options: [false, true, null],
             },
         ],
         defaultProps: {
@@ -961,7 +960,7 @@ export const components = [
         variantProps: [
             {
                 propName: "errorMessage",
-                options: ["", "Error message"] as const,
+                options: ["", "Error message"],
             },
         ],
         defaultProps: {
@@ -996,7 +995,7 @@ export const components = [
         variantProps: [
             {
                 propName: "errorMessage",
-                options: ["", "Error message"] as const,
+                options: ["", "Error message"],
             },
         ],
         defaultProps: {
@@ -1034,7 +1033,7 @@ export const components = [
         variantProps: [
             {
                 propName: "size",
-                options: ["small", "medium", "large", "xlarge"] as const,
+                options: ["small", "medium", "large", "xlarge"],
             },
         ],
         defaultProps: {
@@ -1050,7 +1049,7 @@ export const components = [
         variantProps: [
             {
                 propName: "size",
-                options: ["small", "medium", "large", "xlarge"] as const,
+                options: ["small", "medium", "large", "xlarge"],
             },
             {
                 propName: "children",
@@ -1076,15 +1075,15 @@ export const components = [
         variantProps: [
             {
                 propName: "size",
-                options: ["small", "medium", "large"] as const,
+                options: ["small", "medium", "large"],
             },
             {
                 propName: "kind",
-                options: ["primary", "secondary", "tertiary"] as const,
+                options: ["primary", "secondary", "tertiary"],
             },
             {
                 propName: "actionType",
-                options: ["progressive", "destructive", "neutral"] as const,
+                options: ["progressive", "destructive", "neutral"],
             },
         ],
         defaultProps: {
@@ -1100,11 +1099,11 @@ export const components = [
         variantProps: [
             {
                 propName: "actionType",
-                options: ["progressive", "neutral"] as const,
+                options: ["progressive", "neutral"],
             },
             {
                 propName: "kind",
-                options: ["primary", "secondary", "tertiary"] as const,
+                options: ["primary", "secondary", "tertiary"],
             },
         ],
         defaultProps: {
@@ -1121,11 +1120,11 @@ export const components = [
         variantProps: [
             {
                 propName: "actionType",
-                options: ["progressive", "neutral"] as const,
+                options: ["progressive", "neutral"],
             },
             {
                 propName: "kind",
-                options: ["primary", "secondary", "tertiary"] as const,
+                options: ["primary", "secondary", "tertiary"],
             },
         ],
         defaultProps: {
@@ -1197,11 +1196,11 @@ export const components = [
         variantProps: [
             {
                 propName: "inline",
-                options: [false, true] as const,
+                options: [false, true],
             },
             {
                 propName: "target",
-                options: [undefined, "_blank"] as const,
+                options: [undefined, "_blank"],
             },
         ],
         defaultProps: {
@@ -1267,7 +1266,7 @@ export const components = [
         variantProps: [
             {
                 propName: "size",
-                options: ["small", "medium", "large"] as const,
+                options: ["small", "medium", "large"],
             },
             {
                 propName: "kind",
@@ -1279,7 +1278,7 @@ export const components = [
                     "warning",
                     "critical",
                     "transparent",
-                ] as const,
+                ],
             },
         ],
         defaultProps: {
@@ -1344,7 +1343,7 @@ export const components = [
         variantProps: [
             {
                 propName: "size",
-                options: ["xsmall", "small", "medium", "large"] as const,
+                options: ["xsmall", "small", "medium", "large"],
             },
         ],
         defaultProps: {},
@@ -1360,11 +1359,11 @@ export const components = [
         variantProps: [
             {
                 propName: "value",
-                options: ["", "Search text"] as const,
+                options: ["", "Search text"],
             },
             {
                 propName: "placeholder",
-                options: ["", "Search..."] as const,
+                options: ["", "Search..."],
             },
         ],
         defaultProps: {
@@ -1390,11 +1389,11 @@ export const components = [
                 options: [
                     undefined,
                     <PhosphorIcon icon={IconMappings.cookieBold} />,
-                ] as const,
+                ],
             },
             {
                 propName: "checked",
-                options: [true, false] as const,
+                options: [true, false],
             },
         ],
         defaultProps: {
@@ -1598,11 +1597,11 @@ export const components = [
         variantProps: [
             {
                 propName: "size",
-                options: ["small", "medium"] as const,
+                options: ["small", "medium"],
             },
             {
                 propName: "color",
-                options: ["light", "dark"] as const,
+                options: ["light", "dark"],
             },
         ],
         defaultProps: {
@@ -1655,17 +1654,11 @@ export const components = [
         variantProps: [
             {
                 propName: "size",
-                options: [
-                    "small",
-                    "medium",
-                    "large",
-                    "xlarge",
-                    "xxlarge",
-                ] as const,
+                options: ["small", "medium", "large", "xlarge", "xxlarge"],
             },
             {
                 propName: "weight",
-                options: ["medium", "semi", "bold"] as const,
+                options: ["medium", "semi", "bold"],
             },
         ],
         defaultProps: {
@@ -1683,11 +1676,11 @@ export const components = [
         variantProps: [
             {
                 propName: "size",
-                options: ["xsmall", "small", "medium"] as const,
+                options: ["xsmall", "small", "medium"],
             },
             {
                 propName: "weight",
-                options: ["medium", "semi", "bold"] as const,
+                options: ["medium", "semi", "bold"],
             },
         ],
         defaultProps: {

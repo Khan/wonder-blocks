@@ -1,5 +1,5 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
+import {StyleSheet, css} from "aphrodite";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
@@ -36,12 +36,7 @@ const ComponentTooltip = (props: {
     const {children, details} = props;
     const content = (
         <TooltipContent>
-            <ul
-                style={{
-                    margin: 0,
-                    paddingLeft: "20px",
-                }}
-            >
+            <ul className={css(styles.tooltipList)}>
                 {Object.entries(details).map(([key, value]) => (
                     <li key={key}>{`${key}: ${value}`}</li>
                 ))}
@@ -49,11 +44,7 @@ const ComponentTooltip = (props: {
         </TooltipContent>
     );
     return (
-        <View
-            style={{
-                gap: sizing.size_040,
-            }}
-        >
+        <View style={styles.tooltipWrapper}>
             <Tooltip content={content}>{children}</Tooltip>
         </View>
     );
@@ -188,9 +179,6 @@ const ComponentInfo = <Component extends React.ElementType>(props: {
                                     );
                                 },
                             )}
-                        {/* <ComponentTooltip details={{State: state.name}}>
-                            <Component {...defaultProps} {...state.props} />
-                        </ComponentTooltip> */}
                     </View>
                 ))}
             </View>
@@ -296,5 +284,12 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         gap: sizing.size_200,
         flexWrap: "wrap",
+    },
+    tooltipList: {
+        margin: 0,
+        paddingLeft: sizing.size_160,
+    },
+    tooltipWrapper: {
+        gap: sizing.size_040,
     },
 });
