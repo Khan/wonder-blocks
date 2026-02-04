@@ -185,6 +185,9 @@ const formFieldsToUseWithLabeledField: {
     },
 ];
 
+/**
+ * Components to include in the catalog
+ */
 export const components = [
     /**
      * wonder-blocks-accordion
@@ -1792,8 +1795,15 @@ export const components = [
     }),
 ];
 
+/**
+ * Components not included in the catalog. This list is include in the catalog
+ * as a reminder that not everything can be covered in the catalog
+ */
 export const componentsNotIncluded = [
+    // overlay components don't present well in the catalog
     {name: "DrawerDialog + DrawerLauncher", package: "wonder-blocks-modal"},
+    // overlay components don't present well in the catalog
     {name: "ModalLauncher", package: "wonder-blocks-modal"},
+    // DatePicker doesn't current support an opened state
     {name: "DatePicker opened state", package: "wonder-blocks-date-picker"},
 ];
