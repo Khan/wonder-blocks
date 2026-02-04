@@ -1,5 +1,6 @@
 /* eslint-disable max-lines */
 import * as React from "react";
+import {Temporal} from "temporal-polyfill";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import Button, {ActivityButton} from "@khanacademy/wonder-blocks-button";
 import IconButton, {
@@ -1869,6 +1870,42 @@ export const openedComponents = [
         states: [],
         package: "wonder-blocks-dropdown",
     }),
+    createComponentConfig({
+        name: "DatePicker (Opened State)",
+        Component: (props) => {
+            const ref = React.useRef<HTMLDivElement>(null);
+
+            React.useEffect(() => {
+                // Wait for the DatePicker to render, then dispatch a click
+                const timeout = setTimeout(() => {
+                    // Click the input to open the calendar
+                    const el = ref.current?.querySelector("input");
+                    if (el) {
+                        el.click();
+                    }
+                }, 0);
+                return () => clearTimeout(timeout);
+            }, []);
+
+            return (
+                <div ref={ref}>
+                    <DatePicker {...props} />
+                </div>
+            );
+        },
+        variantProps: [],
+        defaultProps: {
+            selectedDate: Temporal.PlainDate.from({
+                year: 2025,
+                month: 1,
+                day: 1,
+            }),
+            placeholder: "Select a date",
+            updateDate: () => {},
+        },
+        states: [],
+        package: "wonder-blocks-date-picker",
+    }),
 ];
 
 /**
@@ -1880,6 +1917,4 @@ export const componentsNotIncluded = [
     {name: "DrawerDialog + DrawerLauncher", package: "wonder-blocks-modal"},
     // overlay components don't present well in the catalog
     {name: "ModalLauncher", package: "wonder-blocks-modal"},
-    // DatePicker doesn't current support an opened state
-    {name: "DatePicker opened state", package: "wonder-blocks-date-picker"},
 ];
