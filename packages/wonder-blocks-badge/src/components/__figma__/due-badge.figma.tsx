@@ -11,7 +11,9 @@ Everything within (ternary operators, etc) would be returned as-is to the agent 
 1. Comments are used to take the place of logic, explaining behaviors
 2. To appease the linter, we define consts. The values are never read!
 */
-const hasIcon = true;
+const HAS_ICON = true;
+const DUE_STATUS = "";
+const ICON_ARIA_LABEL = "";
 
 figma.connect(
     DueBadge,
@@ -23,18 +25,15 @@ figma.connect(
                 Start: "start",
                 "Icon Only": "icon-only",
             }),
-            label: figma.textContent("Text/Badge"),
+            label: figma.textContent("Badge"),
         },
         example: (props: any) => {
             return (
                 <DueBadge
-                    label={
-                        props.label
-                    } /* DON'T include label prop if icon==="icon-only" */
-                    showIcon={
-                        hasIcon
-                    } /* Only include showIcon prop if icon==="start" or "icon-only" */
-                    iconAriaLabel={props.label}
+                    kind={DUE_STATUS} // "due" | "overdue"
+                    label={props.label} // DON'T include label prop if icon==="icon-only"
+                    showIcon={HAS_ICON} // Only include showIcon prop if icon==="start" or "icon-only"
+                    iconAriaLabel={ICON_ARIA_LABEL} // show if icon=="icon-only" and look for a11y annotation for value
                 />
             );
         },
