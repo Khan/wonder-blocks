@@ -139,6 +139,7 @@ const ComponentInfo = <Component extends React.ElementType>(props: {
                     gap: sizing.size_280,
                     // When there are no variant props, we need to render the component states in a row
                     flexDirection: variantProps.length === 0 ? "row" : "column",
+                    flexWrap: "wrap",
                 }}
             >
                 {allStates.map((state) => (
