@@ -669,6 +669,29 @@ export const components = [
         package: "wonder-blocks-dropdown",
     }),
     createComponentConfig({
+        name: "ActionItem",
+        Component: ActionItem,
+        variantProps: [
+            {
+                propName: "horizontalRule",
+                options: ["none", "full-width", "inset"],
+            },
+        ],
+        defaultProps: {
+            label: "Action Item",
+            onClick: () => {},
+            leftAccessory: <PhosphorIcon icon={IconMappings.cookieBold} />,
+            rightAccessory: <PhosphorIcon icon={IconMappings.caretRightBold} />,
+            subtitle1: "Subtitle 1",
+            subtitle2: "Subtitle 2",
+        },
+        states: [
+            {name: "Disabled", props: {disabled: true}},
+            {name: "Active", props: {active: true}},
+        ],
+        package: "wonder-blocks-dropdown",
+    }),
+    createComponentConfig({
         name: "MultiSelect",
         Component: MultiSelect,
         variantProps: [
@@ -808,6 +831,7 @@ export const components = [
         ],
         package: "wonder-blocks-dropdown",
     }),
+
     createComponentConfig({
         name: "SingleSelect (Opened)",
         Component: SingleSelect,
@@ -902,6 +926,47 @@ export const components = [
         package: "wonder-blocks-dropdown",
     }),
     createComponentConfig({
+        name: "OptionItem",
+        Component: OptionItem,
+        variantProps: [
+            {
+                propName: "selected",
+                options: [false, true],
+            },
+            {
+                propName: "variant",
+                options: ["check", "checkbox"],
+            },
+        ],
+        defaultProps: {
+            label: "Option Item",
+            value: "option-item",
+        },
+        states: [
+            {name: "Disabled", props: {disabled: true}},
+            {
+                name: "With Accessories",
+                props: {
+                    leftAccessory: (
+                        <PhosphorIcon icon={IconMappings.cookieBold} />
+                    ),
+                    rightAccessory: (
+                        <PhosphorIcon icon={IconMappings.caretRightBold} />
+                    ),
+                    variant: undefined,
+                },
+            },
+            {
+                name: "With Subtitles",
+                props: {
+                    subtitle1: "Subtitle 1",
+                    subtitle2: "Subtitle 2",
+                },
+            },
+        ],
+        package: "wonder-blocks-dropdown",
+    }),
+    createComponentConfig({
         name: "Combobox",
         Component: Combobox,
         variantProps: [
@@ -956,6 +1021,7 @@ export const components = [
         states: [],
         package: "wonder-blocks-dropdown",
     }),
+
     /**
      * wonder-blocks-form
      */
