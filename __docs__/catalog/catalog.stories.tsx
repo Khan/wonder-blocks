@@ -17,7 +17,6 @@ export default {
     parameters: {
         chromatic: {
             modes: themeModes,
-            delay: 500,
         },
         a11y: {
             // Explicitly setting a11y tests to report warnings (instead of errors)
@@ -26,10 +25,6 @@ export default {
             // basis since there are some special cases. A11y tests can still be
             // checked manually
             test: "todo",
-        },
-        viewport: {
-            width: 1084,
-            height: 1900,
         },
     },
 };
