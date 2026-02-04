@@ -2,7 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {StoryObj} from "@storybook/react-vite";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
-import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
+import {Heading} from "@khanacademy/wonder-blocks-typography";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import Tooltip, {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 import {
@@ -13,7 +13,7 @@ import {
 import {themeModes} from "../../.storybook/modes";
 
 export default {
-    name: "Catalog",
+    title: "Catalog",
     tags: ["!autodocs"],
     parameters: {
         chromatic: {
