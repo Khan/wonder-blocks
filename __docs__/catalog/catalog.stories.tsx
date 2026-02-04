@@ -1,5 +1,5 @@
 import * as React from "react";
-import {StyleSheet, css} from "aphrodite";
+import {StyleSheet} from "aphrodite";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
@@ -53,11 +53,11 @@ const ComponentTooltip = (props: {
 }) => {
     const {children, details, enableTooltips = false} = props;
     const content = (
-        <ul className={css(styles.tooltipList)}>
+        <View tag="ul" style={styles.tooltipList}>
             {Object.entries(details).map(([key, value]) => (
                 <li key={key}>{`${key}: ${value}`}</li>
             ))}
-        </ul>
+        </View>
     );
     return (
         <View style={styles.tooltipWrapper}>
