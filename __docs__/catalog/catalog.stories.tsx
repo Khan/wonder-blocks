@@ -116,9 +116,7 @@ const ComponentInfo = <Component extends React.ElementType>(props: {
     const heading = (
         <Heading
             tag="h3"
-            style={{
-                marginBlockEnd: sizing.size_120,
-            }}
+            style={styles.componentHeading}
             size="medium"
             weight="medium"
         >
@@ -194,7 +192,7 @@ const PackageInfo = ({
     components: ReadonlyArray<PropsFor<typeof ComponentInfo>>;
 }) => {
     return (
-        <View key={name} style={{gap: sizing.size_200}}>
+        <View key={name} style={styles.packageInfo}>
             <Heading tag="h2" size="large" weight="bold">
                 {name}
             </Heading>
@@ -228,7 +226,7 @@ export const AllComponents = {
         );
 
         return (
-            <View style={{gap: sizing.size_480, padding: sizing.size_200}}>
+            <View style={styles.allComponents}>
                 {Object.entries(componentsByPackage).map(
                     ([packageName, packageComponents]) => (
                         <PackageInfo
@@ -244,10 +242,7 @@ export const AllComponents = {
                     </Heading>
                     <ul>
                         {componentsNotIncluded.map((component) => (
-                            <li
-                                key={component.name}
-                                style={{display: "list-item"}}
-                            >
+                            <li key={component.name}>
                                 {component.name} ({component.package})
                             </li>
                         ))}
@@ -307,5 +302,15 @@ const styles = StyleSheet.create({
     },
     tooltipWrapper: {
         gap: sizing.size_040,
+    },
+    componentHeading: {
+        marginBlockEnd: sizing.size_120,
+    },
+    allComponents: {
+        gap: sizing.size_480,
+        padding: sizing.size_200,
+    },
+    packageInfo: {
+        gap: sizing.size_200,
     },
 });
