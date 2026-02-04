@@ -17,6 +17,7 @@ export default {
     parameters: {
         chromatic: {
             modes: themeModes,
+            delay: 500,
         },
         a11y: {
             // Explicitly setting a11y tests to report warnings (instead of errors)
