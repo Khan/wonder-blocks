@@ -6,10 +6,12 @@ These files tell the Figma MCP how to extract the vital data from Figma file mar
 
 ## Steps
 
-1. Look at the WB component's API / props and try to map to the Figma props
-2. If there aren't clear mappings, first check if there are `nestedProps` that can map or can be translated via the figma API to map
-3. In the example function, outputted component props that are conditional should be shown with a comment for the conditional logic to include / exclude
-4. Consider if we need multiple variants defined if one Figma component maps to multiple WB components e.g. the Figma "Utility Button" component maps to both  the WB Button and the IconButton. Proper syntax is in the Reference docs below.
+1. Look at the WB component's API / props
+2. Discover Figma component props by using the Figma MCP with the figma.com URL specified in the figma.conect() function. If none exists, ALWAYS ask the developer for it
+3. Map the WB component props to Figma component props
+4. If there aren't clear mappings, first check if there are `nestedProps` that can map or can be translated via the figma API to map
+5. In the example function, outputted component props that are conditional should be shown with a comment for the conditional logic to include / exclude
+6. Consider if we need multiple variants defined if one Figma component maps to multiple WB components e.g. the Figma "Utility Button" component maps to both  the WB Button and the IconButton. Proper syntax is in the Reference docs below.
 
 ## Example
 
