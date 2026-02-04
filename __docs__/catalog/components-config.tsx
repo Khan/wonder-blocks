@@ -1583,45 +1583,11 @@ export const components = [
     }),
 ];
 
+/**
+ * Keep track of components with opened state separately so that we can include
+ * the popper in visual tests since they're part of the initial viewport
+ */
 export const openedComponents = [
-    createComponentConfig({
-        name: "Combobox (Opened)",
-        Component: (props) => {
-            const [opened, setOpened] = React.useState(false);
-
-            React.useEffect(() => {
-                setOpened(true);
-            }, []);
-
-            return <Combobox {...props} opened={opened} />;
-        },
-        variantProps: [
-            {
-                propName: "selectionType",
-                options: ["single", "multiple"],
-            },
-        ],
-        defaultProps: {
-            value: "option1",
-            selectionType: "single",
-            opened: true,
-            placeholder: "Select an option",
-            children: [
-                <OptionItem key="option1" label="Option 1" value="option1" />,
-                <OptionItem key="option2" label="Option 2" value="option2" />,
-                <OptionItem
-                    key="option3"
-                    label="Option 3"
-                    value="option3"
-                    disabled={true}
-                />,
-            ],
-            // Extra margin to show dropdown content in visual tests
-            style: {marginBlockEnd: "16rem"},
-        },
-        states: [],
-        package: "wonder-blocks-dropdown",
-    }),
     createComponentConfig({
         name: "ActionMenu (Opened)",
         // Wrapping the component in a function component to normalize types
@@ -1679,8 +1645,6 @@ export const openedComponents = [
         defaultProps: {
             opened: true,
             menuText: "ActionMenu",
-            // Extra margin to show dropdown content in visual tests
-            style: {marginBlockEnd: "16rem"},
         },
         states: [],
         package: "wonder-blocks-dropdown",
@@ -1765,13 +1729,11 @@ export const openedComponents = [
             opened: true,
             onChange: () => {},
             isFilterable: true,
-            // Extra spacing to show dropdown content in visual tests
-            style: {
-                marginBlockEnd: "30rem",
-                paddingInlineEnd: sizing.size_960,
-                marginInlineEnd: sizing.size_400,
-            },
             "aria-label": "Example MultiSelect",
+            style: {
+                // Add margin to avoid overlapping
+                marginInlineEnd: "150px",
+            },
         },
         states: [],
         package: "wonder-blocks-dropdown",
@@ -1858,13 +1820,51 @@ export const openedComponents = [
             onChange: () => {},
             isFilterable: true,
             placeholder: "Select an option",
-            // Extra spacing to show dropdown content in visual tests
-            style: {
-                marginBlockEnd: "30rem",
-                paddingInlineEnd: sizing.size_960,
-                marginInlineEnd: sizing.size_400,
-            },
             "aria-label": "Example SingleSelect",
+            style: {
+                // Add margin to avoid overlapping
+                marginInlineEnd: "150px",
+            },
+        },
+        states: [],
+        package: "wonder-blocks-dropdown",
+    }),
+    createComponentConfig({
+        name: "Combobox (Opened)",
+        Component: (props) => {
+            const [opened, setOpened] = React.useState(false);
+
+            React.useEffect(() => {
+                // Workaround to ensure opened popper is placed properly for visual
+                // tests
+                setTimeout(() => {
+                    setOpened(true);
+                }, 0);
+            }, []);
+
+            return <Combobox {...props} opened={opened} />;
+        },
+        variantProps: [
+            {
+                propName: "selectionType",
+                options: ["single", "multiple"],
+            },
+        ],
+        defaultProps: {
+            value: "option1",
+            selectionType: "single",
+            opened: true,
+            placeholder: "Select an option",
+            children: [
+                <OptionItem key="option1" label="Option 1" value="option1" />,
+                <OptionItem key="option2" label="Option 2" value="option2" />,
+                <OptionItem
+                    key="option3"
+                    label="Option 3"
+                    value="option3"
+                    disabled={true}
+                />,
+            ],
         },
         states: [],
         package: "wonder-blocks-dropdown",

@@ -314,7 +314,9 @@ export const OpenedComponents = {
                 }}
             >
                 {openedComponents.map((component) => (
-                    <ComponentInfo {...component} key={component.name} />
+                    <View style={styles.openedComponent} key={component.name}>
+                        <ComponentInfo {...component} />
+                    </View>
                 ))}
             </View>
         );
@@ -350,5 +352,8 @@ const styles = StyleSheet.create({
     packageInfo: {
         gap: sizing.size_200,
         flexWrap: "wrap",
+    },
+    openedComponent: {
+        marginBlockEnd: "300px",
     },
 });
