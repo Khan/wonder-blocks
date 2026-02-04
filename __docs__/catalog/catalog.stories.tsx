@@ -9,17 +9,14 @@ import {
     componentsNotIncluded,
     openedComponents,
 } from "./components-config";
-import {allModes} from "../../.storybook/modes";
+import {themeModes} from "../../.storybook/modes";
 
 export default {
     name: "Catalog",
     tags: ["!autodocs"],
     parameters: {
         chromatic: {
-            modes: {
-                thunderblocks: allModes.themeThunderBlocks,
-                zdefault: allModes.themeDefault,
-            },
+            modes: themeModes,
             delay: 500,
         },
         a11y: {
