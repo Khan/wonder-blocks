@@ -14,6 +14,14 @@ export default {
         chromatic: {
             modes: themeModes,
         },
+        a11y: {
+            // Explicitly setting a11y tests to report warnings (instead of errors)
+            // for these stories since it covers all components.
+            // A11y tests should be run on an individual component
+            // basis since there are some special cases. A11y tests can still be
+            // checked manually
+            test: "todo",
+        },
     },
 };
 
