@@ -1590,12 +1590,60 @@ export const components = [
  */
 export const openedComponents = [
     createComponentConfig({
+        name: "DatePicker (Opened State)",
+        Component: (props) => {
+            const ref = React.useRef<HTMLDivElement>(null);
+
+            React.useEffect(() => {
+                // Wait for the DatePicker to render, then dispatch a click
+                const timeout = setTimeout(() => {
+                    // Click the input to open the calendar
+                    const el = ref.current?.querySelector("input");
+                    if (el) {
+                        el.click();
+                    }
+                }, 0);
+                return () => clearTimeout(timeout);
+            }, []);
+
+            return (
+                <div ref={ref}>
+                    <DatePicker {...props} />
+                </div>
+            );
+        },
+        variantProps: [],
+        defaultProps: {
+            selectedDate: Temporal.PlainDate.from({
+                year: 2025,
+                month: 1,
+                day: 1,
+            }),
+            placeholder: "Select a date",
+            updateDate: () => {},
+            style: {
+                marginInlineEnd: "100px",
+            },
+        },
+        states: [],
+        package: "wonder-blocks-date-picker",
+    }),
+    createComponentConfig({
         name: "ActionMenu (Opened)",
         // Wrapping the component in a function component to normalize types
         // since it is a class component with getDerivedStateFromProps
-        Component: (props: PropsFor<typeof ActionMenu>) => (
-            <ActionMenu {...props} />
-        ),
+        Component: (props: PropsFor<typeof ActionMenu>) => {
+            const [opened, setOpened] = React.useState(false);
+
+            React.useEffect(() => {
+                // Workaround to ensure opened popper is placed properly for visual
+                // tests
+                setTimeout(() => {
+                    setOpened(true);
+                }, 0);
+            }, []);
+            return <ActionMenu {...props} opened={opened} />;
+        },
         variantProps: [
             {
                 propName: "children",
@@ -1652,7 +1700,18 @@ export const openedComponents = [
     }),
     createComponentConfig({
         name: "MultiSelect (Opened)",
-        Component: MultiSelect,
+        Component: (props: PropsFor<typeof MultiSelect>) => {
+            const [opened, setOpened] = React.useState(false);
+
+            React.useEffect(() => {
+                // Workaround to ensure opened popper is placed properly for visual
+                // tests
+                setTimeout(() => {
+                    setOpened(true);
+                }, 0);
+            }, []);
+            return <MultiSelect {...props} opened={opened} />;
+        },
         variantProps: [
             {
                 propName: "children",
@@ -1741,7 +1800,18 @@ export const openedComponents = [
     }),
     createComponentConfig({
         name: "SingleSelect (Opened)",
-        Component: SingleSelect,
+        Component: (props: PropsFor<typeof SingleSelect>) => {
+            const [opened, setOpened] = React.useState(false);
+
+            React.useEffect(() => {
+                // Workaround to ensure opened popper is placed properly for visual
+                // tests
+                setTimeout(() => {
+                    setOpened(true);
+                }, 0);
+            }, []);
+            return <SingleSelect {...props} opened={opened} />;
+        },
         variantProps: [
             {
                 propName: "children",
@@ -1869,42 +1939,6 @@ export const openedComponents = [
         },
         states: [],
         package: "wonder-blocks-dropdown",
-    }),
-    createComponentConfig({
-        name: "DatePicker (Opened State)",
-        Component: (props) => {
-            const ref = React.useRef<HTMLDivElement>(null);
-
-            React.useEffect(() => {
-                // Wait for the DatePicker to render, then dispatch a click
-                const timeout = setTimeout(() => {
-                    // Click the input to open the calendar
-                    const el = ref.current?.querySelector("input");
-                    if (el) {
-                        el.click();
-                    }
-                }, 0);
-                return () => clearTimeout(timeout);
-            }, []);
-
-            return (
-                <div ref={ref}>
-                    <DatePicker {...props} />
-                </div>
-            );
-        },
-        variantProps: [],
-        defaultProps: {
-            selectedDate: Temporal.PlainDate.from({
-                year: 2025,
-                month: 1,
-                day: 1,
-            }),
-            placeholder: "Select a date",
-            updateDate: () => {},
-        },
-        states: [],
-        package: "wonder-blocks-date-picker",
     }),
 ];
 
