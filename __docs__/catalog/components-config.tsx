@@ -1512,25 +1512,6 @@ export const components = [
         package: "wonder-blocks-toolbar",
     }),
     /**
-     * wonder-blocks-tooltip
-     */
-    createComponentConfig({
-        name: "Tooltip",
-        // Wrapping the component in a function component to normalize types
-        // since it is a class component with getDerivedStateFromProps
-        Component: (props: PropsFor<typeof Tooltip>) => <Tooltip {...props} />,
-        variantProps: [],
-        defaultProps: {
-            content: "This is a tooltip",
-            children: "Hover over me",
-            opened: true,
-            placement: "right",
-            title: "Title",
-        },
-        states: [],
-        package: "wonder-blocks-tooltip",
-    }),
-    /**
      * wonder-blocks-typography
      */
     createComponentConfig({
@@ -1939,6 +1920,25 @@ export const openedComponents = [
         },
         states: [],
         package: "wonder-blocks-dropdown",
+    }),
+    /**
+     * wonder-blocks-tooltip
+     */
+    createComponentConfig({
+        name: "Tooltip",
+        // Wrapping the component in a function component to normalize types
+        // since it is a class component with getDerivedStateFromProps
+        Component: (props: PropsFor<typeof Tooltip>) => <Tooltip {...props} />,
+        variantProps: [],
+        defaultProps: {
+            content: "This is a tooltip",
+            children: "Hover over me",
+            opened: true,
+            placement: "bottom",
+            title: "Title",
+        },
+        states: [],
+        package: "wonder-blocks-tooltip",
     }),
 ];
 
