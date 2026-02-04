@@ -1,5 +1,5 @@
-import figma from "@figma/code-connect";
-import React from "react";
+import {figma} from "@figma/code-connect";
+import * as React from "react";
 import RadioGroup from "../radio-group";
 import Choice from "../choice";
 

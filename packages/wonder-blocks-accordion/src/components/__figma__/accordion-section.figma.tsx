@@ -1,5 +1,5 @@
-import React from "react";
-import figma from "@figma/code-connect";
+import * as React from "react";
+import {figma} from "@figma/code-connect";
 import AccordionSection from "../accordion-section";
 
 figma.connect(
@@ -7,6 +7,7 @@ figma.connect(
     "https://www.figma.com/design/EuFu0U7gqc1koXm8ZhlOLp/%E2%9A%A1%EF%B8%8F-Components?node-id=10108%3A12032",
     {
         props: {
+            expanded: figma.boolean("Expanded"),
             content: figma.children("Panel Content"),
             headerProps: figma.nestedProps("Header Style", {
                 header: figma.enum("Content Type", {
@@ -18,7 +19,6 @@ figma.connect(
                     Start: "start",
                 }),
             }),
-            expanded: figma.boolean("Expanded"),
             cornerKind: figma.enum("Corner Style", {
                 Default: "square",
                 "All Round": "rounded",

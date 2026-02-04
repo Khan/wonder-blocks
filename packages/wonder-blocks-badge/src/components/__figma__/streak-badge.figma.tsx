@@ -1,6 +1,9 @@
-import React from "react";
-import figma from "@figma/code-connect";
+import * as React from "react";
+import {figma} from "@figma/code-connect";
 import {StreakBadge} from "../streak-badge";
+
+const HAS_ICON = true;
+const ICON_ARIA_LABEL = "";
 
 figma.connect(
     StreakBadge,

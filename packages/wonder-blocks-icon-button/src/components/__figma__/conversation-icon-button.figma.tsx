@@ -1,5 +1,5 @@
-import React from "react";
-import figma from "@figma/code-connect";
+import * as React from "react";
+import {figma} from "@figma/code-connect";
 import {ConversationIconButton} from "../conversation-icon-button";
 
 const ICON = <React.Fragment />;

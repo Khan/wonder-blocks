@@ -1,5 +1,5 @@
 import * as React from "react";
-import figma from "@figma/code-connect";
+import {figma} from "@figma/code-connect";
 import ActionMenu from "../action-menu";
 import ActionItem from "../action-item";
 
