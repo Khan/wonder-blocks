@@ -1,7 +1,7 @@
 // This file is used by the `typecheck` command in package.json
 /* Visit https://aka.ms/tsconfig to read more about this file */
 {
-    "exclude": ["**/dist", "coverage", "coverage-ts"],
+    "exclude": ["**/dist", "coverage", "coverage-ts", "**/*.figma.tsx", "**/__figma__/**"],
     "extends": "./tsconfig-common.json",
     "compilerOptions": {
         "noEmit": true,
