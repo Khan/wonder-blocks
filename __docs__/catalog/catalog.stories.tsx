@@ -22,6 +22,18 @@ export default {
             // checked manually
             test: "todo",
         },
+        viewport: {
+            options: {
+                max: {
+                    name: "max",
+                    styles: {
+                        width: "1263px",
+                        height: "20167px",
+                    },
+                },
+            },
+            value: "max",
+        },
     },
 };
 
