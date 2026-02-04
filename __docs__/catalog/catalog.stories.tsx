@@ -187,9 +187,15 @@ const ComponentInfo = <Component extends React.ElementType>(props: {
                                     combinationGroup: Array<
                                         Record<string, string>
                                     >,
+                                    i,
                                 ) => {
                                     return (
-                                        <View style={styles.row}>
+                                        <View
+                                            style={styles.row}
+                                            key={JSON.stringify(
+                                                combinationGroup,
+                                            )}
+                                        >
                                             {combinationGroup.map(
                                                 (combo, i) => {
                                                     return (
