@@ -175,22 +175,31 @@ const ComponentInfo = <Component extends React.ElementType>(props: {
                                 ) => {
                                     return (
                                         <View style={styles.row}>
-                                            {combinationGroup.map((combo) => {
-                                                return (
-                                                    <ComponentTooltip
-                                                        details={{
-                                                            State: state.name,
-                                                            ...combo,
-                                                        }}
-                                                    >
-                                                        <Component
-                                                            {...defaultProps}
-                                                            {...state.props}
-                                                            {...combo}
-                                                        />
-                                                    </ComponentTooltip>
-                                                );
-                                            })}
+                                            {combinationGroup.map(
+                                                (combo, i) => {
+                                                    return (
+                                                        <ComponentTooltip
+                                                            details={{
+                                                                State: state.name,
+                                                                ...combo,
+                                                            }}
+                                                            key={
+                                                                state.name +
+                                                                JSON.stringify(
+                                                                    combo,
+                                                                ) +
+                                                                i
+                                                            }
+                                                        >
+                                                            <Component
+                                                                {...defaultProps}
+                                                                {...state.props}
+                                                                {...combo}
+                                                            />
+                                                        </ComponentTooltip>
+                                                    );
+                                                },
+                                            )}
                                         </View>
                                     );
                                 },
