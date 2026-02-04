@@ -1,13 +1,14 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
+import {StoryObj} from "@storybook/react-vite";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
-import {Heading} from "@khanacademy/wonder-blocks-typography";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import Tooltip, {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 import {
     components,
-    componentsNotIncluded,
     openedComponents,
+    overlayComponents,
 } from "./components-config";
 import {themeModes} from "../../.storybook/modes";
 
@@ -259,6 +260,7 @@ const PackageInfo = ({
 };
 
 export const AllComponents = {
+    name: "Components",
     render: (args: {enableTooltips: boolean}) => {
         // Group components by package
         const componentsByPackage = components.reduce(
@@ -285,18 +287,6 @@ export const AllComponents = {
                         />
                     ),
                 )}
-                <View>
-                    <Heading tag="h2" size="large" weight="bold">
-                        Components not covered in the catalog
-                    </Heading>
-                    <ul>
-                        {componentsNotIncluded.map((component) => (
-                            <li key={component.name}>
-                                {component.name} ({component.package})
-                            </li>
-                        ))}
-                    </ul>
-                </View>
             </View>
         );
     },
@@ -306,6 +296,7 @@ export const AllComponents = {
 };
 
 export const AllComponentsHover = {
+    name: "Components / Hover",
     render: AllComponents.render,
     parameters: {
         pseudo: {
@@ -315,6 +306,7 @@ export const AllComponentsHover = {
 };
 
 export const AllComponentsFocus = {
+    name: "Components / Focus",
     render: AllComponents.render,
     parameters: {
         pseudo: {
@@ -324,6 +316,7 @@ export const AllComponentsFocus = {
 };
 
 export const AllComponentsPress = {
+    name: "Components / Press",
     render: AllComponents.render,
     parameters: {
         pseudo: {
@@ -333,13 +326,14 @@ export const AllComponentsPress = {
 };
 
 export const AllComponentsRTL = {
+    name: "Components / RTL",
     render: AllComponents.render,
     globals: {
         direction: "rtl",
     },
 };
 
-export const OpenedComponents = {
+export const FloatingComponents = {
     render: function Render() {
         return (
             <View
@@ -360,6 +354,35 @@ export const OpenedComponents = {
     parameters: {
         // Use wide viewport so they are all captured in the initial viewport.
         viewport: {value: "wide"},
+    },
+};
+
+export const OverlayComponents: StoryObj = {
+    render: function Render(_args, {globals}) {
+        return (
+            <View style={styles.allComponents} key={globals.theme}>
+                {overlayComponents.map((component) => (
+                    <View key={component.name}>
+                        <Heading
+                            tag="h2"
+                            size="large"
+                            weight="bold"
+                            style={styles.componentHeading}
+                        >
+                            {component.name}
+                        </Heading>
+                        <iframe
+                            title={component.name}
+                            src={`/iframe.html?id=${component.storyId}&globals=theme:${globals.theme}`}
+                            style={{
+                                height: "500px",
+                                border: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
+                            }}
+                        />
+                    </View>
+                ))}
+            </View>
+        );
     },
 };
 

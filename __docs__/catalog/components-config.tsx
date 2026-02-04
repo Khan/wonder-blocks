@@ -1942,13 +1942,20 @@ export const openedComponents = [
     }),
 ];
 
-/**
- * Components not included in the catalog. This list is include in the catalog
- * as a reminder that not everything can be covered in the catalog
- */
-export const componentsNotIncluded = [
-    // overlay components don't present well in the catalog
-    {name: "DrawerDialog + DrawerLauncher", package: "wonder-blocks-modal"},
-    // overlay components don't present well in the catalog
-    {name: "ModalLauncher", package: "wonder-blocks-modal"},
+export const overlayComponents = [
+    {
+        name: "DrawerDialog + DrawerLauncher",
+        storyId:
+            "packages-modal-testing-snapshots-drawerlauncher--inline-start",
+    },
+    {
+        name: "ModalLauncher + OnePaneDialog",
+        storyId:
+            "packages-modal-testing-snapshots-modallauncher--with-one-pane-dialog",
+    },
+    {
+        name: "ModalLauncher + FlexibleDialog",
+        storyId:
+            "packages-modal-testing-snapshots-modallauncher--with-flexible-dialog",
+    },
 ];
