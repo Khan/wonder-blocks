@@ -145,6 +145,43 @@ const LegacyTypographyComponents = () => {
     );
 };
 
+const formFieldsToUseWithLabeledField: {
+    componentName: string;
+    FormComponent: React.ElementType;
+    componentProps: PropsFor<React.ElementType>;
+}[] = [
+    {
+        componentName: "TextField",
+        FormComponent: TextField,
+        componentProps: {},
+    },
+    {
+        componentName: "TextArea",
+        FormComponent: TextArea,
+        componentProps: {},
+    },
+    {
+        componentName: "SingleSelect",
+        FormComponent: SingleSelect,
+        componentProps: {
+            placeholder: "Placeholder",
+            children: [
+                <OptionItem key="option1" label="Option 1" value="option1" />,
+            ],
+        },
+    },
+    {
+        componentName: "MultiSelect",
+        FormComponent: MultiSelect,
+        componentProps: {
+            placeholder: "",
+            children: [
+                <OptionItem key="option1" label="Option 1" value="option1" />,
+            ],
+        },
+    },
+];
+
 export const components = [
     /**
      * wonder-blocks-accordion
@@ -1101,93 +1138,55 @@ export const components = [
     /**
      * wonder-blocks-labeled-field
      */
-    ...[
-        {
-            componentName: "TextField",
-            FormComponent: TextField,
-            componentProps: {},
-        },
-        {
-            componentName: "TextArea",
-            FormComponent: TextArea,
-            componentProps: {},
-        },
-        {
-            componentName: "SingleSelect",
-            FormComponent: SingleSelect,
-            componentProps: {
-                placeholder: "Placeholder",
-                children: [
-                    <OptionItem
-                        key="option1"
-                        label="Option 1"
-                        value="option1"
-                    />,
+    ...formFieldsToUseWithLabeledField.map(
+        ({componentName, FormComponent, componentProps}) =>
+            createComponentConfig({
+                name: `LabeledField with ${componentName}`,
+                Component: LabeledField,
+                variantProps: [],
+                defaultProps: {
+                    field: (
+                        <FormComponent
+                            value=""
+                            onChange={() => {}}
+                            {...componentProps}
+                        />
+                    ),
+                    label: "Label",
+                    description: "Description for the field",
+                    additionalHelperMessage: "Additional helper text",
+                    contextLabel: "Context label",
+                    styles: {root: {width: "300px"}},
+                },
+                states: [
+                    {
+                        name: "Read Only",
+                        props: {
+                            readOnlyMessage: "This field is read only",
+                        },
+                    },
+                    {
+                        name: "Error",
+                        props: {
+                            errorMessage: "This field has an error",
+                        },
+                    },
+                    {
+                        name: "Disabled",
+                        props: {
+                            field: (
+                                <FormComponent
+                                    value=""
+                                    onChange={() => {}}
+                                    {...componentProps}
+                                    disabled
+                                />
+                            ),
+                        },
+                    },
                 ],
-            },
-        },
-        {
-            componentName: "MultiSelect",
-            FormComponent: MultiSelect,
-            componentProps: {
-                placeholder: "",
-                children: [
-                    <OptionItem
-                        key="option1"
-                        label="Option 1"
-                        value="option1"
-                    />,
-                ],
-            },
-        },
-    ].map(({componentName, FormComponent, componentProps}) =>
-        createComponentConfig({
-            name: `LabeledField with ${componentName}`,
-            Component: LabeledField,
-            variantProps: [],
-            defaultProps: {
-                field: (
-                    <FormComponent
-                        value=""
-                        onChange={() => {}}
-                        {...(componentProps as any)}
-                    />
-                ),
-                label: "Label",
-                description: "Description for the field",
-                additionalHelperMessage: "Additional helper text",
-                contextLabel: "Context label",
-                styles: {root: {width: "300px"}},
-            },
-            states: [
-                {
-                    name: "Read Only",
-                    props: {
-                        readOnlyMessage: "This field is read only",
-                    },
-                },
-                {
-                    name: "Error",
-                    props: {
-                        errorMessage: "This field has an error",
-                    },
-                },
-                {
-                    name: "Disabled",
-                    props: {
-                        field: (
-                            <FormComponent
-                                value=""
-                                onChange={() => {}}
-                                {...(componentProps as any)}
-                                disabled
-                            />
-                        ),
-                    },
-                },
-            ],
-            package: "wonder-blocks-labeled-field",
-        }),
+                package: "wonder-blocks-labeled-field",
+            }),
     ),
     /**
      * wonder-blocks-link
