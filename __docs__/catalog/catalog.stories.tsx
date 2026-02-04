@@ -4,7 +4,7 @@ import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import Tooltip, {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
-import {components} from "./components-config";
+import {components, componentsNotIncluded} from "./components-config";
 import {themeModes} from "../../.storybook/modes";
 
 export default {
@@ -238,6 +238,21 @@ export const AllComponents = {
                         />
                     ),
                 )}
+                <View>
+                    <Heading tag="h2" size="large" weight="bold">
+                        Components not covered in the catalog
+                    </Heading>
+                    <ul>
+                        {componentsNotIncluded.map((component) => (
+                            <li
+                                key={component.name}
+                                style={{display: "list-item"}}
+                            >
+                                {component.name} ({component.package})
+                            </li>
+                        ))}
+                    </ul>
+                </View>
             </View>
         );
     },
