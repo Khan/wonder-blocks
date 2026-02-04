@@ -7,7 +7,7 @@ import {
 } from "@khanacademy/wonder-blocks-modal";
 import {allModes} from "../../.storybook/modes";
 import Button from "@khanacademy/wonder-blocks-button";
-import {longText, reallyLongText} from "../components/text-for-testing";
+import {reallyLongText} from "../components/text-for-testing";
 
 export default {
     title: "Packages / Modal / Testing / Snapshots / ModalLauncher",
