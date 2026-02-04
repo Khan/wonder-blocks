@@ -1,0 +1,521 @@
+---
+description: Best practices for writing .mdc cursor rules files
+globs: *.mdc
+alwaysApply: false
+---
+# MDC Files Best Practices
+
+This guide covers conventions and best practices for creating and maintaining `.mdc` cursor rules files that provide context and guidance to AI assistants.
+
+## File Structure
+
+### Frontmatter Block
+
+**⚠️ ALWAYS include YAML frontmatter at the top of every .mdc file:**
+
+```yaml
+---
+description: Brief description of what this rules file covers
+globs: *.ext,*.pattern
+alwaysApply: false
+---
+```
+
+**Frontmatter Properties:**
+
+- ✅ **`description`**: Short, clear description of the file's purpose (one line)
+- ✅ **`globs`**: Comma-separated list of file patterns that trigger this rule (e.g., `*.test.ts,*.test.tsx`)
+- ✅ **`alwaysApply`**: Boolean (`true` or `false`) - whether this rule applies to all contexts
+
+**✅ DO: Use specific glob patterns**
+
+```yaml
+---
+description: Jest testing best practices and patterns for unit tests
+globs: *.test.ts,*.test.tsx
+alwaysApply: false
+---
+```
+
+**❌ DON'T: Use vague descriptions or missing properties**
+
+```yaml
+---
+description: Some rules
+globs:
+alwaysApply: false
+---
+```
+
+### Document Title
+
+**✅ ALWAYS start content with a single H1 heading:**
+
+```markdown
+# Document Title
+
+Introduction paragraph explaining the document's purpose and scope.
+```
+
+**Best practices:**
+- ✅ Use a clear, descriptive title
+- ✅ Match the title to the `description` in frontmatter
+- ✅ Include a brief introduction after the H1
+- ❌ Never use multiple H1 headings in a single document
+
+## Markdown Structure
+
+### Heading Hierarchy
+
+**✅ Use proper heading levels (H1 → H2 → H3 → H4):**
+
+```markdown
+# Main Title (H1)
+
+## Major Section (H2)
+
+### Subsection (H3)
+
+#### Sub-subsection (H4)
+
+##### Rarely needed (H5)
+```
+
+**Best practices:**
+- ✅ Use H1 for document title only
+- ✅ Use H2 for major sections
+- ✅ Use H3 for subsections within major sections
+- ✅ Maintain consistent nesting (don't skip levels)
+- ❌ Never jump from H2 to H4 without H3
+
+### Visual Indicators
+
+**✅ Use emoji symbols for emphasis and clarity:**
+
+- ✅ **Checkmark**: Recommended patterns, correct examples
+- ❌ **Cross mark**: Anti-patterns, incorrect examples
+- ⚠️ **Warning**: Critical rules, important notes
+- 🥇 **Medal**: Priority or ranking indicators
+
+**✅ DO: Use visual indicators consistently**
+
+```markdown
+### Best Practices
+
+**✅ DO: Follow this pattern**
+
+```typescript
+// Good example
+```
+
+**❌ DON'T: Use this anti-pattern**
+
+```typescript
+// Bad example
+```
+```
+
+**Best practices:**
+- ✅ Use emoji at the start of headings for critical sections
+- ✅ Use emoji in bold labels (`**✅ DO:**`)
+- ✅ Be consistent with emoji meanings throughout
+- ❌ Don't overuse emoji - only where they add clarity
+
+### Code Blocks
+
+**✅ ALWAYS specify language for syntax highlighting:**
+
+````markdown
+```typescript
+const example = "with syntax highlighting";
+```
+
+```bash
+pnpm install
+```
+````
+
+**Best practices:**
+- ✅ Always include language identifier (`typescript`, `bash`, `json`, etc.)
+- ✅ Include comments in code to explain intent
+- ✅ Keep examples short and focused (5-20 lines ideal)
+- ✅ Use realistic, runnable examples when possible
+- ❌ Don't use generic or placeholder code without context
+
+### Example Patterns
+
+**✅ Structure examples with clear labels:**
+
+```markdown
+**✅ DO: Clear description of good pattern**
+
+```typescript
+// Good example with comments
+const goodExample = true;
+```
+
+**❌ DON'T: Clear description of anti-pattern**
+
+```typescript
+// Bad example with comments
+const badExample = false;
+```
+```
+
+**Best practices:**
+- ✅ Always pair good and bad examples when possible
+- ✅ Include explanatory text before code blocks
+- ✅ Use consistent formatting for all examples
+- ✅ Add comments within code to highlight key points
+- ❌ Don't show examples without context or explanation
+
+## Content Guidelines
+
+### Writing Style
+
+**Be clear, concise, and actionable:**
+
+- ✅ Use imperative mood ("Use this pattern", not "You should use this pattern")
+- ✅ Write in present tense ("Tests run in JSDOM", not "Tests will run")
+- ✅ Be specific and precise ("Use `jest.spyOn()`", not "Use mocking utilities")
+- ✅ Provide context for why rules matter
+- ❌ Avoid vague or ambiguous language
+
+**✅ DO: Clear, actionable guidance**
+
+```markdown
+### Method Spying
+
+**✅ ALWAYS use `jest.spyOn()` to create spies:**
+
+```typescript
+const spy = jest.spyOn(module, "functionName").mockReturnValue(value);
+```
+
+This ensures proper cleanup and type safety.
+```
+
+**❌ DON'T: Vague or ambiguous guidance**
+
+```markdown
+### Spying
+
+You might want to use spies sometimes. Here are some ways to do it.
+```
+
+### Section Organization
+
+**✅ Organize content logically:**
+
+1. **Overview/Introduction**: Brief explanation of the section's scope
+2. **Critical Rules**: Most important rules with ⚠️ warnings
+3. **Best Practices**: Recommended patterns with ✅ examples
+4. **Anti-Patterns**: Common mistakes with ❌ examples
+5. **Additional Context**: Supporting information and edge cases
+
+**✅ DO: Structured section with clear hierarchy**
+
+```markdown
+## State Management
+
+State management in React uses multiple patterns depending on scope and complexity.
+
+### ⚠️ Critical Rules
+
+- ✅ Use `useState` for local component state
+- ❌ Never introduce new global state libraries without justification
+
+### Local State Pattern
+
+**✅ DO: Use `useState` for component-local state:**
+
+```typescript
+const [count, setCount] = useState(0);
+```
+```
+
+### Lists and Bullets
+
+**✅ Use proper list formatting:**
+
+**Bulleted Lists:**
+```markdown
+- ✅ First item starts with capital letter
+- ✅ End with period if complete sentences
+- ✅ No period if fragments or single phrases
+- ✅ Use consistent formatting throughout
+```
+
+**Numbered Lists:**
+```markdown
+1. **Step Name**: Brief description of the step
+2. **Next Step**: Description continues here
+3. **Final Step**: Conclusion of the process
+```
+
+**Best practices:**
+- ✅ Use bullets for unordered items
+- ✅ Use numbers for sequential steps or priorities
+- ✅ Use consistent punctuation within a list
+- ✅ Use bold for emphasis on key terms in lists
+- ❌ Don't mix punctuation styles within a list
+
+### Tables
+
+**✅ Use tables for structured comparisons:**
+
+```markdown
+| Feature | Approach A | Approach B |
+|---------|------------|------------|
+| Speed   | Fast       | Slow       |
+| Safety  | High       | Medium     |
+```
+
+**Best practices:**
+- ✅ Use tables for side-by-side comparisons
+- ✅ Keep table content concise
+- ✅ Align columns for readability
+- ❌ Don't use tables for simple lists
+
+## Best Practices for Rule Content
+
+### Critical Rules Section
+
+**⚠️ ALWAYS include a Critical Rules section for important guidelines:**
+
+```markdown
+### ⚠️ Critical Rules
+
+**ALWAYS follow these core principles:**
+
+1. **Rule One** - Brief explanation of critical rule
+2. **Rule Two** - Another critical guideline
+3. **Rule Three** - Final essential rule
+```
+
+**Best practices:**
+- ✅ Place Critical Rules near the beginning of major sections
+- ✅ Use ⚠️ emoji in the heading
+- ✅ Bold the rule names
+- ✅ Keep the list short (3-7 items maximum)
+- ✅ Focus on rules that prevent major issues
+
+### Pattern Documentation
+
+**✅ Document patterns with context:**
+
+```markdown
+### Pattern Name
+
+**When to use:** Brief explanation of use case
+
+**✅ DO: Recommended approach**
+
+```typescript
+// Implementation with comments
+```
+
+**Benefits:**
+- ✅ Benefit one
+- ✅ Benefit two
+- ✅ Benefit three
+
+**❌ DON'T: Anti-pattern**
+
+```typescript
+// What not to do
+```
+
+**Why avoid:** Clear explanation of problems with anti-pattern
+```
+
+**Best practices:**
+- ✅ Explain when and why to use each pattern
+- ✅ Show both good and bad examples
+- ✅ Include benefits and reasoning
+- ✅ Provide alternatives when appropriate
+
+### Common Mistakes Section
+
+**✅ Include sections addressing common mistakes:**
+
+```markdown
+## Common Mistakes
+
+### Mistake Category
+
+**❌ DON'T: Description of common mistake**
+
+```typescript
+// Anti-pattern example
+```
+
+**Problem:** Explanation of why this is problematic
+
+**✅ DO: Correct approach instead**
+
+```typescript
+// Correct pattern
+```
+```
+
+**Best practices:**
+- ✅ Group related mistakes together
+- ✅ Explain the consequences of each mistake
+- ✅ Always provide the correct alternative
+- ✅ Use real-world examples when possible
+
+### Tool and Command Documentation
+
+**✅ Document relevant tools and commands:**
+
+```markdown
+## Tools & Commands
+
+### Primary Tool: Tool Name
+
+**Description:** What the tool does and when to use it
+
+**Usage:**
+
+```bash
+command --flag argument
+```
+
+**Common Options:**
+- `--flag`: Description of flag
+- `--option value`: Description of option
+```
+
+**Best practices:**
+- ✅ Organize tools by priority or workflow
+- ✅ Include practical examples of commands
+- ✅ Explain when to use each tool
+- ✅ Document common flags and options
+- ✅ Provide context for choosing between tools
+
+## File Organization
+
+### File Naming
+
+**✅ Use descriptive, kebab-case names:**
+
+- ✅ `unit-tests.mdc` - Clear purpose
+- ✅ `storybook.mdc` - Obvious scope
+- ✅ `graphql-patterns.mdc` - Specific domain
+- ❌ `rules.mdc` - Too vague
+- ❌ `test_file.mdc` - Wrong case (underscore)
+
+### File Location
+
+**✅ Place .mdc files in `.cursor/rules/` directory:**
+
+```
+project-root/
+├── .cursor/
+│   └── rules/
+│       ├── general.mdc (alwaysApply: true)
+│       ├── unit-tests.mdc (for *.test.ts files)
+│       ├── storybook.mdc (for *.stories.tsx files)
+│       └── mdc-files.mdc (for *.mdc files)
+```
+
+**Best practices:**
+- ✅ Use `.cursor/rules/` as the standard location
+- ✅ Keep files focused on specific domains
+- ✅ Use one general file for project-wide rules
+- ❌ Don't create too many overlapping rule files
+
+## Maintenance
+
+### Cross-Platform Rule Synchronization
+
+**⚠️ CRITICAL: Keep AI assistant rules in sync across platforms:**
+
+This project maintains rules for multiple AI assistants. When updating a Cursor rules file, also update the corresponding files for other platforms:
+
+| Cursor File | Copilot File | Claude File |
+|-------------|--------------|-------------|
+| `.cursor/rules/general.mdc` | `.github/instructions/frontend-rules.instructions.md` | `CLAUDE.md` |
+| `.cursor/rules/storybook.mdc` | `.github/instructions/storybook.instructions.md` | `CLAUDE.md` (Storybook section) |
+| `.cursor/rules/unit-tests.mdc` | `.github/instructions/unit-tests.instructions.md` | `CLAUDE.md` (Jest section) |
+
+**✅ DO: Update all relevant files when making rule changes**
+
+1. Make the change in the Cursor `.mdc` file
+2. Apply the same change to the corresponding `.github/instructions/*.instructions.md` file for Copilot
+3. Update `CLAUDE.md` if the change affects general guidance or major sections
+
+**✅ DO: Keep content semantically equivalent**
+
+- The exact formatting may differ between platforms
+- The core rules and guidance should remain consistent
+- Copilot instructions use standard Markdown (no frontmatter)
+- `CLAUDE.md` is a consolidated file with all major rules
+
+**❌ DON'T: Update only one platform's rules**
+
+This causes inconsistent behavior between AI assistants and confuses developers who switch between tools.
+
+### Keeping Rules Current
+
+**✅ Regular maintenance checklist:**
+
+- ✅ Update examples when patterns change
+- ✅ Remove deprecated patterns and tools
+- ✅ Add new patterns as they're established
+- ✅ Review for outdated technology references
+- ✅ Ensure all code examples still work
+- ✅ Update glob patterns if file conventions change
+
+### Consistency Across Files
+
+**✅ Maintain consistency across all .mdc files:**
+
+- ✅ Use the same emoji meanings
+- ✅ Follow the same heading structure
+- ✅ Use consistent terminology
+- ✅ Apply the same example formatting
+- ✅ Use the same visual patterns
+
+**Example consistency patterns:**
+```markdown
+# All files use this pattern:
+- H1 for title
+- H2 for major sections
+- ✅/❌/⚠️ for emphasis
+- Code blocks with language tags
+- Clear example structure
+```
+
+## Meta-Documentation
+
+### Self-Referential Nature
+
+**This file demonstrates its own principles:**
+
+- ✅ Proper frontmatter with description and globs
+- ✅ Clear heading hierarchy
+- ✅ Visual indicators (✅, ❌, ⚠️)
+- ✅ Good and bad examples
+- ✅ Consistent formatting throughout
+- ✅ Logical section organization
+- ✅ Actionable, clear guidance
+
+**When writing .mdc files, use this file as a template and reference.**
+
+### Documentation Philosophy
+
+**Goals for .mdc files:**
+
+1. **Clarity**: AI assistants should understand rules immediately
+2. **Actionability**: Provide specific guidance, not vague suggestions
+3. **Completeness**: Cover common scenarios and edge cases
+4. **Maintainability**: Easy to update as practices evolve
+5. **Consistency**: Follow patterns that work across all rule files
+
+**Remember:** .mdc files are for AI assistants, not necessarily human developers. Focus on:
+- ✅ Explicit, unambiguous instructions
+- ✅ Comprehensive coverage of patterns
+- ✅ Clear examples with context
+- ✅ Practical, applicable guidance
