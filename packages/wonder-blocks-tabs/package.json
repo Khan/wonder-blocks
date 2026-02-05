@@ -24,9 +24,14 @@
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },
   "dependencies": {
+    "@khanacademy/wonder-blocks-button": "workspace:*",
     "@khanacademy/wonder-blocks-core": "workspace:*",
+    "@khanacademy/wonder-blocks-dropdown": "workspace:*",
+    "@khanacademy/wonder-blocks-icon": "workspace:*",
+    "@khanacademy/wonder-blocks-link": "workspace:*",
     "@khanacademy/wonder-blocks-tokens": "workspace:*",
-    "@khanacademy/wonder-blocks-typography": "workspace:*"
+    "@khanacademy/wonder-blocks-typography": "workspace:*",
+    "@phosphor-icons/core": "catalog:"
   },
   "peerDependencies": {
     "aphrodite": "catalog:",

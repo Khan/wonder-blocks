@@ -2,7 +2,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 import * as React from "react";
 
 import {Tab} from "@khanacademy/wonder-blocks-tabs";
-import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
@@ -20,7 +20,7 @@ const generateRows = (rtl: boolean = false) => [
         },
     },
     {
-        name: "With Icons",
+        name: "Custom label element with icons",
         props: {
             children: (
                 <StyledDiv
@@ -39,12 +39,35 @@ const generateRows = (rtl: boolean = false) => [
         },
     },
     {
-        name: "Icon Only",
+        name: "Custom label element with icon only",
         props: {
             children: (
                 <PhosphorIcon icon={IconMappings.iceCream} size="medium" />
             ),
             "aria-label": "Tab with icon",
+        },
+    },
+    {
+        name: "Icon prop (PhosphorIcon)",
+        props: {
+            children: "Tab",
+            icon: (
+                <PhosphorIcon
+                    icon={IconMappings.iceCream}
+                    aria-label="Ice cream"
+                />
+            ),
+        },
+    },
+    {
+        name: "Icon prop (Icon)",
+        props: {
+            children: "Tab",
+            icon: (
+                <Icon>
+                    <img src="logo.svg" alt="Wonder Blocks" />
+                </Icon>
+            ),
         },
     },
 ];
@@ -72,7 +95,7 @@ type Story = StoryObj<typeof Tab>;
  * component. This is only used for visual testing in Chromatic.
  */
 const meta = {
-    title: "Packages / Tabs / Tabs / Subcomponents / Tab / Testing / Tab - Snapshots",
+    title: "Packages / Tabs / Testing / Tab - Snapshots",
     component: Tab,
     args: {},
     parameters: {
