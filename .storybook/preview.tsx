@@ -1,5 +1,6 @@
 import * as React from "react";
 import wonderBlocksTheme from "./wonder-blocks-theme";
+import wonderBlocksDarkTheme from "./wonder-blocks-dark-theme";
 import {Decorator} from "@storybook/react-vite";
 import {DocsContainer} from "@storybook/addon-docs/blocks";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
@@ -67,7 +68,7 @@ function DocsContainerWithTheme({children, context, ...props}) {
     const theme = context.store.userGlobals.globals.theme;
 
     return (
-        <DocsContainer context={context} {...props}>
+        <DocsContainer context={context} {...props} theme={theme === "syl-dark" ? wonderBlocksDarkTheme : wonderBlocksTheme}>
             <ThemeSwitcher theme={theme}>{children}</ThemeSwitcher>
         </DocsContainer>
     );
@@ -267,6 +268,11 @@ const preview: Preview = {
                         value: "thunderblocks",
                         icon: "lightning",
                         title: "Shape Your Learning (Thunder Blocks)",
+                    },
+                    {
+                        value: "syl-dark",
+                        icon: "moon",
+                        title: "Shape Your Learning - Dark",
                     },
                 ],
                 // Change title based on selected value
