@@ -367,10 +367,6 @@ export const FloatingComponents = {
             </View>
         );
     },
-    parameters: {
-        // Use wide viewport so they are all captured in the initial viewport.
-        viewport: {value: "wide"},
-    },
 };
 
 export const OverlayComponents: StoryObj = {
