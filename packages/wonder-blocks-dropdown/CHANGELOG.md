@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.7.0
+
+### Minor Changes
+
+- be1c83f: ActionItem: Add support for aria-label
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-pill@3.1.54
+
 ## 10.6.7
 
 ### Patch Changes
