@@ -608,7 +608,11 @@ export const components = [
     }),
     createComponentConfig({
         name: "ActionItem",
-        Component: ActionItem,
+        Component: (props) => (
+            <div role="menu" aria-label="Example ActionItem">
+                <ActionItem {...props} />
+            </div>
+        ),
         variantProps: [
             {
                 propName: "horizontalRule",
@@ -680,7 +684,11 @@ export const components = [
     }),
     createComponentConfig({
         name: "OptionItem",
-        Component: OptionItem,
+        Component: (props) => (
+            <div role="listbox" aria-label="Example OptionItem">
+                <OptionItem {...props} />
+            </div>
+        ),
         variantProps: [
             {
                 propName: "selected",
@@ -1138,6 +1146,9 @@ export const components = [
                 </>
             ),
             footer: <Button>Action</Button>,
+            style: {
+                height: "400px",
+            },
         },
         states: [],
         package: "wonder-blocks-modal",

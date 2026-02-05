@@ -20,12 +20,28 @@ export default {
             modes: themeModes,
         },
         a11y: {
-            // Explicitly setting a11y tests to report warnings (instead of errors)
-            // for these stories since it covers all components.
-            // A11y tests should be run on an individual component
-            // basis since there are some special cases. A11y tests can still be
-            // checked manually
-            test: "todo",
+            config: {
+                rules: [
+                    {
+                        // Ignoring color contrast violations at this level, this
+                        // is covered at the component level
+                        id: "color-contrast",
+                        enabled: false,
+                    },
+                    {
+                        // Ignore unique landmark violation since structures are
+                        // often reused to show variants / props combinations
+                        id: "landmark-unique",
+                        enabled: false,
+                    },
+                    {
+                        // Ignore aria-valid-attr-value violations at this level,
+                        // this is covered at the component level
+                        id: "aria-valid-attr-value",
+                        enabled: false,
+                    },
+                ],
+            },
         },
     },
 };
