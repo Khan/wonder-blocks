@@ -10,7 +10,6 @@ html {
 }
 
 .sbdocs.sbdocs-wrapper {
-    padding: 0 2rem 3.2rem 2rem;
     /* create stacking context for docs so modals sit on top */
     position: relative;
     gap: 2.4rem;
@@ -21,6 +20,7 @@ html {
 .sbdocs li,
 .sbdocs p,
 .sbdocs p *:not(a) {
+    /* By default, Storybook uses a font size of 14px. Increasing to 16px */
     font-size: 1.6rem;
 }
 
