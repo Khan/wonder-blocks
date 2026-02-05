@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-cell
 
+## 6.1.9
+
+### Patch Changes
+
+- 12e04c3: Update component documentation for the `disabled` props to include details about `aria-disabled` being set internally to keep an element focusable while in a disabled state
+- Updated dependencies [12e04c3]
+    - @khanacademy/wonder-blocks-clickable@8.1.3
+
 ## 6.1.8
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-pill
 
+## 3.1.55
+
+### Patch Changes
+
+- Updated dependencies [12e04c3]
+    - @khanacademy/wonder-blocks-clickable@8.1.3
+    - @khanacademy/wonder-blocks-link@10.1.5
+
 ## 3.1.54
 
 ### Patch Changes
