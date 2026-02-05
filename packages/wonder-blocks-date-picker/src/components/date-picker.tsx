@@ -452,7 +452,7 @@ const DatePicker = (props: Props) => {
     } as const;
 
     return (
-        <View style={[styles.wrapper, style]} ref={refWrapper}>
+        <View style={style} ref={refWrapper}>
             {renderInput(modifiers)}
             {showOverlay && (
                 <DatePickerOverlay
@@ -502,10 +502,6 @@ DatePicker.defaultProps = {
 export default DatePicker;
 
 const styles = StyleSheet.create({
-    wrapper: {
-        width: 225,
-        height: 40,
-    },
     footer: {
         margin: sizing.size_120,
         marginBlockStart: 0,
