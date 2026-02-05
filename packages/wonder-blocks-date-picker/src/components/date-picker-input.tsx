@@ -55,7 +55,7 @@ interface Props {
     /**
      * Used to format the value as a valid Date.
      */
-    dateFormat?: Array<string> | string;
+    dateFormat?: string;
     /**
      * The locale associated to the current Date.
      */
@@ -93,7 +93,7 @@ interface Props {
      */
     parseDate?: (
         value: string | Date,
-        format: Array<string> | null | undefined | string | null | undefined,
+        format: string | null | undefined,
         locale?: string | null | undefined,
     ) => Date | null | undefined;
     /**
