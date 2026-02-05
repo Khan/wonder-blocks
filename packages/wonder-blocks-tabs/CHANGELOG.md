@@ -1,5 +1,27 @@
 # @khanacademy/wonder-blocks-tabs
 
+## 0.5.0
+
+### Minor Changes
+
+- 27a30ad: Adds TabsDropdown component
+- a633e23: Adds ResponsiveNavigationTabs component
+- be1c83f: ResponsiveTabs and TabsDropdown: Add support for tab item aria-label
+- cae9768: Adds ResponsiveTabs component
+- 61d61a9: Adds support for icons in ResponsiveTabs, Tabs, and TabsDropdown
+
+### Patch Changes
+
+- e0c42a6: Adds internal NavigationTabsDropdown component for the upcoming ResponsiveNavigationTabs component
+- 6928835: Update component docs for ResponsiveTabs and ResponsiveNavigationTabs
+- 75b5418: TabsDropdown: Improve a11y
+- Updated dependencies [a633e23]
+- Updated dependencies [be1c83f]
+- Updated dependencies [61d61a9]
+    - @khanacademy/wonder-blocks-link@10.1.4
+    - @khanacademy/wonder-blocks-dropdown@10.7.0
+    - @khanacademy/wonder-blocks-button@11.3.3
+
 ## 0.4.3
 
 ### Patch Changes
