@@ -57,6 +57,9 @@ interface Props {
     dateFormat?: Array<string> | string;
     /**
      * Whether the DatePicker component is disabled.
+     *
+     * Internally, the `aria-disabled` attribute will be set so that the
+     * element remains focusable and will be included in the tab order.
      */
     disabled?: boolean;
     /**

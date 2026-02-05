@@ -49,6 +49,9 @@ type Props = AriaProps & {
     /**
      * Makes a read-only input field that cannot be focused.
      * Defaults to false.
+     *
+     * Internally, the `aria-disabled` attribute will be set so that the
+     * element remains focusable and will be included in the tab order.
      */
     disabled?: boolean;
     /**
