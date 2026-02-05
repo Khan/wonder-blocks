@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-switch
 
+## 3.3.28
+
+### Patch Changes
+
+- 12e04c3: Update component documentation for the `disabled` props to include details about `aria-disabled` being set internally to keep an element focusable while in a disabled state
+
 ## 3.3.27
 
 ### Patch Changes

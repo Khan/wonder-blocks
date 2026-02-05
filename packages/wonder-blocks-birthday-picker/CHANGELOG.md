@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 4.1.37
+
+### Patch Changes
+
+- 12e04c3: Update component documentation for the `disabled` props to include details about `aria-disabled` being set internally to keep an element focusable while in a disabled state
+- Updated dependencies [12e04c3]
+    - @khanacademy/wonder-blocks-dropdown@10.7.1
+
 ## 4.1.36
 
 ### Patch Changes
