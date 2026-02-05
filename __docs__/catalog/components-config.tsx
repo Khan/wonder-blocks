@@ -1580,7 +1580,7 @@ export const components = [
  * Keep track of components with opened state separately so that we can include
  * the popper in visual tests since they're part of the initial viewport
  */
-export const openedComponents = [
+export const floatingComponents = [
     createComponentConfig({
         name: "DatePicker (Opened State)",
         Component: (props) => {

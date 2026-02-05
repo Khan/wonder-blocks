@@ -7,7 +7,7 @@ import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import Tooltip, {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 import {
     components,
-    openedComponents,
+    floatingComponents,
     overlayComponents,
 } from "./components-config";
 import {themeModes} from "../../.storybook/modes";
@@ -359,7 +359,7 @@ export const FloatingComponents = {
                     flexWrap: "wrap",
                 }}
             >
-                {openedComponents.map((component) => (
+                {floatingComponents.map((component) => (
                     <View style={styles.openedComponent} key={component.name}>
                         <ComponentInfo {...component} />
                     </View>
