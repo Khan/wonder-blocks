@@ -59,9 +59,8 @@ import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
 import Switch from "@khanacademy/wonder-blocks-switch";
 import {
-    NavigationTabs,
-    NavigationTabItem,
-    Tabs,
+    ResponsiveNavigationTabs,
+    ResponsiveTabs,
 } from "@khanacademy/wonder-blocks-tabs";
 import Toolbar from "@khanacademy/wonder-blocks-toolbar";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
@@ -1338,90 +1337,201 @@ export const components = [
      * wonder-blocks-tabs
      */
     createComponentConfig({
-        name: "NavigationTabs",
-        Component: NavigationTabs,
-        variantProps: [],
-        defaultProps: {
-            "aria-label": "Navigation tabs",
-            children: [
-                <NavigationTabItem key="tab1" current={true}>
-                    <Link href="#tab1">Navigation Tab 1</Link>
-                </NavigationTabItem>,
-                <NavigationTabItem key="tab2">
-                    <Link href="#tab2">Navigation Tab 2</Link>
-                </NavigationTabItem>,
-                <NavigationTabItem key="tab3">
-                    <Link href="#tab3">Navigation Tab 3</Link>
-                </NavigationTabItem>,
-            ],
-        },
-        states: [
+        name: "ResponsiveNavigationTabs",
+        Component: ResponsiveNavigationTabs,
+        variantProps: [
             {
-                name: "With Icons",
-                props: {
-                    "aria-label": "Example NavigationTabs with icons",
-                    children: [
-                        <NavigationTabItem key="tab1" current={true}>
-                            <Link
-                                href="#tab1"
-                                startIcon={
-                                    <PhosphorIcon
-                                        icon={IconMappings.cookieBold}
-                                    />
-                                }
-                                endIcon={
-                                    <PhosphorIcon
-                                        icon={IconMappings.iceCreamBold}
-                                    />
-                                }
-                            >
-                                Navigation Tab 1
-                            </Link>
-                        </NavigationTabItem>,
-                        <NavigationTabItem key="tab2">
-                            <Link
-                                href="#tab2"
-                                startIcon={
-                                    <PhosphorIcon
-                                        icon={IconMappings.cookieBold}
-                                    />
-                                }
-                                endIcon={
-                                    <PhosphorIcon
-                                        icon={IconMappings.iceCreamBold}
-                                    />
-                                }
-                            >
-                                Navigation Tab 2
-                            </Link>
-                        </NavigationTabItem>,
-                        <NavigationTabItem key="tab3">
-                            <Link
-                                href="#tab3"
-                                startIcon={
-                                    <PhosphorIcon
-                                        icon={IconMappings.cookieBold}
-                                    />
-                                }
-                                endIcon={
-                                    <PhosphorIcon
-                                        icon={IconMappings.iceCreamBold}
-                                    />
-                                }
-                            >
-                                Navigation Tab 3
-                            </Link>
-                        </NavigationTabItem>,
+                propName: "showDivider",
+                options: [false, true],
+            },
+            {
+                propName: "tabs",
+                options: [
+                    [
+                        {
+                            id: "tab1",
+                            label: "Tab 1",
+                            href: "#tab1",
+                        },
+                        {
+                            id: "tab2",
+                            label: "Tab 2",
+                            href: "#tab2",
+                        },
+                        {
+                            id: "tab3",
+                            label: "Tab 3",
+                            href: "#tab3",
+                        },
+                        {
+                            id: "tab4",
+                            label: "Tab 4",
+                            href: "#tab4",
+                        },
+                        {
+                            id: "tab5",
+                            label: "Tab 5",
+                            href: "#tab5",
+                        },
+                        {
+                            id: "tab6",
+                            label: "Tab 6",
+                            href: "#tab6",
+                        },
                     ],
-                },
+                    [
+                        {
+                            id: "tab1",
+                            label: "Tab 1",
+                            href: "#tab1",
+                            icon: (
+                                <PhosphorIcon icon={IconMappings.cookieBold} />
+                            ),
+                        },
+                        {
+                            id: "tab2",
+                            label: "Tab 2",
+                            href: "#tab2",
+                            icon: (
+                                <PhosphorIcon icon={IconMappings.cookieBold} />
+                            ),
+                        },
+                        {
+                            id: "tab3",
+                            label: "Tab 3",
+                            href: "#tab3",
+                            icon: (
+                                <PhosphorIcon icon={IconMappings.cookieBold} />
+                            ),
+                        },
+                        {
+                            id: "tab4",
+                            label: "Tab 4",
+                            href: "#tab4",
+                            icon: (
+                                <PhosphorIcon icon={IconMappings.cookieBold} />
+                            ),
+                        },
+                        {
+                            id: "tab5",
+                            label: "Tab 5",
+                            href: "#tab5",
+                            icon: (
+                                <PhosphorIcon icon={IconMappings.cookieBold} />
+                            ),
+                        },
+                        {
+                            id: "tab6",
+                            label: "Tab 6",
+                            href: "#tab6",
+                            icon: (
+                                <PhosphorIcon icon={IconMappings.cookieBold} />
+                            ),
+                        },
+                    ],
+                ],
             },
         ],
+        defaultProps: {
+            "aria-label": "Navigation tabs",
+            selectedTabId: "tab1",
+            onTabSelected: () => {},
+        },
+        states: [],
         package: "wonder-blocks-tabs",
     }),
     createComponentConfig({
-        name: "Tabs",
-        Component: Tabs,
-        variantProps: [],
+        name: "ResponsiveTabs",
+        Component: ResponsiveTabs,
+        variantProps: [
+            {
+                propName: "tabs",
+                options: [
+                    [
+                        {
+                            id: "tab1",
+                            label: "Tab 1",
+                            panel: <BodyText>Content for Tab 1</BodyText>,
+                        },
+                        {
+                            id: "tab2",
+                            label: "Tab 2",
+                            panel: <BodyText>Content for Tab 2</BodyText>,
+                        },
+                        {
+                            id: "tab3",
+                            label: "Tab 3",
+                            panel: <BodyText>Content for Tab 3</BodyText>,
+                        },
+                        {
+                            id: "tab4",
+                            label: "Tab 4",
+                            panel: <BodyText>Content for Tab 4</BodyText>,
+                        },
+                        {
+                            id: "tab5",
+                            label: "Tab 5",
+                            panel: <BodyText>Content for Tab 5</BodyText>,
+                        },
+                        {
+                            id: "tab6",
+                            label: "Tab 6",
+                            panel: <BodyText>Content for Tab 6</BodyText>,
+                        },
+                    ],
+                    [
+                        {
+                            id: "tab1",
+                            label: "Tab 1",
+                            panel: <BodyText>Content for Tab 1</BodyText>,
+                            icon: (
+                                <PhosphorIcon icon={IconMappings.cookieBold} />
+                            ),
+                        },
+                        {
+                            id: "tab2",
+                            label: "Tab 2",
+                            panel: <BodyText>Content for Tab 2</BodyText>,
+                            icon: (
+                                <PhosphorIcon icon={IconMappings.cookieBold} />
+                            ),
+                        },
+                        {
+                            id: "tab3",
+                            label: "Tab 3",
+                            panel: <BodyText>Content for Tab 3</BodyText>,
+                            icon: (
+                                <PhosphorIcon icon={IconMappings.cookieBold} />
+                            ),
+                        },
+                        {
+                            id: "tab4",
+                            label: "Tab 4",
+                            panel: <BodyText>Content for Tab 4</BodyText>,
+                            icon: (
+                                <PhosphorIcon icon={IconMappings.cookieBold} />
+                            ),
+                        },
+                        {
+                            id: "tab5",
+                            label: "Tab 5",
+                            panel: <BodyText>Content for Tab 5</BodyText>,
+                            icon: (
+                                <PhosphorIcon icon={IconMappings.cookieBold} />
+                            ),
+                        },
+                        {
+                            id: "tab6",
+                            label: "Tab 6",
+                            panel: <BodyText>Content for Tab 6</BodyText>,
+                            icon: (
+                                <PhosphorIcon icon={IconMappings.cookieBold} />
+                            ),
+                        },
+                    ],
+                ],
+            },
+        ],
         defaultProps: {
             "aria-label": "Tabs",
             selectedTabId: "tab1",
@@ -1444,78 +1554,7 @@ export const components = [
                 },
             ],
         },
-        states: [
-            {
-                name: "With Icons",
-                props: {
-                    tabs: [
-                        {
-                            id: "tab1",
-                            label: (
-                                <View
-                                    style={{
-                                        flexDirection: "row",
-                                        alignItems: "center",
-                                        gap: sizing.size_040,
-                                    }}
-                                >
-                                    <PhosphorIcon
-                                        icon={IconMappings.cookieBold}
-                                    />
-                                    Tab 1
-                                    <PhosphorIcon
-                                        icon={IconMappings.iceCreamBold}
-                                    />
-                                </View>
-                            ),
-                            panel: <BodyText>Content for Tab 1</BodyText>,
-                        },
-                        {
-                            id: "tab2",
-                            label: (
-                                <View
-                                    style={{
-                                        flexDirection: "row",
-                                        alignItems: "center",
-                                        gap: sizing.size_040,
-                                    }}
-                                >
-                                    <PhosphorIcon
-                                        icon={IconMappings.cookieBold}
-                                    />
-                                    Tab 2
-                                    <PhosphorIcon
-                                        icon={IconMappings.iceCreamBold}
-                                    />
-                                </View>
-                            ),
-                            panel: <BodyText>Content for Tab 2</BodyText>,
-                        },
-                        {
-                            id: "tab3",
-                            label: (
-                                <View
-                                    style={{
-                                        flexDirection: "row",
-                                        alignItems: "center",
-                                        gap: sizing.size_040,
-                                    }}
-                                >
-                                    <PhosphorIcon
-                                        icon={IconMappings.cookieBold}
-                                    />
-                                    Tab 3
-                                    <PhosphorIcon
-                                        icon={IconMappings.iceCreamBold}
-                                    />
-                                </View>
-                            ),
-                            panel: <BodyText>Content for Tab 3</BodyText>,
-                        },
-                    ],
-                },
-            },
-        ],
+        states: [],
         package: "wonder-blocks-tabs",
     }),
     /**
@@ -1535,7 +1574,7 @@ export const components = [
             },
         ],
         defaultProps: {
-            title: "Toolbar Title",
+            title: "Title",
             leftContent: (
                 <IconButton
                     icon={IconMappings.xBold}
@@ -1550,7 +1589,7 @@ export const components = [
             {
                 name: "With Subtitle",
                 props: {
-                    subtitle: "Toolbar subtitle",
+                    subtitle: "Subtitle",
                 },
             },
         ],
@@ -1601,7 +1640,7 @@ export const components = [
         package: "wonder-blocks-typography",
     }),
     createComponentConfig({
-        name: "Legacy Typography Components",
+        name: "Legacy Typography",
         Component: LegacyTypographyComponents,
         variantProps: [],
         defaultProps: {},
