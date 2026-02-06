@@ -324,6 +324,58 @@ export const buttonComponents = [
     }),
 ];
 
+export const typographyComponents = [
+    createComponentConfig({
+        name: "Heading",
+        Component: Heading,
+        variantProps: [
+            {
+                propName: "size",
+                options: ["small", "medium", "large", "xlarge", "xxlarge"],
+            },
+            {
+                propName: "weight",
+                options: ["medium", "semi", "bold"],
+            },
+        ],
+        defaultProps: {
+            children: "HeadingText",
+            // Default to h4 tag to avoid semantic issues with header tags in a11y tools
+            // This story is for visual testing purposes
+            tag: "h4",
+        },
+        states: [],
+        package: "wonder-blocks-typography",
+    }),
+    createComponentConfig({
+        name: "BodyText",
+        Component: BodyText,
+        variantProps: [
+            {
+                propName: "size",
+                options: ["xsmall", "small", "medium"],
+            },
+            {
+                propName: "weight",
+                options: ["medium", "semi", "bold"],
+            },
+        ],
+        defaultProps: {
+            children: "BodyText",
+        },
+        states: [],
+        package: "wonder-blocks-typography",
+    }),
+    createComponentConfig({
+        name: "Legacy Typography",
+        Component: LegacyTypographyComponents,
+        variantProps: [],
+        defaultProps: {},
+        states: [],
+        package: "wonder-blocks-typography",
+    }),
+];
+
 /**
  * Components to include in the catalog
  */
@@ -1141,58 +1193,6 @@ export const components = [
         ],
         package: "wonder-blocks-toolbar",
         fullWidth: true,
-    }),
-    /**
-     * wonder-blocks-typography
-     */
-    createComponentConfig({
-        name: "Heading",
-        Component: Heading,
-        variantProps: [
-            {
-                propName: "size",
-                options: ["small", "medium", "large", "xlarge", "xxlarge"],
-            },
-            {
-                propName: "weight",
-                options: ["medium", "semi", "bold"],
-            },
-        ],
-        defaultProps: {
-            children: "HeadingText",
-            // Default to h4 tag to avoid semantic issues with header tags in a11y tools
-            // This story is for visual testing purposes
-            tag: "h4",
-        },
-        states: [],
-        package: "wonder-blocks-typography",
-    }),
-    createComponentConfig({
-        name: "BodyText",
-        Component: BodyText,
-        variantProps: [
-            {
-                propName: "size",
-                options: ["xsmall", "small", "medium"],
-            },
-            {
-                propName: "weight",
-                options: ["medium", "semi", "bold"],
-            },
-        ],
-        defaultProps: {
-            children: "BodyText",
-        },
-        states: [],
-        package: "wonder-blocks-typography",
-    }),
-    createComponentConfig({
-        name: "Legacy Typography",
-        Component: LegacyTypographyComponents,
-        variantProps: [],
-        defaultProps: {},
-        states: [],
-        package: "wonder-blocks-typography",
     }),
 ];
 

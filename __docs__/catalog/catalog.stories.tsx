@@ -11,6 +11,7 @@ import {
     floatingComponents,
     inputComponents,
     overlayComponents,
+    typographyComponents,
 } from "./components-config";
 import {themeModes} from "../../.storybook/modes";
 
@@ -373,6 +374,18 @@ export const ButtonComponents = {
         return (
             <View style={styles.allComponents}>
                 {buttonComponents.map((component) => (
+                    <ComponentInfo {...component} key={component.name} />
+                ))}
+            </View>
+        );
+    },
+};
+
+export const TypographyComponents = {
+    render: function Render() {
+        return (
+            <View style={styles.allComponents}>
+                {typographyComponents.map((component) => (
                     <ComponentInfo {...component} key={component.name} />
                 ))}
             </View>
