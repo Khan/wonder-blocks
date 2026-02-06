@@ -324,7 +324,10 @@ export const buttonComponents = [
     }),
 ];
 
-export const typographyComponents = [
+/**
+ * Typography and icons components (Heading, BodyText, Legacy Typography, PhosphorIcon, Icon)
+ */
+export const typographyAndIconsComponents = [
     createComponentConfig({
         name: "Heading",
         Component: Heading,
@@ -373,6 +376,45 @@ export const typographyComponents = [
         defaultProps: {},
         states: [],
         package: "wonder-blocks-typography",
+    }),
+    createComponentConfig({
+        name: "PhosphorIcon",
+        Component: PhosphorIcon,
+        variantProps: [
+            {
+                propName: "size",
+                options: ["small", "medium", "large", "xlarge"],
+            },
+        ],
+        defaultProps: {
+            icon: IconMappings.cookieBold,
+            color: semanticColor.core.foreground.neutral.subtle,
+        },
+        states: [],
+        package: "wonder-blocks-icon",
+    }),
+    createComponentConfig({
+        name: "Icon (with custom icons, GemIcon, StreakIcon)",
+        Component: Icon,
+        variantProps: [
+            {
+                propName: "size",
+                options: ["small", "medium", "large", "xlarge"],
+            },
+            {
+                propName: "children",
+                options: [
+                    <img src="./logo.svg" alt="Wonder Blocks Logo" />,
+                    <GemIcon aria-label="Gem icon" />,
+                    <StreakIcon aria-label="Streak icon" />,
+                ],
+            },
+        ],
+        defaultProps: {
+            children: <></>,
+        },
+        states: [],
+        package: "wonder-blocks-icon",
     }),
 ];
 
@@ -1056,48 +1098,6 @@ export const components = [
         package: "wonder-blocks-cell",
     }),
 
-    /**
-     * wonder-blocks-icon
-     */
-    createComponentConfig({
-        name: "PhosphorIcon",
-        Component: PhosphorIcon,
-        variantProps: [
-            {
-                propName: "size",
-                options: ["small", "medium", "large", "xlarge"],
-            },
-        ],
-        defaultProps: {
-            icon: IconMappings.cookieBold,
-            color: semanticColor.core.foreground.neutral.subtle,
-        },
-        states: [],
-        package: "wonder-blocks-icon",
-    }),
-    createComponentConfig({
-        name: "Icon (with custom icons, GemIcon, StreakIcon)",
-        Component: Icon,
-        variantProps: [
-            {
-                propName: "size",
-                options: ["small", "medium", "large", "xlarge"],
-            },
-            {
-                propName: "children",
-                options: [
-                    <img src="./logo.svg" alt="Wonder Blocks Logo" />,
-                    <GemIcon aria-label="Gem icon" />,
-                    <StreakIcon aria-label="Streak icon" />,
-                ],
-            },
-        ],
-        defaultProps: {
-            children: <></>,
-        },
-        states: [],
-        package: "wonder-blocks-icon",
-    }),
     /**
      * wonder-blocks-popover
      */

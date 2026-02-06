@@ -13,7 +13,7 @@ import {
     inputComponents,
     navigationAndMenuComponents,
     overlayComponents,
-    typographyComponents,
+    typographyAndIconsComponents,
 } from "./components-config";
 import {themeModes} from "../../.storybook/modes";
 
@@ -383,11 +383,11 @@ export const ButtonComponents = {
     },
 };
 
-export const TypographyComponents = {
+export const TypographyAndIconsComponents = {
     render: function Render() {
         return (
             <View style={styles.allComponents}>
-                {typographyComponents.map((component) => (
+                {typographyAndIconsComponents.map((component) => (
                     <ComponentInfo {...component} key={component.name} />
                 ))}
             </View>
