@@ -812,46 +812,6 @@ export const components = [
         package: "wonder-blocks-link",
     }),
     /**
-     * wonder-blocks-modal
-     */
-    createComponentConfig({
-        name: "FlexibleDialog",
-        Component: FlexibleDialog,
-        variantProps: [],
-        defaultProps: {
-            title: "Dialog Title",
-            closeButtonVisible: true,
-            content: (
-                <>
-                    <BodyText>{reallyLongText}</BodyText>
-                </>
-            ),
-        },
-        states: [],
-        package: "wonder-blocks-modal",
-    }),
-    createComponentConfig({
-        name: "OnePaneDialog",
-        Component: OnePaneDialog,
-        variantProps: [],
-        defaultProps: {
-            title: "Dialog Title",
-            subtitle: "Dialog Subtitle",
-            closeButtonVisible: true,
-            content: (
-                <>
-                    <BodyText>{reallyLongText}</BodyText>
-                </>
-            ),
-            footer: <Button>Action</Button>,
-            style: {
-                height: "400px",
-            },
-        },
-        states: [],
-        package: "wonder-blocks-modal",
-    }),
-    /**
      * wonder-blocks-pill
      */
     createComponentConfig({

@@ -30,8 +30,10 @@ export const WithOnePaneDialog = {
             <ModalLauncher
                 modal={
                     <OnePaneDialog
-                        title="Modal"
+                        title="OnePaneDialog"
+                        subtitle="Subtitle"
                         content={<div>{reallyLongText}</div>}
+                        footer={<Button>Action</Button>}
                     />
                 }
                 opened={true}
@@ -48,7 +50,7 @@ export const WithFlexibleDialog = {
             <ModalLauncher
                 modal={
                     <FlexibleDialog
-                        title="Modal"
+                        title="FlexibleDialog"
                         content={<div>{reallyLongText}</div>}
                     />
                 }
