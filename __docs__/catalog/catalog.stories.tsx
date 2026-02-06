@@ -8,6 +8,7 @@ import Tooltip, {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 import {
     buttonComponents,
     components,
+    feedbackComponents,
     floatingComponents,
     inputComponents,
     overlayComponents,
@@ -386,6 +387,18 @@ export const TypographyComponents = {
         return (
             <View style={styles.allComponents}>
                 {typographyComponents.map((component) => (
+                    <ComponentInfo {...component} key={component.name} />
+                ))}
+            </View>
+        );
+    },
+};
+
+export const FeedbackComponents = {
+    render: function Render() {
+        return (
+            <View style={styles.allComponents}>
+                {feedbackComponents.map((component) => (
                     <ComponentInfo {...component} key={component.name} />
                 ))}
             </View>

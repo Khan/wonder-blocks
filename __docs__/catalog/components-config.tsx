@@ -377,45 +377,41 @@ export const typographyComponents = [
 ];
 
 /**
- * Components to include in the catalog
+ * Feedback components (Banner, badges, CircularSpinner, Pill)
  */
-export const components = [
-    /**
-     * wonder-blocks-accordion
-     */
+export const feedbackComponents = [
     createComponentConfig({
-        name: "Accordion",
-        Component: Accordion,
+        name: "Banner",
+        Component: Banner,
         variantProps: [
             {
-                propName: "caretPosition",
-                options: ["start", "end"],
+                propName: "kind",
+                options: ["info", "success", "warning", "critical"],
             },
             {
-                propName: "cornerKind",
-                options: ["square", "rounded", "rounded-per-section"],
+                propName: "onDismiss",
+                options: [() => {}, undefined],
+            },
+            {
+                propName: "actions",
+                options: [
+                    [
+                        {
+                            type: "button",
+                            title: "Action",
+                            onClick: () => {},
+                        },
+                    ],
+                    [],
+                ],
             },
         ],
         defaultProps: {
-            initialExpandedIndex: 1,
-            children: [
-                <AccordionSection key="section-1" header="First Section">
-                    This is the content of the first section
-                </AccordionSection>,
-                <AccordionSection key="section-2" header="Second Section">
-                    This is the content of the second section
-                </AccordionSection>,
-                <AccordionSection key="section-3" header="Third Section">
-                    This is the content of the third section
-                </AccordionSection>,
-            ],
+            text: "This is a banner message",
         },
         states: [],
-        package: "wonder-blocks-accordion",
+        package: "wonder-blocks-banner",
     }),
-    /**
-     * wonder-blocks-badge
-     */
     createComponentConfig({
         name: "StatusBadge",
         Component: StatusBadge,
@@ -544,40 +540,91 @@ export const components = [
         states: [],
         package: "wonder-blocks-badge",
     }),
-    /**
-     * wonder-blocks-banner
-     */
     createComponentConfig({
-        name: "Banner",
-        Component: Banner,
+        name: "CircularSpinner",
+        Component: CircularSpinner,
         variantProps: [
             {
+                propName: "size",
+                options: ["xsmall", "small", "medium", "large"],
+            },
+        ],
+        defaultProps: {},
+        states: [],
+        package: "wonder-blocks-progress-spinner",
+    }),
+    createComponentConfig({
+        name: "Pill",
+        Component: Pill,
+        variantProps: [
+            {
+                propName: "size",
+                options: ["small", "medium", "large"],
+            },
+            {
                 propName: "kind",
-                options: ["info", "success", "warning", "critical"],
-            },
-            {
-                propName: "onDismiss",
-                options: [() => {}, undefined],
-            },
-            {
-                propName: "actions",
                 options: [
-                    [
-                        {
-                            type: "button",
-                            title: "Action",
-                            onClick: () => {},
-                        },
-                    ],
-                    [],
+                    "neutral",
+                    "accent",
+                    "info",
+                    "success",
+                    "warning",
+                    "critical",
+                    "transparent",
                 ],
             },
         ],
         defaultProps: {
-            text: "This is a banner message",
+            children: "Pill",
+        },
+        states: [
+            {
+                name: "Clickable",
+                props: {
+                    onClick: () => {},
+                },
+            },
+        ],
+        package: "wonder-blocks-pill",
+    }),
+];
+
+/**
+ * Components to include in the catalog
+ */
+export const components = [
+    /**
+     * wonder-blocks-accordion
+     */
+    createComponentConfig({
+        name: "Accordion",
+        Component: Accordion,
+        variantProps: [
+            {
+                propName: "caretPosition",
+                options: ["start", "end"],
+            },
+            {
+                propName: "cornerKind",
+                options: ["square", "rounded", "rounded-per-section"],
+            },
+        ],
+        defaultProps: {
+            initialExpandedIndex: 1,
+            children: [
+                <AccordionSection key="section-1" header="First Section">
+                    This is the content of the first section
+                </AccordionSection>,
+                <AccordionSection key="section-2" header="Second Section">
+                    This is the content of the second section
+                </AccordionSection>,
+                <AccordionSection key="section-3" header="Third Section">
+                    This is the content of the third section
+                </AccordionSection>,
+            ],
         },
         states: [],
-        package: "wonder-blocks-banner",
+        package: "wonder-blocks-accordion",
     }),
     /**
      * wonder-blocks-breadcrumbs
@@ -812,43 +859,6 @@ export const components = [
         package: "wonder-blocks-link",
     }),
     /**
-     * wonder-blocks-pill
-     */
-    createComponentConfig({
-        name: "Pill",
-        Component: Pill,
-        variantProps: [
-            {
-                propName: "size",
-                options: ["small", "medium", "large"],
-            },
-            {
-                propName: "kind",
-                options: [
-                    "neutral",
-                    "accent",
-                    "info",
-                    "success",
-                    "warning",
-                    "critical",
-                    "transparent",
-                ],
-            },
-        ],
-        defaultProps: {
-            children: "Pill",
-        },
-        states: [
-            {
-                name: "Clickable",
-                props: {
-                    onClick: () => {},
-                },
-            },
-        ],
-        package: "wonder-blocks-pill",
-    }),
-    /**
      * wonder-blocks-popover
      */
     createComponentConfig({
@@ -887,22 +897,6 @@ export const components = [
             },
         ],
         package: "wonder-blocks-popover",
-    }),
-    /**
-     * wonder-blocks-progress-spinner
-     */
-    createComponentConfig({
-        name: "CircularSpinner",
-        Component: CircularSpinner,
-        variantProps: [
-            {
-                propName: "size",
-                options: ["xsmall", "small", "medium", "large"],
-            },
-        ],
-        defaultProps: {},
-        states: [],
-        package: "wonder-blocks-progress-spinner",
     }),
     /**
      * wonder-blocks-tabs
