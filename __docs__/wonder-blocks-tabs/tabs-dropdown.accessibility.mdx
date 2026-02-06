@@ -1,0 +1,48 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+
+<Meta title="Packages / Tabs / ResponsiveTabs / Subcomponents / TabsDropdown / Accessibility" />
+
+# Accessibility for TabsDropdown
+
+## Guidelines
+
+- Set the `aria-label` or `aria-labelledby` prop to provide an accessible name
+for the tabs region. If there is a visible label for the tabs, use
+`aria-labelledby` to reference it. Otherwise, use `aria-label` to provide a
+descriptive label.
+
+## About the Implementation
+
+The `TabsDropdown` component uses the Wonder Blocks `ActionMenu` and `ActionItem`
+components internally. The semantics, attributes, and keyboard interactions are
+inherited from these components.
+
+Note: For the horizontal tabs pattern implementation, see the `Tabs` component.
+
+### HTML Semantics and Attributes
+
+The following semantics are used:
+
+- The root container is a `region` landmark with the provided `aria-label` or
+`aria-labelledby` value
+- The tab panel has `role="group"` with `aria-labelledby` pointing to the opener
+button
+- For more details about the semantics around the dropdown, see the `ActionMenu`
+component.
+
+The following attributes are implemented:
+
+- `aria-label` or `aria-labelledby` on the root container to provide an
+accessible name for the tabs region
+- `aria-labelledby` on the tab panel pointing to the opener button
+- - For more details about the semantics around the dropdown, see the `ActionMenu`
+component.
+
+### Keyboard Interactions
+
+The component inherits keyboard navigation from `ActionMenu`.
+
+### Focus Management
+
+When a tab is selected from the dropdown menu, focus returns to the opener
+button. The opener button label is updated to the name of the selected tab.

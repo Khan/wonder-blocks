@@ -564,7 +564,11 @@ class DropdownCore extends React.Component<Props, State> {
             // we need to schedule another focus attempt so that we run when
             // the node *is* mounted.
             if (node) {
-                node.focus();
+                // WB-2143: Add a delay to ensure expanded state is announced in NVDA/JAWS
+                // Note: aria-expanded is no longer announced in VO/Safari with this timeout
+                this.props.schedule.timeout(() => {
+                    node.focus();
+                }, 0);
                 // Keep track of the original index of the newly focused item.
                 // To be used if the set of focusable items in the menu changes
                 this.focusedOriginalIndex = currentFocusedItemRef.originalIndex;

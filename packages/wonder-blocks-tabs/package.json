@@ -3,7 +3,7 @@
   "description": "Tabs are used to control what content is shown",
   "author": "Khan Academy",
   "license": "MIT",
-  "version": "0.4.2",
+  "version": "0.5.1",
   "publishConfig": {
     "access": "public"
   },
@@ -24,9 +24,14 @@
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },
   "dependencies": {
+    "@khanacademy/wonder-blocks-button": "workspace:*",
     "@khanacademy/wonder-blocks-core": "workspace:*",
+    "@khanacademy/wonder-blocks-dropdown": "workspace:*",
+    "@khanacademy/wonder-blocks-icon": "workspace:*",
+    "@khanacademy/wonder-blocks-link": "workspace:*",
     "@khanacademy/wonder-blocks-tokens": "workspace:*",
-    "@khanacademy/wonder-blocks-typography": "workspace:*"
+    "@khanacademy/wonder-blocks-typography": "workspace:*",
+    "@phosphor-icons/core": "catalog:"
   },
   "peerDependencies": {
     "aphrodite": "catalog:",

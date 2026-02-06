@@ -1,5 +1,32 @@
 # @khanacademy/wonder-blocks-link
 
+## 10.1.5
+
+### Patch Changes
+
+- Updated dependencies [12e04c3]
+    - @khanacademy/wonder-blocks-clickable@8.1.3
+
+## 10.1.4
+
+### Patch Changes
+
+- a633e23: Link: Removes unnecessary aria-hidden on start and end icon. This opens up the
+  option to add an accessible name to the icon if needed. By default, the start
+  icon isn't included in the accessibility tree because PhosphorIcon renders a
+  `span`and needs `role="image"` and the `aria-label` set explicitly.
+
+## 10.1.3
+
+### Patch Changes
+
+- Updated dependencies [8bb7ada]
+    - @khanacademy/wonder-blocks-tokens@15.0.0
+    - @khanacademy/wonder-blocks-clickable@8.1.2
+    - @khanacademy/wonder-blocks-icon@5.3.7
+    - @khanacademy/wonder-blocks-styles@0.2.38
+    - @khanacademy/wonder-blocks-typography@4.2.29
+
 ## 10.1.2
 
 ### Patch Changes

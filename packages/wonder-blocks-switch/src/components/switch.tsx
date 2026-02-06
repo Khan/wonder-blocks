@@ -18,6 +18,9 @@ type Props = Pick<
     checked: boolean;
     /**
      * Whether the switch is disabled. Defaults to `false`.
+     *
+     * Internally, the `aria-disabled` attribute will be set so that the
+     * element remains focusable and will be included in the tab order.
      */
     disabled?: boolean;
     /**
@@ -65,7 +68,7 @@ const baseStyles = {
                 off: semanticColor.core.foreground.knockout.default,
             },
             icon: {
-                on: semanticColor.core.foreground.instructive.subtle,
+                on: semanticColor.core.foreground.instructive.default,
                 disabledOn: semanticColor.core.border.instructive.subtle,
                 off: semanticColor.core.border.neutral.default,
                 disabledOff: semanticColor.core.foreground.disabled.default,

@@ -11,7 +11,7 @@ import {Icon} from "@khanacademy/wonder-blocks-icon";
 import Button from "../button";
 
 describe("button with icon", () => {
-    test("start icon should be hidden from Screen Readers", async () => {
+    test("start icon should be hidden from Screen Readers", () => {
         // Arrange
         render(
             <Button testId={"button-focus-test"} startIcon={plus}>
@@ -20,10 +20,11 @@ describe("button with icon", () => {
         );
 
         // Act
-        const icon = await screen.findByTestId("button-focus-test-start-icon");
+        const icon = screen.queryByRole("img");
 
         // Assert
-        expect(icon).toHaveAttribute("aria-hidden", "true");
+        // Expect there to be no image role in the document
+        expect(icon).not.toBeInTheDocument();
     });
 
     test("end icon should be hidden from Screen Readers", async () => {
@@ -35,10 +36,11 @@ describe("button with icon", () => {
         );
 
         // Act
-        const icon = await screen.findByTestId("button-focus-test-end-icon");
+        const icon = screen.queryByRole("img");
 
         // Assert
-        expect(icon).toHaveAttribute("aria-hidden", "true");
+        // Expect there to be no image role in the document
+        expect(icon).not.toBeInTheDocument();
     });
 
     /**
@@ -58,7 +60,6 @@ describe("button with icon", () => {
 
         // Assert
         expect(icon).toBeInTheDocument();
-        expect(icon).toHaveAttribute("aria-hidden", "true");
     });
 
     test("icon is displayed when button contains endIcon", async () => {
@@ -74,7 +75,6 @@ describe("button with icon", () => {
 
         // Assert
         expect(icon).toBeInTheDocument();
-        expect(icon).toHaveAttribute("aria-hidden", "true");
     });
 
     test("both icons are displayed when button contains startIcon and endIcon", async () => {
@@ -121,7 +121,6 @@ describe("button with icon", () => {
 
         // Assert
         expect(icon).toBeInTheDocument();
-        expect(icon).toHaveAttribute("aria-hidden", "true");
     });
 
     test("icon is displayed when secondary button contains endIcon", async () => {
@@ -137,7 +136,6 @@ describe("button with icon", () => {
 
         // Assert
         expect(icon).toBeInTheDocument();
-        expect(icon).toHaveAttribute("aria-hidden", "true");
     });
 
     /**
@@ -161,7 +159,6 @@ describe("button with icon", () => {
 
         // Assert
         expect(icon).toBeInTheDocument();
-        expect(icon).toHaveAttribute("aria-hidden", "true");
     });
 
     test("icon is displayed when tertiary button contains endIcon", async () => {
@@ -177,7 +174,6 @@ describe("button with icon", () => {
 
         // Assert
         expect(icon).toBeInTheDocument();
-        expect(icon).toHaveAttribute("aria-hidden", "true");
     });
 
     test("should use the test id prop for the start icon", async () => {
@@ -224,7 +220,7 @@ describe("button with icon", () => {
         expect(icon).toBeInTheDocument();
     });
 
-    test("icon is displayed with aria-hidden=true when the button contains a custom startIcon", async () => {
+    test("icon is not displayed with aria-hidden=true when the button contains a custom startIcon", async () => {
         // Arrange
         render(
             <Button
@@ -243,10 +239,10 @@ describe("button with icon", () => {
         const icon = await screen.findByTestId("button-test-id-start-icon");
 
         // Assert
-        expect(icon).toHaveAttribute("aria-hidden", "true");
+        expect(icon).not.toHaveAttribute("aria-hidden");
     });
 
-    test("icon is displayed with aria-hidden=true when the button contains a custom endIcon", async () => {
+    test("icon is not displayed with aria-hidden when the button contains a custom endIcon", async () => {
         // Arrange
         render(
             <Button
@@ -265,6 +261,6 @@ describe("button with icon", () => {
         const icon = await screen.findByTestId("button-test-id-end-icon");
 
         // Assert
-        expect(icon).toHaveAttribute("aria-hidden", "true");
+        expect(icon).not.toHaveAttribute("aria-hidden");
     });
 });

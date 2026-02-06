@@ -6,10 +6,7 @@ import {enUS, type Locale} from "react-day-picker/locale";
 
 import {View, type StyleType} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {
-    TemporalLocaleUtils,
-    enUSLocaleCode,
-} from "../util/temporal-locale-utils";
+import {TemporalLocaleUtils} from "../util/temporal-locale-utils";
 import type {CustomModifiers} from "../util/types";
 
 import DatePickerInput from "./date-picker-input";
@@ -26,16 +23,43 @@ interface Props {
      */
     locale?: Locale;
     /**
-     * When the selected date changes, this callback is passsed a Temporal object
+     * When the selected date changes, this callback is passed a Temporal object
      * for midnight on the selected date, set to the user's local time zone.
+     *
+     * Note: This callback is called as the user types based on resetInvalidValueOnBlur:
+     *
+     * With resetInvalidValueOnBlur={false}:
+     * - Called immediately for all parsed dates (valid or out-of-range)
+     * - Called immediately with null for invalid/unparseable text
+     * - Enables real-time validation feedback
+     *
+     * With resetInvalidValueOnBlur={true} (default):
+     * - Called immediately only for valid in-range dates
+     * - Out-of-range dates and invalid text only notify on blur (will auto-reset)
+     *
+     * For validation feedback, use resetInvalidValueOnBlur={false} and always update selectedDate
+     * in your callback to display invalid values with error messages.
      */
     updateDate: (arg1?: Temporal.PlainDate | null | undefined) => any;
     /**
      * Used to format the value as a valid Date.
+     * If not specified, defaults to locale-aware short date format.
+     *
+     * Supported formats:
+     * - **undefined**: Locale-aware short date (default - uses Intl.DateTimeFormat with full year)
+     * - **"L"**: Locale-aware short date (e.g., "1/20/2026" in en-US, "20.01.2026" in de-DE, "20/01/2026" in bg)
+     * - **"LL"**: Locale-aware long date (e.g., "January 20, 2026" in en-US, "20 de enero de 2026" in es)
+     *   - Supports manual text editing using locale-specific month names
+     * - **"MM/DD/YYYY"**: Fixed US format (e.g., "01/20/2026") - always US order regardless of locale
+     * - **"MMMM D, YYYY"**: Text format (e.g., "January 20, 2026") - month name localized but US order
+     * - **"dateStyle:short|medium|long|full"**: Explicit Intl.DateTimeFormat dateStyle values
      */
     dateFormat?: Array<string> | string;
     /**
      * Whether the DatePicker component is disabled.
+     *
+     * Internally, the `aria-disabled` attribute will be set so that the
+     * element remains focusable and will be included in the tab order.
      */
     disabled?: boolean;
     /**
@@ -69,10 +93,25 @@ interface Props {
      */
     style?: StyleType;
     /**
-     * Whether the date picker should close when a date is selected.
+     * Whether the date picker overlay should close when a date is selected
+     * or when Enter key is pressed in the input.
      * Defaults to true.
      */
     closeOnSelect?: boolean;
+    /**
+     * Whether to reset invalid/unparseable text to the last valid value on blur.
+     *
+     * When true (default):
+     * - Invalid values (out-of-range dates and unparseable text) auto-reset to last valid value on blur
+     * - updateDate only called on blur for invalid values (not during typing)
+     * - Cleaner UX when not using external validation
+     *
+     * When false:
+     * - Invalid values stay in field and updateDate is called immediately as user types
+     * - Enables real-time validation feedback with LabeledField error messages
+     * - Parent should always update selectedDate to show errors
+     */
+    resetInvalidValueOnBlur?: boolean;
     /**
      * Allows including elements below the date selection area that can close
      * the date picker.
@@ -107,6 +146,7 @@ const DatePicker = (props: Props) => {
         selectedDate,
         style,
         closeOnSelect = true,
+        resetInvalidValueOnBlur = true,
         footer,
     } = props;
 
@@ -114,6 +154,11 @@ const DatePicker = (props: Props) => {
     const [currentDate, setCurrentDate] = React.useState<
         Temporal.PlainDate | null | undefined
     >(selectedDate);
+    const [displayMonth, setDisplayMonth] = React.useState<Date | undefined>(
+        selectedDate
+            ? TemporalLocaleUtils.temporalDateToJsDate(selectedDate)
+            : undefined,
+    );
 
     const datePickerInputRef = React.useRef<HTMLInputElement | null>(null);
     const datePickerRef = React.useRef<HTMLElement | null>(null);
@@ -124,7 +169,11 @@ const DatePicker = (props: Props) => {
             setShowOverlay(true);
         }
     }, [disabled]);
-    const close = React.useCallback(() => setShowOverlay(false), []);
+    const close = React.useCallback(() => {
+        setShowOverlay(false);
+        // Trigger any pending validation when closing overlay
+        (datePickerInputRef.current as any)?.validateInput?.();
+    }, []);
 
     const computedLocale = locale ?? enUS;
     const dir =
@@ -133,6 +182,11 @@ const DatePicker = (props: Props) => {
     // Keep currentDate in sync with selectedDate prop
     React.useEffect(() => {
         setCurrentDate(selectedDate);
+        if (selectedDate) {
+            setDisplayMonth(
+                TemporalLocaleUtils.temporalDateToJsDate(selectedDate),
+            );
+        }
     }, [selectedDate]);
 
     // Add/remove mouseup event listener for outside click
@@ -142,14 +196,25 @@ const DatePicker = (props: Props) => {
             const thisElement = refWrapper.current;
             const dayPickerCalendar = datePickerRef.current;
 
-            if (
+            // Check if target is a valid Element (not document)
+            const isElement = target instanceof Element;
+            const inThisElement = isElement && thisElement?.contains(target);
+            const inCalendar = isElement && dayPickerCalendar?.contains(target);
+
+            // Also check if target is in a portal (calendar overlay)
+            const inPortal =
+                isElement &&
+                (target as HTMLElement).closest("[data-placement]") !== null;
+
+            const shouldClose =
                 showOverlay &&
                 closeOnSelect &&
                 thisElement &&
-                !thisElement.contains(target) &&
-                dayPickerCalendar &&
-                !dayPickerCalendar.contains(target)
-            ) {
+                !inThisElement &&
+                !inCalendar &&
+                !inPortal;
+
+            if (shouldClose) {
                 setShowOverlay(false);
             }
         };
@@ -181,12 +246,31 @@ const DatePicker = (props: Props) => {
         selectedDate: Date | null | undefined,
         modifiers: Partial<CustomModifiers>,
     ) => {
-        if (!selectedDate || modifiers.disabled) {
+        // Handle invalid/incomplete dates by clearing currentDate
+        if (!selectedDate) {
+            setCurrentDate(null);
+            updateDate(null);
             return;
         }
+
         const wrappedDate =
             TemporalLocaleUtils.jsDateToTemporalDate(selectedDate);
+
+        // Check if date is disabled (modifiers.disabled can be a function)
+        const isDisabled =
+            typeof modifiers.disabled === "function"
+                ? modifiers.disabled(selectedDate)
+                : modifiers.disabled;
+
+        // Always notify parent via updateDate so they can show validation errors
+        // But only update internal state (currentDate, displayMonth) if not disabled
+        if (isDisabled) {
+            updateDate(wrappedDate);
+            return;
+        }
+
         setCurrentDate(wrappedDate);
+        setDisplayMonth(selectedDate);
         updateDate(wrappedDate);
     };
 
@@ -194,6 +278,21 @@ const DatePicker = (props: Props) => {
         if (e.key === "Escape") {
             close();
             datePickerInputRef.current?.focus();
+        }
+        if (e.key === "ArrowDown" && !showOverlay) {
+            e.preventDefault();
+            open();
+        }
+        if (e.key === "Enter") {
+            e.preventDefault();
+            // Toggle overlay: open if closed, close if open (respecting closeOnSelect)
+            if (showOverlay) {
+                if (closeOnSelect) {
+                    close();
+                }
+            } else {
+                open();
+            }
         }
     };
 
@@ -210,6 +309,7 @@ const DatePicker = (props: Props) => {
                         close();
                         datePickerInputRef.current?.focus();
                     }
+                    // Don't handle Enter in the calendar overlay - let buttons handle it naturally
                 }}
             />
         );
@@ -217,16 +317,17 @@ const DatePicker = (props: Props) => {
 
     const handleDayClick = (
         date: Date | null | undefined,
-        {disabled, selected}: CustomModifiers,
+        {disabled}: CustomModifiers,
     ) => {
         if (disabled || !date) {
             return;
         }
         datePickerInputRef.current?.focus();
         const wrappedDate = TemporalLocaleUtils.jsDateToTemporalDate(date);
-        setCurrentDate(selected ? undefined : wrappedDate);
-        setShowOverlay(!closeOnSelect);
+        setCurrentDate(wrappedDate);
+        setDisplayMonth(date);
         updateDate(wrappedDate);
+        setShowOverlay(!closeOnSelect);
     };
 
     const renderInput = (
@@ -236,7 +337,7 @@ const DatePicker = (props: Props) => {
             ? TemporalLocaleUtils.formatDate(
                   currentDate,
                   dateFormat,
-                  enUSLocaleCode,
+                  computedLocale,
               )
             : "";
 
@@ -256,7 +357,9 @@ const DatePicker = (props: Props) => {
                 dateFormat={dateFormat}
                 locale={computedLocale.code} // e.g. "en-US"
                 parseDate={TemporalLocaleUtils.parseDateToJsDate}
+                getModifiersForDay={TemporalLocaleUtils.getModifiersForDay}
                 modifiers={modifiers}
+                resetInvalidValueOnBlur={resetInvalidValueOnBlur}
                 testId={id && `${id}-input`}
             />
         );
@@ -310,7 +413,10 @@ const DatePicker = (props: Props) => {
                 >
                     <View ref={datePickerRef}>
                         <DayPicker
-                            defaultMonth={selectedDateValue ?? undefined}
+                            mode="single"
+                            selected={selectedDateValue}
+                            month={displayMonth}
+                            onMonthChange={setDisplayMonth}
                             startMonth={minDateToShow ?? undefined}
                             endMonth={
                                 maxDate

@@ -18,9 +18,12 @@ This is an example of a component with an accessible label:
 
 ### Disabled state
 
-Buttons do not need an `aria-disabled` attribute, if it also has a `disabled`
-attribute. Users operating the web page through a screen reader may not be able
-to fully evaluate the implied behaviors of the button element itself.
+When the `disabled` prop is set, the `aria-disabled` attribute will be set.
+By using `aria-disabled` instead of the `disabled` attribute, the element
+will remain focusable and will be included in the tab order.
+
+When it is in a disabled state, the component will have disabled styling and
+cannot be pressed.
 
 <Canvas of={AccessibilityStories.DisabledState} />
 

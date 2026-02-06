@@ -155,7 +155,7 @@ export const WithStyle: StoryObj<typeof Title> = {
     render: () => {
         const styles = StyleSheet.create({
             blueText: {
-                color: semanticColor.core.foreground.instructive.subtle,
+                color: semanticColor.core.foreground.instructive.default,
             },
             highlighted: {
                 background: semanticColor.core.background.neutral.subtle,
