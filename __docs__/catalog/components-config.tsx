@@ -53,7 +53,7 @@ import {
 } from "@khanacademy/wonder-blocks-icon";
 import {FlexibleDialog, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
 import Pill from "@khanacademy/wonder-blocks-pill";
-import {PopoverContent} from "@khanacademy/wonder-blocks-popover";
+import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import {DatePicker} from "@khanacademy/wonder-blocks-date-picker";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
@@ -1932,11 +1932,8 @@ export const floatingComponents = [
         states: [],
         package: "wonder-blocks-dropdown",
     }),
-    /**
-     * wonder-blocks-tooltip
-     */
     createComponentConfig({
-        name: "Tooltip",
+        name: "Tooltip (Opened)",
         // Wrapping the component in a function component to normalize types
         // since it is a class component with getDerivedStateFromProps
         Component: (props: PropsFor<typeof Tooltip>) => <Tooltip {...props} />,
@@ -1950,6 +1947,21 @@ export const floatingComponents = [
         },
         states: [],
         package: "wonder-blocks-tooltip",
+    }),
+    createComponentConfig({
+        name: "Popover (Opened)",
+        Component: (props: PropsFor<typeof Popover>) => <Popover {...props} />,
+        variantProps: [],
+        defaultProps: {
+            content: (
+                <PopoverContent title="Title" content="This is a popover" />
+            ),
+            children: <Button>Open Popover</Button>,
+            opened: true,
+            placement: "bottom",
+        },
+        states: [],
+        package: "wonder-blocks-popover",
     }),
 ];
 
