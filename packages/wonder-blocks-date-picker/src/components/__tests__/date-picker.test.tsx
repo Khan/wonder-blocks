@@ -27,9 +27,9 @@ describe("DatePicker", () => {
     });
 
     it("hides the date picker overlay by default", () => {
-        // Arrange
-        // Act
+        // Arrange & Act
         render(<DatePicker updateDate={() => {}} />);
+
         // Assert
         expect(
             screen.queryByTestId("focus-sentinel-prev"),
@@ -39,8 +39,10 @@ describe("DatePicker", () => {
     it("shows the date picker overlay if the input is clicked", async () => {
         // Arrange
         render(<DatePicker updateDate={() => {}} />);
+
         // Act
         await userEvent.click(screen.getByRole("textbox"));
+
         // Assert
         expect(screen.getByTestId("focus-sentinel-prev")).toBeInTheDocument();
     });
@@ -92,7 +94,6 @@ describe("DatePicker", () => {
         );
 
         // Act
-        // We need first to focus on the input so we can display the picker.
         await userEvent.tab();
 
         // Assert
@@ -111,10 +112,9 @@ describe("DatePicker", () => {
                 )}
             />,
         );
-
-        // We need first to focus on the input so we can display the picker.
         await userEvent.tab();
 
+        // Act
         await userEvent.click(
             screen.getByRole("button", {name: /footer button/i}),
         );
@@ -128,8 +128,6 @@ describe("DatePicker", () => {
     it("closes the date picker if ESC is pressed", async () => {
         // Arrange
         render(<DatePicker updateDate={() => {}} />);
-
-        // We need first to focus on the input so we can display the picker.
         await userEvent.tab();
 
         // Act
@@ -140,39 +138,47 @@ describe("DatePicker", () => {
             screen.queryByTestId("focus-sentinel-prev"),
         ).not.toBeInTheDocument();
     });
-
-    it("opens the date picker if Enter is pressed when closed", async () => {
+    it("returns focus to input after closing overlay with Escape", async () => {
         // Arrange
         render(<DatePicker updateDate={() => {}} />);
-        await userEvent.tab(); // Focus opens overlay
-        await userEvent.keyboard("{Escape}"); // Close it
+        const input = screen.getByRole("textbox");
+        await userEvent.tab();
 
         // Act
-        await userEvent.keyboard("{Enter}");
+        await userEvent.keyboard("{Escape}");
 
         // Assert
-        expect(screen.getByTestId("focus-sentinel-prev")).toBeInTheDocument();
+        await waitFor(() => expect(input).toHaveFocus());
     });
-
-    it("closes the date picker if Enter is pressed when open", async () => {
+    it("does not reopen overlay when pressing Escape while closed", async () => {
         // Arrange
         render(<DatePicker updateDate={() => {}} />);
-        await userEvent.tab(); // Focus opens overlay
+        await userEvent.tab();
+        await userEvent.keyboard("{Escape}");
+        await waitFor(() =>
+            expect(
+                screen.queryByTestId("focus-sentinel-prev"),
+            ).not.toBeInTheDocument(),
+        );
 
         // Act
-        await userEvent.keyboard("{Enter}");
+        await userEvent.keyboard("{Escape}");
 
         // Assert
         expect(
             screen.queryByTestId("focus-sentinel-prev"),
         ).not.toBeInTheDocument();
     });
-
-    it("opens the date picker if down arrow is pressed when closed", async () => {
+    it("allows reopening overlay with ArrowDown after Escape", async () => {
         // Arrange
         render(<DatePicker updateDate={() => {}} />);
-        await userEvent.tab(); // Focus opens overlay
-        await userEvent.keyboard("{Escape}"); // Close it
+        await userEvent.tab();
+        await userEvent.keyboard("{Escape}");
+        await waitFor(() =>
+            expect(
+                screen.queryByTestId("focus-sentinel-prev"),
+            ).not.toBeInTheDocument(),
+        );
 
         // Act
         await userEvent.keyboard("{ArrowDown}");
@@ -181,6 +187,37 @@ describe("DatePicker", () => {
         expect(screen.getByTestId("focus-sentinel-prev")).toBeInTheDocument();
     });
 
+    it("opens the date picker if Enter is pressed when closed", async () => {
+        // Arrange
+        render(<DatePicker updateDate={() => {}} />);
+        await userEvent.tab(); // Focus opens overlay
+        await userEvent.keyboard("{Escape}"); // Close it
+        // Act
+        await userEvent.keyboard("{Enter}");
+        // Assert
+        expect(screen.getByTestId("focus-sentinel-prev")).toBeInTheDocument();
+    });
+    it("closes the date picker if Enter is pressed when open", async () => {
+        // Arrange
+        render(<DatePicker updateDate={() => {}} />);
+        await userEvent.tab(); // Focus opens overlay
+        // Act
+        await userEvent.keyboard("{Enter}");
+        // Assert
+        expect(
+            screen.queryByTestId("focus-sentinel-prev"),
+        ).not.toBeInTheDocument();
+    });
+    it("opens the date picker if down arrow is pressed when closed", async () => {
+        // Arrange
+        render(<DatePicker updateDate={() => {}} />);
+        await userEvent.tab(); // Focus opens overlay
+        await userEvent.keyboard("{Escape}"); // Close it
+        // Act
+        await userEvent.keyboard("{ArrowDown}");
+        // Assert
+        expect(screen.getByTestId("focus-sentinel-prev")).toBeInTheDocument();
+    });
     it("does not close overlay on Enter if closeOnSelect is false", async () => {
         // Arrange
         render(<DatePicker updateDate={() => {}} closeOnSelect={false} />);
@@ -241,10 +278,8 @@ describe("DatePicker", () => {
         // Arrange
         render(<DatePicker updateDate={() => {}} />);
         await userEvent.tab();
-
         // Act
         await userEvent.click(document.body);
-
         // Assert
         await waitFor(() => {
             expect(
@@ -252,7 +287,6 @@ describe("DatePicker", () => {
             ).not.toBeInTheDocument();
         });
     });
-
     it("closes the date picker if a date is selected", async () => {
         // Arrange
         const today = new Date("2023-05-10T09:30:00");
@@ -261,11 +295,9 @@ describe("DatePicker", () => {
         // date to open the calendar by default (in case there's no initial
         // selectedDate set).
         DateMock.advanceTo(today);
-
         const minDate = Temporal.PlainDate.from("2023-05-07");
         const maxDate = Temporal.PlainDate.from("2023-05-22");
         const updateDateMock = jest.fn();
-
         render(
             <DatePicker
                 minDate={minDate}
@@ -273,20 +305,16 @@ describe("DatePicker", () => {
                 updateDate={updateDateMock}
             />,
         );
-
         // We need first to focus on the input so we can display the picker.
         await userEvent.tab();
-
         // Act
         // Select a date
         await userEvent.click(screen.getByText("15"));
-
         // Assert
         await waitFor(() => {
             expect(screen.queryByRole("grid")).not.toBeInTheDocument();
         });
     });
-
     it("does not close the date picker if a date is selected and closeOnSelect is set false", async () => {
         // Arrange
         const today = new Date("2023-05-10T09:30:00");
@@ -295,11 +323,9 @@ describe("DatePicker", () => {
         // date to open the calendar by default (in case there's no initial
         // selectedDate set).
         DateMock.advanceTo(today);
-
         const minDate = Temporal.PlainDate.from("2023-05-07");
         const maxDate = Temporal.PlainDate.from("2023-05-22");
         const updateDateMock = jest.fn();
-
         render(
             <DatePicker
                 closeOnSelect={false}
@@ -308,18 +334,14 @@ describe("DatePicker", () => {
                 updateDate={updateDateMock}
             />,
         );
-
         // We need first to focus on the input so we can display the picker.
         await userEvent.tab();
-
         // Act
         // Select a date
         await userEvent.click(screen.getByText("15"));
-
         // Assert
         await expect(screen.getByRole("grid")).toBeInTheDocument();
     });
-
     it("changes the date in the input if we pick a date from the overlay", async () => {
         // Arrange
         const selectedDate = Temporal.PlainDate.from("2021-05-07");
@@ -356,7 +378,6 @@ describe("DatePicker", () => {
         const maxDate = Temporal.PlainDate.from("2021-05-12");
         const updateDateMock = jest.fn();
         const dateFormat = "YYYY-MM-DD";
-
         render(
             <DatePicker
                 selectedDate={selectedDate}
@@ -366,16 +387,13 @@ describe("DatePicker", () => {
                 maxDate={maxDate}
             />,
         );
-
         // We need first to focus on the input so we can display the picker.
         await userEvent.tab();
-
         const input = screen.getByRole("textbox");
         // Act
         await userEvent.clear(input);
         await userEvent.type(input, "2021-05-10");
         await userEvent.tab();
-
         // Assert
         expect(
             screen.getByRole("button", {
@@ -383,12 +401,10 @@ describe("DatePicker", () => {
             }),
         ).toBeInTheDocument();
     });
-
     it("accepts unpadded date input for MM/DD/YYYY format", async () => {
         // Arrange
         const selectedDate = Temporal.PlainDate.from("2026-01-16");
         const updateDateMock = jest.fn();
-
         render(
             <DatePicker
                 selectedDate={selectedDate}
@@ -396,13 +412,11 @@ describe("DatePicker", () => {
                 dateFormat="MM/DD/YYYY"
             />,
         );
-
         // Act
         await userEvent.tab();
         const input = screen.getByRole("textbox");
         await userEvent.clear(input);
         await userEvent.type(input, "1/30/2026");
-
         // Assert - updateDate should be called with the new date
         await waitFor(() => {
             expect(updateDateMock).toHaveBeenCalledWith(
@@ -414,29 +428,24 @@ describe("DatePicker", () => {
             );
         });
     });
-
     it("preserves partial input while editing date", async () => {
         // Arrange
         const selectedDate = Temporal.PlainDate.from("2026-01-16");
         const updateDateMock = jest.fn();
-
         render(
             <DatePicker
                 selectedDate={selectedDate}
                 updateDate={updateDateMock}
             />,
         );
-
         // Act - Select and delete the day portion "16" to replace it
         await userEvent.tab();
         const input = screen.getByRole("textbox");
         await userEvent.clear(input);
         await userEvent.type(input, "1/");
-
         // Assert - Input should preserve partial value, not clear completely
         expect(input).toHaveValue("1/");
     });
-
     it.each([
         {
             testInput: "1/5/2026",
@@ -486,7 +495,6 @@ describe("DatePicker", () => {
             });
         },
     );
-
     it.each([
         {
             testInput: "invalid date",
@@ -521,21 +529,18 @@ describe("DatePicker", () => {
                     <button>Other element</button>
                 </>,
             );
-
             await userEvent.tab();
             const input = screen.getByRole("textbox");
             await userEvent.clear(input);
             await userEvent.type(input, testInput);
             await userEvent.keyboard("{Escape}");
             await userEvent.tab();
-
             await waitFor(() => {
                 expect(input).toHaveValue(expectedValue);
             });
             expect(updateDateMock).toHaveBeenLastCalledWith(expectedCall);
         },
     );
-
     it.each([
         {resetInvalidValueOnBlur: true},
         {resetInvalidValueOnBlur: false},
@@ -655,17 +660,14 @@ describe("DatePicker", () => {
             />,
         );
         await userEvent.click(screen.getByRole("textbox"));
-
         // Act
         const nextButton = screen.getByLabelText(/next month/i);
         await userEvent.click(nextButton);
-
         // Assert
         await waitFor(() => {
             expect(screen.getByText("June 2021")).toBeInTheDocument();
         });
     });
-
     it("navigates to previous month when previous button is clicked", async () => {
         // Arrange
         const selectedDate = Temporal.PlainDate.from("2021-05-15");
@@ -677,17 +679,14 @@ describe("DatePicker", () => {
             />,
         );
         await userEvent.click(screen.getByRole("textbox"));
-
         // Act
         const prevButton = screen.getByLabelText(/previous month/i);
         await userEvent.click(prevButton);
-
         // Assert
         await waitFor(() => {
             expect(screen.getByText("April 2021")).toBeInTheDocument();
         });
     });
-
     describe("Localization", () => {
         describe("locale prop accepts Locale object directly", () => {
             it("should display calendar when input is clicked", async () => {
