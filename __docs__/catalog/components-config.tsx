@@ -107,6 +107,11 @@ export type ComponentConfig<ComponentType extends React.ElementType> = {
         props: Partial<PropsFor<ComponentType>>;
     }>;
     package: string;
+    /**
+     * When true, each variant is rendered in its own full-width row in the
+     * catalog so the component can span 100% width
+     */
+    fullWidth?: boolean;
 };
 
 // Helper function to create a type-safe component config
@@ -1439,6 +1444,7 @@ export const components = [
         },
         states: [],
         package: "wonder-blocks-tabs",
+        fullWidth: true,
     }),
     createComponentConfig({
         name: "ResponsiveTabs",
@@ -1556,6 +1562,7 @@ export const components = [
         },
         states: [],
         package: "wonder-blocks-tabs",
+        fullWidth: true,
     }),
     /**
      * wonder-blocks-toolbar
@@ -1594,6 +1601,7 @@ export const components = [
             },
         ],
         package: "wonder-blocks-toolbar",
+        fullWidth: true,
     }),
     /**
      * wonder-blocks-typography

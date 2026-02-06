@@ -144,6 +144,7 @@ const ComponentInfo = <Component extends React.ElementType>(props: {
     states: StatesType<React.ElementType>;
     defaultProps: React.ComponentProps<React.ElementType>;
     enableTooltips?: boolean;
+    fullWidth?: boolean;
 }) => {
     const {
         name,
@@ -152,6 +153,7 @@ const ComponentInfo = <Component extends React.ElementType>(props: {
         defaultProps,
         Component,
         enableTooltips,
+        fullWidth,
     } = props;
 
     const heading = (
@@ -171,7 +173,7 @@ const ComponentInfo = <Component extends React.ElementType>(props: {
     ];
 
     return (
-        <View key={name}>
+        <View key={name} style={{maxWidth: "100%"}}>
             {heading}
             <View
                 style={{
@@ -201,9 +203,12 @@ const ComponentInfo = <Component extends React.ElementType>(props: {
                                     >,
                                     i,
                                 ) => {
+                                    const rowStyle = fullWidth
+                                        ? styles.fullWidthRow
+                                        : styles.row;
                                     return (
                                         <View
-                                            style={styles.row}
+                                            style={rowStyle}
                                             key={JSON.stringify(
                                                 combinationGroup,
                                             )}
@@ -269,6 +274,7 @@ const PackageInfo = ({
                     states={component.states}
                     defaultProps={component.defaultProps}
                     enableTooltips={enableTooltips}
+                    fullWidth={component.fullWidth}
                 />
             ))}
         </View>
@@ -364,11 +370,20 @@ const styles = StyleSheet.create({
     stateGroup: {
         gap: sizing.size_200,
         flexWrap: "wrap",
+        maxWidth: "100%",
     },
     row: {
         flexDirection: "row",
         gap: sizing.size_200,
         flexWrap: "wrap",
+    },
+    fullWidthRow: {
+        flexDirection: "column",
+        gap: sizing.size_200,
+        width: "100%",
+    },
+    fullWidthVariant: {
+        width: "100%",
     },
     tooltipList: {
         margin: 0,
@@ -389,6 +404,7 @@ const styles = StyleSheet.create({
     packageInfo: {
         gap: sizing.size_200,
         flexWrap: "wrap",
+        maxWidth: "100%",
     },
     openedComponent: {
         marginBlockEnd: "300px",
