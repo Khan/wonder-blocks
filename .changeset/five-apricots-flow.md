@@ -1,5 +1,5 @@
 ---
-"@khanacademy/wonder-blocks-date-picker": patch
+"@khanacademy/wonder-blocks-date-picker": major
 ---
 
-Fix date picker key handling so Escape will only close date picker overlay, and not a parent modal
+Date picker bugfixes: change dateFormat to string formats only, fix key handling so Escape will only close date picker overlay and not a parent modal, remove default width
