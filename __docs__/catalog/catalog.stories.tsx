@@ -311,44 +311,6 @@ export const AllComponents = {
     },
 };
 
-export const AllComponentsHover = {
-    name: "Components / Hover",
-    render: AllComponents.render,
-    parameters: {
-        pseudo: {
-            hover: true,
-        },
-    },
-};
-
-export const AllComponentsFocus = {
-    name: "Components / Focus",
-    render: AllComponents.render,
-    parameters: {
-        pseudo: {
-            focusVisible: true,
-        },
-    },
-};
-
-export const AllComponentsPress = {
-    name: "Components / Press",
-    render: AllComponents.render,
-    parameters: {
-        pseudo: {
-            active: true,
-        },
-    },
-};
-
-export const AllComponentsRTL = {
-    name: "Components / RTL",
-    render: AllComponents.render,
-    globals: {
-        direction: "rtl",
-    },
-};
-
 export const FloatingComponents = {
     render: function Render() {
         return (
@@ -385,7 +347,7 @@ export const OverlayComponents: StoryObj = {
                         </Heading>
                         <iframe
                             title={component.name}
-                            src={`/iframe.html?id=${component.storyId}&globals=theme:${globals.theme}`}
+                            src={`/iframe.html?id=${component.storyId}&globals=theme:${globals.theme};direction:${globals.direction}`}
                             style={{
                                 height: "500px",
                                 border: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
