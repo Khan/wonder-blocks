@@ -190,6 +190,140 @@ const formFieldsToUseWithLabeledField: {
     },
 ];
 
+export const buttonComponents = [
+    createComponentConfig({
+        name: "Button",
+        Component: Button,
+        variantProps: [
+            {
+                propName: "size",
+                options: ["small", "medium", "large"],
+            },
+            {
+                propName: "kind",
+                options: ["primary", "secondary", "tertiary"],
+            },
+            {
+                propName: "actionType",
+                options: ["progressive", "destructive", "neutral"],
+            },
+        ],
+        defaultProps: {
+            children: "Button",
+            startIcon: IconMappings.cookieBold,
+            endIcon: IconMappings.iceCreamBold,
+            "aria-label": "ExampleButton",
+        },
+        states: [
+            {name: "Disabled", props: {disabled: true}},
+            {name: "Spinner", props: {spinner: true}},
+        ],
+        package: "wonder-blocks-button",
+    }),
+    createComponentConfig({
+        name: "IconButton",
+        Component: IconButton,
+        variantProps: [
+            {
+                propName: "size",
+                options: ["small", "medium", "large"],
+            },
+            {
+                propName: "kind",
+                options: ["primary", "secondary", "tertiary"],
+            },
+            {
+                propName: "actionType",
+                options: ["progressive", "destructive", "neutral"],
+            },
+        ],
+        defaultProps: {
+            icon: IconMappings.cookieBold,
+            "aria-label": "Example IconButton",
+        },
+        states: [{name: "Disabled", props: {disabled: true}}],
+        package: "wonder-blocks-icon-button",
+    }),
+    createComponentConfig({
+        name: "ConversationIconButton",
+        Component: ConversationIconButton,
+        variantProps: [
+            {
+                propName: "kind",
+                options: ["primary", "secondary", "tertiary"],
+            },
+            {
+                propName: "actionType",
+                options: ["progressive", "neutral"],
+            },
+        ],
+        defaultProps: {
+            icon: IconMappings.cookieBold,
+            "aria-label": "Conversation Icon Button",
+        },
+        states: [{name: "Disabled", props: {disabled: true}}],
+        package: "wonder-blocks-icon-button",
+    }),
+    createComponentConfig({
+        name: "ActivityButton",
+        Component: ActivityButton,
+        variantProps: [
+            {
+                propName: "kind",
+                options: ["primary", "secondary", "tertiary"],
+            },
+        ],
+        defaultProps: {
+            children: "ActivityButton",
+            startIcon: IconMappings.cookieBold,
+            endIcon: IconMappings.iceCreamBold,
+        },
+        states: [{name: "Disabled", props: {disabled: true}}],
+        package: "wonder-blocks-button",
+    }),
+    createComponentConfig({
+        name: "ActivityIconButton",
+        Component: ActivityIconButton,
+        variantProps: [
+            {
+                propName: "actionType",
+                options: ["progressive", "neutral"],
+            },
+            {
+                propName: "kind",
+                options: ["primary", "secondary", "tertiary"],
+            },
+        ],
+        defaultProps: {
+            icon: IconMappings.cookieBold,
+            // "aria-label": "Activity Icon Button",
+            label: "Label",
+        },
+        states: [{name: "Disabled", props: {disabled: true}}],
+        package: "wonder-blocks-icon-button",
+    }),
+    createComponentConfig({
+        name: "NodeIconButton",
+        Component: NodeIconButton,
+        variantProps: [
+            {
+                propName: "size",
+                options: ["small", "large"],
+            },
+            {
+                propName: "actionType",
+                options: ["notStarted", "attempted", "complete"],
+            },
+        ],
+        defaultProps: {
+            icon: IconMappings.cookieBold,
+            "aria-label": "Node Icon Button",
+        },
+        states: [{name: "Disabled", props: {disabled: true}}],
+        package: "wonder-blocks-icon-button",
+    }),
+];
+
 /**
  * Components to include in the catalog
  */
@@ -415,55 +549,6 @@ export const components = [
         package: "wonder-blocks-breadcrumbs",
     }),
     /**
-     * wonder-blocks-button
-     */
-    createComponentConfig({
-        name: "Button",
-        Component: Button,
-        variantProps: [
-            {
-                propName: "size",
-                options: ["small", "medium", "large"],
-            },
-            {
-                propName: "kind",
-                options: ["primary", "secondary", "tertiary"],
-            },
-            {
-                propName: "actionType",
-                options: ["progressive", "destructive", "neutral"],
-            },
-        ],
-        defaultProps: {
-            children: "Button",
-            startIcon: IconMappings.cookieBold,
-            endIcon: IconMappings.iceCreamBold,
-            "aria-label": "ExampleButton",
-        },
-        states: [
-            {name: "Disabled", props: {disabled: true}},
-            {name: "Spinner", props: {spinner: true}},
-        ],
-        package: "wonder-blocks-button",
-    }),
-    createComponentConfig({
-        name: "ActivityButton",
-        Component: ActivityButton,
-        variantProps: [
-            {
-                propName: "kind",
-                options: ["primary", "secondary", "tertiary"],
-            },
-        ],
-        defaultProps: {
-            children: "ActivityButton",
-            startIcon: IconMappings.cookieBold,
-            endIcon: IconMappings.iceCreamBold,
-        },
-        states: [{name: "Disabled", props: {disabled: true}}],
-        package: "wonder-blocks-button",
-    }),
-    /**
      * wonder-blocks-card
      */
     createComponentConfig({
@@ -640,94 +725,6 @@ export const components = [
         },
         states: [],
         package: "wonder-blocks-icon",
-    }),
-    /**
-     * wonder-blocks-icon-button
-     */
-    createComponentConfig({
-        name: "IconButton",
-        Component: IconButton,
-        variantProps: [
-            {
-                propName: "size",
-                options: ["small", "medium", "large"],
-            },
-            {
-                propName: "kind",
-                options: ["primary", "secondary", "tertiary"],
-            },
-            {
-                propName: "actionType",
-                options: ["progressive", "destructive", "neutral"],
-            },
-        ],
-        defaultProps: {
-            icon: IconMappings.cookieBold,
-            "aria-label": "Example IconButton",
-        },
-        states: [{name: "Disabled", props: {disabled: true}}],
-        package: "wonder-blocks-icon-button",
-    }),
-    createComponentConfig({
-        name: "ActivityIconButton",
-        Component: ActivityIconButton,
-        variantProps: [
-            {
-                propName: "actionType",
-                options: ["progressive", "neutral"],
-            },
-            {
-                propName: "kind",
-                options: ["primary", "secondary", "tertiary"],
-            },
-        ],
-        defaultProps: {
-            icon: IconMappings.cookieBold,
-            // "aria-label": "Activity Icon Button",
-            label: "Label",
-        },
-        states: [{name: "Disabled", props: {disabled: true}}],
-        package: "wonder-blocks-icon-button",
-    }),
-    createComponentConfig({
-        name: "ConversationIconButton",
-        Component: ConversationIconButton,
-        variantProps: [
-            {
-                propName: "actionType",
-                options: ["progressive", "neutral"],
-            },
-            {
-                propName: "kind",
-                options: ["primary", "secondary", "tertiary"],
-            },
-        ],
-        defaultProps: {
-            icon: IconMappings.cookieBold,
-            "aria-label": "Conversation Icon Button",
-        },
-        states: [{name: "Disabled", props: {disabled: true}}],
-        package: "wonder-blocks-icon-button",
-    }),
-    createComponentConfig({
-        name: "NodeIconButton",
-        Component: NodeIconButton,
-        variantProps: [
-            {
-                propName: "size",
-                options: ["small", "large"],
-            },
-            {
-                propName: "actionType",
-                options: ["notStarted", "attempted", "complete"],
-            },
-        ],
-        defaultProps: {
-            icon: IconMappings.cookieBold,
-            "aria-label": "Node Icon Button",
-        },
-        states: [{name: "Disabled", props: {disabled: true}}],
-        package: "wonder-blocks-icon-button",
     }),
     /**
      * wonder-blocks-link

@@ -6,6 +6,7 @@ import {Heading} from "@khanacademy/wonder-blocks-typography";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import Tooltip, {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 import {
+    buttonComponents,
     components,
     floatingComponents,
     inputComponents,
@@ -361,6 +362,18 @@ export const OverlayComponents: StoryObj = {
                             }}
                         />
                     </View>
+                ))}
+            </View>
+        );
+    },
+};
+
+export const ButtonComponents = {
+    render: function Render() {
+        return (
+            <View style={styles.allComponents}>
+                {buttonComponents.map((component) => (
+                    <ComponentInfo {...component} key={component.name} />
                 ))}
             </View>
         );
