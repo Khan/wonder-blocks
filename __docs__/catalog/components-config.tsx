@@ -590,45 +590,39 @@ export const feedbackComponents = [
 ];
 
 /**
- * Components to include in the catalog
+ * Navigation and menu components (Breadcrumbs, Link, ActionMenu, ActionItem, tabs, Toolbar)
  */
-export const components = [
-    /**
-     * wonder-blocks-accordion
-     */
+export const navigationAndMenuComponents = [
     createComponentConfig({
-        name: "Accordion",
-        Component: Accordion,
+        name: "Link",
+        Component: Link,
         variantProps: [
             {
-                propName: "caretPosition",
-                options: ["start", "end"],
+                propName: "inline",
+                options: [false, true],
             },
             {
-                propName: "cornerKind",
-                options: ["square", "rounded", "rounded-per-section"],
+                propName: "target",
+                options: [undefined, "_blank"],
             },
         ],
         defaultProps: {
-            initialExpandedIndex: 1,
-            children: [
-                <AccordionSection key="section-1" header="First Section">
-                    This is the content of the first section
-                </AccordionSection>,
-                <AccordionSection key="section-2" header="Second Section">
-                    This is the content of the second section
-                </AccordionSection>,
-                <AccordionSection key="section-3" header="Third Section">
-                    This is the content of the third section
-                </AccordionSection>,
-            ],
+            href: "https://khanacademy.org",
+            children: "Link",
         },
-        states: [],
-        package: "wonder-blocks-accordion",
+        states: [
+            {
+                name: "Icons",
+                props: {
+                    startIcon: <PhosphorIcon icon={IconMappings.cookieBold} />,
+                    endIcon: (
+                        <PhosphorIcon icon={IconMappings.caretRightBold} />
+                    ),
+                },
+            },
+        ],
+        package: "wonder-blocks-link",
     }),
-    /**
-     * wonder-blocks-breadcrumbs
-     */
     createComponentConfig({
         name: "Breadcrumbs",
         Component: Breadcrumbs,
@@ -647,93 +641,6 @@ export const components = [
         states: [],
         package: "wonder-blocks-breadcrumbs",
     }),
-    /**
-     * wonder-blocks-card
-     */
-    createComponentConfig({
-        name: "Card",
-        Component: Card,
-        variantProps: [
-            {
-                propName: "paddingSize",
-                options: ["medium", "small", "none"],
-            },
-            {
-                propName: "background",
-                options: ["base-subtle", "base-default", customBackgroundImage],
-            },
-            {
-                propName: "elevation",
-                options: ["none", "low"],
-            },
-            {
-                propName: "borderRadius",
-                options: ["small", "medium"],
-            },
-        ],
-        defaultProps: {
-            children: (
-                <>
-                    <Heading>Card Component</Heading>
-                    <BodyText>This is a card component</BodyText>
-                </>
-            ),
-            styles: {root: {gap: sizing.size_040}},
-        },
-        states: [{name: "Dismissible", props: {onDismiss: () => {}}}],
-        package: "wonder-blocks-card",
-    }),
-    /**
-     * wonder-blocks-cell
-     */
-    createComponentConfig({
-        name: "CompactCell",
-        Component: CompactCell,
-        variantProps: [
-            {
-                propName: "horizontalRule",
-                options: ["full-width", "inset", "none"],
-            },
-        ],
-        defaultProps: {
-            title: "CompactCell",
-            leftAccessory: <PhosphorIcon icon={IconMappings.cookieBold} />,
-            rightAccessory: <PhosphorIcon icon={IconMappings.caretRightBold} />,
-            onClick: () => {},
-        },
-        states: [
-            {name: "Active", props: {active: true}},
-            {name: "Disabled", props: {disabled: true}},
-        ],
-        package: "wonder-blocks-cell",
-    }),
-    createComponentConfig({
-        name: "DetailCell",
-        Component: DetailCell,
-        variantProps: [
-            {
-                propName: "horizontalRule",
-                options: ["full-width", "inset", "none"],
-            },
-        ],
-        defaultProps: {
-            title: "DetailCell",
-            leftAccessory: <PhosphorIcon icon={IconMappings.cookieBold} />,
-            rightAccessory: <PhosphorIcon icon={IconMappings.caretRightBold} />,
-            onClick: () => {},
-            subtitle1: "Subtitle1",
-            subtitle2: "Subtitle2",
-        },
-        states: [
-            {name: "Active", props: {active: true}},
-            {name: "Disabled", props: {disabled: true}},
-        ],
-        package: "wonder-blocks-cell",
-    }),
-
-    /**
-     * wonder-blocks-dropdown
-     */
     createComponentConfig({
         name: "ActionMenu",
         // Wrapping the component in a function component to normalize types
@@ -782,125 +689,6 @@ export const components = [
         ],
         package: "wonder-blocks-dropdown",
     }),
-
-    /**
-     * wonder-blocks-icon
-     */
-    createComponentConfig({
-        name: "PhosphorIcon",
-        Component: PhosphorIcon,
-        variantProps: [
-            {
-                propName: "size",
-                options: ["small", "medium", "large", "xlarge"],
-            },
-        ],
-        defaultProps: {
-            icon: IconMappings.cookieBold,
-            color: semanticColor.core.foreground.neutral.subtle,
-        },
-        states: [],
-        package: "wonder-blocks-icon",
-    }),
-    createComponentConfig({
-        name: "Icon (with custom icons, GemIcon, StreakIcon)",
-        Component: Icon,
-        variantProps: [
-            {
-                propName: "size",
-                options: ["small", "medium", "large", "xlarge"],
-            },
-            {
-                propName: "children",
-                options: [
-                    <img src="./logo.svg" alt="Wonder Blocks Logo" />,
-                    <GemIcon aria-label="Gem icon" />,
-                    <StreakIcon aria-label="Streak icon" />,
-                ],
-            },
-        ],
-        defaultProps: {
-            children: <></>,
-        },
-        states: [],
-        package: "wonder-blocks-icon",
-    }),
-    /**
-     * wonder-blocks-link
-     */
-    createComponentConfig({
-        name: "Link",
-        Component: Link,
-        variantProps: [
-            {
-                propName: "inline",
-                options: [false, true],
-            },
-            {
-                propName: "target",
-                options: [undefined, "_blank"],
-            },
-        ],
-        defaultProps: {
-            href: "https://khanacademy.org",
-            children: "Link",
-        },
-        states: [
-            {
-                name: "Icons",
-                props: {
-                    startIcon: <PhosphorIcon icon={IconMappings.cookieBold} />,
-                    endIcon: (
-                        <PhosphorIcon icon={IconMappings.caretRightBold} />
-                    ),
-                },
-            },
-        ],
-        package: "wonder-blocks-link",
-    }),
-    /**
-     * wonder-blocks-popover
-     */
-    createComponentConfig({
-        name: "PopoverContent",
-        Component: PopoverContent,
-        variantProps: [],
-        defaultProps: {
-            title: "Popover Title",
-            content: "This is the content of the popover.",
-            closeButtonVisible: true,
-            actions: <Button>Action</Button>,
-        },
-        states: [
-            {
-                name: "With Icon",
-                props: {
-                    icon: (
-                        <img
-                            src="./logo.svg"
-                            width="100%"
-                            alt="Wonder Blocks logo"
-                        />
-                    ),
-                },
-            },
-            {
-                name: "With Image",
-                props: {
-                    image: (
-                        <img
-                            src="./illustration.svg"
-                            alt="An illustration of a person skating on a pencil"
-                        />
-                    ),
-                },
-            },
-        ],
-        package: "wonder-blocks-popover",
-    }),
-    /**
-     * wonder-blocks-tabs
-     */
     createComponentConfig({
         name: "ResponsiveNavigationTabs",
         Component: ResponsiveNavigationTabs,
@@ -1109,9 +897,6 @@ export const components = [
         package: "wonder-blocks-tabs",
         fullWidth: true,
     }),
-    /**
-     * wonder-blocks-toolbar
-     */
     createComponentConfig({
         name: "Toolbar",
         Component: Toolbar,
@@ -1147,6 +932,211 @@ export const components = [
         ],
         package: "wonder-blocks-toolbar",
         fullWidth: true,
+    }),
+];
+
+/**
+ * Components to include in the catalog
+ */
+export const components = [
+    /**
+     * wonder-blocks-accordion
+     */
+    createComponentConfig({
+        name: "Accordion",
+        Component: Accordion,
+        variantProps: [
+            {
+                propName: "caretPosition",
+                options: ["start", "end"],
+            },
+            {
+                propName: "cornerKind",
+                options: ["square", "rounded", "rounded-per-section"],
+            },
+        ],
+        defaultProps: {
+            initialExpandedIndex: 1,
+            children: [
+                <AccordionSection key="section-1" header="First Section">
+                    This is the content of the first section
+                </AccordionSection>,
+                <AccordionSection key="section-2" header="Second Section">
+                    This is the content of the second section
+                </AccordionSection>,
+                <AccordionSection key="section-3" header="Third Section">
+                    This is the content of the third section
+                </AccordionSection>,
+            ],
+        },
+        states: [],
+        package: "wonder-blocks-accordion",
+    }),
+    /**
+     * wonder-blocks-card
+     */
+    createComponentConfig({
+        name: "Card",
+        Component: Card,
+        variantProps: [
+            {
+                propName: "paddingSize",
+                options: ["medium", "small", "none"],
+            },
+            {
+                propName: "background",
+                options: ["base-subtle", "base-default", customBackgroundImage],
+            },
+            {
+                propName: "elevation",
+                options: ["none", "low"],
+            },
+            {
+                propName: "borderRadius",
+                options: ["small", "medium"],
+            },
+        ],
+        defaultProps: {
+            children: (
+                <>
+                    <Heading>Card Component</Heading>
+                    <BodyText>This is a card component</BodyText>
+                </>
+            ),
+            styles: {root: {gap: sizing.size_040}},
+        },
+        states: [{name: "Dismissible", props: {onDismiss: () => {}}}],
+        package: "wonder-blocks-card",
+    }),
+    /**
+     * wonder-blocks-cell
+     */
+    createComponentConfig({
+        name: "CompactCell",
+        Component: CompactCell,
+        variantProps: [
+            {
+                propName: "horizontalRule",
+                options: ["full-width", "inset", "none"],
+            },
+        ],
+        defaultProps: {
+            title: "CompactCell",
+            leftAccessory: <PhosphorIcon icon={IconMappings.cookieBold} />,
+            rightAccessory: <PhosphorIcon icon={IconMappings.caretRightBold} />,
+            onClick: () => {},
+        },
+        states: [
+            {name: "Active", props: {active: true}},
+            {name: "Disabled", props: {disabled: true}},
+        ],
+        package: "wonder-blocks-cell",
+    }),
+    createComponentConfig({
+        name: "DetailCell",
+        Component: DetailCell,
+        variantProps: [
+            {
+                propName: "horizontalRule",
+                options: ["full-width", "inset", "none"],
+            },
+        ],
+        defaultProps: {
+            title: "DetailCell",
+            leftAccessory: <PhosphorIcon icon={IconMappings.cookieBold} />,
+            rightAccessory: <PhosphorIcon icon={IconMappings.caretRightBold} />,
+            onClick: () => {},
+            subtitle1: "Subtitle1",
+            subtitle2: "Subtitle2",
+        },
+        states: [
+            {name: "Active", props: {active: true}},
+            {name: "Disabled", props: {disabled: true}},
+        ],
+        package: "wonder-blocks-cell",
+    }),
+
+    /**
+     * wonder-blocks-icon
+     */
+    createComponentConfig({
+        name: "PhosphorIcon",
+        Component: PhosphorIcon,
+        variantProps: [
+            {
+                propName: "size",
+                options: ["small", "medium", "large", "xlarge"],
+            },
+        ],
+        defaultProps: {
+            icon: IconMappings.cookieBold,
+            color: semanticColor.core.foreground.neutral.subtle,
+        },
+        states: [],
+        package: "wonder-blocks-icon",
+    }),
+    createComponentConfig({
+        name: "Icon (with custom icons, GemIcon, StreakIcon)",
+        Component: Icon,
+        variantProps: [
+            {
+                propName: "size",
+                options: ["small", "medium", "large", "xlarge"],
+            },
+            {
+                propName: "children",
+                options: [
+                    <img src="./logo.svg" alt="Wonder Blocks Logo" />,
+                    <GemIcon aria-label="Gem icon" />,
+                    <StreakIcon aria-label="Streak icon" />,
+                ],
+            },
+        ],
+        defaultProps: {
+            children: <></>,
+        },
+        states: [],
+        package: "wonder-blocks-icon",
+    }),
+    /**
+     * wonder-blocks-popover
+     */
+    createComponentConfig({
+        name: "PopoverContent",
+        Component: PopoverContent,
+        variantProps: [],
+        defaultProps: {
+            title: "Popover Title",
+            content: "This is the content of the popover.",
+            closeButtonVisible: true,
+            actions: <Button>Action</Button>,
+        },
+        states: [
+            {
+                name: "With Icon",
+                props: {
+                    icon: (
+                        <img
+                            src="./logo.svg"
+                            width="100%"
+                            alt="Wonder Blocks logo"
+                        />
+                    ),
+                },
+            },
+            {
+                name: "With Image",
+                props: {
+                    image: (
+                        <img
+                            src="./illustration.svg"
+                            alt="An illustration of a person skating on a pencil"
+                        />
+                    ),
+                },
+            },
+        ],
+        package: "wonder-blocks-popover",
     }),
 ];
 

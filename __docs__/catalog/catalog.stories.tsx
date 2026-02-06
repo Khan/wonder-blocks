@@ -11,6 +11,7 @@ import {
     feedbackComponents,
     floatingComponents,
     inputComponents,
+    navigationAndMenuComponents,
     overlayComponents,
     typographyComponents,
 } from "./components-config";
@@ -399,6 +400,18 @@ export const FeedbackComponents = {
         return (
             <View style={styles.allComponents}>
                 {feedbackComponents.map((component) => (
+                    <ComponentInfo {...component} key={component.name} />
+                ))}
+            </View>
+        );
+    },
+};
+
+export const NavigationAndMenuComponents = {
+    render: function Render() {
+        return (
+            <View style={styles.allComponents}>
+                {navigationAndMenuComponents.map((component) => (
                     <ComponentInfo {...component} key={component.name} />
                 ))}
             </View>
