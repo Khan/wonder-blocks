@@ -689,6 +689,47 @@ describe("DatePicker", () => {
             expect(screen.getByText("April 2021")).toBeInTheDocument();
         });
     });
+    describe("Month navigation (uncontrolled overlay)", () => {
+        it("shows selectedDate month when overlay opens", async () => {
+            render(
+                <DatePicker
+                    selectedDate={Temporal.PlainDate.from("2021-03-15")}
+                    updateDate={() => {}}
+                    dateFormat="MMMM D, YYYY"
+                />,
+            );
+            await userEvent.click(screen.getByRole("textbox"));
+            expect(screen.getByText("March 2021")).toBeInTheDocument();
+        });
+        it("reopening overlay after next month and close shows navigated month", async () => {
+            render(
+                <DatePicker
+                    selectedDate={Temporal.PlainDate.from("2021-05-15")}
+                    updateDate={() => {}}
+                    dateFormat="MMMM D, YYYY"
+                />,
+            );
+            await userEvent.click(screen.getByRole("textbox"));
+            await userEvent.click(screen.getByLabelText(/next month/i));
+            await userEvent.keyboard("{Escape}");
+            await userEvent.click(screen.getByRole("textbox"));
+            expect(screen.getByText("June 2021")).toBeInTheDocument();
+        });
+        it("reopening overlay after previous month and close shows navigated month", async () => {
+            render(
+                <DatePicker
+                    selectedDate={Temporal.PlainDate.from("2021-05-15")}
+                    updateDate={() => {}}
+                    dateFormat="MMMM D, YYYY"
+                />,
+            );
+            await userEvent.click(screen.getByRole("textbox"));
+            await userEvent.click(screen.getByLabelText(/previous month/i));
+            await userEvent.keyboard("{Escape}");
+            await userEvent.click(screen.getByRole("textbox"));
+            expect(screen.getByText("April 2021")).toBeInTheDocument();
+        });
+    });
     describe("Localization", () => {
         describe("locale prop accepts Locale object directly", () => {
             it("should display calendar when input is clicked", async () => {
