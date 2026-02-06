@@ -665,6 +665,7 @@ export const components = [
                 propName: "selectedValue",
                 options: ["", "option1"],
             },
+            {propName: "placeholder", options: ["", "Select an option"]},
         ],
         defaultProps: {
             placeholder: "Select an option",
@@ -728,13 +729,18 @@ export const components = [
         package: "wonder-blocks-dropdown",
     }),
     createComponentConfig({
-        name: "Combobox",
-        Component: Combobox,
+        name: "Combobox (single)",
+        Component: (props: PropsFor<typeof Combobox>) => (
+            <View style={{maxWidth: "200px"}}>
+                <Combobox {...props} />
+            </View>
+        ),
         variantProps: [
             {
-                propName: "selectionType",
-                options: ["single", "multiple"],
+                propName: "value",
+                options: ["", "option1"],
             },
+            {propName: "placeholder", options: ["", "Select an option"]},
         ],
         defaultProps: {
             value: "",
@@ -752,7 +758,35 @@ export const components = [
         ],
         package: "wonder-blocks-dropdown",
     }),
-
+    createComponentConfig({
+        name: "Combobox (multiple)",
+        Component: (props: PropsFor<typeof Combobox>) => (
+            <View style={{maxWidth: "200px"}}>
+                <Combobox {...props} />
+            </View>
+        ),
+        variantProps: [
+            {
+                propName: "value",
+                options: ["", ["option1", "option2"]],
+            },
+            {propName: "placeholder", options: ["", "Select options"]},
+        ],
+        defaultProps: {
+            value: [],
+            selectionType: "multiple",
+            children: [
+                <OptionItem key="option1" label="Option 1" value="option1" />,
+                <OptionItem key="option2" label="Option 2" value="option2" />,
+                <OptionItem key="option3" label="Option 3" value="option3" />,
+            ],
+        },
+        states: [
+            {name: "Disabled", props: {disabled: true}},
+            {name: "Error", props: {error: true}},
+        ],
+        package: "wonder-blocks-dropdown",
+    }),
     /**
      * wonder-blocks-form
      */
@@ -1582,7 +1616,7 @@ export const components = [
  */
 export const floatingComponents = [
     createComponentConfig({
-        name: "DatePicker (Opened State)",
+        name: "DatePicker",
         Component: (props) => {
             const ref = React.useRef<HTMLDivElement>(null);
 
@@ -1621,7 +1655,7 @@ export const floatingComponents = [
         package: "wonder-blocks-date-picker",
     }),
     createComponentConfig({
-        name: "ActionMenu (Opened)",
+        name: "ActionMenu",
         // Wrapping the component in a function component to normalize types
         // since it is a class component with getDerivedStateFromProps
         Component: (props: PropsFor<typeof ActionMenu>) => {
@@ -1636,62 +1670,51 @@ export const floatingComponents = [
             }, []);
             return <ActionMenu {...props} opened={opened} />;
         },
-        variantProps: [
-            {
-                propName: "children",
-                options: [
-                    [
-                        <ActionItem
-                            key="option1"
-                            label="Option 1"
-                            leftAccessory={
-                                <PhosphorIcon icon={IconMappings.cookieBold} />
-                            }
-                            rightAccessory={
-                                <PhosphorIcon
-                                    icon={IconMappings.caretRightBold}
-                                />
-                            }
-                        />,
-                        <ActionItem
-                            key="option2"
-                            label="Option 2"
-                            leftAccessory={
-                                <PhosphorIcon icon={IconMappings.cookieBold} />
-                            }
-                            rightAccessory={
-                                <PhosphorIcon
-                                    icon={IconMappings.caretRightBold}
-                                />
-                            }
-                            disabled={true}
-                        />,
-                        <ActionItem
-                            key="option3"
-                            label="Option 3"
-                            leftAccessory={
-                                <PhosphorIcon icon={IconMappings.cookieBold} />
-                            }
-                            rightAccessory={
-                                <PhosphorIcon
-                                    icon={IconMappings.caretRightBold}
-                                />
-                            }
-                            active={true}
-                        />,
-                    ],
-                ],
-            },
-        ],
+        variantProps: [],
         defaultProps: {
             opened: true,
             menuText: "ActionMenu",
+            children: [
+                <ActionItem
+                    key="option1"
+                    label="Option 1"
+                    leftAccessory={
+                        <PhosphorIcon icon={IconMappings.cookieBold} />
+                    }
+                    rightAccessory={
+                        <PhosphorIcon icon={IconMappings.caretRightBold} />
+                    }
+                />,
+                <ActionItem
+                    key="option2"
+                    label="Option 2"
+                    leftAccessory={
+                        <PhosphorIcon icon={IconMappings.cookieBold} />
+                    }
+                    rightAccessory={
+                        <PhosphorIcon icon={IconMappings.caretRightBold} />
+                    }
+                    disabled={true}
+                />,
+                <ActionItem
+                    key="option3"
+                    label="Option 3"
+                    leftAccessory={
+                        <PhosphorIcon icon={IconMappings.cookieBold} />
+                    }
+                    rightAccessory={
+                        <PhosphorIcon icon={IconMappings.caretRightBold} />
+                    }
+                    active={true}
+                />,
+            ],
+            style: {marginInlineEnd: sizing.size_320},
         },
         states: [],
         package: "wonder-blocks-dropdown",
     }),
     createComponentConfig({
-        name: "MultiSelect (Opened)",
+        name: "MultiSelect",
         Component: (props: PropsFor<typeof MultiSelect>) => {
             const [opened, setOpened] = React.useState(false);
 
@@ -1704,78 +1727,7 @@ export const floatingComponents = [
             }, []);
             return <MultiSelect {...props} opened={opened} />;
         },
-        variantProps: [
-            {
-                propName: "children",
-                options: [
-                    [
-                        <OptionItem
-                            key="option1"
-                            label="Option 1"
-                            value="option1"
-                        />,
-                        <OptionItem
-                            key="option2"
-                            label="Option 2"
-                            value="option2"
-                        />,
-                        <OptionItem
-                            key="option3"
-                            label="Option 3"
-                            value="option3"
-                        />,
-                    ],
-                    [
-                        <OptionItem
-                            key="option1"
-                            label="Option 1"
-                            value="option1"
-                            subtitle1="Subtitle1"
-                            subtitle2="Subtitle2"
-                            leftAccessory={
-                                <PhosphorIcon icon={IconMappings.cookieBold} />
-                            }
-                            rightAccessory={
-                                <PhosphorIcon
-                                    icon={IconMappings.caretRightBold}
-                                />
-                            }
-                        />,
-                        <OptionItem
-                            key="option2"
-                            label="Option 2"
-                            value="option2"
-                            subtitle1="Subtitle1"
-                            subtitle2="Subtitle2"
-                            leftAccessory={
-                                <PhosphorIcon icon={IconMappings.cookieBold} />
-                            }
-                            rightAccessory={
-                                <PhosphorIcon
-                                    icon={IconMappings.caretRightBold}
-                                />
-                            }
-                        />,
-                        <OptionItem
-                            key="option3"
-                            label="Option 3"
-                            value="option3"
-                            subtitle1="Subtitle1"
-                            subtitle2="Subtitle2"
-                            disabled={true}
-                            leftAccessory={
-                                <PhosphorIcon icon={IconMappings.cookieBold} />
-                            }
-                            rightAccessory={
-                                <PhosphorIcon
-                                    icon={IconMappings.caretRightBold}
-                                />
-                            }
-                        />,
-                    ],
-                ],
-            },
-        ],
+        variantProps: [],
         defaultProps: {
             selectedValues: ["option1"],
             opened: true,
@@ -1786,12 +1738,17 @@ export const floatingComponents = [
                 // Add margin to avoid overlapping
                 marginInlineEnd: "150px",
             },
+            children: [
+                <OptionItem key="option1" label="Option 1" value="option1" />,
+                <OptionItem key="option2" label="Option 2" value="option2" />,
+                <OptionItem key="option3" label="Option 3" value="option3" />,
+            ],
         },
         states: [],
         package: "wonder-blocks-dropdown",
     }),
     createComponentConfig({
-        name: "SingleSelect (Opened)",
+        name: "SingleSelect",
         Component: (props: PropsFor<typeof SingleSelect>) => {
             const [opened, setOpened] = React.useState(false);
 
@@ -1804,79 +1761,7 @@ export const floatingComponents = [
             }, []);
             return <SingleSelect {...props} opened={opened} />;
         },
-        variantProps: [
-            {
-                propName: "children",
-                options: [
-                    [
-                        <OptionItem
-                            key="option1"
-                            label="Option 1"
-                            value="option1"
-                        />,
-                        <OptionItem
-                            key="option2"
-                            label="Option 2"
-                            value="option2"
-                        />,
-                        <OptionItem
-                            key="option3"
-                            label="Option 3"
-                            value="option3"
-                            disabled={true}
-                        />,
-                    ],
-                    [
-                        <OptionItem
-                            key="option1"
-                            label="Option 1"
-                            value="option1"
-                            subtitle1="Subtitle1"
-                            subtitle2="Subtitle2"
-                            leftAccessory={
-                                <PhosphorIcon icon={IconMappings.cookieBold} />
-                            }
-                            rightAccessory={
-                                <PhosphorIcon
-                                    icon={IconMappings.caretRightBold}
-                                />
-                            }
-                        />,
-                        <OptionItem
-                            key="option2"
-                            label="Option 2"
-                            value="option2"
-                            subtitle1="Subtitle1"
-                            subtitle2="Subtitle2"
-                            leftAccessory={
-                                <PhosphorIcon icon={IconMappings.cookieBold} />
-                            }
-                            rightAccessory={
-                                <PhosphorIcon
-                                    icon={IconMappings.caretRightBold}
-                                />
-                            }
-                        />,
-                        <OptionItem
-                            key="option3"
-                            label="Option 3"
-                            value="option3"
-                            subtitle1="Subtitle1"
-                            subtitle2="Subtitle2"
-                            disabled={true}
-                            leftAccessory={
-                                <PhosphorIcon icon={IconMappings.cookieBold} />
-                            }
-                            rightAccessory={
-                                <PhosphorIcon
-                                    icon={IconMappings.caretRightBold}
-                                />
-                            }
-                        />,
-                    ],
-                ],
-            },
-        ],
+        variantProps: [],
         defaultProps: {
             selectedValue: "option1",
             opened: true,
@@ -1888,12 +1773,22 @@ export const floatingComponents = [
                 // Add margin to avoid overlapping
                 marginInlineEnd: "150px",
             },
+            children: [
+                <OptionItem key="option1" label="Option 1" value="option1" />,
+                <OptionItem key="option2" label="Option 2" value="option2" />,
+                <OptionItem
+                    key="option3"
+                    label="Option 3"
+                    value="option3"
+                    disabled={true}
+                />,
+            ],
         },
         states: [],
         package: "wonder-blocks-dropdown",
     }),
     createComponentConfig({
-        name: "Combobox (Opened)",
+        name: "Combobox (Single)",
         Component: (props) => {
             const [opened, setOpened] = React.useState(false);
 
@@ -1907,12 +1802,7 @@ export const floatingComponents = [
 
             return <Combobox {...props} opened={opened} />;
         },
-        variantProps: [
-            {
-                propName: "selectionType",
-                options: ["single", "multiple"],
-            },
-        ],
+        variantProps: [],
         defaultProps: {
             value: "option1",
             selectionType: "single",
@@ -1933,10 +1823,58 @@ export const floatingComponents = [
         package: "wonder-blocks-dropdown",
     }),
     createComponentConfig({
-        name: "Tooltip (Opened)",
+        name: "Combobox (Multiple)",
+        Component: (props) => {
+            const [opened, setOpened] = React.useState(false);
+
+            React.useEffect(() => {
+                // Workaround to ensure opened popper is placed properly for visual
+                // tests
+                setTimeout(() => {
+                    setOpened(true);
+                }, 0);
+            }, []);
+
+            return (
+                <View
+                    style={{
+                        maxWidth: "200px",
+                        marginInlineEnd: sizing.size_200,
+                    }}
+                >
+                    <Combobox {...props} opened={opened} />
+                </View>
+            );
+        },
+        variantProps: [],
+        defaultProps: {
+            value: ["option1"],
+            selectionType: "multiple",
+            opened: true,
+            placeholder: "Select an option",
+            children: [
+                <OptionItem key="option1" label="Option 1" value="option1" />,
+                <OptionItem key="option2" label="Option 2" value="option2" />,
+                <OptionItem
+                    key="option3"
+                    label="Option 3"
+                    value="option3"
+                    disabled={true}
+                />,
+            ],
+        },
+        states: [],
+        package: "wonder-blocks-dropdown",
+    }),
+    createComponentConfig({
+        name: "Tooltip",
         // Wrapping the component in a function component to normalize types
         // since it is a class component with getDerivedStateFromProps
-        Component: (props: PropsFor<typeof Tooltip>) => <Tooltip {...props} />,
+        Component: (props: PropsFor<typeof Tooltip>) => (
+            <View style={{marginInlineEnd: sizing.size_280}}>
+                <Tooltip {...props} />
+            </View>
+        ),
         variantProps: [],
         defaultProps: {
             content: "This is a tooltip",
@@ -1949,7 +1887,7 @@ export const floatingComponents = [
         package: "wonder-blocks-tooltip",
     }),
     createComponentConfig({
-        name: "Popover (Opened)",
+        name: "Popover",
         Component: (props: PropsFor<typeof Popover>) => <Popover {...props} />,
         variantProps: [],
         defaultProps: {
