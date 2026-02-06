@@ -1441,6 +1441,7 @@ export const components = [
             "aria-label": "Navigation tabs",
             selectedTabId: "tab1",
             onTabSelected: () => {},
+            tabs: [],
         },
         states: [],
         package: "wonder-blocks-tabs",
@@ -1542,23 +1543,7 @@ export const components = [
             "aria-label": "Tabs",
             selectedTabId: "tab1",
             onTabSelected: () => {},
-            tabs: [
-                {
-                    id: "tab1",
-                    label: "Tab 1",
-                    panel: <BodyText>Content for Tab 1</BodyText>,
-                },
-                {
-                    id: "tab2",
-                    label: "Tab 2",
-                    panel: <BodyText>Content for Tab 2</BodyText>,
-                },
-                {
-                    id: "tab3",
-                    label: "Tab 3",
-                    panel: <BodyText>Content for Tab 3</BodyText>,
-                },
-            ],
+            tabs: [],
         },
         states: [],
         package: "wonder-blocks-tabs",
