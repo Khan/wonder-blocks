@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
 import {render, screen, waitFor} from "@testing-library/react";
 import * as React from "react";
@@ -879,6 +880,88 @@ describe("Combobox", () => {
             expect(
                 screen.getByRole("button", {name: "Remove option 2"}),
             ).toBeInTheDocument();
+        });
+
+        describe("onChange + remove", () => {
+            it("should call the onChange callback when value is unselected by clicking the remove button", async () => {
+                // Arrange
+                const onChangeMock = jest.fn();
+
+                const userEvent = doRender(
+                    <Combobox
+                        testId="combobox"
+                        selectionType="multiple"
+                        value={["option1", "option2"]}
+                        onChange={onChangeMock}
+                    >
+                        <OptionItem label="option 1" value="option1" />
+                        <OptionItem label="option 2" value="option2" />
+                        <OptionItem label="option 3" value="option3" />
+                    </Combobox>,
+                );
+
+                // Act
+                await userEvent.click(
+                    screen.getByRole("button", {name: "Remove option 1"}),
+                );
+
+                // Assert
+                expect(onChangeMock).toHaveBeenCalledWith(["option2"]);
+            });
+
+            it("should call the onChange callback when value is unselected by pressing the ArrowLeft + Enter keys", async () => {
+                // Arrange
+                const onChangeMock = jest.fn();
+                const userEvent = doRender(
+                    <Combobox
+                        testId="combobox"
+                        selectionType="multiple"
+                        value={["option1", "option2"]}
+                        onChange={onChangeMock}
+                    >
+                        <OptionItem label="option 1" value="option1" />
+                        <OptionItem label="option 2" value="option2" />
+                        <OptionItem label="option 3" value="option3" />
+                    </Combobox>,
+                );
+
+                // Focus on the combobox (input)
+                await userEvent.tab();
+
+                // Act
+                // focus on first selected item
+                await userEvent.keyboard("{ArrowLeft}{Enter}");
+
+                // Assert
+                expect(onChangeMock).toHaveBeenCalledWith(["option1"]);
+            });
+
+            it("should call the onChange callback when value is unselected by pressing the ArrowRight + Enter keys", async () => {
+                // Arrange
+                const onChangeMock = jest.fn();
+                const userEvent = doRender(
+                    <Combobox
+                        testId="combobox"
+                        selectionType="multiple"
+                        value={["option1", "option2"]}
+                        onChange={onChangeMock}
+                    >
+                        <OptionItem label="option 1" value="option1" />
+                        <OptionItem label="option 2" value="option2" />
+                        <OptionItem label="option 3" value="option3" />
+                    </Combobox>,
+                );
+
+                // Focus on the combobox (input)
+                await userEvent.tab();
+
+                // Act
+                // focus on first selected item
+                await userEvent.keyboard("{ArrowRight}{Enter}");
+
+                // Assert
+                expect(onChangeMock).toHaveBeenCalledWith(["option2"]);
+            });
         });
 
         describe("LiveRegion", () => {

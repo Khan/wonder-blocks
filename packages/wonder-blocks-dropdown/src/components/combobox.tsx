@@ -216,13 +216,28 @@ export default function Combobox({
     const initialValue = typeof value === "string" ? labelFromSelected : "";
     const [inputValue, setInputValue] = React.useState(initialValue);
 
+    /**
+     * Updates the selected value and the input value after any of the multiple
+     * selection values have been removed.
+     *
+     * @param value - The new selected value(s).
+     */
+    const updateAfterSelectionChange = React.useCallback(
+        (value: MaybeValueOrValues) => {
+            setSelected(value);
+            onChange?.(value);
+        },
+        [onChange, setSelected],
+    );
+
     const {
         focusedMultiSelectIndex,
         handleKeyDown: handleMultipleSelectionKeyDown,
     } = useMultipleSelection({
         inputValue,
         selected,
-        setSelected,
+        onRemove: updateAfterSelectionChange,
+        isComboboxOpen: openState,
     });
 
     /**
@@ -406,7 +421,7 @@ export default function Combobox({
      * Handles the click event on a pill to remove it from the list of selected
      * items.
      */
-    const handleOnRemove = React.useCallback(
+    const handleOnRemoveClick = React.useCallback(
         (value: string) => {
             const selectedValues = selected as Array<string>;
             // Remove the selected item from the list of selected items.
@@ -414,9 +429,9 @@ export default function Combobox({
                 (selectedValue) => selectedValue !== value,
             );
 
-            setSelected(newValues);
+            updateAfterSelectionChange(newValues);
         },
-        [selected, setSelected],
+        [selected, updateAfterSelectionChange],
     );
 
     const handleTextFieldChange = React.useCallback(
@@ -556,7 +571,7 @@ export default function Combobox({
                         focusedMultiSelectIndex={focusedMultiSelectIndex}
                         id={pillIdPrefix}
                         selected={selected as Array<string>}
-                        onRemove={handleOnRemove}
+                        onRemove={handleOnRemoveClick}
                         disabled={disabled}
                         testId={testId}
                         removeSelectedLabel={labels.removeSelected}
@@ -779,9 +794,9 @@ const styles = StyleSheet.create({
     },
     iconWrapper: {
         padding: sizing.size_040,
-        // View has a default minWidth of 0, which causes the label text
+        // View has a default minInlineSize of 0, which causes the label text
         // to encroach on the icon when it needs to truncate. We can fix
-        // this by setting the minWidth to auto.
-        minWidth: "auto",
+        // this by setting the minInlineSize to auto.
+        minInlineSize: "auto",
     },
 });
