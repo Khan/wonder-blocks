@@ -420,6 +420,13 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
     },
 );
 
+// Match form field left padding; right side uses the same edge spacing so
+// the icon sits 16px from the right edge (symmetric with 16px left padding).
+const fieldPaddingInline = sizing.size_160; // match TextField theme
+const iconSize = sizing.size_160; // PhosphorIcon size="small"
+const fieldPaddingInlineEnd =
+    fieldPaddingInline + iconSize + fieldPaddingInline; // gap + icon + gap
+
 const styles = StyleSheet.create({
     container: {
         alignItems: "center",
@@ -429,10 +436,12 @@ const styles = StyleSheet.create({
     icon: {
         pointerEvents: "none",
         position: "absolute",
-        insetInlineEnd: sizing.size_080,
+        insetInlineEnd: fieldPaddingInline,
     },
     textField: {
         width: "100%",
+        paddingInlineStart: fieldPaddingInline,
+        paddingInlineEnd: fieldPaddingInlineEnd,
     },
 });
 
