@@ -8,6 +8,7 @@ import Tooltip, {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 import {
     components,
     floatingComponents,
+    inputComponents,
     overlayComponents,
 } from "./components-config";
 import {themeModes} from "../../.storybook/modes";
@@ -360,6 +361,18 @@ export const OverlayComponents: StoryObj = {
                             }}
                         />
                     </View>
+                ))}
+            </View>
+        );
+    },
+};
+
+export const InputComponents = {
+    render: function Render() {
+        return (
+            <View style={styles.allComponents}>
+                {inputComponents.map((component) => (
+                    <ComponentInfo {...component} key={component.name} />
                 ))}
             </View>
         );

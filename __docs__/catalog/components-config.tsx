@@ -394,31 +394,6 @@ export const components = [
         package: "wonder-blocks-banner",
     }),
     /**
-     * wonder-blocks-birthday-picker
-     */
-    createComponentConfig({
-        name: "BirthdayPicker",
-        Component: BirthdayPicker,
-        variantProps: [
-            {
-                propName: "defaultValue",
-                options: ["2021-05-26", undefined],
-            },
-            {
-                propName: "monthYearOnly",
-                options: [true, false],
-            },
-        ],
-        defaultProps: {
-            onChange: () => {},
-        },
-        states: [
-            {name: "Disabled", props: {disabled: true}},
-            {name: "Error", props: {defaultValue: "2030-07-19"}},
-        ],
-        package: "wonder-blocks-birthday-picker",
-    }),
-    /**
      * wonder-blocks-breadcrumbs
      */
     createComponentConfig({
@@ -571,21 +546,7 @@ export const components = [
         ],
         package: "wonder-blocks-cell",
     }),
-    /**
-     * wonder-blocks-date-picker
-     */
-    createComponentConfig({
-        name: "DatePicker",
-        Component: DatePicker,
-        variantProps: [],
-        defaultProps: {
-            updateDate: () => {},
-            placeholder: "Select a date",
-            inputAriaLabel: "Select a date",
-        },
-        states: [{name: "Disabled", props: {disabled: true}}],
-        package: "wonder-blocks-date-picker",
-    }),
+
     /**
      * wonder-blocks-dropdown
      */
@@ -637,304 +598,7 @@ export const components = [
         ],
         package: "wonder-blocks-dropdown",
     }),
-    createComponentConfig({
-        name: "MultiSelect",
-        Component: MultiSelect,
-        variantProps: [
-            {
-                propName: "selectedValues",
-                options: [[], ["option1"]],
-            },
-        ],
-        defaultProps: {
-            onChange: () => {},
-            children: [
-                <OptionItem key="option1" label="Option 1" value="option1" />,
-                <OptionItem key="option2" label="Option 2" value="option2" />,
-                <OptionItem key="option3" label="Option 3" value="option3" />,
-            ],
-            "aria-label": "Example MultiSelect",
-        },
-        states: [
-            {name: "Disabled", props: {disabled: true}},
-            {name: "Error", props: {error: true}},
-        ],
-        package: "wonder-blocks-dropdown",
-    }),
-    createComponentConfig({
-        name: "SingleSelect",
-        Component: SingleSelect,
-        variantProps: [
-            {
-                propName: "selectedValue",
-                options: ["", "option1"],
-            },
-            {propName: "placeholder", options: ["", "Select an option"]},
-        ],
-        defaultProps: {
-            placeholder: "Select an option",
-            onChange: () => {},
-            children: [
-                <OptionItem key="option1" label="Option 1" value="option1" />,
-                <OptionItem key="option2" label="Option 2" value="option2" />,
-                <OptionItem key="option3" label="Option 3" value="option3" />,
-            ],
-            "aria-label": "Example SingleSelect",
-        },
-        states: [
-            {name: "Disabled", props: {disabled: true}},
-            {name: "Error", props: {error: true}},
-        ],
-        package: "wonder-blocks-dropdown",
-    }),
-    createComponentConfig({
-        name: "OptionItem",
-        Component: (props) => (
-            <div role="listbox" aria-label="Example OptionItem">
-                <OptionItem {...props} />
-            </div>
-        ),
-        variantProps: [
-            {
-                propName: "selected",
-                options: [false, true],
-            },
-            {
-                propName: "variant",
-                options: ["check", "checkbox"],
-            },
-        ],
-        defaultProps: {
-            label: "Option Item",
-            value: "option-item",
-        },
-        states: [
-            {name: "Disabled", props: {disabled: true}},
-            {
-                name: "With Accessories",
-                props: {
-                    leftAccessory: (
-                        <PhosphorIcon icon={IconMappings.cookieBold} />
-                    ),
-                    rightAccessory: (
-                        <PhosphorIcon icon={IconMappings.caretRightBold} />
-                    ),
-                    variant: undefined,
-                },
-            },
-            {
-                name: "With Subtitles",
-                props: {
-                    subtitle1: "Subtitle 1",
-                    subtitle2: "Subtitle 2",
-                },
-            },
-        ],
-        package: "wonder-blocks-dropdown",
-    }),
-    createComponentConfig({
-        name: "Combobox (single)",
-        Component: (props: PropsFor<typeof Combobox>) => (
-            <View style={{maxWidth: "200px"}}>
-                <Combobox {...props} />
-            </View>
-        ),
-        variantProps: [
-            {
-                propName: "value",
-                options: ["", "option1"],
-            },
-            {propName: "placeholder", options: ["", "Select an option"]},
-        ],
-        defaultProps: {
-            value: "",
-            selectionType: "single",
-            placeholder: "Select an option",
-            children: [
-                <OptionItem key="option1" label="Option 1" value="option1" />,
-                <OptionItem key="option2" label="Option 2" value="option2" />,
-                <OptionItem key="option3" label="Option 3" value="option3" />,
-            ],
-        },
-        states: [
-            {name: "Disabled", props: {disabled: true}},
-            {name: "Error", props: {error: true}},
-        ],
-        package: "wonder-blocks-dropdown",
-    }),
-    createComponentConfig({
-        name: "Combobox (multiple)",
-        Component: (props: PropsFor<typeof Combobox>) => (
-            <View style={{maxWidth: "200px"}}>
-                <Combobox {...props} />
-            </View>
-        ),
-        variantProps: [
-            {
-                propName: "value",
-                options: ["", ["option1", "option2"]],
-            },
-            {propName: "placeholder", options: ["", "Select options"]},
-        ],
-        defaultProps: {
-            value: [],
-            selectionType: "multiple",
-            children: [
-                <OptionItem key="option1" label="Option 1" value="option1" />,
-                <OptionItem key="option2" label="Option 2" value="option2" />,
-                <OptionItem key="option3" label="Option 3" value="option3" />,
-            ],
-        },
-        states: [
-            {name: "Disabled", props: {disabled: true}},
-            {name: "Error", props: {error: true}},
-        ],
-        package: "wonder-blocks-dropdown",
-    }),
-    /**
-     * wonder-blocks-form
-     */
-    createComponentConfig({
-        name: "TextField",
-        Component: TextField,
-        variantProps: [
-            {
-                propName: "value",
-                options: ["", "Value"],
-            },
-            {
-                propName: "placeholder",
-                options: ["", "Placeholder"],
-            },
-        ],
-        defaultProps: {
-            value: "",
-            onChange: () => {},
-            "aria-label": "Example TextField",
-        },
-        states: [
-            {name: "Disabled", props: {disabled: true}},
-            {name: "Error", props: {error: true}},
-            {name: "Read Only", props: {readOnly: true}},
-        ],
-        package: "wonder-blocks-form",
-    }),
-    createComponentConfig({
-        name: "TextArea",
-        Component: TextArea,
-        variantProps: [
-            {
-                propName: "value",
-                options: ["", "Value"],
-            },
-            {
-                propName: "placeholder",
-                options: ["", "Placeholder"],
-            },
-        ],
-        defaultProps: {
-            value: "",
-            onChange: () => {},
-            "aria-label": "Example TextArea",
-        },
-        states: [
-            {name: "Disabled", props: {disabled: true}},
-            {name: "Error", props: {error: true}},
-            {name: "Read Only", props: {readOnly: true}},
-        ],
-        package: "wonder-blocks-form",
-    }),
-    createComponentConfig({
-        name: "Checkbox",
-        Component: Checkbox,
-        variantProps: [
-            {
-                propName: "checked",
-                options: [false, true, null],
-            },
-        ],
-        defaultProps: {
-            checked: false,
-            onChange: () => {},
-            label: "Label",
-            description: "Description for the checkbox",
-        },
-        states: [
-            {name: "Disabled", props: {disabled: true}},
-            {name: "Error", props: {error: true}},
-        ],
-        package: "wonder-blocks-form",
-    }),
-    createComponentConfig({
-        name: "CheckboxGroup",
-        Component: CheckboxGroup,
-        variantProps: [
-            {
-                propName: "errorMessage",
-                options: ["", "Error message"],
-            },
-        ],
-        defaultProps: {
-            groupName: "checkbox-group",
-            selectedValues: ["choice1"],
-            onChange: () => {},
-            label: "Label",
-            description: "Description for the checkbox group",
-            children: [
-                <Choice key="choice1" label="Choice 1" value="choice1" />,
-                <Choice
-                    key="choice2"
-                    label="Choice 2"
-                    value="choice2"
-                    description="Description for choice 2"
-                />,
-                <Choice
-                    key="choice3"
-                    label="Choice 3"
-                    value="choice3"
-                    description="Description for choice 3"
-                    disabled={true}
-                />,
-            ],
-        },
-        states: [],
-        package: "wonder-blocks-form",
-    }),
-    createComponentConfig({
-        name: "RadioGroup",
-        Component: RadioGroup,
-        variantProps: [
-            {
-                propName: "errorMessage",
-                options: ["", "Error message"],
-            },
-        ],
-        defaultProps: {
-            groupName: "radio-group",
-            selectedValue: "choice1",
-            onChange: () => {},
-            label: "Label",
-            description: "Description for the radio group",
-            children: [
-                <Choice key="choice1" label="Choice 1" value="choice1" />,
-                <Choice
-                    key="choice2"
-                    label="Choice 2"
-                    value="choice2"
-                    description="Description for choice 2"
-                />,
-                <Choice
-                    key="choice3"
-                    label="Choice 3"
-                    value="choice3"
-                    description="Description for choice 3"
-                    disabled={true}
-                />,
-            ],
-        },
-        states: [],
-        package: "wonder-blocks-form",
-    }),
+
     /**
      * wonder-blocks-icon
      */
@@ -1065,59 +729,6 @@ export const components = [
         states: [{name: "Disabled", props: {disabled: true}}],
         package: "wonder-blocks-icon-button",
     }),
-    /**
-     * wonder-blocks-labeled-field
-     */
-    ...formFieldsToUseWithLabeledField.map(
-        ({componentName, FormComponent, componentProps}) =>
-            createComponentConfig({
-                name: `LabeledField with ${componentName}`,
-                Component: LabeledField,
-                variantProps: [],
-                defaultProps: {
-                    field: (
-                        <FormComponent
-                            value=""
-                            onChange={() => {}}
-                            {...componentProps}
-                        />
-                    ),
-                    label: "Label",
-                    description: "Description for the field",
-                    additionalHelperMessage: "Additional helper text",
-                    contextLabel: "Context label",
-                    styles: {root: {width: "300px"}},
-                },
-                states: [
-                    {
-                        name: "Read Only",
-                        props: {
-                            readOnlyMessage: "This field is read only",
-                        },
-                    },
-                    {
-                        name: "Error",
-                        props: {
-                            errorMessage: "This field has an error",
-                        },
-                    },
-                    {
-                        name: "Disabled",
-                        props: {
-                            field: (
-                                <FormComponent
-                                    value=""
-                                    onChange={() => {}}
-                                    {...componentProps}
-                                    disabled
-                                />
-                            ),
-                        },
-                    },
-                ],
-                package: "wonder-blocks-labeled-field",
-            }),
-    ),
     /**
      * wonder-blocks-link
      */
@@ -1283,60 +894,6 @@ export const components = [
         defaultProps: {},
         states: [],
         package: "wonder-blocks-progress-spinner",
-    }),
-    /**
-     * wonder-blocks-search-field
-     */
-    createComponentConfig({
-        name: "SearchField",
-        Component: SearchField,
-        variantProps: [
-            {
-                propName: "value",
-                options: ["", "Search text"],
-            },
-            {
-                propName: "placeholder",
-                options: ["", "Search..."],
-            },
-        ],
-        defaultProps: {
-            value: "",
-            onChange: () => {},
-            "aria-label": "Example SearchField",
-        },
-        states: [
-            {name: "Disabled", props: {disabled: true}},
-            {name: "Error", props: {error: true}},
-        ],
-        package: "wonder-blocks-search-field",
-    }),
-    /**
-     * wonder-blocks-switch
-     */
-    createComponentConfig({
-        name: "Switch",
-        Component: Switch,
-        variantProps: [
-            {
-                propName: "icon",
-                options: [
-                    undefined,
-                    <PhosphorIcon icon={IconMappings.cookieBold} />,
-                ],
-            },
-            {
-                propName: "checked",
-                options: [true, false],
-            },
-        ],
-        defaultProps: {
-            checked: false,
-            onChange: () => {},
-            "aria-label": "Switch",
-        },
-        states: [{name: "Disabled", props: {disabled: true}}],
-        package: "wonder-blocks-switch",
     }),
     /**
      * wonder-blocks-tabs
@@ -1951,4 +1508,447 @@ export const overlayComponents = [
         storyId:
             "packages-modal-testing-snapshots-modallauncher--with-flexible-dialog",
     },
+];
+
+export const inputComponents = [
+    /**
+     * wonder-blocks-birthday-picker
+     */
+    createComponentConfig({
+        name: "BirthdayPicker",
+        Component: BirthdayPicker,
+        variantProps: [
+            {
+                propName: "defaultValue",
+                options: ["2021-05-26", undefined],
+            },
+            {
+                propName: "monthYearOnly",
+                options: [true, false],
+            },
+        ],
+        defaultProps: {
+            onChange: () => {},
+        },
+        states: [
+            {name: "Disabled", props: {disabled: true}},
+            {name: "Error", props: {defaultValue: "2030-07-19"}},
+        ],
+        package: "wonder-blocks-birthday-picker",
+    }),
+    /**
+     * wonder-blocks-date-picker
+     */
+    createComponentConfig({
+        name: "DatePicker",
+        Component: DatePicker,
+        variantProps: [],
+        defaultProps: {
+            updateDate: () => {},
+            placeholder: "Select a date",
+            inputAriaLabel: "Select a date",
+        },
+        states: [{name: "Disabled", props: {disabled: true}}],
+        package: "wonder-blocks-date-picker",
+    }),
+    /**
+     * wonder-blocks-search-field
+     */
+    createComponentConfig({
+        name: "SearchField",
+        Component: SearchField,
+        variantProps: [
+            {
+                propName: "value",
+                options: ["", "Search text"],
+            },
+            {
+                propName: "placeholder",
+                options: ["", "Search..."],
+            },
+        ],
+        defaultProps: {
+            value: "",
+            onChange: () => {},
+            "aria-label": "Example SearchField",
+        },
+        states: [
+            {name: "Disabled", props: {disabled: true}},
+            {name: "Error", props: {error: true}},
+        ],
+        package: "wonder-blocks-search-field",
+    }),
+    createComponentConfig({
+        name: "MultiSelect",
+        Component: MultiSelect,
+        variantProps: [
+            {
+                propName: "selectedValues",
+                options: [[], ["option1"]],
+            },
+        ],
+        defaultProps: {
+            onChange: () => {},
+            children: [
+                <OptionItem key="option1" label="Option 1" value="option1" />,
+                <OptionItem key="option2" label="Option 2" value="option2" />,
+                <OptionItem key="option3" label="Option 3" value="option3" />,
+            ],
+            "aria-label": "Example MultiSelect",
+        },
+        states: [
+            {name: "Disabled", props: {disabled: true}},
+            {name: "Error", props: {error: true}},
+        ],
+        package: "wonder-blocks-dropdown",
+    }),
+    createComponentConfig({
+        name: "SingleSelect",
+        Component: SingleSelect,
+        variantProps: [
+            {
+                propName: "selectedValue",
+                options: ["", "option1"],
+            },
+            {propName: "placeholder", options: ["", "Select an option"]},
+        ],
+        defaultProps: {
+            placeholder: "Select an option",
+            onChange: () => {},
+            children: [
+                <OptionItem key="option1" label="Option 1" value="option1" />,
+                <OptionItem key="option2" label="Option 2" value="option2" />,
+                <OptionItem key="option3" label="Option 3" value="option3" />,
+            ],
+            "aria-label": "Example SingleSelect",
+        },
+        states: [
+            {name: "Disabled", props: {disabled: true}},
+            {name: "Error", props: {error: true}},
+        ],
+        package: "wonder-blocks-dropdown",
+    }),
+
+    createComponentConfig({
+        name: "Combobox (single)",
+        Component: (props: PropsFor<typeof Combobox>) => (
+            <View style={{maxWidth: "200px"}}>
+                <Combobox {...props} />
+            </View>
+        ),
+        variantProps: [
+            {
+                propName: "value",
+                options: ["", "option1"],
+            },
+            {propName: "placeholder", options: ["", "Select an option"]},
+        ],
+        defaultProps: {
+            value: "",
+            selectionType: "single",
+            placeholder: "Select an option",
+            children: [
+                <OptionItem key="option1" label="Option 1" value="option1" />,
+                <OptionItem key="option2" label="Option 2" value="option2" />,
+                <OptionItem key="option3" label="Option 3" value="option3" />,
+            ],
+        },
+        states: [
+            {name: "Disabled", props: {disabled: true}},
+            {name: "Error", props: {error: true}},
+        ],
+        package: "wonder-blocks-dropdown",
+    }),
+    createComponentConfig({
+        name: "Combobox (multiple)",
+        Component: (props: PropsFor<typeof Combobox>) => (
+            <View style={{maxWidth: "200px"}}>
+                <Combobox {...props} />
+            </View>
+        ),
+        variantProps: [
+            {
+                propName: "value",
+                options: ["", ["option1", "option2"]],
+            },
+            {propName: "placeholder", options: ["", "Select options"]},
+        ],
+        defaultProps: {
+            value: [],
+            selectionType: "multiple",
+            children: [
+                <OptionItem key="option1" label="Option 1" value="option1" />,
+                <OptionItem key="option2" label="Option 2" value="option2" />,
+                <OptionItem key="option3" label="Option 3" value="option3" />,
+            ],
+        },
+        states: [
+            {name: "Disabled", props: {disabled: true}},
+            {name: "Error", props: {error: true}},
+        ],
+        package: "wonder-blocks-dropdown",
+    }),
+    /**
+     * wonder-blocks-form
+     */
+    createComponentConfig({
+        name: "TextField",
+        Component: TextField,
+        variantProps: [
+            {
+                propName: "value",
+                options: ["", "Value"],
+            },
+            {
+                propName: "placeholder",
+                options: ["", "Placeholder"],
+            },
+        ],
+        defaultProps: {
+            value: "",
+            onChange: () => {},
+            "aria-label": "Example TextField",
+        },
+        states: [
+            {name: "Disabled", props: {disabled: true}},
+            {name: "Error", props: {error: true}},
+            {name: "Read Only", props: {readOnly: true}},
+        ],
+        package: "wonder-blocks-form",
+    }),
+    createComponentConfig({
+        name: "TextArea",
+        Component: TextArea,
+        variantProps: [
+            {
+                propName: "value",
+                options: ["", "Value"],
+            },
+            {
+                propName: "placeholder",
+                options: ["", "Placeholder"],
+            },
+        ],
+        defaultProps: {
+            value: "",
+            onChange: () => {},
+            "aria-label": "Example TextArea",
+        },
+        states: [
+            {name: "Disabled", props: {disabled: true}},
+            {name: "Error", props: {error: true}},
+            {name: "Read Only", props: {readOnly: true}},
+        ],
+        package: "wonder-blocks-form",
+    }),
+    ...formFieldsToUseWithLabeledField.map(
+        ({componentName, FormComponent, componentProps}) =>
+            createComponentConfig({
+                name: `LabeledField with ${componentName}`,
+                Component: LabeledField,
+                variantProps: [],
+                defaultProps: {
+                    field: (
+                        <FormComponent
+                            value=""
+                            onChange={() => {}}
+                            {...componentProps}
+                        />
+                    ),
+                    label: "Label",
+                    description: "Description for the field",
+                    additionalHelperMessage: "Additional helper text",
+                    contextLabel: "Context label",
+                    styles: {root: {width: "300px"}},
+                },
+                states: [
+                    {
+                        name: "Read Only",
+                        props: {
+                            readOnlyMessage: "This field is read only",
+                        },
+                    },
+                    {
+                        name: "Error",
+                        props: {
+                            errorMessage: "This field has an error",
+                        },
+                    },
+                    {
+                        name: "Disabled",
+                        props: {
+                            field: (
+                                <FormComponent
+                                    value=""
+                                    onChange={() => {}}
+                                    {...componentProps}
+                                    disabled
+                                />
+                            ),
+                        },
+                    },
+                ],
+                package: "wonder-blocks-labeled-field",
+            }),
+    ),
+    createComponentConfig({
+        name: "Checkbox",
+        Component: Checkbox,
+        variantProps: [
+            {
+                propName: "checked",
+                options: [false, true, null],
+            },
+        ],
+        defaultProps: {
+            checked: false,
+            onChange: () => {},
+            label: "Label",
+            description: "Description for the checkbox",
+        },
+        states: [
+            {name: "Disabled", props: {disabled: true}},
+            {name: "Error", props: {error: true}},
+        ],
+        package: "wonder-blocks-form",
+    }),
+    createComponentConfig({
+        name: "CheckboxGroup",
+        Component: CheckboxGroup,
+        variantProps: [
+            {
+                propName: "errorMessage",
+                options: ["", "Error message"],
+            },
+        ],
+        defaultProps: {
+            groupName: "checkbox-group",
+            selectedValues: ["choice1"],
+            onChange: () => {},
+            label: "Label",
+            description: "Description for the checkbox group",
+            children: [
+                <Choice key="choice1" label="Choice 1" value="choice1" />,
+                <Choice
+                    key="choice2"
+                    label="Choice 2"
+                    value="choice2"
+                    description="Description for choice 2"
+                />,
+                <Choice
+                    key="choice3"
+                    label="Choice 3"
+                    value="choice3"
+                    description="Description for choice 3"
+                    disabled={true}
+                />,
+            ],
+        },
+        states: [],
+        package: "wonder-blocks-form",
+    }),
+    createComponentConfig({
+        name: "RadioGroup",
+        Component: RadioGroup,
+        variantProps: [
+            {
+                propName: "errorMessage",
+                options: ["", "Error message"],
+            },
+        ],
+        defaultProps: {
+            groupName: "radio-group",
+            selectedValue: "choice1",
+            onChange: () => {},
+            label: "Label",
+            description: "Description for the radio group",
+            children: [
+                <Choice key="choice1" label="Choice 1" value="choice1" />,
+                <Choice
+                    key="choice2"
+                    label="Choice 2"
+                    value="choice2"
+                    description="Description for choice 2"
+                />,
+                <Choice
+                    key="choice3"
+                    label="Choice 3"
+                    value="choice3"
+                    description="Description for choice 3"
+                    disabled={true}
+                />,
+            ],
+        },
+        states: [],
+        package: "wonder-blocks-form",
+    }),
+    createComponentConfig({
+        name: "Switch",
+        Component: Switch,
+        variantProps: [
+            {
+                propName: "icon",
+                options: [
+                    undefined,
+                    <PhosphorIcon icon={IconMappings.cookieBold} />,
+                ],
+            },
+            {
+                propName: "checked",
+                options: [true, false],
+            },
+        ],
+        defaultProps: {
+            checked: false,
+            onChange: () => {},
+            "aria-label": "Switch",
+        },
+        states: [{name: "Disabled", props: {disabled: true}}],
+        package: "wonder-blocks-switch",
+    }),
+    createComponentConfig({
+        name: "OptionItem",
+        Component: (props) => (
+            <div role="listbox" aria-label="Example OptionItem">
+                <OptionItem {...props} />
+            </div>
+        ),
+        variantProps: [
+            {
+                propName: "selected",
+                options: [false, true],
+            },
+            {
+                propName: "variant",
+                options: ["check", "checkbox"],
+            },
+        ],
+        defaultProps: {
+            label: "Option Item",
+            value: "option-item",
+        },
+        states: [
+            {name: "Disabled", props: {disabled: true}},
+            {
+                name: "With Accessories",
+                props: {
+                    leftAccessory: (
+                        <PhosphorIcon icon={IconMappings.cookieBold} />
+                    ),
+                    rightAccessory: (
+                        <PhosphorIcon icon={IconMappings.caretRightBold} />
+                    ),
+                    variant: undefined,
+                },
+            },
+            {
+                name: "With Subtitles",
+                props: {
+                    subtitle1: "Subtitle 1",
+                    subtitle2: "Subtitle 2",
+                },
+            },
+        ],
+        package: "wonder-blocks-dropdown",
+    }),
 ];
