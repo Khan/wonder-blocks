@@ -458,7 +458,7 @@ export const components = [
         defaultProps: {
             children: "Button",
             startIcon: IconMappings.cookieBold,
-            endIcon: IconMappings.cookieBold,
+            endIcon: IconMappings.iceCreamBold,
             "aria-label": "ExampleButton",
         },
         states: [
@@ -479,7 +479,7 @@ export const components = [
         defaultProps: {
             children: "ActivityButton",
             startIcon: IconMappings.cookieBold,
-            endIcon: IconMappings.cookieBold,
+            endIcon: IconMappings.iceCreamBold,
         },
         states: [{name: "Disabled", props: {disabled: true}}],
         package: "wonder-blocks-button",
@@ -1371,7 +1371,7 @@ export const components = [
                                 }
                                 endIcon={
                                     <PhosphorIcon
-                                        icon={IconMappings.cookieBold}
+                                        icon={IconMappings.iceCreamBold}
                                     />
                                 }
                             >
@@ -1388,7 +1388,7 @@ export const components = [
                                 }
                                 endIcon={
                                     <PhosphorIcon
-                                        icon={IconMappings.cookieBold}
+                                        icon={IconMappings.iceCreamBold}
                                     />
                                 }
                             >
@@ -1405,7 +1405,7 @@ export const components = [
                                 }
                                 endIcon={
                                     <PhosphorIcon
-                                        icon={IconMappings.cookieBold}
+                                        icon={IconMappings.iceCreamBold}
                                     />
                                 }
                             >
@@ -1464,7 +1464,7 @@ export const components = [
                                     />
                                     Tab 1
                                     <PhosphorIcon
-                                        icon={IconMappings.cookieBold}
+                                        icon={IconMappings.iceCreamBold}
                                     />
                                 </View>
                             ),
@@ -1485,7 +1485,7 @@ export const components = [
                                     />
                                     Tab 2
                                     <PhosphorIcon
-                                        icon={IconMappings.cookieBold}
+                                        icon={IconMappings.iceCreamBold}
                                     />
                                 </View>
                             ),
@@ -1506,7 +1506,7 @@ export const components = [
                                     />
                                     Tab 3
                                     <PhosphorIcon
-                                        icon={IconMappings.cookieBold}
+                                        icon={IconMappings.iceCreamBold}
                                     />
                                 </View>
                             ),
