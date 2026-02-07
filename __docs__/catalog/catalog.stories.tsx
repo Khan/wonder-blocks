@@ -4,10 +4,8 @@ import {StoryObj} from "@storybook/react-vite";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import Tooltip, {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 import {
     buttonComponents,
-    ComponentConfig,
     feedbackComponents,
     floatingComponents,
     inputComponents,
@@ -17,6 +15,7 @@ import {
     typographyAndIconsComponents,
 } from "./components-config";
 import {themeModes} from "../../.storybook/modes";
+import {CatalogComponentInfo, ComponentList} from "./catalog-component-info";
 
 export default {
     title: "Catalog",
@@ -51,246 +50,6 @@ export default {
         },
     },
 };
-
-type VariantProp<Component extends React.ElementType> = {
-    [K in keyof React.ComponentProps<Component>]: {
-        propName: K;
-        options: ReadonlyArray<React.ComponentProps<Component>[K]>;
-    };
-}[keyof React.ComponentProps<Component>];
-
-type StatesType<Component extends React.ElementType> = ReadonlyArray<{
-    name: string;
-    props: Partial<React.ComponentProps<Component>>;
-}>;
-
-const ComponentTooltip = (props: {
-    children: React.ReactElement;
-    details: Record<string, string>;
-    enableTooltips?: boolean;
-}) => {
-    const {children, details, enableTooltips = false} = props;
-    const content = (
-        <View tag="ul" style={styles.tooltipList}>
-            {Object.entries(details).map(([key, value]) => (
-                <li key={key}>{`${key}: ${value}`}</li>
-            ))}
-        </View>
-    );
-    return (
-        <View style={styles.tooltipWrapper}>
-            {enableTooltips && (
-                <Tooltip content={<TooltipContent>{content}</TooltipContent>}>
-                    {children}
-                </Tooltip>
-            )}
-            {!enableTooltips && children}
-        </View>
-    );
-};
-function createCombinations(
-    variantProps: ReadonlyArray<{
-        propName: string;
-        options: ReadonlyArray<string>;
-    }>,
-): Array<Array<Record<string, string>>> {
-    if (!variantProps.length) {
-        return [];
-    }
-
-    const buildCombinations = (
-        props: ReadonlyArray<{
-            propName: string;
-            options: ReadonlyArray<string>;
-        }>,
-    ): Array<Record<string, string>> =>
-        props.reduce(
-            (
-                acc: Array<Record<string, string>>,
-                {
-                    propName,
-                    options,
-                }: {propName: string; options: ReadonlyArray<string>},
-            ) => {
-                const next: Array<Record<string, string>> = [];
-                acc.forEach((combo) => {
-                    options.forEach((option: string) => {
-                        next.push({
-                            ...combo,
-                            [propName]: option,
-                        });
-                    });
-                });
-                return next;
-            },
-            [{}],
-        );
-
-    if (variantProps.length === 1) {
-        const {propName, options} = variantProps[0];
-        return [options.map((option: string) => ({[propName]: option}))];
-    }
-
-    const [{propName, options}, ...rest] = variantProps;
-    const restCombinations: Array<Record<string, string>> =
-        buildCombinations(rest);
-
-    return options.map((option: string) =>
-        restCombinations.map((combo: Record<string, string>) => ({
-            ...combo,
-            [propName]: option,
-        })),
-    );
-}
-
-const ComponentInfo = <Component extends React.ElementType>(props: {
-    name: string;
-    Component: React.ElementType;
-    variantProps: ReadonlyArray<VariantProp<React.ElementType>>;
-    states: StatesType<React.ElementType>;
-    defaultProps: React.ComponentProps<React.ElementType>;
-    enableTooltips?: boolean;
-    fullWidth?: boolean;
-}) => {
-    const {
-        name,
-        variantProps,
-        states,
-        defaultProps,
-        Component,
-        enableTooltips,
-        fullWidth,
-    } = props;
-
-    const heading = (
-        <Heading
-            tag="h3"
-            style={styles.componentHeading}
-            size="medium"
-            weight="medium"
-        >
-            {name}
-        </Heading>
-    );
-
-    const allStates: StatesType<Component> = [
-        {name: "Default", props: {}},
-        ...states,
-    ];
-
-    return (
-        <View key={name} style={{maxWidth: "100%"}}>
-            {heading}
-            <View
-                style={{
-                    gap: sizing.size_280,
-                    // When there are no variant props, we need to render the component states in a row
-                    flexDirection: variantProps.length === 0 ? "row" : "column",
-                    flexWrap: "wrap",
-                }}
-            >
-                {allStates.map((state) => (
-                    <View key={state.name} style={styles.stateGroup}>
-                        {/* When there are 0 variant props, render only the state props */}
-                        {variantProps.length === 0 && (
-                            <ComponentTooltip
-                                details={{State: state.name}}
-                                enableTooltips={enableTooltips}
-                            >
-                                <Component {...defaultProps} {...state.props} />
-                            </ComponentTooltip>
-                        )}
-                        {/* When there are 1 or more variant props, we need to create all combinations of the variant props and render each combination as a row */}
-                        {variantProps.length >= 1 &&
-                            createCombinations(variantProps).map(
-                                (
-                                    combinationGroup: Array<
-                                        Record<string, string>
-                                    >,
-                                    i,
-                                ) => {
-                                    const rowStyle = fullWidth
-                                        ? styles.fullWidthRow
-                                        : styles.row;
-                                    return (
-                                        <View
-                                            style={rowStyle}
-                                            key={JSON.stringify(
-                                                combinationGroup,
-                                            )}
-                                        >
-                                            {combinationGroup.map(
-                                                (combo, i) => {
-                                                    return (
-                                                        <ComponentTooltip
-                                                            details={{
-                                                                State: state.name,
-                                                                ...combo,
-                                                            }}
-                                                            key={
-                                                                state.name +
-                                                                JSON.stringify(
-                                                                    combo,
-                                                                ) +
-                                                                i
-                                                            }
-                                                            enableTooltips={
-                                                                enableTooltips
-                                                            }
-                                                        >
-                                                            <Component
-                                                                {...defaultProps}
-                                                                {...state.props}
-                                                                {...combo}
-                                                            />
-                                                        </ComponentTooltip>
-                                                    );
-                                                },
-                                            )}
-                                        </View>
-                                    );
-                                },
-                            )}
-                    </View>
-                ))}
-            </View>
-        </View>
-    );
-};
-
-const ComponentList = ({
-    components,
-}: {
-    components: ReadonlyArray<ComponentConfig<React.ElementType>>;
-}) => {
-    return (
-        <View style={styles.allComponents}>
-            {components.map((component) => (
-                <ComponentInfo {...component} key={component.name} />
-            ))}
-        </View>
-    );
-};
-
-const FloatingComponentList = ({
-    components,
-}: {
-    components: ReadonlyArray<ComponentConfig<React.ElementType>>;
-}) => (
-    <View
-        style={{
-            flexDirection: "row",
-            gap: sizing.size_200,
-            flexWrap: "wrap",
-        }}
-    >
-        {components.map((component) => (
-            <View style={styles.openedComponent} key={component.name}>
-                <ComponentInfo {...component} />
-            </View>
-        ))}
-    </View>
-);
 
 export const TypographyAndIcons = {
     render: ComponentList,
@@ -352,37 +111,26 @@ export const Overlays: StoryObj = {
 };
 
 export const FloatingComponents = {
-    render: FloatingComponentList,
-    args: {components: floatingComponents},
+    render: function Render() {
+        return (
+            <View
+                style={{
+                    flexDirection: "row",
+                    gap: sizing.size_200,
+                    flexWrap: "wrap",
+                }}
+            >
+                {floatingComponents.map((component) => (
+                    <View style={styles.openedComponent} key={component.name}>
+                        <CatalogComponentInfo {...component} />
+                    </View>
+                ))}
+            </View>
+        );
+    },
 };
 
 const styles = StyleSheet.create({
-    stateGroup: {
-        gap: sizing.size_200,
-        flexWrap: "wrap",
-        maxWidth: "100%",
-    },
-    row: {
-        flexDirection: "row",
-        gap: sizing.size_200,
-        flexWrap: "wrap",
-    },
-    fullWidthRow: {
-        flexDirection: "column",
-        gap: sizing.size_200,
-        width: "100%",
-    },
-    fullWidthVariant: {
-        width: "100%",
-    },
-    tooltipList: {
-        margin: 0,
-        paddingLeft: sizing.size_160,
-    },
-    tooltipWrapper: {
-        gap: sizing.size_040,
-        flexWrap: "wrap",
-    },
     componentHeading: {
         marginBlockEnd: sizing.size_120,
     },
@@ -390,11 +138,6 @@ const styles = StyleSheet.create({
         gap: sizing.size_480,
         padding: sizing.size_200,
         flexWrap: "wrap",
-    },
-    packageInfo: {
-        gap: sizing.size_200,
-        flexWrap: "wrap",
-        maxWidth: "100%",
     },
     openedComponent: {
         marginBlockEnd: "300px",
