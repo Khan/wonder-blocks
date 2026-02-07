@@ -978,12 +978,9 @@ export const navigationAndMenuComponents = [
 ];
 
 /**
- * Components to include in the catalog
+ * Layout blocks (Accordion, Card, CompactCell, DetailCell, PopoverContent)
  */
-export const components = [
-    /**
-     * wonder-blocks-accordion
-     */
+export const layoutBlocksComponents = [
     createComponentConfig({
         name: "Accordion",
         Component: Accordion,
@@ -1014,9 +1011,6 @@ export const components = [
         states: [],
         package: "wonder-blocks-accordion",
     }),
-    /**
-     * wonder-blocks-card
-     */
     createComponentConfig({
         name: "Card",
         Component: Card,
@@ -1050,9 +1044,6 @@ export const components = [
         states: [{name: "Dismissible", props: {onDismiss: () => {}}}],
         package: "wonder-blocks-card",
     }),
-    /**
-     * wonder-blocks-cell
-     */
     createComponentConfig({
         name: "CompactCell",
         Component: CompactCell,
@@ -1097,10 +1088,6 @@ export const components = [
         ],
         package: "wonder-blocks-cell",
     }),
-
-    /**
-     * wonder-blocks-popover
-     */
     createComponentConfig({
         name: "PopoverContent",
         Component: PopoverContent,
@@ -1139,6 +1126,13 @@ export const components = [
         package: "wonder-blocks-popover",
     }),
 ];
+
+/**
+ * Components to include in the catalog (non-grouped; may be empty)
+ */
+export const components: ReadonlyArray<
+    ComponentConfig<React.ElementType>
+> = [];
 
 /**
  * Keep track of components with opened state separately so that we can include

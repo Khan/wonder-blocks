@@ -11,6 +11,7 @@ import {
     feedbackComponents,
     floatingComponents,
     inputComponents,
+    layoutBlocksComponents,
     navigationAndMenuComponents,
     overlayComponents,
     typographyAndIconsComponents,
@@ -286,42 +287,6 @@ const PackageInfo = ({
     );
 };
 
-export const AllComponents = {
-    name: "Components",
-    render: (args: {enableTooltips: boolean}) => {
-        // Group components by package
-        const componentsByPackage = components.reduce(
-            (acc, component) => {
-                const pkg = component.package;
-                if (!acc[pkg]) {
-                    acc[pkg] = [];
-                }
-                acc[pkg].push(component);
-                return acc;
-            },
-            {} as Record<string, typeof components>,
-        );
-
-        return (
-            <View style={styles.allComponents}>
-                {Object.entries(componentsByPackage).map(
-                    ([packageName, packageComponents]) => (
-                        <PackageInfo
-                            key={packageName}
-                            name={packageName}
-                            components={packageComponents}
-                            enableTooltips={args.enableTooltips}
-                        />
-                    ),
-                )}
-            </View>
-        );
-    },
-    args: {
-        enableTooltips: true,
-    },
-};
-
 export const FloatingComponents = {
     render: function Render() {
         return (
@@ -412,6 +377,18 @@ export const NavigationAndMenuComponents = {
         return (
             <View style={styles.allComponents}>
                 {navigationAndMenuComponents.map((component) => (
+                    <ComponentInfo {...component} key={component.name} />
+                ))}
+            </View>
+        );
+    },
+};
+
+export const LayoutBlocksComponents = {
+    render: function Render() {
+        return (
+            <View style={styles.allComponents}>
+                {layoutBlocksComponents.map((component) => (
                     <ComponentInfo {...component} key={component.name} />
                 ))}
             </View>
