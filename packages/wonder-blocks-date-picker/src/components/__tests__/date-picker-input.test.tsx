@@ -217,6 +217,7 @@ describe("DatePickerInput", () => {
                 Temporal.PlainDate.from("2021-05-14"),
             ),
             {},
+            "2021-05-14",
         );
     });
 
@@ -244,6 +245,7 @@ describe("DatePickerInput", () => {
                 Temporal.PlainDate.from("2021-05-14"),
             ),
             {},
+            "2021-05-14",
         );
     });
 
@@ -461,6 +463,7 @@ describe("DatePickerInput", () => {
                 Temporal.PlainDate.from("2026-01-28"),
             ),
             {},
+            "1/28/2026",
         );
     });
 
@@ -490,6 +493,7 @@ describe("DatePickerInput", () => {
                 Temporal.PlainDate.from("2026-01-28"),
             ),
             {},
+            "1/28/2026",
         );
     });
 
@@ -542,6 +546,7 @@ describe("DatePickerInput", () => {
                 Temporal.PlainDate.from("2026-01-28"),
             ),
             {},
+            "2026-01-28",
         );
     });
 });

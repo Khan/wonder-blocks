@@ -17,900 +17,483 @@ import type {CustomModifiers} from "../types";
 
 describe("TemporalLocaleUtils", () => {
     describe("formatDate", () => {
-        it("should format date with YYYY-MM-DD format", () => {
-            // Arrange
-            const testDate = Temporal.PlainDate.from("2021-05-07");
-
-            // Act
-            const result = formatDate(testDate, "YYYY-MM-DD", "en-US");
-
-            // Assert
-            expect(result).toBe("2021-05-07");
+        it("formats YYYY-MM-DD", () => {
+            const date = Temporal.PlainDate.from("2021-05-07");
+            expect(formatDate(date, "YYYY-MM-DD", "en-US")).toBe("2021-05-07");
         });
 
-        it("should format date with MMMM D, YYYY format", () => {
-            // Arrange
-            const testDate = Temporal.PlainDate.from("2021-05-07");
-
-            // Act
-            const result = formatDate(testDate, "MMMM D, YYYY", "en-US");
-
-            // Assert
-            expect(result).toBe("May 7, 2021");
+        it("formats MMMM D, YYYY", () => {
+            const date = Temporal.PlainDate.from("2021-05-07");
+            expect(formatDate(date, "MMMM D, YYYY", "en-US")).toBe(
+                "May 7, 2021",
+            );
         });
 
-        it("should format date with M/D/YYYY format", () => {
-            // Arrange
-            const testDate = Temporal.PlainDate.from("2021-05-07");
-
-            // Act
-            const result = formatDate(testDate, "M/D/YYYY", "en-US");
-
-            // Assert
-            expect(result).toBe("5/7/2021");
+        it("formats M/D/YYYY", () => {
+            const date = Temporal.PlainDate.from("2021-05-07");
+            expect(formatDate(date, "M/D/YYYY", "en-US")).toBe("5/7/2021");
         });
 
-        it("should format date with MM/DD/YYYY format", () => {
-            // Arrange
-            const testDate = Temporal.PlainDate.from("2021-05-07");
-
-            // Act
-            const result = formatDate(testDate, "MM/DD/YYYY", "en-US");
-
-            // Assert
-            expect(result).toBe("05/07/2021");
+        it("formats MM/DD/YYYY", () => {
+            const date = Temporal.PlainDate.from("2021-05-07");
+            expect(formatDate(date, "MM/DD/YYYY", "en-US")).toBe("05/07/2021");
         });
 
-        it("should use locale-aware format when format is null", () => {
-            // Arrange
-            const testDate = Temporal.PlainDate.from("2021-05-07");
-
-            // Act
-            const result = formatDate(testDate, null, "en-US");
-
-            // Assert
-            expect(result).toBe("5/7/2021");
+        it("uses locale-aware format when format is null", () => {
+            const date = Temporal.PlainDate.from("2021-05-07");
+            expect(formatDate(date, null, "en-US")).toBe("5/7/2021");
         });
 
-        it("should use locale-aware format when format is undefined", () => {
-            // Arrange
-            const testDate = Temporal.PlainDate.from("2021-05-07");
-
-            // Act
-            const result = formatDate(testDate, undefined, "en-US");
-
-            // Assert
-            expect(result).toBe("5/7/2021");
+        it("uses locale-aware format when format is undefined", () => {
+            const date = Temporal.PlainDate.from("2021-05-07");
+            expect(formatDate(date, undefined, "en-US")).toBe("5/7/2021");
         });
 
-        it("should format date with short year in US locale", () => {
-            // Arrange
-            const testDate = Temporal.PlainDate.from("2021-05-07");
-
-            // Act
-            const result = formatDate(testDate, "MM/DD/YY", "en-US");
-
-            // Assert
-            expect(result).toBe("05/07/21");
+        it("formats short year (MM/DD/YY)", () => {
+            const date = Temporal.PlainDate.from("2021-05-07");
+            expect(formatDate(date, "MM/DD/YY", "en-US")).toBe("05/07/21");
         });
 
-        it("should format date with full weekday and month in US locale", () => {
-            // Arrange
-            const testDate = Temporal.PlainDate.from("2021-05-07");
-
-            // Act
-            const result = formatDate(testDate, "dddd, MMMM D, YYYY", "en-US");
-
-            // Assert
-            expect(result).toBe("Friday, May 7, 2021");
+        it("formats full weekday and month", () => {
+            const date = Temporal.PlainDate.from("2021-05-07");
+            expect(formatDate(date, "dddd, MMMM D, YYYY", "en-US")).toBe(
+                "Friday, May 7, 2021",
+            );
         });
 
-        it("should format date in French locale", () => {
-            // Arrange
-            const testDate = Temporal.PlainDate.from("2021-05-07");
-
-            // Act
-            const result = formatDate(testDate, "D MMMM YYYY", "fr-FR");
-
-            // Assert
-            expect(result).toBe("7 mai 2021");
+        it("formats in French locale", () => {
+            const date = Temporal.PlainDate.from("2021-05-07");
+            expect(formatDate(date, "D MMMM YYYY", "fr-FR")).toBe("7 mai 2021");
         });
 
-        it("should format date in German locale", () => {
-            // Arrange
-            const testDate = Temporal.PlainDate.from("2021-05-07");
-
-            // Act
-            const result = formatDate(testDate, "D MMMM YYYY", "de-DE");
-
-            // Assert
-            expect(result).toBe("7. Mai 2021");
+        it("formats in German locale", () => {
+            const date = Temporal.PlainDate.from("2021-05-07");
+            expect(formatDate(date, "D MMMM YYYY", "de-DE")).toBe(
+                "7. Mai 2021",
+            );
         });
 
-        it("should accept Spanish Locale object from react-day-picker with full month", () => {
-            // Arrange
-            const testDate = Temporal.PlainDate.from("2026-01-16");
-
-            // Act
-            const result = formatDate(testDate, "MMMM D, YYYY", es);
-
-            // Assert
-            expect(result).toBe("enero 16, 2026");
+        it("accepts Spanish Locale object with full month", () => {
+            const date = Temporal.PlainDate.from("2026-01-16");
+            expect(formatDate(date, "MMMM D, YYYY", es)).toBe("enero 16, 2026");
         });
 
-        it("should accept Spanish Locale object from react-day-picker with short month", () => {
-            // Arrange
-            const testDate = Temporal.PlainDate.from("2026-01-16");
-
-            // Act
-            const result = formatDate(testDate, "MMM D, YYYY", es);
-
-            // Assert
-            expect(result).toBe("ene 16, 2026");
+        it("accepts Spanish Locale object with short month", () => {
+            const date = Temporal.PlainDate.from("2026-01-16");
+            expect(formatDate(date, "MMM D, YYYY", es)).toBe("ene 16, 2026");
         });
 
-        it("should accept French Locale object from react-day-picker", () => {
-            // Arrange
-            const testDate = Temporal.PlainDate.from("2026-01-16");
-
-            // Act
-            const result = formatDate(testDate, "MMMM D, YYYY", fr);
-
-            // Assert
-            expect(result).toBe("janvier 16, 2026");
+        it("accepts French Locale object", () => {
+            const date = Temporal.PlainDate.from("2026-01-16");
+            expect(formatDate(date, "MMMM D, YYYY", fr)).toBe(
+                "janvier 16, 2026",
+            );
         });
 
-        it("should fall back to ISO format on invalid locale", () => {
-            // Arrange
-            const testDate = Temporal.PlainDate.from("2021-05-07");
-            const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
-
-            // Act
+        it("falls back to ISO or locale on invalid locale", () => {
+            const date = Temporal.PlainDate.from("2021-05-07");
+            const spy = jest.spyOn(console, "warn").mockImplementation();
             const result = formatDate(
-                testDate,
+                date,
                 "MMMM D, YYYY",
                 "invalid-locale-xyz",
             );
-
-            // Assert
             expect(result).toMatch(/^\d{4}-\d{2}-\d{2}$|^\w+/);
-            consoleSpy.mockRestore();
+            spy.mockRestore();
         });
 
-        it("should use default locale when not provided", () => {
-            // Arrange
-            const testDate = Temporal.PlainDate.from("2021-05-07");
-
-            // Act
-            const result = formatDate(testDate, "MMMM D, YYYY");
-
-            // Assert
-            expect(result).toBe("May 7, 2021");
+        it("uses default locale when not provided", () => {
+            const date = Temporal.PlainDate.from("2021-05-07");
+            expect(formatDate(date, "MMMM D, YYYY")).toBe("May 7, 2021");
         });
 
-        it("should format date with L format (locale-aware short date) for en-US", () => {
-            // Arrange
-            const testDate = Temporal.PlainDate.from("2026-01-20");
-
-            // Act
-            const result = formatDate(testDate, "L", "en-US");
-
-            // Assert
-            expect(result).toBe("1/20/2026");
+        it("formats L (locale short) for en-US", () => {
+            const date = Temporal.PlainDate.from("2026-01-20");
+            expect(formatDate(date, "L", "en-US")).toBe("1/20/2026");
         });
 
-        it("should format date with L format (locale-aware short date) for de-DE", () => {
-            // Arrange
-            const testDate = Temporal.PlainDate.from("2026-01-20");
-
-            // Act
-            const result = formatDate(testDate, "L", "de-DE");
-
-            // Assert
-            expect(result).toBe("20.1.2026");
+        it("formats L (locale short) for de-DE", () => {
+            const date = Temporal.PlainDate.from("2026-01-20");
+            expect(formatDate(date, "L", "de-DE")).toBe("20.1.2026");
         });
 
-        it("should format date with L format (locale-aware short date) for bg", () => {
-            // Arrange
-            const testDate = Temporal.PlainDate.from("2026-01-20");
-
-            // Act
-            const result = formatDate(testDate, "L", "bg");
-
-            // Assert
-            // Bulgarian includes " г." (abbreviation for "година" = year) suffix
-            expect(result).toMatch(/^20\.0?1\.2026/);
+        it("formats L (locale short) for bg", () => {
+            const date = Temporal.PlainDate.from("2026-01-20");
+            expect(formatDate(date, "L", "bg")).toMatch(/^20\.0?1\.2026/);
         });
 
-        it("should format date with LL format (locale-aware long date) for en-US", () => {
-            // Arrange
-            const testDate = Temporal.PlainDate.from("2026-01-20");
-
-            // Act
-            const result = formatDate(testDate, "LL", "en-US");
-
-            // Assert
-            expect(result).toBe("January 20, 2026");
+        it("formats LL (locale long) for en-US", () => {
+            const date = Temporal.PlainDate.from("2026-01-20");
+            expect(formatDate(date, "LL", "en-US")).toBe("January 20, 2026");
         });
 
-        it("should format date with LL format (locale-aware long date) for es", () => {
-            // Arrange
-            const testDate = Temporal.PlainDate.from("2026-01-20");
-
-            // Act
-            const result = formatDate(testDate, "LL", "es");
-
-            // Assert
-            expect(result).toMatch(/20\s+de\s+enero\s+de\s+2026/);
+        it("formats LL (locale long) for es", () => {
+            const date = Temporal.PlainDate.from("2026-01-20");
+            expect(formatDate(date, "LL", "es")).toMatch(
+                /20\s+de\s+enero\s+de\s+2026/,
+            );
         });
 
-        it("should default to locale-aware short date when format is undefined", () => {
-            // Arrange
-            const testDate = Temporal.PlainDate.from("2026-01-20");
-
-            // Act
-            const result = formatDate(testDate, undefined, "de-DE");
-
-            // Assert
-            expect(result).toBe("20.1.2026");
+        it("defaults to locale short when format is undefined", () => {
+            const date = Temporal.PlainDate.from("2026-01-20");
+            expect(formatDate(date, undefined, "de-DE")).toBe("20.1.2026");
         });
 
-        it("should default to locale-aware short date when format is null", () => {
-            // Arrange
-            const testDate = Temporal.PlainDate.from("2026-01-20");
-
-            // Act
-            const result = formatDate(testDate, null, "en-US");
-
-            // Assert
-            expect(result).toBe("1/20/2026");
+        it("defaults to locale short when format is null", () => {
+            const date = Temporal.PlainDate.from("2026-01-20");
+            expect(formatDate(date, null, "en-US")).toBe("1/20/2026");
         });
 
-        it("should format date with explicit dateStyle:short", () => {
-            // Arrange
-            const testDate = Temporal.PlainDate.from("2026-01-20");
-
-            // Act
-            const result = formatDate(testDate, "dateStyle:short", "de-DE");
-
-            // Assert
-            // dateStyle:short uses 2-digit year by default
-            expect(result).toMatch(/20\.0?1\.26/);
+        it("formats with dateStyle:short", () => {
+            const date = Temporal.PlainDate.from("2026-01-20");
+            expect(formatDate(date, "dateStyle:short", "de-DE")).toMatch(
+                /20\.0?1\.26/,
+            );
         });
 
-        it("should format date with explicit dateStyle:long", () => {
-            // Arrange
-            const testDate = Temporal.PlainDate.from("2026-01-20");
-
-            // Act
-            const result = formatDate(testDate, "dateStyle:long", "en-US");
-
-            // Assert
-            expect(result).toBe("January 20, 2026");
+        it("formats with dateStyle:long", () => {
+            const date = Temporal.PlainDate.from("2026-01-20");
+            expect(formatDate(date, "dateStyle:long", "en-US")).toBe(
+                "January 20, 2026",
+            );
         });
     });
 
     describe("parseDate", () => {
-        it("should parse ISO format", () => {
-            // Arrange
-            const input = "2021-05-07";
-
-            // Act
-            const result = parseDate(input, "YYYY-MM-DD", "en-US");
-
-            // Assert
-            expect(result?.toString()).toBe("2021-05-07");
+        it("parses ISO format", () => {
+            expect(
+                parseDate("2021-05-07", "YYYY-MM-DD", "en-US")?.toString(),
+            ).toBe("2021-05-07");
         });
 
-        it("should parse text format", () => {
-            // Arrange
-            const input = "May 7, 2021";
-
-            // Act
-            const result = parseDate(input, "MMMM D, YYYY", "en-US");
-
-            // Assert
-            expect(result?.toString()).toBe("2021-05-07");
+        it("parses text format", () => {
+            expect(
+                parseDate("May 7, 2021", "MMMM D, YYYY", "en-US")?.toString(),
+            ).toBe("2021-05-07");
         });
 
-        it("should parse numeric format", () => {
-            // Arrange
-            const input = "05/07/2021";
-
-            // Act
-            const result = parseDate(input, "MM/DD/YYYY", "en-US");
-
-            // Assert
-            expect(result?.toString()).toBe("2021-05-07");
+        it("parses numeric format", () => {
+            expect(
+                parseDate("05/07/2021", "MM/DD/YYYY", "en-US")?.toString(),
+            ).toBe("2021-05-07");
         });
 
-        it("should return undefined for invalid input", () => {
-            // Arrange
-            const input = "invalid";
-
-            // Act
-            const result = parseDate(input, "YYYY-MM-DD", "en-US");
-
-            // Assert
-            expect(result).toBeUndefined();
+        it("returns undefined for invalid input", () => {
+            expect(parseDate("invalid", "YYYY-MM-DD", "en-US")).toBeUndefined();
         });
 
-        it("should fall back to ISO format when format is null", () => {
-            // Arrange
-            const input = "2021-05-07";
-
-            // Act
-            const result = parseDate(input, null, "en-US");
-
-            // Assert
-            expect(result?.toString()).toBe("2021-05-07");
+        it("falls back to ISO when format is null", () => {
+            expect(parseDate("2021-05-07", null, "en-US")?.toString()).toBe(
+                "2021-05-07",
+            );
         });
 
-        it("should parse full month name", () => {
-            // Arrange
-            const input = "January 15, 2024";
-
-            // Act
-            const result = parseDate(input, "MMMM D, YYYY", "en-US");
-
-            // Assert
-            expect(result?.toString()).toBe("2024-01-15");
+        it("parses full month name", () => {
+            expect(
+                parseDate(
+                    "January 15, 2024",
+                    "MMMM D, YYYY",
+                    "en-US",
+                )?.toString(),
+            ).toBe("2024-01-15");
         });
 
-        it("should parse abbreviated month name", () => {
-            // Arrange
-            const input = "Jan 15, 2024";
-
-            // Act
-            const result = parseDate(input, "MMM D, YYYY", "en-US");
-
-            // Assert
-            expect(result?.toString()).toBe("2024-01-15");
+        it("parses abbreviated month name", () => {
+            expect(
+                parseDate("Jan 15, 2024", "MMM D, YYYY", "en-US")?.toString(),
+            ).toBe("2024-01-15");
         });
 
-        it("should parse locale-aware date with L format for en-US", () => {
-            // Arrange
-            const input = "1/20/2026";
-
-            // Act
-            const result = parseDate(input, "L", "en-US");
-
-            // Assert
-            expect(result?.toString()).toBe("2026-01-20");
+        it("parses L format for en-US", () => {
+            expect(parseDate("1/20/2026", "L", "en-US")?.toString()).toBe(
+                "2026-01-20",
+            );
         });
 
-        it("should parse locale-aware date with L format for de-DE", () => {
-            // Arrange
-            const input = "20.1.2026";
-
-            // Act
-            const result = parseDate(input, "L", "de-DE");
-
-            // Assert
-            expect(result?.toString()).toBe("2026-01-20");
+        it("parses L format for de-DE", () => {
+            expect(parseDate("20.1.2026", "L", "de-DE")?.toString()).toBe(
+                "2026-01-20",
+            );
         });
 
-        it("should parse locale-aware date with L format for bg (with era suffix)", () => {
-            // Arrange
-            const input = "20.01.2026";
-
-            // Act
-            const result = parseDate(input, "L", "bg");
-
-            // Assert
-            expect(result?.toString()).toBe("2026-01-20");
+        it("parses L format for bg", () => {
+            expect(parseDate("20.01.2026", "L", "bg")?.toString()).toBe(
+                "2026-01-20",
+            );
         });
 
-        it("should parse padded locale-aware date for de-DE", () => {
-            // Arrange
-            const input = "05.07.2021";
-
-            // Act
-            const result = parseDate(input, "L", "de-DE");
-
-            // Assert
-            expect(result?.toString()).toBe("2021-07-05");
+        it("parses padded locale date for de-DE", () => {
+            expect(parseDate("05.07.2021", "L", "de-DE")?.toString()).toBe(
+                "2021-07-05",
+            );
         });
 
-        it("should reject partial or invalid year", () => {
-            // Arrange
-            const input = "July 20, 202";
-
-            // Act
-            const result = parseDate(input, "MMMM D, YYYY");
-
-            // Assert
-            expect(result).toBeUndefined();
+        it("returns undefined for partial year", () => {
+            expect(parseDate("July 20, 202", "MMMM D, YYYY")).toBeUndefined();
         });
 
-        it("should parse LL format text date in English", () => {
-            // Arrange
-            const input = "January 20, 2026";
-
-            // Act
-            const result = parseDate(input, "LL", "en-US");
-
-            // Assert
-            expect(result?.toString()).toBe("2026-01-20");
+        it("parses LL format in English", () => {
+            expect(
+                parseDate("January 20, 2026", "LL", "en-US")?.toString(),
+            ).toBe("2026-01-20");
         });
 
-        it("should parse LL format text date in Spanish", () => {
-            // Arrange
-            const input = "20 de enero de 2026";
-
-            // Act
-            const result = parseDate(input, "LL", "es");
-
-            // Assert
-            expect(result?.toString()).toBe("2026-01-20");
+        it("parses LL format in Spanish", () => {
+            expect(
+                parseDate("20 de enero de 2026", "LL", "es")?.toString(),
+            ).toBe("2026-01-20");
         });
 
-        it("should parse LL format text date in German", () => {
-            // Arrange
-            const input = "20. Januar 2026";
-
-            // Act
-            const result = parseDate(input, "LL", "de-DE");
-
-            // Assert
-            expect(result?.toString()).toBe("2026-01-20");
+        it("parses LL format in German", () => {
+            expect(
+                parseDate("20. Januar 2026", "LL", "de-DE")?.toString(),
+            ).toBe("2026-01-20");
         });
     });
 
     describe("temporalDateToJsDate", () => {
-        it("should convert to Date with zero-indexed month", () => {
-            // Arrange
+        it("converts to Date (ISO string matches)", () => {
             const temporal = Temporal.PlainDate.from("2021-05-07");
-
-            // Act
-            const result = temporalDateToJsDate(temporal);
-
-            // Assert
-            expect(result.getMonth()).toBe(4); // May = 4 (zero-indexed)
+            expect(
+                temporalDateToJsDate(temporal).toISOString().slice(0, 10),
+            ).toBe("2021-05-07");
         });
     });
 
     describe("jsDateToTemporalDate", () => {
-        it("should convert to Temporal with one-indexed month", () => {
-            // Arrange
+        it("converts to Temporal (toString matches)", () => {
             const jsDate = new Date(2021, 4, 7);
-
-            // Act
-            const result = jsDateToTemporalDate(jsDate);
-
-            // Assert
-            expect(result.month).toBe(5); // May = 5 (one-indexed)
+            expect(jsDateToTemporalDate(jsDate).toString()).toBe("2021-05-07");
         });
     });
 
     describe("parseDateToJsDate", () => {
-        it("should parse ISO format", () => {
-            // Arrange
-            const input = "2021-05-07";
-
-            // Act
-            const result = parseDateToJsDate(input, "YYYY-MM-DD", "en-US");
-
-            // Assert
-            expect(result?.getDate()).toBe(7);
+        it("parses ISO format", () => {
+            const result = parseDateToJsDate(
+                "2021-05-07",
+                "YYYY-MM-DD",
+                "en-US",
+            );
+            expect(result?.toISOString().slice(0, 10)).toBe("2021-05-07");
         });
 
-        it("should parse text format", () => {
-            // Arrange
-            const input = "May 7, 2021";
-
-            // Act
-            const result = parseDateToJsDate(input, "MMMM D, YYYY", "en-US");
-
-            // Assert
-            expect(result?.getDate()).toBe(7);
+        it("parses text format", () => {
+            const result = parseDateToJsDate(
+                "May 7, 2021",
+                "MMMM D, YYYY",
+                "en-US",
+            );
+            expect(result?.toISOString().slice(0, 10)).toBe("2021-05-07");
         });
 
-        it("should return Date as-is when Date is passed in", () => {
-            // Arrange
+        it("returns Date as-is when Date is passed in", () => {
             const inputDate = new Date(2021, 4, 7);
-
-            // Act
-            const result = parseDateToJsDate(inputDate, "YYYY-MM-DD", "en-US");
-
-            // Assert
-            expect(result).toBe(inputDate);
+            expect(parseDateToJsDate(inputDate, "YYYY-MM-DD", "en-US")).toBe(
+                inputDate,
+            );
         });
 
-        it("should return undefined for empty or invalid string", () => {
-            // Arrange
-            const input = "invalid";
-
-            // Act
-            const result = parseDateToJsDate(input, "YYYY-MM-DD", "en-US");
-
-            // Assert
-            expect(result).toBeUndefined();
+        it("returns undefined for invalid string", () => {
+            expect(
+                parseDateToJsDate("invalid", "YYYY-MM-DD", "en-US"),
+            ).toBeUndefined();
         });
 
-        it("should reject partial input", () => {
-            // Arrange
-            const input = "2026";
-
-            // Act
-            const result = parseDateToJsDate(input, "MM/DD/YYYY", "en-US");
-
-            // Assert
-            expect(result).toBeUndefined();
+        it("returns undefined for partial input", () => {
+            expect(
+                parseDateToJsDate("2026", "MM/DD/YYYY", "en-US"),
+            ).toBeUndefined();
         });
 
-        it("should accept unpadded input", () => {
-            // Arrange
-            const input = "1/30/2026";
-
-            // Act
-            const result = parseDateToJsDate(input, "MM/DD/YYYY", "en-US");
-
-            // Assert
-            expect(result?.getDate()).toBe(30);
+        it("accepts unpadded input", () => {
+            const result = parseDateToJsDate(
+                "1/30/2026",
+                "MM/DD/YYYY",
+                "en-US",
+            );
+            expect(result?.toISOString().slice(0, 10)).toBe("2026-01-30");
         });
 
-        it("should accept ISO format regardless of specified format", () => {
-            // Arrange
-            const input = "2026-01-30";
+        it("accepts ISO format regardless of specified format", () => {
+            const result = parseDateToJsDate(
+                "2026-01-30",
+                "MM/DD/YYYY",
+                "en-US",
+            );
+            expect(result?.toISOString().slice(0, 10)).toBe("2026-01-30");
+        });
 
-            // Act
-            const result = parseDateToJsDate(input, "MM/DD/YYYY", "en-US");
+        it("parses manually edited month (MMMM D, YYYY)", () => {
+            const result = parseDateToJsDate(
+                "February 15, 2026",
+                "MMMM D, YYYY",
+                "en-US",
+            );
+            expect(result?.toISOString().slice(0, 10)).toBe("2026-02-15");
+        });
 
-            // Assert
-            expect(result?.getDate()).toBe(30);
+        it("parses manually edited month (MMM D, YYYY)", () => {
+            const result = parseDateToJsDate(
+                "Feb 15, 2026",
+                "MMM D, YYYY",
+                "en-US",
+            );
+            expect(result?.toISOString().slice(0, 10)).toBe("2026-02-15");
+        });
+
+        it("parses month with different capitalization", () => {
+            const result = parseDateToJsDate(
+                "march 20, 2026",
+                "MMMM D, YYYY",
+                "en-US",
+            );
+            expect(result?.toISOString().slice(0, 10)).toBe("2026-03-20");
+        });
+
+        it("parses month name only (LL) as first of month", () => {
+            const result = parseDateToJsDate("June", "LL", "en-US");
+            expect(result?.toISOString().slice(0, 10)).toMatch(/^\d{4}-06-01$/);
+        });
+
+        it("parses month name only (MMMM D, YYYY) as first of month", () => {
+            const result = parseDateToJsDate("June", "MMMM D, YYYY", "en-US");
+            expect(result?.toISOString().slice(0, 10)).toMatch(/^\d{4}-06-01$/);
         });
     });
 
     describe("getModifiersForDay", () => {
-        it("should return empty array when modifier predicate returns false", () => {
-            // Arrange
-            const testDate = new Date(2021, 4, 7);
-
-            // Act
-            const result = getModifiersForDay(testDate, {
-                disabled: () => false,
-            });
-
-            // Assert
-            expect(result).toEqual([]);
+        it("returns empty array when no modifier matches", () => {
+            const date = new Date(2021, 4, 7);
+            expect(getModifiersForDay(date, {disabled: () => false})).toEqual(
+                [],
+            );
         });
 
-        it("should return disabled when predicate matches", () => {
-            // Arrange
-            const testDate = new Date(2021, 4, 7);
-            const modifiers = {disabled: (date: Date) => date.getDate() === 7};
-
-            // Act
-            const result = getModifiersForDay(testDate, modifiers);
-
-            // Assert
-            expect(result).toEqual(["disabled"]);
+        it("returns disabled when predicate matches", () => {
+            const date = new Date(2021, 4, 7);
+            const modifiers = {disabled: (d: Date) => d.getDate() === 7};
+            expect(getModifiersForDay(date, modifiers)).toEqual(["disabled"]);
         });
 
-        it("should return selected when date matches", () => {
-            // Arrange
-            const testDate = new Date(2021, 4, 7);
-            const modifiers = {selected: new Date(2021, 4, 7)};
-
-            // Act
-            const result = getModifiersForDay(testDate, modifiers);
-
-            // Assert
-            expect(result).toEqual(["selected"]);
+        it("returns selected when date matches", () => {
+            const date = new Date(2021, 4, 7);
+            expect(getModifiersForDay(date, {selected: date})).toEqual([
+                "selected",
+            ]);
         });
 
-        it("should return empty array when selected date does not match", () => {
-            // Arrange
-            const testDate = new Date(2021, 4, 7);
-            const modifiers = {selected: new Date(2021, 4, 8)};
-
-            // Act
-            const result = getModifiersForDay(testDate, modifiers);
-
-            // Assert
-            expect(result).toEqual([]);
+        it("returns empty when selected date does not match", () => {
+            const date = new Date(2021, 4, 7);
+            expect(
+                getModifiersForDay(date, {selected: new Date(2021, 4, 8)}),
+            ).toEqual([]);
         });
 
-        it("should return all matching modifiers", () => {
-            // Arrange
-            const testDate = new Date(2021, 4, 7);
+        it("returns all matching modifiers", () => {
+            const date = new Date(2021, 4, 7);
             const modifiers: Partial<CustomModifiers> = {
-                selected: new Date(2021, 4, 7),
-                disabled: (date: Date) => date.getMonth() === 4,
-                highlighted: new Date(2021, 4, 7),
+                selected: date,
+                disabled: (d: Date) => d.getMonth() === 4,
+                highlighted: date,
             };
-
-            // Act
-            const result = getModifiersForDay(testDate, modifiers);
-
-            // Assert
-            expect(result).toHaveLength(3);
+            expect(getModifiersForDay(date, modifiers).sort()).toEqual(
+                ["disabled", "highlighted", "selected"].sort(),
+            );
         });
 
-        it("should include selected in result when it matches", () => {
-            // Arrange
-            const testDate = new Date(2021, 4, 7);
-            const modifiers: Partial<CustomModifiers> = {
-                selected: new Date(2021, 4, 7),
-                disabled: (date: Date) => date.getMonth() === 4,
-                highlighted: new Date(2021, 4, 7),
-            };
-
-            // Act
-            const result = getModifiersForDay(testDate, modifiers);
-
-            // Assert
-            expect(result).toContain("selected");
-        });
-
-        it("should include disabled in result when it matches", () => {
-            // Arrange
-            const testDate = new Date(2021, 4, 7);
-            const modifiers: Partial<CustomModifiers> = {
-                selected: new Date(2021, 4, 7),
-                disabled: (date: Date) => date.getMonth() === 4,
-                highlighted: new Date(2021, 4, 7),
-            };
-
-            // Act
-            const result = getModifiersForDay(testDate, modifiers);
-
-            // Assert
-            expect(result).toContain("disabled");
-        });
-
-        it("should include highlighted in result when it matches", () => {
-            // Arrange
-            const testDate = new Date(2021, 4, 7);
-            const modifiers: Partial<CustomModifiers> = {
-                selected: new Date(2021, 4, 7),
-                disabled: (date: Date) => date.getMonth() === 4,
-                highlighted: new Date(2021, 4, 7),
-            };
-
-            // Act
-            const result = getModifiersForDay(testDate, modifiers);
-
-            // Assert
-            expect(result).toContain("highlighted");
-        });
-
-        it("should filter out undefined modifiers", () => {
-            // Arrange
-            const testDate = new Date(2021, 4, 7);
+        it("filters out undefined and null modifiers", () => {
+            const date = new Date(2021, 4, 7);
             const modifiers = {
                 disabled: undefined,
                 selected: null as any,
-                highlighted: new Date(2021, 4, 7),
+                highlighted: date,
             };
-
-            // Act
-            const result = getModifiersForDay(testDate, modifiers);
-
-            // Assert
-            expect(result).toEqual(["highlighted"]);
+            expect(getModifiersForDay(date, modifiers)).toEqual([
+                "highlighted",
+            ]);
         });
 
-        it("should return empty array for empty modifiers object", () => {
-            // Arrange
-            const testDate = new Date(2021, 4, 7);
-
-            // Act
-            const result = getModifiersForDay(testDate, {});
-
-            // Assert
-            expect(result).toEqual([]);
+        it("returns empty array for empty modifiers", () => {
+            const date = new Date(2021, 4, 7);
+            expect(getModifiersForDay(date, {})).toEqual([]);
         });
 
-        it("should match dates ignoring time component", () => {
-            // Arrange
-            const dateAtMidnight = new Date(2021, 4, 7, 0, 0, 0);
-            const dateWithTime = new Date(2021, 4, 7, 15, 30, 45);
-            const modifiers: Partial<CustomModifiers> = {
-                selected: dateAtMidnight,
-            };
-
-            // Act
-            const result = getModifiersForDay(dateWithTime, modifiers);
-
-            // Assert
-            expect(result).toEqual(["selected"]);
+        it("matches by date only (ignores time)", () => {
+            const midnight = new Date(2021, 4, 7, 0, 0, 0);
+            const withTime = new Date(2021, 4, 7, 15, 30, 45);
+            expect(getModifiersForDay(withTime, {selected: midnight})).toEqual([
+                "selected",
+            ]);
         });
     });
 
     describe("startOfIsoWeek", () => {
-        it("should return same date for Monday", () => {
-            // Arrange
-            const monday = Temporal.PlainDate.from("2021-05-03");
-
-            // Act
-            const result = startOfIsoWeek(monday);
-
-            // Assert
-            expect(result.toString()).toBe("2021-05-03");
+        it("returns same date for Monday", () => {
+            expect(
+                startOfIsoWeek(
+                    Temporal.PlainDate.from("2021-05-03"),
+                ).toString(),
+            ).toBe("2021-05-03");
         });
 
-        it("should return Monday for Wednesday", () => {
-            // Arrange
-            const wednesday = Temporal.PlainDate.from("2021-05-05");
-
-            // Act
-            const result = startOfIsoWeek(wednesday);
-
-            // Assert
-            expect(result.toString()).toBe("2021-05-03");
+        it("returns Monday for Wednesday", () => {
+            expect(
+                startOfIsoWeek(
+                    Temporal.PlainDate.from("2021-05-05"),
+                ).toString(),
+            ).toBe("2021-05-03");
         });
 
-        it("should return Monday for Sunday", () => {
-            // Arrange
-            const sunday = Temporal.PlainDate.from("2021-05-09");
-
-            // Act
-            const result = startOfIsoWeek(sunday);
-
-            // Assert
-            expect(result.toString()).toBe("2021-05-03");
+        it("returns Monday for Sunday", () => {
+            expect(
+                startOfIsoWeek(
+                    Temporal.PlainDate.from("2021-05-09"),
+                ).toString(),
+            ).toBe("2021-05-03");
         });
 
-        it("should handle week spanning across months", () => {
-            // Arrange
-            const date = Temporal.PlainDate.from("2021-06-02");
-
-            // Act
-            const result = startOfIsoWeek(date);
-
-            // Assert
-            expect(result.toString()).toBe("2021-05-31");
+        it("handles week spanning months", () => {
+            expect(
+                startOfIsoWeek(
+                    Temporal.PlainDate.from("2021-06-02"),
+                ).toString(),
+            ).toBe("2021-05-31");
         });
 
-        it("should handle week spanning across years", () => {
-            // Arrange
-            const date = Temporal.PlainDate.from("2021-01-01");
-
-            // Act
-            const result = startOfIsoWeek(date);
-
-            // Assert
-            expect(result.toString()).toBe("2020-12-28");
+        it("handles week spanning years", () => {
+            expect(
+                startOfIsoWeek(
+                    Temporal.PlainDate.from("2021-01-01"),
+                ).toString(),
+            ).toBe("2020-12-28");
         });
     });
 
     describe("startOfDay", () => {
-        it("should set hours to 0", () => {
-            // Arrange
+        it("returns same calendar day at midnight", () => {
             const date = new Date(2021, 4, 7, 15, 30, 45, 500);
-
-            // Act
-            const result = startOfDay(date);
-
-            // Assert
-            expect(result.getHours()).toBe(0);
+            expect(startOfDay(date).toDateString()).toBe("Fri May 07 2021");
         });
 
-        it("should set minutes to 0", () => {
-            // Arrange
+        it("does not mutate original", () => {
             const date = new Date(2021, 4, 7, 15, 30, 45, 500);
-
-            // Act
-            const result = startOfDay(date);
-
-            // Assert
-            expect(result.getMinutes()).toBe(0);
-        });
-
-        it("should set seconds to 0", () => {
-            // Arrange
-            const date = new Date(2021, 4, 7, 15, 30, 45, 500);
-
-            // Act
-            const result = startOfDay(date);
-
-            // Assert
-            expect(result.getSeconds()).toBe(0);
-        });
-
-        it("should set milliseconds to 0", () => {
-            // Arrange
-            const date = new Date(2021, 4, 7, 15, 30, 45, 500);
-
-            // Act
-            const result = startOfDay(date);
-
-            // Assert
-            expect(result.getMilliseconds()).toBe(0);
-        });
-
-        it("should preserve date", () => {
-            // Arrange
-            const date = new Date(2021, 4, 7, 15, 30, 45, 500);
-
-            // Act
-            const result = startOfDay(date);
-
-            // Assert
-            expect(result.toDateString()).toBe("Fri May 07 2021");
-        });
-
-        it("should not mutate original date", () => {
-            // Arrange
-            const date = new Date(2021, 4, 7, 15, 30, 45, 500);
-            const originalTime = date.getTime();
-
-            // Act
+            const before = date.getTime();
             startOfDay(date);
-
-            // Assert
-            expect(date.getTime()).toBe(originalTime);
+            expect(date.getTime()).toBe(before);
         });
     });
 
     describe("endOfDay", () => {
-        it("should set hours to 23", () => {
-            // Arrange
+        it("returns same calendar day at end of day", () => {
             const date = new Date(2021, 4, 7, 10, 15, 30, 250);
-
-            // Act
-            const result = endOfDay(date);
-
-            // Assert
-            expect(result.getHours()).toBe(23);
+            expect(endOfDay(date).toDateString()).toBe("Fri May 07 2021");
         });
 
-        it("should set minutes to 59", () => {
-            // Arrange
+        it("does not mutate original", () => {
             const date = new Date(2021, 4, 7, 10, 15, 30, 250);
-
-            // Act
-            const result = endOfDay(date);
-
-            // Assert
-            expect(result.getMinutes()).toBe(59);
-        });
-
-        it("should set seconds to 59", () => {
-            // Arrange
-            const date = new Date(2021, 4, 7, 10, 15, 30, 250);
-
-            // Act
-            const result = endOfDay(date);
-
-            // Assert
-            expect(result.getSeconds()).toBe(59);
-        });
-
-        it("should set milliseconds to 999", () => {
-            // Arrange
-            const date = new Date(2021, 4, 7, 10, 15, 30, 250);
-
-            // Act
-            const result = endOfDay(date);
-
-            // Assert
-            expect(result.getMilliseconds()).toBe(999);
-        });
-
-        it("should preserve date", () => {
-            // Arrange
-            const date = new Date(2021, 4, 7, 10, 15, 30, 250);
-
-            // Act
-            const result = endOfDay(date);
-
-            // Assert
-            expect(result.toDateString()).toBe("Fri May 07 2021");
-        });
-
-        it("should not mutate original date", () => {
-            // Arrange
-            const date = new Date(2021, 4, 7, 10, 15, 30, 250);
-            const originalTime = date.getTime();
-
-            // Act
+            const before = date.getTime();
             endOfDay(date);
-
-            // Assert
-            expect(date.getTime()).toBe(originalTime);
+            expect(date.getTime()).toBe(before);
         });
     });
 });
