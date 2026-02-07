@@ -1126,11 +1126,6 @@ export const layoutBlocksComponents = [
 ];
 
 /**
- * Components to include in the catalog (non-grouped; may be empty)
- */
-export const components: ReadonlyArray<ComponentConfig<React.ElementType>> = [];
-
-/**
  * Keep track of components with opened state separately so that we can include
  * the popper in visual tests since they're part of the initial viewport
  */
@@ -1442,9 +1437,6 @@ export const overlayComponents = [
 ];
 
 export const inputComponents = [
-    /**
-     * wonder-blocks-birthday-picker
-     */
     createComponentConfig({
         name: "BirthdayPicker",
         Component: BirthdayPicker,
@@ -1467,9 +1459,6 @@ export const inputComponents = [
         ],
         package: "wonder-blocks-birthday-picker",
     }),
-    /**
-     * wonder-blocks-date-picker
-     */
     createComponentConfig({
         name: "DatePicker",
         Component: DatePicker,
@@ -1482,9 +1471,6 @@ export const inputComponents = [
         states: [{name: "Disabled", props: {disabled: true}}],
         package: "wonder-blocks-date-picker",
     }),
-    /**
-     * wonder-blocks-search-field
-     */
     createComponentConfig({
         name: "SearchField",
         Component: SearchField,
@@ -1619,9 +1605,6 @@ export const inputComponents = [
         ],
         package: "wonder-blocks-dropdown",
     }),
-    /**
-     * wonder-blocks-form
-     */
     createComponentConfig({
         name: "TextField",
         Component: TextField,
