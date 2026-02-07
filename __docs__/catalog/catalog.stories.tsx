@@ -302,14 +302,19 @@ export const Buttons = {
     args: {components: buttonComponents},
 };
 
-export const NavigationAndMenus = {
+export const Inputs = {
     render: ComponentList,
-    args: {components: navigationAndMenuComponents},
+    args: {components: inputComponents},
 };
 
 export const Feedback = {
     render: ComponentList,
     args: {components: feedbackComponents},
+};
+
+export const NavigationAndMenus = {
+    render: ComponentList,
+    args: {components: navigationAndMenuComponents},
 };
 
 export const LayoutBlocks = {
@@ -349,11 +354,6 @@ export const Overlays: StoryObj = {
 export const FloatingComponents = {
     render: FloatingComponentList,
     args: {components: floatingComponents},
-};
-
-export const Inputs = {
-    render: ComponentList,
-    args: {components: inputComponents},
 };
 
 const styles = StyleSheet.create({
