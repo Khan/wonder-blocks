@@ -45,6 +45,12 @@ export default {
                         id: "aria-valid-attr-value",
                         enabled: false,
                     },
+                    {
+                        // Ignore label violations at this level,
+                        // this is covered at the component level
+                        id: "label",
+                        enabled: false,
+                    },
                 ],
             },
         },
