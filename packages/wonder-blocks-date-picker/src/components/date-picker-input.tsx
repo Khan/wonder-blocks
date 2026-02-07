@@ -51,6 +51,7 @@ interface Props {
     onChange?: (
         value: Date | null | undefined,
         modifiers: Partial<CustomModifiers>,
+        inputValue?: string,
     ) => unknown;
     /**
      * Used to format the value as a valid Date.
@@ -153,6 +154,9 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
             propValue,
         );
         const keepInvalidTextRef = React.useRef(false); // true when invalid text is kept for validation
+        // When we send partial text (e.g. "January") to parent, don't let next prop overwrite it
+        // so the overlay can update and the user can keep typing (LL / MMMM D, YYYY).
+        const lastTypedTextFormatValueRef = React.useRef<string | null>(null);
 
         // Helper to process modifiers
         const processModifiers = React.useCallback(
@@ -175,9 +179,13 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
 
         // Helper to notify valid date
         const updateDate = React.useCallback(
-            (date: Date, value?: string | null) => {
+            (date: Date, inputValue?: string | null) => {
                 if (onChange) {
-                    onChange(date, processModifiers(date, value));
+                    onChange(
+                        date,
+                        processModifiers(date, inputValue),
+                        inputValue || undefined,
+                    );
                 }
             },
             [onChange, processModifiers],
@@ -221,30 +229,52 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
             return true;
         }, [value, processDate, processModifiers]);
 
+        const isTextFormat =
+            dateFormat === "LL" ||
+            dateFormat === "MMMM D, YYYY" ||
+            dateFormat === "MMM D, YYYY";
+
         // Sync with propValue when it changes from an external source
         // Allow prop updates to override local state (e.g., calendar selection, programmatic updates)
-        // Skip sync only if we're keeping invalid text AND the new prop is trying to clear it
+        // Skip sync when we're keeping partial text-format input so overlay can update and user can keep typing.
+        // Skip sync when prop matches current value to avoid re-render that resets cursor (e.g. after typing "2026").
         React.useEffect(() => {
             const propValueChanged = lastPropValueRef.current !== propValue;
             lastPropValueRef.current = propValue;
 
             if (propValueChanged) {
-                // If keepInvalidTextRef is set, we're keeping invalid text for validation
-                // Only skip sync if new prop is empty/null (would clear our kept text)
-                // Always sync if new prop has a valid value (e.g., calendar selection)
                 if (
                     keepInvalidTextRef.current &&
                     (!propValue || propValue.trim() === "")
                 ) {
-                    // Skip sync - parent is trying to clear our intentionally-kept invalid text
                     keepInvalidTextRef.current = false;
+                } else if (
+                    isTextFormat &&
+                    propValue !== value &&
+                    ((lastTypedTextFormatValueRef.current !== null &&
+                        value === lastTypedTextFormatValueRef.current) ||
+                        (value !== "" &&
+                            (propValue ?? "") !== "" &&
+                            ((propValue ?? "").startsWith(value ?? "") ||
+                                (value ?? "").startsWith(propValue ?? ""))))
+                ) {
+                    // Keep user's partial text: either we sent it (overlay update) or one string is prefix of the other (still typing)
+                    return;
+                } else if (
+                    propValue === value ||
+                    (propValue ?? "") === (value ?? "")
+                ) {
+                    // Already showing this value; skip setState to avoid re-render that moves cursor to end
+                    keepInvalidTextRef.current = false;
+                    lastTypedTextFormatValueRef.current = null;
+                    return;
                 } else {
-                    // Sync normally - either no flag set, or prop has valid value
                     setValue(propValue);
                     keepInvalidTextRef.current = false;
+                    lastTypedTextFormatValueRef.current = null;
                 }
             }
-        }, [propValue]);
+        }, [propValue, isTextFormat, value]);
 
         // On mount, notify parent if initial value is invalid
         // Skip validation for LL format (text-based dates that can't be reliably parsed back)
@@ -265,6 +295,7 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
         const pendingValidationRef = React.useRef(false);
 
         const validateInput = React.useCallback(() => {
+            lastTypedTextFormatValueRef.current = null;
             const date = processDate(value);
 
             if (date) {
@@ -332,6 +363,8 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
             }
         };
 
+        const innerRef = React.useRef<HTMLInputElement>(null);
+
         const handleChange = (newValue: string) => {
             setValue(newValue);
 
@@ -339,12 +372,17 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
             const date = processDate(newValue);
             if (date) {
                 const modifiersResult = processModifiers(date, newValue);
+                if (isTextFormat) {
+                    lastTypedTextFormatValueRef.current = newValue;
+                }
                 if (!modifiersResult.disabled) {
-                    // Valid in-range date - always notify parent
                     updateDate(date, newValue);
                 } else if (!resetInvalidValueOnBlur) {
                     // Out-of-range date without auto-reset - notify for real-time validation
                     keepInvalidTextRef.current = true;
+                    updateDate(date, newValue);
+                } else {
+                    // Out-of-range with resetInvalidValueOnBlur: still notify parent so overlay month can update
                     updateDate(date, newValue);
                 }
                 // For default case (resetInvalidValueOnBlur=true), out-of-range dates validated on blur
@@ -354,15 +392,12 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
                 newValue.trim() !== ""
             ) {
                 // If resetInvalidValueOnBlur is disabled, notify parent immediately for invalid text
-                // This enables real-time validation feedback for unparseable input
                 keepInvalidTextRef.current = true;
                 updateDateAsInvalid();
             }
             // For default case (resetInvalidValueOnBlur=true), invalid text is validated on blur
             // to avoid resetting parent state during partial input
         };
-
-        const innerRef = React.useRef<HTMLInputElement>(null);
 
         // Expose both HTMLInputElement methods and validation method via ref
         React.useImperativeHandle(ref, () => {
