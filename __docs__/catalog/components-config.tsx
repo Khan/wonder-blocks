@@ -51,7 +51,6 @@ import {
     GemIcon,
     StreakIcon,
 } from "@khanacademy/wonder-blocks-icon";
-import {FlexibleDialog, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
 import Pill from "@khanacademy/wonder-blocks-pill";
 import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import {DatePicker} from "@khanacademy/wonder-blocks-date-picker";
@@ -88,7 +87,6 @@ import {
 } from "@khanacademy/wonder-blocks-typography";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import customBackgroundImage from "../../static/celebration_bg.svg";
-import {reallyLongText} from "../components/text-for-testing";
 
 export type VariantProp<T> = {
     [K in keyof T & string]: {
@@ -1130,9 +1128,7 @@ export const layoutBlocksComponents = [
 /**
  * Components to include in the catalog (non-grouped; may be empty)
  */
-export const components: ReadonlyArray<
-    ComponentConfig<React.ElementType>
-> = [];
+export const components: ReadonlyArray<ComponentConfig<React.ElementType>> = [];
 
 /**
  * Keep track of components with opened state separately so that we can include
