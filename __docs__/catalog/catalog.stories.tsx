@@ -1,13 +1,13 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {StoryObj} from "@storybook/react-vite";
-import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
+import {View} from "@khanacademy/wonder-blocks-core";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import Tooltip, {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 import {
     buttonComponents,
-    components,
+    ComponentConfig,
     feedbackComponents,
     floatingComponents,
     inputComponents,
@@ -258,64 +258,63 @@ const ComponentInfo = <Component extends React.ElementType>(props: {
     );
 };
 
-export const TypographyAndIcons = {
-    render: function Render() {
-        return (
-            <View style={styles.allComponents}>
-                {typographyAndIconsComponents.map((component) => (
-                    <ComponentInfo {...component} key={component.name} />
-                ))}
+const ComponentList = ({
+    components,
+}: {
+    components: ReadonlyArray<ComponentConfig<React.ElementType>>;
+}) => {
+    return (
+        <View style={styles.allComponents}>
+            {components.map((component) => (
+                <ComponentInfo {...component} key={component.name} />
+            ))}
+        </View>
+    );
+};
+
+const FloatingComponentList = ({
+    components,
+}: {
+    components: ReadonlyArray<ComponentConfig<React.ElementType>>;
+}) => (
+    <View
+        style={{
+            flexDirection: "row",
+            gap: sizing.size_200,
+            flexWrap: "wrap",
+        }}
+    >
+        {components.map((component) => (
+            <View style={styles.openedComponent} key={component.name}>
+                <ComponentInfo {...component} />
             </View>
-        );
-    },
+        ))}
+    </View>
+);
+
+export const TypographyAndIcons = {
+    render: ComponentList,
+    args: {components: typographyAndIconsComponents},
 };
 
 export const Buttons = {
-    render: function Render() {
-        return (
-            <View style={styles.allComponents}>
-                {buttonComponents.map((component) => (
-                    <ComponentInfo {...component} key={component.name} />
-                ))}
-            </View>
-        );
-    },
+    render: ComponentList,
+    args: {components: buttonComponents},
 };
 
 export const NavigationAndMenus = {
-    render: function Render() {
-        return (
-            <View style={styles.allComponents}>
-                {navigationAndMenuComponents.map((component) => (
-                    <ComponentInfo {...component} key={component.name} />
-                ))}
-            </View>
-        );
-    },
+    render: ComponentList,
+    args: {components: navigationAndMenuComponents},
 };
 
 export const Feedback = {
-    render: function Render() {
-        return (
-            <View style={styles.allComponents}>
-                {feedbackComponents.map((component) => (
-                    <ComponentInfo {...component} key={component.name} />
-                ))}
-            </View>
-        );
-    },
+    render: ComponentList,
+    args: {components: feedbackComponents},
 };
 
 export const LayoutBlocks = {
-    render: function Render() {
-        return (
-            <View style={styles.allComponents}>
-                {layoutBlocksComponents.map((component) => (
-                    <ComponentInfo {...component} key={component.name} />
-                ))}
-            </View>
-        );
-    },
+    render: ComponentList,
+    args: {components: layoutBlocksComponents},
 };
 
 export const Overlays: StoryObj = {
@@ -348,35 +347,13 @@ export const Overlays: StoryObj = {
 };
 
 export const FloatingComponents = {
-    render: function Render() {
-        return (
-            <View
-                style={{
-                    flexDirection: "row",
-                    gap: sizing.size_200,
-                    flexWrap: "wrap",
-                }}
-            >
-                {floatingComponents.map((component) => (
-                    <View style={styles.openedComponent} key={component.name}>
-                        <ComponentInfo {...component} />
-                    </View>
-                ))}
-            </View>
-        );
-    },
+    render: FloatingComponentList,
+    args: {components: floatingComponents},
 };
 
 export const Inputs = {
-    render: function Render() {
-        return (
-            <View style={styles.allComponents}>
-                {inputComponents.map((component) => (
-                    <ComponentInfo {...component} key={component.name} />
-                ))}
-            </View>
-        );
-    },
+    render: ComponentList,
+    args: {components: inputComponents},
 };
 
 const styles = StyleSheet.create({
