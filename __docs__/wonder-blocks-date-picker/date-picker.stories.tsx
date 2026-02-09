@@ -37,12 +37,14 @@ const DatePickerWrapper = (props: Props) => {
             }}
         >
             <Button>prev</Button>
-            <DatePicker
-                {...props}
-                inputAriaLabel="Choose or enter a date"
-                updateDate={handleUpdateDate}
-                selectedDate={selectedDate}
-            />
+            <View style={{flexGrow: 1, maxWidth: "24rem"}}>
+                <DatePicker
+                    {...props}
+                    inputAriaLabel="Choose or enter a date"
+                    updateDate={handleUpdateDate}
+                    selectedDate={selectedDate}
+                />
+            </View>
             <Button>next</Button>
         </View>
     );
