@@ -1,0 +1,18 @@
+/**
+ * Disable subpixel antialiasing on Mac desktop for consistency of
+ * rendering with mobile and Sketch (neither of which support it).
+ * See https://bjango.com/articles/subpixeltext/ for more details.
+ */
+.text {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/**
+ * User agent stylesheets add vertical margins to header tags by
+ * default. We prefer to be more deliberate in our spacing instead.
+ */
+.header {
+    margin-top: 0;
+    margin-bottom: 0;
+}
