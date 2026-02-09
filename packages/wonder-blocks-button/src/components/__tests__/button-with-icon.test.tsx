@@ -243,7 +243,7 @@ describe("button with icon", () => {
     });
 
     describe("styles prop", () => {
-        test("should render start icon when styles.startIcon is provided", async () => {
+        test("should apply custom styles to start icon", async () => {
             // Arrange
             render(
                 <Button
@@ -261,10 +261,10 @@ describe("button with icon", () => {
             );
 
             // Assert
-            expect(icon).toBeInTheDocument();
+            expect(icon).toHaveStyle({width: "24px", height: "24px"});
         });
 
-        test("should render end icon when styles.endIcon is provided", async () => {
+        test("should apply custom styles to end icon", async () => {
             // Arrange
             render(
                 <Button
@@ -282,10 +282,10 @@ describe("button with icon", () => {
             );
 
             // Assert
-            expect(icon).toBeInTheDocument();
+            expect(icon).toHaveStyle({width: "24px", height: "24px"});
         });
 
-        test("should render both icons when both style overrides are provided", async () => {
+        test("should apply custom styles to both icons", async () => {
             // Arrange
             render(
                 <Button
@@ -294,7 +294,7 @@ describe("button with icon", () => {
                     endIcon={plus}
                     styles={{
                         startIcon: {width: 24, height: 24},
-                        endIcon: {width: 24, height: 24},
+                        endIcon: {width: 20, height: 20},
                     }}
                 >
                     Label
@@ -310,8 +310,8 @@ describe("button with icon", () => {
             );
 
             // Assert
-            expect(startIcon).toBeInTheDocument();
-            expect(endIcon).toBeInTheDocument();
+            expect(startIcon).toHaveStyle({width: "24px", height: "24px"});
+            expect(endIcon).toHaveStyle({width: "20px", height: "20px"});
         });
     });
 
