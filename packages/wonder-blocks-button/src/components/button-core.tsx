@@ -48,6 +48,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
         spinner,
         startIcon,
         endIcon,
+        styles: stylesProp,
         id,
         waiting: _,
         onMouseDown,
@@ -120,6 +121,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
                             kind === "tertiary" &&
                                 sharedStyles.tertiaryStartIcon,
                         ]}
+                        styleOverride={stylesProp?.startIcon}
                         testId={testId ? `${testId}-start-icon` : undefined}
                     />
                 </View>
@@ -147,6 +149,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
                     <ButtonIcon
                         size={iconSize}
                         icon={endIcon}
+                        styleOverride={stylesProp?.endIcon}
                         testId={testId ? `${testId}-end-icon` : undefined}
                     />
                 </View>

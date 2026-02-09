@@ -242,6 +242,79 @@ describe("button with icon", () => {
         expect(icon).not.toHaveAttribute("aria-hidden");
     });
 
+    describe("styles prop", () => {
+        test("should render start icon when styles.startIcon is provided", async () => {
+            // Arrange
+            render(
+                <Button
+                    testId="button-styles-test"
+                    startIcon={plus}
+                    styles={{startIcon: {width: 24, height: 24}}}
+                >
+                    Label
+                </Button>,
+            );
+
+            // Act
+            const icon = await screen.findByTestId(
+                "button-styles-test-start-icon",
+            );
+
+            // Assert
+            expect(icon).toBeInTheDocument();
+        });
+
+        test("should render end icon when styles.endIcon is provided", async () => {
+            // Arrange
+            render(
+                <Button
+                    testId="button-styles-test"
+                    endIcon={plus}
+                    styles={{endIcon: {width: 24, height: 24}}}
+                >
+                    Label
+                </Button>,
+            );
+
+            // Act
+            const icon = await screen.findByTestId(
+                "button-styles-test-end-icon",
+            );
+
+            // Assert
+            expect(icon).toBeInTheDocument();
+        });
+
+        test("should render both icons when both style overrides are provided", async () => {
+            // Arrange
+            render(
+                <Button
+                    testId="button-styles-test"
+                    startIcon={plus}
+                    endIcon={plus}
+                    styles={{
+                        startIcon: {width: 24, height: 24},
+                        endIcon: {width: 24, height: 24},
+                    }}
+                >
+                    Label
+                </Button>,
+            );
+
+            // Act
+            const startIcon = await screen.findByTestId(
+                "button-styles-test-start-icon",
+            );
+            const endIcon = await screen.findByTestId(
+                "button-styles-test-end-icon",
+            );
+
+            // Assert
+            expect(startIcon).toBeInTheDocument();
+            expect(endIcon).toBeInTheDocument();
+        });
+    });
+
     test("icon is not displayed with aria-hidden when the button contains a custom endIcon", async () => {
         // Arrange
         render(

@@ -35,4 +35,12 @@ export default {
             },
         },
     },
+    styles: {
+        table: {
+            category: "Layout",
+            type: {
+                summary: `{ startIcon?: StyleType; endIcon?: StyleType }`,
+            },
+        },
+    },
 } satisfies ArgTypes;
