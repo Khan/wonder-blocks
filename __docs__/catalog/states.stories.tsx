@@ -1,4 +1,3 @@
-import {themeModes} from "../../.storybook/modes";
 import {ComponentList} from "./catalog-component-info";
 import {
     buttonComponents,
@@ -13,7 +12,9 @@ export default {
     tags: ["!autodocs"],
     parameters: {
         chromatic: {
-            modes: themeModes,
+            // Catalog is for manual review. Individual components should have
+            // coverage with their own stories
+            disableSnapshot: true,
         },
         a11y: {
             config: {
