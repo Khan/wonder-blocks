@@ -1,27 +1,20 @@
 import * as React from "react";
-import {CSSProperties, StyleSheet} from "aphrodite";
 
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {View, cx} from "@khanacademy/wonder-blocks-core";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 
 import type {
     ChildrenProps,
     ClickableState,
 } from "@khanacademy/wonder-blocks-clickable";
-import {focusStyles} from "@khanacademy/wonder-blocks-styles";
-import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
-import type {
-    ButtonActionType,
-    ButtonKind,
-    ButtonSize,
-    ButtonProps,
-    ButtonRef,
-} from "../util/button.types";
+import type {ButtonProps, ButtonRef} from "../util/button.types";
+import {getButtonVars} from "../util/get-button-vars";
 import {ButtonIcon} from "./button-icon";
 
-import theme from "../theme";
 import {ButtonUnstyled} from "./button-unstyled";
+
+import coreStyles from "./button-core.module.css";
 
 type Props = ButtonProps & ChildrenProps & ClickableState;
 
@@ -31,7 +24,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
     const {
         children,
         skipClientNav,
-        actionType,
+        actionType = "progressive",
         disabled: disabledProp,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars -- make sure it is not included in restProps
         focused,
@@ -57,22 +50,34 @@ const ButtonCore: React.ForwardRefExoticComponent<
         ...restProps
     } = props;
 
-    const buttonStyles = _generateStyles(actionType, kind, size);
+    const cssVars = getButtonVars(actionType, kind, size);
 
     const disabled = spinner || disabledProp;
 
-    const defaultStyle = [
-        sharedStyles.shared,
-        startIcon && sharedStyles.withStartIcon,
-        endIcon && sharedStyles.withEndIcon,
-        buttonStyles.default,
-        disabled && buttonStyles.disabled,
-        !disabled && pressed && buttonStyles.pressed,
-        // Enables programmatic focus.
-        !disabled && !pressed && focused && buttonStyles.focused,
-        size === "small" && sharedStyles.small,
-        size === "large" && sharedStyles.large,
-    ];
+    const kindClass =
+        kind === "primary"
+            ? coreStyles.kindPrimary
+            : kind === "secondary"
+              ? coreStyles.kindSecondary
+              : coreStyles.kindTertiary;
+
+    const buttonClassName = cx(
+        coreStyles.shared,
+        coreStyles.button,
+        kindClass,
+        disabled && coreStyles.disabled,
+        !disabled && pressed && coreStyles.pressed,
+        !disabled && pressed && kind === "primary" && coreStyles.pressedPrimary,
+        !disabled &&
+            pressed &&
+            kind === "secondary" &&
+            coreStyles.pressedSecondary,
+        !disabled &&
+            pressed &&
+            kind === "tertiary" &&
+            coreStyles.pressedTertiary,
+        !disabled && !pressed && focused && coreStyles.focused,
+    );
 
     const label = (
         <BodyText
@@ -80,11 +85,11 @@ const ButtonCore: React.ForwardRefExoticComponent<
             weight={size === "large" ? "bold" : undefined}
             tag="span"
             style={[
-                sharedStyles.text,
-                size === "small" && sharedStyles.smallText,
-                size === "large" && sharedStyles.largeText,
+                coreStyles.text,
+                size === "small" && coreStyles.smallText,
+                size === "large" && coreStyles.largeText,
                 labelStyle,
-                spinner && sharedStyles.hiddenText,
+                spinner && coreStyles.hiddenText,
             ]}
             testId={testId ? `${testId}-inner-label` : undefined}
         >
@@ -110,15 +115,14 @@ const ButtonCore: React.ForwardRefExoticComponent<
                     // in the Khanmigo theme, but we wrap it with
                     // iconWrapper anyway to give it the same spacing
                     // as the end icon so the button is symmetrical.
-                    style={sharedStyles.iconWrapper}
+                    style={coreStyles.iconWrapper}
                 >
                     <ButtonIcon
                         size={iconSize}
                         icon={startIcon}
                         style={[
-                            sharedStyles.startIcon,
-                            kind === "tertiary" &&
-                                sharedStyles.tertiaryStartIcon,
+                            coreStyles.startIcon,
+                            kind === "tertiary" && coreStyles.tertiaryStartIcon,
                         ]}
                         testId={testId ? `${testId}-start-icon` : undefined}
                     />
@@ -127,7 +131,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
             {label}
             {spinner && (
                 <CircularSpinner
-                    style={sharedStyles.spinner}
+                    style={coreStyles.spinner}
                     size={sizeMapping[size]}
                     light={kind === "primary"}
                     testId={`${testId || "button"}-spinner`}
@@ -137,11 +141,11 @@ const ButtonCore: React.ForwardRefExoticComponent<
                 <View
                     testId={testId ? `${testId}-end-icon-wrapper` : undefined}
                     style={[
-                        sharedStyles.endIcon,
-                        sharedStyles.iconWrapper,
-                        sharedStyles.endIconWrapper,
+                        coreStyles.endIcon,
+                        coreStyles.iconWrapper,
+                        coreStyles.endIconWrapper,
                         kind === "tertiary" &&
-                            sharedStyles.endIconWrapperTertiary,
+                            coreStyles.endIconWrapperTertiary,
                     ]}
                 >
                     <ButtonIcon
@@ -162,7 +166,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
             id={id}
             ref={ref}
             skipClientNav={skipClientNav}
-            style={[defaultStyle, style]}
+            style={[buttonClassName, cssVars, style]}
             testId={testId}
             tabIndex={props.tabIndex}
             type={type}
@@ -177,241 +181,3 @@ const ButtonCore: React.ForwardRefExoticComponent<
 });
 
 export default ButtonCore;
-
-const sharedStyles = StyleSheet.create({
-    shared: {
-        height: theme.root.sizing.height.medium,
-        paddingBlock: 0,
-    },
-    small: {
-        height: theme.root.sizing.height.small,
-    },
-    large: {
-        height: theme.root.sizing.height.large,
-    },
-    text: {
-        alignItems: "center",
-        fontWeight: theme.root.font.weight.default,
-        whiteSpace: "nowrap",
-        overflow: "hidden",
-        // To account for the underline-offset in tertiary buttons
-        lineHeight: theme.root.font.lineHeight.default,
-        textOverflow: "ellipsis",
-        display: "inline-block", // allows the button text to truncate
-        pointerEvents: "none", // fix Safari bug where the browser was eating mouse events
-    },
-    smallText: {
-        lineHeight: theme.root.font.lineHeight.small,
-    },
-    largeText: {
-        fontSize: theme.root.font.size.large,
-        lineHeight: theme.root.font.lineHeight.large,
-    },
-    hiddenText: {
-        visibility: "hidden",
-    },
-    spinner: {
-        position: "absolute",
-    },
-    startIcon: {
-        marginInlineStart: theme.icon.margin.inline.outer,
-        marginInlineEnd: theme.icon.margin.inline.inner,
-    },
-    tertiaryStartIcon: {
-        // Undo the negative padding from startIcon since tertiary
-        // buttons don't have extra padding.
-        marginInlineStart: 0,
-    },
-    endIcon: {
-        marginInlineStart: theme.icon.margin.inline.inner,
-    },
-    iconWrapper: {
-        padding: theme.icon.padding,
-        // View has a default minWidth of 0, which causes the label text
-        // to encroach on the icon when it needs to truncate. We can fix
-        // this by setting the minWidth to auto.
-        minWidth: "auto",
-    },
-    endIconWrapper: {
-        marginInlineStart: theme.icon.margin.inline.inner,
-        marginInlineEnd: theme.icon.margin.inline.outer,
-    },
-    endIconWrapperTertiary: {
-        marginInlineEnd: 0,
-    },
-});
-
-type ButtonStylesKey = "default" | "pressed" | "disabled" | "focused";
-
-const styles: Record<string, Record<ButtonStylesKey, object>> = {};
-
-// export for testing only
-export const _generateStyles = (
-    actionType: ButtonActionType = "progressive",
-    kind: ButtonKind,
-    size: ButtonSize,
-): Record<ButtonStylesKey, object> => {
-    const buttonType = `${actionType}-${kind}-${size}`;
-
-    if (styles[buttonType]) {
-        return styles[buttonType];
-    }
-
-    const paddingInline = theme.root.layout.padding.inline[kind][size];
-
-    const borderWidthKind = theme.root.border.width[kind];
-    const outlineOffsetKind = theme.root.border.offset[kind];
-    const themeVariant = semanticColor.action[kind][actionType];
-    const disabledState = semanticColor.action[kind].disabled;
-
-    const disabledStatesStyles = {
-        borderColor: disabledState.border,
-        borderWidth: borderWidthKind.default,
-        borderRadius: theme.root.border.radius.default,
-        background: disabledState.background,
-        color: disabledState.foreground,
-    };
-
-    const disabledStatesOverrides = {
-        ...disabledStatesStyles,
-        // primary overrides
-        outline: "none",
-        // secondary overrides
-        boxShadow: "none",
-        // tertiary overrides
-        textDecoration: "none",
-        textDecorationThickness: "unset",
-        textUnderlineOffset: "unset",
-    };
-
-    const pressStyles = {
-        // shared
-        background: themeVariant.press.background,
-        borderRadius: theme.root.border.radius.press,
-        color: themeVariant.press.foreground,
-        // primary
-        ...(kind === "primary"
-            ? {
-                  outline: `${borderWidthKind.press} solid ${themeVariant.press.border}`,
-                  outlineOffset: outlineOffsetKind,
-              }
-            : undefined),
-        // secondary
-        ...(kind !== "primary"
-            ? {
-                  borderColor: themeVariant.press.border,
-                  boxShadow: `inset 0 0 0 ${borderWidthKind.press} ${themeVariant.press.border}`,
-              }
-            : undefined),
-
-        // tertiary-specific styles
-        ...(kind === "tertiary"
-            ? {
-                  textUnderlineOffset: theme.root.font.offset.default,
-                  textDecoration: `${theme.root.font.decoration.press} ${theme.root.sizing.underline.press}`,
-              }
-            : undefined),
-    };
-
-    const newStyles: Record<ButtonStylesKey, CSSProperties> = {
-        default: {
-            borderRadius: theme.root.border.radius.default,
-            paddingInline: paddingInline,
-            // theming
-            borderStyle: "solid",
-            borderWidth: borderWidthKind.default,
-            borderColor: themeVariant.default.border,
-            background: themeVariant.default.background,
-            color: themeVariant.default.foreground,
-            // animation
-            transition: "border-radius 0.1s ease-in-out",
-
-            /**
-             * States
-             *
-             * Defined in the following order: hover, active, focus.
-             *
-             * This is important as we want to give more priority to the
-             * :focus-visible styles.
-             */
-            // :focus-visible -> Provide focus styles for keyboard users only.
-
-            // Allow hover styles on non-touch devices only. This prevents an
-            // issue with hover being sticky on touch devices (e.g. mobile).
-            // @ts-expect-error - TS2353 - aphrodite doesn't recognize this, but it's valid and works
-            ["@media (hover: hover)"]: {
-                ":hover": {
-                    // shared
-                    background: themeVariant.hover.background,
-                    borderRadius: theme.root.border.radius.hover,
-                    color: themeVariant.hover.foreground,
-                    ...(kind === "primary"
-                        ? {
-                              outline: `${borderWidthKind.hover} solid ${themeVariant.hover.border}`,
-                              outlineOffset: outlineOffsetKind,
-                          }
-                        : undefined),
-                    ...(kind !== "primary"
-                        ? {
-                              borderColor: themeVariant.hover.border,
-                              boxShadow: `inset 0 0 0 ${borderWidthKind.hover} ${themeVariant.hover.border}`,
-                          }
-                        : undefined),
-
-                    // tertiary-specific styles
-                    ...(kind === "tertiary"
-                        ? {
-                              textUnderlineOffset:
-                                  theme.root.font.offset.default,
-                              textDecoration: `${theme.root.font.decoration.hover} ${theme.root.sizing.underline.hover}`,
-                          }
-                        : undefined),
-                },
-            } satisfies CSSProperties,
-
-            ":active": pressStyles,
-
-            ...focusStyles.focus,
-            // These overrides are needed to ensure that the boxShadow is
-            // properly applied to the button when it is focused +
-            // hovered/pressed.
-            ...(kind === "secondary"
-                ? {
-                      ":focus-visible:hover": {
-                          ...focusStyles.focus[":focus-visible"],
-                          boxShadow: `inset 0 0 0 ${borderWidthKind.hover} ${themeVariant.hover.border}, ${focusStyles.focus[":focus-visible"].boxShadow}`,
-                      },
-                      ":focus-visible:active": {
-                          ...focusStyles.focus[":focus-visible"],
-                          boxShadow: `inset 0 0 0 ${borderWidthKind.press} ${themeVariant.press.border}, ${focusStyles.focus[":focus-visible"].boxShadow}`,
-                      },
-                  }
-                : {}),
-        },
-        pressed: pressStyles,
-        // To receive programmatic focus.
-        focused: focusStyles.focus[":focus-visible"],
-        disabled: {
-            cursor: "not-allowed",
-            ...disabledStatesStyles,
-            // NOTE: Even that browsers recommend to specify pseudo-classes in
-            // this order: link, visited, hover, focus, active, we need to
-            // specify focus after hover to override hover styles. By doing this
-            // we are able to reset the border/outline styles to the default
-            // ones (rest state).
-            // For order reference: https://css-tricks.com/snippets/css/link-pseudo-classes-in-order/
-            ":hover": disabledStatesOverrides,
-            ":active": disabledStatesOverrides,
-            ":focus-visible": disabledStatesStyles,
-        },
-    };
-
-    // aphrodite v1 doesn't support generics, so we need to cast the result
-    // to the correct type. we can trust this cast because we typed the input
-    // correctly above, and aphrodite will return whatever keys we passed in.
-    styles[buttonType] = StyleSheet.create(newStyles) as Record<
-        ButtonStylesKey,
-        object
-    >;
-    return styles[buttonType];
-};
