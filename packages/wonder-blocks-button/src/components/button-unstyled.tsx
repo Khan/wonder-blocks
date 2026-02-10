@@ -2,19 +2,33 @@ import * as React from "react";
 import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
-import {StyleSheet} from "aphrodite";
 import {ButtonProps} from "../util/button.types";
+
+import resetStyles from "./button-unstyled.module.css";
 
 const StyledA = addStyle("a");
 const StyledButton = addStyle("button");
 const StyledLink = addStyle(Link);
 
-type Props = Omit<ButtonProps, "children"> & {
+// Widen style type to accept CSS module class name strings alongside
+// Aphrodite styles and inline style objects.
+type StyleTypeWithCSSModules =
+    | StyleType
+    | string
+    | ReadonlyArray<StyleType | string | false | null | undefined>;
+
+type Props = Omit<ButtonProps, "children" | "style"> & {
     /**
      * The button content.
      */
     children: React.ReactNode;
+    /**
+     * Custom styles. Accepts Aphrodite styles, inline style objects,
+     * and CSS module class name strings.
+     */
+    style?: StyleTypeWithCSSModules;
 };
 
 const ButtonUnstyled: React.ForwardRefExoticComponent<
@@ -40,7 +54,7 @@ const ButtonUnstyled: React.ForwardRefExoticComponent<
         "data-testid": testId,
         id: id,
         role: "button",
-        style: [styles.reset, style],
+        style: [resetStyles.reset, style],
         ...restProps,
     } as const;
 
@@ -76,30 +90,6 @@ const ButtonUnstyled: React.ForwardRefExoticComponent<
             </StyledButton>
         );
     }
-});
-
-const styles = StyleSheet.create({
-    reset: {
-        position: "relative",
-        display: "inline-flex",
-        alignItems: "center",
-        justifyContent: "center",
-        margin: 0,
-        padding: 0,
-        border: "none",
-        cursor: "pointer",
-        outline: "none",
-        textDecoration: "none",
-        boxSizing: "border-box",
-        // This removes the 300ms click delay on mobile browsers by indicating that
-        // "double-tap to zoom" shouldn't be used on this element.
-        touchAction: "manipulation",
-        userSelect: "none",
-        ":focus": {
-            // Mobile: Removes a blue highlight style shown when the user clicks a button
-            WebkitTapHighlightColor: "rgba(0,0,0,0)",
-        },
-    },
 });
 
 export {ButtonUnstyled};

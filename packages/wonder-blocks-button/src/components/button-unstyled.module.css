@@ -1,0 +1,27 @@
+.reset {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    /* This removes the 300ms click delay on mobile browsers by indicating that
+     * "double-tap to zoom" shouldn't be used on this element. */
+    touch-action: manipulation;
+    user-select: none;
+}
+
+.reset:focus {
+    /* Mobile: Removes a blue highlight style shown when the user clicks a button */
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* Firefox adds an inner focus ring around text */
+.reset::-moz-focus-inner {
+    border: 0;
+}
