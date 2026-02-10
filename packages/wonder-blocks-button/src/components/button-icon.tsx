@@ -12,17 +12,11 @@ export function ButtonIcon({
     icon,
     size,
     style,
-    styleOverride,
     testId,
 }: {
     icon: PhosphorIconAsset | React.ReactElement;
     size: "small" | "medium";
     style?: StyleType;
-    /**
-     * Additional styles that override the theme-defined icon sizing.
-     * Applied after theme styles to ensure they take precedence.
-     */
-    styleOverride?: StyleType;
     testId?: string;
 }) {
     // We set the icon size based on the theme object. This is necessary
@@ -33,7 +27,7 @@ export function ButtonIcon({
     };
 
     const commonProps = {
-        style: [style, iconStyle, styleOverride],
+        style: [iconStyle, style],
         testId,
     };
 

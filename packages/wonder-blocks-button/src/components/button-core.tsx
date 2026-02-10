@@ -120,8 +120,8 @@ const ButtonCore: React.ForwardRefExoticComponent<
                             sharedStyles.startIcon,
                             kind === "tertiary" &&
                                 sharedStyles.tertiaryStartIcon,
+                            stylesProp?.startIcon,
                         ]}
-                        styleOverride={stylesProp?.startIcon}
                         testId={testId ? `${testId}-start-icon` : undefined}
                     />
                 </View>
@@ -149,7 +149,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
                     <ButtonIcon
                         size={iconSize}
                         icon={endIcon}
-                        styleOverride={stylesProp?.endIcon}
+                        style={stylesProp?.endIcon}
                         testId={testId ? `${testId}-end-icon` : undefined}
                     />
                 </View>
