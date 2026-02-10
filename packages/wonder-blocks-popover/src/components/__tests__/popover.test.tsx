@@ -11,7 +11,7 @@ import PopoverContent from "../popover-content";
 import {PopoverContentCore} from "../../index";
 
 describe("Popover", () => {
-    it("should set the anchor as the popover ref", async () => {
+    it("should allow passing a custom ref to the anchor with children as a function", async () => {
         // Arrange
         const ref: React.RefObject<HTMLButtonElement> = React.createRef();
 
@@ -25,6 +25,29 @@ describe("Popover", () => {
                         Open default popover
                     </button>
                 )}
+            </Popover>,
+        );
+
+        // Act
+
+        // Assert
+        await waitFor(() => {
+            expect(ref.current).toBeInstanceOf(HTMLButtonElement);
+        });
+    });
+
+    it("should allow passing a custom ref to the anchor with direct children", async () => {
+        // Arrange
+        const ref: React.RefObject<HTMLButtonElement> = React.createRef();
+
+        render(
+            <Popover
+                placement="top"
+                content={<PopoverContent title="Title" content="content" />}
+            >
+                <button data-anchor ref={ref}>
+                    Open default popover
+                </button>
             </Popover>,
         );
 

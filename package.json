@@ -150,6 +150,7 @@
     "vitest": "^4.0.15"
   },
   "dependencies": {
+    "@floating-ui/react": "catalog:",
     "@khanacademy/wonder-stuff-core": "catalog:",
     "@phosphor-icons/core": "catalog:",
     "@popperjs/core": "catalog:",

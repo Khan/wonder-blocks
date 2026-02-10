@@ -12,6 +12,9 @@ catalog:
     # Icons library
     "@phosphor-icons/core": ^2.0.2
     # Positioning
+    "@floating-ui/react": ^0.27.16
+    # TODO(WB-2139): Remove these dependencies when we fully migrate to
+    # floating-ui
     "@popperjs/core": ^2.10.1
     # Date picker locales
     date-fns: ^4.1.0
