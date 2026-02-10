@@ -162,6 +162,7 @@ const DatePicker = (props: Props) => {
             : undefined,
     );
 
+    // Refs: input for focus/validate; datePickerRef/refWrapper for containment (Escape, outside click); refs for month state to avoid stale closures.
     const datePickerInputRef = React.useRef<HTMLInputElement | null>(null);
     const datePickerRef = React.useRef<HTMLElement | null>(null);
     const refWrapper = React.useRef<HTMLDivElement>(null);
@@ -170,13 +171,20 @@ const DatePicker = (props: Props) => {
     /** When set, overlay month is controlled by input (typing); when null, DayPicker is uncontrolled so nav buttons keep focus */
     const inputDrivenMonthRef = React.useRef<Date | null>(null);
 
+    /**
+     * We use React's flushSync in open() and close() so that updates to displayMonth
+     * are applied immediately before we change showOverlay. flushSync forces the
+     * displayMonth update to commit before the next line runs, so the overlay always
+     * shows the correct month (e.g. selected date's month when reopening after navigating).
+     */
+
     const open = React.useCallback(() => {
         if (!disabled) {
-            // When opening, show selected date's month so reopening after nav shows selected month
             if (selectedDate != null) {
                 const jsDate =
                     TemporalLocaleUtils.temporalDateToJsDate(selectedDate);
                 displayMonthRef.current = jsDate;
+                // flushSync: commit displayMonth before setShowOverlay so the overlay's first paint uses the right month (e.g. after reopen).
                 flushSync(() => setDisplayMonth(jsDate));
             } else {
                 displayMonthRef.current =
@@ -189,6 +197,7 @@ const DatePicker = (props: Props) => {
     const close = React.useCallback(() => {
         inputDrivenMonthRef.current = null;
         if (displayMonthRef.current != null) {
+            // flushSync: commit displayMonth before hiding overlay so next open() sees the correct ref/state.
             flushSync(() => setDisplayMonth(displayMonthRef.current!));
         }
         setShowOverlay(false);
@@ -199,15 +208,14 @@ const DatePicker = (props: Props) => {
     const dir =
         refWrapper.current?.closest("[dir]")?.getAttribute("dir") || "ltr";
 
-    /** Only called when DayPicker is controlled (user has typed then clicked nav); sync ref/state and switch to uncontrolled so next render avoids further re-renders on nav */
+    /** Called by DayPicker only when controlled (user typed then clicked nav). We sync ref/state and clear inputDrivenMonthRef so the next render is uncontrolled and nav buttons keep focus. */
     const handleMonthChange = React.useCallback((newMonth: Date) => {
         inputDrivenMonthRef.current = null;
         displayMonthRef.current = newMonth;
         setDisplayMonth(newMonth);
     }, []);
 
-    // Keep currentDate in sync with selectedDate prop. Only sync displayMonth when
-    // selectedDate actually changed (so we don't overwrite displayMonth set from typing).
+    // Keep currentDate in sync with selectedDate prop. Only sync displayMonth when selectedDate actually changed (prevSelectedDateRef), so we don't overwrite displayMonth set from typing or from nav.
     const prevSelectedDateRef = React.useRef<string | null>(null);
     React.useEffect(() => {
         setCurrentDate(selectedDate);
@@ -245,19 +253,17 @@ const DatePicker = (props: Props) => {
         };
     }, []);
 
-    // Add/remove mouseup event listener for outside click
+    /// Add/remove mouseup event listener for outside click
     React.useEffect(() => {
         const handleClick = (e: MouseEvent) => {
             const target: Node = e.target as any;
             const thisElement = refWrapper.current;
             const dayPickerCalendar = datePickerRef.current;
 
-            // Check if target is a valid Element (not document)
             const isElement = target instanceof Element;
             const inThisElement = isElement && thisElement?.contains(target);
             const inCalendar = isElement && dayPickerCalendar?.contains(target);
 
-            // Also check if target is in a portal (calendar overlay)
             const inPortal =
                 isElement &&
                 (target as HTMLElement).closest("[data-placement]") !== null;
@@ -281,6 +287,7 @@ const DatePicker = (props: Props) => {
         };
     }, [showOverlay, closeOnSelect, close]);
 
+    // True when focus is leaving the calendar overlay (e.g. tabbing out or clicking outside). Used to close on blur when focus leaves the dropdown.
     const isLeavingDropdown = (e: React.FocusEvent): boolean => {
         const dayPickerCalendar = datePickerRef.current;
         if (!dayPickerCalendar) {
@@ -339,7 +346,7 @@ const DatePicker = (props: Props) => {
 
         const isTextFormat = TemporalLocaleUtils.isTextFormatDate(dateFormat);
 
-        // Text formats (LL, MMMM D YYYY, MMM D YYYY): only commit when input matches formatted date.
+        // Text formats (LL, MMMM D YYYY, MMM D YYYY): we only "commit" when the raw input matches the formatted date (after normalizing spaces/punctuation). Until then the user is still typing, so we keep overlay controlled and don't call updateDate for currentDate.
         if (isTextFormat && inputValue) {
             const reparsed = TemporalLocaleUtils.parseDate(
                 inputValue,
@@ -383,12 +390,10 @@ const DatePicker = (props: Props) => {
         }
     };
 
+    // Input keyboard: Escape closes overlay and returns focus; ArrowDown opens overlay; Enter toggles overlay. We set handledEscapeRef so the keyup listener can stop propagation and avoid closing a parent modal.
     const handleKeyDown = (e: React.KeyboardEvent) => {
         if (e.key === "Escape") {
-            // Only handle Escape if the overlay is open
             if (showOverlay) {
-                // Stop propagation to prevent closing parent modals
-                // The overlay is open, so we close it first
                 e.stopPropagation();
 
                 // Mark that we handled this Escape keypress
@@ -396,8 +401,6 @@ const DatePicker = (props: Props) => {
                 close();
                 datePickerInputRef.current?.focus();
             }
-            // If overlay is closed, don't stop propagation
-            // This allows Escape to close parent modals
         }
         if (e.key === "ArrowDown" && !showOverlay) {
             e.preventDefault();
@@ -405,7 +408,6 @@ const DatePicker = (props: Props) => {
         }
         if (e.key === "Enter") {
             e.preventDefault();
-            // Toggle overlay: open if closed, close if open (respecting closeOnSelect)
             if (showOverlay) {
                 if (closeOnSelect) {
                     close();
@@ -416,6 +418,7 @@ const DatePicker = (props: Props) => {
         }
     };
 
+    // Wrapper for DayPicker's root so we can handle Escape when focus is inside the calendar (e.g. on nav buttons). We don't handle Enter here so the calendar's buttons work normally.
     const RootWithEsc = (props: RootWithEscProps) => {
         const {onKeyDown, rootRef: _, ...rest} = props;
         return (
@@ -426,20 +429,17 @@ const DatePicker = (props: Props) => {
                 onKeyDown={(e) => {
                     onKeyDown?.(e);
                     if (e.key === "Escape") {
-                        // Stop propagation to prevent closing parent modals
                         e.stopPropagation();
-                        // Mark that we handled this Escape keypress
                         handledEscapeRef.current = true;
                         close();
                         datePickerInputRef.current?.focus();
                     }
-                    // Don't handle Enter in the calendar overlay - let buttons handle it naturally
                 }}
             />
         );
     };
 
-    /** On day cell click: update selection and clear inputDrivenMonthRef so nav buttons still work. */
+    /** Day cell click: update selection, move focus to input, clear inputDrivenMonthRef and sync displayMonth so next/previous buttons keep working. If closeOnSelect, overlay closes; otherwise it stays open. */
     const handleDayClick = (
         date: Date | null | undefined,
         {disabled}: CustomModifiers,
@@ -504,7 +504,7 @@ const DatePicker = (props: Props) => {
         );
     };
 
-    // Calculate selectedDate and minDateToShow
+    // JS Date for react-day-picker (selected day and min/max). minDateToShow is the earliest month we allow the calendar to show (can be minDate or the selected date's month, whichever is later when selected is in range).
     const selectedDateValue = currentDate
         ? TemporalLocaleUtils.temporalDateToJsDate(currentDate)
         : undefined;
@@ -517,7 +517,7 @@ const DatePicker = (props: Props) => {
               ? TemporalLocaleUtils.temporalDateToJsDate(minDate)
               : undefined;
 
-    // Memoize so when only displayMonth changes (nav click), DayPicker gets stable props and keeps focus (like RDP playground).
+    // Stable modifiers object so DayPicker doesn't re-render unnecessarily when only displayMonth changes; that helps keep focus on nav buttons.
     const modifiers = React.useMemo<Partial<CustomModifiers>>(
         () => ({
             selected: selectedDateValue,
@@ -554,7 +554,7 @@ const DatePicker = (props: Props) => {
         [],
     );
 
-    // Controlled (month + onMonthChange) when typing so overlay follows; uncontrolled (defaultMonth) otherwise so nav buttons keep focus.
+    // When the user is typing we pass month + onMonthChange (controlled) so the calendar month tracks the input. When not typing we pass only defaultMonth (uncontrolled) so react-day-picker owns the month and the next/previous buttons keep focus. The key forces a fresh instance when switching between the two modes.
     const isInputDriven = inputDrivenMonthRef.current != null;
     const baseMonth =
         displayMonthRef.current ??
