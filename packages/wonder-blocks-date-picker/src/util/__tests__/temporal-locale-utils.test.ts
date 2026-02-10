@@ -4,6 +4,7 @@ import {es, fr} from "react-day-picker/locale";
 
 import {
     formatDate,
+    isTextFormatDate,
     parseDate,
     parseDateToJsDate,
     temporalDateToJsDate,
@@ -16,6 +17,28 @@ import {
 import type {CustomModifiers} from "../types";
 
 describe("TemporalLocaleUtils", () => {
+    describe("isTextFormatDate", () => {
+        it.each([["LL"], ["MMMM D, YYYY"], ["MMM D, YYYY"]])(
+            "returns true when format is %s",
+            (format) => {
+                // Act
+                const result = isTextFormatDate(format);
+                // Assert
+                expect(result).toBe(true);
+            },
+        );
+
+        it.each([["L"], ["MM/DD/YYYY"], [null], [undefined]])(
+            "returns false when format is %s",
+            (format) => {
+                // Act
+                const result = isTextFormatDate(format);
+                // Assert
+                expect(result).toBe(false);
+            },
+        );
+    });
+
     describe("formatDate", () => {
         it("formats YYYY-MM-DD", () => {
             const date = Temporal.PlainDate.from("2021-05-07");

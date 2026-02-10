@@ -345,11 +345,51 @@ describe("DatePicker", () => {
             expectedValue: "invalid date",
             desc: "malformed text",
             minDate: undefined,
-            expectedCall: null,
         },
         {
             testInput: "1/5/2026",
             expectedValue: "1/5/2026",
+            desc: "out-of-range date",
+            minDate: Temporal.PlainDate.from("2026-01-10"),
+        },
+    ])(
+        "keeps input value as $expectedValue for $desc without resetInvalidValueOnBlur",
+        async ({testInput, expectedValue, minDate}) => {
+            // Arrange
+            render(
+                <>
+                    <DatePicker
+                        selectedDate={Temporal.PlainDate.from("2026-01-16")}
+                        updateDate={jest.fn()}
+                        minDate={minDate}
+                        resetInvalidValueOnBlur={false}
+                    />
+                    <button>Other element</button>
+                </>,
+            );
+            // Act
+            await userEvent.tab();
+            const input = screen.getByRole("textbox");
+            await userEvent.clear(input);
+            await userEvent.type(input, testInput);
+            await userEvent.keyboard("{Escape}");
+            await userEvent.tab();
+            // Assert
+            await waitFor(() => {
+                expect(input).toHaveValue(expectedValue);
+            });
+        },
+    );
+
+    it.each([
+        {
+            testInput: "invalid date",
+            desc: "malformed text",
+            minDate: undefined,
+            expectedCall: null,
+        },
+        {
+            testInput: "1/5/2026",
             desc: "out-of-range date",
             minDate: Temporal.PlainDate.from("2026-01-10"),
             expectedCall: expect.objectContaining({
@@ -359,8 +399,9 @@ describe("DatePicker", () => {
             }),
         },
     ])(
-        "keeps $desc without resetInvalidValueOnBlur",
-        async ({testInput, expectedValue, minDate, expectedCall}) => {
+        "calls updateDate with expected arg for $desc without resetInvalidValueOnBlur",
+        async ({testInput, minDate, expectedCall}) => {
+            // Arrange
             const updateDateMock = jest.fn();
             render(
                 <>
@@ -373,15 +414,14 @@ describe("DatePicker", () => {
                     <button>Other element</button>
                 </>,
             );
+            // Act
             await userEvent.tab();
             const input = screen.getByRole("textbox");
             await userEvent.clear(input);
             await userEvent.type(input, testInput);
             await userEvent.keyboard("{Escape}");
             await userEvent.tab();
-            await waitFor(() => {
-                expect(input).toHaveValue(expectedValue);
-            });
+            // Assert
             expect(updateDateMock).toHaveBeenLastCalledWith(expectedCall);
         },
     );
@@ -566,6 +606,25 @@ describe("DatePicker", () => {
             await userEvent.click(input);
             await userEvent.type(input, "1");
             expect(input).toHaveFocus();
+        });
+
+        it("after typing full date, next button still navigates months", async () => {
+            renderPicker();
+            await userEvent.click(screen.getByRole("textbox"));
+            await userEvent.clear(screen.getByRole("textbox"));
+            await userEvent.type(screen.getByRole("textbox"), "March 15, 2021");
+            await screen.findByText("March 2021");
+            await userEvent.click(screen.getByLabelText(/next month/i));
+            await userEvent.click(screen.getByLabelText(/next month/i));
+            expect(await screen.findByText("May 2021")).toBeInTheDocument();
+        });
+
+        it("after clicking a day, next button still navigates months", async () => {
+            renderPicker({closeOnSelect: false});
+            await userEvent.click(screen.getByRole("textbox"));
+            await userEvent.click(screen.getByText("15"));
+            await userEvent.click(screen.getByLabelText(/next month/i));
+            expect(await screen.findByText("June 2021")).toBeInTheDocument();
         });
     });
 

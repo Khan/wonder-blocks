@@ -6,7 +6,10 @@ import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import calendarIcon from "@phosphor-icons/core/bold/calendar-blank-bold.svg";
-import {enUSLocaleCode} from "../util/temporal-locale-utils";
+import {
+    enUSLocaleCode,
+    TemporalLocaleUtils,
+} from "../util/temporal-locale-utils";
 import type {CustomModifiers} from "../util/types";
 
 interface Props {
@@ -229,10 +232,7 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
             return true;
         }, [value, processDate, processModifiers]);
 
-        const isTextFormat =
-            dateFormat === "LL" ||
-            dateFormat === "MMMM D, YYYY" ||
-            dateFormat === "MMM D, YYYY";
+        const isTextFormat = TemporalLocaleUtils.isTextFormatDate(dateFormat);
 
         // Sync with propValue when it changes from an external source
         // Allow prop updates to override local state (e.g., calendar selection, programmatic updates)

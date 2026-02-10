@@ -3,6 +3,23 @@ import type {Locale} from "react-day-picker/locale";
 import {CustomModifiers} from "./types";
 
 export const enUSLocaleCode = "en-US";
+
+/** Date format strings that use month names (e.g. "January") and need special handling for partial input and commit detection. */
+const TEXT_FORMAT_STRINGS = ["LL", "MMMM D, YYYY", "MMM D, YYYY"] as const;
+
+/**
+ * True if the format displays the month as text (LL, MMMM D YYYY, MMM D YYYY).
+ * Used to decide when to treat input as "complete" vs partial and when to sync overlay month from typing.
+ */
+export function isTextFormatDate(
+    formatString: string | null | undefined,
+): boolean {
+    return (
+        formatString != null &&
+        (TEXT_FORMAT_STRINGS as readonly string[]).includes(formatString)
+    );
+}
+
 /**
  * Utility functions for working with Temporal dates in react-day-picker.
  * Uses Intl.DateTimeFormat for locale-aware date formatting and parsing.
@@ -302,10 +319,7 @@ export function parseDateToJsDate(
         // For text-based formats (LL, MMMM D, YYYY, MMM D, YYYY), be more lenient
         // with validation since text-based dates can have spacing/punctuation/capitalization
         // variations that are still semantically correct
-        const isTextFormat =
-            formatString === "LL" ||
-            formatString === "MMMM D, YYYY" ||
-            formatString === "MMM D, YYYY";
+        const isTextFormat = isTextFormatDate(formatString);
 
         if (isTextFormat) {
             // Normalize whitespace and compare
@@ -731,6 +745,7 @@ export const endOfDay = (date: Date): Date => {
 export const TemporalLocaleUtils = {
     // Core date formatting and parsing
     formatDate,
+    isTextFormatDate,
     parseDate,
     parseDateToJsDate,
     startOfIsoWeek,
