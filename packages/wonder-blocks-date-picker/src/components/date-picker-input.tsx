@@ -234,31 +234,41 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
 
         const isTextFormat = TemporalLocaleUtils.isTextFormatDate(dateFormat);
 
-        // Sync with propValue when it changes from an external source
-        // Allow prop updates to override local state (e.g., calendar selection, programmatic updates)
-        // Skip sync when we're keeping partial text-format input so overlay can update and user can keep typing.
-        // Skip sync when prop matches current value to avoid re-render that resets cursor (e.g. after typing "2026").
+        // This sync logic decides when to update the input’s state from a parent
+        // value prop and when to leave the user’s text alone (e.g. while they’re typing).
+        // Allows prop updates to override local state (e.g., calendar selection, programmatic updates)
+        // Skips sync when we're keeping partial text-format input so overlay can update and user can keep typing.
+        // Skips sync when prop matches current value to avoid re-render that resets cursor (e.g. after typing "2026").
         React.useEffect(() => {
             const propValueChanged = lastPropValueRef.current !== propValue;
             lastPropValueRef.current = propValue;
 
             if (propValueChanged) {
+                // propValue: the value prop from the parent DatePicker component (formatted date string or null/undefined)
+                const safeProp = propValue ?? "";
+                // value: the current value in the input field (can be partial/invalid when user is typing)
+                const safeValue = value ?? "";
+                const isLastTypedValue =
+                    lastTypedTextFormatValueRef.current !== null &&
+                    value === lastTypedTextFormatValueRef.current;
+                const bothHaveContent = safeValue !== "" && safeProp !== "";
+                // oneIsPrefixOfOther: when both have content, check if one is a prefix of the other (e.g. user typed "202" and prop is "2026", or user typed "January" and prop is "January 1, 2024")
+                const oneIsPrefixOfOther =
+                    safeProp.startsWith(safeValue) ||
+                    safeValue.startsWith(safeProp);
+                // Don't overwrite the input while the user is typing (we just saw this value, or one string is a prefix of the other).
+                const skipSyncUserTyping =
+                    isTextFormat &&
+                    propValue !== value &&
+                    (isLastTypedValue ||
+                        (bothHaveContent && oneIsPrefixOfOther));
+
                 if (
                     keepInvalidTextRef.current &&
                     (!propValue || propValue.trim() === "")
                 ) {
                     keepInvalidTextRef.current = false;
-                } else if (
-                    isTextFormat &&
-                    propValue !== value &&
-                    ((lastTypedTextFormatValueRef.current !== null &&
-                        value === lastTypedTextFormatValueRef.current) ||
-                        (value !== "" &&
-                            (propValue ?? "") !== "" &&
-                            ((propValue ?? "").startsWith(value ?? "") ||
-                                (value ?? "").startsWith(propValue ?? ""))))
-                ) {
-                    // Keep user's partial text: either we sent it (overlay update) or one string is prefix of the other (still typing)
+                } else if (skipSyncUserTyping) {
                     return;
                 } else if (
                     propValue === value ||
