@@ -1,7 +1,6 @@
 import {StyleSheet} from "aphrodite";
 import {Temporal} from "temporal-polyfill";
 import * as React from "react";
-import {flushSync} from "react-dom";
 import {DayPicker} from "react-day-picker";
 import {enUS, type Locale} from "react-day-picker/locale";
 
@@ -170,25 +169,27 @@ const DatePicker = (props: Props) => {
     const displayMonthRef = React.useRef<Date | undefined>(undefined);
     /** When set, overlay month is controlled by input (typing); when null, DayPicker is uncontrolled so nav buttons keep focus */
     const inputDrivenMonthRef = React.useRef<Date | null>(null);
-
-    /**
-     * We use React's flushSync in open() and close() so that updates to displayMonth
-     * are applied immediately before we change showOverlay. flushSync forces the
-     * displayMonth update to commit before the next line runs, so the overlay always
-     * shows the correct month (e.g. selected date's month when reopening after navigating).
-     */
+    /** Month to show when overlay opens; set in open() so the first render shows the correct month regardless of state batching */
+    const openedMonthRef = React.useRef<Date | null>(null);
+    /** When true, next open() call is skipped (used when focus is restored after Escape so we don't reopen immediately). */
+    const skipNextOpenRef = React.useRef(false);
 
     const open = React.useCallback(() => {
+        if (skipNextOpenRef.current) {
+            skipNextOpenRef.current = false;
+            return;
+        }
         if (!disabled) {
             if (selectedDate != null) {
                 const jsDate =
                     TemporalLocaleUtils.temporalDateToJsDate(selectedDate);
                 displayMonthRef.current = jsDate;
-                // flushSync: commit displayMonth before setShowOverlay so the overlay's first paint uses the right month (e.g. after reopen).
-                flushSync(() => setDisplayMonth(jsDate));
+                openedMonthRef.current = jsDate;
+                setDisplayMonth(jsDate);
             } else {
                 displayMonthRef.current =
                     displayMonthRef.current ?? displayMonth;
+                openedMonthRef.current = null;
             }
             setShowOverlay(true);
         }
@@ -196,13 +197,22 @@ const DatePicker = (props: Props) => {
 
     const close = React.useCallback(() => {
         inputDrivenMonthRef.current = null;
-        if (displayMonthRef.current != null) {
-            // flushSync: commit displayMonth before hiding overlay so next open() sees the correct ref/state.
-            flushSync(() => setDisplayMonth(displayMonthRef.current!));
+        // Set to selected date's month so next open shows that month on first render (no reliance on effect or open() batching).
+        if (selectedDate != null) {
+            const jsDate =
+                TemporalLocaleUtils.temporalDateToJsDate(selectedDate);
+            displayMonthRef.current = jsDate;
+            openedMonthRef.current = jsDate;
+            setDisplayMonth(jsDate);
+        } else {
+            openedMonthRef.current = null;
+            if (displayMonthRef.current != null) {
+                setDisplayMonth(displayMonthRef.current!);
+            }
         }
         setShowOverlay(false);
         (datePickerInputRef.current as any)?.validateInput?.();
-    }, []);
+    }, [selectedDate]);
 
     const computedLocale = locale ?? enUS;
     const dir =
@@ -212,6 +222,7 @@ const DatePicker = (props: Props) => {
     const handleMonthChange = React.useCallback((newMonth: Date) => {
         inputDrivenMonthRef.current = null;
         displayMonthRef.current = newMonth;
+        openedMonthRef.current = newMonth;
         setDisplayMonth(newMonth);
     }, []);
 
@@ -228,12 +239,32 @@ const DatePicker = (props: Props) => {
                     TemporalLocaleUtils.temporalDateToJsDate(selectedDate);
                 setDisplayMonth(jsDate);
                 displayMonthRef.current = jsDate;
+                openedMonthRef.current = jsDate;
             }
         }
     }, [selectedDate]);
 
-    // Add keyup event listener to handle Escape key and prevent modal from
-    // closing parent modals
+    // When overlay transitions from closed to open, sync displayed month to selected date (reopen after nav + close). Runs after commit so a follow-up render shows the correct month; test uses waitFor to observe it.
+    const prevShowOverlayRef = React.useRef(false);
+    React.useEffect(() => {
+        const justOpened = !prevShowOverlayRef.current && showOverlay;
+        prevShowOverlayRef.current = showOverlay;
+        if (justOpened && selectedDate != null) {
+            const jsDate =
+                TemporalLocaleUtils.temporalDateToJsDate(selectedDate);
+            openedMonthRef.current = jsDate;
+            displayMonthRef.current = jsDate;
+            setDisplayMonth(jsDate);
+        }
+    }, [showOverlay, selectedDate]);
+
+    // Add/remove keyup listener only when this instance's overlay is open.
+    // This way at most one keyup listener is on the window (the instance with
+    // overlay open), avoiding issues with multiple DatePickers mounted.
+    // Listener must be on window (not refWrapper) so we catch keyup when the
+    // target is inside the portaled calendar overlay, which is outside refWrapper.
+    // When overlay closes we delay removal so we still catch the keyup that
+    // follows our keydown (React's effect cleanup can run before keyup fires).
     React.useEffect(() => {
         const handleKeyup = (e: KeyboardEvent) => {
             if (e.key === "Escape" && handledEscapeRef.current) {
@@ -376,6 +407,7 @@ const DatePicker = (props: Props) => {
             if (isCompleteDate) {
                 inputDrivenMonthRef.current = null;
                 displayMonthRef.current = monthDate;
+                openedMonthRef.current = monthDate;
                 setCurrentDate(wrappedDate);
                 updateDate(wrappedDate);
             } else {
@@ -385,6 +417,7 @@ const DatePicker = (props: Props) => {
             // Committed non–text-format date: switch to uncontrolled so nav buttons work
             inputDrivenMonthRef.current = null;
             displayMonthRef.current = monthDate;
+            openedMonthRef.current = monthDate;
             setCurrentDate(wrappedDate);
             updateDate(wrappedDate);
         }
@@ -398,12 +431,14 @@ const DatePicker = (props: Props) => {
 
                 // Mark that we handled this Escape keypress
                 handledEscapeRef.current = true;
+                skipNextOpenRef.current = true; // focus will be restored; don't reopen
                 close();
                 datePickerInputRef.current?.focus();
             }
         }
         if (e.key === "ArrowDown" && !showOverlay) {
             e.preventDefault();
+            skipNextOpenRef.current = false; // user explicitly opening
             open();
         }
         if (e.key === "Enter") {
@@ -413,6 +448,7 @@ const DatePicker = (props: Props) => {
                     close();
                 }
             } else {
+                skipNextOpenRef.current = false; // user explicitly opening
                 open();
             }
         }
@@ -431,6 +467,7 @@ const DatePicker = (props: Props) => {
                     if (e.key === "Escape") {
                         e.stopPropagation();
                         handledEscapeRef.current = true;
+                        skipNextOpenRef.current = true; // focus will be restored; don't reopen
                         close();
                         datePickerInputRef.current?.focus();
                     }
@@ -453,6 +490,7 @@ const DatePicker = (props: Props) => {
         const monthDate = new Date(date);
         inputDrivenMonthRef.current = null;
         displayMonthRef.current = monthDate;
+        openedMonthRef.current = monthDate;
         setDisplayMonth(monthDate);
         updateDate(wrappedDate);
         setShowOverlay(!closeOnSelect);
@@ -554,9 +592,15 @@ const DatePicker = (props: Props) => {
         [],
     );
 
-    // When the user is typing we pass month + onMonthChange (controlled) so the calendar month tracks the input. When not typing we pass only defaultMonth (uncontrolled) so react-day-picker owns the month and the next/previous buttons keep focus. The key forces a fresh instance when switching between the two modes.
+    // When the user is typing we pass month + onMonthChange (controlled) so the calendar month tracks the input. When not typing we pass only defaultMonth (uncontrolled) so react-day-picker owns the month and the next/previous buttons keep focus. The key forces a fresh instance when switching between the two modes. Prefer openedMonthRef when set so the first render after open() shows the correct month (avoids state batching issues). When overlay is open with a selected date (prop), fall back to that month so reopening always shows selected month.
     const isInputDriven = inputDrivenMonthRef.current != null;
+    const selectedDateAsJs =
+        selectedDate != null
+            ? TemporalLocaleUtils.temporalDateToJsDate(selectedDate)
+            : undefined;
     const baseMonth =
+        openedMonthRef.current ??
+        (showOverlay && selectedDateAsJs ? selectedDateAsJs : undefined) ??
         displayMonthRef.current ??
         displayMonth ??
         selectedDateValue ??
@@ -566,6 +610,9 @@ const DatePicker = (props: Props) => {
         baseMonth.getMonth(),
         1,
     );
+    const pickerKey = isInputDriven
+        ? `input-${inputDrivenMonthRef.current!.getTime()}`
+        : `picker-${baseMonth.getTime()}`;
 
     return (
         <View style={style} ref={refWrapper}>
@@ -578,11 +625,7 @@ const DatePicker = (props: Props) => {
                 >
                     <View ref={datePickerRef}>
                         <DayPicker
-                            key={
-                                isInputDriven
-                                    ? `input-${inputDrivenMonthRef.current!.getTime()}`
-                                    : `picker-${(displayMonth ?? selectedDateValue)?.getTime() ?? 0}`
-                            }
+                            key={pickerKey}
                             mode="single"
                             selected={selectedDateValue}
                             {...(isInputDriven
