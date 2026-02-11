@@ -27,7 +27,8 @@ describe("DatePicker", () => {
     });
 
     it("hides the date picker overlay by default", () => {
-        // Arrange & Act
+        // Arrange
+        // Act
         render(<DatePicker updateDate={() => {}} />);
 
         // Assert
@@ -244,7 +245,7 @@ describe("DatePicker", () => {
             />,
         );
 
-        // Act - Tab to input, then Tab to reach a day button and press Enter
+        // Act
         await userEvent.tab(); // Focus input, opens overlay
         screen.getByRole("textbox");
         // Tab through calendar to a different date button
@@ -253,7 +254,7 @@ describe("DatePicker", () => {
         await userEvent.tab();
         await userEvent.keyboard("{Enter}");
 
-        // Assert - updateDate should be called
+        // Assert
         await waitFor(() => {
             expect(updateDateMock).toHaveBeenCalled();
         });
@@ -417,7 +418,7 @@ describe("DatePicker", () => {
         const input = screen.getByRole("textbox");
         await userEvent.clear(input);
         await userEvent.type(input, "1/30/2026");
-        // Assert - updateDate should be called with the new date
+        // Assert
         await waitFor(() => {
             expect(updateDateMock).toHaveBeenCalledWith(
                 expect.objectContaining({
@@ -438,12 +439,13 @@ describe("DatePicker", () => {
                 updateDate={updateDateMock}
             />,
         );
-        // Act - Select and delete the day portion "16" to replace it
+        // Act
         await userEvent.tab();
         const input = screen.getByRole("textbox");
         await userEvent.clear(input);
         await userEvent.type(input, "1/");
-        // Assert - Input should preserve partial value, not clear completely
+
+        // Assert
         expect(input).toHaveValue("1/");
     });
     it.each([
@@ -727,7 +729,7 @@ describe("DatePicker", () => {
                 // Act
                 await userEvent.type(input, "January 15, 2021");
 
-                // Assert - Calendar should show January 2021
+                // Assert
                 await waitFor(() => {
                     const monthLabel = screen.getByText("January 2021");
                     expect(monthLabel).toBeInTheDocument();
