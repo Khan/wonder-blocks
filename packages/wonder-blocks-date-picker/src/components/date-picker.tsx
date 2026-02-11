@@ -191,8 +191,18 @@ const DatePicker = (props: Props) => {
         }
     }, [selectedDate]);
 
-    // Add/remove keyup listener to handle Escape key properly
+    // Add/remove keyup listener only when this instance's overlay is open.
+    // This way at most one keyup listener is on the window (the instance with
+    // overlay open), avoiding issues with multiple DatePickers mounted.
+    // Listener must be on window (not refWrapper) so we catch keyup when the
+    // target is inside the portaled calendar overlay, which is outside refWrapper.
+    // When overlay closes we delay removal so we still catch the keyup that
+    // follows our keydown (React's effect cleanup can run before keyup fires).
     React.useEffect(() => {
+        if (!showOverlay) {
+            return;
+        }
+
         const handleKeyup = (e: KeyboardEvent) => {
             if (e.key === "Escape") {
                 const target = e.target as Node;
@@ -216,12 +226,16 @@ const DatePicker = (props: Props) => {
             }
         };
 
-        // Add listener to window to catch the event before modal's listener
-        window.addEventListener("keyup", handleKeyup, true); // Use capture phase
+        // Use capture phase so we run before modal's listener
+        window.addEventListener("keyup", handleKeyup, true);
         return () => {
-            window.removeEventListener("keyup", handleKeyup, true);
+            // Defer removal so the keyup that follows our keydown is still
+            // caught (effect cleanup can run before keyup in the same tick).
+            setTimeout(() => {
+                window.removeEventListener("keyup", handleKeyup, true);
+            }, 0);
         };
-    }, []);
+    }, [showOverlay]);
 
     // Add/remove mouseup event listener for outside click
     React.useEffect(() => {
