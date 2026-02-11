@@ -713,7 +713,7 @@ export const CustomIconSize: StoryComponentType = {
         startIcon: plus,
         kind: "secondary",
         styles: {
-            startIcon: {width: 24, height: 24},
+            startIcon: {width: sizing.size_240, height: sizing.size_240},
         },
         onClick: action("clicked"),
     },
