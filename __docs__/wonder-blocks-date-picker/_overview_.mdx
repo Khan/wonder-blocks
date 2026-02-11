@@ -26,13 +26,14 @@ Best for desktop experiences where you need full control over styling and behavi
 Make sure you have these installed:
 - `react` and `react-dom`
 - `aphrodite`
-- `react-day-picker`
 - `react-popper` and `@popperjs/core`
 - `date-fns`
 - `@phosphor-icons/core`
 - `temporal-polyfill`
 
-The required CSS styles for `react-day-picker` are bundled with this package, so no additional CSS imports are needed.
+The calendar is powered by `react-day-picker`, which is included as a dependency
+of this package. Its required CSS is also bundled, so you don't need to install
+`react-day-picker` or import any additional styles.
 
 ## Basic Usage
 
@@ -122,8 +123,8 @@ via the `temporal-polyfill` package. All dates are handled as
 
 The date picker components are built with accessibility in mind:
 
-- **Keyboard navigation**: Tab to focus, Enter/Space to open, Esc to close
-- **ARIA labels**: Configurable via `inputAriaLabel` prop
+- **Keyboard navigation**: Tab to focus, Enter/Space/DownArrow to open and select items, Esc to close
+- **Input labels**: Configurable via `LabeledField` or directly on the input using the `inputAriaLabel` prop
 - **Screen reader support**: Calendar uses proper ARIA grid role
 - **Focus management**: Focus returns to input after closing calendar
 
