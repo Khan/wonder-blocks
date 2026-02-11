@@ -465,70 +465,6 @@ export const InsideModal: Story = {
     render: () => <DatePickerInsideModalExample />,
 };
 
-const DatePickerWithCustomStylesExample = () => {
-    const [date1, setDate1] = React.useState<
-        Temporal.PlainDate | null | undefined
-    >(null);
-    const [date2, setDate2] = React.useState<
-        Temporal.PlainDate | null | undefined
-    >(null);
-    const [date3, setDate3] = React.useState<
-        Temporal.PlainDate | null | undefined
-    >(null);
-    const [date4, setDate4] = React.useState<
-        Temporal.PlainDate | null | undefined
-    >(null);
-
-    return (
-        <View style={{gap: spacing.large_24, maxWidth: 600}}>
-            <View style={{gap: spacing.xSmall_8}}>
-                <BodyText weight="bold">Default (225px × 40px)</BodyText>
-                <DatePicker
-                    selectedDate={date1}
-                    updateDate={setDate1}
-                    placeholder="MM/DD/YYYY"
-                    inputAriaLabel="Date with default size"
-                />
-            </View>
-
-            <View style={{gap: spacing.xSmall_8}}>
-                <BodyText weight="bold">Custom width (350px)</BodyText>
-                <DatePicker
-                    selectedDate={date2}
-                    updateDate={setDate2}
-                    placeholder="MM/DD/YYYY"
-                    inputAriaLabel="Date with custom width"
-                    style={{width: 350}}
-                />
-            </View>
-
-            <View style={{gap: spacing.xSmall_8}}>
-                <BodyText weight="bold">Full width (100%)</BodyText>
-                <DatePicker
-                    selectedDate={date3}
-                    updateDate={setDate3}
-                    placeholder="MM/DD/YYYY"
-                    inputAriaLabel="Date with full width"
-                    style={{width: "100%"}}
-                />
-            </View>
-
-            <View style={{gap: spacing.xSmall_8}}>
-                <BodyText weight="bold">
-                    Custom height for larger touch target (48px)
-                </BodyText>
-                <DatePicker
-                    selectedDate={date4}
-                    updateDate={setDate4}
-                    placeholder="MM/DD/YYYY"
-                    inputAriaLabel="Date with custom height"
-                    style={{height: sizing.size_480}}
-                />
-            </View>
-        </View>
-    );
-};
-
 /**
  * DatePicker with custom styling to demonstrate that the style prop works.
  * This example shows how to override the default width (225px) and height (40px)
@@ -541,5 +477,57 @@ const DatePickerWithCustomStylesExample = () => {
  * - Custom height (48px) for larger touch targets
  */
 export const WithCustomStyles: Story = {
-    render: () => <DatePickerWithCustomStylesExample />,
+    render: (args) => (
+        <View style={{gap: spacing.large_24, maxWidth: 600}}>
+            <View style={{gap: spacing.xSmall_8}}>
+                <BodyText weight="bold" tag="label" htmlFor="custom-example1">
+                    Date with default size (225px × 40px)
+                </BodyText>
+                <DatePicker
+                    {...args}
+                    placeholder="MM/DD/YYYY"
+                    id="custom-example1"
+                />
+            </View>
+
+            <View style={{gap: spacing.xSmall_8}}>
+                <BodyText weight="bold" tag="label" htmlFor="custom-example2">
+                    Date with custom width (350px)
+                </BodyText>
+                <DatePicker
+                    {...args}
+                    placeholder="MM/DD/YYYY"
+                    id="custom-example2"
+                    style={{width: 350}}
+                />
+            </View>
+
+            <View style={{gap: spacing.xSmall_8}}>
+                <BodyText weight="bold" tag="label" htmlFor="custom-example3">
+                    Date with full width (100%)
+                </BodyText>
+                <DatePicker
+                    {...args}
+                    placeholder="MM/DD/YYYY"
+                    id="custom-example3"
+                    style={{width: "100%"}}
+                />
+            </View>
+
+            <View style={{gap: spacing.xSmall_8}}>
+                <BodyText weight="bold" tag="label" htmlFor="custom-example4">
+                    Date with custom height for larger touch target (48px)
+                </BodyText>
+                <DatePicker
+                    {...args}
+                    placeholder="MM/DD/YYYY"
+                    id="custom-example4"
+                    style={{height: sizing.size_480}}
+                />
+            </View>
+        </View>
+    ),
+    args: {
+        updateDate: () => {},
+    },
 };
