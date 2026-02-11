@@ -194,6 +194,10 @@ const DatePicker = (props: Props) => {
     // Add keyup event listener to handle Escape key and prevent modal from
     // closing parent modals
     React.useEffect(() => {
+        if (!showOverlay) {
+            return;
+        }
+
         const handleKeyup = (e: KeyboardEvent) => {
             if (e.key === "Escape" && handledEscapeRef.current) {
                 // Stop propagation to prevent closing parent modals. This is the
@@ -208,9 +212,13 @@ const DatePicker = (props: Props) => {
         // Use capture phase so we run before modal's listener
         window.addEventListener("keyup", handleKeyup, true);
         return () => {
-            window.removeEventListener("keyup", handleKeyup, true);
+            // Defer removal so the keyup that follows our keydown is still
+            // caught (effect cleanup can run before keyup in the same tick).
+            setTimeout(() => {
+                window.removeEventListener("keyup", handleKeyup, true);
+            }, 0);
         };
-    }, []);
+    }, [showOverlay]);
 
     // Add/remove mouseup event listener for outside click
     React.useEffect(() => {
