@@ -388,37 +388,39 @@ export const FocusIdWithReactRouter: Story = {
             value: "large",
         },
     },
-    play: async ({canvasElement, userEvent}) => {
-        const canvas = within(canvasElement.ownerDocument.body);
+    // disable interaction tests for now so it doesn't interfere with initial focus on mount
+    // TODO: Separate into a different story for interaction tests
+    // play: async ({canvasElement, userEvent}) => {
+    //     const canvas = within(canvasElement.ownerDocument.body);
 
-        // Initial route is /overview; focus should not be on the heading (no focus on mount)
-        const overviewHeading = canvas.getByRole("heading", {
-            name: "Overview",
-        });
-        expect(overviewHeading).not.toHaveFocus();
+    //     // Initial route is /overview; focus should not be on the heading (no focus on mount)
+    //     const overviewHeading = canvas.getByRole("heading", {
+    //         name: "Overview",
+    //     });
+    //     expect(overviewHeading).not.toHaveFocus();
 
-        // Click Assignments tab; after navigation, focus should move to assignments heading
-        await userEvent.click(canvas.getByRole("link", {name: "Assignments"}));
-        await waitFor(() => {
-            const assignmentsHeading = canvas.getByRole("heading", {
-                name: "Assignments",
-            });
-            expect(assignmentsHeading).toHaveFocus();
-        });
+    //     // Click Assignments tab; after navigation, focus should move to assignments heading
+    //     await userEvent.click(canvas.getByRole("link", {name: "Assignments"}));
+    //     await waitFor(() => {
+    //         const assignmentsHeading = canvas.getByRole("heading", {
+    //             name: "Assignments",
+    //         });
+    //         expect(assignmentsHeading).toHaveFocus();
+    //     });
 
-        // Click Progress tab; focus should move to progress heading
-        await userEvent.click(canvas.getByRole("link", {name: "Progress"}));
-        await waitFor(() => {
-            const progressHeading = canvas.getByRole("heading", {
-                name: "Progress",
-            });
-            expect(progressHeading).toHaveFocus();
-        });
+    //     // Click Progress tab; focus should move to progress heading
+    //     await userEvent.click(canvas.getByRole("link", {name: "Progress"}));
+    //     await waitFor(() => {
+    //         const progressHeading = canvas.getByRole("heading", {
+    //             name: "Progress",
+    //         });
+    //         expect(progressHeading).toHaveFocus();
+    //     });
 
-        // Click Overview tab; focus should move to overview heading
-        await userEvent.click(canvas.getByRole("link", {name: "Overview"}));
-        await waitFor(() => {
-            expect(overviewHeading).toHaveFocus();
-        });
-    },
+    //     // Click Overview tab; focus should move to overview heading
+    //     await userEvent.click(canvas.getByRole("link", {name: "Overview"}));
+    //     await waitFor(() => {
+    //         expect(overviewHeading).toHaveFocus();
+    //     });
+    // },
 };
