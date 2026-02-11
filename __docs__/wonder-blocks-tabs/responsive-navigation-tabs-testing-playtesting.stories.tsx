@@ -1,6 +1,17 @@
+import * as React from "react";
 import {Meta, StoryObj} from "@storybook/react-vite";
 import {expect, fn, waitFor, within} from "storybook/test";
+import {MemoryRouter} from "react-router-dom";
+import {
+    CompatRouter,
+    Navigate,
+    Route,
+    Routes,
+    useLocation,
+} from "react-router-dom-v5-compat";
 import {ResponsiveNavigationTabs} from "@khanacademy/wonder-blocks-tabs";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Body} from "@khanacademy/wonder-blocks-typography";
 import {
     Interactive as InteractiveStory,
     INITIAL_TABS_COUNT,
@@ -274,5 +285,140 @@ export const TogglingIconInLabels: Story = {
         expect(linksAfterChange).toHaveLength(INITIAL_TABS_COUNT);
 
         expect(args.onLayoutChange).toHaveBeenLastCalledWith("tabs");
+    },
+};
+
+const FOCUS_ID_TABS = [
+    {
+        id: "overview",
+        label: "Overview",
+        href: "/overview",
+        focusId: "overview-heading",
+    },
+    {
+        id: "assignments",
+        label: "Assignments",
+        href: "/assignments",
+        focusId: "assignments-heading",
+    },
+    {
+        id: "progress",
+        label: "Progress",
+        href: "/progress",
+        focusId: "progress-heading",
+    },
+];
+
+function OverviewPage() {
+    return (
+        <View>
+            <h1 id="overview-heading">Overview</h1>
+            <Body>
+                Overview content. Focus moves here when this tab is selected.
+            </Body>
+        </View>
+    );
+}
+
+function AssignmentsPage() {
+    return (
+        <View>
+            <h1 id="assignments-heading">Assignments</h1>
+            <Body>
+                Assignments content. Focus moves here when this tab is selected.
+            </Body>
+        </View>
+    );
+}
+
+function ProgressPage() {
+    return (
+        <View>
+            <h1 id="progress-heading">Progress</h1>
+            <Body>
+                Progress content. Focus moves here when this tab is selected.
+            </Body>
+        </View>
+    );
+}
+
+function ResponsiveNavigationTabsWithRouter() {
+    const location = useLocation();
+    const selectedTabId =
+        location.pathname === "/" || location.pathname === ""
+            ? "overview"
+            : location.pathname.slice(1);
+
+    return (
+        <View>
+            <ResponsiveNavigationTabs
+                aria-label="Section navigation"
+                tabs={FOCUS_ID_TABS}
+                selectedTabId={selectedTabId}
+                onTabSelected={() => {}}
+                showDivider
+            />
+            <Routes>
+                <Route path="/overview" element={<OverviewPage />} />
+                <Route path="/assignments" element={<AssignmentsPage />} />
+                <Route path="/progress" element={<ProgressPage />} />
+                <Route path="/" element={<Navigate to="/overview" replace />} />
+            </Routes>
+        </View>
+    );
+}
+
+/**
+ * ResponsiveNavigationTabs with `focusId` on each tab and React Router. When a tab
+ * is selected (by clicking a link or when the route changes), focus moves to
+ * the element with the tab's `focusId`. This story uses client-side navigation
+ * so that `selectedTabId` stays in sync with the URL and the focus effect runs
+ * when the route changes.
+ */
+export const FocusIdWithReactRouter: Story = {
+    render: () => (
+        <MemoryRouter initialEntries={["/overview"]}>
+            <CompatRouter>
+                <ResponsiveNavigationTabsWithRouter />
+            </CompatRouter>
+        </MemoryRouter>
+    ),
+    globals: {
+        viewport: {
+            value: "large",
+        },
+    },
+    play: async ({canvasElement, userEvent}) => {
+        const canvas = within(canvasElement.ownerDocument.body);
+
+        // Initial route is /overview; focus should not be on the heading (no focus on mount)
+        const overviewHeading = canvas.getByRole("heading", {
+            name: "Overview",
+        });
+        expect(overviewHeading).not.toHaveFocus();
+
+        // Click Assignments tab; after navigation, focus should move to assignments heading
+        await userEvent.click(canvas.getByRole("link", {name: "Assignments"}));
+        await waitFor(() => {
+            const assignmentsHeading = canvas.getByRole("heading", {
+                name: "Assignments",
+            });
+            expect(assignmentsHeading).toHaveFocus();
+        });
+
+        // Click Progress tab; focus should move to progress heading
+        await userEvent.click(canvas.getByRole("link", {name: "Progress"}));
+        await waitFor(() => {
+            const progressHeading = canvas.getByRole("heading", {
+                name: "Progress",
+            });
+            expect(progressHeading).toHaveFocus();
+        });
+
+        // Click Overview tab; focus should move to overview heading
+        await userEvent.click(canvas.getByRole("link", {name: "Overview"}));
+        await waitFor(() => {
+            expect(overviewHeading).toHaveFocus();
+        });
     },
 };

@@ -1,5 +1,5 @@
 import * as React from "react";
-import {render, screen, within} from "@testing-library/react";
+import {render, screen, waitFor, within} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {
@@ -778,6 +778,136 @@ describe("ResponsiveNavigationTabs", () => {
 
                 // Assert
                 expect(menuItem).toBeInTheDocument();
+            });
+        });
+    });
+
+    describe("focusId", () => {
+        it("should focus the element with focusId when a tab link is clicked", async () => {
+            // Arrange
+            const tabsWithFocusId: ResponsiveNavigationTabItem[] = [
+                {id: "tab-1", label: "Tab 1", href: "#tab-1"},
+                {
+                    id: "tab-2",
+                    label: "Tab 2",
+                    href: "#tab-2",
+                    focusId: "tab-content-heading",
+                },
+            ];
+            render(
+                <>
+                    <ResponsiveNavigationTabs
+                        tabs={tabsWithFocusId}
+                        selectedTabId="tab-1"
+                        onTabSelected={jest.fn()}
+                    />
+                    <h1 id="tab-content-heading">Tab content</h1>
+                </>,
+            );
+            const heading = screen.getByRole("heading", {
+                name: "Tab content",
+            });
+
+            // Act - click Tab 2 link (triggers onTabSelected and focus)
+            await userEvent.click(screen.getByRole("link", {name: "Tab 2"}));
+
+            // Assert - focus is deferred with rAF
+            await waitFor(() => {
+                expect(heading).toHaveFocus();
+            });
+        });
+
+        it("should focus the element with focusId when the current tab is clicked", async () => {
+            // Arrange - Tab 2 is already selected
+            const tabsWithFocusId: ResponsiveNavigationTabItem[] = [
+                {id: "tab-1", label: "Tab 1", href: "#tab-1"},
+                {
+                    id: "tab-2",
+                    label: "Tab 2",
+                    href: "#tab-2",
+                    focusId: "tab-content-heading",
+                },
+            ];
+            render(
+                <>
+                    <ResponsiveNavigationTabs
+                        tabs={tabsWithFocusId}
+                        selectedTabId="tab-2"
+                        onTabSelected={jest.fn()}
+                    />
+                    <h1 id="tab-content-heading">Tab content</h1>
+                </>,
+            );
+            const heading = screen.getByRole("heading", {
+                name: "Tab content",
+            });
+
+            // Act - click the already-selected Tab 2 link
+            await userEvent.click(screen.getByRole("link", {name: "Tab 2"}));
+
+            // Assert - focus still moves to the focusId element
+            await waitFor(() => {
+                expect(heading).toHaveFocus();
+            });
+        });
+
+        it("should not focus on initial mount when selected tab has focusId", () => {
+            // Arrange
+            const tabsWithFocusId: ResponsiveNavigationTabItem[] = [
+                {id: "tab-1", label: "Tab 1", href: "#tab-1"},
+                {
+                    id: "tab-2",
+                    label: "Tab 2",
+                    href: "#tab-2",
+                    focusId: "tab-content-heading",
+                },
+            ];
+            render(
+                <>
+                    <ResponsiveNavigationTabs
+                        tabs={tabsWithFocusId}
+                        selectedTabId="tab-2"
+                        onTabSelected={jest.fn()}
+                    />
+                    <h1 id="tab-content-heading">Tab content</h1>
+                </>,
+            );
+            const heading = screen.getByRole("heading", {
+                name: "Tab content",
+            });
+
+            // Assert - focus should not move to heading on initial mount
+            expect(heading).not.toHaveFocus();
+        });
+
+        it("should not throw when focusId is set but element is not in the DOM", async () => {
+            // Arrange
+            const tabsWithMissingFocusId: ResponsiveNavigationTabItem[] = [
+                {id: "tab-1", label: "Tab 1", href: "#tab-1"},
+                {
+                    id: "tab-2",
+                    label: "Tab 2",
+                    href: "#tab-2",
+                    focusId: "nonexistent-id",
+                },
+            ];
+
+            render(
+                <ResponsiveNavigationTabs
+                    tabs={tabsWithMissingFocusId}
+                    selectedTabId="tab-1"
+                    onTabSelected={jest.fn()}
+                />,
+            );
+
+            // Act - click tab with focusId pointing to missing element
+            await userEvent.click(screen.getByRole("link", {name: "Tab 2"}));
+
+            // Assert - should not throw (getElementById returns null, focus is no-op)
+            await waitFor(() => {
+                expect(
+                    screen.getByRole("link", {name: "Tab 2"}),
+                ).toBeInTheDocument();
             });
         });
     });
