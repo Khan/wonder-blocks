@@ -1269,6 +1269,9 @@ importers:
 
   packages/wonder-blocks-search-field:
     dependencies:
+      '@khanacademy/wonder-blocks-announcer':
+        specifier: workspace:*
+        version: link:../wonder-blocks-announcer
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:../wonder-blocks-core
