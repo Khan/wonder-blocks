@@ -33,6 +33,11 @@ type NavigationTabDropdownItem = {
      * Optional icon to display in the navigation tab. Should be a PhosphorIcon or Icon component.
      */
     icon?: React.ReactElement;
+    /**
+     * Optional id of the element to receive focus when this tab is selected.
+     * Focus is handled in ResponsiveNavigationTabs when selectedTabId changes.
+     */
+    focusId?: string;
 };
 
 export type NavigationTabsDropdownProps = {

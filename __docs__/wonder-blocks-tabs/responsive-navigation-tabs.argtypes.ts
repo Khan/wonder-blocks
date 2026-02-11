@@ -5,7 +5,7 @@ export default {
         table: {
             type: {
                 summary: "Array<ResponsiveNavigationTabItem>",
-                detail: "type ResponsiveNavigationTabItem = {\n\tid: string,\n\tlabel: string,\n\thref: string,\n\ticon?: React.ReactElement<PhosphorIcon | Icon>",
+                detail: "type ResponsiveNavigationTabItem = {\n\tid: string,\n\tlabel: string,\n\thref: string,\n\ticon?: React.ReactElement<PhosphorIcon | Icon>,\n\tfocusId?: string",
             },
         },
     },

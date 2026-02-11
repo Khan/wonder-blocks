@@ -37,6 +37,13 @@ export type ResponsiveNavigationTabItem = {
      * Optional test ID for e2e testing of the tab link or menu item.
      */
     testId?: string;
+    /**
+     * Optional id of the element to receive focus when this tab's link or menu
+     * item is clicked. Focus moves on click (including when clicking the
+     * already-selected tab). Useful for moving focus to the tab content (e.g. a
+     * heading) for accessibility.
+     */
+    focusId?: string;
 };
 
 type Props = {
@@ -194,6 +201,33 @@ export const ResponsiveNavigationTabs = (props: Props) => {
         onLayoutChange,
     });
 
+    // Single handler for both layouts: notifies parent and moves focus to focusId when set.
+    const handleTabSelected = React.useCallback(
+        (id: string) => {
+            onTabSelected?.(id);
+            const tab = tabs.find((t) => t.id === id);
+            const focusId = tab?.focusId;
+            if (focusId) {
+                // Use requestAnimationFrame to ensure the focus is moved after
+                // the tab is selected and new contents are rendered
+                requestAnimationFrame(() => {
+                    const element = document.getElementById(focusId);
+                    if (!element) {
+                        return;
+                    }
+                    const tabIndex = element.getAttribute("tabindex");
+                    if (tabIndex === null) {
+                        // Set tabindex to -1 if element doesn't already have
+                        // one so we can programmatically move focus to it
+                        element.setAttribute("tabindex", "-1");
+                    }
+                    element.focus({preventScroll: true});
+                });
+            }
+        },
+        [onTabSelected, tabs],
+    );
+
     const processedTabs = React.useMemo(() => {
         return tabs.map((tab) => ({
             ...tab,
@@ -202,11 +236,9 @@ export const ResponsiveNavigationTabs = (props: Props) => {
                       size: tab.icon.props.size ?? "medium",
                   })
                 : undefined,
-            handleClick: onTabSelected
-                ? () => onTabSelected(tab.id)
-                : undefined,
+            handleClick: () => handleTabSelected(tab.id),
         }));
-    }, [tabs, onTabSelected]);
+    }, [tabs, handleTabSelected]);
 
     return (
         <View
@@ -221,7 +253,7 @@ export const ResponsiveNavigationTabs = (props: Props) => {
                     key="dropdown"
                     tabs={tabs}
                     selectedTabId={selectedTabId}
-                    onTabSelected={onTabSelected}
+                    onTabSelected={handleTabSelected}
                     aria-label={ariaLabel}
                     aria-labelledby={ariaLabelledby}
                     tag={tag}
