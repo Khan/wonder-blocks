@@ -517,6 +517,7 @@ function parseLocaleAwareDate(
  * Handles formats like "January 20, 2026" (en-US) or "20 de enero de 2026" (es).
  * Also accepts partial input (e.g. "June" or "June 15") so the calendar overlay
  * can show the correct month while the user is still typing.
+ * Month names are matched case-insensitively (e.g. "february" and "February" both match).
  */
 function parseTextDate(
     str: string,
