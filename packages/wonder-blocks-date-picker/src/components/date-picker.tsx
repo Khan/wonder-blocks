@@ -455,46 +455,54 @@ const DatePicker = (props: Props) => {
     };
 
     // Wrapper for DayPicker's root so we can handle Escape when focus is inside the calendar (e.g. on nav buttons). We don't handle Enter here so the calendar's buttons work normally.
-    const RootWithEsc = (props: RootWithEscProps) => {
-        const {onKeyDown, rootRef: _, ...rest} = props;
-        return (
-            // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-            <div
-                {...rest}
-                tabIndex={-1}
-                onKeyDown={(e) => {
-                    onKeyDown?.(e);
-                    if (e.key === "Escape") {
-                        e.stopPropagation();
-                        handledEscapeRef.current = true;
-                        skipNextOpenRef.current = true; // focus will be restored; don't reopen
-                        close();
-                        datePickerInputRef.current?.focus();
-                    }
-                }}
-            />
-        );
-    };
+    const RootWithEsc = React.useCallback(
+        (props: RootWithEscProps) => {
+            const {onKeyDown, rootRef: _, ...rest} = props;
+            return (
+                // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+                <div
+                    {...rest}
+                    tabIndex={-1}
+                    onKeyDown={(e) => {
+                        onKeyDown?.(e);
+                        if (e.key === "Escape") {
+                            e.stopPropagation();
+                            handledEscapeRef.current = true;
+                            skipNextOpenRef.current = true; // focus will be restored; don't reopen
+                            close();
+                            datePickerInputRef.current?.focus();
+                        }
+                    }}
+                />
+            );
+        },
+        [close],
+    );
+
+    const dayPickerComponents = React.useMemo(
+        () => ({Root: RootWithEsc}),
+        [RootWithEsc],
+    );
 
     /** Day cell click: update selection, move focus to input, clear inputDrivenMonthRef and sync displayMonth so next/previous buttons keep working. If closeOnSelect, overlay closes; otherwise it stays open. */
-    const handleDayClick = (
-        date: Date | null | undefined,
-        {disabled}: CustomModifiers,
-    ) => {
-        if (disabled || !date) {
-            return;
-        }
-        datePickerInputRef.current?.focus();
-        const wrappedDate = TemporalLocaleUtils.jsDateToTemporalDate(date);
-        setCurrentDate(wrappedDate);
-        const monthDate = new Date(date);
-        inputDrivenMonthRef.current = null;
-        displayMonthRef.current = monthDate;
-        openedMonthRef.current = monthDate;
-        setDisplayMonth(monthDate);
-        updateDate(wrappedDate);
-        setShowOverlay(!closeOnSelect);
-    };
+    const handleDayClick = React.useCallback(
+        (date: Date | null | undefined, {disabled}: CustomModifiers) => {
+            if (disabled || !date) {
+                return;
+            }
+            datePickerInputRef.current?.focus();
+            const wrappedDate = TemporalLocaleUtils.jsDateToTemporalDate(date);
+            setCurrentDate(wrappedDate);
+            const monthDate = new Date(date);
+            inputDrivenMonthRef.current = null;
+            displayMonthRef.current = monthDate;
+            openedMonthRef.current = monthDate;
+            setDisplayMonth(monthDate);
+            updateDate(wrappedDate);
+            setShowOverlay(!closeOnSelect);
+        },
+        [updateDate, closeOnSelect],
+    );
 
     const renderInput = (
         modifiers: Partial<CustomModifiers>,
@@ -592,12 +600,14 @@ const DatePicker = (props: Props) => {
         [],
     );
 
-    // When the user is typing we pass month + onMonthChange (controlled) so the calendar month tracks the input. When not typing we pass only defaultMonth (uncontrolled) so react-day-picker owns the month and the next/previous buttons keep focus. The key forces a fresh instance when switching between the two modes. Prefer openedMonthRef when set so the first render after open() shows the correct month (avoids state batching issues). When overlay is open with a selected date (prop), fall back to that month so reopening always shows selected month.
-    const isInputDriven = inputDrivenMonthRef.current != null;
+    // inputDriven: the displayed month in what the user is typing
+    const inputDrivenMonth = inputDrivenMonthRef.current;
+    const isInputDriven = inputDrivenMonth != null;
     const selectedDateAsJs =
         selectedDate != null
             ? TemporalLocaleUtils.temporalDateToJsDate(selectedDate)
             : undefined;
+    // baseMonth: the month to show when the overlay is open
     const baseMonth =
         openedMonthRef.current ??
         (showOverlay && selectedDateAsJs ? selectedDateAsJs : undefined) ??
@@ -605,14 +615,39 @@ const DatePicker = (props: Props) => {
         displayMonth ??
         selectedDateValue ??
         new Date();
+    // normalizedMonth: the month to show when the overlay is closed
     const normalizedMonth = new Date(
         baseMonth.getFullYear(),
         baseMonth.getMonth(),
         1,
     );
+    // Key controls when DayPicker remounts: react-day-picker's defaultMonth is
+    // only used on initial mount, so we must remount when the month we want to
+    // show changes. We use the month's timestamp so the key changes whenever the
+    // displayed month changes (input-driven or after reopen/nav).
     const pickerKey = isInputDriven
-        ? `input-${inputDrivenMonthRef.current!.getTime()}`
+        ? `input-${inputDrivenMonth.getTime()}`
         : `picker-${baseMonth.getTime()}`;
+
+    // inputDrivenMonthMs: the timestamp of the inputDrivenMonth
+    const inputDrivenMonthMs = inputDrivenMonth?.getTime();
+    // normalizedMonthMs: the timestamp of the computed month after validation
+    const normalizedMonthMs = normalizedMonth.getTime();
+    const dayPickerMonthProps = React.useMemo(() => {
+        if (isInputDriven && inputDrivenMonthMs != null) {
+            const d = new Date(inputDrivenMonthMs);
+            return {
+                month: new Date(d.getFullYear(), d.getMonth(), 1),
+                onMonthChange: handleMonthChange,
+            };
+        }
+        return {defaultMonth: new Date(normalizedMonthMs)};
+    }, [
+        isInputDriven,
+        inputDrivenMonthMs,
+        normalizedMonthMs,
+        handleMonthChange,
+    ]);
 
     return (
         <View style={style} ref={refWrapper}>
@@ -628,27 +663,12 @@ const DatePicker = (props: Props) => {
                             key={pickerKey}
                             mode="single"
                             selected={selectedDateValue}
-                            {...(isInputDriven
-                                ? {
-                                      month: (() => {
-                                          const base =
-                                              inputDrivenMonthRef.current!;
-                                          return new Date(
-                                              base.getFullYear(),
-                                              base.getMonth(),
-                                              1,
-                                          );
-                                      })(),
-                                      onMonthChange: handleMonthChange,
-                                  }
-                                : {
-                                      defaultMonth: normalizedMonth,
-                                  })}
+                            {...dayPickerMonthProps}
                             startMonth={minDateToShow ?? undefined}
                             endMonth={dayPickerEndMonth}
                             modifiers={modifiers}
                             onDayClick={handleDayClick}
-                            components={{Root: RootWithEsc}}
+                            components={dayPickerComponents}
                             locale={computedLocale}
                             dir={dir}
                             styles={dayPickerStyles}
