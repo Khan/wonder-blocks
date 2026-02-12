@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
 import {render, screen, waitFor} from "@testing-library/react";
 import * as React from "react";
