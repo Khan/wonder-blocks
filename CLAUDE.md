@@ -371,6 +371,7 @@ it("should add two numbers correctly", () => {
 
 - **Never combine sections** (don't write `// Act & Assert`)
 - **Never use multiple Act or Assert sections** in a single test
+- **Never remove Arrange, Act, Assert comments**
 
 ### Testing Thrown Errors
 

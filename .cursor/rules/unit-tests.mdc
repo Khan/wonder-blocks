@@ -52,6 +52,7 @@ describe("Calculator", () => {
 - ✅ **ALWAYS use separate comments** for each section (`// Arrange`, `// Act`, `// Assert`)
 - ❌ **NEVER combine sections** (e.g., don't write `// Act & Assert`)
 - ❌ **NEVER use multiple Act or Assert sections** in a single test (split into separate tests instead)
+- ❌ **NEVER remove Arrange, Act, Assert comments**
 
 **Exception - Testing Thrown Errors:**
 
