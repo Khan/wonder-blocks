@@ -5,6 +5,7 @@ import {es, fr} from "react-day-picker/locale";
 import {
     formatDate,
     isTextFormatDate,
+    normalizeDateStringForComparison,
     parseDate,
     parseDateToJsDate,
     temporalDateToJsDate,
@@ -39,6 +40,37 @@ describe("TemporalLocaleUtils", () => {
                 expect(result).toBe(false);
             },
         );
+    });
+
+    describe("normalizeDateStringForComparison", () => {
+        it("trims, lowercases, and normalizes punctuation to spaces", () => {
+            // Arrange
+            const input = "  January 20, 2026  ";
+            // Act
+            const result = normalizeDateStringForComparison(input);
+            // Assert
+            expect(result).toBe("january 20 2026");
+        });
+
+        it("collapses whitespace and replaces punctuation with space", () => {
+            // Arrange
+            const input = "January  20 ,. 2026";
+            // Act
+            const result = normalizeDateStringForComparison(input);
+            // Assert
+            expect(result).toBe("january 20 2026");
+        });
+
+        it("normalizes two strings to the same value for comparison", () => {
+            // Arrange
+            const a = "January 20, 2026";
+            const b = "january  20.  2026";
+            // Act
+            const normA = normalizeDateStringForComparison(a);
+            const normB = normalizeDateStringForComparison(b);
+            // Assert
+            expect(normA).toBe(normB);
+        });
     });
 
     describe("formatDate", () => {

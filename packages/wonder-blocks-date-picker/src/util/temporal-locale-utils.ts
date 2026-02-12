@@ -21,6 +21,22 @@ export function isTextFormatDate(
 }
 
 /**
+ * Normalize a date string for comparison (e.g. round-trip or commit checks).
+ * Trims, lowercases, collapses whitespace, and replaces common punctuation
+ * (comma, period, narrow no-break space) with space so minor formatting
+ * differences don't invalidate the input.
+ */
+export function normalizeDateStringForComparison(s: string): string {
+    return s
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, " ")
+        .replace(/[,.\u202f]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+}
+
+/**
  * Utility functions for working with Temporal dates in react-day-picker.
  * Uses Intl.DateTimeFormat for locale-aware date formatting and parsing.
  *
@@ -749,6 +765,7 @@ export const TemporalLocaleUtils = {
     // Core date formatting and parsing
     formatDate,
     isTextFormatDate,
+    normalizeDateStringForComparison,
     parseDate,
     parseDateToJsDate,
     startOfIsoWeek,

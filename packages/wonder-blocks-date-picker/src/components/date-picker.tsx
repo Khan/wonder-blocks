@@ -218,6 +218,21 @@ const DatePicker = (props: Props) => {
     const dir =
         refWrapper.current?.closest("[dir]")?.getAttribute("dir") || "ltr";
 
+    /** Stable formatDate for input round-trip check; avoids churn in DatePickerInput useCallbacks. */
+    const formatDateForInput = React.useCallback(
+        (
+            date: Date,
+            format: string | null | undefined,
+            localeCode?: string | null,
+        ) =>
+            TemporalLocaleUtils.formatDate(
+                TemporalLocaleUtils.jsDateToTemporalDate(date),
+                format,
+                localeCode ?? computedLocale.code,
+            ),
+        [computedLocale.code],
+    );
+
     /** Called by DayPicker only when controlled (user typed then clicked nav). We sync ref/state and clear inputDrivenMonthRef so the next render is uncontrolled and nav buttons keep focus. */
     const handleMonthChange = React.useCallback((newMonth: Date) => {
         inputDrivenMonthRef.current = null;
@@ -344,27 +359,40 @@ const DatePicker = (props: Props) => {
      * as "committed" when the normalized input matches the formatted date.
      */
     const handleInputChange = (
-        selectedDate: Date | null | undefined,
+        dateFromInput: Date | null | undefined,
         modifiers: Partial<CustomModifiers>,
         inputValue?: string,
+        options?: {revertToLastValid?: boolean},
     ) => {
-        if (!selectedDate) {
+        // When resetInvalidValueOnBlur is false, invalid input doesn't auto-reset on blur,
+        // so we treat it as "committed" and update currentDate to null so the input
+        // shows the invalid value. When resetInvalidValueOnBlur is true, invalid
+        // input auto-resets on blur, so we revert to last valid currentDate here
+        // to keep the input showing the last valid value.
+        if (options?.revertToLastValid) {
+            setCurrentDate(selectedDate);
+            return;
+        }
+        // When user clears input, dateFromInput is null. We treat that as committed
+        // and update currentDate to null so the input shows empty; if they blur
+        // with empty input, it stays empty since currentDate is already null.
+        if (!dateFromInput) {
             setCurrentDate(null);
             updateDate(null);
             return;
         }
 
         const wrappedDate =
-            TemporalLocaleUtils.jsDateToTemporalDate(selectedDate);
+            TemporalLocaleUtils.jsDateToTemporalDate(dateFromInput);
 
         // When typing, control overlay month so calendar follows; when date is committed, switch back to uncontrolled so nav buttons keep working
-        const monthDate = new Date(selectedDate);
+        const monthDate = new Date(dateFromInput);
         setDisplayMonth(monthDate);
 
         // Check if date is disabled (modifiers.disabled can be a function)
         const isDisabled =
             typeof modifiers.disabled === "function"
-                ? modifiers.disabled(selectedDate)
+                ? modifiers.disabled(dateFromInput)
                 : modifiers.disabled;
 
         // Always notify parent via updateDate so they can show validation errors
@@ -392,16 +420,16 @@ const DatePicker = (props: Props) => {
                 dateFormat,
                 locale?.code,
             );
-            const normalize = (s: string) =>
-                s
-                    .trim()
-                    .toLowerCase()
-                    .replace(/\s+/g, " ")
-                    .replace(/[,.\u202f]/g, " ")
-                    .replace(/\s+/g, " ")
-                    .trim();
+            // Normalize for comparison: ignore punctuation, spaces, leading zeros
+            // and case (e.g. "Jan 5 2024" vs "01/05/2024") so the date is considered
+            // committed as soon as the user finishes typing it, even if they didn't match the exact format.
             const inputMatchesDisplay =
-                normalize(formatted) === normalize(inputValue);
+                TemporalLocaleUtils.normalizeDateStringForComparison(
+                    formatted,
+                ) ===
+                TemporalLocaleUtils.normalizeDateStringForComparison(
+                    inputValue,
+                );
             const isCompleteDate = sameDate && inputMatchesDisplay;
 
             if (isCompleteDate) {
@@ -531,6 +559,7 @@ const DatePicker = (props: Props) => {
                 dateFormat={dateFormat}
                 locale={computedLocale.code} // e.g. "en-US"
                 parseDate={TemporalLocaleUtils.parseDateToJsDate}
+                formatDate={formatDateForInput}
                 getModifiersForDay={TemporalLocaleUtils.getModifiersForDay}
                 modifiers={modifiers}
                 resetInvalidValueOnBlur={resetInvalidValueOnBlur}

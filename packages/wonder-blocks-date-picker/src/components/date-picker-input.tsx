@@ -55,6 +55,7 @@ interface Props {
         value: Date | null | undefined,
         modifiers: Partial<CustomModifiers>,
         inputValue?: string,
+        options?: {revertToLastValid?: boolean},
     ) => unknown;
     /**
      * Used to format the value as a valid Date.
@@ -101,6 +102,17 @@ interface Props {
         locale?: string | null | undefined,
     ) => Date | null | undefined;
     /**
+     * Optional function to format a Date for display. When provided, the input
+     * validates that the user's text round-trips (parse then format matches input).
+     * This catches invalid day-in-month values (e.g. "February 30, 2026") even if
+     * the parser would overflow to a valid date.
+     */
+    formatDate?: (
+        date: Date,
+        format: string | null | undefined,
+        locale?: string | null | undefined,
+    ) => string;
+    /**
      * The placeholder assigned to the date field
      */
     placeholder?: string;
@@ -143,6 +155,7 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
             modifiers,
             getModifiersForDay,
             parseDate,
+            formatDate,
             placeholder,
             testId,
             resetInvalidValueOnBlur = true,
@@ -219,10 +232,42 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
             [parseDate, dateFormat, locale],
         );
 
+        const isTextFormat = TemporalLocaleUtils.isTextFormatDate(dateFormat);
+
+        // True when the input string round-trips (parse then format matches input).
+        // Catches invalid day-in-month (e.g. February 30).
+        const inputRoundTrips = React.useCallback(
+            (date: Date, inputValue: string): boolean => {
+                // If no formatDate function or empty input, skip round-trip check (e.g. for numeric formats that parse unambiguous partial input like "1/30" → Jan 30).
+                if (!formatDate || !inputValue?.trim()) {
+                    return true;
+                }
+                const formatted = formatDate(date, dateFormat, locale);
+                // Normalize both strings for comparison (e.g. ignore extra spaces, punctuation, case) so minor formatting variations don't invalidate the input.
+                return (
+                    TemporalLocaleUtils.normalizeDateStringForComparison(
+                        formatted,
+                    ) ===
+                    TemporalLocaleUtils.normalizeDateStringForComparison(
+                        inputValue,
+                    )
+                );
+            },
+            [formatDate, dateFormat, locale],
+        );
+
         // Helper to check if value is valid
         const isValid = React.useCallback((): boolean => {
             const date = processDate(value);
             if (!date) {
+                return false;
+            }
+            // For text formats only: if the date parses but doesn't round-trip, it's invalid (e.g. "February 30, 2026" might parse to March 1, 2026, but we want to consider it invalid since it doesn't match the user's input).
+            if (
+                isTextFormat &&
+                value?.trim() &&
+                !inputRoundTrips(date, value)
+            ) {
                 return false;
             }
             const modifiersResult = processModifiers(date, value);
@@ -230,9 +275,13 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
                 return false;
             }
             return true;
-        }, [value, processDate, processModifiers]);
-
-        const isTextFormat = TemporalLocaleUtils.isTextFormatDate(dateFormat);
+        }, [
+            value,
+            processDate,
+            processModifiers,
+            isTextFormat,
+            inputRoundTrips,
+        ]);
 
         // This sync logic decides when to update the input’s state from a parent
         // value prop and when to leave the user’s text alone (e.g. while they’re typing).
@@ -304,9 +353,35 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
 
         const pendingValidationRef = React.useRef(false);
 
+        // Validation (invalid date / round-trip / out-of-range → reset or notify) runs on blur only:
+        // 1. On input blur when focus does not move to the overlay (validateInput() below).
+        // 2. When the overlay closes after focus had moved from input to overlay (close() calls ref.validateInput(); deferred via pendingValidationRef).
         const validateInput = React.useCallback(() => {
             lastTypedTextFormatValueRef.current = null;
             const date = processDate(value);
+
+            // For text formats only: input that doesn't round-trip is invalid (e.g. February 30, 2026).
+            // Skip for numeric formats (e.g. 1/30 vs 01/30) because they can parse unambiguous partial input that shouldn't be invalidated until it's fully typed.
+            if (
+                isTextFormat &&
+                date &&
+                value &&
+                value.trim() !== "" &&
+                !inputRoundTrips(date, value)
+            ) {
+                // Invalid day-in-month for text formats (e.g. "February 30, 2026"). Decide whether to keep invalid text or reset based on resetInvalidValueOnBlur.
+                if (!resetInvalidValueOnBlur) {
+                    keepInvalidTextRef.current = true;
+                    updateDateAsInvalid();
+                } else {
+                    // Reset to last valid value (default behavior)
+                    onChange?.(null, {}, undefined, {
+                        revertToLastValid: true,
+                    });
+                    setValue(propValue);
+                }
+                return;
+            }
 
             if (date) {
                 // Date parsed successfully - check if it's within bounds
@@ -322,6 +397,10 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
                         updateDate(date, value);
                     } else {
                         // Reset to last valid value (default behavior)
+                        // Still notify parent so overlay can update to correct month if they typed a valid date in the wrong month (e.g. "January 15" when February is selected).
+                        onChange?.(null, {}, undefined, {
+                            revertToLastValid: true,
+                        });
                         setValue(propValue);
                     }
                 }
@@ -333,20 +412,27 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
                     updateDateAsInvalid();
                 } else {
                     // Reset to last valid value (default behavior)
+                    // Still notify parent so overlay can update if they typed an invalid date in the wrong month (e.g. "January 32" when January is selected).
+                    onChange?.(null, {}, undefined, {revertToLastValid: true});
                     setValue(propValue);
                 }
             } else {
                 // Empty value - just reset to last valid value
+                // Still notify parent so overlay can update if they cleared the input.
+                onChange?.(null, {}, undefined, {revertToLastValid: true});
                 setValue(propValue);
             }
         }, [
             value,
             processDate,
             processModifiers,
+            isTextFormat,
+            inputRoundTrips,
             resetInvalidValueOnBlur,
             propValue,
             updateDate,
             updateDateAsInvalid,
+            onChange,
         ]);
 
         const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -381,6 +467,14 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
             // Try to parse and notify parent for real-time validation
             const date = processDate(newValue);
             if (date) {
+                // For text formats only: invalid day-in-month (e.g. February 30, 2026) - don't commit to parent; reset happens on blur.
+                if (
+                    isTextFormat &&
+                    newValue.trim() !== "" &&
+                    !inputRoundTrips(date, newValue)
+                ) {
+                    return;
+                }
                 const modifiersResult = processModifiers(date, newValue);
                 if (isTextFormat) {
                     lastTypedTextFormatValueRef.current = newValue;
