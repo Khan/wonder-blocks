@@ -242,6 +242,79 @@ describe("button with icon", () => {
         expect(icon).not.toHaveAttribute("aria-hidden");
     });
 
+    describe("styles prop", () => {
+        test("should apply custom styles to start icon", async () => {
+            // Arrange
+            render(
+                <Button
+                    testId="button-styles-test"
+                    startIcon={plus}
+                    styles={{startIcon: {width: 24, height: 24}}}
+                >
+                    Label
+                </Button>,
+            );
+
+            // Act
+            const icon = await screen.findByTestId(
+                "button-styles-test-start-icon",
+            );
+
+            // Assert
+            expect(icon).toHaveStyle({width: "24px", height: "24px"});
+        });
+
+        test("should apply custom styles to end icon", async () => {
+            // Arrange
+            render(
+                <Button
+                    testId="button-styles-test"
+                    endIcon={plus}
+                    styles={{endIcon: {width: 24, height: 24}}}
+                >
+                    Label
+                </Button>,
+            );
+
+            // Act
+            const icon = await screen.findByTestId(
+                "button-styles-test-end-icon",
+            );
+
+            // Assert
+            expect(icon).toHaveStyle({width: "24px", height: "24px"});
+        });
+
+        test("should apply custom styles to both icons", async () => {
+            // Arrange
+            render(
+                <Button
+                    testId="button-styles-test"
+                    startIcon={plus}
+                    endIcon={plus}
+                    styles={{
+                        startIcon: {width: 24, height: 24},
+                        endIcon: {width: 20, height: 20},
+                    }}
+                >
+                    Label
+                </Button>,
+            );
+
+            // Act
+            const startIcon = await screen.findByTestId(
+                "button-styles-test-start-icon",
+            );
+            const endIcon = await screen.findByTestId(
+                "button-styles-test-end-icon",
+            );
+
+            // Assert
+            expect(startIcon).toHaveStyle({width: "24px", height: "24px"});
+            expect(endIcon).toHaveStyle({width: "20px", height: "20px"});
+        });
+    });
+
     test("icon is not displayed with aria-hidden when the button contains a custom endIcon", async () => {
         // Arrange
         render(
