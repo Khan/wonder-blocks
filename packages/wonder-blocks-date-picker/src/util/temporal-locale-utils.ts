@@ -524,6 +524,8 @@ function parseTextDate(
 ): Temporal.PlainDate | undefined {
     try {
         const months = getMonths(locale);
+        // Extract all numbers from the string (day and year).
+        // \d matches ASCII digits only; Intl.DateTimeFormat uses ASCII digits (0-9) for all locales.
         const numbers = str.match(/\d+/g) ?? [];
         const lowerStr = str.toLowerCase();
 
