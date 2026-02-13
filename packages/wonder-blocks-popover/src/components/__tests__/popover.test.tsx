@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 import * as React from "react";
 import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import {userEvent, PointerEventsCheckLevel} from "@testing-library/user-event";

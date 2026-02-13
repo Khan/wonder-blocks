@@ -74,6 +74,7 @@ This file provides instructions for Claude when working on the Wonder Blocks des
 - Strictly adhere to ESLint and Prettier
 - The project enforces import order: React, third-party libs, then internal imports
 - JSDoc comments should be used for complex functions, but TypeScript types are preferred over JSDoc type annotations
+- **Never remove existing comments** that are used to provide context
 - Run `pnpm lint` before submitting changes
 
 ## Component Design
@@ -371,6 +372,7 @@ it("should add two numbers correctly", () => {
 
 - **Never combine sections** (don't write `// Act & Assert`)
 - **Never use multiple Act or Assert sections** in a single test
+- **Never remove Arrange, Act, Assert comments**
 
 ### Testing Thrown Errors
 

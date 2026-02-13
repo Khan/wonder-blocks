@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 import * as React from "react";
 import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
 import {render, screen} from "@testing-library/react";
