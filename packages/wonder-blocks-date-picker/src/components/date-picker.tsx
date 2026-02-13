@@ -191,51 +191,26 @@ const DatePicker = (props: Props) => {
         }
     }, [selectedDate]);
 
-    // Add/remove keyup listener only when this instance's overlay is open.
-    // This way at most one keyup listener is on the window (the instance with
-    // overlay open), avoiding issues with multiple DatePickers mounted.
-    // Listener must be on window (not refWrapper) so we catch keyup when the
-    // target is inside the portaled calendar overlay, which is outside refWrapper.
-    // When overlay closes we delay removal so we still catch the keyup that
-    // follows our keydown (React's effect cleanup can run before keyup fires).
+    // Add keyup event listener to handle Escape key and prevent modal from
+    // closing parent modals
     React.useEffect(() => {
-        if (!showOverlay) {
-            return;
-        }
-
         const handleKeyup = (e: KeyboardEvent) => {
-            if (e.key === "Escape") {
-                const target = e.target as Node;
-                const thisElement = refWrapper.current;
-                const dayPickerCalendar = datePickerRef.current;
-
-                // Check if the event originated from within this DatePicker
-                const isInThisElement = thisElement?.contains(target);
-                const isInCalendar = dayPickerCalendar?.contains(target);
-
-                if (isInThisElement || isInCalendar) {
-                    // If we handled Escape on keydown (closed the overlay),
-                    // stop keyup from propagating to prevent modal from closing
-                    if (handledEscapeRef.current) {
-                        e.stopPropagation();
-                        handledEscapeRef.current = false; // Reset for next time
-                    }
-                    // If we didn't handle it (overlay was already closed),
-                    // allow propagation so modal can close
-                }
+            if (e.key === "Escape" && handledEscapeRef.current) {
+                // Stop propagation to prevent closing parent modals. This is the
+                // important part: we only stop Escape keyup if we
+                // previously handled the keydown, which means the overlay was
+                // open and we closed it.
+                e.stopPropagation();
+                handledEscapeRef.current = false;
             }
         };
 
         // Use capture phase so we run before modal's listener
         window.addEventListener("keyup", handleKeyup, true);
         return () => {
-            // Defer removal so the keyup that follows our keydown is still
-            // caught (effect cleanup can run before keyup in the same tick).
-            setTimeout(() => {
-                window.removeEventListener("keyup", handleKeyup, true);
-            }, 0);
+            window.removeEventListener("keyup", handleKeyup, true);
         };
-    }, [showOverlay]);
+    }, []);
 
     // Add/remove mouseup event listener for outside click
     React.useEffect(() => {
@@ -329,6 +304,7 @@ const DatePicker = (props: Props) => {
                 // Stop propagation to prevent closing parent modals
                 // The overlay is open, so we close it first
                 e.stopPropagation();
+
                 // Mark that we handled this Escape keypress
                 handledEscapeRef.current = true;
                 close();

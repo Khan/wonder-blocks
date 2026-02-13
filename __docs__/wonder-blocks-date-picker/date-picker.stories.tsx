@@ -465,25 +465,17 @@ const DatePickerInsideModalExample = () => {
 };
 
 /**
- * DatePicker inside a Modal to test that pressing Escape in the DatePicker
- * input only closes the calendar overlay, not the modal itself.
- *
- * **Test instructions:**
- * 1. Click "Open Modal" button
- * 2. Click on the date picker input to open the calendar
- * 3. Press Escape key
- * 4. Expected: Only the calendar overlay closes, the modal stays open
- * 5. Press Escape again to close the modal
+ * DatePicker inside a Modal to test that pressing Escape only closes the
+ * calendar overlay, not the modal itself.
+
  */
 export const InsideModal: Story = {
     render: () => <DatePickerInsideModalExample />,
     play: async ({canvasElement}) => {
         const canvas = within(canvasElement.ownerDocument.body);
 
-        // 1. Click "Open Modal" button
+        // 1. Open modal and focus the first date picker input so the overlay opens
         await userEvent.click(canvas.getByRole("button", {name: "Open Modal"}));
-
-        // 2. Wait for modal to open and click the first date picker input to open the calendar
         const dialog = await canvas.findByRole("dialog", {
             name: "Date Picker in Modal",
         });
@@ -491,11 +483,25 @@ export const InsideModal: Story = {
         const dateInput = textboxes[0];
         await userEvent.click(dateInput);
 
-        // 3. Wait for calendar to open, then press Escape
         await canvas.findByRole("grid");
-        await userEvent.keyboard("{Escape}");
+        expect(dateInput).toHaveFocus();
 
-        // 4. Calendar overlay closes; modal stays open
+        // fire keydown to trigger handledEscapeRef in DatePicker
+        dateInput.dispatchEvent(
+            new KeyboardEvent("keydown", {
+                key: "Escape",
+                bubbles: true,
+            }),
+        );
+
+        // fire keyup to stop propagation to modal based on handledEscapeRef
+        dateInput.dispatchEvent(
+            new KeyboardEvent("keyup", {
+                key: "Escape",
+                bubbles: true,
+            }),
+        );
+
         await waitFor(() => {
             expect(canvas.queryByRole("grid")).not.toBeInTheDocument();
         });
@@ -503,7 +509,7 @@ export const InsideModal: Story = {
             canvas.getByRole("dialog", {name: "Date Picker in Modal"}),
         ).toBeInTheDocument();
 
-        // 5. Press Escape again to close the modal
+        // Press Escape again to close the modal
         await userEvent.keyboard("{Escape}");
         await waitFor(() => {
             expect(canvas.queryByRole("dialog")).not.toBeInTheDocument();
