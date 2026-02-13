@@ -570,6 +570,18 @@ describe("TemporalLocaleUtils", () => {
             // Assert
             expect(result?.toISOString().slice(0, 10)).toMatch(/^\d{4}-06-01$/);
         });
+
+        it("returns undefined for invalid calendar date (e.g. February 30, 2026)", () => {
+            // Arrange - February has no 30th; parser would clamp to Feb 28 but we reject on round-trip mismatch
+            // Act
+            const result = parseDateToJsDate(
+                "February 30, 2026",
+                "MMMM D, YYYY",
+                "en-US",
+            );
+            // Assert
+            expect(result).toBeUndefined();
+        });
     });
 
     describe("getModifiersForDay", () => {

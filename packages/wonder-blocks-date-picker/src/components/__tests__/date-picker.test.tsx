@@ -339,6 +339,36 @@ describe("DatePicker", () => {
             });
         },
     );
+
+    it("should not allow an invalid date like February 30, 2026 (resets on blur)", async () => {
+        // Arrange - text format; February has no 30th
+        const lastValidDate = Temporal.PlainDate.from("2026-01-16");
+        const lastValidFormatted = "January 16, 2026";
+
+        render(
+            <>
+                <DatePicker
+                    selectedDate={lastValidDate}
+                    updateDate={jest.fn()}
+                    dateFormat="MMMM D, YYYY"
+                />
+                <button>Other element</button>
+            </>,
+        );
+
+        // Act - focus, type invalid date, then blur
+        await userEvent.tab();
+        const input = screen.getByRole("textbox");
+        await userEvent.clear(input);
+        await userEvent.type(input, "February 30, 2026");
+        await userEvent.keyboard("{Escape}{Tab}");
+
+        // Assert - invalid date should be reset to last valid value on blur
+        await waitFor(() => {
+            expect(input).toHaveValue(lastValidFormatted);
+        });
+    });
+
     it.each([
         {
             testInput: "invalid date",

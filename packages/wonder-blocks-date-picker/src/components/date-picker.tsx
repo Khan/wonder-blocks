@@ -6,6 +6,7 @@ import {enUS, type Locale} from "react-day-picker/locale";
 
 import {View, type StyleType} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {isTextFormatCommitComplete} from "../util/date-picker-helpers";
 import {TemporalLocaleUtils} from "../util/temporal-locale-utils";
 import type {CustomModifiers} from "../util/types";
 
@@ -166,13 +167,25 @@ const DatePicker = (props: Props) => {
     const datePickerRef = React.useRef<HTMLElement | null>(null);
     const refWrapper = React.useRef<HTMLDivElement>(null);
     const handledEscapeRef = React.useRef(false);
+    /** Current display month; set synchronously in open/close/nav so first render shows correct month. When undefined, baseMonth falls back to state. */
     const displayMonthRef = React.useRef<Date | undefined>(undefined);
     /** When set, overlay month is controlled by input (typing); when null, DayPicker is uncontrolled so nav buttons keep focus */
     const inputDrivenMonthRef = React.useRef<Date | null>(null);
-    /** Month to show when overlay opens; set in open() so the first render shows the correct month regardless of state batching */
-    const openedMonthRef = React.useRef<Date | null>(null);
     /** When true, next open() call is skipped (used when focus is restored after Escape so we don't reopen immediately). */
     const skipNextOpenRef = React.useRef(false);
+
+    /** Updates display month ref and state in one place. Pass null to clear ref after syncing state from ref. */
+    const setDisplayMonthAndRefs = React.useCallback((month: Date | null) => {
+        if (month !== null) {
+            displayMonthRef.current = month;
+            setDisplayMonth(month);
+        } else {
+            if (displayMonthRef.current != null) {
+                setDisplayMonth(displayMonthRef.current);
+            }
+            displayMonthRef.current = undefined;
+        }
+    }, []);
 
     const open = React.useCallback(() => {
         if (skipNextOpenRef.current) {
@@ -183,17 +196,14 @@ const DatePicker = (props: Props) => {
             if (selectedDate != null) {
                 const jsDate =
                     TemporalLocaleUtils.temporalDateToJsDate(selectedDate);
-                displayMonthRef.current = jsDate;
-                openedMonthRef.current = jsDate;
-                setDisplayMonth(jsDate);
+                setDisplayMonthAndRefs(jsDate);
             } else {
                 displayMonthRef.current =
                     displayMonthRef.current ?? displayMonth;
-                openedMonthRef.current = null;
             }
             setShowOverlay(true);
         }
-    }, [disabled, displayMonth, selectedDate]);
+    }, [disabled, displayMonth, selectedDate, setDisplayMonthAndRefs]);
 
     const close = React.useCallback(() => {
         inputDrivenMonthRef.current = null;
@@ -201,45 +211,26 @@ const DatePicker = (props: Props) => {
         if (selectedDate != null) {
             const jsDate =
                 TemporalLocaleUtils.temporalDateToJsDate(selectedDate);
-            displayMonthRef.current = jsDate;
-            openedMonthRef.current = jsDate;
-            setDisplayMonth(jsDate);
+            setDisplayMonthAndRefs(jsDate);
         } else {
-            openedMonthRef.current = null;
-            if (displayMonthRef.current != null) {
-                setDisplayMonth(displayMonthRef.current!);
-            }
+            setDisplayMonthAndRefs(null);
         }
         setShowOverlay(false);
         (datePickerInputRef.current as any)?.validateInput?.();
-    }, [selectedDate]);
+    }, [selectedDate, setDisplayMonthAndRefs]);
 
     const computedLocale = locale ?? enUS;
     const dir =
         refWrapper.current?.closest("[dir]")?.getAttribute("dir") || "ltr";
 
-    /** Stable formatDate for input round-trip check; avoids churn in DatePickerInput useCallbacks. */
-    const formatDateForInput = React.useCallback(
-        (
-            date: Date,
-            format: string | null | undefined,
-            localeCode?: string | null,
-        ) =>
-            TemporalLocaleUtils.formatDate(
-                TemporalLocaleUtils.jsDateToTemporalDate(date),
-                format,
-                localeCode ?? computedLocale.code,
-            ),
-        [computedLocale.code],
-    );
-
     /** Called by DayPicker only when controlled (user typed then clicked nav). We sync ref/state and clear inputDrivenMonthRef so the next render is uncontrolled and nav buttons keep focus. */
-    const handleMonthChange = React.useCallback((newMonth: Date) => {
-        inputDrivenMonthRef.current = null;
-        displayMonthRef.current = newMonth;
-        openedMonthRef.current = newMonth;
-        setDisplayMonth(newMonth);
-    }, []);
+    const handleMonthChange = React.useCallback(
+        (newMonth: Date) => {
+            inputDrivenMonthRef.current = null;
+            setDisplayMonthAndRefs(newMonth);
+        },
+        [setDisplayMonthAndRefs],
+    );
 
     // Keep currentDate in sync with selectedDate prop. Only sync displayMonth when selectedDate actually changed (prevSelectedDateRef), so we don't overwrite displayMonth set from typing or from nav.
     const prevSelectedDateRef = React.useRef<string | null>(null);
@@ -252,26 +243,10 @@ const DatePicker = (props: Props) => {
             if (selectedDate) {
                 const jsDate =
                     TemporalLocaleUtils.temporalDateToJsDate(selectedDate);
-                setDisplayMonth(jsDate);
-                displayMonthRef.current = jsDate;
-                openedMonthRef.current = jsDate;
+                setDisplayMonthAndRefs(jsDate);
             }
         }
-    }, [selectedDate]);
-
-    // When overlay transitions from closed to open, sync displayed month to selected date (reopen after nav + close). Runs after commit so a follow-up render shows the correct month; test uses waitFor to observe it.
-    const prevShowOverlayRef = React.useRef(false);
-    React.useEffect(() => {
-        const justOpened = !prevShowOverlayRef.current && showOverlay;
-        prevShowOverlayRef.current = showOverlay;
-        if (justOpened && selectedDate != null) {
-            const jsDate =
-                TemporalLocaleUtils.temporalDateToJsDate(selectedDate);
-            openedMonthRef.current = jsDate;
-            displayMonthRef.current = jsDate;
-            setDisplayMonth(jsDate);
-        }
-    }, [showOverlay, selectedDate]);
+    }, [selectedDate, setDisplayMonthAndRefs]);
 
     // Add/remove keyup listener only when this instance's overlay is open.
     // This way at most one keyup listener is on the window (the instance with
@@ -397,35 +372,16 @@ const DatePicker = (props: Props) => {
 
         // Text formats (LL, MMMM D YYYY, MMM D YYYY): we only "commit" when the raw input matches the formatted date (after normalizing spaces/punctuation). Until then the user is still typing, so we keep overlay controlled and don't call updateDate for currentDate.
         if (isTextFormat && inputValue) {
-            const reparsed = TemporalLocaleUtils.parseDate(
+            const isCompleteDate = isTextFormatCommitComplete(
                 inputValue,
+                dateFromInput,
                 dateFormat,
                 locale?.code,
             );
-            const sameDate =
-                reparsed != null &&
-                Temporal.PlainDate.compare(reparsed, wrappedDate) === 0;
-            const formatted = TemporalLocaleUtils.formatDate(
-                wrappedDate,
-                dateFormat,
-                locale?.code,
-            );
-            // Normalize for comparison: ignore punctuation, spaces, leading zeros
-            // and case (e.g. "Jan 5 2024" vs "01/05/2024") so the date is considered
-            // committed as soon as the user finishes typing it, even if they didn't match the exact format.
-            const inputMatchesDisplay =
-                TemporalLocaleUtils.normalizeDateStringForComparison(
-                    formatted,
-                ) ===
-                TemporalLocaleUtils.normalizeDateStringForComparison(
-                    inputValue,
-                );
-            const isCompleteDate = sameDate && inputMatchesDisplay;
 
             if (isCompleteDate) {
                 inputDrivenMonthRef.current = null;
-                displayMonthRef.current = monthDate;
-                openedMonthRef.current = monthDate;
+                setDisplayMonthAndRefs(monthDate);
                 setCurrentDate(wrappedDate);
                 updateDate(wrappedDate);
             } else {
@@ -434,8 +390,7 @@ const DatePicker = (props: Props) => {
         } else {
             // Committed non–text-format date: switch to uncontrolled so nav buttons work
             inputDrivenMonthRef.current = null;
-            displayMonthRef.current = monthDate;
-            openedMonthRef.current = monthDate;
+            setDisplayMonthAndRefs(monthDate);
             setCurrentDate(wrappedDate);
             updateDate(wrappedDate);
         }
@@ -513,13 +468,11 @@ const DatePicker = (props: Props) => {
             setCurrentDate(wrappedDate);
             const monthDate = new Date(date);
             inputDrivenMonthRef.current = null;
-            displayMonthRef.current = monthDate;
-            openedMonthRef.current = monthDate;
-            setDisplayMonth(monthDate);
+            setDisplayMonthAndRefs(monthDate);
             updateDate(wrappedDate);
             setShowOverlay(!closeOnSelect);
         },
-        [updateDate, closeOnSelect],
+        [updateDate, closeOnSelect, setDisplayMonthAndRefs],
     );
 
     const renderInput = (
@@ -625,11 +578,10 @@ const DatePicker = (props: Props) => {
         selectedDate != null
             ? TemporalLocaleUtils.temporalDateToJsDate(selectedDate)
             : undefined;
-    // baseMonth: the month to show when the overlay is open
+    // baseMonth: the month to show when the overlay is open (ref first so first render after open() is correct)
     const baseMonth =
-        openedMonthRef.current ??
-        (showOverlay && selectedDateAsJs ? selectedDateAsJs : undefined) ??
         displayMonthRef.current ??
+        (showOverlay && selectedDateAsJs ? selectedDateAsJs : undefined) ??
         displayMonth ??
         selectedDateValue ??
         new Date();

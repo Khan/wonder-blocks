@@ -338,11 +338,12 @@ export function parseDateToJsDate(
         const isTextFormat = isTextFormatDate(formatString);
 
         if (isTextFormat) {
-            // Normalize whitespace and compare
+            // Normalize formatted date whitespace/capitalization and compare.
             const normalizedFormatted = formatted
                 .replace(/\s+/g, " ")
                 .trim()
                 .toLowerCase();
+            // Normalize input value the same way for comparison (e.g. "January  5, 2026" → "january 5 2026")
             const normalizedValue = value
                 .replace(/\s+/g, " ")
                 .trim()
@@ -352,9 +353,16 @@ export function parseDateToJsDate(
                 return temporalDateToJsDate(temporalDate);
             }
 
-            // If parse succeeded but format doesn't match exactly,
-            // still accept it for text formats (text dates are inherently fuzzy)
-            return temporalDateToJsDate(temporalDate);
+            // Allow partial input (e.g. "June" → June 1) so overlay can show the month while typing.
+            if (
+                normalizedFormatted.startsWith(normalizedValue) ||
+                normalizedValue.startsWith(normalizedFormatted)
+            ) {
+                return temporalDateToJsDate(temporalDate);
+            }
+
+            // Mismatch (e.g. invalid day like "February 30, 2026" → Feb 28) - reject
+            return undefined;
         }
 
         // Date was parsed but doesn't match format - return undefined
