@@ -15,7 +15,7 @@ const white = "#FFFFFF";
 export const color = {
     // Red
     red_90: "#FEF4F4",
-    red_80: "#FDE9E9",
+    red_80: "#FFEBEB",
     red_70: "#FDDFDF",
     red_60: "#FBB1B1",
     red_50: "#F97F7F",
