@@ -644,8 +644,8 @@ const DatePicker = (props: Props) => {
         displayMonth ??
         selectedDateValue ??
         new Date();
-    // normalizedMonth: the month to show when the overlay is closed
-    const normalizedMonth = new Date(
+    // firstOfBaseMonth: first day of baseMonth, used for uncontrolled defaultMonth so DayPicker shows the full month consistently
+    const firstOfBaseMonth = new Date(
         baseMonth.getFullYear(),
         baseMonth.getMonth(),
         1,
@@ -658,10 +658,10 @@ const DatePicker = (props: Props) => {
         ? `input-${inputDrivenMonth.getTime()}`
         : `picker-${baseMonth.getTime()}`;
 
-    // inputDrivenMonthMs: the timestamp of the inputDrivenMonth
+    // inputDrivenMonthMs: timestamp used for stable references in useMemo instead of new Date objects; changes DatePicker to controlled when non-null
     const inputDrivenMonthMs = inputDrivenMonth?.getTime();
-    // normalizedMonthMs: the timestamp of the computed month after validation
-    const normalizedMonthMs = normalizedMonth.getTime();
+    // firstOfBaseMonthMs: used in useMemo dependency and to set defaultMonth when not user-driven, so calendar shows correct month on first render
+    const firstOfBaseMonthMs = firstOfBaseMonth.getTime();
     const dayPickerMonthProps = React.useMemo(() => {
         if (isInputDriven && inputDrivenMonthMs != null) {
             const d = new Date(inputDrivenMonthMs);
@@ -670,11 +670,11 @@ const DatePicker = (props: Props) => {
                 onMonthChange: handleMonthChange,
             };
         }
-        return {defaultMonth: new Date(normalizedMonthMs)};
+        return {defaultMonth: new Date(firstOfBaseMonthMs)};
     }, [
         isInputDriven,
         inputDrivenMonthMs,
-        normalizedMonthMs,
+        firstOfBaseMonthMs,
         handleMonthChange,
     ]);
 
