@@ -448,6 +448,7 @@ const DatePicker = (props: Props) => {
                 <DatePickerOverlay
                     referenceElement={datePickerInputRef.current}
                     onClose={close}
+                    dir={dir === "rtl" ? "rtl" : "ltr"}
                 >
                     <View ref={datePickerRef}>
                         <DayPicker
