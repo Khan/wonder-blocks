@@ -362,17 +362,7 @@ const DatePicker = (props: Props) => {
         dateFromInput: Date | null | undefined,
         modifiers: Partial<CustomModifiers>,
         inputValue?: string,
-        options?: {revertToLastValid?: boolean},
     ) => {
-        // When resetInvalidValueOnBlur is false, invalid input doesn't auto-reset on blur,
-        // so we treat it as "committed" and update currentDate to null so the input
-        // shows the invalid value. When resetInvalidValueOnBlur is true, invalid
-        // input auto-resets on blur, so we revert to last valid currentDate here
-        // to keep the input showing the last valid value.
-        if (options?.revertToLastValid) {
-            setCurrentDate(selectedDate);
-            return;
-        }
         // When user clears input, dateFromInput is null. We treat that as committed
         // and update currentDate to null so the input shows empty; if they blur
         // with empty input, it stays empty since currentDate is already null.
@@ -559,7 +549,6 @@ const DatePicker = (props: Props) => {
                 dateFormat={dateFormat}
                 locale={computedLocale.code} // e.g. "en-US"
                 parseDate={TemporalLocaleUtils.parseDateToJsDate}
-                formatDate={formatDateForInput}
                 getModifiersForDay={TemporalLocaleUtils.getModifiersForDay}
                 modifiers={modifiers}
                 resetInvalidValueOnBlur={resetInvalidValueOnBlur}
