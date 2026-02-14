@@ -177,6 +177,7 @@ const DatePicker = (props: Props) => {
     } = useDisplayMonth({selectedDate});
 
     const open = React.useCallback(() => {
+        // if user pressed Escape and focus moved to input, don't open the overlay again.
         if (skipNextOpenRef.current) {
             skipNextOpenRef.current = false;
             return;
@@ -233,6 +234,7 @@ const DatePicker = (props: Props) => {
         close,
     });
 
+    // Sync user-editable display month to selectedDate on mount and when selectedDate changes
     useSelectedDateSync({
         selectedDate,
         setCurrentDate,
@@ -243,11 +245,13 @@ const DatePicker = (props: Props) => {
     const selectedDateValue = currentDate
         ? TemporalLocaleUtils.temporalDateToJsDate(currentDate)
         : undefined;
+    // modifiers for the input (e.g. disabled) and calendar (e.g. selected/disabled days)
     const modifiers = useDatePickerModifiers({
         selectedDateValue,
         minDate,
         maxDate,
     });
+    // stable callback that formats the current date for the input field
     const formatDateForInput = useFormatDateForInput({
         dateFormat,
         locale: computedLocale,
@@ -408,6 +412,7 @@ const DatePicker = (props: Props) => {
         [close, handledEscapeRef, skipNextOpenRef, datePickerInputRef],
     );
 
+    // stable prop for React Day Picker
     const dayPickerComponents = React.useMemo(
         () => ({Root: RootWithEsc}),
         [RootWithEsc],
@@ -535,6 +540,7 @@ const DatePicker = (props: Props) => {
     // firstOfBaseMonthMs: used in useMemo dependency and to set defaultMonth when not user-driven, so calendar shows correct month on first render
     const firstOfBaseMonthMs = firstOfBaseMonth.getTime();
     const dayPickerMonthProps = React.useMemo(() => {
+        // controlled: make input editing UX work
         if (isInputDriven && inputDrivenMonthMs != null) {
             const d = new Date(inputDrivenMonthMs);
             return {
@@ -542,6 +548,7 @@ const DatePicker = (props: Props) => {
                 onMonthChange: handleMonthChange,
             };
         }
+        // uncontrolled: make next/previous button focus work properly by not changing the month unless selectedDate or displayMonth changes
         return {defaultMonth: new Date(firstOfBaseMonthMs)};
     }, [
         isInputDriven,
