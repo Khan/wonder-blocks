@@ -6,6 +6,12 @@ import {enUS, type Locale} from "react-day-picker/locale";
 
 import {View, type StyleType} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {useCloseOnOutsideClick} from "../hooks/use-close-on-outside-click";
+import {useDatePickerModifiers} from "../hooks/use-date-picker-modifiers";
+import {useDisplayMonth} from "../hooks/use-display-month";
+import {useEscapeKeyupCapture} from "../hooks/use-escape-keyup-capture";
+import {useFormatDateForInput} from "../hooks/use-format-date-for-input";
+import {useSelectedDateSync} from "../hooks/use-selected-date-sync";
 import {isTextFormatCommitComplete} from "../util/date-picker-helpers";
 import {TemporalLocaleUtils} from "../util/temporal-locale-utils";
 import type {CustomModifiers} from "../util/types";
@@ -151,41 +157,24 @@ const DatePicker = (props: Props) => {
         footer,
     } = props;
 
-    // Overlay visibility and which month the calendar shows (synced with selectedDate when prop changes).
     const [showOverlay, setShowOverlay] = React.useState(false);
     const [currentDate, setCurrentDate] = React.useState<
         Temporal.PlainDate | null | undefined
     >(selectedDate);
-    const [displayMonth, setDisplayMonth] = React.useState<Date | undefined>(
-        selectedDate
-            ? TemporalLocaleUtils.temporalDateToJsDate(selectedDate)
-            : undefined,
-    );
 
-    // Refs: input for focus/validate; datePickerRef/refWrapper for containment (Escape, outside click); refs for month state to avoid stale closures.
     const datePickerInputRef = React.useRef<HTMLInputElement | null>(null);
     const datePickerRef = React.useRef<HTMLElement | null>(null);
     const refWrapper = React.useRef<HTMLDivElement>(null);
-    const handledEscapeRef = React.useRef(false);
-    /** Current display month; set synchronously in open/close/nav so first render shows correct month. When undefined, baseMonth falls back to state. */
-    const displayMonthRef = React.useRef<Date | undefined>(undefined);
-    /** When set, overlay month is controlled by input (typing); when null, DayPicker is uncontrolled so nav buttons keep focus */
-    const inputDrivenMonthRef = React.useRef<Date | null>(null);
-    /** When true, next open() call is skipped (used when focus is restored after Escape so we don't reopen immediately). */
     const skipNextOpenRef = React.useRef(false);
 
-    /** Updates display month ref and state in one place. Pass null to clear ref after syncing state from ref. */
-    const setDisplayMonthAndRefs = React.useCallback((month: Date | null) => {
-        if (month !== null) {
-            displayMonthRef.current = month;
-            setDisplayMonth(month);
-        } else {
-            if (displayMonthRef.current != null) {
-                setDisplayMonth(displayMonthRef.current);
-            }
-            displayMonthRef.current = undefined;
-        }
-    }, []);
+    const handledEscapeRef = useEscapeKeyupCapture();
+    const {
+        displayMonth,
+        setDisplayMonth,
+        displayMonthRef,
+        inputDrivenMonthRef,
+        setDisplayMonthAndRefs,
+    } = useDisplayMonth({selectedDate});
 
     const open = React.useCallback(() => {
         if (skipNextOpenRef.current) {
@@ -203,11 +192,17 @@ const DatePicker = (props: Props) => {
             }
             setShowOverlay(true);
         }
-    }, [disabled, displayMonth, selectedDate, setDisplayMonthAndRefs]);
+    }, [
+        disabled,
+        displayMonth,
+        displayMonthRef,
+        selectedDate,
+        setDisplayMonthAndRefs,
+        skipNextOpenRef,
+    ]);
 
     const close = React.useCallback(() => {
         inputDrivenMonthRef.current = null;
-        // Set to selected date's month so next open shows that month on first render (no reliance on effect or open() batching).
         if (selectedDate != null) {
             const jsDate =
                 TemporalLocaleUtils.temporalDateToJsDate(selectedDate);
@@ -216,97 +211,58 @@ const DatePicker = (props: Props) => {
             setDisplayMonthAndRefs(null);
         }
         setShowOverlay(false);
-        (datePickerInputRef.current as any)?.validateInput?.();
-    }, [selectedDate, setDisplayMonthAndRefs]);
+        // when the overlay closes, if the input has a validateInput method, call it
+        // The ref is typed as a plain HTMLInputElement, but the DatePickerInput exposes a validateInput method that might get called
+        (
+            datePickerInputRef.current as HTMLInputElement & {
+                validateInput?: () => void;
+            }
+        )?.validateInput?.();
+    }, [
+        selectedDate,
+        setDisplayMonthAndRefs,
+        inputDrivenMonthRef,
+        datePickerInputRef,
+    ]);
+
+    useCloseOnOutsideClick({
+        refWrapper,
+        datePickerRef,
+        showOverlay,
+        closeOnSelect,
+        close,
+    });
+
+    useSelectedDateSync({
+        selectedDate,
+        setCurrentDate,
+        setDisplayMonthAndRefs,
+    });
 
     const computedLocale = locale ?? enUS;
+    const selectedDateValue = currentDate
+        ? TemporalLocaleUtils.temporalDateToJsDate(currentDate)
+        : undefined;
+    const modifiers = useDatePickerModifiers({
+        selectedDateValue,
+        minDate,
+        maxDate,
+    });
+    const formatDateForInput = useFormatDateForInput({
+        dateFormat,
+        locale: computedLocale,
+    });
+
     const dir =
         refWrapper.current?.closest("[dir]")?.getAttribute("dir") || "ltr";
 
-    /** Called by DayPicker only when controlled (user typed then clicked nav). We sync ref/state and clear inputDrivenMonthRef so the next render is uncontrolled and nav buttons keep focus. */
     const handleMonthChange = React.useCallback(
         (newMonth: Date) => {
             inputDrivenMonthRef.current = null;
             setDisplayMonthAndRefs(newMonth);
         },
-        [setDisplayMonthAndRefs],
+        [inputDrivenMonthRef, setDisplayMonthAndRefs],
     );
-
-    // Keep currentDate in sync with selectedDate prop. Only sync displayMonth when selectedDate actually changed (prevSelectedDateRef), so we don't overwrite displayMonth set from typing or from nav.
-    const prevSelectedDateRef = React.useRef<string | null>(null);
-    React.useEffect(() => {
-        setCurrentDate(selectedDate);
-        const key = selectedDate?.toString() ?? null;
-        const willUpdateDisplayMonth = key !== prevSelectedDateRef.current;
-        if (willUpdateDisplayMonth) {
-            prevSelectedDateRef.current = key;
-            if (selectedDate) {
-                const jsDate =
-                    TemporalLocaleUtils.temporalDateToJsDate(selectedDate);
-                setDisplayMonthAndRefs(jsDate);
-            }
-        }
-    }, [selectedDate, setDisplayMonthAndRefs]);
-
-    // Add/remove keyup listener only when this instance's overlay is open.
-    // This way at most one keyup listener is on the window (the instance with
-    // overlay open), avoiding issues with multiple DatePickers mounted.
-    // Listener must be on window (not refWrapper) so we catch keyup when the
-    // target is inside the portaled calendar overlay, which is outside refWrapper.
-    // When overlay closes we delay removal so we still catch the keyup that
-    // follows our keydown (React's effect cleanup can run before keyup fires).
-    React.useEffect(() => {
-        const handleKeyup = (e: KeyboardEvent) => {
-            if (e.key === "Escape" && handledEscapeRef.current) {
-                // Stop propagation to prevent closing parent modals. This is the
-                // important part: we only stop Escape keyup if we
-                // previously handled the keydown, which means the overlay was
-                // open and we closed it.
-                e.stopPropagation();
-                handledEscapeRef.current = false;
-            }
-        };
-
-        // Use capture phase so we run before modal's listener
-        window.addEventListener("keyup", handleKeyup, true);
-        return () => {
-            window.removeEventListener("keyup", handleKeyup, true);
-        };
-    }, []);
-
-    /// Add/remove mouseup event listener for outside click
-    React.useEffect(() => {
-        const handleClick = (e: MouseEvent) => {
-            const target: Node = e.target as any;
-            const thisElement = refWrapper.current;
-            const dayPickerCalendar = datePickerRef.current;
-
-            const isElement = target instanceof Element;
-            const inThisElement = isElement && thisElement?.contains(target);
-            const inCalendar = isElement && dayPickerCalendar?.contains(target);
-
-            const inPortal =
-                isElement &&
-                (target as HTMLElement).closest("[data-placement]") !== null;
-
-            const shouldClose =
-                showOverlay &&
-                closeOnSelect &&
-                thisElement &&
-                !inThisElement &&
-                !inCalendar &&
-                !inPortal;
-
-            if (shouldClose) {
-                close();
-            }
-        };
-
-        document.addEventListener("mouseup", handleClick);
-        return () => {
-            document.removeEventListener("mouseup", handleClick);
-        };
-    }, [showOverlay, closeOnSelect, close]);
 
     // True when focus is leaving the calendar overlay (e.g. tabbing out or clicking outside). Used to close on blur when focus leaves the dropdown.
     const isLeavingDropdown = (e: React.FocusEvent): boolean => {
@@ -449,7 +405,7 @@ const DatePicker = (props: Props) => {
                 />
             );
         },
-        [close],
+        [close, handledEscapeRef, skipNextOpenRef, datePickerInputRef],
     );
 
     const dayPickerComponents = React.useMemo(
@@ -472,19 +428,19 @@ const DatePicker = (props: Props) => {
             updateDate(wrappedDate);
             setShowOverlay(!closeOnSelect);
         },
-        [updateDate, closeOnSelect, setDisplayMonthAndRefs],
+        [
+            updateDate,
+            closeOnSelect,
+            setDisplayMonthAndRefs,
+            datePickerInputRef,
+            inputDrivenMonthRef,
+        ],
     );
 
     const renderInput = (
-        modifiers: Partial<CustomModifiers>,
+        inputModifiers: Partial<CustomModifiers>,
     ): React.ReactNode => {
-        const selectedDateAsValue = currentDate
-            ? TemporalLocaleUtils.formatDate(
-                  currentDate,
-                  dateFormat,
-                  computedLocale,
-              )
-            : "";
+        const selectedDateAsValue = formatDateForInput(currentDate);
 
         return (
             <DatePickerInput
@@ -503,7 +459,7 @@ const DatePicker = (props: Props) => {
                 locale={computedLocale.code} // e.g. "en-US"
                 parseDate={TemporalLocaleUtils.parseDateToJsDate}
                 getModifiersForDay={TemporalLocaleUtils.getModifiersForDay}
-                modifiers={modifiers}
+                modifiers={inputModifiers}
                 resetInvalidValueOnBlur={resetInvalidValueOnBlur}
                 testId={id && `${id}-input`}
             />
@@ -521,10 +477,6 @@ const DatePicker = (props: Props) => {
         );
     };
 
-    // JS Date for react-day-picker (selected day and min/max). minDateToShow is the earliest month we allow the calendar to show (can be minDate or the selected date's month, whichever is later when selected is in range).
-    const selectedDateValue = currentDate
-        ? TemporalLocaleUtils.temporalDateToJsDate(currentDate)
-        : undefined;
     const minDateToShow =
         minDate && selectedDateValue
             ? Temporal.PlainDate.compare(minDate, currentDate!) < 0
@@ -533,27 +485,6 @@ const DatePicker = (props: Props) => {
             : minDate
               ? TemporalLocaleUtils.temporalDateToJsDate(minDate)
               : undefined;
-
-    // Stable modifiers object so DayPicker doesn't re-render unnecessarily when only displayMonth changes; that helps keep focus on nav buttons.
-    const modifiers = React.useMemo<Partial<CustomModifiers>>(
-        () => ({
-            selected: selectedDateValue,
-            disabled: (date: Date) => {
-                const temporalDate =
-                    TemporalLocaleUtils.jsDateToTemporalDate(date);
-                return (
-                    (minDate &&
-                        Temporal.PlainDate.compare(temporalDate, minDate) <
-                            0) ||
-                    (maxDate &&
-                        Temporal.PlainDate.compare(temporalDate, maxDate) >
-                            0) ||
-                    false
-                );
-            },
-        }),
-        [selectedDateValue, minDate, maxDate],
-    );
 
     const dayPickerEndMonth = React.useMemo(
         () =>
