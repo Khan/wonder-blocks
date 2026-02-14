@@ -157,17 +157,17 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
         primary: {
             progressive: {
                 default: {
-                    border: core.border.instructive.default,
+                    border: core.transparent,
                     background: core.background.instructive.default,
                     foreground: core.foreground.knockout.default,
                 },
                 hover: {
-                    border: core.border.instructive.strong,
+                    border: core.transparent,
                     background: core.background.instructive.strong,
                     foreground: core.foreground.knockout.default,
                 },
                 press: {
-                    border: core.border.instructive.strong,
+                    border: core.transparent,
                     background: core.background.instructive.strong,
                     foreground: core.foreground.knockout.default,
                 },
@@ -191,17 +191,17 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
             },
             neutral: {
                 default: {
-                    border: core.border.neutral.default,
+                    border: core.transparent,
                     background: core.background.neutral.default,
                     foreground: core.foreground.knockout.default,
                 },
                 hover: {
-                    border: core.border.neutral.strong,
+                    border: core.transparent,
                     background: core.background.neutral.strong,
                     foreground: core.foreground.knockout.default,
                 },
                 press: {
-                    border: core.border.neutral.strong,
+                    border: core.transparent,
                     background: core.background.neutral.strong,
                     foreground: core.foreground.knockout.default,
                 },
@@ -241,12 +241,12 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                 hover: {
                     border: core.border.critical.strong,
                     background: core.background.critical.subtle,
-                    foreground: core.foreground.critical.strong,
+                    foreground: core.foreground.critical.default,
                 },
                 press: {
                     border: core.border.critical.strong,
                     background: core.background.critical.subtle,
-                    foreground: core.foreground.critical.strong,
+                    foreground: core.foreground.critical.default,
                 },
             },
             neutral: {
@@ -405,19 +405,19 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                 primary: {
                     rest: core.shadow.chonky.instructive.default,
                     hover: core.shadow.chonky.instructive.default,
-                    press: core.shadow.chonky.instructive.default,
+                    press: core.transparent,
                     selected: core.shadow.chonky.instructive.default,
                 },
                 secondary: {
                     rest: core.shadow.chonky.instructive.subtle,
                     hover: core.shadow.chonky.instructive.subtle,
-                    press: core.shadow.chonky.instructive.subtle,
+                    press: core.transparent,
                     selected: core.shadow.chonky.instructive.subtle,
                 },
                 tertiary: {
                     rest: core.transparent,
                     hover: core.shadow.chonky.neutral.subtle,
-                    press: core.shadow.chonky.neutral.subtle,
+                    press: core.transparent,
                     selected: core.shadow.chonky.instructive.subtle,
                 },
             },
@@ -454,13 +454,13 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                     rest: core.border.neutral.subtle,
                     hover: core.border.neutral.subtle,
                     press: core.border.neutral.subtle,
-                    selected: core.border.neutral.subtle,
+                    selected: core.border.instructive.subtle,
                 },
                 tertiary: {
                     rest: core.transparent,
                     hover: core.border.neutral.subtle,
                     press: core.border.neutral.subtle,
-                    selected: core.transparent,
+                    selected: core.border.instructive.subtle,
                 },
             },
             foreground: {
@@ -493,7 +493,7 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                 secondary: {
                     rest: core.shadow.chonky.neutral.subtle,
                     hover: core.shadow.chonky.neutral.subtle,
-                    press: core.shadow.chonky.neutral.subtle,
+                    press: core.shadow.chonky.neutral.strong,
                     selected: core.shadow.chonky.neutral.subtle,
                 },
                 tertiary: {
@@ -516,9 +516,9 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                 tertiary: core.border.disabled.subtle,
             },
             foreground: {
-                primary: color.gray_50,
-                secondary: color.gray_50,
-                tertiary: color.gray_50,
+                primary: core.foreground.disabled.default,
+                secondary: core.foreground.disabled.default,
+                tertiary: core.foreground.disabled.subtle,
             },
             shadow: {
                 primary: core.shadow.chonky.neutral.subtle,
