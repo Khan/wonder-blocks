@@ -288,12 +288,12 @@ export const semanticColor = {
                     foreground: core.foreground.knockout.default,
                 },
                 hover: {
-                    border: core.border.instructive.default,
-                    background: core.background.instructive.default,
+                    border: core.transparent,
+                    background: core.background.instructive.strong,
                     foreground: core.foreground.knockout.default,
                 },
                 press: {
-                    border: core.border.instructive.strong,
+                    border: core.transparent,
                     background: core.background.instructive.strong,
                     foreground: core.foreground.knockout.default,
                 },
@@ -323,20 +323,20 @@ export const semanticColor = {
                     foreground: core.foreground.knockout.default,
                 },
                 hover: {
-                    border: core.border.neutral.default,
-                    background: core.background.neutral.default,
+                    border: core.transparent,
+                    background: core.background.neutral.strong,
                     foreground: core.foreground.knockout.default,
                 },
                 press: {
-                    border: core.border.neutral.strong,
+                    border: core.transparent,
                     background: core.background.neutral.strong,
                     foreground: core.foreground.knockout.default,
                 },
             },
 
             disabled: {
-                border: core.border.disabled.strong,
-                background: core.border.disabled.strong,
+                border: core.border.disabled.subtle,
+                background: core.background.disabled.strong,
                 foreground: core.foreground.knockout.default,
             },
         },
@@ -344,19 +344,19 @@ export const semanticColor = {
         secondary: {
             progressive: {
                 default: {
-                    border: core.border.neutral.default,
-                    background: core.transparent,
+                    border: core.border.neutral.subtle,
+                    background: core.background.instructive.subtle,
                     foreground: core.foreground.instructive.default,
                 },
                 hover: {
                     border: core.border.instructive.default,
-                    background: core.transparent,
+                    background: core.background.instructive.subtle,
                     foreground: core.foreground.instructive.default,
                 },
                 press: {
-                    border: core.border.instructive.strong,
+                    border: core.border.instructive.default,
                     background: core.background.instructive.subtle,
-                    foreground: core.foreground.instructive.strong,
+                    foreground: core.foreground.instructive.default,
                 },
             },
             destructive: {
@@ -378,25 +378,25 @@ export const semanticColor = {
             },
             neutral: {
                 default: {
-                    border: core.border.neutral.default,
-                    background: core.transparent,
+                    border: core.border.neutral.subtle,
+                    background: core.background.base.default,
                     foreground: core.foreground.neutral.default,
                 },
                 hover: {
-                    border: core.border.neutral.default,
-                    background: core.transparent,
-                    foreground: core.foreground.neutral.default,
+                    border: core.border.neutral.strong,
+                    background: core.background.base.default,
+                    foreground: core.foreground.neutral.strong,
                 },
                 press: {
                     border: core.border.neutral.strong,
-                    background: core.background.neutral.subtle,
+                    background: core.background.base.default,
                     foreground: core.foreground.neutral.strong,
                 },
             },
 
             disabled: {
-                border: core.border.disabled.strong,
-                background: core.background.disabled.subtle,
+                border: core.border.disabled.default,
+                background: core.background.disabled.default,
                 foreground: core.foreground.disabled.default,
             },
         },
@@ -409,9 +409,9 @@ export const semanticColor = {
                     foreground: core.foreground.instructive.default,
                 },
                 hover: {
-                    border: core.border.instructive.default,
+                    border: core.border.instructive.strong,
                     background: core.transparent,
-                    foreground: core.foreground.instructive.default,
+                    foreground: core.foreground.instructive.strong,
                 },
                 press: {
                     border: core.border.instructive.strong,
@@ -444,7 +444,7 @@ export const semanticColor = {
                     foreground: core.foreground.neutral.default,
                 },
                 hover: {
-                    border: core.border.neutral.default,
+                    border: core.border.neutral.strong,
                     background: core.transparent,
                     foreground: core.foreground.neutral.default,
                 },
@@ -456,9 +456,9 @@ export const semanticColor = {
             },
 
             disabled: {
-                border: core.border.disabled.default,
+                border: core.border.disabled.subtle,
                 background: core.background.disabled.subtle,
-                foreground: core.foreground.disabled.default,
+                foreground: core.foreground.disabled.subtle,
             },
         },
     },
