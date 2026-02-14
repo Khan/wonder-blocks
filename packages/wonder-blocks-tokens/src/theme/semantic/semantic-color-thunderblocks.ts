@@ -147,7 +147,7 @@ const core = {
 };
 
 const sharedFeedbackStrongTokens = {
-    background: core.background.neutral.strong,
+    background: core.background.base.strong,
     border: core.border.neutral.strong,
     text: core.foreground.knockout.default,
 };
