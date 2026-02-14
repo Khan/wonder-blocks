@@ -51,7 +51,7 @@ const core = {
         base: {
             subtle: color.offWhite,
             default: color.white,
-            strong: color.fadedBlue16,
+            strong: color.darkBlue,
         },
         instructive: {
             subtle: color.fadedBlue8,
@@ -75,8 +75,8 @@ const core = {
         },
         warning: {
             subtle: color.fadedGold8,
-            default: color.gold,
-            strong: color.activeGold,
+            default: color.fadedGold24,
+            strong: color.gold,
         },
         disabled: {
             subtle: transparent,
@@ -140,14 +140,14 @@ const core = {
             neutral: {
                 subtle: color.fadedOffBlack32,
                 default: color.fadedOffBlack50,
-                strong: color.offBlack,
+                strong: color.fadedOffBlack72,
             },
         },
     },
 };
 
 const sharedFeedbackStrongTokens = {
-    background: core.background.neutral.strong,
+    background: core.background.base.strong,
     border: core.border.neutral.strong,
     text: core.foreground.knockout.default,
 };
@@ -523,27 +523,27 @@ export const semanticColor = {
                 tertiary: {
                     rest: core.foreground.instructive.default,
                     hover: core.foreground.instructive.default,
-                    press: core.foreground.instructive.strong,
-                    selected: core.foreground.instructive.strong,
+                    press: core.foreground.instructive.default,
+                    selected: core.foreground.instructive.default,
                 },
             },
             shadow: {
                 primary: {
                     rest: core.shadow.chonky.instructive.default,
                     hover: core.shadow.chonky.instructive.default,
-                    press: core.shadow.chonky.instructive.default,
+                    press: core.transparent,
                     selected: core.shadow.chonky.instructive.default,
                 },
                 secondary: {
                     rest: core.shadow.chonky.instructive.subtle,
                     hover: core.shadow.chonky.instructive.subtle,
-                    press: core.shadow.chonky.instructive.subtle,
+                    press: core.transparent,
                     selected: core.shadow.chonky.instructive.subtle,
                 },
                 tertiary: {
                     rest: core.transparent,
                     hover: core.shadow.chonky.neutral.subtle,
-                    press: core.shadow.chonky.neutral.subtle,
+                    press: core.transparent,
                     selected: core.shadow.chonky.instructive.subtle,
                 },
             },
@@ -557,9 +557,9 @@ export const semanticColor = {
                     selected: core.background.neutral.default,
                 },
                 secondary: {
-                    rest: core.transparent,
-                    hover: core.transparent,
-                    press: core.transparent,
+                    rest: core.background.base.default,
+                    hover: core.background.base.default,
+                    press: core.background.base.default,
                     selected: core.background.neutral.subtle,
                 },
                 tertiary: {
@@ -580,13 +580,13 @@ export const semanticColor = {
                     rest: core.border.neutral.subtle,
                     hover: core.border.neutral.subtle,
                     press: core.border.neutral.subtle,
-                    selected: core.border.neutral.subtle,
+                    selected: core.border.instructive.subtle,
                 },
                 tertiary: {
                     rest: core.transparent,
                     hover: core.border.neutral.subtle,
                     press: core.border.neutral.subtle,
-                    selected: core.transparent,
+                    selected: core.border.instructive.subtle,
                 },
             },
             foreground: {
@@ -613,7 +613,7 @@ export const semanticColor = {
                 primary: {
                     rest: core.shadow.chonky.neutral.strong,
                     hover: core.shadow.chonky.neutral.strong,
-                    press: core.transparent,
+                    press: core.shadow.chonky.neutral.strong,
                     selected: core.shadow.chonky.neutral.strong,
                 },
                 secondary: {
@@ -637,14 +637,14 @@ export const semanticColor = {
                 tertiary: core.background.disabled.subtle,
             },
             border: {
-                primary: core.border.disabled.default,
-                secondary: core.border.disabled.default,
+                primary: core.border.disabled.subtle,
+                secondary: core.border.disabled.strong,
                 tertiary: core.border.disabled.subtle,
             },
             foreground: {
                 primary: core.foreground.disabled.default,
                 secondary: core.foreground.disabled.default,
-                tertiary: core.foreground.disabled.default,
+                tertiary: core.foreground.disabled.subtle,
             },
             shadow: {
                 primary: core.shadow.chonky.neutral.subtle,
@@ -746,56 +746,56 @@ export const semanticColor = {
             subtle: {
                 background: core.background.instructive.subtle,
                 border: core.border.instructive.subtle,
-                icon: core.foreground.instructive.default,
-                text: core.foreground.neutral.strong,
+                icon: core.foreground.neutral.subtle,
+                text: core.foreground.neutral.default,
             },
             strong: {
                 ...sharedFeedbackStrongTokens,
-                icon: core.foreground.instructive.default,
+                icon: core.foreground.instructive.subtle,
             },
         },
         success: {
             subtle: {
                 background: core.background.success.subtle,
                 border: core.border.success.subtle,
-                icon: core.foreground.success.strong,
-                text: core.foreground.neutral.strong,
+                icon: core.foreground.neutral.subtle,
+                text: core.foreground.neutral.default,
             },
             strong: {
                 ...sharedFeedbackStrongTokens,
-                icon: core.foreground.success.default,
+                icon: core.foreground.success.subtle,
             },
         },
         warning: {
             subtle: {
                 background: core.background.warning.subtle,
                 border: core.border.warning.default,
-                icon: core.foreground.warning.strong,
-                text: core.foreground.neutral.strong,
+                icon: core.foreground.neutral.subtle,
+                text: core.foreground.neutral.default,
             },
             strong: {
                 ...sharedFeedbackStrongTokens,
-                icon: core.foreground.warning.default,
+                icon: core.foreground.warning.subtle,
             },
         },
         critical: {
             subtle: {
                 background: core.background.critical.subtle,
                 border: core.border.critical.subtle,
-                icon: core.foreground.critical.default,
-                text: core.foreground.neutral.strong,
+                icon: core.foreground.neutral.subtle,
+                text: core.foreground.neutral.default,
             },
             strong: {
                 ...sharedFeedbackStrongTokens,
-                icon: core.foreground.critical.default,
+                icon: core.foreground.critical.subtle,
             },
         },
         neutral: {
             subtle: {
                 background: core.background.neutral.subtle,
                 border: core.border.neutral.subtle,
-                icon: core.foreground.neutral.default,
-                text: core.foreground.neutral.strong,
+                icon: core.foreground.neutral.subtle,
+                text: core.foreground.neutral.default,
             },
             strong: {
                 ...sharedFeedbackStrongTokens,
