@@ -11,8 +11,8 @@ import {useDatePickerModifiers} from "../hooks/use-date-picker-modifiers";
 import {useDisplayMonth} from "../hooks/use-display-month";
 import {useEscapeKeyupCapture} from "../hooks/use-escape-keyup-capture";
 import {useFormatDateForInput} from "../hooks/use-format-date-for-input";
+import {useOverlayMonthFromInput} from "../hooks/use-overlay-month-from-input";
 import {useSelectedDateSync} from "../hooks/use-selected-date-sync";
-import {isTextFormatCommitComplete} from "../util/date-picker-helpers";
 import {TemporalLocaleUtils} from "../util/temporal-locale-utils";
 import type {CustomModifiers} from "../util/types";
 
@@ -202,8 +202,20 @@ const DatePicker = (props: Props) => {
         skipNextOpenRef,
     ]);
 
+    const {handleInputChange, clearInputDrivenMonth} = useOverlayMonthFromInput(
+        {
+            inputDrivenMonthRef,
+            setDisplayMonth,
+            setDisplayMonthAndRefs,
+            setCurrentDate,
+            updateDate,
+            dateFormat,
+            localeCode: locale?.code,
+        },
+    );
+
     const close = React.useCallback(() => {
-        inputDrivenMonthRef.current = null;
+        clearInputDrivenMonth();
         if (selectedDate != null) {
             const jsDate =
                 TemporalLocaleUtils.temporalDateToJsDate(selectedDate);
@@ -222,7 +234,7 @@ const DatePicker = (props: Props) => {
     }, [
         selectedDate,
         setDisplayMonthAndRefs,
-        inputDrivenMonthRef,
+        clearInputDrivenMonth,
         datePickerInputRef,
     ]);
 
@@ -262,10 +274,10 @@ const DatePicker = (props: Props) => {
 
     const handleMonthChange = React.useCallback(
         (newMonth: Date) => {
-            inputDrivenMonthRef.current = null;
+            clearInputDrivenMonth();
             setDisplayMonthAndRefs(newMonth);
         },
-        [inputDrivenMonthRef, setDisplayMonthAndRefs],
+        [clearInputDrivenMonth, setDisplayMonthAndRefs],
     );
 
     // True when focus is leaving the calendar overlay (e.g. tabbing out or clicking outside). Used to close on blur when focus leaves the dropdown.
@@ -283,76 +295,6 @@ const DatePicker = (props: Props) => {
     const handleInputBlur = (e: React.FocusEvent) => {
         if (isLeavingDropdown(e)) {
             close();
-        }
-    };
-
-    /**
-     * Handles input value changes from typing or programmatic updates.
-     * While the user types, we control the overlay month so the calendar follows; once a date is
-     * committed (full valid date), we clear inputDrivenMonthRef so the DayPicker is uncontrolled
-     * and next/previous buttons keep working. For text formats (LL, MMMM D YYYY), we only treat
-     * as "committed" when the normalized input matches the formatted date.
-     */
-    const handleInputChange = (
-        dateFromInput: Date | null | undefined,
-        modifiers: Partial<CustomModifiers>,
-        inputValue?: string,
-    ) => {
-        // When user clears input, dateFromInput is null. We treat that as committed
-        // and update currentDate to null so the input shows empty; if they blur
-        // with empty input, it stays empty since currentDate is already null.
-        if (!dateFromInput) {
-            setCurrentDate(null);
-            updateDate(null);
-            return;
-        }
-
-        const wrappedDate =
-            TemporalLocaleUtils.jsDateToTemporalDate(dateFromInput);
-
-        // When typing, control overlay month so calendar follows; when date is committed, switch back to uncontrolled so nav buttons keep working
-        const monthDate = new Date(dateFromInput);
-        setDisplayMonth(monthDate);
-
-        // Check if date is disabled (modifiers.disabled can be a function)
-        const isDisabled =
-            typeof modifiers.disabled === "function"
-                ? modifiers.disabled(dateFromInput)
-                : modifiers.disabled;
-
-        // Always notify parent via updateDate so they can show validation errors
-        // When disabled, only notify; don't update currentDate; keep overlay controlled so it shows typed month
-        if (isDisabled) {
-            inputDrivenMonthRef.current = monthDate;
-            updateDate(wrappedDate);
-            return;
-        }
-
-        const isTextFormat = TemporalLocaleUtils.isTextFormatDate(dateFormat);
-
-        // Text formats (LL, MMMM D YYYY, MMM D YYYY): we only "commit" when the raw input matches the formatted date (after normalizing spaces/punctuation). Until then the user is still typing, so we keep overlay controlled and don't call updateDate for currentDate.
-        if (isTextFormat && inputValue) {
-            const isCompleteDate = isTextFormatCommitComplete(
-                inputValue,
-                dateFromInput,
-                dateFormat,
-                locale?.code,
-            );
-
-            if (isCompleteDate) {
-                inputDrivenMonthRef.current = null;
-                setDisplayMonthAndRefs(monthDate);
-                setCurrentDate(wrappedDate);
-                updateDate(wrappedDate);
-            } else {
-                inputDrivenMonthRef.current = monthDate;
-            }
-        } else {
-            // Committed non–text-format date: switch to uncontrolled so nav buttons work
-            inputDrivenMonthRef.current = null;
-            setDisplayMonthAndRefs(monthDate);
-            setCurrentDate(wrappedDate);
-            updateDate(wrappedDate);
         }
     };
 
@@ -415,7 +357,7 @@ const DatePicker = (props: Props) => {
         [RootWithEsc],
     );
 
-    /** Day cell click: update selection, move focus to input, clear inputDrivenMonthRef and sync displayMonth so next/previous buttons keep working. If closeOnSelect, overlay closes; otherwise it stays open. */
+    /** Day cell click: update selection, move focus to input, clear input-driven month and sync displayMonth. If closeOnSelect, overlay closes; otherwise it stays open. */
     const handleDayClick = React.useCallback(
         (date: Date | null | undefined, {disabled}: CustomModifiers) => {
             if (disabled || !date) {
@@ -425,7 +367,7 @@ const DatePicker = (props: Props) => {
             const wrappedDate = TemporalLocaleUtils.jsDateToTemporalDate(date);
             setCurrentDate(wrappedDate);
             const monthDate = new Date(date);
-            inputDrivenMonthRef.current = null;
+            clearInputDrivenMonth();
             setDisplayMonthAndRefs(monthDate);
             updateDate(wrappedDate);
             setShowOverlay(!closeOnSelect);
@@ -435,7 +377,7 @@ const DatePicker = (props: Props) => {
             closeOnSelect,
             setDisplayMonthAndRefs,
             datePickerInputRef,
-            inputDrivenMonthRef,
+            clearInputDrivenMonth,
         ],
     );
 
