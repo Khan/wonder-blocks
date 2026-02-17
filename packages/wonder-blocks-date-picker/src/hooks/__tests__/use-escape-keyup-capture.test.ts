@@ -8,13 +8,14 @@ describe("useEscapeKeyupCapture", () => {
         jest.restoreAllMocks();
     });
 
-    it("returns a ref object with current initially false", () => {
+    it("returns an object with handleEscapeKeyDown function", () => {
         // Arrange
         // Act
         const {result} = renderHook(() => useEscapeKeyupCapture());
 
         // Assert
-        expect(result.current).toHaveProperty("current", false);
+        expect(result.current).toHaveProperty("handleEscapeKeyDown");
+        expect(typeof result.current.handleEscapeKeyDown).toBe("function");
     });
 
     it("registers a keyup listener in capture phase", () => {
@@ -46,89 +47,107 @@ describe("useEscapeKeyupCapture", () => {
         expect(removeSpy).toHaveBeenCalledWith("keyup", captureHandler, true);
     });
 
-    it("stops propagation when ref is true and Escape keyup fires", () => {
+    it("stops keyup propagation when handleEscapeKeyDown was called then Escape keyup fires", () => {
         // Arrange
         const {result} = renderHook(() => useEscapeKeyupCapture());
-        result.current.current = true;
-        const event = new KeyboardEvent("keyup", {
+        const keydownEvent = new KeyboardEvent("keydown", {
             key: "Escape",
             bubbles: true,
         });
-        const stopPropagationSpy = jest.spyOn(event, "stopPropagation");
+        act(() => {
+            result.current.handleEscapeKeyDown(keydownEvent);
+        });
+        const keyupEvent = new KeyboardEvent("keyup", {
+            key: "Escape",
+            bubbles: true,
+        });
+        const stopPropagationSpy = jest.spyOn(keyupEvent, "stopPropagation");
 
         // Act
         act(() => {
-            window.dispatchEvent(event);
+            window.dispatchEvent(keyupEvent);
         });
 
         // Assert
         expect(stopPropagationSpy).toHaveBeenCalled();
     });
 
-    it("sets ref to false when ref is true and Escape keyup fires", () => {
+    it("calls onHandled callback when handleEscapeKeyDown is invoked", () => {
         // Arrange
         const {result} = renderHook(() => useEscapeKeyupCapture());
-        result.current.current = true;
-        const event = new KeyboardEvent("keyup", {
+        const keydownEvent = new KeyboardEvent("keydown", {
             key: "Escape",
             bubbles: true,
         });
+        const onHandled = jest.fn();
 
         // Act
         act(() => {
-            window.dispatchEvent(event);
+            result.current.handleEscapeKeyDown(keydownEvent, onHandled);
         });
 
         // Assert
-        expect(result.current.current).toBe(false);
+        expect(onHandled).toHaveBeenCalledTimes(1);
     });
 
-    it("does not stop propagation when ref is false and Escape keyup fires", () => {
+    it("does not stop keyup propagation when handleEscapeKeyDown was not called", () => {
         // Arrange
         renderHook(() => useEscapeKeyupCapture());
-        const event = new KeyboardEvent("keyup", {
+        const keyupEvent = new KeyboardEvent("keyup", {
             key: "Escape",
             bubbles: true,
         });
-        const stopPropagationSpy = jest.spyOn(event, "stopPropagation");
+        const stopPropagationSpy = jest.spyOn(keyupEvent, "stopPropagation");
 
         // Act
         act(() => {
-            window.dispatchEvent(event);
+            window.dispatchEvent(keyupEvent);
         });
 
         // Assert
         expect(stopPropagationSpy).not.toHaveBeenCalled();
     });
 
-    it("does not stop propagation for non-Escape keyup when ref is true", () => {
+    it("does not stop propagation for non-Escape keyup after handleEscapeKeyDown was called", () => {
         // Arrange
         const {result} = renderHook(() => useEscapeKeyupCapture());
-        result.current.current = true;
-        const event = new KeyboardEvent("keyup", {key: "Enter", bubbles: true});
-        const stopPropagationSpy = jest.spyOn(event, "stopPropagation");
+        const keydownEvent = new KeyboardEvent("keydown", {
+            key: "Escape",
+            bubbles: true,
+        });
+        act(() => {
+            result.current.handleEscapeKeyDown(keydownEvent);
+        });
+        const keyupEvent = new KeyboardEvent("keyup", {
+            key: "Enter",
+            bubbles: true,
+        });
+        const stopPropagationSpy = jest.spyOn(keyupEvent, "stopPropagation");
 
         // Act
         act(() => {
-            window.dispatchEvent(event);
+            window.dispatchEvent(keyupEvent);
         });
 
         // Assert
         expect(stopPropagationSpy).not.toHaveBeenCalled();
     });
 
-    it("leaves ref true when non-Escape keyup fires", () => {
+    it("stops keydown propagation when handleEscapeKeyDown is called", () => {
         // Arrange
         const {result} = renderHook(() => useEscapeKeyupCapture());
-        result.current.current = true;
-        const event = new KeyboardEvent("keyup", {key: "Enter", bubbles: true});
+        const keydownEvent = new KeyboardEvent("keydown", {
+            key: "Escape",
+            bubbles: true,
+        });
+        const stopPropagationSpy = jest.spyOn(keydownEvent, "stopPropagation");
 
         // Act
         act(() => {
-            window.dispatchEvent(event);
+            result.current.handleEscapeKeyDown(keydownEvent);
         });
 
         // Assert
-        expect(result.current.current).toBe(true);
+        expect(stopPropagationSpy).toHaveBeenCalled();
     });
 });

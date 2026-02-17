@@ -1,17 +1,23 @@
 import * as React from "react";
 
-/**
- * Ref set by the consumer to true when Escape keydown was handled (e.g. overlay closed).
- * The keyup listener uses it to stop propagation so parent modals don't also close.
- */
-export type HandledEscapeRef = React.MutableRefObject<boolean>;
+export type HandleEscapeKeyDown = (
+    e: React.KeyboardEvent | KeyboardEvent,
+    onHandled?: () => void,
+) => void;
 
 /**
- * Registers a keyup listener in the capture phase that, when Escape was previously
- * "handled" (handledEscapeRef.current === true), stops propagation and clears the ref.
- * This prevents a parent modal from closing when the date picker overlay closed on Escape.
+ * Provides a single Escape keydown handler that:
+ * 1. Stops keydown propagation
+ * 2. Marks Escape as "handled" so a keyup listener can stop keyup propagation (e.g. so a parent modal doesn't also close)
+ * 3. Runs your callback (e.g. close overlay, focus input)
+ *
+ * Call this from your keydown handlers (input, calendar root, etc.) when the user presses Escape.
+ * The hook registers a keyup listener in the capture phase; when it sees Escape and you've already
+ * called handleEscapeKeyDown for that keypress, it stops keyup propagation and clears the internal state.
  */
-export function useEscapeKeyupCapture(): HandledEscapeRef {
+export function useEscapeKeyupCapture(): {
+    handleEscapeKeyDown: HandleEscapeKeyDown;
+} {
     const handledEscapeRef = React.useRef(false);
 
     React.useEffect(() => {
@@ -21,12 +27,20 @@ export function useEscapeKeyupCapture(): HandledEscapeRef {
                 handledEscapeRef.current = false;
             }
         };
-        // Use capture phase so this runs before parent modals' keyup listeners
         window.addEventListener("keyup", handleKeyup, true);
         return () => {
             window.removeEventListener("keyup", handleKeyup, true);
         };
     }, []);
 
-    return handledEscapeRef;
+    const handleEscapeKeyDown = React.useCallback<HandleEscapeKeyDown>(
+        (e, onHandled) => {
+            e.stopPropagation();
+            handledEscapeRef.current = true;
+            onHandled?.();
+        },
+        [],
+    );
+
+    return {handleEscapeKeyDown};
 }

@@ -167,7 +167,7 @@ const DatePicker = (props: Props) => {
     const refWrapper = React.useRef<HTMLDivElement>(null);
     const skipNextOpenRef = React.useRef(false);
 
-    const handledEscapeRef = useEscapeKeyupCapture();
+    const {handleEscapeKeyDown} = useEscapeKeyupCapture();
     const {
         displayMonth,
         setDisplayMonth,
@@ -356,17 +356,18 @@ const DatePicker = (props: Props) => {
         }
     };
 
-    // Input keyboard: Escape closes overlay and returns focus; ArrowDown opens overlay; Enter toggles overlay. We set handledEscapeRef so the keyup listener can stop propagation and avoid closing a parent modal.
+    // What to do when Escape closes the overlay: prevent reopen on focus, close, return focus to input.
+    const onEscapeCloseOverlay = React.useCallback(() => {
+        skipNextOpenRef.current = true; // focus restored to input; don't reopen on focus
+        close();
+        datePickerInputRef.current?.focus();
+    }, [close, skipNextOpenRef, datePickerInputRef]);
+
+    // Input keyboard: Escape closes overlay (via hook's handleEscapeKeyDown); ArrowDown opens overlay; Enter toggles overlay.
     const handleKeyDown = (e: React.KeyboardEvent) => {
         if (e.key === "Escape") {
             if (showOverlay) {
-                e.stopPropagation();
-
-                // Mark that we handled this Escape keypress
-                handledEscapeRef.current = true;
-                skipNextOpenRef.current = true; // focus will be restored; don't reopen
-                close();
-                datePickerInputRef.current?.focus();
+                handleEscapeKeyDown(e, onEscapeCloseOverlay);
             }
         }
         if (e.key === "ArrowDown" && !showOverlay) {
@@ -387,7 +388,7 @@ const DatePicker = (props: Props) => {
         }
     };
 
-    // Wrapper for DayPicker's root so we can handle Escape when focus is inside the calendar (e.g. on nav buttons). We don't handle Enter here so the calendar's buttons work normally.
+    // Wrapper for DayPicker's root so we can handle Escape when focus is inside the calendar (e.g. on nav buttons). Same Escape handler as the input.
     const RootWithEsc = React.useCallback(
         (props: RootWithEscProps) => {
             const {onKeyDown, rootRef: _, ...rest} = props;
@@ -399,17 +400,13 @@ const DatePicker = (props: Props) => {
                     onKeyDown={(e) => {
                         onKeyDown?.(e);
                         if (e.key === "Escape") {
-                            e.stopPropagation();
-                            handledEscapeRef.current = true;
-                            skipNextOpenRef.current = true; // focus will be restored; don't reopen
-                            close();
-                            datePickerInputRef.current?.focus();
+                            handleEscapeKeyDown(e, onEscapeCloseOverlay);
                         }
                     }}
                 />
             );
         },
-        [close, handledEscapeRef, skipNextOpenRef, datePickerInputRef],
+        [handleEscapeKeyDown, onEscapeCloseOverlay],
     );
 
     // stable prop for React Day Picker
