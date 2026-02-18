@@ -20,7 +20,8 @@ const config: StorybookConfig = {
                 },
             },
         },
-        "storybook-addon-tag-badges"
+        "storybook-addon-tag-badges",
+        "@storybook/addon-mcp"
     ],
     staticDirs: ["../static"],
     core: {
