@@ -1,0 +1,193 @@
+# Get Started
+
+## Design
+
+The design system components are available in Figma. For more details about the
+Figma libraries, check out the [Wonder Blocks Resources](https://khanacademy.atlassian.net/wiki/spaces/WB/pages/4396089552/Resources#Figma).
+
+For the most part, the Figma components should have an equivalent code component.
+Reach out to the Wonder Blocks team if you have any questions on how to implement
+a design using the code components!
+
+## Development
+
+### Installation
+
+#### Setting up Wonder Blocks
+1. Install the [`peerDependencies`](https://github.com/Khan/wonder-blocks/blob/main/packages/wonder-blocks-core/package.json) for the `wonder-blocks-core` package:
+```shell
+pnpm install aphrodite@^1.2.5 react@18.2.0 react-dom@18.2.0 react-router@5.3.4 react-router-dom@5.3.4 react-router-dom-v5-compat@^6.30.0
+```
+2. Install the `wonder-blocks-core` and `wonder-blocks-tokens` packages:
+- The [Core package](./?path=/docs/packages-core-overview--docs) provides
+building blocks and helpful utilities for
+constructing components
+- The [Tokens package](./?path=/docs/packages-tokens-overview--docs) provides
+tokens that define the look and feel of the design system. When implementing
+features in an application, use these tokens so that it follows the principles
+and theming of the design system.
+```shell
+pnpm install @khanacademy/wonder-blocks-core @khanacademy/wonder-blocks-tokens
+```
+
+#### Importing Styles
+1. Import the styles from the tokens package. These styles are necessary since
+they include the CSS variables used in Wonder Blocks.
+
+```css
+// styles.css
+@import "@khanacademy/wonder-blocks-tokens/styles.css";
+```
+
+#### Typography
+1. Set the root font size to `62.5%` so that `1rem` is equal to `10px`. Many of
+the Wonder Blocks components and typography use rems based on this unit.
+
+```css
+html {
+  font-size: 62.5%;
+}
+```
+
+2. More details to come on how to import fonts!
+
+#### Theming
+
+1. Install the theming package:
+```shell
+pnpm install @khanacademy/wonder-blocks-theming
+```
+2. Wrap the root of your application with the [Theme Switcher](./?path=/docs/packages-theming-themeswitcher--docs)
+component. The theme can be set using the `theme` prop. Any descendants of this
+that uses Wonder Blocks components or tokens will have styling for the selected
+theme!
+
+```tsx
+// App.tsx
+
+import {ThemeSwitcher} from "@khanacademy/wonder-blocks-theming";
+
+export const App = () => {
+    return (
+        <ThemeSwitcher theme="thunderblocks">
+            {/* The application contents */}
+        </ThemeSwitcher>
+    );
+};
+
+```
+
+#### Icons
+
+We currently use icons from [Phosphor Icons](https://phosphoricons.com/) or
+custom icons.
+
+##### Phosphor Icons
+
+1. Install Phosphor Icons and the WB Icon packages
+```shell
+pnpm install @phosphor-icons/core @khanacademy/wonder-blocks-icon
+```
+2. Import an icon from the Phosphor Icon library
+```ts
+import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
+```
+3. Use with the Wonder Blocks [PhosphorIcon](./?path=/docs/packages-icon-phosphoricon--docs)
+component or other Wonder Blocks components that support Phosphor icons like Button,
+IconButton, Banner, etc.
+
+```tsx
+import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+
+const icon = (
+    <PhosphorIcon
+        icon={magnifyingGlassIcon}
+        size="medium"
+    />
+);
+
+const iconButton = (
+    <IconButton
+        icon={magnifyingGlassIcon}
+        aria-label="An Icon"
+        onClick={(e) => console.log("Hello, world!")}
+        size="medium"
+    />
+);
+```
+
+##### Custom Icons
+
+1. Install the Wonder Blocks Icon package
+```shell
+pnpm install @khanacademy/wonder-blocks-icon
+```
+2. Import the icon asset.
+- For custom icon assets, consider using semantic color tokens in inline svgs so
+that the icon properly responds to theming in the system
+- Note: The Wonder Blocks Icon package also includes a set of
+[common custom icon assets](./?path=/docs/packages-icon-custom-icon-components--docs).
+
+```tsx
+import {GemIcon} from "@khanacademy/wonder-blocks-icon";
+import customIcon from "./custom-icon.svg";
+```
+
+3. Use with the [Wonder Blocks Icon](./?path=/docs/packages-icon-icon--docs)
+component or other Wonder Blocks components that support Phosphor icons like Button,
+IconButton, Banner, etc.
+```tsx
+import {GemIcon} from "@khanacademy/wonder-blocks-icon";
+import customIcon from "./custom-icon.svg";
+
+const gemIcon = (
+    <Icon size="large">
+        <GemIcon aria-label="Gems" />
+    </Icon>
+);
+
+const customAssetIcon = (
+    <Icon size="large">
+        {customIcon}
+    </Icon>
+);
+
+const gemIconButton = (
+    <IconButton
+        icon={<GemIcon />}
+        aria-label="Gems"
+        onClick={(e) => console.log("Hello, world!")}
+        size="medium"
+    />
+)
+```
+
+#### Components
+
+1. Install the package you need for a specific Wonder Blocks component. The
+package name can be found in the docs for a component.
+
+For example, to use the Wonder Blocks Button component, we would need to install
+the `@khanacademy/wonder-blocks-button` component.
+
+```bash
+pnpm install @khanacademy/wonder-blocks-button
+```
+
+2. Install any other peer dependencies for that package.
+
+3. Read the component docs for information about best practices, guidelines, and
+common examples!
+
+As always, feel free to reach out to the Wonder Blocks team if you have any
+questions or run into any issues!
+
+
+---
+
+## Related docs
+
+- [Overview](overview.md)
+- [Gallery](gallery.md)
+- [Using Color](using-color.md)
