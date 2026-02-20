@@ -6,14 +6,14 @@ import {
     Stories,
 } from "@storybook/addon-docs/blocks";
 import {Meta} from "@storybook/react-vite";
-import {View} from "@khanacademy/wonder-blocks-core";
 import TokenTable from "../components/token-table";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {themeModes} from "../../.storybook/modes";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
 import {flattenNestedTokens} from "../components/tokens-util";
 import {Code} from "../components/code";
+import {ColorSwatch} from "../components/color-swatch";
 
 /**
  * The color palette containing all the semantic Wonder Blocks colors.
@@ -89,22 +89,7 @@ export const SemanticColors = () => (
             },
             {
                 label: "Example",
-                cell: (row) => (
-                    <View
-                        style={{
-                            padding: sizing.size_060,
-                        }}
-                    >
-                        <View
-                            style={{
-                                backgroundColor: row.value,
-                                boxShadow: "0 0 0 1px rgba(0, 0, 0, 0.1)",
-                            }}
-                        >
-                            &nbsp;
-                        </View>
-                    </View>
-                ),
+                cell: (row) => <ColorSwatch backgroundColor={row.value} />,
             },
         ]}
         tokens={flattenNestedTokens(semanticColor)}
