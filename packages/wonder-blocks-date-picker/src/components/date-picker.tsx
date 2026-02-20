@@ -131,6 +131,7 @@ type RootWithEscProps = React.HTMLAttributes<Element> & {
     onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;
 };
 
+// Override the React Day Picker accent color.
 const customRootStyle = {
     "--rdp-accent-color": semanticColor.core.border.instructive.default,
 } as React.CSSProperties & Record<string, string>;
@@ -319,6 +320,7 @@ const DatePicker = (props: Props) => {
         }
         if (e.key === "Enter") {
             e.preventDefault();
+            // Toggle overlay: open if closed, close if open (respecting closeOnSelect)
             if (showOverlay) {
                 if (closeOnSelect) {
                     close();
@@ -438,9 +440,13 @@ const DatePicker = (props: Props) => {
         [maxDate],
     );
 
+    // Override the React Day Picker accent color with customRootStyle.
+    // This requires some trickery to override a CSS variable key.
     const dayPickerStyles = React.useMemo(
         () => ({
             root: {...customRootStyle},
+            // Override frontend repo style that causes the nav buttons
+            // to overlap the month name.
             nav: {width: "auto" as const},
         }),
         [],

@@ -29,6 +29,8 @@ function expectOverlayHidden() {
 
 describe("DatePicker", () => {
     beforeEach(() => {
+        // Mock getBoundingClientRect to provide realistic dimensions
+        // This prevents Popper from thinking elements are out of bounds
         Element.prototype.getBoundingClientRect = jest.fn(() => ({
             width: 300,
             height: 50,

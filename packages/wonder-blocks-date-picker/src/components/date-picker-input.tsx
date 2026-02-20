@@ -263,6 +263,9 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
                     (isLastTypedValue ||
                         (bothHaveContent && oneIsPrefixOfOther));
 
+                // If keepInvalidTextRef is set, we're keeping invalid text for validation
+                // Only skip sync if new prop is empty/null (would clear our kept text)
+                // Always sync if new prop has a valid value (e.g., calendar selection)
                 if (
                     keepInvalidTextRef.current &&
                     (!propValue || propValue.trim() === "")
@@ -279,6 +282,7 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
                     lastTypedTextFormatValueRef.current = null;
                     return;
                 } else {
+                    // Sync normally - either no flag set, or prop has valid value
                     setValue(propValue);
                     keepInvalidTextRef.current = false;
                     lastTypedTextFormatValueRef.current = null;
