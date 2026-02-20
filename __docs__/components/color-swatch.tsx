@@ -21,8 +21,8 @@ export const ColorSwatch = ({backgroundColor}: {backgroundColor: string}) => {
                     backgroundColor: backgroundColor,
                     boxShadow: `inset 0 0 1px 0 ${semanticColor.core.border.neutral.subtle}`,
                     padding: sizing.size_080,
-                    width: sizing.size_960,
-                    height: sizing.size_400,
+                    width: sizing.size_800,
+                    height: sizing.size_360,
                 }}
             >
                 &nbsp;
