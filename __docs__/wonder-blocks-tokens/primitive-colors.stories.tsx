@@ -46,7 +46,6 @@ export default {
             />
         ),
     },
-    tags: ["!dev"],
 } as Meta;
 
 type Row = {label: string; css: string; value: string};
