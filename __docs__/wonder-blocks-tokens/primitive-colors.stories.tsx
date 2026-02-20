@@ -16,6 +16,7 @@ import {Code} from "../components/code";
 // eslint-disable-next-line import/no-deprecated -- intentionally using deprecated tokens for this page
 import {color as defaultPrimitives} from "../../packages/wonder-blocks-tokens/src/tokens/color";
 import {color as thunderblocksPrimitives} from "../../packages/wonder-blocks-tokens/src/theme/semantic/internal/primitive-color-thunderblocks";
+import {ColorSwatch} from "../components/color-swatch";
 
 /**
  * Internal primitive color tokens used by the Wonder Blocks themes.
@@ -61,25 +62,7 @@ const columns = [
     },
     {
         label: "Example",
-        cell: (row: Row) => (
-            <View
-                style={{
-                    backgroundImage: `radial-gradient(${semanticColor.core.foreground.neutral.default} ${sizing.size_010}, ${semanticColor.core.background.base.subtle} ${sizing.size_010})`,
-                    backgroundSize: `${sizing.size_160} ${sizing.size_160}`,
-                    boxShadow: `0 0 1px 0 ${semanticColor.core.border.neutral.subtle}`,
-                }}
-            >
-                <View
-                    style={{
-                        backgroundColor: row.value,
-                        boxShadow: `inset 0 0 1px 0 ${semanticColor.core.border.neutral.subtle}`,
-                        padding: sizing.size_080,
-                    }}
-                >
-                    &nbsp;
-                </View>
-            </View>
-        ),
+        cell: (row: Row) => <ColorSwatch backgroundColor={row.value} />,
     },
 ];
 /**
