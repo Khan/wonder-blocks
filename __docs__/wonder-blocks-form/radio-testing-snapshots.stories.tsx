@@ -46,7 +46,7 @@ const meta = {
             modes: themeModes,
         },
     },
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
 } satisfies Meta<typeof Radio>;
 
 export default meta;

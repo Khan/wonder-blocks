@@ -42,7 +42,7 @@ const meta = {
     args: {
         children: "This is some text!",
     },
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
 } satisfies Meta<typeof Pill>;
 
 export default meta;

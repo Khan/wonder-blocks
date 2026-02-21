@@ -42,7 +42,7 @@ export default {
             },
         },
     },
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
 } as Meta<typeof Banner>;
 
 type StoryComponentType = StoryObj<typeof Banner>;

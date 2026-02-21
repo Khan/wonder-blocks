@@ -16,7 +16,7 @@ import {Icon} from "@khanacademy/wonder-blocks-icon";
  */
 export default {
     title: "Packages / IconButton / Testing / Snapshots / NodeIconButton",
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
     args: {
         "aria-label": "Node path",
         icon: IconMappings.lightningFill,
