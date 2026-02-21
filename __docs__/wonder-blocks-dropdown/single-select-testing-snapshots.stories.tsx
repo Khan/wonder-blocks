@@ -32,7 +32,7 @@ export default {
         onChange: () => {},
         placeholder: "Placeholder",
     },
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
 } as Meta;
 
 type Story = StoryObj<typeof SingleSelect>;

@@ -18,7 +18,7 @@ import {Icon} from "@khanacademy/wonder-blocks-icon";
  */
 export default {
     title: "Packages / IconButton / Testing / Snapshots / IconButton",
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
     args: {
         "aria-label": "Send",
         icon: paperPlaneIcon,

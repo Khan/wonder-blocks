@@ -21,7 +21,7 @@ export default {
             },
         },
     },
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
 } as Meta;
 
 export const WithOnePaneDialog = {

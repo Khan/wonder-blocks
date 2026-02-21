@@ -19,7 +19,7 @@ export default {
             modes: themeModes,
         },
     },
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
     args: {},
 } as Meta<typeof Card>;
 

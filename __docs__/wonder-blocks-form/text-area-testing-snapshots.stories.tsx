@@ -26,7 +26,7 @@ export default {
             modes: themeModes,
         },
     },
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
 } as Meta;
 
 type Story = StoryObj<typeof TextArea>;
