@@ -249,12 +249,12 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
                 hover: {
                     border: core.border.critical.strong,
                     background: core.background.critical.subtle,
-                    foreground: core.foreground.critical.strong,
+                    foreground: core.foreground.critical.default,
                 },
                 press: {
                     border: core.border.critical.strong,
                     background: core.background.critical.subtle,
-                    foreground: core.foreground.critical.strong,
+                    foreground: core.foreground.critical.default,
                 },
             },
             neutral: {
@@ -413,7 +413,7 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
                 tertiary: {
                     rest: core.transparent,
                     hover: core.shadow.chonky.neutral.subtle,
-                    press: core.shadow.chonky.neutral.subtle,
+                    press: core.transparent,
                     selected: core.shadow.chonky.instructive.subtle,
                 },
             },
@@ -488,13 +488,13 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
         },
         disabled: {
             background: {
-                primary: core.background.disabled.strong,
+                primary: core.background.neutral.default,
                 secondary: core.background.neutral.subtle,
                 tertiary: core.background.disabled.subtle,
             },
             border: {
                 primary: core.border.disabled.subtle,
-                secondary: core.border.disabled.default,
+                secondary: core.border.neutral.subtle,
                 tertiary: core.border.disabled.subtle,
             },
             foreground: {
