@@ -51,7 +51,7 @@ const core = {
         base: {
             subtle: color.offWhite,
             default: color.white,
-            strong: color.fadedBlue16,
+            strong: color.darkBlue,
         },
         instructive: {
             subtle: color.fadedBlue8,
@@ -75,8 +75,8 @@ const core = {
         },
         warning: {
             subtle: color.fadedGold8,
-            default: color.gold,
-            strong: color.activeGold,
+            default: color.fadedGold24,
+            strong: color.gold,
         },
         disabled: {
             subtle: transparent,
@@ -147,7 +147,7 @@ const core = {
 };
 
 const sharedFeedbackStrongTokens = {
-    background: core.background.neutral.strong,
+    background: core.background.base.strong,
     border: core.border.neutral.strong,
     text: core.foreground.knockout.default,
 };

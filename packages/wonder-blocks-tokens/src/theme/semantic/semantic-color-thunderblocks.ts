@@ -51,7 +51,7 @@ const core = {
         base: {
             subtle: color.blue_90,
             default: color.white_100,
-            strong: color.blue_70,
+            strong: color.black_100,
         },
         instructive: {
             subtle: color.blue_80,
@@ -61,20 +61,20 @@ const core = {
         neutral: {
             subtle: color.gray_80,
             default: color.gray_20,
-            strong: color.black_100,
+            strong: color.gray_10,
         },
         critical: {
-            subtle: color.red_90,
+            subtle: color.red_80,
             default: color.red_20,
             strong: color.red_05,
         },
         success: {
-            subtle: color.green_90,
+            subtle: color.green_80,
             default: color.green_30,
             strong: color.green_20,
         },
         warning: {
-            subtle: color.yellow_90,
+            subtle: color.yellow_80,
             default: color.yellow_60,
             strong: color.yellow_10,
         },
@@ -84,7 +84,7 @@ const core = {
             strong: color.gray_70,
         },
         overlay: {
-            default: color.black_50,
+            default: color.black_60,
         },
     },
 
@@ -147,7 +147,7 @@ const core = {
 };
 
 const sharedFeedbackStrongTokens = {
-    background: core.background.neutral.strong,
+    background: core.background.base.strong,
     border: core.border.neutral.strong,
     text: core.foreground.knockout.default,
 };
