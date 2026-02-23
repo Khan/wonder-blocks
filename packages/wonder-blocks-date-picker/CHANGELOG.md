@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-date-picker
 
+## 1.0.0
+
+### Major Changes
+
+- 76f6e41: Date picker bugfixes: change dateFormat to string formats only, adjust inline padding, remove default width, fix key handling so Escape will only close date picker overlay and not a parent modal
+
+### Minor Changes
+
+- 9fd7228: Adjusts input validation for text-based date formats, improves focus management of next/previous month buttons
+
 ## 0.1.3
 
 ### Patch Changes

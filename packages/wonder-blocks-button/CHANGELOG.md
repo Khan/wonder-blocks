@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-button
 
+## 11.4.0
+
+### Minor Changes
+
+- 7c7c3d3: Add styles prop to Button for overriding sub-element styles (startIcon, endIcon)
+
 ## 11.3.4
 
 ### Patch Changes
