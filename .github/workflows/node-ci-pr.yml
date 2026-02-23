@@ -27,7 +27,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node-version: [20.x]
+        node-version: [24.x]
     steps:
       - uses: actions/checkout@v4
       - name: Install & cache node_modules
@@ -42,7 +42,7 @@ jobs:
     strategy:
         matrix:
             os: [ubuntu-latest]
-            node-version: [20.x]
+            node-version: [24.x]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -75,7 +75,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node-version: [20.x]
+        node-version: [24.x]
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node-version }}
@@ -116,7 +116,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node-version: [20.x]
+        node-version: [24.x]
     steps:
       # We need to checkout all history, so that the changeset tool can diff it
       - name: Checkout current commit
