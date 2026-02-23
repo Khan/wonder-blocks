@@ -82,6 +82,7 @@ alwaysApply: true
 * ✅ Strictly adhere to ESLint and Prettier
 * ✅ The project enforces import order: React, third-party libs, then internal imports
 * ✅ JSDoc comments should be used for complex functions, but TypeScript types are preferred over JSDoc type annotations
+* ❌ **NEVER remove existing comments** that are used to provide context
 * ✅ Run `pnpm lint` before submitting changes
 
 ## Component Design Fundamentals

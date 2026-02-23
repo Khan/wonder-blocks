@@ -49,6 +49,7 @@ module.exports = {
         {
             files: ["**/*.test.*"],
             rules: {
+                "max-lines": "off",
                 "no-undef": "off",
                 "import/no-deprecated": "off",
                 "@typescript-eslint/no-require-imports": "off",

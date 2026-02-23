@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 import * as React from "react";
 import {
     fireEvent,
@@ -293,7 +292,6 @@ describe("SingleSelect", () => {
 
                 // Act
                 await userEvent.click(opener);
-
                 // Assert
                 const options = screen.getAllByRole("option", {hidden: true});
                 expect(options[0]).toHaveFocus();
@@ -392,7 +390,6 @@ describe("SingleSelect", () => {
 
                         // Act
                         await userEvent.keyboard(key);
-
                         // Assert
                         const options = screen.getAllByRole("option", {
                             hidden: true,
@@ -409,7 +406,6 @@ describe("SingleSelect", () => {
 
                 // Act
                 await userEvent.keyboard("{Enter}"); // open
-
                 // Ensure first option is focused, not the opener
                 const firstItem = await screen.findByRole("option", {
                     name: /item 1/,
@@ -423,7 +419,6 @@ describe("SingleSelect", () => {
                 const {userEvent} = doRender(uncontrolledSingleSelect);
                 await userEvent.tab();
                 await userEvent.keyboard("{Enter}"); // open
-
                 // Act
                 await userEvent.keyboard("{Enter}");
 

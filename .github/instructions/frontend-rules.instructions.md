@@ -79,6 +79,7 @@ This file provides frontend development instructions for the Wonder Blocks desig
 - Strictly adhere to ESLint and Prettier
 - The project enforces import order: React, third-party libs, then internal imports
 - JSDoc comments for complex functions; TypeScript types preferred over JSDoc type annotations
+- **Never remove existing comments** that are used to provide context
 - Run `pnpm lint` before submitting changes
 
 ## Component Design

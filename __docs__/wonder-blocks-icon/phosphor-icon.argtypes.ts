@@ -52,6 +52,7 @@ import gear from "@phosphor-icons/core/regular/gear.svg";
 import cookie from "@phosphor-icons/core/regular/cookie.svg";
 import cookieBold from "@phosphor-icons/core/bold/cookie-bold.svg";
 import iceCream from "@phosphor-icons/core/regular/ice-cream.svg";
+import iceCreamBold from "@phosphor-icons/core/bold/ice-cream-bold.svg";
 import lightningFill from "@phosphor-icons/core/fill/lightning-fill.svg";
 
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
@@ -113,6 +114,7 @@ export const IconMappings = {
     cookie,
     cookieBold,
     iceCream,
+    iceCreamBold,
     lightningFill,
 } as const;
 

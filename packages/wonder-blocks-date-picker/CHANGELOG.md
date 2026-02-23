@@ -1,5 +1,24 @@
 # @khanacademy/wonder-blocks-date-picker
 
+## 1.0.0
+
+### Major Changes
+
+- 76f6e41: Date picker bugfixes: change dateFormat to string formats only, adjust inline padding, remove default width, fix key handling so Escape will only close date picker overlay and not a parent modal
+
+### Minor Changes
+
+- 9fd7228: Adjusts input validation for text-based date formats, improves focus management of next/previous month buttons
+
+## 0.1.3
+
+### Patch Changes
+
+- 12e04c3: Update component documentation for the `disabled` props to include details about `aria-disabled` being set internally to keep an element focusable while in a disabled state
+- Updated dependencies [12e04c3]
+    - @khanacademy/wonder-blocks-form@7.5.4
+    - @khanacademy/wonder-blocks-modal@8.5.15
+
 ## 0.1.2
 
 ### Patch Changes

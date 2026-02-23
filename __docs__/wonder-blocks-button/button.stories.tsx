@@ -698,6 +698,32 @@ export const CustomStyles = {
     ),
 };
 
+/**
+ * The `styles` prop allows overriding styles for specific sub-elements
+ * within the Button. In this example, the start icon is rendered at 24x24
+ * instead of the default theme size.
+ *
+ * **Note:** Use this prop sparingly and only when the default theme styling
+ * does not meet your needs (e.g. a custom trigger button that requires a
+ * non-standard icon size).
+ */
+export const CustomIconSize: StoryComponentType = {
+    args: {
+        children: "Custom icon size",
+        startIcon: plus,
+        kind: "secondary",
+        styles: {
+            startIcon: {width: sizing.size_240, height: sizing.size_240},
+        },
+        onClick: action("clicked"),
+    },
+    parameters: {
+        chromatic: {
+            disableSnapshot: true,
+        },
+    },
+};
+
 export const SubmittingForms: StoryComponentType = {
     name: "Submitting forms",
     render: () => (

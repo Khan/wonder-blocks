@@ -1,5 +1,30 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.8.0
+
+### Minor Changes
+
+- a46a842: Adds focus delay to announce expanded state in Windows screen readers
+
+### Patch Changes
+
+- 9abc34a: Updates `Combobox` multi-select variant to properly update the list of selected values when the items are removed from the MultipleSelection group
+- e0aaa9e: Fixes `ActionMenu` to associate an aria-label to the button element when menuText is not enough to announce the menu intention. Also adds `aria-labelledby` to the `menu` element to associate it with the opener.
+
+## 10.7.1
+
+### Patch Changes
+
+- 12e04c3: Update component documentation for the `disabled` props to include details about `aria-disabled` being set internally to keep an element focusable while in a disabled state
+- Updated dependencies [12e04c3]
+    - @khanacademy/wonder-blocks-search-field@5.1.61
+    - @khanacademy/wonder-blocks-icon-button@11.1.4
+    - @khanacademy/wonder-blocks-clickable@8.1.3
+    - @khanacademy/wonder-blocks-cell@6.1.9
+    - @khanacademy/wonder-blocks-form@7.5.4
+    - @khanacademy/wonder-blocks-modal@8.5.15
+    - @khanacademy/wonder-blocks-pill@3.1.55
+
 ## 10.7.0
 
 ### Minor Changes

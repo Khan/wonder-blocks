@@ -1,6 +1,7 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 import {Temporal} from "temporal-polyfill";
 import * as React from "react";
+import {expect, userEvent, waitFor, within} from "storybook/test";
 
 import {fr, es} from "date-fns/locale";
 import Button from "@khanacademy/wonder-blocks-button";
@@ -8,6 +9,7 @@ import {View, type PropsFor} from "@khanacademy/wonder-blocks-core";
 import {sizing, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
+import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
 import {DatePicker} from "@khanacademy/wonder-blocks-date-picker";
 
 import ComponentInfo from "../components/component-info";
@@ -36,12 +38,14 @@ const DatePickerWrapper = (props: Props) => {
             }}
         >
             <Button>prev</Button>
-            <DatePicker
-                {...props}
-                inputAriaLabel="Choose or enter a date"
-                updateDate={handleUpdateDate}
-                selectedDate={selectedDate}
-            />
+            <View style={{flexGrow: 1, maxWidth: "24rem"}}>
+                <DatePicker
+                    {...props}
+                    inputAriaLabel="Choose or enter a date"
+                    updateDate={handleUpdateDate}
+                    selectedDate={selectedDate}
+                />
+            </View>
             <Button>next</Button>
         </View>
     );
@@ -405,5 +409,177 @@ export const SpanishLocalizationNumericFormat: Story = {
         updateDate: () => {},
         locale: es,
         inputAriaLabel: "Elegir o introducir una fecha",
+    },
+};
+
+const DatePickerInsideModalExample = () => {
+    const [selectedDate, setSelectedDate] = React.useState<
+        Temporal.PlainDate | null | undefined
+    >(Temporal.PlainDate.from("2026-01-16"));
+    const [selectedDate2, setSelectedDate2] = React.useState<
+        Temporal.PlainDate | null | undefined
+    >(null);
+
+    return (
+        <ModalLauncher
+            modal={({closeModal}) => (
+                <OnePaneDialog
+                    title="Date Picker in Modal"
+                    content={
+                        <View style={{gap: spacing.medium_16}}>
+                            <BodyText>
+                                This demonstrates DatePickers inside a modal.
+                                Press Escape when focused on a date picker input
+                                to test that it only closes the calendar
+                                overlay, not the entire modal.
+                            </BodyText>
+                            <LabeledField
+                                label="Start Date"
+                                field={
+                                    <DatePicker
+                                        selectedDate={selectedDate}
+                                        updateDate={setSelectedDate}
+                                        placeholder="MM/DD/YYYY"
+                                    />
+                                }
+                            />
+                            <LabeledField
+                                label="End Date"
+                                field={
+                                    <DatePicker
+                                        selectedDate={selectedDate2}
+                                        updateDate={setSelectedDate2}
+                                        placeholder="MM/DD/YYYY"
+                                    />
+                                }
+                            />
+                        </View>
+                    }
+                    footer={<Button onClick={closeModal}>Close Modal</Button>}
+                />
+            )}
+        >
+            {({openModal}) => <Button onClick={openModal}>Open Modal</Button>}
+        </ModalLauncher>
+    );
+};
+
+/**
+ * DatePicker inside a Modal to test that pressing Escape only closes the
+ * calendar overlay, not the modal itself.
+
+ */
+export const InsideModal: Story = {
+    render: () => <DatePickerInsideModalExample />,
+    play: async ({canvasElement}) => {
+        const canvas = within(canvasElement.ownerDocument.body);
+
+        // Open modal and focus the first date picker input so the overlay opens
+        await userEvent.click(canvas.getByRole("button", {name: "Open Modal"}));
+        const dialog = await canvas.findByRole("dialog", {
+            name: "Date Picker in Modal",
+        });
+        const textboxes = await within(dialog).findAllByRole("textbox");
+        const dateInput = textboxes[0];
+        await userEvent.click(dateInput);
+
+        await canvas.findByRole("grid");
+        expect(dateInput).toHaveFocus();
+
+        // fire keydown to trigger handledEscapeRef in DatePicker
+        dateInput.dispatchEvent(
+            new KeyboardEvent("keydown", {
+                key: "Escape",
+                bubbles: true,
+            }),
+        );
+
+        // fire keyup to stop propagation to modal based on handledEscapeRef
+        dateInput.dispatchEvent(
+            new KeyboardEvent("keyup", {
+                key: "Escape",
+                bubbles: true,
+            }),
+        );
+
+        await waitFor(() => {
+            expect(canvas.queryByRole("grid")).not.toBeInTheDocument();
+        });
+        expect(
+            canvas.getByRole("dialog", {name: "Date Picker in Modal"}),
+        ).toBeInTheDocument();
+
+        // Press Escape again to close the modal
+        await userEvent.keyboard("{Escape}");
+        await waitFor(() => {
+            expect(canvas.queryByRole("dialog")).not.toBeInTheDocument();
+        });
+    },
+};
+
+/**
+ * DatePicker with custom styling to demonstrate that the style prop works.
+ * This example shows how to override the default width (225px) and height (40px)
+ * using the style prop.
+ *
+ * **Examples shown:**
+ * - Default width (225px) and height (40px)
+ * - Custom width (350px) with default height
+ * - Full width (100%) to fill parent container
+ * - Custom height (48px) for larger touch targets
+ */
+export const WithCustomStyles: Story = {
+    render: (args) => (
+        <View style={{gap: spacing.large_24, maxWidth: 600}}>
+            <View style={{gap: spacing.xSmall_8}}>
+                <BodyText weight="bold" tag="label" htmlFor="custom-example1">
+                    Date with default size (225px × 40px)
+                </BodyText>
+                <DatePicker
+                    {...args}
+                    placeholder="MM/DD/YYYY"
+                    id="custom-example1"
+                />
+            </View>
+
+            <View style={{gap: spacing.xSmall_8}}>
+                <BodyText weight="bold" tag="label" htmlFor="custom-example2">
+                    Date with custom width (350px)
+                </BodyText>
+                <DatePicker
+                    {...args}
+                    placeholder="MM/DD/YYYY"
+                    id="custom-example2"
+                    style={{width: 350}}
+                />
+            </View>
+
+            <View style={{gap: spacing.xSmall_8}}>
+                <BodyText weight="bold" tag="label" htmlFor="custom-example3">
+                    Date with full width (100%)
+                </BodyText>
+                <DatePicker
+                    {...args}
+                    placeholder="MM/DD/YYYY"
+                    id="custom-example3"
+                    style={{width: "100%"}}
+                />
+            </View>
+
+            <View style={{gap: spacing.xSmall_8}}>
+                <BodyText weight="bold" tag="label" htmlFor="custom-example4">
+                    Date with custom height for larger touch target (48px)
+                </BodyText>
+                <DatePicker
+                    {...args}
+                    placeholder="MM/DD/YYYY"
+                    id="custom-example4"
+                    style={{height: sizing.size_480}}
+                />
+            </View>
+        </View>
+    ),
+    args: {
+        updateDate: () => {},
     },
 };

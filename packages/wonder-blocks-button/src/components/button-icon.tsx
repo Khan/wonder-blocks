@@ -27,7 +27,7 @@ export function ButtonIcon({
     };
 
     const commonProps = {
-        style: [style, iconStyle],
+        style: [iconStyle, style],
         testId,
     };
 
