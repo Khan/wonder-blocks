@@ -3,6 +3,39 @@ import type {Locale} from "react-day-picker/locale";
 import {CustomModifiers} from "./types";
 
 export const enUSLocaleCode = "en-US";
+
+/** Date format strings that use month names (e.g. "January") and need special handling for partial input and commit detection. */
+const TEXT_FORMAT_STRINGS = ["LL", "MMMM D, YYYY", "MMM D, YYYY"] as const;
+
+/**
+ * True if the format displays the month as text (LL, MMMM D YYYY, MMM D YYYY).
+ * Used to decide when to treat input as "complete" vs partial and when to sync overlay month from typing.
+ */
+export function isTextFormatDate(
+    formatString: string | null | undefined,
+): boolean {
+    return (
+        formatString != null &&
+        (TEXT_FORMAT_STRINGS as readonly string[]).includes(formatString)
+    );
+}
+
+/**
+ * Normalize a date string for comparison (e.g. round-trip or commit checks).
+ * Trims, lowercases, collapses whitespace, and replaces common punctuation
+ * (comma, period, narrow no-break space) with space so minor formatting
+ * differences don't invalidate the input.
+ */
+export function normalizeDateStringForComparison(s: string): string {
+    return s
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, " ")
+        .replace(/[,.\u202f]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+}
+
 /**
  * Utility functions for working with Temporal dates in react-day-picker.
  * Uses Intl.DateTimeFormat for locale-aware date formatting and parsing.
@@ -299,14 +332,18 @@ export function parseDateToJsDate(
             return temporalDateToJsDate(temporalDate);
         }
 
-        // For LL format, be more lenient with validation since text-based dates
-        // can have spacing/punctuation variations that are still semantically correct
-        if (formatString === "LL") {
-            // Normalize whitespace and compare
+        // For text-based formats (LL, MMMM D, YYYY, MMM D, YYYY), be more lenient
+        // with validation since text-based dates can have spacing/punctuation/capitalization
+        // variations that are still semantically correct
+        const isTextFormat = isTextFormatDate(formatString);
+
+        if (isTextFormat) {
+            // Normalize formatted date whitespace/capitalization and compare.
             const normalizedFormatted = formatted
                 .replace(/\s+/g, " ")
                 .trim()
                 .toLowerCase();
+            // Normalize input value the same way for comparison (e.g. "January  5, 2026" → "january 5 2026")
             const normalizedValue = value
                 .replace(/\s+/g, " ")
                 .trim()
@@ -316,9 +353,16 @@ export function parseDateToJsDate(
                 return temporalDateToJsDate(temporalDate);
             }
 
-            // If parse succeeded but format doesn't match exactly,
-            // still accept it for LL format (text dates are inherently fuzzy)
-            return temporalDateToJsDate(temporalDate);
+            // Allow partial input (e.g. "June" → June 1) so overlay can show the month while typing.
+            if (
+                normalizedFormatted.startsWith(normalizedValue) ||
+                normalizedValue.startsWith(normalizedFormatted)
+            ) {
+                return temporalDateToJsDate(temporalDate);
+            }
+
+            // Mismatch (e.g. invalid day like "February 30, 2026" → Feb 28) - reject
+            return undefined;
         }
 
         // Date was parsed but doesn't match format - return undefined
@@ -495,83 +539,91 @@ function parseLocaleAwareDate(
 /**
  * Parse a text-based date string using locale-specific month names.
  * Handles formats like "January 20, 2026" (en-US) or "20 de enero de 2026" (es).
+ * Also accepts partial input (e.g. "June" or "June 15") so the calendar overlay
+ * can show the correct month while the user is still typing.
+ * Month names are matched case-insensitively (e.g. "february" and "February" both match).
  */
 function parseTextDate(
     str: string,
     locale: string,
 ): Temporal.PlainDate | undefined {
     try {
-        // Get month names for the locale
         const months = getMonths(locale);
-
-        // Extract all numbers from the string (day and year)
-        // Note: \d matches ASCII digits 0-9 only, which is correct since
-        // Intl.DateTimeFormat always outputs ASCII digits regardless of locale
-        const numbers = str.match(/\d+/g);
-        if (!numbers || numbers.length < 2) {
-            return undefined;
-        }
-
-        // Find which month name appears in the string
-        let monthIndex = -1;
+        // Extract all numbers from the string (day and year).
+        // \d matches ASCII digits only; Intl.DateTimeFormat uses ASCII digits (0-9) for all locales.
+        const numbers = str.match(/\d+/g) ?? [];
         const lowerStr = str.toLowerCase();
 
+        let monthIndex = -1;
         for (let i = 0; i < months.length; i++) {
             const [longName, shortName] = months[i];
             if (
                 lowerStr.includes(longName.toLowerCase()) ||
                 lowerStr.includes(shortName.toLowerCase())
             ) {
-                monthIndex = i + 1; // Month is 1-indexed
+                monthIndex = i + 1;
                 break;
             }
         }
-
         if (monthIndex === -1) {
             return undefined;
         }
 
-        // Parse numbers as day and year
-        // Try both orderings: day-year and year-day
-        let day: number;
-        let year: number;
+        const now = Temporal.Now.plainDateISO();
 
-        const num1 = parseInt(numbers[0], 10);
-        const num2 = parseInt(numbers[1], 10);
-
-        // If first number is > 31, it's likely the year
-        if (num1 > 31) {
-            year = num1;
-            day = num2;
-        }
-        // If second number is > 31 or a 4-digit number, it's likely the year
-        else if (num2 > 31 || num2.toString().length === 4) {
-            day = num1;
-            year = num2;
-        }
-        // Default: assume first is day, second is year
-        else {
-            day = num1;
-            year = num2;
-        }
-
-        // Validate ranges
-        if (
-            day < 1 ||
-            day > 31 ||
-            monthIndex < 1 ||
-            monthIndex > 12 ||
-            year < 1000 ||
-            year > 9999
-        ) {
-            return undefined;
+        // Full parse: month + day + year (at least two numbers)
+        if (numbers.length >= 2) {
+            const n1 = numbers[0];
+            const n2 = numbers[1];
+            if (n1 === undefined || n2 === undefined) {
+                return undefined;
+            }
+            let day: number;
+            let year: number;
+            const num1 = parseInt(n1, 10);
+            const num2 = parseInt(n2, 10);
+            if (num1 > 31) {
+                year = num1;
+                day = num2;
+            } else if (num2 > 31 || num2.toString().length === 4) {
+                day = num1;
+                year = num2;
+            } else {
+                day = num1;
+                year = num2;
+            }
+            if (day < 1 || day > 31 || year < 1000 || year > 9999) {
+                return undefined;
+            }
+            return Temporal.PlainDate.from({
+                year,
+                month: monthIndex,
+                day,
+            });
         }
 
-        // Try to create the date
+        // Partial parse (month + one number): overlay can show the right month
+        if (numbers.length === 1) {
+            const n0 = numbers[0];
+            if (n0 === undefined) {
+                return undefined;
+            }
+            const n = parseInt(n0, 10);
+            const isYear = n >= 1000 && n <= 9999;
+            const year = isYear ? n : now.year;
+            const day = isYear ? 1 : n >= 1 && n <= 31 ? n : 1;
+            return Temporal.PlainDate.from({
+                year,
+                month: monthIndex,
+                day,
+            });
+        }
+
+        // Month name only (e.g. "June") -> first of that month, current year
         return Temporal.PlainDate.from({
-            year,
+            year: now.year,
             month: monthIndex,
-            day,
+            day: 1,
         });
     } catch {
         return undefined;
@@ -642,18 +694,13 @@ function parseWithFormat(
         try {
             const cleaned = str.trim();
             const localeStr = locale || enUSLocaleCode;
-
-            // Use strict manual parsing
             const parts = cleaned.split(",");
             if (parts.length === 2) {
                 const [monthDay, yearStr] = parts;
                 const year = parseInt(yearStr.trim(), 10);
-
-                // Validate year is 4 digits (1000-9999)
                 if (year < 1000 || year > 9999) {
                     return undefined;
                 }
-
                 const months = getMonths(localeStr).map((m) => m[0]);
                 const monthDayParts = monthDay.trim().split(" ");
                 if (monthDayParts.length === 2) {
@@ -674,13 +721,12 @@ function parseWithFormat(
                     }
                 }
             }
+            // Partial input (e.g. "June" or "June 15") so overlay can show the correct month
+            return parseTextDate(cleaned, localeStr);
         } catch {
             return undefined;
         }
     }
-
-    // For more complex parsing, you might need a proper date parsing library
-    // or implement more format patterns as needed
 
     return undefined;
 }
@@ -726,6 +772,8 @@ export const endOfDay = (date: Date): Date => {
 export const TemporalLocaleUtils = {
     // Core date formatting and parsing
     formatDate,
+    isTextFormatDate,
+    normalizeDateStringForComparison,
     parseDate,
     parseDateToJsDate,
     startOfIsoWeek,

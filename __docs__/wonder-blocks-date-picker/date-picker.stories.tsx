@@ -474,7 +474,7 @@ export const InsideModal: Story = {
     play: async ({canvasElement}) => {
         const canvas = within(canvasElement.ownerDocument.body);
 
-        // 1. Open modal and focus the first date picker input so the overlay opens
+        // Open modal and focus the first date picker input so the overlay opens
         await userEvent.click(canvas.getByRole("button", {name: "Open Modal"}));
         const dialog = await canvas.findByRole("dialog", {
             name: "Date Picker in Modal",
