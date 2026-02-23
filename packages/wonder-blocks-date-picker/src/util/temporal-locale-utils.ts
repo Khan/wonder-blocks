@@ -53,15 +53,12 @@ export const enUSLocaleCode = "en-US";
  */
 export function formatDate(
     date: Temporal.PlainDate,
-    format: string | Array<string> | null | undefined,
+    formatString: string | null | undefined,
     locale?: Locale | string,
 ): string {
     // Extract locale code string from Locale object or use string directly
     const localeCode =
         typeof locale === "string" ? locale : (locale?.code ?? enUSLocaleCode);
-
-    // If format is an array, use the first one
-    const formatString = Array.isArray(format) ? format[0] : format;
 
     if (!formatString) {
         // Default format: Locale-aware short date with 4-digit year
@@ -162,38 +159,34 @@ export function formatDate(
 
 /**
  * Parse a date string into a Temporal.PlainDate.
- * Attempts multiple formats if an array is provided.
  */
 export function parseDate(
     str: string,
-    format: string | Array<string> | null | undefined,
+    formatString: string | null | undefined,
     locale?: string,
 ): Temporal.PlainDate | undefined {
     if (!str || str.trim() === "") {
         return undefined;
     }
 
-    // Default to "L" format to match formatDate's default
-    const formats = Array.isArray(format) ? format : [format || "L"];
-
     // Try ISO format first (most common)
     try {
         return Temporal.PlainDate.from(str);
     } catch {
-        // Continue to try other formats
+        // Continue to try other format
     }
 
-    // Try parsing with Intl for locale-specific formats
-    for (const fmt of formats) {
-        try {
-            const parsed = parseWithFormat(str, fmt, locale);
-            if (parsed) {
-                return parsed;
-            }
-        } catch {
-            // Try next format
-            continue;
+    // Default to "L" format to match formatDate's default
+    const format = formatString || "L";
+
+    // Try parsing with Intl for locale-specific format
+    try {
+        const parsed = parseWithFormat(str, format, locale);
+        if (parsed) {
+            return parsed;
         }
+    } catch {
+        // Return undefined if parsing fails
     }
 
     return undefined;
@@ -267,7 +260,7 @@ export function jsDateToTemporalDate(date: Date): Temporal.PlainDate {
  */
 export function parseDateToJsDate(
     value: string | Date,
-    format: string | Array<string> | null | undefined,
+    formatString: string | null | undefined,
     locale?: string | null | undefined,
 ): Date | null | undefined {
     // If already a Date, return it
@@ -275,12 +268,16 @@ export function parseDateToJsDate(
         return value;
     }
 
-    const temporalDate = parseDate(value, format, locale || undefined);
+    const temporalDate = parseDate(value, formatString, locale || undefined);
 
     // STRICT VALIDATION: Verify the parsed date, when formatted back,
     // matches the original input (allowing for padding flexibility).
     if (temporalDate) {
-        const formatted = formatDate(temporalDate, format, locale || undefined);
+        const formatted = formatDate(
+            temporalDate,
+            formatString,
+            locale || undefined,
+        );
 
         // For numeric formats, accept both padded and unpadded input
         // e.g., "1/30/2026" and "01/30/2026" should both be valid for "MM/DD/YYYY"
@@ -304,7 +301,7 @@ export function parseDateToJsDate(
 
         // For LL format, be more lenient with validation since text-based dates
         // can have spacing/punctuation variations that are still semantically correct
-        if (format === "LL") {
+        if (formatString === "LL") {
             // Normalize whitespace and compare
             const normalizedFormatted = formatted
                 .replace(/\s+/g, " ")

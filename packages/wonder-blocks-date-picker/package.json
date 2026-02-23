@@ -43,6 +43,7 @@
     "@phosphor-icons/core": "catalog:",
     "@popperjs/core": "catalog:",
     "aphrodite": "catalog:",
+    "date-fns": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-popper": "catalog:",

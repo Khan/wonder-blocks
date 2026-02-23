@@ -818,6 +818,9 @@ importers:
       aphrodite:
         specifier: 'catalog:'
         version: 1.2.5
+      date-fns:
+        specifier: 'catalog:'
+        version: 4.1.0
       react:
         specifier: 'catalog:'
         version: 18.2.0

@@ -43,10 +43,10 @@ interface Props {
     updateDate: (arg1?: Temporal.PlainDate | null | undefined) => any;
     /**
      * Used to format the value as a valid Date.
-     * If not specified, defaults to locale-aware short date format.
+     * When nullish (undefined or omitted), defaults to locale-aware short date (same as "L").
      *
      * Supported formats:
-     * - **undefined**: Locale-aware short date (default - uses Intl.DateTimeFormat with full year)
+     * - **undefined** (omit or pass undefined): Locale-aware short date (same as "L")
      * - **"L"**: Locale-aware short date (e.g., "1/20/2026" in en-US, "20.01.2026" in de-DE, "20/01/2026" in bg)
      * - **"LL"**: Locale-aware long date (e.g., "January 20, 2026" in en-US, "20 de enero de 2026" in es)
      *   - Supports manual text editing using locale-specific month names
@@ -54,7 +54,7 @@ interface Props {
      * - **"MMMM D, YYYY"**: Text format (e.g., "January 20, 2026") - month name localized but US order
      * - **"dateStyle:short|medium|long|full"**: Explicit Intl.DateTimeFormat dateStyle values
      */
-    dateFormat?: Array<string> | string;
+    dateFormat?: string;
     /**
      * Whether the DatePicker component is disabled.
      *
@@ -163,6 +163,8 @@ const DatePicker = (props: Props) => {
     const datePickerInputRef = React.useRef<HTMLInputElement | null>(null);
     const datePickerRef = React.useRef<HTMLElement | null>(null);
     const refWrapper = React.useRef<HTMLDivElement>(null);
+    // Track if we handled Escape on keydown to prevent keyup from closing modal
+    const handledEscapeRef = React.useRef(false);
 
     const open = React.useCallback(() => {
         if (!disabled) {
@@ -188,6 +190,27 @@ const DatePicker = (props: Props) => {
             );
         }
     }, [selectedDate]);
+
+    // Add keyup event listener to handle Escape key and prevent modal from
+    // closing parent modals
+    React.useEffect(() => {
+        const handleKeyup = (e: KeyboardEvent) => {
+            if (e.key === "Escape" && handledEscapeRef.current) {
+                // Stop propagation to prevent closing parent modals. This is the
+                // important part: we only stop Escape keyup if we
+                // previously handled the keydown, which means the overlay was
+                // open and we closed it.
+                e.stopPropagation();
+                handledEscapeRef.current = false;
+            }
+        };
+
+        // Use capture phase so we run before modal's listener
+        window.addEventListener("keyup", handleKeyup, true);
+        return () => {
+            window.removeEventListener("keyup", handleKeyup, true);
+        };
+    }, []);
 
     // Add/remove mouseup event listener for outside click
     React.useEffect(() => {
@@ -276,8 +299,19 @@ const DatePicker = (props: Props) => {
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
         if (e.key === "Escape") {
-            close();
-            datePickerInputRef.current?.focus();
+            // Only handle Escape if the overlay is open
+            if (showOverlay) {
+                // Stop propagation to prevent closing parent modals
+                // The overlay is open, so we close it first
+                e.stopPropagation();
+
+                // Mark that we handled this Escape keypress
+                handledEscapeRef.current = true;
+                close();
+                datePickerInputRef.current?.focus();
+            }
+            // If overlay is closed, don't stop propagation
+            // This allows Escape to close parent modals
         }
         if (e.key === "ArrowDown" && !showOverlay) {
             e.preventDefault();
@@ -306,6 +340,10 @@ const DatePicker = (props: Props) => {
                 onKeyDown={(e) => {
                     onKeyDown?.(e);
                     if (e.key === "Escape") {
+                        // Stop propagation to prevent closing parent modals
+                        e.stopPropagation();
+                        // Mark that we handled this Escape keypress
+                        handledEscapeRef.current = true;
                         close();
                         datePickerInputRef.current?.focus();
                     }
@@ -404,12 +442,13 @@ const DatePicker = (props: Props) => {
     } as const;
 
     return (
-        <View style={[styles.wrapper, style]} ref={refWrapper}>
+        <View style={style} ref={refWrapper}>
             {renderInput(modifiers)}
             {showOverlay && (
                 <DatePickerOverlay
                     referenceElement={datePickerInputRef.current}
                     onClose={close}
+                    dir={dir === "rtl" ? "rtl" : "ltr"}
                 >
                     <View ref={datePickerRef}>
                         <DayPicker
@@ -454,10 +493,6 @@ DatePicker.defaultProps = {
 export default DatePicker;
 
 const styles = StyleSheet.create({
-    wrapper: {
-        width: 225,
-        height: 40,
-    },
     footer: {
         margin: sizing.size_120,
         marginBlockStart: 0,

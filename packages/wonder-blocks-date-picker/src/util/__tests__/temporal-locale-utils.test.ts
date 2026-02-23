@@ -83,32 +83,6 @@ describe("TemporalLocaleUtils", () => {
             expect(result).toBe("5/7/2021");
         });
 
-        it("should use locale-aware format when format is empty array", () => {
-            // Arrange
-            const testDate = Temporal.PlainDate.from("2021-05-07");
-
-            // Act
-            const result = formatDate(testDate, [] as any, "en-US");
-
-            // Assert
-            expect(result).toBe("5/7/2021");
-        });
-
-        it("should use first format when format is an array", () => {
-            // Arrange
-            const testDate = Temporal.PlainDate.from("2021-05-07");
-
-            // Act
-            const result = formatDate(
-                testDate,
-                ["YYYY-MM-DD", "M/D/YYYY"],
-                "en-US",
-            );
-
-            // Assert
-            expect(result).toBe("2021-05-07");
-        });
-
         it("should format date with short year in US locale", () => {
             // Arrange
             const testDate = Temporal.PlainDate.from("2021-05-07");
@@ -359,21 +333,6 @@ describe("TemporalLocaleUtils", () => {
 
             // Assert
             expect(result).toBeUndefined();
-        });
-
-        it("should try multiple formats when array is provided", () => {
-            // Arrange
-            const input = "5/7/2021";
-
-            // Act
-            const result = parseDate(
-                input,
-                ["YYYY-MM-DD", "M/D/YYYY"],
-                "en-US",
-            );
-
-            // Assert
-            expect(result?.toString()).toBe("2021-05-07");
         });
 
         it("should fall back to ISO format when format is null", () => {

@@ -47,6 +47,11 @@ interface Props {
      */
     referenceElement: HTMLElement | null | undefined;
     /**
+     * Text direction: when "rtl", the overlay is positioned at the end (e.g. bottom-end)
+     * so it aligns with the input in RTL layout. Defaults to "ltr" (bottom-start).
+     */
+    dir?: "ltr" | "rtl";
+    /**
      * Styles that will be applied to the children.
      */
     style?: StyleType;
@@ -64,11 +69,13 @@ const DatePickerOverlay = ({
     children,
     referenceElement,
     onClose,
+    dir = "ltr",
     style = DEFAULT_STYLE,
 }: Props): React.ReactElement | null => {
     if (!referenceElement) {
         return null;
     }
+    const placement = dir === "rtl" ? "bottom-end" : "bottom-start";
     const modalHost =
         maybeGetPortalMountedModalHostElement(referenceElement) ||
         document.querySelector("body");
@@ -91,7 +98,7 @@ const DatePickerOverlay = ({
         >
             <Popper
                 referenceElement={referenceElement}
-                placement="bottom-start"
+                placement={placement}
                 strategy="fixed"
                 modifiers={[
                     {
