@@ -5,7 +5,7 @@
   "description": "React components for Wonder Blocks design system.",
   "main": "index.js",
   "engines": {
-    "node": ">=24"
+    "node": ">=24 <25"
   },
   "scripts": {
     "alex": "alex packages/",
