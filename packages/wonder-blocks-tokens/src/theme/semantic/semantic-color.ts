@@ -75,8 +75,8 @@ const core = {
         },
         warning: {
             subtle: color.fadedGold8,
-            default: color.fadedGold24,
-            strong: color.gold,
+            default: color.gold,
+            strong: color.activeGold,
         },
         disabled: {
             subtle: transparent,
