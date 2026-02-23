@@ -17,12 +17,12 @@ const core = {
         neutral: {
             subtle: color.gray_10,
             default: color.gray_20,
-            strong: color.gray_40,
+            strong: color.gray_70,
         },
         critical: {
-            subtle: color.red_30,
-            default: color.red_40,
-            strong: color.red_60,
+            subtle: color.red_20,
+            default: color.red_30,
+            strong: color.red_50,
         },
         success: {
             subtle: color.green_30,
@@ -40,28 +40,27 @@ const core = {
             strong: color.gray_20,
         },
         knockout: {
-            default: color.white_100,
+            default: color.black_100,
         },
     },
     background: {
         base: {
             subtle: color.gray_05,
             default: color.black_100,
-            // TODO: This change needs to be carefully managed and tested
             strong: color.white_100,
         },
         instructive: {
             subtle: color.blue_01,
             default: color.blue_30,
-            strong: color.blue_70,
+            strong: color.blue_50,
         },
         neutral: {
             subtle: color.gray_10,
             default: color.gray_20,
-            strong: color.gray_70,
+            strong: color.black_100, // TODO: is this intended to be the same core.background.base.default?
         },
         critical: {
-            subtle: color.red_05,
+            subtle: color.red_01,
             default: color.red_30,
             strong: color.red_50,
         },
@@ -100,19 +99,19 @@ const core = {
             strong: color.gray_80,
         },
         critical: {
-            subtle: color.red_50,
-            default: color.red_80,
-            strong: color.red_90,
+            subtle: color.red_30,
+            default: color.red_50,
+            strong: color.red_60,
         },
         success: {
-            subtle: color.green_50,
-            default: color.green_80,
-            strong: color.green_90,
+            subtle: color.green_20,
+            default: color.green_40,
+            strong: color.green_70,
         },
         warning: {
-            subtle: color.yellow_50,
-            default: color.yellow_80,
-            strong: color.yellow_90,
+            subtle: color.yellow_10,
+            default: color.yellow_30,
+            strong: color.yellow_80,
         },
         disabled: {
             subtle: color.gray_10,
@@ -120,7 +119,7 @@ const core = {
             strong: color.gray_20,
         },
         knockout: {
-            default: color.white_100,
+            default: color.black_100,
         },
     },
     shadow: {
@@ -131,7 +130,7 @@ const core = {
         },
         chonky: {
             instructive: {
-                subtle: color.blue_40,
+                subtle: color.blue_30,
                 default: color.blue_10,
             },
             neutral: {
@@ -202,8 +201,8 @@ const feedbackTokens = {
         subtle: {
             background: core.background.neutral.subtle,
             border: core.border.neutral.subtle,
-            icon: core.foreground.neutral.subtle,
-            text: core.foreground.neutral.default,
+            icon: core.foreground.neutral.default,
+            text: core.foreground.neutral.strong,
         },
         strong: {
             ...sharedFeedbackStrongTokens,
@@ -444,13 +443,13 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
                     rest: core.border.neutral.subtle,
                     hover: core.border.neutral.subtle,
                     press: core.border.neutral.subtle,
-                    selected: core.border.neutral.subtle,
+                    selected: core.border.instructive.subtle,
                 },
                 tertiary: {
                     rest: core.transparent,
                     hover: core.border.neutral.subtle,
                     press: core.border.neutral.subtle,
-                    selected: core.transparent,
+                    selected: core.border.instructive.subtle,
                 },
             },
             foreground: {
@@ -458,10 +457,10 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
                     thunderblocksSemanticColor.chonky.neutral.foreground
                         .primary,
                 secondary: {
-                    rest: core.foreground.neutral.subtle,
-                    hover: core.foreground.neutral.subtle,
-                    press: core.foreground.neutral.subtle,
-                    selected: core.foreground.neutral.subtle,
+                    rest: core.foreground.neutral.default,
+                    hover: core.foreground.neutral.default,
+                    press: core.foreground.neutral.default,
+                    selected: core.foreground.neutral.default,
                 },
                 tertiary: {
                     rest: core.foreground.neutral.default,
@@ -476,8 +475,8 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
                 secondary: {
                     rest: core.shadow.chonky.neutral.subtle,
                     hover: core.shadow.chonky.neutral.subtle,
-                    press: core.shadow.chonky.neutral.subtle,
-                    selected: core.shadow.chonky.neutral.subtle,
+                    press: core.shadow.chonky.neutral.strong,
+                    selected: core.shadow.chonky.instructive.subtle,
                 },
                 tertiary: {
                     rest: core.transparent,
@@ -541,7 +540,7 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
         rest: core.foreground.instructive.default,
         hover: core.foreground.instructive.strong,
         press: core.foreground.instructive.strong,
-        disabled: core.foreground.disabled.subtle,
+        disabled: core.foreground.disabled.default,
     },
     core,
     feedback: feedbackTokens,
@@ -562,8 +561,8 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
         },
         background: {
             gems: {
-                subtle: color.magenta_05,
-                default: color.magenta_10,
+                subtle: color.magenta_10,
+                default: color.magenta_01,
                 strong: color.magenta_20,
             },
             due: {
