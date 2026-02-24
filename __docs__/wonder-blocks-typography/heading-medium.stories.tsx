@@ -8,7 +8,7 @@ import TypographyArgTypes from "./typography.argtypes";
 import {HeadingMedium} from "@khanacademy/wonder-blocks-typography";
 
 export default {
-    title: "Packages / Typography / HeadingMedium",
+    title: "Packages / Typography / Deprecated / HeadingMedium (deprecated)",
     component: HeadingMedium,
     parameters: {
         componentSubtitle: (

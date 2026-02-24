@@ -8,7 +8,7 @@ import TypographyArgTypes from "./typography.argtypes";
 import {HeadingXSmall} from "@khanacademy/wonder-blocks-typography";
 
 export default {
-    title: "Packages / Typography / HeadingXSmall",
+    title: "Packages / Typography / Deprecated / HeadingXSmall (deprecated)",
     component: HeadingXSmall,
     parameters: {
         componentSubtitle: (

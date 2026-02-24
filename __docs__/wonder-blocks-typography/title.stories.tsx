@@ -8,7 +8,7 @@ import TypographyArgTypes from "./typography.argtypes";
 import {Title} from "@khanacademy/wonder-blocks-typography";
 
 export default {
-    title: "Packages / Typography / Title",
+    title: "Packages / Typography / Deprecated / Title (deprecated)",
     component: Title,
     parameters: {
         componentSubtitle: (
