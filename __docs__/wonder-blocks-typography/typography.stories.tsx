@@ -75,6 +75,7 @@ export const ControlProps: StoryObj<typeof Heading> = {
     render: (args) => <Heading {...args} />,
     args: {
         children: "This is a Heading typography element",
+        size: "xxlarge",
         id: "example-title",
     },
 };
@@ -153,6 +154,7 @@ export const WithStyle: StoryObj<typeof Heading> = {
         return (
             <Heading
                 className={`${css(styles.highlighted)} custom-style`}
+                size="xxlarge"
                 style={styles.blueText}
             >
                 Blue Title
