@@ -5,11 +5,11 @@ import packageConfig from "../../packages/wonder-blocks-typography/package.json"
 import ComponentInfo from "../components/component-info";
 import TypographyArgTypes from "./typography.argtypes";
 
-import {Tagline} from "@khanacademy/wonder-blocks-typography";
+import {BodyMonospace} from "@khanacademy/wonder-blocks-typography";
 
 export default {
-    title: "Packages / Typography / Tagline",
-    component: Tagline,
+    title: "Packages / Typography / Deprecated / BodyMonospace (deprecated)",
+    component: BodyMonospace,
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -24,12 +24,12 @@ export default {
         },
     },
     argTypes: TypographyArgTypes,
-} as Meta<typeof Tagline>;
+} as Meta<typeof BodyMonospace>;
 
-type StoryComponentType = StoryObj<typeof Tagline>;
+type StoryComponentType = StoryObj<typeof BodyMonospace>;
 
 export const Default: StoryComponentType = {
     args: {
-        children: "Tagline",
+        children: "BodyMonospace",
     },
 };

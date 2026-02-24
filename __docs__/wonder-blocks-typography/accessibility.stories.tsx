@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {Body} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
@@ -53,9 +53,9 @@ export const FontSize = {
                     icon={IconMappings.xCircle}
                     style={styles.incorrect}
                 />
-                <Body>
+                <BodyText>
                     The following text is too small for body text (10px):
-                </Body>
+                </BodyText>
             </View>
             <View>
                 <p
@@ -71,11 +71,11 @@ export const FontSize = {
                     icon={IconMappings.checkCircle}
                     style={styles.correct}
                 />
-                <Body>
+                <BodyText>
                     The following text is adequate for body text (16px):
-                </Body>
+                </BodyText>
             </View>
-            <Body>The quick brown fox jumps over the lazy dog</Body>
+            <BodyText>The quick brown fox jumps over the lazy dog</BodyText>
         </View>
     ),
 
@@ -90,11 +90,11 @@ export const ColorContrast = {
                     icon={IconMappings.xCircle}
                     style={styles.incorrect}
                 />
-                <Body>
+                <BodyText>
                     The color contrast for the following text is too low:
-                </Body>
+                </BodyText>
             </View>
-            <Body
+            <BodyText
                 style={{
                     // NOTE: Using disabled on purpose to demonstrate the
                     // contrast ratio issue.
@@ -102,23 +102,23 @@ export const ColorContrast = {
                 }}
             >
                 The quick brown fox jumps over the lazy dog
-            </Body>
+            </BodyText>
             <View style={styles.explanation}>
                 <PhosphorIcon
                     icon={IconMappings.checkCircle}
                     style={styles.correct}
                 />
-                <Body>
+                <BodyText>
                     The color contrast for the following text is adequate:
-                </Body>
+                </BodyText>
             </View>
-            <Body
+            <BodyText
                 style={{
                     color: semanticColor.core.foreground.neutral.strong,
                 }}
             >
                 The quick brown fox jumps over the lazy dog
-            </Body>
+            </BodyText>
         </View>
     ),
     parameters: {
@@ -143,7 +143,7 @@ export const LineSpacing = {
                     icon={IconMappings.xCircle}
                     style={styles.incorrect}
                 />
-                <Body>The following line spacing is too small:</Body>
+                <BodyText>The following line spacing is too small:</BodyText>
             </View>
             <View>
                 <p
@@ -166,9 +166,9 @@ export const LineSpacing = {
                     icon={IconMappings.checkCircle}
                     style={styles.correct}
                 />
-                <Body>The following line spacing is adequate:</Body>
+                <BodyText>The following line spacing is adequate:</BodyText>
             </View>
-            <Body>
+            <BodyText>
                 Khan Academy offers practice exercises, instructional videos,
                 and a personalized learning dashboard that empower learners to
                 study at their own pace in and outside of the classroom. We
@@ -177,7 +177,7 @@ export const LineSpacing = {
                 Praxis, LSAT) content. We focus on skill mastery to help
                 learners establish strong foundations, so there is no limit to
                 what they can learn next!
-            </Body>
+            </BodyText>
         </View>
     ),
 

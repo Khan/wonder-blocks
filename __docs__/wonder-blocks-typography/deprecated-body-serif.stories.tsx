@@ -5,11 +5,11 @@ import packageConfig from "../../packages/wonder-blocks-typography/package.json"
 import ComponentInfo from "../components/component-info";
 import TypographyArgTypes from "./typography.argtypes";
 
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {BodySerif} from "@khanacademy/wonder-blocks-typography";
 
 export default {
-    title: "Packages / Typography / LabelLarge",
-    component: LabelLarge,
+    title: "Packages / Typography / Deprecated / BodySerif (deprecated)",
+    component: BodySerif,
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -24,12 +24,12 @@ export default {
         },
     },
     argTypes: TypographyArgTypes,
-} as Meta<typeof LabelLarge>;
+} as Meta<typeof BodySerif>;
 
-type StoryComponentType = StoryObj<typeof LabelLarge>;
+type StoryComponentType = StoryObj<typeof BodySerif>;
 
 export const Default: StoryComponentType = {
     args: {
-        children: "LabelLarge",
+        children: "BodySerif",
     },
 };

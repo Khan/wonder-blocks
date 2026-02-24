@@ -5,11 +5,11 @@ import packageConfig from "../../packages/wonder-blocks-typography/package.json"
 import ComponentInfo from "../components/component-info";
 import TypographyArgTypes from "./typography.argtypes";
 
-import {Footnote} from "@khanacademy/wonder-blocks-typography";
+import {Tagline} from "@khanacademy/wonder-blocks-typography";
 
 export default {
-    title: "Packages / Typography / Footnote",
-    component: Footnote,
+    title: "Packages / Typography / Deprecated / Tagline (deprecated)",
+    component: Tagline,
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -24,12 +24,12 @@ export default {
         },
     },
     argTypes: TypographyArgTypes,
-} as Meta<typeof Footnote>;
+} as Meta<typeof Tagline>;
 
-type StoryComponentType = StoryObj<typeof Footnote>;
+type StoryComponentType = StoryObj<typeof Tagline>;
 
 export const Default: StoryComponentType = {
     args: {
-        children: "Footnote",
+        children: "Tagline",
     },
 };

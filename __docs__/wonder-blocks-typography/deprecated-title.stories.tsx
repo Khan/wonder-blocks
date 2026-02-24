@@ -5,11 +5,11 @@ import packageConfig from "../../packages/wonder-blocks-typography/package.json"
 import ComponentInfo from "../components/component-info";
 import TypographyArgTypes from "./typography.argtypes";
 
-import {HeadingXSmall} from "@khanacademy/wonder-blocks-typography";
+import {Title} from "@khanacademy/wonder-blocks-typography";
 
 export default {
-    title: "Packages / Typography / HeadingXSmall",
-    component: HeadingXSmall,
+    title: "Packages / Typography / Deprecated / Title (deprecated)",
+    component: Title,
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -24,12 +24,12 @@ export default {
         },
     },
     argTypes: TypographyArgTypes,
-} as Meta<typeof HeadingXSmall>;
+} as Meta<typeof Title>;
 
-type StoryComponentType = StoryObj<typeof HeadingXSmall>;
+type StoryComponentType = StoryObj<typeof Title>;
 
 export const Default: StoryComponentType = {
     args: {
-        children: "HeadingXSmall",
+        children: "Title",
     },
 };
