@@ -12,16 +12,6 @@ import {
 import {
     Heading,
     BodyText,
-    BodySerifBlock,
-    BodySerif,
-    BodyMonospace,
-    Body,
-    LabelLarge,
-    LabelMedium,
-    LabelSmall,
-    LabelXSmall,
-    Caption,
-    Footnote,
     styles as typographyStyles,
 } from "@khanacademy/wonder-blocks-typography";
 import packageConfig from "../../packages/wonder-blocks-typography/package.json";
@@ -43,10 +33,10 @@ labels.
 ### Usage
 
 ```jsx
-import {Body, Title} from "@khanacademy/wonder-blocks-typography";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 
-<Title>Title: Hello, world!</Title>
-<Body>This is just a regular paragraph</Body>
+<Heading size="xxlarge">Title: Hello, world!</Heading>
+<BodyText>This is just a regular paragraph</BodyText>
 ```
 */
 
@@ -101,32 +91,6 @@ export const NewTypographyElements: StoryObj<any> = {
             disableSnapshot: true,
         },
     },
-};
-
-/**
-These are all the available classic typography elements with their names written
-out in their respective styles.
- */
-export const ClassicTypographyElements: StoryObj<any> = {
-    parameters: {
-        chromatic: {
-            modes: themeModes,
-        },
-    },
-    render: () => (
-        <View>
-            <BodySerifBlock>BodySerifBlock</BodySerifBlock>
-            <BodySerif>BodySerif</BodySerif>
-            <BodyMonospace>BodyMonospace</BodyMonospace>
-            <Body>Body</Body>
-            <LabelLarge>LabelLarge</LabelLarge>
-            <LabelMedium>LabelMedium</LabelMedium>
-            <LabelSmall>LabelSmall</LabelSmall>
-            <LabelXSmall>LabelXSmall</LabelXSmall>
-            <Caption>Caption</Caption>
-            <Footnote>Footnote</Footnote>
-        </View>
-    ),
 };
 
 /**
@@ -209,29 +173,11 @@ export const NotoForNonLatin: StoryObj<any> = () => {
                     {text}
                 </Heading>
 
-                <BodySerifBlock dir={dir}>{text}</BodySerifBlock>
-
-                <BodySerif dir={dir}>{text}</BodySerif>
-
-                <BodyMonospace dir={dir}>{text}</BodyMonospace>
-
-                <Body dir={dir}>{text}</Body>
-
-                <LabelLarge dir={dir}>{text}</LabelLarge>
-
-                <LabelMedium dir={dir}>{text}</LabelMedium>
-
-                <LabelSmall dir={dir}>{text}</LabelSmall>
-
-                <LabelXSmall dir={dir}>{text}</LabelXSmall>
+                <BodyText dir={dir}>{text}</BodyText>
 
                 <Heading size="large" weight="medium" dir={dir}>
                     {text}
                 </Heading>
-
-                <Caption dir={dir}>{text}</Caption>
-
-                <Footnote dir={dir}>{text}</Footnote>
             </View>
         </View>
     );
@@ -243,26 +189,13 @@ NotoForNonLatin.parameters = {
     },
 };
 
-export const CodeFont: StoryObj<typeof BodyMonospace> = () => {
-    const Code = ({children}: {children: React.ReactNode}) => (
-        <BodyMonospace>{children}</BodyMonospace>
-    );
-
-    return <Code>{`const str = "Hello, world!"`}</Code>;
-};
-
-CodeFont.parameters = {
-    docs: {
-        description: {
-            story: `One example of using the \`BodyMonospace\`
-            typography component is to create a \`Code\` component for
-            rendering pre-formatted code blocks.`,
-        },
-    },
-};
-
-export const Paragraph: StoryObj<typeof Body> = () => {
-    const longParagraph = `This is an example of a long paragraph.
+/**
+ * The `BodyText` typography component is usually used for paragraphs and other
+ * body text.
+ */
+export const Paragraph: StoryObj<typeof BodyText> = {
+    render: () => {
+        const longParagraph = `This is an example of a long paragraph.
         Khan Academy offers practice exercises, instructional videos,
         and a personalized learning dashboard that empower learners
         to study at their own pace in and outside of the classroom.
@@ -271,15 +204,7 @@ export const Paragraph: StoryObj<typeof Body> = () => {
         content. We focus on skill mastery to help learners establish
         strong foundations, so there's no limit to what they can learn next!`;
 
-    return <Body>{longParagraph}</Body>;
-};
-
-Paragraph.parameters = {
-    docs: {
-        description: {
-            story: `The \`Body\` typography component is usually used
-            for paragraphs and other body text.`,
-        },
+        return <BodyText>{longParagraph}</BodyText>;
     },
 };
 
@@ -310,19 +235,19 @@ export const LineHeight: StoryObj<any> = {
                 <Heading size="small" style={style}>
                     Heading.small
                 </Heading>
-                <BodySerifBlock style={style}>BodySerifBlock</BodySerifBlock>
-                <BodySerif style={style}>BodySerif</BodySerif>
-                <BodyMonospace style={style}>BodyMonospace</BodyMonospace>
-                <Body style={style}>Body</Body>
-                <LabelLarge style={style}>LabelLarge</LabelLarge>
-                <LabelMedium style={style}>LabelMedium</LabelMedium>
-                <LabelSmall style={style}>LabelSmall</LabelSmall>
-                <LabelXSmall style={style}>LabelXSmall</LabelXSmall>
+                <BodyText size="medium" weight="bold" style={style}>
+                    BodyText.medium.bold
+                </BodyText>
+                <BodyText style={style}>BodyText.medium (default)</BodyText>
+                <BodyText size="small" style={style}>
+                    BodyText.small
+                </BodyText>
+                <BodyText size="xsmall" style={style}>
+                    BodyText.xsmall
+                </BodyText>
                 <Heading size="large" weight="medium" style={style}>
                     Tagline
                 </Heading>
-                <Caption style={style}>Caption</Caption>
-                <Footnote style={style}>Footnote</Footnote>
             </View>
         );
     },
