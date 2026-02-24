@@ -5,11 +5,11 @@ import packageConfig from "../../packages/wonder-blocks-typography/package.json"
 import ComponentInfo from "../components/component-info";
 import TypographyArgTypes from "./typography.argtypes";
 
-import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {Footnote} from "@khanacademy/wonder-blocks-typography";
 
 export default {
-    title: "Packages / Typography / LabelSmall",
-    component: LabelSmall,
+    title: "Packages / Typography / Deprecated / Footnote (deprecated)",
+    component: Footnote,
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -24,12 +24,12 @@ export default {
         },
     },
     argTypes: TypographyArgTypes,
-} as Meta<typeof LabelSmall>;
+} as Meta<typeof Footnote>;
 
-type StoryComponentType = StoryObj<typeof LabelSmall>;
+type StoryComponentType = StoryObj<typeof Footnote>;
 
 export const Default: StoryComponentType = {
     args: {
-        children: "LabelSmall",
+        children: "Footnote",
     },
 };

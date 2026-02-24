@@ -8,7 +8,7 @@ import TypographyArgTypes from "./typography.argtypes";
 import {LabelXSmall} from "@khanacademy/wonder-blocks-typography";
 
 export default {
-    title: "Packages / Typography / LabelXSmall",
+    title: "Packages / Typography / Deprecated / LabelXSmall (deprecated)",
     component: LabelXSmall,
     parameters: {
         componentSubtitle: (
