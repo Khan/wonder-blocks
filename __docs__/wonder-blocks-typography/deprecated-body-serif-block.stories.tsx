@@ -5,11 +5,11 @@ import packageConfig from "../../packages/wonder-blocks-typography/package.json"
 import ComponentInfo from "../components/component-info";
 import TypographyArgTypes from "./typography.argtypes";
 
-import {Body} from "@khanacademy/wonder-blocks-typography";
+import {BodySerifBlock} from "@khanacademy/wonder-blocks-typography";
 
 export default {
-    title: "Packages / Typography / Body",
-    component: Body,
+    title: "Packages / Typography / Deprecated / BodySerifBlock (deprecated)",
+    component: BodySerifBlock,
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -24,12 +24,12 @@ export default {
         },
     },
     argTypes: TypographyArgTypes,
-} as Meta<typeof Body>;
+} as Meta<typeof BodySerifBlock>;
 
-type StoryComponentType = StoryObj<typeof Body>;
+type StoryComponentType = StoryObj<typeof BodySerifBlock>;
 
 export const Default: StoryComponentType = {
     args: {
-        children: "Body",
+        children: "BodySerifBlock",
     },
 };

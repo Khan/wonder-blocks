@@ -51,7 +51,7 @@ const core = {
         base: {
             subtle: color.offWhite,
             default: color.white,
-            strong: color.fadedBlue16,
+            strong: color.darkBlue,
         },
         instructive: {
             subtle: color.fadedBlue8,
