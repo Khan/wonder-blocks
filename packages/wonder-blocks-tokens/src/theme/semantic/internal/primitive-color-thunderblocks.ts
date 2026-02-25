@@ -1,7 +1,7 @@
 import {fade} from "../../../util/color-utils";
 
 // Base colors
-const black = "#191918";
+const black = "#151521";
 const white = "#FFFFFF";
 
 /**
@@ -15,7 +15,7 @@ const white = "#FFFFFF";
 export const color = {
     // Red
     red_90: "#FEF4F4",
-    red_80: "#FDE9E9",
+    red_80: "#FFEBEB",
     red_70: "#FDDFDF",
     red_60: "#FBB1B1",
     red_50: "#F97F7F",
@@ -24,6 +24,7 @@ export const color = {
     red_20: "#BE2626",
     red_10: "#8E1C1C",
     red_05: "#621414",
+    red_01: "#3B141A",
     // Orange
     orange_90: "#FEF4F2",
     orange_80: "#FEE9E5",
@@ -35,6 +36,7 @@ export const color = {
     orange_20: "#C8481A",
     orange_10: "#983C1A",
     orange_05: "#672912",
+    orange_01: "#3E1F19",
     // Yellow
     yellow_90: "#FEF8E7",
     yellow_80: "#FEF1D0",
@@ -46,17 +48,19 @@ export const color = {
     yellow_20: "#D69900",
     yellow_10: "#966B00",
     yellow_05: "#5F4500",
+    yellow_01: "#3A2D10",
     // Green
     green_90: "#F1FBF1",
     green_80: "#E3F7E3",
     green_70: "#D5F3D5",
     green_60: "#BCEBBB",
-    green_50: "#97D38E",
+    green_50: "#97D39E",
     green_40: "#72BB82",
     green_30: "#579F6C",
     green_20: "#3C6D4A",
     green_10: "#2C5037",
     green_05: "#24432D",
+    green_01: "#1C2C27",
     // Cyan
     cyan_90: "#EEF7FE",
     cyan_80: "#DDF0FE",
@@ -68,17 +72,19 @@ export const color = {
     cyan_20: "#2485C7",
     cyan_10: "#20628F",
     cyan_05: "#1D3F58",
+    cyan_01: "#192A3C",
     // Blue
     blue_90: "#F8F9FB",
     blue_80: "#EBF1FD",
     blue_70: "#DFEAFF",
     blue_60: "#BFCAFF",
     blue_50: "#8DA2FF",
-    blue_40: "#6E78FF",
+    blue_40: "#6C82FF",
     blue_30: "#5753FA",
     blue_20: "#4340D0",
     blue_10: "#363498",
     blue_05: "#252368",
+    blue_01: "#222149",
     // Magenta
     magenta_90: "#FCEEF7",
     magenta_80: "#FFE3F4",
@@ -87,9 +93,10 @@ export const color = {
     magenta_50: "#F8A2D6",
     magenta_40: "#F670C1",
     magenta_30: "#E83FA4",
-    magenta_20: "#C03187",
+    magenta_20: "#BB3183",
     magenta_10: "#84275E",
     magenta_05: "#521B3C",
+    magenta_01: "#33182E",
     // Gray
     gray_90: "#F6F6F6",
     gray_80: "#EDEDEE",
@@ -100,10 +107,32 @@ export const color = {
     gray_30: "#8A8B90",
     gray_20: "#717279",
     gray_10: "#4A4C53",
-    gray_05: "#35373F",
+    gray_05: "#252531",
+    gray_01: "#1D1D29",
     // Black
     black_100: black,
+    black_90: fade(black, 0.9),
+    black_80: fade(black, 0.8),
+    black_70: fade(black, 0.7),
+    black_60: fade(black, 0.6),
     black_50: fade(black, 0.5),
+    black_40: fade(black, 0.4),
+    black_30: fade(black, 0.3),
+    black_20: fade(black, 0.2),
+    black_10: fade(black, 0.1),
+    black_01: fade(black, 0.01),
+    black_00: fade(black, 0.0),
     // White
     white_100: white,
+    white_90: fade(white, 0.9),
+    white_80: fade(white, 0.8),
+    white_70: fade(white, 0.7),
+    white_60: fade(white, 0.6),
+    white_50: fade(white, 0.5),
+    white_40: fade(white, 0.4),
+    white_30: fade(white, 0.3),
+    white_20: fade(white, 0.2),
+    white_10: fade(white, 0.1),
+    white_01: fade(white, 0.01),
+    white_00: fade(white, 0.0),
 };
