@@ -33,7 +33,7 @@ export const allModes = {
     },
 };
 
-// TODO: Remove in favour of allThemeModesonce fully implemnting sylDark
+// TODO: Remove in favour of allThemeModes once fully implemnting sylDark
 export const themeModes = {
     default: allModes.themeDefault,
     thunderblocks: allModes.themeThunderBlocks,

@@ -57,7 +57,7 @@ const core = {
         neutral: {
             subtle: color.gray_10,
             default: color.gray_20,
-            strong: color.black_100, // TODO: is this intended to be the same core.background.base.default?
+            strong: color.black_100,
         },
         critical: {
             subtle: color.red_01,
