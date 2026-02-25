@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 16.0.0
+
+### Major Changes
+
+- c75abe9: Update semantic color core tokens. `core.background.base.strong` is now a dark color in both default (darkBlue) and thunderblocks (black_100) to improve theming support. Migrate existing `core.background.base.strong` usage to `core.background.instructive.subtle`
+
+### Patch Changes
+
+- c75abe9: In the thunderblocks theme, updated critical/success/warning subtle background colors to red_80, green_80, yellow_80. Update overlay to black_60
+- 530d692: Tokens: Update SYL Primitive values for blue40, black100, gray5. Add color level 1 primitives (red1). Make sure colors are in sync with Figma values.
+
 ## 15.0.0
 
 ### Major Changes
