@@ -1,5 +1,19 @@
 # @khanacademy/wonder-blocks-popover
 
+## 6.1.54
+
+### Patch Changes
+
+- Updated dependencies [c75abe9]
+- Updated dependencies [c75abe9]
+- Updated dependencies [530d692]
+    - @khanacademy/wonder-blocks-tokens@16.0.0
+    - @khanacademy/wonder-blocks-icon-button@11.1.5
+    - @khanacademy/wonder-blocks-modal@8.5.16
+    - @khanacademy/wonder-blocks-styles@0.2.39
+    - @khanacademy/wonder-blocks-tooltip@4.1.67
+    - @khanacademy/wonder-blocks-typography@4.2.30
+
 ## 6.1.53
 
 ### Patch Changes

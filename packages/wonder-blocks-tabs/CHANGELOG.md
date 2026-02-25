@@ -1,5 +1,19 @@
 # @khanacademy/wonder-blocks-tabs
 
+## 0.5.4
+
+### Patch Changes
+
+- Updated dependencies [c75abe9]
+- Updated dependencies [c75abe9]
+- Updated dependencies [530d692]
+    - @khanacademy/wonder-blocks-tokens@16.0.0
+    - @khanacademy/wonder-blocks-button@11.4.1
+    - @khanacademy/wonder-blocks-dropdown@10.8.1
+    - @khanacademy/wonder-blocks-icon@5.3.8
+    - @khanacademy/wonder-blocks-link@10.1.6
+    - @khanacademy/wonder-blocks-typography@4.2.30
+
 ## 0.5.3
 
 ### Patch Changes
