@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
 
 export default {
     title: "Packages / Typography / Accessibility",
+    component: BodyText,
 
     // Disables chromatic testing for these stories.
     parameters: {

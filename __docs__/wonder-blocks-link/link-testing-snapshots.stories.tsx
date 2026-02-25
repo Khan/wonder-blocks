@@ -70,7 +70,7 @@ const meta = {
             },
         },
     },
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
 } satisfies Meta<typeof Link>;
 
 export const StateSheetStory: Story = {

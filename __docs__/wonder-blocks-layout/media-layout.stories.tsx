@@ -33,6 +33,7 @@ export default {
             />
         ),
     },
+    tags: ["!manifest"],
 } as Meta<typeof MediaLayout>;
 
 type StoryComponentType = StoryObj<typeof MediaLayout>;

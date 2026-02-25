@@ -35,6 +35,7 @@ export default {
         ),
     },
     argTypes: LabeledTextFieldArgTypes,
+    tags: ["!manifest"],
 } as Meta<typeof LabeledTextField>;
 
 type StoryComponentType = StoryObj<typeof LabeledTextField>;
