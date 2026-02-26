@@ -8,7 +8,7 @@ import TypographyArgTypes from "./typography.argtypes";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 
 export default {
-    title: "Packages / Typography / Deprecated / Body (deprecated)",
+    title: "Packages / Typography / Deprecated / Body",
     component: Body,
     parameters: {
         componentSubtitle: (
@@ -24,6 +24,7 @@ export default {
         },
     },
     argTypes: TypographyArgTypes,
+    tags: ["deprecated"],
 } as Meta<typeof Body>;
 
 type StoryComponentType = StoryObj<typeof Body>;

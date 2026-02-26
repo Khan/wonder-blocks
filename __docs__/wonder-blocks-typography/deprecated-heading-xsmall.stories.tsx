@@ -8,7 +8,7 @@ import TypographyArgTypes from "./typography.argtypes";
 import {HeadingXSmall} from "@khanacademy/wonder-blocks-typography";
 
 export default {
-    title: "Packages / Typography / Deprecated / HeadingXSmall (deprecated)",
+    title: "Packages / Typography / Deprecated / HeadingXSmall",
     component: HeadingXSmall,
     parameters: {
         componentSubtitle: (
@@ -24,6 +24,7 @@ export default {
         },
     },
     argTypes: TypographyArgTypes,
+    tags: ["deprecated"],
 } as Meta<typeof HeadingXSmall>;
 
 type StoryComponentType = StoryObj<typeof HeadingXSmall>;

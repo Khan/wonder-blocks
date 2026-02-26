@@ -8,7 +8,7 @@ import TypographyArgTypes from "./typography.argtypes";
 import {BodySerifBlock} from "@khanacademy/wonder-blocks-typography";
 
 export default {
-    title: "Packages / Typography / Deprecated / BodySerifBlock (deprecated)",
+    title: "Packages / Typography / Deprecated / BodySerifBlock",
     component: BodySerifBlock,
     parameters: {
         componentSubtitle: (
@@ -24,6 +24,7 @@ export default {
         },
     },
     argTypes: TypographyArgTypes,
+    tags: ["deprecated"],
 } as Meta<typeof BodySerifBlock>;
 
 type StoryComponentType = StoryObj<typeof BodySerifBlock>;

@@ -8,17 +8,12 @@ import {
 import {Meta} from "@storybook/react-vite";
 import {View} from "@khanacademy/wonder-blocks-core";
 import TokenTable from "../components/token-table";
+import Banner from "@khanacademy/wonder-blocks-banner";
 import {color, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import ComponentInfo from "../components/component-info";
-import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
 import {Code} from "../components/code";
 
 /**
  * The color palette containing all the primitive Wonder Blocks colors.
- *
- * `color` is deprecated! We recommend using [semantic colors](?path=/docs/packages-tokens-semantic-color--docs) whenever possible,
- * but if you need a color that doesn't fit into any of the categories, please
- * reach out to your designer or the Wonder Blocks team!
  *
  * ## Usage
  *
@@ -40,19 +35,39 @@ export default {
             page: () => (
                 <>
                     <Title />
+                    <Banner
+                        kind="warning"
+                        text={
+                            <>
+                                color is deprecated! We recommend using{" "}
+                                <code>semanticColor</code> whenever possible,
+                                but if you need a color that doesn&apos;t fit
+                                into any of the categories, please reach out to
+                                your designer or the Wonder Blocks team!
+                            </>
+                        }
+                        actions={[
+                            {
+                                type: "custom",
+                                node: (
+                                    <a href="./?path=/docs/packages-tokens-semantic-color--docs">
+                                        View semanticColor tokens
+                                    </a>
+                                ),
+                            },
+                        ]}
+                    />
                     <Subtitle />
                     <Description />
+
                     <Stories title="Tokens" />
                 </>
             ),
             toc: false,
+            chromatic: {
+                disableSnapshot: true,
+            },
         },
-        componentSubtitle: (
-            <ComponentInfo
-                name={packageConfig.name}
-                version={packageConfig.version}
-            />
-        ),
     },
     tags: ["!dev", "deprecated"],
 } as Meta;

@@ -2,14 +2,14 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import type {Meta, StoryObj} from "@storybook/react-vite";
+import {Description, Stories, Title} from "@storybook/addon-docs/blocks";
+
+import Banner from "@khanacademy/wonder-blocks-banner";
+import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
-import Button from "@khanacademy/wonder-blocks-button";
-
 import {Spring, Strut} from "@khanacademy/wonder-blocks-layout";
-import packageConfig from "../../packages/wonder-blocks-layout/package.json";
-
-import ComponentInfo from "../components/component-info";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 type StoryComponentType = StoryObj<typeof Spring>;
 
@@ -17,12 +17,50 @@ export default {
     title: "Packages / Layout / Spring",
     component: Spring,
     parameters: {
-        componentSubtitle: (
-            <ComponentInfo
-                name={packageConfig.name}
-                version={packageConfig.version}
-            />
-        ),
+        chromatic: {
+            // We no longer support this component.
+            disableSnapshot: true,
+        },
+        docs: {
+            page: () => (
+                <>
+                    <Title />
+                    <Banner
+                        kind="warning"
+                        text={
+                            <BodyText>
+                                Spring is deprecated! We recommend using css
+                                flexbox/grid properties like{" "}
+                                <code>justify-content: space-between</code>{" "}
+                                (row) or{" "}
+                                <code>align-content: space-between</code>{" "}
+                                (column) whenever possible!
+                            </BodyText>
+                        }
+                        actions={[
+                            {
+                                type: "custom",
+                                node: (
+                                    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/justify-content">
+                                        View justify-content docs
+                                    </a>
+                                ),
+                            },
+                            {
+                                type: "custom",
+                                node: (
+                                    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/align-content">
+                                        View align-content docs
+                                    </a>
+                                ),
+                            },
+                        ]}
+                    />
+                    <Description />
+                    <Stories />
+                </>
+            ),
+        },
     },
     argTypes: {
         style: {
@@ -31,6 +69,7 @@ export default {
             },
         },
     },
+    tags: ["deprecated"],
 } as Meta<typeof Spring>;
 
 export const Default: StoryComponentType = {

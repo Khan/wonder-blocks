@@ -18,13 +18,13 @@ import TextField from "../../packages/wonder-blocks-form/src/components/text-fie
 
 /**
  * ** DEPRECATED: Please use LabeledField with TextField instead. See [Migration
- * story](#migration%20to%20labeled%20field) for more details. **
+ * story](#migration-to-labeled-field-1) for more details. **
  *
  * A LabeledTextField is an element used to accept a single line of text from
  * the user paired with a label, description, and error field elements.
  */
 export default {
-    title: "Packages / Form / LabeledTextField (Deprecated)",
+    title: "Packages / Form / LabeledTextField",
     component: LabeledTextField,
     parameters: {
         componentSubtitle: (
@@ -35,6 +35,7 @@ export default {
         ),
     },
     argTypes: LabeledTextFieldArgTypes,
+    tags: ["deprecated"],
 } as Meta<typeof LabeledTextField>;
 
 type StoryComponentType = StoryObj<typeof LabeledTextField>;
