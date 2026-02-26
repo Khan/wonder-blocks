@@ -8,7 +8,7 @@ import TypographyArgTypes from "./typography.argtypes";
 import {Footnote} from "@khanacademy/wonder-blocks-typography";
 
 export default {
-    title: "Packages / Typography / Deprecated / Footnote (deprecated)",
+    title: "Packages / Typography / Deprecated / Footnote",
     component: Footnote,
     parameters: {
         componentSubtitle: (
@@ -24,6 +24,7 @@ export default {
         },
     },
     argTypes: TypographyArgTypes,
+    tags: ["deprecated"],
 } as Meta<typeof Footnote>;
 
 type StoryComponentType = StoryObj<typeof Footnote>;

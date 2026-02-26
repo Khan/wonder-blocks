@@ -1,7 +1,7 @@
 import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react-vite";
+import {Description, Stories, Title} from "@storybook/addon-docs/blocks";
 
-// import {expect, within} from "storybook/test";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
 import Pill from "@khanacademy/wonder-blocks-pill";
@@ -10,6 +10,7 @@ import * as tokens from "@khanacademy/wonder-blocks-tokens";
 import {
     Body,
     BodySerif,
+    BodyText,
     LabelMedium,
 } from "@khanacademy/wonder-blocks-typography";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
@@ -22,6 +23,7 @@ import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-search-field/package.json";
 
 import PillArgtypes from "./pill.argtypes";
+import Banner from "@khanacademy/wonder-blocks-banner";
 
 export default {
     component: Pill,
@@ -37,8 +39,37 @@ export default {
             // These stories are being tested in pill-variants.stories.tsx
             disableSnapshot: true,
         },
+        docs: {
+            page: () => (
+                <>
+                    <Title />
+                    <Banner
+                        kind="warning"
+                        text={
+                            <BodyText>
+                                Pill is deprecated! We recommend using the{" "}
+                                <code>Badge</code> component instead!
+                            </BodyText>
+                        }
+                        actions={[
+                            {
+                                type: "custom",
+                                node: (
+                                    <a href="./?path=/docs/packages-badge-overview--docs">
+                                        View Badge docs
+                                    </a>
+                                ),
+                            },
+                        ]}
+                    />
+                    <Description />
+                    <Stories />
+                </>
+            ),
+        },
     },
     argTypes: PillArgtypes,
+    tags: ["deprecated"],
 } as Meta<typeof Pill>;
 
 type StoryComponentType = StoryObj<typeof Pill>;

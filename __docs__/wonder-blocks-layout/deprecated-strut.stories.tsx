@@ -1,26 +1,53 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
+import {Description, Stories, Title} from "@storybook/addon-docs/blocks";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import packageConfig from "../../packages/wonder-blocks-layout/package.json";
-
-import ComponentInfo from "../components/component-info";
+import Banner from "@khanacademy/wonder-blocks-banner";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 export default {
     title: "Packages / Layout / Strut",
     component: Strut,
     parameters: {
-        componentSubtitle: (
-            <ComponentInfo
-                name={packageConfig.name}
-                version={packageConfig.version}
-            />
-        ) as any,
+        chromatic: {
+            // We no longer support this component.
+            disableSnapshot: true,
+        },
+        docs: {
+            page: () => (
+                <>
+                    <Title />
+                    <Banner
+                        kind="warning"
+                        text={
+                            <BodyText>
+                                Strut is deprecated! We recommend using
+                                css&apos;s <code>gap</code> property whenever
+                                possible!
+                            </BodyText>
+                        }
+                        actions={[
+                            {
+                                type: "custom",
+                                node: (
+                                    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/gap">
+                                        View gap docs
+                                    </a>
+                                ),
+                            },
+                        ]}
+                    />
+                    <Description />
+                    <Stories />
+                </>
+            ),
+        },
     },
     argTypes: {
         style: {
@@ -29,6 +56,7 @@ export default {
             },
         },
     },
+    tags: ["deprecated"],
 } as Meta<typeof Strut>;
 
 type StoryComponentType = StoryObj<typeof Strut>;

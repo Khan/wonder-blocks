@@ -1,5 +1,6 @@
 import * as React from "react";
 import {Meta, Story, ColorItem} from "@storybook/addon-docs/blocks";
+import Banner from "@khanacademy/wonder-blocks-banner";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {color, mix, spacing} from "@khanacademy/wonder-blocks-tokens";
@@ -7,9 +8,31 @@ import {color, mix, spacing} from "@khanacademy/wonder-blocks-tokens";
 import equalsIcon from "@phosphor-icons/core/bold/equals-bold.svg";
 import plusIcon from "@phosphor-icons/core/bold/plus-bold.svg";
 
-<Meta title="Packages / Tokens / Utilities / mix" />
+<Meta title="Packages / Tokens / Utilities / mix" tags={["deprecated"]} />
 
 # mix()
+
+<Banner
+    kind="warning"
+    text={
+        <>
+            <code>mix()</code> is deprecated! We recommend using the native CSS{" "}
+            <code>color-mix()</code> function instead, which is supported in all
+            modern browsers. The <code>mix()</code> function will be removed in
+            a future release.
+        </>
+    }
+    actions={[
+        {
+            type: "custom",
+            node: (
+                <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/color-mix">
+                    View color-mix() documentation on MDN
+                </a>
+            ),
+        },
+    ]}
+/>
 
 The `mix` function allows you to mix a color into a background color, using the
 alpha channel of the base color to determine the linear blend.

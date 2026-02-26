@@ -8,7 +8,7 @@ import TypographyArgTypes from "./typography.argtypes";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 
 export default {
-    title: "Packages / Typography / Deprecated / HeadingLarge (deprecated)",
+    title: "Packages / Typography / Deprecated / HeadingLarge",
     component: HeadingLarge,
     parameters: {
         componentSubtitle: (
@@ -23,6 +23,7 @@ export default {
             disableSnapshot: true,
         },
     },
+    tags: ["deprecated"],
     argTypes: TypographyArgTypes,
 } as Meta<typeof HeadingLarge>;
 

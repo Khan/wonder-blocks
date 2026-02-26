@@ -8,7 +8,7 @@ import TypographyArgTypes from "./typography.argtypes";
 import {BodyMonospace} from "@khanacademy/wonder-blocks-typography";
 
 export default {
-    title: "Packages / Typography / Deprecated / BodyMonospace (deprecated)",
+    title: "Packages / Typography / Deprecated / BodyMonospace",
     component: BodyMonospace,
     parameters: {
         componentSubtitle: (
@@ -24,6 +24,7 @@ export default {
         },
     },
     argTypes: TypographyArgTypes,
+    tags: ["deprecated"],
 } as Meta<typeof BodyMonospace>;
 
 type StoryComponentType = StoryObj<typeof BodyMonospace>;

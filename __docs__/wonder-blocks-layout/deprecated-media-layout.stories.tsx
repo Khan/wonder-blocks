@@ -23,7 +23,7 @@ import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-layout/package.json";
 
 export default {
-    title: "Packages / Layout / MediaLayout (Deprecated)",
+    title: "Packages / Layout / MediaLayout",
     component: MediaLayout,
     parameters: {
         componentSubtitle: (
@@ -32,7 +32,12 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // We no longer support this component.
+            disableSnapshot: true,
+        },
     },
+    tags: ["deprecated"],
 } as Meta<typeof MediaLayout>;
 
 type StoryComponentType = StoryObj<typeof MediaLayout>;
