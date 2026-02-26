@@ -142,6 +142,7 @@
     "rollup-plugin-node-externals": "^8.0.0",
     "storybook": "10.1.10",
     "storybook-addon-pseudo-states": "^10.1.10",
+    "storybook-addon-tag-badges": "^3.0.6",
     "swc_mut_cjs_exports": "^10.7.0",
     "turbo": "^2.5.3",
     "typescript": "5.7.3",

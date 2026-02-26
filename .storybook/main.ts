@@ -20,6 +20,7 @@ const config: StorybookConfig = {
                 },
             },
         },
+        "storybook-addon-tag-badges"
     ],
     staticDirs: ["../static"],
     core: {
