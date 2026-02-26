@@ -64,9 +64,11 @@ export default {
                 </>
             ),
             toc: false,
-            chromatic: {
-                disableSnapshot: true,
-            },
+        },
+        chromatic: {
+            // These are now deprecated tokens that we no longer want to
+            // encourage usage of, so we don't need screenshots of them.
+            disableSnapshot: true,
         },
     },
     tags: ["!dev", "deprecated"],

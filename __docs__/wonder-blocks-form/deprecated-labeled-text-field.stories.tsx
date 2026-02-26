@@ -33,6 +33,11 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // This is now a deprecated component that we no longer want to
+            // encourage usage of, so we don't need screenshots of it.
+            disableSnapshot: true,
+        },
     },
     argTypes: LabeledTextFieldArgTypes,
     tags: ["deprecated"],
