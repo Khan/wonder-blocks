@@ -31,7 +31,7 @@ import {Code} from "../components/code";
  * ```
  */
 export default {
-    title: "Packages / Tokens / Deprecated / Color (deprecated)",
+    title: "Packages / Tokens / Deprecated / Color",
     parameters: {
         docs: {
             // Use a custom page so the SB <Primary> component is not rendered
@@ -54,7 +54,7 @@ export default {
             />
         ),
     },
-    tags: ["!dev"],
+    tags: ["!dev", "deprecated"],
 } as Meta;
 
 type Row = {label: string; css: string; value: string};
