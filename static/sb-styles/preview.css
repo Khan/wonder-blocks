@@ -3,6 +3,10 @@
  */
 html {
     font-size: 62.5%;
+}
+
+[data-wb-theme] {
+    /* Set the default body color. This will be need to be set at the global level in environments */
     color: var(--wb-semanticColor-core-foreground-neutral-strong);
 }
 
