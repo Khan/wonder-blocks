@@ -35,7 +35,11 @@ const CompactCell = function (props: CellProps): React.ReactElement {
             {typeof title === "string" ? (
                 <BodyText
                     weight="semi"
-                    style={{lineHeight: theme.title.font.lineHeight}}
+                    style={{
+                        lineHeight: theme.title.font.lineHeight,
+                        // Inherit color from parent, so the BodyText default color isn't used
+                        color: "inherit",
+                    }}
                 >
                     {title}
                 </BodyText>

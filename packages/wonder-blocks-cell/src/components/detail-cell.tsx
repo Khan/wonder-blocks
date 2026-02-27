@@ -39,6 +39,8 @@ const Subtitle = ({subtitle, disabled}: SubtitleProps): React.ReactElement => {
                     {
                         fontSize: theme.subtitle.font.size,
                         lineHeight: theme.subtitle.font.lineHeight,
+                        // Inherit color from parent, so the BodyText default color isn't used
+                        color: "inherit",
                     },
                 ]}
             >
@@ -102,7 +104,11 @@ const DetailCell = function (props: DetailCellProps): React.ReactElement {
             {typeof title === "string" ? (
                 <BodyText
                     weight="semi"
-                    style={{lineHeight: theme.title.font.lineHeight}}
+                    style={{
+                        lineHeight: theme.title.font.lineHeight,
+                        // Inherit color from parent, so the BodyText default color isn't used
+                        color: "inherit",
+                    }}
                 >
                     {title}
                 </BodyText>
