@@ -21,6 +21,9 @@ catalogs:
     aphrodite:
       specifier: ^1.2.5
       version: 1.2.5
+    chalk:
+      specifier: ^4.1.2
+      version: 4.1.2
     date-fns:
       specifier: ^4.1.0
       version: 4.1.0
@@ -319,7 +322,7 @@ importers:
         specifier: ^6.0.0
         version: 6.0.0
       chalk:
-        specifier: ^4.1.2
+        specifier: 'catalog:'
         version: 4.1.2
       chromatic:
         specifier: ^6.0.4
@@ -1572,6 +1575,9 @@ importers:
 
   wb-codemod:
     dependencies:
+      chalk:
+        specifier: 'catalog:'
+        version: 4.1.2
       jscodeshift:
         specifier: 'catalog:'
         version: 17.3.0(@babel/preset-env@7.26.7(@babel/core@7.28.5))

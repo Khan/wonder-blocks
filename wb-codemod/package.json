@@ -1,7 +1,9 @@
 {
   "name": "@khanacademy/wb-codemod",
+  "description": "Codemod scripts for Wonder Blocks",
+  "author": "Khan Academy",
   "license": "MIT",
-  "version": "2.1.2",
+  "version": "2.1.1",
   "publishConfig": {
     "access": "public"
   },
@@ -10,7 +12,11 @@
     "url": "https://github.com/Khan/wonder-blocks.git",
     "directory": "wb-codemod"
   },
+  "bugs": {
+    "url": "https://github.com/Khan/wonder-blocks/issues"
+  },
   "dependencies": {
+    "chalk": "catalog:",
     "jscodeshift": "catalog:"
   },
   "devDependencies": {},
