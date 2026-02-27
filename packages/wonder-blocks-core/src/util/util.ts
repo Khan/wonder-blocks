@@ -8,27 +8,41 @@ type StyledExport = {
     className: string;
 };
 
-function flatten(list?: StyleType): Array<CSSProperties> {
-    const result: Array<CSSProperties> = [];
+/**
+ * Extended style type that supports CSS Module class names (strings).
+ * This allows for gradual migration from Aphrodite to CSS Modules.
+ */
+export type StyleTypeWithCSSModules = StyleType | string;
+
+type NestedStyleArray = ReadonlyArray<
+    CSSProperties | string | false | null | undefined | NestedStyleArray
+>;
+
+function flatten(
+    list?: StyleTypeWithCSSModules | NestedStyleArray,
+): Array<CSSProperties | string> {
+    const result: Array<CSSProperties | string> = [];
 
     if (!list) {
         return result;
     } else if (Array.isArray(list)) {
         for (const item of list) {
-            result.push(...flatten(item));
+            result.push(...flatten(item as StyleTypeWithCSSModules));
         }
     } else {
-        // @ts-expect-error: TypeScript thinks that `list` is still an array here
-        // even though we handled that case in the preceding block.
-        result.push(list);
+        // Handle both string (CSS Module class) and object (Aphrodite style / inline style)
+        result.push(list as CSSProperties | string);
     }
 
     return result;
 }
 
-export function processStyleList(style?: StyleType): StyledExport {
+export function processStyleList(
+    style?: StyleTypeWithCSSModules,
+): StyledExport {
     const stylesheetStyles: Array<any> = [];
     const inlineStyles: Array<any | Record<any, any>> = [];
+    const cssModuleClasses: Array<string> = [];
 
     if (!style) {
         return {
@@ -43,6 +57,12 @@ export function processStyleList(style?: StyleType): StyledExport {
         typeof global !== "undefined" && global.SNAPSHOT_INLINE_APHRODITE;
 
     flatten(style).forEach((child) => {
+        // Handle CSS Module class names (strings)
+        if (typeof child === "string") {
+            cssModuleClasses.push(child);
+            return;
+        }
+
         // Check for aphrodite internal property
         const _definition = (child as any)._definition;
         if (_definition != null) {
@@ -84,8 +104,15 @@ export function processStyleList(style?: StyleType): StyledExport {
         stylesheetStyles.push(inlineStylesStyleSheet.inlineStyles);
     }
 
+    // Combine Aphrodite classes and CSS Module classes
+    const aphroditeClassName = css(...stylesheetStyles);
+    const allClassNames = [...cssModuleClasses];
+    if (aphroditeClassName) {
+        allClassNames.push(aphroditeClassName);
+    }
+
     return {
         style: shouldInlineStyles ? inlineStylesObject : {},
-        className: css(...stylesheetStyles),
+        className: allClassNames.join(" "),
     };
 }

@@ -1,30 +1,12 @@
 // WARNING: If you modify this file you must update view.js.flow.
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
 import {useMemo} from "react";
 import addStyle from "../util/add-style";
 
 import type {TextViewSharedProps} from "../util/types";
 
-const styles = StyleSheet.create({
-    // https://github.com/facebook/css-layout#default-values
-    default: {
-        alignItems: "stretch",
-        borderWidth: 0,
-        borderStyle: "solid",
-        boxSizing: "border-box",
-        display: "flex",
-        flexDirection: "column",
-        margin: 0,
-        padding: 0,
-        position: "relative",
-        zIndex: 0,
-        // fix flexbox bugs
-        minHeight: 0,
-        minWidth: 0,
-    },
-});
+import styles from "./view.module.css";
 
 type Props = TextViewSharedProps & {
     /**
