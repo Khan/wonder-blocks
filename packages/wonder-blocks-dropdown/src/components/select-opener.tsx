@@ -249,6 +249,7 @@ const styles = StyleSheet.create({
         userSelect: "none",
         overflow: "hidden",
         textOverflow: "ellipsis",
+        color: "inherit",
     },
 
     caret: {
