@@ -252,6 +252,7 @@ const preview: Preview = {
         // Allow the user to select a theme from the toolbar.
         theme: {
             description: "Global theme for components",
+            defaultValue: "thunderblocks",
             toolbar: {
                 // The label to show for this toolbar item
                 title: "Theme",
@@ -259,14 +260,14 @@ const preview: Preview = {
                 // Array of plain string values or MenuItem shape (see below)
                 items: [
                     {
-                        value: "default",
-                        icon: "circlehollow",
-                        title: "Wonder Blocks (default)",
-                    },
-                    {
                         value: "thunderblocks",
                         icon: "lightning",
                         title: "Shape Your Learning (Thunder Blocks)",
+                    },
+                    {
+                        value: "default",
+                        icon: "circlehollow",
+                        title: "Wonder Blocks (default)",
                     },
                 ],
                 // Change title based on selected value
