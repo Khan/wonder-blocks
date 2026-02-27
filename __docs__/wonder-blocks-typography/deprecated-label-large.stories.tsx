@@ -8,7 +8,7 @@ import TypographyArgTypes from "./typography.argtypes";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 export default {
-    title: "Packages / Typography / Deprecated / LabelLarge (deprecated)",
+    title: "Packages / Typography / Deprecated / LabelLarge",
     component: LabelLarge,
     parameters: {
         componentSubtitle: (
@@ -24,6 +24,7 @@ export default {
         },
     },
     argTypes: TypographyArgTypes,
+    tags: ["deprecated"],
 } as Meta<typeof LabelLarge>;
 
 type StoryComponentType = StoryObj<typeof LabelLarge>;

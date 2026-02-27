@@ -8,7 +8,7 @@ import TypographyArgTypes from "./typography.argtypes";
 import {Tagline} from "@khanacademy/wonder-blocks-typography";
 
 export default {
-    title: "Packages / Typography / Deprecated / Tagline (deprecated)",
+    title: "Packages / Typography / Deprecated / Tagline",
     component: Tagline,
     parameters: {
         componentSubtitle: (
@@ -24,6 +24,7 @@ export default {
         },
     },
     argTypes: TypographyArgTypes,
+    tags: ["deprecated"],
 } as Meta<typeof Tagline>;
 
 type StoryComponentType = StoryObj<typeof Tagline>;

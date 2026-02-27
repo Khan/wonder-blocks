@@ -8,7 +8,7 @@ import TypographyArgTypes from "./typography.argtypes";
 import {Title} from "@khanacademy/wonder-blocks-typography";
 
 export default {
-    title: "Packages / Typography / Deprecated / Title (deprecated)",
+    title: "Packages / Typography / Deprecated / Title",
     component: Title,
     parameters: {
         componentSubtitle: (
@@ -24,6 +24,7 @@ export default {
         },
     },
     argTypes: TypographyArgTypes,
+    tags: ["deprecated"],
 } as Meta<typeof Title>;
 
 type StoryComponentType = StoryObj<typeof Title>;
