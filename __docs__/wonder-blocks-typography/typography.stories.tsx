@@ -18,7 +18,7 @@ import packageConfig from "../../packages/wonder-blocks-typography/package.json"
 
 import ComponentInfo from "../components/component-info";
 import TypographyArgTypes from "./typography.argtypes";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 
 // NOTE: Only for testing purposes.
 // eslint-disable-next-line import/no-unassigned-import
@@ -274,7 +274,7 @@ export const TypographyStyles: StoryObj = {
     },
     parameters: {
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
         },
     },
 };
