@@ -3,6 +3,7 @@
  */
 html {
     font-size: 62.5%;
+    color: var(--wb-semanticColor-core-foreground-neutral-strong);
 }
 
 .sb-show-main.sb-main-padded {
