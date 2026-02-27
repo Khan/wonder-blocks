@@ -94,12 +94,18 @@ export default function Toolbar({
 
             {title && typeof title === "string" && (
                 <View style={sharedStyles.titles}>
-                    <TitleComponent id="wb-toolbar-title">
+                    <TitleComponent
+                        id="wb-toolbar-title"
+                        style={sharedStyles.typography}
+                    >
                         {title}
                     </TitleComponent>
                     {subtitle && (
                         <LabelSmall
-                            style={color === "light" && sharedStyles.subtitle}
+                            style={[
+                                color === "light" && sharedStyles.subtitle,
+                                sharedStyles.typography,
+                            ]}
                         >
                             {subtitle}
                         </LabelSmall>
@@ -170,5 +176,8 @@ const sharedStyles = StyleSheet.create({
     },
     spacer: {
         minWidth: spacing.small_12,
+    },
+    typography: {
+        color: "inherit",
     },
 });
