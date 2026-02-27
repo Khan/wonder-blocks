@@ -9,7 +9,7 @@ import {Meta} from "@storybook/react-vite";
 import {View} from "@khanacademy/wonder-blocks-core";
 import TokenTable from "../components/token-table";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
 import {flattenNestedTokens} from "../components/tokens-util";
@@ -58,7 +58,7 @@ export default {
             toc: false,
         },
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
         },
         componentSubtitle: (
             <ComponentInfo
