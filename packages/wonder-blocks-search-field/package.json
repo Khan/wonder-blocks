@@ -24,6 +24,7 @@
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },
   "dependencies": {
+    "@khanacademy/wonder-blocks-announcer": "workspace:*",
     "@khanacademy/wonder-blocks-core": "workspace:*",
     "@khanacademy/wonder-blocks-form": "workspace:*",
     "@khanacademy/wonder-blocks-icon": "workspace:*",
