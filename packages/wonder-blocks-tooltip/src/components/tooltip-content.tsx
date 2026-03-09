@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingSmall, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
 
@@ -51,11 +51,7 @@ export default class TooltipContent extends React.Component<Props> {
         const {title} = this.props;
         if (title) {
             if (typeof title === "string") {
-                return (
-                    <HeadingSmall style={{color: "inherit"}}>
-                        {title}
-                    </HeadingSmall>
-                );
+                return <HeadingSmall>{title}</HeadingSmall>;
             } else {
                 return title;
             }
@@ -66,9 +62,7 @@ export default class TooltipContent extends React.Component<Props> {
     _renderChildren(): React.ReactNode {
         const {children} = this.props;
         if (typeof children === "string") {
-            return (
-                <LabelMedium style={{color: "inherit"}}>{children}</LabelMedium>
-            );
+            return <LabelMedium>{children}</LabelMedium>;
         } else {
             return children;
         }
@@ -80,11 +74,7 @@ export default class TooltipContent extends React.Component<Props> {
         const containerStyle = title ? styles.withTitle : styles.withoutTitle;
         return (
             <View
-                style={[
-                    containerStyle,
-                    styles.container,
-                    this.props.contentStyle,
-                ]}
+                style={[containerStyle, this.props.contentStyle]}
                 testId={this.props.testId}
             >
                 {title}
@@ -96,9 +86,6 @@ export default class TooltipContent extends React.Component<Props> {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        color: semanticColor.core.foreground.neutral.strong,
-    },
     withoutTitle: {
         padding: `10px ${spacing.medium_16}px`,
     },
