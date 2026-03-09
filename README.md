@@ -12,7 +12,7 @@ More information: https://khan.github.io/wonder-blocks/
 ### Prerequisites
 
 - [Node.JS v20.x](https://nodejs.org/en/download)
-- [Yarn](https://yarnpkg.com/lang/en/docs/install/)
+- [pnpm](https://pnpm.io/installation)
 
 ### Installation
 
@@ -32,6 +32,8 @@ Runs the docs in dev mode
 
 Now you can open http://localhost:6061 to view the docs. This page will
 automatically update as you make changes to components.
+
+**AI agents / Storybook MCP:** Storybook runs the [addon-mcp](https://storybook.js.org/addons/@storybook/addon-mcp) server at `http://localhost:6061/mcp` when you run `pnpm start`. See [AGENTS.md](./AGENTS.md) for agentic workflows and MCP connection details.
 
 ## Contributing
 
