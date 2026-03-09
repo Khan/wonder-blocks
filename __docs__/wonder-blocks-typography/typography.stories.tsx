@@ -83,7 +83,6 @@ export const NewTypographyElements: StoryObj<any> = {
             <BodyText>BodyText</BodyText>
         </View>
     ),
-    globals: {theme: "thunderblocks"},
     parameters: {
         chromatic: {
             // Disabling because the new typography components are covered
