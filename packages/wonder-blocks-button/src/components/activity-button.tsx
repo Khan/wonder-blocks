@@ -299,8 +299,6 @@ const styles = {
         height: theme.icon.sizing.height,
     },
     label: {
-        // Inherit color from parent, so the BodyText default color isn't used in buttons
-        color: "inherit",
         lineHeight: theme.label.font.lineHeight,
         paddingBlockStart: theme.label.layout.padding.blockStart,
         paddingBlockEnd: theme.label.layout.padding.blockEnd,

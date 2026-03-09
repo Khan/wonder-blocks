@@ -25,7 +25,7 @@ export const AccessoryMappings = {
     withIconText: (
         <View style={{alignItems: "center"}}>
             <PhosphorIcon icon={IconMappings.infoBold} size="small" />
-            <LabelXSmall style={{color: "inherit"}}>Info</LabelXSmall>
+            <LabelXSmall>Info</LabelXSmall>
         </View>
     ) as React.ReactElement<React.ComponentProps<typeof View>>,
     withImage: (

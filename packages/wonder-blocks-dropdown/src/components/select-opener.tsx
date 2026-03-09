@@ -249,8 +249,6 @@ const styles = StyleSheet.create({
         userSelect: "none",
         overflow: "hidden",
         textOverflow: "ellipsis",
-        // Inherit color from parent, so the BodyText default color isn't used
-        color: "inherit",
     },
 
     caret: {
