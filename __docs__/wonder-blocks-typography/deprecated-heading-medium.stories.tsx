@@ -24,7 +24,7 @@ export default {
         },
     },
     argTypes: TypographyArgTypes,
-    tags: ["deprecated"],
+    tags: ["deprecated", "!manifest"],
 } as Meta<typeof HeadingMedium>;
 
 type StoryComponentType = StoryObj<typeof HeadingMedium>;

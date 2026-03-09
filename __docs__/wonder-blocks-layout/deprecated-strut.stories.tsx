@@ -56,7 +56,7 @@ export default {
             },
         },
     },
-    tags: ["deprecated"],
+    tags: ["deprecated", "!manifest"],
 } as Meta<typeof Strut>;
 
 type StoryComponentType = StoryObj<typeof Strut>;
