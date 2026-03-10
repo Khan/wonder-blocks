@@ -87,6 +87,7 @@ const styles = StyleSheet.create({
         margin: `${spacing.xLarge_32}px 0`,
         textAlign: "left",
         width: "100%",
+        color: semanticColor.core.foreground.neutral.strong,
     },
     header: {
         backgroundColor: semanticColor.core.background.base.subtle,
