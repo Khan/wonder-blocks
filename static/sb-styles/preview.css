@@ -6,7 +6,7 @@ html {
 }
 
 [data-wb-theme] {
-    /* Set the default body color. This will be need to be set at the global level in environments */
+    /* Set the default body color. This will need to be set at the global level in environments */
     color: var(--wb-semanticColor-core-foreground-neutral-strong);
 }
 
