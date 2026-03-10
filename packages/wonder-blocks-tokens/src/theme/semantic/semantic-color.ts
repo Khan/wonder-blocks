@@ -133,8 +133,8 @@ const core = {
             mid: transparentShadowColor,
             high: transparentShadowColor,
             color: {
-                strong: color.offBlack16,
                 subtle: fade(color.blue, 0.2),
+                strong: color.offBlack16,
             },
         },
         chonky: {
