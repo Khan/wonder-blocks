@@ -73,7 +73,7 @@ export const color = {
     fadedBlue24: fadedColorWithWhite(baseColors.blue, 0.24),
     fadedBlue16: fadedColorWithWhite(baseColors.blue, 0.16),
     fadedBlue8: fadedColorWithWhite(baseColors.blue, 0.08),
-    blue_alpha20: "rgba(24,101,242,0.20)", // color.blue with 20% alpha
+    blue_alpha20: `${baseColors.blue}33`, // color.blue with 20% alpha
     // Red shades
     activeRed: mix(baseColors.offBlack32, baseColors.red),
     fadedRed: fadedColorWithWhite(baseColors.red, 0.32),
