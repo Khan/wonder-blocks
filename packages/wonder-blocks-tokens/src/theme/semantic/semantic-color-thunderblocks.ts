@@ -2,7 +2,6 @@ import {mergeTheme} from "@khanacademy/wonder-blocks-theming";
 import {color} from "./internal/primitive-color-thunderblocks";
 
 import {semanticColor as defaultSemanticColor} from "./semantic-color";
-import {fade} from "../../util";
 
 const transparent = "transparent";
 
@@ -134,8 +133,8 @@ const core = {
             mid: transparentShadowColor,
             high: transparentShadowColor,
             color: {
-                subtle: fade(color.blue_30, 0.2),
-                strong: fade(color.blue_05, 0.2),
+                subtle: color.blue_30_alpha20,
+                strong: color.blue_05_alpha20,
             },
         },
         chonky: {

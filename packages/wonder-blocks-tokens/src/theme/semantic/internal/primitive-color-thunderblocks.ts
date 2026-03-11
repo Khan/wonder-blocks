@@ -85,6 +85,9 @@ export const color = {
     blue_10: "#363498",
     blue_05: "#252368",
     blue_01: "#222149",
+    // Blue (alpha variants)
+    blue_30_alpha20: "rgba(87,83,250,0.20)", // color.blue_30 with 20% alpha
+    blue_05_alpha20: "rgba(37,35,104,0.20)", // color.blue_05 with 20% alpha
     // Magenta
     magenta_90: "#FCEEF7",
     magenta_80: "#FFE3F4",

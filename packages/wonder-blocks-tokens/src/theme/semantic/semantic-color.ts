@@ -2,7 +2,6 @@
 // should import/reference primitive colors.
 /* eslint-disable import/no-deprecated */
 import {color} from "../../tokens/color";
-import {fade} from "../../util";
 // NOTE: This import is only to provide backwards compatibility with some
 // colors that don't exist in the OG primitives.
 import {color as thunderBlocksColor} from "./internal/primitive-color-thunderblocks";
@@ -133,7 +132,7 @@ const core = {
             mid: transparentShadowColor,
             high: transparentShadowColor,
             color: {
-                subtle: fade(color.blue, 0.2),
+                subtle: color.blue_alpha20,
                 strong: color.offBlack16,
             },
         },
