@@ -6,7 +6,7 @@ import {Heading} from "@khanacademy/wonder-blocks-typography";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {AllVariants} from "../components/all-variants";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 
 /**
  * The following stories are used to generate the style combinations for the Heading
@@ -17,7 +17,7 @@ export default {
     component: Heading,
     parameters: {
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
         },
     },
     tags: ["!autodocs"],

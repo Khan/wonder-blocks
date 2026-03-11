@@ -1,11 +1,11 @@
 import {create} from "storybook/theming";
 
 /**
- * Light theme for the Storybook environment
+ * Dark theme for the Storybook environment
  */
 export default create({
-    base: "light",
+    base: "dark",
     brandTitle: "Wonder Blocks",
     brandUrl: "/",
-    brandImage: "./logo-with-text.svg",
+    brandImage: "./logo-with-text--dark.svg",
 });
