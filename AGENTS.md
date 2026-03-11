@@ -2,6 +2,40 @@
 
 This file helps AI agents and tools work with the Wonder Blocks design system, including the Storybook MCP server.
 
+## Installing the MCP (consumer setup)
+
+If you want to use the Wonder Blocks Storybook MCP from another project (e.g. Cursor, Claude Desktop), you run Wonder Blocks locally and point your MCP client at it.
+
+1. **Clone the Wonder Blocks repo** (if you haven’t already):
+   ```bash
+   git clone git@github.com:Khan/wonder-blocks.git
+   cd wonder-blocks
+   ```
+
+2. **Install dependencies and start Storybook** (the MCP server runs inside Storybook):
+   ```bash
+   pnpm install
+   pnpm start
+   ```
+   Keep this process running. Storybook (and the MCP) will be available at `http://localhost:6061`.
+
+3. **Configure your MCP client** to use the local MCP endpoint. Add a server entry that uses the HTTP transport and the URL below.
+
+   **Example `mcp.json` (Cursor and other clients that support HTTP):**
+   ```json
+   {
+     "mcpServers": {
+       "wonder-blocks": {
+         "url": "http://localhost:6061/mcp"
+       }
+     }
+   }
+   ```
+
+   Use `http://localhost:6061/mcp` as the MCP server URL. No API keys or auth are required for local use.
+
+**Note:** The MCP is only available while Storybook is running (`pnpm start`). If you stop Storybook, your MCP client will lose the connection until you start it again.
+
 ## Storybook MCP server
 
 Wonder Blocks uses [@storybook/addon-mcp](https://storybook.js.org/addons/@storybook/addon-mcp) so agents can discover components, list stories, and use docs tooling.
@@ -35,9 +69,7 @@ Typical MCP tools you can use (names may vary by addon version):
 
 ### Connecting your MCP client
 
-1. Start Storybook: `pnpm start`.
-2. In your MCP client config, add a server that points to `http://localhost:6061/mcp` (HTTP transport, no auth for local).
-3. If your client expects a different transport (e.g. stdio), check the [addon-mcp docs](https://storybook.js.org/addons/@storybook/addon-mcp); this repo only runs the in-Storybook HTTP server.
+For full setup (clone, run locally, configure `mcp.json`), see [Installing the MCP (consumer setup)](#installing-the-mcp-consumer-setup) above. In short: run `pnpm start` in the Wonder Blocks repo, then add `http://localhost:6061/mcp` to your MCP client config (HTTP transport, no auth for local). If your client expects a different transport (e.g. stdio), see the [addon-mcp docs](https://storybook.js.org/addons/@storybook/addon-mcp); this repo only runs the in-Storybook HTTP server.
 
 ## Repo layout for agents
 

@@ -33,7 +33,7 @@ Runs the docs in dev mode
 Now you can open http://localhost:6061 to view the docs. This page will
 automatically update as you make changes to components.
 
-**AI agents / Storybook MCP:** Storybook runs the [addon-mcp](https://storybook.js.org/addons/@storybook/addon-mcp) server at `http://localhost:6061/mcp` when you run `pnpm start`. See [AGENTS.md](./AGENTS.md) for agentic workflows and MCP connection details.
+**AI agents / Storybook MCP:** To use the Wonder Blocks MCP from another project (e.g. Cursor), clone this repo, run `pnpm install` and `pnpm start`, then add `http://localhost:6061/mcp` to your MCP client config (e.g. `mcp.json`). See [AGENTS.md](./AGENTS.md) for full install steps and agentic workflows.
 
 ## Contributing
 
