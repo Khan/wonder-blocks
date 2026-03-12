@@ -3,7 +3,7 @@
   "description": "Search Field components for Wonder Blocks.",
   "author": "Khan Academy",
   "license": "MIT",
-  "version": "5.1.62",
+  "version": "5.1.63",
   "publishConfig": {
     "access": "public"
   },
