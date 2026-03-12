@@ -173,25 +173,24 @@ describe("Announcer.announceMessage", () => {
     });
 
     describe("modal context", () => {
+        let modalElement: HTMLElement;
+
         beforeEach(() => {
-            // Create a mock modal element with aria-modal="true"
-            const modalElement = document.createElement("div");
-            modalElement.setAttribute("aria-modal", "true");
+            modalElement = document.createElement("div");
             modalElement.setAttribute("role", "dialog");
+            modalElement.setAttribute("aria-modal", "true");
             modalElement.setAttribute("data-testid", "test-modal");
             document.body.appendChild(modalElement);
+            // Explicitly attach so live regions exist before announcements fire
+            Announcer.getInstance().attachAnnouncerToModal(modalElement);
         });
 
         afterEach(() => {
             const announcer = Announcer.getInstance();
             jest.advanceTimersByTime(REMOVAL_TIMEOUT_DELAY);
+            announcer.detachAnnouncerFromModal(modalElement);
             announcer.reset();
-
-            // Clean up the modal element
-            const modalElement = screen.queryByTestId("test-modal");
-            if (modalElement) {
-                modalElement.remove();
-            }
+            modalElement.remove();
         });
 
         test("creates modal-specific live regions when inModalContext is true", async () => {
@@ -209,23 +208,19 @@ describe("Announcer.announceMessage", () => {
             jest.advanceTimersByTime(250);
 
             // ASSERT
-            // Check that modal-specific live regions were created
             const modalAnnouncer = screen.queryByTestId("wbAnnounce-modal");
             expect(modalAnnouncer).toBeInTheDocument();
 
-            // Check that modal-specific regions have correct IDs
             const modalPoliteRegion = screen.queryByTestId(
                 "wbARegion-modal-polite1",
             );
             expect(modalPoliteRegion).toBeInTheDocument();
             expect(modalPoliteRegion).toHaveAttribute("aria-live", "polite");
 
-            // Check that the message was announced in the modal region
             await waitFor(() => {
                 expect(modalPoliteRegion).toHaveTextContent(message);
             });
 
-            // Check that the announcement returns the correct modal region ID
             await expect(announcement).resolves.toBe("wbARegion-modal-polite1");
         });
 
@@ -262,13 +257,28 @@ describe("Announcer.announceMessage", () => {
             );
         });
 
-        test("falls back to regular behavior when no modal is present", async () => {
-            // ARRANGE
-            const message = "No modal present";
+        test("auto-detects modal context via hasActiveModal", async () => {
+            // inModalContext is NOT passed — should be inferred automatically
+            const message = "Auto-detected modal";
 
-            // Remove the modal element to simulate no modal present
-            const modalElement = screen.queryByTestId("test-modal");
-            modalElement?.remove();
+            const announcement = announceMessage({
+                message,
+                initialTimeout: 0,
+                debounceThreshold: 0,
+            });
+
+            jest.advanceTimersByTime(250);
+
+            await expect(announcement).resolves.toBe("wbARegion-modal-polite1");
+        });
+
+        test("falls back to regular behavior when no modal is attached", async () => {
+            // ARRANGE
+            const announcer = Announcer.getInstance();
+            // Detach the modal to simulate no modal present
+            announcer.detachAnnouncerFromModal(modalElement);
+
+            const message = "No modal present";
 
             // ACT
             const announcement = announceMessage({
@@ -280,12 +290,11 @@ describe("Announcer.announceMessage", () => {
 
             jest.advanceTimersByTime(250);
 
-            // ASSERT
-            // Should fall back to regular live regions
-            const regularRegion = screen.queryByTestId("wbARegion-polite0");
+            // ASSERT — should fall back to regular live regions
+            // First announcement after reset goes to index 1 (alternation starts at 0 → writes to 1)
+            await expect(announcement).resolves.toBe("wbARegion-polite1");
+            const regularRegion = screen.queryByTestId("wbARegion-polite1");
             expect(regularRegion).toHaveTextContent(message);
-
-            await expect(announcement).resolves.toBe("wbARegion-polite0");
         });
     });
 });

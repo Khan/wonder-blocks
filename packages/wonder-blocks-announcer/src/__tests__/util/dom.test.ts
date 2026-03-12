@@ -12,18 +12,32 @@ jest.spyOn(global, "setTimeout");
 
 describe("Announcer utility functions", () => {
     describe("createRegionWrapper", () => {
-        test("it creates a polite region wrapper element", () => {
-            const element = createRegionWrapper("polite");
+        test("it creates a polite region wrapper element for the document layer", () => {
+            const element = createRegionWrapper("polite", "document");
 
             expect(element.tagName).toBe("DIV");
             expect(element.id).toEqual("wbAWrap-polite");
         });
 
-        test("it creates an assertive region wrapper element", () => {
-            const element = createRegionWrapper("assertive");
+        test("it creates an assertive region wrapper element for the document layer", () => {
+            const element = createRegionWrapper("assertive", "document");
 
             expect(element.tagName).toBe("DIV");
             expect(element.id).toEqual("wbAWrap-assertive");
+        });
+
+        test("it creates a polite region wrapper element for the modal layer", () => {
+            const element = createRegionWrapper("polite", "modal");
+
+            expect(element.tagName).toBe("DIV");
+            expect(element.id).toEqual("wbAWrap-modal-polite");
+        });
+
+        test("it creates an assertive region wrapper element for the modal layer", () => {
+            const element = createRegionWrapper("assertive", "modal");
+
+            expect(element.tagName).toBe("DIV");
+            expect(element.id).toEqual("wbAWrap-modal-assertive");
         });
     });
 
