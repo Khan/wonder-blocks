@@ -13,12 +13,14 @@ import {Heading, BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-announcer/package.json";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 const AnnouncerExample = ({
     message = "Clicked!",
     level,
     debounceThreshold,
-}: AnnounceMessageProps) => {
+    label = "Announce",
+}: AnnounceMessageProps & {label?: string}) => {
     return (
         <Button
             onClick={async () => {
@@ -31,15 +33,13 @@ const AnnouncerExample = ({
                 console.log(idRef);
             }}
         >
-            Save
+            {label}
         </Button>
     );
 };
 type StoryComponentType = StoryObj<typeof AnnouncerExample>;
 
 /**
- * > 🌱 **Note:** This is a new package. We would love your feedback on it!
- *
  * Announcer exposes an API for screen reader messages using [ARIA Live Regions](https://www.w3.org/TR/wai-aria/#attrs_liveregions).
  * It can be used to notify Assistive Technology users without moving
  * keyboard focus. Use cases include combobox filtering, toast notifications,
@@ -229,28 +229,51 @@ export const AnnouncerInModal: StoryComponentType = {
         const ModalContent = ({closeModal}: {closeModal: () => void}) => (
             <FlexibleDialog
                 title={<Heading>Announcer Test Modal</Heading>}
+                styles={{root: {maxWidth: "80rem"}}}
                 content={
-                    <View style={{gap: 16, padding: 24}}>
+                    <View>
                         <BodyText>
-                            This modal contains an announcer button. Try
-                            clicking the button below to test screen reader
+                            This modal contains an announcer. <br />
+                            Click the CTA button below to test screen reader
                             announcements in a modal context.
                         </BodyText>
-                        <AnnouncerExample
-                            message={args.message}
-                            level={args.level}
-                            debounceThreshold={args.debounceThreshold}
-                        />
-                        <Button onClick={closeModal} kind="secondary">
-                            Close Modal
-                        </Button>
+                        <View
+                            style={{
+                                gap: sizing.size_160,
+                                padding: `${sizing.size_240} 0`,
+                                marginTop: "auto",
+                                maxWidth: "40rem",
+                                minHeight: "20rem",
+                            }}
+                        >
+                            <AnnouncerExample
+                                message={args.message}
+                                level={args.level}
+                                debounceThreshold={args.debounceThreshold}
+                                label="Announce in modal"
+                            />
+                            <Button onClick={closeModal} kind="secondary">
+                                Close Modal
+                            </Button>
+                        </View>
                     </View>
                 }
             />
         );
 
         return (
-            <View>
+            <View style={{gap: sizing.size_160}}>
+                <BodyText>
+                    Click &ldquo;Announce on page&rdquo; to test the document
+                    layer, then open the modal and click &ldquo;Save&rdquo; to
+                    test the modal layer.
+                </BodyText>
+                <AnnouncerExample
+                    message="Message announced from the base page!"
+                    level={args.level}
+                    debounceThreshold={args.debounceThreshold}
+                    label="Announce on page"
+                />
                 {!isOpen && (
                     <Button onClick={handleReopen}>Reopen Modal to Test</Button>
                 )}
