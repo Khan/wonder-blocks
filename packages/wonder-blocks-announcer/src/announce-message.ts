@@ -10,15 +10,18 @@ export type AnnounceMessageProps = {
 };
 
 /**
- * Method to announce screen reader messages in ARIA Live Regions.
- * Automatically routes to modal live regions when a modal is active
- * (i.e. attachAnnouncerToModal has been called and detachAnnouncerFromModal has not yet run).
- * @param {string} message The message to announce.
- * @param {PolitenessLevel} level Polite or assertive announcements
- * @param {boolean} inModalContext Optional override for modal routing. Auto-detected if not provided.
- * @param {number} debounceThreshold Optional duration to wait before announcing another message. Defaults to 250ms.
- * @param {number} initialTimeout Optional duration to wait before the first announcement. Useful for Safari and automated testing.
- * @returns {Promise<string>} Promise that resolves with an IDREF for targeted live region element or an empty string
+ * Send a message to a screen reader via an ARIA Live Region.
+ *
+ * When a Wonder Blocks modal is open, the message is automatically routed to
+ * live regions inside the modal so the screen reader can hear it. Pass
+ * `inModalContext` explicitly to override auto-detection.
+ *
+ * @param message The text to announce.
+ * @param level `"polite"` (default) waits for other speech to finish; `"assertive"` interrupts.
+ * @param inModalContext Route to modal live regions. Auto-detected if omitted.
+ * @param debounceThreshold ms to wait before sending (default `250`). Trailing-edge: last call wins.
+ * @param initialTimeout ms to delay the first announcement (default `150`). Helps with Safari/VoiceOver timing.
+ * @returns Promise resolving with the ID of the targeted live region, e.g. `"wbARegion-polite1"`.
  */
 export function announceMessage({
     message,

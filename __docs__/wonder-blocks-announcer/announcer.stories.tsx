@@ -40,114 +40,73 @@ const AnnouncerExample = ({
 type StoryComponentType = StoryObj<typeof AnnouncerExample>;
 
 /**
- * Announcer exposes an API for screen reader messages using [ARIA Live Regions](https://www.w3.org/TR/wai-aria/#attrs_liveregions).
- * It can be used to notify Assistive Technology users without moving
- * keyboard focus. Use cases include combobox filtering, toast notifications,
- * client-side routing, and more.
+ * Announcer sends messages to screen readers using [ARIA Live Regions](https://www.w3.org/TR/wai-aria/#attrs_liveregions),
+ * without moving keyboard focus. Useful for combobox filtering, toast
+ * notifications, client-side routing, and similar patterns.
  *
- * Announcer is an ES6 class that creates a singleton instance. It can be
- * optionally configured once per page load with the `initAnnouncer` function.
- * Calling `announceMessage` will automatically create this instance if not
- * already present.
+ * It is a singleton — one instance is shared across the page. Live regions are
+ * created automatically on first use and are visually hidden by default.
  *
- * Messages alternate between one of two live regions per level (`polite` and `assertive`).
- * They are automatically cleared from the DOM after a `5000` ms delay.
+ * Messages alternate between two regions per politeness level to prevent
+ * assistive technology from swallowing repeated announcements. They are
+ * removed from the DOM after 5000 ms.
  *
- * To test the Announcer, turn on VoiceOver for Mac/iOS or NVDA on Windows and play with the [React example below](#react-announcer-example).
+ * **Modal support:** When a Wonder Blocks modal is open, announcements are
+ * automatically routed to a separate live region injected inside the
+ * `aria-modal` element. This ensures screen readers inside the modal hear the
+ * announcement — browsers hide content outside `aria-modal` from the
+ * accessibility tree.
  *
- * By default, the `wbAnnouncer` container element is rendered _visually hidden_.
+ * > In Storybook, live regions are shown visually on the right side of the
+ * screen (red outlined boxes) for debugging. Controlled via the
+ * `addBodyClass: "showAnnouncer"` story parameter.
  *
- * > In Storybook, the Live Regions appended by Announcer are shown visually on the
- * right side of the screen for debugging (see red outlined boxes). This can be
- * controlled with a Storybook parameter, `addBodyClass: "showAnnouncer"`.
+ * ## API
  *
- * ## API functions
- * ### announceMessage(options)
+ * ### `announceMessage(options)`
  *
- * Calling the `announceMessage` function automatically appends the live regions
- * to `document.body` by default.
+ * The main function. Creates the Announcer instance if one doesn't exist yet.
  *
- * #### Options object
- * - **message:** `string` (required) The text to be announced in a screen reader
+ * **Options:**
+ * - `message` `string` — The text to announce. Required.
+ * - `level` `"polite" | "assertive"` — Default `"polite"`. Use `"assertive"` to interrupt.
+ * - `debounceThreshold` `number` — ms to wait before sending (default `250`). Trailing-edge: last call wins.
+ * - `initialTimeout` `number` — ms to delay the first announcement (default `150`). Helps with Safari/VoiceOver timing.
  *
- * - **level:** `assertive` or `polite` (default)<br>
- *      Whether to interrupt other messages before making an announcement or wait until the system queue is clear.
- *
- * - **debounceThreshold** `number` (default `250` ms)<br>
- *      Specific duration to wait before making another announcement. This is helpful
- *      to prevent too many messages in a dynamic render cycle. Uses trailing edge debounce where last message wins.
- *
- * - **initialTimeout** `number` (default `150` ms)<br>
- *      Optional duration to wait before the first announcement, used for Safari and automated testing.
- *
- * #### Returns
- * A promise resolving with the string ID of the last targeted live region element, such as `wbARegion-polite1`.
- *
- * ####  Usage
- *
- * Calling `announceMessage` in an event handler:
+ * **Returns:** `Promise<string>` — resolves with the ID of the targeted live region, e.g. `"wbARegion-polite1"`.
  *
  * ```jsx
  * import { announceMessage } from "@khanacademy/wonder-blocks-announcer";
  *
- * <div>
- *      <button onClick={() => announceMessage({message: 'Saved your work for you.'})}>
- *          Save
- *      </button>
- * </div>
+ * // In an event handler:
+ * <button onClick={() => announceMessage({ message: "Saved!" })}>Save</button>
+ *
+ * // In a useEffect:
+ * React.useEffect(() => {
+ *     announceMessage({ message: `${results.length} results found` });
+ * }, [results]);
  * ```
  *
- * Calling `announceMessage` in React.useEffect() when state changes:
+ * ### `initAnnouncer(options)`
  *
- *```jsx
- *  import { announceMessage } from "@khanacademy/wonder-blocks-announcer";
+ * Optional. Call once on page load to pre-create live regions before the first
+ * announcement. Improves reliability with VoiceOver/Safari, which works best
+ * when regions are registered before use.
  *
- * const MyComponent = () => {
- *      React.useEffect(() => {
- *          if (someState) {
- *              announceMessage({message: "A thing!"});
- *          }
- *      }, [someState]);
+ * Without this, regions are created on the first `announceMessage` call, which
+ * is fine for most cases.
  *
- *      return (
- *          <div>Some content</div>
- *      )
- * }
- * ```
+ * **Options:**
+ * - `targetElement` `HTMLElement` — Where to mount the live regions (default `document.body`).
+ * - `debounceThreshold` `number` — Sets the global debounce default.
  *
- * ### initAnnouncer(options)
-
-The `initAnnouncer` function can be optionally called to inject live regions on page load.
-
-This can help with consistency of screen reader messages as live regions
-should ideally be present on the page before making announcements.
-
-Without this optional configuration, the live regions will be injected the first
-time `announceMessage` is called. This is sufficient for many use cases, and can be
-determined through screen reader testing (especially with VoiceOver and Safari).
-
-With the `targetElement` option, you can configure the Announcer to inject into a specific element.
-Otherwise it will default to `document.body` (without the `targetElement` property).
-
-#### Usage
-```jsx
- * import { useRef } from "React";
+ * ```jsx
  * import { initAnnouncer } from "@khanacademy/wonder-blocks-announcer";
  *
- * const LayoutComponent = () => {
- *      const containerRef = useRef(null);
- *
- *      initAnnouncer({
- *          targetElement: containerRef.current // optional: defaults to document.body
- *      })
- *
- *      return (
- *          <div ref={containerRef}>
- *              <div>...</div>
- *              <--  wbAnnouncer will be injected here -->
- *          </div>
- *      )
- * }
+ * // In a top-level component:
+ * React.useEffect(() => {
+ *     initAnnouncer();
+ * }, []);
  * ```
  **/
 export default {
@@ -190,14 +149,11 @@ export default {
 } as Meta<typeof AnnouncerExample>;
 
 /**
- * ## React Announcer Example
+ * Click the button to send a polite announcement. The live region that receives
+ * it is logged to the console and shown in the debug boxes on the right.
  *
- * This is an example of a React component calling the `announceMessage` function.
- * The `message` property is set to some example text and the other options are set to their
- * default values.
- *
- * The `onClick` handler calls `announceMessage`, sending the message to the live
- * regions appended by the Announcer instance.
+ * Use the controls below to change the message text, politeness level, and
+ * debounce threshold.
  */
 export const AnnounceMessage: StoryComponentType = {
     args: {
@@ -207,11 +163,18 @@ export const AnnounceMessage: StoryComponentType = {
 };
 
 /**
- * ## Announcer in Modal Context
+ * Tests that announcements work correctly when a modal is open.
  *
- * This story demonstrates the Announcer working inside a modal dialog. The modal
- * is opened by default to test that screen reader announcements work properly
- * when the modal is active and has focus management applied.
+ * When a modal with `aria-modal="true"` is active, browsers hide everything
+ * outside it from the accessibility tree — including a live region at the body
+ * level. To work around this, Announcer injects a second set of live regions
+ * directly inside the `aria-modal` element when the modal mounts.
+ *
+ * - **"Announce on page"** fires into the document-level `wbAnnounce` node at `body`.
+ * - **"Announce in modal"** fires into the `wbAnnounce-modal` node inside the dialog.
+ *
+ * With a screen reader active, only the in-modal button should be audible while
+ * the modal is open.
  */
 export const AnnouncerInModal: StoryComponentType = {
     render: (args) => {
