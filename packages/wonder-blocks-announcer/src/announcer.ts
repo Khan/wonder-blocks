@@ -28,22 +28,17 @@ class Announcer {
         ["document", {count: 2, aIndex: 0, pIndex: 0}],
         ["modal", {count: 2, aIndex: 0, pIndex: 0}],
     ]);
-    layer: LayerContext;
-    modalSelector: string;
     dictionary: RegionDictionary = new Map();
     waitThreshold: number = DEFAULT_WAIT_THRESHOLD;
-    lastExecutionTime = 0;
     private debounced!: {
         (...args: any[]): Promise<string>;
         updateWaitTime: (newWaitTime: number) => void;
     };
-    private modalObserver?: MutationObserver;
-    private modalCleanupTimeouts: Map<string, number> = new Map();
+    // Tracks active modal elements → their announcer container nodes
+    private modalNodes: Map<HTMLElement, HTMLElement> = new Map();
 
     private constructor(targetElement: HTMLElement = document.body) {
         this.targetElement = targetElement;
-        this.layer = "document";
-        this.modalSelector = '[aria-modal="true"]';
 
         if (typeof document !== "undefined") {
             // Check if our top level element already exists
@@ -66,11 +61,9 @@ class Announcer {
                 this.processAnnouncement,
                 this.waitThreshold,
             );
-
-            // Set up modal lifecycle observer
-            this.setupModalObserver();
         }
     }
+
     /**
      * Singleton handler to ensure we only have one Announcer instance
      * @returns {Announcer}
@@ -81,6 +74,15 @@ class Announcer {
         }
         return Announcer._instance;
     }
+
+    /**
+     * Returns true if any modal is currently attached.
+     * Used by announceMessage to determine the layer context automatically.
+     */
+    hasActiveModal(): boolean {
+        return this.modalNodes.size > 0;
+    }
+
     /**
      * Internal initializer method to create live region elements
      * Prepends regions to document body
@@ -105,21 +107,21 @@ class Announcer {
 
         // For each level, we create at least two live region elements.
         // This is to work around AT occasionally dropping messages.
-        const aWrapper = createRegionWrapper("assertive");
+        const aWrapper = createRegionWrapper("assertive", layerId);
         createDuplicateRegions(
             aWrapper,
             "assertive",
-            this.regionFactory.get(layerId)?.count || 2,
+            this.regionFactory.get(layerId)?.count ?? 2,
             layerId,
             this.dictionary,
         );
         nodeRef.appendChild(aWrapper);
 
-        const pWrapper = createRegionWrapper("polite");
+        const pWrapper = createRegionWrapper("polite", layerId);
         createDuplicateRegions(
             pWrapper,
             "polite",
-            this.regionFactory.get(layerId)?.count || 2,
+            this.regionFactory.get(layerId)?.count ?? 2,
             layerId,
             this.dictionary,
         );
@@ -127,174 +129,106 @@ class Announcer {
 
         targetElement.append(nodeRef);
     }
+
     /**
-     * Recover in the event regions get lost
-     * This happens in Storybook or other HMR environments when saving a file:
-     * Announcer exists, but it loses the connection to DOM element Refs
+     * Recover document-layer element references lost during HMR
+     * (e.g. in Storybook when saving a file).
+     * Infers layerId from the region ID prefix so modal regions are also
+     * correctly re-classified if the whole document is reattached.
      */
     reattachNodes() {
-        const announcerCheck = document.getElementById(this.topLevelId);
-        if (announcerCheck !== null) {
-            this.node = announcerCheck;
-            const regions = Array.from(
-                announcerCheck.querySelectorAll<HTMLElement>(
-                    "[id^='wbARegion']",
-                ),
-            );
-            regions.forEach((region) => {
+        const announcerNode = document.getElementById(this.topLevelId);
+        if (announcerNode === null) {
+            return;
+        }
+        this.node = announcerNode;
+        announcerNode
+            .querySelectorAll<HTMLElement>("[id^='wbARegion']")
+            .forEach((region) => {
+                const layerId: LayerContext = region.id.startsWith(
+                    "wbARegion-modal-",
+                )
+                    ? "modal"
+                    : "document";
                 this.dictionary.set(region.id, {
                     id: region.id,
                     levelIndex: parseInt(
                         region.id.charAt(region.id.length - 1),
                     ),
-                    layerId: "document",
+                    layerId,
                     level: region.getAttribute("aria-live") as PolitenessLevel,
                     element: region,
                 });
             });
-        }
     }
 
     /**
-     * Sets up a MutationObserver to detect when modals are added/removed from the DOM
-     * and automatically manage modal-specific live regions
+     * Inject a live region container inside a modal element.
+     * Call this when a modal mounts (e.g. from a useEffect in ModalDialog).
+     * Pre-creating the regions gives screen readers time to register them
+     * before any announcements fire.
+     *
+     * If the container already exists (e.g. after HMR), references are
+     * reattached without re-creating DOM nodes.
      */
-    private setupModalObserver() {
-        if (typeof window === "undefined" || !window.MutationObserver) {
+    attachAnnouncerToModal(modalElement: HTMLElement) {
+        const modalAnnouncerId = `${this.topLevelId}-modal`;
+        const existing = modalElement.querySelector<HTMLElement>(
+            `#${modalAnnouncerId}`,
+        );
+
+        if (existing) {
+            // HMR recovery: re-register the existing regions
+            existing
+                .querySelectorAll<HTMLElement>("[id^='wbARegion-modal-']")
+                .forEach((region) => {
+                    this.dictionary.set(region.id, {
+                        id: region.id,
+                        levelIndex: parseInt(
+                            region.id.charAt(region.id.length - 1),
+                        ),
+                        level: region.getAttribute(
+                            "aria-live",
+                        ) as PolitenessLevel,
+                        element: region,
+                        layerId: "modal",
+                    });
+                });
+            this.modalNodes.set(modalElement, existing);
             return;
         }
 
-        this.modalObserver = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                // Handle nodes being added
-                mutation.addedNodes.forEach((node) => {
-                    if (node.nodeType === Node.ELEMENT_NODE) {
-                        const element = node as Element;
+        const modalNode = document.createElement("div");
+        modalNode.id = modalAnnouncerId;
+        modalNode.setAttribute("data-testid", modalAnnouncerId);
+        Object.assign(modalNode.style, srOnly);
 
-                        // Check if this element or any of its children has aria-modal="true"
-                        const modalElements = element.matches(
-                            this.modalSelector,
-                        )
-                            ? [element]
-                            : Array.from(
-                                  element.querySelectorAll(this.modalSelector),
-                              );
-
-                        modalElements.forEach((modalEl) => {
-                            // Cancel any pending cleanup for this modal
-                            const modalId = modalEl.id || `modal-${Date.now()}`;
-                            const timeoutId =
-                                this.modalCleanupTimeouts.get(modalId);
-                            if (timeoutId) {
-                                clearTimeout(timeoutId);
-                                this.modalCleanupTimeouts.delete(modalId);
-                            }
-                        });
-                    }
-                });
-
-                // Handle nodes being removed
-                mutation.removedNodes.forEach((node) => {
-                    if (node.nodeType === Node.ELEMENT_NODE) {
-                        const element = node as Element;
-
-                        // Check if this element or any of its children had aria-modal="true"
-                        const modalElements = element.matches(
-                            this.modalSelector,
-                        )
-                            ? [element]
-                            : Array.from(
-                                  element.querySelectorAll(this.modalSelector),
-                              );
-
-                        modalElements.forEach((modalEl) => {
-                            // Schedule cleanup of modal-specific live regions
-                            this.scheduleModalCleanup(modalEl);
-                        });
-                    }
-                });
-
-                // Handle attribute changes (aria-modal being added/removed)
-                if (
-                    mutation.type === "attributes" &&
-                    mutation.attributeName === "aria-modal"
-                ) {
-                    const element = mutation.target as Element;
-                    const hasAriaModal =
-                        element.getAttribute("aria-modal") === "true";
-
-                    if (!hasAriaModal) {
-                        // aria-modal was removed or set to false, schedule cleanup
-                        this.scheduleModalCleanup(element);
-                    }
-                }
-            });
-        });
-
-        // Observe the entire document for modal changes
-        this.modalObserver.observe(document.body, {
-            childList: true,
-            subtree: true,
-            attributes: true,
-            attributeFilter: ["aria-modal"],
-        });
+        this.initRegionsForLayer(true, modalNode, modalElement);
+        this.modalNodes.set(modalElement, modalNode);
     }
 
     /**
-     * Schedules cleanup of modal-specific live regions after a brief delay
-     * The delay allows for modal transitions and ensures we don't clean up
-     * regions that are still needed
+     * Remove the live region container from a modal element and clean up
+     * dictionary entries. Call this when the modal unmounts.
      */
-    private scheduleModalCleanup(modalElement: Element) {
-        const modalId = modalElement.id || `modal-${Date.now()}`;
-
-        // Clear any existing timeout for this modal
-        const existingTimeout = this.modalCleanupTimeouts.get(modalId);
-        if (existingTimeout) {
-            clearTimeout(existingTimeout);
+    detachAnnouncerFromModal(modalElement: HTMLElement) {
+        const modalNode = this.modalNodes.get(modalElement);
+        if (!modalNode) {
+            return;
         }
 
-        // Schedule cleanup after a short delay
-        const timeoutId = setTimeout(() => {
-            this.cleanupModalRegions();
-            this.modalCleanupTimeouts.delete(modalId);
-        }, 500) as unknown as number; // 500ms delay to allow for transitions
-
-        this.modalCleanupTimeouts.set(modalId, timeoutId);
-    }
-
-    /**
-     * Removes modal-specific live regions that are no longer needed
-     * (i.e., when no modal with aria-modal="true" exists on the page)
-     */
-    private cleanupModalRegions() {
-        // Check if there are any active modals
-        const activeModals = document.querySelectorAll(this.modalSelector);
-
-        if (activeModals.length === 0) {
-            // No active modals, remove all modal-specific regions
-            const modalRegions = [...this.dictionary.entries()].filter(
-                ([id, region]) => region.layerId === "modal",
-            );
-
-            modalRegions.forEach(([id, region]) => {
-                // Remove the region element from the DOM
-                const modalAnnouncerContainer =
-                    region.element.closest(`[id$="-modal"]`);
-                if (
-                    modalAnnouncerContainer &&
-                    modalAnnouncerContainer.parentElement
-                ) {
-                    modalAnnouncerContainer.parentElement.removeChild(
-                        modalAnnouncerContainer,
-                    );
-                }
-
-                // Remove from dictionary
-                this.dictionary.delete(id);
+        // Remove dictionary entries for this modal's regions
+        modalNode
+            .querySelectorAll<HTMLElement>("[id^='wbARegion-modal-']")
+            .forEach((region) => {
+                this.dictionary.delete(region.id);
             });
 
-            // Reset modal region factory indices
+        modalNode.parentElement?.removeChild(modalNode);
+        this.modalNodes.delete(modalElement);
+
+        // Reset modal region indices when no modals remain
+        if (this.modalNodes.size === 0) {
             const modalFactory = this.regionFactory.get("modal");
             if (modalFactory) {
                 modalFactory.aIndex = 0;
@@ -303,84 +237,6 @@ class Announcer {
         }
     }
 
-    /**
-     * Ensures live regions exist inside the modal container when in modal context
-     */
-    ensureModalLiveRegions() {
-        // Find the modal container (element with aria-modal="true")
-        const modalContainer = document.querySelector<HTMLElement>(
-            this.modalSelector,
-        );
-
-        if (!modalContainer) {
-            // If no modal found, fall back to regular behavior
-            return;
-        }
-
-        // Check if modal-specific live regions already exist
-        const modalAnnouncerId = `${this.topLevelId}-modal`;
-        const existingModalAnnouncer = modalContainer.querySelector(
-            `#${modalAnnouncerId}`,
-        );
-
-        if (existingModalAnnouncer) {
-            // Modal regions already exist, just reattach references
-            this.reattachModalNodes(existingModalAnnouncer as HTMLElement);
-            return;
-        }
-
-        // Create live regions inside the modal
-        const modalNode = document.createElement("div");
-        modalNode.id = modalAnnouncerId;
-        modalNode.setAttribute("data-testid", modalAnnouncerId);
-        Object.assign(modalNode.style, srOnly);
-
-        this.initRegionsForLayer(true, modalNode, modalContainer);
-    }
-
-    /**
-     * Reattach modal-specific live region references
-     */
-    reattachModalNodes(modalNode: HTMLElement) {
-        const regions = Array.from(
-            modalNode.querySelectorAll<HTMLElement>("[id^='wbARegion-modal-']"),
-        );
-        regions.forEach((region) => {
-            this.dictionary.set(region.id, {
-                id: region.id,
-                levelIndex: parseInt(region.id.charAt(region.id.length - 1)),
-                level: region.getAttribute("aria-live") as PolitenessLevel,
-                element: region,
-                layerId: "modal",
-            });
-        });
-    }
-
-    /**
-     * Update region IDs and dictionary entries for modal context
-     */
-    updateRegionsForModal(regions: HTMLElement[], level: PolitenessLevel) {
-        regions.forEach((region, index) => {
-            const oldId = region.id;
-            const newId = `wbARegion-modal-${level}${index}`;
-
-            // Update the element's ID and test ID
-            region.id = newId;
-            region.setAttribute("data-testid", newId);
-
-            // Remove old dictionary entry
-            this.dictionary.delete(oldId);
-
-            // Add new dictionary entry
-            this.dictionary.set(newId, {
-                id: newId,
-                levelIndex: index,
-                level: level,
-                layerId: "modal",
-                element: region,
-            });
-        });
-    }
     /**
      * Announce a live region message for a given level
      * @param {string} message The message to be announced
@@ -405,6 +261,7 @@ class Announcer {
 
         return this.debounced(this, message, level, layerId);
     }
+
     /**
      * Override the default debounce wait threshold
      * @param {number} debounceThreshold Duration to wait before appending messages
@@ -415,10 +272,11 @@ class Announcer {
             this.debounced.updateWaitTime(debounceThreshold);
         }
     }
+
     /**
      * Callback for appending live region messages through debounce
      * @param {Announcer} context Pass the correct `this` arg to the callback
-     * @param {sting} message The live region message to append
+     * @param {string} message The live region message to append
      * @param {string} level The politeness level for whether to interrupt
      * @param {LayerContext} layerId Identifier for modal or document context
      */
@@ -432,22 +290,14 @@ class Announcer {
             context.reattachNodes();
         }
 
-        let targetLayerId = layerId;
-
-        // Handle modal context - create live regions inside the modal
-        if (layerId === "modal") {
-            context.ensureModalLiveRegions();
-
-            // Check if modal regions were actually created
-            const modalRegions = [...context.dictionary.values()].filter(
-                (entry: RegionDef) => entry.layerId === "modal",
-            );
-
-            // If no modal regions exist, fall back to document layer
-            if (modalRegions.length === 0) {
-                targetLayerId = "document";
-            }
-        }
+        // If modal context was requested but no modal regions exist (e.g.
+        // attachAnnouncerToModal was never called), fall back to the document layer so
+        // the message is never silently dropped.
+        const hasModalRegions = [...context.dictionary.values()].some(
+            (entry: RegionDef) => entry.layerId === "modal",
+        );
+        const targetLayerId: LayerContext =
+            layerId === "modal" && !hasModalRegions ? "document" : layerId;
 
         // Filter region elements to the selected level and layer
         const regions: RegionDef[] = [...context.dictionary.values()].filter(
@@ -505,9 +355,9 @@ class Announcer {
      */
     appendMessage(
         message: string,
-        level: PolitenessLevel, // level
-        regionList: RegionDef[], // list of relevant elements
-        layerId: LayerContext, // layer context
+        level: PolitenessLevel,
+        regionList: RegionDef[],
+        layerId: LayerContext,
         debounceThreshold: number = DEFAULT_WAIT_THRESHOLD,
     ): number {
         // Get the layer factory for the current layer
@@ -545,7 +395,7 @@ class Announcer {
      * Useful for testing.
      **/
     reset() {
-        this.regionFactory.forEach((value, key) => {
+        this.regionFactory.forEach((value) => {
             value.aIndex = 0;
             value.pIndex = 0;
         });
@@ -562,20 +412,11 @@ class Announcer {
             this.node.parentElement?.removeChild(this.node);
         }
 
-        // Cleanup modal observer
-        if (this.modalObserver) {
-            this.modalObserver.disconnect();
-            this.modalObserver = undefined;
-        }
-
-        // Clear any pending modal cleanup timeouts
-        this.modalCleanupTimeouts.forEach((timeoutId) => {
-            clearTimeout(timeoutId);
+        // Remove any attached modal announcer nodes
+        this.modalNodes.forEach((modalNode) => {
+            modalNode.parentElement?.removeChild(modalNode);
         });
-        this.modalCleanupTimeouts.clear();
-
-        // Clean up any modal regions
-        this.cleanupModalRegions();
+        this.modalNodes.clear();
 
         Announcer._instance = null;
     }

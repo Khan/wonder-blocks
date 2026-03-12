@@ -183,6 +183,113 @@ describe("Announcer class", () => {
         });
     });
 
+    describe("modal layer", () => {
+        let modalElement: HTMLElement;
+
+        beforeEach(() => {
+            modalElement = document.createElement("div");
+            modalElement.setAttribute("role", "dialog");
+            modalElement.setAttribute("aria-modal", "true");
+            modalElement.setAttribute("data-testid", "test-modal");
+            document.body.appendChild(modalElement);
+        });
+
+        afterEach(() => {
+            const announcer = Announcer.getInstance();
+            jest.advanceTimersByTime(REMOVAL_TIMEOUT_DELAY);
+            announcer.detachAnnouncerFromModal(modalElement);
+            modalElement.remove();
+            announcer.reset();
+        });
+
+        test("attachAnnouncerToModal creates live regions inside the modal", () => {
+            const announcer = Announcer.getInstance();
+            announcer.attachAnnouncerToModal(modalElement);
+
+            const modalAnnouncer = screen.getByTestId("wbAnnounce-modal");
+            expect(modalAnnouncer).toBeInTheDocument();
+            // eslint-disable-next-line testing-library/no-node-access
+            expect(modalElement.contains(modalAnnouncer)).toBe(true);
+            expect(
+                screen.getByTestId("wbARegion-modal-polite0"),
+            ).toBeInTheDocument();
+            expect(
+                screen.getByTestId("wbARegion-modal-polite1"),
+            ).toBeInTheDocument();
+            expect(
+                screen.getByTestId("wbARegion-modal-assertive0"),
+            ).toBeInTheDocument();
+            expect(
+                screen.getByTestId("wbARegion-modal-assertive1"),
+            ).toBeInTheDocument();
+        });
+
+        test("attachAnnouncerToModal registers regions in the dictionary", () => {
+            const announcer = Announcer.getInstance();
+            announcer.attachAnnouncerToModal(modalElement);
+
+            // 4 document + 4 modal regions
+            expect(announcer.dictionary.size).toBe(8);
+            expect(
+                [...announcer.dictionary.values()].filter(
+                    (r) => r.layerId === "modal",
+                ).length,
+            ).toBe(4);
+        });
+
+        test("hasActiveModal returns true after attach, false after detach", () => {
+            const announcer = Announcer.getInstance();
+            expect(announcer.hasActiveModal()).toBe(false);
+
+            announcer.attachAnnouncerToModal(modalElement);
+            expect(announcer.hasActiveModal()).toBe(true);
+
+            announcer.detachAnnouncerFromModal(modalElement);
+            expect(announcer.hasActiveModal()).toBe(false);
+        });
+
+        test("detachAnnouncerFromModal removes the container and cleans up the dictionary", () => {
+            const announcer = Announcer.getInstance();
+            announcer.attachAnnouncerToModal(modalElement);
+            expect(announcer.dictionary.size).toBe(8);
+
+            announcer.detachAnnouncerFromModal(modalElement);
+            expect(announcer.dictionary.size).toBe(4);
+            expect(
+                screen.queryByTestId("wbAnnounce-modal"),
+            ).not.toBeInTheDocument();
+        });
+
+        test("announcing in modal context routes to modal regions", () => {
+            const announcer = Announcer.getInstance();
+            announcer.attachAnnouncerToModal(modalElement);
+
+            announcer.announce("modal message", "polite", true, 0);
+            jest.advanceTimersByTime(500);
+
+            expect(announcer.regionFactory.get("modal")?.pIndex).toBe(1);
+            expect(
+                announcer.dictionary.get("wbARegion-modal-polite1")?.element
+                    .textContent,
+            ).toBe("modal message");
+        });
+
+        test("falls back to document layer when no modal regions exist", () => {
+            const announcer = Announcer.getInstance();
+            // Do NOT call attachAnnouncerToModal
+
+            announcer.announce("fallback message", "polite", true, 0);
+            jest.advanceTimersByTime(500);
+
+            // Without modal regions, falls back to document layer
+            expect(announcer.regionFactory.get("document")?.pIndex).toBe(1);
+            expect(
+                announcer.dictionary.get("wbARegion-polite1")?.element
+                    .textContent,
+            ).toBe("fallback message");
+        });
+    });
+
     describe("clearing messages", () => {
         test("clearing by IDREF", async () => {
             // Arrange

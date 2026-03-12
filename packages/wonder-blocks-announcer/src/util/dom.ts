@@ -7,11 +7,16 @@ import type {
 /**
  * Create a wrapper element to group regions for a given level
  * @param {string} level Politeness level for grouping
+ * @param {LayerContext} layerId Layer context for distinct wrapper IDs
  * @returns {HTMLElement} Wrapper DOM element reference
  */
-export function createRegionWrapper(level: PolitenessLevel) {
+export function createRegionWrapper(
+    level: PolitenessLevel,
+    layerId: LayerContext,
+) {
     const wrapper = document.createElement("div");
-    wrapper.id = `wbAWrap-${level}`;
+    const layerPrefix = layerId === "modal" ? "modal-" : "";
+    wrapper.id = `wbAWrap-${layerPrefix}${level}`;
     return wrapper;
 }
 
