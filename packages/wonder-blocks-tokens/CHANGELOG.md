@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 16.1.0
+
+### Minor Changes
+
+- 358eb9b: Add `semanticColor.core.shadow.transparent.color.subtle/strong` tokens
+
 ## 16.0.0
 
 ### Major Changes
