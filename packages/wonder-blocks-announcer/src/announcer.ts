@@ -17,7 +17,9 @@ export const REMOVAL_TIMEOUT_DELAY = 5000;
 export const DEFAULT_WAIT_THRESHOLD = 250;
 
 /**
- * Internal class to manage screen reader announcements.
+ * Singleton class that manages ARIA Live Region nodes and routes announcements
+ * to the correct layer (document or modal). Use the public API functions
+ * (`announceMessage`, `initAnnouncer`, etc.) rather than this class directly.
  */
 class Announcer {
     private static _instance: Announcer | null;
@@ -84,9 +86,8 @@ class Announcer {
     }
 
     /**
-     * Internal initializer method to create live region elements
-     * Prepends regions to document body
-     * @param {string} id ID of the top level node (wbAnnounce)
+     * Creates the root container node and appends document-layer live regions
+     * to the target element.
      */
     init(id: string) {
         this.node = document.createElement("div");

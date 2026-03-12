@@ -1,24 +1,28 @@
 import Announcer from "./announcer";
 
 /**
- * Inject a live region container inside a modal element so that screen reader
- * announcements made while the modal is open are audible to the user.
+ * Inject live regions inside a modal element so that announcements are
+ * audible while the modal is open.
  *
- * Call this when the modal element mounts — typically from a useEffect.
- * Pre-creating the live regions gives screen readers time to register them
+ * Call this when the `aria-modal` element mounts (e.g. in a `useEffect`).
+ * Regions are created eagerly so screen readers have time to register them
  * before the first announcement fires.
  *
- * @param {HTMLElement} modalElement The element with role="dialog" and aria-modal="true"
+ * Wonder Blocks modal components call this automatically — you only need this
+ * if you're using a custom modal outside of Wonder Blocks.
+ *
+ * @param modalElement The element with `role="dialog"` and `aria-modal="true"`.
  */
 export function attachAnnouncerToModal(modalElement: HTMLElement) {
     Announcer.getInstance().attachAnnouncerToModal(modalElement);
 }
 
 /**
- * Remove the live region container from a modal element and clean up internal
- * state. Call this when the modal unmounts — typically from a useEffect cleanup.
+ * Remove the live region container from a modal element and clean up
+ * internal state. Call this when the modal unmounts (e.g. in a `useEffect`
+ * cleanup).
  *
- * @param {HTMLElement} modalElement The element previously passed to attachAnnouncerToModal
+ * @param modalElement The element previously passed to `attachAnnouncerToModal`.
  */
 export function detachAnnouncerFromModal(modalElement: HTMLElement) {
     Announcer.getInstance().detachAnnouncerFromModal(modalElement);
