@@ -69,7 +69,7 @@ export default {
             },
         },
     },
-    tags: ["deprecated"],
+    tags: ["deprecated", "!manifest"],
 } as Meta<typeof Spring>;
 
 export const Default: StoryComponentType = {

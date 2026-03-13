@@ -71,7 +71,7 @@ export default {
             disableSnapshot: true,
         },
     },
-    tags: ["!dev", "deprecated"],
+    tags: ["!dev", "deprecated", "!manifest"],
 } as Meta;
 
 type Row = {label: string; css: string; value: string};

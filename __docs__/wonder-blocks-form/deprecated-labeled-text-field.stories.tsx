@@ -40,7 +40,7 @@ export default {
         },
     },
     argTypes: LabeledTextFieldArgTypes,
-    tags: ["deprecated"],
+    tags: ["deprecated", "!manifest"],
 } as Meta<typeof LabeledTextField>;
 
 type StoryComponentType = StoryObj<typeof LabeledTextField>;

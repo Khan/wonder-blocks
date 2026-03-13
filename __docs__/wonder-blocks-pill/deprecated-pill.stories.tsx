@@ -69,7 +69,7 @@ export default {
         },
     },
     argTypes: PillArgtypes,
-    tags: ["deprecated"],
+    tags: ["deprecated", "!manifest"],
 } as Meta<typeof Pill>;
 
 type StoryComponentType = StoryObj<typeof Pill>;

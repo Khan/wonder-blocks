@@ -37,7 +37,7 @@ export default {
             disableSnapshot: true,
         },
     },
-    tags: ["deprecated"],
+    tags: ["deprecated", "!manifest"],
 } as Meta<typeof MediaLayout>;
 
 type StoryComponentType = StoryObj<typeof MediaLayout>;

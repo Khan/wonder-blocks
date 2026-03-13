@@ -16,7 +16,7 @@ import {
 
 export default {
     title: "Packages / LabeledField / Testing / Snapshots / LabeledField",
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
     parameters: {
         componentSubtitle: (
             <ComponentInfo

@@ -23,7 +23,7 @@ export default {
             disableSnapshot: true,
         },
     },
-    tags: ["deprecated"],
+    tags: ["deprecated", "!manifest"],
     argTypes: TypographyArgTypes,
 } as Meta<typeof HeadingLarge>;
 

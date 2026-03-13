@@ -24,7 +24,7 @@ export default {
         },
     },
     argTypes: TypographyArgTypes,
-    tags: ["deprecated"],
+    tags: ["deprecated", "!manifest"],
 } as Meta<typeof LabelLarge>;
 
 type StoryComponentType = StoryObj<typeof LabelLarge>;
