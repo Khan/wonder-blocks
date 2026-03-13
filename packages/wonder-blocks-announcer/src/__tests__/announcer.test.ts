@@ -206,21 +206,22 @@ describe("Announcer class", () => {
             const announcer = Announcer.getInstance();
             announcer.attachAnnouncerToModal(modalElement);
 
-            const modalAnnouncer = screen.getByTestId("wbAnnounce-modal");
+            // Use regex to match regardless of the counter suffix
+            const modalAnnouncer = screen.getByTestId(/^wbAnnounce-modal/);
             expect(modalAnnouncer).toBeInTheDocument();
             // eslint-disable-next-line testing-library/no-node-access
             expect(modalElement.contains(modalAnnouncer)).toBe(true);
             expect(
-                screen.getByTestId("wbARegion-modal-polite0"),
+                screen.getByTestId(/^wbARegion-modal-polite0/),
             ).toBeInTheDocument();
             expect(
-                screen.getByTestId("wbARegion-modal-polite1"),
+                screen.getByTestId(/^wbARegion-modal-polite1/),
             ).toBeInTheDocument();
             expect(
-                screen.getByTestId("wbARegion-modal-assertive0"),
+                screen.getByTestId(/^wbARegion-modal-assertive0/),
             ).toBeInTheDocument();
             expect(
-                screen.getByTestId("wbARegion-modal-assertive1"),
+                screen.getByTestId(/^wbARegion-modal-assertive1/),
             ).toBeInTheDocument();
         });
 
@@ -256,7 +257,7 @@ describe("Announcer class", () => {
             announcer.detachAnnouncerFromModal(modalElement);
             expect(announcer.dictionary.size).toBe(4);
             expect(
-                screen.queryByTestId("wbAnnounce-modal"),
+                screen.queryByTestId(/^wbAnnounce-modal/),
             ).not.toBeInTheDocument();
         });
 
@@ -268,10 +269,16 @@ describe("Announcer class", () => {
             jest.advanceTimersByTime(500);
 
             expect(announcer.regionFactory.get("modal")?.pIndex).toBe(1);
-            expect(
-                announcer.dictionary.get("wbARegion-modal-polite1")?.element
-                    .textContent,
-            ).toBe("modal message");
+            // Find the modal polite region at index 1 via layerId filter
+            const modalPoliteRegion = [...announcer.dictionary.values()].find(
+                (r) =>
+                    r.layerId === "modal" &&
+                    r.level === "polite" &&
+                    r.levelIndex === 1,
+            );
+            expect(modalPoliteRegion?.element.textContent).toBe(
+                "modal message",
+            );
         });
 
         test("falls back to document layer when no modal regions exist", () => {

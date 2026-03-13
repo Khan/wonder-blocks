@@ -32,12 +32,22 @@ class Announcer {
     ]);
     dictionary: RegionDictionary = new Map();
     waitThreshold: number = DEFAULT_WAIT_THRESHOLD;
-    private debounced!: {
-        (...args: any[]): Promise<string>;
-        updateWaitTime: (newWaitTime: number) => void;
-    };
+    // One independent debounce timer per layer so a document announcement
+    // and a modal announcement within the same debounce window don't cancel
+    // each other out.
+    private debouncedByLayer!: Map<
+        LayerContext,
+        {
+            (...args: any[]): Promise<string>;
+            updateWaitTime: (newWaitTime: number) => void;
+        }
+    >;
     // Tracks active modal elements → their announcer container nodes
     private modalNodes: Map<HTMLElement, HTMLElement> = new Map();
+    // Incremented for each modal attached; used to make region IDs unique
+    // across simultaneously open modals (e.g. a confirmation dialog over
+    // an existing modal).
+    private modalCounter: number = 0;
 
     private constructor(targetElement: HTMLElement = document.body) {
         this.targetElement = targetElement;
@@ -55,14 +65,27 @@ class Announcer {
                 this.reattachNodes();
             }
 
-            // Create the debounced message attachment function
-            // This API makes leading edge debouncing work while preserving the
-            // ability to change the wait parameter through Announcer.announce
-            this.debounced = createDebounceFunction(
-                this,
-                this.processAnnouncement,
-                this.waitThreshold,
-            );
+            // Create one debounced function per layer so that a document
+            // announcement and a modal announcement within the same debounce
+            // window don't cancel each other out.
+            this.debouncedByLayer = new Map([
+                [
+                    "document",
+                    createDebounceFunction(
+                        this,
+                        this.processAnnouncement,
+                        this.waitThreshold,
+                    ),
+                ],
+                [
+                    "modal",
+                    createDebounceFunction(
+                        this,
+                        this.processAnnouncement,
+                        this.waitThreshold,
+                    ),
+                ],
+            ]);
         }
     }
 
@@ -103,28 +126,31 @@ class Announcer {
         isModalContext: boolean,
         nodeRef: HTMLElement,
         targetElement: HTMLElement,
+        idSuffix: string = "",
     ) {
         const layerId: LayerContext = isModalContext ? "modal" : "document";
 
         // For each level, we create at least two live region elements.
         // This is to work around AT occasionally dropping messages.
-        const aWrapper = createRegionWrapper("assertive", layerId);
+        const aWrapper = createRegionWrapper("assertive", layerId, idSuffix);
         createDuplicateRegions(
             aWrapper,
             "assertive",
             this.regionFactory.get(layerId)?.count ?? 2,
             layerId,
             this.dictionary,
+            idSuffix,
         );
         nodeRef.appendChild(aWrapper);
 
-        const pWrapper = createRegionWrapper("polite", layerId);
+        const pWrapper = createRegionWrapper("polite", layerId, idSuffix);
         createDuplicateRegions(
             pWrapper,
             "polite",
             this.regionFactory.get(layerId)?.count ?? 2,
             layerId,
             this.dictionary,
+            idSuffix,
         );
         nodeRef.appendChild(pWrapper);
 
@@ -173,7 +199,11 @@ class Announcer {
      * reattached without re-creating DOM nodes.
      */
     attachAnnouncerToModal(modalElement: HTMLElement) {
-        const modalAnnouncerId = `${this.topLevelId}-modal`;
+        // Each modal gets a unique numeric suffix so that simultaneously open
+        // modals (e.g. a confirmation dialog layered over an existing modal)
+        // never share region IDs or collide in the dictionary.
+        const suffix = String(++this.modalCounter);
+        const modalAnnouncerId = `${this.topLevelId}-modal-${suffix}`;
         const existing = modalElement.querySelector<HTMLElement>(
             `#${modalAnnouncerId}`,
         );
@@ -204,7 +234,7 @@ class Announcer {
         modalNode.setAttribute("data-testid", modalAnnouncerId);
         Object.assign(modalNode.style, srOnly);
 
-        this.initRegionsForLayer(true, modalNode, modalElement);
+        this.initRegionsForLayer(true, modalNode, modalElement, suffix);
         this.modalNodes.set(modalElement, modalNode);
     }
 
@@ -260,7 +290,10 @@ class Announcer {
         // Convert boolean inModalContext to LayerContext
         const layerId: LayerContext = inModalContext ? "modal" : "document";
 
-        return this.debounced(this, message, level, layerId);
+        // Use the layer-specific debounced function so cross-layer announcements
+        // don't cancel each other within the same debounce window.
+        const debounced = this.debouncedByLayer.get(layerId)!;
+        return debounced(this, message, level, layerId);
     }
 
     /**
@@ -269,9 +302,9 @@ class Announcer {
      */
     updateWaitThreshold(debounceThreshold: number) {
         this.waitThreshold = debounceThreshold;
-        if (this.debounced) {
-            this.debounced.updateWaitTime(debounceThreshold);
-        }
+        this.debouncedByLayer?.forEach((fn) => {
+            fn.updateWaitTime(debounceThreshold);
+        });
     }
 
     /**
