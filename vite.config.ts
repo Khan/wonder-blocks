@@ -7,6 +7,12 @@ export default defineConfig({
     build: {
         assetsInlineLimit: 0,
     },
+    css: {
+        modules: {
+            generateScopedName: "[name]__[local]___[hash:base64:5]",
+            localsConvention: "camelCase",
+        },
+    },
     resolve: {
         alias: [
             {

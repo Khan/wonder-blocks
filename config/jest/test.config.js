@@ -50,6 +50,7 @@ module.exports = {
     moduleNameMapper: {
         "^@khanacademy/wonder-blocks-(.*)$":
             "<rootDir>/packages/wonder-blocks-$1/src/index.ts",
+        "\\.module\\.css$": "identity-obj-proxy",
         "\\.(css|less|scss|sass)$": "<rootDir>/config/jest/css.mock.js",
     },
     collectCoverageFrom: [

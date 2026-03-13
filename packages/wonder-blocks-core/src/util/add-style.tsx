@@ -1,9 +1,18 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
 import {processStyleList} from "./util";
+import type {StyleTypeWithCSSModules} from "./util";
+import elementResets from "../styles/element-resets.module.css";
 
 import type {StyleType} from "./types";
+
+/**
+ * Map of element tag names to their CSS Module reset class names.
+ * These overrides are necessary to normalize browser-specific default styles.
+ */
+const cssModuleOverrides: Partial<Record<string, string>> = {
+    button: elementResets.button,
+};
 
 export default function addStyle<
     // We extend `React.ComponentType<any>` to support `addStyle(Link)` with
@@ -11,12 +20,12 @@ export default function addStyle<
     T extends React.ComponentType<any> | keyof JSX.IntrinsicElements,
     Props extends {
         className?: string;
-        style?: StyleType;
+        style?: StyleType | StyleTypeWithCSSModules;
         children?: React.ReactNode;
     } & Omit<React.ComponentProps<T>, "style">, // Removes the 'style' prop from the original component
 >(
     Component: T,
-    defaultStyle?: StyleType,
+    defaultStyle?: StyleType | StyleTypeWithCSSModules,
 ): React.ForwardRefExoticComponent<
     React.PropsWithoutRef<Props> &
         React.RefAttributes<
@@ -34,17 +43,21 @@ export default function addStyle<
         // NOTE: Cast as any here because our types are too comlicated for
         // TypeScript to properly understand them.
         const {className, style, ...otherProps} = props as any;
-        const reset =
-            typeof Component === "string" ? overrides[Component] : null;
 
-        const {className: aphroditeClassName, style: inlineStyles} =
+        // Get CSS Module reset class for the element, if available
+        const reset =
+            typeof Component === "string"
+                ? cssModuleOverrides[Component]
+                : null;
+
+        const {className: processedClassName, style: inlineStyles} =
             processStyleList([reset, defaultStyle, style]);
 
         return (
             <Component
                 {...otherProps}
                 ref={ref}
-                className={[aphroditeClassName, className]
+                className={[processedClassName, className]
                     .filter(Boolean)
                     .join(" ")}
                 style={inlineStyles}
@@ -52,20 +65,6 @@ export default function addStyle<
         );
     });
 }
-
-/**
- * These are necessary to override various custom styles that browsers add so that
- * elements have consistent styles across all browsers.  Only add styles here if
- * they appear in https://github.com/necolas/normalize.css/blob/master/normalize.css.
- */
-const overrides = StyleSheet.create({
-    button: {
-        margin: 0, // Safari adds 2px left/right margins
-        "::-moz-focus-inner": {
-            border: 0, // Firefox adds an inner focus ring around text
-        },
-    },
-});
 
 // This mapping is based on `ReactHTML` and `ReactSVG` interfaces in the type definitions
 // for React.  This is used to determine the HTML/SVG element type from the tag string.

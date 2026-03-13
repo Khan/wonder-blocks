@@ -1,32 +1,17 @@
 // WARNING: If you modify this file you must update text.js.flow.
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
 import {processStyleList} from "../util/util";
 
 import type {TextViewSharedProps} from "../util/types";
+
+import styles from "./text.module.css";
 
 type Props = TextViewSharedProps & {
     tag?: string;
 };
 
 const isHeaderRegex = /^h[1-6]$/;
-
-const styles = StyleSheet.create({
-    text: {
-        // Disable subpixel antialiasing on Mac desktop for consistency of
-        // rendering with mobile and Sketch (neither of which support it).
-        // See https://bjango.com/articles/subpixeltext/ for more details.
-        WebkitFontSmoothing: "antialiased",
-        MozOsxFontSmoothing: "grayscale",
-    },
-    header: {
-        // User agent stylesheets add vertical margins to header tags by
-        // default. We prefer to be more deliberate in our spacing instead.
-        marginTop: 0,
-        marginBottom: 0,
-    },
-});
 
 /**
  * Text is a building block for constructing other components. `Text` roughly

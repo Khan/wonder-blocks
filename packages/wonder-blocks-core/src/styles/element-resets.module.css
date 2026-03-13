@@ -1,0 +1,13 @@
+/**
+ * These are necessary to override various custom styles that browsers add so that
+ * elements have consistent styles across all browsers.  Only add styles here if
+ * they appear in https://github.com/necolas/normalize.css/blob/master/normalize.css.
+ */
+
+.button {
+    margin: 0; /* Safari adds 2px left/right margins */
+}
+
+.button::-moz-focus-inner {
+    border: 0; /* Firefox adds an inner focus ring around text */
+}
