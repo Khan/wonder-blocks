@@ -1136,6 +1136,9 @@ importers:
 
   packages/wonder-blocks-modal:
     dependencies:
+      '@khanacademy/wonder-blocks-announcer':
+        specifier: workspace:*
+        version: link:../wonder-blocks-announcer
       '@khanacademy/wonder-blocks-breadcrumbs':
         specifier: workspace:*
         version: link:../wonder-blocks-breadcrumbs

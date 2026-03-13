@@ -4,6 +4,10 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {StyleSheet} from "aphrodite";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 // TODO [WB-2137]: standardize media query breakpoint tokens
+import {
+    attachAnnouncerToModal,
+    detachAnnouncerFromModal,
+} from "@khanacademy/wonder-blocks-announcer";
 import {modalMediaQuery} from "../util/constants";
 import theme from "../theme";
 
@@ -80,6 +84,22 @@ const ModalDialog = React.forwardRef(function ModalDialog(
         "aria-describedby": ariaDescribedBy,
     } = props;
 
+    // Internal ref for the aria-modal element, used to attach/detach
+    // the announcer live regions. A separate ref is used so we don't
+    // interfere with the forwarded ref used by callers.
+    const dialogRef = React.useRef<HTMLDivElement>(null);
+
+    React.useEffect(() => {
+        const el = dialogRef.current;
+        if (!el) {
+            return;
+        }
+        attachAnnouncerToModal(el);
+        return () => {
+            detachAnnouncerFromModal(el);
+        };
+    }, []);
+
     return (
         <View style={componentStyles.paddingLayer} data-modal-padding-layer>
             {/* WB-2197: We add a data attribute for identifying this layer on backdrop clicks */}
@@ -91,8 +111,20 @@ const ModalDialog = React.forwardRef(function ModalDialog(
                     aria-label={ariaLabel}
                     aria-labelledby={ariaLabelledBy}
                     aria-describedby={ariaDescribedBy}
-                    ref={ref}
-                    style={[componentStyles.dialog]}
+                    ref={(node) => {
+                        // Populate both the internal ref and the forwarded ref.
+                        // View renders a div, so the cast to HTMLDivElement is safe.
+                        const divNode = node as HTMLDivElement | null;
+                        (
+                            dialogRef as React.MutableRefObject<HTMLDivElement | null>
+                        ).current = divNode;
+                        if (typeof ref === "function") {
+                            ref(divNode);
+                        } else if (ref) {
+                            ref.current = divNode;
+                        }
+                    }}
+                    style={componentStyles.dialog}
                     testId={testId}
                 >
                     {children}

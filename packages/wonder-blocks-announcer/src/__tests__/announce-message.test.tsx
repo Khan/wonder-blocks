@@ -171,4 +171,113 @@ describe("Announcer.announceMessage", () => {
             expect(screen.queryByText(message1)).not.toBeInTheDocument();
         });
     });
+
+    describe("modal context", () => {
+        let modalElement: HTMLElement;
+
+        beforeEach(() => {
+            modalElement = document.createElement("div");
+            modalElement.setAttribute("role", "dialog");
+            modalElement.setAttribute("aria-modal", "true");
+            modalElement.setAttribute("data-testid", "test-modal");
+            document.body.appendChild(modalElement);
+            // Explicitly attach so live regions exist before announcements fire
+            Announcer.getInstance().attachAnnouncerToModal(modalElement);
+        });
+
+        afterEach(() => {
+            const announcer = Announcer.getInstance();
+            jest.advanceTimersByTime(REMOVAL_TIMEOUT_DELAY);
+            announcer.detachAnnouncerFromModal(modalElement);
+            announcer.reset();
+            modalElement.remove();
+        });
+
+        test("routes to modal layer when a modal is attached", async () => {
+            // ARRANGE — beforeEach has already called attachAnnouncerToModal
+            const message = "Modal announcement";
+
+            // ACT
+            const announcement = announceMessage({
+                message,
+                initialTimeout: 0,
+                debounceThreshold: 0,
+            });
+
+            jest.advanceTimersByTime(250);
+
+            // ASSERT
+            const modalAnnouncer = screen.queryByTestId(/^wbAnnounce-modal/);
+            expect(modalAnnouncer).toBeInTheDocument();
+
+            const modalPoliteRegion = screen.queryByTestId(
+                /^wbARegion-modal-polite1/,
+            );
+            expect(modalPoliteRegion).toBeInTheDocument();
+            expect(modalPoliteRegion).toHaveAttribute("aria-live", "polite");
+
+            await waitFor(() => {
+                expect(modalPoliteRegion).toHaveTextContent(message);
+            });
+
+            await expect(announcement).resolves.toMatch(
+                /^wbARegion-modal-polite1/,
+            );
+        });
+
+        test("routes assertive messages to modal layer when a modal is attached", async () => {
+            // ARRANGE — beforeEach has already called attachAnnouncerToModal
+            const message = "Urgent modal announcement";
+
+            // ACT
+            const announcement = announceMessage({
+                message,
+                level: "assertive",
+                initialTimeout: 0,
+                debounceThreshold: 0,
+            });
+
+            jest.advanceTimersByTime(250);
+
+            // ASSERT
+            const modalAssertiveRegion = screen.queryByTestId(
+                /^wbARegion-modal-assertive1/,
+            );
+            expect(modalAssertiveRegion).toHaveAttribute(
+                "aria-live",
+                "assertive",
+            );
+
+            await waitFor(() => {
+                expect(modalAssertiveRegion).toHaveTextContent(message);
+            });
+
+            await expect(announcement).resolves.toMatch(
+                /^wbARegion-modal-assertive1/,
+            );
+        });
+
+        test("routes to document layer when no modal is attached", async () => {
+            // ARRANGE — detach so hasActiveModal() returns false
+            const announcer = Announcer.getInstance();
+            announcer.detachAnnouncerFromModal(modalElement);
+
+            const message = "No modal present";
+
+            // ACT
+            const announcement = announceMessage({
+                message,
+                initialTimeout: 0,
+                debounceThreshold: 0,
+            });
+
+            jest.advanceTimersByTime(250);
+
+            // ASSERT — should fall back to regular live regions
+            // First announcement after reset goes to index 1 (alternation starts at 0 → writes to 1)
+            await expect(announcement).resolves.toBe("wbARegion-polite1");
+            const regularRegion = screen.queryByTestId("wbARegion-polite1");
+            expect(regularRegion).toHaveTextContent(message);
+        });
+    });
 });
