@@ -13,10 +13,12 @@ import type {
 export function createRegionWrapper(
     level: PolitenessLevel,
     layerId: LayerContext,
+    idSuffix: string = "",
 ) {
     const wrapper = document.createElement("div");
     const layerPrefix = layerId === "modal" ? "modal-" : "";
-    wrapper.id = `wbAWrap-${layerPrefix}${level}`;
+    const suffix = idSuffix ? `-${idSuffix}` : "";
+    wrapper.id = `wbAWrap-${layerPrefix}${level}${suffix}`;
     return wrapper;
 }
 
@@ -35,9 +37,17 @@ export function createDuplicateRegions(
     regionCount: number,
     layerId: LayerContext,
     dictionary: RegionDictionary,
+    idSuffix: string = "",
 ): HTMLElement[] {
     const result = new Array(regionCount).fill(0).map((el, i) => {
-        const region = createRegion(level, i, layerId, dictionary);
+        const region = createRegion(
+            level,
+            i,
+            layerId,
+            dictionary,
+            "log",
+            idSuffix,
+        );
         wrapper.appendChild(region);
         return region;
     });
@@ -59,6 +69,7 @@ export function createRegion(
     layerId: LayerContext,
     dictionary: RegionDictionary,
     role = "log",
+    idSuffix: string = "",
 ) {
     const region = document.createElement("div");
     region.setAttribute("role", role);
@@ -66,7 +77,8 @@ export function createRegion(
     region.classList.add("wbARegion");
     // Omit "document" from page-level ids, but include "modal"
     const layerNameForId = layerId === "modal" ? `${layerId}-` : "";
-    const id = `wbARegion-${layerNameForId}${level}${index}`;
+    const suffix = idSuffix ? `-${idSuffix}` : "";
+    const id = `wbARegion-${layerNameForId}${level}${index}${suffix}`;
     region.id = id;
     region.setAttribute("data-testid", id);
     dictionary.set(id, {

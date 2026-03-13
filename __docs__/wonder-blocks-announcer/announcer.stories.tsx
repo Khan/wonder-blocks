@@ -228,8 +228,8 @@ export const AnnouncerInModal: StoryComponentType = {
             <View style={{gap: sizing.size_160}}>
                 <BodyText>
                     Click &ldquo;Announce on page&rdquo; to test the document
-                    layer, then open the modal and click &ldquo;Save&rdquo; to
-                    test the modal layer.
+                    layer, then open the modal and click &ldquo;Announce in
+                    modal&rdquo; to test the modal layer.
                 </BodyText>
                 <AnnouncerExample
                     message="Message announced from the base page!"

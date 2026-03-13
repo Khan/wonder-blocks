@@ -193,14 +193,13 @@ describe("Announcer.announceMessage", () => {
             modalElement.remove();
         });
 
-        test("creates modal-specific live regions when inModalContext is true", async () => {
-            // ARRANGE
+        test("routes to modal layer when a modal is attached", async () => {
+            // ARRANGE — beforeEach has already called attachAnnouncerToModal
             const message = "Modal announcement";
 
             // ACT
             const announcement = announceMessage({
                 message,
-                inModalContext: true,
                 initialTimeout: 0,
                 debounceThreshold: 0,
             });
@@ -208,11 +207,11 @@ describe("Announcer.announceMessage", () => {
             jest.advanceTimersByTime(250);
 
             // ASSERT
-            const modalAnnouncer = screen.queryByTestId("wbAnnounce-modal");
+            const modalAnnouncer = screen.queryByTestId(/^wbAnnounce-modal/);
             expect(modalAnnouncer).toBeInTheDocument();
 
             const modalPoliteRegion = screen.queryByTestId(
-                "wbARegion-modal-polite1",
+                /^wbARegion-modal-polite1/,
             );
             expect(modalPoliteRegion).toBeInTheDocument();
             expect(modalPoliteRegion).toHaveAttribute("aria-live", "polite");
@@ -221,18 +220,19 @@ describe("Announcer.announceMessage", () => {
                 expect(modalPoliteRegion).toHaveTextContent(message);
             });
 
-            await expect(announcement).resolves.toBe("wbARegion-modal-polite1");
+            await expect(announcement).resolves.toMatch(
+                /^wbARegion-modal-polite1/,
+            );
         });
 
-        test("creates modal-specific assertive regions", async () => {
-            // ARRANGE
+        test("routes assertive messages to modal layer when a modal is attached", async () => {
+            // ARRANGE — beforeEach has already called attachAnnouncerToModal
             const message = "Urgent modal announcement";
 
             // ACT
             const announcement = announceMessage({
                 message,
                 level: "assertive",
-                inModalContext: true,
                 initialTimeout: 0,
                 debounceThreshold: 0,
             });
@@ -241,7 +241,7 @@ describe("Announcer.announceMessage", () => {
 
             // ASSERT
             const modalAssertiveRegion = screen.queryByTestId(
-                "wbARegion-modal-assertive1",
+                /^wbARegion-modal-assertive1/,
             );
             expect(modalAssertiveRegion).toHaveAttribute(
                 "aria-live",
@@ -252,30 +252,14 @@ describe("Announcer.announceMessage", () => {
                 expect(modalAssertiveRegion).toHaveTextContent(message);
             });
 
-            await expect(announcement).resolves.toBe(
-                "wbARegion-modal-assertive1",
+            await expect(announcement).resolves.toMatch(
+                /^wbARegion-modal-assertive1/,
             );
         });
 
-        test("auto-detects modal context via hasActiveModal", async () => {
-            // inModalContext is NOT passed — should be inferred automatically
-            const message = "Auto-detected modal";
-
-            const announcement = announceMessage({
-                message,
-                initialTimeout: 0,
-                debounceThreshold: 0,
-            });
-
-            jest.advanceTimersByTime(250);
-
-            await expect(announcement).resolves.toBe("wbARegion-modal-polite1");
-        });
-
-        test("falls back to regular behavior when no modal is attached", async () => {
-            // ARRANGE
+        test("routes to document layer when no modal is attached", async () => {
+            // ARRANGE — detach so hasActiveModal() returns false
             const announcer = Announcer.getInstance();
-            // Detach the modal to simulate no modal present
             announcer.detachAnnouncerFromModal(modalElement);
 
             const message = "No modal present";
@@ -283,7 +267,6 @@ describe("Announcer.announceMessage", () => {
             // ACT
             const announcement = announceMessage({
                 message,
-                inModalContext: true,
                 initialTimeout: 0,
                 debounceThreshold: 0,
             });
