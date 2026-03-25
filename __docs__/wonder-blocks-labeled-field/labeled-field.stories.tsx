@@ -151,6 +151,7 @@ export const ContextLabel: StoryComponentType = {
 
 const StyledForm = addStyle("form");
 const StyledUl = addStyle("ul");
+const StyledLi = addStyle("li");
 
 const AllFields = (
     storyArgs: PropsFor<typeof LabeledField> & {
@@ -206,8 +207,9 @@ const AllFields = (
 
     const [isFormSubmitted, setIsFormSubmitted] = React.useState(false);
 
-    type BannerError = {label: string; message: string};
-    const [bannerErrors, setBannerErrors] = React.useState<BannerError[]>([]);
+    const [bannerErrors, setBannerErrors] = React.useState<
+        {label: string; message: string}[]
+    >([]);
 
     const moveFocusToFirstFieldWithError = React.useCallback(() => {
         // The errors in the order they are presented, along with the refs
@@ -361,7 +363,7 @@ const AllFields = (
                                 }}
                             >
                                 {bannerErrors.map((e) => (
-                                    <li
+                                    <StyledLi
                                         key={e.label}
                                         style={{
                                             color: "inherit",
@@ -370,7 +372,7 @@ const AllFields = (
                                         }}
                                     >
                                         <b>{e.label}:</b> {e.message}
-                                    </li>
+                                    </StyledLi>
                                 ))}
                             </StyledUl>
                         </>
