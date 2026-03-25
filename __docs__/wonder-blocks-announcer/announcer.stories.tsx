@@ -163,7 +163,7 @@ export const AnnounceMessage: StoryComponentType = {
 };
 
 /**
- * Tests that announcements work correctly when a modal is open.
+ * Test that screen reader announcements work correctly when a modal is open.
  *
  * When a WB modal dialog (any variant) is active with `aria-modal="true"`,
  * browsers hide everything outside it from the accessibility tree — including a
@@ -251,15 +251,6 @@ export const AnnouncerInModal: StoryComponentType = {
     args: {
         message: "Message announced from inside modal!",
         level: "polite",
-    },
-    parameters: {
-        docs: {
-            description: {
-                story: `This story tests the Announcer functionality within a modal context.
-                The modal opens automatically to demonstrate that screen reader
-                announcements work properly when focus is managed within the modal.`,
-            },
-        },
     },
 };
 
