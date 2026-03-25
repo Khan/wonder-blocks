@@ -250,12 +250,18 @@ const AllFields = (
             // updates when the form is submitted, not as fields are corrected
             setBannerErrors(
                 [
-                    {label: "Text Field", message: textFieldErrorMessage},
-                    {label: "Text Area", message: textAreaErrorMessage},
-                    {label: "Single Select", message: singleSelectErrorMessage},
-                    {label: "Multi Select", message: multiSelectErrorMessage},
-                    {label: "Search", message: searchErrorMessage},
-                ].filter((e): e is BannerError => Boolean(e.message)),
+                    {label: "Text Field", message: textFieldErrorMessage || ""},
+                    {label: "Text Area", message: textAreaErrorMessage || ""},
+                    {
+                        label: "Single Select",
+                        message: singleSelectErrorMessage || "",
+                    },
+                    {
+                        label: "Multi Select",
+                        message: multiSelectErrorMessage || "",
+                    },
+                    {label: "Search", message: searchErrorMessage || ""},
+                ].filter((e) => Boolean(e.message)),
             );
             setIsFormSubmitted(false);
         }
