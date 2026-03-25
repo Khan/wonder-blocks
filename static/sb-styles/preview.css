@@ -102,7 +102,7 @@ html {
     width: 22rem !important;
 }
 
-.showAnnouncer.sb-show-main #wbAnnounce {
+.showAnnouncer.sb-show-main [id^="wbAnnounce"] {
     background-color: white;
     bottom: 0;
     display: block !important;
