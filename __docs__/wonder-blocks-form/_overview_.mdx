@@ -18,7 +18,7 @@ TextField, TextArea, Choice, Checkbox, RadioButton, etc.
 
 - Use form field components with the `LabeledField` component. `LabeledField`
 provides a consistent pattern for things like the label,
-description, required indicator, and error message for a field. It will also
+description, context label, and helper text like error messages. It will also
 provide unique ids automatically and wire up the proper attributes for
 accessibility. Use `LabeledField` for the following components:
   - `TextField`
@@ -29,16 +29,7 @@ accessibility. Use `LabeledField` for the following components:
 - If you are using the `CheckboxGroup` or `RadioGroup` components, use the
 `label` prop for an accessible field label. This uses `<fieldset>` and
 `<legend>` elements instead of a `<label>` since the label is for a group of
-related controls. See [Grouping Controls](https://www.w3.org/WAI/tutorials/forms/grouping/)
-for more details!
-- For custom implementations of field labels:
-  - Make sure the id of the form field element is unique to the page
-  - When using Wonder Blocks typography components for the form field label,
-  set the `tag` prop to `label` to change the underlying element to render and
-  use the `htmlFor` prop. Here is an example of a form field label using Wonder
-  Blocks components `LabelMedium` and `TextArea`:
-
-<Canvas of={AccessibilityStories.FormLabelExample} />
+related controls.
 
 ### Error Validation
 
