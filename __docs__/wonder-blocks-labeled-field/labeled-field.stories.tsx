@@ -15,6 +15,7 @@ import {
 } from "@khanacademy/wonder-blocks-dropdown";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
 import Button from "@khanacademy/wonder-blocks-button";
+import Banner from "@khanacademy/wonder-blocks-banner";
 import {themeModes} from "../../.storybook/modes";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 
@@ -149,6 +150,7 @@ export const ContextLabel: StoryComponentType = {
 };
 
 const StyledForm = addStyle("form");
+const StyledUl = addStyle("ul");
 
 const AllFields = (
     storyArgs: PropsFor<typeof LabeledField> & {
@@ -157,11 +159,13 @@ const AllFields = (
         disabled?: boolean;
         textValue?: string;
         required?: boolean | string; // Used for the field component's required prop
+        showBannerOnErrorInStory?: boolean;
     },
 ) => {
     const {
         shouldValidateInStory,
         showSubmitButtonInStory,
+        showBannerOnErrorInStory = false,
         disabled,
         textValue,
         ...args
@@ -241,7 +245,8 @@ const AllFields = (
         }
     }, [isFormSubmitted, moveFocusToFirstFieldWithError]);
 
-    const handleSubmit = () => {
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
         const backendErrorMessage = "Example server side error message";
         if (args.required) {
             const requiredMsg =
@@ -298,6 +303,16 @@ const AllFields = (
         }
     };
 
+    const errors = [
+        {label: "Text Field", message: textFieldErrorMessage},
+        {label: "Text Area", message: textAreaErrorMessage},
+        {label: "Single Select", message: singleSelectErrorMessage},
+        {label: "Multi Select", message: multiSelectErrorMessage},
+        {label: "Search", message: searchErrorMessage},
+    ].filter((e) => e.message);
+
+    const errorCount = errors.length;
+
     return (
         <StyledForm
             onSubmit={handleSubmit}
@@ -307,6 +322,43 @@ const AllFields = (
                 gap: sizing.size_240,
             }}
         >
+            {errorCount > 1 && showBannerOnErrorInStory && (
+                <Banner
+                    kind="critical"
+                    text={
+                        <>
+                            {`There are ${errorCount} errors in this form. Please review the fields below.`}
+
+                            <StyledUl
+                                style={{
+                                    color: "inherit",
+                                    fontSize: "inherit",
+                                    lineHeight: "inherit",
+                                    paddingInlineStart: sizing.size_160,
+                                    marginBlockEnd: 0,
+                                    marginBlockStart: sizing.size_120,
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    gap: sizing.size_040,
+                                }}
+                            >
+                                {errors.map((e) => (
+                                    <li
+                                        key={e.label}
+                                        style={{
+                                            color: "inherit",
+                                            fontSize: "inherit",
+                                            lineHeight: "inherit",
+                                        }}
+                                    >
+                                        <b>{e.label}:</b> {e.message}
+                                    </li>
+                                ))}
+                            </StyledUl>
+                        </>
+                    }
+                />
+            )}
             <LabeledField
                 {...args}
                 errorMessage={textFieldErrorMessage}
@@ -511,12 +563,16 @@ export const Required: AllFieldsStoryComponentType = {
  * In this example, the text-based fields will show an error if the value has
  * less than 5 characters. The select-based fields will show an error if "Mango"
  * is selected.
+ *
+ * The example will also display a banner after submission when there are multiple
+ * errors.
  */
 export const Validation: AllFieldsStoryComponentType = {
     args: {
         description: "Helpful description text.",
         shouldValidateInStory: true,
         showSubmitButtonInStory: true,
+        showBannerOnErrorInStory: true,
     },
     render: AllFields,
 };
