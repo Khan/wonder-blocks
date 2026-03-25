@@ -179,13 +179,13 @@ export const AnnounceMessage: StoryComponentType = {
 export const AnnouncerInModal: StoryComponentType = {
     render: (args) => {
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const [isOpen, setIsOpen] = React.useState(true);
+        const [isOpen, setIsOpen] = React.useState(false);
 
         const handleClose = () => {
             setIsOpen(false);
         };
 
-        const handleReopen = () => {
+        const handleOpen = () => {
             setIsOpen(true);
         };
 
@@ -238,7 +238,7 @@ export const AnnouncerInModal: StoryComponentType = {
                     label="Announce on page"
                 />
                 {!isOpen && (
-                    <Button onClick={handleReopen}>Reopen Modal to Test</Button>
+                    <Button onClick={handleOpen}>Open Modal to Test</Button>
                 )}
                 <ModalLauncher
                     opened={isOpen}
