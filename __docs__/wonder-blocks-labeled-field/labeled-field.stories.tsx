@@ -206,6 +206,9 @@ const AllFields = (
 
     const [isFormSubmitted, setIsFormSubmitted] = React.useState(false);
 
+    type BannerError = {label: string; message: string};
+    const [bannerErrors, setBannerErrors] = React.useState<BannerError[]>([]);
+
     const moveFocusToFirstFieldWithError = React.useCallback(() => {
         // The errors in the order they are presented, along with the refs
         const errors = [
@@ -241,9 +244,28 @@ const AllFields = (
             // If the form has been submitted, move focus. We use useEffect
             // so that the error message states are updated before we move focus
             moveFocusToFirstFieldWithError();
+            // Snapshot the errors at submission time so the banner only
+            // updates when the form is submitted, not as fields are corrected
+            setBannerErrors(
+                [
+                    {label: "Text Field", message: textFieldErrorMessage},
+                    {label: "Text Area", message: textAreaErrorMessage},
+                    {label: "Single Select", message: singleSelectErrorMessage},
+                    {label: "Multi Select", message: multiSelectErrorMessage},
+                    {label: "Search", message: searchErrorMessage},
+                ].filter((e): e is BannerError => Boolean(e.message)),
+            );
             setIsFormSubmitted(false);
         }
-    }, [isFormSubmitted, moveFocusToFirstFieldWithError]);
+    }, [
+        isFormSubmitted,
+        moveFocusToFirstFieldWithError,
+        textFieldErrorMessage,
+        textAreaErrorMessage,
+        singleSelectErrorMessage,
+        multiSelectErrorMessage,
+        searchErrorMessage,
+    ]);
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -303,15 +325,7 @@ const AllFields = (
         }
     };
 
-    const errors = [
-        {label: "Text Field", message: textFieldErrorMessage},
-        {label: "Text Area", message: textAreaErrorMessage},
-        {label: "Single Select", message: singleSelectErrorMessage},
-        {label: "Multi Select", message: multiSelectErrorMessage},
-        {label: "Search", message: searchErrorMessage},
-    ].filter((e) => e.message);
-
-    const errorCount = errors.length;
+    const bannerErrorCount = bannerErrors.length;
 
     return (
         <StyledForm
@@ -322,12 +336,12 @@ const AllFields = (
                 gap: sizing.size_240,
             }}
         >
-            {errorCount > 1 && showBannerOnErrorInStory && (
+            {bannerErrorCount > 1 && showBannerOnErrorInStory && (
                 <Banner
                     kind="critical"
                     text={
                         <>
-                            {`There are ${errorCount} errors in this form. Please review the fields below.`}
+                            {`There are ${bannerErrorCount} errors in this form. Please review the fields below.`}
 
                             <StyledUl
                                 style={{
@@ -342,7 +356,7 @@ const AllFields = (
                                     gap: sizing.size_040,
                                 }}
                             >
-                                {errors.map((e) => (
+                                {bannerErrors.map((e) => (
                                     <li
                                         key={e.label}
                                         style={{
