@@ -42,23 +42,31 @@ for more details!
 
 ### Error Validation
 
-- For fields like `TextField`, `TextArea`, and `SearchField` prefer setting
-`instantValidation=false`. This makes it so validation occurs on blur after a
-user is done interacting with a field.
+- For fields like `TextField`, `TextArea`, and `SearchField` use
+`instantValidation=false`. This makes it so validation occurs on blur, after a
+user is done interacting with a field. Instant validation is extremely
+disruptive to screen reader users.
 - Avoid disabling form submission buttons. There could be exceptions if the
 button is for one field.
-- If there are errors after a form is submitted, programatically move the user's
-focus to the first field with an error.
-- Accessibility: When using a `<form>` element to wrap form fields, avoid using
+- If there is an error after a form is submitted, programatically move the user's
+focus to the field with an error. When multiple issues are present, display a
+`Banner` with `kind="critical"` with an error summary at the top of the form and
+move focus to the first errored field. This will announce the list of errors
+before the user moves through the form to fix them.
+- When using a `<form>` element to wrap form fields, avoid using
 event handlers (such as key events) directly on the `<form>` element since it
-is non-interactive. To submit a form when the `Enter` key is pressed,
-include a `Button` with `type="submit"` inside the form and handle submission
-using the `onSubmit` prop on the `<form>` element. The "Enter to submit" functionality
-is handled by the browser.
+is non-interactive.
+  - To submit a form when the `Enter` key is pressed, include a `Button` with
+`type="submit"` inside the form and handle submission using the `onSubmit` prop
+on the `<form>` element. The "Enter to submit" functionality is handled by the
+browser. Be cautious when adding this behavior to learner-facing interactions,
+especially those where the activity is scored and cannot be undone. Not all
+users are aware of this control functionality and it could result in accidental
+submissions.
 
 Here is an example of validation behaviour in a form. It validates when a
-user is done filling out a field and also shows a validation error once
-the form is submitted (this simulates a backend validation error). When the form
-is submitted, the focus is also moved to the first field with an error.
+user is done filling out a field and also shows validation errors and a banner
+once the form is submitted (this simulates a backend validation error). When the
+form is submitted, the focus is also moved to the first field with an error.
 
 <Canvas of={LabeledFieldStories.Validation} />
