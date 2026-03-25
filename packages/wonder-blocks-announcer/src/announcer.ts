@@ -258,13 +258,14 @@ class Announcer {
         modalNode.parentElement?.removeChild(modalNode);
         this.modalNodes.delete(modalElement);
 
-        // Reset modal region indices when no modals remain
+        // Reset modal region indices and counter when no modals remain
         if (this.modalNodes.size === 0) {
             const modalFactory = this.regionFactory.get("modal");
             if (modalFactory) {
                 modalFactory.aIndex = 0;
                 modalFactory.pIndex = 0;
             }
+            this.modalCounter = 0;
         }
     }
 
