@@ -5,10 +5,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
-import {
-    attachAnnouncerToModal,
-    detachAnnouncerFromModal,
-} from "@khanacademy/wonder-blocks-announcer";
+import {useModalAnnouncer} from "../hooks/use-modal-announcer";
 import FlexiblePanel from "./flexible-panel";
 import theme from "../theme";
 
@@ -144,21 +141,7 @@ const FlexibleDialog = React.forwardRef(function FlexibleDialog(
     const uniqueId = React.useId();
     const headingId = titleId ?? uniqueId;
 
-    // Internal ref for the aria-modal element, used to attach/detach
-    // the announcer live regions. A separate ref is used so we don't
-    // interfere with the forwarded ref used by callers.
-    const dialogRef = React.useRef<HTMLDivElement>(null);
-
-    React.useEffect(() => {
-        const el = dialogRef.current;
-        if (!el) {
-            return;
-        }
-        attachAnnouncerToModal(el);
-        return () => {
-            detachAnnouncerFromModal(el);
-        };
-    }, []);
+    const {ariaModalRef} = useModalAnnouncer(ref);
 
     const renderedTitle =
         title == null ? null : typeof title === "string" ? (
@@ -179,19 +162,7 @@ const FlexibleDialog = React.forwardRef(function FlexibleDialog(
                 aria-label={accessibilityProps["aria-label"]}
                 aria-labelledby={headingId}
                 aria-describedby={accessibilityProps["aria-describedby"]}
-                ref={(node) => {
-                    // Populate both the internal ref and the forwarded ref.
-                    // View renders a div, so the cast to HTMLDivElement is safe.
-                    const divNode = node as HTMLDivElement | null;
-                    (
-                        dialogRef as React.MutableRefObject<HTMLDivElement | null>
-                    ).current = divNode;
-                    if (typeof ref === "function") {
-                        ref(divNode);
-                    } else if (ref) {
-                        ref.current = divNode;
-                    }
-                }}
+                ref={ariaModalRef}
                 testId={testId}
                 style={[componentStyles.dialog, styles?.dialog]}
             >
