@@ -28,8 +28,8 @@ type PopoverContents =
 type Props = AriaProps &
     Readonly<{
         /**
-         * When enabled, automatically updates the popover position when the
-         * anchor element changes (e.g. content reflow, DOM mutations).
+         * Whether the popover should update its position when the anchor
+         * element changes size or position. Defaults to false.
          */
         autoUpdate?: boolean;
         /**
@@ -319,6 +319,16 @@ export default class Popover extends React.Component<Props, State> {
         const describedBy = ariaDescribedBy || `${uniqueId}-content`;
 
         const ariaLabelledBy = ariaLabel ? undefined : `${uniqueId}-title`;
+
+        // When autoUpdate is enabled, defer rendering TooltipPopper until the
+        // anchor element is available. Without this guard, controlled popovers
+        // (opened={true} initially) mount TooltipPopper before PopoverAnchor's
+        // componentDidMount has a chance to set anchorElement in state, causing
+        // TooltipPopper.componentDidMount to skip observer setup.
+        const shouldAnchorExist = autoUpdate ? anchorElement : true;
+        if (!shouldAnchorExist) {
+            return null;
+        }
 
         const popperContent = (
             <TooltipPopper
