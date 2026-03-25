@@ -291,11 +291,15 @@ const AllFields = (
                 setSearchErrorMessage(requiredMsg);
             }
         } else {
-            setTextFieldErrorMessage(backendErrorMessage);
-            setTextAreaErrorMessage(backendErrorMessage);
-            setSingleSelectErrorMessage(backendErrorMessage);
-            setMultiSelectErrorMessage(backendErrorMessage);
-            setSearchErrorMessage(backendErrorMessage);
+            setTextFieldErrorMessage(`${backendErrorMessage} for text field`);
+            setTextAreaErrorMessage(`${backendErrorMessage} for text area`);
+            setSingleSelectErrorMessage(
+                `${backendErrorMessage} for single select`,
+            );
+            setMultiSelectErrorMessage(
+                `${backendErrorMessage} for multi select`,
+            );
+            setSearchErrorMessage(`${backendErrorMessage} for search`);
         }
         setIsFormSubmitted(true);
     };
