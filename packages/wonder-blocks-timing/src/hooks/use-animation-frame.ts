@@ -62,12 +62,9 @@ export function useAnimationFrame(
     // schedulePolicy changes.
     useEffect(() => {
         // Make a new animation frame request.
-        animationFrameRef.current = new AnimationFrame(
-            () => {
-                actionProxyRef.current?.();
-            },
-            schedulePolicy,
-        );
+        animationFrameRef.current = new AnimationFrame(() => {
+            actionProxyRef.current?.();
+        }, schedulePolicy);
 
         // Clear the request when the effect is cleaned up, if necessary,
         // making sure to use the clear policy.

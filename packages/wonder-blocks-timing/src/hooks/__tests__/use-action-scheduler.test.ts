@@ -1,13 +1,19 @@
-import {renderHook, act, cleanup} from "@testing-library/react";
+import {renderHook, act} from "@testing-library/react";
 
 import {useActionScheduler} from "../use-action-scheduler";
 
 describe("useActionScheduler", () => {
     beforeEach(() => {
-        jest.useFakeTimers();
+        // Exclude rAF/cAF from sinon's fake timers so our spies wrap jsdom's
+        // originals. After restoreAllMocks(), RTL auto-cleanup calls jsdom's
+        // cancelAnimationFrame (which safely ignores unknown IDs) rather than
+        // sinon's fake (which throws when given a setTimeout ID).
+        jest.useFakeTimers({
+            doNotFake: ["requestAnimationFrame", "cancelAnimationFrame"],
+        });
 
-        // Jest doesn't fake out the animation frame API, so we map it to
-        // timeouts here so we can use the fake timer API in our tests.
+        // Map rAF/cAF to fake setTimeout/clearTimeout so we can control frame
+        // firing with jest.runOnlyPendingTimers().
         jest.spyOn(global, "requestAnimationFrame").mockImplementation(
             (fn: any) => setTimeout(fn, 0) as any,
         );
@@ -17,10 +23,6 @@ describe("useActionScheduler", () => {
     });
 
     afterEach(() => {
-        // Unmount any remaining components before restoring mocks, otherwise
-        // RTL's auto-cleanup will call cancelAnimationFrame after the spy is
-        // removed, causing sinon's fake timer to complain about mismatched IDs.
-        cleanup();
         jest.restoreAllMocks();
     });
 
