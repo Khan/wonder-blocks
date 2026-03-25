@@ -208,7 +208,7 @@ const AllFields = (
     const [isFormSubmitted, setIsFormSubmitted] = React.useState(false);
 
     const [bannerErrors, setBannerErrors] = React.useState<
-        {label: string; message: string}[]
+        {label: string; message: string | null | undefined}[]
     >([]);
 
     const moveFocusToFirstFieldWithError = React.useCallback(() => {
@@ -250,17 +250,17 @@ const AllFields = (
             // updates when the form is submitted, not as fields are corrected
             setBannerErrors(
                 [
-                    {label: "Text Field", message: textFieldErrorMessage || ""},
-                    {label: "Text Area", message: textAreaErrorMessage || ""},
+                    {label: "Text Field", message: textFieldErrorMessage},
+                    {label: "Text Area", message: textAreaErrorMessage},
                     {
                         label: "Single Select",
-                        message: singleSelectErrorMessage || "",
+                        message: singleSelectErrorMessage,
                     },
                     {
                         label: "Multi Select",
-                        message: multiSelectErrorMessage || "",
+                        message: multiSelectErrorMessage,
                     },
-                    {label: "Search", message: searchErrorMessage || ""},
+                    {label: "Search", message: searchErrorMessage},
                 ].filter((e) => Boolean(e.message)),
             );
             setIsFormSubmitted(false);
