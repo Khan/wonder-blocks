@@ -12,10 +12,24 @@ import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 export default {
     title: "Packages / Tabs / Testing / ResponsiveNavigationTabs - Snapshots",
     component: ResponsiveNavigationTabs,
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
     parameters: {
         chromatic: {
             modes: {...themeModes, small: allModes.small},
+        },
+        a11y: {
+            config: {
+                rules: [
+                    {
+                        // Ignoring color contrast violations at the responsive
+                        // component level due to SB flakiness around the a11y
+                        // check running during the fade transition. This is
+                        // covered at the component level.
+                        id: "color-contrast",
+                        enabled: false,
+                    },
+                ],
+            },
         },
     },
 } as Meta<typeof ResponsiveNavigationTabs>;

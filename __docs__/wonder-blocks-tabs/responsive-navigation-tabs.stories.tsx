@@ -18,6 +18,20 @@ export default {
             // Disabling snapshots in favour of snapshot stories
             disableSnapshot: true,
         },
+        a11y: {
+            config: {
+                rules: [
+                    {
+                        // Ignoring color contrast violations at the responsive
+                        // component level due to SB flakiness around the a11y
+                        // check running during the fade transition. This is
+                        // covered at the component level.
+                        id: "color-contrast",
+                        enabled: false,
+                    },
+                ],
+            },
+        },
     },
 } as Meta<typeof ResponsiveNavigationTabs>;
 

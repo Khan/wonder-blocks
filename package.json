@@ -5,7 +5,7 @@
   "description": "React components for Wonder Blocks design system.",
   "main": "index.js",
   "engines": {
-    "node": ">=20.20 <21"
+    "node": ">=20.20 <25"
   },
   "scripts": {
     "alex": "alex packages/",
@@ -80,6 +80,7 @@
     "@rollup/plugin-swc": "^0.4.0",
     "@storybook/addon-a11y": "^10.1.10",
     "@storybook/addon-docs": "^10.1.10",
+    "@storybook/addon-mcp": "^0.4.1",
     "@storybook/addon-vitest": "10.1.10",
     "@storybook/builder-vite": "^10.1.10",
     "@storybook/react-vite": "^10.1.10",
@@ -142,6 +143,7 @@
     "rollup-plugin-node-externals": "^8.0.0",
     "storybook": "10.1.10",
     "storybook-addon-pseudo-states": "^10.1.10",
+    "storybook-addon-tag-badges": "^3.0.6",
     "swc_mut_cjs_exports": "^10.7.0",
     "turbo": "^2.5.3",
     "typescript": "5.7.3",

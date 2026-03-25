@@ -10,24 +10,8 @@ import {
     spacing,
 } from "@khanacademy/wonder-blocks-tokens";
 import {
-    Title,
     Heading,
-    HeadingLarge,
-    HeadingMedium,
-    HeadingSmall,
-    HeadingXSmall,
     BodyText,
-    BodySerifBlock,
-    BodySerif,
-    BodyMonospace,
-    Body,
-    LabelLarge,
-    LabelMedium,
-    LabelSmall,
-    LabelXSmall,
-    Tagline,
-    Caption,
-    Footnote,
     styles as typographyStyles,
 } from "@khanacademy/wonder-blocks-typography";
 import packageConfig from "../../packages/wonder-blocks-typography/package.json";
@@ -49,10 +33,10 @@ labels.
 ### Usage
 
 ```jsx
-import {Body, Title} from "@khanacademy/wonder-blocks-typography";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 
-<Title>Title: Hello, world!</Title>
-<Body>This is just a regular paragraph</Body>
+<Heading size="xxlarge">Title: Hello, world!</Heading>
+<BodyText>This is just a regular paragraph</BodyText>
 ```
 */
 
@@ -77,10 +61,11 @@ export default {
 
 const StyledDiv = addStyle("div");
 
-export const ControlProps: StoryObj<typeof Title> = {
-    render: (args) => <Title {...args} />,
+export const ControlProps: StoryObj<typeof Heading> = {
+    render: (args) => <Heading {...args} />,
     args: {
-        children: "This is a Title typography element",
+        children: "This is a Heading typography element",
+        size: "xxlarge",
         id: "example-title",
     },
 };
@@ -109,38 +94,6 @@ export const NewTypographyElements: StoryObj<any> = {
 };
 
 /**
-These are all the available classic typography elements with their names written
-out in their respective styles.
- */
-export const ClassicTypographyElements: StoryObj<any> = {
-    parameters: {
-        chromatic: {
-            modes: themeModes,
-        },
-    },
-    render: () => (
-        <View>
-            <Title>Title</Title>
-            <HeadingLarge>HeadingLarge</HeadingLarge>
-            <HeadingMedium>HeadingMedium</HeadingMedium>
-            <HeadingSmall>HeadingSmall</HeadingSmall>
-            <HeadingXSmall>HeadingXSmall</HeadingXSmall>
-            <BodySerifBlock>BodySerifBlock</BodySerifBlock>
-            <BodySerif>BodySerif</BodySerif>
-            <BodyMonospace>BodyMonospace</BodyMonospace>
-            <Body>Body</Body>
-            <LabelLarge>LabelLarge</LabelLarge>
-            <LabelMedium>LabelMedium</LabelMedium>
-            <LabelSmall>LabelSmall</LabelSmall>
-            <LabelXSmall>LabelXSmall</LabelXSmall>
-            <Tagline>Tagline</Tagline>
-            <Caption>Caption</Caption>
-            <Footnote>Footnote</Footnote>
-        </View>
-    ),
-};
-
-/**
  * You can change the color of text using the following patterns:
  *
  * 1. Via the `style` prop. This is our recommended approach.
@@ -151,7 +104,7 @@ export const ClassicTypographyElements: StoryObj<any> = {
  *    and should only be used as a last resort if the other options don't cover
  *   your use case.
  */
-export const WithStyle: StoryObj<typeof Title> = {
+export const WithStyle: StoryObj<typeof Heading> = {
     render: () => {
         const styles = StyleSheet.create({
             blueText: {
@@ -163,131 +116,14 @@ export const WithStyle: StoryObj<typeof Title> = {
         });
 
         return (
-            <Title
+            <Heading
                 className={`${css(styles.highlighted)} custom-style`}
+                size="xxlarge"
                 style={styles.blueText}
             >
                 Blue Title
-            </Title>
+            </Heading>
         );
-    },
-};
-
-export const LatoForLatin: StoryObj<any> = () => (
-    <View>
-        <Title>
-            Для каждого ученика, независимо от возраста. Реальные результаты!
-        </Title>
-        <HeadingLarge>
-            Для каждого ученика, независимо от возраста. Реальные результаты!
-        </HeadingLarge>
-        <HeadingMedium>
-            Для каждого ученика, независимо от возраста. Реальные результаты!
-        </HeadingMedium>
-        <HeadingSmall>
-            Для каждого ученика, независимо от возраста. Реальные результаты!
-        </HeadingSmall>
-        <HeadingXSmall>
-            Для каждого ученика, независимо от возраста. Реальные результаты!
-        </HeadingXSmall>
-        <BodySerifBlock>
-            Для каждого ученика, независимо от возраста. Реальные результаты!
-        </BodySerifBlock>
-        <BodySerif>
-            Для каждого ученика, независимо от возраста. Реальные результаты!
-        </BodySerif>
-        <BodyMonospace>
-            Для каждого ученика, независимо от возраста. Реальные результаты!
-        </BodyMonospace>
-        <Body>
-            Для каждого ученика, независимо от возраста. Реальные результаты!
-        </Body>
-        <LabelLarge>
-            Для каждого ученика, независимо от возраста. Реальные результаты!
-        </LabelLarge>
-        <LabelMedium>
-            Для каждого ученика, независимо от возраста. Реальные результаты!
-        </LabelMedium>
-        <LabelSmall>
-            Для каждого ученика, независимо от возраста. Реальные результаты!
-        </LabelSmall>
-        <LabelXSmall>
-            Для каждого ученика, независимо от возраста. Реальные результаты!
-        </LabelXSmall>
-        <Tagline>
-            Для каждого ученика, независимо от возраста. Реальные результаты!
-        </Tagline>
-        <Caption>
-            Для каждого ученика, независимо от возраста. Реальные результаты!
-        </Caption>
-        <Footnote>
-            Для каждого ученика, независимо от возраста. Реальные результаты!
-        </Footnote>
-    </View>
-);
-
-LatoForLatin.parameters = {
-    docs: {
-        description: {
-            story: `Lato is used for Latin and Cyrillic languages.
-            This is a example where we use Lato for Russian.`,
-        },
-    },
-};
-
-export const LatoForLatinExtended: StoryObj<any> = () => (
-    <View>
-        <Title>Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.</Title>
-        <HeadingLarge>
-            Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.
-        </HeadingLarge>
-        <HeadingMedium>
-            Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.
-        </HeadingMedium>
-        <HeadingSmall>
-            Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.
-        </HeadingSmall>
-        <HeadingXSmall>
-            Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.
-        </HeadingXSmall>
-        <BodySerifBlock>
-            Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.
-        </BodySerifBlock>
-        <BodySerif>
-            Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.
-        </BodySerif>
-        <BodyMonospace>
-            Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.
-        </BodyMonospace>
-        <Body>Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.</Body>
-        <LabelLarge>
-            Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.
-        </LabelLarge>
-        <LabelMedium>
-            Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.
-        </LabelMedium>
-        <LabelSmall>
-            Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.
-        </LabelSmall>
-        <LabelXSmall>
-            Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.
-        </LabelXSmall>
-        <Tagline>Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.</Tagline>
-        <Caption>Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.</Caption>
-        <Footnote>
-            Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.
-        </Footnote>
-    </View>
-);
-
-LatoForLatinExtended.parameters = {
-    docs: {
-        description: {
-            story: `This is another example where we use Lato
-            latin for Vietnamese. In this specific case, we also use
-            the extended glyphs so we can add full support to Vietnamese
-            using this font.`,
-        },
     },
 };
 
@@ -317,37 +153,31 @@ export const NotoForNonLatin: StoryObj<any> = () => {
                 ))}
             </SingleSelect>
             <View>
-                <Title dir={dir}>{text}</Title>
+                <Heading size="xxlarge" dir={dir}>
+                    {text}
+                </Heading>
 
-                <HeadingLarge dir={dir}>{text}</HeadingLarge>
+                <Heading size="xlarge" dir={dir}>
+                    {text}
+                </Heading>
 
-                <HeadingMedium dir={dir}>{text}</HeadingMedium>
+                <Heading size="large" dir={dir}>
+                    {text}
+                </Heading>
 
-                <HeadingSmall dir={dir}>{text}</HeadingSmall>
+                <Heading size="medium" dir={dir}>
+                    {text}
+                </Heading>
 
-                <HeadingXSmall dir={dir}>{text}</HeadingXSmall>
+                <Heading size="small" dir={dir}>
+                    {text}
+                </Heading>
 
-                <BodySerifBlock dir={dir}>{text}</BodySerifBlock>
+                <BodyText dir={dir}>{text}</BodyText>
 
-                <BodySerif dir={dir}>{text}</BodySerif>
-
-                <BodyMonospace dir={dir}>{text}</BodyMonospace>
-
-                <Body dir={dir}>{text}</Body>
-
-                <LabelLarge dir={dir}>{text}</LabelLarge>
-
-                <LabelMedium dir={dir}>{text}</LabelMedium>
-
-                <LabelSmall dir={dir}>{text}</LabelSmall>
-
-                <LabelXSmall dir={dir}>{text}</LabelXSmall>
-
-                <Tagline dir={dir}>{text}</Tagline>
-
-                <Caption dir={dir}>{text}</Caption>
-
-                <Footnote dir={dir}>{text}</Footnote>
+                <Heading size="large" weight="medium" dir={dir}>
+                    {text}
+                </Heading>
             </View>
         </View>
     );
@@ -359,26 +189,13 @@ NotoForNonLatin.parameters = {
     },
 };
 
-export const CodeFont: StoryObj<typeof BodyMonospace> = () => {
-    const Code = ({children}: {children: React.ReactNode}) => (
-        <BodyMonospace>{children}</BodyMonospace>
-    );
-
-    return <Code>{`const str = "Hello, world!"`}</Code>;
-};
-
-CodeFont.parameters = {
-    docs: {
-        description: {
-            story: `One example of using the \`BodyMonospace\`
-            typography component is to create a \`Code\` component for
-            rendering pre-formatted code blocks.`,
-        },
-    },
-};
-
-export const Paragraph: StoryObj<typeof Body> = () => {
-    const longParagraph = `This is an example of a long paragraph.
+/**
+ * The `BodyText` typography component is usually used for paragraphs and other
+ * body text.
+ */
+export const Paragraph: StoryObj<typeof BodyText> = {
+    render: () => {
+        const longParagraph = `This is an example of a long paragraph.
         Khan Academy offers practice exercises, instructional videos,
         and a personalized learning dashboard that empower learners
         to study at their own pace in and outside of the classroom.
@@ -387,52 +204,52 @@ export const Paragraph: StoryObj<typeof Body> = () => {
         content. We focus on skill mastery to help learners establish
         strong foundations, so there's no limit to what they can learn next!`;
 
-    return <Body>{longParagraph}</Body>;
-};
-
-Paragraph.parameters = {
-    docs: {
-        description: {
-            story: `The \`Body\` typography component is usually used
-            for paragraphs and other body text.`,
-        },
+        return <BodyText>{longParagraph}</BodyText>;
     },
 };
 
-export const LineHeight: StoryObj<any> = () => {
-    const style = {
-        outline: `1px solid ${semanticColor.core.border.neutral.strong}`,
-        marginBottom: spacing.small_12,
-    } as const;
+/**
+ * This is a visualization of the line height for each typography element.
+ */
+export const LineHeight: StoryObj<any> = {
+    render: () => {
+        const style = {
+            outline: `1px solid ${semanticColor.core.border.neutral.strong}`,
+            marginBottom: spacing.small_12,
+        } as const;
 
-    return (
-        <View>
-            <Title style={style}>Title</Title>
-            <HeadingLarge style={style}>HeadingLarge</HeadingLarge>
-            <HeadingMedium style={style}>HeadingMedium</HeadingMedium>
-            <HeadingSmall style={style}>HeadingSmall</HeadingSmall>
-            <HeadingXSmall style={style}>HeadingXSmall</HeadingXSmall>
-            <BodySerifBlock style={style}>BodySerifBlock</BodySerifBlock>
-            <BodySerif style={style}>BodySerif</BodySerif>
-            <BodyMonospace style={style}>BodyMonospace</BodyMonospace>
-            <Body style={style}>Body</Body>
-            <LabelLarge style={style}>LabelLarge</LabelLarge>
-            <LabelMedium style={style}>LabelMedium</LabelMedium>
-            <LabelSmall style={style}>LabelSmall</LabelSmall>
-            <LabelXSmall style={style}>LabelXSmall</LabelXSmall>
-            <Tagline style={style}>Tagline</Tagline>
-            <Caption style={style}>Caption</Caption>
-            <Footnote style={style}>Footnote</Footnote>
-        </View>
-    );
-};
-
-LineHeight.parameters = {
-    docs: {
-        description: {
-            story: `This is a visualization of the line height
-            for each typography element.`,
-        },
+        return (
+            <View>
+                <Heading size="xxlarge" style={style}>
+                    Heading.xxlarge
+                </Heading>
+                <Heading size="xlarge" style={style}>
+                    Heading.xlarge
+                </Heading>
+                <Heading size="large" style={style}>
+                    Heading.large
+                </Heading>
+                <Heading size="medium" style={style}>
+                    Heading.medium
+                </Heading>
+                <Heading size="small" style={style}>
+                    Heading.small
+                </Heading>
+                <BodyText size="medium" weight="bold" style={style}>
+                    BodyText.medium.bold
+                </BodyText>
+                <BodyText style={style}>BodyText.medium (default)</BodyText>
+                <BodyText size="small" style={style}>
+                    BodyText.small
+                </BodyText>
+                <BodyText size="xsmall" style={style}>
+                    BodyText.xsmall
+                </BodyText>
+                <Heading size="large" weight="medium" style={style}>
+                    Tagline
+                </Heading>
+            </View>
+        );
     },
 };
 

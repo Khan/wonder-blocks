@@ -22,7 +22,7 @@ export default {
             modes: themeModes,
         },
     },
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
     args: {
         children: "Button",
         icon: paperPlaneIcon,

@@ -1,7 +1,4 @@
 import {Meta, Canvas} from "@storybook/addon-docs/blocks";
-import Banner from "@khanacademy/wonder-blocks-banner";
-import {View} from "@khanacademy/wonder-blocks-core";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import * as DatePickerStories from "./date-picker.stories";
 
 <Meta title="Packages / DatePicker / Overview" />
@@ -12,13 +9,6 @@ The `wonder-blocks-date-picker` package provides date picker components that
 allow users to select dates using either a custom calendar overlay or native
 browser date pickers. These components use the Temporal API for accurate,
 timezone-safe date handling.
-
-<View style={{marginBlock: spacing.medium_16}}>
-    <Banner
-        kind="warning"
-        text="CSS import required: You must import react-day-picker/style.css in your application for the date picker to display correctly. See the Setup section below."
-    />
-</View>
 
 ## Components
 
@@ -31,39 +21,19 @@ Best for desktop experiences where you need full control over styling and behavi
 
 ## Setup
 
-### CSS Import Required
-
-The date picker uses `react-day-picker` which requires its CSS to be imported.
-Choose one of these options:
-
-#### Option 1: Global CSS File
-
-```css
-@import "react-day-picker/style.css";
-```
-
-#### Option 2: JavaScript Entry Point
-
-```javascript
-import "react-day-picker/style.css";
-```
-
-#### Option 3: Component-Level Import
-
-```javascript
-import { DatePicker } from "@khanacademy/wonder-blocks-date-picker";
-import "react-day-picker/style.css";
-```
-
 ### Peer Dependencies
 
 Make sure you have these installed:
 - `react` and `react-dom`
 - `aphrodite`
-- `react-day-picker`
 - `react-popper` and `@popperjs/core`
+- `date-fns`
 - `@phosphor-icons/core`
 - `temporal-polyfill`
+
+The calendar is powered by `react-day-picker`, which is included as a dependency
+of this package. Its required CSS is also bundled, so you don't need to install
+`react-day-picker` or import any additional styles.
 
 ## Basic Usage
 
@@ -71,6 +41,7 @@ Make sure you have these installed:
 import { DatePicker } from "@khanacademy/wonder-blocks-date-picker";
 import { Temporal } from "temporal-polyfill";
 import { useState } from "react";
+import {enUS} from "date-fns/locale";
 
 function MyComponent() {
     const [selectedDate, setSelectedDate] = useState<Temporal.PlainDate | null>(null);
@@ -80,6 +51,7 @@ function MyComponent() {
             selectedDate={selectedDate}
             updateDate={setSelectedDate}
             placeholder="Select a date"
+            locale={enUS}
         />
     );
 }
@@ -151,8 +123,8 @@ via the `temporal-polyfill` package. All dates are handled as
 
 The date picker components are built with accessibility in mind:
 
-- **Keyboard navigation**: Tab to focus, Enter/Space to open, Esc to close
-- **ARIA labels**: Configurable via `inputAriaLabel` prop
+- **Keyboard navigation**: Tab to focus, Enter/Space/DownArrow to open and select items, Esc to close
+- **Input labels**: Configurable via `LabeledField` or directly on the input using the `inputAriaLabel` prop
 - **Screen reader support**: Calendar uses proper ARIA grid role
 - **Focus management**: Focus returns to input after closing calendar
 
