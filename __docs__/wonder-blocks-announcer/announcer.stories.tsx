@@ -165,10 +165,10 @@ export const AnnounceMessage: StoryComponentType = {
 /**
  * Tests that announcements work correctly when a modal is open.
  *
- * When a modal with `aria-modal="true"` is active, browsers hide everything
- * outside it from the accessibility tree — including a live region at the body
- * level. To work around this, Announcer injects a second set of live regions
- * directly inside the `aria-modal` element when the modal mounts.
+ * When a WB modal dialog (any variant) is active with `aria-modal="true"`,
+ * browsers hide everything outside it from the accessibility tree — including a
+ * live region at the body level. To work around this, Announcer injects a second
+ * set of live regions directly inside the `aria-modal` element when the modal mounts.
  *
  * - **"Announce on page"** fires into the document-level `wbAnnounce` node at `body`.
  * - **"Announce in modal"** fires into the `wbAnnounce-modal` node inside the dialog.
