@@ -28,6 +28,11 @@ type PopoverContents =
 type Props = AriaProps &
     Readonly<{
         /**
+         * When enabled, automatically updates the popover position when the
+         * anchor element changes (e.g. content reflow, DOM mutations).
+         */
+        autoUpdate?: boolean;
+        /**
          * The element that triggers the popover. This element will be used to
          * position the popover. It can be either a Node or a function using the
          * children-as-function pattern to pass an open function for use anywhere
@@ -297,6 +302,7 @@ export default class Popover extends React.Component<Props, State> {
 
     renderPopper(uniqueId: string): React.ReactNode {
         const {
+            autoUpdate,
             dismissEnabled,
             initialFocusId,
             placement,
@@ -317,6 +323,7 @@ export default class Popover extends React.Component<Props, State> {
         const popperContent = (
             <TooltipPopper
                 anchorElement={anchorElement}
+                autoUpdate={autoUpdate}
                 placement={placement}
                 rootBoundary={rootBoundary}
                 viewportPadding={viewportPadding}
