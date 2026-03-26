@@ -146,6 +146,7 @@ export const IconButton: React.ForwardRefExoticComponent<
             ref={ref}
             style={styles}
             type={type}
+            data-kind={kind}
         >
             <IconChooser size={size} icon={icon} />
         </IconButtonUnstyled>
