@@ -223,9 +223,8 @@ const AllFields = (
         ];
 
         for (const error of errors) {
-            if (error.message) {
-                // Once a field with an error is found, focus on it and end the loop
-                error.ref?.current?.focus();
+            if (error.message && error.ref?.current) {
+                error.ref.current.focus();
                 break;
             }
         }
