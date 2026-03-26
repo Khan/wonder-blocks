@@ -22,8 +22,9 @@ import AnimationFrame from "../util/animation-frame";
  * @param options.clearPolicy Determines how the request is cleared when the
  * component is unmounted or the request is recreated. By default, the
  * request is cancelled immediately. If you want to let the request run to
- * completion, use `ClearPolicy.Resolve`. This is NOT applied if the request
- * is cleared manually via the `clear()` method on the returned API.
+ * completion, use `ClearPolicy.Resolve`. This policy is also used as the
+ * default when calling `clear()` manually with no argument. Pass an explicit
+ * `ClearPolicy` to `clear(policy)` to override it for a specific call.
  * @param options.schedulePolicy Determines when the request is scheduled.
  * By default, the request is made immediately. If you want to delay
  * scheduling the request, use `SchedulePolicy.OnDemand`.

@@ -11,7 +11,7 @@ cancelling animation frames. It is defined as follows:
 
 ```ts
 function useAnimationFrame(
-    action: () => unknown,
+    action: (time: DOMHighResTimeStamp) => unknown,
     options?: {
         schedulePolicy?: SchedulePolicy,
         clearPolicy?: ClearPolicy,

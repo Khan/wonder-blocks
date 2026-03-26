@@ -29,11 +29,8 @@ import ActionScheduler from "../util/action-scheduler";
 export function useActionScheduler(): IScheduleActions {
     const schedulerRef = useRef<ActionScheduler | null>(null);
 
-    if (schedulerRef.current === null) {
-        schedulerRef.current = new ActionScheduler();
-    }
-
     useEffect(() => {
+        schedulerRef.current = new ActionScheduler();
         return () => {
             schedulerRef.current?.disable();
             schedulerRef.current = null;

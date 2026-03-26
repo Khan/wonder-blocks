@@ -5,10 +5,10 @@ import {useActionScheduler} from "../use-action-scheduler";
 
 describe("useActionScheduler", () => {
     beforeEach(() => {
-        // Exclude rAF/cAF from sinon's fake timers so our spies wrap jsdom's
+        // Exclude rAF/cAF from jest's fake timers so our spies wrap jsdom's
         // originals. After restoreAllMocks(), RTL auto-cleanup calls jsdom's
         // cancelAnimationFrame (which safely ignores unknown IDs) rather than
-        // sinon's fake (which throws when given a setTimeout ID).
+        // jest's fake (which throws when given a setTimeout ID).
         jest.useFakeTimers({
             doNotFake: ["requestAnimationFrame", "cancelAnimationFrame"],
         });
