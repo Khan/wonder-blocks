@@ -1,6 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
+import {expect, userEvent, within} from "storybook/test";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-labeled-field/package.json";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
@@ -366,6 +367,7 @@ const AllFields = (
                                     display: "flex",
                                     flexDirection: "column",
                                     gap: sizing.size_040,
+                                    listStyleType: "disc",
                                 }}
                             >
                                 {bannerErrors.map((e) => (
@@ -601,6 +603,31 @@ export const Validation: AllFieldsStoryComponentType = {
         showBannerOnErrorInStory: true,
     },
     render: AllFields,
+};
+
+/**
+ * This story shows the error state after the form is submitted. It submits
+ * the form and verifies that focus is moved to the first field with an error.
+ */
+export const ValidationAfterSubmission: AllFieldsStoryComponentType = {
+    args: {
+        description: "Helpful description text.",
+        shouldValidateInStory: true,
+        showSubmitButtonInStory: true,
+        showBannerOnErrorInStory: true,
+    },
+    render: AllFields,
+    play: async ({canvasElement}) => {
+        const canvas = within(canvasElement);
+
+        // Act
+        const submitButton = canvas.getByRole("button", {name: "Submit"});
+        await userEvent.click(submitButton);
+
+        // Assert
+        const textField = canvas.getByRole("textbox", {name: "Text Field"});
+        await expect(textField).toHaveFocus();
+    },
 };
 
 /**

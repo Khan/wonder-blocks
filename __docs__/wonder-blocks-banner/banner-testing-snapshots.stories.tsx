@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {themeModes} from "../../.storybook/modes";
 
-import {View} from "@khanacademy/wonder-blocks-core";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 import Banner from "@khanacademy/wonder-blocks-banner";
@@ -46,6 +46,9 @@ export default {
 } as Meta<typeof Banner>;
 
 type StoryComponentType = StoryObj<typeof Banner>;
+
+const StyledUl = addStyle("ul");
+const StyledLi = addStyle("li");
 
 const kinds = ["info", "warning", "success", "critical"] as const;
 
@@ -279,6 +282,60 @@ const scenarios = [
                 <Icon>
                     <img src="logo.svg" alt="Wonder Blocks" />
                 </Icon>
+            ),
+        },
+    },
+    {
+        name: "Error summary with list of errors",
+        props: {
+            kind: "critical",
+            text: (
+                <>
+                    There are 3 errors in this form. Please review the fields
+                    below.
+                    <StyledUl
+                        style={{
+                            color: "inherit",
+                            fontSize: "inherit",
+                            lineHeight: "inherit",
+                            paddingInlineStart: sizing.size_160,
+                            marginBlockEnd: 0,
+                            marginBlockStart: sizing.size_120,
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: sizing.size_040,
+                            listStyleType: "disc",
+                        }}
+                    >
+                        <StyledLi
+                            style={{
+                                color: "inherit",
+                                fontSize: "inherit",
+                                lineHeight: "inherit",
+                            }}
+                        >
+                            <b>Text Field:</b> Should be 5 or more characters
+                        </StyledLi>
+                        <StyledLi
+                            style={{
+                                color: "inherit",
+                                fontSize: "inherit",
+                                lineHeight: "inherit",
+                            }}
+                        >
+                            <b>Text Area:</b> Should be 5 or more characters
+                        </StyledLi>
+                        <StyledLi
+                            style={{
+                                color: "inherit",
+                                fontSize: "inherit",
+                                lineHeight: "inherit",
+                            }}
+                        >
+                            <b>Single Select:</b> Don&apos;t pick mango!
+                        </StyledLi>
+                    </StyledUl>
+                </>
             ),
         },
     },
