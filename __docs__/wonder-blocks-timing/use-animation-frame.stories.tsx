@@ -32,6 +32,15 @@ export const OnDemandAndResolveOnClear = () => {
     const [frameSet, setFrameSet] = React.useState(false);
     const runningRef = React.useRef(false);
 
+    // Clear the running flag before the animation frame cleanup fires so that
+    // ClearPolicy.Resolve's final callback doesn't re-schedule on unmount.
+    React.useEffect(
+        () => () => {
+            runningRef.current = false;
+        },
+        [],
+    );
+
     const animationFrame = useAnimationFrame(
         () => {
             setFrameCount((n) => n + 1);

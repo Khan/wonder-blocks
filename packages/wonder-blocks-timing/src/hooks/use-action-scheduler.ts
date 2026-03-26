@@ -12,8 +12,10 @@ import ActionScheduler from "../util/action-scheduler";
  * All pending actions are automatically cleared when the component unmounts.
  *
  * @returns An `IScheduleActions` API for scheduling timeouts, intervals, and
- * animation frames. The returned API is stable across renders. All actions
- * scheduled via this API will be cleared when the component unmounts.
+ * animation frames. The returned API is stable across renders. This API is a
+ * no-op if called when not mounted — any calls prior to mounting or after
+ * unmounting will not have any effect. All actions scheduled via this API
+ * will be cleared when the component unmounts.
  *
  * @example
  * function MyComponent() {

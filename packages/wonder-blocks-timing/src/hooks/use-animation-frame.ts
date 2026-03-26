@@ -13,21 +13,7 @@ import AnimationFrame from "../util/animation-frame";
  * This makes it easier to use with inline lambda functions rather than
  * requiring consumers to wrap their action in a `useCallback`. To change
  * this behavior, see the `actionPolicy` option.
- * @param options Options for the hook.
- * @param options.actionPolicy Determines how the action is handled when it
- * changes. By default, the action is replaced but the request is not reset,
- * and the updated action will be invoked when the frame next fires.
- * If you want to reset the request when the action changes, use
- * `ActionPolicy.Reset`.
- * @param options.clearPolicy Determines how the request is cleared when the
- * component is unmounted or the request is recreated. By default, the
- * request is cancelled immediately. If you want to let the request run to
- * completion, use `ClearPolicy.Resolve`. This policy is also used as the
- * default when calling `clear()` manually with no argument. Pass an explicit
- * `ClearPolicy` to `clear(policy)` to override it for a specific call.
- * @param options.schedulePolicy Determines when the request is scheduled.
- * By default, the request is made immediately. If you want to delay
- * scheduling the request, use `SchedulePolicy.OnDemand`.
+ * @param options Options for the hook. See `HookOptions` for details.
  * @returns An `IAnimationFrame` API for interacting with the given request.
  * This API is a no-op if called when not mounted. This means that any calls
  * prior to mounting or after unmounting will not have any effect. This API is

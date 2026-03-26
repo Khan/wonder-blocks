@@ -408,7 +408,7 @@ describe("useAnimationFrame", () => {
             });
 
             // Assert
-            // Called twice: initial set, then reset when set() called again
+            // Called twice: first explicit set(), then second set() cancels-and-restarts
             expect(rafSpy).toHaveBeenCalledTimes(2);
         });
     });
