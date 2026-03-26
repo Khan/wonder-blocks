@@ -619,12 +619,17 @@ export const ValidationAfterSubmission: AllFieldsStoryComponentType = {
     render: AllFields,
     play: async ({canvasElement}) => {
         // Arrange
-        const submitButton = await within(canvasElement).findByRole("button", {
-            name: "Submit",
-        });
+        // Tab through the form to reach the Submit button
+        canvasElement.focus();
+        await userEvent.tab();
+        await userEvent.tab();
+        await userEvent.tab();
+        await userEvent.tab();
+        await userEvent.tab();
+        await userEvent.tab();
 
         // Act
-        await userEvent.click(submitButton);
+        await userEvent.keyboard("{Enter}");
 
         // Assert
         const textField = await within(canvasElement).findByRole("textbox", {
