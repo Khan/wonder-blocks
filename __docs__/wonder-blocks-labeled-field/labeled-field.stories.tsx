@@ -628,6 +628,12 @@ export const ValidationAfterSubmission: AllFieldsStoryComponentType = {
         const textField = canvas.getByRole("textbox", {name: "Text Field"});
         await expect(textField).toHaveFocus();
     },
+    parameters: {
+        chromatic: {
+            disableSnapshot: false,
+            modes: themeModes,
+        },
+    },
 };
 
 /**
