@@ -1,0 +1,61 @@
+import * as UseAnimationFrameStories from './use-animation-frame.stories';
+
+import {Meta, Canvas} from "@storybook/addon-docs/blocks";
+
+<Meta of={UseAnimationFrameStories} />
+
+# `useAnimationFrame`
+
+`useAnimationFrame` is a hook that provides a convenient API for requesting and
+cancelling animation frames. It is defined as follows:
+
+```ts
+function useAnimationFrame(
+    action: () => unknown,
+    options?: {
+        schedulePolicy?: SchedulePolicy,
+        clearPolicy?: ClearPolicy,
+        actionPolicy?: ActionPolicy,
+    },
+): IAnimationFrame;
+
+interface IAnimationFrame {
+    get isSet(): boolean;
+    set(): void;
+    clear(policy?: ClearPolicy): void;
+}
+```
+
+By default the animation frame request will be made immediately on creation.
+The `options` parameter can be used to control when the request is scheduled
+and whether or not `action` should be called when the request is cleared.
+
+Notes:
+
+- Because `clear` takes a param, it's important that you don't pass it directly to an event handler,
+  e.g. `<Button onClick={clear} />` will not work as expected.
+- Unlike `useTimeout` and `useInterval`, each frame fires **once**. To create a continuous animation loop, call `set()` again inside the action.
+- When the component using this hook is unmounted, the pending request will automatically be cleared.
+- Calling `set()` when a request is already pending cancels the existing request and makes a new one.
+
+## Immediately (default)
+
+With the default `SchedulePolicy.Immediately`, the frame fires automatically on
+mount — useful for deferring a one-time DOM read/write to just before the first
+paint:
+
+<Canvas sourceState="shown" of={UseAnimationFrameStories.Immediately} />
+
+## Animation loop (OnDemand + Resolve on clear)
+
+The most common pattern — a loop that starts on demand and fires one final
+callback on stop via `ClearPolicy.Resolve`, useful for settling animation state
+cleanly before halting:
+
+<Canvas sourceState="shown" of={UseAnimationFrameStories.OnDemandAndResolveOnClear} />
+
+## One-shot
+
+Use `SchedulePolicy.OnDemand` to defer a single unit of work to just before the next paint:
+
+<Canvas sourceState="shown" of={UseAnimationFrameStories.OneShot} />

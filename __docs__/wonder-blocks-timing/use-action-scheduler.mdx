@@ -1,0 +1,37 @@
+import * as UseActionSchedulerStories from './use-action-scheduler.stories';
+
+import {Meta, Canvas} from "@storybook/addon-docs/blocks";
+
+<Meta of={UseActionSchedulerStories} />
+
+# `useActionScheduler`
+
+`useActionScheduler` is a hook-based alternative to the `withActionScheduler`
+higher-order component. It returns an [`IScheduleActions`](#ischeduleactions)
+instance that automatically clears all pending actions when the component
+unmounts.
+
+```ts
+function useActionScheduler(): IScheduleActions;
+
+interface IScheduleActions {
+    timeout(action: () => unknown, period: number, options?: Options): ITimeout;
+    interval(action: () => unknown, period: number, options?: Options): IInterval;
+    animationFrame(action: (time: DOMHighResTimeStamp) => void, options?: Options): IAnimationFrame;
+    clearAll(): void;
+}
+```
+
+Use this hook when you want to schedule multiple types of actions (timeouts,
+intervals, animation frames) from a single component without needing to wrap
+it in the `withActionScheduler` HOC.
+
+Notes:
+
+- All actions scheduled via `useActionScheduler` are cleared automatically on unmount.
+- `clearAll()` clears all pending actions without unmounting the component.
+- The returned API is stable across renders (same object reference).
+- For simpler cases where only one type of timer is needed, prefer `useTimeout`,
+  `useInterval`, or `useAnimationFrame` directly.
+
+<Canvas sourceState="shown" of={UseActionSchedulerStories.Default} />

@@ -34,11 +34,12 @@ import AnimationFrame from "../util/animation-frame";
  * dereference it at the time of use.
  */
 export function useAnimationFrame(
-    action: () => unknown,
+    action: (time: DOMHighResTimeStamp) => unknown,
     options: HookOptions = {},
 ): IAnimationFrame {
     const {actionPolicy, clearPolicy, schedulePolicy} = options;
-    const actionProxyRef = useRef<() => unknown>(action);
+    const actionProxyRef =
+        useRef<(time: DOMHighResTimeStamp) => unknown>(action);
     const animationFrameRef = useRef<IAnimationFrame | null>(null);
 
     // Since we are passing our proxy function to the animation frame instance,
@@ -62,8 +63,8 @@ export function useAnimationFrame(
     // schedulePolicy changes.
     useEffect(() => {
         // Make a new animation frame request.
-        animationFrameRef.current = new AnimationFrame(() => {
-            actionProxyRef.current?.();
+        animationFrameRef.current = new AnimationFrame((time) => {
+            actionProxyRef.current?.(time);
         }, schedulePolicy);
 
         // Clear the request when the effect is cleaned up, if necessary,

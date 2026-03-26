@@ -1,5 +1,6 @@
 import {renderHook, act} from "@testing-library/react";
 
+import type {ITimeout, IInterval, IAnimationFrame} from "../../util/types";
 import {useActionScheduler} from "../use-action-scheduler";
 
 describe("useActionScheduler", () => {
@@ -76,7 +77,7 @@ describe("useActionScheduler", () => {
         it("should return an ITimeout", () => {
             // Arrange
             const {result} = renderHook(() => useActionScheduler());
-            let timeout: any;
+            let timeout: ITimeout = undefined!;
 
             // Act
             act(() => {
@@ -115,7 +116,7 @@ describe("useActionScheduler", () => {
         it("should return an IInterval", () => {
             // Arrange
             const {result} = renderHook(() => useActionScheduler());
-            let interval: any;
+            let interval: IInterval = undefined!;
 
             // Act
             act(() => {
@@ -154,7 +155,7 @@ describe("useActionScheduler", () => {
         it("should return an IAnimationFrame", () => {
             // Arrange
             const {result} = renderHook(() => useActionScheduler());
-            let animationFrame: any;
+            let animationFrame: IAnimationFrame = undefined!;
 
             // Act
             act(() => {
