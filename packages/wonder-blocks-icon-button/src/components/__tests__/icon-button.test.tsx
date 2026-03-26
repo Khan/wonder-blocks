@@ -8,6 +8,23 @@ import {IconButton} from "../icon-button";
 describe("IconButton", () => {
     describe("Attributes", () => {
         describe("data-kind", () => {
+            it("should set data-kind to the default value (primary)", async () => {
+                // Arrange
+
+                // Act
+                render(
+                    <IconButton
+                        icon={magnifyingGlassIcon}
+                        onClick={() => {}}
+                    />,
+                );
+
+                // Assert
+                expect(
+                    (await screen.findByRole("button")).dataset,
+                ).toHaveProperty("kind", "primary");
+            });
+
             it("should set data-kind on the underlying button", async () => {
                 // Arrange
 
@@ -21,10 +38,9 @@ describe("IconButton", () => {
                 );
 
                 // Assert
-                expect(await screen.findByRole("button")).toHaveAttribute(
-                    "data-kind",
-                    "primary",
-                );
+                expect(
+                    (await screen.findByRole("button")).dataset,
+                ).toHaveProperty("kind", "primary");
             });
 
             it("should set data-kind on the underlying internal link", async () => {
@@ -40,10 +56,9 @@ describe("IconButton", () => {
                 );
 
                 // Assert
-                expect(await screen.findByRole("link")).toHaveAttribute(
-                    "data-kind",
-                    "secondary",
-                );
+                expect(
+                    (await screen.findByRole("link")).dataset,
+                ).toHaveProperty("kind", "secondary");
             });
 
             it("should set data-kind on the underlying external link", async () => {
@@ -59,10 +74,9 @@ describe("IconButton", () => {
                 );
 
                 // Assert
-                expect(await screen.findByRole("link")).toHaveAttribute(
-                    "data-kind",
-                    "secondary",
-                );
+                expect(
+                    (await screen.findByRole("link")).dataset,
+                ).toHaveProperty("kind", "secondary");
             });
         });
     });
