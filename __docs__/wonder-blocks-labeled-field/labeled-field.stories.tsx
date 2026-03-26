@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
-import {expect, userEvent, within} from "storybook/test";
+import {expect, userEvent, waitFor, within} from "storybook/test";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-labeled-field/package.json";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
@@ -618,15 +618,19 @@ export const ValidationAfterSubmission: AllFieldsStoryComponentType = {
     },
     render: AllFields,
     play: async ({canvasElement}) => {
-        const canvas = within(canvasElement);
+        // Arrange
+        const submitButton = await within(canvasElement).findByRole("button", {
+            name: "Submit",
+        });
 
         // Act
-        const submitButton = canvas.getByRole("button", {name: "Submit"});
         await userEvent.click(submitButton);
 
         // Assert
-        const textField = canvas.getByRole("textbox", {name: "Text Field"});
-        await expect(textField).toHaveFocus();
+        const textField = await within(canvasElement).findByRole("textbox", {
+            name: "Text Field",
+        });
+        await waitFor(() => expect(textField).toHaveFocus());
     },
     parameters: {
         chromatic: {
