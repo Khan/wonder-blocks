@@ -200,11 +200,11 @@ const AllFields = (
     >(errorMessage);
 
     /** Refs */
-    const textFieldRef = React.createRef<HTMLInputElement>();
-    const textAreaRef = React.createRef<HTMLTextAreaElement>();
-    const singleSelectRef = React.createRef<HTMLButtonElement>();
-    const multiSelectRef = React.createRef<HTMLButtonElement>();
-    const searchRef = React.createRef<HTMLInputElement>();
+    const textFieldRef = React.useRef<HTMLInputElement | null>(null);
+    const textAreaRef = React.useRef<HTMLTextAreaElement | null>(null);
+    const singleSelectRef = React.useRef<HTMLButtonElement | null>(null);
+    const multiSelectRef = React.useRef<HTMLButtonElement | null>(null);
+    const searchRef = React.useRef<HTMLInputElement | null>(null);
 
     const [isFormSubmitted, setIsFormSubmitted] = React.useState(false);
 
