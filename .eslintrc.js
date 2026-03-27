@@ -48,6 +48,12 @@ module.exports = {
             },
         },
         {
+            files: ["bodytext-tag-eslint-rule/**/*.js"],
+            rules: {
+                "import/no-commonjs": "off",
+            },
+        },
+        {
             files: ["**/*.test.*"],
             rules: {
                 "max-lines": "off",
