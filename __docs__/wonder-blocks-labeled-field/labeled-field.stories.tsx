@@ -355,28 +355,11 @@ const AllFields = (
                         <>
                             {`There are ${bannerErrorCount} errors in this form. Please review the fields below.`}
 
-                            <StyledUl
-                                style={{
-                                    color: "inherit",
-                                    fontSize: "inherit",
-                                    lineHeight: "inherit",
-                                    paddingInlineStart: sizing.size_200,
-                                    marginBlockEnd: 0,
-                                    marginBlockStart: sizing.size_120,
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    gap: sizing.size_040,
-                                    listStyleType: "disc",
-                                }}
-                            >
+                            <StyledUl style={styles.bannerUl}>
                                 {bannerErrors.map((e) => (
                                     <StyledLi
                                         key={e.label}
-                                        style={{
-                                            color: "inherit",
-                                            fontSize: "inherit",
-                                            lineHeight: "inherit",
-                                        }}
+                                        style={styles.bannerLi}
                                     >
                                         <b>{e.label}:</b> {e.message}
                                     </StyledLi>
@@ -751,6 +734,23 @@ const styles = StyleSheet.create({
     },
     alternativeCustomStyle: {
         border: `${border.width.medium} solid ${semanticColor.core.border.neutral.subtle}`,
+    },
+    bannerUl: {
+        color: "inherit",
+        fontSize: "inherit",
+        lineHeight: "inherit",
+        paddingInlineStart: sizing.size_200,
+        marginBlockEnd: 0,
+        marginBlockStart: sizing.size_120,
+        display: "flex",
+        flexDirection: "column",
+        gap: sizing.size_040,
+        listStyleType: "disc",
+    },
+    bannerLi: {
+        color: "inherit",
+        fontSize: "inherit",
+        lineHeight: "inherit",
     },
 });
 

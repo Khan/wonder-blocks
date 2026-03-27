@@ -2,6 +2,7 @@ import * as React from "react";
 import {action} from "storybook/actions";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
+import {StyleSheet} from "aphrodite";
 import {themeModes} from "../../.storybook/modes";
 
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
@@ -151,6 +152,25 @@ export const AllVariantsStory: StoryComponentType = {
     },
 };
 
+const styles = StyleSheet.create({
+    bannerUl: {
+        color: "inherit",
+        fontSize: "inherit",
+        lineHeight: "inherit",
+        paddingInlineStart: sizing.size_200,
+        marginBlockEnd: 0,
+        marginBlockStart: sizing.size_120,
+        display: "flex",
+        flexDirection: "column",
+        gap: sizing.size_040,
+        listStyleType: "disc",
+    },
+    bannerLi: {
+        color: "inherit",
+        fontSize: "inherit",
+        lineHeight: "inherit",
+    },
+});
 const scenarios = [
     {
         name: "Multiple lines of text",
@@ -293,45 +313,14 @@ const scenarios = [
                 <>
                     There are 3 errors in this form. Please review the fields
                     below.
-                    <StyledUl
-                        style={{
-                            color: "inherit",
-                            fontSize: "inherit",
-                            lineHeight: "inherit",
-                            paddingInlineStart: sizing.size_200,
-                            marginBlockEnd: 0,
-                            marginBlockStart: sizing.size_120,
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: sizing.size_040,
-                            listStyleType: "disc",
-                        }}
-                    >
-                        <StyledLi
-                            style={{
-                                color: "inherit",
-                                fontSize: "inherit",
-                                lineHeight: "inherit",
-                            }}
-                        >
+                    <StyledUl style={styles.bannerUl}>
+                        <StyledLi style={styles.bannerLi}>
                             <b>Text Field:</b> Should be 5 or more characters
                         </StyledLi>
-                        <StyledLi
-                            style={{
-                                color: "inherit",
-                                fontSize: "inherit",
-                                lineHeight: "inherit",
-                            }}
-                        >
+                        <StyledLi style={styles.bannerLi}>
                             <b>Text Area:</b> Should be 5 or more characters
                         </StyledLi>
-                        <StyledLi
-                            style={{
-                                color: "inherit",
-                                fontSize: "inherit",
-                                lineHeight: "inherit",
-                            }}
-                        >
+                        <StyledLi style={styles.bannerLi}>
                             <b>Single Select:</b> Don&apos;t pick mango!
                         </StyledLi>
                     </StyledUl>
