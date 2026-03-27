@@ -298,7 +298,7 @@ const scenarios = [
                             color: "inherit",
                             fontSize: "inherit",
                             lineHeight: "inherit",
-                            paddingInlineStart: sizing.size_160,
+                            paddingInlineStart: sizing.size_200,
                             marginBlockEnd: 0,
                             marginBlockStart: sizing.size_120,
                             display: "flex",
