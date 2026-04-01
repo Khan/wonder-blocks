@@ -447,6 +447,12 @@ importers:
 
   build-settings: {}
 
+  packages/eslint-plugin-wonder-blocks:
+    devDependencies:
+      '@khanacademy/wb-dev-build-settings':
+        specifier: workspace:*
+        version: link:../../build-settings
+
   packages/wonder-blocks-accordion:
     dependencies:
       '@khanacademy/wonder-blocks-clickable':
