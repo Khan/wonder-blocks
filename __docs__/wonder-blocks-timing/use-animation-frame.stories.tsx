@@ -96,10 +96,9 @@ export const OnDemandAndResolveOnClear = () => {
  */
 export const Immediately = () => {
     const [callCount, setCallCount] = React.useState(0);
-    const callback = React.useCallback(() => {
+    const animationFrame = useAnimationFrame(() => {
         setCallCount((c) => c + 1);
-    }, []);
-    const animationFrame = useAnimationFrame(callback);
+    });
     return (
         <View>
             <Body>

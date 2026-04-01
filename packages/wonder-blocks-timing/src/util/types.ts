@@ -132,35 +132,22 @@ export interface IAnimationFrame {
  */
 export type Options = {
     /**
-     * Determines when the request is scheduled. By default, the request is
-     * made immediately on creation. Use `SchedulePolicy.OnDemand` to delay
-     * scheduling until `set()` is explicitly called.
+     * Determines when the request is scheduled.
      */
     schedulePolicy?: Policies.SchedulePolicy;
     /**
      * Determines how the request is cleared when the component is unmounted
-     * or the request is recreated. By default, the request is cancelled
-     * immediately. Use `ClearPolicy.Resolve` to invoke the action one final
-     * time when the request is cleared.
+     * or the request is recreated.
      */
     clearPolicy?: Policies.ClearPolicy;
 };
 
 /**
  * Options for the hook variants of our scheduling APIs.
- *
- * Note: in hook-based APIs (`useAnimationFrame`, `useTimeout`, `useInterval`),
- * `clearPolicy` is additionally used as the default when calling `clear()`
- * manually with no argument on the returned API. Pass an explicit
- * `ClearPolicy` to `clear(policy)` to override it for a specific call.
  */
 export type HookOptions = Options & {
     /**
      * Determines how the action is handled when it changes between renders.
-     * By default (`ActionPolicy.Passive`), the action is replaced but the
-     * request is not reset — the updated action will be invoked when the
-     * request next fires. Use `ActionPolicy.Reset` to cancel the current
-     * request and start a new one whenever the action changes.
      */
     actionPolicy?: Policies.ActionPolicy;
 };

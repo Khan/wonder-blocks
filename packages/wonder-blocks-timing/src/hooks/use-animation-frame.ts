@@ -13,7 +13,12 @@ import AnimationFrame from "../util/animation-frame";
  * This makes it easier to use with inline lambda functions rather than
  * requiring consumers to wrap their action in a `useCallback`. To change
  * this behavior, see the `actionPolicy` option.
- * @param options Options for the hook. See `HookOptions` for details.
+ * @param options Options for the hook. By default the frame is scheduled
+ * immediately on mount and cancelled on unmount. Use `schedulePolicy` to
+ * specify when the request is scheduled. Use `clearPolicy` to
+ * specify how the request is cleared when the component is unmounted
+ * or the request is recreated. Use `actionPolicy` to determine how the action
+ * is handled when it changes.
  * @returns An `IAnimationFrame` API for interacting with the given request.
  * This API is a no-op if called when not mounted. This means that any calls
  * prior to mounting or after unmounting will not have any effect. This API is

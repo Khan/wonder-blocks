@@ -24,8 +24,8 @@ import Timeout from "../util/timeout";
  * @param options.clearPolicy Determines how the timeout is cleared when the
  * component is unmounted or the timeout is recreated. By default, the
  * timeout is cleared immediately. If you want to let the timeout run to
- * completion, use `ClearPolicy.Resolve`. This is NOT applied if the timeout
- * is cleared manually via the `clear()` method on the returned API.
+ * completion, use `ClearPolicy.Resolve`. This is also used as the default
+ * when calling `clear()` manually with no argument on the returned API.
  * @param options.schedulePolicy Determines when the timeout is scheduled.
  * By default, the timeout is scheduled immediately. If you want to delay
  * scheduling the timeout, use `SchedulePolicy.OnDemand`.
@@ -73,7 +73,7 @@ export function useTimeout(
             schedulePolicy,
         );
 
-        // Clear the interval when the effect is cleaned up, if necessary,
+        // Clear the timeout when the effect is cleaned up, if necessary,
         // making sure to use the clear policy.
         return () => {
             timeoutRef.current?.clear(clearPolicy);
