@@ -49,7 +49,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: Khan/actions@check-for-changeset-v3
+      - uses: Khan/actions@check-for-changeset-v2
         if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
         with:
           exclude: .github/,.storybook/
