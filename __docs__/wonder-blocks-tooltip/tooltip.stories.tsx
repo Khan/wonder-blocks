@@ -8,15 +8,16 @@ import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 import info from "@phosphor-icons/core/regular/info.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
+import Link from "@khanacademy/wonder-blocks-link";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {Body} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
-import Tooltip from "@khanacademy/wonder-blocks-tooltip";
+import Tooltip, {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 import packageConfig from "../../packages/wonder-blocks-tooltip/package.json";
 
 import ComponentInfo from "../components/component-info";
@@ -165,6 +166,56 @@ export const ComplexAnchorAndTitle: StoryComponentType = {
 };
 
 /**
+ * Tooltips can be used with links as anchors.
+ * When a `Link` is the anchor element, set `forceAnchorFocusivity={false}`
+ * since the link is already keyboard focusable. The tooltip will appear on
+ * hover or focus and the `aria-describedby` attribute is automatically applied
+ * to the `Link` element.
+ */
+export const WithLinkAnchor: StoryComponentType = {
+    render: function Render() {
+        return (
+            <Tooltip
+                content="This link navigates to the Khan Academy homepage."
+                placement="top"
+                forceAnchorFocusivity={false}
+            >
+                <Link href="https://www.khanacademy.org">Khan Academy</Link>
+            </Tooltip>
+        );
+    },
+};
+
+/**
+ * To render rich text in tooltip content, pass a React element as the `content`
+ * prop instead of a plain string. When a string is passed it is rendered as
+ * plain text — HTML tags in a string will appear literally (e.g.
+ * `<i>text</i>`). Wrap content in a `TooltipContent` element and use inline
+ * HTML elements to control formatting.
+ */
+export const WithRichTextContent: StoryComponentType = {
+    render: function Render() {
+        return (
+            <Tooltip
+                content={
+                    <TooltipContent>
+                        <BodyText>
+                            Use <strong>bold</strong>, <em>italic</em>, or{" "}
+                            <u>underlined</u> text by passing a React element
+                            instead of a plain string.
+                        </BodyText>
+                    </TooltipContent>
+                }
+                opened={true}
+                forceAnchorFocusivity={false}
+            >
+                <Link href="https://www.khanacademy.org">Khan Academy</Link>
+            </Tooltip>
+        );
+    },
+};
+
+/**
  * In this example, we have the anchor in a scrollable parent. Notice how, when
  * the anchor is focused but scrolled out of bounds, the tooltip disappears.
  */
@@ -173,7 +224,7 @@ export const AnchorInScrollableParent: StoryComponentType = {
         return (
             <View style={styles.scrollbox}>
                 <View style={styles.hostbox}>
-                    <Body>
+                    <BodyText>
                         This is a big long piece of text with a
                         <Tooltip
                             content="This tooltip will disappear when scrolled out of bounds"
@@ -182,7 +233,7 @@ export const AnchorInScrollableParent: StoryComponentType = {
                             [tooltip]
                         </Tooltip>{" "}
                         in the middle.
-                    </Body>
+                    </BodyText>
                 </View>
             </View>
         );
