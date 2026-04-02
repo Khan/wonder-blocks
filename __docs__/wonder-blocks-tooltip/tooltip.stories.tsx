@@ -13,11 +13,15 @@ import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    semanticColor,
+    sizing,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
-import Tooltip, {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
+import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import packageConfig from "../../packages/wonder-blocks-tooltip/package.json";
 
 import ComponentInfo from "../components/component-info";
@@ -190,21 +194,19 @@ export const WithLinkAnchor: StoryComponentType = {
  * To render rich text in tooltip content, pass a React element as the `content`
  * prop instead of a plain string. When a string is passed it is rendered as
  * plain text — HTML tags in a string will appear literally (e.g.
- * `<i>text</i>`). Wrap content in a `TooltipContent` element and use inline
- * HTML elements to control formatting.
+ * `<i>text</i>`). Use inline HTML elements inside a typography component to
+ * control formatting.
  */
 export const WithRichTextContent: StoryComponentType = {
     render: function Render() {
         return (
             <Tooltip
                 content={
-                    <TooltipContent>
-                        <BodyText>
-                            Use <strong>bold</strong>, <em>italic</em>, or{" "}
-                            <u>underlined</u> text by passing a React element
-                            instead of a plain string.
-                        </BodyText>
-                    </TooltipContent>
+                    <BodyText style={{padding: sizing.size_120}}>
+                        Use <strong>bold</strong>, <em>italic</em>, or{" "}
+                        <u>underlined</u> text by passing a React element
+                        instead of a plain string.
+                    </BodyText>
                 }
                 opened={true}
                 forceAnchorFocusivity={false}
