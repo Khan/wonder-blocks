@@ -11,8 +11,7 @@ description: >
   If the user is building any kind of form, layout, modal, button, dropdown, or
   typography treatment in a WB-enabled codebase, this skill applies — even if
   they don't explicitly say "Wonder Blocks". Do NOT trigger for debugging
-  TypeScript errors, writing tests, setting up Storybook stories, or fixing
-  CI/lint issues in WB packages.
+  TypeScript errors, writing tests, or fixing CI/lint issues in WB packages.
 ---
 
 # Wonder Blocks UI Implementation
@@ -262,7 +261,8 @@ import {Card} from "@khanacademy/wonder-blocks-card";
 
 ## Motion
 
-- For WB components that support animations, pass the user's reduced motion preference into the `animated` prop. Use the `usePrefersReducedMotion` hook from `@khan/data-prefers-reduced-motion` to get the user's setting.
+- For WB components that support animations, they should accept an `animated`
+prop so consumers can pass in the user's reduced motion preference.
 
 ## Responsiveness
 
@@ -286,10 +286,12 @@ import {Card} from "@khanacademy/wonder-blocks-card";
   | `maxHeight` / `minHeight` | `maxBlockSize` / `minBlockSize` |
   | `width` / `height` (when directional) | `inlineSize` / `blockSize` |
 
-- Pass translated strings into the `labels` prop for components that support it.
+- Components with built-in labels should accept a `labels` prop so consumers
+can pass in translated strings.
 
 ## Patterns
 
 - Forms and error validation: When implementing form elements (text inputs, textareas, checkboxes, radio groups,
-selects, or a submit action), read the reference file before writing any form code:
+selects, or a submit action), read the reference file before writing any form code.
+Also reference this when creating new form field components:
 `./references/forms.md`
