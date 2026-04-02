@@ -29,7 +29,7 @@ jobs:
         os: [ubuntu-latest]
         node-version: [24.x]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Install & cache node_modules
         uses: ./.github/actions/shared-node-cache
         with:
@@ -45,11 +45,11 @@ jobs:
             node-version: [24.x]
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
-      - uses: Khan/actions@check-for-changeset-v1
+      - uses: Khan/actions@check-for-changeset-v3
         if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
         with:
           exclude: .github/,.storybook/
@@ -77,9 +77,9 @@ jobs:
         os: [ubuntu-latest]
         node-version: [24.x]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
 
