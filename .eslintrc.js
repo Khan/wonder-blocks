@@ -48,12 +48,6 @@ module.exports = {
             },
         },
         {
-            files: ["bodytext-tag-eslint-rule/**/*.js"],
-            rules: {
-                "import/no-commonjs": "off",
-            },
-        },
-        {
             files: ["**/*.test.*"],
             rules: {
                 "max-lines": "off",
@@ -222,7 +216,6 @@ module.exports = {
                 matchers: ["toHaveNoA11yViolations"],
             },
         ],
-
         /**
          * TypeScript rules
          */

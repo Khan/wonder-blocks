@@ -5,22 +5,20 @@
  * components nested inside elements that cannot contain block-level content,
  * and that the auto-fix correctly adds tag="span".
  */
-import {RuleTester} from "eslint";
-import {noInvalidBodyTextParent} from "../no-invalid-bodytext-parent";
+import {RuleTester} from "@typescript-eslint/rule-tester";
+import noInvalidBodyTextParent from "../no-invalid-bodytext-parent";
 
-// @types/eslint@9 expects flat config but this project uses eslint@8 (eslintrc format).
-// The runtime API works correctly; the cast silences the version mismatch.
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ruleTester = new RuleTester({
-    parserOptions: {
-        ecmaVersion: 2020,
-        ecmaFeatures: {jsx: true},
-        sourceType: "module",
+    languageOptions: {
+        parserOptions: {
+            ecmaVersion: 2020,
+            ecmaFeatures: {jsx: true},
+            sourceType: "module",
+        },
     },
-} as any);
+});
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-ruleTester.run("no-invalid-bodytext-parent", noInvalidBodyTextParent as any, {
+ruleTester.run("no-invalid-bodytext-parent", noInvalidBodyTextParent, {
     // ------------------------------------------------------------------ //
     // VALID — BodyText with an inline tag is allowed everywhere;          //
     //         BodyText without a tag is fine in non-restricted contexts.  //
