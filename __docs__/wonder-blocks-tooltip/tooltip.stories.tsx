@@ -188,6 +188,22 @@ export const WithLinkAnchor: StoryComponentType = {
             </Tooltip>
         );
     },
+    play: async ({canvasElement}) => {
+        // Arrange
+        // NOTE: Using `body` here to work with React Portals.
+        const canvas = within(canvasElement.ownerDocument.body);
+
+        // Act
+        const link = await canvas.findByRole("link", {name: "Khan Academy"});
+        await userEvent.hover(link);
+
+        // Assert
+        await expect(
+            await canvas.findByText(
+                "This link navigates to the Khan Academy homepage.",
+            ),
+        ).toBeInTheDocument();
+    },
 };
 
 /**

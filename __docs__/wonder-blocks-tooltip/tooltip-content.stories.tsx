@@ -44,7 +44,7 @@ export const OnlyTextContent: StoryComponentType = {
 OnlyTextContent.parameters = {
     docs: {
         description: {
-            story: "This shows the default which is text rendered using `LabelMedium`.",
+            story: "This shows the default which is text rendered using `BodyText`.",
         },
     },
 };
@@ -62,7 +62,7 @@ export const TitledContent: StoryComponentType = {
 TitledContent.parameters = {
     docs: {
         description: {
-            story: "This shows the default with a title; the title is rendered using `HeadingSmall`.",
+            story: "This shows the default with a title; the title is rendered using `Heading`.",
         },
     },
 };
@@ -93,7 +93,7 @@ CustomContent.parameters = {
 /**
  * To render rich text in tooltip content, pass a React element as `children`
  * instead of a plain string. When a string is passed, it is wrapped in
- * `LabelMedium` and rendered as plain text — HTML tags in a string will appear
+ * `BodyText` and rendered as plain text — HTML tags in a string will appear
  * literally (e.g. `<i>text</i>`). Wrapping content in a typography component
  * and using inline HTML elements gives full control over formatting.
  */
