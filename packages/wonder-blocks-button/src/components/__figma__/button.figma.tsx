@@ -1,6 +1,5 @@
 import {figma} from "@figma/code-connect";
 import * as React from "react";
-import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Button from "../button";
 
 /*
@@ -15,6 +14,9 @@ Everything within (ternary operators, etc) would be returned as-is to the agent 
 
 const ICON = <React.Fragment />;
 const ARIA_LABEL = "aria-label";
+const DISABLED = true;
+const ACTION_TYPE = "progressive";
+const SIZE_MODE = "medium";
 
 figma.connect(
     Button,
@@ -36,12 +38,16 @@ figma.connect(
                 Hover: "hover",
                 Press: "press",
             }),
+
             buttonText: figma.textContent("Button"),
         },
         example: (props: any) => (
             // Otherwise, use the regular Button component
             <Button
                 kind={props.kind}
+                actionType={ACTION_TYPE} // Include if Figma "🌈 Action" mode is specified && mode=="destructive"
+                size={SIZE_MODE} // Include attr if Figma "📐 Utility Button" mode is specified && mode!="medium"
+                disabled={DISABLED} // Only add prop if props.actionMode === "disabled"
                 startIcon={ICON} // If props.icon === "start"
                 endIcon={ICON} // If props.icon === "end"
                 aria-label={ARIA_LABEL}
