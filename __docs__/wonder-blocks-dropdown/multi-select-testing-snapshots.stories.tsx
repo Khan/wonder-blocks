@@ -31,7 +31,7 @@ export default {
         ],
         onChange: () => {},
     },
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
 } as Meta;
 
 type Story = StoryObj<typeof MultiSelect>;

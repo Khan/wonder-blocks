@@ -36,7 +36,7 @@ export default {
             modes: themeModes,
         },
     },
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
 } as Meta<typeof CompactCell>;
 
 type Story = StoryObj<typeof CompactCell>;

@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {render, screen} from "@testing-library/react";

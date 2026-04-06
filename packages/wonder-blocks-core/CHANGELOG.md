@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-core
 
+## 12.4.3
+
+### Patch Changes
+
+- d6ae5fb: Export findFocusableNodes utility function
+
 ## 12.4.2
 
 ### Patch Changes

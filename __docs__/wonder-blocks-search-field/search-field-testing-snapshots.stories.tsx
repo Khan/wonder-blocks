@@ -13,7 +13,7 @@ import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 
 export default {
     title: "Packages / SearchField / Testing / Snapshots / SearchField",
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
     parameters: {
         componentSubtitle: (
             <ComponentInfo

@@ -41,7 +41,7 @@ const MultiSelectAccessibility = () => (
 );
 
 export const UsingAriaAttributes = {
-    render: MultiSelectAccessibility.bind({}),
+    render: () => <MultiSelectAccessibility />,
     name: "Using LabeledField",
 };
 
@@ -68,7 +68,7 @@ const MultiSelectAriaLabel = () => (
 );
 
 export const UsingOpenerAriaLabel = {
-    render: MultiSelectAriaLabel.bind({}),
+    render: () => <MultiSelectAriaLabel />,
     name: "Using aria-label attributes",
 };
 
@@ -100,7 +100,7 @@ const MultiSelectCustomOpenerLabeledField = () => {
 };
 
 export const UsingCustomOpenerLabeledField = {
-    render: MultiSelectCustomOpenerLabeledField.bind({}),
+    render: () => <MultiSelectCustomOpenerLabeledField />,
     name: "Using custom opener in a LabeledField",
 };
 
@@ -127,7 +127,7 @@ const MultiSelectCustomOpenerLabel = () => {
 };
 
 export const UsingCustomOpenerAriaLabel = {
-    render: MultiSelectCustomOpenerLabel.bind({}),
+    render: () => <MultiSelectCustomOpenerLabel />,
     name: "Using aria-label on custom opener",
 };
 
@@ -154,7 +154,7 @@ const MultiSelectWithVisibleAnnouncer = () => {
 };
 
 export const WithVisibleAnnouncer = {
-    render: MultiSelectWithVisibleAnnouncer.bind({}),
+    render: () => <MultiSelectWithVisibleAnnouncer />,
     name: "With visible Announcer",
     parameters: {
         addBodyClass: "showAnnouncer",

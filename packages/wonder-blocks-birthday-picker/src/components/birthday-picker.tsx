@@ -37,6 +37,9 @@ type Props = {
     defaultValue?: string;
     /**
      * Whether the birthdate fields are disabled.
+     *
+     * Internally, the `aria-disabled` attribute will be set so that the
+     * element remains focusable and will be included in the tab order.
      */
     disabled?: boolean;
     /**
@@ -343,7 +346,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                     <PhosphorIcon
                         size="small"
                         icon={infoIcon}
-                        color={semanticColor.core.foreground.critical.subtle}
+                        color={semanticColor.core.foreground.critical.default}
                         aria-hidden="true"
                     />
                     <Strut size={spacing.xxxSmall_4} />

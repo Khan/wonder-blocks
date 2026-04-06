@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 import * as React from "react";
 import {render, screen, within} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
@@ -163,6 +162,23 @@ describe("Tabs", () => {
         // Assert
         // eslint-disable-next-line testing-library/no-node-access -- check ref is on root element
         expect(ref.current).toBe(container.firstChild);
+    });
+
+    it("should set scrollableElementRef on an element with overflow-x: auto", () => {
+        // Arrange
+        const ref = React.createRef<HTMLDivElement>();
+        render(
+            <Tabs
+                scrollableElementRef={ref}
+                tabs={tabs}
+                selectedTabId={tabs[0].id}
+                onTabSelected={jest.fn()}
+                aria-label={tabsAriaLabel}
+            />,
+        );
+
+        // Assert
+        expect(ref.current).toHaveStyle("overflow-x: auto");
     });
 
     describe("Props", () => {
@@ -505,6 +521,7 @@ describe("Tabs", () => {
                                     panel: "Panel",
                                     "aria-label": "Tab 1 Aria Label",
                                     testId: "tab-1-test-id",
+                                    icon: <img src="icon.svg" alt="icon" />,
                                 },
                             ]}
                             selectedTabId="tab-1"
@@ -520,6 +537,7 @@ describe("Tabs", () => {
                         selected: true,
                         "aria-controls": "tab-1-panel",
                         "aria-label": "Tab 1 Aria Label",
+                        icon: <img src="icon.svg" alt="icon" />,
                         onClick: expect.any(Function),
                         onKeyDown: expect.any(Function),
                         ref: expect.any(Function),

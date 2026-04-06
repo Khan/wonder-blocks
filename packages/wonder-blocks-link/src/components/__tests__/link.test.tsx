@@ -4,7 +4,7 @@ import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
 import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
-import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import plusIcon from "@phosphor-icons/core/bold/plus-bold.svg";
 
 import Link from "../link";
@@ -419,6 +419,45 @@ describe("Link", () => {
             });
         });
 
+        test("external icon has no aria-label by default", async () => {
+            // Arrange
+            render(
+                <Link href="https://www.google.com/" target="_blank">
+                    Click me!
+                </Link>,
+            );
+
+            // Act
+            const icon = await screen.findByTestId("external-icon");
+
+            // Assert
+            expect(icon).not.toHaveAttribute("aria-label");
+        });
+
+        test("external icon uses provided aria-label", async () => {
+            // Arrange
+            render(
+                <Link
+                    href="https://www.google.com/"
+                    target="_blank"
+                    labels={{
+                        externalIconAriaLabel: "(opens in a new cool tab)",
+                    }}
+                >
+                    Click me!
+                </Link>,
+            );
+
+            // Act
+            const icon = await screen.findByTestId("external-icon");
+
+            // Assert
+            expect(icon).toHaveAttribute(
+                "aria-label",
+                "(opens in a new cool tab)",
+            );
+        });
+
         test("does not render external icon when `target=_blank` and link is relative", async () => {
             // Arrange
             render(
@@ -601,5 +640,79 @@ describe("Link", () => {
 
         // Assert
         expect(link).toHaveAttribute("title", "Click me!");
+    });
+
+    describe("Accessibility", () => {
+        describe("Icons", () => {
+            it("should include the accessible name of the start and end icons in the accessible name of the link", () => {
+                // Arrange
+                // Act
+                render(
+                    <Link
+                        startIcon={
+                            <Icon>
+                                <img src="icon.svg" alt="Start icon" />
+                            </Icon>
+                        }
+                        endIcon={
+                            <PhosphorIcon
+                                icon={plusIcon}
+                                aria-label="End icon"
+                            />
+                        }
+                        href="/"
+                    >
+                        Label
+                    </Link>,
+                );
+
+                // Assert
+                expect(screen.getByRole("link")).toHaveAccessibleName(
+                    "Start icon Label End icon",
+                );
+            });
+
+            it("should not include image roles in the link if the icons are marked as decorative only", () => {
+                // Arrange
+                // Act
+                render(
+                    <Link
+                        startIcon={
+                            <Icon>
+                                <img src="icon.svg" alt="" />
+                            </Icon>
+                        }
+                        endIcon={<PhosphorIcon icon={plusIcon} />}
+                        href="/"
+                    >
+                        Label
+                    </Link>,
+                );
+
+                // Assert
+                expect(screen.queryByRole("img")).not.toBeInTheDocument();
+            });
+
+            it("should only include the label in the accessible name if the icons are marked as decorative only", () => {
+                // Arrange
+                // Act
+                render(
+                    <Link
+                        href="/"
+                        startIcon={
+                            <Icon>
+                                <img src="icon.svg" alt="" />
+                            </Icon>
+                        }
+                        endIcon={<PhosphorIcon icon={plusIcon} />}
+                    >
+                        Label
+                    </Link>,
+                );
+
+                // Assert
+                expect(screen.getByRole("link")).toHaveAccessibleName("Label");
+            });
+        });
     });
 });

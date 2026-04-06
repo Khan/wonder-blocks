@@ -1,5 +1,109 @@
 # @khanacademy/wonder-blocks-tabs
 
+## 0.5.7
+
+### Patch Changes
+
+- Updated dependencies [d3d2580]
+    - @khanacademy/wonder-blocks-button@11.5.0
+    - @khanacademy/wonder-blocks-dropdown@10.8.4
+
+## 0.5.6
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-dropdown@10.8.3
+
+## 0.5.5
+
+### Patch Changes
+
+- Updated dependencies [358eb9b]
+    - @khanacademy/wonder-blocks-tokens@16.1.0
+    - @khanacademy/wonder-blocks-button@11.4.2
+    - @khanacademy/wonder-blocks-dropdown@10.8.2
+    - @khanacademy/wonder-blocks-icon@5.3.9
+    - @khanacademy/wonder-blocks-link@10.1.7
+    - @khanacademy/wonder-blocks-typography@4.2.31
+
+## 0.5.4
+
+### Patch Changes
+
+- Updated dependencies [c75abe9]
+- Updated dependencies [c75abe9]
+- Updated dependencies [530d692]
+    - @khanacademy/wonder-blocks-tokens@16.0.0
+    - @khanacademy/wonder-blocks-button@11.4.1
+    - @khanacademy/wonder-blocks-dropdown@10.8.1
+    - @khanacademy/wonder-blocks-icon@5.3.8
+    - @khanacademy/wonder-blocks-link@10.1.6
+    - @khanacademy/wonder-blocks-typography@4.2.30
+
+## 0.5.3
+
+### Patch Changes
+
+- Updated dependencies [7c7c3d3]
+    - @khanacademy/wonder-blocks-button@11.4.0
+
+## 0.5.2
+
+### Patch Changes
+
+- Updated dependencies [9abc34a]
+- Updated dependencies [a46a842]
+- Updated dependencies [e0aaa9e]
+    - @khanacademy/wonder-blocks-dropdown@10.8.0
+
+## 0.5.1
+
+### Patch Changes
+
+- Updated dependencies [12e04c3]
+    - @khanacademy/wonder-blocks-dropdown@10.7.1
+    - @khanacademy/wonder-blocks-button@11.3.4
+    - @khanacademy/wonder-blocks-link@10.1.5
+
+## 0.5.0
+
+### Minor Changes
+
+- 27a30ad: Adds TabsDropdown component
+- a633e23: Adds ResponsiveNavigationTabs component
+- be1c83f: ResponsiveTabs and TabsDropdown: Add support for tab item aria-label
+- cae9768: Adds ResponsiveTabs component
+- 61d61a9: Adds support for icons in ResponsiveTabs, Tabs, and TabsDropdown
+
+### Patch Changes
+
+- e0c42a6: Adds internal NavigationTabsDropdown component for the upcoming ResponsiveNavigationTabs component
+- 6928835: Update component docs for ResponsiveTabs and ResponsiveNavigationTabs
+- 75b5418: TabsDropdown: Improve a11y
+- Updated dependencies [a633e23]
+- Updated dependencies [be1c83f]
+- Updated dependencies [61d61a9]
+    - @khanacademy/wonder-blocks-link@10.1.4
+    - @khanacademy/wonder-blocks-dropdown@10.7.0
+    - @khanacademy/wonder-blocks-button@11.3.3
+
+## 0.4.3
+
+### Patch Changes
+
+- Updated dependencies [8bb7ada]
+    - @khanacademy/wonder-blocks-tokens@15.0.0
+    - @khanacademy/wonder-blocks-typography@4.2.29
+
+## 0.4.2
+
+### Patch Changes
+
+- Updated dependencies [d6ae5fb]
+    - @khanacademy/wonder-blocks-core@12.4.3
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-typography@4.2.28
+
 ## 0.4.1
 
 ### Patch Changes

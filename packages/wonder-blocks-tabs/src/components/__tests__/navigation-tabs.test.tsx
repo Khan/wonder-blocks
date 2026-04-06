@@ -126,6 +126,20 @@ describe("NavigationTabs", () => {
             // Assert
             expect(await screen.findByRole("navigation")).toBe(ref.current);
         });
+
+        it("should have overflow-x auto on the ref element", async () => {
+            // Context: ResponsiveNavigationTabs uses the root ref for overflow
+            // detection. If this test fails, we will need to update what element
+            // is used to detect overflow.
+            // Arrange
+            const ref = React.createRef<HTMLElement>();
+
+            // Act
+            render(<NavigationTabs ref={ref}>{children}</NavigationTabs>);
+
+            // Assert
+            expect(ref.current).toHaveStyle("overflow-x: auto");
+        });
     });
 
     describe("a11y", () => {

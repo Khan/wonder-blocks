@@ -1,9 +1,14 @@
-import type {RegionDef, PolitenessLevel} from "../../util/announcer.types";
+import type {
+    RegionDef,
+    PolitenessLevel,
+    LayerContext,
+} from "../../util/announcer.types";
 
 export function createTestRegionList(
     level: PolitenessLevel,
     element1: HTMLElement,
     element2: HTMLElement,
+    layerId: LayerContext,
 ): RegionDef[] {
     return [
         {
@@ -11,12 +16,14 @@ export function createTestRegionList(
             level: level,
             levelIndex: 0,
             element: element1,
+            layerId: "document",
         },
         {
             id: `wbARegion-${level}1`,
             level: level,
             levelIndex: 1,
             element: element2,
+            layerId: layerId,
         },
     ];
 }

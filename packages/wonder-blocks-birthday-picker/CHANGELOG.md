@@ -1,5 +1,114 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 4.1.42
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-dropdown@10.8.4
+
+## 4.1.41
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-dropdown@10.8.3
+
+## 4.1.40
+
+### Patch Changes
+
+- Updated dependencies [358eb9b]
+    - @khanacademy/wonder-blocks-tokens@16.1.0
+    - @khanacademy/wonder-blocks-dropdown@10.8.2
+    - @khanacademy/wonder-blocks-icon@5.3.9
+    - @khanacademy/wonder-blocks-layout@3.1.46
+    - @khanacademy/wonder-blocks-typography@4.2.31
+
+## 4.1.39
+
+### Patch Changes
+
+- Updated dependencies [c75abe9]
+- Updated dependencies [c75abe9]
+- Updated dependencies [530d692]
+    - @khanacademy/wonder-blocks-tokens@16.0.0
+    - @khanacademy/wonder-blocks-dropdown@10.8.1
+    - @khanacademy/wonder-blocks-icon@5.3.8
+    - @khanacademy/wonder-blocks-layout@3.1.45
+    - @khanacademy/wonder-blocks-typography@4.2.30
+
+## 4.1.38
+
+### Patch Changes
+
+- Updated dependencies [9abc34a]
+- Updated dependencies [a46a842]
+- Updated dependencies [e0aaa9e]
+    - @khanacademy/wonder-blocks-dropdown@10.8.0
+
+## 4.1.37
+
+### Patch Changes
+
+- 12e04c3: Update component documentation for the `disabled` props to include details about `aria-disabled` being set internally to keep an element focusable while in a disabled state
+- Updated dependencies [12e04c3]
+    - @khanacademy/wonder-blocks-dropdown@10.7.1
+
+## 4.1.36
+
+### Patch Changes
+
+- Updated dependencies [be1c83f]
+    - @khanacademy/wonder-blocks-dropdown@10.7.0
+
+## 4.1.35
+
+### Patch Changes
+
+- 8bb7ada: Updates styles to reflect new core.foreground tokens
+- Updated dependencies [8bb7ada]
+- Updated dependencies [8bb7ada]
+    - @khanacademy/wonder-blocks-tokens@15.0.0
+    - @khanacademy/wonder-blocks-dropdown@10.6.7
+    - @khanacademy/wonder-blocks-icon@5.3.7
+    - @khanacademy/wonder-blocks-layout@3.1.44
+    - @khanacademy/wonder-blocks-typography@4.2.29
+
+## 4.1.34
+
+### Patch Changes
+
+- Updated dependencies [d6ae5fb]
+    - @khanacademy/wonder-blocks-core@12.4.3
+    - @khanacademy/wonder-blocks-dropdown@10.6.6
+    - @khanacademy/wonder-blocks-icon@5.3.6
+    - @khanacademy/wonder-blocks-layout@3.1.43
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-typography@4.2.28
+
+## 4.1.33
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-dropdown@10.6.5
+
+## 4.1.32
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-dropdown@10.6.4
+
+## 4.1.31
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-dropdown@10.6.3
+
+## 4.1.30
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-dropdown@10.6.2
+
 ## 4.1.29
 
 ### Patch Changes

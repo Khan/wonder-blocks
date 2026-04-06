@@ -5,9 +5,10 @@ export default {
     ...baseSelectArgTypes,
     alignment: {
         control: {type: "select"},
-        description: `The alignment of the menu component in relation to the
-            opener component. Defaults to "left", which is below the opener and
-            left aligned. Any valid Popper placement is also supported.`,
+        description:
+            `The alignment of the menu component in relation to the ` +
+            `opener component. Defaults to "left", which is below the opener and ` +
+            `left aligned. Any valid Popper placement is also supported.`,
         options: [
             "left",
             "right",

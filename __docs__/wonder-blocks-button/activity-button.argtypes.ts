@@ -8,4 +8,14 @@ export default {
             category: "Layout",
         },
     },
+    actionType: {
+        table: {
+            defaultValue: {
+                summary: `"progressive"`,
+            },
+            type: {
+                summary: `"progressive" | "neutral"`,
+            },
+        },
+    },
 } satisfies ArgTypes;

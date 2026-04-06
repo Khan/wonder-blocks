@@ -1,5 +1,168 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.8.4
+
+### Patch Changes
+
+- Updated dependencies [d3d2580]
+    - @khanacademy/wonder-blocks-icon-button@11.2.0
+    - @khanacademy/wonder-blocks-modal@8.6.1
+    - @khanacademy/wonder-blocks-search-field@5.1.64
+
+## 10.8.3
+
+### Patch Changes
+
+- Updated dependencies [cd3884c]
+    - @khanacademy/wonder-blocks-announcer@1.1.0
+    - @khanacademy/wonder-blocks-modal@8.6.0
+
+## 10.8.2
+
+### Patch Changes
+
+- Updated dependencies [358eb9b]
+    - @khanacademy/wonder-blocks-tokens@16.1.0
+    - @khanacademy/wonder-blocks-cell@6.1.11
+    - @khanacademy/wonder-blocks-clickable@8.1.5
+    - @khanacademy/wonder-blocks-form@7.5.6
+    - @khanacademy/wonder-blocks-icon@5.3.9
+    - @khanacademy/wonder-blocks-icon-button@11.1.6
+    - @khanacademy/wonder-blocks-modal@8.5.17
+    - @khanacademy/wonder-blocks-pill@3.1.57
+    - @khanacademy/wonder-blocks-search-field@5.1.63
+    - @khanacademy/wonder-blocks-styles@0.2.40
+    - @khanacademy/wonder-blocks-typography@4.2.31
+
+## 10.8.1
+
+### Patch Changes
+
+- Updated dependencies [c75abe9]
+- Updated dependencies [c75abe9]
+- Updated dependencies [530d692]
+    - @khanacademy/wonder-blocks-tokens@16.0.0
+    - @khanacademy/wonder-blocks-cell@6.1.10
+    - @khanacademy/wonder-blocks-clickable@8.1.4
+    - @khanacademy/wonder-blocks-form@7.5.5
+    - @khanacademy/wonder-blocks-icon@5.3.8
+    - @khanacademy/wonder-blocks-icon-button@11.1.5
+    - @khanacademy/wonder-blocks-modal@8.5.16
+    - @khanacademy/wonder-blocks-pill@3.1.56
+    - @khanacademy/wonder-blocks-search-field@5.1.62
+    - @khanacademy/wonder-blocks-styles@0.2.39
+    - @khanacademy/wonder-blocks-typography@4.2.30
+
+## 10.8.0
+
+### Minor Changes
+
+- a46a842: Adds focus delay to announce expanded state in Windows screen readers
+
+### Patch Changes
+
+- 9abc34a: Updates `Combobox` multi-select variant to properly update the list of selected values when the items are removed from the MultipleSelection group
+- e0aaa9e: Fixes `ActionMenu` to associate an aria-label to the button element when menuText is not enough to announce the menu intention. Also adds `aria-labelledby` to the `menu` element to associate it with the opener.
+
+## 10.7.1
+
+### Patch Changes
+
+- 12e04c3: Update component documentation for the `disabled` props to include details about `aria-disabled` being set internally to keep an element focusable while in a disabled state
+- Updated dependencies [12e04c3]
+    - @khanacademy/wonder-blocks-search-field@5.1.61
+    - @khanacademy/wonder-blocks-icon-button@11.1.4
+    - @khanacademy/wonder-blocks-clickable@8.1.3
+    - @khanacademy/wonder-blocks-cell@6.1.9
+    - @khanacademy/wonder-blocks-form@7.5.4
+    - @khanacademy/wonder-blocks-modal@8.5.15
+    - @khanacademy/wonder-blocks-pill@3.1.55
+
+## 10.7.0
+
+### Minor Changes
+
+- be1c83f: ActionItem: Add support for aria-label
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-pill@3.1.54
+
+## 10.6.7
+
+### Patch Changes
+
+- 8bb7ada: Update color tokens to use semanticColor.core.foreground.instructive changes
+- Updated dependencies [8bb7ada]
+- Updated dependencies [8bb7ada]
+    - @khanacademy/wonder-blocks-tokens@15.0.0
+    - @khanacademy/wonder-blocks-cell@6.1.8
+    - @khanacademy/wonder-blocks-clickable@8.1.2
+    - @khanacademy/wonder-blocks-form@7.5.3
+    - @khanacademy/wonder-blocks-icon@5.3.7
+    - @khanacademy/wonder-blocks-icon-button@11.1.3
+    - @khanacademy/wonder-blocks-modal@8.5.14
+    - @khanacademy/wonder-blocks-pill@3.1.53
+    - @khanacademy/wonder-blocks-search-field@5.1.60
+    - @khanacademy/wonder-blocks-styles@0.2.38
+    - @khanacademy/wonder-blocks-typography@4.2.29
+
+## 10.6.6
+
+### Patch Changes
+
+- Updated dependencies [d6ae5fb]
+    - @khanacademy/wonder-blocks-core@12.4.3
+    - @khanacademy/wonder-blocks-announcer@1.0.6
+    - @khanacademy/wonder-blocks-cell@6.1.7
+    - @khanacademy/wonder-blocks-clickable@8.1.1
+    - @khanacademy/wonder-blocks-form@7.5.2
+    - @khanacademy/wonder-blocks-icon@5.3.6
+    - @khanacademy/wonder-blocks-icon-button@11.1.2
+    - @khanacademy/wonder-blocks-modal@8.5.13
+    - @khanacademy/wonder-blocks-pill@3.1.52
+    - @khanacademy/wonder-blocks-search-field@5.1.59
+    - @khanacademy/wonder-blocks-styles@0.2.37
+    - @khanacademy/wonder-blocks-timing@7.0.4
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-typography@4.2.28
+
+## 10.6.5
+
+### Patch Changes
+
+- Updated dependencies [673432c]
+    - @khanacademy/wonder-blocks-modal@8.5.12
+
+## 10.6.4
+
+### Patch Changes
+
+- Updated dependencies [6e257eb]
+- Updated dependencies [f6457be]
+    - @khanacademy/wonder-blocks-clickable@8.1.0
+    - @khanacademy/wonder-blocks-modal@8.5.11
+    - @khanacademy/wonder-blocks-cell@6.1.6
+    - @khanacademy/wonder-blocks-form@7.5.1
+    - @khanacademy/wonder-blocks-icon-button@11.1.1
+    - @khanacademy/wonder-blocks-pill@3.1.51
+    - @khanacademy/wonder-blocks-search-field@5.1.58
+
+## 10.6.3
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-pill@3.1.50
+
+## 10.6.2
+
+### Patch Changes
+
+- Updated dependencies [12169b4]
+    - @khanacademy/wonder-blocks-form@7.5.0
+    - @khanacademy/wonder-blocks-search-field@5.1.57
+    - @khanacademy/wonder-blocks-pill@3.1.49
+
 ## 10.6.1
 
 ### Patch Changes

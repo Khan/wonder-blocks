@@ -27,8 +27,7 @@ export function ButtonIcon({
     };
 
     const commonProps = {
-        "aria-hidden": true,
-        style: [style, iconStyle],
+        style: [iconStyle, style],
         testId,
     };
 

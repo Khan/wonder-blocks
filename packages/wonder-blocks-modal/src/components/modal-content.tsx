@@ -14,17 +14,43 @@ type Props = {
     children: React.ReactNode;
     /** Optional styling to apply to the contents. */
     style?: StyleType;
+    /**
+     * When true, allows the small-height media query to unset overflow/flex behavior.
+     * This fixes layout issues in OnePaneDialog on small screens, but should be
+     * disabled for FlexibleDialog/DrawerDialog which need scrolling at all times.
+     * @defaultValue true
+     */
+    applySmallHeightStyles?: boolean;
 };
 
 /**
  * The Modal content included after the header
  */
 function ModalContent(props: Props) {
-    const {scrollOverflow, style, children} = props;
+    const {
+        scrollOverflow,
+        style,
+        children,
+        applySmallHeightStyles = true,
+    } = props;
 
     return (
-        <View style={[styles.wrapper, scrollOverflow && styles.scrollOverflow]}>
-            <View style={[styles.content, style]}>{children}</View>
+        <View
+            style={[
+                styles.wrapper,
+                scrollOverflow && styles.scrollOverflow,
+                applySmallHeightStyles && styles.wrapperSmallHeight,
+            ]}
+        >
+            <View
+                style={[
+                    styles.content,
+                    applySmallHeightStyles && styles.contentSmallHeight,
+                    style,
+                ]}
+            >
+                {children}
+            </View>
         </View>
     );
 }
@@ -47,6 +73,10 @@ const styles = StyleSheet.create({
         // This helps to ensure that the paddingBottom is preserved when
         // the contents start to overflow, this goes away on display: flex
         display: "block",
+    },
+
+    // Media query styles for small height - applied conditionally via applySmallHeightStyles prop
+    wrapperSmallHeight: {
         [modalMediaQuery.smMinOrSmallerHeight as any]: {
             flex: "unset",
             minHeight: "unset",
@@ -66,6 +96,10 @@ const styles = StyleSheet.create({
         [modalMediaQuery.midOrSmaller as any]: {
             paddingInline: theme.panel.layout.gap.small,
         },
+    },
+
+    // Media query styles for small height - applied conditionally via applySmallHeightStyles prop
+    contentSmallHeight: {
         [modalMediaQuery.smMinOrSmallerHeight as any]: {
             flex: "unset",
             minHeight: "unset",
@@ -76,6 +110,7 @@ const styles = StyleSheet.create({
 
 ModalContent.defaultProps = {
     scrollOverflow: true,
+    applySmallHeightStyles: true,
 };
 
 export default ModalContent;

@@ -1,5 +1,4 @@
 /* eslint-disable testing-library/prefer-user-event */
-/* eslint-disable max-lines */
 import * as React from "react";
 import {render, screen, fireEvent, waitFor} from "@testing-library/react";
 import {MemoryRouter} from "react-router-dom";

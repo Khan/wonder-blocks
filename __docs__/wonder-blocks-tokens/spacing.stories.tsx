@@ -17,7 +17,7 @@ import {Code} from "../components/code";
  * All the available spacing values that can be used for margin, padding, width,
  * height, border-width, etc.
  *
- * Note: `spacing` is deprecated! We recommend using [sizing tokens](../?path=/docs/packages-tokens-sizing--docs)
+ * Note: `spacing` is deprecated! We recommend using [sizing tokens](./?path=/docs/packages-tokens-sizing--docs)
  * instead.
  *
  * ## Migrating from `spacing` to `sizing`
@@ -94,7 +94,7 @@ export default {
             />
         ),
     },
-    tags: ["!dev"],
+    tags: ["!dev", "!manifest"],
 } as Meta;
 
 type Row = {label: string; css: string; value: string};

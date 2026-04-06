@@ -22,7 +22,6 @@ export default {
     },
     disabled: {
         control: {type: "boolean"},
-        description: "Whether or not the action item is disabled.",
         table: {
             defaultValue: {summary: "false"},
             type: {summary: "boolean"},

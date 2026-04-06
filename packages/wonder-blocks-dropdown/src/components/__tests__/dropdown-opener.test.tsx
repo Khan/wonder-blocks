@@ -136,4 +136,26 @@ describe("DropdownOpener", () => {
             expect(onClick).not.toHaveBeenCalled();
         });
     });
+
+    describe("Accessibility", () => {
+        it("should set aria-label to the button when provided", () => {
+            // Arrange
+            render(
+                <DropdownOpener
+                    aria-label="Custom opener"
+                    onClick={jest.fn()}
+                    opened={false}
+                    text="Custom opener"
+                    role="combobox"
+                >
+                    {() => <div>Custom opener</div>}
+                </DropdownOpener>,
+            );
+
+            // Assert
+            expect(screen.getByRole("combobox")).toHaveAccessibleName(
+                "Custom opener",
+            );
+        });
+    });
 });

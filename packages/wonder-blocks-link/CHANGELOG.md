@@ -1,5 +1,87 @@
 # @khanacademy/wonder-blocks-link
 
+## 10.1.7
+
+### Patch Changes
+
+- Updated dependencies [358eb9b]
+    - @khanacademy/wonder-blocks-tokens@16.1.0
+    - @khanacademy/wonder-blocks-clickable@8.1.5
+    - @khanacademy/wonder-blocks-icon@5.3.9
+    - @khanacademy/wonder-blocks-styles@0.2.40
+    - @khanacademy/wonder-blocks-typography@4.2.31
+
+## 10.1.6
+
+### Patch Changes
+
+- Updated dependencies [c75abe9]
+- Updated dependencies [c75abe9]
+- Updated dependencies [530d692]
+    - @khanacademy/wonder-blocks-tokens@16.0.0
+    - @khanacademy/wonder-blocks-clickable@8.1.4
+    - @khanacademy/wonder-blocks-icon@5.3.8
+    - @khanacademy/wonder-blocks-styles@0.2.39
+    - @khanacademy/wonder-blocks-typography@4.2.30
+
+## 10.1.5
+
+### Patch Changes
+
+- Updated dependencies [12e04c3]
+    - @khanacademy/wonder-blocks-clickable@8.1.3
+
+## 10.1.4
+
+### Patch Changes
+
+- a633e23: Link: Removes unnecessary aria-hidden on start and end icon. This opens up the
+  option to add an accessible name to the icon if needed. By default, the start
+  icon isn't included in the accessibility tree because PhosphorIcon renders a
+  `span`and needs `role="image"` and the `aria-label` set explicitly.
+
+## 10.1.3
+
+### Patch Changes
+
+- Updated dependencies [8bb7ada]
+    - @khanacademy/wonder-blocks-tokens@15.0.0
+    - @khanacademy/wonder-blocks-clickable@8.1.2
+    - @khanacademy/wonder-blocks-icon@5.3.7
+    - @khanacademy/wonder-blocks-styles@0.2.38
+    - @khanacademy/wonder-blocks-typography@4.2.29
+
+## 10.1.2
+
+### Patch Changes
+
+- Updated dependencies [d6ae5fb]
+    - @khanacademy/wonder-blocks-core@12.4.3
+    - @khanacademy/wonder-blocks-clickable@8.1.1
+    - @khanacademy/wonder-blocks-icon@5.3.6
+    - @khanacademy/wonder-blocks-styles@0.2.37
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-typography@4.2.28
+
+## 10.1.1
+
+### Patch Changes
+
+- Updated dependencies [6e257eb]
+    - @khanacademy/wonder-blocks-clickable@8.1.0
+
+## 10.1.0
+
+### Minor Changes
+
+- ca1cc9f: Link: Removes default aria label for external icon
+
+## 10.0.7
+
+### Patch Changes
+
+- d483d86: External Icon in Link communicates '(opens in a new tab)' to screen readers by default and allows overrides to support internationalization.
+
 ## 10.0.6
 
 ### Patch Changes

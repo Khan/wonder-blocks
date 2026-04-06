@@ -39,6 +39,8 @@ const styles = StyleSheet.create({
     footer: {
         flex: "0 0 auto",
         boxSizing: "border-box",
+        // ensure footer stays at the bottom of modal content with scrolling
+        marginBlockStart: "auto",
         minHeight: sizing.size_640,
         paddingInline: theme.footer.layout.padding.inline,
         paddingBlock: theme.footer.layout.padding.block,

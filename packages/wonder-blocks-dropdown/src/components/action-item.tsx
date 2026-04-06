@@ -20,6 +20,9 @@ type ActionProps = {
     label: string | CellProps["title"];
     /**
      * Whether this action item is disabled.
+     *
+     * Internally, the `aria-disabled` attribute will be set so that the
+     * element remains focusable and will be included in the tab order.
      */
     disabled: boolean;
     /**
@@ -108,6 +111,11 @@ type ActionProps = {
      * Optional; applies aria-current to the cell.
      */
     active?: CellProps["active"];
+
+    /**
+     * Optional aria-label for the action item.
+     */
+    "aria-label"?: string;
 };
 
 type DefaultProps = {
@@ -153,6 +161,7 @@ export default class ActionItem extends React.Component<ActionProps> {
             subtitle2,
             testId,
             active,
+            "aria-label": ariaLabel,
         } = this.props;
 
         const defaultStyle = [
@@ -196,6 +205,7 @@ export default class ActionItem extends React.Component<ActionProps> {
                 target={target}
                 onClick={onClick}
                 active={active}
+                aria-label={ariaLabel}
             />
         );
     }

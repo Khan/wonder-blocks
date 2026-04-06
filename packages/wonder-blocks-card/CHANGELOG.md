@@ -1,5 +1,61 @@
 # @khanacademy/wonder-blocks-card
 
+## 1.4.8
+
+### Patch Changes
+
+- Updated dependencies [d3d2580]
+    - @khanacademy/wonder-blocks-icon-button@11.2.0
+
+## 1.4.7
+
+### Patch Changes
+
+- Updated dependencies [358eb9b]
+    - @khanacademy/wonder-blocks-tokens@16.1.0
+    - @khanacademy/wonder-blocks-icon-button@11.1.6
+
+## 1.4.6
+
+### Patch Changes
+
+- Updated dependencies [c75abe9]
+- Updated dependencies [c75abe9]
+- Updated dependencies [530d692]
+    - @khanacademy/wonder-blocks-tokens@16.0.0
+    - @khanacademy/wonder-blocks-icon-button@11.1.5
+
+## 1.4.5
+
+### Patch Changes
+
+- Updated dependencies [12e04c3]
+    - @khanacademy/wonder-blocks-icon-button@11.1.4
+
+## 1.4.4
+
+### Patch Changes
+
+- Updated dependencies [8bb7ada]
+    - @khanacademy/wonder-blocks-tokens@15.0.0
+    - @khanacademy/wonder-blocks-icon-button@11.1.3
+
+## 1.4.3
+
+### Patch Changes
+
+- d6ae5fb: Adds npmignore to Card package
+- Updated dependencies [d6ae5fb]
+    - @khanacademy/wonder-blocks-core@12.4.3
+    - @khanacademy/wonder-blocks-icon-button@11.1.2
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+
+## 1.4.2
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-icon-button@11.1.1
+
 ## 1.4.1
 
 ### Patch Changes

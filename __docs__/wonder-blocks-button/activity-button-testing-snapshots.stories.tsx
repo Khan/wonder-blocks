@@ -18,7 +18,7 @@ import {Icon} from "@khanacademy/wonder-blocks-icon";
  */
 export default {
     title: "Packages / Button / Testing / Snapshots / ActivityButton",
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
     args: {
         children: "Button",
         icon: paperPlaneIcon,
@@ -41,7 +41,8 @@ const kinds = [
 ];
 
 const actionTypes = [
-    {name: "Progressive", props: {}},
+    {name: "Progressive", props: {actionType: "progressive"}},
+    {name: "Neutral", props: {actionType: "neutral"}},
     {name: "Disabled", props: {disabled: true}},
 ];
 

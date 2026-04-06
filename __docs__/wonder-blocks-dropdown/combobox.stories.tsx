@@ -481,8 +481,7 @@ export const StartIcon: Story = {
                             icon={magnifyingGlassIcon}
                             size="small"
                             color={
-                                semanticColor.core.foreground.instructive
-                                    .default
+                                semanticColor.core.foreground.instructive.strong
                             }
                         />
                     }
@@ -499,8 +498,7 @@ export const StartIcon: Story = {
                             icon={magnifyingGlassIcon}
                             size="small"
                             color={
-                                semanticColor.core.foreground.instructive
-                                    .default
+                                semanticColor.core.foreground.instructive.strong
                             }
                         />
                     }

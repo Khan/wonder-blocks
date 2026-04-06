@@ -1,5 +1,4 @@
 /* eslint-disable no-constant-condition */
-/* eslint-disable max-lines */
 import * as React from "react";
 import {
     fireEvent,

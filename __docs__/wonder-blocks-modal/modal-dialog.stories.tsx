@@ -15,6 +15,7 @@ import {
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 import modalDialogArgtypes from "./modal-dialog.argtypes";
+import {reallyLongText} from "../components/text-for-testing";
 
 /**
  * `ModalDialog` is a component that contains these elements:
@@ -213,6 +214,41 @@ export const WithLauncher: StoryComponentType = {
                 )}
             </ModalLauncher>
         );
+    },
+};
+
+/**
+ * When the content in a modal is longer than the available space, the modal
+ * becomes scrollable by default. The `scrollOverflow` prop on `<ModalPanel>`
+ * controls this behavior (defaults to `true`). This example demonstrates how
+ * a modal with long contents will automatically enable scrolling, keeping the
+ * header and footer fixed while the main content scrolls.
+ */
+export const WithLongContents: StoryComponentType = {
+    render: (args) => (
+        <View style={styles.previewSizer}>
+            <View style={styles.modalPositioner}>
+                <ModalDialog {...args}>
+                    <ModalPanel
+                        content={
+                            <View style={{gap: sizing.size_240}} tabIndex={0}>
+                                <Heading size="xxlarge" id="modal-title-4">
+                                    Terms of Service
+                                </Heading>
+                                {reallyLongText}
+                            </View>
+                        }
+                    />
+                </ModalDialog>
+            </View>
+        </View>
+    ),
+    args: {
+        style: {
+            maxWidth: 500,
+            maxHeight: 500,
+        },
+        "aria-labelledby": "modal-title-4",
     },
 };
 

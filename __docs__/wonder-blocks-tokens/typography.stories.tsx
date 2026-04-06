@@ -20,7 +20,7 @@ import {Code} from "../components/code";
  * We recommend using the WB Typography components to ensure consistent
  * typography across your app. These tokens are provided for advanced use cases
  * and should be used with caution. See
- * [Typography components](../?path=/docs/packages-typography--docs) for more
+ * [Typography components](./?path=/docs/packages-typography--docs) for more
  * details.
  *
  * ## Usage

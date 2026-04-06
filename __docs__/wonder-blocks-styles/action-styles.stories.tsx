@@ -33,6 +33,7 @@ import Link from "@khanacademy/wonder-blocks-link";
  * ```
  */
 export default {
+    tags: ["!manifest"],
     title: "Packages / Styles / Action Styles",
     parameters: {
         componentSubtitle: (

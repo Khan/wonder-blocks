@@ -242,7 +242,7 @@ export default {
             </ScenariosLayout>
         );
     },
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
 } as Meta;
 
 type StoryComponentType = StoryObj<any>;

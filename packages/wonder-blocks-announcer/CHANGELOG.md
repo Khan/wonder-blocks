@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-announcer
 
+## 1.1.0
+
+### Minor Changes
+
+- cd3884c: Add support for Announcer in modal context
+
+## 1.0.6
+
+### Patch Changes
+
+- Updated dependencies [d6ae5fb]
+    - @khanacademy/wonder-blocks-core@12.4.3
+
 ## 1.0.5
 
 ### Patch Changes

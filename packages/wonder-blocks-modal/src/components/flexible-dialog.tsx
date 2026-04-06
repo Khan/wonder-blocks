@@ -5,6 +5,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
+import {useModalAnnouncer} from "../hooks/use-modal-announcer";
 import FlexiblePanel from "./flexible-panel";
 import theme from "../theme";
 
@@ -140,6 +141,8 @@ const FlexibleDialog = React.forwardRef(function FlexibleDialog(
     const uniqueId = React.useId();
     const headingId = titleId ?? uniqueId;
 
+    const {ariaModalRef} = useModalAnnouncer(ref);
+
     const renderedTitle =
         title == null ? null : typeof title === "string" ? (
             <Heading id={headingId}>{title}</Heading>
@@ -159,7 +162,7 @@ const FlexibleDialog = React.forwardRef(function FlexibleDialog(
                 aria-label={accessibilityProps["aria-label"]}
                 aria-labelledby={headingId}
                 aria-describedby={accessibilityProps["aria-describedby"]}
-                ref={ref}
+                ref={ariaModalRef}
                 testId={testId}
                 style={[componentStyles.dialog, styles?.dialog]}
             >

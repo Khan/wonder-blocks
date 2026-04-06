@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 import * as React from "react";
 import {fireEvent, render, screen} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
@@ -136,6 +135,60 @@ describe("TextField", () => {
         // NOTE: The implicit role for input[type=number] is "spinbutton".
         const input = await screen.findByRole("spinbutton");
         expect(input).toHaveAttribute("type", type);
+    });
+
+    it("type=whole-number ignores non-numeric characters", async () => {
+        // Arrange
+        const handleChange = jest.fn();
+        const Controlled = () => {
+            const [value, setValue] = React.useState("");
+            return (
+                <TextField
+                    type="whole-number"
+                    value={value}
+                    onChange={(newValue) => {
+                        handleChange(newValue);
+                        setValue(newValue);
+                    }}
+                />
+            );
+        };
+        render(<Controlled />);
+
+        // Act
+        const input = await screen.findByRole("spinbutton");
+        await userEvent.type(input, "abc123");
+
+        // Assert
+        expect(input).toHaveDisplayValue("123");
+        expect(handleChange).toHaveBeenLastCalledWith("123");
+    });
+
+    it("type=whole-number ignores decimals, plus/minus signs, exponential notation", async () => {
+        // Arrange
+        const handleChange = jest.fn();
+        const Controlled = () => {
+            const [value, setValue] = React.useState("");
+            return (
+                <TextField
+                    type="whole-number"
+                    value={value}
+                    onChange={(newValue) => {
+                        handleChange(newValue);
+                        setValue(newValue);
+                    }}
+                />
+            );
+        };
+        render(<Controlled />);
+
+        // Act
+        const input = await screen.findByRole("spinbutton");
+        await userEvent.type(input, "-12.34+56e7-89");
+
+        // Assert
+        expect(input).toHaveDisplayValue("123456789");
+        expect(handleChange).toHaveBeenLastCalledWith("123456789");
     });
 
     it("name prop is passed to the input element", async () => {

@@ -25,7 +25,7 @@ export default {
                 border: semanticColor.core.border.instructive.default,
             },
             selected: {
-                foreground: semanticColor.core.foreground.instructive.default,
+                foreground: semanticColor.core.foreground.instructive.strong,
                 border: semanticColor.core.border.instructive.default,
             },
             disabled: {
@@ -64,9 +64,6 @@ export default {
         color: {
             default: {
                 foreground: semanticColor.core.foreground.neutral.default,
-            },
-            selected: {
-                foreground: semanticColor.core.foreground.instructive.subtle,
             },
             disabled: {
                 // Using neutral.strong for disabled state because opacity is

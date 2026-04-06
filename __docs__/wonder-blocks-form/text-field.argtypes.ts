@@ -20,13 +20,13 @@ export default {
             "Determines the type of input. Defaults to text. This may change the appearance or type of characters allowed.",
         table: {
             type: {
-                summary: `"text" | "password" | "email" | "number" | "tel"`,
+                summary: `"text" | "password" | "email" | "number" | "tel" | "whole-number"`,
             },
             defaultValue: {
                 summary: "text",
             },
         },
-        options: ["text", "password", "email", "number", "tel"],
+        options: ["text", "password", "email", "number", "tel", "whole-number"],
         control: {
             type: "select",
         },
@@ -70,9 +70,8 @@ export default {
     },
 
     disabled: {
-        description: `Whether the input should be disabled. Defaults to false.
-            If the disabled prop is set to \`true\`, TextField will have disabled
-            styling and will not be interactable.`,
+        description:
+            "Whether the input should be disabled. Defaults to false. If the disabled prop is set to `true`, TextField will have disabled styling and will not be interactable. Internally, the `aria-disabled` attribute will be set so that the element remains focusable and will be included in the tab order.",
         table: {
             type: {
                 summary: "boolean",

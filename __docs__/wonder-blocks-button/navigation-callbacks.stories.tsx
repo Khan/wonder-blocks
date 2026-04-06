@@ -128,11 +128,11 @@ export default {
 };
 
 export const BeforeNavCallbacks_ = {
-    render: BeforeNavCallbacks.bind({}),
+    render: () => <BeforeNavCallbacks />,
     name: "beforeNav Callbacks",
 };
 
 export const SafeWithNavCallbacks_ = {
-    render: SafeWithNavCallbacks.bind({}),
+    render: () => <SafeWithNavCallbacks />,
     name: "safeWithNav Callbacks",
 };

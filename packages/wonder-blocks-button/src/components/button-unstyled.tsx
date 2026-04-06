@@ -29,6 +29,7 @@ const ButtonUnstyled: React.ForwardRefExoticComponent<
         disabled,
         href,
         id,
+        kind,
         skipClientNav,
         style,
         testId,
@@ -38,6 +39,7 @@ const ButtonUnstyled: React.ForwardRefExoticComponent<
 
     const commonProps = {
         "data-testid": testId,
+        "data-kind": kind,
         id: id,
         role: "button",
         style: [styles.reset, style],
