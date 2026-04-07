@@ -14,11 +14,11 @@ jobs:
         node-version: [24.x]
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -28,25 +28,25 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Get All Changed Files
-        uses: Khan/actions@get-changed-files-v2
+        uses: Khan/actions@get-changed-files-v3
         id: changed
 
       - id: js-ts-files
         name: Find .js, .ts changed files
-        uses: Khan/actions@filter-files-v1
+        uses: Khan/actions@filter-files-v3
         with:
           changed-files: ${{ steps.changed.outputs.files }}
           extensions: '.js,.jsx,.ts,.tsx'
 
       - id: eslint-reset
-        uses: Khan/actions@filter-files-v1
+        uses: Khan/actions@filter-files-v3
         name: Files that would trigger a full eslint run
         with:
           changed-files: ${{ steps.changed.outputs.files }}
           files: '.eslintrc.js,pnpm-lock.yaml,.eslintignore'
 
       - id: typecheck-reset
-        uses: Khan/actions@filter-files-v1
+        uses: Khan/actions@filter-files-v3
         name: Files that would trigger a typecheck run
         with:
           changed-files: ${{ steps.changed.outputs.files }}

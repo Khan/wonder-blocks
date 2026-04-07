@@ -17,9 +17,9 @@ jobs:
         node-version: [24.x]
         shard: ["1/2", "2/2"]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -31,7 +31,7 @@ jobs:
       - name: Run jest tests with coverage
         run: pnpm coverage:ci --shard ${{ matrix.shard }}
       - name: Upload Coverage
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v6
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage/coverage-final.json

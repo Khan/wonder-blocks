@@ -30,7 +30,7 @@ jobs:
         os: [ubuntu-latest]
         node-version: [24.x]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Install & cache node_modules
         uses: ./.github/actions/shared-node-cache
         with:
