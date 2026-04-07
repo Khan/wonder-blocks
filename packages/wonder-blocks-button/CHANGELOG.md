@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-button
 
+## 11.5.0
+
+### Minor Changes
+
+- d3d2580: Forwards the kind prop on to a data-kind attribute for testing
+
 ## 11.4.2
 
 ### Patch Changes

@@ -1,6 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
+import {expect, userEvent, waitFor, within} from "storybook/test";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-labeled-field/package.json";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
@@ -15,6 +16,7 @@ import {
 } from "@khanacademy/wonder-blocks-dropdown";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
 import Button from "@khanacademy/wonder-blocks-button";
+import Banner from "@khanacademy/wonder-blocks-banner";
 import {themeModes} from "../../.storybook/modes";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 
@@ -149,6 +151,8 @@ export const ContextLabel: StoryComponentType = {
 };
 
 const StyledForm = addStyle("form");
+const StyledUl = addStyle("ul");
+const StyledLi = addStyle("li");
 
 const AllFields = (
     storyArgs: PropsFor<typeof LabeledField> & {
@@ -157,11 +161,13 @@ const AllFields = (
         disabled?: boolean;
         textValue?: string;
         required?: boolean | string; // Used for the field component's required prop
+        showBannerOnErrorInStory?: boolean;
     },
 ) => {
     const {
         shouldValidateInStory,
         showSubmitButtonInStory,
+        showBannerOnErrorInStory = false,
         disabled,
         textValue,
         ...args
@@ -194,13 +200,17 @@ const AllFields = (
     >(errorMessage);
 
     /** Refs */
-    const textFieldRef = React.createRef<HTMLInputElement>();
-    const textAreaRef = React.createRef<HTMLTextAreaElement>();
-    const singleSelectRef = React.createRef<HTMLButtonElement>();
-    const multiSelectRef = React.createRef<HTMLButtonElement>();
-    const searchRef = React.createRef<HTMLInputElement>();
+    const textFieldRef = React.useRef<HTMLInputElement | null>(null);
+    const textAreaRef = React.useRef<HTMLTextAreaElement | null>(null);
+    const singleSelectRef = React.useRef<HTMLButtonElement | null>(null);
+    const multiSelectRef = React.useRef<HTMLButtonElement | null>(null);
+    const searchRef = React.useRef<HTMLInputElement | null>(null);
 
     const [isFormSubmitted, setIsFormSubmitted] = React.useState(false);
+
+    const [bannerErrors, setBannerErrors] = React.useState<
+        {label: string; message: string | null | undefined}[]
+    >([]);
 
     const moveFocusToFirstFieldWithError = React.useCallback(() => {
         // The errors in the order they are presented, along with the refs
@@ -213,9 +223,8 @@ const AllFields = (
         ];
 
         for (const error of errors) {
-            if (error.message) {
-                // Once a field with an error is found, focus on it and end the loop
-                error.ref?.current?.focus();
+            if (error.message && error.ref?.current) {
+                error.ref.current.focus();
                 break;
             }
         }
@@ -237,11 +246,37 @@ const AllFields = (
             // If the form has been submitted, move focus. We use useEffect
             // so that the error message states are updated before we move focus
             moveFocusToFirstFieldWithError();
+            // Snapshot the errors at submission time so the banner only
+            // updates when the form is submitted, not as fields are corrected
+            setBannerErrors(
+                [
+                    {label: "Text Field", message: textFieldErrorMessage},
+                    {label: "Text Area", message: textAreaErrorMessage},
+                    {
+                        label: "Single Select",
+                        message: singleSelectErrorMessage,
+                    },
+                    {
+                        label: "Multi Select",
+                        message: multiSelectErrorMessage,
+                    },
+                    {label: "Search", message: searchErrorMessage},
+                ].filter((e) => Boolean(e.message)),
+            );
             setIsFormSubmitted(false);
         }
-    }, [isFormSubmitted, moveFocusToFirstFieldWithError]);
+    }, [
+        isFormSubmitted,
+        moveFocusToFirstFieldWithError,
+        textFieldErrorMessage,
+        textAreaErrorMessage,
+        singleSelectErrorMessage,
+        multiSelectErrorMessage,
+        searchErrorMessage,
+    ]);
 
-    const handleSubmit = () => {
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
         const backendErrorMessage = "Example server side error message";
         if (args.required) {
             const requiredMsg =
@@ -264,11 +299,15 @@ const AllFields = (
                 setSearchErrorMessage(requiredMsg);
             }
         } else {
-            setTextFieldErrorMessage(backendErrorMessage);
-            setTextAreaErrorMessage(backendErrorMessage);
-            setSingleSelectErrorMessage(backendErrorMessage);
-            setMultiSelectErrorMessage(backendErrorMessage);
-            setSearchErrorMessage(backendErrorMessage);
+            setTextFieldErrorMessage(`${backendErrorMessage} for text field`);
+            setTextAreaErrorMessage(`${backendErrorMessage} for text area`);
+            setSingleSelectErrorMessage(
+                `${backendErrorMessage} for single select`,
+            );
+            setMultiSelectErrorMessage(
+                `${backendErrorMessage} for multi select`,
+            );
+            setSearchErrorMessage(`${backendErrorMessage} for search`);
         }
         setIsFormSubmitted(true);
     };
@@ -298,6 +337,8 @@ const AllFields = (
         }
     };
 
+    const bannerErrorCount = bannerErrors.length;
+
     return (
         <StyledForm
             onSubmit={handleSubmit}
@@ -307,6 +348,27 @@ const AllFields = (
                 gap: sizing.size_240,
             }}
         >
+            {bannerErrorCount > 1 && showBannerOnErrorInStory && (
+                <Banner
+                    kind="critical"
+                    text={
+                        <>
+                            {`There are ${bannerErrorCount} errors in this form. Please review the fields below.`}
+
+                            <StyledUl style={styles.bannerUl}>
+                                {bannerErrors.map((e) => (
+                                    <StyledLi
+                                        key={e.label}
+                                        style={styles.bannerLi}
+                                    >
+                                        <b>{e.label}:</b> {e.message}
+                                    </StyledLi>
+                                ))}
+                            </StyledUl>
+                        </>
+                    }
+                />
+            )}
             <LabeledField
                 {...args}
                 errorMessage={textFieldErrorMessage}
@@ -511,14 +573,58 @@ export const Required: AllFieldsStoryComponentType = {
  * In this example, the text-based fields will show an error if the value has
  * less than 5 characters. The select-based fields will show an error if "Mango"
  * is selected.
+ *
+ * The example will also display a banner after submission when there are multiple
+ * errors.
  */
 export const Validation: AllFieldsStoryComponentType = {
     args: {
         description: "Helpful description text.",
         shouldValidateInStory: true,
         showSubmitButtonInStory: true,
+        showBannerOnErrorInStory: true,
     },
     render: AllFields,
+};
+
+/**
+ * This story shows the error state after the form is submitted. It submits
+ * the form and verifies that focus is moved to the first field with an error.
+ */
+export const ValidationAfterSubmission: AllFieldsStoryComponentType = {
+    args: {
+        description: "Helpful description text.",
+        shouldValidateInStory: true,
+        showSubmitButtonInStory: true,
+        showBannerOnErrorInStory: true,
+    },
+    render: AllFields,
+    play: async ({canvasElement}) => {
+        // Arrange
+        // Tab through the form to reach the Submit button
+        canvasElement.focus();
+        await userEvent.tab();
+        await userEvent.tab();
+        await userEvent.tab();
+        await userEvent.tab();
+        await userEvent.tab();
+        await userEvent.tab();
+
+        // Act
+        await userEvent.keyboard("{Enter}");
+
+        // Assert
+        const textField = await within(canvasElement).findByRole("textbox", {
+            name: "Text Field",
+        });
+        await waitFor(() => expect(textField).toHaveFocus());
+    },
+    parameters: {
+        chromatic: {
+            disableSnapshot: false,
+            modes: themeModes,
+        },
+    },
 };
 
 /**
@@ -628,6 +734,23 @@ const styles = StyleSheet.create({
     },
     alternativeCustomStyle: {
         border: `${border.width.medium} solid ${semanticColor.core.border.neutral.subtle}`,
+    },
+    bannerUl: {
+        color: "inherit",
+        fontSize: "inherit",
+        lineHeight: "inherit",
+        paddingInlineStart: sizing.size_200,
+        marginBlockEnd: 0,
+        marginBlockStart: sizing.size_120,
+        display: "flex",
+        flexDirection: "column",
+        gap: sizing.size_040,
+        listStyleType: "disc",
+    },
+    bannerLi: {
+        color: "inherit",
+        fontSize: "inherit",
+        lineHeight: "inherit",
     },
 });
 

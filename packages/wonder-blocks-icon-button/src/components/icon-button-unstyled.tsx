@@ -49,6 +49,7 @@ export const IconButtonUnstyled: React.ForwardRefExoticComponent<
         children,
         disabled,
         href,
+        kind,
         onPress,
         skipClientNav,
         style,
@@ -87,6 +88,7 @@ export const IconButtonUnstyled: React.ForwardRefExoticComponent<
 
     const commonProps = {
         "data-testid": testId,
+        "data-kind": kind,
         style: [styles.shared, style],
         onKeyDown: handleKeyDown,
         onKeyUp: handleKeyUp,
