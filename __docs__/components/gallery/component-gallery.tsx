@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import {StyleSheet} from "aphrodite";
+import {Unstyled} from "@storybook/addon-docs/blocks";
 import {RenderStateRoot, View} from "@khanacademy/wonder-blocks-core";
 
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
@@ -28,92 +29,95 @@ export default function ComponentGallery() {
 
     return (
         <RenderStateRoot>
-            <View>
-                <Banner
-                    kind="info"
-                    text={`Note: The core, data, translations, layout, testing,
+            {/* Unstyled to avoid Storybook's default styles in WB components */}
+            <Unstyled>
+                <View>
+                    <Banner
+                        kind="info"
+                        text={`Note: The core, data, translations, layout, testing,
                     theming, timing, tokens, and typography packages are not
                     featured in this gallery.`}
-                />
-                <View style={styles.menuBar}>
-                    <LabelMedium tag="label" style={styles.row}>
-                        Group by
-                        <Strut size={spacing.xSmall_8} />
-                        <SingleSelect
-                            selectedValue={currentGroup}
-                            onChange={setCurrentGroup}
-                            // Placehoder is not used here
-                            placeholder=""
-                        >
-                            <OptionItem label="alphabet" value="alphabet" />
-                            <OptionItem label="function" value="function" />
-                            <OptionItem label="package" value="package" />
-                        </SingleSelect>
-                    </LabelMedium>
-                    <Strut size={spacing.large_24} />
-
-                    <LabelMedium tag="label" style={styles.row}>
-                        Layout
-                        <Strut size={spacing.xSmall_8} />
-                        <SingleSelect
-                            selectedValue={currentLayout}
-                            onChange={(newValue) =>
-                                setCurrentLayout(
-                                    newValue === "grid" ? "grid" : "list",
-                                )
-                            }
-                            // Placehoder is not used here
-                            placeholder=""
-                        >
-                            <OptionItem label="grid" value="grid" />
-                            <OptionItem label="list" value="list" />
-                        </SingleSelect>
-                    </LabelMedium>
-
-                    {currentLayout === "grid" && (
-                        <>
-                            <Spring />
-                            <Switch
-                                // This shouldn't need to be a unique ID, since
-                                // it shoulbe the only compact grid switch on
-                                // the page, and the page should not be
-                                // rendered multiple times in one place.
-                                id="wb-storybook-gallery-compact-grid-switch"
-                                checked={compactGridView}
-                                onChange={setCompactGridView}
-                            />
+                    />
+                    <View style={styles.menuBar}>
+                        <LabelMedium tag="label" style={styles.row}>
+                            Group by
                             <Strut size={spacing.xSmall_8} />
-                            <LabelMedium
-                                tag="label"
-                                htmlFor="wb-storybook-gallery-compact-grid-switch"
-                                style={styles.row}
+                            <SingleSelect
+                                selectedValue={currentGroup}
+                                onChange={setCurrentGroup}
+                                // Placehoder is not used here
+                                placeholder=""
                             >
-                                Compact grid
-                            </LabelMedium>
-                        </>
-                    )}
-                </View>
+                                <OptionItem label="alphabet" value="alphabet" />
+                                <OptionItem label="function" value="function" />
+                                <OptionItem label="package" value="package" />
+                            </SingleSelect>
+                        </LabelMedium>
+                        <Strut size={spacing.large_24} />
 
-                {groupMaps[currentGroup].map((group) => (
-                    <View key={group.name}>
-                        <HeadingLarge tag="h3" style={styles.sectionLabel}>
-                            {group.name}
-                        </HeadingLarge>
+                        <LabelMedium tag="label" style={styles.row}>
+                            Layout
+                            <Strut size={spacing.xSmall_8} />
+                            <SingleSelect
+                                selectedValue={currentLayout}
+                                onChange={(newValue) =>
+                                    setCurrentLayout(
+                                        newValue === "grid" ? "grid" : "list",
+                                    )
+                                }
+                                // Placehoder is not used here
+                                placeholder=""
+                            >
+                                <OptionItem label="grid" value="grid" />
+                                <OptionItem label="list" value="list" />
+                            </SingleSelect>
+                        </LabelMedium>
 
-                        <View style={styles.section}>
-                            {group.components.map((Tile, index) => {
-                                return (
-                                    <Tile
-                                        layout={currentLayout}
-                                        compactGrid={compactGridView}
-                                        key={index}
-                                    />
-                                );
-                            })}
-                        </View>
+                        {currentLayout === "grid" && (
+                            <>
+                                <Spring />
+                                <Switch
+                                    // This shouldn't need to be a unique ID, since
+                                    // it shoulbe the only compact grid switch on
+                                    // the page, and the page should not be
+                                    // rendered multiple times in one place.
+                                    id="wb-storybook-gallery-compact-grid-switch"
+                                    checked={compactGridView}
+                                    onChange={setCompactGridView}
+                                />
+                                <Strut size={spacing.xSmall_8} />
+                                <LabelMedium
+                                    tag="label"
+                                    htmlFor="wb-storybook-gallery-compact-grid-switch"
+                                    style={styles.row}
+                                >
+                                    Compact grid
+                                </LabelMedium>
+                            </>
+                        )}
                     </View>
-                ))}
-            </View>
+
+                    {groupMaps[currentGroup].map((group) => (
+                        <View key={group.name}>
+                            <HeadingLarge tag="h3" style={styles.sectionLabel}>
+                                {group.name}
+                            </HeadingLarge>
+
+                            <View style={styles.section}>
+                                {group.components.map((Tile, index) => {
+                                    return (
+                                        <Tile
+                                            layout={currentLayout}
+                                            compactGrid={compactGridView}
+                                            key={index}
+                                        />
+                                    );
+                                })}
+                            </View>
+                        </View>
+                    ))}
+                </View>
+            </Unstyled>
         </RenderStateRoot>
     );
 }
