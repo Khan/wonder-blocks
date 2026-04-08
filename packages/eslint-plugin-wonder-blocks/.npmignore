@@ -5,3 +5,4 @@ dist/**/*.test.d.ts
 types
 src
 demo
+docs
