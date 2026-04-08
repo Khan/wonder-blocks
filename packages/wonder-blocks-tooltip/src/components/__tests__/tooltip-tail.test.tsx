@@ -48,9 +48,9 @@ describe("TooltipTail", () => {
             expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class=""
+    class="default"
     data-placement="top"
-    style="align-items: stretch; border-width: 0px; border-style: solid; box-sizing: border-box; display: flex; flex-direction: column; margin: 0px; padding: 0px; position: relative; z-index: 0; min-height: 0; min-width: 0; pointer-events: none; top: -1px; width: 40px; height: 20px;"
+    style="position: relative; pointer-events: none; top: -1px; width: 40px; height: 20px;"
   >
     <svg
       aria-hidden="true"
@@ -116,20 +116,20 @@ describe("TooltipTail", () => {
 
             // Assert
             expect(container).toMatchInlineSnapshot(`
-                <div>
-                  <div
-                    class=""
-                    data-placement="top"
-                    style="align-items: stretch; border-width: 0px; border-style: solid; box-sizing: border-box; display: flex; flex-direction: column; margin: 0px; padding: 0px; position: relative; z-index: 0; min-height: 0; min-width: 0; pointer-events: none; top: -1px; width: 40px; height: 20px;"
-                  >
-                    <div
-                      aria-hidden="true"
-                      class=""
-                      style="align-items: stretch; border-width: 0px; border-style: solid; box-sizing: border-box; display: flex; flex-direction: column; margin: 0px; padding: 0px; position: relative; z-index: 0; min-height: 0; min-width: 0; width: 12px; flex-basis: 12px; flex-shrink: 0;"
-                    />
-                  </div>
-                </div>
-            `);
+<div>
+  <div
+    class="default"
+    data-placement="top"
+    style="position: relative; pointer-events: none; top: -1px; width: 40px; height: 20px;"
+  >
+    <div
+      aria-hidden="true"
+      class="default"
+      style="width: 12px; flex-basis: 12px; flex-shrink: 0;"
+    />
+  </div>
+</div>
+`);
         });
     });
 });
