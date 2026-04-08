@@ -181,7 +181,7 @@ have built-in validation support via three props:
   `validate` prop is used.
 - `required` - Marks the field as required. Pass in a translated string for
   the error message to show when the required field is not filled in. Use this
-  prop with `onValidate` to that the `LabeledField`'s `errorMessage` prop can be
+  prop with `onValidate` so that the `LabeledField`'s `errorMessage` prop can be
   set. Also use that required field error message if the field is empty when the
   form is submitted
 
@@ -285,7 +285,7 @@ const styles = StyleSheet.create({
 
 ```tsx
 const titleRef = useRef<HTMLInputElement>(null);
-const descriptionRef = useRef<HTMLInputElement>(null);
+const descriptionRef = useRef<HTMLTextAreaElement>(null);
 
 const handleSubmit = (event) => {
     event.preventDefault();
@@ -320,6 +320,11 @@ The banner should look something like this and include an `ul` of the errors. It
 should only be updated when the form is re-submitted.
 
 ```tsx
+import {addStyle} from "@khanacademy/wonder-blocks-core";
+
+const StyledUl = addStyle("ul");
+const StyledLi = addStyle("li");
+
 <Banner
     kind="critical"
     text={
