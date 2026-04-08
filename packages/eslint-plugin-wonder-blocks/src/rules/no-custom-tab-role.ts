@@ -15,12 +15,12 @@ export default createRule<Options, MessageIds>({
     meta: {
         docs: {
             description:
-                'Disallow role="tab" in favor of the ResponsiveTabs component',
+                'Disallow role="tab" in favor of the Wonder Blocks ResponsiveTabs component',
             recommended: true,
         },
         messages: {
             noCustomTabRole:
-                'Avoid using role="tab". Use the ResponsiveTabs component instead of a custom tabs implementation.',
+                'Avoid using role="tab". Use the Wonder Blocks ResponsiveTabs component instead of a custom tabs implementation.',
         },
         schema: [],
         type: "suggestion",
