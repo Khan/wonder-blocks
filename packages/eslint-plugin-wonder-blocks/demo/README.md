@@ -28,6 +28,12 @@ pnpm lint
 
 You should see ESLint errors in the example files.
 
+> **Note:** This directory is listed in the repo's `.eslintignore`, so lint
+> errors in these files will **not** appear in your IDE and will **not** fail
+> the root's `pnpm lint` script or the pre-push hook. This is intentional — the
+> demo files are meant to contain invalid code to verify rule output. To see the
+> errors, run `pnpm lint` from within this directory directly (step 3 above).
+
 ## Adding a new rule demo
 
 1. Create a new file in `src/` following the pattern `<rule-name>-example.tsx`.
