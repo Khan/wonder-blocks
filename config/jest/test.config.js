@@ -84,7 +84,7 @@ module.exports = {
             testMatch: [
                 "<rootDir>/packages/eslint-plugin-wonder-blocks/**/*.test.ts",
             ],
-            testEnvironment: "node",
+            testEnvironment: "jest-environment-node",
             setupFilesAfterEnv: [
                 "jest-extended/all",
                 "<rootDir>/config/jest/rule-tester-setup.js",
