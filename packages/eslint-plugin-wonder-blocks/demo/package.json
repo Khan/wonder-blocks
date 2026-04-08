@@ -9,7 +9,7 @@
     "devDependencies": {
         "@khanacademy/eslint-plugin-wonder-blocks": "workspace:*",
         "@typescript-eslint/parser": "^8.17.0",
-        "eslint": "^8.57.1",
+        "eslint": "^8.57.0",
         "typescript": "5.7.3"
     },
     "dependencies": {
