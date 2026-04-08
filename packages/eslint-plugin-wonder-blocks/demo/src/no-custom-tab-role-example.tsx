@@ -1,6 +1,6 @@
 /**
  * This file demonstrates the wonder-blocks ESLint rule:
- * @khanacademy/wonder-blocks/no-custom-tab-role
+ * `@khanacademy/wonder-blocks/no-custom-tab-role`
  * Run `pnpm lint` in this directory to see the errors.
  */
 

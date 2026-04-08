@@ -1,15 +1,13 @@
 # eslint-plugin-wonder-blocks Demo
 
 This directory is a standalone project used to manually verify that the
-`eslint-plugin-wonder-blocks` rules work correctly end-to-end against real
-Wonder Blocks components.
+`eslint-plugin-wonder-blocks` rules work correctly end-to-end.
 
 ## Why this exists
 
 Unit tests for ESLint rules run against synthetic code strings. This demo
 project lets you confirm that rules also fire correctly when the plugin is
-consumed as a real dependency and run against actual source files that import
-Wonder Blocks components.
+consumed as a real dependency and run against actual source files.
 
 ## Usage
 
@@ -28,7 +26,7 @@ pnpm lint
 
 You should see ESLint errors in the example files.
 
-> **Note:** This directory is listed in the repo's `.eslintignore`, so lint
+> **Note:** The demo directory is listed in the repo's `.eslintignore`, so lint
 > errors in these files will **not** appear in your IDE and will **not** fail
 > the root's `pnpm lint` script or the pre-push hook. This is intentional — the
 > demo files are meant to contain invalid code to verify rule output. To see the
