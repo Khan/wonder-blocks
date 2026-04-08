@@ -4,6 +4,17 @@
  * Run `pnpm lint` in this directory to see the errors.
  */
 
+import * as React from "react";
+
+import Button from "@khanacademy/wonder-blocks-button";
+import Clickable from "@khanacademy/wonder-blocks-clickable";
+import {View, addStyle} from "@khanacademy/wonder-blocks-core";
+import Link from "@khanacademy/wonder-blocks-link";
+
+const StyledButton = addStyle("button");
+const StyledA = addStyle("a");
+const StyledDiv = addStyle("div");
+
 // ✅ Valid: Other roles are allowed
 export function ValidExample() {
     return <button role="button">Click me</button>;
@@ -24,7 +35,8 @@ export function InvalidExampleWithWBComponents() {
     return (
         <>
             <Button role="tab">Tab 1</Button>
-            <Clickable role="tab">Tab 1</Clickable>
+            <Link href="#" role="tab">Tab 1</Link>
+            <Clickable role="tab">{() => "Tab 1"}</Clickable>
             <View role="tab">Tab 1</View>
         </>
     );
@@ -35,7 +47,7 @@ export function InvalidExampleStyledComponent() {
     return (
         <>
             <StyledButton role="tab">Tab 1</StyledButton>
-            <StyledClickable role="tab">Tab 1</StyledClickable>
+            <StyledA role="tab">Tab 1</StyledA>
             <StyledDiv role="tab">Tab 1</StyledDiv>
         </>
     );

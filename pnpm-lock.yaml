@@ -465,6 +465,18 @@ importers:
 
   packages/eslint-plugin-wonder-blocks/demo:
     dependencies:
+      '@khanacademy/wonder-blocks-button':
+        specifier: workspace:*
+        version: link:../../wonder-blocks-button
+      '@khanacademy/wonder-blocks-clickable':
+        specifier: workspace:*
+        version: link:../../wonder-blocks-clickable
+      '@khanacademy/wonder-blocks-core':
+        specifier: workspace:*
+        version: link:../../wonder-blocks-core
+      '@khanacademy/wonder-blocks-link':
+        specifier: workspace:*
+        version: link:../../wonder-blocks-link
       '@types/react':
         specifier: '18'
         version: 18.3.18
