@@ -4,7 +4,7 @@ An ESLint plugin for the Wonder Blocks design system.
 
 ## Rules
 
-- [wonder-blocks/no-custom-tabs-role](docs/no-custom-tabs-role.md)
+- [wonder-blocks/no-custom-tab-role](docs/no-custom-tab-role.md)
 
 ## Creating a new lint rule
 
@@ -17,8 +17,4 @@ Here are some helpful resources for setting up a new lint rule:
 ## Demo
 
 The `demo/` directory contains a sample project for verifying that rules work
-as expected. To use it:
-
-1. Build the plugin from the repo root: `pnpm build`
-2. Install demo dependencies: `cd demo && pnpm install`
-3. Run ESLint on the demo: `pnpm lint`
+as expected. See [`demo/README.md`](demo/README.md) for setup and usage instructions.
