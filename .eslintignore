@@ -24,4 +24,3 @@ CODEOWNERS
 **/*.svg
 
 types/
-packages/eslint-plugin-wonder-blocks/demo
