@@ -90,6 +90,18 @@ export default {
             `popover content shows. When not set, the first focusable ` +
             `element within the popover content will be used.`,
     },
+    autoUpdate: {
+        description:
+            "Whether the popover should automatically update its position when the anchor element changes size or position.",
+        control: {
+            type: "boolean",
+        },
+        table: {
+            type: {
+                summary: "boolean",
+            },
+        },
+    },
     opened: {
         description:
             `When true, the popover content is shown.\n\n` +
