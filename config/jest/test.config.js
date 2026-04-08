@@ -40,7 +40,6 @@ const projectConfig = {
     },
     testMatch: [
         "<rootDir>/**/*.test.ts",
-        "<rootDir>/**/*.test.ts",
         "<rootDir>/**/*.test.tsx",
     ],
     moduleNameMapper: {
