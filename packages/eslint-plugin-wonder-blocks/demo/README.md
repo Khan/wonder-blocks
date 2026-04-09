@@ -18,7 +18,7 @@ From the repo root, build the plugin first, then run ESLint inside the demo:
 pnpm build
 
 # 2. Install demo dependencies
-cd demo && pnpm install
+cd packages/eslint-plugin-wonder-blocks/demo && pnpm install
 
 # 3. Run ESLint on the demo source files
 pnpm lint
