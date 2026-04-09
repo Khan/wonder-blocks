@@ -19,10 +19,17 @@
   "module": "dist/es/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },
+  "dependencies": {
+    "@typescript-eslint/utils": "^8.46.4"
+  },
+  "peerDependencies": {
+    "eslint": "^8.57.0"
+  },
   "devDependencies": {
-    "@khanacademy/wb-dev-build-settings": "workspace:*"
+    "@khanacademy/wb-dev-build-settings": "workspace:*",
+    "@typescript-eslint/rule-tester": "^8.46.3",
+    "eslint": "^8.57.0"
   }
 }

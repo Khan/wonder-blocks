@@ -1,3 +1,3 @@
-const rules = {};
+import {rules} from "./rules";
 
 export {rules};

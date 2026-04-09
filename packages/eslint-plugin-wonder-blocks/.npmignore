@@ -4,3 +4,5 @@ dist/**/__tests__
 dist/**/*.test.d.ts
 types
 src
+demo
+docs
