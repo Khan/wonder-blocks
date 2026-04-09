@@ -23,8 +23,9 @@ jobs:
               timeout-minutes: 5
               with:
                   # registry.npmjs.org: npm package registry for pnpm install
-                  # codecov.io: upload coverage reports
-                  extra-domains: registry.npmjs.org codecov.io
+                  # codecov.io, cli.codecov.io: upload coverage reports
+                  # keybase.io: codecov GPG public key import for binary signature verification
+                  extra-domains: registry.npmjs.org codecov.io cli.codecov.io keybase.io
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v6
               with:
