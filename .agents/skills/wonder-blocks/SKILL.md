@@ -3,15 +3,13 @@ name: wonder-blocks
 description: >
   Implements user interfaces using the Wonder Blocks (WB) design system — Khan Academy's
   React component library. Use this skill whenever the user asks you to build, modify,
-  or review UI components in a project that uses Wonder Blocks, even when similar
-  usage patterns already exist in the codebase; mentions any WB package
-  (e.g. wonder-blocks-button, wonder-blocks-modal, wonder-blocks-tokens); wants to use
-  or map WB tokens for colors/spacing/typography (including translating Figma designs to
-  WB components and tokens); or asks how to do something "the Wonder Blocks way".
-  If the user is building any kind of form, layout, modal, button, dropdown, or
-  typography treatment in a WB-enabled codebase, this skill applies — even if
-  they don't explicitly say "Wonder Blocks". Do NOT trigger for debugging
-  TypeScript errors, writing tests, or fixing CI/lint issues in WB packages.
+  or review UI components; wants to use or map WB tokens for colors/spacing/typography
+  (including translating Figma designs to WB components and tokens); or asks how
+  to do something "the Wonder Blocks way". If the user is building any kind of
+  form, layout, modal, button, dropdown, or typography treatment in a WB-enabled
+  codebase, this skill applies — even if they don't explicitly say "Wonder Blocks".
+  Do NOT trigger for debugging TypeScript errors, writing tests, or fixing CI/lint
+  issues in WB packages.
 ---
 
 # Wonder Blocks UI Implementation
