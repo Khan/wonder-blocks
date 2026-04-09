@@ -118,11 +118,8 @@ const parameters: Preview["parameters"] = {
     // https://storybook.js.org/docs/react/configure/story-layout
     layout: "padded",
     options: {
-        // Allowing stories to be sorted alphabetically. This means that we will
-        // display the stories (or examples first), then we will display all the
-        // mdx pages under __docs__.
         storySort: {
-            order: ["Components", "**/__docs__/**", "Overview"],
+            order: ["Foundations", "Packages", "Tools", "Catalog", "*"],
         },
     },
     docs: {
