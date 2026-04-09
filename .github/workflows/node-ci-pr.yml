@@ -21,27 +21,6 @@ concurrency:
 #     b. Test/Coverage
 #   3. Verify that build sizes are reasonable
 jobs:
-    prime_cache_primary:
-        name: Prime node_modules cache for primary configuration
-        runs-on: ${{ matrix.os }}
-        strategy:
-            matrix:
-                os: [ubuntu-latest]
-                node-version: [24.x]
-        steps:
-            - uses: actions/checkout@v5
-            - name: Secure Network
-              uses: Khan/actions@secure-network-v1
-              timeout-minutes: 5
-              with:
-                  # registry.npmjs.org: npm package registry for pnpm install
-                  extra-domains: registry.npmjs.org
-            - name: Install & cache node_modules
-              uses: ./.github/actions/shared-node-cache
-              timeout-minutes: 5
-              with:
-                  node-version: ${{ matrix.node-version }}
-
     changeset:
         name: Check for .changeset entries for all changed files
         if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
@@ -68,19 +47,16 @@ jobs:
 
     lint:
         name: Lint
-        needs: prime_cache_primary
         uses: ./.github/workflows/node-ci-lint.yml
 
     test:
         name: Test
-        needs: prime_cache_primary
         uses: ./.github/workflows/node-ci-test.yml
         secrets:
             CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
     check_builds:
         name: Check build sizes
-        needs: prime_cache_primary
         runs-on: ${{ matrix.os }}
         strategy:
             matrix:
