@@ -26,6 +26,7 @@ jobs:
 
             - name: Install & cache node_modules
               uses: ./.github/actions/shared-node-cache
+              timeout-minutes: 5
               with:
                   node-version: 24.x
 

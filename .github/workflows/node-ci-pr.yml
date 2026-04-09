@@ -38,6 +38,7 @@ jobs:
                   extra-domains: registry.npmjs.org
             - name: Install & cache node_modules
               uses: ./.github/actions/shared-node-cache
+              timeout-minutes: 5
               with:
                   node-version: ${{ matrix.node-version }}
 
@@ -100,6 +101,7 @@ jobs:
 
             - name: Install & cache node_modules
               uses: ./.github/actions/shared-node-cache
+              timeout-minutes: 5
               with:
                   node-version: ${{ matrix.node-version }}
 
