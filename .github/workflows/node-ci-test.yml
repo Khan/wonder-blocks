@@ -18,6 +18,13 @@ jobs:
         shard: ["1/2", "2/2"]
     steps:
       - uses: actions/checkout@v5
+      - name: Secure Network
+        uses: Khan/actions@secure-network-v1
+        timeout-minutes: 5
+        with:
+            # registry.npmjs.org: npm package registry for pnpm install
+            # codecov.io: upload coverage reports
+            extra-domains: registry.npmjs.org codecov.io
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v6
         with:

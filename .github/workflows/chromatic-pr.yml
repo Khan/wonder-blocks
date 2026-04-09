@@ -97,6 +97,12 @@ jobs:
     steps:
       - name: Checking out latest commit
         uses: actions/checkout@v5
+      - name: Secure Network
+        uses: Khan/actions@secure-network-v1
+        timeout-minutes: 5
+        with:
+            # registry.npmjs.org: npm package registry for pnpm install
+            extra-domains: registry.npmjs.org
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v6

@@ -30,6 +30,12 @@ jobs:
         node-version: [24.x]
     steps:
       - uses: actions/checkout@v5
+      - name: Secure Network
+        uses: Khan/actions@secure-network-v1
+        timeout-minutes: 5
+        with:
+            # registry.npmjs.org: npm package registry for pnpm install
+            extra-domains: registry.npmjs.org
       - name: Install & cache node_modules
         uses: ./.github/actions/shared-node-cache
         with:
@@ -48,6 +54,9 @@ jobs:
         uses: actions/checkout@v5
         with:
           fetch-depth: 0
+      - name: Secure Network
+        uses: Khan/actions@secure-network-v1
+        timeout-minutes: 5
 
       - uses: Khan/actions@check-for-changeset-v2
         if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
@@ -78,6 +87,12 @@ jobs:
         node-version: [24.x]
     steps:
       - uses: actions/checkout@v5
+      - name: Secure Network
+        uses: Khan/actions@secure-network-v1
+        timeout-minutes: 5
+        with:
+            # registry.npmjs.org: npm package registry for pnpm install
+            extra-domains: registry.npmjs.org
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v6
         with:
