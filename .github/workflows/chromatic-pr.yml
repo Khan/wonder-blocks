@@ -98,7 +98,9 @@ jobs:
               timeout-minutes: 5
               with:
                   # registry.npmjs.org: npm package registry for pnpm install
-                  extra-domains: registry.npmjs.org
+                  # azure.archive.ubuntu.com, archive.ubuntu.com, security.ubuntu.com: Ubuntu package mirrors for playwright --with-deps
+                  # packages.microsoft.com: Microsoft package repository for playwright --with-deps
+                  extra-domains: registry.npmjs.org azure.archive.ubuntu.com archive.ubuntu.com security.ubuntu.com packages.microsoft.com
 
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v6
