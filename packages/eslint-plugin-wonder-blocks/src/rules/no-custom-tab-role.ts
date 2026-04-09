@@ -20,7 +20,7 @@ export default createRule<Options, MessageIds>({
         },
         messages: {
             noCustomTabRole:
-                'Avoid using role="tab". Use the Wonder Blocks ResponsiveTabs component instead of a custom tabs implementation.',
+                'Avoid using role="tab". Use the Wonder Blocks ResponsiveTabs component instead of a custom tabs implementation. See https://khan.github.io/wonder-blocks/?path=/docs/packages-tabs-responsivetabs--docs',
         },
         schema: [],
         type: "suggestion",
