@@ -98,10 +98,10 @@ jobs:
               timeout-minutes: 5
               with:
                   # registry.npmjs.org: npm package registry for pnpm install
-                  # azure.archive.ubuntu.com, archive.ubuntu.com, security.ubuntu.com: Ubuntu package mirrors for playwright --with-deps
+                  # azure.archive.ubuntu.com, archive.ubuntu.com, security.ubuntu.com, deb.debian.org: Ubuntu package mirrors for playwright --with-deps
                   # packages.microsoft.com, playwright.download.prss.microsoft.com: Microsoft package/download servers for playwright --with-deps
                   # cdn.playwright.dev: Playwright browser binary CDN
-                  extra-domains: registry.npmjs.org azure.archive.ubuntu.com archive.ubuntu.com security.ubuntu.com packages.microsoft.com playwright.download.prss.microsoft.com cdn.playwright.dev
+                  extra-domains: registry.npmjs.org azure.archive.ubuntu.com archive.ubuntu.com security.ubuntu.com deb.debian.orgpackages.microsoft.com playwright.download.prss.microsoft.com cdn.playwright.dev
 
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v6
@@ -119,6 +119,7 @@ jobs:
             - name: Install Playwright browsers
               run: |
                   sudo apt-get update
+                  sudo apt-get install fonts-liberation fonts-ipafont-gothic fonts-wqy-zenhei fonts-tlwg-loma-otf fonts-freefont-ttf
                   pnpm exec playwright install --with-deps chromium
 
             # Build the project
