@@ -2,36 +2,44 @@
 name: Run tests for the project
 
 on:
-  workflow_call:
-    secrets:
-      CODECOV_TOKEN:
-        required: true
+    workflow_call:
+        secrets:
+            CODECOV_TOKEN:
+                required: true
 
 jobs:
-  test:
-    name: Test
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node-version: [24.x]
-        shard: ["1/2", "2/2"]
-    steps:
-      - uses: actions/checkout@v5
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v6
-        with:
-          node-version: ${{ matrix.node-version }}
+    test:
+        name: Test
+        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && 'ubuntu-latest' || 'ephemeral-runner' }}
+        strategy:
+            matrix:
+                shard: ["1/2", "2/2"]
+        steps:
+            - uses: actions/checkout@v5
+            - name: Secure Network
+              uses: Khan/actions@secure-network-v1
+              timeout-minutes: 5
+              with:
+                  # registry.npmjs.org: npm package registry for pnpm install
+                  # codecov.io, cli.codecov.io: upload coverage reports
+                  # keybase.io: codecov GPG public key import for binary signature verification
+                  # storage.googleapis.com: codecov coverage results upload destination
+                  extra-domains: registry.npmjs.org codecov.io cli.codecov.io keybase.io storage.googleapis.com
+            - name: Use Node.js 24.x
+              uses: actions/setup-node@v6
+              with:
+                  node-version: 24.x
 
-      - name: Install & cache node_modules
-        uses: ./.github/actions/shared-node-cache
-        with:
-          node-version: ${{ matrix.node-version }}
-      # Testing and coverage
-      - name: Run jest tests with coverage
-        run: pnpm coverage:ci --shard ${{ matrix.shard }}
-      - name: Upload Coverage
-        uses: codecov/codecov-action@v6
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage/coverage-final.json
+            - name: Install & cache node_modules
+              uses: ./.github/actions/shared-node-cache
+              timeout-minutes: 5
+              with:
+                  node-version: 24.x
+            # Testing and coverage
+            - name: Run jest tests with coverage
+              run: pnpm coverage:ci --shard ${{ matrix.shard }}
+            - name: Upload Coverage
+              uses: codecov/codecov-action@v6
+              with:
+                  token: ${{ secrets.CODECOV_TOKEN }}
+                  files: ./coverage/coverage-final.json

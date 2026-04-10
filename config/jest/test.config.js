@@ -76,4 +76,7 @@ module.exports = {
     // Once they release Jest v30 we can switch to that:
     // https://github.com/jestjs/jest/issues/14305
     prettierPath: null,
+    // Disable watchman when running under Claude Code — the OS sandbox blocks
+    // watchman's fchmod on its state dir.
+    ...(!!process.env.CLAUDECODE && {watchman: false}),
 };

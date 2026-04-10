@@ -1,61 +1,68 @@
 name: Deploy WB to GitHub Pages
 
 on:
-  push:
-    branches:
-      - main
-  # Allows us to run this workflow manually from the Actions tab
-  workflow_dispatch:
+    push:
+        branches:
+            - main
+    # Allows us to run this workflow manually from the Actions tab
+    workflow_dispatch:
 
-# This workflow will deploy the Storybook static files to GitHub Pages.
+        # This workflow will deploy the Storybook static files to GitHub Pages.
 jobs:
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-        with:
-          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          fetch-depth: 0
+    build:
+        name: Build
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v5
+              with:
+                  ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+                  fetch-depth: 0
+            - name: Secure Network
+              uses: Khan/actions@secure-network-v1
+              timeout-minutes: 5
+              with:
+                  # registry.npmjs.org: npm package registry for pnpm install
+                  extra-domains: registry.npmjs.org
 
-      - name: Install & cache node_modules
-        uses: ./.github/actions/shared-node-cache
-        with:
-          node-version: 24.x
+            - name: Install & cache node_modules
+              uses: ./.github/actions/shared-node-cache
+              timeout-minutes: 5
+              with:
+                  node-version: 24.x
 
-      - name: Build all packages
-        # Build all WB packages that Storybook depends on.
-        run: pnpm build
+            - name: Build all packages
+              # Build all WB packages that Storybook depends on.
+              run: pnpm build
 
-      - name: Build Storybook
-        # Generate a static version of storybook inside "storybook-static/"
-        run: pnpm build:storybook
+            - name: Build Storybook
+              # Generate a static version of storybook inside "storybook-static/"
+              run: pnpm build:storybook
 
-      - name: Upload Storybook artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # Upload the generated static files
-          path: "./storybook-static"
+            - name: Upload Storybook artifact
+              uses: actions/upload-pages-artifact@v3
+              with:
+                  # Upload the generated static files
+                  path: "./storybook-static"
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
-    permissions:
-      pages: write      # to deploy to Pages
-      id-token: write   # to verify the deployment originates from an appropriate source
+    deploy:
+        needs: build
+        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && 'ubuntu-latest' || 'ephemeral-runner' }}
+        # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+        permissions:
+            pages: write # to deploy to Pages
+            id-token: write # to verify the deployment originates from an appropriate source
 
-    # Deploy to the github-pages environment
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+        # Deploy to the github-pages environment
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
 
-    steps:
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
+        steps:
+            - name: Setup Pages
+              uses: actions/configure-pages@v5
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v4
 
-      - run: echo ${{ steps.deployment.outputs.page_url }}
+            - run: echo ${{ steps.deployment.outputs.page_url }}
