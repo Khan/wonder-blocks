@@ -16,3 +16,6 @@ pnpm-debug.log
 # If you run `pnpm storybook doctor`, it creates this file, but definitely
 # doesn't need to be checked in.
 doctor-storybook.log
+
+# Ignore local Claude settings
+.claude/settings.local.json
