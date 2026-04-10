@@ -41,7 +41,7 @@ jobs:
             !startsWith(github.head_ref, 'changeset-release/')
         name: Get results on regular PRs
         needs: chromatic_review
-        runs-on: ${{ matrix.os }}
+        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && '${{ matrix.os }}' || 'ephemeral-runner' }}
         strategy:
             fail-fast: false
             matrix:
@@ -84,7 +84,7 @@ jobs:
             !startsWith(github.head_ref, 'changeset-release/')
         name: Run Storybook tests
         needs: chromatic_review
-        runs-on: ${{ matrix.os }}
+        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && '${{ matrix.os }}' || 'ephemeral-runner' }}
         strategy:
             fail-fast: false
             matrix:

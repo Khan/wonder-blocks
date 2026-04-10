@@ -43,7 +43,7 @@ on:
 
 jobs:
     chromatic:
-        runs-on: ${{ matrix.os }}
+        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && '${{ matrix.os }}' || 'ephemeral-runner' }}
         env:
             CI: true
             LANG: "en-US"

@@ -9,7 +9,7 @@ jobs:
     gerald:
         # Skip this workflow on dependabot PRs
         if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
-        runs-on: ubuntu-latest
+        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && 'ubuntu-latest' || 'ephemeral-runner' }}
         steps:
             - uses: actions/checkout@v5
               with:

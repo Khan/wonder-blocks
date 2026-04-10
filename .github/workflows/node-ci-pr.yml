@@ -24,7 +24,7 @@ jobs:
     changeset:
         name: Check for .changeset entries for all changed files
         if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
-        runs-on: ${{ matrix.os }}
+        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && '${{ matrix.os }}' || 'ephemeral-runner' }}
         strategy:
             matrix:
                 os: [ubuntu-latest]
@@ -57,7 +57,7 @@ jobs:
 
     check_builds:
         name: Check build sizes
-        runs-on: ${{ matrix.os }}
+        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && '${{ matrix.os }}' || 'ephemeral-runner' }}
         strategy:
             matrix:
                 os: [ubuntu-latest]

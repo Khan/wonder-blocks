@@ -10,7 +10,7 @@ on:
 jobs:
     test:
         name: Test
-        runs-on: ${{ matrix.os }}
+        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && '${{ matrix.os }}' || 'ephemeral-runner' }}
         strategy:
             matrix:
                 os: [ubuntu-latest]
