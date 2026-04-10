@@ -2,7 +2,6 @@
 *.md
 docs
 *.css
-*.yml
 coverage
 dist
 storybook-static

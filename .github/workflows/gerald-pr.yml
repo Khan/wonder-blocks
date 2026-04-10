@@ -1,17 +1,17 @@
 name: Gerald - Notify and Request Reviewers On Pull Request
-'on':
-  pull_request:
-    # ready_for_review isn't included by default, so we add it here to have this
-    # workflow re-run when a pr is converted from "draft" to "not draft". We
-    # also add "edited" to re-check when the base branch is changed.
-    types: [opened, synchronize, reopened, ready_for_review, edited]
+"on":
+    pull_request:
+        # ready_for_review isn't included by default, so we add it here to have this
+        # workflow re-run when a pr is converted from "draft" to "not draft". We
+        # also add "edited" to re-check when the base branch is changed.
+        types: [opened, synchronize, reopened, ready_for_review, edited]
 jobs:
-  gerald:
-    # Skip this workflow on dependabot PRs
-    if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: Khan/actions@gerald-pr-v6
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          admin-token: ${{ secrets.KHAN_ACTIONS_BOT_TOKEN }}
+    gerald:
+        # Skip this workflow on dependabot PRs
+        if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
+        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && 'ubuntu-latest' || 'ephemeral-runner' }}
+        steps:
+            - uses: Khan/actions@gerald-pr-v6
+              with:
+                  token: ${{ secrets.GITHUB_TOKEN }}
+                  admin-token: ${{ secrets.KHAN_ACTIONS_BOT_TOKEN }}

@@ -1,11 +1,11 @@
 name: Node CI (landed on protected branch)
 
 on:
-  push:
-    branches:
-    - main
-    - changeset-release/*
-    - feature/*
+    push:
+        branches:
+            - main
+            - changeset-release/*
+            - feature/*
 
 # Our jobs run like this to minimize wasting resource cycles:
 #   1. Prime caches for primary configuration (ubuntu on node 14).
@@ -18,32 +18,12 @@ on:
 # For pushes directly to a branch, we assume a PR has been used with wider
 # checks, this just makes sure our coverage data is up-to-date.
 jobs:
-  prime_cache_primary:
-    name: Prime node_modules cache for primary configuration
-    env:
-      CI: true
-    runs-on: ${{ matrix.os }}
-    strategy:
-      # Use a matrix as it means we get the version info in the job name
-      # which is very helpful.
-      matrix:
-        os: [ubuntu-latest]
-        node-version: [24.x]
-    steps:
-      - uses: actions/checkout@v5
-      - name: Install & cache node_modules
-        uses: ./.github/actions/shared-node-cache
-        with:
-          node-version: ${{ matrix.node-version }}
+    lint:
+        name: Lint
+        uses: ./.github/workflows/node-ci-lint.yml
 
-  lint:
-    name: Lint
-    needs: prime_cache_primary
-    uses: ./.github/workflows/node-ci-lint.yml
-
-  test:
-    name: Test
-    needs: prime_cache_primary
-    uses: ./.github/workflows/node-ci-test.yml
-    secrets:
-      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+    test:
+        name: Test
+        uses: ./.github/workflows/node-ci-test.yml
+        secrets:
+            CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
