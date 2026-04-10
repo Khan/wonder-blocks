@@ -1,7 +1,10 @@
 # eslint-plugin-wonder-blocks Demo
 
 This directory is a standalone project used to manually verify that the
-`eslint-plugin-wonder-blocks` rules work correctly end-to-end.
+`eslint-plugin-wonder-blocks` rules and config work correctly end-to-end.
+
+The demo project is configured with the `strict` eslint config from
+`eslint-plugin-wonder-blocks`.
 
 ## Why this exists
 
