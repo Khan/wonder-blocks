@@ -117,7 +117,9 @@ jobs:
 
             # Install Playwright browsers
             - name: Install Playwright browsers
-              run: pnpm exec playwright install --with-deps chromium
+              run: |
+                  sudo apt-get update
+                  pnpm exec playwright install --with-deps chromium
 
             # Build the project
             - name: Generate WB build artifacts
