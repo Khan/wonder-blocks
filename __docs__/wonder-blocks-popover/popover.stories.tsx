@@ -1,3 +1,5 @@
+/* eslint-disable max-lines */
+
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
@@ -944,5 +946,63 @@ export const InCorners: StoryComponentType = {
     },
     parameters: {
         layout: "fullscreen",
+    },
+};
+
+/**
+ * Popover by default (and for performance reasons) only updates its position
+ * under the following conditions:
+ *
+ * 1. When the window is resized.
+ * 2. When the scroll position changes.
+ *
+ * However, there are cases where you might want the tooltip to update its
+ * position when the trigger element changes. This can be done by setting the
+ * `autoUpdate` prop to `true`.
+ */
+export const AutoUpdate: StoryComponentType = {
+    render: function Render(args) {
+        const [position, setPosition] = React.useState<{
+            x: number;
+            y: number;
+        } | null>(null);
+        return (
+            <View style={{position: "relative"}}>
+                <Button
+                    onClick={() => {
+                        setPosition({
+                            x: Math.floor(Math.random() * 200),
+                            y: Math.floor(Math.random() * 200),
+                        });
+                    }}
+                >
+                    Click to update trigger position (randomly)
+                </Button>
+                <Popover
+                    {...args}
+                    content={
+                        <PopoverContent
+                            content="This is a popover that auto-updates its position when the trigger element changes."
+                            title="Popover with autoUpdate=true"
+                        />
+                    }
+                    opened={true}
+                    autoUpdate={true}
+                >
+                    <Button
+                        kind="tertiary"
+                        style={
+                            position && {
+                                position: "absolute",
+                                top: position.y,
+                                left: position.x,
+                            }
+                        }
+                    >
+                        Trigger element
+                    </Button>
+                </Popover>
+            </View>
+        );
     },
 };

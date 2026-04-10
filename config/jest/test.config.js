@@ -105,4 +105,7 @@ module.exports = {
             ],
         },
     ],
+    // Disable watchman when running under Claude Code — the OS sandbox blocks
+    // watchman's fchmod on its state dir.
+    ...(!!process.env.CLAUDECODE && {watchman: false}),
 };
