@@ -41,9 +41,9 @@ jobs:
             - name: Upload Storybook artifact
               uses: actions/upload-artifact@v6
               with:
-                name: github-pages
-                # Upload the generated static files
-                path: "./storybook-static"
+                  name: github-pages
+                  # Upload the generated static files
+                  path: "./storybook-static"
 
     deploy:
         needs: build
