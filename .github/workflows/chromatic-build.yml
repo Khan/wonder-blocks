@@ -49,8 +49,6 @@ jobs:
             LANG: "en-US"
         strategy:
             fail-fast: false
-            matrix:
-                node-version: [24.x]
         # Map the job output to the workflow output.
         outputs:
             storybookUrl: ${{ steps.chromatic_publish.outputs.storybookUrl }}
@@ -76,17 +74,17 @@ jobs:
                   # *.chromatic.com: Chromatic service for uploading and comparing Storybook snapshots
                   # chromatic-builds.s3.us-west-2.amazonaws.com: S3 bucket for Storybook file uploads (presigned URLs returned by index.chromatic.com GraphQL API)
                   extra-domains: registry.npmjs.org index.chromatic.com notify.dev-chromatic.com notify.staging-chromatic.com notify.chromatic.com chromatic.com chromatic-builds.s3.us-west-2.amazonaws.com
-            - name: Use Node.js ${{ matrix.node-version }}
+            - name: Use Node.js 24.x
               uses: actions/setup-node@v6
               with:
-                  node-version: ${{ matrix.node-version }}
+                  node-version: 24.x
 
             # Cache and install dependencies
             - name: Install & cache node_modules
               uses: ./.github/actions/shared-node-cache
               timeout-minutes: 5
               with:
-                  node-version: ${{ matrix.node-version }}
+                  node-version: 24.x
 
             # Build the project
             - name: Build

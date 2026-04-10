@@ -8,9 +8,6 @@ jobs:
     lint:
         name: Lint
         runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && 'ubuntu-latest' || 'ephemeral-runner' }}
-        strategy:
-            matrix:
-                node-version: [24.x]
         steps:
             - name: Checkout repository
               uses: actions/checkout@v5
@@ -22,16 +19,16 @@ jobs:
               with:
                   # registry.npmjs.org: npm package registry for pnpm install
                   extra-domains: registry.npmjs.org
-            - name: Use Node.js ${{ matrix.node-version }}
+            - name: Use Node.js 24.x
               uses: actions/setup-node@v6
               with:
-                  node-version: ${{ matrix.node-version }}
+                  node-version: 24.x
 
             - name: Install & cache node_modules
               uses: ./.github/actions/shared-node-cache
               timeout-minutes: 5
               with:
-                  node-version: ${{ matrix.node-version }}
+                  node-version: 24.x
 
             - name: Get All Changed Files
               uses: Khan/actions@get-changed-files-v3

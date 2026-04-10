@@ -13,7 +13,6 @@ jobs:
         runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && 'ubuntu-latest' || 'ephemeral-runner' }}
         strategy:
             matrix:
-                node-version: [24.x]
                 shard: ["1/2", "2/2"]
         steps:
             - uses: actions/checkout@v5
@@ -26,16 +25,16 @@ jobs:
                   # keybase.io: codecov GPG public key import for binary signature verification
                   # storage.googleapis.com: codecov coverage results upload destination
                   extra-domains: registry.npmjs.org codecov.io cli.codecov.io keybase.io storage.googleapis.com
-            - name: Use Node.js ${{ matrix.node-version }}
+            - name: Use Node.js 24.x
               uses: actions/setup-node@v6
               with:
-                  node-version: ${{ matrix.node-version }}
+                  node-version: 24.x
 
             - name: Install & cache node_modules
               uses: ./.github/actions/shared-node-cache
               timeout-minutes: 5
               with:
-                  node-version: ${{ matrix.node-version }}
+                  node-version: 24.x
             # Testing and coverage
             - name: Run jest tests with coverage
               run: pnpm coverage:ci --shard ${{ matrix.shard }}

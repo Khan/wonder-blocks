@@ -86,8 +86,6 @@ jobs:
         runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && 'ubuntu-latest' || 'ephemeral-runner' }}
         strategy:
             fail-fast: false
-            matrix:
-                node-version: [24.x]
         steps:
             - name: Checking out latest commit
               uses: actions/checkout@v5
@@ -101,17 +99,17 @@ jobs:
                   # cdn.playwright.dev: Playwright browser binary CDN
                   extra-domains: registry.npmjs.org azure.archive.ubuntu.com archive.ubuntu.com security.ubuntu.com deb.debian.org packages.microsoft.com playwright.download.prss.microsoft.com cdn.playwright.dev
 
-            - name: Use Node.js ${{ matrix.node-version }}
+            - name: Use Node.js 24.x
               uses: actions/setup-node@v6
               with:
-                  node-version: ${{ matrix.node-version }}
+                  node-version: 24.x
 
             # Cache and install dependencies
             - name: Install & cache node_modules
               uses: ./.github/actions/shared-node-cache
               timeout-minutes: 5
               with:
-                  node-version: ${{ matrix.node-version }}
+                  node-version: 24.x
 
             # Install Playwright browsers
             - name: Install Playwright browsers
