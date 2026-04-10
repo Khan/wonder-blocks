@@ -83,7 +83,7 @@ jobs:
             !startsWith(github.head_ref, 'changeset-release/')
         name: Run Storybook tests
         needs: chromatic_review
-        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && 'ubuntu-latest' || 'ephemeral-runner' }}
+        runs-on: ubuntu-latest
         strategy:
             fail-fast: false
         steps:
