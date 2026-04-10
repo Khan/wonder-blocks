@@ -88,7 +88,7 @@ export const Tab = React.forwardRef(function Tab(
             onKeyDown={onKeyDown}
             data-testid={testId}
             style={[
-                typographyStyles.Body,
+                typographyStyles.BodyTextMediumMediumWeight,
                 styles.tab,
                 selected && styles.selectedTab,
                 style,

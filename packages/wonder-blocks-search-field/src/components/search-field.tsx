@@ -241,7 +241,7 @@ const SearchField: React.ForwardRefExoticComponent<
                         value={value}
                         style={[
                             styles.inputStyleReset,
-                            typographyStyles.LabelMedium,
+                            typographyStyles.BodyTextMediumMediumWeight,
                         ]}
                         testId={testId}
                         {...otherProps}

@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import {StyleType, View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {Body} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {SingleSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import infoIcon from "@phosphor-icons/core/bold/info-bold.svg";
@@ -350,13 +350,14 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                         aria-hidden="true"
                     />
                     <Strut size={spacing.xxxSmall_4} />
-                    <Body
+                    <BodyText
+                        tag="span"
                         style={{
                             color: semanticColor.status.critical.foreground,
                         }}
                     >
                         {error}
-                    </Body>
+                    </BodyText>
                 </View>
             </>
         );
