@@ -43,14 +43,13 @@ on:
 
 jobs:
     chromatic:
-        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && '${{ matrix.os }}' || 'ephemeral-runner' }}
+        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && 'ubuntu-latest' || 'ephemeral-runner' }}
         env:
             CI: true
             LANG: "en-US"
         strategy:
             fail-fast: false
             matrix:
-                os: [ubuntu-latest]
                 node-version: [24.x]
         # Map the job output to the workflow output.
         outputs:

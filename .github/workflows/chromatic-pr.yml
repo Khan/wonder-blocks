@@ -41,11 +41,10 @@ jobs:
             !startsWith(github.head_ref, 'changeset-release/')
         name: Get results on regular PRs
         needs: chromatic_review
-        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && '${{ matrix.os }}' || 'ephemeral-runner' }}
+        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && 'ubuntu-latest' || 'ephemeral-runner' }}
         strategy:
             fail-fast: false
             matrix:
-                os: [ubuntu-latest]
                 node-version: [24.x]
         steps:
             # Create/update PR comment with Chromatic results
@@ -84,11 +83,10 @@ jobs:
             !startsWith(github.head_ref, 'changeset-release/')
         name: Run Storybook tests
         needs: chromatic_review
-        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && '${{ matrix.os }}' || 'ephemeral-runner' }}
+        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && 'ubuntu-latest' || 'ephemeral-runner' }}
         strategy:
             fail-fast: false
             matrix:
-                os: [ubuntu-latest]
                 node-version: [24.x]
         steps:
             - name: Checking out latest commit

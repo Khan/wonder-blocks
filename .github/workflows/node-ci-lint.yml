@@ -7,10 +7,9 @@ on:
 jobs:
     lint:
         name: Lint
-        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && '${{ matrix.os }}' || 'ephemeral-runner' }}
+        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && 'ubuntu-latest' || 'ephemeral-runner' }}
         strategy:
             matrix:
-                os: [ubuntu-latest]
                 node-version: [24.x]
         steps:
             - name: Checkout repository

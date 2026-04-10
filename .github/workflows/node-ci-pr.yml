@@ -24,10 +24,9 @@ jobs:
     changeset:
         name: Check for .changeset entries for all changed files
         if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
-        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && '${{ matrix.os }}' || 'ephemeral-runner' }}
+        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && 'ubuntu-latest' || 'ephemeral-runner' }}
         strategy:
             matrix:
-                os: [ubuntu-latest]
                 node-version: [24.x]
         steps:
             - name: Checkout repository
@@ -57,10 +56,9 @@ jobs:
 
     check_builds:
         name: Check build sizes
-        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && '${{ matrix.os }}' || 'ephemeral-runner' }}
+        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && 'ubuntu-latest' || 'ephemeral-runner' }}
         strategy:
             matrix:
-                os: [ubuntu-latest]
                 node-version: [24.x]
         steps:
             - uses: actions/checkout@v5
