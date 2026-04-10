@@ -11,7 +11,7 @@ on:
 jobs:
     build:
         name: Build
-        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && 'ubuntu-latest' || 'ephemeral-runner' }}
+        runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v5
               with:
