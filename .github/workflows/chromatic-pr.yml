@@ -101,7 +101,7 @@ jobs:
                   # azure.archive.ubuntu.com, archive.ubuntu.com, security.ubuntu.com, deb.debian.org: Ubuntu package mirrors for playwright --with-deps
                   # packages.microsoft.com, playwright.download.prss.microsoft.com: Microsoft package/download servers for playwright --with-deps
                   # cdn.playwright.dev: Playwright browser binary CDN
-                  extra-domains: registry.npmjs.org azure.archive.ubuntu.com archive.ubuntu.com security.ubuntu.com deb.debian.orgpackages.microsoft.com playwright.download.prss.microsoft.com cdn.playwright.dev
+                  extra-domains: registry.npmjs.org azure.archive.ubuntu.com archive.ubuntu.com security.ubuntu.com deb.debian.org packages.microsoft.com playwright.download.prss.microsoft.com cdn.playwright.dev
 
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v6
