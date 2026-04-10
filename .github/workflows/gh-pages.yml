@@ -38,6 +38,12 @@ jobs:
               # Generate a static version of storybook inside "storybook-static/"
               run: pnpm build:storybook
 
+            - name: Remove symlinks from Storybook output
+              # actions/upload-artifact does not preprocess the artifact like
+              # actions/upload-pages-artifact does. GitHub Pages deployment will
+              # fail if the artifact contains symlinks, so we remove them here.
+              run: find ./storybook-static -type l -delete
+
             - name: Upload Storybook artifact
               uses: actions/upload-artifact@v6
               with:
