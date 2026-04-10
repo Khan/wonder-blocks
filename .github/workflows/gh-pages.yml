@@ -39,8 +39,9 @@ jobs:
               run: pnpm build:storybook
 
             - name: Upload Storybook artifact
-              uses: actions/upload-pages-artifact@v3
+              uses: actions/upload-artifact@v6
               with:
+                  name: github-pages
                   # Upload the generated static files
                   path: "./storybook-static"
 
