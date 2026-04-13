@@ -44,6 +44,7 @@
     "@jest/globals": "^29.7.0",
     "@khanacademy/eslint-config": "^5.2.0",
     "@khanacademy/eslint-plugin": "^3.1.1",
+    "@khanacademy/eslint-plugin-wonder-blocks": "workspace:*",
     "@khanacademy/wonder-blocks-accordion": "workspace:*",
     "@khanacademy/wonder-blocks-announcer": "workspace:*",
     "@khanacademy/wonder-blocks-badge": "workspace:*",

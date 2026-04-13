@@ -126,6 +126,9 @@ importers:
       '@khanacademy/eslint-plugin':
         specifier: ^3.1.1
         version: 3.1.1(eslint@8.57.1)(typescript@5.7.3)
+      '@khanacademy/eslint-plugin-wonder-blocks':
+        specifier: workspace:*
+        version: link:packages/eslint-plugin-wonder-blocks
       '@khanacademy/wonder-blocks-accordion':
         specifier: workspace:*
         version: link:packages/wonder-blocks-accordion
