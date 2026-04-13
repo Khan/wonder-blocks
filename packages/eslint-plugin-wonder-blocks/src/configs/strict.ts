@@ -1,6 +1,8 @@
+import recommended from "./recommended";
+
 export default {
     plugins: ["@khanacademy/wonder-blocks"],
     rules: {
-        "@khanacademy/wonder-blocks/no-custom-tab-role": "error",
+        ...recommended.rules,
     },
 };
