@@ -1,7 +1,7 @@
 import recommended from "./recommended";
 
 export default {
-    plugins: ["@khanacademy/wonder-blocks"],
+    ...recommended,
     rules: {
         ...recommended.rules,
     },
