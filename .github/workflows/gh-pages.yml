@@ -38,12 +38,26 @@ jobs:
               # Generate a static version of storybook inside "storybook-static/"
               run: pnpm build:storybook
 
+            - name: Archive Storybook artifact
+              # Replicates what actions/upload-pages-artifact does internally:
+              # --dereference and --hard-dereference resolve symlinks and hard
+              # links (the latter are created by pnpm's content-addressable
+              # store) so that the GitHub Pages deployment doesn't reject them.
+              shell: sh
+              run: |
+                  tar \
+                    --dereference --hard-dereference \
+                    --directory "./storybook-static" \
+                    -cvf "$RUNNER_TEMP/artifact.tar" \
+                    --exclude=.git \
+                    --exclude=.github \
+                    .
+
             - name: Upload Storybook artifact
               uses: actions/upload-artifact@v6
               with:
                   name: github-pages
-                  # Upload the generated static files
-                  path: "./storybook-static"
+                  path: "${{ runner.temp }}/artifact.tar"
 
     deploy:
         needs: build
