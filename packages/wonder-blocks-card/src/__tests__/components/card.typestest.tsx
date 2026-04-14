@@ -5,18 +5,16 @@ import Link from "@khanacademy/wonder-blocks-link";
 import Card from "../../components/card";
 
 describe("Card", () => {
-    it("accepts string children", () => {
+    it("should accept string children", () => {
         <Card>Hello, world!</Card>;
     });
 
-    it("accepts element children", () => {
+    it("should accept element children", () => {
         <Card>
             <div>Some content</div>
         </Card>;
     });
-});
 
-describe("Card with Button and Link components", () => {
     it("can contain a Button", () => {
         <Card>
             <Button onClick={() => {}}>Click me</Button>
@@ -28,10 +26,8 @@ describe("Card with Button and Link components", () => {
             <Link href="/foo">Click me</Link>
         </Card>;
     });
-});
 
-describe("Card style props", () => {
-    it("accepts small style values", () => {
+    it("should accept valid styling props", () => {
         <Card
             background="base-default"
             borderRadius="small"
@@ -40,9 +36,7 @@ describe("Card style props", () => {
         >
             Content
         </Card>;
-    });
 
-    it("accepts medium style values", () => {
         <Card
             background="base-subtle"
             borderRadius="medium"
@@ -53,108 +47,104 @@ describe("Card style props", () => {
         </Card>;
     });
 
-    it("accepts paddingSize=none", () => {
+    it(`should accept paddingSize="none"`, () => {
         <Card paddingSize="none">Content</Card>;
     });
 
-    it("rejects an invalid background value", () => {
+    it("should reject an invalid background value", () => {
         // @ts-expect-error Type '"invalid-background"' is not assignable
         <Card background="invalid-background">Content</Card>;
     });
 
-    it("rejects an invalid borderRadius value", () => {
+    it("should reject an invalid borderRadius value", () => {
         // @ts-expect-error Type '"invalid-radius"' is not assignable
         <Card borderRadius="invalid-radius">Content</Card>;
     });
 
-    it("rejects an invalid paddingSize value", () => {
+    it("should reject an invalid paddingSize value", () => {
         // @ts-expect-error Type '"invalid-padding"' is not assignable
         <Card paddingSize="invalid-padding">Content</Card>;
     });
 
-    it("rejects an invalid elevation value", () => {
+    it("should reject an invalid elevation value", () => {
         // @ts-expect-error Type '"invalid-elevation"' is not assignable
         <Card elevation="invalid-elevation">Content</Card>;
     });
-});
 
-describe("Card dismiss functionality", () => {
-    it("accepts onDismiss with labels", () => {
+    it("should accept onDismiss when dismissButtonAriaLabel is provided", () => {
         <Card onDismiss={() => {}} labels={{dismissButtonAriaLabel: "Close card"}}>
             Content
         </Card>;
     });
 
-    it("rejects onDismiss without labels", () => {
+    it("should reject onDismiss when no labels prop is set", () => {
         // @ts-expect-error Property 'labels' is missing
         <Card onDismiss={() => {}}>Content</Card>;
     });
 
-    it("rejects onDismiss with empty labels", () => {
+    it("should reject onDismiss when no labels are provided", () => {
         // @ts-expect-error Types of property 'labels' are incompatible
         <Card onDismiss={() => {}} labels={{}}>
             Content
         </Card>;
     });
 
-    it("rejects onClick prop", () => {
+    it("should reject onClick prop", () => {
         // @ts-expect-error Property 'onClick' does not exist
         <Card onClick={() => {}}>Content</Card>;
     });
-});
 
-describe("Card tag prop", () => {
-    it("accepts tag=div", () => {
+    it(`should accept tag="div"`, () => {
         <Card tag="div">Content</Card>;
     });
 
-    it("rejects tag=button", () => {
+    it(`should reject tag="button"`, () => {
         // @ts-expect-error Type '"button"' is not assignable
         <Card tag="button">Content</Card>;
     });
 
-    it("rejects tag=a", () => {
+    it(`should reject tag="a"`, () => {
         // @ts-expect-error Type '"a"' is not assignable
         <Card tag="a">Content</Card>;
     });
 
-    it("accepts tag=section with labels", () => {
+    it(`should accept tag="section" when cardAriaLabel is provided`, () => {
         <Card tag="section" labels={{cardAriaLabel: "Card section"}}>
             Content
         </Card>;
     });
 
-    it("accepts tag=figure with labels", () => {
+    it(`should accept tag="figure" when cardAriaLabel is provided`, () => {
         <Card tag="figure" labels={{cardAriaLabel: "Card figure"}}>
             Content
         </Card>;
     });
 
-    it("accepts tag=section with aria-label", () => {
+    it(`should accept tag="section" when aria-label is provided`, () => {
         <Card tag="section" aria-label="Card section">
             Content
         </Card>;
     });
 
-    it("accepts tag=figure with aria-label", () => {
+    it(`should accept tag="figure" when aria-label is provided`, () => {
         <Card tag="figure" aria-label="Card figure">
             Content
         </Card>;
     });
 
-    it("accepts tag=section with aria-labelledby", () => {
+    it(`should accept tag="section" when aria-labelledby is provided`, () => {
         <Card tag="section" aria-labelledby="someId">
             <h2 id="someId">Card title</h2>
         </Card>;
     });
 
-    it("accepts tag=figure with aria-labelledby", () => {
+    it(`should accept tag="figure" when aria-labelledby is provided`, () => {
         <Card tag="figure" aria-labelledby="someId2">
             <h2 id="someId2">Card title</h2>
         </Card>;
     });
 
-    it("rejects tag=figure with both aria-labelledby and labels.cardAriaLabel", () => {
+    it(`should reject conflicting aria-labelledby and labels.cardAriaLabel when tag is "figure"`, () => {
         // @ts-expect-error Types of property 'labels' are incompatible
         <Card
             tag="figure"
@@ -165,7 +155,7 @@ describe("Card tag prop", () => {
         </Card>;
     });
 
-    it("rejects tag=section with both aria-labelledby and labels.cardAriaLabel", () => {
+    it(`should reject conflicting aria-labelledby and labels.cardAriaLabel when tag is "section"`, () => {
         // @ts-expect-error Types of property 'labels' are incompatible
         <Card
             tag="section"
@@ -176,53 +166,51 @@ describe("Card tag prop", () => {
         </Card>;
     });
 
-    it("accepts tag=figure with both aria-labelledby and aria-label", () => {
+    it("should accept combined aria-labelledby and aria-label", () => {
         <Card tag="figure" aria-labelledby="someId2" aria-label="fallback label">
             <h2 id="someId2">Card title</h2>
         </Card>;
     });
 
-    it("accepts tag=section with no accessible label", () => {
+    it(`should accept tag="section" with no accessible label`, () => {
         <Card tag="section">Content</Card>;
     });
 
-    it("accepts tag=figure with no accessible label", () => {
+    it(`should accept tag="figure" with no accessible label`, () => {
         <Card tag="figure">Content</Card>;
     });
 
-    it("accepts tag=section with empty labels", () => {
+    it(`should accept tag="section" with empty labels`, () => {
         <Card tag="section" labels={{}}>
             Content
         </Card>;
     });
 
-    it("accepts tag=figure with empty labels", () => {
+    it(`should accept tag="figure" with empty labels`, () => {
         <Card tag="figure" labels={{}}>
             Content
         </Card>;
     });
-});
 
-describe("Card additional props", () => {
-    it("accepts testId", () => {
+    it("should accept testId", () => {
         <Card testId="my-card">Content</Card>;
     });
 
-    it("accepts inert", () => {
+    it("should accept inert", () => {
         <Card inert>Content</Card>;
     });
 
-    it("accepts a ref", () => {
+    it("should accept a ref", () => {
         <Card ref={React.createRef<HTMLDivElement>()}>Content</Card>;
     });
 
-    it("accepts styles prop", () => {
+    it("should accept styles", () => {
         <Card styles={{root: {width: 200}, dismissButton: {position: "absolute"}}}>
             Content
         </Card>;
     });
 
-    it("accepts tag=section with onDismiss and all labels", () => {
+    it(`should accept tag="section" with onDismiss and all labels`, () => {
         <Card
             tag="section"
             onDismiss={() => {}}
@@ -234,10 +222,8 @@ describe("Card additional props", () => {
             Content
         </Card>;
     });
-});
 
-describe("Card with all props", () => {
-    it("accepts all valid props together", () => {
+    it("should accept all valid props together", () => {
         <Card
             aria-busy={true}
             aria-roledescription="A custom card"
