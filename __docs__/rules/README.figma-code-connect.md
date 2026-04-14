@@ -13,6 +13,37 @@ These files tell the Figma MCP how to extract the vital data from Figma file mar
 5. In the example function, outputted component props that are conditional should be shown with a comment for the conditional logic to include / exclude
 6. Consider if we need multiple variants defined if one Figma component maps to multiple WB components e.g. the Figma "Utility Button" component maps to both  the WB Button and the IconButton. Proper syntax is in the Reference docs below.
 
+## Prop Mapping Reference
+
+Use this table to choose the right `figma.*` method when mapping a Figma component's content areas:
+
+| Method | Use when… |
+|---|---|
+| `figma.slot("Name")` | The Figma component has a freeform slot — a child frame that accepts any content (text, layers, components). Use this over `figma.children()` when the layer is defined as a slot property on the Figma component. |
+| `figma.children("Name")` | Mapping a specific named child layer within the component |
+| `figma.instance("Name")` | The Figma component has an instance swap property (maps a specific swappable component instance) |
+| `figma.nestedProps("Name", {...})` | Grouping related properties from a nested Figma frame into a single prop namespace |
+
+### `figma.slot()` notes
+
+- Currently in open beta — requires the latest Code Connect CLI
+- Code Connect does **not** traverse slot children to generate code; it only renders a clickable label referencing the slot in Dev Mode
+- The return value is a standard JSX child and can be placed anywhere in the `example` function
+
+```tsx
+figma.connect(Card, "https://...", {
+    props: {
+        title: figma.string("Title"),
+        content: figma.slot("Content"), // "Content" is the slot property name in Figma
+    },
+    example: (props: any) => (
+        <Card title={props.title}>
+            {props.content}
+        </Card>
+    ),
+});
+```
+
 ## Example
 
 ``` tsx
