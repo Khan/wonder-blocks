@@ -8,15 +8,21 @@ describe("useLatestRef", () => {
     });
 
     it("should be assignable to React.RefObject", () => {
-        expect(useLatestRef(123)).type.toBeAssignableTo<React.RefObject<number>>();
+        expect(useLatestRef(123)).type.toBeAssignableTo<
+            React.RefObject<number>
+        >();
     });
 
     it("should be assignable to React.MutableRefObject", () => {
-        expect(useLatestRef(123)).type.toBeAssignableTo<React.MutableRefObject<number>>();
+        expect(useLatestRef(123)).type.toBeAssignableTo<
+            React.MutableRefObject<number>
+        >();
     });
 
     it("should not be assignable to a ref with a different type", () => {
-        expect(useLatestRef(123)).type.not.toBeAssignableTo<{current: string}>();
+        expect(useLatestRef(123)).type.not.toBeAssignableTo<{
+            current: string;
+        }>();
     });
 
     it("should make `current` readonly", () => {

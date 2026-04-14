@@ -21,7 +21,10 @@ describe("FlexibleDialog", () => {
     });
 
     it("should accept a title element", () => {
-        <FlexibleDialog title={<h2>A heading</h2>} content={<p>Some text</p>} />;
+        <FlexibleDialog
+            title={<h2>A heading</h2>}
+            content={<p>Some text</p>}
+        />;
     });
 
     it("should pass the title to the `content` render prop", () => {

@@ -72,7 +72,10 @@ describe("Card", () => {
     });
 
     it("should accept onDismiss when dismissButtonAriaLabel is provided", () => {
-        <Card onDismiss={() => {}} labels={{dismissButtonAriaLabel: "Close card"}}>
+        <Card
+            onDismiss={() => {}}
+            labels={{dismissButtonAriaLabel: "Close card"}}
+        >
             Content
         </Card>;
     });
@@ -167,7 +170,11 @@ describe("Card", () => {
     });
 
     it("should accept combined aria-labelledby and aria-label", () => {
-        <Card tag="figure" aria-labelledby="someId2" aria-label="fallback label">
+        <Card
+            tag="figure"
+            aria-labelledby="someId2"
+            aria-label="fallback label"
+        >
             <h2 id="someId2">Card title</h2>
         </Card>;
     });
@@ -205,7 +212,9 @@ describe("Card", () => {
     });
 
     it("should accept styles", () => {
-        <Card styles={{root: {width: 200}, dismissButton: {position: "absolute"}}}>
+        <Card
+            styles={{root: {width: 200}, dismissButton: {position: "absolute"}}}
+        >
             Content
         </Card>;
     });

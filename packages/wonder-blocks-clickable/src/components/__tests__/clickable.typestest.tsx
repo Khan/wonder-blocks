@@ -36,14 +36,22 @@ describe("Clickable", () => {
     });
 
     it("should accept href, target, and safeWithNav", () => {
-        <Clickable href="/foo" target="_blank" safeWithNav={() => Promise.resolve()}>
+        <Clickable
+            href="/foo"
+            target="_blank"
+            safeWithNav={() => Promise.resolve()}
+        >
             {(_) => "Hello, world!"}
         </Clickable>;
     });
 
     it("should reject beforeNav when target is set", () => {
         // @ts-expect-error Types of property 'beforeNav' are incompatible
-        <Clickable href="/foo" target="_blank" beforeNav={() => Promise.resolve()}>
+        <Clickable
+            href="/foo"
+            target="_blank"
+            beforeNav={() => Promise.resolve()}
+        >
             {(_) => "Hello, world!"}
         </Clickable>;
     });

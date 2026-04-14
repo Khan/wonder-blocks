@@ -11,15 +11,17 @@ import type {
 describe("TestHarnessAdapter<TConfig>", () => {
     it("should reject incorrect config type", () => {
         // @ts-expect-error Types of parameters 'config' and 'config' are incompatible.
-        ((children: React.ReactNode, config: number): React.ReactElement<any> => (
-            <div />
-        )) as TestHarnessAdapter<string>;
+        ((
+            children: React.ReactNode,
+            config: number,
+        ): React.ReactElement<any> => <div />) as TestHarnessAdapter<string>;
     });
 
     it("should accept correctly defined adapter", () => {
-        ((children: React.ReactNode, config: string): React.ReactElement<any> => (
-            <div />
-        )) as TestHarnessAdapter<string>;
+        ((
+            children: React.ReactNode,
+            config: string,
+        ): React.ReactElement<any> => <div />) as TestHarnessAdapter<string>;
     });
 });
 
@@ -87,9 +89,13 @@ describe("TestHarnessConfigs<TAdapters>", () => {
 
     it("should expect one config per adapter", () => {
         // both adapter configs missing
-        expect({}).type.not.toBeAssignableTo<TestHarnessConfigs<typeof adapters>>();
+        expect({}).type.not.toBeAssignableTo<
+            TestHarnessConfigs<typeof adapters>
+        >();
         // adapterB config missing
-        expect({adapterA: "test"}).type.not.toBeAssignableTo<TestHarnessConfigs<typeof adapters>>();
+        expect({adapterA: "test"}).type.not.toBeAssignableTo<
+            TestHarnessConfigs<typeof adapters>
+        >();
     });
 
     it("should accept adapters of the correct types", () => {
@@ -97,7 +103,7 @@ describe("TestHarnessConfigs<TAdapters>", () => {
             adapterA: "a string, this is correct",
             adapterB: 7,
         }).type.toBeAssignableTo<TestHarnessConfigs<typeof adapters>>();
-    })
+    });
 
     it("should require specific adapter types", () => {
         expect({
