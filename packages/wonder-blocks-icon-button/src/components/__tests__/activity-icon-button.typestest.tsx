@@ -13,10 +13,10 @@ import {ActivityIconButton} from "../activity-icon-button";
 // Valid: label only
 <ActivityIconButton icon={plusCircle} label="Add" onClick={() => {}} />;
 
-// @ts-expect-error - no label/aria-label set
+// @ts-expect-error Property 'label' is missing
 <ActivityIconButton icon={plusCircle} onClick={() => {}} />;
 
-// @ts-expect-error - only one of aria-label or label should be set
+// @ts-expect-error Types of property 'label' are incompatible
 <ActivityIconButton
     icon={plusCircle}
     aria-label="Add item"

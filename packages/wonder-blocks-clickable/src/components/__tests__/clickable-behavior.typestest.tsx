@@ -14,7 +14,7 @@ import ClickableBehavior from "../clickable-behavior";
     {(_, childrenProps) => <div {...childrenProps} />}
 </ClickableBehavior>;
 
-// @ts-expect-error `target` and `beforeNav` can't be used together.
+// @ts-expect-error Types of property 'beforeNav' are incompatible
 <ClickableBehavior target="_blank" beforeNav={() => Promise.resolve()}>
     {(_, childrenProps) => <div {...childrenProps} />}
 </ClickableBehavior>;

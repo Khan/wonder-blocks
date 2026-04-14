@@ -2,11 +2,11 @@ import * as React from "react";
 
 import Link from "../link";
 
-// @ts-expect-error - href must be used with safeWithNav
+// @ts-expect-error Property 'href' is missing
 // eslint-disable-next-line jsx-a11y/anchor-is-valid -- Explicitly testing without href
 <Link beforeNav={() => Promise.resolve()}>Hello, world!</Link>;
 
-// @ts-expect-error - href must be used with safeWithNav
+// @ts-expect-error Property 'href' is missing
 // eslint-disable-next-line jsx-a11y/anchor-is-valid -- Explicitly testing without href
 <Link safeWithNav={() => Promise.resolve()}>Hello, world!</Link>;
 
@@ -23,7 +23,7 @@ import Link from "../link";
     Hello, world!
 </Link>;
 
-// @ts-expect-error - `target="_blank"` cannot beused with `beforeNav`
+// @ts-expect-error Types of property 'beforeNav' are incompatible
 <Link href="/foo" target="_blank" beforeNav={() => Promise.resolve()}>
     Hello, world!
 </Link>;

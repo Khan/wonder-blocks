@@ -64,8 +64,7 @@ mockFetch.mockOperation(
     {
         operation: fakeOperation,
         variables: {
-            // @ts-expect-error Type '{ notAValidKey: number; }' is not assignable to type 'SomeGqlVariables'.
-            // Object literal may only specify known properties, and 'notAValidKey' does not exist in type 'SomeGqlVariables'.
+            // @ts-expect-error Object literal may only specify known properties, and 'notAValidKey' does not exist
             notAValidKey: 42,
         },
     },

@@ -34,7 +34,7 @@ const icon = <PhosphorIcon icon={cookie} aria-label="Cookie" />;
 <StatusBadge label="Badge label" kind="warning" />;
 <StatusBadge label="Badge label" kind="critical" />;
 
-// @ts-expect-error - kind must be valid
+// @ts-expect-error Type '"not-valid-kind"' is not assignable
 <StatusBadge label="Badge label" kind="not-valid-kind" />;
 
 /**
@@ -45,7 +45,7 @@ const icon = <PhosphorIcon icon={cookie} aria-label="Cookie" />;
 
 <DueBadge showIcon={true} iconAriaLabel="Due" />;
 
-// @ts-expect-error -- iconAriaLabel is required when showIcon is true and there is no label
+// @ts-expect-error Property 'label' is missing
 <DueBadge showIcon={true} />;
 
 // iconAriaLabel is not required if label is provided
@@ -61,7 +61,7 @@ const icon = <PhosphorIcon icon={cookie} aria-label="Cookie" />;
 
 <GemBadge showIcon={true} iconAriaLabel="Gem" />;
 
-// @ts-expect-error -- iconAriaLabel is required when showIcon is true and there is no label
+// @ts-expect-error Property 'label' is missing
 <GemBadge showIcon={true} />;
 
 // iconAriaLabel is not required if label is provided
@@ -77,7 +77,7 @@ const icon = <PhosphorIcon icon={cookie} aria-label="Cookie" />;
 
 <StreakBadge showIcon={true} iconAriaLabel="Gem" />;
 
-// @ts-expect-error -- iconAriaLabel is required when showIcon is true and there is no label
+// @ts-expect-error Property 'label' is missing
 <StreakBadge showIcon={true} />;
 
 // iconAriaLabel is not required if label is provided

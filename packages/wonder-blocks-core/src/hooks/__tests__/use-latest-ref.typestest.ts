@@ -10,12 +10,12 @@ useLatestRef(123) satisfies {current: number};
 useLatestRef(123) satisfies React.RefObject<number>;
 useLatestRef(123) satisfies React.MutableRefObject<number>;
 
-// @ts-expect-error the result should not be assignable to the wrong type
+// @ts-expect-error Type '{ readonly current: number; }' does not satisfy the expected type
 useLatestRef(123) satisfies {current: string};
 
 {
     // The `current` property of the returned object should be readonly
     const ref = useLatestRef("");
-    // @ts-expect-error the current property should be readonly
+    // @ts-expect-error Cannot assign to 'current' because it is a read-only property
     ref.current = "changed";
 }

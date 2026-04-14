@@ -51,16 +51,16 @@ import Card from "../../components/card";
 
 <Card paddingSize="none">Content</Card>;
 
-// @ts-expect-error - invalid background value
+// @ts-expect-error Type '"invalid-background"' is not assignable
 <Card background="invalid-background">Content</Card>;
 
-// @ts-expect-error - invalid borderRadius value
+// @ts-expect-error Type '"invalid-radius"' is not assignable
 <Card borderRadius="invalid-radius">Content</Card>;
 
-// @ts-expect-error - invalid paddingSize value
+// @ts-expect-error Type '"invalid-padding"' is not assignable
 <Card paddingSize="invalid-padding">Content</Card>;
 
-// @ts-expect-error - invalid elevation value
+// @ts-expect-error Type '"invalid-elevation"' is not assignable
 <Card elevation="invalid-elevation">Content</Card>;
 
 /**
@@ -71,15 +71,15 @@ import Card from "../../components/card";
     Content
 </Card>;
 
-// @ts-expect-error - onDismiss requires dismissButtonAriaLabel
+// @ts-expect-error Property 'labels' is missing
 <Card onDismiss={() => {}}>Content</Card>;
 
-// @ts-expect-error - onDismiss requires dismissButtonAriaLabel
+// @ts-expect-error Types of property 'labels' are incompatible
 <Card onDismiss={() => {}} labels={{}}>
     Content
 </Card>;
 
-// @ts-expect-error - onClick is not allowed on Card wrapper
+// @ts-expect-error Property 'onClick' does not exist
 <Card onClick={() => {}}>Content</Card>;
 
 /**
@@ -88,10 +88,10 @@ import Card from "../../components/card";
 
 <Card tag="div">Content</Card>;
 
-// @ts-expect-error - button tag not allowed, use Wonder Blocks Button component instead
+// @ts-expect-error Type '"button"' is not assignable
 <Card tag="button">Content</Card>;
 
-// @ts-expect-error - anchor tag not allowed, use Wonder Blocks Link component instead
+// @ts-expect-error Type '"a"' is not assignable
 <Card tag="a">Content</Card>;
 
 <Card tag="section" labels={{cardAriaLabel: "Card section"}}>
@@ -118,7 +118,7 @@ import Card from "../../components/card";
     <h2 id="someId2">Card title</h2>
 </Card>;
 
-// @ts-expect-error - aria-labelledby cannot be used with labels.cardAriaLabel
+// @ts-expect-error Types of property 'labels' are incompatible
 <Card
     tag="figure"
     aria-labelledby="someId2"
@@ -127,7 +127,7 @@ import Card from "../../components/card";
     <h2 id="someId2">Card title</h2>
 </Card>;
 
-// @ts-expect-error - aria-labelledby cannot be used with labels.cardAriaLabel
+// @ts-expect-error Types of property 'labels' are incompatible
 <Card
     tag="section"
     aria-labelledby="someId2"

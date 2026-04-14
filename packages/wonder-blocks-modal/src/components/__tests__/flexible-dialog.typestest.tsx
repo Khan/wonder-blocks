@@ -68,11 +68,11 @@ import FlexibleDialog from "../flexible-dialog";
 
 // Expected errors
 
-// @ts-expect-error -- title, aria-label, or aria-labelledby are required
+// @ts-expect-error Property '"aria-labelledby"' is missing
 <FlexibleDialog content={<p>Some content</p>} />;
 
-// @ts-expect-error -- content is required
+// @ts-expect-error Property 'content' is missing
 <FlexibleDialog title="A thing" />;
 
-// @ts-expect-error -- content cannot be a boolean value
+// @ts-expect-error Type 'boolean' is not assignable
 <FlexibleDialog content={false} />;

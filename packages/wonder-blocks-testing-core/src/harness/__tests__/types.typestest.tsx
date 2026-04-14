@@ -12,7 +12,7 @@ import type {
  */
 
 //>  should assert type of config.
-// @ts-expect-error TConfig is string, but we typed config as a number
+// @ts-expect-error Types of parameters 'config' and 'config' are incompatible.
 ((children: React.ReactNode, config: number): React.ReactElement<any> => (
     <div />
 )) as TestHarnessAdapter<string>;
@@ -33,7 +33,7 @@ import type {
 //<
 
 //>  should assert if adapter is not Adapter<TConfig>
-// @ts-expect-error  String is not a adapter function
+// @ts-expect-error Type 'string' is not comparable to type 'TestHarnessAdapter<any>'.
 ({
     adapterString: "string",
 }) as TestHarnessAdapters;
@@ -54,7 +54,7 @@ import type {
 
 //> should error if the config type is wrong
 // 45 is not a string
-// @ts-expect-error: Type '45' is not assignable to type 'string'.
+// @ts-expect-error Conversion of type 'number' to type 'string' may be a mistake because neither type sufficiently overlaps with the other.
 45 as TestHarnessConfig<TestHarnessAdapter<string>>;
 //<
 
@@ -95,7 +95,7 @@ const adapters = {
 //<
 
 //>  should assert if config does not match adapter config
-// @ts-expect-error: the config type here is a number, not a string
+// @ts-expect-error Types of property 'adapterB' are incompatible
 ({
     adapterA: "a string, this is correct",
     adapterB: "a string, but it should be a number",

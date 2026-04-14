@@ -10,7 +10,7 @@ import Clickable from "../clickable";
     {(_) => "Hello, world!"}
 </Clickable>;
 
-// @ts-expect-error - `href` must be set when using `target="_blank"`.
+// @ts-expect-error Property 'href' is missing
 <Clickable target="_blank">{(_) => "Hello, world!"}</Clickable>;
 
 <Clickable href="/foo" beforeNav={() => Promise.resolve()}>
@@ -25,12 +25,12 @@ import Clickable from "../clickable";
     {(_) => "Hello, world!"}
 </Clickable>;
 
-// @ts-expect-error - `target="_blank"` cannot be used with `beforeNav`.
+// @ts-expect-error Types of property 'beforeNav' are incompatible
 <Clickable href="/foo" target="_blank" beforeNav={() => Promise.resolve()}>
     {(_) => "Hello, world!"}
 </Clickable>;
 
-// @ts-expect-error - `target="_blank"` cannot be used with `beforeNav`.
+// @ts-expect-error Types of property 'beforeNav' are incompatible
 <Clickable
     href="/foo"
     target="_blank"
