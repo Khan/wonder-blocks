@@ -26,8 +26,6 @@ describe("useLatestRef", () => {
     });
 
     it("should make `current` readonly", () => {
-        const ref = useLatestRef("");
-        // @ts-expect-error Cannot assign to 'current' because it is a read-only property
-        ref.current = "changed";
+        expect(useLatestRef("")).type.toBe<{readonly current: string}>();
     });
 });
