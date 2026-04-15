@@ -3,7 +3,7 @@
   "description": "ESLint plugin for the Wonder Blocks design system",
   "author": "Khan Academy",
   "license": "MIT",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "publishConfig": {
     "access": "public"
   },
