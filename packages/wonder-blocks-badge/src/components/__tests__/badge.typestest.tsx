@@ -1,5 +1,5 @@
 import * as React from "react";
-import {describe, expect, it} from "tstyche";
+import {describe, it} from "tstyche";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import cookie from "@phosphor-icons/core/regular/cookie.svg";
 import {Badge} from "../badge";
