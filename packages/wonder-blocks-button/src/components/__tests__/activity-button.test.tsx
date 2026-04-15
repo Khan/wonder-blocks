@@ -53,13 +53,13 @@ describe("ActivityButton", () => {
 
         test("allow other explicit roles", () => {
             // Arrange
-            render(<ActivityButton role="tab">Tab</ActivityButton>);
+            render(<ActivityButton role="treeitem">Tree Item</ActivityButton>);
 
             // Act
-            const tab = screen.getByRole("tab");
+            const treeItem = screen.getByRole("treeitem");
 
             // Assert
-            expect(tab).toHaveAttribute("role");
+            expect(treeItem).toHaveAttribute("role");
         });
     });
 
