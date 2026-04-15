@@ -23,6 +23,7 @@ const packagesDir = path.join(rootDir, "packages");
 const typeDefinitionFiles = fglob.sync("**/*.d.ts", {
     cwd: packagesDir,
     onlyFiles: true,
+    ignore: ["**/node_modules/**"],
 });
 
 let foundErrors = false;

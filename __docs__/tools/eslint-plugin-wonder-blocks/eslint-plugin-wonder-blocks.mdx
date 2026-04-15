@@ -1,0 +1,45 @@
+import {Meta, Markdown, CodeOrSourceMdx} from "@storybook/addon-docs/blocks";
+import LinkTo from "@storybook/addon-links/react";
+import ComponentInfo from "../../components/component-info";
+import packageConfig from "../../../packages/eslint-plugin-wonder-blocks/package.json";
+import packageReadme from "../../../packages/eslint-plugin-wonder-blocks/README.md?raw";
+
+
+<Meta
+    title="Tools / eslint-plugin-wonder-blocks"
+/>
+
+<ComponentInfo
+    name={packageConfig.name}
+    version={packageConfig.version}
+/>
+
+<Markdown
+    options={{
+        overrides: {
+            // Override the default anchor behavior to convert relative rule doc links to Storybook paths.
+            // Links inside <Markdown> are not intercepted by Storybook's router, so we use LinkTo
+            // from @storybook/addon-links to navigate within the Storybook manager.
+            a: ({children, href}) => {
+                const docsMatch = href?.match(/^docs\/(.+)\.md$/);
+                if (docsMatch) {
+                    const ruleName = docsMatch[1];
+                    return (
+                        <LinkTo
+                            title={`Tools / eslint-plugin-wonder-blocks / Rules / ${ruleName}`}
+                            story="docs"
+                        >
+                            {children}
+                        </LinkTo>
+                    );
+                }
+                return <a href={href}>{children}</a>;
+            },
+            // Override the default code block behavior to include syntax highlighting
+            code: CodeOrSourceMdx,
+        },
+    }
+}>
+    {packageReadme}
+</Markdown>
+
