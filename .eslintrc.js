@@ -1,6 +1,5 @@
 // eslint-disable-next-line import/no-commonjs
 module.exports = {
-    root: true,
     extends: [
         "@khanacademy",
         "@khanacademy/eslint-config/a11y",
