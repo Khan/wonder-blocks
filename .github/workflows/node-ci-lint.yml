@@ -54,7 +54,8 @@ jobs:
               with:
                   changed-files: ${{ steps.changed.outputs.files }}
                   files: ".pnpm-lock.yaml"
-
+            - name: Build
+              run: pnpm build
             # Linting / type checking
             - name: Eslint
               uses: Khan/actions@full-or-limited-v0
