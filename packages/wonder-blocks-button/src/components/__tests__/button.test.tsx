@@ -69,13 +69,17 @@ describe("Button", () => {
 
         test("allow other explicit roles", () => {
             // Arrange
-            render(<Button role="tab">Tab</Button>);
+            render(
+                <Button role="treeitem" aria-selected="false">
+                    Tree Item
+                </Button>,
+            );
 
             // Act
-            const tab = screen.getByRole("tab");
+            const treeItem = screen.getByRole("treeitem");
 
             // Assert
-            expect(tab).toHaveAttribute("role");
+            expect(treeItem).toHaveAttribute("role");
         });
     });
 
