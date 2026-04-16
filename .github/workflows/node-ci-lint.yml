@@ -77,3 +77,8 @@ jobs:
 
             - name: Check package.json files
               run: ./utils/publish/pre-publish-check-ci.ts
+
+            # Type testing
+            - name: Typetest
+              if: always()
+              run: pnpm typetest
