@@ -1,6 +1,15 @@
 import {ESLintUtils, TSESLint, TSESTree} from "@typescript-eslint/utils";
 
 import type {WonderBlocksPluginDocs} from "../types";
+import {
+    getAttributeStringValue,
+    INLINE_BODY_TEXT_TAGS,
+    WB_BUTTON_COMPONENTS,
+    WB_FORM_COMPONENTS,
+    BLOCK_CONTAINER_TAGS,
+    WB_HEADING_COMPONENTS,
+    HTML_HEADING_ELEMENTS,
+} from "./jsx-utils";
 
 const createRule = ESLintUtils.RuleCreator<WonderBlocksPluginDocs>(
     (name) =>
@@ -15,119 +24,6 @@ type MessageIds =
     | "nestedInLabel"
     | "nestedInBodyText"
     | "nestedInHeading";
-
-/**
- * Inline tags that make BodyText safe to nest inside inline/interactive
- * contexts (e.g., inside a button, label, or paragraph element).
- */
-const INLINE_BODY_TEXT_TAGS = new Set([
-    "span",
-    "sup",
-    "sub",
-    "em",
-    "strong",
-    "a",
-    "abbr",
-    "code",
-    "kbd",
-    "mark",
-    "cite",
-    "q",
-    "s",
-    "u",
-    "b",
-    "i",
-    "small",
-    "del",
-    "ins",
-    "time",
-    "var",
-    "samp",
-    "dfn",
-]);
-
-/**
- * Block-level container tags. When an outer BodyText uses one of these, it
- * can contain an inner BodyText that renders as <p> without creating invalid
- * HTML nesting.
- */
-const BLOCK_CONTAINER_TAGS = new Set([
-    "div",
-    "section",
-    "article",
-    "aside",
-    "main",
-    "header",
-    "footer",
-    "nav",
-    "blockquote",
-    "figure",
-    "figcaption",
-    "details",
-    "summary",
-]);
-
-/**
- * Wonder Blocks form components that internally render a <label> or similar
- * inline-context element around their content.
- */
-const WB_FORM_COMPONENTS = new Set(["Choice", "Checkbox", "Radio"]);
-
-/**
- * Wonder Blocks Button component names. Buttons are inline contexts and
- * cannot contain block-level elements like <p>.
- */
-const WB_BUTTON_COMPONENTS = new Set(["Button", "ActivityButton"]);
-
-/**
- * Wonder Blocks Heading component names. Headings are block-level but
- * cannot contain other block-level elements like <p>.
- */
-const WB_HEADING_COMPONENTS = new Set([
-    "Heading",
-    "HeadingLarge",
-    "HeadingMedium",
-    "HeadingSmall",
-    "HeadingXSmall",
-]);
-
-/**
- * HTML heading element names.
- */
-const HTML_HEADING_ELEMENTS = new Set(["h1", "h2", "h3", "h4", "h5", "h6"]);
-
-/**
- * Returns the string value of a JSX attribute if it's a simple string
- * literal, otherwise null.
- */
-function getAttributeStringValue(
-    openingElement: TSESTree.JSXOpeningElement,
-    attributeName: string,
-): string | null {
-    const attr = openingElement.attributes.find(
-        (a): a is TSESTree.JSXAttribute =>
-            a.type === "JSXAttribute" &&
-            a.name.type === "JSXIdentifier" &&
-            (a.name as TSESTree.JSXIdentifier).name === attributeName,
-    );
-
-    if (!attr?.value) {
-        return null;
-    }
-
-    if (attr.value.type === "Literal") {
-        return String(attr.value.value);
-    }
-
-    if (
-        attr.value.type === "JSXExpressionContainer" &&
-        attr.value.expression.type === "Literal"
-    ) {
-        return String((attr.value.expression as TSESTree.Literal).value);
-    }
-
-    return null;
-}
 
 /**
  * Returns true if this BodyText uses an inline `tag` prop, making it safe

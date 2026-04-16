@@ -6,7 +6,8 @@
  * and that the auto-fix correctly adds tag="span".
  */
 import {RuleTester} from "@typescript-eslint/rule-tester";
-import noInvalidBodyTextParent from "../no-invalid-bodytext-parent";
+
+import {rules} from "..";
 
 const ruleTester = new RuleTester({
     languageOptions: {
@@ -18,7 +19,10 @@ const ruleTester = new RuleTester({
     },
 });
 
-ruleTester.run("no-invalid-bodytext-parent", noInvalidBodyTextParent, {
+const ruleName = "no-invalid-bodytext-parent";
+const rule = rules[ruleName];
+
+ruleTester.run(ruleName, rule, {
     // ------------------------------------------------------------------ //
     // VALID — BodyText with an inline tag is allowed everywhere;          //
     //         BodyText without a tag is fine in non-restricted contexts.  //
