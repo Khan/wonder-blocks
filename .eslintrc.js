@@ -8,7 +8,7 @@ module.exports = {
         // This config includes rules from storybook to enforce story best
         // practices
         "plugin:storybook/recommended",
-        "plugin:@khanacademy/eslint-plugin-wonder-blocks/strict", // config from @khanacademy/eslint-plugin-wonder-blocks
+        "plugin:@khanacademy/wonder-blocks/strict", // config from @khanacademy/eslint-plugin-wonder-blocks
     ],
     plugins: ["import", "jest", "jsdoc", "promise", "monorepo", "react-hooks"],
     settings: {
