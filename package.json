@@ -34,6 +34,7 @@
     "test:storybook": "vitest --project=storybook",
     "test": "pnpm run jest && pnpm run test:common",
     "typecheck": "tsc",
+    "typetest": "tstyche",
     "typewatch": "tsc --noEmit --watch --incremental",
     "add:devdepbysha": "bash -c 'pnpm add -W --dev \"git+https://git@github.com/Khan/$0.git#$1\"'"
   },
