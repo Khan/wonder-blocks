@@ -8,42 +8,18 @@ const createRule = ESLintUtils.RuleCreator<WonderBlocksPluginDocs>(
 );
 
 type Options = [{maxChildren?: number}?];
-type MessageIds = "viewChild" | "blockChild" | "tooManyChildren";
+type MessageIds =
+    | "viewChild"
+    | "divChild"
+    | "paragraphChild"
+    | "blockChild"
+    | "tooManyChildren";
 
 const DEFAULT_MAX_CHILDREN = 5;
 
 /**
- * Inline tags that make BodyText safe to use in inline/restricted contexts.
- * When BodyText uses one of these, it renders as an inline element.
- */
-const INLINE_BODY_TEXT_TAGS = new Set([
-    "span",
-    "sup",
-    "sub",
-    "em",
-    "strong",
-    "a",
-    "abbr",
-    "code",
-    "kbd",
-    "mark",
-    "cite",
-    "q",
-    "s",
-    "u",
-    "b",
-    "i",
-    "small",
-    "del",
-    "ins",
-    "time",
-    "var",
-    "samp",
-    "dfn",
-]);
-
-/**
- * HTML elements that are block-level and cannot appear inside a <p>.
+ * HTML elements that are block-level and therefore cannot appear inside a <p>.
+ * Excludes <div> and <p> which have their own dedicated message IDs.
  * https://html.spec.whatwg.org/#phrasing-content
  */
 const HTML_BLOCK_ELEMENTS = new Set([
@@ -53,7 +29,6 @@ const HTML_BLOCK_ELEMENTS = new Set([
     "blockquote",
     "dd",
     "details",
-    "div",
     "dl",
     "dt",
     "fieldset",
@@ -74,7 +49,6 @@ const HTML_BLOCK_ELEMENTS = new Set([
     "main",
     "nav",
     "ol",
-    "p",
     "pre",
     "section",
     "summary",
@@ -83,10 +57,10 @@ const HTML_BLOCK_ELEMENTS = new Set([
 ]);
 
 /**
- * Wonder Blocks components that render as block-level elements and therefore
- * cannot be children of a <p>.
+ * Wonder Blocks components that render as block-level heading elements and
+ * therefore cannot be children of a <p>.
  */
-const WB_BLOCK_COMPONENTS = new Set([
+const WB_HEADING_COMPONENTS = new Set([
     "Heading",
     "HeadingLarge",
     "HeadingMedium",
@@ -95,7 +69,7 @@ const WB_BLOCK_COMPONENTS = new Set([
 ]);
 
 /**
- * Returns the string value of a JSX attribute if it's a simple string
+ * Returns the string value of a JSX attribute if it is a simple string
  * literal, otherwise null.
  */
 function getAttributeStringValue(
@@ -127,6 +101,23 @@ function getAttributeStringValue(
     return null;
 }
 
+/**
+ * Returns true when the BodyText opening element has no tag prop or a tag prop
+ * that is not an inline/phrasing-content value, meaning it will render as <p>.
+ *
+ * Block-container tags (div, section, …) also return false here because a
+ * block-level BodyText can legitimately contain block children.
+ */
+function rendersAsParagraph(
+    openingElement: TSESTree.JSXOpeningElement,
+): boolean {
+    const tag = getAttributeStringValue(openingElement, "tag");
+    // No tag → defaults to <p>.
+    // tag="p" → explicitly <p>.
+    // Any inline or block-container tag → not a paragraph.
+    return tag === null || tag === "p";
+}
+
 export default createRule<Options, MessageIds>({
     name: "no-invalid-bodytext-children",
     meta: {
@@ -151,9 +142,13 @@ export default createRule<Options, MessageIds>({
         ],
         messages: {
             viewChild:
-                "BodyText should not wrap View. View renders as <div>, a block-level element that cannot be a child of <p>. Remove BodyText and use View directly for layout.",
+                "BodyText should not wrap View. View renders as <div>, which is block-level and cannot be a child of <p>. Remove BodyText and use View directly for layout.",
+            divChild:
+                'BodyText renders as <p> by default, which cannot contain a <div>. Add tag="div" to the outer BodyText to allow block children, or remove the <div>.',
+            paragraphChild:
+                'BodyText renders as <p> by default. {{childName}} cannot be a child of <p>{{childNote}}. Add tag="span" to the inner element to make it inline, or tag="div" to the outer BodyText.',
             blockChild:
-                'BodyText renders as <p> by default, which cannot contain {{childName}} (a block-level element). Add tag="div" to BodyText to allow block children, or restructure to remove the block element.',
+                'BodyText renders as <p> by default, which cannot contain {{childName}} (a block-level element). Add tag="div" to BodyText to allow block children, or remove the block element.',
             tooManyChildren:
                 "BodyText has {{count}} direct child elements (max: {{max}}). BodyText is for text content — consider using View or a block container for complex layouts.",
         },
@@ -174,14 +169,8 @@ export default createRule<Options, MessageIds>({
                     return;
                 }
 
-                const tagValue = getAttributeStringValue(openingElement, "tag");
-
-                // BodyText renders as <p> when no tag is set, or when tag="p".
-                // In that case, block-level children create invalid HTML.
-                const rendersAsParagraph =
-                    tagValue === null ||
-                    tagValue === "p" ||
-                    INLINE_BODY_TEXT_TAGS.has(tagValue);
+                const outerRendersAsParagraph =
+                    rendersAsParagraph(openingElement);
 
                 // Direct JSXElement children only (excludes text nodes and
                 // expression containers).
@@ -199,7 +188,8 @@ export default createRule<Options, MessageIds>({
 
                     const childName = childOpening.name.name;
 
-                    // View always renders as <div> — always a block-level child.
+                    // View always renders as <div> — always warn regardless of
+                    // the outer BodyText's tag.
                     if (childName === "View") {
                         context.report({
                             node: childOpening,
@@ -208,19 +198,61 @@ export default createRule<Options, MessageIds>({
                         continue;
                     }
 
-                    // When BodyText renders as <p>, block-level HTML elements
-                    // and block WB components are invalid children.
-                    if (rendersAsParagraph) {
-                        if (
-                            HTML_BLOCK_ELEMENTS.has(childName) ||
-                            WB_BLOCK_COMPONENTS.has(childName)
-                        ) {
+                    // The remaining checks only apply when the outer BodyText
+                    // renders as <p> (no tag prop, or tag="p").
+                    if (!outerRendersAsParagraph) {
+                        continue;
+                    }
+
+                    // <div> gets its own message for documentation clarity.
+                    if (childName === "div") {
+                        context.report({
+                            node: childOpening,
+                            messageId: "divChild",
+                        });
+                        continue;
+                    }
+
+                    // <p> and BodyText that renders as <p> get their own
+                    // message because the source of the nested-<p> warning
+                    // can otherwise be unclear.
+                    if (childName === "p") {
+                        context.report({
+                            node: childOpening,
+                            messageId: "paragraphChild",
+                            data: {childName: "p", childNote: ""},
+                        });
+                        continue;
+                    }
+
+                    if (childName === "BodyText") {
+                        // Only warn if the inner BodyText also renders as <p>
+                        // (i.e. it doesn't have an inline tag set).
+                        if (rendersAsParagraph(childOpening)) {
                             context.report({
                                 node: childOpening,
-                                messageId: "blockChild",
-                                data: {childName},
+                                messageId: "paragraphChild",
+                                data: {
+                                    childName: "BodyText",
+                                    childNote:
+                                        " (BodyText also renders as <p> by default)",
+                                },
                             });
                         }
+                        continue;
+                    }
+
+                    // All other block-level HTML elements and WB heading
+                    // components.
+                    if (
+                        HTML_BLOCK_ELEMENTS.has(childName) ||
+                        WB_HEADING_COMPONENTS.has(childName)
+                    ) {
+                        context.report({
+                            node: childOpening,
+                            messageId: "blockChild",
+                            data: {childName},
+                        });
                     }
                 }
 

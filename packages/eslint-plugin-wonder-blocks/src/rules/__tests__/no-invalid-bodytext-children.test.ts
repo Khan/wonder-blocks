@@ -19,13 +19,13 @@ const ruleTester = new RuleTester({
 
 ruleTester.run("no-invalid-bodytext-children", noInvalidBodyTextChildren, {
     // ------------------------------------------------------------------ //
-    // VALID — BodyText with phrasing content or appropriate tag prop     //
+    // VALID                                                               //
     // ------------------------------------------------------------------ //
     valid: [
         // Plain text is always fine
         {code: `<BodyText>Hello world</BodyText>`},
 
-        // Inline HTML elements are phrasing content
+        // Inline/phrasing-content HTML elements
         {code: `<BodyText><span>inline</span></BodyText>`},
         {code: `<BodyText><em>emphasis</em></BodyText>`},
         {code: `<BodyText><strong>bold</strong></BodyText>`},
@@ -34,65 +34,119 @@ ruleTester.run("no-invalid-bodytext-children", noInvalidBodyTextChildren, {
         {code: `<BodyText><sup>1</sup></BodyText>`},
         {code: `<BodyText><sub>2</sub></BodyText>`},
 
-        // Block children are OK when BodyText uses a block container tag
+        // Block HTML children are OK when BodyText uses a block-container tag
         {code: `<BodyText tag="div"><div>block</div></BodyText>`},
         {code: `<BodyText tag="section"><p>paragraph</p></BodyText>`},
         {code: `<BodyText tag="article"><div>block</div></BodyText>`},
 
-        // Children count at or below the default threshold of 5
+        // When BodyText has an inline tag the block-child checks do not apply
+        // (the outer BodyText renders inline; invalid nesting is a parent-rule
+        // concern, not a children concern).
+        {code: `<BodyText tag="span"><div>block</div></BodyText>`},
+        {code: `<BodyText tag="em"><p>paragraph</p></BodyText>`},
+
+        // Inner BodyText with an inline tag is safe inside a default BodyText
+        {
+            code: `<BodyText><BodyText tag="span">inline</BodyText></BodyText>`,
+        },
+
+        // Expression containers are not counted as element children
+        {code: `<BodyText>{value}<span>label</span></BodyText>`},
+
+        // At or below the default threshold of 5 element children
         {
             code: `<BodyText><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></BodyText>`,
         },
 
-        // Children count at or below a custom threshold
+        // At or below a custom threshold
         {
             code: `<BodyText><span>1</span><span>2</span></BodyText>`,
             options: [{maxChildren: 2}],
         },
 
-        // Text nodes do not count toward the child element limit
+        // Text nodes do not count toward the child-element limit
         {
             code: `<BodyText>text <span>one</span> text <span>two</span> text <span>three</span> text <span>four</span> text <span>five</span> text</BodyText>`,
-        },
-
-        // Block elements are OK when BodyText has an inline tag
-        // (BodyText still renders inline, so HTML validity depends on context,
-        // but no block children to report here)
-        {code: `<BodyText tag="span"><em>fine</em></BodyText>`},
-
-        // Expression containers are not counted as element children
-        {
-            code: `<BodyText>{value}<span>label</span></BodyText>`,
         },
     ],
 
     // ------------------------------------------------------------------ //
-    // INVALID — block-level children or too many children                //
+    // INVALID                                                             //
     // ------------------------------------------------------------------ //
     invalid: [
-        // --- View is always a block-level child ---
+        // ---------------------------------------------------------------- //
+        // View — always flagged regardless of the outer BodyText tag        //
+        // ---------------------------------------------------------------- //
         {
             code: `<BodyText><View>layout</View></BodyText>`,
             errors: [{messageId: "viewChild"}],
         },
         {
-            code: `<BodyText tag="div"><View>layout</View></BodyText>`,
-            errors: [{messageId: "viewChild"}],
-        },
-        {
+            // tag="span" does not exempt View
             code: `<BodyText tag="span"><View>layout</View></BodyText>`,
             errors: [{messageId: "viewChild"}],
         },
+        {
+            // tag="div" does not exempt View — BodyText is not a layout container
+            code: `<BodyText tag="div"><View>layout</View></BodyText>`,
+            errors: [{messageId: "viewChild"}],
+        },
 
-        // --- HTML block elements inside default BodyText (<p>) ---
+        // ---------------------------------------------------------------- //
+        // <div> — specific message for documentation clarity               //
+        // ---------------------------------------------------------------- //
         {
             code: `<BodyText><div>block</div></BodyText>`,
-            errors: [{messageId: "blockChild", data: {childName: "div"}}],
+            errors: [{messageId: "divChild"}],
         },
         {
-            code: `<BodyText><p>paragraph</p></BodyText>`,
-            errors: [{messageId: "blockChild", data: {childName: "p"}}],
+            // tag="p" also renders as <p>
+            code: `<BodyText tag="p"><div>block</div></BodyText>`,
+            errors: [{messageId: "divChild"}],
         },
+
+        // ---------------------------------------------------------------- //
+        // <p> and BodyText rendering as <p>                                //
+        // ---------------------------------------------------------------- //
+        {
+            code: `<BodyText><p>paragraph</p></BodyText>`,
+            errors: [
+                {
+                    messageId: "paragraphChild",
+                    data: {childName: "p", childNote: ""},
+                },
+            ],
+        },
+        {
+            // BodyText defaults to <p> — nesting two <p>s is invalid HTML
+            code: `<BodyText><BodyText>nested</BodyText></BodyText>`,
+            errors: [
+                {
+                    messageId: "paragraphChild",
+                    data: {
+                        childName: "BodyText",
+                        childNote: " (BodyText also renders as <p> by default)",
+                    },
+                },
+            ],
+        },
+        {
+            // Outer BodyText with tag="p" + inner default BodyText
+            code: `<BodyText tag="p"><BodyText>nested</BodyText></BodyText>`,
+            errors: [
+                {
+                    messageId: "paragraphChild",
+                    data: {
+                        childName: "BodyText",
+                        childNote: " (BodyText also renders as <p> by default)",
+                    },
+                },
+            ],
+        },
+
+        // ---------------------------------------------------------------- //
+        // Other block-level HTML elements                                  //
+        // ---------------------------------------------------------------- //
         {
             code: `<BodyText><section>section</section></BodyText>`,
             errors: [{messageId: "blockChild", data: {childName: "section"}}],
@@ -108,18 +162,13 @@ ruleTester.run("no-invalid-bodytext-children", noInvalidBodyTextChildren, {
         {
             code: `<BodyText><blockquote>quote</blockquote></BodyText>`,
             errors: [
-                {
-                    messageId: "blockChild",
-                    data: {childName: "blockquote"},
-                },
+                {messageId: "blockChild", data: {childName: "blockquote"}},
             ],
         },
         {
             code: `<BodyText><pre>code</pre></BodyText>`,
             errors: [{messageId: "blockChild", data: {childName: "pre"}}],
         },
-
-        // --- HTML heading elements inside default BodyText ---
         {
             code: `<BodyText><h1>Heading</h1></BodyText>`,
             errors: [{messageId: "blockChild", data: {childName: "h1"}}],
@@ -129,7 +178,9 @@ ruleTester.run("no-invalid-bodytext-children", noInvalidBodyTextChildren, {
             errors: [{messageId: "blockChild", data: {childName: "h2"}}],
         },
 
-        // --- WB Heading components inside default BodyText ---
+        // ---------------------------------------------------------------- //
+        // WB Heading components (render as block-level headings)           //
+        // ---------------------------------------------------------------- //
         {
             code: `<BodyText><Heading>Title</Heading></BodyText>`,
             errors: [{messageId: "blockChild", data: {childName: "Heading"}}],
@@ -137,35 +188,27 @@ ruleTester.run("no-invalid-bodytext-children", noInvalidBodyTextChildren, {
         {
             code: `<BodyText><HeadingLarge>Title</HeadingLarge></BodyText>`,
             errors: [
+                {messageId: "blockChild", data: {childName: "HeadingLarge"}},
+            ],
+        },
+
+        // ---------------------------------------------------------------- //
+        // Multiple block children — each reported independently            //
+        // ---------------------------------------------------------------- //
+        {
+            code: `<BodyText><div>a</div><p>b</p></BodyText>`,
+            errors: [
+                {messageId: "divChild"},
                 {
-                    messageId: "blockChild",
-                    data: {childName: "HeadingLarge"},
+                    messageId: "paragraphChild",
+                    data: {childName: "p", childNote: ""},
                 },
             ],
         },
 
-        // --- Block children also flagged when BodyText has tag="p" ---
-        {
-            code: `<BodyText tag="p"><div>block</div></BodyText>`,
-            errors: [{messageId: "blockChild", data: {childName: "div"}}],
-        },
-
-        // --- Block children also flagged when BodyText has an inline tag ---
-        {
-            code: `<BodyText tag="span"><div>block</div></BodyText>`,
-            errors: [{messageId: "blockChild", data: {childName: "div"}}],
-        },
-
-        // --- Multiple block children each reported ---
-        {
-            code: `<BodyText><div>a</div><p>b</p></BodyText>`,
-            errors: [
-                {messageId: "blockChild", data: {childName: "div"}},
-                {messageId: "blockChild", data: {childName: "p"}},
-            ],
-        },
-
-        // --- Too many direct element children (default threshold: 5) ---
+        // ---------------------------------------------------------------- //
+        // Too many direct element children                                 //
+        // ---------------------------------------------------------------- //
         {
             code: `<BodyText><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></BodyText>`,
             errors: [
@@ -175,9 +218,8 @@ ruleTester.run("no-invalid-bodytext-children", noInvalidBodyTextChildren, {
                 },
             ],
         },
-
-        // --- Custom threshold ---
         {
+            // Custom threshold
             code: `<BodyText><span>1</span><span>2</span><span>3</span></BodyText>`,
             options: [{maxChildren: 2}],
             errors: [
@@ -187,18 +229,17 @@ ruleTester.run("no-invalid-bodytext-children", noInvalidBodyTextChildren, {
                 },
             ],
         },
-
-        // --- Block child + too many children both reported ---
-        // tooManyChildren is on the BodyText opening element (earlier in
-        // source), so it sorts before blockChild (on the child element).
         {
+            // Block child + too many children both reported.
+            // tooManyChildren is on the BodyText opening element (earlier in
+            // source) so it sorts before divChild (on the <div> element).
             code: `<BodyText><div>a</div><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></BodyText>`,
             errors: [
                 {
                     messageId: "tooManyChildren",
                     data: {count: "6", max: "5"},
                 },
-                {messageId: "blockChild", data: {childName: "div"}},
+                {messageId: "divChild"},
             ],
         },
     ],
