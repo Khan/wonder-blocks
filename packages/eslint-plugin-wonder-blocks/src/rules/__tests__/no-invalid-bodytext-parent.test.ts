@@ -325,5 +325,19 @@ ruleTester.run("no-invalid-bodytext-parent", noInvalidBodyTextParent, {
             errors: [{messageId: "nestedInButton"}],
             output: `<Button><BodyText tag="span">Text</BodyText></Button>`,
         },
+
+        // --- Dynamic tag expression: error is reported but no autofix is
+        //     applied, since replacing the expression would silently destroy
+        //     the developer's conditional logic. ---
+        {
+            code: `<label><BodyText tag={isLabel ? "span" : "code"}>Text</BodyText></label>`,
+            errors: [{messageId: "nestedInLabel"}],
+            output: null,
+        },
+        {
+            code: `<Button><BodyText tag={getTag()}>Click</BodyText></Button>`,
+            errors: [{messageId: "nestedInButton"}],
+            output: null,
+        },
     ],
 });

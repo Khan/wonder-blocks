@@ -158,14 +158,18 @@ function getNearestAncestorJSXElement(
 }
 
 /**
- * Builds the auto-fix that sets tag="span" on the BodyText element.
- * If a `tag` prop already exists (with a non-inline value), its value is
- * replaced. Otherwise, tag="span" is appended after the last attribute.
+ * Build the auto-fix that sets tag="span" on the BodyText element.
+ *
+ * If a `tag` prop already exists with a static string value, its value is
+ * replaced. If the existing `tag` value is a dynamic expression (e.g.
+ * tag={condition ? 'span' : 'code'}), no fix is returned — replacing it
+ * would silently destroy the developer's conditional logic.
+ * Otherwise, tag="span" is appended after the last attribute.
  */
 function buildSpanTagFix(
     fixer: TSESLint.RuleFixer,
     openingElement: TSESTree.JSXOpeningElement,
-): TSESLint.RuleFix {
+): TSESLint.RuleFix | null {
     const existingTagAttr = openingElement.attributes.find(
         (a): a is TSESTree.JSXAttribute =>
             a.type === "JSXAttribute" &&
@@ -173,8 +177,15 @@ function buildSpanTagFix(
             (a.name as TSESTree.JSXIdentifier).name === "tag",
     );
 
-    if (existingTagAttr?.value) {
-        return fixer.replaceText(existingTagAttr.value, '"span"');
+    if (existingTagAttr) {
+        // Dynamic expression: don't autofix — we'd corrupt the developer's logic.
+        if (existingTagAttr.value?.type === "JSXExpressionContainer") {
+            return null;
+        }
+        // Static string literal: safe to replace.
+        if (existingTagAttr.value?.type === "Literal") {
+            return fixer.replaceText(existingTagAttr.value, '"span"');
+        }
     }
 
     const lastAttr =
