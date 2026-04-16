@@ -127,8 +127,8 @@ importers:
         specifier: ^3.1.1
         version: 3.1.1(eslint@8.57.1)(typescript@5.7.3)
       '@khanacademy/eslint-plugin-wonder-blocks':
-        specifier: ^0.2.0
-        version: 0.2.0(eslint@8.57.1)(typescript@5.7.3)
+        specifier: workspace:*
+        version: link:packages/eslint-plugin-wonder-blocks
       '@khanacademy/wonder-blocks-accordion':
         specifier: workspace:*
         version: link:packages/wonder-blocks-accordion
@@ -2699,11 +2699,6 @@ packages:
       eslint-plugin-jsx-a11y: ^6.10.2
       eslint-plugin-prettier: ^3.4.0
       eslint-plugin-react: ^7.24.0
-
-  '@khanacademy/eslint-plugin-wonder-blocks@0.2.0':
-    resolution: {integrity: sha512-qBLiopdwuAQTCn5YykClFjRhLpuVHxAshYMm2afZz9BNcNYKDziK8fyACeabwpQ6ilob/KCHElhHO38VUZdq7w==}
-    peerDependencies:
-      eslint: ^8.57.0
 
   '@khanacademy/eslint-plugin@3.1.1':
     resolution: {integrity: sha512-1tOJRN1MWc7tOiSwxBT9KfOmo46d0/eB3P3On4PCZKkrrdC+wDNTxQ3FWX+xZBCjl6bSdh/ab5HZkOatDD7efA==}
@@ -9447,14 +9442,6 @@ snapshots:
       eslint-plugin-jsx-a11y: 6.10.2(eslint@8.57.1)
       eslint-plugin-prettier: 5.2.3(@types/eslint@9.6.1)(eslint-config-prettier@10.0.1(eslint@8.57.1))(eslint@8.57.1)(prettier@3.4.2)
       eslint-plugin-react: 7.37.4(eslint@8.57.1)
-
-  '@khanacademy/eslint-plugin-wonder-blocks@0.2.0(eslint@8.57.1)(typescript@5.7.3)':
-    dependencies:
-      '@typescript-eslint/utils': 8.58.0(eslint@8.57.1)(typescript@5.7.3)
-      eslint: 8.57.1
-    transitivePeerDependencies:
-      - supports-color
-      - typescript
 
   '@khanacademy/eslint-plugin@3.1.1(eslint@8.57.1)(typescript@5.7.3)':
     dependencies:
