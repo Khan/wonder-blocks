@@ -111,7 +111,6 @@
     "@types/react-window": "^1.8.8",
     "@typescript-eslint/eslint-plugin": "8.17.0",
     "@typescript-eslint/parser": "8.17.0",
-    "@typescript-eslint/rule-tester": "^8.58.0",
     "@vitejs/plugin-react-swc": "^3.9.0",
     "@vitest/browser": "^4.0.15",
     "@vitest/browser-playwright": "^4.0.15",
