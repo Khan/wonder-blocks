@@ -54,7 +54,14 @@ export const BLOCK_CONTAINER_TAGS = new Set([
  * Wonder Blocks form components that internally render a <label> or similar
  * inline-context element around their content.
  */
-export const WB_FORM_COMPONENTS = new Set(["Choice", "Checkbox", "Radio"]);
+export const WB_FORM_COMPONENTS = new Set([
+    "Choice",
+    "Checkbox",
+    "Radio",
+    "LabeledField",
+    "RadioGroup",
+    "CheckboxGroup",
+]);
 
 /**
  * Wonder Blocks Button component names. Buttons are inline contexts and
@@ -63,7 +70,7 @@ export const WB_FORM_COMPONENTS = new Set(["Choice", "Checkbox", "Radio"]);
 export const WB_BUTTON_COMPONENTS = new Set(["Button", "ActivityButton"]);
 
 /**
- * HTML heading element names.
+ * HTML heading element names and their styled-component equivalents.
  */
 export const HTML_HEADING_ELEMENTS = new Set([
     "h1",
@@ -72,6 +79,12 @@ export const HTML_HEADING_ELEMENTS = new Set([
     "h4",
     "h5",
     "h6",
+    "StyledH1",
+    "StyledH2",
+    "StyledH3",
+    "StyledH4",
+    "StyledH5",
+    "StyledH6",
 ]);
 
 /**
@@ -98,7 +111,7 @@ export function getAttributeStringValue(
         (a): a is TSESTree.JSXAttribute =>
             a.type === "JSXAttribute" &&
             a.name.type === "JSXIdentifier" &&
-            (a.name as TSESTree.JSXIdentifier).name === attributeName,
+            a.name.name === attributeName,
     );
 
     if (!attr?.value) {
@@ -113,7 +126,7 @@ export function getAttributeStringValue(
         attr.value.type === "JSXExpressionContainer" &&
         attr.value.expression.type === "Literal"
     ) {
-        return String((attr.value.expression as TSESTree.Literal).value);
+        return String(attr.value.expression.value);
     }
 
     return null;

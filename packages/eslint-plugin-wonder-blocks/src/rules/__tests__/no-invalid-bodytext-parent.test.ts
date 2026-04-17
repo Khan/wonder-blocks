@@ -104,6 +104,10 @@ ruleTester.run(ruleName, rule, {
         {code: `<h1><BodyText tag="sup">Sup</BodyText></h1>`},
         {code: `<h2><BodyText tag="span">Sub</BodyText></h2>`},
 
+        // BodyText with an inline tag inside StyledH* elements
+        {code: `<StyledH1><BodyText tag="sup">Sup</BodyText></StyledH1>`},
+        {code: `<StyledH2><BodyText tag="span">Sub</BodyText></StyledH2>`},
+
         // BodyText with other inline tag variants
         {code: `<button><BodyText tag="code">Code</BodyText></button>`},
         {code: `<label><BodyText tag="strong">Bold</BodyText></label>`},
@@ -315,6 +319,23 @@ ruleTester.run(ruleName, rule, {
             code: `<h6><BodyText>Sub text</BodyText></h6>`,
             errors: [{messageId: "nestedInHeading"}],
             output: `<h6><BodyText tag="span">Sub text</BodyText></h6>`,
+        },
+
+        // --- StyledH* elements ---
+        {
+            code: `<StyledH1><BodyText>Sub text</BodyText></StyledH1>`,
+            errors: [{messageId: "nestedInHeading"}],
+            output: `<StyledH1><BodyText tag="span">Sub text</BodyText></StyledH1>`,
+        },
+        {
+            code: `<StyledH2><BodyText>Sub text</BodyText></StyledH2>`,
+            errors: [{messageId: "nestedInHeading"}],
+            output: `<StyledH2><BodyText tag="span">Sub text</BodyText></StyledH2>`,
+        },
+        {
+            code: `<StyledH6><BodyText>Sub text</BodyText></StyledH6>`,
+            errors: [{messageId: "nestedInHeading"}],
+            output: `<StyledH6><BodyText tag="span">Sub text</BodyText></StyledH6>`,
         },
 
         // --- BodyText with a non-inline tag is still invalid in restricted

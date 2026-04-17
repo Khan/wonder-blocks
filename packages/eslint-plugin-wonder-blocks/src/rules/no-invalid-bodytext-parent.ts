@@ -46,7 +46,7 @@ function getNearestAncestorJSXElement(
     let current: TSESTree.Node | undefined = openingElement.parent?.parent;
     while (current != null) {
         if (current.type === "JSXElement") {
-            return current as TSESTree.JSXElement;
+            return current;
         }
         current = current.parent;
     }
@@ -70,7 +70,7 @@ function buildSpanTagFix(
         (a): a is TSESTree.JSXAttribute =>
             a.type === "JSXAttribute" &&
             a.name.type === "JSXIdentifier" &&
-            (a.name as TSESTree.JSXIdentifier).name === "tag",
+            a.name.name === "tag",
     );
 
     if (existingTagAttr) {
@@ -98,7 +98,7 @@ export default createRule<Options, MessageIds>({
         docs: {
             description:
                 "Disallow BodyText with a block-level tag (default <p>) inside elements that cannot contain block-level content",
-            recommended: true,
+            recommended: false,
         },
         fixable: "code",
         schema: [],
