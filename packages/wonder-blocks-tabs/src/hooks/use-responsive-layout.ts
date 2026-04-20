@@ -62,6 +62,9 @@ export function useResponsiveLayout(
     // we can switch back to the tabs view when the container width is wide enough.
     const tabsWidthRef = React.useRef<number | null>(null);
 
+    // Keep track of the container width to avoid unnecessary overflow checks when the container width is the same.
+    const containerWidthRef = React.useRef<number | null>(null);
+
     // Create a signature of the tabs to detect changes (tab added/removed, label changed, presence of tab icon)
     const tabsSignature = React.useMemo(
         () =>
@@ -130,7 +133,11 @@ export function useResponsiveLayout(
 
         // Check for overflow when the container size changes (screen size change, width change, etc)
         const resizeObserver = new ResizeObserver(() => {
-            checkOverflow();
+            // Only check for overflow if the container width has changed
+            if (containerWidthRef.current !== container.clientWidth) {
+                containerWidthRef.current = container.clientWidth;
+                checkOverflow();
+            }
         });
 
         resizeObserver.observe(container);
