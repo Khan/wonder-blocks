@@ -106,9 +106,10 @@ export function useResponsiveLayout(
     }, [showDropdown, elementWithOverflowRef, containerRef]);
 
     React.useEffect(() => {
-        // When tabsSignature changes and dropdown is shown, reset to tabs
-        // layout so we can re-measure with the new content. The MutationObserver
-        // handles checking for overflow once the new content is mounted.
+        // When tabsSignature changes and dropdown is shown, reset to horizontal tabs
+        // layout so we can re-measure with the new content (label, icon, number of tabs, etc).
+        // The MutationObserver handles checking for overflow once the new content
+        // is rendered.
         if (showDropdown) {
             tabsWidthRef.current = null;
             setShowDropdown(false);
