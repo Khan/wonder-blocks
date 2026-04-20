@@ -40,6 +40,18 @@ export default {
         },
         options: Object.keys(color) as Array<string>,
     },
+    forceAnchorFocusivity: {
+        description:
+            "If true, adds `tabindex=0` to the anchor element when it doesn't already have one, making it keyboard focusable. Set to false when the anchor is already focusable (e.g. a link or button). Defaults to `true`.",
+        control: {
+            type: "boolean",
+        },
+        table: {
+            type: {
+                summary: "boolean",
+            },
+        },
+    },
     autoUpdate: {
         description:
             "Whether the tooltip should automatically update its position when the anchor element changes size or position.",

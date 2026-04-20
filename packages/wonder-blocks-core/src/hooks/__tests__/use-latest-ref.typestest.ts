@@ -1,21 +1,31 @@
-// Suppress the linter so we can call hooks at the top level.
-/* eslint-disable react-hooks/rules-of-hooks */
 import * as React from "react";
+import {describe, expect, it} from "tstyche";
 import {useLatestRef} from "../use-latest-ref";
 
-// The correct, non-nullable type should be inferred for `current`.
-useLatestRef(123) satisfies {current: number};
+describe("useLatestRef", () => {
+    it("should infer the non-nullable type for `current`", () => {
+        expect(useLatestRef(123)).type.toBeAssignableTo<{current: number}>();
+    });
 
-// The return value should be assignable to React's ref types.
-useLatestRef(123) satisfies React.RefObject<number>;
-useLatestRef(123) satisfies React.MutableRefObject<number>;
+    it("should be assignable to React.RefObject", () => {
+        expect(useLatestRef(123)).type.toBeAssignableTo<
+            React.RefObject<number>
+        >();
+    });
 
-// @ts-expect-error the result should not be assignable to the wrong type
-useLatestRef(123) satisfies {current: string};
+    it("should be assignable to React.MutableRefObject", () => {
+        expect(useLatestRef(123)).type.toBeAssignableTo<
+            React.MutableRefObject<number>
+        >();
+    });
 
-{
-    // The `current` property of the returned object should be readonly
-    const ref = useLatestRef("");
-    // @ts-expect-error the current property should be readonly
-    ref.current = "changed";
-}
+    it("should not be assignable to a ref with a different type", () => {
+        expect(useLatestRef(123)).type.not.toBeAssignableTo<{
+            current: string;
+        }>();
+    });
+
+    it("should make `current` readonly", () => {
+        expect(useLatestRef("")).type.toBe<{readonly current: string}>();
+    });
+});

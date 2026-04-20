@@ -76,6 +76,7 @@ export const Tab = React.forwardRef(function Tab(
         <StyledButton
             {...otherProps}
             type="button" // this prevents form submissions if the tab is inside a form
+            // eslint-disable-next-line @khanacademy/wonder-blocks/no-custom-tab-role -- This is the element with role="tab" in ResponsiveTabs
             role="tab"
             onClick={onClick}
             ref={ref}

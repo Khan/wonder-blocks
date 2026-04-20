@@ -5,6 +5,8 @@ packages:
     - "build-settings"
     # AST transforms
     - "wb-codemod"
+    # ESLint plugin demo
+    - "packages/eslint-plugin-wonder-blocks/demo"
 catalog:
     # Wonder Stuff
     "@khanacademy/wonder-stuff-core": ^3.0.0

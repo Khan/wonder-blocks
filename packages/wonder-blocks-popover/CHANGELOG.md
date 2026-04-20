@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-popover
 
+## 6.2.0
+
+### Minor Changes
+
+- 6ecb7cc: Add autoUpdate prop to Popover component
+
 ## 6.1.57
 
 ### Patch Changes
