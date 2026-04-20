@@ -89,8 +89,12 @@ export function useResponsiveLayout(
                     scrollableWrapper.clientWidth;
 
                 if (hasOverflow) {
-                    // Store the width before switching
-                    tabsWidthRef.current = scrollableWrapper.scrollWidth;
+                    // Store the container width needed to show tabs without
+                    // overflow. Accounts for any gap (padding/margin) between
+                    // the container and the scrollable element.
+                    tabsWidthRef.current =
+                        scrollableWrapper.scrollWidth +
+                        (container.clientWidth - scrollableWrapper.clientWidth);
                     setShowDropdown(true);
                 }
             }
