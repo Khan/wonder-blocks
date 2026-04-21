@@ -1,5 +1,11 @@
 # @khanacademy/eslint-plugin-wonder-blocks
 
+## 0.3.0
+
+### Minor Changes
+
+- a421ae1: Add new Typography lint rule for no-invalid-bodytext-parent to avoid nested paragraphs
+
 ## 0.2.0
 
 ### Minor Changes
