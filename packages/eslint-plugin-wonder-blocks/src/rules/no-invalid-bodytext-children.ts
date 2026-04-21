@@ -1,6 +1,11 @@
 import {ESLintUtils, TSESTree} from "@typescript-eslint/utils";
 
 import type {WonderBlocksPluginDocs} from "../types";
+import {
+    HTML_BLOCK_ELEMENTS,
+    WB_HEADING_COMPONENTS,
+    rendersAsParagraph,
+} from "./jsx-utils";
 
 const createRule = ESLintUtils.RuleCreator<WonderBlocksPluginDocs>(
     (name) =>
@@ -16,107 +21,6 @@ type MessageIds =
     | "tooManyChildren";
 
 const DEFAULT_MAX_CHILDREN = 5;
-
-/**
- * HTML elements that are block-level and therefore cannot appear inside a <p>.
- * Excludes <div> and <p> which have their own dedicated message IDs.
- * https://html.spec.whatwg.org/#phrasing-content
- */
-const HTML_BLOCK_ELEMENTS = new Set([
-    "address",
-    "article",
-    "aside",
-    "blockquote",
-    "dd",
-    "details",
-    "dl",
-    "dt",
-    "fieldset",
-    "figcaption",
-    "figure",
-    "footer",
-    "form",
-    "h1",
-    "h2",
-    "h3",
-    "h4",
-    "h5",
-    "h6",
-    "header",
-    "hgroup",
-    "hr",
-    "li",
-    "main",
-    "nav",
-    "ol",
-    "pre",
-    "section",
-    "summary",
-    "table",
-    "ul",
-]);
-
-/**
- * Wonder Blocks components that render as block-level heading elements and
- * therefore cannot be children of a <p>.
- */
-const WB_HEADING_COMPONENTS = new Set([
-    "Heading",
-    "HeadingLarge",
-    "HeadingMedium",
-    "HeadingSmall",
-    "HeadingXSmall",
-]);
-
-/**
- * Returns the string value of a JSX attribute if it is a simple string
- * literal, otherwise null.
- */
-function getAttributeStringValue(
-    openingElement: TSESTree.JSXOpeningElement,
-    attributeName: string,
-): string | null {
-    const attr = openingElement.attributes.find(
-        (a): a is TSESTree.JSXAttribute =>
-            a.type === "JSXAttribute" &&
-            a.name.type === "JSXIdentifier" &&
-            (a.name as TSESTree.JSXIdentifier).name === attributeName,
-    );
-
-    if (!attr?.value) {
-        return null;
-    }
-
-    if (attr.value.type === "Literal") {
-        return String(attr.value.value);
-    }
-
-    if (
-        attr.value.type === "JSXExpressionContainer" &&
-        attr.value.expression.type === "Literal"
-    ) {
-        return String((attr.value.expression as TSESTree.Literal).value);
-    }
-
-    return null;
-}
-
-/**
- * Returns true when the BodyText opening element has no tag prop or a tag prop
- * that is not an inline/phrasing-content value, meaning it will render as <p>.
- *
- * Block-container tags (div, section, …) also return false here because a
- * block-level BodyText can legitimately contain block children.
- */
-function rendersAsParagraph(
-    openingElement: TSESTree.JSXOpeningElement,
-): boolean {
-    const tag = getAttributeStringValue(openingElement, "tag");
-    // No tag → defaults to <p>.
-    // tag="p" → explicitly <p>.
-    // Any inline or block-container tag → not a paragraph.
-    return tag === null || tag === "p";
-}
 
 export default createRule<Options, MessageIds>({
     name: "no-invalid-bodytext-children",
