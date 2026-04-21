@@ -216,7 +216,6 @@ module.exports = {
                 matchers: ["toHaveNoA11yViolations"],
             },
         ],
-
         /**
          * TypeScript rules
          */

@@ -1,5 +1,5 @@
 {
-    "exclude": ["dist", "demo"],
+    "exclude": ["dist", "demo", "src/**/__tests__"],
     "extends": "../tsconfig-shared.json",
     "compilerOptions": {
         "outDir": "./dist",
