@@ -1,11 +1,12 @@
 /**
  * Tests for the no-invalid-bodytext-children ESLint rule.
  *
- * Uses RuleTester to verify that the rule correctly flags block-level elements
- * and excessive children inside BodyText components.
+ * Uses ESLint's RuleTester to verify that the rule correctly flags block-level
+ * elements and excessive children inside BodyText components.
  */
 import {RuleTester} from "@typescript-eslint/rule-tester";
-import noInvalidBodyTextChildren from "../no-invalid-bodytext-children";
+
+import {rules} from "..";
 
 const ruleTester = new RuleTester({
     languageOptions: {
@@ -17,9 +18,13 @@ const ruleTester = new RuleTester({
     },
 });
 
-ruleTester.run("no-invalid-bodytext-children", noInvalidBodyTextChildren, {
+const ruleName = "no-invalid-bodytext-children";
+const rule = rules[ruleName];
+
+ruleTester.run(ruleName, rule, {
     // ------------------------------------------------------------------ //
-    // VALID                                                               //
+    // VALID — inline/phrasing-content children are always allowed;        //
+    //         block children are fine when BodyText uses a block tag.     //
     // ------------------------------------------------------------------ //
     valid: [
         // Plain text is always fine
@@ -71,7 +76,8 @@ ruleTester.run("no-invalid-bodytext-children", noInvalidBodyTextChildren, {
     ],
 
     // ------------------------------------------------------------------ //
-    // INVALID                                                             //
+    // INVALID — block-level children inside a paragraph-rendering         //
+    //           BodyText, or too many direct element children.            //
     // ------------------------------------------------------------------ //
     invalid: [
         // ---------------------------------------------------------------- //
