@@ -248,7 +248,7 @@ export const TogglingIconInLabels: Story = {
 
         // Toggle the icons
         await userEvent.click(
-            canvas.getByRole("button", {name: /toggle icons/i}),
+            canvas.getByRole("button", {name: "Toggle icons"}),
         );
 
         // Confirm the dropdown layout is used

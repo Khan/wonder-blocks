@@ -115,6 +115,12 @@ const styles: StyleDeclaration = StyleSheet.create({
         fontWeight: font.weight.semi,
         lineHeight: font.heading.lineHeight.xlarge,
     },
+    HeadingXxLargeMediumWeight: {
+        ...Heading,
+        fontSize: font.heading.size.xxlarge,
+        fontWeight: font.weight.medium,
+        lineHeight: font.heading.lineHeight.xxlarge,
+    },
     HeadingXxLargeSemiWeight: {
         ...Heading,
         fontSize: font.heading.size.xxlarge,
