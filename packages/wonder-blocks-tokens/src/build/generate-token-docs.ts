@@ -77,7 +77,7 @@ type Group = {
 const groups: ReadonlyArray<Group> = [
     {
         id: "border",
-        title: "References / Token Map / Border",
+        title: "References / Tokens Map / Border",
         heading: "Border tokens map",
         tokenPrefix: "border",
         description:
@@ -87,7 +87,7 @@ const groups: ReadonlyArray<Group> = [
     },
     {
         id: "box-shadow",
-        title: "References / Token Map / Box Shadow",
+        title: "References / Tokens Map / Box Shadow",
         heading: "Box shadow tokens map",
         tokenPrefix: "boxShadow",
         description:
@@ -97,7 +97,7 @@ const groups: ReadonlyArray<Group> = [
     },
     {
         id: "font",
-        title: "References / Token Map / Font",
+        title: "References / Tokens Map / Font",
         heading: "Font tokens map",
         tokenPrefix: "font",
         description:
@@ -115,11 +115,10 @@ const groups: ReadonlyArray<Group> = [
     },
     {
         id: "semantic-color",
-        title: "References / Token Map / Semantic Color",
+        title: "References / Tokens Map / Semantic Color",
         heading: "Semantic color tokens map",
         tokenPrefix: "semanticColor",
-        description:
-            "Semantic colors are the recommended way to color UI. Prefer these over primitive `color` tokens.",
+        description: "Semantic colors are the recommended way to color UI.",
         getTokens: (theme) => {
             return {
                 ...theme.semanticColor,
@@ -133,17 +132,17 @@ const groups: ReadonlyArray<Group> = [
     },
     {
         id: "sizing",
-        title: "References / Token Map / Sizing",
+        title: "References / Tokens Map / Sizing",
         heading: "Sizing tokens map",
         tokenPrefix: "sizing",
         description:
-            "Sizing tokens, expressed in `rem` and following the 8px baseline. Use for padding, margin, width, height, typography, etc.",
+            "Sizing tokens, expressed in `rem`. Use for padding, margin, width, height, etc.",
         getTokens: (theme) => theme.sizing,
         includeCssVar: true,
     },
     {
         id: "breakpoint",
-        title: "References / Token Map / Media Query Breakpoints",
+        title: "References / Tokens Map / Media Query Breakpoints",
         heading: "Media query breakpoints map",
         tokenPrefix: "breakpoint",
         description:
