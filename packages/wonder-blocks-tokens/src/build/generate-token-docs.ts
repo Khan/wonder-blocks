@@ -164,8 +164,7 @@ function renderThemedTable(
 ): string {
     // Flatten each theme independently, then walk the union of paths in
     // insertion order so novel paths (if any) still appear.
-    const perTheme = themes.map(({id, label, theme}) => ({
-        id,
+    const perTheme = themes.map(({label, theme}) => ({
         label,
         tokens: flattenToMap(group.getTokens(theme)),
     }));
