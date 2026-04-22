@@ -234,7 +234,7 @@ function renderMdx(group: Group): string {
 
 import {Meta} from "@storybook/addon-docs/blocks";
 
-<Meta title="${group.title}" />
+<Meta title="${group.title}" summary="${group.description}" />
 
 # ${group.heading}
 
