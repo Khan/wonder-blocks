@@ -131,6 +131,10 @@ const core = {
             low: transparentShadowColor,
             mid: transparentShadowColor,
             high: transparentShadowColor,
+            color: {
+                subtle: color.blue_alpha20,
+                strong: color.offBlack16,
+            },
         },
         chonky: {
             instructive: {

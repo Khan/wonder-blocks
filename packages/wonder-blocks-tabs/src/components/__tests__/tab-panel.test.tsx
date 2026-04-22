@@ -122,6 +122,7 @@ describe("TabPanel", () => {
                     <div>
                         <div role="tablist">
                             <button
+                                // eslint-disable-next-line @khanacademy/wonder-blocks/no-custom-tab-role -- Explicitly testing an example with an element with role="tab"
                                 role="tab"
                                 id={tabId}
                                 aria-controls={panelId}

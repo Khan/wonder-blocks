@@ -34,7 +34,7 @@ export default {
         onLayoutChange: fn(),
         "aria-label": "Responsive Tabs",
     },
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
     globals: {
         theme: "thunderblocks",
     },

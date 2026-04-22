@@ -5,7 +5,7 @@
   "description": "React components for Wonder Blocks design system.",
   "main": "index.js",
   "engines": {
-    "node": ">=20.20 <25"
+    "node": ">=24.13 <25"
   },
   "scripts": {
     "alex": "alex packages/",
@@ -34,6 +34,7 @@
     "test:storybook": "vitest --project=storybook",
     "test": "pnpm run jest && pnpm run test:common",
     "typecheck": "tsc",
+    "typetest": "tstyche",
     "typewatch": "tsc --noEmit --watch --incremental",
     "add:devdepbysha": "bash -c 'pnpm add -W --dev \"git+https://git@github.com/Khan/$0.git#$1\"'"
   },
@@ -44,6 +45,7 @@
     "@jest/globals": "^29.7.0",
     "@khanacademy/eslint-config": "^5.2.0",
     "@khanacademy/eslint-plugin": "^3.1.1",
+    "@khanacademy/eslint-plugin-wonder-blocks": "workspace:*",
     "@khanacademy/wonder-blocks-accordion": "workspace:*",
     "@khanacademy/wonder-blocks-announcer": "workspace:*",
     "@khanacademy/wonder-blocks-badge": "workspace:*",
@@ -80,6 +82,8 @@
     "@rollup/plugin-swc": "^0.4.0",
     "@storybook/addon-a11y": "^10.1.10",
     "@storybook/addon-docs": "^10.1.10",
+    "@storybook/addon-links": "10.1.10",
+    "@storybook/addon-mcp": "^0.4.1",
     "@storybook/addon-vitest": "10.1.10",
     "@storybook/builder-vite": "^10.1.10",
     "@storybook/react-vite": "^10.1.10",
@@ -90,6 +94,7 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^14.6.1",
+    "@types/aria-query": "^5.0.4",
     "@types/history": "^4.7.11",
     "@types/jest": "^29.5.14",
     "@types/jest-axe": "^3.5.9",
@@ -142,7 +147,9 @@
     "rollup-plugin-node-externals": "^8.0.0",
     "storybook": "10.1.10",
     "storybook-addon-pseudo-states": "^10.1.10",
+    "storybook-addon-tag-badges": "^3.0.6",
     "swc_mut_cjs_exports": "^10.7.0",
+    "tstyche": "^7.0.0",
     "turbo": "^2.5.3",
     "typescript": "5.7.3",
     "typescript-coverage-report": "^1.1.0",

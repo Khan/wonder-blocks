@@ -123,6 +123,7 @@ export const ActivityIconButton: React.ForwardRefExoticComponent<
         <IconButtonUnstyled
             {...restProps}
             disabled={disabled}
+            kind={kind}
             onPress={handlePress}
             ref={ref}
             style={styles}

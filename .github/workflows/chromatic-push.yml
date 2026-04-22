@@ -1,31 +1,30 @@
 name: Chromatic - Push
 
 on:
-  push:
-    branches:
-      - main
-      - 'dependabot/**'
+    push:
+        branches:
+            - main
+            - "dependabot/**"
 
 jobs:
+    # ------- Dependabot PRs --------
+    chromatic_dependabot:
+        # (if) Run this step on dependabot PRs.
+        if: github.actor == 'dependabot[bot]'
+        name: Chromatic - Skip on dependabot PRs (push)
+        uses: ./.github/workflows/chromatic-build.yml
+        with:
+            target: "bot"
+        secrets:
+            projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
 
-  # ------- Dependabot PRs --------
-  chromatic_dependabot:
-    # (if) Run this step on dependabot PRs.
-    if: github.actor == 'dependabot[bot]'
-    name: Chromatic - Skip on dependabot PRs (push)
-    uses: ./.github/workflows/chromatic-build.yml
-    with:
-      target: 'bot'
-    secrets:
-      projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
-
-  # ------- main branch --------
-  chromatic_main:
-    # (else) Run this step on the main branch.
-    if: github.ref_name == 'main'
-    name: Chromatic - Auto-approve on main (push)
-    uses: ./.github/workflows/chromatic-build.yml
-    with:
-      target: 'main'
-    secrets:
-      projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
+    # ------- main branch --------
+    chromatic_main:
+        # (else) Run this step on the main branch.
+        if: github.ref_name == 'main'
+        name: Chromatic - Auto-approve on main (push)
+        uses: ./.github/workflows/chromatic-build.yml
+        with:
+            target: "main"
+        secrets:
+            projectToken: ${{ secrets.CHROMATIC_APP_CODE }}

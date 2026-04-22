@@ -24,3 +24,7 @@ CODEOWNERS
 **/*.svg
 
 types/
+packages/eslint-plugin-wonder-blocks/demo
+
+# ignore auto-generated util type files
+utils/**/*.d.ts

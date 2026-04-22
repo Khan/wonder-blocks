@@ -173,6 +173,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
             onMouseUp={onMouseUp}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
+            kind={kind}
         >
             {contents}
         </ButtonUnstyled>

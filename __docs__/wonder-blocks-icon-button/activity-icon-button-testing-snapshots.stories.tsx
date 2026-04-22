@@ -20,7 +20,7 @@ import {StatusBadge} from "@khanacademy/wonder-blocks-badge";
  */
 export default {
     title: "Packages / IconButton / Testing / Snapshots / ActivityIconButton",
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
     args: {
         "aria-label": "Send",
         icon: paperPlaneIcon,
