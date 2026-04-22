@@ -1,0 +1,116 @@
+import * as React from "react";
+import {Meta} from "@storybook/addon-docs/blocks";
+import {ThemeSwitcher} from "@khanacademy/wonder-blocks-theming";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
+import {
+    semanticColor,
+    sizing,
+    tokenValue,
+} from "@khanacademy/wonder-blocks-tokens";
+
+<Meta title="Packages / Tokens / Utilities / tokenValue" />
+
+# tokenValue()
+
+Wonder Blocks semantic tokens are exported as CSS `var(--...)` references so
+that the active theme can switch values through the CSS cascade. This is great
+for styling, but less useful when a third-party library expects a concrete
+value such as `#1865f2` or `rgba(24, 101, 242, 0.5)`.
+
+The `tokenValue` helper resolves a token to its computed raw value at runtime.
+
+## Usage
+
+```js
+import {tokenValue} from "@khanacademy/wonder-blocks-tokens";
+
+tokenValue(token: string, element?: Element): string;
+```
+
+## API
+
+| Argument  | TypeScript Type | Default                     | Description                                                                                                                           |
+| --------- | --------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `token`   | `string`        | _Required_                  | A token value, typically a `var(--...)` reference from this package. Values that are not `var(...)` expressions are returned as-is.   |
+| `element` | `Element`       | `document.documentElement`  | The element whose computed style is read. Pass a descendant of a `[data-wb-theme]` element to resolve the value for that theme scope. |
+
+The function returns the trimmed raw value. If the custom property is not
+defined on the given element, an empty string is returned.
+
+> **Note:** `tokenValue` reads `getComputedStyle` and is not safe to call in a
+> server-side rendering environment. Call it from browser-only code paths
+> (event handlers, effects, etc.).
+
+## Example
+
+This example resolves the same semantic token twice — once in the `default`
+theme scope and once inside a `thunderblocks` scope — to show how the returned
+value reflects the active theme.
+
+export const TokenValueExample = () => {
+    const [defaultValue, setDefaultValue] = React.useState("");
+    const [tbValue, setTbValue] = React.useState("");
+    const defaultRef = React.useRef(null);
+    const tbRef = React.useRef(null);
+
+    React.useEffect(() => {
+        if (defaultRef.current) {
+            setDefaultValue(
+                tokenValue(
+                    semanticColor.core.foreground.instructive.default,
+                    defaultRef.current,
+                ),
+            );
+        }
+        if (tbRef.current) {
+            setTbValue(
+                tokenValue(
+                    semanticColor.core.foreground.instructive.default,
+                    tbRef.current,
+                ),
+            );
+        }
+    }, []);
+
+    return (
+        <View style={{flexDirection: "row", gap: sizing.size_240}}>
+            <ThemeSwitcher theme="default">
+                <View ref={defaultRef} style={{gap: sizing.size_080}}>
+                    <Heading>default theme</Heading>
+                    <BodyText>
+                        Raw value: <code>{defaultValue || "…"}</code>
+                    </BodyText>
+                </View>
+            </ThemeSwitcher>
+            <ThemeSwitcher theme="thunderblocks">
+                <View ref={tbRef} style={{gap: sizing.size_080}}>
+                    <Heading>thunderblocks theme</Heading>
+                    <BodyText>
+                        Raw value: <code>{tbValue || "…"}</code>
+                    </BodyText>
+                </View>
+            </ThemeSwitcher>
+        </View>
+    );
+};
+
+<TokenValueExample />
+
+```tsx
+import {
+    semanticColor,
+    tokenValue,
+} from "@khanacademy/wonder-blocks-tokens";
+
+// Reads the active theme's value from :root.
+const instructive = tokenValue(
+    semanticColor.core.foreground.instructive.default,
+);
+
+// Reads the value that would apply inside a specific theme scope.
+const instructiveInScope = tokenValue(
+    semanticColor.core.foreground.instructive.default,
+    elementInsideThunderblocksScope,
+);
+```
