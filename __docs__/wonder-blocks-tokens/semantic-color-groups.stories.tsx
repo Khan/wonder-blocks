@@ -11,7 +11,7 @@ export default {
             disableSnapshot: true,
         },
     },
-    tags: ["!dev", "!autodocs"],
+    tags: ["!dev", "!autodocs", "!manifest"],
 };
 
 const valuePrefix = "semanticColor.";
