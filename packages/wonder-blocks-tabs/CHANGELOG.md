@@ -1,5 +1,19 @@
 # @khanacademy/wonder-blocks-tabs
 
+## 0.5.8
+
+### Patch Changes
+
+- 00e6dda: Updates internal WB typography references to use the new system (Heading and BodyText)
+- Updated dependencies [488728a]
+- Updated dependencies [00e6dda]
+    - @khanacademy/wonder-blocks-tokens@16.2.0
+    - @khanacademy/wonder-blocks-typography@4.3.0
+    - @khanacademy/wonder-blocks-button@11.5.1
+    - @khanacademy/wonder-blocks-dropdown@10.8.5
+    - @khanacademy/wonder-blocks-icon@5.3.10
+    - @khanacademy/wonder-blocks-link@10.1.8
+
 ## 0.5.7
 
 ### Patch Changes

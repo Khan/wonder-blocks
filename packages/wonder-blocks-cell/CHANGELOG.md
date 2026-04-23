@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-cell
 
+## 6.1.12
+
+### Patch Changes
+
+- Updated dependencies [488728a]
+- Updated dependencies [00e6dda]
+    - @khanacademy/wonder-blocks-tokens@16.2.0
+    - @khanacademy/wonder-blocks-typography@4.3.0
+    - @khanacademy/wonder-blocks-clickable@8.1.6
+    - @khanacademy/wonder-blocks-styles@0.2.41
+
 ## 6.1.11
 
 ### Patch Changes
