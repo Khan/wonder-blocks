@@ -1,7 +1,10 @@
 import {ArgTypes} from "@storybook/react-vite";
+
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
+    ...AriaArgTypes,
     children: {
         type: {name: "string", required: true},
     },
