@@ -19,7 +19,7 @@ const themes: ReadonlyArray<{
     {id: "thunderblocks", label: "Thunderblocks", theme: themeThunderblocks},
 ];
 
-function flattenToMap(
+export function flattenToMap(
     obj: unknown,
     prefix = "",
     map: Map<string, string | number> = new Map(),
@@ -41,7 +41,7 @@ function flattenToMap(
     return map;
 }
 
-function toCssVar(tokenGroup: string, dotPath: string): string {
+export function toCssVar(tokenGroup: string, dotPath: string): string {
     return `${CSS_VAR_PREFIX}${tokenGroup}-${dotPath.replace(/\./g, "-")}`;
 }
 
@@ -75,7 +75,7 @@ type Group = {
       }
 );
 
-const groups: ReadonlyArray<Group> = [
+export const groups: ReadonlyArray<Group> = [
     {
         id: "border",
         title: "References / Tokens Map / Border",
@@ -225,7 +225,7 @@ function renderSimpleTable(group: Group & {tokens: unknown}): string {
     return `${header}\n${divider}\n${body}`;
 }
 
-function renderMdx(group: Group): string {
+export function renderMdx(group: Group): string {
     const table =
         "getTokens" in group
             ? renderThemedTable(group)
