@@ -8,7 +8,7 @@ import {
     semanticColor,
     spacing,
 } from "@khanacademy/wonder-blocks-tokens";
-import {Body} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {useId} from "react";
@@ -296,7 +296,9 @@ const AccordionSection = React.forwardRef(function AccordionSection(
                 testId={testId ? `${testId}-content-panel` : undefined}
             >
                 {typeof children === "string" ? (
-                    <Body style={styles.stringContent}>{children}</Body>
+                    <BodyText tag="span" style={styles.stringContent}>
+                        {children}
+                    </BodyText>
                 ) : (
                     children
                 )}

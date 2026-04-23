@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
-import {Body, HeadingSmall} from "@khanacademy/wonder-blocks-typography";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 
 import type {PopoverContextType} from "./popover-context";
 
@@ -232,15 +232,19 @@ export default class PopoverContent extends React.Component<Props> {
                                 {this.maybeRenderIcon()}
 
                                 <View style={styles.text}>
-                                    <HeadingSmall
+                                    <Heading
+                                        size="medium"
                                         id={`${uniqueId}-title`}
                                         style={styles.title}
                                     >
                                         {title}
-                                    </HeadingSmall>
-                                    <Body id={`${uniqueId}-content`}>
+                                    </Heading>
+                                    <BodyText
+                                        tag="span"
+                                        id={`${uniqueId}-content`}
+                                    >
                                         {content}
-                                    </Body>
+                                    </BodyText>
                                 </View>
                             </View>
 

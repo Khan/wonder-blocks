@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import {View, addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import theme from "../theme";
 
 type Props = {
@@ -64,7 +64,7 @@ export default class FieldHeading extends React.Component<Props> {
 
         return (
             <React.Fragment>
-                <LabelMedium
+                <BodyText
                     style={styles.label}
                     tag="label"
                     htmlFor={id && `${id}-field`}
@@ -72,7 +72,7 @@ export default class FieldHeading extends React.Component<Props> {
                 >
                     {label}
                     {required && requiredIcon}
-                </LabelMedium>
+                </BodyText>
                 <Strut size={spacing.xxxSmall_4} />
             </React.Fragment>
         );
@@ -87,12 +87,14 @@ export default class FieldHeading extends React.Component<Props> {
 
         return (
             <React.Fragment>
-                <LabelSmall
+                <BodyText
+                    size="small"
+                    tag="span"
                     style={styles.description}
                     testId={testId && `${testId}-description`}
                 >
                     {description}
-                </LabelSmall>
+                </BodyText>
                 <Strut size={spacing.xxxSmall_4} />
             </React.Fragment>
         );
@@ -108,14 +110,16 @@ export default class FieldHeading extends React.Component<Props> {
         return (
             <React.Fragment>
                 <Strut size={spacing.small_12} />
-                <LabelSmall
+                <BodyText
+                    size="small"
+                    tag="span"
                     style={styles.error}
                     role="alert"
                     id={id && `${id}-error`}
                     testId={testId && `${testId}-error`}
                 >
                     {error}
-                </LabelSmall>
+                </BodyText>
             </React.Fragment>
         );
     }

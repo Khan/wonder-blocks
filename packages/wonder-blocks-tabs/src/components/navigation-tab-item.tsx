@@ -79,7 +79,7 @@ export const NavigationTabItem = React.forwardRef(function NavigationTabItem(
     function renderChildren() {
         const linkProps: NavigationTabItemLinkProps = {
             style: [
-                typographyStyles.Body,
+                typographyStyles.BodyTextMediumMediumWeight,
                 styles.link,
                 current && styles.currentLink,
             ],
