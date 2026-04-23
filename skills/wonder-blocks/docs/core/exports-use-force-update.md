@@ -1,0 +1,25 @@
+# useForceUpdate()
+
+```ts
+function useForceUpdate(): () => void;
+```
+
+The `useForceUpdate` hook returns a function that can be called to force a component to re-render. This is usually not needed as you should be using `useState` or `useReducer` to manage state and rendering in your component (along with `useCallback` and `useMemo` as necessary). However, there maybe times where caching is used to avoid state. In those cases, the `useForceUpdate` hook can be used to force a re-render upon cached data changing or some other triggering event.
+
+
+---
+
+## Related docs
+
+- [Overview](overview.md)
+- [Add Style](add-style.md)
+- [Exports Use Is Mounted](exports-use-is-mounted.md)
+- [Exports Use Latest Ref](exports-use-latest-ref.md)
+- [Exports Use On Mount Effect](exports-use-on-mount-effect.md)
+- [Exports Use Online](exports-use-online.md)
+- [Exports Use Pre Hydration Effect](exports-use-pre-hydration-effect.md)
+- [Exports Use Render State](exports-use-render-state.md)
+- [Id](id.md)
+- [Initial Fallback](initial-fallback.md)
+- [Server](server.md)
+- [View](view.md)

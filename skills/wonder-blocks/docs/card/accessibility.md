@@ -1,0 +1,56 @@
+# Card Accessibility
+
+Cards cannot be interactive elements themselves (e.g. buttons or links), but they can contain interactive elements as children.
+
+## HTML Semantics
+
+By default, cards render as `<div>` elements. However, you can specify a different semantic element using the `tag` prop:
+
+- `tag="section"` - Use when the card represents a distinct section of content. Accepts an accessible name via `labels.cardAriaLabel`.
+- `tag="figure"` - Use when the card contains media or illustrated content. Accepts an accessible name via `labels.cardAriaLabel`.
+- `tag="article"` - Use when the card represents standalone content
+- `tag="li"` - Use when cards are part of a list (see notes about `inert` below)
+
+## Labeling cards
+
+When using semantic tags like `tag="section"` or `tag="figure"`, you should provide an accessible name for the Card using one of the following (in order of preference):
+
+ 1. `labels.cardAriaLabel`: preferred for translatable strings. It automatically applies to the `aria-label` attribute. See the Dismiss Button section below for dismiss button labeling requirements.
+ 2. `aria-labelledby`: for ID references to existing elements.
+
+Only one labeling mechanism can be used at a time. Refer to the [Accessible Name Computation specification](https://www.w3.org/TR/accname-1.2/#computation-steps) to understand how this is standardized.
+
+When the `onDismiss` prop is provided, a dismiss button will be rendered. In this case, the `labels.dismissButtonAriaLabel` prop is required to provide a translatable, accessible label for the dismiss button.  `labels.dismissButtonAriaDescribedBy` is also available as an optional argument to provide supplemental context.
+
+## Dismiss Button
+
+When `onDismiss` is provided, an accessible dismiss button is automatically added:
+
+- The button has `aria-label` set from `labels.dismissButtonAriaLabel`
+- The button has `aria-describedby` set from the optional `labels.dismissButtonAriaDescribedBy`
+  - Use `labels.dismissButtonAriaDescribedBy` only when `labels.dismissButtonAriaLabel` alone does not provide sufficient context within a reasonable string length.  For example, when there are multiple similar cards on the same page whose distinctions become clear only via the body content of the Card.
+- The button is positioned in the top-right corner of the card (with support for RTL languages)
+- Focus management should be handled by the consuming application when the card is dismissed
+
+## Inert Cards
+
+The `inert` prop can be used to remove cards from the accessibility tree and keyboard tab order:
+
+- Useful for inactive cards in a stack or overlay
+- Sets the `inert` attribute on the card container
+- All interactive elements within the card become non-focusable
+
+See the In a Stack story for an example of disabling cards while keeping them part of a list count, like End-of-Task cards.
+
+## Best Practices
+
+- Ensure cards have a logical heading structure when they contain headings.
+- If cards are part of a collection, consider wrapping them with appropriate container semantics (`<ul>`, `<ol>`, or `role="list"`).
+- When cards are dismissible, ensure focus is moved to an appropriate element after dismissal.
+- When applicable, use meaningful accessible names for semantic landmark tags (`section`, `figure`) so they show in the VoiceOver Rotor and NVDA Elements List.
+
+## References
+
+- [ARIA: section role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/section_role)
+- [ARIA: figure role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/figure_role)
+- [The inert attribute](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/inert)
