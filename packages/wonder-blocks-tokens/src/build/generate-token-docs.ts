@@ -159,7 +159,7 @@ const GENERATED_BANNER = `{/*
   Source: packages/wonder-blocks-tokens/src/build/generate-token-docs.ts
 */}`;
 
-function renderThemedTable(
+export function renderThemedTable(
     group: Group & {getTokens: (theme: ThemeObject) => unknown},
 ): string {
     // Flatten each theme independently, then walk the union of paths in
@@ -204,7 +204,7 @@ function renderThemedTable(
     return `${header}\n${divider}\n${body}`;
 }
 
-function renderSimpleTable(group: Group & {tokens: unknown}): string {
+export function renderSimpleTable(group: Group & {tokens: unknown}): string {
     const rows = Array.from(flattenToMap(group.tokens).entries());
     const columns = group.includeCssVar
         ? ["Token", "CSS Variable", "Value"]
