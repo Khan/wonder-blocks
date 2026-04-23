@@ -2,6 +2,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
+// TODO(WB-2312): Update once we change the default theme to TB
 import themeDefault from "../theme/default";
 import themeThunderblocks from "../theme/thunderblocks";
 import {breakpoint} from "../tokens/media-queries";
