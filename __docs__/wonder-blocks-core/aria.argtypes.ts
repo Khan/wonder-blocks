@@ -1,15 +1,13 @@
 import type {ArgTypes} from "@storybook/react-vite";
 
 /**
- * Shared Storybook argTypes that hide all WAI-ARIA 1.1 attributes (and `role`)
- * defined in `AriaProps` from `@khanacademy/wonder-blocks-core` from the
- * Storybook docs table, controls panel, and components manifest.
+ * Shared Storybook argTypes that hides all props in the `AriaProps` type from
+ * `@khanacademy/wonder-blocks-core` from the Storybook docs.
  *
- * `react-docgen-typescript` cannot preserve JSDoc descriptions through the
- * `Readonly<AriaAttributes>` mapped type in `AriaProps`, so these rows show up
- * in docs without descriptions. Spread this into a story's `argTypes` to omit
- * them entirely; document any aria props a component specifically cares about
- * with its own explicit entry.
+ * This is something we need to include to avoid overloading the Storybook docs
+ * with all of the AriaProps. Component specific aria prop argtypes can be
+ * configured where relevant to override this behaviour so that certain attributes
+ * are intentionally included in the docs.
  *
  * @example
  * import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
@@ -18,6 +16,7 @@ import type {ArgTypes} from "@storybook/react-vite";
  *     argTypes: {
  *         ...AriaArgTypes,
  *         ...componentArgTypes,
+ *         "aria-label": { // intentionally configure aria-label arg type for the component },
  *     },
  * } as Meta<typeof Component>;
  */
