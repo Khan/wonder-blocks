@@ -1,6 +1,9 @@
 import type {ArgTypes} from "@storybook/react-vite";
 
+import AriaArgTypes from "./aria.argtypes";
+
 export default {
+    ...AriaArgTypes,
     children: {
         description: "The content of the `View` element.",
         type: {name: "other", value: "React.ReactNode", required: true},

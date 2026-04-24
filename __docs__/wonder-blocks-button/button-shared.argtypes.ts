@@ -137,8 +137,7 @@ export default {
     /**
      * Accessibility
      */
-    ariaLabel: {
-        name: "aria-label",
+    "aria-label": {
         description: "A label for the button.",
         table: {
             category: "Accessibility",
