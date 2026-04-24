@@ -8,12 +8,16 @@ import {Checkbox, CheckboxGroup, Choice} from "@khanacademy/wonder-blocks-form";
 import {sizing, spacing, font} from "@khanacademy/wonder-blocks-tokens";
 
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 import ComponentInfo from "../components/component-info";
 import Strut from "../../packages/wonder-blocks-layout/src/components/strut";
 
 export default {
     title: "Packages / Form / Checkbox",
     component: Checkbox,
+    argTypes: {
+        ...AriaArgTypes,
+    },
     parameters: {
         componentSubtitle: (
             <ComponentInfo
