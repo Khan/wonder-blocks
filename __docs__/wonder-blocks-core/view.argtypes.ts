@@ -1,9 +1,11 @@
 import type {ArgTypes} from "@storybook/react-vite";
 
 import AriaArgTypes from "./aria.argtypes";
+import EventHandlersArgTypes from "./event-handlers.argtypes";
 
 export default {
     ...AriaArgTypes,
+    ...EventHandlersArgTypes,
     children: {
         description: "The content of the `View` element.",
         type: {name: "other", value: "React.ReactNode", required: true},
@@ -71,5 +73,13 @@ export default {
                 summary: "string",
             },
         },
+    },
+    // Hide internal data attribute props
+    "data-placement": {
+        table: {disable: true},
+    },
+    // Hide internal data attribute props
+    "data-modal-launcher-portal": {
+        table: {disable: true},
     },
 } satisfies ArgTypes;

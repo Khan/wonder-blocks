@@ -1,4 +1,9 @@
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
+import EventHandlersArgTypes from "../wonder-blocks-core/event-handlers.argtypes";
+
 export default {
+    ...AriaArgTypes,
+    ...EventHandlersArgTypes,
     children: {
         control: {type: "text"},
         description: "Text to appear with the specified typography styles.",
@@ -36,5 +41,13 @@ export default {
         description:
             "A token to match available font weights for the theme font.",
         table: {type: {summary: "string"}},
+    },
+    // Hide internal data attribute props
+    "data-placement": {
+        table: {disable: true},
+    },
+    // Hide internal data attribute props
+    "data-modal-launcher-portal": {
+        table: {disable: true},
     },
 };
