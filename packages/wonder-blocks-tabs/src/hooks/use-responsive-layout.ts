@@ -62,6 +62,9 @@ export function useResponsiveLayout(
     // we can switch back to the tabs view when the container width is wide enough.
     const tabsWidthRef = React.useRef<number | null>(null);
 
+    // Keep track of the container width to avoid unnecessary overflow checks when the container width is the same.
+    const containerWidthRef = React.useRef<number | null>(null);
+
     // Create a signature of the tabs to detect changes (tab added/removed, label changed, presence of tab icon)
     const tabsSignature = React.useMemo(
         () =>
@@ -89,8 +92,12 @@ export function useResponsiveLayout(
                     scrollableWrapper.clientWidth;
 
                 if (hasOverflow) {
-                    // Store the width before switching
-                    tabsWidthRef.current = scrollableWrapper.scrollWidth;
+                    // Store the container width needed to show tabs without
+                    // overflow. Accounts for any gap (padding/margin) between
+                    // the container and the scrollable element.
+                    tabsWidthRef.current =
+                        scrollableWrapper.scrollWidth +
+                        (container.clientWidth - scrollableWrapper.clientWidth);
                     setShowDropdown(true);
                 }
             }
@@ -106,19 +113,13 @@ export function useResponsiveLayout(
     }, [showDropdown, elementWithOverflowRef, containerRef]);
 
     React.useEffect(() => {
-        // This effect handles the case where the length of tabs or the tabs
-        // labels change. This determines whether to switch to the dropdown or
-        // tabs layout.
+        // When tabsSignature changes and dropdown is shown, reset to horizontal tabs
+        // layout so we can re-measure with the new content (label, icon, number of tabs, etc).
+        // The MutationObserver handles checking for overflow once the new content
+        // is rendered.
         if (showDropdown) {
-            // When tabsSignature changes and dropdown is shown, reset to
-            // tabs layout so we can re-measure and see if we can switch
-            // back
             tabsWidthRef.current = null;
             setShowDropdown(false);
-        } else {
-            // When tabsSignature changes and tabs layout is shown, check
-            // for overflow
-            checkOverflow();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps -- explicitly only depend on tabsSignature
     }, [tabsSignature]);
@@ -130,8 +131,13 @@ export function useResponsiveLayout(
             return;
         }
 
+        // Check for overflow when the container size changes (screen size change, width change, etc)
         const resizeObserver = new ResizeObserver(() => {
-            checkOverflow();
+            // Only check for overflow if the container width has changed
+            if (containerWidthRef.current !== container.clientWidth) {
+                containerWidthRef.current = container.clientWidth;
+                checkOverflow();
+            }
         });
 
         resizeObserver.observe(container);
@@ -140,6 +146,32 @@ export function useResponsiveLayout(
             resizeObserver.disconnect();
         };
     }, [checkOverflow, containerRef]);
+
+    React.useEffect(() => {
+        const element = elementWithOverflowRef.current;
+        if (!element) {
+            return;
+        }
+
+        // Check for overflow when elementWithOverflow is there (ie. horizontal tabs layout is used)
+        checkOverflow();
+
+        // Set up a MutationObserver to detect when the tab content changes (tabs added/removed,
+        // icons mounted, labels changed) in the horizontal tabs layout.
+        const mutationObserver = new MutationObserver(() => {
+            checkOverflow();
+        });
+
+        mutationObserver.observe(element, {
+            childList: true,
+            subtree: true,
+            characterData: true,
+        });
+
+        return () => {
+            mutationObserver.disconnect();
+        };
+    }, [checkOverflow, elementWithOverflowRef]);
 
     React.useEffect(() => {
         onLayoutChange?.(showDropdown ? "dropdown" : "tabs");
