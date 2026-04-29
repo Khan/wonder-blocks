@@ -212,324 +212,46 @@ packages/wonder-blocks-*/
 
 # Storybook Best Practices
 
-## Story Structure
+> Full guidance: `.agent/skills/storybook.md`
 
-```tsx
-type StoryComponentType = StoryObj<typeof Component>;
+## Key rules
 
-export default {
-    title: "Packages / ComponentName / SubComponent",
-    component: ComponentName,
-    parameters: {
-        chromatic: { disableSnapshot: false },
-    },
-    argTypes: ComponentArgTypes,
-} as Meta<typeof ComponentName>;
-
-/**
- * JSDoc comment describing this story.
- */
-export const Default: StoryComponentType = {
-    args: {
-        children: "Click me",
-        onClick: () => {},
-    },
-};
-```
-
-## Key Guidelines
-
-- The Default story should be interactive and work with Storybook controls
-- Write stories for all possible prop combinations/states
-- Disable Chromatic for stories that don't need visual regression tests (limited monthly snapshots)
-- Avoid specific background colors in Stories; let users control via Storybook toolbar
-
-### Stateful Stories
-
-Use function declarations for render functions:
-
-```tsx
-export const WithState: StoryComponentType = {
-    render: function Render(args) {
-        const [value, setValue] = React.useState(args.value || "");
-        return <Component {...args} value={value} onChange={setValue} />;
-    },
-};
-```
-
-## Title Naming Convention
-
-```tsx
-title: "Packages / Button / Button"
-title: "Packages / Dropdown / SingleSelect"
-title: "Packages / Button / Testing / Snapshots / ActivityButton"
-```
-
-## Snapshot Stories for Visual Regression
-
-**StateSheet** for pseudo-state testing:
-
-```tsx
-export const StateSheetStory: Story = {
-    name: "StateSheet",
-    render: (args) => (
-        <StateSheet rows={kinds} columns={actionTypes} title="Kind / Action Type">
-            {({props, className}) => (
-                <Component {...args} {...props} className={className} />
-            )}
-        </StateSheet>
-    ),
-    parameters: {
-        pseudo: defaultPseudoStates, // focus, hover, active states
-    },
-};
-```
-
-**ScenariosLayout** for edge cases:
-
-```tsx
-export const Scenarios: Story = {
-    render() {
-        const scenarios = [
-            {name: "Long label", props: {children: longText}},
-            {name: "RTL", decorator: <div dir="rtl" />, props: {children: "یہ اردو میں"}},
-        ];
-        return (
-            <ScenariosLayout scenarios={scenarios}>
-                {(props) => props.children}
-            </ScenariosLayout>
-        );
-    },
-};
-```
-
-## Interaction Tests
-
-Use `play` functions for browser-specific behavior that jsdom can't handle:
-
-```tsx
-import {expect, within} from "storybook/test";
-
-export const BrowserBehaviorTest: StoryComponentType = {
-    play: async ({canvasElement}) => {
-        const canvas = within(canvasElement);
-        // Test scroll, layout, clipboard, complex focus
-    },
-    parameters: {
-        chromatic: {disableSnapshot: true},
-    },
-};
-```
-
-## Actions and Event Handlers
-
-Use Storybook actions for event logging:
-
-```tsx
-import {action} from "storybook/actions";
-
-export const Default: StoryComponentType = {
-    args: {
-        onClick: action("clicked"),
-        onChange: action("changed"),
-    },
-};
-```
-
-For stateful stories, combine actions with state updates:
-`action("onChange")(newValue); setValue(newValue);`
+- Title hierarchy: `"Packages / Button / Button"`, `"Packages / Button / Testing / Snapshots / ActivityButton"`
+- Default story must be interactive (works with controls panel)
+- Write stories for all prop combinations/states — these feed visual regression in Chromatic
+- Disable Chromatic snapshots (`chromatic: {disableSnapshot: true}`) for interaction/playtesting stories
+- Use `StateSheet` for pseudo-state grids (focus, hover, active, disabled); `ScenariosLayout` for edge cases (RTL, long text, overflow)
+- Use `play` functions for browser-specific behavior jsdom can't handle (scroll, layout, clipboard)
+- Use function declarations for render functions, not arrow functions: `render: function Render(args) {`
+- Separate snapshot stories (`tags: ["!autodocs"]`) from documentation stories
 
 ---
 
 # Jest Testing Best Practices
 
-## Core Principles
+> Full guidance: `.agent/skills/unit-tests.md`
 
-### Critical Setup Rules
+## Key rules
 
-**Test Workflow Priority:**
-- Always fix failing tests before fixing linting errors
-- Focus on underlying errors, not `Unhandled console.error call` messages
-- When tests fail with `Unhandled console.error call`, look for the root cause error (e.g., `ReferenceError: window is not defined`)
+- Fix failing tests before fixing linting errors; `Unhandled console.error` messages are symptoms — find the root cause
+- Always structure tests with `// Arrange`, `// Act`, `// Assert` comments — never combine, never remove
+- For thrown errors, wrap the call in an `underTest` function in the Act section
+- Use `userEvent` instead of `fireEvent` for all interactions
+- Query priority: `getByRole` → `getByLabelText` → `getByText` → `getByTestId`; never CSS selectors or direct node traversal
+- Never mock `console.error` — it hides real failures
+- Always use `jest.spyOn()` to create spies; only store the return value in a variable when asserting on it
+- Never mock outside of test cases
+- Don't test style-only props — use Storybook visual regression instead
+- Use `it.each` for multiple input/output combinations
+- Prefer one `expect` per test
+- Include `toHaveNoA11yViolations` tests; check `aria-disabled="true"`, not the `disabled` attribute
 
-### Arrange-Act-Assert Pattern
+### Test coverage checklist for components
 
-**Always use this structure with comments:**
-
-```typescript
-it("should add two numbers correctly", () => {
-    // Arrange
-    const a = 5;
-    const b = 3;
-
-    // Act
-    const result = add(a, b);
-
-    // Assert
-    expect(result).toBe(8);
-});
-```
-
-- **Never combine sections** (don't write `// Act & Assert`)
-- **Never use multiple Act or Assert sections** in a single test
-- **Never remove Arrange, Act, Assert comments**
-
-### Testing Thrown Errors
-
-```typescript
-it("should throw an error when input is invalid", () => {
-    // Arrange
-    const invalidInput = "invalid";
-
-    // Act
-    const underTest = () => processInput(invalidInput);
-
-    // Assert
-    expect(underTest).toThrow("Invalid input");
-});
-```
-
-### What to Test
-
-**DO Test:**
-- Non-trivial business logic
-- User interactions
-- Accessibility (ARIA attributes, keyboard support, focus management)
-- Edge cases and error conditions
-- Bug fixes (add regression tests)
-
-**DON'T Test:**
-- Trivial implementations (simple getters/setters)
-- Style-only props (use visual regression tests)
-- Third-party libraries
-- Implementation details
-
-### Element Selection Priority
-
-1. **Semantic queries** (best): `getByRole`, `getByLabelText`, `getByText`
-2. **Test IDs** (fallback): `getByTestId`
-3. **Never use**: CSS classes, IDs, structural selectors, direct node access (`.parentElement`, `.children`, etc.)
-
-```typescript
-// ✅ Good
-screen.getByRole("button", {name: /submit/i});
-screen.getByLabelText("Email address");
-
-// ❌ Bad
-container.querySelector(".my-class");
-```
-
-### User Interactions
-
-**Always use `userEvent`** instead of `fireEvent`:
-
-```typescript
-import userEvent from "@testing-library/user-event";
-
-await userEvent.click(screen.getByRole("button"));
-await userEvent.type(screen.getByRole("textbox"), "hello");
-```
-
-## Mocking and Spying
-
-### Critical Rules
-
-1. **Never mock `console.error`** - hides real issues
-2. **Always use `jest.spyOn()` to create spies** - never treat original functions as spies
-3. **Store spy return values only when asserting on them** - avoids unused variable errors
-4. **Never mock outside of tests** - keep mocks inside test cases
-
-### Correct Patterns
-
-```typescript
-// ✅ Mock only (no variable needed when not asserting)
-jest.spyOn(API, "fetchUser").mockResolvedValue(mockUserData);
-
-// ✅ Mock AND verify (store when asserting)
-const trackEventSpy = jest.spyOn(Analytics, "trackEvent").mockReturnValue(undefined);
-expect(trackEventSpy).toHaveBeenCalledWith("button_click", {buttonId: "submit"});
-
-// ❌ Wrong - treating original as spy without jest.spyOn()
-expect(SomeFile.someMethod).toHaveBeenCalled(); // ERROR! Not a spy
-```
-
-### Mock Browser APIs
-
-jsdom doesn't fully implement browser behaviors (scroll, layout, clipboard, Observers):
-
-```typescript
-// Mock scrollIntoView
-Element.prototype.scrollIntoView = jest.fn();
-
-// Mock getBoundingClientRect
-jest.spyOn(Element.prototype, "getBoundingClientRect").mockReturnValue({
-    top: 100, left: 100, bottom: 200, right: 200,
-    width: 100, height: 100, x: 100, y: 100, toJSON: () => {},
-});
-```
-
-Use Storybook interaction tests for behavior that's difficult to mock accurately.
-
-## Test Organization
-
-```typescript
-describe("MyComponent", () => {
-    describe("Props", () => { /* prop tests */ });
-    describe("Event Handlers", () => { /* onClick, onChange tests */ });
-    describe("Accessibility", () => {
-        describe("axe", () => { /* toHaveNoA11yViolations tests */ });
-        describe("ARIA", () => { /* aria attribute tests */ });
-        describe("Focus", () => { /* focus management tests */ });
-        describe("Keyboard Interactions", () => { /* keyboard nav tests */ });
-    });
-});
-```
-
-### Test Coverage
-
-Unit tests for a component should cover:
-
-#### Base Tests
 - ref is forwarded
-
-#### Props
-- Cover expected behaviour when certain props are set
-- **Exclude tests for props that are related to styles only** - use visual regression tests instead
-- Cover expected behaviour with default prop values
-- Use `it.each` when there are multiple combinations of things you want to test together
-
-#### Event Handlers
-- Check that any event handlers are triggered by the expected conditions
-- Verify callbacks are called with correct arguments
-
-#### Accessibility
-- Confirm that roles, semantics, and aria attributes are correctly set and wired together
-- Use the `.toHaveNoA11yViolations` jest matcher to confirm that a component doesn't have accessibility warnings
-- Confirm keyboard interactions and navigation
-- Focus management
-- Confirm accessible names
-- Check for `aria-disabled="true"` for determining disabled state (not the `disabled` attribute)
-
-## Parameterized Tests
-
-Use `it.each` for data-driven tests:
-
-```typescript
-it.each([
-    [2, 3, 5],
-    [0, 0, 0],
-    [-1, 1, 0],
-])("should add %i and %i to equal %i", (a, b, expected) => {
-    expect(add(a, b)).toBe(expected);
-});
-```
-
-## Assertions
-
-- Use specific matchers: `toBe`, `toEqual`, `toHaveBeenCalledWith`
-- Use RTL matchers: `toBeInTheDocument()`, `toBeVisible()`, `toHaveAttribute()`
-- **Avoid Jest snapshots** (`.toMatchSnapshot()`) - use Chromatic + Storybook for visual regression
-- Prefer one expect per test when possible
+- Props: expected behavior when set; default values; `it.each` for combinations (skip style-only props)
+- Event handlers: triggered by correct conditions; called with correct arguments
+- Accessibility: roles/ARIA wired correctly, keyboard interactions, focus management, accessible names
 
 ---
 
@@ -586,17 +308,18 @@ Don't hesitate to bump major or minor versions when appropriate—following semv
 
 This project maintains rules for multiple AI assistants. When updating this file, also update the corresponding files for other platforms:
 
-| Claude File | Cursor File | Copilot File |
-|-------------|-------------|--------------|
-| `CLAUDE.md` | `.cursor/rules/general.mdc` | `.github/instructions/frontend-rules.instructions.md` |
-| `CLAUDE.md` (Storybook section) | `.cursor/rules/storybook.mdc` | `.github/instructions/storybook.instructions.md` |
-| `CLAUDE.md` (Jest section) | `.cursor/rules/unit-tests.mdc` | `.github/instructions/unit-tests.instructions.md` |
+| Claude File | Cursor File | Copilot File | Agent Skills File |
+|-------------|-------------|--------------|-------------------|
+| `CLAUDE.md` | `.cursor/rules/general.mdc` | `.github/instructions/frontend-rules.instructions.md` | *(use `CLAUDE.md`)* |
+| `CLAUDE.md` (Storybook section) | `.cursor/rules/storybook.mdc` | `.github/instructions/storybook.instructions.md` | `.agent/skills/storybook.md` |
+| `CLAUDE.md` (Jest section) | `.cursor/rules/unit-tests.mdc` | `.github/instructions/unit-tests.instructions.md` | `.agent/skills/unit-tests.md` |
 
 **When making rule changes:**
 
 1. Make the change in this `CLAUDE.md` file
 2. Apply the same change to the corresponding `.cursor/rules/*.mdc` file for Cursor
 3. Apply the same change to the corresponding `.github/instructions/*.instructions.md` file for Copilot
+4. Apply the same change to `.agent/skills/storybook.md` or `.agent/skills/unit-tests.md` if the change is in those sections
 
 **Keep content semantically equivalent:**
 
@@ -604,6 +327,7 @@ This project maintains rules for multiple AI assistants. When updating this file
 - The core rules and guidance should remain consistent
 - Cursor rules use YAML frontmatter with glob patterns
 - Copilot instructions use standard Markdown in `.github/instructions/`
+- Agent skills (`.agent/skills/`) exist only for Storybook and Jest — general conventions live in `CLAUDE.md`
 - This `CLAUDE.md` is a consolidated file with all major rules
 
 **Never update only one platform's rules** - this causes inconsistent behavior between AI assistants.
