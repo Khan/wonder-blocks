@@ -361,7 +361,7 @@ jest.spyOn(Element.prototype, "getBoundingClientRect").mockReturnValue({
 });
 ```
 
-**✅ Use Storybook interaction tests** for behavior that's difficult to mock accurately (scroll, layout, clipboard, complex focus management). See `.agent/skills/storybook.md` for details.
+**✅ Use Storybook interaction tests** for behavior that's difficult to mock accurately (scroll, layout, clipboard, complex focus management). See `.agents/skills/storybook/SKILL.md` for details.
 
 ### Element Selection
 

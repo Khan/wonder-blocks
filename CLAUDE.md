@@ -212,7 +212,7 @@ packages/wonder-blocks-*/
 
 # Storybook Best Practices
 
-> Full guidance: `.agent/skills/storybook.md`
+> Full guidance: `.agents/skills/storybook/SKILL.md`
 
 ## Key rules
 
@@ -229,7 +229,7 @@ packages/wonder-blocks-*/
 
 # Jest Testing Best Practices
 
-> Full guidance: `.agent/skills/unit-tests.md`
+> Full guidance: `.agents/skills/unit-tests/SKILL.md`
 
 ## Key rules
 
@@ -311,15 +311,15 @@ This project maintains rules for multiple AI assistants. When updating this file
 | Claude File | Cursor File | Copilot File | Agent Skills File |
 |-------------|-------------|--------------|-------------------|
 | `CLAUDE.md` | `.cursor/rules/general.mdc` | `.github/instructions/frontend-rules.instructions.md` | *(use `CLAUDE.md`)* |
-| `CLAUDE.md` (Storybook section) | `.cursor/rules/storybook.mdc` | `.github/instructions/storybook.instructions.md` | `.agent/skills/storybook.md` |
-| `CLAUDE.md` (Jest section) | `.cursor/rules/unit-tests.mdc` | `.github/instructions/unit-tests.instructions.md` | `.agent/skills/unit-tests.md` |
+| `CLAUDE.md` (Storybook section) | `.cursor/rules/storybook.mdc` | `.github/instructions/storybook.instructions.md` | `.agents/skills/storybook/SKILL.md` |
+| `CLAUDE.md` (Jest section) | `.cursor/rules/unit-tests.mdc` | `.github/instructions/unit-tests.instructions.md` | `.agents/skills/unit-tests/SKILL.md` |
 
 **When making rule changes:**
 
 1. Make the change in this `CLAUDE.md` file
 2. Apply the same change to the corresponding `.cursor/rules/*.mdc` file for Cursor
 3. Apply the same change to the corresponding `.github/instructions/*.instructions.md` file for Copilot
-4. Apply the same change to `.agent/skills/storybook.md` or `.agent/skills/unit-tests.md` if the change is in those sections
+4. Apply the same change to `.agents/skills/storybook/SKILL.md` or `.agents/skills/unit-tests/SKILL.md` if the change is in those sections
 
 **Keep content semantically equivalent:**
 

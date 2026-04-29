@@ -504,7 +504,7 @@ export const BrowserBehaviorTest: StoryComponentType = {
 };
 ```
 
-**⚠️ It's okay to have both:** Unit tests with proper mocking work for browser behavior, but interaction tests provide additional confidence in a real browser. See `.agent/skills/unit-tests.md` for mocking guidance.
+**⚠️ It's okay to have both:** Unit tests with proper mocking work for browser behavior, but interaction tests provide additional confidence in a real browser. See `.agents/skills/unit-tests/SKILL.md` for mocking guidance.
 
 ## Common Pitfalls to Avoid
 
