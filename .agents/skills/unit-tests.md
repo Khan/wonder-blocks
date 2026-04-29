@@ -48,7 +48,7 @@ describe("Calculator", () => {
 
 **Rules:**
 - ✅ **ALWAYS divide tests** into Arrange, Act, Assert sections with comments
-- ✅ **ALWAYS use separate comments** for each section (`// Arrange`, `// Act`, `// Assert`)
+- ✅ **Each section gets exactly one comment label** (`// Arrange`, `// Act`, `// Assert`) — no additional comments within a section
 - ❌ **NEVER combine sections** (e.g., don't write `// Act & Assert`)
 - ❌ **NEVER use multiple Act or Assert sections** in a single test (split into separate tests instead)
 - ❌ **NEVER remove Arrange, Act, Assert comments**
@@ -139,11 +139,10 @@ it("should validate email format and return error message", () => {
 - ✅ **Prefer explicit assertions** over implicit ones
 - ✅ Use semantic matchers from RTL: `toBeInTheDocument()`, `toBeVisible()`, `toHaveAttribute()`
 - ❌ **Avoid Jest snapshots** (`.toMatchSnapshot()`, `.toMatchInlineSnapshot()`) - use Chromatic + Storybook for visual regression tests, or use specific attribute assertions instead
-- ❌ **Avoid direct node access** - Don't use `.parentElement`, `.children`, `.firstChild`, `.nextSibling`, etc.; use RTL queries to find elements directly
 
 ### One Expect Per Test
 
-**⚠️ Prefer a single assertion per test when possible.** If assertions test different behaviors or could fail independently, split them into separate tests. This makes test failures clearer and easier to debug.
+**⚠️ Each test should have exactly one `expect`.** If you need to assert multiple things, split them into separate tests. Multiple assertions hide which behavior actually broke when the test fails.
 
 ### Parameterized Tests with `it.each`
 
@@ -159,7 +158,10 @@ describe("Calculator", () => {
         [-1, 1, 0],
         [10, -5, 5],
     ])("should add %i and %i to equal %i", (a, b, expected) => {
-        // Arrange & Act
+        // Arrange
+        // (inputs come from it.each)
+
+        // Act
         const result = add(a, b);
 
         // Assert
@@ -367,20 +369,26 @@ jest.spyOn(Element.prototype, "getBoundingClientRect").mockReturnValue({
 
 1. ✅ **Semantic queries** (best): `getByRole`, `getByLabelText`, `getByText`
 2. ✅ **Test IDs** (fallback): `getByTestId` with `data-testid` attribute
-3. ❌ **NEVER use** CSS classes, IDs, or structural selectors (brittle)
+3. ❌ **NEVER use** CSS selectors, direct DOM traversal, or raw node access
+
+**❌ NEVER access DOM nodes directly.** Always use Testing Library queries. Direct node access couples tests to implementation structure, not behavior.
 
 ```typescript
-// ✅ DO: Semantic queries
+// ✅ DO: Testing Library queries
 screen.getByRole("button", {name: /submit/i});
 screen.getByLabelText("Email address");
 screen.findByText("Welcome back");
-
-// ✅ DO: Test IDs when semantic queries don't work
 screen.getByTestId("custom-widget");
 
-// ❌ DON'T: CSS selectors or implementation details
+// ❌ DON'T: CSS selectors
 container.querySelector(".my-class");
 container.querySelector("#my-id");
+
+// ❌ DON'T: Direct node traversal
+element.parentElement;
+element.children[0];
+element.firstChild;
+element.nextSibling;
 ```
 
 ## Wonder Blocks Component Testing
@@ -468,7 +476,7 @@ pnpm jest --verbose --runInBand
 5. ✅ **Spies**: Use `jest.spyOn()` and only store in variables when asserting
 6. ✅ **Accessibility**: Include `toHaveNoA11yViolations` tests
 7. ✅ **Organization**: Group related tests with `describe` blocks
-8. ✅ **Assertions**: One expect per test when possible
+8. ✅ **Assertions**: One `expect` per test — split into separate tests if you need more
 9. ✅ **Parameterized**: Use `it.each` for testing multiple input/output combinations
 10. ✅ **Browser APIs**: Mock jsdom limitations properly, or use Storybook interaction tests for browser-specific behavior
 11. ✅ **Bug Fixes**: Add tests that reproduce bugs to prevent regressions
