@@ -11,12 +11,16 @@ import {
     RadioGroup,
 } from "@khanacademy/wonder-blocks-form";
 
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 
 export default {
     title: "Packages / Form / Choice",
     component: Choice,
+    argTypes: {
+        ...AriaArgTypes,
+    },
     parameters: {
         componentSubtitle: (
             <ComponentInfo

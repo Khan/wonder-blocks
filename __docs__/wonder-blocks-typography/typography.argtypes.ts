@@ -1,4 +1,9 @@
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
+import EventHandlersArgTypes from "../wonder-blocks-core/event-handlers.argtypes";
+
 export default {
+    ...AriaArgTypes,
+    ...EventHandlersArgTypes,
     children: {
         control: {type: "text"},
         description: "Text to appear with the specified typography styles.",
