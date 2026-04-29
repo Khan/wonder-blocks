@@ -74,12 +74,4 @@ export default {
             },
         },
     },
-    // Hide internal data attribute props
-    "data-placement": {
-        table: {disable: true},
-    },
-    // Hide internal data attribute props
-    "data-modal-launcher-portal": {
-        table: {disable: true},
-    },
 } satisfies ArgTypes;

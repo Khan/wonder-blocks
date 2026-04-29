@@ -42,12 +42,4 @@ export default {
             "A token to match available font weights for the theme font.",
         table: {type: {summary: "string"}},
     },
-    // Hide internal data attribute props
-    "data-placement": {
-        table: {disable: true},
-    },
-    // Hide internal data attribute props
-    "data-modal-launcher-portal": {
-        table: {disable: true},
-    },
 };
