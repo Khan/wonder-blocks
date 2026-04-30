@@ -75,7 +75,8 @@ For full setup (clone, run locally, configure `mcp.json`), see [Installing the M
 
 - **Packages:** `packages/wonder-blocks-*/` – each package has `src/`, exports in `src/index.ts`.
 - **Stories & docs:** `__docs__/` – all Storybook stories and MDX live here, grouped by package (e.g. `__docs__/wonder-blocks-button/`).
-- **Conventions:** See `CLAUDE.md` and `.cursor/rules/` for coding standards, component patterns, and testing. Use `pnpm lint` and `pnpm typecheck` before submitting.
+- **Conventions:** See `CLAUDE.md` for coding standards and component patterns. Use `pnpm lint` and `pnpm typecheck` before submitting.
+- **Agent skills:** `.agents/skills/storybook/SKILL.md` (for `*.stories.tsx`), `.agents/skills/unit-tests/SKILL.md` (for `*.test.ts(x)`).
 
 ## Commands
 

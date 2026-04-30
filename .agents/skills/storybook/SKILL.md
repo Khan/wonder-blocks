@@ -1,0 +1,530 @@
+---
+name: storybook
+description: >
+  Storybook best practices for Wonder Blocks component stories. Use when
+  creating or editing `.stories.tsx` / `.stories.ts` files.
+---
+# Storybook Best Practices
+
+This guide covers conventions and best practices for creating Storybook stories (`.stories.tsx` or `.stories.ts`) in the Wonder Blocks design system.
+
+## TypeScript Types
+
+**✅ Define story types consistently (avoid `any`):**
+
+```tsx
+type StoryComponentType = StoryObj<typeof Component>;
+
+export const Default: StoryComponentType = {
+    args: {
+        // props here
+    },
+};
+```
+
+## Default Export Configuration
+
+### Meta Configuration
+
+**✅ Include all relevant meta properties:**
+
+```tsx
+export default {
+    title: "Packages / ComponentName / SubComponent",
+    component: ComponentName,
+    subcomponents: {SubComponent1, SubComponent2}, // If applicable
+    parameters: {
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
+        chromatic: {
+            disableSnapshot: false, // or true with reason
+        },
+    },
+    argTypes: ComponentArgTypes,
+    args: {
+        // Default args for all stories
+    },
+    decorators: [
+        // Optional decorators
+    ],
+} as Meta<typeof ComponentName>;
+```
+
+**Key properties:**
+- **`title`**: Hierarchical path in Storybook sidebar
+- **`component`**: The main component being documented
+- **`subcomponents`**: Related components shown in docs
+- **`parameters`**: Meta-level configuration (Chromatic, a11y, etc.)
+- **`argTypes`**: Control definitions (usually imported from separate file)
+- **`args`**: Default values applied to all stories
+- **`decorators`**: Layout wrappers applied to all stories
+
+### Title Naming Convention
+
+**✅ Follow the hierarchy (avoid flat titles like "Button Stories"):**
+
+```tsx
+title: "Packages / Button / Button"
+title: "Packages / Dropdown / SingleSelect"
+title: "Packages / Button / Testing / Snapshots / ActivityButton"
+```
+
+## Story Patterns
+
+### General Tips for Stories
+
+**✅ Follow these best practices when writing stories:**
+
+* **The Default story** should be interactive and work with the Storybook controls. Users should be able to modify props using the controls panel.
+* **Write stories for all possible prop combinations/states**. This is very helpful for identifying that all states are styled correctly and any changes can be confirmed in visual regression tests.
+* **Disable Chromatic for stories that don't need visual regression tests** (we have a limited number of Chromatic snapshots monthly). For example:
+  * Stories already covered by another story
+  * Stories for testing purposes only
+  * Stories that don't have any visual differences from other stories
+* **Avoid including specific background colors in Stories** so that we can dynamically change the background in Storybook using the Storybook background control in the toolbar. Let users control the background through Storybook's built-in controls.
+
+### Basic Story Structure
+
+**✅ Export stories with descriptive JSDoc comments:**
+
+```tsx
+/**
+ * This is the default state of the button showing standard usage.
+ * It demonstrates the basic props and expected behavior.
+ */
+export const Default: StoryComponentType = {
+    args: {
+        children: "Click me",
+        onClick: () => {},
+    },
+};
+```
+
+### Interactive Stories with State
+
+**✅ Use render functions for stateful stories:**
+
+```tsx
+export const WithState: StoryComponentType = {
+    render: function Render(args) {
+        const [value, setValue] = React.useState(args.value || "");
+
+        return (
+            <Component
+                {...args}
+                value={value}
+                onChange={setValue}
+            />
+        );
+    },
+    args: {
+        // initial args
+    },
+};
+```
+
+**⚠️ Important: Use function declarations, not arrow functions:**
+
+```tsx
+// ✅ Good - Named function for better debugging
+render: function Render(args) {
+    // ...
+}
+
+// ❌ Avoid - Arrow functions don't have clear names
+render: (args) => {
+    // ...
+}
+```
+
+### Variant Stories
+
+**✅ Show different variants in a single story:**
+
+```tsx
+/**
+ * Buttons have three kinds: `primary` (default), `secondary`, and `tertiary`.
+ */
+export const Kinds: StoryComponentType = {
+    render: () => (
+        <View style={{gap: spacing.medium_16}}>
+            <Button onClick={() => {}}>Primary</Button>
+            <Button kind="secondary" onClick={() => {}}>Secondary</Button>
+            <Button kind="tertiary" onClick={() => {}}>Tertiary</Button>
+        </View>
+    ),
+};
+```
+
+## JSDoc Documentation
+
+### Story Comments
+
+**✅ Include comprehensive JSDoc comments:**
+
+```tsx
+/**
+ * This example demonstrates how SingleSelect behaves with an initial value.
+ * The screen reader will not announce the initial value on mount, but will
+ * announce when the value changes through user interaction.
+ */
+export const WithInitialValue: StoryComponentType = {
+    // story configuration
+};
+```
+
+### Prop Documentation
+
+* The props table on the autodocs page for Storybook should be extracted from the JSDoc comments on the props for a component.
+* If the auto-generated type for a prop is not helpful (e.g., something generic like `"union"`), the type can be overridden in an `argTypes.ts` file.
+* Props in the table can be grouped into categories like `Visual style`, `Events`, `Accessibility`. Use the `table.category` property in argTypes to group props.
+
+### ArgTypes Files
+
+**When to use:** Override auto-generated prop types when they're not helpful or need customization.
+
+**✅ Create an argTypes file for your component:**
+
+```tsx
+// __docs__/wonder-blocks-button/button.argtypes.ts
+import type {ArgTypes} from "@storybook/react-vite";
+
+export default {
+    // Override type display for union types
+    kind: {
+        control: {type: "select"},
+        options: ["primary", "secondary", "tertiary"],
+        table: {
+            category: "Visual style",
+            type: {summary: `"primary" | "secondary" | "tertiary"`},
+            defaultValue: {summary: `"primary"`},
+        },
+    },
+    // Group related props
+    size: {
+        control: {type: "select"},
+        table: {
+            category: "Layout",
+            type: {summary: `"medium" | "small" | "large"`},
+        },
+    },
+    // Improve descriptions for complex props
+    style: {
+        table: {
+            category: "Layout",
+            type: {summary: "StyleType"},
+        },
+    },
+} satisfies ArgTypes;
+```
+
+**✅ Use argTypes in your story's meta:**
+
+```tsx
+import ComponentArgTypes from "./component.argtypes";
+
+export default {
+    title: "Packages / Component",
+    component: Component,
+    argTypes: ComponentArgTypes,
+} as Meta<typeof Component>;
+```
+
+**Common argTypes configurations:**
+
+| Property | Purpose |
+|----------|---------|
+| `control.type` | Control widget (`"select"`, `"boolean"`, `"text"`, etc.) |
+| `options` | Available options for select controls |
+| `table.category` | Group props in the docs table |
+| `table.type.summary` | Override the displayed type |
+| `table.defaultValue.summary` | Show default value in docs |
+| `mapping` | Map control values to actual prop values |
+
+### Examples in Stories
+
+* The stories should showcase the different ways a component can be used.
+* The comment block before a story declaration can be used to document more about a specific prop or behavior highlighted in the example.
+
+### Accessibility Guidelines Documentation
+
+* Document accessibility guidelines and what's been implemented in the component.
+* Create separate pages in Storybook to describe the accessibility for a component.
+* Examples of accessibility documentation pages:
+  * Accordion Accessibility
+  * Combobox Accessibility
+  * TextArea Accessibility
+
+## Parameters Configuration
+
+### Chromatic Configuration
+
+**✅ Disable snapshots with clear reasoning:**
+
+```tsx
+export const Interactive: StoryComponentType = {
+    render: () => {/* ... */},
+    parameters: {
+        chromatic: {
+            // Disabling because this is for manual testing purposes
+            disableSnapshot: true,
+        },
+    },
+};
+```
+
+**✅ Configure snapshot timing when needed:**
+
+```tsx
+export const ControlledOpened: StoryComponentType = {
+    render: (args) => <Component {...args} />,
+    parameters: {
+        // Added to ensure that the dropdown menu is rendered using PopperJS.
+        chromatic: {delay: 500},
+    },
+};
+```
+
+**✅ Enable snapshots for important visual states:**
+
+```tsx
+export const WithIcon: StoryComponentType = {
+    render: () => <IconExample />,
+    parameters: {
+        chromatic: {
+            modes: themeModes, // Test in multiple themes
+        },
+    },
+};
+```
+
+### Theme Modes Configuration
+
+Theme modes allow Chromatic to capture snapshots of components in multiple themes (e.g., default and Khanmigo/ThunderBlocks themes).
+
+**✅ Import and use `themeModes` for visual regression testing:**
+
+```tsx
+import {themeModes} from "../../.storybook/modes";
+
+export default {
+    title: "Packages / Component / Testing / Snapshots",
+    parameters: {
+        chromatic: {
+            modes: themeModes, // Captures snapshots in all themes
+        },
+    },
+    tags: ["!autodocs"],
+} as Meta<typeof Component>;
+```
+
+**⚠️ Use theme modes sparingly** - Each mode multiplies the number of Chromatic snapshots. Only add theme modes to snapshot stories that specifically test theming or visual appearance.
+
+## Testing-Specific Stories
+
+**⚠️ Important: StateSheet and Scenarios stories are specifically designed for Chromatic visual regression testing.** These stories systematically capture different states and edge cases to ensure visual consistency across code changes.
+
+### Snapshot Stories
+
+**✅ Create dedicated snapshot stories:**
+
+```tsx
+/**
+ * The following stories are used to generate the pseudo states for the
+ * ActivityButton component. This is only used for visual testing in Chromatic.
+ */
+export default {
+    title: "Packages / Button / Testing / Snapshots / ActivityButton",
+    tags: ["!autodocs"], // Exclude from auto-generated docs
+    parameters: {
+        chromatic: {
+            modes: themeModes,
+        },
+    },
+} as Meta;
+```
+
+**✅ Use StateSheet for pseudo-state testing (Chromatic visual regression):**
+
+```tsx
+const kinds = [
+    {name: "Primary", props: {kind: "primary"}},
+    {name: "Secondary", props: {kind: "secondary"}},
+    {name: "Tertiary", props: {kind: "tertiary"}},
+];
+
+const actionTypes = [
+    {name: "Progressive", props: {actionType: "progressive"}},
+    {name: "Neutral", props: {actionType: "neutral"}},
+    {name: "Disabled", props: {disabled: true}},
+];
+
+export const StateSheetStory: Story = {
+    name: "StateSheet",
+    render: (args) => (
+        <StateSheet rows={kinds} columns={actionTypes} title="Kind / Action Type">
+            {({props, className}) => (
+                <Component {...args} {...props} className={className} />
+            )}
+        </StateSheet>
+    ),
+    parameters: {
+        pseudo: defaultPseudoStates, // Includes focus, hover, active states
+    },
+};
+```
+
+**⚠️ StateSheet stories should cover:** focus (`:focus-visible`), hover, active, disabled states, and relevant prop combinations (`kind`, `actionType`, `size`, etc.)
+
+### Scenario Stories
+
+**✅ Test edge cases with ScenariosLayout (Chromatic visual regression):**
+
+```tsx
+export const Scenarios: Story = {
+    render() {
+        const scenarios = [
+            {name: "Long label", props: {children: <Component>{longText}</Component>}},
+            {name: "RTL", decorator: <div dir="rtl" />, props: {children: <Component>یہ اردو میں لکھا ہے۔</Component>}},
+        ];
+        return (
+            <ScenariosLayout scenarios={scenarios}>
+                {(props) => props.children}
+            </ScenariosLayout>
+        );
+    },
+};
+```
+
+**⚠️ Scenario stories should include:** RTL layouts (use `decorator: <div dir="rtl" />`), custom style overrides, and edge cases (long text, long text with no word break, overflow, truncation, empty states).
+
+### Playtesting Stories
+
+**✅ Create playtesting stories for testing of specific behaviors:**
+
+```tsx
+export default {
+    title: "Packages / Component / Testing / Component - Playtesting",
+    parameters: {
+        chromatic: {disableSnapshot: true}, // For testing purposes only, snapshots are not needed
+    },
+} as Meta<typeof Component>;
+
+/**
+ * Describe the scenario and what to test manually.
+ * Example: "When selecting a tab with Space/Enter, the page should not scroll."
+ */
+export const ScrollBehavior: Story = {
+    render: (args) => (
+        // Set up the scenario for manual testing
+    ),
+};
+```
+
+**Good candidates for playtesting stories:**
+- Scroll behavior that's difficult to assert programmatically
+- Complex keyboard interactions across multiple components
+- Browser-specific edge cases
+- Scenarios requiring visual confirmation by a human
+
+**⚠️ Playtesting stories should:** disable Chromatic snapshots, include clear JSDoc comments explaining what to test, and use the `Testing / Component - Playtesting` title pattern.
+
+## Story Naming Conventions
+
+**✅ Use clear, descriptive names:**
+
+```tsx
+// ✅ Good - Clear and descriptive
+export const Default: StoryComponentType = {/* ... */};
+export const WithIcon: StoryComponentType = {/* ... */};
+export const Disabled: StoryComponentType = {/* ... */};
+export const LongOptionLabels: StoryComponentType = {/* ... */};
+export const ErrorFromValidation: StoryComponentType = {/* ... */};
+```
+
+**✅ Override story names when needed:**
+
+```tsx
+export const WithRouter: StoryComponentType = {
+    name: "Navigation with React Router", // Overrides story name in UI
+    render: () => {/* ... */},
+};
+```
+
+**✅ Do not duplicate the existing story name**
+
+Named exports should not use the name annotation if it is redundant to the name that would be generated by the export name.
+
+## Actions and Event Handlers
+
+**✅ Use storybook actions for event logging:**
+
+```tsx
+import {action} from "storybook/actions";
+
+export const Default: StoryComponentType = {
+    args: {
+        onClick: action("clicked"),
+        onChange: action("changed"),
+    },
+};
+```
+
+For stateful stories, combine actions with state updates: `action("onChange")(newValue); setValue(newValue);`
+
+## Interaction Tests for Browser-Specific Behavior
+
+**⚠️ Use Storybook interaction tests for behaviors that rely on real browser APIs not available in jsdom** (scroll, layout/geometry, clipboard, complex focus management).
+
+**⚠️ Don't test styling in interaction tests** - visual appearance is covered by Chromatic snapshot tests.
+
+**✅ Use the `play` function:**
+
+```tsx
+import {expect, within} from "storybook/test";
+
+export const BrowserBehaviorTest: StoryComponentType = {
+    render: (args) => (
+        // Set up the DOM structure needed to test the behavior
+    ),
+    play: async ({canvasElement}) => {
+        const canvas = within(canvasElement);
+
+        // Interact with the component (if needed)
+
+        // Assert things based on browser-specific behavior
+        // (e.g., ResizeObserver, getBoundingClientRect, scrollIntoView)
+    },
+    parameters: {
+        /** These stories are used for testing purposes only so we disable snapshots */
+        chromatic: {disableSnapshot: true},
+    },
+};
+```
+
+**⚠️ It's okay to have both:** Unit tests with proper mocking work for browser behavior, but interaction tests provide additional confidence in a real browser. See `.agents/skills/unit-tests/SKILL.md` for mocking guidance.
+
+## Common Pitfalls to Avoid
+
+- ❌ **Don't mix testing snapshots with documentation stories** - Use `title: "Packages / Button / Testing / Snapshots"` with `tags: ["!autodocs"]` for snapshot stories
+- ❌ **Don't forget to disable snapshots** - Add `chromatic: {disableSnapshot: true}` for interaction tests and playtesting stories
+- ❌ **Don't use `React.FC`** - Use `(props: Props) =>` instead
+
+## Best Practices Summary
+
+1. **✅ Structure**: Follow consistent import order and file organization
+2. **✅ Types**: Use TypeScript types for story definitions
+3. **✅ Documentation**: Include comprehensive JSDoc comments with usage examples
+4. **✅ Variants**: Show all important component variants
+5. **✅ Accessibility**: Test and document a11y considerations
+6. **✅ Visual Testing**: Configure Chromatic appropriately
+7. **✅ State Management**: Use proper patterns for stateful stories
+8. **✅ Naming**: Use clear, descriptive names for stories
+9. **✅ Tokens**: Use Wonder Blocks tokens instead of hard-coded values
+10. **✅ Testing**: Separate documentation, snapshot, interaction, and playtesting stories
+11. **✅ Interaction Tests**: Use `play` functions for browser-specific behavior that jsdom can't handle
+12. **✅ Playtesting**: Create manual testing stories for behaviors difficult to automate
