@@ -4,7 +4,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 type Props = {
-    size: number;
+    size: number | string;
     style?: StyleType;
 };
 
@@ -20,7 +20,7 @@ export default class Strut extends React.Component<Props> {
     }
 }
 
-const strutStyle = (size: number) => {
+const strutStyle = (size: number | string) => {
     return {
         width: size,
         MsFlexBasis: size,
