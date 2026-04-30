@@ -131,7 +131,14 @@ export interface IAnimationFrame {
  * Options for the scheduling APIs.
  */
 export type Options = {
+    /**
+     * Determines when the request is scheduled.
+     */
     schedulePolicy?: Policies.SchedulePolicy;
+    /**
+     * Determines how the request is cleared when the component is unmounted
+     * or the request is recreated.
+     */
     clearPolicy?: Policies.ClearPolicy;
 };
 
@@ -139,6 +146,9 @@ export type Options = {
  * Options for the hook variants of our scheduling APIs.
  */
 export type HookOptions = Options & {
+    /**
+     * Determines how the action is handled when it changes between renders.
+     */
     actionPolicy?: Policies.ActionPolicy;
 };
 
