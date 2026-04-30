@@ -1,6 +1,8 @@
 ---
-description: Storybook best practices for Wonder Blocks component stories
-triggers: "*.stories.tsx, *.stories.ts"
+name: storybook
+description: >
+  Storybook best practices for Wonder Blocks component stories. Use when
+  creating or editing `.stories.tsx` / `.stories.ts` files.
 ---
 # Storybook Best Practices
 

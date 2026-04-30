@@ -1,6 +1,8 @@
 ---
-description: Jest testing best practices and patterns for unit tests
-triggers: "*.test.ts, *.test.tsx"
+name: unit-tests
+description: >
+  Jest + React Testing Library best practices for Wonder Blocks unit tests.
+  Use when creating or editing `.test.ts` / `.test.tsx` files.
 ---
 # Jest Testing Best Practices
 

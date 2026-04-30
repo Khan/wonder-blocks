@@ -327,7 +327,7 @@ This project maintains rules for multiple AI assistants. When updating this file
 - The core rules and guidance should remain consistent
 - Cursor rules use YAML frontmatter with glob patterns
 - Copilot instructions use standard Markdown in `.github/instructions/`
-- Agent skills (`.agent/skills/`) exist only for Storybook and Jest — general conventions live in `CLAUDE.md`
+- Agent skills (`.agents/skills/`) exist for Wonder Blocks, Storybook and Jest — general conventions live in `CLAUDE.md`
 - This `CLAUDE.md` is a consolidated file with all major rules
 
 **Never update only one platform's rules** - this causes inconsistent behavior between AI assistants.
