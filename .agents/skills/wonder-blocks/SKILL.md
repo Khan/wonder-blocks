@@ -25,6 +25,8 @@ If the Figma MCP or WB Storybook MCP is used, use each for its purpose:
 - **Figma MCP** — design specs and layout intent. Start here.
 - **WB Storybook MCP** — source of truth for component APIs. Never guess prop names or token paths.
 - **This skill** — foundations and general best practices for using the design system.
+- **Writing stories** — follow the Storybook best practices skill for guidance on writing good stories as a form of documentation.
+- **Writing tests** — follow the unit testing best practices skill for guidance on writing good tests for your components.
 
 If the WB Storybook MCP is not available, refer to the type definitions for WB components
 to learn more about the API.
