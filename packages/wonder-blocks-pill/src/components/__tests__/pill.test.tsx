@@ -66,9 +66,7 @@ describe("Pill", () => {
         expect(clickSpy).toHaveBeenCalled();
     });
 
-    // TODO(FEI-5533): Key press events aren't working correctly with
-    // user-event v14. We need to investigate and fix this.
-    test.skip("is Clickable if onClick is passed in (keyboard enter)", async () => {
+    test("is Clickable if onClick is passed in (keyboard enter)", async () => {
         // Arrange
         const clickSpy = jest.fn();
 
@@ -81,16 +79,14 @@ describe("Pill", () => {
         expect(clickSpy).toHaveBeenCalled();
     });
 
-    // TODO(FEI-5533): Key press events aren't working correctly with
-    // user-event v14. We need to investigate and fix this.
-    test.skip("is Clickable if onClick is passed in (keyboard space)", async () => {
+    test("is Clickable if onClick is passed in (keyboard space)", async () => {
         // Arrange
         const clickSpy = jest.fn();
 
         // Act
         render(<Pill onClick={clickSpy}>Hello, world!</Pill>);
         await userEvent.tab();
-        await userEvent.keyboard("{space}");
+        await userEvent.keyboard(" ");
 
         // Assert
         expect(clickSpy).toHaveBeenCalled();
