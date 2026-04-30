@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-pill
 
+## 3.1.59
+
+### Patch Changes
+
+- 22cdea4: Fixed and unskipped tests
+
 ## 3.1.58
 
 ### Patch Changes
