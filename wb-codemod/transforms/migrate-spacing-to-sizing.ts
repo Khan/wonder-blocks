@@ -65,7 +65,7 @@ function transform(file: FileInfo, api: API, options: Options) {
     }
 
     const {spacingBinding, sizingBinding, deprecatedTypeImports} =
-        collectBindings(j, tokensImport);
+        collectBindings(tokensImport);
 
     if (!spacingBinding && deprecatedTypeImports.length === 0) {
         return root.toSource(options.printOptions);
@@ -135,7 +135,6 @@ type Bindings = {
 };
 
 function collectBindings(
-    j: JSCodeshift,
     tokensImport: Collection<ImportDeclaration>,
 ): Bindings {
     let spacingBinding: string | null = null;
