@@ -17,7 +17,7 @@ Options:
 
 const {
     values: {help, transformFile, dryRun, print},
-    positionals: [files],
+    positionals,
 } = parseArgs({
     options: {
         /**
@@ -55,7 +55,23 @@ if (help) {
     process.exit(0);
 }
 
-run(transformFile, [files], {
+if (!transformFile) {
+    // eslint-disable-next-line no-console
+    console.error("Error: --transform-file (-t) is required.");
+    // eslint-disable-next-line no-console
+    console.log(HELP_TEXT);
+    process.exit(1);
+}
+
+if (positionals.length === 0) {
+    // eslint-disable-next-line no-console
+    console.error("Error: at least one file or directory path is required.");
+    // eslint-disable-next-line no-console
+    console.log(HELP_TEXT);
+    process.exit(1);
+}
+
+run(transformFile, positionals, {
     dryRun,
     print,
 });
