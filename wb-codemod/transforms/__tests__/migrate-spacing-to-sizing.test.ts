@@ -254,9 +254,9 @@ const styles = {marginLeft: -spacing.large_24};
 `,
             `
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
-const styles = {marginLeft: \`-\${sizing.size_240}\`};
+const styles = {marginLeft: \`calc(-1 * \${sizing.size_240})\`};
 `,
-            "should rewrite unary minus on spacing as a negative-rem template",
+            "should rewrite unary minus on spacing as a calc(-1 * sizing.X) template",
         );
     });
 

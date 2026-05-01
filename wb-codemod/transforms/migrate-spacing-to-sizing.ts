@@ -254,10 +254,12 @@ function rewriteSimpleMemberAccess(
         }
 
         // `-spacing.X` (unary minus) on a numeric token used to produce a
-        // negative pixel number. Plain rewrite would yield `-sizing.X` which
-        // negates a rem string and silently produces `NaN` at runtime. Replace
-        // the entire UnaryExpression with `` `-${sizing.X}` `` so the value
-        // stays a valid negative-rem CSS string.
+        // negative pixel number. The runtime `sizing.X` value is a CSS
+        // variable string like `var(--wb-sizing-size_240)`, so a literal `-`
+        // prefix (`-var(...)`) is invalid CSS. Wrap the whole UnaryExpression
+        // in `` `calc(-1 * ${sizing.X})` `` — a CSS-valid negative-length
+        // expression that works regardless of whether the sizing token is a
+        // rem string or a CSS variable.
         const parent = path.parent?.value;
         if (
             parent &&
@@ -271,8 +273,11 @@ function rewriteSimpleMemberAccess(
             );
             const negTemplate = j.templateLiteral(
                 [
-                    j.templateElement({raw: "-", cooked: "-"}, false),
-                    j.templateElement({raw: "", cooked: ""}, true),
+                    j.templateElement(
+                        {raw: "calc(-1 * ", cooked: "calc(-1 * "},
+                        false,
+                    ),
+                    j.templateElement({raw: ")", cooked: ")"}, true),
                 ],
                 [sizingExpr],
             );
