@@ -29,6 +29,7 @@ export function writeFile(filePath: string, contents: string): void {
     }
     fs.mkdirSync(path.dirname(filePath), {recursive: true});
     fs.writeFileSync(filePath, contents);
+    // eslint-disable-next-line no-console
     console.log(`  created  ${path.relative(REPO_ROOT, filePath)}`);
 }
 
@@ -44,5 +45,6 @@ export function patchFile(
         );
     }
     fs.writeFileSync(filePath, updated);
+    // eslint-disable-next-line no-console
     console.log(`  updated  ${path.relative(REPO_ROOT, filePath)}`);
 }

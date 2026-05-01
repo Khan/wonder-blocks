@@ -67,6 +67,7 @@ function parseArgs(argv: Array<string>): ParsedArgs {
 }
 
 function printHelp(): void {
+    // eslint-disable-next-line no-console
     console.log(
         `Usage: scaffold-rule.ts <rule-name> [--description "..."]
 
@@ -90,6 +91,7 @@ function main(): void {
         flags.description ??
         `TODO(${ruleName}): describe what \`${ruleName}\` enforces.`;
 
+    // eslint-disable-next-line no-console
     console.log(`Scaffolding rule "${ruleName}"...\n`);
 
     // 1. Create new files.
@@ -122,6 +124,7 @@ function main(): void {
     updateStrictConfig(ruleName);
     updateReadme(ruleName);
 
+    // eslint-disable-next-line no-console
     console.log(`
 Done! Next steps:
   1. Implement the rule logic in packages/eslint-plugin-wonder-blocks/src/rules/${ruleName}.ts
@@ -135,6 +138,7 @@ Done! Next steps:
 try {
     main();
 } catch (err) {
+    // eslint-disable-next-line no-console
     console.error(`\nError: ${(err as Error).message}`);
     process.exit(1);
 }
