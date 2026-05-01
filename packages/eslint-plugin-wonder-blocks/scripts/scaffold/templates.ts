@@ -1,4 +1,3 @@
-import {toTitleCase} from "./utils";
 
 export type TemplateArgs = {
     ruleName: string;
@@ -94,7 +93,6 @@ export function docsFileContents({
     ruleName,
     description,
 }: Pick<TemplateArgs, "ruleName" | "description">): string {
-    const titleCase = toTitleCase(ruleName);
     return `# ${ruleName}
 
 ${description}
@@ -117,9 +115,6 @@ Examples of **correct** code:
 <div />
 \`\`\`
 
-## When Not To Use It
-
-TODO(${ruleName}): describe scenarios where ${titleCase} should be disabled.
 `;
 }
 

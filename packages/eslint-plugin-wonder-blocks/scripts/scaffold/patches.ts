@@ -68,7 +68,7 @@ export function applyReadmePatch(src: string, ruleName: string): string {
     if (src.includes(`docs/${ruleName}.md`)) {
         throw new Error(`Rule "${ruleName}" already appears in README.md.`);
     }
-    const newRow = `| [\`${ruleName}\`](docs/${ruleName}.md)| |✅|`;
+    const newRow = `| [\`${ruleName}\`](docs/${ruleName}.md)| TODO(${ruleName}) | TODO(${ruleName}) |`;
     const tableRegex =
         /(\| Rule \| Enabled in `recommended`\| Enabled in `strict` \|\n\|[^\n]*\|\n)([\s\S]*)$/;
     const match = src.match(tableRegex);

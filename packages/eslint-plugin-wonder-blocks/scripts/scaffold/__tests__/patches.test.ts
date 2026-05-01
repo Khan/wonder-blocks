@@ -123,7 +123,7 @@ describe("applyReadmePatch", () => {
 
         // Assert
         expect(result).toContain(
-            "| [`no-new-rule`](docs/no-new-rule.md)| |✅|",
+            "| [`no-new-rule`](docs/no-new-rule.md)| TODO(no-new-rule) | TODO(no-new-rule) |",
         );
     });
 

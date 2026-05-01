@@ -1,4 +1,4 @@
-import {assertKebabCase, toCamelCase, toTitleCase} from "../utils";
+import {assertKebabCase, toCamelCase} from "../utils";
 
 describe("toCamelCase", () => {
     it.each([
@@ -16,20 +16,6 @@ describe("toCamelCase", () => {
     });
 });
 
-describe("toTitleCase", () => {
-    it.each([
-        ["no-foo-bar", "No Foo Bar"],
-        ["no-custom-tab-role", "No Custom Tab Role"],
-    ])("converts %s to %s", (input, expected) => {
-        // Arrange — input provided by it.each
-
-        // Act
-        const result = toTitleCase(input);
-
-        // Assert
-        expect(result).toBe(expected);
-    });
-});
 
 describe("assertKebabCase", () => {
     it.each(["no-foo-bar", "no-custom-tab-role", "require-wonder-blocks-use"])(

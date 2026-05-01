@@ -86,16 +86,6 @@ describe("docsFileContents", () => {
         expect(result).toContain("TODO(no-foo-bar):");
     });
 
-    it("should use title case for the When Not To Use It section", () => {
-        // Arrange
-        const {ruleName, description} = ARGS;
-
-        // Act
-        const result = docsFileContents({ruleName, description});
-
-        // Assert
-        expect(result).toContain("No Foo Bar should be disabled");
-    });
 });
 
 describe("demoFileContents", () => {
