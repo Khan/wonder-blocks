@@ -5,7 +5,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {Heading, BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 
@@ -132,7 +132,7 @@ const sharedStyles = StyleSheet.create({
         display: "grid",
         alignItems: "center",
         minHeight: 66,
-        paddingInline: spacing.medium_16,
+        paddingInline: sizing.size_160,
         width: "100%",
     },
     containerWithTextTitle: {
@@ -169,12 +169,12 @@ const sharedStyles = StyleSheet.create({
         color: semanticColor.core.foreground.neutral.default,
     },
     titles: {
-        padding: spacing.small_12,
+        padding: sizing.size_120,
         textAlign: "center",
         justifySelf: "center",
         maxWidth: "100%",
     },
     spacer: {
-        minWidth: spacing.small_12,
+        minWidth: sizing.size_120,
     },
 });

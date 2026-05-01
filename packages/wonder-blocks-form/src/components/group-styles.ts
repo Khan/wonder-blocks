@@ -1,6 +1,6 @@
 import {StyleSheet} from "aphrodite";
 
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import type {StyleDeclaration} from "aphrodite";
 import theme from "../theme";
@@ -22,17 +22,17 @@ const styles: StyleDeclaration = StyleSheet.create({
     },
 
     description: {
-        marginTop: spacing.xxxSmall_4,
+        marginTop: sizing.size_040,
         color: theme.description.color.foreground,
     },
 
     error: {
-        marginTop: spacing.xxxSmall_4,
+        marginTop: sizing.size_040,
         color: semanticColor.status.critical.foreground,
     },
 
     defaultLineGap: {
-        marginTop: spacing.xSmall_8,
+        marginTop: sizing.size_080,
     },
 });
 

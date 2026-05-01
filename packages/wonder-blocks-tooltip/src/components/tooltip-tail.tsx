@@ -2,7 +2,7 @@ import * as React from "react";
 import {css, StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {color, spacing, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {color, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
@@ -212,7 +212,7 @@ export default class TooltipTail extends React.Component<Props> {
                  */}
                 <feGaussianBlur
                     in="SourceAlpha"
-                    stdDeviation={spacing.xxSmall_6 / 2}
+                    stdDeviation={`calc(${sizing.size_060} / 2)`}
                 />
 
                 {/* Here we adjust the alpha (feFuncA) linearly so as to blend
@@ -420,12 +420,12 @@ export default class TooltipTail extends React.Component<Props> {
  * (i.e. placement="top"). When the tail points to the left or right instead,
  * the width/height are inverted.
  */
-const DISTANCE_FROM_ANCHOR = spacing.xSmall_8;
+const DISTANCE_FROM_ANCHOR = sizing.size_080;
 
-const MIN_DISTANCE_FROM_CORNERS = spacing.xSmall_8;
+const MIN_DISTANCE_FROM_CORNERS = sizing.size_080;
 
-const ARROW_WIDTH = spacing.large_24;
-const ARROW_HEIGHT = spacing.small_12;
+const ARROW_WIDTH = sizing.size_240;
+const ARROW_HEIGHT = sizing.size_120;
 
 const styles = StyleSheet.create({
     /**

@@ -12,7 +12,7 @@ import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {
     border,
     semanticColor,
-    spacing,
+    sizing,
 } from "@khanacademy/wonder-blocks-tokens";
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 
@@ -262,21 +262,21 @@ const styles = StyleSheet.create({
         height: 40,
     },
     searchIcon: {
-        marginLeft: spacing.xSmall_8,
-        marginRight: spacing.xSmall_8,
+        marginLeft: sizing.size_080,
+        marginRight: sizing.size_080,
         position: "absolute",
     },
     dismissIcon: {
         margin: 0,
         position: "absolute",
-        right: spacing.xxxSmall_4,
+        right: sizing.size_040,
     },
     inputStyleReset: {
         display: "flex",
         flex: 1,
         width: "100%",
-        paddingLeft: spacing.xLarge_32,
-        paddingRight: spacing.large_24 + spacing.medium_16,
+        paddingLeft: sizing.size_320,
+        paddingRight: `calc(${sizing.size_240} + ${sizing.size_160})`,
     },
 });
 

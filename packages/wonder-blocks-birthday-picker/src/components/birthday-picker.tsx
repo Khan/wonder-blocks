@@ -3,7 +3,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {StyleType, View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {SingleSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
@@ -338,7 +338,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
 
         return (
             <>
-                <Strut size={spacing.xxxSmall_4} />
+                <Strut size={sizing.size_040} />
                 <View
                     style={{flexDirection: "row", placeItems: "center"}}
                     role="alert"
@@ -349,7 +349,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                         color={semanticColor.core.foreground.critical.default}
                         aria-hidden="true"
                     />
-                    <Strut size={spacing.xxxSmall_4} />
+                    <Strut size={sizing.size_040} />
                     <BodyText
                         tag="span"
                         style={{
@@ -417,7 +417,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
 
         return (
             <>
-                <Strut size={spacing.xSmall_8} />
+                <Strut size={sizing.size_080} />
                 <SingleSelect
                     aria-label={this.labels.day}
                     aria-invalid={!!this.state.error}
@@ -498,7 +498,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
 
                     {this.maybeRenderDay()}
 
-                    <Strut size={spacing.xSmall_8} />
+                    <Strut size={sizing.size_080} />
 
                     {this.renderYear()}
                 </View>

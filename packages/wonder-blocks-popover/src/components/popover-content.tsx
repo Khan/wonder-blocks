@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 
 import type {PopoverContextType} from "./popover-context";
@@ -257,12 +257,13 @@ export default class PopoverContent extends React.Component<Props> {
     }
 }
 
+// TODO(spacing-migration): manual review needed — `spacing` reference could not be auto-migrated.
 const styles = StyleSheet.create({
     /**
      * Shared styles
      */
     actions: {
-        marginTop: spacing.large_24,
+        marginTop: sizing.size_240,
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "flex-end",
@@ -273,7 +274,7 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        marginBottom: spacing.xSmall_8,
+        marginBottom: sizing.size_080,
     },
 
     /**
@@ -282,10 +283,10 @@ const styles = StyleSheet.create({
     iconContainer: {
         alignItems: "center",
         justifyContent: "center",
-        height: spacing.xxxLarge_64,
-        width: spacing.xxxLarge_64,
-        minWidth: spacing.xxxLarge_64,
-        marginRight: spacing.medium_16,
+        height: sizing.size_640,
+        width: sizing.size_640,
+        minWidth: sizing.size_640,
+        marginRight: sizing.size_160,
         overflow: "hidden",
     },
 
@@ -301,16 +302,16 @@ const styles = StyleSheet.create({
      * Illustration styles
      */
     image: {
-        marginBottom: spacing.large_24,
-        marginLeft: -spacing.large_24,
-        marginRight: -spacing.large_24,
-        marginTop: -spacing.large_24,
+        marginBottom: sizing.size_240,
+        marginLeft: `-${sizing.size_240}`,
+        marginRight: `-${sizing.size_240}`,
+        marginTop: `-${sizing.size_240}`,
         width: `calc(100% + ${spacing.large_24 * 2}px)`,
     },
 
     imageToBottom: {
-        marginBottom: -spacing.large_24,
-        marginTop: spacing.large_24,
+        marginBottom: `-${sizing.size_240}`,
+        marginTop: sizing.size_240,
         order: 1,
     },
 });

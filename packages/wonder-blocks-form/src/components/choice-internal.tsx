@@ -2,12 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {View, Id} from "@khanacademy/wonder-blocks-core";
-import {
-    font,
-    semanticColor,
-    sizing,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import CheckboxCore from "./checkbox-core";
@@ -165,7 +160,7 @@ type Props = AriaProps & {
 
 const styles = StyleSheet.create({
     wrapper: {
-        gap: spacing.xSmall_8,
+        gap: sizing.size_080,
         lineHeight: font.body.lineHeight.small,
         flexDirection: "row",
         alignItems: "flex-start",
@@ -188,8 +183,8 @@ const styles = StyleSheet.create({
     },
     description: {
         // 16 for icon + 8 for spacing strut
-        marginLeft: spacing.medium_16 + spacing.xSmall_8,
-        marginTop: spacing.xxxSmall_4,
+        marginLeft: `calc(${sizing.size_160} + ${sizing.size_080})`,
+        marginTop: sizing.size_040,
         color: theme.description.color.foreground,
     },
 });

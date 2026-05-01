@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import {View, addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import theme from "../theme";
 
@@ -73,7 +73,7 @@ export default class FieldHeading extends React.Component<Props> {
                     {label}
                     {required && requiredIcon}
                 </BodyText>
-                <Strut size={spacing.xxxSmall_4} />
+                <Strut size={sizing.size_040} />
             </React.Fragment>
         );
     }
@@ -95,7 +95,7 @@ export default class FieldHeading extends React.Component<Props> {
                 >
                     {description}
                 </BodyText>
-                <Strut size={spacing.xxxSmall_4} />
+                <Strut size={sizing.size_040} />
             </React.Fragment>
         );
     }
@@ -109,7 +109,7 @@ export default class FieldHeading extends React.Component<Props> {
 
         return (
             <React.Fragment>
-                <Strut size={spacing.small_12} />
+                <Strut size={sizing.size_120} />
                 <BodyText
                     size="small"
                     tag="span"
@@ -131,7 +131,7 @@ export default class FieldHeading extends React.Component<Props> {
             <View style={style}>
                 {this.renderLabel()}
                 {this.maybeRenderDescription()}
-                <Strut size={spacing.xSmall_8} />
+                <Strut size={sizing.size_080} />
                 {field}
                 {this.maybeRenderError()}
             </View>

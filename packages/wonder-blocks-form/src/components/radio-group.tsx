@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
@@ -135,11 +135,9 @@ const RadioGroup = React.forwardRef(function RadioGroup(
                     {errorMessage}
                 </BodyText>
             )}
-
             {(label || description || errorMessage) && (
-                <Strut size={spacing.small_12} />
+                <Strut size={sizing.size_120} />
             )}
-
             {allChildren.map((child, index) => {
                 // @ts-expect-error [FEI-5019] - TS2339 - Property 'props' does not exist on type 'ReactChild | ReactFragment | ReactPortal'.
                 const {style, value} = child.props;
