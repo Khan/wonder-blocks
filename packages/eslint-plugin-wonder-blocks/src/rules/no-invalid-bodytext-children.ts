@@ -29,7 +29,7 @@ export default createRule<Options, MessageIds>({
         docs: {
             description:
                 "Disallow block-level elements and excessive children inside BodyText",
-            recommended: true,
+            recommended: false,
         },
         schema: [
             {
