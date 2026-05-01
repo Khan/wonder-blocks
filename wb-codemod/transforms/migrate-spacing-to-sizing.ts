@@ -197,6 +197,16 @@ function rewriteArithmetic(
             return;
         }
 
+        // Bail if this arithmetic sits inside a TemplateLiteral expression
+        // slot. Producing a nested template literal there would yield invalid
+        // CSS (e.g. `calc(100% + ${`calc(${sizing.X} * 2)`}px)`). Leave the
+        // inner spacing references alone — `rewriteSimpleMemberAccess` checks
+        // for the same pattern and skips them, and the unhandled-pass adds a
+        // TODO comment.
+        if (isInsideTemplateLiteralExpression(path)) {
+            return;
+        }
+
         const parts = flattenBinary(j, path.value, spacingBinding, null);
         if (!parts) {
             return;
@@ -240,6 +250,44 @@ function rewriteSimpleMemberAccess(
         const key = (path.value.property as any).name as string;
         const sizingKey = SPACING_TO_SIZING[key];
         if (!sizingKey) {
+            return;
+        }
+
+        // `-spacing.X` (unary minus) on a numeric token used to produce a
+        // negative pixel number. Plain rewrite would yield `-sizing.X` which
+        // negates a rem string and silently produces `NaN` at runtime. Replace
+        // the entire UnaryExpression with `` `-${sizing.X}` `` so the value
+        // stays a valid negative-rem CSS string.
+        const parent = path.parent?.value;
+        if (
+            parent &&
+            parent.type === "UnaryExpression" &&
+            parent.operator === "-" &&
+            parent.argument === path.value
+        ) {
+            const sizingExpr = j.memberExpression(
+                j.identifier(sizingBinding),
+                j.identifier(sizingKey),
+            );
+            const negTemplate = j.templateLiteral(
+                [
+                    j.templateElement({raw: "-", cooked: "-"}, false),
+                    j.templateElement({raw: "", cooked: ""}, true),
+                ],
+                [sizingExpr],
+            );
+            j(path.parent).replaceWith(negTemplate);
+            ctx.handledSpacingPaths.add(path.value);
+            touched = true;
+            return;
+        }
+
+        // Inside a TemplateLiteral expression slot, only rewrite if the
+        // following quasi doesn't start with a letter (which usually means a
+        // unit like `px`, `em`, `rem`). Rewriting `\`${spacing.X}px\`` would
+        // produce `1.6rempx` — invalid CSS. Bail in that case so the unhandled
+        // pass adds a TODO comment.
+        if (isUnsafeTemplateLiteralContext(path)) {
             return;
         }
 
@@ -413,6 +461,84 @@ function updateImports(
 }
 
 // --- helpers ------------------------------------------------------------
+
+/**
+ * True when `path` is inside the `expressions` array of a TemplateLiteral
+ * (directly or via parenthesizing wrappers). Used to bail on rewrites that
+ * would otherwise produce nested template literals or invalid CSS unit
+ * concatenation.
+ */
+function isInsideTemplateLiteralExpression(path: ASTPath<any>): boolean {
+    let current: ASTPath<any> | null = path.parent ?? null;
+    while (current) {
+        if (current.value?.type === "TemplateLiteral") {
+            return true;
+        }
+        // Stop at obvious statement/declaration boundaries — we only care
+        // about expression-level containment.
+        const t = current.value?.type;
+        if (
+            t === "BlockStatement" ||
+            t === "Program" ||
+            t === "ExpressionStatement" ||
+            t === "VariableDeclarator" ||
+            t === "Property" ||
+            t === "ObjectProperty" ||
+            t === "JSXAttribute"
+        ) {
+            return false;
+        }
+        current = current.parent ?? null;
+    }
+    return false;
+}
+
+/**
+ * True when rewriting the spacing member alone would produce invalid CSS or
+ * an unwanted shape:
+ *   - direct child of a TemplateLiteral whose next quasi starts with a letter
+ *     (`\`${spacing.X}px\`` would yield `"1.6rempx"`), OR
+ *   - nested inside a BinaryExpression that itself sits in a TemplateLiteral
+ *     expression slot (the arithmetic-rewrite pass already bails on those, and
+ *     leaving the inner member alone keeps the source intact for the
+ *     unhandled-pass to flag).
+ */
+function isUnsafeTemplateLiteralContext(path: ASTPath<any>): boolean {
+    const parent = path.parent;
+    if (parent?.value?.type === "TemplateLiteral") {
+        const tmpl = parent.value;
+        const idx = (tmpl.expressions ?? []).indexOf(path.value);
+        if (idx >= 0) {
+            const nextRaw = tmpl.quasis?.[idx + 1]?.value?.raw ?? "";
+            return /^[A-Za-z]/.test(nextRaw);
+        }
+    }
+
+    // Walk up looking for a BinaryExpression ancestor that lives inside a
+    // TemplateLiteral expression slot.
+    let current: ASTPath<any> | null = path.parent ?? null;
+    while (current) {
+        if (current.value?.type === "BinaryExpression") {
+            if (isInsideTemplateLiteralExpression(current)) {
+                return true;
+            }
+        }
+        const t = current.value?.type;
+        if (
+            t === "BlockStatement" ||
+            t === "Program" ||
+            t === "ExpressionStatement" ||
+            t === "VariableDeclarator" ||
+            t === "Property" ||
+            t === "ObjectProperty" ||
+            t === "JSXAttribute"
+        ) {
+            return false;
+        }
+        current = current.parent ?? null;
+    }
+    return false;
+}
 
 function isSpacingMember(node: any, spacingBinding: string): boolean {
     return (

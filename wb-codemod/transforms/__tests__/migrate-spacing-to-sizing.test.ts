@@ -244,6 +244,68 @@ type SpacerSize = VALID_SPACING;
         );
     });
 
+    describe("unary minus", () => {
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+const styles = {marginLeft: -spacing.large_24};
+`,
+            `
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+const styles = {marginLeft: \`-\${sizing.size_240}\`};
+`,
+            "should rewrite unary minus on spacing as a negative-rem template",
+        );
+    });
+
+    describe("template-literal contexts", () => {
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+const styles = {padding: \`10px \${spacing.medium_16}px\`};
+`,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+// TODO(spacing-migration): manual review needed — \`spacing\` reference could not be auto-migrated.
+const styles = {padding: \`10px \${spacing.medium_16}px\`};
+`,
+            "should bail when spacing is followed by a CSS unit suffix in a template literal",
+        );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+const styles = {width: \`calc(100% + \${spacing.large_24 * 2}px)\`};
+`,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+// TODO(spacing-migration): manual review needed — \`spacing\` reference could not be auto-migrated.
+const styles = {width: \`calc(100% + \${spacing.large_24 * 2}px)\`};
+`,
+            "should bail on arithmetic inside a template literal (avoids nested template)",
+        );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+const styles = {transform: \`translateX(\${spacing.medium_16})\`};
+`,
+            `
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+const styles = {transform: \`translateX(\${sizing.size_160})\`};
+`,
+            "should rewrite when the next quasi starts with punctuation/whitespace (safe)",
+        );
+    });
+
     describe("unhandled patterns", () => {
         defineInlineTest(
             transform,
