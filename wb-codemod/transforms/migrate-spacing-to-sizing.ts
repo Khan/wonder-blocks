@@ -60,15 +60,20 @@ function transform(file: FileInfo, api: API, options: Options) {
         source: {value: TOKENS_PACKAGE},
     });
 
+    // Return file.source (rather than root.toSource()) when there is nothing
+    // to transform. recast reformats the entire file on toSource(), so calling
+    // it for files we didn't modify would produce spurious diffs (parens,
+    // whitespace, etc.). Returning the original source matches jscodeshift's
+    // "no change" semantics.
     if (tokensImport.size() === 0) {
-        return root.toSource(options.printOptions);
+        return file.source;
     }
 
     const {spacingBinding, sizingBinding, deprecatedTypeImports} =
         collectBindings(tokensImport);
 
     if (!spacingBinding && deprecatedTypeImports.length === 0) {
-        return root.toSource(options.printOptions);
+        return file.source;
     }
 
     let sizingUsed = false;
