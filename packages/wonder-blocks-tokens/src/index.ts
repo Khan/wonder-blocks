@@ -1,5 +1,6 @@
 // primitive tokens
-// This use is valid while we still have color token instances in consumers.
+// These re-exports are valid while we still have color and spacing token
+// instances in consumers.
 /* eslint-disable import/no-deprecated */
 import {color} from "./tokens/color";
 import {spacing} from "./tokens/spacing";
