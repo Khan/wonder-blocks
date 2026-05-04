@@ -19,6 +19,7 @@
   "module": "dist/es/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "gen:lint-rule": "./scripts/generate-lint-rule/index.ts",
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },
   "dependencies": {
