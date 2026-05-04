@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {
     Choice,
@@ -113,6 +113,6 @@ export const Default: StoryComponentType = {
 const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
-        gap: spacing.xLarge_32,
+        gap: sizing.size_320,
     },
 });

@@ -6,7 +6,7 @@ import packageConfig from "../../packages/wonder-blocks-styles/package.json";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {ScenariosLayout} from "../components/scenarios-layout";
 
@@ -55,7 +55,7 @@ export const Focus: Story = {
         return (
             <View
                 style={{
-                    padding: spacing.medium_16,
+                    padding: sizing.size_160,
                     flexDirection: "row",
                     placeItems: "center",
                 }}
@@ -63,8 +63,8 @@ export const Focus: Story = {
                 <View
                     style={{
                         background: semanticColor.status.success.background,
-                        padding: spacing.medium_16,
-                        gap: spacing.medium_16,
+                        padding: sizing.size_160,
+                        gap: sizing.size_160,
                     }}
                 >
                     <IconButton
@@ -78,8 +78,8 @@ export const Focus: Story = {
                     style={{
                         background:
                             semanticColor.core.background.neutral.strong,
-                        padding: spacing.medium_16,
-                        gap: spacing.medium_16,
+                        padding: sizing.size_160,
+                        gap: sizing.size_160,
                     }}
                 >
                     <IconButton
@@ -221,8 +221,8 @@ export const Scenarios: Story = {
                             background: inverse
                                 ? semanticColor.core.background.neutral.strong
                                 : semanticColor.status.success.background,
-                            padding: spacing.medium_16,
-                            gap: spacing.medium_16,
+                            padding: sizing.size_160,
+                            gap: sizing.size_160,
                         }}
                     />
                 )}

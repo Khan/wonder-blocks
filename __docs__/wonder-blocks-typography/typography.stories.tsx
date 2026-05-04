@@ -4,11 +4,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
-import {
-    semanticColor,
-    sizing,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {
     Heading,
     BodyText,
@@ -215,7 +211,7 @@ export const LineHeight: StoryObj<any> = {
     render: () => {
         const style = {
             outline: `1px solid ${semanticColor.core.border.neutral.strong}`,
-            marginBottom: spacing.small_12,
+            marginBottom: sizing.size_120,
         } as const;
 
         return (

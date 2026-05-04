@@ -3,7 +3,7 @@ import {Meta, Story, ColorItem} from "@storybook/addon-docs/blocks";
 import Banner from "@khanacademy/wonder-blocks-banner";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {color, mix, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, mix, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import equalsIcon from "@phosphor-icons/core/bold/equals-bold.svg";
 import plusIcon from "@phosphor-icons/core/bold/plus-bold.svg";
@@ -72,7 +72,7 @@ export const mixedColor2 = mix(color.white32, color.blue);
     style={{
         display: "grid",
         gridTemplateColumns: "repeat(5, 1fr)",
-        gap: spacing.large_24,
+        gap: sizing.size_240,
         justifyItems: "center",
     }}
 

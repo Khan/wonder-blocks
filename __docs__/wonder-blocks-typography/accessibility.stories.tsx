@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
@@ -12,17 +12,17 @@ const styles = StyleSheet.create({
     explanation: {
         fontWeight: 700,
         flexDirection: "row",
-        marginTop: spacing.xSmall_8,
+        marginTop: sizing.size_080,
     },
     correct: {
         color: semanticColor.core.foreground.success.default,
-        marginRight: spacing.xxxSmall_4,
-        paddingTop: spacing.xxxxSmall_2,
+        marginRight: sizing.size_040,
+        paddingTop: sizing.size_020,
     },
     incorrect: {
         color: semanticColor.core.foreground.critical.default,
-        marginRight: spacing.xxxSmall_4,
-        paddingTop: spacing.xxxxSmall_2,
+        marginRight: sizing.size_040,
+        paddingTop: sizing.size_020,
     },
 });
 

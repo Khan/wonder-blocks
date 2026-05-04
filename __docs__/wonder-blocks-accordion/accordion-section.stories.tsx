@@ -9,11 +9,7 @@ import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {
-    border,
-    semanticColor,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingSmall, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentInfo from "../components/component-info";
@@ -226,7 +222,7 @@ export const ReactElementInHeader: StoryComponentType = {
                 >
                     This is the information present in the first section
                 </AccordionSection>
-                <Strut size={spacing.xLarge_32} />
+                <Strut size={32} />
                 {/* The following AccordionSection is implemented
                 the same way as the CourseAccordion in the LearnableNodeSidebar
                 that can be found on Khan Academy. It should truncate the
@@ -236,7 +232,7 @@ export const ReactElementInHeader: StoryComponentType = {
                         <View
                             style={{
                                 flexDirection: "row",
-                                margin: spacing.medium_16,
+                                margin: sizing.size_160,
                             }}
                         >
                             <View
@@ -244,9 +240,9 @@ export const ReactElementInHeader: StoryComponentType = {
                                     backgroundSize: "contain",
                                     borderRadius: border.radius.radius_080,
                                     height: 40,
-                                    marginRight: spacing.small_12,
+                                    marginRight: sizing.size_120,
                                     minWidth: 40,
-                                    padding: spacing.xSmall_8,
+                                    padding: sizing.size_080,
                                     width: 40,
                                 }}
                             >
@@ -363,7 +359,7 @@ export const CaretPositions: StoryComponentType = {
                             Something
                         </AccordionSection>
                     </View>
-                    <Strut size={spacing.xLarge_32} />
+                    <Strut size={32} />
                     <View style={styles.fullWidth}>
                         <LabelLarge style={styles.space}>
                             Caret position: start, language direction: left to
@@ -379,7 +375,7 @@ export const CaretPositions: StoryComponentType = {
                         </AccordionSection>
                     </View>
                 </View>
-                <Strut size={spacing.xLarge_32} />
+                <Strut size={32} />
                 {/* Right-to-left */}
                 <View style={[styles.sideBySide, styles.rtl]}>
                     <View style={styles.fullWidth}>
@@ -396,7 +392,7 @@ export const CaretPositions: StoryComponentType = {
                             کچھ
                         </AccordionSection>
                     </View>
-                    <Strut size={spacing.xLarge_32} />
+                    <Strut size={32} />
                     <View style={styles.fullWidth}>
                         <LabelLarge style={styles.space}>
                             Caret position: start, language direction: right to
@@ -547,7 +543,7 @@ export const WithStyle: StoryComponentType = {
 
         const customStyles = {
             backgroundColor: semanticColor.core.background.neutral.subtle,
-            margin: spacing.large_24,
+            margin: sizing.size_240,
             outline: `2px solid ${semanticColor.core.border.neutral.subtle}`,
         };
 
@@ -631,10 +627,10 @@ const styles = StyleSheet.create({
         direction: "rtl",
     },
     space: {
-        margin: spacing.xSmall_8,
+        margin: sizing.size_080,
     },
     button: {
         width: "fit-content",
-        marginBottom: spacing.large_24,
+        marginBottom: sizing.size_240,
     },
 });

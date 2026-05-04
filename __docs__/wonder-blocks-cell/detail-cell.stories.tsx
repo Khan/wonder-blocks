@@ -5,11 +5,7 @@ import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
-import {
-    border,
-    semanticColor,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
@@ -393,7 +389,7 @@ export const CustomStyles = {
     },
     render(args: PropsFor<typeof DetailCell>) {
         return (
-            <View style={{gap: spacing.large_24}}>
+            <View style={{gap: sizing.size_240}}>
                 Active
                 <DetailCell
                     {...args}
@@ -476,12 +472,12 @@ export const CustomStyles = {
 const styles = StyleSheet.create({
     example: {
         backgroundColor: semanticColor.core.background.base.subtle,
-        padding: spacing.large_24,
+        padding: sizing.size_240,
         width: 376,
     },
     navigation: {
         border: `${border.width.thin} dashed ${semanticColor.core.border.instructive.default}`,
-        marginTop: spacing.large_24,
-        padding: spacing.large_24,
+        marginTop: sizing.size_240,
+        padding: sizing.size_240,
     },
 });

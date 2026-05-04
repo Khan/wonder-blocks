@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import {PopoverContentCore} from "@khanacademy/wonder-blocks-popover";
@@ -42,28 +42,28 @@ const styles = StyleSheet.create({
     popoverWithIcon: {
         alignItems: "center",
         flexDirection: "row",
-        gap: spacing.medium_16,
+        gap: sizing.size_160,
     },
     popoverWithCell: {
         padding: 0,
     },
     customPopover: {
-        maxWidth: spacing.medium_16 * 25,
-        width: spacing.medium_16 * 25,
+        maxWidth: `calc(${sizing.size_160} * 25)`,
+        width: `calc(${sizing.size_160} * 25)`,
         textAlign: "center",
     },
     row: {
         flexDirection: "row",
         justifyContent: "center",
-        padding: `${spacing.small_12}px 0`,
+        padding: `${sizing.size_120} 0`,
     },
     action: {
         backgroundColor: "transparent",
         border: "none",
         color: semanticColor.core.foreground.knockout.default,
         cursor: "pointer",
-        margin: spacing.small_12,
-        padding: spacing.xxSmall_6,
+        margin: sizing.size_120,
+        padding: sizing.size_060,
         alignItems: "center",
         justifyContent: "center",
     },
