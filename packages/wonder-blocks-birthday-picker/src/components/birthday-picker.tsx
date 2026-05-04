@@ -160,6 +160,15 @@ const defaultStyles = StyleSheet.create({
             minWidth: "100%",
         },
     },
+    errorRow: {
+        flexDirection: "row",
+        placeItems: "center",
+        gap: sizing.size_040,
+        marginTop: sizing.size_040,
+    },
+    errorText: {
+        color: semanticColor.status.critical.foreground,
+    },
 });
 export default class BirthdayPicker extends React.Component<Props, State> {
     /**
@@ -337,27 +346,14 @@ export default class BirthdayPicker extends React.Component<Props, State> {
         }
 
         return (
-            <View
-                style={{
-                    flexDirection: "row",
-                    placeItems: "center",
-                    gap: sizing.size_040,
-                    marginTop: sizing.size_040,
-                }}
-                role="alert"
-            >
+            <View style={defaultStyles.errorRow} role="alert">
                 <PhosphorIcon
                     size="small"
                     icon={infoIcon}
                     color={semanticColor.core.foreground.critical.default}
                     aria-hidden="true"
                 />
-                <BodyText
-                    tag="span"
-                    style={{
-                        color: semanticColor.status.critical.foreground,
-                    }}
-                >
+                <BodyText tag="span" style={defaultStyles.errorText}>
                     {error}
                 </BodyText>
             </View>
