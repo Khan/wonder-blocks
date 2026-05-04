@@ -14,6 +14,7 @@ import {
     semanticColor,
     spacing,
 } from "@khanacademy/wonder-blocks-tokens";
+import {announceMessage} from "@khanacademy/wonder-blocks-announcer";
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 
 import {defaultLabels} from "../util/constants";
@@ -23,6 +24,12 @@ type Props = AriaProps & {
      * ARIA label for the clear button. Defaults to "Clear search".
      */
     clearAriaLabel?: string;
+    /**
+     * Status message announced to screen readers when the search field is
+     * cleared via the clear button. Defaults to "Search cleared".
+     * Pass a translated string for i18n support.
+     */
+    clearStatusMessage?: string;
     /**
      * The unique identifier for the input. If one is not provided,
      * a unique id will be generated.
@@ -150,6 +157,7 @@ const SearchField: React.ForwardRefExoticComponent<
 ) {
     const {
         clearAriaLabel = defaultLabels.clearSearch,
+        clearStatusMessage = defaultLabels.searchCleared,
         autoFocus,
         disabled = false,
         id,
@@ -176,6 +184,7 @@ const SearchField: React.ForwardRefExoticComponent<
     const handleClear: () => void = () => {
         // Empty the search text.
         onChange("");
+        announceMessage({message: clearStatusMessage});
 
         // Focus back on the text field since the clear button disappears after
         // the field is cleared.

@@ -504,6 +504,85 @@ describe("SearchField", () => {
         });
     });
 
+    describe("a11y > Live region", () => {
+        let announceMessageSpy: any;
+        beforeAll(() => {
+            announceMessageSpy = jest.spyOn(
+                require("@khanacademy/wonder-blocks-announcer"),
+                "announceMessage",
+            );
+        });
+
+        beforeEach(() => {
+            announceMessageSpy.mockClear();
+        });
+
+        afterAll(() => {
+            announceMessageSpy.mockRestore();
+        });
+
+        it("announces status message when clear button is clicked", async () => {
+            // Arrange
+            render(<ControlledSearchField testId="search-field-test" />);
+
+            const searchField =
+                await screen.findByTestId("search-field-test");
+            await userEvent.type(searchField, "abc");
+
+            // Act
+            const clearButton = await screen.findByRole("button", {
+                name: "Clear search",
+            });
+            await userEvent.click(clearButton);
+
+            // Assert
+            expect(announceMessageSpy).toHaveBeenCalledWith({
+                message: "Search cleared",
+            });
+        });
+
+        it("uses custom clearStatusMessage when provided", async () => {
+            // Arrange
+            render(
+                <ControlledSearchField
+                    testId="search-field-test"
+                    clearStatusMessage="Búsqueda borrada"
+                />,
+            );
+
+            const searchField =
+                await screen.findByTestId("search-field-test");
+            await userEvent.type(searchField, "abc");
+
+            // Act
+            const clearButton = await screen.findByRole("button", {
+                name: "Clear search",
+            });
+            await userEvent.click(clearButton);
+
+            // Assert
+            expect(announceMessageSpy).toHaveBeenCalledWith({
+                message: "Búsqueda borrada",
+            });
+        });
+
+        it("does not announce when user manually clears text via backspace", async () => {
+            // Arrange
+            render(<ControlledSearchField testId="search-field-test" />);
+
+            const searchField =
+                await screen.findByTestId("search-field-test");
+            await userEvent.type(searchField, "a");
+            announceMessageSpy.mockClear();
+
+            // Act
+            await userEvent.type(searchField, "{backspace}");
+
+            // Assert
+            expect(announceMessageSpy).not.toHaveBeenCalled();
+        });
+    });
+
     describe("validation", () => {
         it("should call the validate prop when a user types in the field and instantValidation is not set", async () => {
             // Arrange
