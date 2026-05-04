@@ -1,0 +1,137 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`demoFileContents should match the snapshot 1`] = `
+"/**
+ * This file demonstrates the wonder-blocks ESLint rule:
+ * \`@khanacademy/wonder-blocks/no-foo-bar\`
+ * Run \`pnpm lint\` in this directory to see the errors.
+ */
+
+import * as React from "react";
+
+// ✅ Valid: TODO(no-foo-bar) — show code that does NOT trigger no-foo-bar.
+export function ValidExample() {
+    return <div />;
+}
+
+// ❌ Invalid: TODO(no-foo-bar) — show code that SHOULD trigger no-foo-bar.
+export function InvalidExample() {
+    return <div />;
+}
+"
+`;
+
+exports[`docsFileContents should match the snapshot 1`] = `
+"# no-foo-bar
+
+Disallow the use of foo bar.
+
+## Rule Details
+
+TODO(no-foo-bar): describe what this rule checks for and why.
+
+Examples of **incorrect** code:
+
+\`\`\`tsx
+// TODO(no-foo-bar): add an example that triggers no-foo-bar.
+<div />
+\`\`\`
+
+Examples of **correct** code:
+
+\`\`\`tsx
+// TODO(no-foo-bar): add an example that does not trigger no-foo-bar.
+<div />
+\`\`\`
+
+"
+`;
+
+exports[`mdxFileContents should match the snapshot 1`] = `
+"import {Meta, Markdown} from "@storybook/addon-docs/blocks";
+import lintRuleDocs from "../../../packages/eslint-plugin-wonder-blocks/docs/no-foo-bar.md?raw";
+
+<Meta
+    title="Tools / eslint-plugin-wonder-blocks / Rules / no-foo-bar"
+/>
+
+<Markdown>{lintRuleDocs}</Markdown>
+"
+`;
+
+exports[`ruleFileContents should match the snapshot 1`] = `
+"import {ESLintUtils} from "@typescript-eslint/utils";
+
+import type {WonderBlocksPluginDocs} from "../types";
+
+const createRule = ESLintUtils.RuleCreator<WonderBlocksPluginDocs>(
+    (name) =>
+        \`https://github.com/Khan/wonder-blocks/blob/main/packages/eslint-plugin-wonder-blocks/docs/\${name}.md\`,
+);
+
+type Options = [];
+type MessageIds = "noFooBar";
+
+export default createRule<Options, MessageIds>({
+    name: "no-foo-bar",
+    meta: {
+        docs: {
+            description: "Disallow the use of foo bar.",
+            recommended: true,
+        },
+        messages: {
+            noFooBar:
+                "TODO(no-foo-bar): replace with the lint error message shown to developers.",
+        },
+        schema: [],
+        type: "suggestion",
+    },
+    create(context) {
+        // TODO(no-foo-bar): implement the rule logic. The visitor below is a
+        // placeholder that never reports — replace it with checks tailored to
+        // no-foo-bar.
+        return {
+            JSXAttribute(_node) {
+                // example shape:
+                // context.report({node: _node, messageId: "noFooBar"});
+            },
+        };
+    },
+    defaultOptions: [],
+});
+"
+`;
+
+exports[`testFileContents should match the snapshot 1`] = `
+"import {RuleTester} from "@typescript-eslint/rule-tester";
+
+import {rules} from "..";
+
+const ruleTester = new RuleTester({
+    languageOptions: {
+        parserOptions: {
+            ecmaVersion: 6,
+            sourceType: "module",
+            ecmaFeatures: {
+                jsx: true,
+            },
+        },
+    },
+});
+
+const ruleName = "no-foo-bar";
+const rule = rules[ruleName];
+
+ruleTester.run(ruleName, rule, {
+    // TODO(no-foo-bar): add valid examples that should NOT trigger no-foo-bar.
+    valid: [{code: "<div />"}],
+    // TODO(no-foo-bar): add invalid examples that SHOULD trigger no-foo-bar.
+    invalid: [
+        // {
+        //     code: '<div data-trigger="me" />',
+        //     errors: [{messageId: "noFooBar"}],
+        // },
+    ],
+});
+"
+`;

@@ -35,6 +35,16 @@ describe("ruleFileContents", () => {
         // Assert
         expect(result).toContain("TODO(no-foo-bar):");
     });
+
+    it("should match the snapshot", () => {
+        // Arrange — ARGS defined above
+
+        // Act
+        const result = ruleFileContents(ARGS);
+
+        // Assert
+        expect(result).toMatchSnapshot();
+    });
 });
 
 describe("testFileContents", () => {
@@ -59,6 +69,17 @@ describe("testFileContents", () => {
 
         // Assert
         expect(result).toContain("TODO(no-foo-bar):");
+    });
+
+    it("should match the snapshot", () => {
+        // Arrange
+        const {ruleName, messageId} = ARGS;
+
+        // Act
+        const result = testFileContents({ruleName, messageId});
+
+        // Assert
+        expect(result).toMatchSnapshot();
     });
 });
 
@@ -86,6 +107,16 @@ describe("docsFileContents", () => {
         expect(result).toContain("TODO(no-foo-bar):");
     });
 
+    it("should match the snapshot", () => {
+        // Arrange
+        const {ruleName, description} = ARGS;
+
+        // Act
+        const result = docsFileContents({ruleName, description});
+
+        // Assert
+        expect(result).toMatchSnapshot();
+    });
 });
 
 describe("demoFileContents", () => {
@@ -99,6 +130,17 @@ describe("demoFileContents", () => {
         // Assert
         expect(result).toContain("@khanacademy/wonder-blocks/no-foo-bar");
         expect(result).toContain("TODO(no-foo-bar)");
+    });
+
+    it("should match the snapshot", () => {
+        // Arrange
+        const {ruleName} = ARGS;
+
+        // Act
+        const result = demoFileContents({ruleName});
+
+        // Assert
+        expect(result).toMatchSnapshot();
     });
 });
 
@@ -115,5 +157,16 @@ describe("mdxFileContents", () => {
         expect(result).toContain(
             'title="Tools / eslint-plugin-wonder-blocks / Rules / no-foo-bar"',
         );
+    });
+
+    it("should match the snapshot", () => {
+        // Arrange
+        const {ruleName} = ARGS;
+
+        // Act
+        const result = mdxFileContents({ruleName});
+
+        // Assert
+        expect(result).toMatchSnapshot();
     });
 });
