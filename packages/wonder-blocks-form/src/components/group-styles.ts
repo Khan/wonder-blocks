@@ -24,10 +24,12 @@ const styles: StyleDeclaration = StyleSheet.create({
 
     description: {
         color: theme.description.color.foreground,
+        marginBlockStart: sizing.size_040,
     },
 
     error: {
         color: semanticColor.status.critical.foreground,
+        marginBlockStart: sizing.size_040,
     },
 
     // Lifts the first choice 8px below the last meta element. Combined with
