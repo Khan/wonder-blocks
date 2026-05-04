@@ -175,6 +175,6 @@ const sharedStyles = StyleSheet.create({
         maxWidth: "100%",
     },
     spacer: {
-        minWidth: sizing.size_120,
+        minInlineSize: sizing.size_120,
     },
 });

@@ -71,13 +71,13 @@ const styles = StyleSheet.create({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        marginRight: sizing.size_040,
+        marginInlineEnd: sizing.size_040,
         lineHeight: "inherit",
         fontFamily: font.family.sans,
     },
 
     separator: {
-        marginLeft: sizing.size_040,
+        marginInlineStart: sizing.size_040,
     },
 });
 

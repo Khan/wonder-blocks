@@ -213,8 +213,8 @@ const styles = StyleSheet.create({
         textAlign: "start",
     },
     headerString: {
-        paddingTop: sizing.size_160,
-        paddingBottom: sizing.size_160,
+        paddingBlockStart: sizing.size_160,
+        paddingBlockEnd: sizing.size_160,
     },
     headerStringCaretEnd: {
         paddingInlineEnd: sizing.size_120,

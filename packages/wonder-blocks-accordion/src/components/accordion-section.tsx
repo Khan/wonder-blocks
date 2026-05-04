@@ -409,7 +409,7 @@ const _generateStyles = (
         wrapperStyle = {
             border: borderStyle,
             borderRadius: border.radius.radius_120,
-            marginBottom: sizing.size_160,
+            marginBlockEnd: sizing.size_160,
         };
 
         contentWrapperStyle = {

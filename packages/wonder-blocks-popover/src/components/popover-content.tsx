@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
      * Shared styles
      */
     actions: {
-        marginTop: sizing.size_240,
+        marginBlockStart: sizing.size_240,
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "flex-end",
@@ -273,7 +273,7 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        marginBottom: sizing.size_080,
+        marginBlockEnd: sizing.size_080,
     },
 
     /**
@@ -282,10 +282,10 @@ const styles = StyleSheet.create({
     iconContainer: {
         alignItems: "center",
         justifyContent: "center",
-        height: sizing.size_640,
-        width: sizing.size_640,
-        minWidth: sizing.size_640,
-        marginRight: sizing.size_160,
+        blockSize: sizing.size_640,
+        inlineSize: sizing.size_640,
+        minInlineSize: sizing.size_640,
+        marginInlineEnd: sizing.size_160,
         overflow: "hidden",
     },
 

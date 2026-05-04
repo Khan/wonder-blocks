@@ -183,8 +183,8 @@ const styles = StyleSheet.create({
     },
     description: {
         // 16 for icon + 8 for spacing strut
-        marginLeft: `calc(${sizing.size_160} + ${sizing.size_080})`,
-        marginTop: sizing.size_040,
+        marginInlineStart: `calc(${sizing.size_160} + ${sizing.size_080})`,
+        marginBlockStart: sizing.size_040,
         color: theme.description.color.foreground,
     },
 });

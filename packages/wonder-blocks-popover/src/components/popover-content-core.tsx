@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
         backgroundColor: semanticColor.core.background.base.default,
         boxShadow: boxShadow.mid,
         margin: 0,
-        maxWidth: `calc(${sizing.size_160} * 18)`, // 288px
+        maxInlineSize: `calc(${sizing.size_160} * 18)`, // 288px
         padding: sizing.size_240,
         overflow: "hidden",
         justifyContent: "center",

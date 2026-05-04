@@ -258,8 +258,8 @@ const styles = StyleSheet.create({
         height: 40,
     },
     searchIcon: {
-        marginLeft: sizing.size_080,
-        marginRight: sizing.size_080,
+        marginInlineStart: sizing.size_080,
+        marginInlineEnd: sizing.size_080,
         position: "absolute",
     },
     dismissIcon: {
@@ -271,8 +271,8 @@ const styles = StyleSheet.create({
         display: "flex",
         flex: 1,
         width: "100%",
-        paddingLeft: sizing.size_320,
-        paddingRight: `calc(${sizing.size_240} + ${sizing.size_160})`,
+        paddingInlineStart: sizing.size_320,
+        paddingInlineEnd: `calc(${sizing.size_240} + ${sizing.size_160})`,
     },
 });
 
