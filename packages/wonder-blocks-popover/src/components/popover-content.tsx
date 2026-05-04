@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
-import {sizing, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 
 import type {PopoverContextType} from "./popover-context";
@@ -257,7 +257,6 @@ export default class PopoverContent extends React.Component<Props> {
     }
 }
 
-// TODO(spacing-migration): manual review needed — `spacing` reference could not be auto-migrated.
 const styles = StyleSheet.create({
     /**
      * Shared styles
@@ -303,14 +302,14 @@ const styles = StyleSheet.create({
      */
     image: {
         marginBottom: sizing.size_240,
-        marginLeft: `-${sizing.size_240}`,
-        marginRight: `-${sizing.size_240}`,
-        marginTop: `-${sizing.size_240}`,
-        width: `calc(100% + ${spacing.large_24 * 2}px)`,
+        marginLeft: `calc(-1 * ${sizing.size_240})`,
+        marginRight: `calc(-1 * ${sizing.size_240})`,
+        marginTop: `calc(-1 * ${sizing.size_240})`,
+        width: `calc(100% + ${sizing.size_480})`,
     },
 
     imageToBottom: {
-        marginBottom: `-${sizing.size_240}`,
+        marginBottom: `calc(-1 * ${sizing.size_240})`,
         marginTop: sizing.size_240,
         order: 1,
     },

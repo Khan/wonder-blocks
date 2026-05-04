@@ -34,6 +34,10 @@ const styles: StyleDeclaration = StyleSheet.create({
     defaultLineGap: {
         marginTop: sizing.size_080,
     },
+
+    firstChoiceMetaSpacing: {
+        marginTop: sizing.size_120,
+    },
 });
 
 export default styles;

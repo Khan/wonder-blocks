@@ -2,8 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {sizing, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {Heading, BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
 
@@ -78,20 +77,20 @@ export default class TooltipContent extends React.Component<Props> {
                 testId={this.props.testId}
             >
                 {title}
-                {title && children && <Strut size={sizing.size_040} />}
                 {children}
             </View>
         );
     }
 }
 
-// TODO(spacing-migration): manual review needed — `spacing` reference could not be auto-migrated.
 const styles = StyleSheet.create({
     withoutTitle: {
-        padding: `10px ${spacing.medium_16}px`,
+        padding: `${sizing.size_100} ${sizing.size_160}`,
     },
 
     withTitle: {
         padding: sizing.size_160,
+        // gap between the title and its children when both are present.
+        gap: sizing.size_040,
     },
 });

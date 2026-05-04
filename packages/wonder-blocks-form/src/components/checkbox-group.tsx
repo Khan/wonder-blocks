@@ -1,10 +1,8 @@
 import * as React from "react";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
 
 import styles from "./group-styles";
 import Choice from "./choice";
@@ -150,13 +148,11 @@ const CheckboxGroup = React.forwardRef(function CheckboxGroup(
                     {errorMessage}
                 </BodyText>
             )}
-            {(label || description || errorMessage) && (
-                <Strut size={sizing.size_120} />
-            )}
             {allChildren.map((child, index) => {
                 // @ts-expect-error [FEI-5019] - TS2339 - Property 'props' does not exist on type 'ReactChild | ReactFragment | ReactPortal'.
                 const {style, value} = child.props;
                 const checked = selectedValues.includes(value);
+                const hasMeta = !!(label || description || errorMessage);
                 // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                 return React.cloneElement(child, {
                     checked: checked,
@@ -165,7 +161,11 @@ const CheckboxGroup = React.forwardRef(function CheckboxGroup(
                     id: `${groupName}-${value}`,
                     key: value,
                     onChange: () => handleChange(value, checked),
-                    style: [index > 0 && styles.defaultLineGap, style],
+                    style: [
+                        index === 0 && hasMeta && styles.firstChoiceMetaSpacing,
+                        index > 0 && styles.defaultLineGap,
+                        style,
+                    ],
                     variant: "checkbox",
                 });
             })}
