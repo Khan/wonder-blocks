@@ -1,26 +1,15 @@
 #!/usr/bin/env -S node -r @swc-node/register
 /* eslint-disable no-console -- scripts use console for CLI output */
 /**
- * Scaffold a new lint rule for `@khanacademy/eslint-plugin-wonder-blocks`.
- *
- * Generates:
- *  - src/rules/<rule-name>.ts                    (placeholder rule)
- *  - src/rules/__tests__/<rule-name>.test.ts     (placeholder test)
- *  - docs/<rule-name>.md                         (markdown docs)
- *  - demo/src/<rule-name>-example.tsx            (demo example)
- *  - __docs__/tools/eslint-plugin-wonder-blocks/<rule-name>.mdx  (Storybook page)
- *
- * Updates:
- *  - src/rules/index.ts        (registers the new rule)
- *  - src/configs/strict.ts     (adds the rule to the strict config)
- *  - README.md                 (adds a row to the rules table)
+ * Scaffold a new lint rule for `@khanacademy/eslint-plugin-wonder-blocks`. It
+ * will generate and update the necessary files related to adding a new lint
+ * rule including tests, documentation, and example files.
  *
  * Usage (from the repo root):
- *   ./packages/eslint-plugin-wonder-blocks/scripts/generate-lint-rule.ts <rule-name> [--description "..."]
+ *   pnpm gen:lint-rule <rule-name> [--description "..."]
  *
  * Example:
- *   ./packages/eslint-plugin-wonder-blocks/scripts/generate-lint-rule.ts no-foo-bar \
- *       --description "Disallow the use of foo bar."
+ *   pnpm gen:lint-rule no-foo-bar --description "Disallow the use of foo bar."
  */
 import * as path from "path";
 
