@@ -339,6 +339,7 @@ const styles = StyleSheet.create({
     },
     // Multiple choice styling
     multipleChoice: {
+        margin: 0,
         height: 48,
         borderTop: "solid 1px #CCC",
         justifyContent: "center",

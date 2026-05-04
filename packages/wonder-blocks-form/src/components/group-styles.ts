@@ -12,7 +12,6 @@ const styles: StyleDeclaration = StyleSheet.create({
         border: "none",
         padding: 0,
         margin: 0,
-        gap: sizing.size_040,
     },
 
     legend: {
@@ -32,16 +31,12 @@ const styles: StyleDeclaration = StyleSheet.create({
         marginBlockStart: sizing.size_040,
     },
 
-    // Lifts the first choice 8px below the last meta element. Combined with
-    // the 4px fieldset gap, this restores the original 12px Strut spacing
-    // between the meta block and the first choice.
     firstChoiceMetaSpacing: {
-        marginBlockStart: sizing.size_080,
+        marginBlockStart: sizing.size_120,
     },
 
-    // Tops up the 4px fieldset gap to the original 8px between choices.
     choiceLineGap: {
-        marginBlockStart: sizing.size_040,
+        marginBlockStart: sizing.size_080,
     },
 });
 
