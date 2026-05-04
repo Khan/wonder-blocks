@@ -39,13 +39,49 @@ export function applyRulesIndexPatch(src: string, ruleName: string): string {
     return updated;
 }
 
+export function applyRecommendedConfigPatch(
+    src: string,
+    ruleName: string,
+): string {
+    if (src.includes(`"@khanacademy/wonder-blocks/${ruleName}"`)) {
+        throw new Error(
+            `Rule "${ruleName}" already appears in src/configs/recommended.ts.`,
+        );
+    }
+    const todoComment = `        // TODO(${ruleName}): Decide if the rule is strict or recommended.`;
+    const ruleLine = `        // "@khanacademy/wonder-blocks/${ruleName}": "error",`;
+
+    // recommended.ts starts with an empty rules object — expand it.
+    const emptyRulesRegex = /(\s+rules: )\{\}/;
+    if (emptyRulesRegex.test(src)) {
+        return src.replace(
+            emptyRulesRegex,
+            `$1{\n${todoComment}\n${ruleLine}\n    }`,
+        );
+    }
+
+    // rules object already has content — insert before the closing brace.
+    const blockRegex = /(rules: \{\n)([\s\S]*?)(\n {4}\})/;
+    const match = src.match(blockRegex);
+    if (!match) {
+        throw new Error(
+            "Could not locate the rules block in src/configs/recommended.ts",
+        );
+    }
+    return src.replace(
+        blockRegex,
+        `$1${match[2]}\n${todoComment}\n${ruleLine}$3`,
+    );
+}
+
 export function applyStrictConfigPatch(src: string, ruleName: string): string {
-    const newRule = `        "@khanacademy/wonder-blocks/${ruleName}": "error",`;
-    if (src.includes(newRule.trim())) {
+    if (src.includes(`"@khanacademy/wonder-blocks/${ruleName}"`)) {
         throw new Error(
             `Rule "${ruleName}" already appears in src/configs/strict.ts.`,
         );
     }
+    const todoComment = `        // TODO(${ruleName}): Decide if the rule is strict or recommended.`;
+    const ruleLine = `        // "@khanacademy/wonder-blocks/${ruleName}": "error",`;
     const ruleBlockRegex = /(rules: \{\n)([\s\S]*?)(\n {4}\},)/;
     const match = src.match(ruleBlockRegex);
     if (!match) {
@@ -53,15 +89,10 @@ export function applyStrictConfigPatch(src: string, ruleName: string): string {
             "Could not locate the rules block in src/configs/strict.ts",
         );
     }
-    const lines = match[2].split("\n").filter((l) => l.trim().length > 0);
-    lines.push(newRule);
-    // Keep the spread of recommended.rules first, then sort the rule lines.
-    const spread = lines.find((l) => l.includes("...recommended.rules"));
-    const ruleLines = lines
-        .filter((l) => !l.includes("...recommended.rules"))
-        .sort();
-    const ordered = [spread, ...ruleLines].filter(Boolean).join("\n");
-    return src.replace(ruleBlockRegex, `$1${ordered}$3`);
+    return src.replace(
+        ruleBlockRegex,
+        `$1${match[2]}\n${todoComment}\n${ruleLine}$3`,
+    );
 }
 
 export function applyReadmePatch(src: string, ruleName: string): string {
@@ -88,7 +119,10 @@ export function updateRulesIndex(ruleName: string): void {
     );
 }
 
-export function updateStrictConfig(ruleName: string): void {
+export function updateConfigs(ruleName: string): void {
+    patchFile(path.join(PLUGIN_DIR, "src/configs/recommended.ts"), (src) =>
+        applyRecommendedConfigPatch(src, ruleName),
+    );
     patchFile(path.join(PLUGIN_DIR, "src/configs/strict.ts"), (src) =>
         applyStrictConfigPatch(src, ruleName),
     );

@@ -25,9 +25,9 @@
 import * as path from "path";
 
 import {
+    updateConfigs,
     updateReadme,
     updateRulesIndex,
-    updateStrictConfig,
 } from "./scaffold/patches";
 import {
     demoFileContents,
@@ -120,7 +120,7 @@ function main(): void {
 
     // 2. Patch existing files.
     updateRulesIndex(ruleName);
-    updateStrictConfig(ruleName);
+    updateConfigs(ruleName);
     updateReadme(ruleName);
 
     console.log(`

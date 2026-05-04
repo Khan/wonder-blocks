@@ -27,7 +27,7 @@ export default createRule<Options, MessageIds>({
     meta: {
         docs: {
             description: ${JSON.stringify(description)},
-            recommended: false,
+            recommended: true,
         },
         messages: {
             ${messageId}:

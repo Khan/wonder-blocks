@@ -25,7 +25,8 @@ This creates the following files:
 It also patches these existing files:
 
 - `src/rules/index.ts` — registers the rule
-- `src/configs/strict.ts` — adds the rule to the strict config
+- `src/configs/recommended.ts` — adds the rule (commented out) with a `TODO(no-foo-bar)` comment to decide if it belongs in `recommended` or `strict`
+- `src/configs/strict.ts` — adds the rule (commented out) with a `TODO(no-foo-bar)` comment to decide if it belongs in `recommended` or `strict`
 - `README.md` — adds a row to the rules table
 
 ### 2. Fill in the TODOs
