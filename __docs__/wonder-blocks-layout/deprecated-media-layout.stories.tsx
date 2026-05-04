@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {
     Body,
     HeadingSmall,
@@ -138,7 +138,7 @@ export const AllStyles: StoryComponentType = () => {
             // use shared styles for all sizes
             test: {
                 color: semanticColor.core.foreground.knockout.default,
-                padding: spacing.medium_16,
+                padding: sizing.size_160,
             },
         }),
 
@@ -147,7 +147,7 @@ export const AllStyles: StoryComponentType = () => {
             test: {
                 backgroundColor:
                     semanticColor.core.background.instructive.strong,
-                padding: spacing.xxLarge_48,
+                padding: sizing.size_480,
             },
         }),
 
@@ -199,14 +199,14 @@ export const CustomSpec: StoryComponentType = () => {
                 backgroundColor:
                     semanticColor.core.background.instructive.strong,
                 color: semanticColor.core.foreground.knockout.default,
-                padding: spacing.xxxLarge_64,
+                padding: sizing.size_640,
             },
         }),
 
         small: StyleSheet.create({
             example: {
                 backgroundColor: semanticColor.mastery.primary,
-                padding: spacing.small_12,
+                padding: sizing.size_120,
             },
         }),
     } as const;
@@ -216,14 +216,14 @@ export const CustomSpec: StoryComponentType = () => {
         small: {
             query: "(max-width: 767px)",
             totalColumns: 4,
-            gutterWidth: spacing.medium_16,
-            marginWidth: spacing.medium_16,
+            gutterWidth: sizing.size_160,
+            marginWidth: sizing.size_160,
         },
         large: {
             query: "(min-width: 768px)",
             totalColumns: 12,
-            gutterWidth: spacing.xLarge_32,
-            marginWidth: spacing.xxLarge_48,
+            gutterWidth: sizing.size_320,
+            marginWidth: sizing.size_480,
         },
     };
 

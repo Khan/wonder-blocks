@@ -13,11 +13,7 @@ import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
-import {
-    semanticColor,
-    sizing,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
@@ -32,7 +28,7 @@ const styles = StyleSheet.create({
     storyCanvas: {
         // NOTE: This is needed for Chromatic to include the tooltip bubble.
         minHeight: 280,
-        padding: spacing.xxxLarge_64,
+        padding: sizing.size_640,
         justifyContent: "center",
         textAlign: "center",
     },
@@ -42,14 +38,14 @@ const styles = StyleSheet.create({
     centered: {
         alignItems: "center",
         justifyContent: "center",
-        gap: spacing.medium_16,
-        padding: spacing.xxLarge_48,
+        gap: sizing.size_160,
+        padding: sizing.size_480,
     },
     scrollbox: {
         height: 100,
         overflow: "auto",
         border: "1px solid black",
-        margin: spacing.small_12,
+        margin: sizing.size_120,
     },
     hostbox: {
         minHeight: "200vh",
@@ -59,8 +55,8 @@ const styles = StyleSheet.create({
     },
     block: {
         border: `solid 1px ${semanticColor.mastery.primary}`,
-        width: spacing.xLarge_32,
-        height: spacing.xLarge_32,
+        width: sizing.size_320,
+        height: sizing.size_320,
         alignItems: "center",
         justifyContent: "center",
     },
@@ -408,7 +404,7 @@ export const WithStyle: StoryComponentType = {
                 <Tooltip
                     contentStyle={{
                         color: semanticColor.core.foreground.knockout.default,
-                        padding: spacing.xLarge_32,
+                        padding: sizing.size_320,
                     }}
                     content={`This is a styled tooltip.`}
                     backgroundColor="darkBlue"

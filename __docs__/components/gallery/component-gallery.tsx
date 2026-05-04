@@ -3,7 +3,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {RenderStateRoot, View} from "@khanacademy/wonder-blocks-core";
 
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {packageGroups, functionGroups, alphabetGroups} from "./groups";
 import {HeadingLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
@@ -38,7 +38,7 @@ export default function ComponentGallery() {
                 <View style={styles.menuBar}>
                     <LabelMedium tag="label" style={styles.row}>
                         Group by
-                        <Strut size={spacing.xSmall_8} />
+                        <Strut size={sizing.size_080} />
                         <SingleSelect
                             selectedValue={currentGroup}
                             onChange={setCurrentGroup}
@@ -50,11 +50,11 @@ export default function ComponentGallery() {
                             <OptionItem label="package" value="package" />
                         </SingleSelect>
                     </LabelMedium>
-                    <Strut size={spacing.large_24} />
+                    <Strut size={sizing.size_240} />
 
                     <LabelMedium tag="label" style={styles.row}>
                         Layout
-                        <Strut size={spacing.xSmall_8} />
+                        <Strut size={sizing.size_080} />
                         <SingleSelect
                             selectedValue={currentLayout}
                             onChange={(newValue) =>
@@ -82,7 +82,7 @@ export default function ComponentGallery() {
                                 checked={compactGridView}
                                 onChange={setCompactGridView}
                             />
-                            <Strut size={spacing.xSmall_8} />
+                            <Strut size={sizing.size_080} />
                             <LabelMedium
                                 tag="label"
                                 htmlFor="wb-storybook-gallery-compact-grid-switch"
@@ -120,7 +120,7 @@ export default function ComponentGallery() {
 
 export const styles = StyleSheet.create({
     menuBar: {
-        marginTop: spacing.medium_16,
+        marginTop: sizing.size_160,
         flexDirection: "row",
         alignItems: "center",
     },
@@ -130,8 +130,8 @@ export const styles = StyleSheet.create({
         flexWrap: "wrap",
     },
     sectionLabel: {
-        marginTop: spacing.xLarge_32,
-        marginBottom: spacing.large_24,
+        marginTop: sizing.size_320,
+        marginBottom: sizing.size_240,
     },
     row: {
         display: "flex",

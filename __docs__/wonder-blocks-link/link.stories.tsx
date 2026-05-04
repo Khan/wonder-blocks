@@ -15,12 +15,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {
-    border,
-    semanticColor,
-    sizing,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {
     Body,
     HeadingMedium,
@@ -100,7 +95,7 @@ export const StartAndEndIcons: StoryComponentType = {
     render: () => (
         <View>
             {/* Default (dark) */}
-            <View style={{padding: spacing.large_24}}>
+            <View style={{padding: sizing.size_240}}>
                 <Link
                     href="#link"
                     startIcon={
@@ -182,7 +177,7 @@ export const StartAndEndIcons: StoryComponentType = {
                 style={{
                     backgroundColor:
                         semanticColor.core.background.neutral.strong,
-                    padding: spacing.large_24,
+                    padding: sizing.size_240,
                 }}
             >
                 <Link
@@ -585,7 +580,7 @@ export const WithTitle: StoryComponentType = {
  */
 export const RightToLeftWithIcons: StoryComponentType = {
     render: () => (
-        <View style={{padding: spacing.medium_16}}>
+        <View style={{padding: sizing.size_160}}>
             <View style={styles.rightToLeft}>
                 <Link
                     href="/"
@@ -595,14 +590,14 @@ export const RightToLeftWithIcons: StoryComponentType = {
                 >
                     هذا الرابط مكتوب باللغة العربية
                 </Link>
-                <Strut size={spacing.medium_16} />
+                <Strut size={sizing.size_160} />
                 <Link
                     href="/"
                     endIcon={<PhosphorIcon icon={IconMappings.caretLeftBold} />}
                 >
                     هذا الرابط مكتوب باللغة العربية
                 </Link>
-                <Strut size={spacing.medium_16} />
+                <Strut size={sizing.size_160} />
                 <Link
                     href="/"
                     startIcon={
@@ -625,12 +620,12 @@ export const RightToLeftWithIcons: StoryComponentType = {
 
 const styles = StyleSheet.create({
     heading: {
-        marginRight: spacing.large_24,
+        marginRight: sizing.size_240,
     },
     navigation: {
         border: `1px dashed ${semanticColor.core.border.neutral.subtle}`,
-        marginTop: spacing.large_24,
-        padding: spacing.large_24,
+        marginTop: sizing.size_240,
+        padding: sizing.size_240,
     },
     customLink: {
         color: semanticColor.status.critical.foreground,
@@ -644,7 +639,7 @@ const styles = StyleSheet.create({
         // instead of taking the full width of the parent
         // container.
         display: "inline-block",
-        marginBottom: spacing.xSmall_8,
+        marginBottom: sizing.size_080,
     },
     rightToLeft: {
         width: "100%",
@@ -652,7 +647,7 @@ const styles = StyleSheet.create({
     },
     multiLine: {
         display: "inline-block",
-        marginBottom: spacing.xSmall_8,
+        marginBottom: sizing.size_080,
         maxWidth: "15%",
     },
     card: {

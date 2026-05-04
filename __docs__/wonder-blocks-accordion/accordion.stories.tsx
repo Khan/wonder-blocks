@@ -9,7 +9,7 @@ import {
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {
     MultiSelect,
@@ -100,7 +100,7 @@ export const Default: StoryComponentType = {
 export const AllowMultipleExpanded: StoryComponentType = {
     render: () => (
         <View>
-            <View style={{maxWidth: 500, marginBottom: spacing.large_24}}>
+            <View style={{maxWidth: 500, marginBottom: sizing.size_240}}>
                 <LabelLarge>Allow multiple expanded (default)</LabelLarge>
                 <Accordion allowMultipleExpanded>{exampleSections}</Accordion>
             </View>
@@ -169,7 +169,7 @@ export const CaretPositions: StoryComponentType = {
                             {exampleSections}
                         </Accordion>
                     </View>
-                    <Strut size={spacing.xLarge_32} />
+                    <Strut size={sizing.size_320} />
                     <View style={styles.fullWidth}>
                         <LabelLarge>
                             Caret position: start, language direction: left to
@@ -180,7 +180,6 @@ export const CaretPositions: StoryComponentType = {
                         </Accordion>
                     </View>
                 </View>
-
                 {/* Right-to-left */}
                 <View style={[styles.sideBySide, styles.rtl]}>
                     <View style={styles.fullWidth}>
@@ -202,7 +201,7 @@ export const CaretPositions: StoryComponentType = {
                             </AccordionSection>
                         </Accordion>
                     </View>
-                    <Strut size={spacing.xLarge_32} />
+                    <Strut size={sizing.size_320} />
                     <View style={styles.fullWidth}>
                         <LabelLarge>
                             Caret position: start, language direction: right to
@@ -375,7 +374,7 @@ export const WithAnimation: StoryComponentType = {
                             <View
                                 style={{
                                     height: 500,
-                                    padding: spacing.large_24,
+                                    padding: sizing.size_240,
                                 }}
                             >
                                 This is the information present in the first
@@ -386,7 +385,7 @@ export const WithAnimation: StoryComponentType = {
                             <View
                                 style={{
                                     height: 100,
-                                    padding: spacing.large_24,
+                                    padding: sizing.size_240,
                                 }}
                             >
                                 This is the information present in the second
@@ -397,7 +396,7 @@ export const WithAnimation: StoryComponentType = {
                             <View
                                 style={{
                                     height: 300,
-                                    padding: spacing.large_24,
+                                    padding: sizing.size_240,
                                 }}
                             >
                                 This is the information present in the third
@@ -432,7 +431,7 @@ export const WithStyle: StoryComponentType = {
     render: () => {
         const customStyles = {
             border: `2px solid ${semanticColor.mastery.primary}`,
-            padding: spacing.xLarge_32,
+            padding: sizing.size_320,
         };
 
         return (
@@ -508,7 +507,7 @@ export const LongSections: StoryComponentType = {
                                         width="100%"
                                         alt="Wonder Blocks logo"
                                     />
-                                    <Strut size={spacing.xLarge_32} />
+                                    <Strut size={sizing.size_320} />
                                     <img
                                         src="logo.svg"
                                         width="100%"
@@ -642,9 +641,9 @@ export const BackgroundColorExample: StoryComponentType = {
         return (
             <>
                 <Accordion cornerKind="rounded">{sections}</Accordion>
-                <Strut size={spacing.large_24} />
+                <Strut size={sizing.size_240} />
                 <Accordion cornerKind="square">{sections}</Accordion>
-                <Strut size={spacing.large_24} />
+                <Strut size={sizing.size_240} />
                 <Accordion cornerKind="rounded-per-section">
                     {sections}
                 </Accordion>
@@ -676,10 +675,10 @@ const styles = StyleSheet.create({
         direction: "rtl",
     },
     space: {
-        margin: spacing.xSmall_8,
+        margin: sizing.size_080,
     },
     button: {
         width: "fit-content",
-        marginBottom: spacing.medium_16,
+        marginBottom: sizing.size_160,
     },
 });

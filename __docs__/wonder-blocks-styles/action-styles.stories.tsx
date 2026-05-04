@@ -9,7 +9,7 @@ import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {
     border,
     semanticColor,
-    spacing,
+    sizing,
 } from "@khanacademy/wonder-blocks-tokens";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import Button from "@khanacademy/wonder-blocks-button";
@@ -126,8 +126,8 @@ export const InverseOutline: Story = {
         (Story) => (
             <View
                 style={{
-                    gap: spacing.medium_16,
-                    padding: spacing.medium_16,
+                    gap: sizing.size_160,
+                    padding: sizing.size_160,
                     flexDirection: "row",
                     placeItems: "center",
                     display: "grid",

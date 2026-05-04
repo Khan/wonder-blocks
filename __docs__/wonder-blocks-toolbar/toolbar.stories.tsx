@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import Toolbar from "@khanacademy/wonder-blocks-toolbar";
 import packageConfig from "../../packages/wonder-blocks-toolbar/package.json";
@@ -47,7 +47,7 @@ export default {
 
 const styles = StyleSheet.create({
     example: {
-        padding: spacing.large_24,
+        padding: sizing.size_240,
         alignItems: "center",
         justifyContent: "center",
     },
@@ -237,7 +237,7 @@ export const CustomToolbar: StoryComponentType = {
                 style={{
                     width: 300,
                     maxWidth: "100%",
-                    height: spacing.xSmall_8,
+                    height: sizing.size_080,
                     background: semanticColor.mastery.primary,
                 }}
             />

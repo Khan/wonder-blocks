@@ -7,7 +7,7 @@ import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {
     boxShadow,
     semanticColor,
-    spacing,
+    sizing,
 } from "@khanacademy/wonder-blocks-tokens";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 
@@ -18,7 +18,7 @@ const actionCategory = semanticColor.action.secondary.progressive;
 const styles = StyleSheet.create({
     rest: {
         border: `1px solid ${actionCategory.default.border}`,
-        padding: spacing.xSmall_8,
+        padding: sizing.size_080,
     },
     hover: {
         textDecoration: "underline",
@@ -33,10 +33,10 @@ const styles = StyleSheet.create({
     },
     focus: {
         outline: `solid 1px ${semanticColor.focus.outer}`,
-        outlineOffset: spacing.xxxxSmall_2,
+        outlineOffset: sizing.size_020,
     },
     panel: {
-        padding: spacing.medium_16,
+        padding: sizing.size_160,
         boxShadow: boxShadow.mid,
     },
     tabButton: {

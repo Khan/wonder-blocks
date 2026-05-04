@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View, addStyle} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 import packageConfig from "../../packages/wonder-blocks-clickable/package.json";
@@ -161,7 +161,7 @@ const actionCategory = semanticColor.action.secondary.progressive;
 const styles = StyleSheet.create({
     clickable: {
         cursor: "pointer",
-        padding: spacing.medium_16,
+        padding: sizing.size_160,
         textAlign: "center",
     },
     newButton: {
@@ -179,6 +179,6 @@ const styles = StyleSheet.create({
     },
     focus: {
         outline: `solid 1px ${semanticColor.focus.outer}`,
-        outlineOffset: spacing.xxxxSmall_2,
+        outlineOffset: sizing.size_020,
     },
 });

@@ -6,7 +6,7 @@ import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {ActionMenu, ActionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {RadioGroup, Choice} from "@khanacademy/wonder-blocks-form";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {DrawerDialog, DrawerLauncher} from "@khanacademy/wonder-blocks-modal";
@@ -100,15 +100,15 @@ type StoryComponentType = StoryObj<typeof DrawerDialog>;
 
 const styles = StyleSheet.create({
     content: {
-        padding: spacing.medium_16,
+        padding: sizing.size_160,
     },
     section: {
-        marginBottom: spacing.medium_16,
+        marginBottom: sizing.size_160,
     },
     form: {
         display: "flex",
         flexDirection: "column",
-        gap: spacing.medium_16,
+        gap: sizing.size_160,
     },
 });
 

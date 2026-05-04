@@ -3,13 +3,7 @@ import type {StrictArgs} from "@storybook/react-vite";
 
 import {StyleSheet} from "aphrodite";
 import {addStyle, StyleType, View} from "@khanacademy/wonder-blocks-core";
-import {
-    border,
-    breakpoint,
-    semanticColor,
-    sizing,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {border, breakpoint, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
@@ -212,8 +206,8 @@ const styles = StyleSheet.create({
         },
     },
     cell: {
-        margin: spacing.medium_16,
-        padding: spacing.medium_16,
+        margin: sizing.size_160,
+        padding: sizing.size_160,
     },
     childrenWrapper: {
         padding: sizing.size_080,

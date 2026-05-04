@@ -5,7 +5,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 import {
     border,
     semanticColor,
-    spacing,
+    sizing,
 } from "@khanacademy/wonder-blocks-tokens";
 import {
     HeadingMedium,
@@ -64,7 +64,7 @@ export const InlineStyles: StoryComponentType = {
                         background:
                             semanticColor.core.background.instructive.subtle,
                         border: `1px solid ${semanticColor.core.border.instructive.default}`,
-                        padding: spacing.xxxSmall_4,
+                        padding: sizing.size_040,
                     },
                 ]}
             >
@@ -124,18 +124,18 @@ export const DefiningLayout: StoryComponentType = {
 const styles = StyleSheet.create({
     container: {
         background: semanticColor.core.background.neutral.subtle,
-        gap: spacing.medium_16,
-        padding: spacing.xLarge_32,
+        gap: sizing.size_160,
+        padding: sizing.size_320,
     },
 
     view: {
         border: `${border.width.thin} dashed ${semanticColor.mastery.primary}`,
-        gap: spacing.medium_16,
-        padding: spacing.medium_16,
+        gap: sizing.size_160,
+        padding: sizing.size_160,
     },
 
     item: {
         background: semanticColor.core.background.instructive.subtle,
-        padding: spacing.medium_16,
+        padding: sizing.size_160,
     },
 });

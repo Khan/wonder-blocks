@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {Choice, CheckboxGroup} from "@khanacademy/wonder-blocks-form";
@@ -330,11 +330,11 @@ const styles = StyleSheet.create({
         flexWrap: "wrap",
     },
     choice: {
-        marginTop: spacing.xSmall_8,
+        marginTop: sizing.size_080,
         width: 200,
     },
     title: {
-        paddingBottom: spacing.xSmall_8,
+        paddingBottom: sizing.size_080,
         borderBottom: `1px solid ${semanticColor.core.border.neutral.default}`,
     },
     // Multiple choice styling

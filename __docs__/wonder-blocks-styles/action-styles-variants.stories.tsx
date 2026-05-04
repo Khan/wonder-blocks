@@ -6,7 +6,7 @@ import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {
     border,
     semanticColor,
-    spacing,
+    sizing,
 } from "@khanacademy/wonder-blocks-tokens";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {actionStyles} from "@khanacademy/wonder-blocks-styles";
@@ -37,7 +37,7 @@ export default {
                         <View
                             style={{
                                 flexDirection: "row",
-                                gap: spacing.medium_16,
+                                gap: sizing.size_160,
                             }}
                         >
                             <IconButton
@@ -147,7 +147,7 @@ export default {
                             style={{
                                 display: "grid",
                                 gridTemplateColumns: "repeat(3, 1fr)",
-                                gap: spacing.medium_16,
+                                gap: sizing.size_160,
                             }}
                         >
                             <Button kind="primary" style={actionStyles.inverse}>
@@ -234,8 +234,8 @@ export default {
                         style={{
                             background:
                                 semanticColor.core.background.neutral.strong,
-                            padding: spacing.medium_16,
-                            gap: spacing.medium_16,
+                            padding: sizing.size_160,
+                            gap: sizing.size_160,
                         }}
                     />
                 )}

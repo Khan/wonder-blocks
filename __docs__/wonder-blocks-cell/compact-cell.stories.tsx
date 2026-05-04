@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import packageConfig from "../../packages/wonder-blocks-cell/package.json";
@@ -117,12 +117,12 @@ export const CompactCellWithDifferentHeights: StoryComponentType = {
                 title="Single line with short accessory."
                 rightAccessory={AccessoryMappings.withCaret}
             />
-            <Strut size={spacing.xSmall_8} />
+            <Strut size={sizing.size_080} />
             <CompactCell
                 title="Single line with tall accessory."
                 rightAccessory={AccessoryMappings.withIconText}
             />
-            <Strut size={spacing.xSmall_8} />
+            <Strut size={sizing.size_080} />
             <CompactCell
                 title="Multi line title with tall accessory. Content should fit within the container and the cell height should be consistent no matter the content length."
                 rightAccessory={AccessoryMappings.withIconText}
@@ -175,12 +175,12 @@ export const CompactCellAccessoryStyles: StoryComponentType = {
             }
             styles={{
                 leftAccessory: {
-                    minWidth: spacing.xxLarge_48,
+                    minWidth: sizing.size_480,
                     alignSelf: "flex-start",
                     alignItems: "flex-start",
                 },
                 rightAccessory: {
-                    minWidth: spacing.large_24,
+                    minWidth: sizing.size_240,
                     alignSelf: "flex-end",
                     alignItems: "flex-end",
                 },
@@ -429,7 +429,7 @@ export const CompactCellsAsListItems: StoryComponentType = {
 const styles = StyleSheet.create({
     example: {
         backgroundColor: semanticColor.core.background.base.subtle,
-        padding: spacing.large_24,
-        width: 320 + spacing.xxLarge_48,
+        padding: sizing.size_240,
+        width: `calc(320px + ${sizing.size_480})`,
     },
 });

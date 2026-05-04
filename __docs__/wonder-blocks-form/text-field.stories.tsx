@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import Button from "@khanacademy/wonder-blocks-button";
 import {LabelLarge, Body} from "@khanacademy/wonder-blocks-typography";
 
@@ -226,7 +226,7 @@ export const Number: StoryComponentType = {
                     onChange={handleChange}
                     onKeyDown={handleKeyDown}
                 />
-                <Strut size={spacing.small_12} />
+                <Strut size={sizing.size_120} />
                 <Body>
                     The following text field has a min of 0, a max of 15, and a
                     step of 3
@@ -521,7 +521,7 @@ export const ErrorFromPropAndValidation = (
     const errorMessage = validationErrorMessage || backendErrorMessage;
 
     return (
-        <View style={{gap: spacing.medium_16}}>
+        <View style={{gap: sizing.size_160}}>
             <LabeledField
                 label="Error state from prop and validation"
                 errorMessage={errorMessage}
@@ -586,7 +586,7 @@ export const InstantValidation: StoryComponentType = {
     },
     render: (args) => {
         return (
-            <View style={{gap: spacing.small_12}}>
+            <View style={{gap: sizing.size_120}}>
                 <ControlledTextField
                     {...args}
                     label="Validation on mount if there is a value"
@@ -730,7 +730,7 @@ export const Ref: StoryComponentType = {
                     onKeyDown={handleKeyDown}
                     ref={inputRef}
                 />
-                <Strut size={spacing.medium_16} />
+                <Strut size={sizing.size_160} />
                 <Button style={styles.button} onClick={handleSubmit}>
                     Focus Input
                 </Button>
@@ -829,19 +829,19 @@ export const WithAutofocus: StoryComponentType = {
                     autoFocus={true}
                     onChange={handleChange}
                     onKeyDown={handleKeyDown}
-                    style={{flexGrow: 1, marginLeft: spacing.small_12}}
+                    style={{flexGrow: 1, marginLeft: sizing.size_120}}
                 />
             </View>
         );
 
         return (
             <View>
-                <LabelLarge style={{marginBottom: spacing.small_12}}>
+                <LabelLarge style={{marginBottom: sizing.size_120}}>
                     Press the button to view the text field with autofocus.
                 </LabelLarge>
                 <Button
                     onClick={handleShowDemo}
-                    style={{width: 300, marginBottom: spacing.large_24}}
+                    style={{width: 300, marginBottom: sizing.size_240}}
                 >
                     Toggle autoFocus demo
                 </Button>
@@ -920,6 +920,6 @@ const styles = StyleSheet.create({
         maxWidth: 150,
     },
     fieldWithButton: {
-        marginBottom: spacing.medium_16,
+        marginBottom: sizing.size_160,
     },
 });

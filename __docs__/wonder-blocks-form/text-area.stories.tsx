@@ -6,7 +6,7 @@ import {TextArea} from "@khanacademy/wonder-blocks-form";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 
 import ComponentInfo from "../components/component-info";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import Button from "@khanacademy/wonder-blocks-button";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
@@ -191,7 +191,7 @@ export const WithValue: ControlledStoryComponentType = {
 export const AutoResize: StoryComponentType = {
     render: (args) => {
         return (
-            <View style={{gap: spacing.large_24, maxWidth: "500px"}}>
+            <View style={{gap: sizing.size_240, maxWidth: "500px"}}>
                 <ControlledTextArea
                     {...args}
                     autoResize={false}
@@ -364,7 +364,7 @@ export const ErrorFromPropAndValidation = (args: PropsFor<typeof TextArea>) => {
     const errorMessage = validationErrorMessage || backendErrorMessage;
 
     return (
-        <View style={{gap: spacing.small_12}}>
+        <View style={{gap: sizing.size_120}}>
             <LabeledField
                 label="Error from prop and validation"
                 field={
@@ -429,7 +429,7 @@ export const InstantValidation: StoryComponentType = {
     },
     render: (args) => {
         return (
-            <View style={{gap: spacing.small_12}}>
+            <View style={{gap: sizing.size_120}}>
                 <ControlledTextArea
                     {...args}
                     label="Validation on mount if there is a value"
@@ -447,7 +447,6 @@ export const InstantValidation: StoryComponentType = {
                     false)"
                     instantValidation={false}
                 />
-
                 <ControlledTextArea
                     {...args}
                     validate={undefined}
@@ -457,7 +456,6 @@ export const InstantValidation: StoryComponentType = {
                     instantValidation={true}
                     required="Required"
                 />
-
                 <ControlledTextArea
                     {...args}
                     label="Error shown on blur if it is empty (instantValidation:
@@ -553,19 +551,19 @@ export const AutoFocus = () => {
                 autoFocus={true}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
-                style={{flexGrow: 1, marginLeft: spacing.small_12}}
+                style={{flexGrow: 1, marginLeft: sizing.size_120}}
             />
         </View>
     );
 
     return (
         <View>
-            <LabelLarge style={{marginBottom: spacing.small_12}}>
+            <LabelLarge style={{marginBottom: sizing.size_120}}>
                 Press the button to view the textarea with autofocus.
             </LabelLarge>
             <Button
                 onClick={handleShowDemo}
-                style={{width: 300, marginBottom: spacing.large_24}}
+                style={{width: 300, marginBottom: sizing.size_240}}
             >
                 Toggle autoFocus demo
             </Button>
@@ -776,7 +774,7 @@ export const CustomStyle: StoryComponentType = {
 export const RootStyle: StoryComponentType = {
     render(args) {
         return (
-            <View style={{height: "500px", gap: spacing.large_24}}>
+            <View style={{height: "500px", gap: sizing.size_240}}>
                 <div>Example flex item child </div>
                 <TextArea
                     {...args}
@@ -802,7 +800,7 @@ export const WithRef = () => {
     return (
         <View style={{alignItems: "flex-start"}}>
             <TextArea value={value} onChange={setValue} ref={ref} />
-            <Strut size={spacing.large_24} />
+            <Strut size={sizing.size_240} />
             <Button onClick={handleClick}>Focus using ref</Button>
         </View>
     );

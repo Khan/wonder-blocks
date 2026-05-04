@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import {PopoverContentCore} from "@khanacademy/wonder-blocks-popover";
@@ -34,6 +34,7 @@ export default {
     ],
 } as Meta<typeof PopoverContentCore>;
 
+// TODO(spacing-migration): manual review needed — `spacing` reference could not be auto-migrated.
 const styles = StyleSheet.create({
     example: {
         alignItems: "center",
@@ -42,14 +43,14 @@ const styles = StyleSheet.create({
     popoverWithIcon: {
         alignItems: "center",
         flexDirection: "row",
-        gap: spacing.medium_16,
+        gap: sizing.size_160,
     },
     popoverWithCell: {
         padding: 0,
     },
     customPopover: {
-        maxWidth: spacing.medium_16 * 25,
-        width: spacing.medium_16 * 25,
+        maxWidth: `calc(${sizing.size_160} * 25)`,
+        width: `calc(${sizing.size_160} * 25)`,
         textAlign: "center",
     },
     row: {
@@ -62,8 +63,8 @@ const styles = StyleSheet.create({
         border: "none",
         color: semanticColor.core.foreground.knockout.default,
         cursor: "pointer",
-        margin: spacing.small_12,
-        padding: spacing.xxSmall_6,
+        margin: sizing.size_120,
+        padding: sizing.size_060,
         alignItems: "center",
         justifyContent: "center",
     },

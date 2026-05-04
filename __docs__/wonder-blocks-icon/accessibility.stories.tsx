@@ -1,7 +1,7 @@
 import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import {IconMappings} from "./phosphor-icon.argtypes";
@@ -31,7 +31,7 @@ export const IconContrast = {
         <View
             style={{
                 flexDirection: "row",
-                marginBottom: spacing.xSmall_8,
+                marginBottom: sizing.size_080,
             }}
         >
             <LabelMedium>High contrast icon (GOOD):</LabelMedium>
@@ -39,7 +39,7 @@ export const IconContrast = {
                 icon={IconMappings.checkCircle}
                 style={{
                     color: semanticColor.core.foreground.instructive.default,
-                    marginInlineStart: spacing.xSmall_8,
+                    marginInlineStart: sizing.size_080,
                 }}
             />
         </View>
@@ -57,7 +57,7 @@ export const RightToLeftIcons = {
             <PhosphorIcon icon={IconMappings.caretRight} />
             <LabelMedium
                 style={{
-                    marginInlineStart: spacing.xSmall_8,
+                    marginInlineStart: sizing.size_080,
                 }}
             >
                 {"Left to right"}

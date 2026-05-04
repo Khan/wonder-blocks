@@ -2,9 +2,9 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {
-    spacing,
-    semanticColor,
     border,
+    semanticColor,
+    sizing,
 } from "@khanacademy/wonder-blocks-tokens";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
@@ -15,8 +15,8 @@ const styles = StyleSheet.create({
         background: semanticColor.core.background.base.default,
         border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
         borderRadius: border.radius.radius_040,
-        fontSize: spacing.medium_16,
-        padding: spacing.xSmall_8,
+        fontSize: sizing.size_160,
+        padding: sizing.size_080,
     },
     error: {
         background: semanticColor.core.background.critical.subtle,

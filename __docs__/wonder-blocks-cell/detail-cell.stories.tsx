@@ -8,7 +8,7 @@ import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {
     border,
     semanticColor,
-    spacing,
+    sizing,
 } from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
@@ -393,9 +393,8 @@ export const CustomStyles = {
     },
     render(args: PropsFor<typeof DetailCell>) {
         return (
-            <View style={{gap: spacing.large_24}}>
-                Active
-                <DetailCell
+            <View style={{gap: sizing.size_240}}>Active
+                                <DetailCell
                     {...args}
                     styles={{
                         root: {
@@ -406,9 +405,8 @@ export const CustomStyles = {
                         },
                     }}
                     active={true}
-                />
-                Pressed
-                <DetailCell
+                />Pressed
+                                <DetailCell
                     {...args}
                     styles={{
                         root: {
@@ -417,9 +415,8 @@ export const CustomStyles = {
                             },
                         },
                     }}
-                />
-                Different content heights
-                <View
+                />Different content heights
+                                <View
                     style={{
                         display: "grid",
                         gridTemplateColumns: "1fr 1fr 1fr",
@@ -476,12 +473,12 @@ export const CustomStyles = {
 const styles = StyleSheet.create({
     example: {
         backgroundColor: semanticColor.core.background.base.subtle,
-        padding: spacing.large_24,
+        padding: sizing.size_240,
         width: 376,
     },
     navigation: {
         border: `${border.width.thin} dashed ${semanticColor.core.border.instructive.default}`,
-        marginTop: spacing.large_24,
-        padding: spacing.large_24,
+        marginTop: sizing.size_240,
+        padding: sizing.size_240,
     },
 });

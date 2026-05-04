@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import Pill from "@khanacademy/wonder-blocks-pill";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import ComponentTile from "../component-tile";
 import {styles} from "../styles";
@@ -57,7 +57,7 @@ const localStyles = StyleSheet.create({
         display: "grid",
         gridTemplateColumns: "repeat(2, 1fr)",
         gridTemplateRows: "repeat(2, 1fr)",
-        columnGap: spacing.large_24,
+        columnGap: sizing.size_240,
         width: "fit-content",
     },
 });

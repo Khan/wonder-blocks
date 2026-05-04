@@ -18,11 +18,7 @@ import clock from "@phosphor-icons/core/regular/clock.svg";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {
-    semanticColor,
-    sizing,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import Button from "@khanacademy/wonder-blocks-button";
@@ -80,30 +76,30 @@ export const styles: StyleDeclaration = StyleSheet.create({
     row: {
         flexDirection: "row",
         alignItems: "center",
-        marginBottom: spacing.xSmall_8,
+        marginBottom: sizing.size_080,
     },
     rowWithGap: {
         flexDirection: "row",
         alignItems: "center",
-        gap: spacing.medium_16,
+        gap: sizing.size_160,
     },
     button: {
-        marginRight: spacing.xSmall_8,
+        marginRight: sizing.size_080,
     },
     truncatedButton: {
         maxWidth: 200,
-        marginBottom: spacing.medium_16,
+        marginBottom: sizing.size_160,
     },
     fillSpace: {
         minWidth: 140,
     },
     example: {
         background: semanticColor.core.background.base.subtle,
-        padding: spacing.medium_16,
+        padding: sizing.size_160,
     },
     label: {
-        marginTop: spacing.large_24,
-        marginBottom: spacing.xSmall_8,
+        marginTop: sizing.size_240,
+        marginBottom: sizing.size_080,
     },
 });
 
@@ -113,7 +109,7 @@ export const styles: StyleDeclaration = StyleSheet.create({
  */
 export const Kinds: StoryComponentType = {
     render: () => (
-        <View style={{padding: spacing.medium_16, gap: spacing.medium_16}}>
+        <View style={{padding: sizing.size_160, gap: sizing.size_160}}>
             <View style={styles.rowWithGap}>
                 <Button onClick={() => {}}>Hello, world!</Button>
                 <Button onClick={() => {}} kind="secondary">
@@ -186,7 +182,7 @@ export const Kinds: StoryComponentType = {
 export const ActionType: StoryComponentType = {
     name: "ActionType",
     render: () => (
-        <View style={{gap: spacing.medium_16}}>
+        <View style={{gap: sizing.size_160}}>
             <View style={styles.row}>
                 <Button
                     style={styles.button}
@@ -625,7 +621,7 @@ export const TruncatingLabels: StoryComponentType = {
             <Button onClick={() => {}} style={styles.truncatedButton}>
                 label too long for the parent container
             </Button>
-            <Strut size={spacing.medium_16} />
+            <Strut size={sizing.size_160} />
             <Button
                 onClick={() => {}}
                 style={styles.truncatedButton}
@@ -633,7 +629,7 @@ export const TruncatingLabels: StoryComponentType = {
             >
                 label too long for the parent container
             </Button>
-            <Strut size={spacing.medium_16} />
+            <Strut size={sizing.size_160} />
             <Button
                 size="small"
                 onClick={() => {}}
@@ -641,7 +637,7 @@ export const TruncatingLabels: StoryComponentType = {
             >
                 label too long for the parent container
             </Button>
-            <Strut size={spacing.medium_16} />
+            <Strut size={sizing.size_160} />
             <Button
                 size="small"
                 onClick={() => {}}
@@ -688,8 +684,8 @@ export const CustomStyles = {
         },
     },
     render: (args: any) => (
-        <View style={{gap: spacing.medium_16}}>
-            <View style={{flexDirection: "row", gap: spacing.medium_16}}>
+        <View style={{gap: sizing.size_160}}>
+            <View style={{flexDirection: "row", gap: sizing.size_160}}>
                 <Button {...args} kind="primary" />
                 <Button {...args} kind="secondary" />
                 <Button {...args} kind="tertiary" />
@@ -975,10 +971,10 @@ export const PressDurationTracking: StoryComponentType = {
                 >
                     Track Press Duration
                 </Button>
-                <Strut size={spacing.medium_16} />
+                <Strut size={sizing.size_160} />
                 <View
                     style={{
-                        padding: spacing.medium_16,
+                        padding: sizing.size_160,
                         backgroundColor:
                             semanticColor.core.background.base.subtle,
                         borderRadius: 4,
@@ -988,7 +984,7 @@ export const PressDurationTracking: StoryComponentType = {
                     <BodyText size="medium" weight="bold">
                         Press Duration Tracker
                     </BodyText>
-                    <Strut size={spacing.xSmall_8} />
+                    <Strut size={sizing.size_080} />
                     <BodyText size="medium">
                         Last Event: <strong>{lastEvent}</strong>
                     </BodyText>
@@ -1004,12 +1000,12 @@ export const PressDurationTracking: StoryComponentType = {
                         Currently Pressing:{" "}
                         <strong>{pressStartTime ? "Yes" : "No"}</strong>
                     </BodyText>
-                    <Strut size={spacing.small_12} />
+                    <Strut size={sizing.size_120} />
                     <BodyText size="medium" weight="bold">
                         Interaction History:
                     </BodyText>
                     {interactionHistory.length > 0 ? (
-                        <View style={{marginTop: spacing.xSmall_8}}>
+                        <View style={{marginTop: sizing.size_080}}>
                             {interactionHistory.map((entry, index) => (
                                 <BodyText
                                     key={index}

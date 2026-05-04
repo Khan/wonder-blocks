@@ -98,7 +98,8 @@ export default {
 } as Meta;
 
 type Row = {label: string; css: string; value: string};
-export const Spacing = () => (
+export // TODO(spacing-migration): manual review needed — `spacing` reference could not be auto-migrated.
+const Spacing = () => (
     <TokenTable
         columns={[
             {

@@ -2,7 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {maybeGetCssVariableInfo} from "./tokens-util";
 
 const StyledTable = addStyle("table");
@@ -80,6 +80,7 @@ export default function TokenTable<T>({
     );
 }
 
+// TODO(spacing-migration): manual review needed — `spacing` reference could not be auto-migrated.
 const styles = StyleSheet.create({
     table: {
         borderCollapse: "collapse",
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
         backgroundColor: semanticColor.core.background.base.default,
     },
     cell: {
-        padding: spacing.xSmall_8,
+        padding: sizing.size_080,
         verticalAlign: "middle",
     },
 });
