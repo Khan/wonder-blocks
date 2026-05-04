@@ -44,7 +44,6 @@ export default {
 };
 `;
 
-
 const README_SRC = `## Rules
 
 | Rule | Enabled in \`recommended\`| Enabled in \`strict\` |

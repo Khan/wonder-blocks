@@ -1,4 +1,3 @@
-
 export type TemplateArgs = {
     ruleName: string;
     messageId: string;

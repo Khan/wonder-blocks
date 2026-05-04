@@ -9,7 +9,6 @@ export function toCamelCase(kebab: string): string {
     return kebab.replace(/-([a-z0-9])/g, (_, c: string) => c.toUpperCase());
 }
 
-
 export function assertKebabCase(name: string): void {
     if (!/^[a-z][a-z0-9]*(-[a-z0-9]+)+$/.test(name)) {
         throw new Error(

@@ -16,7 +16,6 @@ describe("toCamelCase", () => {
     });
 });
 
-
 describe("assertKebabCase", () => {
     it.each(["no-foo-bar", "no-custom-tab-role", "require-wonder-blocks-use"])(
         "does not throw for valid name: %s",
