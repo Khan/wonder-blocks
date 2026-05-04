@@ -101,7 +101,7 @@ export function applyReadmePatch(src: string, ruleName: string): string {
     }
     const newRow = `| [\`${ruleName}\`](docs/${ruleName}.md)| TODO(${ruleName}) | TODO(${ruleName}) |`;
     const tableRegex =
-        /(\| Rule \| Enabled in `recommended`\| Enabled in `strict` \|\n\|[^\n]*\|\n)([\s\S]*)$/;
+        /(\| Rule \| Enabled in `recommended`\| Enabled in `strict` \|\n\|[^\n]*\|\n)((?:\|[^\n]*\|\n)*)/;
     const match = src.match(tableRegex);
     if (!match) {
         throw new Error("Could not locate the rules table in README.md");
@@ -109,8 +109,7 @@ export function applyReadmePatch(src: string, ruleName: string): string {
     const rows = match[2].split("\n").filter((l) => l.trim().startsWith("|"));
     rows.push(newRow);
     rows.sort();
-    const trailing = match[2].endsWith("\n") ? "\n" : "";
-    return src.replace(tableRegex, `$1${rows.join("\n")}${trailing}`);
+    return src.replace(tableRegex, `$1${rows.join("\n")}\n`);
 }
 
 export function updateRulesIndex(ruleName: string): void {

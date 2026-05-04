@@ -55,6 +55,10 @@ function parseArgs(argv: Array<string>): ParsedArgs {
     for (let i = 0; i < argv.length; i++) {
         const arg = argv[i];
         if (arg === "--description" || arg === "-d") {
+            const next = argv[i + 1];
+            if (next == null || next.startsWith("-")) {
+                throw new Error(`Flag ${arg} requires a value.`);
+            }
             flags.description = argv[++i];
         } else if (arg === "--help" || arg === "-h") {
             flags.help = true;

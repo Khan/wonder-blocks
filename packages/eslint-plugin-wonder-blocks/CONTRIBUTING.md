@@ -2,31 +2,17 @@
 
 ## Creating a new lint rule
 
-### 1. Scaffold the rule files
+### 1. Generate the rule files
 
-Run the scaffold script from the repo root, passing a kebab-case rule name and
-an optional one-line description:
+Run the generate lint rule script from the repo root, passing a kebab-case rule
+name and an optional one-line description:
 
 ```sh
 pnpm gen:lint-rule no-foo-bar --description "Disallow the use of foo bar."
 ```
 
-This creates the following files:
-
-| File | Purpose |
-|------|---------|
-| `src/rules/no-foo-bar.ts` | Rule implementation |
-| `src/rules/__tests__/no-foo-bar.test.ts` | Unit tests |
-| `docs/no-foo-bar.md` | Rule documentation |
-| `demo/src/no-foo-bar-example.tsx` | Demo examples |
-| `__docs__/tools/eslint-plugin-wonder-blocks/no-foo-bar.mdx` | Storybook page |
-
-It also patches these existing files:
-
-- `src/rules/index.ts` — registers the rule
-- `src/configs/recommended.ts` — adds the rule (commented out) with a `TODO(no-foo-bar)` comment to decide if it belongs in `recommended` or `strict`
-- `src/configs/strict.ts` — adds the rule (commented out) with a `TODO(no-foo-bar)` comment to decide if it belongs in `recommended` or `strict`
-- `README.md` — adds a row to the rules table
+It will generate and update the necessary files related to adding a new lint
+rule including tests, documentation, and example files.
 
 ### 2. Fill in the TODOs
 
