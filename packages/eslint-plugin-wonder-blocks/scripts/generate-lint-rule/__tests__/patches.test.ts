@@ -52,7 +52,7 @@ const README_SRC = `## Rules
 `;
 
 describe("applyRulesIndexPatch", () => {
-    it("should add the import and map entry for the new rule", () => {
+    it("should add the import for the new rule", () => {
         // Arrange
         const ruleName = "no-new-rule";
 
@@ -61,6 +61,16 @@ describe("applyRulesIndexPatch", () => {
 
         // Assert
         expect(result).toContain(`import noNewRule from "./no-new-rule";`);
+    });
+
+    it("should add the map entry for the new rule", () => {
+        // Arrange
+        const ruleName = "no-new-rule";
+
+        // Act
+        const result = applyRulesIndexPatch(RULES_INDEX_SRC, ruleName);
+
+        // Assert
         expect(result).toContain(`"no-new-rule": noNewRule,`);
     });
 
@@ -90,7 +100,7 @@ describe("applyRulesIndexPatch", () => {
 });
 
 describe("applyRecommendedConfigPatch", () => {
-    it("should expand an empty rules object and add the rule entry and TODO comment", () => {
+    it("should add the TODO comment when expanding an empty rules object", () => {
         // Arrange
         const ruleName = "no-new-rule";
 
@@ -102,12 +112,25 @@ describe("applyRecommendedConfigPatch", () => {
 
         // Assert
         expect(result).toContain("TODO(no-new-rule):");
+    });
+
+    it("should add the rule entry when expanding an empty rules object", () => {
+        // Arrange
+        const ruleName = "no-new-rule";
+
+        // Act
+        const result = applyRecommendedConfigPatch(
+            RECOMMENDED_CONFIG_EMPTY_SRC,
+            ruleName,
+        );
+
+        // Assert
         expect(result).toContain(
             `// "@khanacademy/wonder-blocks/no-new-rule": "error",`,
         );
     });
 
-    it("should append the rule entry and TODO comment when rules already has content", () => {
+    it("should append the TODO comment when rules already has content", () => {
         // Arrange
         const ruleName = "no-new-rule";
 
@@ -119,6 +142,19 @@ describe("applyRecommendedConfigPatch", () => {
 
         // Assert
         expect(result).toContain("TODO(no-new-rule):");
+    });
+
+    it("should append the rule entry when rules already has content", () => {
+        // Arrange
+        const ruleName = "no-new-rule";
+
+        // Act
+        const result = applyRecommendedConfigPatch(
+            RECOMMENDED_CONFIG_WITH_CONTENT_SRC,
+            ruleName,
+        );
+
+        // Assert
         expect(result).toContain(
             `// "@khanacademy/wonder-blocks/no-new-rule": "error",`,
         );
@@ -141,7 +177,7 @@ describe("applyRecommendedConfigPatch", () => {
 });
 
 describe("applyStrictConfigPatch", () => {
-    it("should add the rule entry and TODO comment for the new rule", () => {
+    it("should add the TODO comment for the new rule", () => {
         // Arrange
         const ruleName = "no-new-rule";
 
@@ -150,6 +186,16 @@ describe("applyStrictConfigPatch", () => {
 
         // Assert
         expect(result).toContain("TODO(no-new-rule):");
+    });
+
+    it("should add the rule entry for the new rule", () => {
+        // Arrange
+        const ruleName = "no-new-rule";
+
+        // Act
+        const result = applyStrictConfigPatch(STRICT_CONFIG_SRC, ruleName);
+
+        // Assert
         expect(result).toContain(
             `// "@khanacademy/wonder-blocks/no-new-rule": "error",`,
         );
