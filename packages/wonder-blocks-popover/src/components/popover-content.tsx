@@ -301,16 +301,15 @@ const styles = StyleSheet.create({
      * Illustration styles
      */
     image: {
-        marginBottom: sizing.size_240,
-        marginLeft: `calc(-1 * ${sizing.size_240})`,
-        marginRight: `calc(-1 * ${sizing.size_240})`,
-        marginTop: `calc(-1 * ${sizing.size_240})`,
-        width: `calc(100% + ${sizing.size_480})`,
+        marginBlockEnd: sizing.size_240,
+        marginBlockStart: `calc(-1 * ${sizing.size_240})`,
+        marginInline: `calc(-1 * ${sizing.size_240})`,
+        inlineSize: `calc(100% + ${sizing.size_480})`,
     },
 
     imageToBottom: {
-        marginBottom: `calc(-1 * ${sizing.size_240})`,
-        marginTop: sizing.size_240,
+        marginBlockEnd: `calc(-1 * ${sizing.size_240})`,
+        marginBlockStart: sizing.size_240,
         order: 1,
     },
 });

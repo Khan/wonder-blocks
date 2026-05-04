@@ -361,7 +361,7 @@ export default class TooltipTail extends React.Component<Props> {
                 <View
                     aria-hidden
                     style={{
-                        width: height,
+                        inlineSize: height,
                         flexBasis: height,
                         flexShrink: 0,
                     }}

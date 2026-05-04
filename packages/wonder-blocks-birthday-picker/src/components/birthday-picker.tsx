@@ -164,7 +164,7 @@ const defaultStyles = StyleSheet.create({
         flexDirection: "row",
         placeItems: "center",
         gap: sizing.size_040,
-        marginTop: sizing.size_040,
+        marginBlockStart: sizing.size_040,
     },
     errorText: {
         color: semanticColor.status.critical.foreground,

@@ -133,22 +133,22 @@ const styles = StyleSheet.create({
         color: semanticColor.core.foreground.neutral.strong,
     },
     labelSpacing: {
-        marginBottom: sizing.size_040,
+        marginBlockEnd: sizing.size_040,
     },
     description: {
         color: theme.description.color.foreground,
     },
     descriptionSpacing: {
-        marginBottom: sizing.size_040,
+        marginBlockEnd: sizing.size_040,
     },
     fieldSpacing: {
-        marginTop: sizing.size_080,
+        marginBlockStart: sizing.size_080,
     },
     error: {
         color: semanticColor.status.critical.foreground,
     },
     errorSpacing: {
-        marginTop: sizing.size_120,
+        marginBlockStart: sizing.size_120,
     },
     required: {
         color: semanticColor.status.critical.foreground,

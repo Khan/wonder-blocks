@@ -119,8 +119,8 @@ const styles = StyleSheet.create({
     closeButton: {
         margin: 0,
         position: "absolute",
-        right: sizing.size_040,
-        top: sizing.size_040,
+        insetInlineEnd: sizing.size_040,
+        insetBlockStart: sizing.size_040,
         // Allows the button to be above the title and/or custom content
         zIndex: 1,
     },

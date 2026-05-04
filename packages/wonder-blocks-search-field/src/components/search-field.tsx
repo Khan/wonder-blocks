@@ -265,7 +265,7 @@ const styles = StyleSheet.create({
     dismissIcon: {
         margin: 0,
         position: "absolute",
-        right: sizing.size_040,
+        insetInlineEnd: sizing.size_040,
     },
     inputStyleReset: {
         display: "flex",

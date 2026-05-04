@@ -12,6 +12,7 @@ const styles: StyleDeclaration = StyleSheet.create({
         border: "none",
         padding: 0,
         margin: 0,
+        gap: sizing.size_040,
     },
 
     legend: {
@@ -22,21 +23,15 @@ const styles: StyleDeclaration = StyleSheet.create({
     },
 
     description: {
-        marginTop: sizing.size_040,
         color: theme.description.color.foreground,
     },
 
     error: {
-        marginTop: sizing.size_040,
         color: semanticColor.status.critical.foreground,
     },
 
-    defaultLineGap: {
-        marginTop: sizing.size_080,
-    },
-
     firstChoiceMetaSpacing: {
-        marginTop: sizing.size_120,
+        marginBlockStart: sizing.size_080,
     },
 });
 

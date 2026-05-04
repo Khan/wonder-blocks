@@ -125,7 +125,7 @@ describe("TooltipTail", () => {
                     <div
                       aria-hidden="true"
                       class=""
-                      style="align-items: stretch; border-width: 0px; border-style: solid; box-sizing: border-box; display: flex; flex-direction: column; margin: 0px; padding: 0px; position: relative; z-index: 0; min-height: 0; min-width: 0; width: 12px; flex-basis: 12px; flex-shrink: 0;"
+                      style="align-items: stretch; border-width: 0px; border-style: solid; box-sizing: border-box; display: flex; flex-direction: column; margin: 0px; padding: 0px; position: relative; z-index: 0; min-height: 0; min-width: 0; inline-size: 12px; flex-basis: 12px; flex-shrink: 0;"
                     />
                   </div>
                 </div>
