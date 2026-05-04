@@ -6,7 +6,7 @@ import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
-import {spacing, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import type {AccordionCornerKindType} from "./accordion";
@@ -153,7 +153,7 @@ const AccordionSectionHeader = React.forwardRef(function AccordionSectionHeader(
 // If we set the inner radius to the same value, there ends up being
 // a 1px gap between the border and the outline. To fix this, we
 // subtract 1 from the border radius.
-const INNER_BORDER_RADIUS = spacing.small_12 - 1;
+const INNER_BORDER_RADIUS = `calc(${sizing.size_120} - 1px)`;
 const ANIMATION_LENGTH = "300ms";
 
 const styles = StyleSheet.create({
@@ -213,16 +213,16 @@ const styles = StyleSheet.create({
         textAlign: "start",
     },
     headerString: {
-        paddingTop: spacing.medium_16,
-        paddingBottom: spacing.medium_16,
+        paddingBlockStart: sizing.size_160,
+        paddingBlockEnd: sizing.size_160,
     },
     headerStringCaretEnd: {
-        paddingInlineEnd: spacing.small_12,
-        paddingInlineStart: spacing.medium_16,
+        paddingInlineEnd: sizing.size_120,
+        paddingInlineStart: sizing.size_160,
     },
     headerStringCaretStart: {
-        paddingInlineEnd: spacing.medium_16,
-        paddingInlineStart: spacing.small_12,
+        paddingInlineEnd: sizing.size_160,
+        paddingInlineStart: sizing.size_120,
     },
     iconWithAnimation: {
         transition: `transform ${ANIMATION_LENGTH}`,
@@ -232,10 +232,10 @@ const styles = StyleSheet.create({
         transform: "rotate(180deg)",
     },
     iconStart: {
-        marginInlineStart: spacing.medium_16,
+        marginInlineStart: sizing.size_160,
     },
     iconEnd: {
-        marginInlineEnd: spacing.medium_16,
+        marginInlineEnd: sizing.size_160,
     },
     disabled: {
         pointerEvents: "none",

@@ -10,7 +10,6 @@ import {UnreachableCaseError} from "@khanacademy/wonder-stuff-core";
 import type {ModifierArguments, RootBoundary} from "@popperjs/core";
 import type {FlipModifier} from "@popperjs/core/lib/modifiers/flip";
 import type {PreventOverflowModifier} from "@popperjs/core/lib/modifiers/preventOverflow";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import type {
     Placement,
     PopperElementProps,
@@ -140,7 +139,9 @@ const smallViewportModifier: SmallViewportModifier = {
 export default class TooltipPopper extends React.Component<Props, State> {
     static defaultProps: DefaultProps = {
         rootBoundary: "viewport",
-        viewportPadding: spacing.small_12,
+        // Popper.js's `padding` option expects a number of pixels. The matching
+        // sizing token is `sizing.size_120` (1.2rem = 12px at 10px baseline).
+        viewportPadding: 12,
     };
 
     constructor(props: Props) {

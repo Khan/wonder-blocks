@@ -2,8 +2,7 @@ import {Temporal} from "temporal-polyfill";
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {StyleType, View} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {SingleSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
@@ -151,6 +150,7 @@ const screenSizes = {
 const defaultStyles = StyleSheet.create({
     wrapper: {
         flexDirection: "row",
+        gap: sizing.size_080,
         [screenSizes.small]: {
             flexDirection: "column",
         },
@@ -159,6 +159,15 @@ const defaultStyles = StyleSheet.create({
         [screenSizes.small]: {
             minWidth: "100%",
         },
+    },
+    errorRow: {
+        flexDirection: "row",
+        placeItems: "center",
+        gap: sizing.size_040,
+        marginBlockStart: sizing.size_040,
+    },
+    errorText: {
+        color: semanticColor.status.critical.foreground,
     },
 });
 export default class BirthdayPicker extends React.Component<Props, State> {
@@ -337,29 +346,17 @@ export default class BirthdayPicker extends React.Component<Props, State> {
         }
 
         return (
-            <>
-                <Strut size={spacing.xxxSmall_4} />
-                <View
-                    style={{flexDirection: "row", placeItems: "center"}}
-                    role="alert"
-                >
-                    <PhosphorIcon
-                        size="small"
-                        icon={infoIcon}
-                        color={semanticColor.core.foreground.critical.default}
-                        aria-hidden="true"
-                    />
-                    <Strut size={spacing.xxxSmall_4} />
-                    <BodyText
-                        tag="span"
-                        style={{
-                            color: semanticColor.status.critical.foreground,
-                        }}
-                    >
-                        {error}
-                    </BodyText>
-                </View>
-            </>
+            <View style={defaultStyles.errorRow} role="alert">
+                <PhosphorIcon
+                    size="small"
+                    icon={infoIcon}
+                    color={semanticColor.core.foreground.critical.default}
+                    aria-hidden="true"
+                />
+                <BodyText tag="span" style={defaultStyles.errorText}>
+                    {error}
+                </BodyText>
+            </View>
         );
     }
 
@@ -416,34 +413,31 @@ export default class BirthdayPicker extends React.Component<Props, State> {
         }
 
         return (
-            <>
-                <Strut size={spacing.xSmall_8} />
-                <SingleSelect
-                    aria-label={this.labels.day}
-                    aria-invalid={!!this.state.error}
-                    error={!!this.state.error}
-                    disabled={disabled}
-                    placeholder={this.labels.day}
-                    onChange={this.handleDayChange}
-                    selectedValue={day}
-                    style={[
-                        {
-                            minWidth: FIELD_MIN_WIDTH_DAY,
-                        },
-                        defaultStyles.input,
-                        dropdownStyle,
-                    ]}
-                    testId="birthday-picker-day"
-                >
-                    {Array.from(Array(31)).map((_, day) => (
-                        <OptionItem
-                            key={String(day + 1)}
-                            label={String(day + 1)}
-                            value={String(day + 1)}
-                        />
-                    ))}
-                </SingleSelect>
-            </>
+            <SingleSelect
+                aria-label={this.labels.day}
+                aria-invalid={!!this.state.error}
+                error={!!this.state.error}
+                disabled={disabled}
+                placeholder={this.labels.day}
+                onChange={this.handleDayChange}
+                selectedValue={day}
+                style={[
+                    {
+                        minWidth: FIELD_MIN_WIDTH_DAY,
+                    },
+                    defaultStyles.input,
+                    dropdownStyle,
+                ]}
+                testId="birthday-picker-day"
+            >
+                {Array.from(Array(31)).map((_, day) => (
+                    <OptionItem
+                        key={String(day + 1)}
+                        label={String(day + 1)}
+                        value={String(day + 1)}
+                    />
+                ))}
+            </SingleSelect>
         );
     }
 
@@ -497,8 +491,6 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                     {this.renderMonth()}
 
                     {this.maybeRenderDay()}
-
-                    <Strut size={spacing.xSmall_8} />
 
                     {this.renderYear()}
                 </View>

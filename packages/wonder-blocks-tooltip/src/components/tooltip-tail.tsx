@@ -2,8 +2,7 @@ import * as React from "react";
 import {css, StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {color, spacing, semanticColor} from "@khanacademy/wonder-blocks-tokens";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
+import {color, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import type {getRefFn, Placement, Offset} from "../util/types";
@@ -212,7 +211,7 @@ export default class TooltipTail extends React.Component<Props> {
                  */}
                 <feGaussianBlur
                     in="SourceAlpha"
-                    stdDeviation={spacing.xxSmall_6 / 2}
+                    stdDeviation={`calc(${sizing.size_060} / 2)`}
                 />
 
                 {/* Here we adjust the alpha (feFuncA) linearly so as to blend
@@ -354,8 +353,20 @@ export default class TooltipTail extends React.Component<Props> {
 
         if (!show) {
             // If we aren't showing the tail, we still need to take up space
-            // so we render a strut instead.
-            return <Strut size={height} />;
+            // along the placement's stacking axis so Popper.js positions the
+            // tooltip correctly. Mirrors the previous Strut(size=height)
+            // behavior: width and flex-basis both set to `height`, never
+            // shrinks.
+            return (
+                <View
+                    aria-hidden
+                    style={{
+                        inlineSize: height,
+                        flexBasis: height,
+                        flexShrink: 0,
+                    }}
+                />
+            );
         }
 
         return (
@@ -420,12 +431,14 @@ export default class TooltipTail extends React.Component<Props> {
  * (i.e. placement="top"). When the tail points to the left or right instead,
  * the width/height are inverted.
  */
-const DISTANCE_FROM_ANCHOR = spacing.xSmall_8;
-
-const MIN_DISTANCE_FROM_CORNERS = spacing.xSmall_8;
-
-const ARROW_WIDTH = spacing.large_24;
-const ARROW_HEIGHT = spacing.small_12;
+// Layout constants for SVG arithmetic. Hardcoded because the polyline points
+// and the container's `width`/`height` styles need real JS numbers, not the
+// `var(--wb-sizing-*)` strings that the `sizing` token yields. Values mirror
+// the matching `sizing.size_*` tokens at the default 10px baseline.
+const DISTANCE_FROM_ANCHOR = 8; // sizing.size_080
+const MIN_DISTANCE_FROM_CORNERS = 8; // sizing.size_080
+const ARROW_WIDTH = 24; // sizing.size_240
+const ARROW_HEIGHT = 12; // sizing.size_120
 
 const styles = StyleSheet.create({
     /**
