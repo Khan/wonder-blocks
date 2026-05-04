@@ -22,6 +22,7 @@
     "coverage:ci": "pnpm run jest --coverage",
     "coverage:types": "typescript-coverage-report",
     "format": "prettier --write packages/**/*.ts packages/**/*.tsx",
+    "gen:lint-rule": "./packages/eslint-plugin-wonder-blocks/scripts/generate-lint-rule.ts",
     "jest": "jest --config config/jest/test.config.js",
     "lint:pkg-json": "pnpm npmPkgJsonLint ./packages",
     "lint:watch": "esw --watch --config ./eslint/eslintrc packages",

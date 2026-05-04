@@ -8,8 +8,7 @@ Run the scaffold script from the repo root, passing a kebab-case rule name and
 an optional one-line description:
 
 ```sh
-./packages/eslint-plugin-wonder-blocks/scripts/scaffold-rule.ts no-foo-bar \
-    --description "Disallow the use of foo bar."
+pnpm gen:lint-rule no-foo-bar --description "Disallow the use of foo bar."
 ```
 
 This creates the following files:

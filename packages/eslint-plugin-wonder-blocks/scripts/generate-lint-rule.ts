@@ -16,10 +16,10 @@
  *  - README.md                 (adds a row to the rules table)
  *
  * Usage (from the repo root):
- *   ./packages/eslint-plugin-wonder-blocks/scripts/scaffold-rule.ts <rule-name> [--description "..."]
+ *   ./packages/eslint-plugin-wonder-blocks/scripts/generate-lint-rule.ts <rule-name> [--description "..."]
  *
  * Example:
- *   ./packages/eslint-plugin-wonder-blocks/scripts/scaffold-rule.ts no-foo-bar \
+ *   ./packages/eslint-plugin-wonder-blocks/scripts/generate-lint-rule.ts no-foo-bar \
  *       --description "Disallow the use of foo bar."
  */
 import * as path from "path";
@@ -69,7 +69,7 @@ function parseArgs(argv: Array<string>): ParsedArgs {
 
 function printHelp(): void {
     console.log(
-        `Usage: scaffold-rule.ts <rule-name> [--description "..."]
+        `Usage: generate-lint-rule.ts <rule-name> [--description "..."]
 
   <rule-name>            Kebab-case rule name (e.g. no-foo-bar)
   --description, -d      One-line description used in JSDoc, README, and docs
