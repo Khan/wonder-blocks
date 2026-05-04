@@ -13,7 +13,6 @@ import {
     font,
     semanticColor,
     sizing,
-    spacing,
 } from "@khanacademy/wonder-blocks-tokens";
 import {getTokenName, maybeGetCssVariableInfo} from "./tokens-util";
 import {CopyButton} from "./copy-button";
@@ -222,7 +221,6 @@ function Example({style}: {style?: any}) {
 const itemWidth = 200;
 const itemHeight = 120;
 
-// TODO(spacing-migration): manual review needed — `spacing` reference could not be auto-migrated.
 const styles = StyleSheet.create({
     group: {
         flexDirection: "row",
@@ -250,7 +248,7 @@ const styles = StyleSheet.create({
     },
     pattern: {
         backgroundImage: `radial-gradient(${semanticColor.core.background.instructive.default} 0.5px, ${semanticColor.core.background.base.subtle} 0.5px)`,
-        backgroundSize: `${spacing.small_12}px ${spacing.small_12}px`,
+        backgroundSize: `${sizing.size_120} ${sizing.size_120}`,
         boxShadow: `0 0 1px 0 ${semanticColor.core.border.neutral.subtle}`,
     },
     thumbnail: {

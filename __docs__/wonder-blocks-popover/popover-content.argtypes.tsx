@@ -4,7 +4,6 @@ import * as React from "react";
 import Button from "@khanacademy/wonder-blocks-button";
 import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 import {Spring, Strut} from "@khanacademy/wonder-blocks-layout";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 type Mappings = Record<string, React.ReactNode>;
@@ -15,7 +14,7 @@ const ActionsMappings: Mappings = {
     pagination: (
         <>
             <Button kind="tertiary">Previous</Button>
-            <Strut size={sizing.size_160} />
+            <Strut size={16} />
             <Button kind="primary">Next</Button>
         </>
     ),

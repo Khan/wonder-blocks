@@ -5,11 +5,7 @@ import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
-import {
-    border,
-    semanticColor,
-    sizing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
@@ -393,8 +389,9 @@ export const CustomStyles = {
     },
     render(args: PropsFor<typeof DetailCell>) {
         return (
-            <View style={{gap: sizing.size_240}}>Active
-                                <DetailCell
+            <View style={{gap: sizing.size_240}}>
+                Active
+                <DetailCell
                     {...args}
                     styles={{
                         root: {
@@ -405,8 +402,9 @@ export const CustomStyles = {
                         },
                     }}
                     active={true}
-                />Pressed
-                                <DetailCell
+                />
+                Pressed
+                <DetailCell
                     {...args}
                     styles={{
                         root: {
@@ -415,8 +413,9 @@ export const CustomStyles = {
                             },
                         },
                     }}
-                />Different content heights
-                                <View
+                />
+                Different content heights
+                <View
                     style={{
                         display: "grid",
                         gridTemplateColumns: "1fr 1fr 1fr",

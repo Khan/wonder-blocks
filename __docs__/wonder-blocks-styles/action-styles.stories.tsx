@@ -6,11 +6,7 @@ import packageConfig from "../../packages/wonder-blocks-styles/package.json";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
-import {
-    border,
-    semanticColor,
-    sizing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import Button from "@khanacademy/wonder-blocks-button";
 import Link from "@khanacademy/wonder-blocks-link";

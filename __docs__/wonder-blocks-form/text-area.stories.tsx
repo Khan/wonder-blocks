@@ -800,7 +800,7 @@ export const WithRef = () => {
     return (
         <View style={{alignItems: "flex-start"}}>
             <TextArea value={value} onChange={setValue} ref={ref} />
-            <Strut size={sizing.size_240} />
+            <Strut size={24} />
             <Button onClick={handleClick}>Focus using ref</Button>
         </View>
     );

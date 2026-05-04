@@ -9,11 +9,7 @@ import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {
-    border,
-    semanticColor,
-    sizing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingSmall, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentInfo from "../components/component-info";
@@ -226,7 +222,7 @@ export const ReactElementInHeader: StoryComponentType = {
                 >
                     This is the information present in the first section
                 </AccordionSection>
-                <Strut size={sizing.size_320} />
+                <Strut size={32} />
                 {/* The following AccordionSection is implemented
                 the same way as the CourseAccordion in the LearnableNodeSidebar
                 that can be found on Khan Academy. It should truncate the
@@ -363,7 +359,7 @@ export const CaretPositions: StoryComponentType = {
                             Something
                         </AccordionSection>
                     </View>
-                    <Strut size={sizing.size_320} />
+                    <Strut size={32} />
                     <View style={styles.fullWidth}>
                         <LabelLarge style={styles.space}>
                             Caret position: start, language direction: left to
@@ -379,7 +375,7 @@ export const CaretPositions: StoryComponentType = {
                         </AccordionSection>
                     </View>
                 </View>
-                <Strut size={sizing.size_320} />
+                <Strut size={32} />
                 {/* Right-to-left */}
                 <View style={[styles.sideBySide, styles.rtl]}>
                     <View style={styles.fullWidth}>
@@ -396,7 +392,7 @@ export const CaretPositions: StoryComponentType = {
                             کچھ
                         </AccordionSection>
                     </View>
-                    <Strut size={sizing.size_320} />
+                    <Strut size={32} />
                     <View style={styles.fullWidth}>
                         <LabelLarge style={styles.space}>
                             Caret position: start, language direction: right to

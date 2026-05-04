@@ -51,7 +51,7 @@ import {Body, BodyMonospace} from "@khanacademy/wonder-blocks-typography";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Data} from "@khanacademy/wonder-blocks-data";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 const myValidHandler = () =>
     new Promise((resolve, reject) =>
@@ -76,7 +76,7 @@ const myInvalidHandler = () =>
             }}
         </Data>
     </View>
-    <Strut size={spacing.small_12} />
+    <Strut size={12} />
     <View>
         <Body>This request will go boom and give us an error!</Body>
         <Data handler={myInvalidHandler} requestId="INVALID">

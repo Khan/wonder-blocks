@@ -621,7 +621,7 @@ export const TruncatingLabels: StoryComponentType = {
             <Button onClick={() => {}} style={styles.truncatedButton}>
                 label too long for the parent container
             </Button>
-            <Strut size={sizing.size_160} />
+            <Strut size={16} />
             <Button
                 onClick={() => {}}
                 style={styles.truncatedButton}
@@ -629,7 +629,7 @@ export const TruncatingLabels: StoryComponentType = {
             >
                 label too long for the parent container
             </Button>
-            <Strut size={sizing.size_160} />
+            <Strut size={16} />
             <Button
                 size="small"
                 onClick={() => {}}
@@ -637,7 +637,7 @@ export const TruncatingLabels: StoryComponentType = {
             >
                 label too long for the parent container
             </Button>
-            <Strut size={sizing.size_160} />
+            <Strut size={16} />
             <Button
                 size="small"
                 onClick={() => {}}
@@ -971,7 +971,7 @@ export const PressDurationTracking: StoryComponentType = {
                 >
                     Track Press Duration
                 </Button>
-                <Strut size={sizing.size_160} />
+                <Strut size={16} />
                 <View
                     style={{
                         padding: sizing.size_160,
@@ -984,7 +984,7 @@ export const PressDurationTracking: StoryComponentType = {
                     <BodyText size="medium" weight="bold">
                         Press Duration Tracker
                     </BodyText>
-                    <Strut size={sizing.size_080} />
+                    <Strut size={8} />
                     <BodyText size="medium">
                         Last Event: <strong>{lastEvent}</strong>
                     </BodyText>
@@ -1000,7 +1000,7 @@ export const PressDurationTracking: StoryComponentType = {
                         Currently Pressing:{" "}
                         <strong>{pressStartTime ? "Yes" : "No"}</strong>
                     </BodyText>
-                    <Strut size={sizing.size_120} />
+                    <Strut size={12} />
                     <BodyText size="medium" weight="bold">
                         Interaction History:
                     </BodyText>

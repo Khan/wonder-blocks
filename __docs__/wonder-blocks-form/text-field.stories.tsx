@@ -226,7 +226,7 @@ export const Number: StoryComponentType = {
                     onChange={handleChange}
                     onKeyDown={handleKeyDown}
                 />
-                <Strut size={sizing.size_120} />
+                <Strut size={12} />
                 <Body>
                     The following text field has a min of 0, a max of 15, and a
                     step of 3
@@ -730,7 +730,7 @@ export const Ref: StoryComponentType = {
                     onKeyDown={handleKeyDown}
                     ref={inputRef}
                 />
-                <Strut size={sizing.size_160} />
+                <Strut size={16} />
                 <Button style={styles.button} onClick={handleSubmit}>
                     Focus Input
                 </Button>

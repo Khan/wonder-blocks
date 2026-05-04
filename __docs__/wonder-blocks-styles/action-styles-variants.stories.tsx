@@ -3,11 +3,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 import info from "@phosphor-icons/core/regular/info.svg";
 import {ScenariosLayout} from "../components/scenarios-layout";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
-import {
-    border,
-    semanticColor,
-    sizing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";

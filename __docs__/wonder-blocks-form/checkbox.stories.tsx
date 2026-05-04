@@ -152,7 +152,7 @@ export const IndeterminateWithGroup: StoryComponentType = () => {
                 label={"Topping(s)"}
                 onChange={handleSelectAll}
             />
-            <Strut size={sizing.size_120} />
+            <Strut size={12} />
             <View style={{marginInlineStart: sizing.size_240}}>
                 <CheckboxGroup
                     groupName="toppings"

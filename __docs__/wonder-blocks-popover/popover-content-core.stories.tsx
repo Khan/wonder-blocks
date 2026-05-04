@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {semanticColor, sizing, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import {PopoverContentCore} from "@khanacademy/wonder-blocks-popover";
@@ -34,7 +34,6 @@ export default {
     ],
 } as Meta<typeof PopoverContentCore>;
 
-// TODO(spacing-migration): manual review needed — `spacing` reference could not be auto-migrated.
 const styles = StyleSheet.create({
     example: {
         alignItems: "center",
@@ -56,7 +55,7 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
         justifyContent: "center",
-        padding: `${spacing.small_12}px 0`,
+        padding: `${sizing.size_120} 0`,
     },
     action: {
         backgroundColor: "transparent",

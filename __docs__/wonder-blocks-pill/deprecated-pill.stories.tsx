@@ -118,7 +118,7 @@ export const Inline: StoryComponentType = () => (
             </Pill>{" "}
             if you need it to be.
         </Body>
-        <Strut size={tokens.spacing.small_12} />
+        <Strut size={12} />
         <Body>
             This pill is also{" "}
             <Pill kind="neutral" size="medium" onClick={() => {}}>
@@ -196,7 +196,7 @@ export const Variants: StoryComponentType = {
                                 <View
                                     key={kind}
                                     style={{
-                                        marginRight: tokens.spacing.small_12,
+                                        marginRight: tokens.sizing.size_120,
                                     }}
                                 >
                                     <Pill
@@ -206,7 +206,7 @@ export const Variants: StoryComponentType = {
                                     >
                                         {`${kind}, ${size}`}
                                     </Pill>
-                                    <Strut size={tokens.spacing.small_12} />
+                                    <Strut size={12} />
                                 </View>
                             ))}
                         </View>
@@ -219,7 +219,7 @@ export const Variants: StoryComponentType = {
                                 <View
                                     key={kind}
                                     style={{
-                                        marginRight: tokens.spacing.small_12,
+                                        marginRight: tokens.sizing.size_120,
                                     }}
                                 >
                                     <Pill
@@ -230,7 +230,7 @@ export const Variants: StoryComponentType = {
                                     >
                                         {`${kind}, ${size}`}
                                     </Pill>
-                                    <Strut size={tokens.spacing.small_12} />
+                                    <Strut size={12} />
                                 </View>
                             ))}
                         </View>
@@ -267,8 +267,8 @@ export const WithStyle: StoryComponentType = () => {
     const customStyle = {
         backgroundColor: tokens.semanticColor.core.background.neutral.strong,
         color: tokens.semanticColor.core.foreground.knockout.default,
-        paddingLeft: tokens.spacing.xxLarge_48,
-        paddingRight: tokens.spacing.xxLarge_48,
+        paddingLeft: tokens.sizing.size_480,
+        paddingRight: tokens.sizing.size_480,
 
         ":hover": {
             outlineColor: tokens.semanticColor.core.border.neutral.default,
@@ -322,13 +322,13 @@ export const InList: StoryComponentType = () => {
                         onClick={() => setSelected(option)}
                         aria-checked={option === selected}
                         role="radio"
-                        style={{marginRight: tokens.spacing.xSmall_8}}
+                        style={{marginRight: tokens.sizing.size_080}}
                     >
                         {option}
                     </Pill>
                 ))}
             </View>
-            <Strut size={tokens.spacing.small_12} />
+            <Strut size={12} />
             <Body>You have selected: {selected}</Body>
         </View>
     );
@@ -362,10 +362,10 @@ export const VerticallyStacked: StoryComponentType = {
                 {sizes.map((size) => (
                     <View
                         key={size}
-                        style={{marginRight: tokens.spacing.medium_16}}
+                        style={{marginRight: tokens.sizing.size_160}}
                     >
                         <LabelMedium>{size}px margin</LabelMedium>
-                        <Strut size={tokens.spacing.small_12} />
+                        <Strut size={12} />
                         {titles.map((title) => (
                             <View key={title}>
                                 <Pill

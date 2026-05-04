@@ -169,7 +169,7 @@ export const CaretPositions: StoryComponentType = {
                             {exampleSections}
                         </Accordion>
                     </View>
-                    <Strut size={sizing.size_320} />
+                    <Strut size={32} />
                     <View style={styles.fullWidth}>
                         <LabelLarge>
                             Caret position: start, language direction: left to
@@ -201,7 +201,7 @@ export const CaretPositions: StoryComponentType = {
                             </AccordionSection>
                         </Accordion>
                     </View>
-                    <Strut size={sizing.size_320} />
+                    <Strut size={32} />
                     <View style={styles.fullWidth}>
                         <LabelLarge>
                             Caret position: start, language direction: right to
@@ -507,7 +507,7 @@ export const LongSections: StoryComponentType = {
                                         width="100%"
                                         alt="Wonder Blocks logo"
                                     />
-                                    <Strut size={sizing.size_320} />
+                                    <Strut size={32} />
                                     <img
                                         src="logo.svg"
                                         width="100%"
@@ -641,9 +641,9 @@ export const BackgroundColorExample: StoryComponentType = {
         return (
             <>
                 <Accordion cornerKind="rounded">{sections}</Accordion>
-                <Strut size={sizing.size_240} />
+                <Strut size={24} />
                 <Accordion cornerKind="square">{sections}</Accordion>
-                <Strut size={sizing.size_240} />
+                <Strut size={24} />
                 <Accordion cornerKind="rounded-per-section">
                     {sections}
                 </Accordion>

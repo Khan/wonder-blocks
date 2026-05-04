@@ -590,14 +590,14 @@ export const RightToLeftWithIcons: StoryComponentType = {
                 >
                     هذا الرابط مكتوب باللغة العربية
                 </Link>
-                <Strut size={sizing.size_160} />
+                <Strut size={16} />
                 <Link
                     href="/"
                     endIcon={<PhosphorIcon icon={IconMappings.caretLeftBold} />}
                 >
                     هذا الرابط مكتوب باللغة العربية
                 </Link>
-                <Strut size={sizing.size_160} />
+                <Strut size={16} />
                 <Link
                     href="/"
                     startIcon={

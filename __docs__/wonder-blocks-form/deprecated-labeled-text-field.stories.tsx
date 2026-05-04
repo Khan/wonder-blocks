@@ -266,7 +266,7 @@ export const Number: StoryComponentType = () => {
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
             />
-            <Strut size={sizing.size_120} />
+            <Strut size={12} />
             <LabeledTextField
                 id="tf-3a"
                 label={`The following text field has a min of 0, a max of 15,
@@ -564,7 +564,7 @@ export const CustomStyle: StoryComponentType = () => {
                 style={styles.grow}
                 onKeyDown={handleKeyDown}
             />
-            <Strut size={sizing.size_320} />
+            <Strut size={32} />
             <LabeledTextField
                 label="Last name"
                 description="Please enter your last name"
@@ -643,7 +643,7 @@ export const Ref: StoryComponentType = () => {
                 onKeyDown={handleKeyDown}
                 ref={inputRef}
             />
-            <Strut size={sizing.size_160} />
+            <Strut size={16} />
             <Button style={styles.button} onClick={handleSubmit}>
                 Focus Input
             </Button>

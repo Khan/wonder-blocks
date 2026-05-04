@@ -57,7 +57,7 @@ export const leftContentMappings: Mappings = {
                 icon={magnifyingGlassMinus}
                 kind="tertiary"
             />
-            <Strut size={sizing.size_160} />
+            <Strut size={16} />
             <IconButton
                 aria-label="Zoom in"
                 icon={magnifyingGlassPlus}
@@ -104,11 +104,11 @@ export const rightContentMappings: Mappings = {
     multipleContent: (
         <>
             <LabelLarge>7 questions</LabelLarge>
-            <Strut size={sizing.size_160} />
+            <Strut size={16} />
             <Button style={buttonStyle} kind="secondary">
                 Try again
             </Button>
-            <Strut size={sizing.size_160} />
+            <Strut size={16} />
             <Button style={buttonStyle}>Next exercise</Button>
         </>
     ),

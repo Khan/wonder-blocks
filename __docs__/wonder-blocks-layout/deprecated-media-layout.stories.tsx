@@ -216,14 +216,14 @@ export const CustomSpec: StoryComponentType = () => {
         small: {
             query: "(max-width: 767px)",
             totalColumns: 4,
-            gutterWidth: sizing.size_160,
-            marginWidth: sizing.size_160,
+            gutterWidth: 16, // sizing.size_160
+            marginWidth: 16, // sizing.size_160
         },
         large: {
             query: "(min-width: 768px)",
             totalColumns: 12,
-            gutterWidth: sizing.size_320,
-            marginWidth: sizing.size_480,
+            gutterWidth: 32, // sizing.size_320
+            marginWidth: 48, // sizing.size_480
         },
     };
 

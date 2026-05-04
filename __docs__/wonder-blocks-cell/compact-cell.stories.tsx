@@ -117,12 +117,12 @@ export const CompactCellWithDifferentHeights: StoryComponentType = {
                 title="Single line with short accessory."
                 rightAccessory={AccessoryMappings.withCaret}
             />
-            <Strut size={sizing.size_080} />
+            <Strut size={8} />
             <CompactCell
                 title="Single line with tall accessory."
                 rightAccessory={AccessoryMappings.withIconText}
             />
-            <Strut size={sizing.size_080} />
+            <Strut size={8} />
             <CompactCell
                 title="Multi line title with tall accessory. Content should fit within the container and the cell height should be consistent no matter the content length."
                 rightAccessory={AccessoryMappings.withIconText}

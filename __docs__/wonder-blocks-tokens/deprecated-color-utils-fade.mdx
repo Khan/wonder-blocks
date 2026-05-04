@@ -2,7 +2,7 @@ import * as React from "react";
 import {Meta, Story, ColorItem} from "@storybook/addon-docs/blocks";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {color, fade, font, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, fade, font, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import equalsIcon from "@phosphor-icons/core/bold/equals-bold.svg";
 import plusIcon from "@phosphor-icons/core/bold/plus-bold.svg";
@@ -48,7 +48,7 @@ export const fadedGreen50 = fade(color.green, 0.5);
     style={{
         display: "grid",
         gridTemplateColumns: "repeat(5, 1fr)",
-        gap: spacing.large_24,
+        gap: sizing.size_240,
         justifyItems: "center",
     }}
 

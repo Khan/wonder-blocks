@@ -38,7 +38,7 @@ export default function ComponentGallery() {
                 <View style={styles.menuBar}>
                     <LabelMedium tag="label" style={styles.row}>
                         Group by
-                        <Strut size={sizing.size_080} />
+                        <Strut size={8} />
                         <SingleSelect
                             selectedValue={currentGroup}
                             onChange={setCurrentGroup}
@@ -50,11 +50,11 @@ export default function ComponentGallery() {
                             <OptionItem label="package" value="package" />
                         </SingleSelect>
                     </LabelMedium>
-                    <Strut size={sizing.size_240} />
+                    <Strut size={24} />
 
                     <LabelMedium tag="label" style={styles.row}>
                         Layout
-                        <Strut size={sizing.size_080} />
+                        <Strut size={8} />
                         <SingleSelect
                             selectedValue={currentLayout}
                             onChange={(newValue) =>
@@ -82,7 +82,7 @@ export default function ComponentGallery() {
                                 checked={compactGridView}
                                 onChange={setCompactGridView}
                             />
-                            <Strut size={sizing.size_080} />
+                            <Strut size={8} />
                             <LabelMedium
                                 tag="label"
                                 htmlFor="wb-storybook-gallery-compact-grid-switch"
