@@ -13,25 +13,21 @@
  */
 import * as path from "path";
 
-import {
-    updateConfigs,
-    updateReadme,
-    updateRulesIndex,
-} from "./scaffold/patches";
+import {updateConfigs, updateReadme, updateRulesIndex} from "./patches";
 import {
     demoFileContents,
     docsFileContents,
     mdxFileContents,
     ruleFileContents,
     testFileContents,
-} from "./scaffold/templates";
+} from "./templates";
 import {
     assertKebabCase,
     PLUGIN_DIR,
     REPO_ROOT,
     toCamelCase,
     writeFile,
-} from "./scaffold/utils";
+} from "./utils";
 
 type ParsedArgs = {
     positional: Array<string>;
