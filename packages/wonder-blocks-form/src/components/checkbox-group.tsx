@@ -163,6 +163,7 @@ const CheckboxGroup = React.forwardRef(function CheckboxGroup(
                     onChange: () => handleChange(value, checked),
                     style: [
                         index === 0 && hasMeta && styles.firstChoiceMetaSpacing,
+                        index > 0 && styles.choiceLineGap,
                         style,
                     ],
                     variant: "checkbox",

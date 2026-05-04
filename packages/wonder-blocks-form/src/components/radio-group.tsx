@@ -148,6 +148,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(
                     onChange: () => onChange(value),
                     style: [
                         index === 0 && hasMeta && styles.firstChoiceMetaSpacing,
+                        index > 0 && styles.choiceLineGap,
                         style,
                     ],
                     variant: "radio",

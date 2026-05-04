@@ -30,8 +30,16 @@ const styles: StyleDeclaration = StyleSheet.create({
         color: semanticColor.status.critical.foreground,
     },
 
+    // Lifts the first choice 8px below the last meta element. Combined with
+    // the 4px fieldset gap, this restores the original 12px Strut spacing
+    // between the meta block and the first choice.
     firstChoiceMetaSpacing: {
         marginBlockStart: sizing.size_080,
+    },
+
+    // Tops up the 4px fieldset gap to the original 8px between choices.
+    choiceLineGap: {
+        marginBlockStart: sizing.size_040,
     },
 });
 
