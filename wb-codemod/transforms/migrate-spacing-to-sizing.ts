@@ -228,6 +228,14 @@ function rewriteArithmetic(
             return;
         }
 
+        // `Strut` takes a numeric `size` prop. Rewriting to `calc(...)`
+        // would yield a string and break the component. Leave the spacing
+        // references alone and let the unhandled-pass flag them with a TODO.
+        if (isInsideStrutOpeningElement(outerPath)) {
+            recordSpacingPaths(j, path, spacingBinding, ctx.bailedSpacingPaths);
+            return;
+        }
+
         const parts = flattenBinary(j, path.value, spacingBinding, null);
         if (!parts) {
             // Couldn't safely flatten — an operand is something we can't lift
@@ -288,6 +296,15 @@ function rewriteSimpleMemberAccess(
         const key = (path.value.property as any).name as string;
         const sizingKey = SPACING_TO_SIZING[key];
         if (!sizingKey) {
+            return;
+        }
+
+        // `Strut` requires a numeric `size` prop. `sizing.X` is a rem-string
+        // (or `var(...)`) at runtime, so rewriting `<Strut size={spacing.X}/>`
+        // would break the component. Leave the spacing reference alone and
+        // let the unhandled-pass flag it with a TODO.
+        if (isInsideStrutOpeningElement(path)) {
+            ctx.bailedSpacingPaths.add(path.value);
             return;
         }
 
@@ -577,6 +594,33 @@ function isUnsafeTemplateLiteralContext(path: ASTPath<any>): boolean {
             t === "JSXAttribute"
         ) {
             return false;
+        }
+        current = current.parent ?? null;
+    }
+    return false;
+}
+
+/**
+ * True when `path` sits inside the opening element of a `<Strut>` JSX
+ * element (i.e. as part of one of its attribute expressions). `Strut` is a
+ * deprecated layout component whose `size` prop must be a number, so any
+ * rewrite to `sizing.*` (a CSS string) or to a `calc(...)` template would
+ * break it.
+ *
+ * This intentionally matches by JSX local name only — aliasing the import
+ * (`import {Strut as Spacer}`) is rare enough to ignore; the unhandled-pass
+ * will still be conservative for such cases via the existing TODO emission.
+ */
+function isInsideStrutOpeningElement(path: ASTPath<any>): boolean {
+    let current: ASTPath<any> | null = path.parent ?? null;
+    while (current) {
+        const value = current.value;
+        if (
+            value?.type === "JSXOpeningElement" &&
+            value.name?.type === "JSXIdentifier" &&
+            value.name.name === "Strut"
+        ) {
+            return true;
         }
         current = current.parent ?? null;
     }
