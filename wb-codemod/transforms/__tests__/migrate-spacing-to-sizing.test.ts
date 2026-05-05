@@ -208,6 +208,48 @@ const compound = \`calc(\${sizing.size_240} + \${sizing.size_160} - 2px)\`;
 `,
             "should flatten chained arithmetic into a single calc()",
         );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+const doubled = (spacing.medium_16 + 4) * 2;
+`,
+            `
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+const doubled = \`calc((\${sizing.size_160} + 4px) * 2)\`;
+`,
+            "should preserve parens when a lower-precedence child sits inside a higher-precedence parent",
+        );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+const halved = 2 * (spacing.large_24 - spacing.medium_16);
+`,
+            `
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+const halved = \`calc(2 * (\${sizing.size_240} - \${sizing.size_160}))\`;
+`,
+            "should preserve parens when a lower-precedence child sits on the right of a higher-precedence parent",
+        );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+const offset = spacing.large_24 - (spacing.medium_16 + 2);
+`,
+            `
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+const offset = \`calc(\${sizing.size_240} - (\${sizing.size_160} + 2px))\`;
+`,
+            "should preserve parens for the right operand of a non-associative `-`",
+        );
     });
 
     describe("VALID_* type imports", () => {

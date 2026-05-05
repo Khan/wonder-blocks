@@ -598,25 +598,55 @@ type CalcPart =
  * used to build a `calc(...)` template literal. Returns null if the expression
  * contains anything that isn't safe to mechanically lift into `calc()` — in
  * which case the caller should leave the source alone.
+ *
+ * `parent` carries the operator and side of the immediate parent operation so
+ * that (a) numeric leaves know whether to add `px` and (b) child binaries can
+ * be re-parenthesized when CSS's left-to-right evaluation would otherwise
+ * differ from the original JS grouping.
  */
 function flattenBinary(
     j: JSCodeshift,
     node: any,
     spacingBinding: string,
-    parentOp: string | null,
+    parent: {op: string; side: "left" | "right"} | null,
 ): Array<CalcPart> | null {
     if (node.type === "BinaryExpression") {
         const op = node.operator;
         if (!["+", "-", "*", "/"].includes(op)) {
             return null;
         }
-        const left = flattenBinary(j, node.left, spacingBinding, op);
-        const right = flattenBinary(j, node.right, spacingBinding, op);
+        const left = flattenBinary(j, node.left, spacingBinding, {
+            op,
+            side: "left",
+        });
+        const right = flattenBinary(j, node.right, spacingBinding, {
+            op,
+            side: "right",
+        });
         if (!left || !right) {
             return null;
         }
-        return [...left, {kind: "literal", value: ` ${op} `}, ...right];
+        const parts: Array<CalcPart> = [
+            ...left,
+            {kind: "literal", value: ` ${op} `},
+            ...right,
+        ];
+        // The AST drops source-level parens, so we need to re-add them when
+        // CSS's left-to-right same-precedence evaluation would change the
+        // result. Without this, `(spacing.X + 4) * 2` flattens to
+        // `${sizing.X} + 4px * 2` and CSS computes `X + (4px*2)` instead of
+        // `(X + 4px) * 2`.
+        if (parent && needsParens(op, parent.op, parent.side)) {
+            return [
+                {kind: "literal", value: "("},
+                ...parts,
+                {kind: "literal", value: ")"},
+            ];
+        }
+        return parts;
     }
+
+    const parentOp = parent?.op ?? null;
 
     if (
         (node.type === "Literal" && typeof node.value === "number") ||
@@ -649,6 +679,37 @@ function flattenBinary(
     }
 
     return null;
+}
+
+/**
+ * Decide whether a child BinaryExpression's flattened segment must be wrapped
+ * in parentheses when inlined into its parent's calc() expression.
+ *
+ * Returns true when the child operator's precedence is lower than the parent's
+ * (e.g. `+` inside `*`), or when child and parent share precedence but the
+ * parent is a non-associative operator (`-` or `/`) and the child sits on the
+ * right — i.e. `a - (b + c)` ≠ `a - b + c`, and `a / (b * c)` ≠ `a / b * c`.
+ */
+function needsParens(
+    childOp: string,
+    parentOp: string,
+    side: "left" | "right",
+): boolean {
+    const precedence = (op: string) =>
+        op === "*" || op === "/" ? 2 : op === "+" || op === "-" ? 1 : 0;
+    const childPrec = precedence(childOp);
+    const parentPrec = precedence(parentOp);
+    if (childPrec < parentPrec) {
+        return true;
+    }
+    if (
+        childPrec === parentPrec &&
+        side === "right" &&
+        (parentOp === "-" || parentOp === "/")
+    ) {
+        return true;
+    }
+    return false;
 }
 
 function buildCalcTemplate(
