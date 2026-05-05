@@ -250,6 +250,51 @@ const offset = \`calc(\${sizing.size_240} - (\${sizing.size_160} + 2px))\`;
 `,
             "should preserve parens for the right operand of a non-associative `-`",
         );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+const offset = computeBase() + spacing.medium_16;
+`,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+// TODO(spacing-migration): manual review needed — \`spacing\` reference could not be auto-migrated.
+const offset = computeBase() + spacing.medium_16;
+`,
+            "should bail and flag when arithmetic mixes spacing with a CallExpression operand",
+        );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+const offset = base + spacing.large_24;
+`,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+// TODO(spacing-migration): manual review needed — \`spacing\` reference could not be auto-migrated.
+const offset = base + spacing.large_24;
+`,
+            "should bail and flag when arithmetic mixes spacing with an Identifier operand",
+        );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+const label = "x" + spacing.small_12;
+`,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+// TODO(spacing-migration): manual review needed — \`spacing\` reference could not be auto-migrated.
+const label = "x" + spacing.small_12;
+`,
+            "should bail and flag when arithmetic mixes spacing with a string-literal operand",
+        );
     });
 
     describe("VALID_* type imports", () => {

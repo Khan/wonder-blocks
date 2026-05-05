@@ -80,11 +80,17 @@ function transform(file: FileInfo, api: API, options: Options) {
     const effectiveSizingBinding = sizingBinding ?? "sizing";
 
     const handledSpacingPaths = new WeakSet<object>();
+    // Spacing MemberExpressions inside a BinaryExpression we couldn't safely
+    // flatten. They stay in the source untouched: simple-member rewrite skips
+    // them so we don't silently turn numeric arithmetic into string concat,
+    // and the unhandled-pass still flags the surviving identifier with a TODO.
+    const bailedSpacingPaths = new WeakSet<object>();
 
     if (spacingBinding) {
         sizingUsed =
             rewriteArithmetic(j, root, spacingBinding, effectiveSizingBinding, {
                 handledSpacingPaths,
+                bailedSpacingPaths,
             }) || sizingUsed;
 
         sizingUsed =
@@ -93,7 +99,7 @@ function transform(file: FileInfo, api: API, options: Options) {
                 root,
                 spacingBinding,
                 effectiveSizingBinding,
-                {handledSpacingPaths},
+                {handledSpacingPaths, bailedSpacingPaths},
             ) || sizingUsed;
 
         flagUnhandledSpacingUsage(j, root, spacingBinding, {
@@ -181,7 +187,10 @@ function rewriteArithmetic(
     root: Collection<any>,
     spacingBinding: string,
     sizingBinding: string,
-    ctx: {handledSpacingPaths: WeakSet<object>},
+    ctx: {
+        handledSpacingPaths: WeakSet<object>;
+        bailedSpacingPaths: WeakSet<object>;
+    },
 ): boolean {
     let touched = false;
 
@@ -221,6 +230,17 @@ function rewriteArithmetic(
 
         const parts = flattenBinary(j, path.value, spacingBinding, null);
         if (!parts) {
+            // Couldn't safely flatten — an operand is something we can't lift
+            // into calc() (Identifier, CallExpression, string literal, etc.).
+            // Mark every spacing reference inside this BinaryExpression as
+            // bailed so `rewriteSimpleMemberAccess` doesn't blindly rewrite
+            // them: `sizing.X` is a rem-string at runtime (e.g. "1.6rem"),
+            // and replacing `spacing.X` would silently turn numeric addition
+            // into string concatenation. Leaving the source unchanged means
+            // the surviving `spacing` identifier is still in the AST, so
+            // `flagUnhandledSpacingUsage` will add a TODO comment and the
+            // `spacing` import stays.
+            recordSpacingPaths(j, path, spacingBinding, ctx.bailedSpacingPaths);
             return;
         }
 
@@ -230,12 +250,7 @@ function rewriteArithmetic(
             // CSS value comes out valid for `var()`-backed sizing tokens too.
             template = wrapTemplateInNegatedCalc(j, template);
         }
-        recordHandledSpacingPaths(
-            j,
-            path,
-            spacingBinding,
-            ctx.handledSpacingPaths,
-        );
+        recordSpacingPaths(j, path, spacingBinding, ctx.handledSpacingPaths);
         j(outerPath).replaceWith(template);
         touched = true;
     });
@@ -252,12 +267,18 @@ function rewriteSimpleMemberAccess(
     root: Collection<any>,
     spacingBinding: string,
     sizingBinding: string,
-    ctx: {handledSpacingPaths: WeakSet<object>},
+    ctx: {
+        handledSpacingPaths: WeakSet<object>;
+        bailedSpacingPaths: WeakSet<object>;
+    },
 ): boolean {
     let touched = false;
 
     root.find(j.MemberExpression).forEach((path) => {
-        if (ctx.handledSpacingPaths.has(path.value)) {
+        if (
+            ctx.handledSpacingPaths.has(path.value) ||
+            ctx.bailedSpacingPaths.has(path.value)
+        ) {
             return;
         }
         if (!isSpacingMember(path.value, spacingBinding)) {
@@ -795,17 +816,23 @@ function wrapTemplateInNegatedCalc(
     return j.templateLiteral(quasis, template.expressions.slice());
 }
 
-function recordHandledSpacingPaths(
+/**
+ * Add every `<spacingBinding>.<key>` MemberExpression found within `path` to
+ * `target`. Used by both the "handled" set (paths transformed and removed
+ * from the AST) and the "bailed" set (paths intentionally left alone so a
+ * later pass can flag them with a TODO).
+ */
+function recordSpacingPaths(
     j: JSCodeshift,
     path: ASTPath<any>,
     spacingBinding: string,
-    handled: WeakSet<object>,
+    target: WeakSet<object>,
 ) {
     j(path)
         .find(j.MemberExpression)
         .forEach((m) => {
             if (isSpacingMember(m.value, spacingBinding)) {
-                handled.add(m.value);
+                target.add(m.value);
             }
         });
 }
