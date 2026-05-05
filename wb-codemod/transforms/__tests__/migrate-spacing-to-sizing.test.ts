@@ -297,6 +297,252 @@ const label = "x" + spacing.small_12;
         );
     });
 
+    describe("Strut → gap migration", () => {
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut, View} from "@khanacademy/wonder-blocks-layout";
+const node = (
+    <View>
+        <A />
+        <Strut size={spacing.medium_16} />
+        <B />
+    </View>
+);
+`,
+            `
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut, View} from "@khanacademy/wonder-blocks-layout";
+const node = (
+    <View
+        style={{
+            gap: sizing.size_160,
+        }}>
+        <A />
+        <B />
+    </View>
+);
+`,
+            "should lift a single Strut between two View children to a gap on the View",
+        );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut, View} from "@khanacademy/wonder-blocks-layout";
+const node = (
+    <View>
+        <A />
+        <Strut size={spacing.medium_16} />
+        <B />
+        <Strut size={spacing.medium_16} />
+        <C />
+    </View>
+);
+`,
+            `
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut, View} from "@khanacademy/wonder-blocks-layout";
+const node = (
+    <View
+        style={{
+            gap: sizing.size_160,
+        }}>
+        <A />
+        <B />
+        <C />
+    </View>
+);
+`,
+            "should collapse multiple Struts of the same size into one gap on the View",
+        );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut, View} from "@khanacademy/wonder-blocks-layout";
+const node = (
+    <View style={{padding: spacing.small_12}}>
+        <A />
+        <Strut size={spacing.medium_16} />
+        <B />
+    </View>
+);
+`,
+            `
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut, View} from "@khanacademy/wonder-blocks-layout";
+const node = (
+    <View style={{
+        padding: sizing.size_120,
+        gap: sizing.size_160,
+    }}>
+        <A />
+        <B />
+    </View>
+);
+`,
+            "should append gap to an existing inline style object",
+        );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut, View} from "@khanacademy/wonder-blocks-layout";
+const node = (
+    <View>
+        <A />
+        <Strut size={spacing.medium_16} />
+        <B />
+        <Strut size={spacing.large_24} />
+        <C />
+    </View>
+);
+`,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut, View} from "@khanacademy/wonder-blocks-layout";
+// TODO(spacing-migration): manual review needed — \`spacing\` reference could not be auto-migrated.
+const node = (
+    <View>
+        <A />
+        <Strut size={spacing.medium_16} />
+        <B />
+        <Strut size={spacing.large_24} />
+        <C />
+    </View>
+);
+`,
+            "should fall back to TODO when sibling Strut sizes differ",
+        );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut, View} from "@khanacademy/wonder-blocks-layout";
+const node = (
+    <View style={{gap: 10}}>
+        <A />
+        <Strut size={spacing.medium_16} />
+        <B />
+    </View>
+);
+`,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut, View} from "@khanacademy/wonder-blocks-layout";
+// TODO(spacing-migration): manual review needed — \`spacing\` reference could not be auto-migrated.
+const node = (
+    <View style={{gap: 10}}>
+        <A />
+        <Strut size={spacing.medium_16} />
+        <B />
+    </View>
+);
+`,
+            "should fall back to TODO when the View already has a gap style",
+        );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut, View} from "@khanacademy/wonder-blocks-layout";
+const node = (
+    <View>
+        <Strut size={spacing.medium_16} />
+        <A />
+        <B />
+    </View>
+);
+`,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut, View} from "@khanacademy/wonder-blocks-layout";
+// TODO(spacing-migration): manual review needed — \`spacing\` reference could not be auto-migrated.
+const node = (
+    <View>
+        <Strut size={spacing.medium_16} />
+        <A />
+        <B />
+    </View>
+);
+`,
+            "should fall back to TODO when a Strut leads the View's children",
+        );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut, View} from "@khanacademy/wonder-blocks-layout";
+const node = (
+    <View>
+        <A />
+        <Strut size={spacing.medium_16 + 4} />
+        <B />
+    </View>
+);
+`,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut, View} from "@khanacademy/wonder-blocks-layout";
+// TODO(spacing-migration): manual review needed — \`spacing\` reference could not be auto-migrated.
+const node = (
+    <View>
+        <A />
+        <Strut size={spacing.medium_16 + 4} />
+        <B />
+    </View>
+);
+`,
+            "should fall back to TODO when the Strut size is arithmetic, not a plain spacing.X",
+        );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import * as React from "react";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+const node = (
+    <div>
+        <A />
+        <Strut size={spacing.medium_16} />
+        <B />
+    </div>
+);
+`,
+            `
+import * as React from "react";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+// TODO(spacing-migration): manual review needed — \`spacing\` reference could not be auto-migrated.
+const node = (
+    <div>
+        <A />
+        <Strut size={spacing.medium_16} />
+        <B />
+    </div>
+);
+`,
+            "should fall back to TODO when the Strut's parent is not a <View>",
+        );
+    });
+
     describe("Strut", () => {
         defineInlineTest(
             transform,

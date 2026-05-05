@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import type {
     API,
     ASTPath,
@@ -87,6 +88,18 @@ function transform(file: FileInfo, api: API, options: Options) {
     const bailedSpacingPaths = new WeakSet<object>();
 
     if (spacingBinding) {
+        // Try to lift `<Strut size={spacing.X}/>` siblings into a CSS `gap`
+        // on the parent `<View>`. When the layout is simple enough, this
+        // removes the deprecated Strut entirely; otherwise the Struts stay
+        // in place and the existing per-attribute bail-and-flag path runs.
+        sizingUsed =
+            convertStrutsToGap(
+                j,
+                root,
+                spacingBinding,
+                effectiveSizingBinding,
+            ) || sizingUsed;
+
         sizingUsed =
             rewriteArithmetic(j, root, spacingBinding, effectiveSizingBinding, {
                 handledSpacingPaths,
@@ -171,6 +184,211 @@ function collectBindings(
     });
 
     return {spacingBinding, sizingBinding, deprecatedTypeImports};
+}
+
+/**
+ * Convert `<View>...<Strut size={spacing.X}/>...<View>` patterns into a
+ * `<View style={{gap: sizing.X}}>...</View>` and drop the Struts.
+ *
+ * Only fires when the layout is simple enough that `gap` is faithful to the
+ * original spacing:
+ *   - parent JSX local name is `View`
+ *   - every direct `<Strut>` child has `size={spacing.<key>}` for a mappable key
+ *   - all Strut sizes share the same key
+ *   - Struts sit strictly between non-Strut siblings (no leading, trailing, or
+ *     adjacent Struts)
+ *   - at least 2 non-Strut meaningful children
+ *   - parent's `style` is absent, or a plain `{{...}}` object literal without
+ *     an existing `gap` property
+ *
+ * Anything that doesn't qualify is left for the existing
+ * `isInsideStrutOpeningElement` bail in `rewriteArithmetic` /
+ * `rewriteSimpleMemberAccess`, which adds a TODO comment for manual review.
+ */
+function convertStrutsToGap(
+    j: JSCodeshift,
+    root: Collection<any>,
+    spacingBinding: string,
+    sizingBinding: string,
+): boolean {
+    let touched = false;
+
+    root.find(j.JSXElement).forEach((path) => {
+        const view = path.value;
+        const opening = view.openingElement;
+        if (
+            opening.name?.type !== "JSXIdentifier" ||
+            opening.name.name !== "View"
+        ) {
+            return;
+        }
+
+        const analysis = analyzeStrutChildren(view, spacingBinding);
+        if (!analysis) {
+            return;
+        }
+
+        const {strutNodes, spacingKey, styleObj} = analysis;
+        const sizingKey = SPACING_TO_SIZING[spacingKey];
+        if (!sizingKey) {
+            return;
+        }
+
+        const gapProp = j.objectProperty(
+            j.identifier("gap"),
+            j.memberExpression(
+                j.identifier(sizingBinding),
+                j.identifier(sizingKey),
+            ),
+        );
+        gapProp.shorthand = false;
+
+        if (styleObj) {
+            styleObj.properties = [...(styleObj.properties ?? []), gapProp];
+        } else {
+            const newStyleAttr = j.jsxAttribute(
+                j.jsxIdentifier("style"),
+                j.jsxExpressionContainer(j.objectExpression([gapProp])),
+            );
+            opening.attributes = [...(opening.attributes ?? []), newStyleAttr];
+        }
+
+        const strutSet = new Set(strutNodes);
+        const childrenArr: Array<any> = view.children ?? [];
+        // Drop each Strut and its trailing whitespace JSXText so we don't
+        // leave the blank line that the original `<Strut>` formatting
+        // produced. Leading whitespace stays so the prior sibling keeps its
+        // line break.
+        const skip = new Set<number>();
+        for (let i = 0; i < childrenArr.length; i++) {
+            if (!strutSet.has(childrenArr[i])) {
+                continue;
+            }
+            skip.add(i);
+            const next = childrenArr[i + 1];
+            if (next && next.type === "JSXText" && next.value.trim() === "") {
+                skip.add(i + 1);
+            }
+        }
+        view.children = childrenArr.filter((_, i) => !skip.has(i));
+
+        touched = true;
+    });
+
+    return touched;
+}
+
+type StrutAnalysis = {
+    strutNodes: Array<any>;
+    spacingKey: string;
+    styleObj: any | null;
+};
+
+function analyzeStrutChildren(
+    viewNode: any,
+    spacingBinding: string,
+): StrutAnalysis | null {
+    const children = viewNode.children ?? [];
+    const isStrutNode = (c: any): boolean =>
+        c?.type === "JSXElement" &&
+        c.openingElement?.name?.type === "JSXIdentifier" &&
+        c.openingElement.name.name === "Strut";
+
+    const meaningful = children.filter((c: any) => {
+        if (c.type === "JSXText") {
+            return c.value.trim() !== "";
+        }
+        // JSXExpressionContainer with whitespace-only comment is rare; treat
+        // every non-text child as meaningful.
+        return true;
+    });
+
+    const strutNodes = meaningful.filter(isStrutNode);
+    if (strutNodes.length === 0) {
+        return null;
+    }
+
+    if (
+        isStrutNode(meaningful[0]) ||
+        isStrutNode(meaningful[meaningful.length - 1])
+    ) {
+        return null;
+    }
+    let prevWasStrut = false;
+    for (const c of meaningful) {
+        const cur = isStrutNode(c);
+        if (cur && prevWasStrut) {
+            return null;
+        }
+        prevWasStrut = cur;
+    }
+    if (meaningful.length - strutNodes.length < 2) {
+        return null;
+    }
+
+    let spacingKey: string | null = null;
+    for (const strut of strutNodes) {
+        const sizeExpr = getStrutSizeExpression(strut);
+        if (!sizeExpr || !isSpacingMember(sizeExpr, spacingBinding)) {
+            return null;
+        }
+        const key = sizeExpr.property.name as string;
+        if (spacingKey !== null && spacingKey !== key) {
+            return null;
+        }
+        spacingKey = key;
+    }
+    if (!spacingKey) {
+        return null;
+    }
+
+    const styleAttr = (viewNode.openingElement.attributes ?? []).find(
+        (a: any) =>
+            a.type === "JSXAttribute" &&
+            a.name?.type === "JSXIdentifier" &&
+            a.name.name === "style",
+    );
+    let styleObj: any | null = null;
+    if (styleAttr) {
+        if (
+            styleAttr.value?.type !== "JSXExpressionContainer" ||
+            styleAttr.value.expression?.type !== "ObjectExpression"
+        ) {
+            return null;
+        }
+        styleObj = styleAttr.value.expression;
+        const hasGap = (styleObj.properties ?? []).some((p: any) => {
+            if (p.type !== "Property" && p.type !== "ObjectProperty") {
+                return false;
+            }
+            if (p.computed) {
+                return false;
+            }
+            return (
+                (p.key?.type === "Identifier" && p.key.name === "gap") ||
+                (p.key?.type === "Literal" && p.key.value === "gap") ||
+                (p.key?.type === "StringLiteral" && p.key.value === "gap")
+            );
+        });
+        if (hasGap) {
+            return null;
+        }
+    }
+
+    return {strutNodes, spacingKey, styleObj};
+}
+
+function getStrutSizeExpression(strutNode: any): any | null {
+    const sizeAttr = (strutNode.openingElement.attributes ?? []).find(
+        (a: any) =>
+            a.type === "JSXAttribute" &&
+            a.name?.type === "JSXIdentifier" &&
+            a.name.name === "size",
+    );
+    if (!sizeAttr || sizeAttr.value?.type !== "JSXExpressionContainer") {
+        return null;
+    }
+    return sizeAttr.value.expression;
 }
 
 /**
