@@ -258,6 +258,34 @@ const styles = {marginLeft: \`calc(-1 * \${sizing.size_240})\`};
 `,
             "should rewrite unary minus on spacing as a calc(-1 * sizing.X) template",
         );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+const styles = {marginLeft: -(spacing.medium_16 + 2)};
+`,
+            `
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+const styles = {marginLeft: \`calc(-1 * (\${sizing.size_160} + 2px))\`};
+`,
+            "should wrap unary minus around an arithmetic expression in calc(-1 * (...))",
+        );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+const styles = {marginRight: -(spacing.large_24 + spacing.medium_16)};
+`,
+            `
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+const styles = {marginRight: \`calc(-1 * (\${sizing.size_240} + \${sizing.size_160}))\`};
+`,
+            "should wrap unary minus around two-spacing arithmetic in calc(-1 * (...))",
+        );
     });
 
     describe("template-literal contexts", () => {

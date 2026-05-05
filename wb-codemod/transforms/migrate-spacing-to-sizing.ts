@@ -197,13 +197,25 @@ function rewriteArithmetic(
             return;
         }
 
+        // If the outermost BinaryExpression sits inside a `UnaryExpression -`
+        // (e.g. `marginLeft: -(spacing.medium_16 + 2)`), the unary is the real
+        // outer node we need to replace. A plain rewrite of the inner binary
+        // alone would leave the unary minus in front of a template literal
+        // string at runtime — `-"calc(...)"` evaluates to NaN.
+        const parent = path.parent;
+        const isNegated =
+            parent?.value?.type === "UnaryExpression" &&
+            parent.value.operator === "-" &&
+            parent.value.argument === path.value;
+        const outerPath = isNegated ? parent : path;
+
         // Bail if this arithmetic sits inside a TemplateLiteral expression
         // slot. Producing a nested template literal there would yield invalid
         // CSS (e.g. `calc(100% + ${`calc(${sizing.X} * 2)`}px)`). Leave the
         // inner spacing references alone — `rewriteSimpleMemberAccess` checks
         // for the same pattern and skips them, and the unhandled-pass adds a
         // TODO comment.
-        if (isInsideTemplateLiteralExpression(path)) {
+        if (isInsideTemplateLiteralExpression(outerPath)) {
             return;
         }
 
@@ -212,14 +224,19 @@ function rewriteArithmetic(
             return;
         }
 
-        const template = buildCalcTemplate(j, parts, sizingBinding);
+        let template = buildCalcTemplate(j, parts, sizingBinding);
+        if (isNegated) {
+            // Wrap `calc(...)` as `calc(-1 * (...))` so the negative-length
+            // CSS value comes out valid for `var()`-backed sizing tokens too.
+            template = wrapTemplateInNegatedCalc(j, template);
+        }
         recordHandledSpacingPaths(
             j,
             path,
             spacingBinding,
             ctx.handledSpacingPaths,
         );
-        j(path).replaceWith(template);
+        j(outerPath).replaceWith(template);
         touched = true;
     });
 
@@ -665,6 +682,56 @@ function buildCalcTemplate(
     );
 
     return j.templateLiteral(quasis, expressions);
+}
+
+/**
+ * Re-wraps a `\`calc(...)\`` template literal as `\`calc(-1 * (...))\``. Used
+ * when a `UnaryExpression -` sits in front of an arithmetic expression that
+ * `buildCalcTemplate` produced as `\`calc(... + ...)\``.
+ *
+ * Strips the inner `calc(`/`)` from the first/last quasi before wrapping so
+ * the result is a single `calc(-1 * (... + ...))` rather than an unnecessary
+ * `calc(-1 * (calc(... + ...)))`.
+ */
+function wrapTemplateInNegatedCalc(
+    j: JSCodeshift,
+    template: ReturnType<typeof j.templateLiteral>,
+) {
+    const quasis = template.quasis.slice();
+    const first = quasis[0];
+    const last = quasis[quasis.length - 1];
+
+    const firstRaw = first.value.raw.replace(/^calc\(/, "");
+    const firstCooked = (first.value.cooked ?? "").replace(/^calc\(/, "");
+    const lastRaw = last.value.raw.replace(/\)$/, "");
+    const lastCooked = (last.value.cooked ?? "").replace(/\)$/, "");
+
+    if (quasis.length === 1) {
+        // Shouldn't happen for any real arithmetic (we always have ≥1 spacing
+        // expression → ≥2 quasis), but guard anyway: build the prefix and
+        // suffix on a single quasi.
+        quasis[0] = j.templateElement(
+            {
+                raw: "calc(-1 * (" + firstRaw + "))",
+                cooked: "calc(-1 * (" + firstCooked + "))",
+            },
+            first.tail,
+        );
+    } else {
+        quasis[0] = j.templateElement(
+            {
+                raw: "calc(-1 * (" + firstRaw,
+                cooked: "calc(-1 * (" + firstCooked,
+            },
+            first.tail,
+        );
+        quasis[quasis.length - 1] = j.templateElement(
+            {raw: lastRaw + "))", cooked: lastCooked + "))"},
+            last.tail,
+        );
+    }
+
+    return j.templateLiteral(quasis, template.expressions.slice());
 }
 
 function recordHandledSpacingPaths(
