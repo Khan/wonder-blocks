@@ -3,6 +3,7 @@ import type {
     RegionFactory,
     RegionDictionary,
     RegionDef,
+    LayerContext,
 } from "./util/announcer.types";
 
 import {
@@ -16,25 +17,37 @@ export const REMOVAL_TIMEOUT_DELAY = 5000;
 export const DEFAULT_WAIT_THRESHOLD = 250;
 
 /**
- * Internal class to manage screen reader announcements.
+ * Singleton class that manages ARIA Live Region nodes and routes announcements
+ * to the correct layer (document or modal). Use the public API functions
+ * (`announceMessage`, `initAnnouncer`, etc.) rather than this class directly.
  */
 class Announcer {
     private static _instance: Announcer | null;
     private targetElement: HTMLElement;
     topLevelId: string = `wbAnnounce`;
     node: HTMLElement | null = null;
-    regionFactory: RegionFactory = {
-        count: 2,
-        aIndex: 0,
-        pIndex: 0,
-    };
+    regionFactory: RegionFactory = new Map([
+        ["document", {count: 2, aIndex: 0, pIndex: 0}],
+        ["modal", {count: 2, aIndex: 0, pIndex: 0}],
+    ]);
     dictionary: RegionDictionary = new Map();
     waitThreshold: number = DEFAULT_WAIT_THRESHOLD;
-    lastExecutionTime = 0;
-    private debounced!: {
-        (...args: any[]): Promise<string>;
-        updateWaitTime: (newWaitTime: number) => void;
-    };
+    // One independent debounce timer per layer so a document announcement
+    // and a modal announcement within the same debounce window don't cancel
+    // each other out.
+    private debouncedByLayer!: Map<
+        LayerContext,
+        {
+            (...args: any[]): Promise<string>;
+            updateWaitTime: (newWaitTime: number) => void;
+        }
+    >;
+    // Tracks active modal elements → their announcer container nodes
+    private modalNodes: Map<HTMLElement, HTMLElement> = new Map();
+    // Incremented for each modal attached; used to make region IDs unique
+    // across simultaneously open modals (e.g. a confirmation dialog over
+    // an existing modal).
+    private modalCounter: number = 0;
 
     private constructor(targetElement: HTMLElement = document.body) {
         this.targetElement = targetElement;
@@ -52,16 +65,30 @@ class Announcer {
                 this.reattachNodes();
             }
 
-            // Create the debounced message attachment function
-            // This API makes leading edge debouncing work while preserving the
-            // ability to change the wait parameter through Announcer.announce
-            this.debounced = createDebounceFunction(
-                this,
-                this.processAnnouncement,
-                this.waitThreshold,
-            );
+            // Create one debounced function per layer so that a document
+            // announcement and a modal announcement within the same debounce
+            // window don't cancel each other out.
+            this.debouncedByLayer = new Map([
+                [
+                    "document",
+                    createDebounceFunction(
+                        this,
+                        this.processAnnouncement,
+                        this.waitThreshold,
+                    ),
+                ],
+                [
+                    "modal",
+                    createDebounceFunction(
+                        this,
+                        this.processAnnouncement,
+                        this.waitThreshold,
+                    ),
+                ],
+            ]);
         }
     }
+
     /**
      * Singleton handler to ensure we only have one Announcer instance
      * @returns {Announcer}
@@ -72,10 +99,18 @@ class Announcer {
         }
         return Announcer._instance;
     }
+
     /**
-     * Internal initializer method to create live region elements
-     * Prepends regions to document body
-     * @param {string} id ID of the top level node (wbAnnounce)
+     * Returns true if any modal is currently attached.
+     * Used by announceMessage to determine the layer context automatically.
+     */
+    hasActiveModal(): boolean {
+        return this.modalNodes.size > 0;
+    }
+
+    /**
+     * Creates the root container node and appends document-layer live regions
+     * to the target element.
      */
     init(id: string) {
         this.node = document.createElement("div");
@@ -84,112 +119,245 @@ class Announcer {
 
         Object.assign(this.node.style, srOnly);
 
+        this.initRegionsForLayer(false, this.node, this.targetElement);
+    }
+
+    initRegionsForLayer(
+        isModalContext: boolean,
+        nodeRef: HTMLElement,
+        targetElement: HTMLElement,
+        idSuffix: string = "",
+    ) {
+        const layerId: LayerContext = isModalContext ? "modal" : "document";
+
         // For each level, we create at least two live region elements.
         // This is to work around AT occasionally dropping messages.
-        const aWrapper = createRegionWrapper("assertive");
+        const aWrapper = createRegionWrapper("assertive", layerId, idSuffix);
         createDuplicateRegions(
             aWrapper,
             "assertive",
-            this.regionFactory.count,
+            this.regionFactory.get(layerId)?.count ?? 2,
+            layerId,
             this.dictionary,
+            idSuffix,
         );
-        this.node?.appendChild(aWrapper);
+        nodeRef.appendChild(aWrapper);
 
-        const pWrapper = createRegionWrapper("polite");
+        const pWrapper = createRegionWrapper("polite", layerId, idSuffix);
         createDuplicateRegions(
             pWrapper,
             "polite",
-            this.regionFactory.count,
+            this.regionFactory.get(layerId)?.count ?? 2,
+            layerId,
             this.dictionary,
+            idSuffix,
         );
-        this.node.appendChild(pWrapper);
+        nodeRef.appendChild(pWrapper);
 
-        this.targetElement.append(this.node);
+        targetElement.append(nodeRef);
     }
+
     /**
-     * Recover in the event regions get lost
-     * This happens in Storybook or other HMR environments when saving a file:
-     * Announcer exists, but it loses the connection to DOM element Refs
+     * Recover document-layer element references lost during HMR
+     * (e.g. in Storybook when saving a file).
+     * Infers layerId from the region ID prefix so modal regions are also
+     * correctly re-classified if the whole document is reattached.
      */
     reattachNodes() {
-        const announcerCheck = document.getElementById(this.topLevelId);
-        if (announcerCheck !== null) {
-            this.node = announcerCheck;
-            const regions = Array.from(
-                announcerCheck.querySelectorAll<HTMLElement>(
-                    "[id^='wbARegion']",
-                ),
-            );
-            regions.forEach((region) => {
+        const announcerNode = document.getElementById(this.topLevelId);
+        if (announcerNode === null) {
+            return;
+        }
+        this.node = announcerNode;
+        announcerNode
+            .querySelectorAll<HTMLElement>("[id^='wbARegion']")
+            .forEach((region) => {
+                const layerId: LayerContext = region.id.startsWith(
+                    "wbARegion-modal-",
+                )
+                    ? "modal"
+                    : "document";
                 this.dictionary.set(region.id, {
                     id: region.id,
                     levelIndex: parseInt(
                         region.id.charAt(region.id.length - 1),
                     ),
+                    layerId,
                     level: region.getAttribute("aria-live") as PolitenessLevel,
                     element: region,
                 });
             });
+    }
+
+    /**
+     * Inject a live region container inside a modal element.
+     * Call this when a modal mounts (e.g. from a useEffect in ModalDialog).
+     * Pre-creating the regions gives screen readers time to register them
+     * before any announcements fire.
+     *
+     * If the container already exists (e.g. after HMR), references are
+     * reattached without re-creating DOM nodes.
+     */
+    attachAnnouncerToModal(modalElement: HTMLElement) {
+        // Each modal gets a unique numeric suffix so that simultaneously open
+        // modals (e.g. a confirmation dialog layered over an existing modal)
+        // never share region IDs or collide in the dictionary.
+        const suffix = String(++this.modalCounter);
+        const modalAnnouncerId = `${this.topLevelId}-modal-${suffix}`;
+        const existing = modalElement.querySelector<HTMLElement>(
+            `#${modalAnnouncerId}`,
+        );
+
+        if (existing) {
+            // HMR recovery: re-register the existing regions
+            existing
+                .querySelectorAll<HTMLElement>("[id^='wbARegion-modal-']")
+                .forEach((region) => {
+                    this.dictionary.set(region.id, {
+                        id: region.id,
+                        levelIndex: parseInt(
+                            region.id.charAt(region.id.length - 1),
+                        ),
+                        level: region.getAttribute(
+                            "aria-live",
+                        ) as PolitenessLevel,
+                        element: region,
+                        layerId: "modal",
+                    });
+                });
+            this.modalNodes.set(modalElement, existing);
+            return;
+        }
+
+        const modalNode = document.createElement("div");
+        modalNode.id = modalAnnouncerId;
+        modalNode.setAttribute("data-testid", modalAnnouncerId);
+        Object.assign(modalNode.style, srOnly);
+
+        this.initRegionsForLayer(true, modalNode, modalElement, suffix);
+        this.modalNodes.set(modalElement, modalNode);
+    }
+
+    /**
+     * Remove the live region container from a modal element and clean up
+     * dictionary entries. Call this when the modal unmounts.
+     */
+    detachAnnouncerFromModal(modalElement: HTMLElement) {
+        const modalNode = this.modalNodes.get(modalElement);
+        if (!modalNode) {
+            return;
+        }
+
+        // Remove dictionary entries for this modal's regions
+        modalNode
+            .querySelectorAll<HTMLElement>("[id^='wbARegion-modal-']")
+            .forEach((region) => {
+                this.dictionary.delete(region.id);
+            });
+
+        modalNode.parentElement?.removeChild(modalNode);
+        this.modalNodes.delete(modalElement);
+
+        // Reset modal region indices and counter when no modals remain
+        if (this.modalNodes.size === 0) {
+            const modalFactory = this.regionFactory.get("modal");
+            if (modalFactory) {
+                modalFactory.aIndex = 0;
+                modalFactory.pIndex = 0;
+            }
+            this.modalCounter = 0;
         }
     }
+
     /**
      * Announce a live region message for a given level
      * @param {string} message The message to be announced
      * @param {string} level Politeness level: should it interrupt?
+     * @param {boolean} inModalContext Optional flag for whether to announce from modal context
      * @param {number} debounceThreshold Optional duration to wait before appending another message (defaults to 250ms)
      * @returns {Promise<string>} Promise that resolves with an IDREF for targeted element or empty string if it failed
      */
     announce(
         message: string,
         level: PolitenessLevel,
+        inModalContext: boolean,
         debounceThreshold?: number,
     ): Promise<string> {
         // if callers specify a different wait threshold, update our debounce fn
         if (debounceThreshold !== undefined) {
             this.updateWaitThreshold(debounceThreshold);
         }
-        return this.debounced(this, message, level);
+
+        // Convert boolean inModalContext to LayerContext
+        const layerId: LayerContext = inModalContext ? "modal" : "document";
+
+        // Use the layer-specific debounced function so cross-layer announcements
+        // don't cancel each other within the same debounce window.
+        const debounced = this.debouncedByLayer.get(layerId)!;
+        return debounced(this, message, level, layerId);
     }
+
     /**
      * Override the default debounce wait threshold
      * @param {number} debounceThreshold Duration to wait before appending messages
      */
     updateWaitThreshold(debounceThreshold: number) {
         this.waitThreshold = debounceThreshold;
-        if (this.debounced) {
-            this.debounced.updateWaitTime(debounceThreshold);
-        }
+        this.debouncedByLayer?.forEach((fn) => {
+            fn.updateWaitTime(debounceThreshold);
+        });
     }
+
     /**
      * Callback for appending live region messages through debounce
      * @param {Announcer} context Pass the correct `this` arg to the callback
-     * @param {sting} message The live region message to append
+     * @param {string} message The live region message to append
      * @param {string} level The politeness level for whether to interrupt
+     * @param {LayerContext} layerId Identifier for modal or document context
      */
     processAnnouncement(
         context: Announcer,
         message: string,
         level: PolitenessLevel,
+        layerId: LayerContext,
     ) {
         if (!context.node) {
             context.reattachNodes();
         }
 
-        // Filter region elements to the selected level
+        // If modal context was requested but no modal regions exist (e.g.
+        // attachAnnouncerToModal was never called), fall back to the document layer so
+        // the message is never silently dropped.
+        const hasModalRegions = [...context.dictionary.values()].some(
+            (entry: RegionDef) => entry.layerId === "modal",
+        );
+        const targetLayerId: LayerContext =
+            layerId === "modal" && !hasModalRegions ? "document" : layerId;
+
+        // Filter region elements to the selected level and layer
         const regions: RegionDef[] = [...context.dictionary.values()].filter(
-            (entry: RegionDef) => entry.level === level,
+            (entry: RegionDef) =>
+                entry.level === level && entry.layerId === targetLayerId,
         );
 
-        const newIndex = context.appendMessage(message, level, regions);
+        const newIndex = context.appendMessage(
+            message,
+            level,
+            regions,
+            targetLayerId,
+        );
 
-        // overwrite central index for the given level
-        if (level === "assertive") {
-            context.regionFactory.aIndex = newIndex;
-        } else {
-            context.regionFactory.pIndex = newIndex;
+        // Update the central index for the given level and layer
+        const layerFactory = context.regionFactory.get(targetLayerId);
+        if (layerFactory) {
+            if (level === "assertive") {
+                layerFactory.aIndex = newIndex;
+            } else {
+                layerFactory.pIndex = newIndex;
+            }
         }
 
-        return regions[newIndex].id || "";
+        return regions[newIndex]?.id || "";
     }
 
     /**
@@ -216,25 +384,32 @@ class Announcer {
      * @param {string} message The message to be appended
      * @param {string} level Which level to alternate
      * @param {RegionDef[]} regionList Filtered dictionary of regions for level
+     * @param {LayerContext} layerId The layer context (modal or document)
+     * @param {number} debounceThreshold How long to wait before removing the message
      * @returns {number} Index of targeted region for updating central register
      */
     appendMessage(
         message: string,
-        level: PolitenessLevel, // level
-        regionList: RegionDef[], // list of relevant elements
+        level: PolitenessLevel,
+        regionList: RegionDef[],
+        layerId: LayerContext,
         debounceThreshold: number = DEFAULT_WAIT_THRESHOLD,
     ): number {
+        // Get the layer factory for the current layer
+        const layerFactory = this.regionFactory.get(layerId);
+        if (!layerFactory) {
+            throw new Error(`Layer factory not found for layer: ${layerId}`);
+        }
+
         // Starting index for a given level
         let index =
-            level === "assertive"
-                ? this.regionFactory.aIndex
-                : this.regionFactory.pIndex;
+            level === "assertive" ? layerFactory.aIndex : layerFactory.pIndex;
 
         // empty region at the previous index
         regionList[index].element.replaceChildren();
 
         // overwrite index passed in to update locally
-        index = alternateIndex(index, this.regionFactory.count);
+        index = alternateIndex(index, layerFactory.count);
 
         // create element for new message
         const messageEl = document.createElement("p");
@@ -255,8 +430,10 @@ class Announcer {
      * Useful for testing.
      **/
     reset() {
-        this.regionFactory.aIndex = 0;
-        this.regionFactory.pIndex = 0;
+        this.regionFactory.forEach((value) => {
+            value.aIndex = 0;
+            value.pIndex = 0;
+        });
 
         this.clear();
     }
@@ -269,6 +446,13 @@ class Announcer {
         if (this.node) {
             this.node.parentElement?.removeChild(this.node);
         }
+
+        // Remove any attached modal announcer nodes
+        this.modalNodes.forEach((modalNode) => {
+            modalNode.parentElement?.removeChild(modalNode);
+        });
+        this.modalNodes.clear();
+
         Announcer._instance = null;
     }
 }

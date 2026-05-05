@@ -1,7 +1,10 @@
 import type {ArgTypes} from "@storybook/react-vite";
+
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 import {AriaLabelOrAriaLabelledbyArgTypes} from "./shared.argtypes";
 
 export default {
+    ...AriaArgTypes,
     tabs: {
         table: {
             type: {

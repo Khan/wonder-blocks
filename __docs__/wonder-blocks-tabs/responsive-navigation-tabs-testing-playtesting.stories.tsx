@@ -33,7 +33,7 @@ export default {
     args: {
         onLayoutChange: fn(),
     },
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
     globals: {
         theme: "thunderblocks",
     },

@@ -45,7 +45,7 @@ const SingleSelectAccessibility = () => (
 );
 
 export const UsingAriaAttributes = {
-    render: SingleSelectAccessibility.bind({}),
+    render: () => <SingleSelectAccessibility />,
     name: "Using LabeledField",
 };
 
@@ -72,7 +72,7 @@ const SingleSelectAriaLabel = () => (
 );
 
 export const UsingOpenerAriaLabel = {
-    render: SingleSelectAriaLabel.bind({}),
+    render: () => <SingleSelectAriaLabel />,
     name: "Using aria-label for opener",
 };
 
@@ -102,7 +102,7 @@ const SingleSelectCustomOpenerLabeledField = () => {
 };
 
 export const UsingCustomOpenerLabeledField = {
-    render: SingleSelectCustomOpenerLabeledField.bind({}),
+    render: () => <SingleSelectCustomOpenerLabeledField />,
     name: "Using custom opener in a LabeledField",
 };
 
@@ -127,7 +127,7 @@ const SingleSelectCustomOpenerLabel = () => {
 };
 
 export const UsingCustomOpenerAriaLabel = {
-    render: SingleSelectCustomOpenerLabel.bind({}),
+    render: () => <SingleSelectCustomOpenerLabel />,
     name: "Using aria-label on custom opener",
 };
 
@@ -153,7 +153,7 @@ const SingleSelectWithVisibleAnnouncer = () => {
 };
 
 export const WithVisibleAnnouncer = {
-    render: SingleSelectWithVisibleAnnouncer.bind({}),
+    render: () => <SingleSelectWithVisibleAnnouncer />,
     name: "With visible Announcer",
     parameters: {
         addBodyClass: "showAnnouncer",
@@ -181,7 +181,7 @@ const SingleSelectKeyboardSelection = () => {
 };
 
 export const UsingKeyboardSelection = {
-    render: SingleSelectKeyboardSelection.bind({}),
+    render: () => <SingleSelectKeyboardSelection />,
     name: "Using the keyboard",
     parameters: {
         chromatic: {disableSnapshot: true},

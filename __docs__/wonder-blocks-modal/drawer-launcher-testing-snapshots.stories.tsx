@@ -35,7 +35,7 @@ export default {
             },
         },
     },
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
 } as Meta<typeof DrawerLauncher>;
 
 type StoryComponentType = StoryObj<typeof DrawerLauncher>;

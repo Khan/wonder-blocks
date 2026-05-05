@@ -5,7 +5,7 @@ import caretDown from "@phosphor-icons/core/bold/caret-down-bold.svg";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {HeadingSmall} from "@khanacademy/wonder-blocks-typography";
+import {Heading} from "@khanacademy/wonder-blocks-typography";
 import {spacing, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
@@ -81,7 +81,7 @@ const AccordionSectionHeader = React.forwardRef(function AccordionSectionHeader(
     );
 
     return (
-        <HeadingSmall tag={tag} style={styles.heading}>
+        <Heading size="medium" tag={tag} style={styles.heading}>
             <Clickable
                 id={id}
                 aria-expanded={expanded}
@@ -145,7 +145,7 @@ const AccordionSectionHeader = React.forwardRef(function AccordionSectionHeader(
                     </>
                 )}
             </Clickable>
-        </HeadingSmall>
+        </Heading>
     );
 });
 

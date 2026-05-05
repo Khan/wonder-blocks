@@ -20,7 +20,7 @@ export default {
             modes: allThemeModes,
         },
     },
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
 } as Meta<typeof BodyText>;
 
 type StoryComponentType = StoryObj<typeof BodyText>;

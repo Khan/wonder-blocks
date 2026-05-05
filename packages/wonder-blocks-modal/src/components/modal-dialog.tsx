@@ -4,6 +4,7 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {StyleSheet} from "aphrodite";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 // TODO [WB-2137]: standardize media query breakpoint tokens
+import {useModalAnnouncer} from "../hooks/use-modal-announcer";
 import {modalMediaQuery} from "../util/constants";
 import theme from "../theme";
 
@@ -80,6 +81,8 @@ const ModalDialog = React.forwardRef(function ModalDialog(
         "aria-describedby": ariaDescribedBy,
     } = props;
 
+    const {ariaModalRef} = useModalAnnouncer(ref);
+
     return (
         <View style={componentStyles.paddingLayer} data-modal-padding-layer>
             {/* WB-2197: We add a data attribute for identifying this layer on backdrop clicks */}
@@ -91,8 +94,8 @@ const ModalDialog = React.forwardRef(function ModalDialog(
                     aria-label={ariaLabel}
                     aria-labelledby={ariaLabelledBy}
                     aria-describedby={ariaDescribedBy}
-                    ref={ref}
-                    style={[componentStyles.dialog]}
+                    ref={ariaModalRef}
+                    style={componentStyles.dialog}
                     testId={testId}
                 >
                     {children}

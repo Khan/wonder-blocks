@@ -437,6 +437,71 @@ describe("IconButtonUnstyled", () => {
         });
     });
 
+    describe("data-kind", () => {
+        it("should set data-kind on the underlying button", async () => {
+            // Arrange
+
+            // Act
+            render(
+                <IconButtonUnstyled
+                    aria-label="search"
+                    kind="primary"
+                    onClick={() => {}}
+                >
+                    <PhosphorIcon icon={magnifyingGlassIcon} />
+                </IconButtonUnstyled>,
+            );
+
+            // Assert
+            expect(await screen.findByRole("button")).toHaveAttribute(
+                "data-kind",
+                "primary",
+            );
+        });
+
+        it("should set data-kind on the underlying internal link", async () => {
+            // Arrange
+
+            // Act
+            render(
+                <IconButtonUnstyled
+                    aria-label="search"
+                    kind="secondary"
+                    href="/bar"
+                >
+                    <PhosphorIcon icon={magnifyingGlassIcon} />
+                </IconButtonUnstyled>,
+            );
+
+            // Assert
+            expect(await screen.findByRole("link")).toHaveAttribute(
+                "data-kind",
+                "secondary",
+            );
+        });
+
+        it("should set data-kind on the underlying external link", async () => {
+            // Arrange
+
+            // Act
+            render(
+                <IconButtonUnstyled
+                    aria-label="search"
+                    kind="secondary"
+                    href="https://example.com"
+                >
+                    <PhosphorIcon icon={magnifyingGlassIcon} />
+                </IconButtonUnstyled>,
+            );
+
+            // Assert
+            expect(await screen.findByRole("link")).toHaveAttribute(
+                "data-kind",
+                "secondary",
+            );
+        });
+    });
+
     describe("Accessibility", () => {
         describe("axe", () => {
             it("should not have violations", async () => {

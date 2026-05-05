@@ -71,7 +71,7 @@ export default {
 };
 
 export const ErrorState = {
-    render: ErrorTemplate.bind({}),
+    render: (args: CheckboxProps) => <ErrorTemplate {...args} />,
     name: "Error state",
 
     args: {
@@ -80,6 +80,6 @@ export const ErrorState = {
 };
 
 export const DisabledState = {
-    render: DisabledTemplate.bind({}),
+    render: (args: CheckboxProps) => <DisabledTemplate {...args} />,
     name: "Disabled state",
 };

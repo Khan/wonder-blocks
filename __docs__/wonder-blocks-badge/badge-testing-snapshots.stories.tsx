@@ -48,6 +48,7 @@ export default {
             modes: themeModes,
         },
     },
+    tags: ["!manifest"],
 } as Meta<typeof Badge>;
 
 type StoryComponentType = StoryObj<typeof Badge>;

@@ -1,9 +1,11 @@
 import Announcer from "./announcer";
 
 /**
- * Public API method to clear screen reader messages after sending.
- * Clears all regions by default.
- * @param {string} id Optional id of live region element to clear.
+ * Immediately clear live region content without waiting for the default
+ * removal delay. Useful when a message should be retracted (e.g. a loading
+ * state that resolves before the timeout).
+ *
+ * @param id ID of a specific live region to clear. Clears all regions if omitted.
  */
 export function clearMessages(id?: string) {
     const announcer = Announcer.getInstance();

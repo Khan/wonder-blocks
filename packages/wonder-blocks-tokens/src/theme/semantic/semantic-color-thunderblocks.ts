@@ -61,8 +61,7 @@ const core = {
         neutral: {
             subtle: color.gray_80,
             default: color.gray_20,
-            // TODO: This will be updated to gray_10
-            strong: color.black_100,
+            strong: color.gray_10,
         },
         critical: {
             subtle: color.red_80,
@@ -132,6 +131,10 @@ const core = {
             low: transparentShadowColor,
             mid: transparentShadowColor,
             high: transparentShadowColor,
+            color: {
+                subtle: color.blue_30_alpha20,
+                strong: color.blue_05_alpha20,
+            },
         },
         chonky: {
             instructive: {

@@ -94,7 +94,7 @@ export default {
             />
         ),
     },
-    tags: ["!dev"],
+    tags: ["!dev", "!manifest"],
 } as Meta;
 
 type Row = {label: string; css: string; value: string};

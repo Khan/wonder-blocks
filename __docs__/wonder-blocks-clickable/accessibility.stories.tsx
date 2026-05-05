@@ -87,36 +87,25 @@ export const DisabledState = {
 export const KeyboardNavigation = {
     render: () => (
         <View>
-            <div role="tablist">
-                <Clickable
-                    role="tab"
-                    aria-controls="panel-1"
-                    id="tab-1"
-                    style={styles.tabButton}
-                >
-                    {({hovered, focused, pressed}) => (
-                        <View
-                            style={[
-                                styles.rest,
-                                hovered && styles.hover,
-                                focused && styles.focus,
-                                pressed && styles.press,
-                            ]}
-                        >
-                            <Body>Open School Info</Body>
-                        </View>
-                    )}
-                </Clickable>
-            </div>
-            <View
-                id="panel-1"
-                role="tabpanel"
-                tabIndex={0}
-                aria-labelledby="tab-1"
-                style={styles.panel}
+            <Clickable
+                role="button"
+                aria-expanded="false" // Example shows aria attributes can be set
+                id="button-1"
+                style={styles.tabButton}
             >
-                This is the information for the school.
-            </View>
+                {({hovered, focused, pressed}) => (
+                    <View
+                        style={[
+                            styles.rest,
+                            hovered && styles.hover,
+                            focused && styles.focus,
+                            pressed && styles.press,
+                        ]}
+                    >
+                        <Body>School Info</Body>
+                    </View>
+                )}
+            </Clickable>
         </View>
     ),
 

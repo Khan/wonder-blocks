@@ -1,5 +1,41 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 4.1.43
+
+### Patch Changes
+
+- 00e6dda: Updates internal WB typography references to use the new system (Heading and BodyText)
+- Updated dependencies [488728a]
+- Updated dependencies [00e6dda]
+    - @khanacademy/wonder-blocks-tokens@16.2.0
+    - @khanacademy/wonder-blocks-typography@4.3.0
+    - @khanacademy/wonder-blocks-dropdown@10.8.5
+    - @khanacademy/wonder-blocks-icon@5.3.10
+    - @khanacademy/wonder-blocks-layout@3.1.47
+
+## 4.1.42
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-dropdown@10.8.4
+
+## 4.1.41
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-dropdown@10.8.3
+
+## 4.1.40
+
+### Patch Changes
+
+- Updated dependencies [358eb9b]
+    - @khanacademy/wonder-blocks-tokens@16.1.0
+    - @khanacademy/wonder-blocks-dropdown@10.8.2
+    - @khanacademy/wonder-blocks-icon@5.3.9
+    - @khanacademy/wonder-blocks-layout@3.1.46
+    - @khanacademy/wonder-blocks-typography@4.2.31
+
 ## 4.1.39
 
 ### Patch Changes

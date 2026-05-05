@@ -1,6 +1,9 @@
 import type {ArgTypes} from "@storybook/react-vite";
 
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
+
 export default {
+    ...AriaArgTypes,
     children: {
         description:
             "The child of Clickable must be a function which returns the component which should be made Clickable.  The function is passed an object with three boolean properties: hovered, focused, and pressed.",

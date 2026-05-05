@@ -18,7 +18,7 @@ import {CatalogComponentInfo, ComponentList} from "./catalog-component-info";
 
 export default {
     title: "Catalog",
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
     parameters: {
         chromatic: {
             // Catalog is for manual review. Individual components should have

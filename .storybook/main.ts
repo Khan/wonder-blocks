@@ -20,8 +20,20 @@ const config: StorybookConfig = {
                 },
             },
         },
-        "storybook-addon-tag-badges"
+        "storybook-addon-tag-badges",
+        {
+            name: "@storybook/addon-mcp",
+            options: {
+                toolsets: {
+                    dev: true,
+                    docs: true,
+                },
+            },
+        },
     ],
+    features: {
+        experimentalComponentsManifest: true,
+    },
     staticDirs: ["../static"],
     core: {
         builder: "@storybook/builder-vite",
@@ -38,6 +50,13 @@ const config: StorybookConfig = {
                 assetsInlineLimit: 0,
             },
         });
+    },
+    typescript: {
+        reactDocgen: 'react-docgen-typescript',
+        reactDocgenTypescriptOptions: {
+            // Ignore props that have the @ignore tag in the docs
+            propFilter: (prop) => prop.tags?.ignore === undefined,
+        },
     },
 };
 

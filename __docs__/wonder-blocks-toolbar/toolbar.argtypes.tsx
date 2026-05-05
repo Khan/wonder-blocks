@@ -8,6 +8,7 @@ import magnifyingGlassMinus from "@phosphor-icons/core/regular/magnifying-glass-
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Link from "@khanacademy/wonder-blocks-link";
@@ -122,6 +123,7 @@ export const rightContentMappings: Mappings = {
 };
 
 export default {
+    ...AriaArgTypes,
     leftContent: {
         control: {type: "select"},
         options: Object.keys(leftContentMappings) as Array<string>,

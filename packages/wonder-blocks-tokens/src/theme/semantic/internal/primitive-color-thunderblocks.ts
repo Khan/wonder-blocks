@@ -4,6 +4,10 @@ import {fade} from "../../../util/color-utils";
 const black = "#151521";
 const white = "#FFFFFF";
 
+// Blue base colors (used for alpha variants)
+const blue30 = "#5753FA";
+const blue05 = "#252368";
+
 /**
  * The color primitives for the Thunder Blocks theme.
  *
@@ -80,11 +84,14 @@ export const color = {
     blue_60: "#BFCAFF",
     blue_50: "#8DA2FF",
     blue_40: "#6C82FF",
-    blue_30: "#5753FA",
+    blue_30: blue30,
     blue_20: "#4340D0",
     blue_10: "#363498",
-    blue_05: "#252368",
+    blue_05: blue05,
     blue_01: "#222149",
+    // Blue (alpha variants)
+    blue_30_alpha20: `${blue30}33`, // color.blue_30 with 20% alpha
+    blue_05_alpha20: `${blue05}33`, // color.blue_05 with 20% alpha
     // Magenta
     magenta_90: "#FCEEF7",
     magenta_80: "#FFE3F4",

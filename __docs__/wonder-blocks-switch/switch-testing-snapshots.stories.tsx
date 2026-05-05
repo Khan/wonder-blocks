@@ -55,7 +55,7 @@ const meta = {
             modes: themeModes,
         },
     },
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
 } satisfies Meta<typeof Switch>;
 
 export default meta;

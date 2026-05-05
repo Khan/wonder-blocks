@@ -64,7 +64,10 @@ export default {
             />
         ),
     },
-    tags: ["!dev"],
+    tags: [
+        "!dev",
+        "!manifest", // Remove from manifest in favour of static reference token docs
+    ],
 } as Meta;
 
 const sampleTextUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

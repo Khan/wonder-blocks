@@ -67,6 +67,6 @@ export const OverrideStyles = {
 };
 
 export const AddingStylesDynamically = {
-    render: DynamicStyledInput.bind({}),
+    render: () => <DynamicStyledInput />,
     name: "Adding styles dynamically",
 };

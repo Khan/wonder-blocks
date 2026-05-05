@@ -16,7 +16,7 @@ export default {
             modes: themeModes,
         },
     },
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
 } satisfies Meta;
 
 type Story = StoryObj<typeof ActionMenu>;

@@ -552,6 +552,18 @@ it.each([
 
 ---
 
+# Agentic Workflows & Storybook MCP
+
+Wonder Blocks runs the **Storybook MCP** addon (`@storybook/addon-mcp`) so AI agents can discover components, list stories, and use docs tooling.
+
+- **MCP endpoint:** When Storybook is running (`pnpm start`), the MCP server is at **`http://localhost:6061/mcp`** (this repo uses port 6061, not the default 6006).
+- **Setup:** Start Storybook with `pnpm start` before connecting an MCP client. The addon is configured with `toolsets: { dev: true, docs: true }` and `experimentalComponentsManifest: true`.
+- **Agent-facing details:** See [AGENTS.md](./AGENTS.md) for connection steps, repo layout for agents, and how to keep documentation agent-friendly.
+
+When working on components or stories, prefer using the MCP tools (list components, get story details) when the client is connected to avoid guessing story IDs or structure.
+
+---
+
 # Versioning & Publishing
 
 Wonder Blocks follows [Semantic Versioning 2.0.0](https://semver.org/):

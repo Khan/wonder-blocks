@@ -191,7 +191,7 @@ const meta = {
             delay: 500, // Delay to allow focus to settle
         },
     },
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
 } satisfies Meta<typeof Tabs>;
 
 export default meta;

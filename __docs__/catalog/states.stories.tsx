@@ -9,7 +9,7 @@ import {
 
 export default {
     title: "Catalog / States",
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
     parameters: {
         chromatic: {
             // Catalog is for manual review. Individual components should have

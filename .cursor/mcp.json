@@ -1,0 +1,8 @@
+{
+    "mcpServers": {
+        "wonder-blocks-storybook": {
+            "type": "streamableHttp",
+            "url": "http://localhost:6061/mcp"
+        }
+    }
+}

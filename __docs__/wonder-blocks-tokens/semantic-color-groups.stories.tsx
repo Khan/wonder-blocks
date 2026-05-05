@@ -11,7 +11,7 @@ export default {
             disableSnapshot: true,
         },
     },
-    tags: ["!dev", "!autodocs"],
+    tags: ["!dev", "!autodocs", "!manifest"],
 };
 
 const valuePrefix = "semanticColor.";
@@ -56,6 +56,26 @@ export const CoreForeground = () => {
         <ColorGroupStory
             category={semanticColor.core.foreground}
             group="core.foreground"
+        />
+    );
+};
+
+export const CoreShadow = () => {
+    return (
+        <ColorGroupStory
+            category={{
+                transparent: {
+                    low: semanticColor.core.shadow.transparent.low,
+                    mid: semanticColor.core.shadow.transparent.mid,
+                    high: semanticColor.core.shadow.transparent.high,
+                },
+                "transparent.color":
+                    semanticColor.core.shadow.transparent.color,
+                "chonky.instructive":
+                    semanticColor.core.shadow.chonky.instructive,
+                "chonky.neutral": semanticColor.core.shadow.chonky.neutral,
+            }}
+            group="core.shadow"
         />
     );
 };

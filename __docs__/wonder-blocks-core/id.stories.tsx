@@ -7,6 +7,7 @@ import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
 export default {
+    tags: ["!manifest"],
     title: "Packages / Core / Id",
 
     parameters: {

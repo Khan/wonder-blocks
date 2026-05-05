@@ -12,7 +12,7 @@ import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 export default {
     title: "Packages / Tabs / Testing / ResponsiveTabs - Snapshots",
     component: ResponsiveTabs,
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
     parameters: {
         chromatic: {
             modes: {...themeModes, small: allModes.small},

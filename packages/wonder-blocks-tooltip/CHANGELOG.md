@@ -1,5 +1,40 @@
 # @khanacademy/wonder-blocks-tooltip
 
+## 4.1.71
+
+### Patch Changes
+
+- 00e6dda: Updates internal WB typography references to use the new system (Heading and BodyText)
+- Updated dependencies [488728a]
+- Updated dependencies [00e6dda]
+    - @khanacademy/wonder-blocks-tokens@16.2.0
+    - @khanacademy/wonder-blocks-typography@4.3.0
+    - @khanacademy/wonder-blocks-layout@3.1.47
+    - @khanacademy/wonder-blocks-modal@8.6.2
+
+## 4.1.70
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-modal@8.6.1
+
+## 4.1.69
+
+### Patch Changes
+
+- Updated dependencies [cd3884c]
+    - @khanacademy/wonder-blocks-modal@8.6.0
+
+## 4.1.68
+
+### Patch Changes
+
+- Updated dependencies [358eb9b]
+    - @khanacademy/wonder-blocks-tokens@16.1.0
+    - @khanacademy/wonder-blocks-layout@3.1.46
+    - @khanacademy/wonder-blocks-modal@8.5.17
+    - @khanacademy/wonder-blocks-typography@4.2.31
+
 ## 4.1.67
 
 ### Patch Changes

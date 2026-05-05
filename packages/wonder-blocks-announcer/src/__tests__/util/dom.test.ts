@@ -12,18 +12,32 @@ jest.spyOn(global, "setTimeout");
 
 describe("Announcer utility functions", () => {
     describe("createRegionWrapper", () => {
-        test("it creates a polite region wrapper element", () => {
-            const element = createRegionWrapper("polite");
+        test("it creates a polite region wrapper element for the document layer", () => {
+            const element = createRegionWrapper("polite", "document");
 
             expect(element.tagName).toBe("DIV");
             expect(element.id).toEqual("wbAWrap-polite");
         });
 
-        test("it creates an assertive region wrapper element", () => {
-            const element = createRegionWrapper("assertive");
+        test("it creates an assertive region wrapper element for the document layer", () => {
+            const element = createRegionWrapper("assertive", "document");
 
             expect(element.tagName).toBe("DIV");
             expect(element.id).toEqual("wbAWrap-assertive");
+        });
+
+        test("it creates a polite region wrapper element for the modal layer", () => {
+            const element = createRegionWrapper("polite", "modal");
+
+            expect(element.tagName).toBe("DIV");
+            expect(element.id).toEqual("wbAWrap-modal-polite");
+        });
+
+        test("it creates an assertive region wrapper element for the modal layer", () => {
+            const element = createRegionWrapper("assertive", "modal");
+
+            expect(element.tagName).toBe("DIV");
+            expect(element.id).toEqual("wbAWrap-modal-assertive");
         });
     });
 
@@ -38,6 +52,7 @@ describe("Announcer utility functions", () => {
                     wrapper,
                     politenessLevel as PolitenessLevel,
                     2,
+                    "document",
                     dictionary,
                 );
 
@@ -60,6 +75,7 @@ describe("Announcer utility functions", () => {
                 const region = createRegion(
                     politenessLevel as PolitenessLevel,
                     0,
+                    "document",
                     dictionary,
                 );
 
@@ -72,7 +88,13 @@ describe("Announcer utility functions", () => {
 
         test("it allows the role to be overridden", () => {
             const dictionary = new Map();
-            const region = createRegion("polite", 0, dictionary, "timer");
+            const region = createRegion(
+                "polite",
+                0,
+                "document",
+                dictionary,
+                "timer",
+            );
 
             expect(region.getAttribute("aria-live")).toBe("polite");
             expect(region.getAttribute("role")).toBe("timer");

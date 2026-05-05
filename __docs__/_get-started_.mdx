@@ -184,6 +184,45 @@ pnpm install @khanacademy/wonder-blocks-button
 3. Read the component docs for information about best practices, guidelines, and
 common examples!
 
+## AI agents / Storybook MCP
+
+If you use an AI coding assistant (e.g. Cursor, Claude Desktop) and want it to
+discover Wonder Blocks components and stories via the Storybook MCP, you can run
+Wonder Blocks locally and point your MCP client at it.
+
+### Setup
+
+1. **Clone the Wonder Blocks repo** (if you haven’t already):
+   ```shell
+   git clone git@github.com:Khan/wonder-blocks.git
+   cd wonder-blocks
+   ```
+
+2. **Install dependencies and start Storybook.** The MCP server runs inside
+   Storybook. Keep this process running.
+   ```shell
+   pnpm install
+   pnpm start
+   ```
+   Storybook and the MCP will be available at `http://localhost:6061`.
+
+3. **Configure your MCP client** to use the local MCP endpoint. Add a server
+   entry with the URL below (HTTP transport; no API keys or auth for local use).
+
+   Example `mcp.json` (e.g. for Cursor):
+   ```json
+   {
+     "mcpServers": {
+       "wonder-blocks": {
+         "url": "http://localhost:6061/mcp"
+       }
+     }
+   }
+   ```
+
+The MCP is only available while Storybook is running. If you stop `pnpm start`,
+your MCP client will lose the connection until you start it again. For more
+detail, see [AGENTS.md](https://github.com/Khan/wonder-blocks/blob/main/AGENTS.md) in the repo.
 
 <br />
 <br />

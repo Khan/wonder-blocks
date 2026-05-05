@@ -1,119 +1,128 @@
 name: Chromatic - Pull Request
 
 on:
-  pull_request:
-    # This allows us to run the workflow on PRs from when they move from draft
-    # to non-draft.
-    types: [edited, opened, synchronize, reopened]
+    pull_request:
+        # This allows us to run the workflow on PRs from when they move from draft
+        # to non-draft.
+        types: [edited, opened, synchronize, reopened]
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
+    group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+    cancel-in-progress: true
 
 jobs:
-  chromatic_changesets:
-    # Only run this workflow when the Release PR is opened/created.
-    if: startsWith(github.head_ref, 'changeset-release/')
-    name: Chromatic - Skip on Release PR (changesets)
-    uses: ./.github/workflows/chromatic-build.yml
-    with:
-      target: 'bot'
-    secrets:
-      projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
-
-  # ------- Regular PRs --------
-  chromatic_review:
-    # (if) Run this step on regular PRs.
-    if: |
-      github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]' &&
-      !startsWith(github.head_ref, 'changeset-release/')
-    name: Build on regular PRs
-    uses: ./.github/workflows/chromatic-build.yml
-    with:
-      target: 'review'
-    secrets:
-      projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
-
-  chromatic_review_results:
-    # (if) Run this step on regular PRs.
-    if: |
-      github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]' &&
-      !startsWith(github.head_ref, 'changeset-release/')
-    name: Get results on regular PRs
-    needs: chromatic_review
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest]
-        node-version: [24.x]
-    steps:
-      # Create/update PR comment with Chromatic results
-      - name: Find existing comment
-        uses: peter-evans/find-comment@3eae4d37986fb5a8592848f6a574fdf654e61f9e
-        id: fc
+    chromatic_changesets:
+        # Only run this workflow when the Release PR is opened/created.
+        if: startsWith(github.head_ref, 'changeset-release/')
+        name: Chromatic - Skip on Release PR (changesets)
+        uses: ./.github/workflows/chromatic-build.yml
         with:
-          issue-number: ${{ github.event.pull_request.number }}
-          comment-author: 'github-actions[bot]'
-          body-includes: A new build was pushed to Chromatic!
+            target: "bot"
+        secrets:
+            projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
 
-      - name: Create or update comment
-        uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043
+    # ------- Regular PRs --------
+    chromatic_review:
+        # (if) Run this step on regular PRs.
+        if: |
+            github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]' &&
+            !startsWith(github.head_ref, 'changeset-release/')
+        name: Build on regular PRs
+        uses: ./.github/workflows/chromatic-build.yml
         with:
-          comment-id: ${{ steps.fc.outputs.comment-id }}
-          edit-mode: replace
-          issue-number: ${{ github.event.pull_request.number }}
-          body: |
-            # A new build was pushed to Chromatic! :rocket:
-            ${{ needs.chromatic_review.outputs.storybookUrl }}
+            target: "review"
+        secrets:
+            projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
 
-            ## Chromatic results:
+    chromatic_review_results:
+        # (if) Run this step on regular PRs.
+        if: |
+            github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]' &&
+            !startsWith(github.head_ref, 'changeset-release/')
+        name: Get results on regular PRs
+        needs: chromatic_review
+        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && 'ubuntu-latest' || 'ephemeral-runner' }}
+        strategy:
+            fail-fast: false
+            matrix:
+                node-version: [24.x]
+        steps:
+            # Create/update PR comment with Chromatic results
+            - name: Find existing comment
+              uses: peter-evans/find-comment@b30e6a3c0ed37e7c023ccd3f1db5c6c0b0c23aad # v4
+              id: fc
+              with:
+                  issue-number: ${{ github.event.pull_request.number }}
+                  comment-author: "github-actions[bot]"
+                  body-includes: A new build was pushed to Chromatic!
 
-            | Metric | Total |
-            |---|---|
-            | Captured snapshots | ${{ needs.chromatic_review.outputs.actualCaptureCount }} |
-            | Tests with visual changes | ${{ needs.chromatic_review.outputs.changeCount }} |
-            | Total stories | ${{ needs.chromatic_review.outputs.specCount }} |
-            | Inherited (not captured) snapshots [TurboSnap] | ${{ needs.chromatic_review.outputs.inheritedCaptureCount }} |
-            | Tests on the build | ${{ needs.chromatic_review.outputs.testCount }} |
+            - name: Create or update comment
+              uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5
+              with:
+                  comment-id: ${{ steps.fc.outputs.comment-id }}
+                  edit-mode: replace
+                  issue-number: ${{ github.event.pull_request.number }}
+                  body: |
+                      # A new build was pushed to Chromatic! :rocket:
+                      ${{ needs.chromatic_review.outputs.storybookUrl }}
 
-  storybook_tests:
-    # (if) Run this step on regular PRs.
-    if: |
-      github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]' &&
-      !startsWith(github.head_ref, 'changeset-release/')
-    name: Run Storybook tests
-    needs: chromatic_review
-    runs-on: ${{ matrix.os }}
-    container:
-      # Make sure to grab the latest version of the Playwright image
-      # https://playwright.dev/docs/docker#pull-the-image
-      image: mcr.microsoft.com/playwright:v1.57.0-noble
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest]
-        node-version: [24.x]
-    steps:
-      - name: Checking out latest commit
-        uses: actions/checkout@v4
+                      ## Chromatic results:
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
+                      | Metric | Total |
+                      |---|---|
+                      | Captured snapshots | ${{ needs.chromatic_review.outputs.actualCaptureCount }} |
+                      | Tests with visual changes | ${{ needs.chromatic_review.outputs.changeCount }} |
+                      | Total stories | ${{ needs.chromatic_review.outputs.specCount }} |
+                      | Inherited (not captured) snapshots [TurboSnap] | ${{ needs.chromatic_review.outputs.inheritedCaptureCount }} |
+                      | Tests on the build | ${{ needs.chromatic_review.outputs.testCount }} |
 
-      # Cache and install dependencies
-      - name: Install & cache node_modules
-        uses: ./.github/actions/shared-node-cache
-        with:
-          node-version: ${{ matrix.node-version }}
+    storybook_tests:
+        # (if) Run this step on regular PRs.
+        if: |
+            github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]' &&
+            !startsWith(github.head_ref, 'changeset-release/')
+        name: Run Storybook tests
+        needs: chromatic_review
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+        steps:
+            - name: Checking out latest commit
+              uses: actions/checkout@v5
+            - name: Secure Network
+              uses: Khan/actions@secure-network-v1
+              timeout-minutes: 5
+              with:
+                  # registry.npmjs.org: npm package registry for pnpm install
+                  # azure.archive.ubuntu.com, archive.ubuntu.com, security.ubuntu.com, deb.debian.org: Ubuntu package mirrors for playwright --with-deps
+                  # packages.microsoft.com, playwright.download.prss.microsoft.com: Microsoft package/download servers for playwright --with-deps
+                  # cdn.playwright.dev: Playwright browser binary CDN
+                  extra-domains: registry.npmjs.org azure.archive.ubuntu.com archive.ubuntu.com security.ubuntu.com deb.debian.org packages.microsoft.com playwright.download.prss.microsoft.com cdn.playwright.dev
 
-      # Build the project
-      - name: Generate WB build artifacts
-        run: pnpm build
+            - name: Use Node.js 24.x
+              uses: actions/setup-node@v6
+              with:
+                  node-version: 24.x
 
-      - name: Run Storybook tests
-        run: pnpm test:storybook
-        env:
-          SB_URL: '${{ needs.chromatic_review.outputs.storybookUrl }}'
+            # Cache and install dependencies
+            - name: Install & cache node_modules
+              uses: ./.github/actions/shared-node-cache
+              timeout-minutes: 5
+              with:
+                  node-version: 24.x
+
+            # Install Playwright browsers
+            - name: Install Playwright browsers
+              run: |
+                  sudo apt-get update
+                  sudo apt-get install -y fonts-liberation fonts-ipafont-gothic fonts-wqy-zenhei fonts-tlwg-loma-otf fonts-freefont-ttf
+                  pnpm exec playwright install --with-deps chromium
+
+            # Build the project
+            - name: Generate WB build artifacts
+              run: pnpm build
+
+            - name: Run Storybook tests
+              run: pnpm test:storybook
+              env:
+                  SB_URL: "${{ needs.chromatic_review.outputs.storybookUrl }}"
