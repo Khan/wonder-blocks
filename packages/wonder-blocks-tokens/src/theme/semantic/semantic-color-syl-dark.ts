@@ -15,9 +15,9 @@ const core = {
             strong: color.blue_50,
         },
         neutral: {
-            subtle: color.gray_10,
-            default: color.gray_20,
-            strong: color.gray_70,
+            subtle: color.gray_30,
+            default: color.gray_40,
+            strong: color.gray_60,
         },
         critical: {
             subtle: color.red_20,
