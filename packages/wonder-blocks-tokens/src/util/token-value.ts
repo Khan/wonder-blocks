@@ -16,8 +16,9 @@ const cssVarRegex = /^\s*var\(\s*(--[^,)\s]+)/;
  *
  * @param token A token string — typically a `var(--...)` reference exported
  * from this package, but a raw value is accepted and returned as-is.
- * @param element The element whose computed style should be read. Defaults to
- * `document.documentElement`. Pass a descendant of a `[data-wb-theme]`
+ * @param element The element whose computed style should be read. Defaults
+ * to the nearest `[data-wb-theme]` element in the current document, falling
+ * back to `document.documentElement`. Pass a descendant of a `[data-wb-theme]`
  * element to resolve the value for that theme scope.
  * @returns The resolved raw value, trimmed. Returns an empty string when the
  * custom property is not defined on the given element.
@@ -30,13 +31,15 @@ const cssVarRegex = /^\s*var\(\s*(--[^,)\s]+)/;
  * // => "#1865f2"
  * ```
  */
-export function tokenValue(
-    token: string,
-    element: Element = document.documentElement,
-): string {
+export function tokenValue(token: string, element?: Element): string {
+    const rootElement =
+        element ||
+        document.querySelector("[data-wb-theme]") ||
+        document.documentElement;
+
     const match = token.match(cssVarRegex);
     if (!match) {
         return token;
     }
-    return getComputedStyle(element).getPropertyValue(match[1]).trim();
+    return getComputedStyle(rootElement).getPropertyValue(match[1]).trim();
 }

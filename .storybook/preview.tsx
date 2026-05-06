@@ -122,7 +122,15 @@ const parameters: Preview["parameters"] = {
         // display the stories (or examples first), then we will display all the
         // mdx pages under __docs__.
         storySort: {
-            order: ["Foundations", "Packages", "Tools", "Catalog", "Components", "**/__docs__/**", "Overview"],
+            order: [
+                "Foundations",
+                "Packages",
+                "Tools",
+                "Catalog",
+                "Components",
+                "**/__docs__/**",
+                "Overview",
+            ],
         },
     },
     docs: {
@@ -150,14 +158,15 @@ const parameters: Preview["parameters"] = {
 const withThemeSwitcher: Decorator = (Story, {globals: {theme}}) => {
     // Keep track of the theme locally so we can re-render the story after the
     // attribute is updated.
+    console.log("theme", theme);
     const [localTheme, setLocalTheme] = React.useState(null);
-    React.useEffect(() => {
-        if (theme) {
-            // Switch the body class based on the theme.
-            document.body.setAttribute(THEME_DATA_ATTRIBUTE, theme);
-            setLocalTheme(theme);
-        }
-    }, [theme]);
+    // React.useEffect(() => {
+    //     if (theme) {
+    //         // Switch the body class based on the theme.
+    //         document.body.setAttribute(THEME_DATA_ATTRIBUTE, theme);
+    //         setLocalTheme(theme);
+    //     }
+    // }, [theme]);
 
     return (
         <ThemeSwitcherContext.Provider value={theme} key={localTheme}>

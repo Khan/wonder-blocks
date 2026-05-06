@@ -1,20 +1,25 @@
-import * as React from "react";
-import {Meta} from "@storybook/addon-docs/blocks";
 import Banner from "@khanacademy/wonder-blocks-banner";
-import {ThemeSwitcher} from "@khanacademy/wonder-blocks-theming";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
+import {ThemeSwitcher} from "@khanacademy/wonder-blocks-theming";
 import {
     semanticColor,
     sizing,
     tokenValue,
 } from "@khanacademy/wonder-blocks-tokens";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
+import {Canvas, Meta} from "@storybook/addon-docs/blocks";
+import * as React from "react";
+import {
+    NonSemanticTokenValue,
+    TokenValueDefault,
+    TokenValueElementOverride,
+} from "./token-value.stories";
 
 <Meta title="Packages / Tokens / Utilities / tokenValue" />
 
 # tokenValue()
 
-Wonder Blocks semantic tokens are exported as CSS `var(--...)` references so
+Wonder Blocks tokens are exported as CSS `var(--...)` references so
 that the active theme can switch values through the CSS cascade. This is great
 for styling, but less useful when a third-party library expects a concrete
 value such as `#1865f2` or `rgba(24, 101, 242, 0.5)`.
@@ -31,10 +36,10 @@ tokenValue(token: string, element?: Element): string;
 
 ## API
 
-| Argument  | TypeScript Type | Default                     | Description                                                                                                                           |
-| --------- | --------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `token`   | `string`        | _Required_                  | A token value, typically a `var(--...)` reference from this package. Values that are not `var(...)` expressions are returned as-is.   |
-| `element` | `Element`       | `document.documentElement`  | The element whose computed style is read. Pass a descendant of a `[data-wb-theme]` element to resolve the value for that theme scope. |
+| Argument  | TypeScript Type | Default                    | Description                                                                                                                           |
+| --------- | --------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `token`   | `string`        | _Required_                 | A token value, typically a `var(--...)` reference from this package. Values that are not `var(...)` expressions are returned as-is.   |
+| `element` | `Element`       | `document.documentElement` | The element whose computed style is read. Pass a descendant of a `[data-wb-theme]` element to resolve the value for that theme scope. |
 
 The function returns the trimmed raw value. If the custom property is not
 defined on the given element, an empty string is returned.
@@ -50,66 +55,16 @@ defined on the given element, an empty string is returned.
     }
 />
 
-## Example
+## Basic Example
 
-This example resolves the same semantic token twice — once in the `default`
-theme scope and once inside a `thunderblocks` scope — to show how the returned
-value reflects the active theme.
+This example resolves the same token twice — once in the `default` theme scope
+and once inside a `thunderblocks` scope — to show how the returned value
+reflects the active theme.
 
-export const TokenValueExample = () => {
-    const [defaultValue, setDefaultValue] = React.useState("");
-    const [tbValue, setTbValue] = React.useState("");
-    const defaultRef = React.useRef(null);
-    const tbRef = React.useRef(null);
-
-    React.useEffect(() => {
-        if (defaultRef.current) {
-            setDefaultValue(
-                tokenValue(
-                    semanticColor.core.foreground.instructive.default,
-                    defaultRef.current,
-                ),
-            );
-        }
-        if (tbRef.current) {
-            setTbValue(
-                tokenValue(
-                    semanticColor.core.foreground.instructive.default,
-                    tbRef.current,
-                ),
-            );
-        }
-    }, []);
-
-    return (
-        <View style={{flexDirection: "row", gap: sizing.size_240}}>
-            <ThemeSwitcher theme="default">
-                <View ref={defaultRef} style={{gap: sizing.size_080}}>
-                    <Heading>default theme</Heading>
-                    <BodyText>
-                        Raw value: <code>{defaultValue || "…"}</code>
-                    </BodyText>
-                </View>
-            </ThemeSwitcher>
-            <ThemeSwitcher theme="thunderblocks">
-                <View ref={tbRef} style={{gap: sizing.size_080}}>
-                    <Heading>thunderblocks theme</Heading>
-                    <BodyText>
-                        Raw value: <code>{tbValue || "…"}</code>
-                    </BodyText>
-                </View>
-            </ThemeSwitcher>
-        </View>
-    );
-};
-
-<TokenValueExample />
+<Canvas of={TokenValueDefault} />
 
 ```tsx
-import {
-    semanticColor,
-    tokenValue,
-} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, tokenValue} from "@khanacademy/wonder-blocks-tokens";
 
 // Reads the active theme's value from :root.
 const instructive = tokenValue(
@@ -121,4 +76,35 @@ const instructiveInScope = tokenValue(
     semanticColor.core.foreground.instructive.default,
     elementInsideThunderblocksScope,
 );
+```
+
+## Overriding the `element` argument
+
+The `element` argument is optional and defaults to the nearest `[data-wb-theme]`
+element in the current document, falling back to `document.body`. Pass a
+descendant of a `[data-wb-theme]` element to resolve the value for that theme
+scope.
+
+<Canvas of={TokenValueElementOverride} />
+
+```tsx
+import {semanticColor, tokenValue} from "@khanacademy/wonder-blocks-tokens";
+
+const instructive = tokenValue(
+    semanticColor.core.foreground.instructive.default,
+    elementInsideThunderblocksScope,
+);
+```
+
+## Non-semantic tokens
+
+The `tokenValue` helper can also be used to resolve the raw value of
+non-semantic tokens.
+
+<Canvas of={NonSemanticTokenValue} />
+
+```tsx
+import {sizing, tokenValue} from "@khanacademy/wonder-blocks-tokens";
+
+const size = tokenValue(sizing.size_080);
 ```
