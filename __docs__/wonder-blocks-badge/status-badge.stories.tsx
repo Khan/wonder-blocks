@@ -11,6 +11,7 @@ import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import badgeArgtypes, {iconArgType} from "./badge.argtypes";
 import {multiColoredIcon} from "../components/icons-for-testing";
+import {allThemeModes} from "../../.storybook/modes";
 
 export default {
     title: "Packages / Badge / StatusBadge",
@@ -296,6 +297,7 @@ export const CustomIcons: StoryComponentType = {
             // Enable snapshots for this story so we can verify custom icons
             // are used correctly
             disableSnapshot: false,
+            modes: allThemeModes,
         },
     },
 };
