@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
-import {HeadingSmall, LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {Heading, BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
 
 import {ContentStyle} from "../util/types";
@@ -51,7 +51,7 @@ export default class TooltipContent extends React.Component<Props> {
         const {title} = this.props;
         if (title) {
             if (typeof title === "string") {
-                return <HeadingSmall>{title}</HeadingSmall>;
+                return <Heading size="medium">{title}</Heading>;
             } else {
                 return title;
             }
@@ -62,7 +62,7 @@ export default class TooltipContent extends React.Component<Props> {
     _renderChildren(): React.ReactNode {
         const {children} = this.props;
         if (typeof children === "string") {
-            return <LabelMedium>{children}</LabelMedium>;
+            return <BodyText tag="span">{children}</BodyText>;
         } else {
             return children;
         }

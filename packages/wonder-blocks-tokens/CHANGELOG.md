@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 16.2.0
+
+### Minor Changes
+
+- 488728a: Thunderblocks: Change `background.neutral.strong` from `black_100` to `gray_10`. If consumers are needing to use the `black_100` value, migrate it to `background.base.strong`
+
 ## 16.1.0
 
 ### Minor Changes

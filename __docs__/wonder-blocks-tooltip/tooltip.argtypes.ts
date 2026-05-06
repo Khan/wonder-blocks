@@ -1,6 +1,9 @@
 import {color} from "@khanacademy/wonder-blocks-tokens";
 
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
+
 export default {
+    ...AriaArgTypes,
     placement: {
         description:
             "Where the tooltip should appear in relation to the anchor element. Defaults to `top`.",

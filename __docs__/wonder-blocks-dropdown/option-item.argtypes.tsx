@@ -1,6 +1,7 @@
 import * as React from "react";
 import {ArgTypes} from "@storybook/react-vite";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {StatusBadge} from "@khanacademy/wonder-blocks-badge";
 
@@ -11,6 +12,7 @@ export const AccessoryMappings = {
 };
 
 export default {
+    ...AriaArgTypes,
     label: {
         control: {type: "text"},
         description: "Display text of the option item.",

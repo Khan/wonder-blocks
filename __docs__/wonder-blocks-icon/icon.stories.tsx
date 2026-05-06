@@ -1,6 +1,7 @@
 import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 import {StyleSheet} from "aphrodite";
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon/package.json";
 import {GemIcon, Icon, StreakIcon} from "@khanacademy/wonder-blocks-icon";
@@ -16,6 +17,9 @@ import {themeModes} from "../../.storybook/modes";
 export default {
     title: "Packages / Icon / Icon",
     component: Icon,
+    argTypes: {
+        ...AriaArgTypes,
+    },
     parameters: {
         componentSubtitle: (
             <ComponentInfo

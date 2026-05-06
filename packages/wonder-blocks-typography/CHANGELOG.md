@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-typography
 
+## 4.3.0
+
+### Minor Changes
+
+- 00e6dda: Adds `HeadingXxLargeMediumWeight` to the typography styles.
+
+### Patch Changes
+
+- Updated dependencies [488728a]
+    - @khanacademy/wonder-blocks-tokens@16.2.0
+
 ## 4.2.31
 
 ### Patch Changes

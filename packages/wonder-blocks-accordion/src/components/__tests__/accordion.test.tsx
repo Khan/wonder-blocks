@@ -317,9 +317,7 @@ describe("Accordion", () => {
             expect(await screen.findByText("Section 1 content")).toBeVisible();
         });
 
-        // TODO(FEI-5533): Key press events aren't working correctly with
-        // user-event v14. We need to investigate and fix this.
-        test.skip("can open a section with the space key", async () => {
+        test("can open a section with the space key", async () => {
             // Arrange
             render(
                 <Accordion>
@@ -342,7 +340,7 @@ describe("Accordion", () => {
             expect(screen.queryByText("Section 1 content")).not.toBeVisible();
 
             button1.focus();
-            await userEvent.keyboard("{space}");
+            await userEvent.keyboard(" ");
 
             // Assert
             // Confirm that the section is now open.
@@ -380,9 +378,7 @@ describe("Accordion", () => {
             expect(screen.queryByText("Section 1 content")).not.toBeVisible();
         });
 
-        // TODO(FEI-5533): Key press events aren't working correctly with
-        // user-event v14. We need to investigate and fix this.
-        test.skip("can close a section with the space key", async () => {
+        test("can close a section with the space key", async () => {
             // Arrange
             render(
                 <Accordion>
@@ -406,7 +402,7 @@ describe("Accordion", () => {
             expect(await screen.findByText("Section 1 content")).toBeVisible();
 
             button1.focus();
-            await userEvent.keyboard("{space}");
+            await userEvent.keyboard(" ");
 
             // Assert
             // Confirm that the section is now closed.

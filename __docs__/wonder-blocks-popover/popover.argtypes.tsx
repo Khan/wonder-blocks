@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 // Reusable stories
 import {Default, WithIcon, WithIllustration} from "./popover-content.stories";
 import {
@@ -30,6 +31,7 @@ export const ContentMappings = {
 };
 
 export default {
+    ...AriaArgTypes,
     children: {
         description:
             `The element that triggers the popover. This element will be ` +
