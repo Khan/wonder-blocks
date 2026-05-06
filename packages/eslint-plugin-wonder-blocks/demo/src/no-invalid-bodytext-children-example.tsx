@@ -64,14 +64,6 @@ export function InvalidBlockChildren() {
     );
 }
 
-// ❌ Invalid: BodyText nested inside BodyText (both default to <p>)
-export function InvalidNestedBodyText() {
-    return (
-        <BodyText>
-            <BodyText>nested</BodyText>
-        </BodyText>
-    );
-}
 
 // ❌ Invalid: WB Heading components render as block-level headings
 export function InvalidHeadingChildren() {

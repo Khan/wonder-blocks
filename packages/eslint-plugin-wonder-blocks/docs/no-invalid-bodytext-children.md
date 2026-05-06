@@ -19,6 +19,10 @@ elements belong in a `View` or other block container.
 Add `tag="div"` (or another block-container tag) to `BodyText` to allow
 block-level children. Use `tag="span"` on a child `BodyText` to make it inline.
 
+`BodyText` nested inside another `BodyText` is handled by
+[`no-invalid-bodytext-parent`](./no-invalid-bodytext-parent.md), which also
+provides an auto-fix.
+
 Examples of **incorrect** code:
 
 ```tsx
@@ -30,11 +34,6 @@ Examples of **incorrect** code:
 /* <p> cannot be nested inside <p> */
 <BodyText>
     <p>nested paragraph</p>
-</BodyText>
-
-/* BodyText defaults to <p> — two <p>s cannot nest */
-<BodyText>
-    <BodyText>nested</BodyText>
 </BodyText>
 
 /* Block-level HTML elements are not valid inside <p> */

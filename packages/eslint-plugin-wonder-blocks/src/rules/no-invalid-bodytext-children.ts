@@ -130,19 +130,9 @@ export default createRule<Options, MessageIds>({
                     }
 
                     if (childName === "BodyText") {
-                        // Only warn if the inner BodyText also renders as <p>
-                        // (i.e. it doesn't have an inline tag set).
-                        if (rendersAsParagraph(childOpening)) {
-                            context.report({
-                                node: childOpening,
-                                messageId: "paragraphChild",
-                                data: {
-                                    childName: "BodyText",
-                                    childNote:
-                                        " (BodyText also renders as <p> by default)",
-                                },
-                            });
-                        }
+                        // no-invalid-bodytext-parent already handles BodyText
+                        // nested in BodyText (with an autofix). Skip here to
+                        // avoid duplicate errors on the same node.
                         continue;
                     }
 

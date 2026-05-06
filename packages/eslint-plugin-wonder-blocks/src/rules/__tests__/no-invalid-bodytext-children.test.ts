@@ -50,6 +50,10 @@ ruleTester.run(ruleName, rule, {
         {code: `<BodyText tag="span"><div>block</div></BodyText>`},
         {code: `<BodyText tag="em"><p>paragraph</p></BodyText>`},
 
+        // BodyText-in-BodyText is handled entirely by no-invalid-bodytext-parent
+        // (which also provides an autofix). No error from this rule.
+        {code: `<BodyText><BodyText>nested</BodyText></BodyText>`},
+        {code: `<BodyText tag="p"><BodyText>nested</BodyText></BodyText>`},
         // Inner BodyText with an inline tag is safe inside a default BodyText
         {
             code: `<BodyText><BodyText tag="span">inline</BodyText></BodyText>`,
@@ -123,33 +127,6 @@ ruleTester.run(ruleName, rule, {
                 },
             ],
         },
-        {
-            // BodyText defaults to <p> — nesting two <p>s is invalid HTML
-            code: `<BodyText><BodyText>nested</BodyText></BodyText>`,
-            errors: [
-                {
-                    messageId: "paragraphChild",
-                    data: {
-                        childName: "BodyText",
-                        childNote: " (BodyText also renders as <p> by default)",
-                    },
-                },
-            ],
-        },
-        {
-            // Outer BodyText with tag="p" + inner default BodyText
-            code: `<BodyText tag="p"><BodyText>nested</BodyText></BodyText>`,
-            errors: [
-                {
-                    messageId: "paragraphChild",
-                    data: {
-                        childName: "BodyText",
-                        childNote: " (BodyText also renders as <p> by default)",
-                    },
-                },
-            ],
-        },
-
         // ---------------------------------------------------------------- //
         // Other block-level HTML elements                                  //
         // ---------------------------------------------------------------- //
