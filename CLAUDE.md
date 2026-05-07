@@ -212,46 +212,13 @@ packages/wonder-blocks-*/
 
 # Storybook Best Practices
 
-> Full guidance: `.agents/skills/storybook/SKILL.md`
-
-## Key rules
-
-- Title hierarchy: `"Packages / Button / Button"`, `"Packages / Button / Testing / Snapshots / ActivityButton"`
-- Default story must be interactive (works with controls panel)
-- Write stories for all prop combinations/states — these feed visual regression in Chromatic
-- Disable Chromatic snapshots (`chromatic: {disableSnapshot: true}`) for interaction/playtesting stories
-- Use `StateSheet` for pseudo-state grids (focus, hover, active, disabled); `ScenariosLayout` for edge cases (RTL, long text, overflow)
-- Use `play` functions for browser-specific behavior jsdom can't handle (scroll, layout, clipboard)
-- Use function declarations for render functions, not arrow functions: `render: function Render(args) {`
-- Separate snapshot stories (`tags: ["!autodocs"]`) from documentation stories
+> Follow guidance for creating and updating stories: `.agents/skills/storybook/SKILL.md`
 
 ---
 
 # Jest Testing Best Practices
 
-> Full guidance: `.agents/skills/unit-tests/SKILL.md`
-
-## Key rules
-
-- Fix failing tests before fixing linting errors; `Unhandled console.error` messages are symptoms — find the root cause
-- Always structure tests with `// Arrange`, `// Act`, `// Assert` comments — never combine, never remove
-- For thrown errors, wrap the call in an `underTest` function in the Act section
-- Use `userEvent` instead of `fireEvent` for all interactions
-- Query priority: `getByRole` → `getByLabelText` → `getByText` → `getByTestId`; never CSS selectors or direct node traversal
-- Never mock `console.error` — it hides real failures
-- Always use `jest.spyOn()` to create spies; only store the return value in a variable when asserting on it
-- Never mock outside of test cases
-- Don't test style-only props — use Storybook visual regression instead
-- Use `it.each` for multiple input/output combinations
-- Prefer one `expect` per test
-- Include `toHaveNoA11yViolations` tests; check `aria-disabled="true"`, not the `disabled` attribute
-
-### Test coverage checklist for components
-
-- ref is forwarded
-- Props: expected behavior when set; default values; `it.each` for combinations (skip style-only props)
-- Event handlers: triggered by correct conditions; called with correct arguments
-- Accessibility: roles/ARIA wired correctly, keyboard interactions, focus management, accessible names
+> Follow guidance on unit testing with Jest: `.agents/skills/unit-tests/SKILL.md`
 
 ---
 
@@ -311,13 +278,13 @@ This project maintains rules for multiple AI assistants. When updating this file
 | Claude File | Cursor File | Copilot File | Agent Skills File |
 |-------------|-------------|--------------|-------------------|
 | `CLAUDE.md` | `.cursor/rules/general.mdc` | `.github/instructions/frontend-rules.instructions.md` | *(use `CLAUDE.md`)* |
-| `CLAUDE.md` (Storybook section) | `.cursor/rules/storybook.mdc` | `.github/instructions/storybook.instructions.md` | `.agents/skills/storybook/SKILL.md` |
-| `CLAUDE.md` (Jest section) | `.cursor/rules/unit-tests.mdc` | `.github/instructions/unit-tests.instructions.md` | `.agents/skills/unit-tests/SKILL.md` |
+| `CLAUDE.md` (Storybook section) | *(not used — skills file is canonical)* | `.github/instructions/storybook.instructions.md` | `.agents/skills/storybook/SKILL.md` |
+| `CLAUDE.md` (Jest section) | *(not used — skills file is canonical)* | `.github/instructions/unit-tests.instructions.md` | `.agents/skills/unit-tests/SKILL.md` |
 
 **When making rule changes:**
 
 1. Make the change in this `CLAUDE.md` file
-2. Apply the same change to the corresponding `.cursor/rules/*.mdc` file for Cursor
+2. Apply the same change to `.cursor/rules/general.mdc` for general project rules
 3. Apply the same change to the corresponding `.github/instructions/*.instructions.md` file for Copilot
 4. Apply the same change to `.agents/skills/storybook/SKILL.md` or `.agents/skills/unit-tests/SKILL.md` if the change is in those sections
 
@@ -325,7 +292,7 @@ This project maintains rules for multiple AI assistants. When updating this file
 
 - The exact formatting may differ between platforms
 - The core rules and guidance should remain consistent
-- Cursor rules use YAML frontmatter with glob patterns
+- Cursor uses `general.mdc` for project-wide rules; Storybook and Jest rules are handled by agent skills instead
 - Copilot instructions use standard Markdown in `.github/instructions/`
 - Agent skills (`.agents/skills/`) exist for Wonder Blocks, Storybook and Jest — general conventions live in `CLAUDE.md`
 - This `CLAUDE.md` is a consolidated file with all major rules
