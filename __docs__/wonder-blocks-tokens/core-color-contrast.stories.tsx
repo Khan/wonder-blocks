@@ -3,7 +3,6 @@ import {StyleSheet} from "aphrodite";
 import {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import Switch from "@khanacademy/wonder-blocks-switch";
 import {
     Caption,
     LabelLarge,
@@ -37,9 +36,7 @@ import {
  * - The foreground is then composited over the resolved background, since
  *   that's what a reader's eye actually sees.
  *
- * Toggle **Large text** to switch the AA threshold between normal text
- * (≥ 4.5 : 1) and large text (≥ 3 : 1). Per WCAG, "large" means 18pt or
- * 14pt+ bold.
+ * Cells pass at the **AA normal text** threshold (≥ 4.5 : 1).
  */
 export default {
     title: "Internal / Semantic Color Contrast",
@@ -219,12 +216,7 @@ function useResolvedTokens(): Resolved | null {
     return resolved;
 }
 
-const AA_NORMAL_THRESHOLD = 4.5;
-const AA_LARGE_THRESHOLD = 3;
-
-function thresholdFor(largeText: boolean): number {
-    return largeText ? AA_LARGE_THRESHOLD : AA_NORMAL_THRESHOLD;
-}
+const AA_THRESHOLD = 4.5;
 
 function capitalize(value: string): string {
     return value.charAt(0).toUpperCase() + value.slice(1);
@@ -308,14 +300,10 @@ function ContrastCell({
     bgRaw,
     fgRaw,
     pageBase,
-    threshold,
-    largeText,
 }: {
     bgRaw: string;
     fgRaw: string;
     pageBase: string;
-    threshold: number;
-    largeText: boolean;
 }) {
     const bgEffective = compositeOver(bgRaw, pageBase);
     const fgEffective = compositeOver(fgRaw, bgEffective);
@@ -323,15 +311,14 @@ function ContrastCell({
     if (ratio == null) {
         return null;
     }
-    const passes = ratio >= threshold;
-    const sizeLabel = largeText ? "AA large" : "AA";
+    const passes = ratio >= AA_THRESHOLD;
 
     return (
         <View
             style={[styles.cell, !passes && styles.cellFail]}
             // eslint-disable-next-line react/forbid-component-props
             aria-label={`${formatRatio(ratio)} : 1, ${
-                passes ? `passes ${sizeLabel}` : `fails ${sizeLabel}`
+                passes ? "passes AA" : "fails AA"
             }`}
         >
             <View style={styles.cellIcon}>
@@ -393,9 +380,6 @@ const ROW_FIRST_BG = 2;
 export const CoreContrastGrid: StoryObj = {
     render: function Render() {
         const resolved = useResolvedTokens();
-        const [largeText, setLargeText] = React.useState(false);
-        const threshold = thresholdFor(largeText);
-        const toggleId = React.useId();
 
         if (!resolved) {
             return (
@@ -499,8 +483,6 @@ export const CoreContrastGrid: StoryObj = {
                                     bgRaw={resolvedBg}
                                     fgRaw={foregrounds[fg.label]}
                                     pageBase={pageBase}
-                                    threshold={threshold}
-                                    largeText={largeText}
                                 />
                             </View>,
                         );
@@ -576,24 +558,6 @@ export const CoreContrastGrid: StoryObj = {
 
         return (
             <View style={styles.wrapper}>
-                <View style={styles.toolbar}>
-                    <Switch
-                        id={toggleId}
-                        checked={largeText}
-                        onChange={setLargeText}
-                        aria-labelledby={`${toggleId}-label`}
-                    />
-                    <label htmlFor={toggleId} id={`${toggleId}-label`}>
-                        <LabelLarge style={styles.toolbarLabel}>
-                            Large text (AA ≥ 3 : 1)
-                        </LabelLarge>
-                        <Caption style={styles.toolbarHint}>
-                            {largeText
-                                ? "Cells pass at ≥ 3 : 1 (18pt or 14pt+ bold)."
-                                : "Cells pass at ≥ 4.5 : 1 (normal text)."}
-                        </Caption>
-                    </label>
-                </View>
                 <View
                     style={[
                         styles.grid,
@@ -619,20 +583,7 @@ const SWATCH_PADDING = 4;
 const styles = StyleSheet.create({
     wrapper: {
         padding: sizing.size_240,
-        gap: sizing.size_240,
         background: semanticColor.core.background.base.default,
-    },
-    toolbar: {
-        flexDirection: "row",
-        alignItems: "center",
-        gap: sizing.size_120,
-    },
-    toolbarLabel: {
-        fontWeight: font.weight.bold,
-        color: semanticColor.core.foreground.neutral.strong,
-    },
-    toolbarHint: {
-        color: semanticColor.core.foreground.neutral.default,
     },
     loading: {
         padding: sizing.size_160,
