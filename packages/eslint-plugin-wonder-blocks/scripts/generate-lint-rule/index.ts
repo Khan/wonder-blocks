@@ -82,6 +82,8 @@ Done! Next steps:
   3. Flesh out the docs (docs/${ruleName}.md) and demo example.
   4. Create a changeset:  pnpm changeset
   5. Run:  pnpm lint && pnpm typecheck && pnpm test
+
+  TODO(${ruleName}) markers have been added throughout the generated and patched files to indicate where changes need to be made.
 `);
 }
 
