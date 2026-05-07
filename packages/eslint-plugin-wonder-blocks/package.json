@@ -30,8 +30,10 @@
   },
   "devDependencies": {
     "@khanacademy/wb-dev-build-settings": "workspace:*",
+    "@types/yargs": "^17.0.33",
     "@typescript-eslint/typescript-estree": "^8.59.0",
     "@typescript-eslint/rule-tester": "^8.59.0",
-    "eslint": "^8.57.0"
+    "eslint": "^8.57.0",
+    "yargs": "^17.7.2"
   }
 }

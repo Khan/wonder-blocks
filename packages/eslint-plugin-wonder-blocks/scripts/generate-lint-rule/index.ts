@@ -13,6 +13,9 @@
  */
 import * as path from "path";
 
+import yargs from "yargs";
+import {hideBin} from "yargs/helpers";
+
 import {updateConfigs, updateReadme, updateRulesIndex} from "./patches";
 import {
     demoFileContents,
@@ -29,55 +32,15 @@ import {
     writeFile,
 } from "./utils";
 
-type ParsedArgs = {
-    positional: Array<string>;
-    flags: {description?: string; help?: boolean};
-};
-
-function parseArgs(argv: Array<string>): ParsedArgs {
-    const positional: Array<string> = [];
-    const flags: ParsedArgs["flags"] = {};
-    for (let i = 0; i < argv.length; i++) {
-        const arg = argv[i];
-        if (arg === "--description" || arg === "-d") {
-            const next = argv[i + 1];
-            if (next == null || next.startsWith("-")) {
-                throw new Error(`Flag ${arg} requires a value.`);
-            }
-            flags.description = argv[++i];
-        } else if (arg === "--help" || arg === "-h") {
-            flags.help = true;
-        } else if (arg.startsWith("--")) {
-            throw new Error(`Unknown flag: ${arg}`);
-        } else {
-            positional.push(arg);
-        }
-    }
-    return {positional, flags};
-}
-
-function printHelp(): void {
-    console.log(
-        `Usage: generate-lint-rule.ts <rule-name> [--description "..."]
-
-  <rule-name>            Kebab-case rule name (e.g. no-foo-bar)
-  --description, -d      One-line description used in JSDoc, README, and docs
-  --help, -h             Show this message`,
-    );
-}
-
-function main(): void {
-    const {positional, flags} = parseArgs(process.argv.slice(2));
-    if (flags.help || positional.length === 0) {
-        printHelp();
-        process.exit(flags.help ? 0 : 1);
-    }
-    const [ruleName] = positional;
+function scaffoldRule(
+    ruleName: string,
+    ruleDescription: string | undefined,
+): void {
     assertKebabCase(ruleName);
 
     const messageId = toCamelCase(ruleName);
     const description =
-        flags.description ??
+        ruleDescription ??
         `TODO(${ruleName}): describe what \`${ruleName}\` enforces.`;
 
     console.log(`Scaffolding rule "${ruleName}"...\n`);
@@ -123,7 +86,30 @@ Done! Next steps:
 }
 
 try {
-    main();
+    yargs(hideBin(process.argv))
+        .scriptName("gen:lint-rule")
+        .command(
+            "$0 <rule-name>",
+            "Scaffold a new lint rule",
+            (y) =>
+                y
+                    .positional("rule-name", {
+                        describe: "Kebab-case rule name (e.g. no-foo-bar)",
+                        type: "string",
+                        demandOption: true,
+                    })
+                    .option("description", {
+                        alias: "d",
+                        type: "string",
+                        describe:
+                            "One-line description used in JSDoc, README, and docs",
+                    }),
+            (argv) => scaffoldRule(argv.ruleName, argv.description),
+        )
+        .strict()
+        .help()
+        .alias("help", "h")
+        .parseSync();
 } catch (err) {
     console.error(`\nError: ${(err as Error).message}`);
     process.exit(1);
