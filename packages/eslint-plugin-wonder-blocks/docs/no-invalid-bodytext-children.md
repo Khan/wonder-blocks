@@ -49,7 +49,7 @@ Examples of **incorrect** code:
     <Heading>Title</Heading>
 </BodyText>
 
-/* View always renders as <div> — never valid inside BodyText */
+/* View defaults to <div> — invalid inside a paragraph BodyText */
 <BodyText>
     <View>layout</View>
 </BodyText>
@@ -81,6 +81,11 @@ Examples of **correct** code:
 /* tag="span" on inner BodyText makes it inline */
 <BodyText>
     Outer text <BodyText tag="span">inline nested</BodyText>
+</BodyText>
+
+/* tag="span" on View makes it inline — valid inside BodyText */
+<BodyText>
+    Read more <View tag="span">details here</View>.
 </BodyText>
 
 /* Use View for layouts that need block children */

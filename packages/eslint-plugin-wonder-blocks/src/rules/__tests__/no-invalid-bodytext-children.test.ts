@@ -44,11 +44,13 @@ ruleTester.run(ruleName, rule, {
         {code: `<BodyText tag="section"><p>paragraph</p></BodyText>`},
         {code: `<BodyText tag="article"><div>block</div></BodyText>`},
 
-        // When BodyText has an inline tag the block-child checks do not apply
-        // (the outer BodyText renders inline; invalid nesting is a parent-rule
-        // concern, not a children concern).
-        {code: `<BodyText tag="span"><div>block</div></BodyText>`},
-        {code: `<BodyText tag="em"><p>paragraph</p></BodyText>`},
+        // View with an inline tag is valid phrasing content inside <p>
+        {code: `<BodyText><View tag="span">inline</View></BodyText>`},
+        {code: `<BodyText><View tag="em">inline</View></BodyText>`},
+
+        // View inside a block-container BodyText is valid HTML
+        {code: `<BodyText tag="div"><View>layout</View></BodyText>`},
+        {code: `<BodyText tag="section"><View>layout</View></BodyText>`},
 
         // BodyText-in-BodyText is handled entirely by no-invalid-bodytext-parent
         // (which also provides an autofix). No error from this rule.
@@ -85,21 +87,29 @@ ruleTester.run(ruleName, rule, {
     // ------------------------------------------------------------------ //
     invalid: [
         // ---------------------------------------------------------------- //
-        // View — always flagged regardless of the outer BodyText tag        //
+        // View — flagged when it renders as a block element inside a       //
+        //        phrasing-content BodyText                                 //
         // ---------------------------------------------------------------- //
         {
+            // View defaults to <div> — invalid inside paragraph BodyText
             code: `<BodyText><View>layout</View></BodyText>`,
-            errors: [{messageId: "viewChild"}],
+            errors: [
+                {messageId: "viewChild", data: {tag: "div", outerTag: "p"}},
+            ],
         },
         {
-            // tag="span" does not exempt View
+            // Explicit tag="div" on View is also invalid
+            code: `<BodyText><View tag="div">layout</View></BodyText>`,
+            errors: [
+                {messageId: "viewChild", data: {tag: "div", outerTag: "p"}},
+            ],
+        },
+        {
+            // View with no tag is still invalid when outer BodyText renders as <span>
             code: `<BodyText tag="span"><View>layout</View></BodyText>`,
-            errors: [{messageId: "viewChild"}],
-        },
-        {
-            // tag="div" does not exempt View — BodyText is not a layout container
-            code: `<BodyText tag="div"><View>layout</View></BodyText>`,
-            errors: [{messageId: "viewChild"}],
+            errors: [
+                {messageId: "viewChild", data: {tag: "div", outerTag: "span"}},
+            ],
         },
 
         // ---------------------------------------------------------------- //
@@ -114,16 +124,31 @@ ruleTester.run(ruleName, rule, {
             code: `<BodyText tag="p"><div>block</div></BodyText>`,
             errors: [{messageId: "divChild"}],
         },
+        {
+            // Inline BodyText (span) also cannot contain <div>
+            code: `<BodyText tag="span"><div>block</div></BodyText>`,
+            errors: [{messageId: "divChild"}],
+        },
 
         // ---------------------------------------------------------------- //
-        // <p> and BodyText rendering as <p>                                //
+        // <p> nested inside a phrasing-content BodyText                    //
         // ---------------------------------------------------------------- //
         {
             code: `<BodyText><p>paragraph</p></BodyText>`,
             errors: [
                 {
                     messageId: "paragraphChild",
-                    data: {childName: "p", childNote: ""},
+                    data: {childName: "p", childNote: "", outerTag: "p"},
+                },
+            ],
+        },
+        {
+            // Inline BodyText (em) also cannot contain <p>
+            code: `<BodyText tag="em"><p>paragraph</p></BodyText>`,
+            errors: [
+                {
+                    messageId: "paragraphChild",
+                    data: {childName: "p", childNote: "", outerTag: "em"},
                 },
             ],
         },
@@ -132,33 +157,66 @@ ruleTester.run(ruleName, rule, {
         // ---------------------------------------------------------------- //
         {
             code: `<BodyText><section>section</section></BodyText>`,
-            errors: [{messageId: "blockChild", data: {childName: "section"}}],
+            errors: [
+                {
+                    messageId: "blockChild",
+                    data: {childName: "section", outerTag: "p"},
+                },
+            ],
         },
         {
             code: `<BodyText><ul><li>item</li></ul></BodyText>`,
-            errors: [{messageId: "blockChild", data: {childName: "ul"}}],
+            errors: [
+                {
+                    messageId: "blockChild",
+                    data: {childName: "ul", outerTag: "p"},
+                },
+            ],
         },
         {
             code: `<BodyText><ol><li>item</li></ol></BodyText>`,
-            errors: [{messageId: "blockChild", data: {childName: "ol"}}],
+            errors: [
+                {
+                    messageId: "blockChild",
+                    data: {childName: "ol", outerTag: "p"},
+                },
+            ],
         },
         {
             code: `<BodyText><blockquote>quote</blockquote></BodyText>`,
             errors: [
-                {messageId: "blockChild", data: {childName: "blockquote"}},
+                {
+                    messageId: "blockChild",
+                    data: {childName: "blockquote", outerTag: "p"},
+                },
             ],
         },
         {
             code: `<BodyText><pre>code</pre></BodyText>`,
-            errors: [{messageId: "blockChild", data: {childName: "pre"}}],
+            errors: [
+                {
+                    messageId: "blockChild",
+                    data: {childName: "pre", outerTag: "p"},
+                },
+            ],
         },
         {
             code: `<BodyText><h1>Heading</h1></BodyText>`,
-            errors: [{messageId: "blockChild", data: {childName: "h1"}}],
+            errors: [
+                {
+                    messageId: "blockChild",
+                    data: {childName: "h1", outerTag: "p"},
+                },
+            ],
         },
         {
             code: `<BodyText><h2>Heading</h2></BodyText>`,
-            errors: [{messageId: "blockChild", data: {childName: "h2"}}],
+            errors: [
+                {
+                    messageId: "blockChild",
+                    data: {childName: "h2", outerTag: "p"},
+                },
+            ],
         },
 
         // ---------------------------------------------------------------- //
@@ -166,12 +224,20 @@ ruleTester.run(ruleName, rule, {
         // ---------------------------------------------------------------- //
         {
             code: `<BodyText><Heading>Title</Heading></BodyText>`,
-            errors: [{messageId: "blockChild", data: {childName: "Heading"}}],
+            errors: [
+                {
+                    messageId: "blockChild",
+                    data: {childName: "Heading", outerTag: "p"},
+                },
+            ],
         },
         {
             code: `<BodyText><HeadingLarge>Title</HeadingLarge></BodyText>`,
             errors: [
-                {messageId: "blockChild", data: {childName: "HeadingLarge"}},
+                {
+                    messageId: "blockChild",
+                    data: {childName: "HeadingLarge", outerTag: "p"},
+                },
             ],
         },
 
@@ -184,7 +250,7 @@ ruleTester.run(ruleName, rule, {
                 {messageId: "divChild"},
                 {
                     messageId: "paragraphChild",
-                    data: {childName: "p", childNote: ""},
+                    data: {childName: "p", childNote: "", outerTag: "p"},
                 },
             ],
         },

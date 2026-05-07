@@ -2,9 +2,11 @@ import {ESLintUtils, TSESTree} from "@typescript-eslint/utils";
 
 import type {WonderBlocksPluginDocs} from "../types";
 import {
+    BLOCK_CONTAINER_TAGS,
     HTML_BLOCK_ELEMENTS,
+    INLINE_BODY_TEXT_TAGS,
     WB_HEADING_COMPONENTS,
-    rendersAsParagraph,
+    getAttributeStringValue,
 } from "./jsx-utils";
 
 const createRule = ESLintUtils.RuleCreator<WonderBlocksPluginDocs>(
@@ -46,13 +48,13 @@ export default createRule<Options, MessageIds>({
         ],
         messages: {
             viewChild:
-                "BodyText should not wrap View. View renders as <div>, which is block-level and cannot be a child of <p>. Remove BodyText and use View directly for layout.",
+                'View renders as <{{tag}}>, which is block-level and cannot be a child of <{{outerTag}}>. Add tag="span" to View to use it inline, or add tag="div" to the outer BodyText to allow block children.',
             divChild:
-                'BodyText renders as <p> by default, which cannot contain a <div>. Add tag="div" to the outer BodyText to allow block children, or remove the <div>.',
+                'BodyText renders as <{{outerTag}}>, which cannot contain a <div>. Add tag="div" to the outer BodyText to allow block children, or remove the <div>.',
             paragraphChild:
-                'BodyText renders as <p> by default. {{childName}} cannot be a child of <p>{{childNote}}. Add tag="span" to the inner element to make it inline, or tag="div" to the outer BodyText.',
+                'BodyText renders as <{{outerTag}}>. {{childName}} cannot be a child of <{{outerTag}}>{{childNote}}. Add tag="span" to the inner element to make it inline, or tag="div" to the outer BodyText.',
             blockChild:
-                'BodyText renders as <p> by default, which cannot contain {{childName}} (a block-level element). Add tag="div" to BodyText to allow block children, or remove the block element.',
+                'BodyText renders as <{{outerTag}}>, which cannot contain {{childName}} (a block-level element). Add tag="div" to BodyText to allow block children, or remove the block element.',
             tooManyChildren:
                 "BodyText has {{count}} direct child elements (max: {{max}}). BodyText is for text content — consider using View or a block container for complex layouts.",
         },
@@ -73,8 +75,15 @@ export default createRule<Options, MessageIds>({
                     return;
                 }
 
-                const outerRendersAsParagraph =
-                    rendersAsParagraph(openingElement);
+                // Determine the tag BodyText renders as. Absence of a tag prop
+                // means BodyText defaults to <p>.
+                const outerTag =
+                    getAttributeStringValue(openingElement, "tag") ?? "p";
+                // Block-container tags can hold flow content (including block
+                // children). Phrasing-content tags (<p>, <span>, <em>, …)
+                // cannot contain block-level elements.
+                const outerIsBlockContainer =
+                    BLOCK_CONTAINER_TAGS.has(outerTag);
 
                 // Direct JSXElement children only (excludes text nodes and
                 // expression containers).
@@ -92,19 +101,32 @@ export default createRule<Options, MessageIds>({
 
                     const childName = childOpening.name.name;
 
-                    // View always renders as <div> — always warn regardless of
-                    // the outer BodyText's tag.
-                    if (childName === "View") {
-                        context.report({
-                            node: childOpening,
-                            messageId: "viewChild",
-                        });
+                    // Block-level children are only invalid when the outer
+                    // BodyText is a phrasing-content element. Block containers
+                    // (div, section, …) can hold anything.
+                    if (outerIsBlockContainer) {
                         continue;
                     }
 
-                    // The remaining checks only apply when the outer BodyText
-                    // renders as <p> (no tag prop, or tag="p").
-                    if (!outerRendersAsParagraph) {
+                    // View has a tag prop that controls its rendered element.
+                    // If the tag is an inline element it's valid phrasing
+                    // content inside <p>; otherwise it defaults to <div>.
+                    if (childName === "View") {
+                        const viewTag = getAttributeStringValue(
+                            childOpening,
+                            "tag",
+                        );
+                        if (
+                            viewTag !== null &&
+                            INLINE_BODY_TEXT_TAGS.has(viewTag)
+                        ) {
+                            continue;
+                        }
+                        context.report({
+                            node: childOpening,
+                            messageId: "viewChild",
+                            data: {tag: viewTag ?? "div", outerTag},
+                        });
                         continue;
                     }
 
@@ -113,18 +135,18 @@ export default createRule<Options, MessageIds>({
                         context.report({
                             node: childOpening,
                             messageId: "divChild",
+                            data: {outerTag},
                         });
                         continue;
                     }
 
-                    // <p> and BodyText that renders as <p> get their own
-                    // message because the source of the nested-<p> warning
-                    // can otherwise be unclear.
+                    // <p> gets its own message because the source of the
+                    // nested-paragraph warning can otherwise be unclear.
                     if (childName === "p") {
                         context.report({
                             node: childOpening,
                             messageId: "paragraphChild",
-                            data: {childName: "p", childNote: ""},
+                            data: {childName: "p", childNote: "", outerTag},
                         });
                         continue;
                     }
@@ -145,7 +167,7 @@ export default createRule<Options, MessageIds>({
                         context.report({
                             node: childOpening,
                             messageId: "blockChild",
-                            data: {childName},
+                            data: {childName, outerTag},
                         });
                     }
                 }
