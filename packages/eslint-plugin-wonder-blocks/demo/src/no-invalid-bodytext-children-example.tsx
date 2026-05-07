@@ -38,7 +38,16 @@ export function ValidExamples() {
     );
 }
 
-// ❌ Invalid: View is never valid inside BodyText
+// ✅ Valid: View with an inline tag is phrasing content
+export function ValidViewInlineTag() {
+    return (
+        <BodyText>
+            Read more <View tag="span">details here</View>.
+        </BodyText>
+    );
+}
+
+// ❌ Invalid: View defaults to <div> — block-level inside a <p>
 export function InvalidViewChild() {
     return (
         <BodyText>
@@ -79,16 +88,3 @@ export function InvalidHeadingChildren() {
     );
 }
 
-// ❌ Invalid: too many direct child elements (default max: 5)
-export function InvalidTooManyChildren() {
-    return (
-        <BodyText>
-            <span>one</span>
-            <span>two</span>
-            <span>three</span>
-            <span>four</span>
-            <span>five</span>
-            <span>six</span>
-        </BodyText>
-    );
-}

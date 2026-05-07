@@ -69,12 +69,6 @@ ruleTester.run(ruleName, rule, {
             code: `<BodyText><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></BodyText>`,
         },
 
-        // At or below a custom threshold
-        {
-            code: `<BodyText><span>1</span><span>2</span></BodyText>`,
-            options: [{maxChildren: 2}],
-        },
-
         // Text nodes do not count toward the child-element limit
         {
             code: `<BodyText>text <span>one</span> text <span>two</span> text <span>three</span> text <span>four</span> text <span>five</span> text</BodyText>`,
@@ -252,43 +246,6 @@ ruleTester.run(ruleName, rule, {
                     messageId: "paragraphChild",
                     data: {childName: "p", childNote: "", outerTag: "p"},
                 },
-            ],
-        },
-
-        // ---------------------------------------------------------------- //
-        // Too many direct element children                                 //
-        // ---------------------------------------------------------------- //
-        {
-            code: `<BodyText><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></BodyText>`,
-            errors: [
-                {
-                    messageId: "tooManyChildren",
-                    data: {count: "6", max: "5"},
-                },
-            ],
-        },
-        {
-            // Custom threshold
-            code: `<BodyText><span>1</span><span>2</span><span>3</span></BodyText>`,
-            options: [{maxChildren: 2}],
-            errors: [
-                {
-                    messageId: "tooManyChildren",
-                    data: {count: "3", max: "2"},
-                },
-            ],
-        },
-        {
-            // Block child + too many children both reported.
-            // tooManyChildren is on the BodyText opening element (earlier in
-            // source) so it sorts before divChild (on the <div> element).
-            code: `<BodyText><div>a</div><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></BodyText>`,
-            errors: [
-                {
-                    messageId: "tooManyChildren",
-                    data: {count: "6", max: "5"},
-                },
-                {messageId: "divChild"},
             ],
         },
     ],

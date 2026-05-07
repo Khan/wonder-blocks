@@ -14,38 +14,18 @@ const createRule = ESLintUtils.RuleCreator<WonderBlocksPluginDocs>(
         `https://github.com/Khan/wonder-blocks/blob/main/packages/eslint-plugin-wonder-blocks/docs/${name}.md`,
 );
 
-type Options = [{maxChildren?: number}?];
-type MessageIds =
-    | "viewChild"
-    | "divChild"
-    | "paragraphChild"
-    | "blockChild"
-    | "tooManyChildren";
-
-const DEFAULT_MAX_CHILDREN = 5;
+type Options = [];
+type MessageIds = "viewChild" | "divChild" | "paragraphChild" | "blockChild";
 
 export default createRule<Options, MessageIds>({
     name: "no-invalid-bodytext-children",
     meta: {
         type: "problem",
         docs: {
-            description:
-                "Disallow block-level elements and excessive children inside BodyText",
+            description: "Disallow block-level elements inside BodyText",
             recommended: false,
         },
-        schema: [
-            {
-                type: "object",
-                properties: {
-                    maxChildren: {
-                        type: "number",
-                        minimum: 1,
-                        description: `Maximum number of direct JSX element children allowed in BodyText (default: ${DEFAULT_MAX_CHILDREN})`,
-                    },
-                },
-                additionalProperties: false,
-            },
-        ],
+        schema: [],
         messages: {
             viewChild:
                 'View renders as <{{tag}}>, which is block-level and cannot be a child of <{{outerTag}}>. Add tag="span" to View to use it inline, or add tag="div" to the outer BodyText to allow block children.',
@@ -55,14 +35,9 @@ export default createRule<Options, MessageIds>({
                 'BodyText renders as <{{outerTag}}>. {{childName}} cannot be a child of <{{outerTag}}>{{childNote}}. Add tag="span" to the inner element to make it inline, or tag="div" to the outer BodyText.',
             blockChild:
                 'BodyText renders as <{{outerTag}}>, which cannot contain {{childName}} (a block-level element). Add tag="div" to BodyText to allow block children, or remove the block element.',
-            tooManyChildren:
-                "BodyText has {{count}} direct child elements (max: {{max}}). BodyText is for text content — consider using View or a block container for complex layouts.",
         },
     },
     create(context) {
-        const maxChildren =
-            context.options[0]?.maxChildren ?? DEFAULT_MAX_CHILDREN;
-
         return {
             JSXElement(node) {
                 const openingElement = node.openingElement;
@@ -170,19 +145,6 @@ export default createRule<Options, MessageIds>({
                             data: {childName, outerTag},
                         });
                     }
-                }
-
-                // Warn when there are too many direct child elements — BodyText
-                // is for text content, not layout.
-                if (elementChildren.length > maxChildren) {
-                    context.report({
-                        node: openingElement,
-                        messageId: "tooManyChildren",
-                        data: {
-                            count: String(elementChildren.length),
-                            max: String(maxChildren),
-                        },
-                    });
                 }
             },
         };

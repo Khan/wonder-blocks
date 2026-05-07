@@ -1,6 +1,6 @@
 # no-invalid-bodytext-children
 
-Disallow block-level elements and excessive direct children inside `BodyText`.
+Disallow block-level elements inside `BodyText`.
 
 ## Rule Details
 
@@ -9,12 +9,8 @@ elements (e.g. `<div>`, `<section>`, headings) as children of `<p>`. Placing the
 inside a default `BodyText` produces invalid markup that browsers must silently
 repair, which can cause layout or accessibility issues.
 
-`View` always renders as `<div>` and is never valid as a child of `BodyText`,
-regardless of the `tag` prop.
-
-This rule also warns when `BodyText` has more than 5 direct JSX element children
-(configurable). `BodyText` is for text content — complex layouts with many child
-elements belong in a `View` or other block container.
+`View` defaults to `<div>` and is invalid as a child of a phrasing-content
+`BodyText` unless given an inline `tag` prop (e.g. `tag="span"`).
 
 Add `tag="div"` (or another block-container tag) to `BodyText` to allow
 block-level children. Use `tag="span"` on a child `BodyText` to make it inline.
@@ -49,19 +45,9 @@ Examples of **incorrect** code:
     <Heading>Title</Heading>
 </BodyText>
 
-/* View defaults to <div> — invalid inside a paragraph BodyText */
+/* View defaults to <div> — invalid inside a phrasing-content BodyText */
 <BodyText>
     <View>layout</View>
-</BodyText>
-
-/* Too many direct child elements (default max: 5) */
-<BodyText>
-    <span>one</span>
-    <span>two</span>
-    <span>three</span>
-    <span>four</span>
-    <span>five</span>
-    <span>six</span>
 </BodyText>
 ```
 
@@ -93,26 +79,6 @@ Examples of **correct** code:
     <BodyText>First paragraph</BodyText>
     <BodyText>Second paragraph</BodyText>
 </View>
-```
-
-## Options
-
-```ts
-{
-    maxChildren?: number  // default: 5
-}
-```
-
-### `maxChildren`
-
-Sets the maximum number of direct JSX element children allowed in a single
-`BodyText`. Text nodes and expression containers do not count toward this limit.
-
-```js
-// .eslintrc.js
-{
-    "@khanacademy/wonder-blocks/no-invalid-bodytext-children": ["error", { maxChildren: 3 }]
-}
 ```
 
 ## When Not To Use It
