@@ -2,15 +2,14 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {Meta, StoryObj} from "@storybook/react-vite";
 
+import checkCircleFillIcon from "@phosphor-icons/core/fill/check-circle-fill.svg";
+import xCircleFillIcon from "@phosphor-icons/core/fill/x-circle-fill.svg";
+
 import {View} from "@khanacademy/wonder-blocks-core";
-import {
-    Caption,
-    LabelLarge,
-    LabelSmall,
-} from "@khanacademy/wonder-blocks-typography";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {
     border,
-    font,
     mix,
     semanticColor,
     sizing,
@@ -251,51 +250,6 @@ function readableTextColor(visibleColor: string): string {
         : semanticColor.core.foreground.knockout.default;
 }
 
-const PASS_COLOR = "#1a8a30";
-const FAIL_COLOR = "#9aa0a8";
-
-function PassIcon() {
-    return (
-        <svg
-            width="14"
-            height="14"
-            viewBox="0 0 16 16"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-        >
-            <rect width="16" height="16" rx="3" fill={PASS_COLOR} />
-            <path
-                d="M4 8.2L6.7 10.8L12 5.5"
-                stroke="#fff"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                fill="none"
-            />
-        </svg>
-    );
-}
-
-function FailIcon() {
-    return (
-        <svg
-            width="14"
-            height="14"
-            viewBox="0 0 16 16"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-        >
-            <rect width="16" height="16" rx="3" fill={FAIL_COLOR} />
-            <path
-                d="M5 5L11 11M11 5L5 11"
-                stroke="#fff"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-            />
-        </svg>
-    );
-}
-
 function ContrastCell({
     bgRaw,
     fgRaw,
@@ -321,12 +275,24 @@ function ContrastCell({
                 passes ? "passes AA" : "fails AA"
             }`}
         >
-            <View style={styles.cellIcon}>
-                {passes ? <PassIcon /> : <FailIcon />}
-            </View>
-            <View style={[styles.cellRatio, !passes && styles.cellRatioFail]}>
+            <PhosphorIcon
+                icon={passes ? checkCircleFillIcon : xCircleFillIcon}
+                size="small"
+                color={
+                    passes
+                        ? semanticColor.core.foreground.success.default
+                        : semanticColor.core.foreground.neutral.subtle
+                }
+                aria-hidden={true}
+            />
+            <BodyText
+                tag="span"
+                size="small"
+                weight={passes ? "bold" : "medium"}
+                style={[styles.cellRatio, !passes && styles.cellRatioFail]}
+            >
                 {formatRatio(ratio)}
-            </View>
+            </BodyText>
         </View>
     );
 }
@@ -347,7 +313,14 @@ function VariantSwatch({
     if (isTransparent) {
         return (
             <View style={[styles.swatch, styles.swatchTransparent]}>
-                <span style={styles.swatchLabel}>{capitalize(label)}</span>
+                <BodyText
+                    tag="span"
+                    size="xsmall"
+                    weight="semi"
+                    style={styles.swatchLabel}
+                >
+                    {capitalize(label)}
+                </BodyText>
             </View>
         );
     }
@@ -365,7 +338,14 @@ function VariantSwatch({
                 },
             ]}
         >
-            <span style={styles.swatchLabel}>{capitalize(label)}</span>
+            <BodyText
+                tag="span"
+                size="xsmall"
+                weight="semi"
+                style={styles.swatchLabel}
+            >
+                {capitalize(label)}
+            </BodyText>
         </View>
     );
 }
@@ -383,9 +363,9 @@ export const CoreContrastGrid: StoryObj = {
 
         if (!resolved) {
             return (
-                <Caption style={styles.loading}>
+                <BodyText size="small" style={styles.loading}>
                     Resolving theme tokens…
-                </Caption>
+                </BodyText>
             );
         }
 
@@ -411,9 +391,14 @@ export const CoreContrastGrid: StoryObj = {
                     },
                 ]}
             >
-                <LabelLarge style={styles.sectionHeadingText}>
+                <BodyText
+                    tag="span"
+                    size="medium"
+                    weight="bold"
+                    style={styles.sectionHeadingText}
+                >
                     Background
-                </LabelLarge>
+                </BodyText>
             </View>,
         );
 
@@ -433,9 +418,13 @@ export const CoreContrastGrid: StoryObj = {
                         },
                     ]}
                 >
-                    <LabelSmall style={styles.outerLabelText}>
+                    <BodyText
+                        tag="span"
+                        size="small"
+                        style={styles.outerLabelText}
+                    >
                         {capitalize(group.name)}
-                    </LabelSmall>
+                    </BodyText>
                 </View>,
             );
 
@@ -529,9 +518,13 @@ export const CoreContrastGrid: StoryObj = {
                         },
                     ]}
                 >
-                    <LabelSmall style={styles.outerLabelText}>
+                    <BodyText
+                        tag="span"
+                        size="small"
+                        style={styles.outerLabelText}
+                    >
                         {capitalize(group.name)}
-                    </LabelSmall>
+                    </BodyText>
                 </View>,
             );
             fgCol += groupSize;
@@ -550,9 +543,14 @@ export const CoreContrastGrid: StoryObj = {
                     },
                 ]}
             >
-                <LabelLarge style={styles.sectionHeadingText}>
+                <BodyText
+                    tag="span"
+                    size="medium"
+                    weight="bold"
+                    style={styles.sectionHeadingText}
+                >
                     Foreground
-                </LabelLarge>
+                </BodyText>
             </View>,
         );
 
@@ -578,12 +576,13 @@ export const CoreContrastGrid: StoryObj = {
 };
 
 const CELL_SIZE = 64;
-const SWATCH_PADDING = 4;
+
+const swatchOutline = `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`;
 
 const styles = StyleSheet.create({
     wrapper: {
         padding: sizing.size_240,
-        background: semanticColor.core.background.base.default,
+        backgroundColor: semanticColor.core.background.base.default,
     },
     loading: {
         padding: sizing.size_160,
@@ -594,7 +593,7 @@ const styles = StyleSheet.create({
         rowGap: sizing.size_040,
         alignItems: "stretch",
         justifyItems: "stretch",
-        width: "fit-content",
+        inlineSize: "fit-content",
     },
     sectionHeading: {
         justifyContent: "flex-end",
@@ -607,7 +606,6 @@ const styles = StyleSheet.create({
         paddingBlockEnd: 0,
     },
     sectionHeadingText: {
-        fontWeight: font.weight.bold,
         color: semanticColor.core.foreground.neutral.strong,
     },
     outerLabel: {
@@ -625,20 +623,16 @@ const styles = StyleSheet.create({
     },
     swatch: {
         boxSizing: "border-box",
-        width: CELL_SIZE,
-        height: CELL_SIZE,
+        inlineSize: CELL_SIZE,
+        blockSize: CELL_SIZE,
         flexShrink: 0,
         alignItems: "center",
         justifyContent: "center",
         borderRadius: border.radius.radius_010,
-        padding: SWATCH_PADDING,
-        boxShadow: `inset 0 0 0 1px ${semanticColor.core.border.neutral.subtle}`,
+        padding: sizing.size_040,
+        border: swatchOutline,
     },
     swatchLabel: {
-        fontFamily: font.family.sans,
-        fontWeight: font.weight.semi,
-        fontSize: 12,
-        lineHeight: 1,
         textAlign: "center",
     },
     swatchTransparent: {
@@ -651,34 +645,25 @@ const styles = StyleSheet.create({
     },
     cell: {
         boxSizing: "border-box",
-        width: "100%",
-        height: "100%",
-        minHeight: CELL_SIZE,
+        inlineSize: "100%",
+        blockSize: "100%",
+        minBlockSize: CELL_SIZE,
         padding: sizing.size_080,
-        gap: sizing.size_080,
+        gap: sizing.size_040,
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: semanticColor.core.background.base.default,
         borderRadius: border.radius.radius_040,
-        boxShadow: `inset 0 0 0 1px ${semanticColor.core.border.neutral.subtle}`,
+        border: swatchOutline,
     },
     cellFail: {
         backgroundColor: semanticColor.core.background.base.subtle,
     },
-    cellIcon: {
-        alignItems: "center",
-        justifyContent: "center",
-    },
     cellRatio: {
-        fontFamily: font.family.sans,
-        fontSize: 13,
-        fontWeight: font.weight.bold,
         color: semanticColor.core.foreground.neutral.strong,
-        lineHeight: 1,
         textAlign: "center",
     },
     cellRatioFail: {
-        fontWeight: font.weight.regular,
         color: semanticColor.core.foreground.neutral.subtle,
     },
 });
