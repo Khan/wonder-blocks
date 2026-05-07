@@ -221,35 +221,6 @@ function capitalize(value: string): string {
     return value.charAt(0).toUpperCase() + value.slice(1);
 }
 
-// Luminance of the two text candidates (knockout = white, neutral.strong =
-// offBlack #21242c). Hardcoded so we don't have to resolve them at runtime.
-const KNOCKOUT_LUMINANCE = relativeLuminance({r: 255, g: 255, b: 255});
-const NEUTRAL_STRONG_LUMINANCE = relativeLuminance({r: 33, g: 36, b: 44});
-
-function contrastWith(luminance: number, against: number): number {
-    const lighter = Math.max(luminance, against);
-    const darker = Math.min(luminance, against);
-    return (lighter + 0.05) / (darker + 0.05);
-}
-
-/**
- * Pick whichever text token (knockout vs neutral.strong) yields a higher
- * contrast ratio against the visible background. A simple luminance
- * threshold flips the wrong way for mid-luminance bgs like gold.
- */
-function readableTextColor(visibleColor: string): string {
-    const rgb = parseRgb(visibleColor);
-    if (!rgb) {
-        return semanticColor.core.foreground.neutral.strong;
-    }
-    const bgLum = relativeLuminance(rgb);
-    const knockoutContrast = contrastWith(bgLum, KNOCKOUT_LUMINANCE);
-    const neutralContrast = contrastWith(bgLum, NEUTRAL_STRONG_LUMINANCE);
-    return neutralContrast >= knockoutContrast
-        ? semanticColor.core.foreground.neutral.strong
-        : semanticColor.core.foreground.knockout.default;
-}
-
 function ContrastCell({
     bgRaw,
     fgRaw,
@@ -300,15 +271,11 @@ function ContrastCell({
 function VariantSwatch({
     label,
     cssVar,
-    resolved,
     isTransparent,
-    pageBase,
 }: {
     label: string;
     cssVar: string;
-    resolved: string;
     isTransparent: boolean;
-    pageBase: string;
 }) {
     if (isTransparent) {
         return (
@@ -324,17 +291,15 @@ function VariantSwatch({
             </View>
         );
     }
-    // Composite over the page background so semi-transparent tokens are
-    // measured against what the eye actually sees on the surface, not their
-    // raw rgba (which is dominated by the underlying pigment).
-    const visible = compositeOver(resolved, pageBase);
     return (
         <View
             style={[
                 styles.swatch,
                 {
                     backgroundColor: cssVar,
-                    color: readableTextColor(visible),
+                    // Native CSS picks black or white based on the bg's
+                    // luminance, including alpha-blended values.
+                    color: `contrast-color(${cssVar})`,
                 },
             ]}
         >
@@ -449,9 +414,7 @@ export const ForegroundOnBackground: StoryObj = {
                         <VariantSwatch
                             label={variant.label.split(".").pop() || ""}
                             cssVar={variant.cssVar}
-                            resolved={resolvedBg}
                             isTransparent={transparent}
-                            pageBase={pageBase}
                         />
                     </View>,
                 );
@@ -492,11 +455,9 @@ export const ForegroundOnBackground: StoryObj = {
                     <VariantSwatch
                         label={fg.label.split(".").pop() || ""}
                         cssVar={fg.cssVar}
-                        resolved={foregrounds[fg.label]}
                         isTransparent={isTransparentValue(
                             foregrounds[fg.label],
                         )}
-                        pageBase={pageBase}
                     />
                 </View>,
             );
