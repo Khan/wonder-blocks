@@ -1,7 +1,14 @@
+/**
+ * Patches that update existing files in the plugin to register a newly
+ * scaffolded lint rule (rules index, config presets, README).
+ */
 import * as path from "path";
 
 import {patchFile, PLUGIN_DIR, toCamelCase} from "./utils";
 
+/**
+ * Returns the rules index source with the new rule registered.
+ */
 export function applyRulesIndexPatch(src: string, ruleName: string): string {
     const camel = toCamelCase(ruleName);
 
@@ -39,6 +46,9 @@ export function applyRulesIndexPatch(src: string, ruleName: string): string {
     return updated;
 }
 
+/**
+ * Returns the recommended config source with the new rule added.
+ */
 export function applyRecommendedConfigPatch(
     src: string,
     ruleName: string,
@@ -74,6 +84,9 @@ export function applyRecommendedConfigPatch(
     );
 }
 
+/**
+ * Returns the strict config source with the new rule added.
+ */
 export function applyStrictConfigPatch(src: string, ruleName: string): string {
     if (src.includes(`"@khanacademy/wonder-blocks/${ruleName}"`)) {
         throw new Error(
@@ -95,6 +108,9 @@ export function applyStrictConfigPatch(src: string, ruleName: string): string {
     );
 }
 
+/**
+ * Returns the README source with a row for the new rule added.
+ */
 export function applyReadmePatch(src: string, ruleName: string): string {
     if (src.includes(`docs/${ruleName}.md`)) {
         throw new Error(`Rule "${ruleName}" already appears in README.md.`);
@@ -112,12 +128,18 @@ export function applyReadmePatch(src: string, ruleName: string): string {
     return src.replace(tableRegex, `$1${rows.join("\n")}\n`);
 }
 
+/**
+ * Patches the rules index file on disk to register the new rule.
+ */
 export function updateRulesIndex(ruleName: string): void {
     patchFile(path.join(PLUGIN_DIR, "src/rules/index.ts"), (src) =>
         applyRulesIndexPatch(src, ruleName),
     );
 }
 
+/**
+ * Patches the recommended and strict config files on disk to add the new rule.
+ */
 export function updateConfigs(ruleName: string): void {
     patchFile(path.join(PLUGIN_DIR, "src/configs/recommended.ts"), (src) =>
         applyRecommendedConfigPatch(src, ruleName),
@@ -127,6 +149,9 @@ export function updateConfigs(ruleName: string): void {
     );
 }
 
+/**
+ * Patches the README on disk to add a row for the new rule.
+ */
 export function updateReadme(ruleName: string): void {
     patchFile(path.join(PLUGIN_DIR, "README.md"), (src) =>
         applyReadmePatch(src, ruleName),
