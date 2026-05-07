@@ -357,7 +357,7 @@ const FIRST_CELL_COL = 3;
 const ROW_TOP_HEADING = 1;
 const ROW_FIRST_BG = 2;
 
-export const CoreContrastGrid: StoryObj = {
+export const ForegroundOnBackground: StoryObj = {
     render: function Render() {
         const resolved = useResolvedTokens();
 
@@ -569,9 +569,6 @@ export const CoreContrastGrid: StoryObj = {
                 </View>
             </View>
         );
-    },
-    globals: {
-        theme: "thunderblocks",
     },
 };
 
