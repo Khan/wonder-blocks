@@ -358,7 +358,11 @@ function VariantSwatch({
     pageBase: string;
 }) {
     if (isTransparent) {
-        return <View style={styles.swatchEmpty} aria-hidden="true" />;
+        return (
+            <View style={[styles.swatch, styles.swatchTransparent]}>
+                <span style={styles.swatchLabel}>{capitalize(label)}</span>
+            </View>
+        );
     }
     // Composite over the page background so semi-transparent tokens are
     // measured against what the eye actually sees on the surface, not their
@@ -594,7 +598,7 @@ export const CoreContrastGrid: StoryObj = {
                     style={[
                         styles.grid,
                         {
-                            gridTemplateColumns: `auto ${CELL_SIZE}px repeat(${numFgCols}, ${CELL_SIZE}px)`,
+                            gridTemplateColumns: `max-content ${CELL_SIZE}px repeat(${numFgCols}, ${CELL_SIZE}px)`,
                             gridTemplateRows: `auto repeat(${numBgRows}, ${CELL_SIZE}px) auto auto auto`,
                         },
                     ]}
@@ -603,6 +607,9 @@ export const CoreContrastGrid: StoryObj = {
                 </View>
             </View>
         );
+    },
+    globals: {
+        theme: "thunderblocks",
     },
 };
 
@@ -663,6 +670,7 @@ const styles = StyleSheet.create({
     outerLabelText: {
         color: semanticColor.core.foreground.neutral.strong,
         textAlign: "center",
+        whiteSpace: "nowrap",
     },
     swatch: {
         boxSizing: "border-box",
@@ -682,10 +690,13 @@ const styles = StyleSheet.create({
         lineHeight: 1,
         textAlign: "center",
     },
-    swatchEmpty: {
-        width: CELL_SIZE,
-        height: CELL_SIZE,
-        flexShrink: 0,
+    swatchTransparent: {
+        // Light checkerboard so the swatch reads as "transparent" without
+        // overpowering the variant label sitting on top.
+        backgroundColor: semanticColor.core.background.base.default,
+        backgroundImage: `conic-gradient(${semanticColor.core.background.neutral.subtle} 25%, transparent 0 50%, ${semanticColor.core.background.neutral.subtle} 0 75%, transparent 0)`,
+        backgroundSize: `${sizing.size_080} ${sizing.size_080}`,
+        color: semanticColor.core.foreground.neutral.strong,
     },
     cell: {
         boxSizing: "border-box",
@@ -693,8 +704,9 @@ const styles = StyleSheet.create({
         height: "100%",
         minHeight: CELL_SIZE,
         padding: sizing.size_080,
-        alignItems: "stretch",
-        justifyContent: "space-between",
+        gap: sizing.size_080,
+        alignItems: "center",
+        justifyContent: "center",
         backgroundColor: semanticColor.core.background.base.default,
         borderRadius: border.radius.radius_040,
         boxShadow: `inset 0 0 0 1px ${semanticColor.core.border.neutral.subtle}`,
@@ -703,15 +715,16 @@ const styles = StyleSheet.create({
         backgroundColor: semanticColor.core.background.base.subtle,
     },
     cellIcon: {
-        alignSelf: "flex-start",
+        alignItems: "center",
+        justifyContent: "center",
     },
     cellRatio: {
-        alignSelf: "center",
         fontFamily: font.family.sans,
         fontSize: 13,
         fontWeight: font.weight.bold,
         color: semanticColor.core.foreground.neutral.strong,
         lineHeight: 1,
+        textAlign: "center",
     },
     cellRatioFail: {
         fontWeight: font.weight.regular,
