@@ -533,6 +533,20 @@ export const ForegroundOnBackground: StoryObj = {
     },
 };
 
+export const SylLightForegroundOnBackground = {
+    ...ForegroundOnBackground,
+    globals: {
+        theme: "thunderblocks",
+    },
+};
+
+export const SylDarkForegroundOnBackground = {
+    ...ForegroundOnBackground,
+    globals: {
+        theme: "syl-dark",
+    },
+};
+
 const CELL_SIZE = 64;
 
 const swatchOutline = `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`;
