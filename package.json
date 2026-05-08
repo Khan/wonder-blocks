@@ -125,6 +125,7 @@
     "eslint-plugin-jest": "28.11.0",
     "eslint-plugin-jsdoc": "^50.6.3",
     "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-local-rules": "^3.0.2",
     "eslint-plugin-monorepo": "^0.3.2",
     "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-promise": "^7.2.1",

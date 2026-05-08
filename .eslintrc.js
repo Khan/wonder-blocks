@@ -10,7 +10,15 @@ module.exports = {
         "plugin:storybook/recommended",
         "plugin:@khanacademy/wonder-blocks/strict", // config from @khanacademy/eslint-plugin-wonder-blocks
     ],
-    plugins: ["import", "jest", "jsdoc", "promise", "monorepo", "react-hooks"],
+    plugins: [
+        "import",
+        "jest",
+        "jsdoc",
+        "promise",
+        "monorepo",
+        "react-hooks",
+        "local-rules",
+    ],
     settings: {
         "import/resolver": {
             typescript: {
@@ -45,6 +53,14 @@ module.exports = {
             files: ["utils/*.js"],
             rules: {
                 "import/no-commonjs": "off",
+            },
+        },
+        {
+            // Local ESLint rules must use CommonJS (ESLint plugin spec).
+            files: ["eslint-local-rules/*.js"],
+            rules: {
+                "import/no-commonjs": "off",
+                "@typescript-eslint/no-require-imports": "off",
             },
         },
         {
@@ -222,5 +238,10 @@ module.exports = {
         "@typescript-eslint/no-empty-function": "off",
         "@typescript-eslint/prefer-enum-initializers": "error",
         "@typescript-eslint/prefer-literal-enum-member": "error",
+
+        /**
+         * local rules
+         */
+        "local-rules/require-logical-properties-for-rtl": "error",
     },
 };
