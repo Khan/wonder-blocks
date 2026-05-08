@@ -120,7 +120,7 @@ export default function ComponentGallery() {
 
 export const styles = StyleSheet.create({
     menuBar: {
-        marginTop: spacing.medium_16,
+        marginBlockStart: spacing.medium_16,
         flexDirection: "row",
         alignItems: "center",
     },
@@ -130,8 +130,8 @@ export const styles = StyleSheet.create({
         flexWrap: "wrap",
     },
     sectionLabel: {
-        marginTop: spacing.xLarge_32,
-        marginBottom: spacing.large_24,
+        marginBlockStart: spacing.xLarge_32,
+        marginBlockEnd: spacing.large_24,
     },
     row: {
         display: "flex",

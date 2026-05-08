@@ -31,7 +31,7 @@ export const IconContrast = {
         <View
             style={{
                 flexDirection: "row",
-                marginBottom: spacing.xSmall_8,
+                marginBlockEnd: spacing.xSmall_8,
             }}
         >
             <LabelMedium>High contrast icon (GOOD):</LabelMedium>

@@ -54,7 +54,7 @@ export const WithLabel: StoryComponentType = (() => {
             <LabelMedium
                 id="label-for-switch-with-label"
                 htmlFor="switch-with-label"
-                style={{marginLeft: spacing.xSmall_8}}
+                style={{marginInlineStart: spacing.xSmall_8}}
                 tag="label"
             >
                 Superpowers
@@ -80,7 +80,7 @@ export const WithLabelAndDescription: StoryComponentType = (() => {
                 aria-labelledby="label-for-switch-with-desc"
                 aria-describedby="desc-for-switch-with-desc"
             />
-            <View style={{marginLeft: spacing.xSmall_8}}>
+            <View style={{marginInlineStart: spacing.xSmall_8}}>
                 <LabelMedium
                     id="label-for-switch-with-desc"
                     htmlFor="switch-with-desc"
@@ -117,7 +117,7 @@ export const WithLabelAndOnOff: StoryComponentType = (() => {
             <LabelMedium
                 id="label-for-switch-with-on-off"
                 htmlFor="switch-with-on-off"
-                style={{marginRight: spacing.xSmall_8}}
+                style={{marginInlineEnd: spacing.xSmall_8}}
                 tag="label"
             >
                 Gravity
@@ -130,7 +130,7 @@ export const WithLabelAndOnOff: StoryComponentType = (() => {
             />
             <LabelSmall
                 style={{
-                    marginLeft: spacing.xSmall_8,
+                    marginInlineStart: spacing.xSmall_8,
                     color: semanticColor.core.foreground.neutral.subtle,
                 }}
                 aria-hidden={true}

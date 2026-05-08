@@ -239,6 +239,6 @@ const styles = StyleSheet.create({
         fontSize: sizing.size_280,
         fontWeight: font.weight.bold,
         lineHeight: sizing.size_320,
-        marginTop: sizing.size_200,
+        marginBlockStart: sizing.size_200,
     },
 });

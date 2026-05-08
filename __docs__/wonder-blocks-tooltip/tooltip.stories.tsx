@@ -31,7 +31,7 @@ import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 const styles = StyleSheet.create({
     storyCanvas: {
         // NOTE: This is needed for Chromatic to include the tooltip bubble.
-        minHeight: 280,
+        minBlockSize: 280,
         padding: spacing.xxxLarge_64,
         justifyContent: "center",
         textAlign: "center",
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         margin: spacing.small_12,
     },
     hostbox: {
-        minHeight: "200vh",
+        minBlockSize: "200vh",
     },
     modalbox: {
         height: "200vh",
@@ -526,7 +526,7 @@ export const InTopCorner = {
             style={{
                 position: "absolute",
                 top: 0,
-                left: 0,
+                insetInlineStart: 0,
             }}
         >
             <Tooltip content="This is an example descriptor that's long with more content to see if it will display properly in different browsers">

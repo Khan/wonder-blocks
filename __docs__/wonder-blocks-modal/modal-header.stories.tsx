@@ -240,8 +240,8 @@ const styles = StyleSheet.create({
         justifyContent: "center",
 
         position: "absolute",
-        left: 0,
-        right: 0,
+        insetInlineStart: 0,
+        insetInlineEnd: 0,
         top: 0,
         bottom: 0,
     },

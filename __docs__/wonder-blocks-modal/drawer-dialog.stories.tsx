@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
         padding: spacing.medium_16,
     },
     section: {
-        marginBottom: spacing.medium_16,
+        marginBlockEnd: spacing.medium_16,
     },
     form: {
         display: "flex",

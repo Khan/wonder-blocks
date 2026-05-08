@@ -53,6 +53,6 @@ const localStyles = StyleSheet.create({
         alignItems: "end",
     },
     icon: {
-        marginRight: spacing.medium_16,
+        marginInlineEnd: spacing.medium_16,
     },
 });

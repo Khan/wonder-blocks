@@ -191,6 +191,6 @@ const styles = StyleSheet.create({
     },
     row: {
         flexDirection: "row",
-        marginBottom: spacing.xLarge_32,
+        marginBlockEnd: spacing.xLarge_32,
     },
 });

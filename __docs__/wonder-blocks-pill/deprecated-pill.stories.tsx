@@ -196,7 +196,8 @@ export const Variants: StoryComponentType = {
                                 <View
                                     key={kind}
                                     style={{
-                                        marginRight: tokens.spacing.small_12,
+                                        marginInlineEnd:
+                                            tokens.spacing.small_12,
                                     }}
                                 >
                                     <Pill
@@ -219,7 +220,8 @@ export const Variants: StoryComponentType = {
                                 <View
                                     key={kind}
                                     style={{
-                                        marginRight: tokens.spacing.small_12,
+                                        marginInlineEnd:
+                                            tokens.spacing.small_12,
                                     }}
                                 >
                                     <Pill
@@ -322,7 +324,7 @@ export const InList: StoryComponentType = () => {
                         onClick={() => setSelected(option)}
                         aria-checked={option === selected}
                         role="radio"
-                        style={{marginRight: tokens.spacing.xSmall_8}}
+                        style={{marginInlineEnd: tokens.spacing.xSmall_8}}
                     >
                         {option}
                     </Pill>
@@ -362,7 +364,7 @@ export const VerticallyStacked: StoryComponentType = {
                 {sizes.map((size) => (
                     <View
                         key={size}
-                        style={{marginRight: tokens.spacing.medium_16}}
+                        style={{marginInlineEnd: tokens.spacing.medium_16}}
                     >
                         <LabelMedium>{size}px margin</LabelMedium>
                         <Strut size={tokens.spacing.small_12} />

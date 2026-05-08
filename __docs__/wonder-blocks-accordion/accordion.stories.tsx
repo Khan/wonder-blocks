@@ -100,7 +100,7 @@ export const Default: StoryComponentType = {
 export const AllowMultipleExpanded: StoryComponentType = {
     render: () => (
         <View>
-            <View style={{maxWidth: 500, marginBottom: spacing.large_24}}>
+            <View style={{maxWidth: 500, marginBlockEnd: spacing.large_24}}>
                 <LabelLarge>Allow multiple expanded (default)</LabelLarge>
                 <Accordion allowMultipleExpanded>{exampleSections}</Accordion>
             </View>
@@ -680,6 +680,6 @@ const styles = StyleSheet.create({
     },
     button: {
         width: "fit-content",
-        marginBottom: spacing.medium_16,
+        marginBlockEnd: spacing.medium_16,
     },
 });

@@ -763,6 +763,6 @@ const styles = StyleSheet.create({
         flexGrow: 1,
     },
     fieldWithButton: {
-        marginBottom: spacing.medium_16,
+        marginBlockEnd: spacing.medium_16,
     },
 });

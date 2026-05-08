@@ -224,19 +224,19 @@ export const WithAutofocus: StoryComponentType = {
                     autoFocus={true}
                     onChange={handleChange}
                     onKeyDown={handleKeyDown}
-                    style={{flexGrow: 1, marginLeft: spacing.small_12}}
+                    style={{flexGrow: 1, marginInlineStart: spacing.small_12}}
                 />
             </View>
         );
 
         return (
             <View>
-                <LabelLarge style={{marginBottom: spacing.small_12}}>
+                <LabelLarge style={{marginBlockEnd: spacing.small_12}}>
                     Press the button to view the search field with autofocus.
                 </LabelLarge>
                 <Button
                     onClick={handleShowDemo}
-                    style={{width: 300, marginBottom: spacing.large_24}}
+                    style={{width: 300, marginBlockEnd: spacing.large_24}}
                 >
                     Toggle autoFocus demo
                 </Button>

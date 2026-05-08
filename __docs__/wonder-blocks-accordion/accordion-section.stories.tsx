@@ -244,8 +244,8 @@ export const ReactElementInHeader: StoryComponentType = {
                                     backgroundSize: "contain",
                                     borderRadius: border.radius.radius_080,
                                     height: 40,
-                                    marginRight: spacing.small_12,
-                                    minWidth: 40,
+                                    marginInlineEnd: spacing.small_12,
+                                    minInlineSize: 40,
                                     padding: spacing.xSmall_8,
                                     width: 40,
                                 }}
@@ -635,6 +635,6 @@ const styles = StyleSheet.create({
     },
     button: {
         width: "fit-content",
-        marginBottom: spacing.large_24,
+        marginBlockEnd: spacing.large_24,
     },
 });

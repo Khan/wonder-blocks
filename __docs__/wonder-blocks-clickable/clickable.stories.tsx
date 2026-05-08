@@ -303,11 +303,11 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     heading: {
-        marginRight: spacing.large_24,
+        marginInlineEnd: spacing.large_24,
     },
     navigation: {
         border: `1px dashed ${semanticColor.core.border.neutral.subtle}`,
-        marginTop: spacing.large_24,
+        marginBlockStart: spacing.large_24,
         padding: spacing.large_24,
     },
     disabled: {

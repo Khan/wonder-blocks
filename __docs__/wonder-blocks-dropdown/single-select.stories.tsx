@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
      * Custom opener styles
      */
     customOpener: {
-        borderLeft: `${border.width.thick} solid ${semanticColor.core.border.instructive.default}`,
+        borderInlineStart: `${border.width.thick} solid ${semanticColor.core.border.instructive.default}`,
         borderRadius: border.radius.radius_040,
         background: semanticColor.core.background.instructive.subtle,
         color: semanticColor.core.foreground.instructive.default,
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
     // AutoFocus
     icon: {
         position: "absolute",
-        right: sizing.size_160,
+        insetInlineEnd: sizing.size_160,
     },
 });
 

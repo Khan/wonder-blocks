@@ -12,17 +12,17 @@ const styles = StyleSheet.create({
     explanation: {
         fontWeight: 700,
         flexDirection: "row",
-        marginTop: spacing.xSmall_8,
+        marginBlockStart: spacing.xSmall_8,
     },
     correct: {
         color: semanticColor.core.foreground.success.default,
-        marginRight: spacing.xxxSmall_4,
-        paddingTop: spacing.xxxxSmall_2,
+        marginInlineEnd: spacing.xxxSmall_4,
+        paddingBlockStart: spacing.xxxxSmall_2,
     },
     incorrect: {
         color: semanticColor.core.foreground.critical.default,
-        marginRight: spacing.xxxSmall_4,
-        paddingTop: spacing.xxxxSmall_2,
+        marginInlineEnd: spacing.xxxSmall_4,
+        paddingBlockStart: spacing.xxxxSmall_2,
     },
 });
 

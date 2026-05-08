@@ -390,7 +390,7 @@ export const WithFullScreenStyling: StoryComponentType = () => {
                 <Heading
                     size="xxlarge"
                     style={{
-                        marginBottom: sizing.size_320,
+                        marginBlockEnd: sizing.size_320,
                     }}
                 >
                     Full-Screen Dialog
@@ -414,7 +414,7 @@ export const WithFullScreenStyling: StoryComponentType = () => {
                         style={{
                             color: semanticColor.core.foreground.neutral
                                 .default,
-                            marginBottom: sizing.size_480,
+                            marginBlockEnd: sizing.size_480,
                         }}
                     >
                         This FlexibleDialog demonstrates full-screen
@@ -521,8 +521,8 @@ const styles = StyleSheet.create({
         justifyContent: "center",
 
         position: "absolute",
-        left: 0,
-        right: 0,
+        insetInlineStart: 0,
+        insetInlineEnd: 0,
         top: 0,
         bottom: 0,
     },
@@ -533,7 +533,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
     },
     previewSizer: {
-        minHeight: "calc(100vh - 1.6rem)",
+        minBlockSize: "calc(100vh - 1.6rem)",
         width: "100%",
     },
     row: {
@@ -548,7 +548,7 @@ const styles = StyleSheet.create({
         width: "100%",
     },
     launcherButton: {
-        marginTop: "auto",
+        marginBlockStart: "auto",
     },
     fullScreenContent: {
         display: "flex",
@@ -557,8 +557,8 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         height: "100%",
         textAlign: "center",
-        minHeight: "100vh",
-        minWidth: "unset",
+        minBlockSize: "100vh",
+        minInlineSize: "unset",
     },
     fullScreenActions: {
         display: "flex",

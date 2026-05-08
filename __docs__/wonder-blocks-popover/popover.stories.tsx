@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     },
     playground: {
         border: `1px dashed ${semanticColor.core.border.neutral.subtle}`,
-        marginTop: sizing.size_240,
+        marginBlockStart: sizing.size_240,
         padding: sizing.size_240,
         flexDirection: "row",
         gap: sizing.size_160,
@@ -786,7 +786,7 @@ export const PopoverAlignment: StoryComponentType = {
 export const WithDocumentRootBoundary: StoryComponentType = {
     render: () => {
         return (
-            <View style={{paddingBottom: "500px"}}>
+            <View style={{paddingBlockEnd: "500px"}}>
                 <Popover
                     rootBoundary="document"
                     content={() => (

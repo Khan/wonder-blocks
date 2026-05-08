@@ -204,9 +204,9 @@ export const AnnouncerInModal: StoryComponentType = {
                             style={{
                                 gap: sizing.size_160,
                                 padding: `${sizing.size_240} 0`,
-                                marginTop: "auto",
+                                marginBlockStart: "auto",
                                 maxWidth: "40rem",
-                                minHeight: "20rem",
+                                minBlockSize: "20rem",
                             }}
                         >
                             <AnnouncerExample

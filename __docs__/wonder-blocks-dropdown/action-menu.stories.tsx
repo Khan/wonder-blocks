@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
      * Custom opener styles
      */
     customOpener: {
-        borderLeft: `${border.width.thick} solid ${semanticColor.status.warning.foreground}`,
+        borderInlineStart: `${border.width.thick} solid ${semanticColor.status.warning.foreground}`,
         borderRadius: border.radius.radius_040,
         background: semanticColor.status.warning.background,
         color: semanticColor.core.foreground.neutral.strong,

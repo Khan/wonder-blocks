@@ -192,7 +192,7 @@ export function AllVariants(props: Props) {
 const styles = StyleSheet.create({
     table: {
         borderCollapse: "collapse",
-        textAlign: "left",
+        textAlign: "start",
         [breakpoint.mediaQuery.smOrSmaller]: {
             display: "none",
         },

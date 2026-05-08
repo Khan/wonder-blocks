@@ -322,7 +322,7 @@ const DatePickerWithOpenOverlay = (props: Props) => {
             ref={containerRef}
             style={{
                 padding: spacing.large_24,
-                minHeight: 400,
+                minBlockSize: 400,
             }}
         >
             <DatePicker

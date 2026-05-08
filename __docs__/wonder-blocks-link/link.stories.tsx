@@ -625,11 +625,11 @@ export const RightToLeftWithIcons: StoryComponentType = {
 
 const styles = StyleSheet.create({
     heading: {
-        marginRight: spacing.large_24,
+        marginInlineEnd: spacing.large_24,
     },
     navigation: {
         border: `1px dashed ${semanticColor.core.border.neutral.subtle}`,
-        marginTop: spacing.large_24,
+        marginBlockStart: spacing.large_24,
         padding: spacing.large_24,
     },
     customLink: {
@@ -644,7 +644,7 @@ const styles = StyleSheet.create({
         // instead of taking the full width of the parent
         // container.
         display: "inline-block",
-        marginBottom: spacing.xSmall_8,
+        marginBlockEnd: spacing.xSmall_8,
     },
     rightToLeft: {
         width: "100%",
@@ -652,7 +652,7 @@ const styles = StyleSheet.create({
     },
     multiLine: {
         display: "inline-block",
-        marginBottom: spacing.xSmall_8,
+        marginBlockEnd: spacing.xSmall_8,
         maxWidth: "15%",
     },
     card: {

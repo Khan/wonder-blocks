@@ -38,6 +38,6 @@ export default function ButtonTile(props: CommonTileProps) {
 
 const localStyles = StyleSheet.create({
     button: {
-        marginBottom: spacing.small_12,
+        marginBlockEnd: spacing.small_12,
     },
 });

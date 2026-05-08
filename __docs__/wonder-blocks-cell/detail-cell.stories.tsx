@@ -481,7 +481,7 @@ const styles = StyleSheet.create({
     },
     navigation: {
         border: `${border.width.thin} dashed ${semanticColor.core.border.instructive.default}`,
-        marginTop: spacing.large_24,
+        marginBlockStart: spacing.large_24,
         padding: spacing.large_24,
     },
 });

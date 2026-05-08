@@ -249,7 +249,7 @@ const styles = StyleSheet.create({
     },
     tooltipList: {
         margin: 0,
-        paddingLeft: sizing.size_160,
+        paddingInlineStart: sizing.size_160,
     },
     tooltipWrapper: {
         gap: sizing.size_040,

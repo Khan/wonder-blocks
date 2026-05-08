@@ -330,24 +330,24 @@ const styles = StyleSheet.create({
         flexWrap: "wrap",
     },
     choice: {
-        marginTop: spacing.xSmall_8,
+        marginBlockStart: spacing.xSmall_8,
         width: 200,
     },
     title: {
-        paddingBottom: spacing.xSmall_8,
-        borderBottom: `1px solid ${semanticColor.core.border.neutral.default}`,
+        paddingBlockEnd: spacing.xSmall_8,
+        borderBlockEnd: `1px solid ${semanticColor.core.border.neutral.default}`,
     },
     // Multiple choice styling
     multipleChoice: {
         margin: 0,
         height: 48,
-        borderTop: "solid 1px #CCC",
+        borderBlockStart: "solid 1px #CCC",
         justifyContent: "center",
     },
     description: {
         color: semanticColor.core.foreground.neutral.default,
     },
     last: {
-        borderBottom: "solid 1px #CCC",
+        borderBlockEnd: "solid 1px #CCC",
     },
 });
