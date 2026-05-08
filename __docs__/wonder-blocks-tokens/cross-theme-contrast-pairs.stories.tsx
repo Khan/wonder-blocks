@@ -11,11 +11,13 @@ import {ThemeSwitcher} from "@khanacademy/wonder-blocks-theming";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {
     border,
+    font,
     mix,
     semanticColor,
     sizing,
 } from "@khanacademy/wonder-blocks-tokens";
 
+import {color as thunderblocksPrimitives} from "../../packages/wonder-blocks-tokens/src/theme/semantic/internal/primitive-color-thunderblocks";
 import {flattenNestedTokens} from "../components/tokens-util";
 
 /**
@@ -126,6 +128,29 @@ function formatRatio(ratio: number): string {
     return ratio.toFixed(2).replace(/\.?0+$/, "");
 }
 
+function normalizeColorString(value: string): string {
+    return (value || "").trim().toLowerCase().replace(/\s+/g, "");
+}
+
+/**
+ * Reverse map from a primitive's color value to its primitive name (e.g.
+ * "#ffffff" → "white_100"). Both Thunderblocks and Syl-Dark draw from this
+ * same primitive palette.
+ */
+const PRIMITIVE_BY_VALUE = new Map<string, string>(
+    Object.entries(thunderblocksPrimitives).map(([name, value]) => [
+        normalizeColorString(value),
+        name,
+    ]),
+);
+
+function lookupPrimitiveName(value: string | undefined): string | null {
+    if (!value) {
+        return null;
+    }
+    return PRIMITIVE_BY_VALUE.get(normalizeColorString(value)) ?? null;
+}
+
 const AA_THRESHOLD = 4.5;
 
 type ResolvedTheme = {
@@ -201,59 +226,93 @@ function buildResolvedPairs(theme: ResolvedTheme): Array<ResolvedPair> {
     return pairs;
 }
 
+function TokenRow({
+    kind,
+    tokenName,
+    value,
+}: {
+    kind: "bg" | "fg";
+    tokenName: string;
+    value: string | undefined;
+}) {
+    const trimmed = value?.trim() ?? "";
+    const primitive = lookupPrimitiveName(trimmed);
+    return (
+        <>
+            <BodyText
+                tag="span"
+                size="xsmall"
+                weight="bold"
+                style={styles.tokenCellKind}
+            >
+                {kind}
+            </BodyText>
+            <BodyText tag="span" size="xsmall" style={styles.tokenCellName}>
+                {tokenName}
+            </BodyText>
+            <BodyText tag="span" size="xsmall" style={styles.tokenCellMono}>
+                {primitive ?? "—"}
+            </BodyText>
+            <BodyText tag="span" size="xsmall" style={styles.tokenCellMono}>
+                {trimmed || "—"}
+            </BodyText>
+        </>
+    );
+}
+
 function ThemePreview({
     bgCssVar,
     fgCssVar,
     bgLabel,
     fgLabel,
+    bgValue,
+    fgValue,
     ratio,
-    themeName,
+    highlightFailing = false,
 }: {
     bgCssVar: string;
     fgCssVar: string;
     bgLabel: string;
     fgLabel: string;
+    /** The actual color string the bg CSS var resolves to in this theme. */
+    bgValue: string | undefined;
+    /** The actual color string the fg CSS var resolves to in this theme. */
+    fgValue: string | undefined;
     ratio: number | null;
-    themeName: "thunderblocks" | "syl-dark";
+    /** When true, draws the bright-red outline if the pair fails AA. */
+    highlightFailing?: boolean;
 }) {
     const passes = ratio != null && ratio >= AA_THRESHOLD;
     return (
-        <View style={styles.previewTile}>
-            {/* Only the swatch uses the target theme; the meta footer below
-                stays on the default theme so its labels remain consistent. */}
-            <ThemeSwitcher theme={themeName}>
-                <View
-                    style={[
-                        styles.previewSwatch,
-                        {backgroundColor: bgCssVar, color: fgCssVar},
-                    ]}
-                >
-                    <BodyText
-                        tag="span"
-                        size="medium"
-                        weight="bold"
-                        style={styles.previewSampleHeading}
-                    >
-                        Aa Bb Cc
-                    </BodyText>
-                    <BodyText
-                        tag="span"
-                        size="small"
-                        style={styles.previewSampleBody}
-                    >
-                        The quick brown fox jumps.
-                    </BodyText>
-                </View>
-            </ThemeSwitcher>
-            <View style={styles.previewMeta}>
+        <View
+            style={[
+                styles.previewTile,
+                highlightFailing && !passes && styles.previewTileFailing,
+            ]}
+        >
+            <View
+                style={[
+                    styles.previewSwatch,
+                    {backgroundColor: bgCssVar, color: fgCssVar},
+                ]}
+            >
                 <BodyText
                     tag="span"
-                    size="xsmall"
+                    size="medium"
                     weight="bold"
-                    style={styles.previewMetaTheme}
+                    style={styles.previewSampleHeading}
                 >
-                    {themeName}
+                    Aa Bb Cc
                 </BodyText>
+                <BodyText
+                    tag="span"
+                    size="small"
+                    style={styles.previewSampleBody}
+                >
+                    The quick brown fox jumps.
+                </BodyText>
+            </View>
+            <View style={styles.previewMeta}>
                 <View style={styles.previewMetaRow}>
                     <PhosphorIcon
                         icon={passes ? checkCircleFillIcon : xCircleFillIcon}
@@ -272,20 +331,18 @@ function ThemePreview({
                         · {passes ? "passes AA" : "fails AA"}
                     </BodyText>
                 </View>
-                <BodyText
-                    tag="span"
-                    size="xsmall"
-                    style={styles.previewMetaToken}
-                >
-                    background: core.background.{bgLabel}
-                </BodyText>
-                <BodyText
-                    tag="span"
-                    size="xsmall"
-                    style={styles.previewMetaToken}
-                >
-                    foreground: core.foreground.{fgLabel}
-                </BodyText>
+                <View style={styles.tokenTable}>
+                    <TokenRow
+                        kind="bg"
+                        tokenName={`core.background.${bgLabel}`}
+                        value={bgValue}
+                    />
+                    <TokenRow
+                        kind="fg"
+                        tokenName={`core.foreground.${fgLabel}`}
+                        value={fgValue}
+                    />
+                </View>
             </View>
         </View>
     );
@@ -340,6 +397,16 @@ export const PassingPairsThunderblocks: StoryObj = {
             return map;
         }, [themes, passing]);
 
+        const sdFailingCount = React.useMemo(() => {
+            let n = 0;
+            for (const ratio of sdRatios.values()) {
+                if (ratio == null || ratio < AA_THRESHOLD) {
+                    n++;
+                }
+            }
+            return n;
+        }, [sdRatios]);
+
         return (
             <View style={styles.wrapper}>
                 {/* Hidden helpers used to read each theme's CSS variables. */}
@@ -357,13 +424,22 @@ export const PassingPairsThunderblocks: StoryObj = {
                         Passing AA pairs in thunderblocks
                     </BodyText>
                     {themes ? (
-                        <BodyText size="small">
-                            {passing.length} of{" "}
-                            {backgroundTokens.length * foregroundTokens.length}{" "}
-                            background × foreground combinations meet ≥ 4.5 : 1
-                            in thunderblocks. Each row shows the same pair in
-                            syl-dark for comparison.
-                        </BodyText>
+                        <>
+                            <BodyText size="small">
+                                {passing.length} of{" "}
+                                {backgroundTokens.length *
+                                    foregroundTokens.length}{" "}
+                                background × foreground combinations meet ≥ 4.5
+                                : 1 in thunderblocks. Each row shows the same
+                                pair in syl-dark for comparison.
+                            </BodyText>
+                            <BodyText size="small">
+                                {sdFailingCount} of those {passing.length} pair
+                                {passing.length === 1 ? "" : "s"} fall below 4.5
+                                : 1 (or use a transparent background) in
+                                syl-dark.
+                            </BodyText>
+                        </>
                     ) : (
                         <BodyText size="small">
                             Resolving theme tokens…
@@ -371,61 +447,138 @@ export const PassingPairsThunderblocks: StoryObj = {
                     )}
                 </View>
 
-                <View style={styles.list}>
-                    {passing.map((pair) => {
-                        const sdRatio = sdRatios.get(
-                            `${pair.bgLabel}__${pair.fgLabel}`,
-                        );
-                        const sdRaw = themes?.sd.backgrounds[pair.bgLabel];
-                        const sdTransparent = isTransparentValue(sdRaw);
-                        return (
-                            <View
-                                key={`${pair.bgLabel}__${pair.fgLabel}`}
-                                style={styles.row}
-                            >
+                <View style={styles.split}>
+                    <ThemeSwitcher theme="thunderblocks">
+                        <View style={styles.lightColumn}>
+                            <View style={styles.headerCell}>
+                                <BodyText
+                                    tag="span"
+                                    size="medium"
+                                    weight="bold"
+                                    style={styles.headerText}
+                                >
+                                    Thunderblocks (SYL Light)
+                                </BodyText>
+                            </View>
+                            {passing.map((pair) => (
                                 <ThemePreview
-                                    themeName="thunderblocks"
+                                    key={`${pair.bgLabel}__${pair.fgLabel}`}
                                     bgCssVar={pair.bgCssVar}
                                     fgCssVar={pair.fgCssVar}
                                     bgLabel={pair.bgLabel}
                                     fgLabel={pair.fgLabel}
+                                    bgValue={pair.bgRaw}
+                                    fgValue={pair.fgRaw}
                                     ratio={pair.ratio}
                                 />
-                                {sdTransparent ? (
-                                    <View
-                                        style={[
-                                            styles.previewTile,
-                                            styles.previewTileEmpty,
-                                        ]}
+                            ))}
+                        </View>
+                    </ThemeSwitcher>
+                    <ThemeSwitcher theme="syl-dark">
+                        <View style={styles.darkColumn}>
+                            <View style={styles.darkRow}>
+                                <View style={styles.headerCell}>
+                                    <BodyText
+                                        tag="span"
+                                        size="medium"
+                                        weight="bold"
+                                        style={styles.headerText}
                                     >
-                                        <BodyText
-                                            size="small"
-                                            style={styles.emptyHint}
-                                        >
-                                            background.{pair.bgLabel} is
-                                            transparent in syl-dark; no preview.
-                                        </BodyText>
-                                    </View>
-                                ) : (
-                                    <ThemePreview
-                                        themeName="syl-dark"
-                                        bgCssVar={pair.bgCssVar}
-                                        fgCssVar={pair.fgCssVar}
-                                        bgLabel={pair.bgLabel}
-                                        fgLabel={pair.fgLabel}
-                                        ratio={sdRatio ?? null}
-                                    />
-                                )}
+                                        SYL Dark
+                                    </BodyText>
+                                </View>
+                                <View
+                                    style={[
+                                        styles.headerCell,
+                                        styles.failingSlot,
+                                    ]}
+                                >
+                                    <BodyText
+                                        tag="span"
+                                        size="medium"
+                                        weight="bold"
+                                        style={styles.headerText}
+                                    >
+                                        Combinations in SYL Dark with contrast
+                                        issues
+                                    </BodyText>
+                                </View>
                             </View>
-                        );
-                    })}
+                            {passing.map((pair) => {
+                                const sdRatio = sdRatios.get(
+                                    `${pair.bgLabel}__${pair.fgLabel}`,
+                                );
+                                const sdRaw =
+                                    themes?.sd.backgrounds[pair.bgLabel];
+                                const sdTransparent = isTransparentValue(sdRaw);
+                                const sdFails =
+                                    sdTransparent ||
+                                    sdRatio == null ||
+                                    sdRatio < AA_THRESHOLD;
+                                const renderSyldarkTile = (
+                                    highlightFailing: boolean,
+                                ) =>
+                                    sdTransparent ? (
+                                        <View
+                                            style={[
+                                                styles.previewTile,
+                                                styles.previewTileEmpty,
+                                                highlightFailing &&
+                                                    styles.previewTileFailing,
+                                            ]}
+                                        >
+                                            <BodyText
+                                                size="small"
+                                                style={styles.emptyHint}
+                                            >
+                                                background.{pair.bgLabel} is
+                                                transparent in syl-dark; no
+                                                preview.
+                                            </BodyText>
+                                        </View>
+                                    ) : (
+                                        <ThemePreview
+                                            bgCssVar={pair.bgCssVar}
+                                            fgCssVar={pair.fgCssVar}
+                                            bgLabel={pair.bgLabel}
+                                            fgLabel={pair.fgLabel}
+                                            bgValue={
+                                                themes?.sd.backgrounds[
+                                                    pair.bgLabel
+                                                ]
+                                            }
+                                            fgValue={
+                                                themes?.sd.foregrounds[
+                                                    pair.fgLabel
+                                                ]
+                                            }
+                                            ratio={sdRatio ?? null}
+                                            highlightFailing={highlightFailing}
+                                        />
+                                    );
+                                return (
+                                    <View
+                                        key={`${pair.bgLabel}__${pair.fgLabel}`}
+                                        style={styles.darkRow}
+                                    >
+                                        {renderSyldarkTile(false)}
+                                        <View style={styles.failingSlot}>
+                                            {sdFails
+                                                ? renderSyldarkTile(true)
+                                                : null}
+                                        </View>
+                                    </View>
+                                );
+                            })}
+                        </View>
+                    </ThemeSwitcher>
                 </View>
             </View>
         );
     },
 };
 
-const TILE_INLINE_SIZE = 360;
+const TILE_INLINE_SIZE = 420;
 const SWATCH_BLOCK_SIZE = 120;
 
 const styles = StyleSheet.create({
@@ -445,13 +598,44 @@ const styles = StyleSheet.create({
         gap: sizing.size_080,
         maxInlineSize: 720,
     },
-    list: {
+    split: {
+        flexDirection: "row",
+        alignItems: "flex-start",
         gap: sizing.size_160,
     },
-    row: {
-        flexDirection: "row",
+    lightColumn: {
         gap: sizing.size_160,
-        flexWrap: "wrap",
+        // Mirror the dark column's padding so the headers and rows in both
+        // columns line up horizontally.
+        padding: sizing.size_160,
+    },
+    darkColumn: {
+        gap: sizing.size_160,
+        padding: sizing.size_160,
+        borderRadius: border.radius.radius_080,
+        // Resolves to syl-dark's page background since this column is wrapped
+        // in <ThemeSwitcher theme="syl-dark">.
+        backgroundColor: semanticColor.core.background.base.default,
+    },
+    darkRow: {
+        flexDirection: "row",
+        alignItems: "stretch",
+        gap: sizing.size_160,
+    },
+    failingSlot: {
+        inlineSize: TILE_INLINE_SIZE,
+        flexShrink: 0,
+    },
+    headerCell: {
+        inlineSize: TILE_INLINE_SIZE,
+        flexShrink: 0,
+        paddingBlockEnd: sizing.size_080,
+    },
+    headerText: {
+        // Resolves to the surrounding theme's strongest neutral foreground —
+        // dark text on the light Thunderblocks header, light text on the
+        // syl-dark lane header.
+        color: semanticColor.core.foreground.neutral.strong,
     },
     previewTile: {
         boxSizing: "border-box",
@@ -466,6 +650,11 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         padding: sizing.size_160,
         minBlockSize: SWATCH_BLOCK_SIZE,
+    },
+    previewTileFailing: {
+        // Outline (not border) so the layout doesn't shift, drawing a bright
+        // ring around any tile that doesn't meet AA in its theme.
+        outline: `${border.width.thick} solid ${semanticColor.core.border.critical.strong}`,
     },
     emptyHint: {
         color: semanticColor.core.foreground.neutral.subtle,
@@ -490,17 +679,36 @@ const styles = StyleSheet.create({
         borderBlockStart: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
         backgroundColor: semanticColor.core.background.base.default,
     },
-    previewMetaTheme: {
-        textTransform: "uppercase",
-        letterSpacing: "0.04em",
-        color: semanticColor.core.foreground.neutral.default,
-    },
     previewMetaRow: {
         flexDirection: "row",
         alignItems: "center",
         gap: sizing.size_080,
     },
-    previewMetaToken: {
+    tokenTable: {
+        display: "grid",
+        // The token-name column uses minmax(0, 1fr) so it shrinks (and
+        // ellipsizes) instead of overflowing past the meta's right padding
+        // when the path is long.
+        gridTemplateColumns: "auto minmax(0, 1fr) auto auto",
+        columnGap: sizing.size_120,
+        rowGap: sizing.size_040,
+        alignItems: "baseline",
+    },
+    tokenCellKind: {
         color: semanticColor.core.foreground.neutral.subtle,
+        textTransform: "uppercase",
+        letterSpacing: "0.04em",
+    },
+    tokenCellName: {
+        color: semanticColor.core.foreground.neutral.strong,
+        minInlineSize: 0,
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap",
+    },
+    tokenCellMono: {
+        fontFamily: font.family.mono,
+        color: semanticColor.core.foreground.neutral.default,
+        whiteSpace: "nowrap",
     },
 });
