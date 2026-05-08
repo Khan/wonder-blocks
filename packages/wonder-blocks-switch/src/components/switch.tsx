@@ -108,7 +108,7 @@ const sharedStyles = StyleSheet.create({
     slider: {
         position: "absolute",
         top: theme.slider.position.top,
-        left: theme.slider.position.left,
+        insetInlineStart: theme.slider.position.left,
         height: theme.slider.sizing.height,
         width: theme.slider.sizing.width,
         borderRadius: theme.root.border.radius.default,
@@ -118,7 +118,7 @@ const sharedStyles = StyleSheet.create({
     icon: {
         position: "absolute",
         top: theme.icon.position.top,
-        left: theme.icon.position.left,
+        insetInlineStart: theme.icon.position.left,
         zIndex: 1,
         transition: theme.icon.transform.transition,
     },

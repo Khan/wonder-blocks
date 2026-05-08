@@ -170,7 +170,7 @@ export default ModalBackdrop;
 const styles = StyleSheet.create({
     modalPositioner: {
         position: "fixed",
-        left: 0,
+        insetInlineStart: 0,
         top: 0,
 
         width: "100%",

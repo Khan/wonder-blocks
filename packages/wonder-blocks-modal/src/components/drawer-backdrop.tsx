@@ -196,7 +196,7 @@ const keyframes = {
 const styles = StyleSheet.create({
     drawerPositioner: {
         position: "fixed",
-        left: 0,
+        insetInlineStart: 0,
         top: 0,
         width: "100%",
         height: "100%",

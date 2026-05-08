@@ -163,15 +163,15 @@ const styles = StyleSheet.create({
         // necessary here to stop a custom header from overflowing out of
         // it container when its content is too long (See AccordionSection's
         // "React Element in Header" story).
-        minWidth: 0,
-        marginTop: 0,
+        minInlineSize: 0,
+        marginBlockStart: 0,
     },
     headerWrapper: {
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
         overflow: "hidden",
-        minWidth: "auto",
+        minInlineSize: "auto",
         width: "100%",
         // Always make the header's outline show up in front of
         // the content panel.
@@ -213,8 +213,8 @@ const styles = StyleSheet.create({
         textAlign: "start",
     },
     headerString: {
-        paddingTop: spacing.medium_16,
-        paddingBottom: spacing.medium_16,
+        paddingBlockStart: spacing.medium_16,
+        paddingBlockEnd: spacing.medium_16,
     },
     headerStringCaretEnd: {
         paddingInlineEnd: spacing.small_12,

@@ -157,7 +157,7 @@ const defaultStyles = StyleSheet.create({
     },
     input: {
         [screenSizes.small]: {
-            minWidth: "100%",
+            minInlineSize: "100%",
         },
     },
 });

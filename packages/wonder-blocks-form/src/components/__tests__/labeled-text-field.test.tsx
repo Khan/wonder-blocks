@@ -400,7 +400,7 @@ describe("LabeledTextField", () => {
         // Arrange
         const styles = StyleSheet.create({
             style1: {
-                minWidth: 250,
+                minInlineSize: 250,
                 background: "blue",
             },
         });
@@ -417,7 +417,7 @@ describe("LabeledTextField", () => {
 
         // Assert
         const fieldHeading = container.childNodes[0];
-        expect(fieldHeading).toHaveStyle("min-width: 250px");
+        expect(fieldHeading).toHaveStyle("min-inline-size: 250px");
     });
 
     it("testId prop is passed to textfield", async () => {

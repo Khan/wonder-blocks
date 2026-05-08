@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
             // align to the bottom of the cell
             bottom: 0,
             // align border to the right of the cell
-            right: 0,
+            insetInlineEnd: 0,
             height: theme.rule.sizing.height,
             boxShadow: theme.rule.shadow,
         },

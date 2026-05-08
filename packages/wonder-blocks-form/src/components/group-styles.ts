@@ -22,17 +22,17 @@ const styles: StyleDeclaration = StyleSheet.create({
     },
 
     description: {
-        marginTop: spacing.xxxSmall_4,
+        marginBlockStart: spacing.xxxSmall_4,
         color: theme.description.color.foreground,
     },
 
     error: {
-        marginTop: spacing.xxxSmall_4,
+        marginBlockStart: spacing.xxxSmall_4,
         color: semanticColor.status.critical.foreground,
     },
 
     defaultLineGap: {
-        marginTop: spacing.xSmall_8,
+        marginBlockStart: spacing.xSmall_8,
     },
 });
 

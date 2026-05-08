@@ -262,21 +262,21 @@ const styles = StyleSheet.create({
         height: 40,
     },
     searchIcon: {
-        marginLeft: spacing.xSmall_8,
-        marginRight: spacing.xSmall_8,
+        marginInlineStart: spacing.xSmall_8,
+        marginInlineEnd: spacing.xSmall_8,
         position: "absolute",
     },
     dismissIcon: {
         margin: 0,
         position: "absolute",
-        right: spacing.xxxSmall_4,
+        insetInlineEnd: spacing.xxxSmall_4,
     },
     inputStyleReset: {
         display: "flex",
         flex: 1,
         width: "100%",
-        paddingLeft: spacing.xLarge_32,
-        paddingRight: spacing.large_24 + spacing.medium_16,
+        paddingInlineStart: spacing.xLarge_32,
+        paddingInlineEnd: spacing.large_24 + spacing.medium_16,
     },
 });
 

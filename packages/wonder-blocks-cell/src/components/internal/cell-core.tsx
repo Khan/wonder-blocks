@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
         background: semanticColor.core.background.base.default,
         borderRadius: theme.root.border.radius.default,
         color: semanticColor.core.foreground.neutral.strong,
-        minHeight: theme.root.sizing.minHeight,
+        minBlockSize: theme.root.sizing.minHeight,
         // Hide overflow so that if custom styling applies a border radius, the
         // left visual indicator for press/active states does not overflow
         overflow: "hidden",
@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
 
     accessory: {
         // Use content width by default.
-        minWidth: "auto",
+        minInlineSize: "auto",
         // Horizontal alignment of the accessory.
         alignItems: "center",
         // Vertical alignment.
@@ -323,7 +323,7 @@ const styles = StyleSheet.create({
                 content: "''",
                 position: "absolute",
                 top: 0,
-                left: 0,
+                insetInlineStart: 0,
                 bottom: 0,
                 width: theme.root.border.width.default,
                 // We use the border token as this element acts like a border
@@ -343,7 +343,7 @@ const styles = StyleSheet.create({
             content: "''",
             position: "absolute",
             top: 0,
-            left: 0,
+            insetInlineStart: 0,
             bottom: 0,
             width: theme.root.border.width.selected,
             backgroundColor: theme.root.color.selected.border,

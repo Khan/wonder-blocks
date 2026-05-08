@@ -188,8 +188,8 @@ const styles = StyleSheet.create({
     },
     description: {
         // 16 for icon + 8 for spacing strut
-        marginLeft: spacing.medium_16 + spacing.xSmall_8,
-        marginTop: spacing.xxxSmall_4,
+        marginInlineStart: spacing.medium_16 + spacing.xSmall_8,
+        marginBlockStart: spacing.xxxSmall_4,
         color: theme.description.color.foreground,
     },
 });

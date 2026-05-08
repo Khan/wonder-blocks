@@ -1116,7 +1116,7 @@ const styles = StyleSheet.create({
         marginBlockStart: sizing.size_040,
         // Set `minHeight` to "auto" to stop the search field from having
         // a height of 0 and being cut off.
-        minHeight: "auto",
+        minBlockSize: "auto",
         position: "sticky",
     },
 

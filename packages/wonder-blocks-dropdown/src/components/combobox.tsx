@@ -746,7 +746,7 @@ const styles = StyleSheet.create({
         border: "none",
         outline: "none",
         padding: 0,
-        minWidth: sizing.size_040,
+        minInlineSize: sizing.size_040,
         width: "auto",
         display: "inline-grid",
         gridArea: "1 / 2",

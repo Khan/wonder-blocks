@@ -156,8 +156,8 @@ const styles = StyleSheet.create({
     icon: {
         // Use minWidth and minHeight to ensure custom sized icons don't
         // overflow the badge
-        minWidth: badgeTokens.icon.sizing.width,
-        minHeight: badgeTokens.icon.sizing.height,
+        minInlineSize: badgeTokens.icon.sizing.width,
+        minBlockSize: badgeTokens.icon.sizing.height,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
