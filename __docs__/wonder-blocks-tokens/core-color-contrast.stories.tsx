@@ -38,7 +38,7 @@ export default {
     parameters: {
         chromatic: {},
     },
-    tags: ["!manifest"],
+    tags: ["!manifest", "!autodocs"],
 } as Meta;
 
 // ---------------------------------------------------------------------------
@@ -625,7 +625,7 @@ export const ForegroundOnBackground: StoryObj = {
     },
 };
 
-export const SylLightForegroundOnBackground = {
+export const ThunderblocksForegroundOnBackground = {
     ...ForegroundOnBackground,
     globals: {
         theme: "thunderblocks",
