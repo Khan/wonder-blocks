@@ -1,4 +1,6 @@
 export default {
     plugins: ["@khanacademy/wonder-blocks"],
-    rules: {},
+    rules: {
+        "@khanacademy/wonder-blocks/no-invalid-bodytext-children": "error",
+    },
 };

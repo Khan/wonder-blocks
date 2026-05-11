@@ -3,7 +3,7 @@ import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {font as defaultFont} from "../../primitive/font";
 
 export const fontFamily = {
-    sans: "Plus Jakarta Sans, serif",
+    sans: 'Plus Jakarta Sans, "Noto Sans", sans-serif',
 };
 
 export const fontWeight = {
