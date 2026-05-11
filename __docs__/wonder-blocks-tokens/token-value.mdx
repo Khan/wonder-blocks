@@ -80,10 +80,10 @@ const instructiveInScope = tokenValue(
 
 ## Overriding the `element` argument
 
-The `element` argument is optional and defaults to the nearest `[data-wb-theme]`
-element in the current document, falling back to `document.body`. Pass a
-descendant of a `[data-wb-theme]` element to resolve the value for that theme
-scope.
+The `element` argument is optional and defaults to the first `[data-wb-theme]`
+element in the current document, falling back to `document.documentElement`.
+Pass a descendant of a `[data-wb-theme]` element to resolve the value for that
+theme scope.
 
 <Canvas of={TokenValueElementOverride} />
 
