@@ -71,4 +71,6 @@ The following shows what rules are enabled in each config:
 | Rule | Enabled in `recommended`| Enabled in `strict` |
 |------|-------------------------|---------------------|
 | [`no-custom-tab-role`](docs/no-custom-tab-role.md)| |✅|
+| [`no-excessive-bodytext-children`](docs/no-excessive-bodytext-children.md)| |✅|
+| [`no-invalid-bodytext-children`](docs/no-invalid-bodytext-children.md)|✅|✅|
 | [`no-invalid-bodytext-parent`](docs/no-invalid-bodytext-parent.md)| |✅|
