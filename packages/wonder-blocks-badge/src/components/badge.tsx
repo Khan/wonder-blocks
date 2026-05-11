@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
     },
     label: {
         // Truncate the label after ~30 characters
-        maxWidth: "30ch",
+        maxInlineSize: "30ch",
         overflow: "hidden",
         textOverflow: "ellipsis",
         whiteSpace: "nowrap",
@@ -156,8 +156,8 @@ const styles = StyleSheet.create({
     icon: {
         // Use minWidth and minHeight to ensure custom sized icons don't
         // overflow the badge
-        minWidth: badgeTokens.icon.sizing.width,
-        minHeight: badgeTokens.icon.sizing.height,
+        minInlineSize: badgeTokens.icon.sizing.width,
+        minBlockSize: badgeTokens.icon.sizing.height,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",

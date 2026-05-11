@@ -43,8 +43,8 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         height: sizing.size_160,
         // Semantically, this are the constants for a small-sized icon
-        minHeight: sizing.size_160,
-        minWidth: sizing.size_160,
+        minBlockSize: sizing.size_160,
+        minInlineSize: sizing.size_160,
     },
 
     hide: {

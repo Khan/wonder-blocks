@@ -23,8 +23,8 @@ const styles = StyleSheet.create({
     header: {
         // User agent stylesheets add vertical margins to header tags by
         // default. We prefer to be more deliberate in our spacing instead.
-        marginTop: 0,
-        marginBottom: 0,
+        marginBlockStart: 0,
+        marginBlockEnd: 0,
     },
 });
 

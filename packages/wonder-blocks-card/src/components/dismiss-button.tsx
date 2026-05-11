@@ -40,7 +40,7 @@ const componentStyles = StyleSheet.create({
         position: "absolute",
         // insetInlineEnd supports both RTL and LTR layouts
         insetInlineEnd: sizing.size_080,
-        top: sizing.size_080,
+        insetBlockStart: sizing.size_080,
         // This is to allow the button to be tab-ordered before the component
         // content but still be above the content.
         zIndex: 1,
