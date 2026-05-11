@@ -57,14 +57,8 @@ StyleSheet.create({
 | `maxHeight` / `minHeight` | `maxBlockSize` / `minBlockSize` |
 | `borderLeft` / `borderRight` | `borderInlineStart` / `borderInlineEnd` |
 | `borderTop` / `borderBottom` | `borderBlockStart` / `borderBlockEnd` |
-| `borderTopLeftRadius` | `borderStartStartRadius` |
-| `borderTopRightRadius` | `borderStartEndRadius` |
-| `borderBottomLeftRadius` | `borderEndStartRadius` |
-| `borderBottomRightRadius` | `borderEndEndRadius` |
-| `borderLeftWidth/Color/Style` | `borderInlineStartWidth/Color/Style` |
-| `borderRightWidth/Color/Style` | `borderInlineEndWidth/Color/Style` |
-| `borderTopWidth/Color/Style` | `borderBlockStartWidth/Color/Style` |
-| `borderBottomWidth/Color/Style` | `borderBlockEndWidth/Color/Style` |
+| `border{Top,Bottom}{Left,Right}Radius` (all 4 corners) | `border{Start,End}{Start,End}Radius` |
+| `border{Left,Right,Top,Bottom}{Width,Color,Style}` (all 4 sides × 3 sub-props) | `border{InlineStart,InlineEnd,BlockStart,BlockEnd}{Width,Color,Style}` |
 | `scrollMarginLeft/Right/Top/Bottom` | `scrollMargin{Inline,Block}{Start,End}` |
 | `scrollPaddingLeft/Right/Top/Bottom` | `scrollPadding{Inline,Block}{Start,End}` |
 | `textAlign: "left"` / `"right"` | `textAlign: "start"` / `"end"` (value swap) |
@@ -104,7 +98,3 @@ Some CSS values are directional but have no straightforward logical replacement.
 ```
 
 All options are booleans. Property-name and `textAlign` fixes always run regardless of options; the options only gate the value-based warnings listed above.
-
-## When not to use
-
-This rule is enabled in the recommended config. Disable per-line with `// eslint-disable-next-line @khanacademy/wonder-blocks/require-logical-properties-for-rtl` when a physical property is genuinely intentional (rare).
