@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 16.3.0
+
+### Minor Changes
+
+- 40f217b: Add Noto as fallback font for Thunderblocks in tokens.fontFamily
+
 ## 16.2.0
 
 ### Minor Changes

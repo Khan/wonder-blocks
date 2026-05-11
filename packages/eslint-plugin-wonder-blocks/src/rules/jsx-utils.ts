@@ -100,6 +100,46 @@ export const WB_HEADING_COMPONENTS = new Set([
 ]);
 
 /**
+ * HTML elements that are block-level and therefore cannot appear inside a <p>.
+ * Excludes <div> and <p> which have their own dedicated message IDs in the
+ * no-invalid-bodytext-children rule.
+ * https://html.spec.whatwg.org/#phrasing-content
+ */
+export const HTML_BLOCK_ELEMENTS = new Set([
+    "address",
+    "article",
+    "aside",
+    "blockquote",
+    "dd",
+    "details",
+    "dl",
+    "dt",
+    "fieldset",
+    "figcaption",
+    "figure",
+    "footer",
+    "form",
+    "h1",
+    "h2",
+    "h3",
+    "h4",
+    "h5",
+    "h6",
+    "header",
+    "hgroup",
+    "hr",
+    "li",
+    "main",
+    "nav",
+    "ol",
+    "pre",
+    "section",
+    "summary",
+    "table",
+    "ul",
+]);
+
+/**
  * Returns the string value of a JSX attribute if it is a simple string
  * literal, otherwise null. Returns null for dynamic expressions.
  */
@@ -130,4 +170,26 @@ export function getAttributeStringValue(
     }
 
     return null;
+}
+
+/**
+ * Returns true when a BodyText opening element has no tag prop or tag="p",
+ * meaning it will render as a <p> element.
+ *
+ * Block-container tags (div, section, …) and inline tags (span, …) both
+ * return false — only the default and explicit tag="p" cases return true.
+ *
+ * Dynamic tag expressions (e.g. tag={getTag()}) cannot be statically resolved,
+ * so they are treated conservatively as paragraph-rendering. This may produce
+ * false positives for dynamic tags that resolve to block-container values at
+ * runtime, but avoids silently missing invalid nesting.
+ *
+ * This function only reasons about the tag prop. It cannot determine the
+ * rendered element for arbitrary unknown components.
+ */
+export function bodyTextRendersAsParagraph(
+    openingElement: TSESTree.JSXOpeningElement,
+): boolean {
+    const tag = getAttributeStringValue(openingElement, "tag");
+    return tag === null || tag === "p";
 }

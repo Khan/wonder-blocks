@@ -1,5 +1,22 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 4.1.45
+
+### Patch Changes
+
+- Updated dependencies [40f217b]
+    - @khanacademy/wonder-blocks-tokens@16.3.0
+    - @khanacademy/wonder-blocks-dropdown@10.8.7
+    - @khanacademy/wonder-blocks-icon@5.3.11
+    - @khanacademy/wonder-blocks-layout@3.1.48
+    - @khanacademy/wonder-blocks-typography@4.3.1
+
+## 4.1.44
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-dropdown@10.8.6
+
 ## 4.1.43
 
 ### Patch Changes

@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import type {
     API,
     ASTPath,
@@ -80,11 +81,29 @@ function transform(file: FileInfo, api: API, options: Options) {
     const effectiveSizingBinding = sizingBinding ?? "sizing";
 
     const handledSpacingPaths = new WeakSet<object>();
+    // Spacing MemberExpressions inside a BinaryExpression we couldn't safely
+    // flatten. They stay in the source untouched: simple-member rewrite skips
+    // them so we don't silently turn numeric arithmetic into string concat,
+    // and the unhandled-pass still flags the surviving identifier with a TODO.
+    const bailedSpacingPaths = new WeakSet<object>();
 
     if (spacingBinding) {
+        // Try to lift `<Strut size={spacing.X}/>` siblings into a CSS `gap`
+        // on the parent `<View>`. When the layout is simple enough, this
+        // removes the deprecated Strut entirely; otherwise the Struts stay
+        // in place and the existing per-attribute bail-and-flag path runs.
+        sizingUsed =
+            convertStrutsToGap(
+                j,
+                root,
+                spacingBinding,
+                effectiveSizingBinding,
+            ) || sizingUsed;
+
         sizingUsed =
             rewriteArithmetic(j, root, spacingBinding, effectiveSizingBinding, {
                 handledSpacingPaths,
+                bailedSpacingPaths,
             }) || sizingUsed;
 
         sizingUsed =
@@ -93,7 +112,7 @@ function transform(file: FileInfo, api: API, options: Options) {
                 root,
                 spacingBinding,
                 effectiveSizingBinding,
-                {handledSpacingPaths},
+                {handledSpacingPaths, bailedSpacingPaths},
             ) || sizingUsed;
 
         flagUnhandledSpacingUsage(j, root, spacingBinding, {
@@ -168,6 +187,211 @@ function collectBindings(
 }
 
 /**
+ * Convert `<View>...<Strut size={spacing.X}/>...<View>` patterns into a
+ * `<View style={{gap: sizing.X}}>...</View>` and drop the Struts.
+ *
+ * Only fires when the layout is simple enough that `gap` is faithful to the
+ * original spacing:
+ *   - parent JSX local name is `View`
+ *   - every direct `<Strut>` child has `size={spacing.<key>}` for a mappable key
+ *   - all Strut sizes share the same key
+ *   - Struts sit strictly between non-Strut siblings (no leading, trailing, or
+ *     adjacent Struts)
+ *   - at least 2 non-Strut meaningful children
+ *   - parent's `style` is absent, or a plain `{{...}}` object literal without
+ *     an existing `gap` property
+ *
+ * Anything that doesn't qualify is left for the existing
+ * `isInsideStrutOpeningElement` bail in `rewriteArithmetic` /
+ * `rewriteSimpleMemberAccess`, which adds a TODO comment for manual review.
+ */
+function convertStrutsToGap(
+    j: JSCodeshift,
+    root: Collection<any>,
+    spacingBinding: string,
+    sizingBinding: string,
+): boolean {
+    let touched = false;
+
+    root.find(j.JSXElement).forEach((path) => {
+        const view = path.value;
+        const opening = view.openingElement;
+        if (
+            opening.name?.type !== "JSXIdentifier" ||
+            opening.name.name !== "View"
+        ) {
+            return;
+        }
+
+        const analysis = analyzeStrutChildren(view, spacingBinding);
+        if (!analysis) {
+            return;
+        }
+
+        const {strutNodes, spacingKey, styleObj} = analysis;
+        const sizingKey = SPACING_TO_SIZING[spacingKey];
+        if (!sizingKey) {
+            return;
+        }
+
+        const gapProp = j.objectProperty(
+            j.identifier("gap"),
+            j.memberExpression(
+                j.identifier(sizingBinding),
+                j.identifier(sizingKey),
+            ),
+        );
+        gapProp.shorthand = false;
+
+        if (styleObj) {
+            styleObj.properties = [...(styleObj.properties ?? []), gapProp];
+        } else {
+            const newStyleAttr = j.jsxAttribute(
+                j.jsxIdentifier("style"),
+                j.jsxExpressionContainer(j.objectExpression([gapProp])),
+            );
+            opening.attributes = [...(opening.attributes ?? []), newStyleAttr];
+        }
+
+        const strutSet = new Set(strutNodes);
+        const childrenArr: Array<any> = view.children ?? [];
+        // Drop each Strut and its trailing whitespace JSXText so we don't
+        // leave the blank line that the original `<Strut>` formatting
+        // produced. Leading whitespace stays so the prior sibling keeps its
+        // line break.
+        const skip = new Set<number>();
+        for (let i = 0; i < childrenArr.length; i++) {
+            if (!strutSet.has(childrenArr[i])) {
+                continue;
+            }
+            skip.add(i);
+            const next = childrenArr[i + 1];
+            if (next && next.type === "JSXText" && next.value.trim() === "") {
+                skip.add(i + 1);
+            }
+        }
+        view.children = childrenArr.filter((_, i) => !skip.has(i));
+
+        touched = true;
+    });
+
+    return touched;
+}
+
+type StrutAnalysis = {
+    strutNodes: Array<any>;
+    spacingKey: string;
+    styleObj: any | null;
+};
+
+function analyzeStrutChildren(
+    viewNode: any,
+    spacingBinding: string,
+): StrutAnalysis | null {
+    const children = viewNode.children ?? [];
+    const isStrutNode = (c: any): boolean =>
+        c?.type === "JSXElement" &&
+        c.openingElement?.name?.type === "JSXIdentifier" &&
+        c.openingElement.name.name === "Strut";
+
+    const meaningful = children.filter((c: any) => {
+        if (c.type === "JSXText") {
+            return c.value.trim() !== "";
+        }
+        // JSXExpressionContainer with whitespace-only comment is rare; treat
+        // every non-text child as meaningful.
+        return true;
+    });
+
+    const strutNodes = meaningful.filter(isStrutNode);
+    if (strutNodes.length === 0) {
+        return null;
+    }
+
+    if (
+        isStrutNode(meaningful[0]) ||
+        isStrutNode(meaningful[meaningful.length - 1])
+    ) {
+        return null;
+    }
+    let prevWasStrut = false;
+    for (const c of meaningful) {
+        const cur = isStrutNode(c);
+        if (cur && prevWasStrut) {
+            return null;
+        }
+        prevWasStrut = cur;
+    }
+    if (meaningful.length - strutNodes.length < 2) {
+        return null;
+    }
+
+    let spacingKey: string | null = null;
+    for (const strut of strutNodes) {
+        const sizeExpr = getStrutSizeExpression(strut);
+        if (!sizeExpr || !isSpacingMember(sizeExpr, spacingBinding)) {
+            return null;
+        }
+        const key = sizeExpr.property.name as string;
+        if (spacingKey !== null && spacingKey !== key) {
+            return null;
+        }
+        spacingKey = key;
+    }
+    if (!spacingKey) {
+        return null;
+    }
+
+    const styleAttr = (viewNode.openingElement.attributes ?? []).find(
+        (a: any) =>
+            a.type === "JSXAttribute" &&
+            a.name?.type === "JSXIdentifier" &&
+            a.name.name === "style",
+    );
+    let styleObj: any | null = null;
+    if (styleAttr) {
+        if (
+            styleAttr.value?.type !== "JSXExpressionContainer" ||
+            styleAttr.value.expression?.type !== "ObjectExpression"
+        ) {
+            return null;
+        }
+        styleObj = styleAttr.value.expression;
+        const hasGap = (styleObj.properties ?? []).some((p: any) => {
+            if (p.type !== "Property" && p.type !== "ObjectProperty") {
+                return false;
+            }
+            if (p.computed) {
+                return false;
+            }
+            return (
+                (p.key?.type === "Identifier" && p.key.name === "gap") ||
+                (p.key?.type === "Literal" && p.key.value === "gap") ||
+                (p.key?.type === "StringLiteral" && p.key.value === "gap")
+            );
+        });
+        if (hasGap) {
+            return null;
+        }
+    }
+
+    return {strutNodes, spacingKey, styleObj};
+}
+
+function getStrutSizeExpression(strutNode: any): any | null {
+    const sizeAttr = (strutNode.openingElement.attributes ?? []).find(
+        (a: any) =>
+            a.type === "JSXAttribute" &&
+            a.name?.type === "JSXIdentifier" &&
+            a.name.name === "size",
+    );
+    if (!sizeAttr || sizeAttr.value?.type !== "JSXExpressionContainer") {
+        return null;
+    }
+    return sizeAttr.value.expression;
+}
+
+/**
  * Find each top-level arithmetic `BinaryExpression` that contains a
  * `<spacingBinding>.<key>` reference and rewrite it to a `calc(...)` template
  * literal composed of `sizing` tokens. Supports `+`, `-`, `*`, `/`. Numeric
@@ -181,7 +405,10 @@ function rewriteArithmetic(
     root: Collection<any>,
     spacingBinding: string,
     sizingBinding: string,
-    ctx: {handledSpacingPaths: WeakSet<object>},
+    ctx: {
+        handledSpacingPaths: WeakSet<object>;
+        bailedSpacingPaths: WeakSet<object>;
+    },
 ): boolean {
     let touched = false;
 
@@ -197,29 +424,60 @@ function rewriteArithmetic(
             return;
         }
 
+        // If the outermost BinaryExpression sits inside a `UnaryExpression -`
+        // (e.g. `marginLeft: -(spacing.medium_16 + 2)`), the unary is the real
+        // outer node we need to replace. A plain rewrite of the inner binary
+        // alone would leave the unary minus in front of a template literal
+        // string at runtime — `-"calc(...)"` evaluates to NaN.
+        const parent = path.parent;
+        const isNegated =
+            parent?.value?.type === "UnaryExpression" &&
+            parent.value.operator === "-" &&
+            parent.value.argument === path.value;
+        const outerPath = isNegated ? parent : path;
+
         // Bail if this arithmetic sits inside a TemplateLiteral expression
         // slot. Producing a nested template literal there would yield invalid
         // CSS (e.g. `calc(100% + ${`calc(${sizing.X} * 2)`}px)`). Leave the
         // inner spacing references alone — `rewriteSimpleMemberAccess` checks
         // for the same pattern and skips them, and the unhandled-pass adds a
         // TODO comment.
-        if (isInsideTemplateLiteralExpression(path)) {
+        if (isInsideTemplateLiteralExpression(outerPath)) {
+            return;
+        }
+
+        // `Strut` takes a numeric `size` prop. Rewriting to `calc(...)`
+        // would yield a string and break the component. Leave the spacing
+        // references alone and let the unhandled-pass flag them with a TODO.
+        if (isInsideStrutOpeningElement(outerPath)) {
+            recordSpacingPaths(j, path, spacingBinding, ctx.bailedSpacingPaths);
             return;
         }
 
         const parts = flattenBinary(j, path.value, spacingBinding, null);
         if (!parts) {
+            // Couldn't safely flatten — an operand is something we can't lift
+            // into calc() (Identifier, CallExpression, string literal, etc.).
+            // Mark every spacing reference inside this BinaryExpression as
+            // bailed so `rewriteSimpleMemberAccess` doesn't blindly rewrite
+            // them: `sizing.X` is a rem-string at runtime (e.g. "1.6rem"),
+            // and replacing `spacing.X` would silently turn numeric addition
+            // into string concatenation. Leaving the source unchanged means
+            // the surviving `spacing` identifier is still in the AST, so
+            // `flagUnhandledSpacingUsage` will add a TODO comment and the
+            // `spacing` import stays.
+            recordSpacingPaths(j, path, spacingBinding, ctx.bailedSpacingPaths);
             return;
         }
 
-        const template = buildCalcTemplate(j, parts, sizingBinding);
-        recordHandledSpacingPaths(
-            j,
-            path,
-            spacingBinding,
-            ctx.handledSpacingPaths,
-        );
-        j(path).replaceWith(template);
+        let template = buildCalcTemplate(j, parts, sizingBinding);
+        if (isNegated) {
+            // Wrap `calc(...)` as `calc(-1 * (...))` so the negative-length
+            // CSS value comes out valid for `var()`-backed sizing tokens too.
+            template = wrapTemplateInNegatedCalc(j, template);
+        }
+        recordSpacingPaths(j, path, spacingBinding, ctx.handledSpacingPaths);
+        j(outerPath).replaceWith(template);
         touched = true;
     });
 
@@ -235,12 +493,18 @@ function rewriteSimpleMemberAccess(
     root: Collection<any>,
     spacingBinding: string,
     sizingBinding: string,
-    ctx: {handledSpacingPaths: WeakSet<object>},
+    ctx: {
+        handledSpacingPaths: WeakSet<object>;
+        bailedSpacingPaths: WeakSet<object>;
+    },
 ): boolean {
     let touched = false;
 
     root.find(j.MemberExpression).forEach((path) => {
-        if (ctx.handledSpacingPaths.has(path.value)) {
+        if (
+            ctx.handledSpacingPaths.has(path.value) ||
+            ctx.bailedSpacingPaths.has(path.value)
+        ) {
             return;
         }
         if (!isSpacingMember(path.value, spacingBinding)) {
@@ -250,6 +514,15 @@ function rewriteSimpleMemberAccess(
         const key = (path.value.property as any).name as string;
         const sizingKey = SPACING_TO_SIZING[key];
         if (!sizingKey) {
+            return;
+        }
+
+        // `Strut` requires a numeric `size` prop. `sizing.X` is a rem-string
+        // (or `var(...)`) at runtime, so rewriting `<Strut size={spacing.X}/>`
+        // would break the component. Leave the spacing reference alone and
+        // let the unhandled-pass flag it with a TODO.
+        if (isInsideStrutOpeningElement(path)) {
+            ctx.bailedSpacingPaths.add(path.value);
             return;
         }
 
@@ -545,6 +818,33 @@ function isUnsafeTemplateLiteralContext(path: ASTPath<any>): boolean {
     return false;
 }
 
+/**
+ * True when `path` sits inside the opening element of a `<Strut>` JSX
+ * element (i.e. as part of one of its attribute expressions). `Strut` is a
+ * deprecated layout component whose `size` prop must be a number, so any
+ * rewrite to `sizing.*` (a CSS string) or to a `calc(...)` template would
+ * break it.
+ *
+ * This intentionally matches by JSX local name only — aliasing the import
+ * (`import {Strut as Spacer}`) is rare enough to ignore; the unhandled-pass
+ * will still be conservative for such cases via the existing TODO emission.
+ */
+function isInsideStrutOpeningElement(path: ASTPath<any>): boolean {
+    let current: ASTPath<any> | null = path.parent ?? null;
+    while (current) {
+        const value = current.value;
+        if (
+            value?.type === "JSXOpeningElement" &&
+            value.name?.type === "JSXIdentifier" &&
+            value.name.name === "Strut"
+        ) {
+            return true;
+        }
+        current = current.parent ?? null;
+    }
+    return false;
+}
+
 function isSpacingMember(node: any, spacingBinding: string): boolean {
     return (
         node?.type === "MemberExpression" &&
@@ -581,25 +881,55 @@ type CalcPart =
  * used to build a `calc(...)` template literal. Returns null if the expression
  * contains anything that isn't safe to mechanically lift into `calc()` — in
  * which case the caller should leave the source alone.
+ *
+ * `parent` carries the operator and side of the immediate parent operation so
+ * that (a) numeric leaves know whether to add `px` and (b) child binaries can
+ * be re-parenthesized when CSS's left-to-right evaluation would otherwise
+ * differ from the original JS grouping.
  */
 function flattenBinary(
     j: JSCodeshift,
     node: any,
     spacingBinding: string,
-    parentOp: string | null,
+    parent: {op: string; side: "left" | "right"} | null,
 ): Array<CalcPart> | null {
     if (node.type === "BinaryExpression") {
         const op = node.operator;
         if (!["+", "-", "*", "/"].includes(op)) {
             return null;
         }
-        const left = flattenBinary(j, node.left, spacingBinding, op);
-        const right = flattenBinary(j, node.right, spacingBinding, op);
+        const left = flattenBinary(j, node.left, spacingBinding, {
+            op,
+            side: "left",
+        });
+        const right = flattenBinary(j, node.right, spacingBinding, {
+            op,
+            side: "right",
+        });
         if (!left || !right) {
             return null;
         }
-        return [...left, {kind: "literal", value: ` ${op} `}, ...right];
+        const parts: Array<CalcPart> = [
+            ...left,
+            {kind: "literal", value: ` ${op} `},
+            ...right,
+        ];
+        // The AST drops source-level parens, so we need to re-add them when
+        // CSS's left-to-right same-precedence evaluation would change the
+        // result. Without this, `(spacing.X + 4) * 2` flattens to
+        // `${sizing.X} + 4px * 2` and CSS computes `X + (4px*2)` instead of
+        // `(X + 4px) * 2`.
+        if (parent && needsParens(op, parent.op, parent.side)) {
+            return [
+                {kind: "literal", value: "("},
+                ...parts,
+                {kind: "literal", value: ")"},
+            ];
+        }
+        return parts;
     }
+
+    const parentOp = parent?.op ?? null;
 
     if (
         (node.type === "Literal" && typeof node.value === "number") ||
@@ -632,6 +962,37 @@ function flattenBinary(
     }
 
     return null;
+}
+
+/**
+ * Decide whether a child BinaryExpression's flattened segment must be wrapped
+ * in parentheses when inlined into its parent's calc() expression.
+ *
+ * Returns true when the child operator's precedence is lower than the parent's
+ * (e.g. `+` inside `*`), or when child and parent share precedence but the
+ * parent is a non-associative operator (`-` or `/`) and the child sits on the
+ * right — i.e. `a - (b + c)` ≠ `a - b + c`, and `a / (b * c)` ≠ `a / b * c`.
+ */
+function needsParens(
+    childOp: string,
+    parentOp: string,
+    side: "left" | "right",
+): boolean {
+    const precedence = (op: string) =>
+        op === "*" || op === "/" ? 2 : op === "+" || op === "-" ? 1 : 0;
+    const childPrec = precedence(childOp);
+    const parentPrec = precedence(parentOp);
+    if (childPrec < parentPrec) {
+        return true;
+    }
+    if (
+        childPrec === parentPrec &&
+        side === "right" &&
+        (parentOp === "-" || parentOp === "/")
+    ) {
+        return true;
+    }
+    return false;
 }
 
 function buildCalcTemplate(
@@ -667,17 +1028,73 @@ function buildCalcTemplate(
     return j.templateLiteral(quasis, expressions);
 }
 
-function recordHandledSpacingPaths(
+/**
+ * Re-wraps a `\`calc(...)\`` template literal as `\`calc(-1 * (...))\``. Used
+ * when a `UnaryExpression -` sits in front of an arithmetic expression that
+ * `buildCalcTemplate` produced as `\`calc(... + ...)\``.
+ *
+ * Strips the inner `calc(`/`)` from the first/last quasi before wrapping so
+ * the result is a single `calc(-1 * (... + ...))` rather than an unnecessary
+ * `calc(-1 * (calc(... + ...)))`.
+ */
+function wrapTemplateInNegatedCalc(
+    j: JSCodeshift,
+    template: ReturnType<typeof j.templateLiteral>,
+) {
+    const quasis = template.quasis.slice();
+    const first = quasis[0];
+    const last = quasis[quasis.length - 1];
+
+    const firstRaw = first.value.raw.replace(/^calc\(/, "");
+    const firstCooked = (first.value.cooked ?? "").replace(/^calc\(/, "");
+    const lastRaw = last.value.raw.replace(/\)$/, "");
+    const lastCooked = (last.value.cooked ?? "").replace(/\)$/, "");
+
+    if (quasis.length === 1) {
+        // Shouldn't happen for any real arithmetic (we always have ≥1 spacing
+        // expression → ≥2 quasis), but guard anyway: build the prefix and
+        // suffix on a single quasi.
+        quasis[0] = j.templateElement(
+            {
+                raw: "calc(-1 * (" + firstRaw + "))",
+                cooked: "calc(-1 * (" + firstCooked + "))",
+            },
+            first.tail,
+        );
+    } else {
+        quasis[0] = j.templateElement(
+            {
+                raw: "calc(-1 * (" + firstRaw,
+                cooked: "calc(-1 * (" + firstCooked,
+            },
+            first.tail,
+        );
+        quasis[quasis.length - 1] = j.templateElement(
+            {raw: lastRaw + "))", cooked: lastCooked + "))"},
+            last.tail,
+        );
+    }
+
+    return j.templateLiteral(quasis, template.expressions.slice());
+}
+
+/**
+ * Add every `<spacingBinding>.<key>` MemberExpression found within `path` to
+ * `target`. Used by both the "handled" set (paths transformed and removed
+ * from the AST) and the "bailed" set (paths intentionally left alone so a
+ * later pass can flag them with a TODO).
+ */
+function recordSpacingPaths(
     j: JSCodeshift,
     path: ASTPath<any>,
     spacingBinding: string,
-    handled: WeakSet<object>,
+    target: WeakSet<object>,
 ) {
     j(path)
         .find(j.MemberExpression)
         .forEach((m) => {
             if (isSpacingMember(m.value, spacingBinding)) {
-                handled.add(m.value);
+                target.add(m.value);
             }
         });
 }

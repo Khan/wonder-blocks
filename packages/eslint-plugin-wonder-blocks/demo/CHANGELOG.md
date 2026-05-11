@@ -1,5 +1,24 @@
 # eslint-plugin-wonder-blocks-demo
 
+## 0.2.1
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-button@11.5.2
+- @khanacademy/wonder-blocks-clickable@8.1.7
+- @khanacademy/wonder-blocks-form@7.5.8
+- @khanacademy/wonder-blocks-link@10.1.9
+- @khanacademy/wonder-blocks-typography@4.3.1
+
+## 0.2.0
+
+### Minor Changes
+
+- de53ddc: Add two new ESLint rules for BodyText HTML validity and complexity
+
+    - `no-invalid-bodytext-children` (recommended): flags block-level elements inside a phrasing-content BodyText. Accounts for BodyText's `tag` prop and View's `tag` prop — `<View tag="span">` is valid inside BodyText, `<BodyText tag="div">` allows block children.
+    - `no-excessive-bodytext-children` (strict): flags BodyText with more direct JSX element children than a configurable threshold (default: 5). Separated from the validity rule so severity and options can be configured independently.
+
 ## 0.1.1
 
 ### Patch Changes

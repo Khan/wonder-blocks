@@ -136,17 +136,17 @@ const layout = {gutterWidth: sizing.size_160, marginWidth: sizing.size_240};
             transformOptions,
             `
 import * as React from "react";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
+import {Spacer} from "./spacer";
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
-const Spacer = () => <Strut size={spacing.xxxSmall_4} />;
+const Node = () => <Spacer width={spacing.xxxSmall_4} />;
 `,
             `
 import * as React from "react";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
+import {Spacer} from "./spacer";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
-const Spacer = () => <Strut size={sizing.size_040} />;
+const Node = () => <Spacer width={sizing.size_040} />;
 `,
             "should rewrite spacing values used as JSX prop values",
         );
@@ -208,6 +208,417 @@ const compound = \`calc(\${sizing.size_240} + \${sizing.size_160} - 2px)\`;
 `,
             "should flatten chained arithmetic into a single calc()",
         );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+const doubled = (spacing.medium_16 + 4) * 2;
+`,
+            `
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+const doubled = \`calc((\${sizing.size_160} + 4px) * 2)\`;
+`,
+            "should preserve parens when a lower-precedence child sits inside a higher-precedence parent",
+        );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+const halved = 2 * (spacing.large_24 - spacing.medium_16);
+`,
+            `
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+const halved = \`calc(2 * (\${sizing.size_240} - \${sizing.size_160}))\`;
+`,
+            "should preserve parens when a lower-precedence child sits on the right of a higher-precedence parent",
+        );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+const offset = spacing.large_24 - (spacing.medium_16 + 2);
+`,
+            `
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+const offset = \`calc(\${sizing.size_240} - (\${sizing.size_160} + 2px))\`;
+`,
+            "should preserve parens for the right operand of a non-associative `-`",
+        );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+const offset = computeBase() + spacing.medium_16;
+`,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+// TODO(spacing-migration): manual review needed — \`spacing\` reference could not be auto-migrated.
+const offset = computeBase() + spacing.medium_16;
+`,
+            "should bail and flag when arithmetic mixes spacing with a CallExpression operand",
+        );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+const offset = base + spacing.large_24;
+`,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+// TODO(spacing-migration): manual review needed — \`spacing\` reference could not be auto-migrated.
+const offset = base + spacing.large_24;
+`,
+            "should bail and flag when arithmetic mixes spacing with an Identifier operand",
+        );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+const label = "x" + spacing.small_12;
+`,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+// TODO(spacing-migration): manual review needed — \`spacing\` reference could not be auto-migrated.
+const label = "x" + spacing.small_12;
+`,
+            "should bail and flag when arithmetic mixes spacing with a string-literal operand",
+        );
+    });
+
+    describe("Strut → gap migration", () => {
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut, View} from "@khanacademy/wonder-blocks-layout";
+const node = (
+    <View>
+        <A />
+        <Strut size={spacing.medium_16} />
+        <B />
+    </View>
+);
+`,
+            `
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut, View} from "@khanacademy/wonder-blocks-layout";
+const node = (
+    <View
+        style={{
+            gap: sizing.size_160,
+        }}>
+        <A />
+        <B />
+    </View>
+);
+`,
+            "should lift a single Strut between two View children to a gap on the View",
+        );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut, View} from "@khanacademy/wonder-blocks-layout";
+const node = (
+    <View>
+        <A />
+        <Strut size={spacing.medium_16} />
+        <B />
+        <Strut size={spacing.medium_16} />
+        <C />
+    </View>
+);
+`,
+            `
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut, View} from "@khanacademy/wonder-blocks-layout";
+const node = (
+    <View
+        style={{
+            gap: sizing.size_160,
+        }}>
+        <A />
+        <B />
+        <C />
+    </View>
+);
+`,
+            "should collapse multiple Struts of the same size into one gap on the View",
+        );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut, View} from "@khanacademy/wonder-blocks-layout";
+const node = (
+    <View style={{padding: spacing.small_12}}>
+        <A />
+        <Strut size={spacing.medium_16} />
+        <B />
+    </View>
+);
+`,
+            `
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut, View} from "@khanacademy/wonder-blocks-layout";
+const node = (
+    <View style={{
+        padding: sizing.size_120,
+        gap: sizing.size_160,
+    }}>
+        <A />
+        <B />
+    </View>
+);
+`,
+            "should append gap to an existing inline style object",
+        );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut, View} from "@khanacademy/wonder-blocks-layout";
+const node = (
+    <View>
+        <A />
+        <Strut size={spacing.medium_16} />
+        <B />
+        <Strut size={spacing.large_24} />
+        <C />
+    </View>
+);
+`,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut, View} from "@khanacademy/wonder-blocks-layout";
+// TODO(spacing-migration): manual review needed — \`spacing\` reference could not be auto-migrated.
+const node = (
+    <View>
+        <A />
+        <Strut size={spacing.medium_16} />
+        <B />
+        <Strut size={spacing.large_24} />
+        <C />
+    </View>
+);
+`,
+            "should fall back to TODO when sibling Strut sizes differ",
+        );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut, View} from "@khanacademy/wonder-blocks-layout";
+const node = (
+    <View style={{gap: 10}}>
+        <A />
+        <Strut size={spacing.medium_16} />
+        <B />
+    </View>
+);
+`,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut, View} from "@khanacademy/wonder-blocks-layout";
+// TODO(spacing-migration): manual review needed — \`spacing\` reference could not be auto-migrated.
+const node = (
+    <View style={{gap: 10}}>
+        <A />
+        <Strut size={spacing.medium_16} />
+        <B />
+    </View>
+);
+`,
+            "should fall back to TODO when the View already has a gap style",
+        );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut, View} from "@khanacademy/wonder-blocks-layout";
+const node = (
+    <View>
+        <Strut size={spacing.medium_16} />
+        <A />
+        <B />
+    </View>
+);
+`,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut, View} from "@khanacademy/wonder-blocks-layout";
+// TODO(spacing-migration): manual review needed — \`spacing\` reference could not be auto-migrated.
+const node = (
+    <View>
+        <Strut size={spacing.medium_16} />
+        <A />
+        <B />
+    </View>
+);
+`,
+            "should fall back to TODO when a Strut leads the View's children",
+        );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut, View} from "@khanacademy/wonder-blocks-layout";
+const node = (
+    <View>
+        <A />
+        <Strut size={spacing.medium_16 + 4} />
+        <B />
+    </View>
+);
+`,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut, View} from "@khanacademy/wonder-blocks-layout";
+// TODO(spacing-migration): manual review needed — \`spacing\` reference could not be auto-migrated.
+const node = (
+    <View>
+        <A />
+        <Strut size={spacing.medium_16 + 4} />
+        <B />
+    </View>
+);
+`,
+            "should fall back to TODO when the Strut size is arithmetic, not a plain spacing.X",
+        );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import * as React from "react";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+const node = (
+    <div>
+        <A />
+        <Strut size={spacing.medium_16} />
+        <B />
+    </div>
+);
+`,
+            `
+import * as React from "react";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+// TODO(spacing-migration): manual review needed — \`spacing\` reference could not be auto-migrated.
+const node = (
+    <div>
+        <A />
+        <Strut size={spacing.medium_16} />
+        <B />
+    </div>
+);
+`,
+            "should fall back to TODO when the Strut's parent is not a <View>",
+        );
+    });
+
+    describe("Strut", () => {
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+const node = <Strut size={spacing.medium_16} />;
+`,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+// TODO(spacing-migration): manual review needed — \`spacing\` reference could not be auto-migrated.
+const node = <Strut size={spacing.medium_16} />;
+`,
+            "should leave spacing alone in a Strut size prop and flag the statement",
+        );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+const node = <Strut size={spacing.medium_16 + 4} />;
+`,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+// TODO(spacing-migration): manual review needed — \`spacing\` reference could not be auto-migrated.
+const node = <Strut size={spacing.medium_16 + 4} />;
+`,
+            "should not flatten arithmetic into calc() inside a Strut size prop",
+        );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+const node = <Strut size={-spacing.medium_16} />;
+`,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+// TODO(spacing-migration): manual review needed — \`spacing\` reference could not be auto-migrated.
+const node = <Strut size={-spacing.medium_16} />;
+`,
+            "should not produce a calc(-1 * sizing.X) string for unary-minus inside a Strut size prop",
+        );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut, View} from "@khanacademy/wonder-blocks-layout";
+const node = (
+    <View style={{padding: spacing.medium_16}}>
+        <Strut size={spacing.large_24} />
+    </View>
+);
+`,
+            `
+import {sizing, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Strut, View} from "@khanacademy/wonder-blocks-layout";
+// TODO(spacing-migration): manual review needed — \`spacing\` reference could not be auto-migrated.
+const node = (
+    <View style={{padding: sizing.size_160}}>
+        <Strut size={spacing.large_24} />
+    </View>
+);
+`,
+            "should still migrate sibling spacing references that are not inside a Strut",
+        );
     });
 
     describe("VALID_* type imports", () => {
@@ -257,6 +668,34 @@ import {sizing} from "@khanacademy/wonder-blocks-tokens";
 const styles = {marginLeft: \`calc(-1 * \${sizing.size_240})\`};
 `,
             "should rewrite unary minus on spacing as a calc(-1 * sizing.X) template",
+        );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+const styles = {marginLeft: -(spacing.medium_16 + 2)};
+`,
+            `
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+const styles = {marginLeft: \`calc(-1 * (\${sizing.size_160} + 2px))\`};
+`,
+            "should wrap unary minus around an arithmetic expression in calc(-1 * (...))",
+        );
+
+        defineInlineTest(
+            transform,
+            transformOptions,
+            `
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+const styles = {marginRight: -(spacing.large_24 + spacing.medium_16)};
+`,
+            `
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+const styles = {marginRight: \`calc(-1 * (\${sizing.size_240} + \${sizing.size_160}))\`};
+`,
+            "should wrap unary minus around two-spacing arithmetic in calc(-1 * (...))",
         );
     });
 
