@@ -245,6 +245,6 @@ const styles = StyleSheet.create({
     },
 
     banner: {
-        marginBottom: sizing.size_320,
+        marginBlockEnd: sizing.size_320,
     },
 });

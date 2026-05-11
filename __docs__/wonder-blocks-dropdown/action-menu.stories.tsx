@@ -141,13 +141,13 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
     },
     dropdown: {
-        maxHeight: 200,
+        maxBlockSize: 200,
     },
     /**
      * Custom opener styles
      */
     customOpener: {
-        borderLeft: `${border.width.thick} solid ${semanticColor.status.warning.foreground}`,
+        borderInlineStart: `${border.width.thick} solid ${semanticColor.status.warning.foreground}`,
         borderRadius: border.radius.radius_040,
         background: semanticColor.status.warning.background,
         color: semanticColor.core.foreground.neutral.strong,
@@ -611,7 +611,7 @@ export const OpeningModal: StoryComponentType = {
                         <OnePaneDialog
                             title="Are you sure?"
                             content="This is just a test"
-                            style={{maxHeight: "fit-content"}}
+                            style={{maxBlockSize: "fit-content"}}
                             footer={
                                 <View
                                     style={{

@@ -191,11 +191,11 @@ export function AllVariants(props: Props) {
 const styles = StyleSheet.create({
     table: {
         borderCollapse: "collapse",
-        textAlign: "left",
+        textAlign: "start",
         [breakpoint.mediaQuery.smOrSmaller]: {
             display: "none",
         },
-        maxWidth: "100%",
+        maxInlineSize: "100%",
     },
     list: {
         margin: 0,
@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
         listStyle: "none",
         display: "flex",
         flexDirection: "column",
-        maxWidth: "100%",
+        maxInlineSize: "100%",
     },
     listResponsive: {
         [breakpoint.mediaQuery.mdOrLarger]: {
