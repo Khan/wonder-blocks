@@ -50,7 +50,7 @@ describe("TooltipTail", () => {
   <div
     class=""
     data-placement="top"
-    style="align-items: stretch; border-width: 0px; border-style: solid; box-sizing: border-box; display: flex; flex-direction: column; margin: 0px; padding: 0px; position: relative; z-index: 0; min-height: 0; min-width: 0; pointer-events: none; top: -1px; width: 40px; height: 20px;"
+    style="align-items: stretch; border-width: 0px; border-style: solid; box-sizing: border-box; display: flex; flex-direction: column; margin: 0px; padding: 0px; position: relative; z-index: 0; min-block-size: 0; min-inline-size: 0; pointer-events: none; top: -1px; width: 40px; height: 20px;"
   >
     <svg
       aria-hidden="true"
@@ -120,7 +120,7 @@ describe("TooltipTail", () => {
                   <div
                     class=""
                     data-placement="top"
-                    style="align-items: stretch; border-width: 0px; border-style: solid; box-sizing: border-box; display: flex; flex-direction: column; margin: 0px; padding: 0px; position: relative; z-index: 0; min-height: 0; min-width: 0; pointer-events: none; top: -1px; width: 40px; height: 20px;"
+                    style="align-items: stretch; border-width: 0px; border-style: solid; box-sizing: border-box; display: flex; flex-direction: column; margin: 0px; padding: 0px; position: relative; z-index: 0; min-block-size: 0; min-inline-size: 0; pointer-events: none; top: -1px; width: 40px; height: 20px;"
                   >
                     <div
                       aria-hidden="true"
