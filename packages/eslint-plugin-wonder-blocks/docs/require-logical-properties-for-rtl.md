@@ -98,7 +98,3 @@ Some CSS values are directional but have no straightforward logical replacement.
 ```
 
 All options are booleans. Property-name and `textAlign` fixes always run regardless of options; the options only gate the value-based warnings listed above.
-
-## When not to use
-
-This rule is enabled in the recommended config. Disable per-line with `// eslint-disable-next-line @khanacademy/wonder-blocks/require-logical-properties-for-rtl` when a physical property is genuinely intentional (rare).
