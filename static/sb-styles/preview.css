@@ -10,6 +10,7 @@ html {
     color: var(--wb-semanticColor-core-foreground-neutral-strong);
 }
 
+/* These overrides depend on a Base 10 font size */
 .sb-show-main.sb-main-padded {
     padding: 0.8rem;
 }
