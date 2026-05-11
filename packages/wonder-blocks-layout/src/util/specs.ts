@@ -1,13 +1,13 @@
-import {sizing, tokenValue} from "@khanacademy/wonder-blocks-tokens";
+import {remToPx, sizing, tokenValue} from "@khanacademy/wonder-blocks-tokens";
 import type {MediaSize, MediaSpec} from "./types";
 
 // All possible valid media sizes
 export const VALID_MEDIA_SIZES: Array<MediaSize> = ["small", "medium", "large"];
 
-const SIZE_160_PX = Number(tokenValue(sizing.size_160));
-const SIZE_240_PX = Number(tokenValue(sizing.size_240));
-const SIZE_320_PX = Number(tokenValue(sizing.size_320));
-const SIZE_480_PX = Number(tokenValue(sizing.size_480));
+const SIZE_160_PX = parseInt(remToPx(tokenValue(sizing.size_160)));
+const SIZE_240_PX = parseInt(remToPx(tokenValue(sizing.size_240)));
+const SIZE_320_PX = parseInt(remToPx(tokenValue(sizing.size_320)));
+const SIZE_480_PX = parseInt(remToPx(tokenValue(sizing.size_480)));
 
 const mediaDefaultSpecLargeMarginWidth = SIZE_240_PX;
 

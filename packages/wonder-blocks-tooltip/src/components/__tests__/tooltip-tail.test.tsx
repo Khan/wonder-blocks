@@ -68,7 +68,7 @@ describe("TooltipTail", () => {
       >
         <fegaussianblur
           in="SourceAlpha"
-          stdDeviation="calc(var(--wb-sizing-size_060) / 2)"
+          stdDeviation="3"
         />
         <fecomponenttransfer>
           <fefunca
