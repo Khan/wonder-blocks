@@ -350,8 +350,8 @@ export const WithStyle: StoryComponentType = {
 
 const styles = StyleSheet.create({
     dialog: {
-        maxWidth: 600,
-        maxHeight: 500,
+        maxInlineSize: 600,
+        maxBlockSize: 500,
     },
     modalPositioner: {
         // Checkerboard background
@@ -365,10 +365,10 @@ const styles = StyleSheet.create({
         justifyContent: "center",
 
         position: "absolute",
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
+        insetInlineStart: 0,
+        insetInlineEnd: 0,
+        insetBlockStart: 0,
+        insetBlockEnd: 0,
     },
     previewSizer: {
         height: 600,

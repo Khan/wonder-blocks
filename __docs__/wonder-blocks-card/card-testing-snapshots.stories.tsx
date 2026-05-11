@@ -62,11 +62,11 @@ const dismissible = [
 const styles = StyleSheet.create({
     cardContainer: {
         width: "100%",
-        minHeight: sizing.size_320,
+        minBlockSize: sizing.size_320,
         display: "flex",
     },
     card: {
-        minHeight: sizing.size_320,
+        minBlockSize: sizing.size_320,
         width: "100%",
     },
 });
