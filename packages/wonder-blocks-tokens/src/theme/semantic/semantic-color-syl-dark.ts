@@ -56,7 +56,7 @@ const core = {
         },
         neutral: {
             subtle: color.gray_10,
-            default: color.gray_20,
+            default: color.gray_30,
             strong: color.gray_80,
         },
         critical: {
