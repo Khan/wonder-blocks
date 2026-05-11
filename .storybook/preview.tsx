@@ -276,7 +276,7 @@ const preview: Preview = {
                     {
                         value: "syl-dark",
                         icon: "moon",
-                        title: "Shape Your Learning - Dark",
+                        title: "Shape Your Learning - Dark (WIP)",
                     },
                 ],
                 // Change title based on selected value
