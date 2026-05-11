@@ -167,7 +167,7 @@ const defaultStyles = StyleSheet.create({
         marginBlockStart: sizing.size_040,
     },
     errorText: {
-        color: semanticColor.status.critical.foreground,
+        color: semanticColor.core.foreground.critical.default,
     },
 });
 export default class BirthdayPicker extends React.Component<Props, State> {

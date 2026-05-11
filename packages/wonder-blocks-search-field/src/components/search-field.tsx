@@ -272,7 +272,7 @@ const styles = StyleSheet.create({
         flex: 1,
         width: "100%",
         paddingInlineStart: sizing.size_320,
-        paddingInlineEnd: `calc(${sizing.size_240} + ${sizing.size_160})`,
+        paddingInlineEnd: sizing.size_400,
     },
 });
 

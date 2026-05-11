@@ -77,7 +77,7 @@ export default class TooltipContent extends React.Component<Props> {
                 testId={this.props.testId}
             >
                 {title}
-                {children}
+                {title ? <View>{children}</View> : children}
             </View>
         );
     }

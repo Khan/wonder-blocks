@@ -2,7 +2,12 @@ import * as React from "react";
 import {css, StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {color, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    color,
+    semanticColor,
+    sizing,
+    tokenValue,
+} from "@khanacademy/wonder-blocks-tokens";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import type {getRefFn, Placement, Offset} from "../util/types";
@@ -209,10 +214,7 @@ export default class TooltipTail extends React.Component<Props> {
                  * The stdDeviation is the spread of the blur. We don't want it
                  * too diffuse.
                  */}
-                <feGaussianBlur
-                    in="SourceAlpha"
-                    stdDeviation={`calc(${sizing.size_060} / 2)`}
-                />
+                <feGaussianBlur in="SourceAlpha" stdDeviation={3} />
 
                 {/* Here we adjust the alpha (feFuncA) linearly so as to blend
                  * the shadow to match the rest of the tooltip bubble shadow.
@@ -431,14 +433,10 @@ export default class TooltipTail extends React.Component<Props> {
  * (i.e. placement="top"). When the tail points to the left or right instead,
  * the width/height are inverted.
  */
-// Layout constants for SVG arithmetic. Hardcoded because the polyline points
-// and the container's `width`/`height` styles need real JS numbers, not the
-// `var(--wb-sizing-*)` strings that the `sizing` token yields. Values mirror
-// the matching `sizing.size_*` tokens at the default 10px baseline.
-const DISTANCE_FROM_ANCHOR = 8; // sizing.size_080
-const MIN_DISTANCE_FROM_CORNERS = 8; // sizing.size_080
-const ARROW_WIDTH = 24; // sizing.size_240
-const ARROW_HEIGHT = 12; // sizing.size_120
+const DISTANCE_FROM_ANCHOR = Number(tokenValue(sizing.size_080));
+const MIN_DISTANCE_FROM_CORNERS = Number(tokenValue(sizing.size_080));
+const ARROW_WIDTH = Number(tokenValue(sizing.size_240));
+const ARROW_HEIGHT = Number(tokenValue(sizing.size_120));
 
 const styles = StyleSheet.create({
     /**
