@@ -999,6 +999,159 @@ export const PassingPairsThunderblocks: StoryObj = {
 };
 
 // ---------------------------------------------------------------------------
+// Story 3: List of pairs that pass in Thunderblocks but fail in Syl-Dark
+// ---------------------------------------------------------------------------
+
+type SyldarkFailure = {
+    bgLabel: string;
+    fgLabel: string;
+    tbRatio: number;
+    sdRatio: number | null;
+    sdTransparent: boolean;
+};
+
+function findSyldarkFailures(themes: {
+    tb: ResolvedTheme;
+    sd: ResolvedTheme;
+}): Array<SyldarkFailure> {
+    const tbPassing = buildResolvedPairs(themes.tb).filter(
+        (pair) => pair.ratio >= AA_THRESHOLD,
+    );
+    const failures: Array<SyldarkFailure> = [];
+    for (const pair of tbPassing) {
+        const bgRaw = themes.sd.backgrounds[pair.bgLabel];
+        const fgRaw = themes.sd.foregrounds[pair.fgLabel];
+        const sdTransparent = isTransparentValue(bgRaw);
+        let sdRatio: number | null = null;
+        if (!sdTransparent) {
+            const bgVisible = compositeOver(bgRaw, themes.sd.pageBase);
+            const fgVisible = compositeOver(fgRaw, bgVisible);
+            sdRatio = contrastRatio(bgVisible, fgVisible);
+        }
+        const fails =
+            sdTransparent || sdRatio == null || sdRatio < AA_THRESHOLD;
+        if (fails) {
+            failures.push({
+                bgLabel: pair.bgLabel,
+                fgLabel: pair.fgLabel,
+                tbRatio: pair.ratio,
+                sdRatio,
+                sdTransparent,
+            });
+        }
+    }
+    return failures;
+}
+
+export const SyldarkContrastFailures: StoryObj = {
+    name: "Pairs passing in TB but failing in SylDark",
+    parameters: {
+        chromatic: {disableSnapshot: true},
+    },
+    render: function Render() {
+        const tbRef = React.useRef<HTMLDivElement>(null);
+        const sdRef = React.useRef<HTMLDivElement>(null);
+        const [themes, setThemes] = React.useState<{
+            tb: ResolvedTheme;
+            sd: ResolvedTheme;
+        } | null>(null);
+
+        React.useEffect(() => {
+            const tb = resolveScopedTheme(tbRef.current);
+            const sd = resolveScopedTheme(sdRef.current);
+            if (tb && sd) {
+                setThemes({tb, sd});
+            }
+        }, []);
+
+        const failures = React.useMemo(
+            () => (themes ? findSyldarkFailures(themes) : []),
+            [themes],
+        );
+
+        return (
+            <View style={styles.crossThemeWrapper}>
+                {/* Hidden probes to read each theme's resolved CSS vars. */}
+                <View style={styles.hiddenProbe}>
+                    <ThemeSwitcher theme="thunderblocks">
+                        <div ref={tbRef} />
+                    </ThemeSwitcher>
+                    <ThemeSwitcher theme="syl-dark">
+                        <div ref={sdRef} />
+                    </ThemeSwitcher>
+                </View>
+
+                <View style={styles.summary}>
+                    <BodyText size="medium" weight="bold">
+                        Pairs passing AA in Thunderblocks but failing in
+                        Syl-Dark
+                    </BodyText>
+                    {themes ? (
+                        <BodyText size="small">
+                            {failures.length} background × foreground
+                            combination{failures.length === 1 ? "" : "s"} meet
+                            AA (≥ 4.5 : 1) in Thunderblocks but fall below 4.5 :
+                            1 in Syl-Dark (or use a transparent background, in
+                            which case syl-dark has no value to render).
+                        </BodyText>
+                    ) : (
+                        <BodyText size="small">
+                            Resolving theme tokens…
+                        </BodyText>
+                    )}
+                </View>
+
+                {themes && failures.length > 0 && (
+                    <View style={styles.failureTable}>
+                        <View
+                            style={[styles.failureRow, styles.failureHeaderRow]}
+                        >
+                            <BodyText
+                                tag="span"
+                                size="xsmall"
+                                weight="bold"
+                                style={styles.failureCellHead}
+                            >
+                                Background
+                            </BodyText>
+                            <BodyText
+                                tag="span"
+                                size="xsmall"
+                                weight="bold"
+                                style={styles.failureCellHead}
+                            >
+                                Foreground
+                            </BodyText>
+                        </View>
+                        {failures.map((entry) => (
+                            <View
+                                key={`${entry.bgLabel}__${entry.fgLabel}`}
+                                style={styles.failureRow}
+                            >
+                                <BodyText
+                                    tag="span"
+                                    size="xsmall"
+                                    style={styles.failureCellName}
+                                >
+                                    core.background.{entry.bgLabel}
+                                </BodyText>
+                                <BodyText
+                                    tag="span"
+                                    size="xsmall"
+                                    style={styles.failureCellName}
+                                >
+                                    core.foreground.{entry.fgLabel}
+                                </BodyText>
+                            </View>
+                        ))}
+                    </View>
+                )}
+            </View>
+        );
+    },
+};
+
+// ---------------------------------------------------------------------------
 // Styles
 // ---------------------------------------------------------------------------
 
@@ -1222,6 +1375,34 @@ const styles = StyleSheet.create({
     tokenCellMono: {
         fontFamily: font.family.mono,
         color: semanticColor.core.foreground.neutral.default,
+        whiteSpace: "nowrap",
+    },
+
+    // --- Story 3: failure list ---
+    failureTable: {
+        display: "grid",
+        gridTemplateColumns: "max-content max-content",
+        columnGap: sizing.size_240,
+        rowGap: sizing.size_080,
+        alignItems: "baseline",
+    },
+    failureRow: {
+        display: "contents",
+    },
+    failureHeaderRow: {
+        // Header cells are styled via failureCellHead.
+    },
+    failureCellHead: {
+        color: semanticColor.core.foreground.neutral.default,
+        textTransform: "uppercase",
+        letterSpacing: "0.04em",
+        paddingBlockEnd: sizing.size_040,
+        borderBlockEnd: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
+    },
+    failureCellName: {
+        // Plain monospace text so it's easy to select and copy-paste.
+        fontFamily: font.family.mono,
+        color: semanticColor.core.foreground.neutral.strong,
         whiteSpace: "nowrap",
     },
 });
