@@ -265,7 +265,7 @@ const styles = StyleSheet.create({
     },
     labelStyle: {
         flexGrow: 1,
-        maxWidth: "100%",
+        maxInlineSize: "100%",
         textAlign: "start",
     },
 });

@@ -400,7 +400,7 @@ describe("LabeledTextField", () => {
         // Arrange
         const styles = StyleSheet.create({
             style1: {
-                minWidth: 250,
+                minInlineSize: 250,
                 background: "blue",
             },
         });
