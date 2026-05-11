@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-accordion
 
+## 3.1.55
+
+### Patch Changes
+
+- 3bba434: Fixed and unskipped tests
+
 ## 3.1.54
 
 ### Patch Changes

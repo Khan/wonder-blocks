@@ -400,8 +400,6 @@ command --flag argument
 
 **✅ Use descriptive, kebab-case names:**
 
-- ✅ `unit-tests.mdc` - Clear purpose
-- ✅ `storybook.mdc` - Obvious scope
 - ✅ `graphql-patterns.mdc` - Specific domain
 - ❌ `rules.mdc` - Too vague
 - ❌ `test_file.mdc` - Wrong case (underscore)
@@ -415,8 +413,6 @@ project-root/
 ├── .cursor/
 │   └── rules/
 │       ├── general.mdc (alwaysApply: true)
-│       ├── unit-tests.mdc (for *.test.ts files)
-│       ├── storybook.mdc (for *.stories.tsx files)
 │       └── mdc-files.mdc (for *.mdc files)
 ```
 
@@ -434,17 +430,20 @@ project-root/
 
 This project maintains rules for multiple AI assistants. When updating a Cursor rules file, also update the corresponding files for other platforms:
 
-| Cursor File | Copilot File | Claude File |
-|-------------|--------------|-------------|
-| `.cursor/rules/general.mdc` | `.github/instructions/frontend-rules.instructions.md` | `CLAUDE.md` |
-| `.cursor/rules/storybook.mdc` | `.github/instructions/storybook.instructions.md` | `CLAUDE.md` (Storybook section) |
-| `.cursor/rules/unit-tests.mdc` | `.github/instructions/unit-tests.instructions.md` | `CLAUDE.md` (Jest section) |
+| Cursor File | Copilot File | Claude File | Agent Skills File |
+|-------------|--------------|-------------|-------------------|
+| `.cursor/rules/general.mdc` | `.github/instructions/frontend-rules.instructions.md` | `CLAUDE.md` | *(use `CLAUDE.md`)* |
+| *(not used)* | `.github/instructions/storybook.instructions.md` | `CLAUDE.md` (Storybook section) | `.agents/skills/storybook/SKILL.md` |
+| *(not used)* | `.github/instructions/unit-tests.instructions.md` | `CLAUDE.md` (Jest section) | `.agents/skills/unit-tests/SKILL.md` |
+
+Storybook and Jest rules are handled by agent skills for Claude and don't require a Cursor `.mdc` file.
 
 **✅ DO: Update all relevant files when making rule changes**
 
-1. Make the change in the Cursor `.mdc` file
+1. Make the change in the Cursor `.mdc` file (for general rules) or `CLAUDE.md` / agent skills (for Storybook/Jest)
 2. Apply the same change to the corresponding `.github/instructions/*.instructions.md` file for Copilot
 3. Update `CLAUDE.md` if the change affects general guidance or major sections
+4. Apply the same change to `.agents/skills/storybook/SKILL.md` or `.agents/skills/unit-tests/SKILL.md` if the change is in those sections
 
 **✅ DO: Keep content semantically equivalent**
 

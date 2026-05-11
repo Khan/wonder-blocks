@@ -3,7 +3,7 @@
   "description": "ESLint plugin for the Wonder Blocks design system",
   "author": "Khan Academy",
   "license": "MIT",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "publishConfig": {
     "access": "public"
   },
@@ -19,6 +19,7 @@
   "module": "dist/es/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "gen:lint-rule": "./scripts/generate-lint-rule/index.ts",
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },
   "dependencies": {
@@ -29,8 +30,10 @@
   },
   "devDependencies": {
     "@khanacademy/wb-dev-build-settings": "workspace:*",
+    "@types/yargs": "^17.0.33",
     "@typescript-eslint/typescript-estree": "^8.59.0",
     "@typescript-eslint/rule-tester": "^8.59.0",
-    "eslint": "^8.57.0"
+    "eslint": "^8.57.0",
+    "yargs": "^17.7.2"
   }
 }
