@@ -623,9 +623,6 @@ const styles = StyleSheet.create({
     fullWidth: {
         width: "100%",
     },
-    rtl: {
-        direction: "rtl",
-    },
     space: {
         margin: sizing.size_080,
     },
