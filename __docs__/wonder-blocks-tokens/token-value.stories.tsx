@@ -138,6 +138,12 @@ export const TokenValueDefault: Story = {
     },
 };
 
+// NOTE: Raw value is extracted at the time of rendering, so if the theme
+// changes after that, the raw value won't update.
+const defaultRawValue = tokenValue(
+    semanticColor.core.foreground.instructive.default,
+);
+
 export const TokenValueElementOverride: Story = {
     args: {
         token: semanticColor.core.foreground.instructive.default,
@@ -145,9 +151,6 @@ export const TokenValueElementOverride: Story = {
     render: function Render() {
         const themeRef = React.useRef<HTMLElement | null>(null);
         const [tokenValueResult, setTokenValueResult] = React.useState("");
-        const defaultRawValue = tokenValue(
-            semanticColor.core.foreground.instructive.default,
-        );
 
         React.useEffect(() => {
             if (themeRef.current) {

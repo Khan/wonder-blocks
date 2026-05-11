@@ -158,7 +158,6 @@ const parameters: Preview["parameters"] = {
 const withThemeSwitcher: Decorator = (Story, {globals: {theme}}) => {
     // Keep track of the theme locally so we can re-render the story after the
     // attribute is updated.
-    console.log("theme", theme);
     const [localTheme, setLocalTheme] = React.useState(null);
     React.useEffect(() => {
         if (theme) {
