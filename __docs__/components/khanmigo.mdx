@@ -1,0 +1,156 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+import khanmigoImg from "./assets/khanmigo/khanmigo.png";
+import placement1Img from "./assets/khanmigo/placement-1.png";
+import placement2Img from "./assets/khanmigo/placement-2.png";
+import placement3Img from "./assets/khanmigo/placement-3.png";
+import scale1Img from "./assets/khanmigo/scale-1.png";
+import scale2Img from "./assets/khanmigo/scale-2.png";
+import visualizationAndCustomization1Img from "./assets/khanmigo/visualization-and-customization-1.png";
+import visualizationAndCustomization2Img from "./assets/khanmigo/visualization-and-customization-2.png";
+import visualizationAndCustomization3Img from "./assets/khanmigo/visualization-and-customization-3.png";
+import visualizationAndCustomization4Img from "./assets/khanmigo/visualization-and-customization-4.png";
+import visualizationAndCustomization5Img from "./assets/khanmigo/visualization-and-customization-5.png";
+import interaction1Img from "./assets/khanmigo/interaction-1.png";
+import interaction2Img from "./assets/khanmigo/interaction-2.png";
+
+<Meta title="Components / Khanmigo" />
+
+# Khanmigo
+
+## Khanmigo
+
+Khanmigo is Khan Academy’s AI-powered educational mascot that serves as a multi-faceted companion. Its primary function is to act as a guide for students and an assistant for teachers and administrators.
+
+<img src={khanmigoImg} alt="Khanmigo" />
+
+## When to use
+
+The choice to use Khanmigo is determined by the need to provide interactive pedagogical guidance, administrative assistance, or motivational engagement during non-evaluative learning activities.
+
+### Active tutoring, providing hints or guidance during practice/assignments
+
+Guiding students through their learning journey and encouraging rewards (motivational wayfinding)
+
+Giving educators (teacher/admins) student insights or classroom management shortcuts
+
+Helping a student solve a linear equation in the "Practice" frame.
+
+Motivating students to earn gems and unlock new mascot accessories.
+
+Teachers clicking the persistent "Ask Khanmigo Assistant" button in the global header to open a chat interface or any ask Khanmigo input field.
+
+## When NOT to use
+
+### Replacing core navigation elements
+
+### Communicating critical system alerts
+
+### A student is in a summative assessment
+
+### Offering personalization in the teacher role
+
+Tabs or pills
+
+Standard modals or banners
+
+Khanductor (or no mascot)
+
+Fixed mascot state
+
+Do not use the mascot as a replacement for primary navigation elements like the "Reports" or "Assignments" tabs.
+
+Avoid using the mascot for critical system errors or technical outages; these require a serious, neutral tone.
+
+Do not use Khanmigo when a student is taking a quiz, unit test, or any high-stakes assessment. Use Khanductor for the assessment product. Khanmigo’s tutoring role conflicts with the need for independent student performance.
+
+In the Teacher/Admin role, do not offer accessory customization; it must remain a professional "Assistant" persona.
+
+## Roles and versioning
+
+Learning Coach: Interactive 1:1 tutoring and personalized support.  Motivation guide: navigation and gem motivation.
+
+### Motivational Guide: Navigation and gem motivation only.
+
+### Concierge/Assistant: Direct Q&A, instructional tools, and class insights.
+
+### Concierge (Limited): Basic assistance tools.
+
+AI-powered: Full generative support.
+
+Static: No generative AI tutoring capabilities.
+
+## Placement
+
+### Practice/chat frame (learners)
+
+Embedded directly into the student learning view or as a dedicated side-panel for natural language discussion.
+
+### Global header (teacher/admin)
+
+A persistent "Ask Khanmigo Assistant" button is located in the top-right of the interface for teachers.
+
+### Concierge frame (teacher/admin)
+
+Appears in the teacher dashboard to provide "Today's insights" regarding student struggle or activity.
+
+<img src={placement1Img} alt="Placement 1" />
+<img src={placement2Img} alt="Placement 2" />
+<img src={placement3Img} alt="Placement 3" />
+
+## Scale
+
+### Student scale
+
+Khanmigo is always presented at a large scale to emphasize its role as a prominent, friendly companion. With the exception when chatting on mobile or zoomed in.
+
+### Teacher/admin scale
+
+Khanmigo has a small version that can be used integrated within functional UI elements like buttons or search fields. This small version is a unique component found here. DO NOT use big Khanmigo and scale down.
+
+<img src={scale1Img} alt="Scale 1" />
+<img src={scale2Img} alt="Scale 2" />
+
+## Visualization and customization
+
+### Color selection
+
+Learners can customize the color of Khanmigo between 4 colors options. Semantic tokens: Learning > Characters > Flesh Blue / Cyan / Green / Magenta / Orange
+
+### Accessories
+
+### Learners can personalize Khanmigo with various hats and glasses.
+
+### Special migos
+
+Learners can unlock special, unique versions of Khanmigo. These too can be customized through color and accessories. Khanmigo is always retained in the name, so the example here is Cat Khanmigo.
+
+### No customization for teachers or admins
+
+Khanmigo remains in a fixed, professional "Assistant" state for the teachers and admins experience.
+
+### No alternative characters
+
+To ensure a consistent user experience, Khanmigo serves as the exclusive AI persona for all users. It is the sole guide and tutor for students across the experience—including the dashboard, learning queue, and all practice modes—with the exception of assessments. Khanmigo is also the permanent assistant for teachers and administrators. Using any character other than Khanmigo is strictly prohibited.
+
+<img src={visualizationAndCustomization1Img} alt="Visualization and customization 1" />
+<img src={visualizationAndCustomization2Img} alt="Visualization and customization 2" />
+<img src={visualizationAndCustomization3Img} alt="Visualization and customization 3" />
+<img src={visualizationAndCustomization4Img} alt="Visualization and customization 4" />
+<img src={visualizationAndCustomization5Img} alt="Visualization and customization 5" />
+
+## Interaction
+
+### Dynamic animation
+
+Khanmigo animates across various states—including idle breathing, thinking while processing AI responses, and celebratory motions—to provide immediate feedback and presence.
+
+### Visual signaling overrides
+
+There are instances where Khanmigo must visually portray a specific signal (such as a milestone achievement or a time-sensitive reminder). In these moments, a special version of the mascot may temporarily override a student's personal customization to ensure the signal is clearly communicated.
+
+<img src={interaction1Img} alt="Interaction 1" />
+<img src={interaction2Img} alt="Interaction 2" />
+
+---
+
+[Figma source](https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=13456-17531&t=6lEHCsAo03k7G4Lr-4)
