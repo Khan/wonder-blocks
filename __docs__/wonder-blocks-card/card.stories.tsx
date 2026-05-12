@@ -5,12 +5,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 import infoIcon from "@phosphor-icons/core/bold/info-bold.svg";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
-import {
-    font,
-    semanticColor,
-    sizing,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {GemIcon, Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import packageConfig from "../../packages/wonder-blocks-card/package.json";
@@ -384,8 +379,8 @@ const styles = StyleSheet.create({
     dimmed: {
         opacity: "0.5",
         zIndex: -1,
-        marginBlockStart: spacing.large_24,
-        marginInlineStart: spacing.large_24,
+        marginBlockStart: sizing.size_240,
+        marginInlineStart: sizing.size_240,
     },
     eotCardText: {
         marginBlockStart: sizing.size_160,

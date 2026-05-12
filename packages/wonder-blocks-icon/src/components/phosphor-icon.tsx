@@ -70,7 +70,7 @@ type Props = Pick<AriaProps, "aria-hidden" | "aria-label" | "role"> & {
  *     icon={MagnifyingGlass}
  *     color={Color.blue}
  *     size="medium"
- *     style={{margin: Spacing.xxxxSmall_2}}
+ *     style={{margin: sizing.size_020}}
  * />
  * ```
  *

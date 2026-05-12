@@ -5,7 +5,7 @@ import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import Clickable from "@khanacademy/wonder-blocks-clickable";
@@ -277,7 +277,7 @@ const progressive = semanticColor.action.secondary.progressive;
 const styles = StyleSheet.create({
     clickable: {
         borderWidth: 1,
-        padding: spacing.medium_16,
+        padding: sizing.size_160,
     },
     hovered: {
         textDecoration: "underline",
@@ -290,25 +290,25 @@ const styles = StyleSheet.create({
         outline: `solid 4px ${semanticColor.focus.outer}`,
     },
     centerText: {
-        gap: spacing.medium_16,
+        gap: sizing.size_160,
         textAlign: "center",
     },
     dark: {
         backgroundColor: semanticColor.core.background.neutral.strong,
         color: semanticColor.core.foreground.knockout.default,
-        padding: spacing.xSmall_8,
+        padding: sizing.size_080,
     },
     row: {
         flexDirection: "row",
         alignItems: "center",
     },
     heading: {
-        marginRight: spacing.large_24,
+        marginRight: sizing.size_240,
     },
     navigation: {
         border: `1px dashed ${semanticColor.core.border.neutral.subtle}`,
-        marginTop: spacing.large_24,
-        padding: spacing.large_24,
+        marginTop: sizing.size_240,
+        padding: sizing.size_240,
     },
     disabled: {
         color: semanticColor.action.primary.disabled.foreground,

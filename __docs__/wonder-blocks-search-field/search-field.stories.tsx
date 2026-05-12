@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import SearchField from "@khanacademy/wonder-blocks-search-field";
@@ -224,19 +224,19 @@ export const WithAutofocus: StoryComponentType = {
                     autoFocus={true}
                     onChange={handleChange}
                     onKeyDown={handleKeyDown}
-                    style={{flexGrow: 1, marginLeft: spacing.small_12}}
+                    style={{flexGrow: 1, marginLeft: sizing.size_120}}
                 />
             </View>
         );
 
         return (
             <View>
-                <LabelLarge style={{marginBottom: spacing.small_12}}>
+                <LabelLarge style={{marginBottom: sizing.size_120}}>
                     Press the button to view the search field with autofocus.
                 </LabelLarge>
                 <Button
                     onClick={handleShowDemo}
-                    style={{width: 300, marginBottom: spacing.large_24}}
+                    style={{width: 300, marginBottom: sizing.size_240}}
                 >
                     Toggle autoFocus demo
                 </Button>
@@ -279,7 +279,7 @@ export const Validation: StoryComponentType = {
     },
     render: (args) => {
         return (
-            <View style={{gap: spacing.small_12}}>
+            <View style={{gap: sizing.size_120}}>
                 <Template
                     {...args}
                     label="Validation on mount if there is a value"

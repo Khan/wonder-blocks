@@ -13,7 +13,6 @@ import {
     font,
     semanticColor,
     sizing,
-    spacing,
 } from "@khanacademy/wonder-blocks-tokens";
 import {getTokenName, maybeGetCssVariableInfo} from "./tokens-util";
 import {CopyButton} from "./copy-button";
@@ -203,9 +202,9 @@ function Example({style}: {style?: any}) {
         <>
             <View
                 style={{
-                    marginBlock: spacing.xSmall_8,
-                    marginInline: spacing.medium_16,
-                    padding: spacing.medium_16,
+                    marginBlock: sizing.size_080,
+                    marginInline: sizing.size_160,
+                    padding: sizing.size_160,
                     backgroundColor: style.background,
                     color: style.foreground,
                     outline: `4px solid ${style.border}`,
@@ -226,12 +225,12 @@ const styles = StyleSheet.create({
     group: {
         flexDirection: "row",
         flexWrap: "wrap",
-        marginBlock: spacing.medium_16,
+        marginBlock: sizing.size_160,
     },
     actionGroup: {
-        margin: spacing.xxxSmall_4,
-        padding: spacing.xxxSmall_4,
-        gap: spacing.xxxSmall_4,
+        margin: sizing.size_040,
+        padding: sizing.size_040,
+        gap: sizing.size_040,
         border: `1px dashed ${semanticColor.core.border.neutral.subtle}`,
     },
     item: {
@@ -239,7 +238,7 @@ const styles = StyleSheet.create({
         overflowWrap: "break-word",
     },
     compactItem: {
-        marginBlockEnd: spacing.xSmall_8,
+        marginBlockEnd: sizing.size_080,
         maxWidth: "100%",
         width: "100%",
 
@@ -249,7 +248,7 @@ const styles = StyleSheet.create({
     },
     pattern: {
         backgroundImage: `radial-gradient(${semanticColor.core.background.instructive.default} 0.5px, ${semanticColor.core.background.base.subtle} 0.5px)`,
-        backgroundSize: `${spacing.small_12}px ${spacing.small_12}px`,
+        backgroundSize: `${sizing.size_120} ${sizing.size_120}`,
         boxShadow: `0 0 1px 0 ${semanticColor.core.border.neutral.subtle}`,
     },
     thumbnail: {
@@ -258,18 +257,18 @@ const styles = StyleSheet.create({
     },
     primitiveThumbnail: {
         width: 160,
-        height: spacing.xxxLarge_64,
+        height: sizing.size_640,
     },
     compactThumbnail: {
         justifyContent: "space-between",
         width: "100%",
-        height: spacing.xxxLarge_64,
+        height: sizing.size_640,
     },
     info: {
-        paddingInlineEnd: spacing.medium_16,
+        paddingInlineEnd: sizing.size_160,
     },
     card: {
-        paddingInline: spacing.xSmall_8,
+        paddingInline: sizing.size_080,
     },
     code: {
         alignSelf: "flex-start",
@@ -277,7 +276,7 @@ const styles = StyleSheet.create({
         display: "inline-flex",
         backgroundColor: semanticColor.core.background.base.subtle,
         border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
-        padding: spacing.xxxxSmall_2,
+        padding: sizing.size_020,
         borderRadius: border.radius.radius_040,
     },
     capitalized: {

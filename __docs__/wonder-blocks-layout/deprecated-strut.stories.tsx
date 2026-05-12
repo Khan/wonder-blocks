@@ -5,7 +5,7 @@ import {Description, Stories, Title} from "@storybook/addon-docs/blocks";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Banner from "@khanacademy/wonder-blocks-banner";
@@ -70,13 +70,13 @@ export const Default: StoryComponentType = {
         </View>
     ),
     args: {
-        size: spacing.xxxLarge_64,
+        size: 64, // sizing.size_640
         style: {},
     },
 };
 
-const smallSize = spacing.medium_16;
-const largeSize = spacing.xxxLarge_64;
+const smallSize = 16; // sizing.size_160
+const largeSize = 64; // sizing.size_640
 
 export const Simple: StoryComponentType = {
     render: (args) => (

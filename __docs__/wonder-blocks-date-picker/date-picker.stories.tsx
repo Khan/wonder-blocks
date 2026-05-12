@@ -6,7 +6,7 @@ import {expect, userEvent, waitFor, within} from "storybook/test";
 import {fr, es} from "date-fns/locale";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View, type PropsFor} from "@khanacademy/wonder-blocks-core";
-import {sizing, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
@@ -94,7 +94,7 @@ const ControlledDatePicker = (props: Props) => {
                     <View
                         style={{
                             flexDirection: "row",
-                            gap: spacing.small_12,
+                            gap: sizing.size_120,
                             justifyContent: "center",
                         }}
                     >
@@ -321,7 +321,7 @@ const DatePickerWithOpenOverlay = (props: Props) => {
         <View
             ref={containerRef}
             style={{
-                padding: spacing.large_24,
+                padding: sizing.size_240,
                 minHeight: 400,
             }}
         >
@@ -426,7 +426,7 @@ const DatePickerInsideModalExample = () => {
                 <OnePaneDialog
                     title="Date Picker in Modal"
                     content={
-                        <View style={{gap: spacing.medium_16}}>
+                        <View style={{gap: sizing.size_160}}>
                             <BodyText>
                                 This demonstrates DatePickers inside a modal.
                                 Press Escape when focused on a date picker input
@@ -530,8 +530,8 @@ export const InsideModal: Story = {
  */
 export const WithCustomStyles: Story = {
     render: (args) => (
-        <View style={{gap: spacing.large_24, maxWidth: 600}}>
-            <View style={{gap: spacing.xSmall_8}}>
+        <View style={{gap: sizing.size_240, maxWidth: 600}}>
+            <View style={{gap: sizing.size_080}}>
                 <BodyText weight="bold" tag="label" htmlFor="custom-example1">
                     Date with default size (225px × 40px)
                 </BodyText>
@@ -542,7 +542,7 @@ export const WithCustomStyles: Story = {
                 />
             </View>
 
-            <View style={{gap: spacing.xSmall_8}}>
+            <View style={{gap: sizing.size_080}}>
                 <BodyText weight="bold" tag="label" htmlFor="custom-example2">
                     Date with custom width (350px)
                 </BodyText>
@@ -554,7 +554,7 @@ export const WithCustomStyles: Story = {
                 />
             </View>
 
-            <View style={{gap: spacing.xSmall_8}}>
+            <View style={{gap: sizing.size_080}}>
                 <BodyText weight="bold" tag="label" htmlFor="custom-example3">
                     Date with full width (100%)
                 </BodyText>
@@ -566,7 +566,7 @@ export const WithCustomStyles: Story = {
                 />
             </View>
 
-            <View style={{gap: spacing.xSmall_8}}>
+            <View style={{gap: sizing.size_080}}>
                 <BodyText weight="bold" tag="label" htmlFor="custom-example4">
                     Date with custom height for larger touch target (48px)
                 </BodyText>

@@ -5,7 +5,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {Checkbox, CheckboxGroup, Choice} from "@khanacademy/wonder-blocks-form";
-import {sizing, spacing, font} from "@khanacademy/wonder-blocks-tokens";
+import {font, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
@@ -152,8 +152,8 @@ export const IndeterminateWithGroup: StoryComponentType = () => {
                 label={"Topping(s)"}
                 onChange={handleSelectAll}
             />
-            <Strut size={spacing.small_12} />
-            <View style={{marginInlineStart: spacing.large_24}}>
+            <Strut size={12} />
+            <View style={{marginInlineStart: sizing.size_240}}>
                 <CheckboxGroup
                     groupName="toppings"
                     onChange={handleCheckboxGroupSelect}

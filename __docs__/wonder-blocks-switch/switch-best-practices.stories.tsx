@@ -6,7 +6,7 @@ import {CompactCell, DetailCell} from "@khanacademy/wonder-blocks-cell";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import packageConfig from "../../packages/wonder-blocks-switch/package.json";
@@ -54,7 +54,7 @@ export const WithLabel: StoryComponentType = (() => {
             <LabelMedium
                 id="label-for-switch-with-label"
                 htmlFor="switch-with-label"
-                style={{marginLeft: spacing.xSmall_8}}
+                style={{marginLeft: sizing.size_080}}
                 tag="label"
             >
                 Superpowers
@@ -80,7 +80,7 @@ export const WithLabelAndDescription: StoryComponentType = (() => {
                 aria-labelledby="label-for-switch-with-desc"
                 aria-describedby="desc-for-switch-with-desc"
             />
-            <View style={{marginLeft: spacing.xSmall_8}}>
+            <View style={{marginLeft: sizing.size_080}}>
                 <LabelMedium
                     id="label-for-switch-with-desc"
                     htmlFor="switch-with-desc"
@@ -117,7 +117,7 @@ export const WithLabelAndOnOff: StoryComponentType = (() => {
             <LabelMedium
                 id="label-for-switch-with-on-off"
                 htmlFor="switch-with-on-off"
-                style={{marginRight: spacing.xSmall_8}}
+                style={{marginRight: sizing.size_080}}
                 tag="label"
             >
                 Gravity
@@ -130,7 +130,7 @@ export const WithLabelAndOnOff: StoryComponentType = (() => {
             />
             <LabelSmall
                 style={{
-                    marginLeft: spacing.xSmall_8,
+                    marginLeft: sizing.size_080,
                     color: semanticColor.core.foreground.neutral.subtle,
                 }}
                 aria-hidden={true}

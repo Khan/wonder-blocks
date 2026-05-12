@@ -3,7 +3,7 @@ import {StyleSheet, css} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 
@@ -177,13 +177,13 @@ WithStyle.parameters = {
 const styles = StyleSheet.create({
     darkBackground: {
         background: semanticColor.core.background.instructive.strong,
-        padding: spacing.xLarge_32,
+        padding: sizing.size_320,
         width: "100%",
         alignItems: "center",
         justifyContent: "center",
     },
     distanced: {
-        margin: spacing.large_24,
+        margin: sizing.size_240,
     },
     example: {
         alignItems: "center",
@@ -191,6 +191,6 @@ const styles = StyleSheet.create({
     },
     row: {
         flexDirection: "row",
-        marginBottom: spacing.xLarge_32,
+        marginBottom: sizing.size_320,
     },
 });
