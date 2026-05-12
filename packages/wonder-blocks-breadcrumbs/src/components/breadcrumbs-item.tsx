@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
-import {font, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {font, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 type Props = AriaProps & {
     /**
@@ -71,13 +71,13 @@ const styles = StyleSheet.create({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        marginRight: spacing.xxxSmall_4,
+        marginInlineEnd: sizing.size_040,
         lineHeight: "inherit",
         fontFamily: font.family.sans,
     },
 
     separator: {
-        marginLeft: spacing.xxxSmall_4,
+        marginInlineStart: sizing.size_040,
     },
 });
 
