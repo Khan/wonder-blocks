@@ -2,8 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {View, addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import theme from "../theme";
 
@@ -63,18 +62,15 @@ export default class FieldHeading extends React.Component<Props> {
         );
 
         return (
-            <React.Fragment>
-                <BodyText
-                    style={styles.label}
-                    tag="label"
-                    htmlFor={id && `${id}-field`}
-                    testId={testId && `${testId}-label`}
-                >
-                    {label}
-                    {required && requiredIcon}
-                </BodyText>
-                <Strut size={spacing.xxxSmall_4} />
-            </React.Fragment>
+            <BodyText
+                style={[styles.label, styles.labelSpacing]}
+                tag="label"
+                htmlFor={id && `${id}-field`}
+                testId={testId && `${testId}-label`}
+            >
+                {label}
+                {required && requiredIcon}
+            </BodyText>
         );
     }
 
@@ -86,17 +82,14 @@ export default class FieldHeading extends React.Component<Props> {
         }
 
         return (
-            <React.Fragment>
-                <BodyText
-                    size="small"
-                    tag="span"
-                    style={styles.description}
-                    testId={testId && `${testId}-description`}
-                >
-                    {description}
-                </BodyText>
-                <Strut size={spacing.xxxSmall_4} />
-            </React.Fragment>
+            <BodyText
+                size="small"
+                tag="span"
+                style={[styles.description, styles.descriptionSpacing]}
+                testId={testId && `${testId}-description`}
+            >
+                {description}
+            </BodyText>
         );
     }
 
@@ -108,19 +101,16 @@ export default class FieldHeading extends React.Component<Props> {
         }
 
         return (
-            <React.Fragment>
-                <Strut size={spacing.small_12} />
-                <BodyText
-                    size="small"
-                    tag="span"
-                    style={styles.error}
-                    role="alert"
-                    id={id && `${id}-error`}
-                    testId={testId && `${testId}-error`}
-                >
-                    {error}
-                </BodyText>
-            </React.Fragment>
+            <BodyText
+                size="small"
+                tag="span"
+                style={[styles.error, styles.errorSpacing]}
+                role="alert"
+                id={id && `${id}-error`}
+                testId={testId && `${testId}-error`}
+            >
+                {error}
+            </BodyText>
         );
     }
 
@@ -131,8 +121,7 @@ export default class FieldHeading extends React.Component<Props> {
             <View style={style}>
                 {this.renderLabel()}
                 {this.maybeRenderDescription()}
-                <Strut size={spacing.xSmall_8} />
-                {field}
+                <View style={styles.fieldSpacing}>{field}</View>
                 {this.maybeRenderError()}
             </View>
         );
@@ -143,11 +132,23 @@ const styles = StyleSheet.create({
     label: {
         color: semanticColor.core.foreground.neutral.strong,
     },
+    labelSpacing: {
+        marginBlockEnd: sizing.size_040,
+    },
     description: {
         color: theme.description.color.foreground,
     },
+    descriptionSpacing: {
+        marginBlockEnd: sizing.size_040,
+    },
+    fieldSpacing: {
+        marginBlockStart: sizing.size_080,
+    },
     error: {
         color: semanticColor.status.critical.foreground,
+    },
+    errorSpacing: {
+        marginBlockStart: sizing.size_120,
     },
     required: {
         color: semanticColor.status.critical.foreground,

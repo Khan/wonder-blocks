@@ -125,7 +125,7 @@ import {font} from "@khanacademy/wonder-blocks-tokens";
 
 | Token | CSS Variable | Default | Thunderblocks |
 | --- | --- | --- | --- |
-| \`font.family.sans\` | \`--wb-font-family-sans\` | \`Lato, "Noto Sans", sans-serif\` | \`Plus Jakarta Sans, serif\` |
+| \`font.family.sans\` | \`--wb-font-family-sans\` | \`Lato, "Noto Sans", sans-serif\` | \`Plus Jakarta Sans, "Noto Sans", sans-serif\` |
 | \`font.family.serif\` | \`--wb-font-family-serif\` | \`"Noto Serif", serif\` | \`"Noto Serif", serif\` |
 | \`font.family.mono\` | \`--wb-font-family-mono\` | \`Inconsolata, monospace\` | \`Inconsolata, monospace\` |
 | \`font.weight.light\` | \`--wb-font-weight-light\` | \`300\` | \`300\` |

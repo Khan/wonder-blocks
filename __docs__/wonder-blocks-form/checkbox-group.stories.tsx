@@ -239,7 +239,7 @@ export const MultipleChoiceStyling: StoryComponentType = () => {
             <Choice
                 label="1"
                 value="1-mc-styling"
-                style={styles.multipleChoice}
+                style={[styles.multipleChoice, styles.firstChoice]}
             />
             <Choice
                 label="2"
@@ -340,9 +340,12 @@ const styles = StyleSheet.create({
     // Multiple choice styling
     multipleChoice: {
         margin: 0,
-        height: 48,
+        blockSize: sizing.size_480,
         borderTop: "solid 1px #CCC",
         justifyContent: "center",
+    },
+    firstChoice: {
+        marginBlockStart: sizing.size_120,
     },
     description: {
         color: semanticColor.core.foreground.neutral.default,

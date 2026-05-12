@@ -4,10 +4,10 @@ import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {
-    spacing,
-    semanticColor,
     border,
     font,
+    semanticColor,
+    sizing,
 } from "@khanacademy/wonder-blocks-tokens";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
@@ -181,10 +181,10 @@ const styles = StyleSheet.create({
      * Content styles
      */
     startIcon: {
-        marginInlineEnd: spacing.xxxSmall_4,
+        marginInlineEnd: sizing.size_040,
     },
     endIcon: {
-        marginInlineStart: spacing.xxxSmall_4,
+        marginInlineStart: sizing.size_040,
     },
     centered: {
         // Manually align the bottom of start/end icons with the text baseline.
