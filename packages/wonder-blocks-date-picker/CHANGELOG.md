@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-date-picker
 
+## 1.0.7
+
+### Patch Changes
+
+- Updated dependencies [0fadf9f]
+- Updated dependencies [c1c74df]
+- Updated dependencies [72c5272]
+    - @khanacademy/wonder-blocks-form@7.5.9
+    - @khanacademy/wonder-blocks-tokens@16.4.0
+    - @khanacademy/wonder-blocks-modal@8.6.4
+    - @khanacademy/wonder-blocks-icon@5.3.12
+    - @khanacademy/wonder-blocks-styles@0.2.43
+
 ## 1.0.6
 
 ### Patch Changes
