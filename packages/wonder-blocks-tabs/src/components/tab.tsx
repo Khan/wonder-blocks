@@ -6,7 +6,12 @@ import {
 } from "@khanacademy/wonder-blocks-core";
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    font,
+    semanticColor,
+    sizing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 
@@ -155,5 +160,6 @@ export const styles = StyleSheet.create({
     },
     selectedTab: {
         color: semanticColor.core.foreground.instructive.default,
+        fontWeight: font.weight.bold,
     },
 });
