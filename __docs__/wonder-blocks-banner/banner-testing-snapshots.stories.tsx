@@ -3,7 +3,7 @@ import {action} from "storybook/actions";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {StyleSheet} from "aphrodite";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
@@ -26,7 +26,7 @@ export default {
     title: "Packages / Banner / Testing / Snapshots / Banner",
     parameters: {
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
         },
         // TODO(WB-1936): Fix the a11y violations and remove this.
         a11y: {
