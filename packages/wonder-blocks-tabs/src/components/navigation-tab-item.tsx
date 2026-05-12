@@ -5,7 +5,6 @@ import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography"
 import {
     border,
     breakpoint,
-    font,
     semanticColor,
     sizing,
 } from "@khanacademy/wonder-blocks-tokens";
@@ -140,7 +139,6 @@ const styles = StyleSheet.create({
     },
     currentLink: {
         color: semanticColor.core.foreground.instructive.default,
-        fontWeight: font.weight.bold,
         [":active:not([aria-disabled=true])" as any]: {
             // Make sure the current link doesn't change color when pressed
             color: semanticColor.core.foreground.instructive.default,
