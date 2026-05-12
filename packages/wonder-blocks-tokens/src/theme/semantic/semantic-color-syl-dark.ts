@@ -65,12 +65,12 @@ const core = {
             strong: color.red_50,
         },
         success: {
-            subtle: color.green_05,
+            subtle: color.green_01,
             default: color.green_30,
             strong: color.green_50,
         },
         warning: {
-            subtle: color.yellow_05,
+            subtle: color.yellow_01,
             default: color.yellow_30,
             strong: color.yellow_50,
         },
