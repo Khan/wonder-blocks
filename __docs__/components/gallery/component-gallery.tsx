@@ -7,7 +7,7 @@ import {RenderStateRoot, View} from "@khanacademy/wonder-blocks-core";
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import {packageGroups, functionGroups, alphabetGroups} from "./groups";
-import {HeadingLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
 import {Spring, Strut} from "@khanacademy/wonder-blocks-layout";
 
@@ -39,7 +39,7 @@ export default function ComponentGallery() {
                     featured in this gallery.`}
                     />
                     <View style={styles.menuBar}>
-                        <LabelMedium tag="label" style={styles.row}>
+                        <BodyText tag="label" style={styles.row}>
                             Group by
                             <Strut size={spacing.xSmall_8} />
                             <SingleSelect
@@ -52,10 +52,10 @@ export default function ComponentGallery() {
                                 <OptionItem label="function" value="function" />
                                 <OptionItem label="package" value="package" />
                             </SingleSelect>
-                        </LabelMedium>
+                        </BodyText>
                         <Strut size={spacing.large_24} />
 
-                        <LabelMedium tag="label" style={styles.row}>
+                        <BodyText tag="label" style={styles.row}>
                             Layout
                             <Strut size={spacing.xSmall_8} />
                             <SingleSelect
@@ -71,7 +71,7 @@ export default function ComponentGallery() {
                                 <OptionItem label="grid" value="grid" />
                                 <OptionItem label="list" value="list" />
                             </SingleSelect>
-                        </LabelMedium>
+                        </BodyText>
 
                         {currentLayout === "grid" && (
                             <>
@@ -86,22 +86,26 @@ export default function ComponentGallery() {
                                     onChange={setCompactGridView}
                                 />
                                 <Strut size={spacing.xSmall_8} />
-                                <LabelMedium
+                                <BodyText
                                     tag="label"
                                     htmlFor="wb-storybook-gallery-compact-grid-switch"
                                     style={styles.row}
                                 >
                                     Compact grid
-                                </LabelMedium>
+                                </BodyText>
                             </>
                         )}
                     </View>
 
                     {groupMaps[currentGroup].map((group) => (
                         <View key={group.name}>
-                            <HeadingLarge tag="h3" style={styles.sectionLabel}>
+                            <Heading
+                                size="large"
+                                tag="h3"
+                                style={styles.sectionLabel}
+                            >
                                 {group.name}
-                            </HeadingLarge>
+                            </Heading>
 
                             <View style={styles.section}>
                                 {group.components.map((Tile, index) => {
