@@ -232,8 +232,12 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
 
     switch (kind) {
         case "accent":
-            backgroundColor = semanticColor.core.background.instructive.default;
-            textColor = semanticColor.core.foreground.knockout.default;
+            // Use action tokens for accent so it is similar to the button
+            // primary progressive background and foreground colors
+            backgroundColor =
+                semanticColor.action.primary.progressive.default.background;
+            textColor =
+                semanticColor.action.primary.progressive.default.foreground;
             break;
         case "info":
             backgroundColor = semanticColor.feedback.info.subtle.background;
