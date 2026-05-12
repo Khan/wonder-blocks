@@ -1,10 +1,7 @@
 import {Meta} from "@storybook/addon-docs/blocks";
 import {Data} from "@khanacademy/wonder-blocks-data";
 
-<Meta
-    title="Packages / Data / Exports / Data"
-    component={Data}
-/>
+<Meta title="Packages / Data / Exports / Data" component={Data} />
 
 # Data
 
@@ -51,7 +48,7 @@ import {Body, BodyMonospace} from "@khanacademy/wonder-blocks-typography";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Data} from "@khanacademy/wonder-blocks-data";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {color, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 const myValidHandler = () =>
     new Promise((resolve, reject) =>
@@ -86,7 +83,12 @@ const myInvalidHandler = () =>
                 }
 
                 return (
-                    <BodyMonospace style={{color: color.red}}>
+                    <BodyMonospace
+                        style={{
+                            color: semanticColor.core.foreground.destructive
+                                .default,
+                        }}
+                    >
                         ERROR: {result.error}
                     </BodyMonospace>
                 );
