@@ -20,10 +20,10 @@ export default mergeTheme(defaultTheme, {
         },
         color: {
             border: {
-                info: semanticColor.feedback.info.subtle.border,
-                success: semanticColor.feedback.success.subtle.border,
-                warning: semanticColor.feedback.warning.subtle.border,
-                critical: semanticColor.feedback.critical.subtle.border,
+                info: semanticColor.core.transparent,
+                success: semanticColor.core.transparent,
+                warning: semanticColor.core.transparent,
+                critical: semanticColor.core.transparent,
             },
         },
         layout: {
