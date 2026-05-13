@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
         borderCollapse: "collapse",
         borderSpacing: 0,
         margin: `${sizing.size_320} 0`,
-        textAlign: "left",
+        textAlign: "start",
         width: "100%",
         color: semanticColor.core.foreground.neutral.strong,
     },
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
         backgroundColor: semanticColor.core.background.base.subtle,
     },
     row: {
-        borderTop: `1px solid ${semanticColor.core.border.neutral.subtle}`,
+        borderBlockStart: `1px solid ${semanticColor.core.border.neutral.subtle}`,
         backgroundColor: semanticColor.core.background.base.default,
     },
     cell: {
