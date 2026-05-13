@@ -45,6 +45,7 @@ const actionTypes = [
     {name: "Destructive", props: {actionType: "destructive"}},
     {name: "Neutral", props: {actionType: "neutral"}},
     {name: "Disabled", props: {disabled: true}},
+    {name: "Loading", props: {spinner: true, "aria-label": "Loading"}},
 ];
 
 export const StateSheetStory: StoryComponentType = {
@@ -108,19 +109,16 @@ export const Sizes: StoryComponentType = {
                 {({props}) => (
                     <View style={{gap: sizing.size_160, flexDirection: "row"}}>
                         <Button {...args} {...props} />
-                        {actionTypes.map(
-                            ({props: {actionType, disabled}}, index) => (
-                                <Button
-                                    {...args}
-                                    {...props}
-                                    actionType={actionType}
-                                    disabled={disabled}
-                                    key={index}
-                                    startIcon={paperPlaneIcon}
-                                    endIcon={paperPlaneIcon}
-                                />
-                            ),
-                        )}
+                        {actionTypes.map(({props: actionTypeProps}, index) => (
+                            <Button
+                                {...args}
+                                {...props}
+                                {...actionTypeProps}
+                                key={index}
+                                startIcon={paperPlaneIcon}
+                                endIcon={paperPlaneIcon}
+                            />
+                        ))}
                     </View>
                 )}
             </AllVariants>
