@@ -337,7 +337,6 @@ const _generateStyles = (
             WebkitLineClamp: "2",
             overflow: "hidden",
             wordBreak: "break-word",
-            color: "inherit",
         },
     } as const;
 
