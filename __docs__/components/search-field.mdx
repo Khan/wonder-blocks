@@ -1,0 +1,75 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+import headerImg from "./assets/search-field-header.png";
+import states1Img from "./assets/search-field-states-1.png";
+import states2Img from "./assets/search-field-states-2.png";
+import placementImg from "./assets/search-field-placement.png";
+import interactions1Img from "./assets/search-field-interactions-1.png";
+import interactions2Img from "./assets/search-field-interactions-2.png";
+
+<Meta title="Components / Search field" />
+
+# Search field
+
+## Header
+
+A specialized text input component used to accept user-entered keywords or strings to instantly narrow or filter content based on those terms. It is the primary mechanism for finding specific items within large data sets or complex navigation structures.
+
+<img src={headerImg} alt="Header" />
+
+## When to use
+
+The choice to use a search field is determined by the need to efficiently locate specific information that cannot be easily found using predefined filters or navigation.
+
+### When search helps
+
+| Condition | Example |
+|-----------|---------|
+| The content list contains more than 10–15 items, making visual scanning difficult | Finding a specific student name within a class roster of 40 students |
+| The user is searching by a specific identifier, name, or non-categorical string | Searching for “Pythagorean Theorem” in a library of math lessons |
+| The dataset is too large for live-filtering and requires explicit submission | Typing a partial class name and hitting enter to refresh the report table |
+
+## When NOT to use
+
+| Scenario | Use instead | Why |
+|----------|-------------|-----|
+| The available options are fixed, small, and mutually exclusive | Dropdown, checkbox, or radio group | Do not use a search field if the available options are fixed, small, and mutually exclusive (e.g., selecting “Draft” or “Published” status) |
+| The user is narrowing a preference with a binary choice | Toggles / checkboxes | For binary choices like “Show assigned skills only,” use a toggle instead of a search query |
+| The input is intended to collect new data, not retrieve existing data | Standard text input | Do not use search field styling for inputs intended to collect new data (e.g., “Student Name” on a registration form). Search is for retrieval |
+
+## States
+
+### Default/active
+
+The search field displays the placeholder text and is bordered. Placeholder text like “Search” is visible. When active, the input field must change appearance to clearly indicate active typing.
+
+### Scope clarity
+
+Optional to add placeholder text (e.g., “Search students...”) or an adjacent scope selector.
+
+<img src={states1Img} alt="States 1" />
+<img src={states2Img} alt="States 2" />
+
+## Placement
+
+### Contextual placement
+
+The search field must be placed immediately adjacent to the content list or data set it controls. It should never be floating or distant from the elements it is meant to filter.
+
+<img src={placementImg} alt="Placement" />
+
+## Interactions
+
+### Auto-suggestion
+
+As the user types, a menu appears below the field containing high-confidence matches. These can include metadata labels (e.g., “Class”) to provide context for the suggestion.
+
+### Clear button
+
+Once text is entered, a visible clear/reset button (e.g., an ‘X’) should appear inside the input field to allow the user to easily erase the query and restore the full list.
+
+<img src={interactions1Img} alt="Interactions 1" />
+<img src={interactions2Img} alt="Interactions 2" />
+
+---
+
+[Figma source](https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=12444-34643&t=6lEHCsAo03k7G4Lr-4)
