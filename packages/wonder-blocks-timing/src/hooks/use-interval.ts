@@ -24,8 +24,8 @@ import Interval from "../util/interval";
  * @param options.clearPolicy Determines how the interval is cleared when the
  * component is unmounted or the interval is recreated. By default, the
  * interval is cleared immediately. If you want to let the interval run to
- * completion, use `ClearPolicy.Resolve`. This is NOT applied if the interval
- * is cleared manually via the `clear()` method on the returned API.
+ * completion, use `ClearPolicy.Resolve`. This is also used as the default
+ * when calling `clear()` manually with no argument on the returned API.
  * @param options.schedulePolicy Determines when the interval is scheduled.
  * By default, the interval is scheduled immediately. If you want to delay
  * scheduling the interval, use `SchedulePolicy.OnDemand`.
