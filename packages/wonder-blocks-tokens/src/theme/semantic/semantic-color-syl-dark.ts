@@ -503,7 +503,7 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
                 tertiary: core.foreground.disabled.subtle,
             },
             shadow: {
-                primary: core.shadow.chonky.neutral.strong,
+                primary: core.shadow.chonky.neutral.subtle,
                 secondary: core.shadow.chonky.neutral.subtle,
                 tertiary: core.transparent,
             },
