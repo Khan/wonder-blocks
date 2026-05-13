@@ -1,0 +1,68 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+import khanductor1Img from "./assets/khanductor/khanductor-1.png";
+import khanductor2Img from "./assets/khanductor/khanductor-2.png";
+import khanductor3Img from "./assets/khanductor/khanductor-3.png";
+import khanductor4Img from "./assets/khanductor/khanductor-4.png";
+import khanductor5Img from "./assets/khanductor/khanductor-5.png";
+
+<Meta title="Components / Khanductor" />
+
+# Khanductor
+
+## Khanductor
+
+AI assessment proctor
+
+Khanductor is an AI persona specifically designed for the formal assessment product. While Khanmigo supports daily learning, Khanductor serves as a neutral proctor during standardized benchmark windows.
+
+<img src={khanductor1Img} alt="Khanductor 1" />
+
+### When to use
+
+The choice to use Khanductor is determined by the need to provide a neutral, non-directive presence within the assessments product where independent student performance must be preserved.
+
+| Use when | Example use |
+| --- | --- |
+| Administering BOY, MOY, or EOY benchmark assessments | A student completing a district-mandated "Algebra Assessment" at the start of the semester. |
+| Prompting students to explain their logic without hints or corrections | Asking a student, "How do you know?" or "Does this step make sense?" after an input. |
+
+### When NOT to use
+
+| Don’t use when | Recommended alternative | Rationale |
+| --- | --- | --- |
+| Supporting teachers or admins | Khanmigo | Do not use Khanductor for teachers or admins. Khanmigo is the sole AI partner for educators to answer questions and provide information. |
+| Running standard quizzes or unit tests | No mascot | Khanductor is not for standard classroom quizzes or unit tests. It is strictly reserved for the specialized assessment product. |
+| Students are in daily practice or learning paths | Khanmigo | Do not use for daily learning paths where students need active "Learning Coach" support and Socratic hints. |
+| Assigning or displaying the Gap Finder feature | Khanmigo | Gap Finder is an informal assessment feature. It is not the main Assessment product and should therefore not be using Khanductor. |
+
+### Placement
+
+### Question state
+
+Khanductor is not seen on the question screen while the student is working to ensure independent performance.
+
+<img src={khanductor2Img} alt="Khanductor 2" />
+
+### Explanation state
+
+Khanductor only appears once "Explain your thinking" is introduced, positioned within the chat frame to ask follow-up questions.
+
+<img src={khanductor3Img} alt="Khanductor 3" />
+
+### Appearance and scale rules
+
+### Proctor persona
+
+Khanductor uses an hourglass-inspired shape to signal a neutral "proctoring" state, distinguishing it from the supportive hexagonal "coach" persona.
+
+<img src={khanductor4Img} alt="Khanductor 4" />
+
+### Explain your thinking scale
+
+Khanductor maintains a consistent, large scale within the chat frame when active, but lacks the "friendly" accessories or animations found in the student version of Khanmigo.
+
+<img src={khanductor5Img} alt="Khanductor 5" />
+
+---
+
+[Figma source](https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=13456-20495)
