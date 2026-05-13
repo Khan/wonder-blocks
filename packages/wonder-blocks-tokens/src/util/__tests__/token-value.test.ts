@@ -160,4 +160,34 @@ describe("tokenValue", () => {
         expect(result).toBe("2rem");
         scoped.remove();
     });
+
+    // Simulates an SSR / node-based test environment where `document` is not
+    // defined globally. Some consumers call `tokenValue` at module load time
+    // (e.g. `wonder-blocks-layout/src/util/specs.ts`), so the helper must not
+    // throw a `ReferenceError` when imported in those environments.
+    describe("when document is undefined", () => {
+        beforeEach(() => {
+            jest.spyOn(globalThis, "document", "get").mockReturnValue(
+                undefined as unknown as Document,
+            );
+        });
+
+        afterEach(() => {
+            jest.restoreAllMocks();
+        });
+
+        it("returns an empty string for a var() token", () => {
+            expect(typeof document).toBe("undefined");
+            expect(
+                tokenValue(
+                    "var(--wb-semanticColor-core-foreground-instructive-default)",
+                ),
+            ).toBe("");
+        });
+
+        it("returns a non-var() input unchanged", () => {
+            expect(typeof document).toBe("undefined");
+            expect(tokenValue("#1865f2")).toBe("#1865f2");
+        });
+    });
 });
