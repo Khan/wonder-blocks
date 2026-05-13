@@ -146,6 +146,10 @@ const core = {
                 default: color.fadedOffBlack50,
                 strong: color.offBlack,
             },
+            disabled: {
+                subtle: transparent,
+                default: color.fadedOffBlack32,
+            },
         },
     },
 };
@@ -651,9 +655,9 @@ export const semanticColor = {
                 tertiary: core.foreground.disabled.default,
             },
             shadow: {
-                primary: core.shadow.chonky.neutral.subtle,
-                secondary: core.shadow.chonky.neutral.subtle,
-                tertiary: core.transparent,
+                primary: core.shadow.chonky.disabled.default,
+                secondary: core.shadow.chonky.disabled.default,
+                tertiary: core.shadow.chonky.disabled.subtle,
             },
         },
     },

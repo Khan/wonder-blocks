@@ -138,6 +138,10 @@ const core = {
                 default: color.gray_30,
                 strong: color.gray_50,
             },
+            disabled: {
+                subtle: transparent,
+                default: color.gray_10,
+            },
         },
     },
 };
@@ -503,9 +507,9 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
                 tertiary: core.foreground.disabled.subtle,
             },
             shadow: {
-                primary: core.shadow.chonky.neutral.subtle,
-                secondary: core.shadow.chonky.neutral.subtle,
-                tertiary: core.transparent,
+                primary: core.shadow.chonky.disabled.default,
+                secondary: core.shadow.chonky.disabled.default,
+                tertiary: core.shadow.chonky.disabled.subtle,
             },
         },
     },
