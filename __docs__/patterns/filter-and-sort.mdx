@@ -1,0 +1,114 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+import headerImg from "./assets/filter-and-sort/header.png";
+import theHierarchicalLogicOfDiscovery1Img from "./assets/filter-and-sort/the-hierarchical-logic-of-discovery-1.png";
+import theHierarchicalLogicOfDiscovery2Img from "./assets/filter-and-sort/the-hierarchical-logic-of-discovery-2.png";
+import theHierarchicalLogicOfDiscovery3Img from "./assets/filter-and-sort/the-hierarchical-logic-of-discovery-3.png";
+import theHierarchicalLogicOfDiscovery4Img from "./assets/filter-and-sort/the-hierarchical-logic-of-discovery-4.png";
+import theHierarchicalLogicOfDiscovery5Img from "./assets/filter-and-sort/the-hierarchical-logic-of-discovery-5.png";
+import theHierarchicalLogicOfDiscovery6Img from "./assets/filter-and-sort/the-hierarchical-logic-of-discovery-6.png";
+import theHierarchicalLogicOfDiscovery7Img from "./assets/filter-and-sort/the-hierarchical-logic-of-discovery-7.png";
+import theHierarchicalLogicOfDiscovery8Img from "./assets/filter-and-sort/the-hierarchical-logic-of-discovery-8.png";
+import theHierarchicalLogicOfDiscovery9Img from "./assets/filter-and-sort/the-hierarchical-logic-of-discovery-9.png";
+import theHierarchicalLogicOfDiscovery10Img from "./assets/filter-and-sort/the-hierarchical-logic-of-discovery-10.png";
+
+<Meta title="Patterns / Filter and sort" />
+
+# Filter and sort
+
+## Header
+
+<img src={headerImg} alt="Header" />
+
+### Filter and sort
+
+This guide defines how interactive components work together to manage large datasets, ensuring users can navigate content with minimal friction.
+
+#### View prototype
+
+## Table
+
+### Usage and purpose
+
+| Component | Affordance category | Use case and purpose |
+| --- | --- | --- |
+| Search field | Finding | Locates specific items via text input; ideal for unpredictable datasets. |
+| Dropdown/select | Organizing | Space-efficient method for sorting or choosing a single filter from a long list. Can appear as buttons that, when clicked, reveal a list of options (e.g., School, Grade) to narrow data results. |
+| Checkbox group | Organizing | Allows for multi-select filtering, letting users view several categories simultaneously within a list or dropdown. |
+| Radio buttons | Organizing | Used for mutually exclusive filtering where only one option can be active at a time. |
+| Toggle | Viewing | Best for binary, "on/off" states that trigger immediate changes. Used for global display preferences or enabling specific data subsets (e.g., "Show assigned skills only"). |
+| More filters modal | Organizing | A centralized secondary view containing advanced or low-frequency filters that are not in the primary action bar. |
+| Chips | Organizing | Dynamic, removable elements that represent active filters. Clicking the "X" removes the specific parameter from the view. |
+| Clear filters | Organizing | A text-link or button that resets all active filtering and sorting to the system default. |
+| Segment control | Viewing | Best for switching between 2–5 related views of the same data, such as "Day / Week / Month". |
+| Sort control | Organizing | Typically an icon-based button (e.g., arrows) used to quickly toggle between ascending and descending order. |
+| Tabs | ... | ... |
+| Pills | ... | ... |
+
+## The hierarchical logic of discovery
+
+### Logic framework: how they play together
+
+Regardless of which components are selected for your specific use case, the system must follow these foundational rules:
+Additive filtering (AND): When a user selects a value from a Dropdown and then types in the Search Bar, the results must reflect both. The search is conducted within the already filtered subset. 
+Inclusive selection (OR): Within a single component—specifically Checkboxes—selecting multiple items should expand the results (e.g., "Show me Blue OR Red items"). 
+Cascading dependencies: Primary filters (e.g., School) dynamically "prune" secondary filters (e.g., Grade) to show only valid, overlapping options. If a primary filter is changed, any now-invalid secondary selections are cleared to prevent "No Results" states. 
+Global reset: Provide a "Clear filters" function as soon as a single selection is made. This ensures users can return to a neutral state instantly without manual deselection, regardless of how many components are currently in use.
+
+### Experience flow: the discovery sequence
+
+This section illustrates the logic framework in practice, transitioning from broad keyword discovery to granular category refinement. It demonstrates how the UI maintains data integrity through cascading logic while providing immediate visual feedback and reset options as users interact with the filter bar.
+
+<img src={theHierarchicalLogicOfDiscovery1Img} alt="The hierarchical logic of discovery 1" />
+
+### Filter bar
+
+The horizontal filter bar is located directly above the content list to provide immediate access to data refinement tools.
+It can feature things like (and in this order) Search field for keyword queries, embedded dropdowns for high-priority + preset selections (e.g., Last 30 days), compact additive dropdowns for common categories (e.g. School and Grade), and for advanced segments, the More Filters button opens a comprehensive modal for less frequent criteria.
+
+<img src={theHierarchicalLogicOfDiscovery2Img} alt="The hierarchical logic of discovery 2" />
+
+### Search field
+
+A search field allowing users to type keywords to find specific items within the dataset. As you type, the system provides a list of auto-suggestions—such as specific class names—to help you find what you need faster. Once you select a suggestion or press enter, the main results list will refresh to display your matches.
+
+<img src={theHierarchicalLogicOfDiscovery3Img} alt="The hierarchical logic of discovery 3" />
+
+<img src={theHierarchicalLogicOfDiscovery4Img} alt="The hierarchical logic of discovery 4" />
+
+### Embedded filter dropdown (single-select)
+
+This variation is used for essential criteria that require a value to be active at all times, such as Date. Typically restricted to a single selection at a time to maintain a clear, focused data view. Because these are fundamental to the dataset, they remain visible in the filter bar as the primary anchors for the results displayed. Only use this for high-level "View" toggles (e.g., Date Range or Department) where the system cannot show "All" data without a primary category being selected.
+Use them sparingly (1–2 max) to avoid over-constraining the data and forcing a "Zero Results" state before discovery begins.
+
+<img src={theHierarchicalLogicOfDiscovery5Img} alt="The hierarchical logic of discovery 5" />
+
+<img src={theHierarchicalLogicOfDiscovery6Img} alt="The hierarchical logic of discovery 6" />
+
+### Compact additive dropdown (single or multi-select)
+
+This specific style of dropdown is designed for high-frequency use within the horizontal filter bar. It allows users to manage common data categories—such as School or Grade—efficiently within a limited space.
+Limit to 4 max of these categories to prevent UI clutter and ensure the most common data segments remain accessible.
+
+<img src={theHierarchicalLogicOfDiscovery7Img} alt="The hierarchical logic of discovery 7" />
+
+### More filters modal
+
+The More filters component serves as a secondary control center for complex or less frequent filtering needs, ensuring the primary interface remains uncluttered.
+
+<img src={theHierarchicalLogicOfDiscovery8Img} alt="The hierarchical logic of discovery 8" />
+
+### Active filters
+
+Active filters are displayed directly below the filter bar to provide transparent feedback on the current dataset.
+
+<img src={theHierarchicalLogicOfDiscovery9Img} alt="The hierarchical logic of discovery 9" />
+
+<img src={theHierarchicalLogicOfDiscovery10Img} alt="The hierarchical logic of discovery 10" />
+
+### Clear filters
+
+A "Clear filters" button appears as soon as a single selection is made. This ensures users can return to a neutral state instantly without manual deselection, regardless of how many components are currently in use.
+
+---
+
+<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=12444-24346&t=6lEHCsAo03k7G4Lr-4" target="_blank" rel="noopener noreferrer">Figma source</a>
