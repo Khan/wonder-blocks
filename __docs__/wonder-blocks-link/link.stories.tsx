@@ -620,11 +620,11 @@ export const RightToLeftWithIcons: StoryComponentType = {
 
 const styles = StyleSheet.create({
     heading: {
-        marginRight: sizing.size_240,
+        marginInlineEnd: sizing.size_240,
     },
     navigation: {
         border: `1px dashed ${semanticColor.core.border.neutral.subtle}`,
-        marginTop: sizing.size_240,
+        marginBlockStart: sizing.size_240,
         padding: sizing.size_240,
     },
     customLink: {
@@ -639,16 +639,16 @@ const styles = StyleSheet.create({
         // instead of taking the full width of the parent
         // container.
         display: "inline-block",
-        marginBottom: sizing.size_080,
+        marginBlockEnd: sizing.size_080,
     },
     rightToLeft: {
         width: "100%",
-        direction: "rtl",
+        direction: "rtl", // eslint-disable-line @khanacademy/wonder-blocks/require-logical-properties-for-rtl
     },
     multiLine: {
         display: "inline-block",
-        marginBottom: sizing.size_080,
-        maxWidth: "15%",
+        marginBlockEnd: sizing.size_080,
+        maxInlineSize: "15%",
     },
     card: {
         background: semanticColor.core.background.base.subtle,

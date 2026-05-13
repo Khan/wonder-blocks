@@ -31,7 +31,7 @@ export const IconContrast = {
         <View
             style={{
                 flexDirection: "row",
-                marginBottom: sizing.size_080,
+                marginBlockEnd: sizing.size_080,
             }}
         >
             <LabelMedium>High contrast icon (GOOD):</LabelMedium>
@@ -51,7 +51,7 @@ export const RightToLeftIcons = {
         <View
             style={{
                 flexDirection: "row",
-                direction: "ltr",
+                direction: "ltr", // eslint-disable-line @khanacademy/wonder-blocks/require-logical-properties-for-rtl
             }}
         >
             <PhosphorIcon icon={IconMappings.caretRight} />

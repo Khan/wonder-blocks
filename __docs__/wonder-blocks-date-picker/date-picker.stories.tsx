@@ -38,7 +38,7 @@ const DatePickerWrapper = (props: Props) => {
             }}
         >
             <Button>prev</Button>
-            <View style={{flexGrow: 1, maxWidth: "24rem"}}>
+            <View style={{flexGrow: 1, maxInlineSize: "24rem"}}>
                 <DatePicker
                     {...props}
                     inputAriaLabel="Choose or enter a date"
@@ -322,7 +322,7 @@ const DatePickerWithOpenOverlay = (props: Props) => {
             ref={containerRef}
             style={{
                 padding: sizing.size_240,
-                minHeight: 400,
+                minBlockSize: 400,
             }}
         >
             <DatePicker
@@ -530,7 +530,7 @@ export const InsideModal: Story = {
  */
 export const WithCustomStyles: Story = {
     render: (args) => (
-        <View style={{gap: sizing.size_240, maxWidth: 600}}>
+        <View style={{gap: sizing.size_240, maxInlineSize: 600}}>
             <View style={{gap: sizing.size_080}}>
                 <BodyText weight="bold" tag="label" htmlFor="custom-example1">
                     Date with default size (225px × 40px)

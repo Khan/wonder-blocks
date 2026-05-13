@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
         backgroundColor: semanticColor.status.notice.background,
         color: semanticColor.status.notice.foreground,
         border: "none",
-        maxWidth: 250,
+        maxInlineSize: 250,
         "::placeholder": {
             color: semanticColor.core.foreground.neutral.default,
         },
@@ -191,7 +191,7 @@ export const WithValue: ControlledStoryComponentType = {
 export const AutoResize: StoryComponentType = {
     render: (args) => {
         return (
-            <View style={{gap: sizing.size_240, maxWidth: "500px"}}>
+            <View style={{gap: sizing.size_240, maxInlineSize: "500px"}}>
                 <ControlledTextArea
                     {...args}
                     autoResize={false}
@@ -551,19 +551,19 @@ export const AutoFocus = () => {
                 autoFocus={true}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
-                style={{flexGrow: 1, marginLeft: sizing.size_120}}
+                style={{flexGrow: 1, marginInlineStart: sizing.size_120}}
             />
         </View>
     );
 
     return (
         <View>
-            <LabelLarge style={{marginBottom: sizing.size_120}}>
+            <LabelLarge style={{marginBlockEnd: sizing.size_120}}>
                 Press the button to view the textarea with autofocus.
             </LabelLarge>
             <Button
                 onClick={handleShowDemo}
-                style={{width: 300, marginBottom: sizing.size_240}}
+                style={{width: 300, marginBlockEnd: sizing.size_240}}
             >
                 Toggle autoFocus demo
             </Button>
