@@ -100,7 +100,7 @@ export const Default: StoryComponentType = {
 export const AllowMultipleExpanded: StoryComponentType = {
     render: () => (
         <View>
-            <View style={{maxWidth: 500, marginBottom: sizing.size_240}}>
+            <View style={{maxInlineSize: 500, marginBlockEnd: sizing.size_240}}>
                 <LabelLarge>Allow multiple expanded (default)</LabelLarge>
                 <Accordion allowMultipleExpanded>{exampleSections}</Accordion>
             </View>
@@ -364,7 +364,7 @@ export const WithAnimation: StoryComponentType = {
                         </Accordion>
                     </View>
                 </View>
-                <View style={{maxWidth: 500}}>
+                <View style={{maxInlineSize: 500}}>
                     <LabelLarge>
                         With unevenly sided sections, allowMultipleExpanded:
                         false
@@ -676,6 +676,6 @@ const styles = StyleSheet.create({
     },
     button: {
         width: "fit-content",
-        marginBottom: sizing.size_160,
+        marginBlockEnd: sizing.size_160,
     },
 });
