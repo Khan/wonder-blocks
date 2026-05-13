@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 16.4.1
+
+### Patch Changes
+
+- 245229a: Make `tokenValue` safe to call in environments without a `document` (e.g. SSR or node-based test environments). Returns an empty string for `var(...)` tokens when `document` is undefined, instead of throwing `ReferenceError: document is not defined`.
+
 ## 16.4.0
 
 ### Minor Changes
