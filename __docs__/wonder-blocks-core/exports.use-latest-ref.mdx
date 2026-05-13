@@ -4,7 +4,7 @@ import {useLatestRef, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 <Meta
     title="Packages / Core / Exports / useLatestRef()"
@@ -67,12 +67,12 @@ export function Example1() {
                 value={message}
                 onChange={setMessage}
             />
-            <Strut size={spacing.medium_16} />
-            <View style={{flexDirection: "row", gap: spacing.xSmall_8}}>
+            <Strut size={16} />
+            <View style={{flexDirection: "row", gap: sizing.size_080}}>
                 {isMounted && <Button onClick={unmount}>Unmount</Button>}
                 {!isMounted && <Button onClick={mount}>Mount</Button>}
             </View>
-            <Strut size={spacing.medium_16} />
+            <Strut size={16} />
             <Context>
                 {isMounted && (
                     <ComponentThatAlertsOnUnmount message={message} />
@@ -89,7 +89,7 @@ export function Context({children}) {
                 borderRadius: 5,
                 border: "1px solid #ccc",
                 boxShadow: "inset 1px 1px 6px #0001",
-                padding: spacing.medium_16,
+                padding: sizing.size_160,
                 background: color.offWhite,
             }}
         >

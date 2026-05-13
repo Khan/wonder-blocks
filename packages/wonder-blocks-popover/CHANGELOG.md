@@ -1,5 +1,28 @@
 # @khanacademy/wonder-blocks-popover
 
+## 6.2.3
+
+### Patch Changes
+
+- 0fadf9f: Migrate internal usage of the deprecated `spacing` primitive token to the
+  `sizing` token. No public API or visual changes — each `spacing.<name>`
+  value maps 1:1 to a `sizing.size_<n>` token with the same rendered value.
+  A handful of internal `Strut` usages are replaced with CSS `gap` /
+  `margin` (since `sizing.X` is a CSS variable string at runtime, not a
+  number). Layout-spec and SVG sites that genuinely need JS numbers use
+  hardcoded values that mirror the matching `sizing.size_*` tokens (with
+  comments). Prep for removal of the `spacing` export in a future major
+  release of `@khanacademy/wonder-blocks-tokens`.
+- Updated dependencies [0fadf9f]
+- Updated dependencies [c1c74df]
+- Updated dependencies [72c5272]
+    - @khanacademy/wonder-blocks-tooltip@4.1.73
+    - @khanacademy/wonder-blocks-tokens@16.4.0
+    - @khanacademy/wonder-blocks-modal@8.6.4
+    - @khanacademy/wonder-blocks-icon-button@11.2.3
+    - @khanacademy/wonder-blocks-styles@0.2.43
+    - @khanacademy/wonder-blocks-typography@4.3.2
+
 ## 6.2.2
 
 ### Patch Changes

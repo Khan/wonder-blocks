@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {Caption} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentGallery from "./components/gallery/component-gallery";
@@ -21,17 +21,17 @@ export const styles = StyleSheet.create({
     heroWrapper: {
         flexDirection: "row",
         minHeight: "50vh",
-        marginBottom: spacing.large_24,
+        marginBottom: sizing.size_240,
         [mobile]: {
             flexDirection: "column",
             minHeight: "auto",
-            marginTop: spacing.large_24,
+            marginTop: sizing.size_240,
         },
     },
     heroBody: {
         alignSelf: "center",
-        gap: spacing.medium_16,
-        padding: `0 ${spacing.xxxLarge_64}px 0 0`,
+        gap: sizing.size_160,
+        padding: `0 ${sizing.size_640} 0 0`,
         [mobile]: {
             padding: 0,
         },
@@ -58,7 +58,7 @@ export const styles = StyleSheet.create({
             <strong>Note:</strong> These components are only available for use
             on the web (including mobile web).
         </Caption>
-        <Strut size={spacing.large_24} />
+        <Strut size={24} />
     </View>
     <StyledImage
         alt="A illustration that shows multiple components."

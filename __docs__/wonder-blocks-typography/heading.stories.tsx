@@ -16,8 +16,8 @@ import {
     Tagline,
     Title,
 } from "@khanacademy/wonder-blocks-typography";
-import {font, spacing, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {allThemeModes} from "../../.storybook/modes";
+import {font, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 /**
 New component for Thunderblocks headings.
@@ -249,8 +249,8 @@ const styles = StyleSheet.create({
     grid: {
         display: "grid",
         gridTemplateColumns: "max-content max-content max-content",
-        rowGap: spacing.medium_16,
-        columnGap: spacing.large_24,
+        rowGap: sizing.size_160,
+        columnGap: sizing.size_240,
     },
     conversionGuide: {
         justifyContent: "flex-start",

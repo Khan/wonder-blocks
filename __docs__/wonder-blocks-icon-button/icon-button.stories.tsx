@@ -17,7 +17,7 @@ import minusCircle from "@phosphor-icons/core/regular/minus-circle.svg";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon-button/package.json";
@@ -128,7 +128,7 @@ export const Sizes: StoryComponentType = {
         icon: magnifyingGlass,
     },
     render: (args) => (
-        <View style={{gap: spacing.medium_16}}>
+        <View style={{gap: sizing.size_160}}>
             <View style={styles.row}>
                 <LabelMedium style={styles.label}>xsmall</LabelMedium>
                 <IconButton
@@ -196,7 +196,7 @@ export const Kinds: StoryComponentType = {
 export const WithActionType: StoryComponentType = {
     name: "ActionType",
     render: (args) => (
-        <View style={{gap: spacing.medium_16}}>
+        <View style={{gap: sizing.size_160}}>
             <View style={styles.row}>
                 <IconButton
                     {...args}
@@ -405,15 +405,15 @@ export const WithCustomIcon: StoryComponentType = {
 const styles = StyleSheet.create({
     arrowsWrapper: {
         flexDirection: "row",
-        gap: spacing.medium_16,
+        gap: sizing.size_160,
     },
     row: {
         display: "flex",
         flexDirection: "row",
-        gap: spacing.medium_16,
+        gap: sizing.size_160,
         alignItems: "center",
     },
     label: {
-        width: spacing.xxxLarge_64,
+        width: sizing.size_640,
     },
 });
