@@ -32,14 +32,22 @@ const cssVarRegex = /^\s*var\(\s*(--[^,)\s]+)/;
  * ```
  */
 export function tokenValue(token: string, element?: Element): string {
+    const match = token.match(cssVarRegex);
+    if (!match) {
+        return token;
+    }
+
+    // In non-browser environments (e.g. SSR or node-based tests), there is no
+    // document to read computed styles from. Return an empty string so callers
+    // can resolve values lazily at first render instead of crashing on import.
+    if (typeof document === "undefined") {
+        return "";
+    }
+
     const rootElement =
         element ||
         document.querySelector("[data-wb-theme]") ||
         document.documentElement;
 
-    const match = token.match(cssVarRegex);
-    if (!match) {
-        return token;
-    }
     return getComputedStyle(rootElement).getPropertyValue(match[1]).trim();
 }
