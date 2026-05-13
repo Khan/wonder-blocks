@@ -124,10 +124,11 @@ const parameters: Preview["parameters"] = {
         storySort: {
             order: [
                 "Foundations",
+                "Components",
+                "Patterns",
                 "Packages",
                 "Tools",
                 "Catalog",
-                "Components",
                 "**/__docs__/**",
                 "Overview",
             ],
