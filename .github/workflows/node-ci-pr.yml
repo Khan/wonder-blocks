@@ -1,10 +1,10 @@
 name: Node CI (PR)
 
 on:
-  pull_request:
-    # ready_for_review is useful for when a PR is converted from "draft" to "not
-    # draft".
-    types: [edited, opened, synchronize, ready_for_review, reopened]
+    pull_request:
+        # ready_for_review is useful for when a PR is converted from "draft" to "not
+        # draft".
+        types: [edited, opened, synchronize, ready_for_review, reopened]
 
 # When a new revision is pushed to a PR, cancel all in-progress CI runs for that
 # PR. See https://docs.github.com/en/actions/using-jobs/using-concurrency
@@ -21,82 +21,70 @@ concurrency:
 #     b. Test/Coverage
 #   3. Verify that build sizes are reasonable
 jobs:
-  prime_cache_primary:
-    name: Prime node_modules cache for primary configuration
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node-version: [24.x]
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install & cache node_modules
-        uses: ./.github/actions/shared-node-cache
-        with:
-          node-version: ${{ matrix.node-version }}
-
-  changeset:
-    name: Check for .changeset entries for all changed files
-    if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
-    runs-on: ${{ matrix.os }}
-    strategy:
-        matrix:
-            os: [ubuntu-latest]
-            node-version: [24.x]
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - uses: Khan/actions@check-for-changeset-v1
+    changeset:
+        name: Check for .changeset entries for all changed files
         if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
-        with:
-          exclude: .github/,.storybook/
-          exclude_extensions: .test.ts, .test.tsx, .stories.ts, .stories.tsx, .mdx
-          exclude_globs: "**/__tests__/*, **/__docs__/*"
+        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && 'ubuntu-latest' || 'ephemeral-runner' }}
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v5
+              with:
+                  fetch-depth: 0
+            - name: Secure Network
+              uses: Khan/actions@secure-network-v1
+              timeout-minutes: 5
 
-  lint:
-    name: Lint
-    needs: prime_cache_primary
-    uses: ./.github/workflows/node-ci-lint.yml
+            - uses: Khan/actions@check-for-changeset-v2
+              if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
+              with:
+                  exclude: .github/,.storybook/
+                  exclude_extensions: .test.ts, .test.tsx, .stories.ts, .stories.tsx, .mdx
+                  exclude_globs: "**/__tests__/*, **/__docs__/*"
 
-  test:
-    name: Test
-    needs: prime_cache_primary
-    uses: ./.github/workflows/node-ci-test.yml
-    secrets:
-      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+    lint:
+        name: Lint
+        uses: ./.github/workflows/node-ci-lint.yml
 
-  check_builds:
-    name: Check build sizes
-    needs: prime_cache_primary
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node-version: [24.x]
-    steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
+    test:
+        name: Test
+        uses: ./.github/workflows/node-ci-test.yml
+        secrets:
+            CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
-      - name: Install & cache node_modules
-        uses: ./.github/actions/shared-node-cache
-        with:
-          node-version: ${{ matrix.node-version }}
+    check_builds:
+        name: Check build sizes
+        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && 'ubuntu-latest' || 'ephemeral-runner' }}
+        strategy:
+            matrix:
+                node-version: [24.x]
+        steps:
+            - uses: actions/checkout@v5
+            - name: Secure Network
+              uses: Khan/actions@secure-network-v1
+              timeout-minutes: 5
+              with:
+                  # registry.npmjs.org: npm package registry for pnpm install
+                  extra-domains: registry.npmjs.org
+            - name: Use Node.js 24.x
+              uses: actions/setup-node@v6
+              with:
+                  node-version: 24.x
 
-      # Make sure our packages aren't growing unexpectedly
-      - name: Check Builds
-        uses: preactjs/compressed-size-action@v2
-        with:
-          # Specify our custom build script
-          build-script: "build"
-          # Clean up state between builds
-          clean-script: "clean"
-          # Any JS files anywhere within a dist directory:
-          pattern: "**/dist/es/*.js"
-          # Always ignore SourceMaps and node_modules:
-          exclude: "{**/*.map,**/node_modules/**}"
+            - name: Install & cache node_modules
+              uses: ./.github/actions/shared-node-cache
+              timeout-minutes: 5
+              with:
+                  node-version: 24.x
+
+            # Make sure our packages aren't growing unexpectedly
+            - name: Check Builds
+              uses: preactjs/compressed-size-action@v2
+              with:
+                  # Specify our custom build script
+                  build-script: "build"
+                  # Clean up state between builds
+                  clean-script: "clean"
+                  # Any JS files anywhere within a dist directory:
+                  pattern: "**/dist/es/*.js"
+                  # Always ignore SourceMaps and node_modules:
+                  exclude: "{**/*.map,**/node_modules/**}"

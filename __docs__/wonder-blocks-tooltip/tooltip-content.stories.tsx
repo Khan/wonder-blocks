@@ -1,6 +1,6 @@
 import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react-vite";
-import {Body, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 import packageConfig from "../../packages/wonder-blocks-tooltip/package.json";
@@ -44,7 +44,7 @@ export const OnlyTextContent: StoryComponentType = {
 OnlyTextContent.parameters = {
     docs: {
         description: {
-            story: "This shows the default which is text rendered using `LabelMedium`.",
+            story: "This shows the default which is text rendered using `BodyText`.",
         },
     },
 };
@@ -62,7 +62,7 @@ export const TitledContent: StoryComponentType = {
 TitledContent.parameters = {
     docs: {
         description: {
-            story: "This shows the default with a title; the title is rendered using `HeadingSmall`.",
+            story: "This shows the default with a title; the title is rendered using `Heading`.",
         },
     },
 };
@@ -72,11 +72,11 @@ TitledContent.parameters = {
  */
 export const CustomContent: StoryComponentType = {
     args: {
-        title: <Body>Body text title!</Body>,
+        title: <BodyText>Body text title!</BodyText>,
         children: (
             <>
-                <Body>Body text content!</Body>
-                <LabelSmall>And LabelSmall!</LabelSmall>
+                <BodyText>Body text content!</BodyText>
+                <BodyText>And BodyText!</BodyText>
             </>
         ),
     },
@@ -87,5 +87,23 @@ CustomContent.parameters = {
         description: {
             story: "This shows how we can customize both the title and the content.",
         },
+    },
+};
+
+/**
+ * To render rich text in tooltip content, pass a React element as `children`
+ * instead of a plain string. When a string is passed, it is wrapped in
+ * `BodyText` and rendered as plain text — HTML tags in a string will appear
+ * literally (e.g. `<i>text</i>`). Wrapping content in a typography component
+ * and using inline HTML elements gives full control over formatting.
+ */
+export const RichTextContent: StoryComponentType = {
+    args: {
+        children: (
+            <BodyText>
+                Use <strong>bold</strong>, <em>italic</em>, or <u>underlined</u>{" "}
+                text by passing a React element instead of a plain string.
+            </BodyText>
+        ),
     },
 };

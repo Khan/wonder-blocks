@@ -3,7 +3,7 @@
   "description": "Core primitive design tokens for Web Wonder Blocks",
   "author": "Khan Academy",
   "license": "MIT",
-  "version": "16.1.0",
+  "version": "16.4.0",
   "publishConfig": {
     "access": "public"
   },
@@ -28,6 +28,7 @@
   },
   "scripts": {
     "build:css": "node -r @swc-node/register ./src/build/generate-css-variables.ts",
+    "build:token-docs": "node -r @swc-node/register ./src/build/generate-token-docs.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },

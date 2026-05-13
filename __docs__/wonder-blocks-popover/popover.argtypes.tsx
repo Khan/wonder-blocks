@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 // Reusable stories
 import {Default, WithIcon, WithIllustration} from "./popover-content.stories";
 import {
@@ -30,6 +31,7 @@ export const ContentMappings = {
 };
 
 export default {
+    ...AriaArgTypes,
     children: {
         description:
             `The element that triggers the popover. This element will be ` +
@@ -89,6 +91,18 @@ export default {
             `The selector for the element that will be focused when the ` +
             `popover content shows. When not set, the first focusable ` +
             `element within the popover content will be used.`,
+    },
+    autoUpdate: {
+        description:
+            "Whether the popover should automatically update its position when the anchor element changes size or position.",
+        control: {
+            type: "boolean",
+        },
+        table: {
+            type: {
+                summary: "boolean",
+            },
+        },
     },
     opened: {
         description:

@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Button from "@khanacademy/wonder-blocks-button";
 import Link from "@khanacademy/wonder-blocks-link";
@@ -100,7 +100,7 @@ export const MigrationToLabeledField: StoryComponentType = {
             }
         };
         return (
-            <View style={{gap: spacing.xxxLarge_64}}>
+            <View style={{gap: sizing.size_640}}>
                 <LabeledTextField
                     {...args}
                     label="Using LabeledTextField"
@@ -266,7 +266,7 @@ export const Number: StoryComponentType = () => {
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
             />
-            <Strut size={spacing.small_12} />
+            <Strut size={12} />
             <LabeledTextField
                 id="tf-3a"
                 label={`The following text field has a min of 0, a max of 15,
@@ -564,7 +564,7 @@ export const CustomStyle: StoryComponentType = () => {
                 style={styles.grow}
                 onKeyDown={handleKeyDown}
             />
-            <Strut size={spacing.xLarge_32} />
+            <Strut size={32} />
             <LabeledTextField
                 label="Last name"
                 description="Please enter your last name"
@@ -643,7 +643,7 @@ export const Ref: StoryComponentType = () => {
                 onKeyDown={handleKeyDown}
                 ref={inputRef}
             />
-            <Strut size={spacing.medium_16} />
+            <Strut size={16} />
             <Button style={styles.button} onClick={handleSubmit}>
                 Focus Input
             </Button>
@@ -763,6 +763,6 @@ const styles = StyleSheet.create({
         flexGrow: 1,
     },
     fieldWithButton: {
-        marginBottom: spacing.medium_16,
+        marginBottom: sizing.size_160,
     },
 });

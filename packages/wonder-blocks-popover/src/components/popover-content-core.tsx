@@ -7,7 +7,7 @@ import {
     border,
     boxShadow,
     semanticColor,
-    spacing,
+    sizing,
 } from "@khanacademy/wonder-blocks-tokens";
 
 import {actionStyles} from "@khanacademy/wonder-blocks-styles";
@@ -107,8 +107,8 @@ const styles = StyleSheet.create({
         backgroundColor: semanticColor.core.background.base.default,
         boxShadow: boxShadow.mid,
         margin: 0,
-        maxWidth: spacing.medium_16 * 18, // 288px
-        padding: spacing.large_24,
+        maxInlineSize: `calc(${sizing.size_160} * 18)`, // 288px
+        padding: sizing.size_240,
         overflow: "hidden",
         justifyContent: "center",
     },
@@ -119,8 +119,8 @@ const styles = StyleSheet.create({
     closeButton: {
         margin: 0,
         position: "absolute",
-        right: spacing.xxxSmall_4,
-        top: spacing.xxxSmall_4,
+        insetInlineEnd: sizing.size_040,
+        insetBlockStart: sizing.size_040,
         // Allows the button to be above the title and/or custom content
         zIndex: 1,
     },

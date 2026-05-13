@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {
     Choice,
@@ -11,12 +11,16 @@ import {
     RadioGroup,
 } from "@khanacademy/wonder-blocks-form";
 
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 
 export default {
     title: "Packages / Form / Choice",
     component: Choice,
+    argTypes: {
+        ...AriaArgTypes,
+    },
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -109,6 +113,6 @@ export const Default: StoryComponentType = {
 const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
-        gap: spacing.xLarge_32,
+        gap: sizing.size_320,
     },
 });

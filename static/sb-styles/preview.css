@@ -97,8 +97,15 @@ html {
     line-height: var(--typography-heading-line-height-xs);
 }
 
+.sbdocs a>code {
+    /* Make sure code blocks inside links have link styling */
+    color: inherit;
+    text-decoration: underline;
+}
+
 /* Give the automatic TOC column more width instead of awkward scrolling */
-.sbdocs-toc--custom, .sbdocs-toc--custom nav {
+.sbdocs-toc--custom,
+.sbdocs-toc--custom nav {
     width: 22rem !important;
 }
 

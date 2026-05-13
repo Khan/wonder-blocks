@@ -2,8 +2,8 @@ import type {ArgTypes} from "@storybook/react-vite";
 import * as React from "react";
 
 import Button from "@khanacademy/wonder-blocks-button";
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 import {Spring, Strut} from "@khanacademy/wonder-blocks-layout";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 type Mappings = Record<string, React.ReactNode>;
@@ -14,7 +14,7 @@ const ActionsMappings: Mappings = {
     pagination: (
         <>
             <Button kind="tertiary">Previous</Button>
-            <Strut size={spacing.medium_16} />
+            <Strut size={16} />
             <Button kind="primary">Next</Button>
         </>
     ),
@@ -48,6 +48,7 @@ const ImageMappings: Mappings = {
 };
 
 export default {
+    ...AriaArgTypes,
     content: {
         description: "The content to render inside the popover.",
         type: {name: "string", required: true},

@@ -51,6 +51,13 @@ const config: StorybookConfig = {
             },
         });
     },
+    typescript: {
+        reactDocgen: 'react-docgen-typescript',
+        reactDocgenTypescriptOptions: {
+            // Ignore props that have the @ignore tag in the docs
+            propFilter: (prop) => prop.tags?.ignore === undefined,
+        },
+    },
 };
 
 export default config;

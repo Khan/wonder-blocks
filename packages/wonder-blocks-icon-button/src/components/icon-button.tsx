@@ -83,9 +83,9 @@ function IconChooser({
  * behavior of Button.
  *
  * IconButtons require a certain amount of space between them to ensure the
- * focus rings don't overlap. The minimum amount of spacing is 16px, but you
- * should refer to the mocks provided by design.  Using a Strut in between
- * IconButtons is the preferred way to for adding this spacing.
+ * focus rings don't overlap. The minimum amount of spacing is 1.6rem, but you
+ * should refer to the mocks provided by design.  Using the `gap` CSS property
+ * in between IconButtons is the preferred way to for adding this spacing.
  *
  * Many layouts require alignment of visual left (or right) side of an
  * `IconButton`. This requires a little bit of pixel nudging since each icon as
@@ -142,6 +142,7 @@ export const IconButton: React.ForwardRefExoticComponent<
         <IconButtonUnstyled
             {...restProps}
             disabled={disabled}
+            kind={kind}
             onPress={handlePress}
             ref={ref}
             style={styles}

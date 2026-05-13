@@ -295,6 +295,59 @@ describe("ButtonUnstyled", () => {
         });
     });
 
+    describe("data-kind", () => {
+        it("should set data-kind on the underlying button", async () => {
+            // Arrange
+
+            // Act
+            render(
+                <ButtonUnstyled kind="primary" onClick={() => {}}>
+                    Click me!
+                </ButtonUnstyled>,
+            );
+
+            // Assert
+            expect(await screen.findByRole("button")).toHaveAttribute(
+                "data-kind",
+                "primary",
+            );
+        });
+
+        it("should set data-kind on the underlying internal link", async () => {
+            // Arrange
+
+            // Act
+            render(
+                <ButtonUnstyled kind="secondary" href="/bar">
+                    Click me!
+                </ButtonUnstyled>,
+            );
+
+            // Assert
+            expect(await screen.findByText("Click me!")).toHaveAttribute(
+                "data-kind",
+                "secondary",
+            );
+        });
+
+        it("should set data-kind on the underlying external link", async () => {
+            // Arrange
+
+            // Act
+            render(
+                <ButtonUnstyled kind="secondary" href="https://example.com">
+                    Click me!
+                </ButtonUnstyled>,
+            );
+
+            // Assert
+            expect(await screen.findByText("Click me!")).toHaveAttribute(
+                "data-kind",
+                "secondary",
+            );
+        });
+    });
+
     describe("Accessibility", () => {
         describe("axe", () => {
             it("should not have violations", async () => {

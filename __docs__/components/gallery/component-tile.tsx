@@ -5,7 +5,7 @@ import externalLinkIcon from "@phosphor-icons/core/bold/arrow-square-out-bold.sv
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {Body, HeadingSmall} from "@khanacademy/wonder-blocks-typography";
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {CommonTileProps} from "./types";
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     tile: {
         display: "flex",
         flexDirection: "column",
-        margin: spacing.xSmall_8,
+        margin: sizing.size_080,
 
         [mobile]: {
             width: "95%",
@@ -116,8 +116,8 @@ const styles = StyleSheet.create({
     clickable: {
         backgroundColor: semanticColor.core.background.base.subtle,
         border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
-        borderStartStartRadius: spacing.small_12,
-        borderStartEndRadius: spacing.small_12,
+        borderStartStartRadius: sizing.size_120,
+        borderStartEndRadius: sizing.size_120,
 
         ":hover": {
             border: `1px solid ${semanticColor.core.border.instructive.default}`,
@@ -130,30 +130,30 @@ const styles = StyleSheet.create({
         },
     },
     descriptionWithDetails: {
-        padding: spacing.large_24,
+        padding: sizing.size_240,
     },
     descriptionWithoutDetails: {
-        padding: spacing.small_12,
+        padding: sizing.size_120,
     },
     headingContainer: {
         flexDirection: "row",
         alignItems: "center",
     },
     descriptionText: {
-        marginTop: spacing.small_12,
+        marginTop: sizing.size_120,
     },
     componentView: {
         flexDirection: "column",
         justifyContent: "center",
-        padding: spacing.large_24,
+        padding: sizing.size_240,
         border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
         borderTop: "none",
-        borderEndStartRadius: spacing.small_12,
-        borderEndEndRadius: spacing.small_12,
+        borderEndStartRadius: sizing.size_120,
+        borderEndEndRadius: sizing.size_120,
         flexGrow: 1,
     },
     externalLinkIcon: {
-        marginLeft: spacing.xSmall_8,
-        marginRight: spacing.xSmall_8,
+        marginLeft: sizing.size_080,
+        marginRight: sizing.size_080,
     },
 });

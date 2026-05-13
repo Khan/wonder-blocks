@@ -2,9 +2,8 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
-import {HeadingSmall, LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {Heading, BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
 
 import {ContentStyle} from "../util/types";
@@ -51,7 +50,7 @@ export default class TooltipContent extends React.Component<Props> {
         const {title} = this.props;
         if (title) {
             if (typeof title === "string") {
-                return <HeadingSmall>{title}</HeadingSmall>;
+                return <Heading size="medium">{title}</Heading>;
             } else {
                 return title;
             }
@@ -62,7 +61,7 @@ export default class TooltipContent extends React.Component<Props> {
     _renderChildren(): React.ReactNode {
         const {children} = this.props;
         if (typeof children === "string") {
-            return <LabelMedium>{children}</LabelMedium>;
+            return <BodyText tag="span">{children}</BodyText>;
         } else {
             return children;
         }
@@ -78,8 +77,7 @@ export default class TooltipContent extends React.Component<Props> {
                 testId={this.props.testId}
             >
                 {title}
-                {title && children && <Strut size={spacing.xxxSmall_4} />}
-                {children}
+                {title ? <View>{children}</View> : children}
             </View>
         );
     }
@@ -87,10 +85,12 @@ export default class TooltipContent extends React.Component<Props> {
 
 const styles = StyleSheet.create({
     withoutTitle: {
-        padding: `10px ${spacing.medium_16}px`,
+        padding: `${sizing.size_100} ${sizing.size_160}`,
     },
 
     withTitle: {
-        padding: spacing.medium_16,
+        padding: sizing.size_160,
+        // gap between the title and its children when both are present.
+        gap: sizing.size_040,
     },
 });

@@ -1,5 +1,46 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 11.2.3
+
+### Patch Changes
+
+- Updated dependencies [c1c74df]
+- Updated dependencies [72c5272]
+    - @khanacademy/wonder-blocks-tokens@16.4.0
+    - @khanacademy/wonder-blocks-clickable@8.1.8
+    - @khanacademy/wonder-blocks-icon@5.3.12
+    - @khanacademy/wonder-blocks-styles@0.2.43
+    - @khanacademy/wonder-blocks-typography@4.3.2
+
+## 11.2.2
+
+### Patch Changes
+
+- Updated dependencies [40f217b]
+    - @khanacademy/wonder-blocks-tokens@16.3.0
+    - @khanacademy/wonder-blocks-clickable@8.1.7
+    - @khanacademy/wonder-blocks-icon@5.3.11
+    - @khanacademy/wonder-blocks-styles@0.2.42
+    - @khanacademy/wonder-blocks-typography@4.3.1
+
+## 11.2.1
+
+### Patch Changes
+
+- Updated dependencies [488728a]
+- Updated dependencies [00e6dda]
+    - @khanacademy/wonder-blocks-tokens@16.2.0
+    - @khanacademy/wonder-blocks-typography@4.3.0
+    - @khanacademy/wonder-blocks-clickable@8.1.6
+    - @khanacademy/wonder-blocks-icon@5.3.10
+    - @khanacademy/wonder-blocks-styles@0.2.41
+
+## 11.2.0
+
+### Minor Changes
+
+- d3d2580: Forwards the kind prop on to a data-kind attribute for testing
+
 ## 11.1.6
 
 ### Patch Changes

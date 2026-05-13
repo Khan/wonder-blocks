@@ -8,7 +8,6 @@ import {
     breakpoint,
     semanticColor,
     sizing,
-    spacing,
 } from "@khanacademy/wonder-blocks-tokens";
 
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
@@ -212,8 +211,8 @@ const styles = StyleSheet.create({
         },
     },
     cell: {
-        margin: spacing.medium_16,
-        padding: spacing.medium_16,
+        margin: sizing.size_160,
+        padding: sizing.size_160,
     },
     childrenWrapper: {
         padding: sizing.size_080,

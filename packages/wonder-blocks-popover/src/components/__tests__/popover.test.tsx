@@ -35,6 +35,51 @@ describe("Popover", () => {
         });
     });
 
+    it("should render popover content when autoUpdate is enabled", async () => {
+        // Arrange
+        render(
+            <Popover
+                autoUpdate={true}
+                placement="top"
+                content={<PopoverContent title="Title" content="content" />}
+            >
+                {({open}: any) => (
+                    <button onClick={open}>Open default popover</button>
+                )}
+            </Popover>,
+        );
+
+        // Act
+        await userEvent.click(await screen.findByRole("button"));
+
+        // Assert
+        expect(await screen.findByText("Title")).toBeInTheDocument();
+    });
+
+    it("should render popover content when autoUpdate is enabled and popover is initially open (controlled mode)", async () => {
+        // Regression: when opened={true} initially, TooltipPopper was mounted
+        // before anchorElement was set in state, causing the MutationObserver
+        // to silently not be set up. The fix defers rendering TooltipPopper
+        // until anchorElement is available.
+
+        // Arrange
+
+        // Act
+        render(
+            <Popover
+                opened={true}
+                autoUpdate={true}
+                placement="top"
+                content={<PopoverContent title="Title" content="content" />}
+            >
+                <button>Anchor</button>
+            </Popover>,
+        );
+
+        // Assert
+        expect(await screen.findByText("Title")).toBeInTheDocument();
+    });
+
     it("should hide the popover dialog by default", async () => {
         // Arrange, Act
         render(

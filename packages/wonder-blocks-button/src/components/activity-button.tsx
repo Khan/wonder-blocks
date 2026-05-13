@@ -68,6 +68,7 @@ const ActivityButtonCore: React.ForwardRefExoticComponent<
         <ButtonUnstyled
             {...restProps}
             disabled={disabled}
+            kind={kind}
             ref={ref}
             style={sharedStyles}
             type={type}

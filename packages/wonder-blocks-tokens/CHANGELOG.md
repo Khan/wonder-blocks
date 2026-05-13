@@ -1,5 +1,30 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 16.4.0
+
+### Minor Changes
+
+- c1c74df: Soft-deprecate the `spacing` primitive token in favor of `sizing`. Editors
+  will now show deprecation warnings on `spacing`, `VALID_PRIMARY_SPACING`,
+  `VALID_SECONDARY_SPACING`, and `VALID_SPACING`. No runtime or visual changes
+  — each `spacing.<name>` value still maps 1:1 to a `sizing.size_<n>` token. A
+  codemod is available at `wb-codemod/transforms/migrate-spacing-to-sizing.ts`
+  to help migrate consumers; run it with
+  `npx @khanacademy/wb-codemod -t migrate-spacing-to-sizing <paths>`.
+- 72c5272: Add `tokenValue()` helper to resolve the raw value of a semantic token at runtime. Useful for interoperating with third-party libraries that expect raw color values instead of CSS `var(...)` references.
+
+## 16.3.0
+
+### Minor Changes
+
+- 40f217b: Add Noto as fallback font for Thunderblocks in tokens.fontFamily
+
+## 16.2.0
+
+### Minor Changes
+
+- 488728a: Thunderblocks: Change `background.neutral.strong` from `black_100` to `gray_10`. If consumers are needing to use the `black_100` value, migrate it to `background.base.strong`
+
 ## 16.1.0
 
 ### Minor Changes

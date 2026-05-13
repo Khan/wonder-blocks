@@ -1,5 +1,49 @@
 # @khanacademy/wonder-blocks-link
 
+## 10.1.10
+
+### Patch Changes
+
+- 0fadf9f: Migrate internal usage of the deprecated `spacing` primitive token to the
+  `sizing` token. No public API or visual changes — each `spacing.<name>`
+  value maps 1:1 to a `sizing.size_<n>` token with the same rendered value.
+  A handful of internal `Strut` usages are replaced with CSS `gap` /
+  `margin` (since `sizing.X` is a CSS variable string at runtime, not a
+  number). Layout-spec and SVG sites that genuinely need JS numbers use
+  hardcoded values that mirror the matching `sizing.size_*` tokens (with
+  comments). Prep for removal of the `spacing` export in a future major
+  release of `@khanacademy/wonder-blocks-tokens`.
+- Updated dependencies [c1c74df]
+- Updated dependencies [72c5272]
+    - @khanacademy/wonder-blocks-tokens@16.4.0
+    - @khanacademy/wonder-blocks-clickable@8.1.8
+    - @khanacademy/wonder-blocks-icon@5.3.12
+    - @khanacademy/wonder-blocks-styles@0.2.43
+    - @khanacademy/wonder-blocks-typography@4.3.2
+
+## 10.1.9
+
+### Patch Changes
+
+- Updated dependencies [40f217b]
+    - @khanacademy/wonder-blocks-tokens@16.3.0
+    - @khanacademy/wonder-blocks-clickable@8.1.7
+    - @khanacademy/wonder-blocks-icon@5.3.11
+    - @khanacademy/wonder-blocks-styles@0.2.42
+    - @khanacademy/wonder-blocks-typography@4.3.1
+
+## 10.1.8
+
+### Patch Changes
+
+- Updated dependencies [488728a]
+- Updated dependencies [00e6dda]
+    - @khanacademy/wonder-blocks-tokens@16.2.0
+    - @khanacademy/wonder-blocks-typography@4.3.0
+    - @khanacademy/wonder-blocks-clickable@8.1.6
+    - @khanacademy/wonder-blocks-icon@5.3.10
+    - @khanacademy/wonder-blocks-styles@0.2.41
+
 ## 10.1.7
 
 ### Patch Changes

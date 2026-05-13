@@ -7,7 +7,7 @@ import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {
     boxShadow,
     semanticColor,
-    spacing,
+    sizing,
 } from "@khanacademy/wonder-blocks-tokens";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 
@@ -18,7 +18,7 @@ const actionCategory = semanticColor.action.secondary.progressive;
 const styles = StyleSheet.create({
     rest: {
         border: `1px solid ${actionCategory.default.border}`,
-        padding: spacing.xSmall_8,
+        padding: sizing.size_080,
     },
     hover: {
         textDecoration: "underline",
@@ -33,10 +33,10 @@ const styles = StyleSheet.create({
     },
     focus: {
         outline: `solid 1px ${semanticColor.focus.outer}`,
-        outlineOffset: spacing.xxxxSmall_2,
+        outlineOffset: sizing.size_020,
     },
     panel: {
-        padding: spacing.medium_16,
+        padding: sizing.size_160,
         boxShadow: boxShadow.mid,
     },
     tabButton: {
@@ -87,36 +87,25 @@ export const DisabledState = {
 export const KeyboardNavigation = {
     render: () => (
         <View>
-            <div role="tablist">
-                <Clickable
-                    role="tab"
-                    aria-controls="panel-1"
-                    id="tab-1"
-                    style={styles.tabButton}
-                >
-                    {({hovered, focused, pressed}) => (
-                        <View
-                            style={[
-                                styles.rest,
-                                hovered && styles.hover,
-                                focused && styles.focus,
-                                pressed && styles.press,
-                            ]}
-                        >
-                            <Body>Open School Info</Body>
-                        </View>
-                    )}
-                </Clickable>
-            </div>
-            <View
-                id="panel-1"
-                role="tabpanel"
-                tabIndex={0}
-                aria-labelledby="tab-1"
-                style={styles.panel}
+            <Clickable
+                role="button"
+                aria-expanded="false" // Example shows aria attributes can be set
+                id="button-1"
+                style={styles.tabButton}
             >
-                This is the information for the school.
-            </View>
+                {({hovered, focused, pressed}) => (
+                    <View
+                        style={[
+                            styles.rest,
+                            hovered && styles.hover,
+                            focused && styles.focus,
+                            pressed && styles.press,
+                        ]}
+                    >
+                        <Body>School Info</Body>
+                    </View>
+                )}
+            </Clickable>
         </View>
     ),
 

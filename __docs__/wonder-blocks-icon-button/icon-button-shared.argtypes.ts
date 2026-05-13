@@ -1,7 +1,10 @@
 import type {ArgTypes} from "@storybook/react-vite";
+
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
+    ...AriaArgTypes,
     actionType: {
         control: {
             type: "select",

@@ -8,12 +8,13 @@ import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 import info from "@phosphor-icons/core/regular/info.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
+import Link from "@khanacademy/wonder-blocks-link";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {Body} from "@khanacademy/wonder-blocks-typography";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
     storyCanvas: {
         // NOTE: This is needed for Chromatic to include the tooltip bubble.
         minHeight: 280,
-        padding: spacing.xxxLarge_64,
+        padding: sizing.size_640,
         justifyContent: "center",
         textAlign: "center",
     },
@@ -37,14 +38,14 @@ const styles = StyleSheet.create({
     centered: {
         alignItems: "center",
         justifyContent: "center",
-        gap: spacing.medium_16,
-        padding: spacing.xxLarge_48,
+        gap: sizing.size_160,
+        padding: sizing.size_480,
     },
     scrollbox: {
         height: 100,
         overflow: "auto",
         border: "1px solid black",
-        margin: spacing.small_12,
+        margin: sizing.size_120,
     },
     hostbox: {
         minHeight: "200vh",
@@ -54,8 +55,8 @@ const styles = StyleSheet.create({
     },
     block: {
         border: `solid 1px ${semanticColor.mastery.primary}`,
-        width: spacing.xLarge_32,
-        height: spacing.xLarge_32,
+        width: sizing.size_320,
+        height: sizing.size_320,
         alignItems: "center",
         justifyContent: "center",
     },
@@ -165,6 +166,70 @@ export const ComplexAnchorAndTitle: StoryComponentType = {
 };
 
 /**
+ * Tooltips can be used with links as anchors.
+ * When a `Link` is the anchor element, set `forceAnchorFocusivity={false}`
+ * since the link is already keyboard focusable. The tooltip will appear on
+ * hover or focus and the `aria-describedby` attribute is automatically applied
+ * to the `Link` element.
+ */
+export const WithLinkAnchor: StoryComponentType = {
+    render: function Render() {
+        return (
+            <Tooltip
+                content="This link navigates to the Khan Academy homepage."
+                placement="top"
+                forceAnchorFocusivity={false}
+            >
+                <Link href="https://www.khanacademy.org">Khan Academy</Link>
+            </Tooltip>
+        );
+    },
+    play: async ({canvasElement}) => {
+        // Arrange
+        // NOTE: Using `body` here to work with React Portals.
+        const canvas = within(canvasElement.ownerDocument.body);
+
+        // Act
+        const link = await canvas.findByRole("link", {name: "Khan Academy"});
+        await userEvent.hover(link);
+
+        // Assert
+        await expect(
+            await canvas.findByText(
+                "This link navigates to the Khan Academy homepage.",
+            ),
+        ).toBeInTheDocument();
+    },
+};
+
+/**
+ * To render rich text in tooltip content, pass a React element as the `content`
+ * prop instead of a plain string. When a string is passed it is rendered as
+ * plain text — HTML tags in a string will appear literally (e.g.
+ * `<i>text</i>`). Use inline HTML elements inside a typography component to
+ * control formatting.
+ */
+export const WithRichTextContent: StoryComponentType = {
+    render: function Render() {
+        return (
+            <Tooltip
+                content={
+                    <BodyText style={{padding: sizing.size_120}}>
+                        Use <strong>bold</strong>, <em>italic</em>, or{" "}
+                        <u>underlined</u> text by passing a React element
+                        instead of a plain string.
+                    </BodyText>
+                }
+                opened={true}
+                forceAnchorFocusivity={false}
+            >
+                <Link href="https://www.khanacademy.org">Khan Academy</Link>
+            </Tooltip>
+        );
+    },
+};
+
+/**
  * In this example, we have the anchor in a scrollable parent. Notice how, when
  * the anchor is focused but scrolled out of bounds, the tooltip disappears.
  */
@@ -173,7 +238,7 @@ export const AnchorInScrollableParent: StoryComponentType = {
         return (
             <View style={styles.scrollbox}>
                 <View style={styles.hostbox}>
-                    <Body>
+                    <BodyText>
                         This is a big long piece of text with a
                         <Tooltip
                             content="This tooltip will disappear when scrolled out of bounds"
@@ -182,7 +247,7 @@ export const AnchorInScrollableParent: StoryComponentType = {
                             [tooltip]
                         </Tooltip>{" "}
                         in the middle.
-                    </Body>
+                    </BodyText>
                 </View>
             </View>
         );
@@ -339,7 +404,7 @@ export const WithStyle: StoryComponentType = {
                 <Tooltip
                     contentStyle={{
                         color: semanticColor.core.foreground.knockout.default,
-                        padding: spacing.xLarge_32,
+                        padding: sizing.size_320,
                     }}
                     content={`This is a styled tooltip.`}
                     backgroundColor="darkBlue"

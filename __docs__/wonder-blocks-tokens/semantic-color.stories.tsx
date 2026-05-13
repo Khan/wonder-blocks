@@ -67,7 +67,10 @@ export default {
             />
         ),
     },
-    tags: ["!dev"],
+    tags: [
+        "!dev",
+        "!manifest", // Remove from manifest in favour of static reference token docs
+    ],
 } as Meta;
 
 type Row = {label: string; css: string; value: string};

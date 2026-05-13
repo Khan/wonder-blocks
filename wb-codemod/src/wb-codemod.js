@@ -2,6 +2,7 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable import/no-commonjs */
+const fs = require("fs");
 const path = require("path");
 const chalk = require("chalk");
 const jscodeshift = require("jscodeshift/src/Runner");
@@ -21,8 +22,24 @@ async function run(transformFileName, filePaths, options) {
     // Transform path
     const transformFile = path.join(jsCodemodsDir, transformFileName + ".ts");
 
+    if (!fs.existsSync(transformFile)) {
+        const available = fs
+            .readdirSync(jsCodemodsDir)
+            .filter((f) => f.endsWith(".ts") && !f.startsWith("template"))
+            .map((f) => f.replace(/\.ts$/, ""));
+        console.error(
+            chalk.red(
+                `No transform named "${transformFileName}" found at ${transformFile}.`,
+            ),
+        );
+        console.error(`Available transforms: ${available.join(", ")}`);
+        process.exit(1);
+    }
+
     console.log(
-        chalk.cyan(`Transforming ${transformFileName} in: ${filePaths}...`),
+        chalk.cyan(
+            `Transforming ${transformFileName} in: ${filePaths.join(", ")}...`,
+        ),
     );
 
     try {
