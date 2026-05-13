@@ -28,7 +28,7 @@ import ComponentInfo from "../components/component-info";
 import ButtonArgTypes from "./button.argtypes";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
@@ -423,7 +423,7 @@ export const WithIcon: StoryComponentType = {
     render: () => <IconExample />,
     parameters: {
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
         },
     },
 };

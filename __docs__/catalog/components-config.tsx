@@ -224,7 +224,7 @@ export const buttonComponents = [
         variantProps: [
             {
                 propName: "size",
-                options: ["small", "medium", "large"],
+                options: ["xsmall", "small", "medium", "large"],
             },
             {
                 propName: "kind",
@@ -266,6 +266,10 @@ export const buttonComponents = [
         name: "ActivityButton",
         Component: ActivityButton,
         variantProps: [
+            {
+                propName: "actionType",
+                options: ["progressive", "neutral"],
+            },
             {
                 propName: "kind",
                 options: ["primary", "secondary", "tertiary"],
