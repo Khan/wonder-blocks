@@ -3,7 +3,7 @@ import {action} from "storybook/actions";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import paperPlaneIcon from "@phosphor-icons/core/fill/paper-plane-tilt-fill.svg";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -19,7 +19,7 @@ export default {
     title: "Packages / Button / Testing / Snapshots / Button",
     parameters: {
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
         },
     },
     tags: ["!autodocs", "!manifest"],
