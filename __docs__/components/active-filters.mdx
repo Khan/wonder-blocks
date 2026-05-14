@@ -1,0 +1,109 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+import activeFiltersImg from "./assets/active-filters/active-filters.png";
+import statesImg from "./assets/active-filters/states.png";
+import placementImg from "./assets/active-filters/placement.png";
+import copyImg from "./assets/active-filters/copy.png";
+import {NeutralBadge} from "@khanacademy/wonder-blocks-badge";
+
+<Meta title="Components / Active filters" />
+
+# Active filters
+
+<NeutralBadge label="Active filter feedback" /> Compact visual elements that provide transparent feedback on the current dataset.  In our reporting interface, they are primarily  used to display active filter selections directly below the filter bar.
+
+<img src={activeFiltersImg} alt="Active filters" />
+
+## When to use
+
+The choice to use active filters is determined by the need to provide immediate visibility into how a data view has been narrowed and to allow for modular management of active parameters.
+
+Use when
+
+The user needs to see what filters are currently applied
+
+Individual filters should be removable without resetting all others
+
+Example use
+
+Showing "Grade: 6th grade" after selecting from the Grades dropdown.
+
+Removing only "Subject: Math" while keeping school and date filters active.
+
+## When NOT to use
+
+Don’t use when
+
+The element represents navigation or view switching
+
+The element is a static, non-removable label
+
+The user hasn't made a selection yet
+
+Recommended alternative
+
+Tabs or segmented controls
+
+Status badge
+
+No active filter — leave the row empty
+
+Rationale
+
+Active filters represent transient filter states, not primary page navigation
+
+If the element can't be dismissed, it's not an active filter — it's a status indicator
+
+Active filters are the result of a selection, not a prompt to make one
+
+## What generates an active filter
+
+Not every control in the filter bar produces a chip. Use this as a reference when designing or reviewing filter bar layouts.
+
+Control type
+
+Standard dropdown or inline filter button
+
+Embedded filter dropdown (pre-selected filters, ex. Date is auto set to Last 30 days)
+
+Search field
+
+Toggle
+
+Segmented control
+
+Generates an active filter?
+
+Yes
+
+No
+
+No
+
+No
+
+No
+
+## States
+
+Each active filter displays the filter category and its selected value — for example, "School: Addison Middle School." A dismiss icon allows the user to deactivate that specific filter.
+When more active filters exist than can fit on one line, they wrap to a second line to maintain full transparency of the active parameters.
+Active filters are always grouped with a "Clear filters" link at the end of the row for easy global deactivation.
+
+<img src={statesImg} alt="States" />
+
+## Placement
+
+Active filters sit directly below the filter bar, creating a clear visual link between the controls and the data they affect.
+They sit above the data visualization — cards, charts, or tables — acting as a bridge between the filtering interface and the displayed data.
+
+<img src={placementImg} alt="Placement" />
+
+## Copy
+
+Use the format [Category]: [Value] — for example, "Subject: Math." This ensures users can immediately understand what each chip represents without needing to open the dropdown to check.
+
+<img src={copyImg} alt="Copy" />
+
+---
+
+<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=12444-35447" target="_blank" rel="noopener noreferrer">Figma source</a>
