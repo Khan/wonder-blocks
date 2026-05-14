@@ -1,44 +1,71 @@
 import {Meta} from "@storybook/addon-docs/blocks";
-import headerImg from "./assets/date-picker/header.png";
+import datePickerImg from "./assets/date-picker/date-picker.png";
 import variants1Img from "./assets/date-picker/variants-1.png";
 import variants2Img from "./assets/date-picker/variants-2.png";
 import interactionImg from "./assets/date-picker/interaction.png";
+import {NeutralBadge} from "@khanacademy/wonder-blocks-badge";
 
 <Meta title="Components / Date picker" />
 
 # Date picker
 
-## Header
+<NeutralBadge label="Point-in-time selection" /> A text input paired with a calendar popover for selecting a specific date. Supports direct keyboard entry and point-and-click calendar selection.
 
-### Date picker
+<img src={datePickerImg} alt="Date picker" />
 
-Point-in-time selection
-
-A text input paired with a calendar popover for selecting a specific date. Supports direct keyboard entry and point-and-click calendar selection.
-
-<img src={headerImg} alt="Header" />
-
-## Table
-
-### When to use
+## When to use
 
 The choice to use a date picker is determined by the need to select a specific date — either to filter data or to set a value, such as a due date or event date.
 
-| Use when | Rule | Example use |
-| --- | --- | --- |
-| Selecting a single date | User selects one exact date | Setting a due date for an assignment |
-| Setting a date range | Used inside the date filter's "Set custom range" modal as the From / To input mechanism | Teacher sets Dec 1 – Dec 23 as a reporting window |
-| Setting a deadline or event | Creating events or reminders that require a precise date | Setting a test date in a course calendar |
+Use when
 
-## Table
+Selecting a single date
 
-### When NOT to use
+Setting a date range
 
-| Don’t use when | Recommended alternative | Rationale |
-| --- | --- | --- |
-| Filtering by a relative time period | Date filter | Relative options like "Today" and "This week" are faster for analytics contexts |
-| Only month and year are needed | Dropdown (MM/YY) | A full calendar is overkill when day-level precision isn't needed |
-| Date and time are both needed | Date time picker | This component handles dates only — no time selection |
+Setting a deadline or event
+
+Rule
+
+User selects one exact date
+
+Used inside the date filter's "Set custom range" modal as the From / To input mechanism
+
+Creating events or reminders that require a precise date
+
+Example use
+
+Setting a due date for an assignment
+
+Teacher sets Dec 1 – Dec 23 as a reporting window
+
+Setting a test date in a course calendar
+
+## When NOT to use
+
+Don’t use when
+
+Filtering by a relative time period
+
+Only month and year are needed
+
+Date and time are both needed
+
+Recommended alternative
+
+Date filter
+
+Dropdown (MM/YY)
+
+Date time picker
+
+Rationale
+
+Relative options like "Today" and "This week" are faster for analytics contexts
+
+A full calendar is overkill when day-level precision isn't needed
+
+This component handles dates only — no time selection
 
 ## Variants
 
@@ -64,4 +91,4 @@ Users can type directly (MM/DD/YYYY) or click the calendar icon to pick visually
 
 ---
 
-<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=13456-34134&t=6lEHCsAo03k7G4Lr-4" target="_blank" rel="noopener noreferrer">Figma source</a>
+<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=13456-34134" target="_blank" rel="noopener noreferrer">Figma source</a>
