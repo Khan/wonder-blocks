@@ -581,7 +581,7 @@ export const WithTitle: StoryComponentType = {
 export const RightToLeftWithIcons: StoryComponentType = {
     render: () => (
         <View style={{padding: sizing.size_160}}>
-            <View style={styles.rightToLeft}>
+            <View dir="rtl">
                 <Link
                     href="/"
                     startIcon={
@@ -641,10 +641,7 @@ const styles = StyleSheet.create({
         display: "inline-block",
         marginBlockEnd: sizing.size_080,
     },
-    rightToLeft: {
-        width: "100%",
-        direction: "rtl", // eslint-disable-line @khanacademy/wonder-blocks/require-logical-properties-for-rtl
-    },
+
     multiLine: {
         display: "inline-block",
         marginBlockEnd: sizing.size_080,
