@@ -13,6 +13,7 @@
         "typescript": "5.7.3"
     },
     "dependencies": {
+        "aphrodite": "catalog:",
         "@khanacademy/wonder-blocks-button": "workspace:*",
         "@khanacademy/wonder-blocks-clickable": "workspace:*",
         "@khanacademy/wonder-blocks-core": "workspace:*",
