@@ -1,5 +1,5 @@
 import {Meta} from "@storybook/addon-docs/blocks";
-import headerImg from "./assets/banners/header.png";
+import bannersImg from "./assets/banners/banners.png";
 import variants1Img from "./assets/banners/variants-1.png";
 import variants2Img from "./assets/banners/variants-2.png";
 import variants3Img from "./assets/banners/variants-3.png";
@@ -16,44 +16,73 @@ import copy1Img from "./assets/banners/copy-1.png";
 import copy2Img from "./assets/banners/copy-2.png";
 import copy3Img from "./assets/banners/copy-3.png";
 import copy4Img from "./assets/banners/copy-4.png";
+import {NeutralBadge} from "@khanacademy/wonder-blocks-badge";
 
 <Meta title="Components / Banners" />
 
 # Banners
 
-## Header
+<NeutralBadge label="Persistent/Global alerts" /> A highly visible, non-modal container used to communicate important, global system status changes, successful operations, or errors. Banners remain persistent at the top of the viewport or relevant area until dismissed by the user or the issue is resolved.
 
-### Banners
+<img src={bannersImg} alt="Banners" />
 
-Persistent/Global alerts
-
-A highly visible, non-modal container used to communicate important, global system status changes, successful operations, or errors. Banners remain persistent at the top of the viewport or relevant area until dismissed by the user or the issue is resolved.
-
-<img src={headerImg} alt="Header" />
-
-## Table
-
-### When to use
+## When to use
 
 The choice to use a banner is determined by the need for persistent, high-priority, and global system communication.
 
-| Use when | Example use |
-| --- | --- |
-| High-priority feedback signals a significant change affecting the user's entire session or future state | Warning/action required: Your Premium Curriculum Access will end on January 15, 2026. Renew now. |
-| The message must stay visible until the user acknowledges it or the system resolves it | Error/offline status: "Your grading autosave failed due to a system service outage. Please save your work manually." |
-| Confirming a complex or high-stakes action that is difficult to reverse | Success confirmation: Final Grades Submitted! Your students' grades for the current term have been successfully locked and forwarded to the registrar. |
+Use when
 
-## Table
+High-priority feedback signals a significant change affecting the user's entire session or future state
 
-### When NOT to use
+The message must stay visible until the user acknowledges it or the system resolves it
 
-| Don’t use when | Recommended alternative | Rationale |
-| --- | --- | --- |
-| Showing transient feedback | Toast | Do not use for low-urgency, self-contained, or temporary confirmations that do not require acknowledgment (e.g., "Assignment saved"). Banners are too disruptive for simple confirmation. |
-| Blocking the interface for a critical issue | Modal or full screen error page | The Banner is non-modal and allows the user to click around the background. A critical error requires blocking the entire interface. |
-| Requiring a complex user decision | Modal | Do not use when the message requires the user to make an immediate, high-stakes choice or irreversible commitment. Banners lack the necessary context and visual gravity for complex decisions. |
-| Displaying non-critical promotions | Contextual card or feature slot | Do not use for non-critical promotional or marketing content. Banners are reserved for system alerts and status changes, not upsells or temporary campaigns. |
-| Highlighting a field-specific error | Inline form validation | Do not use for validation failures related to a specific input field (e.g., student ID field is empty). Banners are global, not local. |
+Confirming a complex or high-stakes action that is difficult to reverse
+
+Example use
+
+Warning/action required: Your Premium Curriculum Access will end on January 15, 2026. Renew now.
+
+Error/offline status: "Your grading autosave failed due to a system service outage. Please save your work manually."
+
+Success confirmation: Final Grades Submitted! Your students' grades for the current term have been successfully locked and forwarded to the registrar.
+
+## When NOT to use
+
+Don’t use when
+
+Showing transient feedback
+
+Blocking the interface for a critical issue
+
+Requiring a complex user decision
+
+Displaying non-critical promotions
+
+Highlighting a field-specific error
+
+Recommended alternative
+
+Toast
+
+Modal or full screen error page
+
+Modal
+
+Contextual card or feature slot
+
+Inline form validation
+
+Rationale
+
+Do not use for low-urgency, self-contained, or temporary confirmations that do not require acknowledgment (e.g., "Assignment saved"). Banners are too disruptive for simple confirmation.
+
+The Banner is non-modal and allows the user to click around the background. A critical error requires blocking the entire interface.
+
+Do not use when the message requires the user to make an immediate, high-stakes choice or irreversible commitment. Banners lack the necessary context and visual gravity for complex decisions.
+
+Do not use for non-critical promotional or marketing content. Banners are reserved for system alerts and status changes, not upsells or temporary campaigns.
+
+Do not use for validation failures related to a specific input field (e.g., student ID field is empty). Banners are global, not local.
 
 ## Variants
 
@@ -157,7 +186,7 @@ For Error and Warning banners, do use copy that clearly states what the user can
 
 ### Include specific data
 
-When applicable, the copy for transactional banners (Success, Warning) must include specific numbers, identifiers, or dates to confirm the impact of the action or the immediacy of the risk (e.g., "2 assignments," or "expires on \{date\}").
+When applicable, the copy for transactional banners (Success, Warning) must include specific numbers, identifiers, or dates to confirm the impact of the action or the immediacy of the risk (e.g., "2 assignments," or "expires on &#123;date&#125;").
 
 <img src={copy3Img} alt="Copy 3" />
 
@@ -169,4 +198,4 @@ Copy should omit periods when the message consists of a single, short statement 
 
 ---
 
-<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=12444-9008&t=6lEHCsAo03k7G4Lr-4" target="_blank" rel="noopener noreferrer">Figma source</a>
+<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=12444-9008" target="_blank" rel="noopener noreferrer">Figma source</a>
