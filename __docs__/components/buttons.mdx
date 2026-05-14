@@ -1,5 +1,5 @@
 import {Meta} from "@storybook/addon-docs/blocks";
-import headerImg from "./assets/buttons/header.png";
+import buttonsImg from "./assets/buttons/buttons.png";
 import variants1Img from "./assets/buttons/variants-1.png";
 import variants2Img from "./assets/buttons/variants-2.png";
 import variants3Img from "./assets/buttons/variants-3.png";
@@ -16,41 +16,57 @@ import copy2Img from "./assets/buttons/copy-2.png";
 import copy3Img from "./assets/buttons/copy-3.png";
 import copy4Img from "./assets/buttons/copy-4.png";
 import copy5Img from "./assets/buttons/copy-5.png";
+import {NeutralBadge} from "@khanacademy/wonder-blocks-badge";
 
 <Meta title="Components / Buttons" />
 
 # Buttons
 
-## Header
+<NeutralBadge label="Call-to-action/Interaction trigger" /> A button is a highly discoverable, interactive element used to communicate and trigger a specific action or command. Its primary purpose is to initiate state changes or execute a task—essentially, buttons do things.
 
-### Buttons
+<img src={buttonsImg} alt="Buttons" />
 
-Call-to-action/Interaction trigger
-
-A button is a highly discoverable, interactive element used to communicate and trigger a specific action or command. Its primary purpose is to initiate state changes or execute a task—essentially, buttons do things.
-
-<img src={headerImg} alt="Header" />
-
-## Table
-
-### When to use
+## When to use
 
 The choice to use a button is determined by the need to prompt the user to perform an action that changes the state or context of the system.
 
-| Use when | Example use |
-| --- | --- |
-| The action is the primary goal of the current view | Save, Submit, Confirm — the main thing a user needs to do on this screen. |
-| The action has a clear, immediate outcome | Assign content, Add filter, Delete record. |
+Use when
 
-## Table
+The action is the primary goal of the current view
 
-### When NOT to use
+The action has a clear, immediate outcome
 
-| Don’t use when | Recommended alternative | Rationale |
-| --- | --- | --- |
-| The action is inline within a body of text | Text link | Buttons interrupt reading flow. Inline actions should use a text link. |
-| The action is a page-level navigation item | Tabs or nav link | Buttons imply an action with an outcome. Switching between views is navigation, not an action. |
-| The outcome is revealing options, not executing an action | Dropdown or overflow menu | A button implies something will happen immediately. If the result is showing more choices, use a dropdown or menu pattern instead. |
+Example use
+
+Save, Submit, Confirm — the main thing a user needs to do on this screen.
+
+Assign content, Add filter, Delete record.
+
+## When NOT to use
+
+Don’t use when
+
+The action is inline within a body of text
+
+The action is a page-level navigation item
+
+The outcome is revealing options, not executing an action
+
+Recommended alternative
+
+Text link
+
+Tabs or nav link
+
+Dropdown or overflow menu
+
+Rationale
+
+Buttons interrupt reading flow. Inline actions should use a text link.
+
+Buttons imply an action with an outcome. Switching between views is navigation, not an action.
+
+A button implies something will happen immediately. If the result is showing more choices, use a dropdown or menu pattern instead.
 
 ## Variants
 
@@ -175,4 +191,4 @@ Always use logically paired verbs for opposite actions, as the choice clarifies 
 
 ---
 
-<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=13456-13419&t=6lEHCsAo03k7G4Lr-4" target="_blank" rel="noopener noreferrer">Figma source</a>
+<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=13456-13419" target="_blank" rel="noopener noreferrer">Figma source</a>
