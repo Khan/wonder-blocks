@@ -1,0 +1,30 @@
+# useRenderState()
+
+```ts
+function useRenderState(): RenderState;
+```
+
+The `useRenderState` hook will return either:
+
+-   `RenderState.Initial` if the component is being rendered on the server **or** it's
+    the initial rehydration render on the client.
+-   `RenderState.Standard` if the component renders on the client after the initial
+    rehydration.
+
+
+---
+
+## Related docs
+
+- [Overview](overview.md)
+- [Add Style](add-style.md)
+- [Exports Use Force Update](exports-use-force-update.md)
+- [Exports Use Is Mounted](exports-use-is-mounted.md)
+- [Exports Use Latest Ref](exports-use-latest-ref.md)
+- [Exports Use On Mount Effect](exports-use-on-mount-effect.md)
+- [Exports Use Online](exports-use-online.md)
+- [Exports Use Pre Hydration Effect](exports-use-pre-hydration-effect.md)
+- [Id](id.md)
+- [Initial Fallback](initial-fallback.md)
+- [Server](server.md)
+- [View](view.md)
