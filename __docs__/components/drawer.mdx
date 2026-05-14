@@ -1,0 +1,121 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+import drawerImg from "./assets/drawer/drawer.png";
+import copy1Img from "./assets/drawer/copy-1.png";
+import copy2Img from "./assets/drawer/copy-2.png";
+
+<Meta title="Components / Drawer" />
+
+# Drawer
+
+Contextual reference/Side-task
+
+A secondary surface that slides in from the right edge. It allows users to view supplemental data or perform quick sub-tasks while maintaining a visual "anchor" to the primary page content.
+
+<img src={drawerImg} alt="Drawer" />
+
+## When to use
+
+The choice to use a drawer is based on when the user needs to "glance" or "pivot" without full interruption.
+
+Use when
+
+Keeping place in a long- form activity
+
+Showing content that  supports the current view
+
+Checking status that  doesn't require data entry
+
+Rule
+
+Use when the user needs to reference something without losing their current context.
+
+Use to surface supplemental content that enriches — but doesn't replace — what's on screen.
+
+Use for high-frequency check-ins where the user reads, not writes.
+
+Example use
+
+Checking the District Leaderboard without losing your spot in a daily streak.
+
+Opening Lessons from Practice mode to review a concept before answering.
+
+Viewing a detailed Gem achievement count or point breakdown.
+
+## When NOT to use
+
+Don’t use when
+
+The user needs to make  a high-stakes or  creative decision
+
+The secondary task  becomes the primary task
+
+The information is a single  value or definition
+
+Recommended alternative
+
+Modal
+
+Full page
+
+Tooltip / popover
+
+Rationale
+
+If checking your gem count turns into customizing your Khanmigo, then the  drawer is too cramped. High-fidelity creative tasks need a full-page canvas.
+
+If "Viewing an assignment" turns into "Doing the assignment," the drawer is too cramped. Move to a full-page view.
+
+If the information is just a single definition or a number, a drawer is overkill.
+
+## Interaction
+
+### Opening and entry
+
+- ✅ Always slides in from the right edge. The slide direction is the spatial cue that content is supplemental, not a replacement.
+- ✅ Opens immediately on a single selection — no hover states, no delay, no confirmation step.
+
+### Dismissal
+
+- ✅ Users exit via the × button in the header, clicking the scrim, or pressing Esc.
+- ❌ Do not close the drawer automatically after a timer or inactivity. The user controls dismissal.
+
+### Background locking
+
+- ✅ Background is locked while the drawer is open to prevent accidental scrolling of the main page.
+
+### Navigation from the drawer
+
+- ✅ If the drawer contains a link to a full page (e.g. "Go to achievements"), clicking it closes the drawer and navigates the main page.
+- ❌ Never load a new URL inside the drawer body. It signals a page — use a full-page transition instead.
+- ❌ Never open a drawer from within a drawer. Nested drawers create disorienting spatial contexts.
+
+## Placement
+
+Drawers should feel like a natural extension of the right sidebar — same surface color, same typographic scale, same horizontal margins.
+
+- ✅ Sticky header: The title and × remain locked at the top at all times.
+- ✅ Sticky footer: Any primary actions (e.g. "Customize Khanmigo") should remain fixed at the bottom. If the content (like a long leaderboard) requires scrolling, the footer must not scroll with it.
+- ✅ Internal scroll: Only the middle body area scrolls if the content exceeds the screen height.
+- ❌ Do not use nested scroll containers within the body. Flatten the content hierarchy instead.
+
+## Copy
+
+### Headline
+
+Keep it to 1–3 words. Use a noun phrase that describes the content — not the action.
+
+<img src={copy1Img} alt="Copy 1" />
+
+### Action labels
+
+Use clear, directional verbs. If an action leads to a full page, use the destination name.
+
+<img src={copy2Img} alt="Copy 2" />
+
+### Body content
+
+Should be easily scannable. Use data, labels, and short summaries. Not paragraphs. If the content needs paragraphs to make sense, it belongs on a full page.
+
+---
+
+<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=13456-14967&t=6lEHCsAo03k7G4Lr-4" target="_blank" rel="noopener noreferrer">Figma source</a>

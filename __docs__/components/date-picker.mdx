@@ -1,0 +1,67 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+import headerImg from "./assets/date-picker/header.png";
+import variants1Img from "./assets/date-picker/variants-1.png";
+import variants2Img from "./assets/date-picker/variants-2.png";
+import interactionImg from "./assets/date-picker/interaction.png";
+
+<Meta title="Components / Date picker" />
+
+# Date picker
+
+## Header
+
+### Date picker
+
+Point-in-time selection
+
+A text input paired with a calendar popover for selecting a specific date. Supports direct keyboard entry and point-and-click calendar selection.
+
+<img src={headerImg} alt="Header" />
+
+## Table
+
+### When to use
+
+The choice to use a date picker is determined by the need to select a specific date — either to filter data or to set a value, such as a due date or event date.
+
+| Use when | Rule | Example use |
+| --- | --- | --- |
+| Selecting a single date | User selects one exact date | Setting a due date for an assignment |
+| Setting a date range | Used inside the date filter's "Set custom range" modal as the From / To input mechanism | Teacher sets Dec 1 – Dec 23 as a reporting window |
+| Setting a deadline or event | Creating events or reminders that require a precise date | Setting a test date in a course calendar |
+
+## Table
+
+### When NOT to use
+
+| Don’t use when | Recommended alternative | Rationale |
+| --- | --- | --- |
+| Filtering by a relative time period | Date filter | Relative options like "Today" and "This week" are faster for analytics contexts |
+| Only month and year are needed | Dropdown (MM/YY) | A full calendar is overkill when day-level precision isn't needed |
+| Date and time are both needed | Date time picker | This component handles dates only — no time selection |
+
+## Variants
+
+### Stand alone date picker
+
+A text input with a calendar icon. The user can type directly in MM/DD/YYYY format or click the calendar icon to open the popover.
+Used for due dates, event scheduling, or any field requiring a single specific date. The calendar icon signals that a calendar popover will open — never use a caret here.
+
+<img src={variants1Img} alt="Variants 1" />
+
+### Date picker in custom range modal
+
+Used inside the date filter's "Set custom range" modal. Two date picker inputs — From and To — each with a calendar icon.
+Only appears inside the date filter modal. Not used standalone. See the date filter documentation for full context.
+
+<img src={variants2Img} alt="Variants 2" />
+
+## Interaction
+
+Users can type directly (MM/DD/YYYY) or click the calendar icon to pick visually. Both must stay in sync — typing a valid date highlights it in the calendar; clicking a date updates the text field immediately.
+
+<img src={interactionImg} alt="Interaction" />
+
+---
+
+<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=13456-34134&t=6lEHCsAo03k7G4Lr-4" target="_blank" rel="noopener noreferrer">Figma source</a>

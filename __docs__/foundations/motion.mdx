@@ -1,0 +1,149 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+import motionImg from "./assets/motion/motion.png";
+import exceptions1Img from "./assets/motion/exceptions-1.png";
+import exceptions2Img from "./assets/motion/exceptions-2.png";
+import usageGuidelines1Img from "./assets/motion/usage-guidelines-1.png";
+import usageGuidelines2Img from "./assets/motion/usage-guidelines-2.png";
+import usageGuidelines3Img from "./assets/motion/usage-guidelines-3.png";
+import usageGuidelines4Img from "./assets/motion/usage-guidelines-4.png";
+
+<Meta title="Foundations / Motion" />
+
+# Motion
+
+<img src={motionImg} alt="Motion" />
+
+### Motion
+
+Motion helps users understand what's happening — where something is going, what's loading, what just changed. It should clarify the experience, not decorate it. Khanmigo and student celebration moments are the intentional exceptions: these are experiences where delight is the point, and motion is how it's delivered.
+
+## Principles
+
+Purposeful
+
+### Motion earns its place
+
+Every animation should help the user — orient, confirm, or guide. If removing it doesn't confuse anyone, remove it.
+
+Fast
+
+### Snappy, not sluggish
+
+Teachers are between tasks. Default durations should feel quick. Motion that holds up the interface is motion that fails.
+
+Honest
+
+### Show what's actually happening
+
+Loading states should reflect real progress where possible. Spinners are a last resort — tell the user what the system is doing.
+
+Calm
+
+### Never compete for attention
+
+Animations shouldn't draw the eye away from content. Motion should support focus, not fracture it.
+
+Consistent
+
+### Same action, same feel
+
+Expanding a panel, opening a drawer, revealing data — similar interactions should move the same way across the product.
+
+Restrained
+
+### Animate once, then reset
+
+Animations play on trigger, then stop and reset - they do not loop. If replay is useful, it should be user-initiated.
+
+Accessible
+
+### Respect reduced motion
+
+Honor prefers-reduced-motion system settings. Motion should complement the interaction, never dominate it — transitions that are smooth and subtle by default, never the most noticeable thing on screen.
+
+Foundational
+
+### Motion clarifies, never carries
+
+An experience should be fully understandable without animation. Motion shows where you came from, where you're going, or what just changed — but it should never be the only way to communicate it.
+
+## Exceptions
+
+Two contexts in the product intentionally use more expressive motion. Both still follow the core principles — animate once, reset, respect reduced motion — but with greater range.
+
+### Khanmigo
+
+Khanmigo is a character, and motion is part of what makes it feel alive and personable. Idle animations, reactions, and expressions are expected and encouraged. Animations should play once and reset; they should not loop indefinitely. Replay can be offered on interaction where it adds value.
+
+<img src={exceptions1Img} alt="Exceptions 1" />
+
+### Student celebration moments
+
+When a student completes an exercise, earns an accessory, or hits a milestone, motion is the delivery mechanism for the reward. Confetti, opening treasure chests, and reveal animations are appropriate here because delight is the point. These moments should feel special — which means they should be reserved for genuine achievements, not routine interactions.
+
+<img src={exceptions2Img} alt="Exceptions 2" />
+
+## Usage guidelines
+
+Detailed timing values, easing curves, and component-level specifications will be defined here as the system matures.
+
+### Transitions
+
+Use motion to communicate spatial relationships — panels that slide in from the side they originate from, drawers that expand from their trigger.
+Keep transition durations short. Most UI transitions should feel nearly instant.
+
+<img src={usageGuidelines1Img} alt="Usage guidelines 1" />
+
+### Loading states
+
+Show a skeleton screen rather than a spinner whenever the shape of the content is known.
+Use a spinner only when duration is truly unknown and no structural preview is possible.
+Never use a fake or non-reflecting progress bar. If real progress can't be measured, use indeterminate states honestly.
+
+<img src={usageGuidelines2Img} alt="Usage guidelines 2" />
+
+### Intentional loading states
+
+Some loading states should be deliberately crafted to reflect the weight of what's happening — not just fill technical wait time. When Khanmigo processes a student's assessment to build a personalized gap mission, a rich animated loading state communicates that something real is being created for them. This builds trust. In moments like these, the loading state is part of the experience, not a workaround for latency.
+
+<img src={usageGuidelines3Img} alt="Usage guidelines 3" />
+
+### Animations
+
+Trigger on user action or on entering the viewport — not on a timer.
+After playing, animations should end on something representative of the message, likely the same or similar to the prefers-reduced-motion state. No looping.
+No animations should ever last more than 5 seconds to adhere to accessibility guidelines.
+
+<img src={usageGuidelines4Img} alt="Usage guidelines 4" />
+
+## Accessibility
+
+All motion in the product must respect the z media query.
+
+Default behavior
+
+Slide transition
+
+Expand/collapse animation
+
+Character animation
+
+Celebration animation
+
+Loading skeleton pulse
+
+Reduced motion behavior
+
+Fade or instant
+
+Instant show/hide
+
+Static or single frame
+
+Simplified or static
+
+Static skeleton
+
+---
+
+<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=12884-105295&t=6lEHCsAo03k7G4Lr-4" target="_blank" rel="noopener noreferrer">Figma source</a>

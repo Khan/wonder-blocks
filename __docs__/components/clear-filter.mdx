@@ -1,0 +1,66 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+import headerImg from "./assets/clear-filter/header.png";
+import states1Img from "./assets/clear-filter/states-1.png";
+import states2Img from "./assets/clear-filter/states-2.png";
+import placementImg from "./assets/clear-filter/placement.png";
+
+<Meta title="Components / Clear filter" />
+
+# Clear filter
+
+## Header
+
+### Clear filters
+
+Bulk state reset
+
+Ensures users can return to a neutral dataset instantly without manual deselection, regardless of how many components are currently in use.
+
+<img src={headerImg} alt="Header" />
+
+## Table
+
+### When to use
+
+The choice to use a clear filters button is determined by the need to provide a fast escape hatch for complex queries or empty result states.
+
+| Use when | Example use |
+| --- | --- |
+| A single selection narrows the data | Selecting a single school from a dropdown menu. |
+| A filter combination returns an empty state | Clearing all criteria after "0 results" are found for specific teacher/grade combinations. |
+| Dismissing multiple active filters individually would be time-intensive | Returning to a full class report after narrowing by three specific grades. |
+
+## Table
+
+### When NOT to use
+
+| Don’t use when | Recommended alternative | Rationale |
+| --- | --- | --- |
+| Clearing a required filter with no empty state | Dropdown selection | Do not "clear" required parameters (like Date) that cannot have a "none" state. The value should instead revert to its system default. |
+| Resetting a data entry form | Individual field editing | Do not implement "Clear all" functionality on forms. While "Clear filters" is a helpful escape hatch for viewing data, a "Reset form" button leads to accidental data loss. To ensure a safe user experience, avoid any global action that wipes unsaved user input. |
+
+## States
+
+### Hidden (inactive)
+
+The button should not be visible if no filters are applied, preventing UI clutter.
+
+<img src={states1Img} alt="States 1" />
+
+### Default (active)
+
+Appears as a small tertiary button once a filter is triggered.
+Avoid using red or other high-caution colors. Clearing filters is an inconsequential action that does not delete data; use neutral styling to keep focus on primary actions.
+
+<img src={states2Img} alt="States 2" />
+
+## Placement
+
+Position the "Clear filters" button directly following the list of active filter chips.
+It should sit between the filter bar (controls) and the data (results), providing a clear bridge between the two.
+
+<img src={placementImg} alt="Placement" />
+
+---
+
+<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=12444-38560&t=6lEHCsAo03k7G4Lr-4" target="_blank" rel="noopener noreferrer">Figma source</a>

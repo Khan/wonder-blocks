@@ -1,0 +1,125 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+import headerImg from "./assets/checkbox-group/header.png";
+import interaction1Img from "./assets/checkbox-group/interaction-1.png";
+import interaction2Img from "./assets/checkbox-group/interaction-2.png";
+import copyImg from "./assets/checkbox-group/copy.png";
+
+<Meta title="Components / Checkbox group" />
+
+# Checkbox group
+
+## Header
+
+### Checkbox group
+
+Additive filtering/selectors
+
+A multi-selection mechanism that allows users to select multiple options from a single dimension simultaneously. Each selection adds to the filter — results matching any of the selected options are included.
+
+<img src={headerImg} alt="Header" />
+
+## Table
+
+### When to use
+
+The choice to use a checkbox group is based on the requirement for additive filtering — where multiple options from the same dimension can be true at the same time.
+
+| Use when | Example use |
+| --- | --- |
+| Multiple options from the same dimension can apply simultaneously | Filtering by 6th grade OR 7th grade OR 8th grade at the same time. |
+| The filter should apply instantly without a submit action | Selecting multiple activity types where the results update immediately — unless the checkbox group is inside a combobox or filter modal, where selections are confirmed with Apply. |
+| The selection is part of a form or larger filter context | Inside a filter modal where selections are confirmed with Apply — exposed directly or wrapped in a combobox depending on option count. |
+
+## Table
+
+### When NOT to use
+
+| Don’t use when | Recommended alternative | Rationale |
+| --- | --- | --- |
+| Only one option can apply at a time | Radio buttons | Radio buttons clearly communicate mutually exclusive constraints — checkboxes imply multiple selections are valid. |
+| The choice is binary or a single immediate global action | Toggle | A toggle is more appropriate for a single on/off action. Checkbox groups are primarily used for selection within a group. |
+
+## Placement
+
+The choice between exposing a checkbox group directly or wrapping it in a dropdown depends on the number of options and the context it lives in.
+
+48 prompts found
+
+Clear filters (5)
+
+Search
+
+#### Essay types
+
+Persuasive
+
+Explanatory
+
+Literary analysis
+
+#### Categories
+
+SAT writing
+
+SAT lang & lit
+
+ACT writing
+
+AP writing
+
+Do — 8 or fewer, exposed directly
+
+### Default
+
+8 or fewer options — expose the checkbox group directly. More than 8 options — wrap in a dropdown to prevent the list from becoming too long to scan.
+
+Search report
+
+Last 30 days
+
+School: Addison Middle...
+
+Grade
+
+More filters
+
+Search grade
+
+6th grade
+
+7th grade
+
+8th grade
+
+Apply
+
+Do — top filter bar, always dropdown
+
+### Top filter bar
+
+Always wrap in a dropdown regardless of option count. Horizontal space is constrained and exposed groups would break the layout.
+
+## Interaction
+
+### Additive selection
+
+Any number of options within the group can be selected simultaneously, including zero. Each selection adds to the active filter set — it does not replace previous selections.
+
+<img src={interaction1Img} alt="Interaction 1" />
+
+### Dropdown display
+
+When used inside a multi-select dropdown, if a single selection is made the exact name of the selected item is displayed in the trigger, truncated with an ellipsis if needed.
+If multiple selections are made, the trigger displays a count — for example, "4 selected."
+
+<img src={interaction2Img} alt="Interaction 2" />
+
+## Copy
+
+Option labels should be concise nouns or short noun phrases. Avoid verbs or full sentences. Labels should be parallel in structure — if one option is a noun, all options should be nouns.
+
+<img src={copyImg} alt="Copy" />
+
+---
+
+<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=12444-26763&t=6lEHCsAo03k7G4Lr-4" target="_blank" rel="noopener noreferrer">Figma source</a>

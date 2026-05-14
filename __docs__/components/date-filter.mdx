@@ -1,0 +1,98 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+import headerImg from "./assets/date-filter/header.png";
+import variants1Img from "./assets/date-filter/variants-1.png";
+import variants2Img from "./assets/date-filter/variants-2.png";
+import placement1Img from "./assets/date-filter/placement-1.png";
+import placement2Img from "./assets/date-filter/placement-2.png";
+import interactionImg from "./assets/date-filter/interaction.png";
+import copyImg from "./assets/date-filter/copy.png";
+
+<Meta title="Components / Date filter" />
+
+# Date filter
+
+## Header
+
+### Date filter
+
+Temporal filtering
+
+A dropdown component for filtering data across a range of time. Offers predefined relative options (Today, This week, Last 30 days) and a custom range entry for freeform input.
+
+<img src={headerImg} alt="Header" />
+
+## Table
+
+### When to use
+
+The choice to use a date filter is determined by the need to filter data based on a specific point in time or a span of time (date range).
+
+| Use when | Rule | Example use |
+| --- | --- | --- |
+| Filtering by a time period | Used when the primary dataset needs to be restricted to a specific time context | Filtering a teacher dashboard to show metrics for "This week" or "Last 30 days" |
+| Comparing across time periods | Used when the user needs to select a period to conduct time-based analyses and identify trends | Comparing student performance from "This week" versus "Week 16" |
+
+## Table
+
+### When NOT to use
+
+| Don’t use when | Recommended alternative | Rationale |
+| --- | --- | --- |
+| Filtering non-date attributes | Filter or dropdown | Do not use a Date Filter to select non-temporal data (e.g., student names, assignment type, or class ID) |
+| Sorting a list by date | Sort toggle | If the need is simply to sort a list by 'Date Created' or 'Due Date', a simple sort control is less disruptive than a full picker interface |
+| Selecting a specific date or deadline | Date picker | Picking a deadline or birthdate requires a specific point in time, not a range |
+
+## Variants
+
+### Date filter
+
+The product pre-applies a date. Data is always scoped to a time period — the user never sees an unfiltered state. They can change the selection, but cannot clear it entirely.
+Use this when there are pages where showing all-time data would be overwhelming or meaningless — e.g. a teacher dashboard where "Today" is a sensible default. The product owns the initial state.
+There is always a value in the trigger. If no user selection has been made, the product default shows (e.g. Today).
+
+<img src={variants1Img} alt="Variants 1" />
+
+### Date inline filter button
+
+No date is pre-applied. Data defaults to all time. The user chooses to add a date filter — clicking the inactive inline filter button opens the same predefined options. Once applied, the button shows the active range and gains a clear (×) control.
+Use this when there are pages where all-time data is a valid and expected default — e.g. a roster or gradebook where the user may or may not want to narrow by date. The user owns the initial state.
+The × control clears back to all-time (unfiltered). This is the key distinction from the standard variant — this one can be cleared.
+
+<img src={variants2Img} alt="Variants 2" />
+
+### Key differences
+
+| Property | Date filter | Date inline filter button |
+| --- | --- | --- |
+| Initial state | Product applies a default (e.g. Today) | No date applied – show all-time data |
+| Who sets the first value | The product | The user |
+| Can be cleared | No – always has a value | Yes – X returns to all-time |
+| Trigger appearance | Full-width dropdown with current value | Inactive until user adds filter, once selected becomes active state of inline filter button |
+| Options on open | Today / This week / Last 30 days / Custom range | Today / This week / Last 30 days / Custom range |
+
+## Placement
+
+In dashboards with multiple filter types, place the date filter leftmost — it is typically the highest-priority filter. Maintain consistent placement across views so users don't have to reorient when switching between reports.
+
+<img src={placement1Img} alt="Placement 1" />
+
+<img src={placement2Img} alt="Placement 2" />
+
+## Interaction
+
+### Custom range applied
+
+Selecting "Custom range" opens a date picker. Once the user applies dates, the filter updates — the selected range replaces the trigger label and is added to the list as the active selection.
+If a new custom range is selected, the previous one does not stay there but is replaced by the newly selected range.
+
+<img src={interactionImg} alt="Interaction" />
+
+## Copy
+
+For dropdown list labels, use "Month Day" format (e.g., Dec 12) for quick scannability within dropdown lists and secondary metadata. Helps users confirm the right period at a glance.
+
+<img src={copyImg} alt="Copy" />
+
+---
+
+<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=12444-32961&t=6lEHCsAo03k7G4Lr-4" target="_blank" rel="noopener noreferrer">Figma source</a>

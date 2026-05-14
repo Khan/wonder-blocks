@@ -1,0 +1,117 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+import modalSelection1Img from "./assets/modal-selection/modal-selection-1.png";
+import modalSelection2Img from "./assets/modal-selection/modal-selection-2.png";
+import modalSelection3Img from "./assets/modal-selection/modal-selection-3.png";
+import modalSelection4Img from "./assets/modal-selection/modal-selection-4.png";
+import modalSelection5Img from "./assets/modal-selection/modal-selection-5.png";
+import modalSelection6Img from "./assets/modal-selection/modal-selection-6.png";
+import modalSelection7Img from "./assets/modal-selection/modal-selection-7.png";
+import modalSelection8Img from "./assets/modal-selection/modal-selection-8.png";
+import modalSelection9Img from "./assets/modal-selection/modal-selection-9.png";
+import modalSelection10Img from "./assets/modal-selection/modal-selection-10.png";
+import modalSelection11Img from "./assets/modal-selection/modal-selection-11.png";
+
+<Meta title="Components / Modal - selection" />
+
+# Modal - selection
+
+## Modal - selection
+
+Complex selection/Filtering
+
+A secondary control center for complex or less frequent filtering needs, ensuring the primary interface remains uncluttered. Allows users to manage multiple data dimensions in a focused environment without losing the context of their current report.
+
+<img src={modalSelection1Img} alt="Modal - selection 1" />
+
+### When to use
+
+The choice to use a modal selection is determined by the need to provide access to extended filtering criteria that would otherwise overwhelm the horizontal real estate of the primary filter bar.
+
+| Use when | Example use |
+| --- | --- |
+| Housing secondary filters used less frequently than primary anchors | Moving specific filter options into the modal to keep the main header clean. |
+| The filtering interaction combines multiple input types that are too complex for the filter bar | Selecting a Practice type activates a previously disabled Test type dropdown below it — the modal gives dependent filters the space to reveal themselves without cluttering the filter bar. |
+
+### When NOT to use
+
+Avoid the selection modal when the filtering need is simple enough to be handled directly in the filter bar, or when a pre-selected default should always be visible to the user.
+
+| Don’t use when | Recommended alternative | Rationale |
+| --- | --- | --- |
+| A filter needs to be pre-selected or always visible | Embedded filter dropdown | If a filter option is preselected, such as Date set to “Last 30 days”. Nothing pre-filtered should be hidden in a modal selection. |
+| Only one additional filter is needed | Standard dropdown | If only one additional filter is needed, a simple dropdown in the filter bar is more efficient than a modal. |
+| The user needs to search by keyword | Search field | Users expect search to be a persistent, high-level action in the primary UI rather than hidden in a modal. |
+
+### States
+
+### Default modal
+
+All filters are secondary by default when the modal is first opened or currently applied. The modal displays all the available filter sections simultaneously.
+Changes only apply to the main report after the user clicks the "Apply filters" button.
+
+<img src={modalSelection2Img} alt="Modal - selection 2" />
+
+### Notification
+
+The "More filters" button in the primary UI should display a numeric badge (e.g., "2") to indicate how many hidden filters are currently active.
+
+<img src={modalSelection3Img} alt="Modal - selection 3" />
+
+### Placement
+
+### Common placement
+
+Triggering a button labeled "More filters" located at the end of the primary filter bar.
+
+<img src={modalSelection4Img} alt="Modal - selection 4" />
+
+### Internal layout
+
+Group filters into clearly labeled sections using headings — e.g. "Display options", “Course”, “Subject.” This reduces cognitive load and helps users find related filters quickly.
+
+<img src={modalSelection5Img} alt="Modal - selection 5" />
+
+### Footer actions
+
+The "Clear all" button should always be in the bottom left, anchored to the footer. "Apply filters" is the primary action bottom right. This button pair must always be visible — never buried below the fold.
+
+<img src={modalSelection6Img} alt="Modal - selection 6" />
+
+### Interaction
+
+When designing the content of the modal, refer to specific documentation for components like Dropdowns, Radio Buttons, Checkboxes, Toggles, etc. to ensure input consistency.
+For behavior related to backdrop behavior, sizing, and animations, refer to the Modals documentation.
+
+### Layout - category labels
+
+Category labels sit to the left to provide an anchor point for the filter controls, creating a clear label column on the left and filter controls on the right.
+
+<img src={modalSelection7Img} alt="Modal - selection 7" />
+
+### Toggle behavior
+
+Within the modal, toggles should be placed full-width and left-aligned with the label on the left and the toggle aligned to the right.
+
+<img src={modalSelection8Img} alt="Modal - selection 8" />
+
+### Dynamic content - adaptive controls
+
+Dropdowns can transform into exposed checkboxes if the available options are significantly reduced (e.g., through other filter selections). This improves scanability when a long list becomes a short, manageable set of choices.
+
+<img src={modalSelection9Img} alt="Modal - selection 9" />
+
+### Dynamic content - parent/child logic
+
+Support hierarchies that filter one option based on a parent selection – e.g. selecting a “Practice” will enable a “Test” dropdown
+
+<img src={modalSelection10Img} alt="Modal - selection 10" />
+
+### Clear all behavior
+
+Clicking "Clear all" inside the modal should reset all filter selections within the modal to their default state and close the modal, applying the cleared state to the report immediately.
+
+<img src={modalSelection11Img} alt="Modal - selection 11" />
+
+---
+
+<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=13456-22723" target="_blank" rel="noopener noreferrer">Figma source</a>

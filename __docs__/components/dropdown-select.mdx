@@ -1,0 +1,143 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+import dropdownSelect1Img from "./assets/dropdown-select/dropdown-select-1.png";
+import dropdownSelect2Img from "./assets/dropdown-select/dropdown-select-2.png";
+import dropdownSelect3Img from "./assets/dropdown-select/dropdown-select-3.png";
+import dropdownSelect4Img from "./assets/dropdown-select/dropdown-select-4.png";
+import dropdownSelect5Img from "./assets/dropdown-select/dropdown-select-5.png";
+import dropdownSelect6Img from "./assets/dropdown-select/dropdown-select-6.png";
+import dropdownSelect7Img from "./assets/dropdown-select/dropdown-select-7.png";
+import dropdownSelect8Img from "./assets/dropdown-select/dropdown-select-8.png";
+import dropdownSelect9Img from "./assets/dropdown-select/dropdown-select-9.png";
+import dropdownSelect10Img from "./assets/dropdown-select/dropdown-select-10.png";
+import dropdownSelect11Img from "./assets/dropdown-select/dropdown-select-11.png";
+import dropdownSelect12Img from "./assets/dropdown-select/dropdown-select-12.png";
+import dropdownSelect13Img from "./assets/dropdown-select/dropdown-select-13.png";
+import dropdownSelect14Img from "./assets/dropdown-select/dropdown-select-14.png";
+
+<Meta title="Components / Dropdown select" />
+
+# Dropdown select
+
+## Dropdown select
+
+Dimension/Selection control
+
+A selection control used in forms, modals, settings panels, and filter bars. Can start empty or with a product default. Single-select and multi-select variants.
+
+<img src={dropdownSelect1Img} alt="Dropdown select 1" />
+
+### When to use
+
+The choice to use a dropdown is based the need to select from a predefined list of options — either one value or multiple.
+
+| Use when | Rule | Example use |
+| --- | --- | --- |
+| Selecting a single value | One option must be chosen from a list | Selecting a course in a filter bar or form |
+| Selecting multiple values | More than one option can be chosen simultaneously | Selecting multiple grades to filter a report |
+| List is too long for radio buttons or checkboxes | More than ~5 options benefit from a compact list | Selecting a school from a district-wide list |
+
+### When NOT to use
+
+| Don’t use when | Recommended alternative | Rationale |
+| --- | --- | --- |
+| Only 2–3 options exist (unless part of the filter bar) | Radio buttons or checkbox group | Visible options reduce clicks and cognitive load |
+| User is opting in to filter | Filter combobox | The [ Label ⊕ ] pattern is designed for additive, clearable filtering |
+| Filtering by a time period | Date filter | The date filter handles temporal filtering with predefined relative options |
+
+### Variants
+
+### Label above
+
+The field label sits above the input. Used in forms and modals where vertical space allows and the label needs to be prominent.
+
+<img src={dropdownSelect2Img} alt="Dropdown select 2" />
+
+### Label inline
+
+The label sits inside the field to the left of the value. Used in filter bars and compact layouts where horizontal space is shared across multiple fields.
+
+<img src={dropdownSelect3Img} alt="Dropdown select 3" />
+
+### Single-select
+
+One option can be selected. Selecting immediately applies and closes the menu. A filled blue circle with checkmark marks the active item.
+
+<img src={dropdownSelect4Img} alt="Dropdown select 4" />
+
+### Multi-select
+
+Multiple options can be selected via checkboxes. A search field appears for long lists. Changes are not applied until the user taps Apply.
+Trigger label after selection:
+1 selected: shows the item name
+2 or more: shows 2 selected, 3 selected, etc.
+
+<img src={dropdownSelect5Img} alt="Dropdown select 5" />
+
+### States
+
+These states apply primarily to the label-above variant, which has vertical space for context labels, helper text, and error messages. The inline variant may support some states depending on context, but the label-above variant is the default for stateful interactions.
+
+### Context
+
+Use "Required" as an inline label next to the field label instead of an asterisk. This is more accessible and explicit — users don't need to find and interpret a legend.
+
+<img src={dropdownSelect6Img} alt="Dropdown select 6" />
+
+### Helper text
+
+Used for helpful description text that would otherwise be hidden in a placeholder. Helper text is persistent — it stays visible before and after the user makes a selection. Use it when the context genuinely aids the user's decision.
+
+<img src={dropdownSelect7Img} alt="Dropdown select 7" />
+
+### Error
+
+If the user submits or taps Apply without selecting a required item, the dropdown gains a red border and displays an actionable error message below the field. The label also turns red. Error clears once a valid selection is made.
+
+<img src={dropdownSelect8Img} alt="Dropdown select 8" />
+
+### Read only
+
+Displays the current value while explicitly preventing interaction. Unlike disabled, read-only maintains clear color contrast — the content is still meant to be read. Always include helper text explaining why the field is locked.
+
+<img src={dropdownSelect9Img} alt="Dropdown select 9" />
+
+### Disabled
+
+Used when a prerequisite action has not been fulfilled. The field is grayed out and non-interactive. Once the dependency is met, it no longer displays as disabled. Do not use disabled when read-only is more appropriate — disabled implies unavailability, not restriction.
+
+<img src={dropdownSelect10Img} alt="Dropdown select 10" />
+
+### Interaction
+
+### In-menu search
+
+Add a search field inside the menu when the list is long or when users are likely to know the specific item they need. Applies to both single-select and multi-select. Trigger conditions:
+Large data sets:  List contains more than 10–15 items or requires significant scrolling
+Known-item search: When users are likely to know the specific name of the item they are looking for (e.g., a specific School, Student, or Unit).
+Alphabetical/categorical lists: When the list is long enough that manual scanning becomes inefficient.
+
+<img src={dropdownSelect11Img} alt="Dropdown select 11" />
+
+### Multi-select requires apply
+
+Checking or unchecking items does not apply until the user taps Apply. This prevents the data from re-filtering on every checkbox tap, which would be disorienting.
+
+<img src={dropdownSelect12Img} alt="Dropdown select 12" />
+
+### Copy
+
+### Label clarity and truncation
+
+Option labels must be clear, concise, and immediately understandable, avoiding ambiguity, jargon, or excessive abbreviation. Furthermore, the label displayed in the closed Dropdown must fit on a single line and truncate with an ellipsis (...) if necessary, to prevent line wrapping and maintain the component's compact footprint.
+
+<img src={dropdownSelect13Img} alt="Dropdown select 13" />
+
+### Logical ordering
+
+Order options logically. This can mean arranging them alphabetically, numerically, by popularity, or by functional grouping, depending on what best supports the user's scanning process.
+
+<img src={dropdownSelect14Img} alt="Dropdown select 14" />
+
+---
+
+<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=13456-36431&t=6lEHCsAo03k7G4Lr-4" target="_blank" rel="noopener noreferrer">Figma source</a>

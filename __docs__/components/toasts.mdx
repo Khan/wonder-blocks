@@ -1,35 +1,31 @@
 import {Meta} from "@storybook/addon-docs/blocks";
-import headerImg from "./assets/toasts/header.png";
-import variants1Img from "./assets/toasts/variants-1.png";
-import variants2Img from "./assets/toasts/variants-2.png";
-import variants3Img from "./assets/toasts/variants-3.png";
-import statesImg from "./assets/toasts/states.png";
-import placement1Img from "./assets/toasts/placement-1.png";
-import placement2Img from "./assets/toasts/placement-2.png";
-import interaction1Img from "./assets/toasts/interaction-1.png";
-import interaction2Img from "./assets/toasts/interaction-2.png";
-import interaction3Img from "./assets/toasts/interaction-3.png";
-import interaction4Img from "./assets/toasts/interaction-4.png";
-import copy1Img from "./assets/toasts/copy-1.png";
-import copy2Img from "./assets/toasts/copy-2.png";
-import copy3Img from "./assets/toasts/copy-3.png";
-import copy4Img from "./assets/toasts/copy-4.png";
+import toasts1Img from "./assets/toasts/toasts-1.png";
+import toasts2Img from "./assets/toasts/toasts-2.png";
+import toasts3Img from "./assets/toasts/toasts-3.png";
+import toasts4Img from "./assets/toasts/toasts-4.png";
+import toasts5Img from "./assets/toasts/toasts-5.png";
+import toasts6Img from "./assets/toasts/toasts-6.png";
+import toasts7Img from "./assets/toasts/toasts-7.png";
+import toasts8Img from "./assets/toasts/toasts-8.png";
+import toasts9Img from "./assets/toasts/toasts-9.png";
+import toasts10Img from "./assets/toasts/toasts-10.png";
+import toasts11Img from "./assets/toasts/toasts-11.png";
+import toasts12Img from "./assets/toasts/toasts-12.png";
+import toasts13Img from "./assets/toasts/toasts-13.png";
+import toasts14Img from "./assets/toasts/toasts-14.png";
+import toasts15Img from "./assets/toasts/toasts-15.png";
 
 <Meta title="Components / Toasts" />
 
 # Toasts
 
-## Header
-
-### Toasts
+## Toasts
 
 System feedback/Transient messages
 
 A non-intrusive, temporary container used to display brief, passive, and asynchronous system feedback. Toasts communicate success, failure, or neutral information that does not require immediate user action to dismiss or proceed.
 
-<img src={headerImg} alt="Header" />
-
-## Table
+<img src={toasts1Img} alt="Toasts 1" />
 
 ### When to use
 
@@ -41,8 +37,6 @@ The choice to use a toast is determined by the need for non-blocking, transient 
 | The message is transient and persists only until dismissed or acted on | Confirmation that the assignment has been uploaded successfully. |
 | No action is required, or only an optional secondary action is available | All changes saved (no action) / Student removed with an undo button. |
 
-## Table
-
 ### When NOT to use
 
 | Don’t use when | Recommended alternative | Rationale |
@@ -51,53 +45,53 @@ The choice to use a toast is determined by the need for non-blocking, transient 
 | The message requires multiple lines of text or a log of events | Notification center or full page alert | Toasts are for brief, one-line updates. If the message requires multiple lines of text, context, or a log of events, it must be contained in a dedicated, dismissible area. |
 | The action is mandatory or high-stakes | Dialog | For feedback requiring mandatory action or complex confirmation (e.g., irreversible deletion, large-scale confirmation). The Toast, even with an action, is not sufficient for high-stakes decision-making. |
 
-## Variants
+### Variants
 
 ### Error
 
 Do use for temporary, severe action failures (like a dropped connection) or issues that immediately stop a single action. The Toast provides non-interruptive feedback, and the error must be easily recoverable, typically by simply retrying the action or fixing the connection.
 It must NOT include a dismiss 'X' because the error is an active barrier to function; allowing the user to dismiss the alert would cause silent failures if they attempt data-critical actions, as the system status has not actually been resolved.
 
-<img src={variants1Img} alt="Variants 1" />
+<img src={toasts2Img} alt="Toasts 2" />
 
 ### Success
 
 Do use for non-interruptive, transient confirmation of a completed, successful action. An optional "Undo" action should be provided for reversible operations (e.g., deletion), serving as the primary call-to-action.
 It must include a dismiss 'X' because, for non-critical confirmations, the user should be allowed to manually close the alert immediately if they've seen the message, thereby offering full control over their visual interface.
 
-<img src={variants2Img} alt="Variants 2" />
+<img src={toasts3Img} alt="Toasts 3" />
 
 ### Informational
 
 Do use for low-priority, non-critical status updates, feature activation, or general, non-urgent announcements. This includes confirming actions like password copy or status changes where a neutral tone is required. The Toast confirms the system state and ensures the user's workflow is uninterrupted.
 It must include a dismiss 'X' to allow the user to manually close the non-critical alert before the automatic timer runs out, reducing visual clutter.
 
-<img src={variants3Img} alt="Variants 3" />
+<img src={toasts4Img} alt="Toasts 4" />
 
-## States
+### States
 
 ### Iconography
 
 The toast must include the system-defined type icon. The icon is the most immediate signal, helping users who may have color vision deficiencies or who are scanning the page quickly.
 Do not use custom, context-specific icons (a "wifi" for no wifi connection) in the primary position, as this dilutes the meaning of the core status types.
 
-<img src={statesImg} alt="States" />
+<img src={toasts5Img} alt="Toasts 5" />
 
-## Placement
+### Placement
 
 ### Default viewport location
 
 Primary location is bottom center of the viewport or main focus area (such as the question area in practice view). Bottom center is generally less disruptive than the top of the screen.
 
-<img src={placement1Img} alt="Placement 1" />
+<img src={toasts6Img} alt="Toasts 6" />
 
 ### Avoidance of critical controls
 
 Toasts must never obscure primary calls-to-action (CTAs) or crucial data fields the user is currently working on.
 
-<img src={placement2Img} alt="Placement 2" />
+<img src={toasts7Img} alt="Toasts 7" />
 
-## Interaction
+### Interaction
 
 ### Not auto-dismissed
 
@@ -105,52 +99,52 @@ Toasts are manually dismissible (do not disappear after a certain time interval)
 When they surface error information, they should use aria-live assertive role. When the error needs action, move the focus to the toast.
 When they surface success information, they should use aria-live polite role.
 
-<img src={interaction1Img} alt="Interaction 1" />
+<img src={toasts8Img} alt="Toasts 8" />
 
 ### Focus
 
 Toasts must contain only one action.
 
-<img src={interaction2Img} alt="Interaction 2" />
+<img src={toasts9Img} alt="Toasts 9" />
 
 ### Reversibility
 
 The action should primarily include the "Undo" action whenever the user has performed a destructive or highly reversible operation (e.g., deleting an item).
 
-<img src={interaction3Img} alt="Interaction 3" />
+<img src={toasts10Img} alt="Toasts 10" />
 
 ### Action avoidance
 
 Do not include an action link on a Toast when the message confirms an operation that is not reversible or does not require immediate contextual follow-up (e.g., "All changes saved"). In these instances, the Toast should contain text only.
 
-<img src={interaction4Img} alt="Interaction 4" />
+<img src={toasts11Img} alt="Toasts 11" />
 
-## Copy
+### Copy
 
 ### Brevity
 
 Keep the text label to one line long when possible. This constraint is intended to prevent excessive copy, though the component must be allowed to wrap to two or three lines on smaller screens (e.g., mobile) without truncating the message, thereby preventing the Toast from visually obstructing large parts of the screen.
 
-<img src={copy1Img} alt="Copy 1" />
+<img src={toasts12Img} alt="Toasts 12" />
 
 ### Use passive voice
 
 Copy should focus on the object affected by the action. Use a noun + past participle structure to confirm a successful outcome. This ensures the most important information appears first
 
-<img src={copy2Img} alt="Copy 2" />
+<img src={toasts13Img} alt="Toasts 13" />
 
 ### Punctuation
 
 Copy should omit periods when the message consists of a single, short statement or command. This enhances scannability and maintains a headline style. If the copy requires more than one full sentence, periods must be used to correctly separate those thoughts.
 
-<img src={copy3Img} alt="Copy 3" />
+<img src={toasts14Img} alt="Toasts 14" />
 
 ### Action copy
 
 Action text must be a single, strong verb or short, imperative phrase (e.g., "Undo," "View," or "Try Again") that clearly describes the user's immediate recovery or context. Avoid conversational fillers, technical jargon, or multi-word phrases (e.g., avoid "Click here to view" or "Please reverse the deletion").
 
-<img src={copy4Img} alt="Copy 4" />
+<img src={toasts15Img} alt="Toasts 15" />
 
 ---
 
-<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=12444-10835&t=6lEHCsAo03k7G4Lr-4" target="_blank" rel="noopener noreferrer">Figma source</a>
+<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=12444-10834&t=6lEHCsAo03k7G4Lr-4" target="_blank" rel="noopener noreferrer">Figma source</a>

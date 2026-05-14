@@ -1,0 +1,221 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+import iconographyImg from "./assets/iconography/iconography.png";
+import iconLibraryImg from "./assets/iconography/icon-library.png";
+import usageGuidelines1Img from "./assets/iconography/usage-guidelines-1.png";
+import usageGuidelines2Img from "./assets/iconography/usage-guidelines-2.png";
+import usageGuidelines3Img from "./assets/iconography/usage-guidelines-3.png";
+import usageGuidelines4Img from "./assets/iconography/usage-guidelines-4.png";
+import usageGuidelines5Img from "./assets/iconography/usage-guidelines-5.png";
+import usageGuidelines6Img from "./assets/iconography/usage-guidelines-6.png";
+import customIcons1Img from "./assets/iconography/custom-icons-1.png";
+import customIcons2Img from "./assets/iconography/custom-icons-2.png";
+import customIcons3Img from "./assets/iconography/custom-icons-3.png";
+import customIcons4Img from "./assets/iconography/custom-icons-4.png";
+import customIcons5Img from "./assets/iconography/custom-icons-5.png";
+
+<Meta title="Foundations / Iconography" />
+
+# Iconography
+
+<img src={iconographyImg} alt="Iconography" />
+
+### Iconography
+
+Icons communicate meaning at a glance — but only when used consistently and intentionally. Our system is built on a single library, clear size and weight rules, and a small set of custom icons unique to Khan Academy.
+
+## Principles
+
+Contextual
+
+### Familiarity earns independence
+
+Some icons are universally understood — an X means close, an info circle invites more detail. They've earned the right to stand alone. Others carry meaning only within context: a label, a position, a pattern the user already knows. The goal is always clarity.
+
+Consistent
+
+### One library, one visual language
+
+A shared icon library is a shared vocabulary. When every icon comes from the same source, users learn the system once and carry that knowledge everywhere. Consistency is what makes icons feel familiar rather than arbitrary.
+
+Intentional
+
+### Weight is a response to size
+
+Icon weight isn't a stylistic preference — it's a function of how much visual mass an icon needs to read clearly at a given size. Small icons need more weight to stay legible. Larger icons already have the presence they need.
+
+Accessible
+
+### Legibility is respect
+
+Every person using this product deserves to see and understand it clearly. An icon that disappears against its background isn't a minor aesthetic issue — it's a failure to communicate. Contrast is what makes icons work for everyone.
+
+## Icon library
+
+<img src={iconLibraryImg} alt="Icon library" />
+
+### Icon library
+
+The primary icon library for this design system is Phosphor Icons. All icons outside of the custom set (defined below) must come from Phosphor. Do not source icons from other libraries, use SVG assets from the web, or create ad-hoc icon shapes — this preserves visual consistency across every surface.
+Phosphor provides icons in six weights: Thin, Light, Regular, Bold, Fill, and Duotone. This system uses Regular, Bold, and Fill only.
+
+## Sizes and weights
+
+Icon size and weight are paired. The correct weight for any icon is determined by its rendered size — not by surrounding context, emphasis, or preference.
+
+Size
+
+12px
+
+20px
+
+...
+
+Weight
+
+...
+
+...
+
+...
+
+Typical use
+
+...
+
+...
+
+...
+
+## Usage guidelines
+
+Guidance for how to apply illustration correctly across contexts. Visual examples will be defined here as the system matures.
+
+### Use the Phosphor library exclusively
+
+All UI icons must come from Phosphor. Using icons from other libraries — even ones that look similar — introduces inconsistency in stroke weight, geometry, and corner radius that is visible at icon sizes.
+
+<img src={usageGuidelines1Img} alt="Usage guidelines 1" />
+
+### Always pair icons with labels when the meaning is ambiguous
+
+Icons that represent universal, well-understood actions (close, search, back) may stand alone when space is constrained. All other icons should have a visible label or a tooltip fallback.
+
+<img src={usageGuidelines2Img} alt="Usage guidelines 2" />
+
+### Regular and Bold only — no Thin, Light, or Duotone
+
+Thin and Light weights are too delicate for product UI and fail contrast requirements at small sizes. Duotone introduces two-color complexity that conflicts with our single-color icon system. These weights are not approved for use.
+
+<img src={usageGuidelines3Img} alt="Usage guidelines 3" />
+
+### Do not recolor icons outside the token system
+
+Icons should not be recolored with brand colors, gradients, or raw hex values. All icon color must come from the semantic token system to ensure accessible pairings and consistent theming.
+
+<img src={usageGuidelines4Img} alt="Usage guidelines 4" />
+
+### Do not scale icons to non-standard sizes
+
+If a design calls for an icon at 18px or 22px, round to the nearest approved size. Off-scale icons break the size–weight pairing rule and may introduce rendering artifacts.
+
+<img src={usageGuidelines5Img} alt="Usage guidelines 5" />
+
+### Fill is reserved for selected state only
+
+The Fill weight communicates that an icon button is in an active or selected state. It must not be used for decoration, emphasis, or stylistic variation. If a component doesn't have a toggled or selected state, its icon should always be Regular or Bold.
+
+<img src={usageGuidelines6Img} alt="Usage guidelines 6" />
+
+## Custom icons
+
+A small set of icons exist outside the Phosphor library. These represent concepts specific to Khan Academy that have no suitable equivalent in Phosphor. Custom icons follow the same size, weight, and color rules as Phosphor icons but are maintained separately in the design system.
+
+### Gem
+
+The gem icon represents Khan Academy's reward currency. It appears in progress contexts, badges, and achievement surfaces. This is a brand-specific icon with a fixed visual form — do not substitute a Phosphor diamond or gem-adjacent icon.
+
+<img src={customIcons1Img} alt="Custom icons 1" />
+
+### Content type icons
+
+Each content type in the Khan Academy product has a dedicated icon. These appear in course navigation, progress views, and assignment lists to help learners and teachers identify content at a glance without reading the label.
+
+<img src={customIcons2Img} alt="Custom icons 2" />
+
+### Mastery level icons
+
+The mastery system uses a dedicated set of icons to represent a learner's level of proficiency within a skill. These icons appear in skill trees, progress dashboards, and mastery views.
+Mastery icons must always appear alongside their label in any context where a learner or teacher needs to act on or communicate about a skill level. They must not be used as standalone status indicators without a visible or accessible label.
+
+<img src={customIcons3Img} alt="Custom icons 3" />
+
+### Class icons
+
+Classes are represented by a set of shape-based icons. These appear wherever a class needs to be visually distinguished — in navigation, dashboards, and class-selection surfaces. The shape is assigned to a class and helps users quickly identify and differentiate between multiple classes at a glance.
+
+<img src={customIcons4Img} alt="Custom icons 4" />
+
+### Role icons
+
+Each user role in the Khan Academy product has a dedicated icon. These appear in role-selection flows, account settings, and any surface where a user's role needs to be communicated visually.
+
+<img src={customIcons5Img} alt="Custom icons 5" />
+
+## Accessibility
+
+Provide text alternatives for all meaningful icons Every icon that conveys meaning — whether standalone or paired with a label — must have an accessible text alternative via aria-label or equivalent. Icons that are purely decorative should be hidden from assistive technology with aria-hidden="true".
+Meet contrast minimums at all icon sizes The 3:1 contrast requirement applies at all sizes, including 16px. Do not apply opacity to icons as a way to indicate disabled or subdued states without verifying the resulting contrast against the background.
+
+Icon type
+
+Meaningful icons (convey information or action)
+
+Decorative icons (purely visual, no meaning conveyed)
+
+Rationale
+
+3:1
+
+No requirement
+
+An icon is considered meaningful if removing it would cause a user to lose information or miss a function. When in doubt, treat the icon as meaningful and apply the 3:1 minimum.
+Do not use color as the only differentiator between icon states. When an icon changes state (e.g., default to selected), the change must be visible through more than color alone. Using Fill weight for selected states satisfies this requirement for icon buttons.
+Touch targets must meet minimum size requirements. Regardless of icon size, interactive icons must be placed within a touch target of at least 24×24px (44 x 44px strongly encouraged). A 16px icon used as a button still requires a 24×24px interaction area.
+
+## Roles and responsibilities
+
+Choosing which icon to use is a product decision. Creating an icon that doesn't exist yet is a visual design decision. These responsibilities belong to different disciplines.
+
+Responsibility
+
+Select Phosphor icons for UI contexts
+
+Create and maintain custom icon assets
+
+Ensure custom icons fit the visual system
+
+Flag the need for a new custom icon
+
+Visual design
+
+Contributes
+
+Owns
+
+Owns
+
+Contributes
+
+Product design
+
+Owns
+
+–
+
+–
+
+Contributes
+
+---
+
+<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=13493-5800&t=6lEHCsAo03k7G4Lr-4" target="_blank" rel="noopener noreferrer">Figma source</a>

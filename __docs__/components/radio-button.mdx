@@ -1,0 +1,114 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+import headerImg from "./assets/radio-button/header.png";
+import states1Img from "./assets/radio-button/states-1.png";
+import states2Img from "./assets/radio-button/states-2.png";
+import placement1Img from "./assets/radio-button/placement-1.png";
+import placement2Img from "./assets/radio-button/placement-2.png";
+import interaction1Img from "./assets/radio-button/interaction-1.png";
+import interaction2Img from "./assets/radio-button/interaction-2.png";
+import interaction3Img from "./assets/radio-button/interaction-3.png";
+
+<Meta title="Components / Radio Button" />
+
+# Radio Button
+
+## Header
+
+### Radio buttons
+
+Mutually exclusive selection
+
+A mutually exclusive selection mechanism used to allow users to choose only one option from a small, visible set of choices.
+
+<img src={headerImg} alt="Header" />
+
+## Table
+
+### When to use
+
+The choice to use radio buttons is determined by the need to present a small, visible set of mutually exclusive options where only one can be selected at a time.
+
+Dimension
+
+Logic
+
+List size
+
+Interaction
+
+Rule
+
+Must be used for mutually exclusive selections where only one item can be chosen.
+
+Used for small, visible lists, typically 2 to 4 options, where the user must compare choices easily without an extra action.
+
+Preferred over a single-select Dropdown when the list is small, as it provides lower interaction cost (one action vs. two actions).
+
+Example use
+
+Filtering messages by importance: "High," "Medium," or "Low".
+
+Selecting a Country or Status (Complete, In Progress, To Do).
+
+## Table
+
+### When NOT to use
+
+| Conflict | Recommended alternative | Rationale |
+| --- | --- | --- |
+| More than one selection | Checkbox group | Radio buttons cannot be used when the user needs to select multiple items (A, B, AND C). |
+| Large list size | Single-select dropdown | If the list contains more than 5 options, a dropdown must be used to conserve vertical screen space. |
+| Singular action | Toggle | For a simple, global, ON/OFF constraint that affects the entire view, the Toggle is visually clearer. |
+
+## States
+
+### Default selection
+
+One option should always be pre-selected to prevent the user from being in an ambiguous or unvalidated state.
+
+<img src={states1Img} alt="States 1" />
+
+### Disabled
+
+Primarily used when a prerequisite action has not been fulfilled. Once the dependency is met, it no longer displays as disabled, indicating it can now be used.
+
+<img src={states2Img} alt="States 2" />
+
+## Placement
+
+### Exposed groups vs. dropdown
+
+Exposed: If there are 8 or fewer options, display them as an exposed list to allow users to quickly compare and select.
+Dropdown: If there are more than 8 options, they must be contained within a single-select dropdown to conserve vertical space.
+
+<img src={placement1Img} alt="Placement 1" />
+
+### Top filter bar
+
+Always dropdown: Regardless of the number of options, radio buttons must always be displayed as a single-select dropdown in the top horizontal filter bar to maintain a clean layout and conserve horizontal space.
+
+<img src={placement2Img} alt="Placement 2" />
+
+## Interaction
+
+### Immediate, single selection
+
+Clicking any option immediately selects it and deselects the previously chosen option within the group.
+
+<img src={interaction1Img} alt="Interaction 1" />
+
+### No selection is impossible
+
+Once an option is selected, the user cannot easily return to a 'zero-selected' state without selecting a distinct 'None' or 'All' option.
+
+<img src={interaction2Img} alt="Interaction 2" />
+
+### Avoid nesting
+
+Do not nest Radio Buttons within one another, as this creates complex dependencies and severely damages clarity.
+
+<img src={interaction3Img} alt="Interaction 3" />
+
+---
+
+<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=13456-30417&t=6lEHCsAo03k7G4Lr-4" target="_blank" rel="noopener noreferrer">Figma source</a>

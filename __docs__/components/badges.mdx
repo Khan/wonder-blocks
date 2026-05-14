@@ -1,0 +1,202 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+import headerImg from "./assets/badges/header.png";
+import variants1Img from "./assets/badges/variants-1.png";
+import variants2Img from "./assets/badges/variants-2.png";
+import variants3Img from "./assets/badges/variants-3.png";
+import variants4Img from "./assets/badges/variants-4.png";
+import variants5Img from "./assets/badges/variants-5.png";
+import variants6Img from "./assets/badges/variants-6.png";
+import variants7Img from "./assets/badges/variants-7.png";
+import states1Img from "./assets/badges/states-1.png";
+import states2Img from "./assets/badges/states-2.png";
+import states3Img from "./assets/badges/states-3.png";
+import states4Img from "./assets/badges/states-4.png";
+import placement1Img from "./assets/badges/placement-1.png";
+import placement2Img from "./assets/badges/placement-2.png";
+import placement3Img from "./assets/badges/placement-3.png";
+import scoreToStatusMapping1Img from "./assets/badges/score-to-status-mapping-1.png";
+import scoreToStatusMapping2Img from "./assets/badges/score-to-status-mapping-2.png";
+import scoreToStatusMapping3Img from "./assets/badges/score-to-status-mapping-3.png";
+import copy1Img from "./assets/badges/copy-1.png";
+import copy2Img from "./assets/badges/copy-2.png";
+import copy3Img from "./assets/badges/copy-3.png";
+
+<Meta title="Components / Badges" />
+
+# Badges
+
+## Header
+
+### Badges
+
+Status/Meta-data indicators
+
+A small, contextual, non-interactive container used to display a single, non-critical piece of meta-data or communicate a current status associated with a larger object.
+
+<img src={headerImg} alt="Header" />
+
+## Table
+
+### When to use
+
+The choice to use a badge is determined by the need for a brief, immediate visual communication of status or category.
+
+| Use when | Example use |
+| --- | --- |
+| Describing the state of an adjacent object (not standalone) | Displaying the completion status next to a lesson title: "Geometry Lesson 5" followed by [Complete]. |
+| Communicating a status with a single word or short label | [Draft], [Published], [Overdue], or [On Hold]. |
+| The status is read-only — not a button or link | Teacher view: Showing a student's current status: 'Liam K.' followed by [Active] or [Absent]. |
+
+## Table
+
+### When NOT to use
+
+| Don’t use when | Recommended alternative | Rationale |
+| --- | --- | --- |
+| Signaling a critical alert | Transient message (toast or banner) | Do not use for communicating errors, warnings, or urgent system feedback that requires user attention or action. Badges are low-priority indicators. |
+| Labeling a permanent identity or category | Tertiary text, tag, or chip | Do not use a Badge for organizational categories or "types" that don't regularly change (e.g., Subject names, District name, User IDs, or Student count). Badges are for state; Tags are for identity. |
+| Prompting a call-to-action | Button or link | Do not use a Badge to drive a user to click or perform an action. They communicate what is, not what to do. |
+| Displaying complex meta-data | Tooltip or inline text | Do not use for conveying long, multi-line data or complex contextual help. If the information cannot fit into one word, use a tooltip or standard text. |
+| Categorization is already established visually | Tertiary text or omit entirely | If an accompanying illustration or icon already establishes the category/identity, do not use a badge. Use subtle tertiary text to provide the label without competing for visual attention. (ex. Insight card) |
+
+## Variants
+
+### Critical error status
+
+This category is reserved exclusively for signals that communicate risk, failure, or urgency. The color must be used to trigger an immediate “Stop and Address” behavior from the user.
+Do signal a critical error when inaction has a negative consequence (missing a deadline, failing score, data failure).
+
+<img src={variants1Img} alt="Variants 1" />
+
+### Warning status
+
+This category communicates a state of potential trouble, pending risk, or non-blocking issues that require user attention and review, but do not necessarily prevent the current task from proceeding. The color should be used to encourage a "Review and Proceed with Caution" behavior.
+Do signal potential risk or future failure where proceeding is possible but not recommended without review (student not activated, low score, drop in metric).
+
+<img src={variants2Img} alt="Variants 2" />
+
+### Success status
+
+This category is used exclusively to confirm that a positive, goal-achieving, or completed action has successfully occurred. It provides immediate, reassuring confirmation that a process or step is finalized.
+Do signal completion and use the green success badge for items that are verified, finished, approved, or functioning normally (complete, good score, increase in metric).
+
+<img src={variants3Img} alt="Variants 3" />
+
+### Neutral status
+
+This category is for communicating a general status, category, or phase that is neither positive (Success) nor negative (Warning/Critical). It simply describes the current state.
+Do use a neutral badge for items that are general, such as those that are currently being worked on (in-progress, draft), those that are awaiting a decision (pending review), or those that are in a stable, non-alert state while awaiting a future action by the system or user (scheduled or on hold).
+
+<img src={variants4Img} alt="Variants 4" />
+
+### Time status
+
+This category communicates necessary, non-urgent information that is tied to a deadline, feature discovery, or temporary discovery.
+Do use this badge to communicate that something is due and when it is due, such as Due tomorrow, Due Friday, Due 11/6.
+
+<img src={variants5Img} alt="Variants 5" />
+
+### Informative/feature status
+
+This category is designed to draw attention to new or special functionality. It signals that a component has a temporary or unique quality the user should know about.
+Do use this badge to flag an active feature mode or temporary discovery. Badges that communicate discovery, like New, must expire after two weeks as the default. If a different expiration timeframe is needed, that should be determined on a case by case need.
+
+<img src={variants6Img} alt="Variants 6" />
+
+### Metric status
+
+This category is reserved exclusively for the Gem count system.
+Do use this badge to communicate how many gems can be earned by completing the task that it relates to. Do use this badge to communicate how many days are left to achieve the class gem challenge.
+
+<img src={variants7Img} alt="Variants 7" />
+
+## States
+
+### Communicating with text
+
+Do prioritize text within badges to communicate meaning, as it provides the clearest context and is accessible to all users. Don’t rely on icons alone; reserve icon-only badges for universally understood null indicators, such as a dash (—) for "No data" or "Not assigned."
+
+<img src={states1Img} alt="States 1" />
+
+### When to include icons
+
+Do include an icon only if it instantly conveys the same meaning as the text (a checkmark for "Complete"). Don’t use icons if it requires a cognitive jump or interpretation. If the badge works just as well without the icon, then omit the icon to reduce visual noise.
+
+<img src={states2Img} alt="States 2" />
+
+### Conditional success and warning icon use
+
+Success and warning badges allow for icon variations only to show an up arrow or down arrow when directly indicative of metrics that have gone up or down. For all other use cases, they must use the default system icon.
+
+<img src={states3Img} alt="States 3" />
+
+### Fixed icon sets
+
+The icons used in critical, gem, and time status badges serve as foundational system identifiers and should not be altered.
+
+<img src={states4Img} alt="States 4" />
+
+## Placement
+
+### Position
+
+For inline labels (next to a title or metric), place the badge directly after the text it classifies, maintaining vertical alignment with the text baseline.
+
+<img src={placement1Img} alt="Placement 1" />
+
+### Component position
+
+For component statuses (summarizing a card), align the badge to the far-right edge of the component's content area.
+
+<img src={placement2Img} alt="Placement 2" />
+
+### Within tables
+
+For tables, do set a minimum fixed width for all badges within a single column. This minimum width must be sufficient to contain the longest anticipated badge label (e.g., "In progress") to ensure the column's vertical line remains consistent and prevents visual jitter when users scan the data.
+
+<img src={placement3Img} alt="Placement 3" />
+
+## Score to status mapping
+
+### Scoring semantics and thresholds
+
+To govern score badges effectively, use critical, warning, and success badges with clear percentage thresholds.
+Critical badges: &lt;50%, Warning badges: 60–99%, and Success badges: completion (non-mastery) or 100%.
+
+<img src={scoreToStatusMapping1Img} alt="Score to status mapping 1" />
+
+### Neutral status
+
+Use the neutral badge exclusively for communicating the current status of a process or progress state, including labels like "In progress," specific percentages like "50% complete," and initial states like "Not started".
+
+<img src={scoreToStatusMapping2Img} alt="Score to status mapping 2" />
+
+### Null data handling
+
+Do not use text for non-applicable or unassigned data; instead, use a simple dash (—) or null indicator to maintain alignment in tables.
+
+<img src={scoreToStatusMapping3Img} alt="Score to status mapping 3" />
+
+## Copy
+
+### Brevity
+
+Keep text to a maximum of 3 words so the user can process the information instantly, without breaking their reading flow.
+
+<img src={copy1Img} alt="Copy 1" />
+
+### State status directly
+
+Do describe the status in the most neutral and factual way possible.
+
+<img src={copy2Img} alt="Copy 2" />
+
+### Punctuation
+
+Do not use periods, question marks, or exclamation points in badge copy. Badges are meant to be instantly scannable status indicators.
+
+<img src={copy3Img} alt="Copy 3" />
+
+---
+
+<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=13456-39138&t=6lEHCsAo03k7G4Lr-4" target="_blank" rel="noopener noreferrer">Figma source</a>

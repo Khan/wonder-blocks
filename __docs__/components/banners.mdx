@@ -1,0 +1,172 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+import headerImg from "./assets/banners/header.png";
+import variants1Img from "./assets/banners/variants-1.png";
+import variants2Img from "./assets/banners/variants-2.png";
+import variants3Img from "./assets/banners/variants-3.png";
+import variants4Img from "./assets/banners/variants-4.png";
+import statesImg from "./assets/banners/states.png";
+import placement1Img from "./assets/banners/placement-1.png";
+import placement2Img from "./assets/banners/placement-2.png";
+import placement3Img from "./assets/banners/placement-3.png";
+import interaction1Img from "./assets/banners/interaction-1.png";
+import interaction2Img from "./assets/banners/interaction-2.png";
+import interaction3Img from "./assets/banners/interaction-3.png";
+import interaction4Img from "./assets/banners/interaction-4.png";
+import copy1Img from "./assets/banners/copy-1.png";
+import copy2Img from "./assets/banners/copy-2.png";
+import copy3Img from "./assets/banners/copy-3.png";
+import copy4Img from "./assets/banners/copy-4.png";
+
+<Meta title="Components / Banners" />
+
+# Banners
+
+## Header
+
+### Banners
+
+Persistent/Global alerts
+
+A highly visible, non-modal container used to communicate important, global system status changes, successful operations, or errors. Banners remain persistent at the top of the viewport or relevant area until dismissed by the user or the issue is resolved.
+
+<img src={headerImg} alt="Header" />
+
+## Table
+
+### When to use
+
+The choice to use a banner is determined by the need for persistent, high-priority, and global system communication.
+
+| Use when | Example use |
+| --- | --- |
+| High-priority feedback signals a significant change affecting the user's entire session or future state | Warning/action required: Your Premium Curriculum Access will end on January 15, 2026. Renew now. |
+| The message must stay visible until the user acknowledges it or the system resolves it | Error/offline status: "Your grading autosave failed due to a system service outage. Please save your work manually." |
+| Confirming a complex or high-stakes action that is difficult to reverse | Success confirmation: Final Grades Submitted! Your students' grades for the current term have been successfully locked and forwarded to the registrar. |
+
+## Table
+
+### When NOT to use
+
+| Don’t use when | Recommended alternative | Rationale |
+| --- | --- | --- |
+| Showing transient feedback | Toast | Do not use for low-urgency, self-contained, or temporary confirmations that do not require acknowledgment (e.g., "Assignment saved"). Banners are too disruptive for simple confirmation. |
+| Blocking the interface for a critical issue | Modal or full screen error page | The Banner is non-modal and allows the user to click around the background. A critical error requires blocking the entire interface. |
+| Requiring a complex user decision | Modal | Do not use when the message requires the user to make an immediate, high-stakes choice or irreversible commitment. Banners lack the necessary context and visual gravity for complex decisions. |
+| Displaying non-critical promotions | Contextual card or feature slot | Do not use for non-critical promotional or marketing content. Banners are reserved for system alerts and status changes, not upsells or temporary campaigns. |
+| Highlighting a field-specific error | Inline form validation | Do not use for validation failures related to a specific input field (e.g., student ID field is empty). Banners are global, not local. |
+
+## Variants
+
+### Critical error/blocker
+
+Do use when signaling a severe, system-wide failure, data corruption, or an issue that immediately blocks the user from completing a primary task, ensuring that the error message is not dismissible until the problem is resolved or the page state changes.
+
+<img src={variants1Img} alt="Variants 1" />
+
+### Warning/action required
+
+Do use when signaling a non-blocking but significant future risk or communicating a mandatory action that must be completed to prevent a problem, ensuring the user is aware of the potential negative consequence if they do not act. The banner must not be dismissible until the user has resolved the underlying issue.
+
+<img src={variants2Img} alt="Variants 2" />
+
+### Success confirmation
+
+Do use when signaling the successful completion of a complex or high-stakes transactional action, especially if that action involves multiple steps or is difficult to reverse, ensuring the copy is specific, data-driven, and includes direct links or identifiers to the resulting content for immediate verification.
+
+<img src={variants3Img} alt="Variants 3" />
+
+### Informational/feature
+
+Do use the when communicating temporary policies or essential guidelines that require a one-time user acknowledgement to dismiss the visual notice or when announcing new tools or key features to drive awareness.
+For contextual call-out (promotional/navigational) banners, the icon is optional and best omitted to simplify the visual design and reduce the cognitive load.
+
+<img src={variants4Img} alt="Variants 4" />
+
+## States
+
+### Iconography
+
+The banner must include the system-defined type icon. The icon is the most immediate signal, helping users who may have color vision deficiencies or who are scanning the page quickly.
+Do not use custom, context-specific icons (a "calendar" for maintenance) in the primary position, as this dilutes the meaning of the core status types.
+
+<img src={statesImg} alt="States" />
+
+## Placement
+
+### Top of content area
+
+Do display the banner at the top of the affected content area.
+
+<img src={placement1Img} alt="Placement 1" />
+
+### Maximum two banners
+
+A single banner is ideal, but if more is needed the max should be no more than two banners in a single view. The oldest or least critical banner must be hidden or dismissed automatically.
+
+<img src={placement2Img} alt="Placement 2" />
+
+### Priority stacking order
+
+If there must be two banners, order them by:
+Highest priority / Most critical banner (at the very top).
+Second highest priority / Second most critical banner (below the first one).
+If both banners have the same criticality, the newest or most recently triggered one often takes the top spot, or the decision is made based on which piece of information is most urgent for the user to see first.
+
+<img src={placement3Img} alt="Placement 3" />
+
+## Interaction
+
+### Dismissal for informational and success banners
+
+Do include the 'X' for a banner that is informational, feature-related, or confirms a successful transaction, allowing the user to clear visual clutter immediately.
+
+<img src={interaction1Img} alt="Interaction 1" />
+
+### No dismissal for unresolved state
+
+Don't include the 'X' if the message communicates a state that the user cannot resolve on their own, or if the user must be continuously aware of the message to prevent an error or data loss.
+
+<img src={interaction2Img} alt="Interaction 2" />
+
+### Action type and singular focus
+
+There are two action types: Button and Link. Use a Link when the action is primarily to navigate to a detailed page or section. Use a Button when the action is functional or mandatory and completes a process. Also, maintain singular focus. Banners should contain only one primary action to maintain focus.
+
+<img src={interaction3Img} alt="Interaction 3" />
+
+### Guide to resolution
+
+If a banner is not dismissible than it should contain a single, highly visible call-to-action button or link that resolves the state or provides necessary details, ensuring the banner guides the user toward a specific next step.
+
+<img src={interaction4Img} alt="Interaction 4" />
+
+## Copy
+
+### State status directly
+
+Banner copy must be kept as concise as possible, ideally limited to one main sentence and one actionable sentence. Do use a direct, declarative sentence structure to immediately state the status or risk, avoiding overly polite phrasing, passive voice, or system jargon, thereby maximizing scannability and comprehension.
+The tone must be neutral and professional across all types, though it should shift in intensity—firm for Errors, cautious for Warnings, and positive but measured for Success and Information.
+
+<img src={copy1Img} alt="Copy 1" />
+
+### Link problem to solution
+
+For Error and Warning banners, do use copy that clearly states what the user can do next to resolve the issue or mitigate the risk, linking the textual problem statement directly to the intended Call-to-Action button or link.
+
+<img src={copy2Img} alt="Copy 2" />
+
+### Include specific data
+
+When applicable, the copy for transactional banners (Success, Warning) must include specific numbers, identifiers, or dates to confirm the impact of the action or the immediacy of the risk (e.g., "2 assignments," or "expires on \{date\}").
+
+<img src={copy3Img} alt="Copy 3" />
+
+### Punctuation
+
+Copy should omit periods when the message consists of a single, short statement or command. This enhances scannability and maintains a headline style. If the copy requires more than one full sentence, periods must be used to correctly separate those thoughts.
+
+<img src={copy4Img} alt="Copy 4" />
+
+---
+
+<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=12444-9008&t=6lEHCsAo03k7G4Lr-4" target="_blank" rel="noopener noreferrer">Figma source</a>

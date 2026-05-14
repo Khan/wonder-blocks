@@ -1,0 +1,87 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+import headerImg from "./assets/inline-filter-button/header.png";
+import variants1Img from "./assets/inline-filter-button/variants-1.png";
+import variants2Img from "./assets/inline-filter-button/variants-2.png";
+import interaction1Img from "./assets/inline-filter-button/interaction-1.png";
+import interaction2Img from "./assets/inline-filter-button/interaction-2.png";
+import interaction3Img from "./assets/inline-filter-button/interaction-3.png";
+
+<Meta title="Components / Inline filter button" />
+
+# Inline filter button
+
+## Header
+
+### Inline filter button
+
+Additive filter control
+
+An opt-in filter control that lives in a filter bar. Starts unfiltered — all data shows. User adds a filter by clicking the inactive chip. Always clearable with ×.
+
+<img src={headerImg} alt="Header" />
+
+## Table
+
+### When to use
+
+The choice to use an inline filter button is based on the need to allow users to optionally narrow data by a dimension without imposing a default. The filter starts inactive and data shows unfiltered until the user opts in.
+
+| Use when | Rule | Example use |
+| --- | --- | --- |
+| Filtering is optional | All-time or unfiltered data is a valid and useful default | A report that shows all schools unless narrowed by the user |
+| User owns the initial state | The product has no meaningful default to pre-apply | Filtering a roster by grade — all grades shown by default |
+| Multiple filters in a bar | Several opt-in filter comboboxes sit side by side in a filter bar, each independently addable and clearable | School ⊕, Grade ⊕ filter in a report filter bar |
+
+## Table
+
+### When NOT to use
+
+Avoid the filter combobox when a value is always required or when the control lives inside a form or modal.
+
+| Don’t use when | Recommended alternative | Rationale |
+| --- | --- | --- |
+| A default value is always  applied | Dropdown | If the product pre-selects a value and it can't be cleared, use a dropdown |
+| Inside a form or modal | Dropdown | The combobox is a filter bar affordance — it doesn't belong inside a form |
+| Filtering by a time period | Date filter combobox | Use the date filter component — same opt-in pattern but purpose-built for temporal filtering |
+
+## Variants
+
+### Single-select
+
+User selects one option. Selecting immediately applies and closes the menu — no Apply button. The filter combobox updates to the active state instantly.
+
+<img src={variants1Img} alt="Variants 1" />
+
+### Multi-select
+
+User selects one or more options via checkboxes. A search field appears for long lists. Changes require Apply to confirm.
+Trigger label after selection:
+1 selected: shows the item name
+2 or more: shows 2 selected, 3 selected, etc.
+
+<img src={variants2Img} alt="Variants 2" />
+
+## Interaction
+
+### In-menu search
+
+Follows the same rules as the Dropdown component. See Dropdown documentation.
+
+<img src={interaction1Img} alt="Interaction 1" />
+
+### Multi-select requires apply
+
+Follows the same rules as the Dropdown component. See Dropdown documentation.
+
+<img src={interaction2Img} alt="Interaction 2" />
+
+### Multiple filters in a bar
+
+Multiple filter comboboxes sit side by side in a filter bar. Each is independent — clearing one does not affect others. The recommended maximum is 3 per bar. If more are needed, evaluate whether a More filters modal is more appropriate.
+For active filters diplay behavior and "Clear all" logic, see the Filter and sort pattern doc.
+
+<img src={interaction3Img} alt="Interaction 3" />
+
+---
+
+<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=13456-38129" target="_blank" rel="noopener noreferrer">Figma source</a>

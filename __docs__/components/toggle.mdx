@@ -1,0 +1,76 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+import headerImg from "./assets/toggle/header.png";
+import placementImg from "./assets/toggle/placement.png";
+import interaction1Img from "./assets/toggle/interaction-1.png";
+import interaction2Img from "./assets/toggle/interaction-2.png";
+import copyImg from "./assets/toggle/copy.png";
+
+<Meta title="Components / Toggle" />
+
+# Toggle
+
+## Header
+
+### Toggle
+
+Binary/Boolean filtering
+
+A simple on/off mechanism used for a quick, either-or choice to include/exclude items based on a single boolean attribute.
+
+<img src={headerImg} alt="Header" />
+
+## Table
+
+### When to use
+
+The choice to use a toggle is determined by the need for an immediate, singular action on a single boolean attribute.
+
+| Use when | Example use |
+| --- | --- |
+| The choice is strictly binary | On/Off, Include/Exclude, True/False |
+| The action takes effect immediately without confirmation | Toggling "Show only completed tasks" instantly filters the list |
+| The state is always visible and needs to be persistent | A global constraint that remains active across the session until the user turns it off |
+
+## Table
+
+### When NOT to use
+
+| Don’t use when | Recommended alternative | Rationale |
+| --- | --- | --- |
+| There are 3 or more possible states | Checkbox group | Toggles are only appropriate for binary decisions. More states need a different selection pattern. |
+| Multiple options can be selected at the same time | Checkbox group | Toggles act on a single attribute. Additive filtering across multiple options requires checkboxes. |
+| The action requires an Apply button to commit | Checkbox or form input + apply button | Toggles activate immediately. If the user needs to review before confirming, the pattern breaks. Exception: filter modal — see Interaction. |
+
+## Placement
+
+Place the toggle after primary filters (like Date or Course). This positions it as a high-level global constraint applied after the core dimensions have been selected.
+Never place a toggle before dropdowns or inline within a list of results.
+
+<img src={placementImg} alt="Placement" />
+
+## Interaction
+
+### No filter chips
+
+Toggles do not generate filter chips in the filter bar. Because the toggle is always visible and explicit in the UI, a chip would be redundant.
+
+<img src={interaction1Img} alt="Interaction 1" />
+
+### Filter modal
+
+When a toggle lives inside a filter modal, it does not apply immediately. The effect is deferred until the user applies the modal filters. This is the only context where a toggle does not produce an instant result.
+Inside a filter modal, the label sits to the left of the toggle, not inline to the right as it does in the filter bar. An optional short description can sit below the label to add context when the toggle's purpose isn't self-evident from the label alone.
+Only one toggle should be visible in the filter bar at a time. If additional boolean filters are needed, they belong inside the filter modal accessed via "More filters."
+
+<img src={interaction2Img} alt="Interaction 2" />
+
+## Copy
+
+The label must always be visible next to the toggle. It should clearly communicate what happens when the toggle is on — not what state it is in.
+Keep labels concise and action-oriented. Avoid vague words like "Filter" or labels that describe the off state.
+
+<img src={copyImg} alt="Copy" />
+
+---
+
+<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=12444-33996&t=6lEHCsAo03k7G4Lr-4" target="_blank" rel="noopener noreferrer">Figma source</a>

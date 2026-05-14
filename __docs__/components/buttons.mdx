@@ -1,0 +1,178 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+import headerImg from "./assets/buttons/header.png";
+import variants1Img from "./assets/buttons/variants-1.png";
+import variants2Img from "./assets/buttons/variants-2.png";
+import variants3Img from "./assets/buttons/variants-3.png";
+import states1Img from "./assets/buttons/states-1.png";
+import states2Img from "./assets/buttons/states-2.png";
+import states3Img from "./assets/buttons/states-3.png";
+import states4Img from "./assets/buttons/states-4.png";
+import states5Img from "./assets/buttons/states-5.png";
+import states6Img from "./assets/buttons/states-6.png";
+import placement1Img from "./assets/buttons/placement-1.png";
+import placement2Img from "./assets/buttons/placement-2.png";
+import copy1Img from "./assets/buttons/copy-1.png";
+import copy2Img from "./assets/buttons/copy-2.png";
+import copy3Img from "./assets/buttons/copy-3.png";
+import copy4Img from "./assets/buttons/copy-4.png";
+import copy5Img from "./assets/buttons/copy-5.png";
+
+<Meta title="Components / Buttons" />
+
+# Buttons
+
+## Header
+
+### Buttons
+
+Call-to-action/Interaction trigger
+
+A button is a highly discoverable, interactive element used to communicate and trigger a specific action or command. Its primary purpose is to initiate state changes or execute a task—essentially, buttons do things.
+
+<img src={headerImg} alt="Header" />
+
+## Table
+
+### When to use
+
+The choice to use a button is determined by the need to prompt the user to perform an action that changes the state or context of the system.
+
+| Use when | Example use |
+| --- | --- |
+| The action is the primary goal of the current view | Save, Submit, Confirm — the main thing a user needs to do on this screen. |
+| The action has a clear, immediate outcome | Assign content, Add filter, Delete record. |
+
+## Table
+
+### When NOT to use
+
+| Don’t use when | Recommended alternative | Rationale |
+| --- | --- | --- |
+| The action is inline within a body of text | Text link | Buttons interrupt reading flow. Inline actions should use a text link. |
+| The action is a page-level navigation item | Tabs or nav link | Buttons imply an action with an outcome. Switching between views is navigation, not an action. |
+| The outcome is revealing options, not executing an action | Dropdown or overflow menu | A button implies something will happen immediately. If the result is showing more choices, use a dropdown or menu pattern instead. |
+
+## Variants
+
+### Primary button
+
+Used for one, single critical action that completes the workflow (Submit, Start). Drives the user toward the main goal.
+Don’t use more than one per visible screen area.
+
+<img src={variants1Img} alt="Variants 1" />
+
+### Secondary button
+
+Used for an intentional alternative action that creates value (Save draft, Duplicate).
+Can be used multiple times on a page if actions are of equal importance.
+Don’t use it for navigation or low-value trivial actions (View details, Preview).
+
+<img src={variants2Img} alt="Variants 2" />
+
+### Tertiary button
+
+Used exclusively for low-priority actions that change the state on the current screen. Do use for actions that abandon or exit the current workflow (cancel, exit, close), for simple movement backward or through a defined flow (previous, back, next step), or for actions that branch into an optional setup or preference setting (customize, advanced settings).
+Avoid styling links as buttons (e.g., a "Read more" button). To maintain accessibility and meet user expectations, designers and developers must ensure each is coded correctly: links go places, while buttons do things. Confusing these functions breaks core navigation logic and creates significant barriers for users with disabilities.
+
+<img src={variants3Img} alt="Variants 3" />
+
+## States
+
+### Small buttons
+
+Small buttons are low-emphasis UI elements used for supplemental actions that must remain accessible without competing with the primary focus of the page. They are essential for maintaining a clean visual hierarchy in tight spaces or high-density interfaces, ensuring that complex or information-dense layouts remain scannable and uncluttered.
+Space is constrained: Ideal for actions nested within confined areas like cells (e.g., UMG work), list items, or small cards where a standard button would feel bulky.
+Hierarchical balance is needed: Helps avoid "button fatigue" when prominent primary or secondary CTAs are already present, allowing the user to focus on the main task while keeping utilities available.
+Utility-based actions: Perfect for "micro-actions" within a larger workflow, such as table column headings that trigger modals, linking accounts in settings, or batch actions like "Select All."
+
+<img src={states1Img} alt="States 1" />
+
+### Neutral buttons
+
+Neutral tokens help preserve hierarchy balance when multiple kinds of elements with differing visual weights are present in a view. Our current application of them is for icon-only tertiary buttons.
+Neutral text buttons are not currently in use. If a use case arises, document the rationale before applying.
+
+<img src={states2Img} alt="States 2" />
+
+### Destructive state
+
+Used for permanent, irreversible actions, typically styled with a critical color (e.g., "Delete Class Roster").
+Don’t use red for simple errors or warning, or non-destructive actions.
+
+<img src={states3Img} alt="States 3" />
+
+### Disabled state
+
+Use disabled buttons in cases when you need to prevent a user from acting on items where the action is functionally impossible or forbidden, such as a "Submit" button when previewing an activity.
+Don’t use a disabled button to communicate when conditions for progressing or successfully taking action are not met.
+
+<img src={states4Img} alt="States 4" />
+
+### Iconography
+
+Do use an icon if the icon symbolizes the result or category of the action and the icon conveys the same meaning as the text in milliseconds. This helps improve its clarity.Omit if the button works just as well without the icon.
+Icon placement: Icon set to “start” is to indicate action, focus, and category. Icon set to “end” indicates status, direction, or change in context. 
+Icon-only buttons: Do use them only for universally understood actions (search, settings, close, edit) And use the Neutral action (not Progressive).
+
+<img src={states5Img} alt="States 5" />
+
+### Buttons for learners
+
+These buttons are exclusively used for the learners experience only.
+Primary and secondary are reserved for promoting action within the core learning journey. They are explicitly excluded from administrative interfaces, modals, pagination, table controls, and settings menus.
+Icon buttons are specific to quick tools and actions within the practice/learning mode experience.
+Gem and unlock buttons are for indicating a students total life gems and to notify when they have unlocked a new accessory.
+
+<img src={states6Img} alt="States 6" />
+
+## Placement
+
+### Priority placement
+
+The Primary button should be placed in the most visible and logical position for the user's flow (e.g., block-end of a form or modal).
+
+<img src={placement1Img} alt="Placement 1" />
+
+### Hierarchy and grouping
+
+If bundled together, the actions should be ordered from lowest priority to highest priority. This helps ensure that the final decision the user makes is the most important one.
+Group related actions together. In a modal or form, the order should generally be: [Secondary: Cancel/Back] followed by [Primary: Submit/Save].
+
+<img src={placement2Img} alt="Placement 2" />
+
+## Copy
+
+### Action focus
+
+Button copy must be short, clear, and focused on the action (a verb or a verb phrase).
+Avoid technical jargon or vague labels like "OK" or "Click Here". Use clear action verbs like "Save Changes" or "Next Step".
+
+<img src={copy1Img} alt="Copy 1" />
+
+### Brevity
+
+Aim for 1-3 words. The text must be immediately scannable.
+
+<img src={copy2Img} alt="Copy 2" />
+
+### Sentence case
+
+To be consistent with UX copy guidelines, use sentence case.
+
+<img src={copy3Img} alt="Copy 3" />
+
+### Punctuation
+
+Do not use periods, question marks, or exclamation points at the end of button text. Button text is typically a fragment, phrase, or command, not a full sentence, and terminal punctuation adds unnecessary visual clutter and reduces scannability.
+
+<img src={copy4Img} alt="Copy 4" />
+
+### Consistency
+
+Always use logically paired verbs for opposite actions, as the choice clarifies the type of movement. Previous / Next is used for simple, non-committing pagination through lists or sequences. Back / Next or Back / Continue is used for advancing through procedural flows like multi-step forms or wizards. Never mix terms from different pairs (e.g., avoid "Previous/Continue").
+
+<img src={copy5Img} alt="Copy 5" />
+
+---
+
+<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=13456-13419&t=6lEHCsAo03k7G4Lr-4" target="_blank" rel="noopener noreferrer">Figma source</a>

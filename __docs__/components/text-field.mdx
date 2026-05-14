@@ -1,0 +1,95 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+import headerImg from "./assets/text-field/header.png";
+import states1Img from "./assets/text-field/states-1.png";
+import states2Img from "./assets/text-field/states-2.png";
+import states3Img from "./assets/text-field/states-3.png";
+import states4Img from "./assets/text-field/states-4.png";
+import states5Img from "./assets/text-field/states-5.png";
+import states6Img from "./assets/text-field/states-6.png";
+import states7Img from "./assets/text-field/states-7.png";
+
+<Meta title="Components / Text field" />
+
+# Text field
+
+## Header
+
+### Text field
+
+Free-form input
+
+Text fields allow users to enter and edit text into a UI. They typically appear in forms and dialogs. This is a primary mechanism for gathering user input and data across the platform.
+
+<img src={headerImg} alt="Header" />
+
+## Table
+
+### When to use
+
+The choice to use a text field is determined by the need to capture specific, often unique, information from a user during a workflow.
+
+| Use when | Example use |
+| --- | --- |
+| Capturing a short-to-medium length input where no predefined selection exists | Entering a student's first name or an assignment title. |
+| The user needs to provide a unique detail or description | Naming a new class, such as 'Period 3 – Algebra'" |
+| Defining parameters as part of a multi-step workflow | Filling out account details during a new teacher onboarding. |
+
+## Table
+
+### When NOT to use
+
+| Don’t use when | Recommended alternative | Rationale |
+| --- | --- | --- |
+| The options are finite and known in advance | Dropdown / select | If there is a finite, known list of options, a text field creates unnecessary typing and potential errors. |
+| The user is searching for or retrieving existing content | Search field | Search fields include specific behaviors like "clear" buttons and search icons that standard text fields lack. |
+| The input requires multiple lines or paragraph-length content | Text area | Text fields are intended for single lines of text. For paragraphs, use a multi-line text area. |
+
+## States
+
+### Standard text field
+
+Label is positioned outside and above the input box. The input box is empty until text is entered.
+
+<img src={states1Img} alt="States 1" />
+
+### Placeholder text
+
+Serves as a brief, transient hint inside an input field to help guide user input. It is best used to demonstrate specific formatting like MM/DD/YYYY, clarify ambiguous labels with style examples such as "Ms. Z," or indicate the scope of a search field.
+Because this text disappears when a user begins typing, it must never replace a persistent external label.
+
+<img src={states2Img} alt="States 2" />
+
+### Context
+
+Context to replace asterisks and instead say Required to indicate necessary field.
+
+<img src={states3Img} alt="States 3" />
+
+### Helper text
+
+Used for any helpful description text that would otherwise be hidden in a placeholder. This information is more useful when persistent.  Reminder that auto-complete overlays will cover things under the input when they display, so for things like names, phone #s, addresses, email addresses, etc. where autocomplete can be used, helper text should be displayed above the input.
+
+<img src={states4Img} alt="States 4" />
+
+### Error
+
+If the input is invalid, the label and border turn red, accompanied by specific error text below the field.
+
+<img src={states5Img} alt="States 5" />
+
+### Read only
+
+Used to display a component's value while explicitly prohibiting user interaction or editing. Unlike a fully disabled component, it maintains clear color contrast to ensure the selected content is easily visible and readable.
+This state requires explicit helper text (e.g., "Only teachers can edit this") to explain why the control is locked.
+
+<img src={states6Img} alt="States 6" />
+
+### Disabled
+
+Primarily used when a prerequisite action has not been fulfilled. Once the dependency is met, it no longer displays as disabled, indicating it can now be used.
+
+<img src={states7Img} alt="States 7" />
+
+---
+
+<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=12444-22778&t=6lEHCsAo03k7G4Lr-4" target="_blank" rel="noopener noreferrer">Figma source</a>

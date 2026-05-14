@@ -1,0 +1,66 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+import progressStepper1Img from "./assets/progress-stepper/progress-stepper-1.png";
+import progressStepper2Img from "./assets/progress-stepper/progress-stepper-2.png";
+import progressStepper3Img from "./assets/progress-stepper/progress-stepper-3.png";
+import progressStepper4Img from "./assets/progress-stepper/progress-stepper-4.png";
+
+<Meta title="Components / Progress stepper" />
+
+# Progress stepper
+
+## Progress stepper
+
+Multi-step flow
+
+Communicates a user's position within a multi-step, sequential flow, signaling how much of the process remains. Two variants exist based on flow complexity and page context.
+
+<img src={progressStepper1Img} alt="Progress stepper 1" />
+
+### When to use
+
+The choice to use a progress stepper is determined by the need to guide a user through a defined sequence of steps where order matters and progress visibility reduces abandonment or errors.
+
+| Use when | Example use |
+| --- | --- |
+| The flow has 3–6 discrete, ordered steps | Onboarding (4 screens), assign content flow (4 named stages) |
+| Steps are sequential — each one leads to the next, whether it requires input or is informational | The assign content flow, where each stage depends on decisions made in the previous one |
+| The flow has a clear, known endpoint | A multi-step flow ending in a Review + Confirm step |
+
+### When NOT to use
+
+| Don’t use when | Recommended alternative | Rationale |
+| --- | --- | --- |
+| Steps can be completed in any order | Checklist or task list | A stepper implies sequence. Non-linear tasks create confusion about whether order is enforced. |
+| 2 steps or fewer | Single-page form or modal | A stepper adds structural overhead that isn't justified for minimal flows. |
+| The system is doing the work, not the user | Loading state | A stepper implies user-driven advancement. System-driven progress needs a different pattern. |
+
+### Variants
+
+### Simple
+
+Segmented bars + numeric counter. No step labels. These are visual indicators only, they are not clickable to navigate between.
+Use for lightweight, motivational flows like onboarding where steps don't need to be named.
+
+Anchored - bottom left
+
+<img src={progressStepper2Img} alt="Progress stepper 2" />
+
+### Complex
+
+Named steps with completion indicators and a progress underline. 
+Use when steps have distinct names, the flow is task-critical, or a user may need to navigate back to a previous step.
+
+Anchored - center top nav
+
+<img src={progressStepper3Img} alt="Progress stepper 3" />
+
+### Copy
+
+Applies to step labels in the complex variant only.
+Keep labels to 1–2 words. Use nouns, not verbs — the label orients the user, it doesn't instruct them. Write in sentence case.
+
+<img src={progressStepper4Img} alt="Progress stepper 4" />
+
+---
+
+<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=13456-29013" target="_blank" rel="noopener noreferrer">Figma source</a>

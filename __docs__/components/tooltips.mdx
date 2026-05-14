@@ -1,0 +1,70 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+import headerImg from "./assets/tooltips/header.png";
+import placementImg from "./assets/tooltips/placement.png";
+import interactionImg from "./assets/tooltips/interaction.png";
+import copyImg from "./assets/tooltips/copy.png";
+
+<Meta title="Components / Tooltips" />
+
+# Tooltips
+
+## Header
+
+### Tooltips
+
+Contextual identifier
+
+A small, transient text label that appears on hover or focus to identify or explain a UI element.
+
+<img src={headerImg} alt="Header" />
+
+## Table
+
+### When to use
+
+The choice to use a tooltip is determined by the need to provide immediate, supplemental context or identification for a UI element without permanently occupying space in the layout or diverting the user from their current workflow.
+
+| Use when | Example use |
+| --- | --- |
+| Labeling a UI element that has no visible text | Labeling an icon button, such as a "plus" icon with "Add item". |
+| Providing more in-depth details about a feature or value | Describing the specific value or impact of a feature in a dashboard. |
+| Offering supplemental info that may require further action | Providing a tooltip with a "Learn more" link or subhead. |
+
+## Table
+
+### When NOT to use
+
+| Don’t use when | Recommended alternative | Rationale |
+| --- | --- | --- |
+| The information is critical to the user's task | Inline help text | Never hide essential instructions, error messages, or required formatting rules behind a tooltip; users may miss them if they do not hover. |
+| Designing for mobile or touch devices | Persistent label | Tooltips rely on hover states, which are unavailable or inconsistent on touch devices; prioritize visible text for mobile-first designs. |
+| The text is already visible on screen | No tooltip | Do not use a tooltip to repeat text that is already clearly visible on the screen (e.g., a button already labeled "Save" does not need a "Save" tooltip). |
+| Displaying a list of actions or a complex form | Popover | If you need to provide a list of many actions or complex forms, tooltips are too transient; use a Menu or Popover instead. |
+| Presenting rich content like links, icons, or illustrations | Menu or popover | Do not use tooltips for large bodies of content. Use Popovers to display more extensive information, including rich text, links, icons, and illustrations. |
+
+## Placement
+
+Tooltips must remain anchored 6px from the element that triggered them. While they prefer “Above” or “Below” placement, they must flip to the sides or reverse orientation if they would be clipped by the viewport edge.
+
+<img src={placementImg} alt="Placement" />
+
+## Interaction
+
+Trigger: Appears immediately (or with a slight delay) on mouse hover or keyboard focus.
+Dismissal: Must be dismissible via the Escape key or by moving focus away from the trigger element.
+No manual trigger: Tooltips should not require a click to open; if a click is required, use a Popover instead.
+
+<img src={interactionImg} alt="Interaction" />
+
+## Copy
+
+### Text limits and formatting
+
+Keep messaging brief; avoid wrapping text to multiple lines or including large volumes of information.
+Do not use end punctuation (periods, exclamation points) for tooltip labels.
+
+<img src={copyImg} alt="Copy" />
+
+---
+
+<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=13456-33096&t=6lEHCsAo03k7G4Lr-4" target="_blank" rel="noopener noreferrer">Figma source</a>

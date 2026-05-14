@@ -1,0 +1,167 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+import spacingImg from "./assets/spacing/spacing.png";
+import howTheScaleWorksImg from "./assets/spacing/how-the-scale-works.png";
+import usageGuidelines1Img from "./assets/spacing/usage-guidelines-1.png";
+import usageGuidelines2Img from "./assets/spacing/usage-guidelines-2.png";
+import usageGuidelines3Img from "./assets/spacing/usage-guidelines-3.png";
+import usageGuidelines4Img from "./assets/spacing/usage-guidelines-4.png";
+import usageGuidelines5Img from "./assets/spacing/usage-guidelines-5.png";
+import usageGuidelines6Img from "./assets/spacing/usage-guidelines-6.png";
+import typesOfSpacing1Img from "./assets/spacing/types-of-spacing-1.png";
+import typesOfSpacing2Img from "./assets/spacing/types-of-spacing-2.png";
+import typesOfSpacing3Img from "./assets/spacing/types-of-spacing-3.png";
+import spacingExamples1Img from "./assets/spacing/spacing-examples-1.png";
+import spacingExamples2Img from "./assets/spacing/spacing-examples-2.png";
+import spacingExamples3Img from "./assets/spacing/spacing-examples-3.png";
+
+<Meta title="Foundations / Spacing" />
+
+# Spacing
+
+<img src={spacingImg} alt="Spacing" />
+
+### Spacing
+
+Space is not the absence of content — it's content. The distance between two elements tells a user whether they belong together or apart, and whether a moment calls for focus or efficiency. Getting spacing right means reading context first, then choosing the value.
+
+## Principles
+
+Relational
+
+### Space defines belonging
+
+Proximity communicates relationship. Close together means related, further apart means separate. There is no neutral gap.
+
+Contextual
+
+### Density follows the task
+
+The right amount of space depends on what the user is doing. Focused tasks need room to breathe; scanning tasks need information packed efficiently.
+
+Consistent
+
+### Repetition builds rhythm
+
+When the same spacing is used for the same relationships throughout the product, structure becomes invisible — users feel the logic without noticing it. Inconsistent spacing makes structure visible as friction.
+
+Intentional
+
+### More is not always better
+
+Generous spacing can feel calm and focused. It can also feel empty or slow. More space is not inherently better — it's appropriate or it isn't. The goal is never maximum space; it's the right amount for the context.
+
+Accessible
+
+### Space scales with the user
+
+The spacing system uses relative units so it responds when a user changes their zoom. A comfortable gap at default zoom stays comfortable at 150%. Space is a proportion, not a fixed dimension.
+
+## How the scale works
+
+<img src={howTheScaleWorksImg} alt="How the scale works" />
+
+### How the scale works
+
+The spacing scale is built on a base unit of 10px = 1rem = 100%. All values in the scale are expressed as relative units (rems) so they scale with a user's zoom and text size preferences — if a user increases their text size in their browser settings, spacing grows with it.
+Token values follow a consistent naming convention: the token suffix is the pixel value multiplied by 10. size_040 = 4px = 0.4rem. size_160 = 16px = 1.6rem.
+With the exception of 1px, all values in the scale are evenly divisible by 2. This prevents subpixel rendering artifacts that occur when relative units produce fractional pixel values at certain zoom levels.
+
+## Usage guidelines
+
+### Always use a token — never a raw value
+
+Spacing should always come from the scale. Arbitrary values (13px, 17px, 22px) bypass the relative unit system, break the zoom-scaling behavior, and introduce visual inconsistency that accumulates over time.
+
+<img src={usageGuidelines1Img} alt="Usage guidelines 1" />
+
+### The same relationship gets the same space
+
+If the gap between a section heading and its content is size_160 in one place, it should be size_160 everywhere. Inconsistency in repeated relationships is one of the most common sources of visual noise in a product.
+
+<img src={usageGuidelines2Img} alt="Usage guidelines 2" />
+
+### Spacing is not a substitute for structure
+
+Adding more space to make something feel "important" or "separated" is a workaround, not a solution. If an element genuinely needs visual distinction, that should come from hierarchy, weight, or color — not just extra margin. Space supports structure; it doesn't create it.
+
+<img src={usageGuidelines3Img} alt="Usage guidelines 3" />
+
+### Spacing can't fix content overload
+
+If a layout feels crowded and adding more space doesn't help, the problem is likely the number of elements competing for attention — not the gaps between them. More space around too many things just makes a bigger crowded layout. When spacing isn't solving the problem, the right conversation is about content prioritization, not spacing values.
+
+<img src={usageGuidelines4Img} alt="Usage guidelines 4" />
+
+### Component spacing is already handled
+
+Spacing within components (the padding inside a button, the gap between a label and its input) is defined by the component and shouldn't be overridden. What designers control is the space between components in a layout. If a layout feels off, the fix is almost always in the gaps between components, not inside them.
+
+<img src={usageGuidelines5Img} alt="Usage guidelines 5" />
+
+### Negative space is a design decision
+
+A large region of intentional emptiness can do real work — focus attention, signal importance, give a moment room to land. When an element needs to register on its own (a primary call to action, an empty state, a critical alert), the space around it is part of the design, not leftover room. This is different from the rhythmic spacing between content elements and shouldn't be confused with adding unnecessary padding.
+
+<img src={usageGuidelines6Img} alt="Usage guidelines 6" />
+
+## Types of spacing
+
+There are several types of spacing we can use to place elements within layouts and components. Although you’re most likely going to use them all when designing your products, it’s important to know what types of spacing are commonly used.
+
+### Padding
+
+Padding is the distance between the outside edge of an element + the content inside of it.
+
+<img src={typesOfSpacing1Img} alt="Types of spacing 1" />
+
+### Margins
+
+Margins are the space around the outside edge of a component.
+
+<img src={typesOfSpacing2Img} alt="Types of spacing 2" />
+
+### Dimensions
+
+Dimensions describe the overall width and height of a component or design element. While vertical dimensions should always stick to our spacing scale, horizontal dimensions are not specified because they are responsive to the viewport’s width.
+
+<img src={typesOfSpacing3Img} alt="Types of spacing 3" />
+
+## Spacing examples
+
+Here are some examples of use which might help guide your decisions when applying spacing within your designs. These are just suggestions, not strict rules you must follow. If you are unsure about what spacing works best between the components of your design you can use the following examples as a reference point.
+
+### Layout spacing
+
+Make sure to use vertical spacing as a way to create meaningful blocks of content, using bigger and smaller spaces to improve the visual hierarchy of your layout and to keep a consistent vertical rhythm within the page.
+
+<img src={spacingExamples1Img} alt="Spacing examples 1" />
+
+### Component spacing
+
+....
+
+<img src={spacingExamples2Img} alt="Spacing examples 2" />
+
+### Typography spacing
+
+When using spacing between typographic elements, try to prioritise legibility. You can also use spacing to dictate the visual hierarchy of your text, using tighter spaces to create blocks of content and bigger spaces to separate unrelated content.
+
+<img src={spacingExamples3Img} alt="Spacing examples 3" />
+
+## Accessibility
+
+### Spacing scales with user preferences
+
+Because the scale uses relative units, spacing grows proportionally when a user increases their zoom level or text size. This means layouts must be tested at elevated zoom levels (150%, 200%, and up to 400%) to ensure spacing still holds — content should not begin to overlap, require scrolling in two directions, or collapse at larger sizes.
+
+### Touch targets require minimum spacing
+
+Interactive elements placed close together must still meet minimum target sizes (24×24px). When interactive elements fall below the minimum size, ensure the control + space between other elements meets the minimum size — padding within the component maintains the target size even when the control components are small.
+
+### Whitespace aids readability for cognitive accessibility
+
+Adequate spacing between text elements and content groups benefits users with cognitive disabilities, attention difficulties, and reading disorders. Dense layouts are not inherently inaccessible, but spacing decisions in reading-heavy contexts should account for the full range of users.
+
+---
+
+<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=12526-7144&t=6lEHCsAo03k7G4Lr-4" target="_blank" rel="noopener noreferrer">Figma source</a>

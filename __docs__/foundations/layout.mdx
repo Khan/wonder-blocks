@@ -1,0 +1,102 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+import layoutImg from "./assets/layout/layout.png";
+import typesOfLayouts1Img from "./assets/layout/types-of-layouts-1.png";
+import typesOfLayouts2Img from "./assets/layout/types-of-layouts-2.png";
+import typesOfLayouts3Img from "./assets/layout/types-of-layouts-3.png";
+import typesOfLayouts4Img from "./assets/layout/types-of-layouts-4.png";
+import typesOfLayouts5Img from "./assets/layout/types-of-layouts-5.png";
+import typesOfLayouts6Img from "./assets/layout/types-of-layouts-6.png";
+import typesOfLayouts7Img from "./assets/layout/types-of-layouts-7.png";
+
+<Meta title="Foundations / Layout" />
+
+# Layout
+
+<img src={layoutImg} alt="Layout" />
+
+### Layout
+
+The arrangement of elements on a screen. Good layout makes it easy for users to understand what's on a page, what matters most, and what to do next. Poor layout — too many competing elements, inconsistent spacing, unclear grouping — creates confusion even when the content itself is correct.
+
+## Principles
+
+Spacial
+
+### Proximity communicates relationship
+
+Elements that are close together are perceived as related. Use space intentionally to group what belongs together and separate what doesn't. When everything is equidistant, nothing feels connected.
+
+Visual
+
+### Hierarchy guides attention
+
+Every screen has a most important thing. Layout should make that obvious through size, position, and space — not color or decoration alone. If everything competes for attention, nothing wins.
+
+Contextual
+
+### Density follows the task
+
+How much information belongs on a screen depends on what the user is doing. A focused, single-step decision needs room to breathe. A data-rich comparison needs efficiency. Let the task determine the density, not habit or available space.
+
+Intentional
+
+### Structure should be invisible
+
+When layout is working, users don't notice it — they just move through the experience easily. Visible structure (divider lines, boxes, heavy borders) should only appear when it's doing real work.
+
+## Types of layouts
+
+Layout types answer the question: what kind of screen is this? Each type has a clear purpose, a default density, and a set of screen contexts it's designed for. Before arranging elements on a screen, identify the layout type — it will guide every decision that follows.
+
+### Dashboard
+
+A bird's-eye view of the system's current state with entry points to tasks and deeper exploration. Users aren't completing a task here — they're orienting themselves and deciding where to go next.
+When to use: Student home screen, teacher class view, admin overview. Density: High — users need to scan a lot of information efficiently.
+
+<img src={typesOfLayouts1Img} alt="Types of layouts 1" />
+
+### Learning
+
+The primary surface where a student engages with content — exercises, articles, videos, or a Khanmigo conversation. Everything else in KA exists to get students here. Teachers also use a version of this layout when working with Khanmigo directly.
+When to use: Any time the user is actively learning or in conversation with Khanmigo. Density: Low — the student needs focus. Nothing competes with the content.
+
+<img src={typesOfLayouts2Img} alt="Types of layouts 2" />
+
+### Resource
+
+A list of entities a user can scan, filter, and select from. The user's goal is to find something specific or get an overview of a collection.
+When to use: Browsing courses, viewing a student roster, reviewing an assignment list, selecting content to assign. Density: High — users need to compare and locate efficiently.
+
+<img src={typesOfLayouts3Img} alt="Types of layouts 3" />
+
+### Resource detail
+
+A single entity explored in full. The user has selected something from a Resource layout and now wants to understand it completely or take action on it.
+When to use: Viewing a student's progress profile, reviewing a specific assignment, exploring a course overview. Density: Medium — enough detail to be useful, enough space to be readable.
+
+<img src={typesOfLayouts4Img} alt="Types of layouts 4" />
+
+### Job
+
+A focused flow for completing a task — either a single step or a sequence of steps. The user has one thing to accomplish and the layout clears everything else out of the way. When a task requires multiple sequential decisions, a progress indicator at the top shows the user where they are and how much is left. Complexity is managed by breaking it across steps, not by cramming it onto one screen.
+When to use: Any task or flow that requires full focus like creating or editing an assignment, creating or editing an assessment. Density: Low — one task, one focus per step.
+
+<img src={typesOfLayouts5Img} alt="Types of layouts 5" />
+
+### Onboarding
+
+A setup flow for first-time users establishing context — creating a class, joining a class, configuring a profile. Similar in structure to Job: Wizard but distinct in purpose. New users need clarity above everything else, so nothing competes with the current step.
+When to use: First-time teacher class creation, student joining a class for the first time, new account setup. Density: Low — one focus per step.
+
+<img src={typesOfLayouts6Img} alt="Types of layouts 6" />
+
+### Settings
+
+A screen for managing preferences and configurations. Navigation between topics sits on the left, the content area handles the active topic. Users come here to adjust something specific and leave — it's rarely a destination in itself.
+When to use: Account settings, class preferences, notification configuration, accessibility options. Density: Medium
+
+<img src={typesOfLayouts7Img} alt="Types of layouts 7" />
+
+---
+
+<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=13053-126137&t=6lEHCsAo03k7G4Lr-4" target="_blank" rel="noopener noreferrer">Figma source</a>
