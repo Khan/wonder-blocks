@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-switch
 
+## 3.4.0
+
+### Minor Changes
+
+- 27a211d: Add support for SYL Dark theme
+
+### Patch Changes
+
+- Updated dependencies [44bde5e]
+- Updated dependencies [27a211d]
+    - @khanacademy/wonder-blocks-tokens@16.5.0
+    - @khanacademy/wonder-blocks-theming@4.1.0
+    - @khanacademy/wonder-blocks-icon@5.3.14
+    - @khanacademy/wonder-blocks-styles@0.2.45
+
 ## 3.3.34
 
 ### Patch Changes
