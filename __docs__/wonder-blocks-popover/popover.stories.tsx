@@ -1028,8 +1028,8 @@ export const AutoUpdate: StoryComponentType = {
                         style={
                             position && {
                                 position: "absolute",
-                                top: position.y,
-                                left: position.x,
+                                insetBlockStart: position.y,
+                                insetInlineStart: position.x,
                             }
                         }
                     >

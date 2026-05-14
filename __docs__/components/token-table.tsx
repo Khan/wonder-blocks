@@ -85,7 +85,6 @@ const styles = StyleSheet.create({
         borderCollapse: "collapse",
         borderSpacing: 0,
         margin: `${sizing.size_320} 0`,
-        textAlign: "start",
         width: "100%",
         color: semanticColor.core.foreground.neutral.strong,
     },
@@ -99,5 +98,6 @@ const styles = StyleSheet.create({
     cell: {
         padding: sizing.size_080,
         verticalAlign: "middle",
+        textAlign: "start",
     },
 });
