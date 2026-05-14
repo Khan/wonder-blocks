@@ -1,5 +1,5 @@
 import {Meta} from "@storybook/addon-docs/blocks";
-import headerImg from "./assets/badges/header.png";
+import badgesImg from "./assets/badges/badges.png";
 import variants1Img from "./assets/badges/variants-1.png";
 import variants2Img from "./assets/badges/variants-2.png";
 import variants3Img from "./assets/badges/variants-3.png";
@@ -20,44 +20,73 @@ import scoreToStatusMapping3Img from "./assets/badges/score-to-status-mapping-3.
 import copy1Img from "./assets/badges/copy-1.png";
 import copy2Img from "./assets/badges/copy-2.png";
 import copy3Img from "./assets/badges/copy-3.png";
+import {NeutralBadge} from "@khanacademy/wonder-blocks-badge";
 
 <Meta title="Components / Badges" />
 
 # Badges
 
-## Header
+<NeutralBadge label="Status/Meta-data indicators" /> A small, contextual, non-interactive container used to display a single, non-critical piece of meta-data or communicate a current status associated with a larger object.
 
-### Badges
+<img src={badgesImg} alt="Badges" />
 
-Status/Meta-data indicators
-
-A small, contextual, non-interactive container used to display a single, non-critical piece of meta-data or communicate a current status associated with a larger object.
-
-<img src={headerImg} alt="Header" />
-
-## Table
-
-### When to use
+## When to use
 
 The choice to use a badge is determined by the need for a brief, immediate visual communication of status or category.
 
-| Use when | Example use |
-| --- | --- |
-| Describing the state of an adjacent object (not standalone) | Displaying the completion status next to a lesson title: "Geometry Lesson 5" followed by [Complete]. |
-| Communicating a status with a single word or short label | [Draft], [Published], [Overdue], or [On Hold]. |
-| The status is read-only — not a button or link | Teacher view: Showing a student's current status: 'Liam K.' followed by [Active] or [Absent]. |
+Use when
 
-## Table
+Describing the state of an adjacent object (not standalone)
 
-### When NOT to use
+Communicating a status with a single word or short label
 
-| Don’t use when | Recommended alternative | Rationale |
-| --- | --- | --- |
-| Signaling a critical alert | Transient message (toast or banner) | Do not use for communicating errors, warnings, or urgent system feedback that requires user attention or action. Badges are low-priority indicators. |
-| Labeling a permanent identity or category | Tertiary text, tag, or chip | Do not use a Badge for organizational categories or "types" that don't regularly change (e.g., Subject names, District name, User IDs, or Student count). Badges are for state; Tags are for identity. |
-| Prompting a call-to-action | Button or link | Do not use a Badge to drive a user to click or perform an action. They communicate what is, not what to do. |
-| Displaying complex meta-data | Tooltip or inline text | Do not use for conveying long, multi-line data or complex contextual help. If the information cannot fit into one word, use a tooltip or standard text. |
-| Categorization is already established visually | Tertiary text or omit entirely | If an accompanying illustration or icon already establishes the category/identity, do not use a badge. Use subtle tertiary text to provide the label without competing for visual attention. (ex. Insight card) |
+The status is read-only — not a button or link
+
+Example use
+
+Displaying the completion status next to a lesson title: "Geometry Lesson 5" followed by [Complete].
+
+[Draft], [Published], [Overdue], or [On Hold].
+
+Teacher view: Showing a student's current status: 'Liam K.' followed by [Active] or [Absent].
+
+## When NOT to use
+
+Don’t use when
+
+Signaling a critical alert
+
+Labeling a permanent identity or category
+
+Prompting a call-to-action
+
+Displaying complex meta-data
+
+Categorization is already established visually
+
+Recommended alternative
+
+Transient message (toast or banner)
+
+Tertiary text, tag, or chip
+
+Button or link
+
+Tooltip or inline text
+
+Tertiary text or omit entirely
+
+Rationale
+
+Do not use for communicating errors, warnings, or urgent system feedback that requires user attention or action. Badges are low-priority indicators.
+
+Do not use a Badge for organizational categories or "types" that don't regularly change (e.g., Subject names, District name, User IDs, or Student count). Badges are for state; Tags are for identity.
+
+Do not use a Badge to drive a user to click or perform an action. They communicate what is, not what to do.
+
+Do not use for conveying long, multi-line data or complex contextual help. If the information cannot fit into one word, use a tooltip or standard text.
+
+If an accompanying illustration or icon already establishes the category/identity, do not use a badge. Use subtle tertiary text to provide the label without competing for visual attention. (ex. Insight card)
 
 ## Variants
 
