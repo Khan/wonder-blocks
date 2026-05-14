@@ -16,8 +16,8 @@ import {
     LabelLarge,
     Body,
 } from "@khanacademy/wonder-blocks-typography";
+import {allThemeModes} from "../../.storybook/modes";
 import {font, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {themeModes} from "../../.storybook/modes";
 
 /**
 New component for Thunderblocks body text.
@@ -107,7 +107,7 @@ export const Default: StoryObj<typeof BodyText> = {
 export const SizesAndWeights = {
     parameters: {
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
         },
     },
     render: () => (
