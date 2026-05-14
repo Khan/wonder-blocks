@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
         boxShadow: `0px 1px 0px ${semanticColor.core.border.neutral.subtle}`,
         display: "flex",
         flexDirection: "column",
-        minHeight: 66,
+        minBlockSize: 66,
         paddingBlock: theme.header.layout.padding.block,
         paddingInline: theme.header.layout.padding.inline.default,
         position: "relative",
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
             paddingInline: theme.header.layout.padding.inline.small,
         },
         [modalMediaQuery.smMinOrSmallerHeight as any]: {
-            minHeight: "unset",
+            minBlockSize: "unset",
         },
     },
 

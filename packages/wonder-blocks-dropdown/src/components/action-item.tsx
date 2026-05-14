@@ -213,7 +213,7 @@ export default class ActionItem extends React.Component<ActionProps> {
 
 const styles = StyleSheet.create({
     wrapper: {
-        minHeight: DROPDOWN_ITEM_HEIGHT,
+        minBlockSize: DROPDOWN_ITEM_HEIGHT,
         // This removes the 300ms click delay on mobile browsers by indicating
         // that "double-tap to zoom" shouldn't be used on this element.
         touchAction: "manipulation",
@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
         },
     },
     shared: {
-        minHeight: DROPDOWN_ITEM_HEIGHT,
+        minBlockSize: DROPDOWN_ITEM_HEIGHT,
         // Make sure that the item is always at least as tall as 40px.
         paddingBlock: theme.item.layout.padding.block,
     },

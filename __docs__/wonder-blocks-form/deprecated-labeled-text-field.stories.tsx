@@ -754,7 +754,7 @@ AutoComplete.parameters = {
 
 const styles = StyleSheet.create({
     button: {
-        maxWidth: 150,
+        maxInlineSize: 150,
     },
     row: {
         flexDirection: "row",
@@ -763,6 +763,6 @@ const styles = StyleSheet.create({
         flexGrow: 1,
     },
     fieldWithButton: {
-        marginBottom: sizing.size_160,
+        marginBlockEnd: sizing.size_160,
     },
 });
