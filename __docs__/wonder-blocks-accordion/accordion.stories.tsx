@@ -181,7 +181,7 @@ export const CaretPositions: StoryComponentType = {
                     </View>
                 </View>
                 {/* Right-to-left */}
-                <View style={[styles.sideBySide, styles.rtl]}>
+                <View dir="rtl" style={styles.sideBySide}>
                     <View style={styles.fullWidth}>
                         <LabelLarge>
                             Caret position: end, language direction: right to
