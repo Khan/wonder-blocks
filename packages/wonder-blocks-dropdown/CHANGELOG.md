@@ -1,5 +1,27 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.9.0
+
+### Minor Changes
+
+- 27a211d: Add support for SYL Dark theme
+
+### Patch Changes
+
+- Updated dependencies [44bde5e]
+- Updated dependencies [27a211d]
+    - @khanacademy/wonder-blocks-tokens@16.5.0
+    - @khanacademy/wonder-blocks-icon-button@11.3.0
+    - @khanacademy/wonder-blocks-modal@8.7.0
+    - @khanacademy/wonder-blocks-cell@6.2.0
+    - @khanacademy/wonder-blocks-form@7.6.0
+    - @khanacademy/wonder-blocks-clickable@8.1.10
+    - @khanacademy/wonder-blocks-icon@5.3.14
+    - @khanacademy/wonder-blocks-pill@3.1.63
+    - @khanacademy/wonder-blocks-search-field@5.1.69
+    - @khanacademy/wonder-blocks-styles@0.2.45
+    - @khanacademy/wonder-blocks-typography@4.3.4
+
 ## 10.8.9
 
 ### Patch Changes

@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 16.5.0
+
+### Minor Changes
+
+- 27a211d: Add support for SYL Dark theme
+
+### Patch Changes
+
+- 44bde5e: Update `semanticColor.core.border.neutral.*` and `semanticColor.core.background.neutral.strong` tokens in `syl-dark`
+- Updated dependencies [27a211d]
+    - @khanacademy/wonder-blocks-theming@4.1.0
+
 ## 16.4.1
 
 ### Patch Changes
