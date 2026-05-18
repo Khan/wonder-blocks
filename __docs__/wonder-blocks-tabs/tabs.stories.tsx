@@ -459,10 +459,10 @@ export const CustomStyles: StoryComponentType = {
                     semanticColor.core.background.instructive.subtle,
             },
             tabPanel: {
-                backgroundColor: semanticColor.core.background.warning.subtle,
+                backgroundColor: semanticColor.core.background.success.subtle,
             },
             tab: {
-                backgroundColor: semanticColor.core.background.success.subtle,
+                backgroundColor: semanticColor.core.background.base.default,
             },
         },
         tabs: [
@@ -481,7 +481,9 @@ export const CustomStyles: StoryComponentType = {
                     <View
                         style={{
                             backgroundColor:
-                                semanticColor.core.background.neutral.subtle,
+                                semanticColor.core.background.base.strong,
+                            color: semanticColor.core.foreground.knockout
+                                .default,
                             fontStyle: "italic",
                         }}
                     >
