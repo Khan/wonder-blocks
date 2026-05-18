@@ -16,6 +16,7 @@ describe("Text", () => {
 
     test("applies style to the text wrapper", () => {
         // Arrange
+        // eslint-disable-next-line @khanacademy/wonder-blocks/no-hardcoded-color
         render(<Text style={{color: "red"}}>Text</Text>);
 
         // Act
@@ -31,6 +32,7 @@ describe("Text", () => {
 
         // Act
         render(
+            // eslint-disable-next-line @khanacademy/wonder-blocks/no-hardcoded-color
             <Text style={{color: "red"}} className={className}>
                 Text
             </Text>,
