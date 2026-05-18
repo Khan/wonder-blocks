@@ -15,20 +15,19 @@ import modals13Img from "./assets/modals/modals-13.png";
 import modals14Img from "./assets/modals/modals-14.png";
 import modals15Img from "./assets/modals/modals-15.png";
 import modals16Img from "./assets/modals/modals-16.png";
+import {NeutralBadge} from "@khanacademy/wonder-blocks-badge";
 
 <Meta title="Design Guidelines / Components / Modals" />
 
 # Modals
 
-## Modals
-
-Focused task/Decision
+<NeutralBadge label="Focused task/Decision" />
 
 A high-focus container used to isolate a user’s attention for a specific sub-task or critical decision. Modals require an explicit action or dismissal before the user can return to the primary background content.
 
 <img src={modals1Img} alt="Modals 1" />
 
-### When to use
+## When to use
 
 The choice to use a modal is determined by the need for complete user focus and the "sandboxing" of a specific workflow.
 
@@ -40,7 +39,7 @@ The choice to use a modal is determined by the need for complete user focus and 
 | A short sequential flow of 2–3 steps is needed without leaving the page | Adding a class — choosing import method, then confirming details |
 | Supplementary content is needed without fully navigating away from the current page | Displaying a long description during an assessment so students can reference it without leaving the assessment. |
 
-### When NOT to use
+## When NOT to use
 
 Avoid modals when the task doesn't require the user's full attention, when the content is too complex to contain, or when a lighter in-context interaction would be less disruptive.
 
@@ -51,7 +50,7 @@ Avoid modals when the task doesn't require the user's full attention, when the c
 | The interaction is a simple binary choice or lightweight edit | Popover or inline edit | Do not use a modal for a single binary choice or a simple rename; it is too interruptive for "light" actions. |
 | A modal is already open | Redesign the flow | Never stack modals. A second modal on top of the first creates disorientation and breaks the user's mental model of where they are. |
 
-### Variants
+## Variants
 
 Modals are a universal container, but their internal logic changes based on the user's goal. The following sections detail the modal flavors used across the product.
 
@@ -116,7 +115,7 @@ Modals use a fixed-width, dynamic-height framework. Choose a size based on the d
 | Marketing | Large or Custom (800px+) | These are "Storytelling" modals. They often need room for high-res illustrations, videos, or "Feature Cards." |
 | Media | Full screen | Maximizes the visibility of the image or media type being displayed. |
 
-### Placement
+## Placement
 
 ### Centered overlay
 
@@ -130,7 +129,7 @@ Primary and secondary actions are always anchored to the bottom right of the mod
 
 <img src={modals9Img} alt="Modals 9" />
 
-### Interaction
+## Interaction
 
 ### Dismissal and unsaved state
 
@@ -146,7 +145,7 @@ If the flow grows beyond 3 steps or requires significant input at each stage, mo
 
 <img src={modals11Img} alt="Modals 11" />
 
-### Buttons
+## Buttons
 
 ### Pairings
 
@@ -163,7 +162,7 @@ Standard intent: When an action is neutral or expected (e.g., "Log out"), the Pr
 
 <img src={modals13Img} alt="Modals 13" />
 
-### Copy
+## Copy
 
 ### Headline titles
 

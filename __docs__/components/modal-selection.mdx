@@ -10,20 +10,19 @@ import modalSelection8Img from "./assets/modal-selection/modal-selection-8.png";
 import modalSelection9Img from "./assets/modal-selection/modal-selection-9.png";
 import modalSelection10Img from "./assets/modal-selection/modal-selection-10.png";
 import modalSelection11Img from "./assets/modal-selection/modal-selection-11.png";
+import {NeutralBadge} from "@khanacademy/wonder-blocks-badge";
 
 <Meta title="Design Guidelines / Components / Modal - selection" />
 
 # Modal - selection
 
-## Modal - selection
-
-Complex selection/Filtering
+<NeutralBadge label="Complex selection/Filtering" />
 
 A secondary control center for complex or less frequent filtering needs, ensuring the primary interface remains uncluttered. Allows users to manage multiple data dimensions in a focused environment without losing the context of their current report.
 
 <img src={modalSelection1Img} alt="Modal - selection 1" />
 
-### When to use
+## When to use
 
 The choice to use a modal selection is determined by the need to provide access to extended filtering criteria that would otherwise overwhelm the horizontal real estate of the primary filter bar.
 
@@ -32,7 +31,7 @@ The choice to use a modal selection is determined by the need to provide access 
 | Housing secondary filters used less frequently than primary anchors | Moving specific filter options into the modal to keep the main header clean. |
 | The filtering interaction combines multiple input types that are too complex for the filter bar | Selecting a Practice type activates a previously disabled Test type dropdown below it — the modal gives dependent filters the space to reveal themselves without cluttering the filter bar. |
 
-### When NOT to use
+## When NOT to use
 
 Avoid the selection modal when the filtering need is simple enough to be handled directly in the filter bar, or when a pre-selected default should always be visible to the user.
 
@@ -42,7 +41,7 @@ Avoid the selection modal when the filtering need is simple enough to be handled
 | Only one additional filter is needed | Standard dropdown | If only one additional filter is needed, a simple dropdown in the filter bar is more efficient than a modal. |
 | The user needs to search by keyword | Search field | Users expect search to be a persistent, high-level action in the primary UI rather than hidden in a modal. |
 
-### States
+## States
 
 ### Default modal
 
@@ -57,7 +56,7 @@ The "More filters" button in the primary UI should display a numeric badge (e.g.
 
 <img src={modalSelection3Img} alt="Modal - selection 3" />
 
-### Placement
+## Placement
 
 ### Common placement
 
@@ -77,7 +76,7 @@ The "Clear all" button should always be in the bottom left, anchored to the foot
 
 <img src={modalSelection6Img} alt="Modal - selection 6" />
 
-### Interaction
+## Interaction
 
 When designing the content of the modal, refer to specific documentation for components like Dropdowns, Radio Buttons, Checkboxes, Toggles, etc. to ensure input consistency.
 For behavior related to backdrop behavior, sizing, and animations, refer to the Modals documentation.

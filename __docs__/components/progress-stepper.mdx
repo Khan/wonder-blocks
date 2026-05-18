@@ -3,20 +3,19 @@ import progressStepper1Img from "./assets/progress-stepper/progress-stepper-1.pn
 import progressStepper2Img from "./assets/progress-stepper/progress-stepper-2.png";
 import progressStepper3Img from "./assets/progress-stepper/progress-stepper-3.png";
 import progressStepper4Img from "./assets/progress-stepper/progress-stepper-4.png";
+import {NeutralBadge} from "@khanacademy/wonder-blocks-badge";
 
 <Meta title="Design Guidelines / Components / Progress stepper" />
 
 # Progress stepper
 
-## Progress stepper
-
-Multi-step flow
+<NeutralBadge label="Multi-step flow" />
 
 Communicates a user's position within a multi-step, sequential flow, signaling how much of the process remains. Two variants exist based on flow complexity and page context.
 
 <img src={progressStepper1Img} alt="Progress stepper 1" />
 
-### When to use
+## When to use
 
 The choice to use a progress stepper is determined by the need to guide a user through a defined sequence of steps where order matters and progress visibility reduces abandonment or errors.
 
@@ -26,7 +25,7 @@ The choice to use a progress stepper is determined by the need to guide a user t
 | Steps are sequential — each one leads to the next, whether it requires input or is informational | The assign content flow, where each stage depends on decisions made in the previous one |
 | The flow has a clear, known endpoint | A multi-step flow ending in a Review + Confirm step |
 
-### When NOT to use
+## When NOT to use
 
 | Don’t use when | Recommended alternative | Rationale |
 | --- | --- | --- |
@@ -34,7 +33,7 @@ The choice to use a progress stepper is determined by the need to guide a user t
 | 2 steps or fewer | Single-page form or modal | A stepper adds structural overhead that isn't justified for minimal flows. |
 | The system is doing the work, not the user | Loading state | A stepper implies user-driven advancement. System-driven progress needs a different pattern. |
 
-### Variants
+## Variants
 
 ### Simple
 
@@ -54,7 +53,7 @@ Anchored - center top nav
 
 <img src={progressStepper3Img} alt="Progress stepper 3" />
 
-### Copy
+## Copy
 
 Applies to step labels in the complex variant only.
 Keep labels to 1–2 words. Use nouns, not verbs — the label orients the user, it doesn't instruct them. Write in sentence case.

@@ -14,20 +14,19 @@ import toasts12Img from "./assets/toasts/toasts-12.png";
 import toasts13Img from "./assets/toasts/toasts-13.png";
 import toasts14Img from "./assets/toasts/toasts-14.png";
 import toasts15Img from "./assets/toasts/toasts-15.png";
+import {NeutralBadge} from "@khanacademy/wonder-blocks-badge";
 
 <Meta title="Design Guidelines / Components / Toasts" />
 
 # Toasts
 
-## Toasts
-
-System feedback/Transient messages
+<NeutralBadge label="System feedback/Transient messages" />
 
 A non-intrusive, temporary container used to display brief, passive, and asynchronous system feedback. Toasts communicate success, failure, or neutral information that does not require immediate user action to dismiss or proceed.
 
 <img src={toasts1Img} alt="Toasts 1" />
 
-### When to use
+## When to use
 
 The choice to use a toast is determined by the need for non-blocking, transient system feedback.
 
@@ -37,7 +36,7 @@ The choice to use a toast is determined by the need for non-blocking, transient 
 | The message is transient and persists only until dismissed or acted on | Confirmation that the assignment has been uploaded successfully. |
 | No action is required, or only an optional secondary action is available | All changes saved (no action) / Student removed with an undo button. |
 
-### When NOT to use
+## When NOT to use
 
 | Don’t use when | Recommended alternative | Rationale |
 | --- | --- | --- |
@@ -45,7 +44,7 @@ The choice to use a toast is determined by the need for non-blocking, transient 
 | The message requires multiple lines of text or a log of events | Notification center or full page alert | Toasts are for brief, one-line updates. If the message requires multiple lines of text, context, or a log of events, it must be contained in a dedicated, dismissible area. |
 | The action is mandatory or high-stakes | Dialog | For feedback requiring mandatory action or complex confirmation (e.g., irreversible deletion, large-scale confirmation). The Toast, even with an action, is not sufficient for high-stakes decision-making. |
 
-### Variants
+## Variants
 
 ### Error
 
@@ -68,7 +67,7 @@ It must include a dismiss 'X' to allow the user to manually close the non-critic
 
 <img src={toasts4Img} alt="Toasts 4" />
 
-### States
+## States
 
 ### Iconography
 
@@ -77,7 +76,7 @@ Do not use custom, context-specific icons (a "wifi" for no wifi connection) in t
 
 <img src={toasts5Img} alt="Toasts 5" />
 
-### Placement
+## Placement
 
 ### Default viewport location
 
@@ -91,7 +90,7 @@ Toasts must never obscure primary calls-to-action (CTAs) or crucial data fields 
 
 <img src={toasts7Img} alt="Toasts 7" />
 
-### Interaction
+## Interaction
 
 ### Not auto-dismissed
 
@@ -119,7 +118,7 @@ Do not include an action link on a Toast when the message confirms an operation 
 
 <img src={toasts11Img} alt="Toasts 11" />
 
-### Copy
+## Copy
 
 ### Brevity
 

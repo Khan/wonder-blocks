@@ -8,7 +8,11 @@ import {NeutralBadge} from "@khanacademy/wonder-blocks-badge";
 
 # Drawer
 
-<NeutralBadge label="Contextual reference/Side-task" /> A secondary surface that slides in from the right edge. It allows users to view supplemental data or perform quick sub-tasks while maintaining a visual "anchor" to the primary page content.
+<div style={{display: "flex", gap: "8px", marginBottom: "8px"}}>
+  <NeutralBadge label="Contextual reference/Side-task" />
+</div>
+
+A secondary surface that slides in from the right edge. It allows users to view supplemental data or perform quick sub-tasks while maintaining a visual "anchor" to the primary page content.
 
 <img src={drawerImg} alt="Drawer" />
 
@@ -16,55 +20,19 @@ import {NeutralBadge} from "@khanacademy/wonder-blocks-badge";
 
 The choice to use a drawer is based on when the user needs to "glance" or "pivot" without full interruption.
 
-Use when
-
-Keeping place in a long- form activity
-
-Showing content that  supports the current view
-
-Checking status that  doesn't require data entry
-
-Rule
-
-Use when the user needs to reference something without losing their current context.
-
-Use to surface supplemental content that enriches — but doesn't replace — what's on screen.
-
-Use for high-frequency check-ins where the user reads, not writes.
-
-Example use
-
-Checking the District Leaderboard without losing your spot in a daily streak.
-
-Opening Lessons from Practice mode to review a concept before answering.
-
-Viewing a detailed Gem achievement count or point breakdown.
+| Use when | Rule | Example use |
+| --- | --- | --- |
+| Keeping place in a long- form activity | Use when the user needs to reference something without losing their current context. | Checking the District Leaderboard without losing your spot in a daily streak. |
+| Showing content that  supports the current view | Use to surface supplemental content that enriches — but doesn't replace — what's on screen. | Opening Lessons from Practice mode to review a concept before answering. |
+| Checking status that  doesn't require data entry | Use for high-frequency check-ins where the user reads, not writes. | Viewing a detailed Gem achievement count or point breakdown. |
 
 ## When NOT to use
 
-Don’t use when
-
-The user needs to make  a high-stakes or  creative decision
-
-The secondary task  becomes the primary task
-
-The information is a single  value or definition
-
-Recommended alternative
-
-Modal
-
-Full page
-
-Tooltip / popover
-
-Rationale
-
-If checking your gem count turns into customizing your Khanmigo, then the  drawer is too cramped. High-fidelity creative tasks need a full-page canvas.
-
-If "Viewing an assignment" turns into "Doing the assignment," the drawer is too cramped. Move to a full-page view.
-
-If the information is just a single definition or a number, a drawer is overkill.
+| Don’t use when | Recommended alternative | Rationale |
+| --- | --- | --- |
+| The user needs to make  a high-stakes or  creative decision | Modal | If checking your gem count turns into customizing your Khanmigo, then the  drawer is too cramped. High-fidelity creative tasks need a full-page canvas. |
+| The secondary task  becomes the primary task | Full page | If "Viewing an assignment" turns into "Doing the assignment," the drawer is too cramped. Move to a full-page view. |
+| The information is a single  value or definition | Tooltip / popover | If the information is just a single definition or a number, a drawer is overkill. |
 
 ## Interaction
 
@@ -117,4 +85,4 @@ Should be easily scannable. Use data, labels, and short summaries. Not paragraph
 
 ---
 
-<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=13456-14967" target="_blank" rel="noopener noreferrer">Figma source</a>
+<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=13456-14967&t=6lEHCsAo03k7G4Lr-4" target="_blank" rel="noopener noreferrer">Figma source</a>

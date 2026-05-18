@@ -13,20 +13,19 @@ import dropdownSelect11Img from "./assets/dropdown-select/dropdown-select-11.png
 import dropdownSelect12Img from "./assets/dropdown-select/dropdown-select-12.png";
 import dropdownSelect13Img from "./assets/dropdown-select/dropdown-select-13.png";
 import dropdownSelect14Img from "./assets/dropdown-select/dropdown-select-14.png";
+import {NeutralBadge} from "@khanacademy/wonder-blocks-badge";
 
 <Meta title="Design Guidelines / Components / Dropdown select" />
 
 # Dropdown select
 
-## Dropdown select
-
-Dimension/Selection control
+<NeutralBadge label="Dimension/Selection control" />
 
 A selection control used in forms, modals, settings panels, and filter bars. Can start empty or with a product default. Single-select and multi-select variants.
 
 <img src={dropdownSelect1Img} alt="Dropdown select 1" />
 
-### When to use
+## When to use
 
 The choice to use a dropdown is based the need to select from a predefined list of options — either one value or multiple.
 
@@ -36,7 +35,7 @@ The choice to use a dropdown is based the need to select from a predefined list 
 | Selecting multiple values | More than one option can be chosen simultaneously | Selecting multiple grades to filter a report |
 | List is too long for radio buttons or checkboxes | More than ~5 options benefit from a compact list | Selecting a school from a district-wide list |
 
-### When NOT to use
+## When NOT to use
 
 | Don’t use when | Recommended alternative | Rationale |
 | --- | --- | --- |
@@ -44,7 +43,7 @@ The choice to use a dropdown is based the need to select from a predefined list 
 | User is opting in to filter | Filter combobox | The [ Label ⊕ ] pattern is designed for additive, clearable filtering |
 | Filtering by a time period | Date filter | The date filter handles temporal filtering with predefined relative options |
 
-### Variants
+## Variants
 
 ### Label above
 
@@ -73,7 +72,7 @@ Trigger label after selection:
 
 <img src={dropdownSelect5Img} alt="Dropdown select 5" />
 
-### States
+## States
 
 These states apply primarily to the label-above variant, which has vertical space for context labels, helper text, and error messages. The inline variant may support some states depending on context, but the label-above variant is the default for stateful interactions.
 
@@ -107,7 +106,7 @@ Used when a prerequisite action has not been fulfilled. The field is grayed out 
 
 <img src={dropdownSelect10Img} alt="Dropdown select 10" />
 
-### Interaction
+## Interaction
 
 ### In-menu search
 
@@ -124,7 +123,7 @@ Checking or unchecking items does not apply until the user taps Apply. This prev
 
 <img src={dropdownSelect12Img} alt="Dropdown select 12" />
 
-### Copy
+## Copy
 
 ### Label clarity and truncation
 

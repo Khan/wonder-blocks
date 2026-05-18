@@ -5,24 +5,19 @@ import states2Img from "./assets/search-field/states-2.png";
 import placementImg from "./assets/search-field/placement.png";
 import interactions1Img from "./assets/search-field/interactions-1.png";
 import interactions2Img from "./assets/search-field/interactions-2.png";
+import {NeutralBadge, StatusBadge} from "@khanacademy/wonder-blocks-badge";
 
 <Meta title="Design Guidelines / Components / Search field" />
 
 # Search field
 
-## Header
-
-### Search field
-
-Keyword filtering
+<NeutralBadge label="Keyword filtering" />
 
 A specialized text input component used to accept user-entered keywords or strings to instantly narrow or filter content based on those terms. It is the primary mechanism for finding specific items within large data sets or complex navigation structures.
 
 <img src={headerImg} alt="Header" />
 
-## Table
-
-### When to use
+## When to use
 
 The choice to use a search field is determined by the need to efficiently locate specific information that cannot be easily found using predefined filters or navigation.
 
@@ -32,9 +27,7 @@ The choice to use a search field is determined by the need to efficiently locate
 | The user is searching by a specific identifier, name, or non-categorical string | Searching for "Pythagorean Theorem" in a library of math lessons. |
 | The dataset is too large for live-filtering and requires explicit submission | Typing a partial class name and hitting enter to refresh the report table. |
 
-## Table
-
-### When NOT to use
+## When NOT to use
 
 | Don’t use when | Recommended alternative | Rationale |
 | --- | --- | --- |

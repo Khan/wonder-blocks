@@ -4,24 +4,19 @@ import placementImg from "./assets/toggle/placement.png";
 import interaction1Img from "./assets/toggle/interaction-1.png";
 import interaction2Img from "./assets/toggle/interaction-2.png";
 import copyImg from "./assets/toggle/copy.png";
+import {NeutralBadge} from "@khanacademy/wonder-blocks-badge";
 
 <Meta title="Design Guidelines / Components / Toggle" />
 
 # Toggle
 
-## Header
-
-### Toggle
-
-Binary/Boolean filtering
+<NeutralBadge label="Binary/Boolean filtering" />
 
 A simple on/off mechanism used for a quick, either-or choice to include/exclude items based on a single boolean attribute.
 
 <img src={headerImg} alt="Header" />
 
-## Table
-
-### When to use
+## When to use
 
 The choice to use a toggle is determined by the need for an immediate, singular action on a single boolean attribute.
 
@@ -31,9 +26,7 @@ The choice to use a toggle is determined by the need for an immediate, singular 
 | The action takes effect immediately without confirmation | Toggling "Show only completed tasks" instantly filters the list |
 | The state is always visible and needs to be persistent | A global constraint that remains active across the session until the user turns it off |
 
-## Table
-
-### When NOT to use
+## When NOT to use
 
 | Don’t use when | Recommended alternative | Rationale |
 | --- | --- | --- |

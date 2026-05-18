@@ -1,5 +1,5 @@
 import {Meta} from "@storybook/addon-docs/blocks";
-import headerImg from "./assets/radio-button/header.png";
+import radioButtonsImg from "./assets/radio-button/radio-buttons.png";
 import states1Img from "./assets/radio-button/states-1.png";
 import states2Img from "./assets/radio-button/states-2.png";
 import placement1Img from "./assets/radio-button/placement-1.png";
@@ -7,24 +7,19 @@ import placement2Img from "./assets/radio-button/placement-2.png";
 import interaction1Img from "./assets/radio-button/interaction-1.png";
 import interaction2Img from "./assets/radio-button/interaction-2.png";
 import interaction3Img from "./assets/radio-button/interaction-3.png";
+import {NeutralBadge, StatusBadge} from "@khanacademy/wonder-blocks-badge";
 
 <Meta title="Design Guidelines / Components / Radio Button" />
 
 # Radio Button
 
-## Header
+## Radio buttons
 
-### Radio buttons
+<StatusBadge kind="warning" label="Draft" /> <NeutralBadge label="Mutually exclusive selection" /> A mutually exclusive selection mechanism used to allow users to choose only one option from a small, visible set of choices.
 
-Mutually exclusive selection
+<img src={radioButtonsImg} alt="Radio buttons" />
 
-A mutually exclusive selection mechanism used to allow users to choose only one option from a small, visible set of choices.
-
-<img src={headerImg} alt="Header" />
-
-## Table
-
-### When to use
+## When to use
 
 The choice to use radio buttons is determined by the need to present a small, visible set of mutually exclusive options where only one can be selected at a time.
 
@@ -50,9 +45,7 @@ Filtering messages by importance: "High," "Medium," or "Low".
 
 Selecting a Country or Status (Complete, In Progress, To Do).
 
-## Table
-
-### When NOT to use
+## When NOT to use
 
 | Conflict | Recommended alternative | Rationale |
 | --- | --- | --- |

@@ -12,9 +12,9 @@ html {
 
 .sbdocs.sbdocs-wrapper {
     padding: 6rem;
+    gap: 6rem; /* padding between content and TOC equal to padding */
     /* create stacking context for docs so modals sit on top */
     position: relative;
-    gap: 2.4rem;
     z-index: 0;
 }
 
@@ -61,7 +61,7 @@ html {
     font-size: var(--typography-heading-size-xxl);
     line-height: var(--typography-heading-line-height-xxl);
     margin-top: 0;
-    margin-bottom: 2rem;
+    margin-bottom: var(--spacing-large);
 }
 
 .sbdocs h2 {
@@ -69,13 +69,13 @@ html {
     font-size: var(--typography-heading-size-xl);
     letter-spacing: initial;
     line-height: var(--typography-heading-line-height-xl);
-    padding: 4rem 0 0.25rem !important;
+    padding: var(--spacing-xxLarge) 0 var(--spacing-medium) !important;
 }
 
 .sbdocs h3 {
     font-size: var(--typography-heading-size-lg);
     line-height: var(--typography-heading-line-height-lg);
-    margin: 3rem 0 0.25rem !important;
+    margin: var(--spacing-xxLarge) 0 var(--spacing-small) !important;
 }
 
 /* only include the counter to the stories titles */

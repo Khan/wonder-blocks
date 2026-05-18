@@ -1,24 +1,26 @@
 import {Meta} from "@storybook/addon-docs/blocks";
-import popovers1Img from "./assets/popovers/popovers-1.png";
-import popovers2Img from "./assets/popovers/popovers-2.png";
-import popovers3Img from "./assets/popovers/popovers-3.png";
-import popovers4Img from "./assets/popovers/popovers-4.png";
-import popovers5Img from "./assets/popovers/popovers-5.png";
-import popovers6Img from "./assets/popovers/popovers-6.png";
+import popoversImg from "./assets/popovers/popovers.png";
+import variants1Img from "./assets/popovers/variants-1.png";
+import variants2Img from "./assets/popovers/variants-2.png";
+import variants3Img from "./assets/popovers/variants-3.png";
+import placementImg from "./assets/popovers/placement.png";
+import statesImg from "./assets/popovers/states.png";
+import {NeutralBadge, StatusBadge} from "@khanacademy/wonder-blocks-badge";
 
 <Meta title="Design Guidelines / Components / Popovers" />
 
 # Popovers
 
-## Popovers
-
-Contextual overlay/Rich information container
+<div style={{display: "flex", gap: "8px", marginBottom: "8px"}}>
+  <StatusBadge kind="warning" label="Draft" />
+  <NeutralBadge label="Contextual overlay/Rich information container" />
+</div>
 
 A non-modal overlay that displays rich content, including text, links, icons, and/or illustration, triggered by a user interaction with a specific UI element. Unlike tooltips, popovers are designed for larger bodies of info and interactive content.
 
-<img src={popovers1Img} alt="Popovers 1" />
+<img src={popoversImg} alt="Popovers" />
 
-### When to use
+## When to use
 
 The choice to use a popover is determined by the need to provide supplemental information or micro-tasks that are too complex for a tooltip but do not require the full interruption of a modal.
 
@@ -29,7 +31,7 @@ The choice to use a popover is determined by the need to provide supplemental in
 | Delivering transient, proactive feedback that requires user acknowledgement | Khanductor appearing in a popover to say "Slow down just a bit" with a "Got it" button during an assessment. |
 | A specific on-screen element needs contextual guidance or a nudge tied directly to it | Khanmigo anchored to the gem counter, prompting the student on where they can check progress toward earning a next accessory. |
 
-### When NOT to use
+## When NOT to use
 
 | Don’t use when | Recommended alternative | Rationale |
 | --- | --- | --- |
@@ -38,7 +40,7 @@ The choice to use a popover is determined by the need to provide supplemental in
 | The user must complete a complex task or make a destructive choice | Modal | If the user must complete a complex task or make a destructive choice, use a modal to block the background interaction. |
 | The message requires the user's full attention before proceeding | Modal | Popovers are anchored to a specific UI element and non-blocking — they can't command full attention the way a modal can |
 
-### Variants
+## Variants
 
 Each variant serves a distinct use case. Choose based on the intent of the content — what the user needs to do or understand when the popover appears.
 
@@ -47,23 +49,23 @@ Each variant serves a distinct use case. Choose based on the intent of the conte
 Focuses on providing additional context as succinctly as possible, such as exercise names and learner scores. Typically action-oriented, including a button for immediate navigation — e.g. "Jump here" — task completion, or more info to read.
 There can be no more than two buttons — one primary and one tertiary.
 
-<img src={popovers2Img} alt="Popovers 2" />
+<img src={variants1Img} alt="Variants 1" />
 
 ### Feature highlight
 
 Used to introduce a new feature when the feature can be introduced in context, anchored to the relevant UI element, without interrupting the user's flow.
 Prompted by the product. Used for single-step guidance only.
 
-<img src={popovers3Img} alt="Popovers 3" />
+<img src={variants2Img} alt="Variants 2" />
 
 ### System guidance
 
 Used for transient, proactive feedback from the system that requires user acknowledgement.
 Always includes a primary acknowledgement action — e.g. "Got it" or "Okay." May include a secondary tertiary option.
 
-<img src={popovers4Img} alt="Popovers 4" />
+<img src={variants3Img} alt="Variants 3" />
 
-### Usage and purpose by variant
+## Usage and purpose by variant
 
 | Intent | Purpose | Use case |
 | --- | --- | --- |
@@ -71,15 +73,15 @@ Always includes a primary acknowledgement action — e.g. "Got it" or "Okay." Ma
 | Feature highlight | Introduces a new feature in context, anchored to the relevant UI element, without interrupting the user's flow. | Onboarding a student to the gem counter and rewards system after first login. |
 | System guidance | To deliver proactive feedback from the system that requires acknowledgement before continuing. | Khanmigo prompting "Slow down just a bit" during an assessment. |
 
-### Placement
+## Placement
 
 ### Adaptive relative anchoring
 
 Popovers must always anchor and appear from the content that triggered them. When they prefer "above" or "below" placement, they must flip to the opposite or reverse orientation if they would be clipped by the viewport edge.
 
-<img src={popovers5Img} alt="Popovers 5" />
+<img src={placementImg} alt="Placement" />
 
-### States
+## States
 
 ### With character
 
@@ -87,8 +89,8 @@ Use a character illustration when the message is being delivered on behalf of a 
 Do not use a character illustration if the message is not being delivered on behalf of Khanmigo or Khanductor. If neither character is the source, use text only or a feature image instead.
 Available in: System guidance only. Not appropriate for Feature highlight or Informational variants.
 
-<img src={popovers6Img} alt="Popovers 6" />
+<img src={statesImg} alt="States" />
 
 ---
 
-<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=13456-26072" target="_blank" rel="noopener noreferrer">Figma source</a>
+<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=13456-26073&t=6lEHCsAo03k7G4Lr-4" target="_blank" rel="noopener noreferrer">Figma source</a>

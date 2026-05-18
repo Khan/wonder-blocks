@@ -16,13 +16,18 @@ import copy2Img from "./assets/buttons/copy-2.png";
 import copy3Img from "./assets/buttons/copy-3.png";
 import copy4Img from "./assets/buttons/copy-4.png";
 import copy5Img from "./assets/buttons/copy-5.png";
+import copy6Img from "./assets/buttons/copy-6.png";
 import {NeutralBadge} from "@khanacademy/wonder-blocks-badge";
 
 <Meta title="Design Guidelines / Components / Buttons" />
 
 # Buttons
 
-<NeutralBadge label="Call-to-action/Interaction trigger" /> A button is a highly discoverable, interactive element used to communicate and trigger a specific action or command. Its primary purpose is to initiate state changes or execute a task—essentially, buttons do things.
+<div style={{display: "flex", gap: "8px", marginBottom: "8px"}}>
+  <NeutralBadge label="Call-to-action/Interaction trigger" />
+</div>
+
+A button is a highly discoverable, interactive element used to communicate and trigger a specific action or command. Its primary purpose is to initiate state changes or execute a task—essentially, buttons do things.
 
 <img src={buttonsImg} alt="Buttons" />
 
@@ -30,43 +35,18 @@ import {NeutralBadge} from "@khanacademy/wonder-blocks-badge";
 
 The choice to use a button is determined by the need to prompt the user to perform an action that changes the state or context of the system.
 
-Use when
-
-The action is the primary goal of the current view
-
-The action has a clear, immediate outcome
-
-Example use
-
-Save, Submit, Confirm — the main thing a user needs to do on this screen.
-
-Assign content, Add filter, Delete record.
+| Use when | Example use |
+| --- | --- |
+| The action is the primary goal of the current view | Save, Submit, Confirm — the main thing a user needs to do on this screen. |
+| The action has a clear, immediate outcome | Assign content, Add filter, Delete record. |
 
 ## When NOT to use
 
-Don’t use when
-
-The action is inline within a body of text
-
-The action is a page-level navigation item
-
-The outcome is revealing options, not executing an action
-
-Recommended alternative
-
-Text link
-
-Tabs or nav link
-
-Dropdown or overflow menu
-
-Rationale
-
-Buttons interrupt reading flow. Inline actions should use a text link.
-
-Buttons imply an action with an outcome. Switching between views is navigation, not an action.
-
-A button implies something will happen immediately. If the result is showing more choices, use a dropdown or menu pattern instead.
+| Don’t use when | Recommended alternative | Rationale |
+| --- | --- | --- |
+| The action is inline within a body of text | Text link | Buttons interrupt reading flow. Inline actions should use a text link. |
+| The action is a page-level navigation item | Tabs or nav link | Buttons imply an action with an outcome. Switching between views is navigation, not an action. |
+| The outcome is revealing options, not executing an action | Dropdown or overflow menu | A button implies something will happen immediately. If the result is showing more choices, use a dropdown or menu pattern instead. |
 
 ## Variants
 
@@ -165,30 +145,37 @@ Avoid technical jargon or vague labels like "OK" or "Click Here". Use clear acti
 
 <img src={copy1Img} alt="Copy 1" />
 
+### Labels stand alone
+
+Button labels must be a single action phrase. Descriptive or explanatory text must not appear inside a button.
+Buttons communicate an action, not context. If users need more information before acting, provide it through helper text, tooltips, or a confirmation dialog — not inside the button label itself.
+
+<img src={copy2Img} alt="Copy 2" />
+
 ### Brevity
 
 Aim for 1-3 words. The text must be immediately scannable.
 
-<img src={copy2Img} alt="Copy 2" />
+<img src={copy3Img} alt="Copy 3" />
 
 ### Sentence case
 
 To be consistent with UX copy guidelines, use sentence case.
 
-<img src={copy3Img} alt="Copy 3" />
+<img src={copy4Img} alt="Copy 4" />
 
 ### Punctuation
 
 Do not use periods, question marks, or exclamation points at the end of button text. Button text is typically a fragment, phrase, or command, not a full sentence, and terminal punctuation adds unnecessary visual clutter and reduces scannability.
 
-<img src={copy4Img} alt="Copy 4" />
+<img src={copy5Img} alt="Copy 5" />
 
 ### Consistency
 
 Always use logically paired verbs for opposite actions, as the choice clarifies the type of movement. Previous / Next is used for simple, non-committing pagination through lists or sequences. Back / Next or Back / Continue is used for advancing through procedural flows like multi-step forms or wizards. Never mix terms from different pairs (e.g., avoid "Previous/Continue").
 
-<img src={copy5Img} alt="Copy 5" />
+<img src={copy6Img} alt="Copy 6" />
 
 ---
 
-<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=13456-13419" target="_blank" rel="noopener noreferrer">Figma source</a>
+<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=13456-13419&t=6lEHCsAo03k7G4Lr-4" target="_blank" rel="noopener noreferrer">Figma source</a>
