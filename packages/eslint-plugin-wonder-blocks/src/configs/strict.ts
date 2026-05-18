@@ -7,5 +7,6 @@ export default {
         "@khanacademy/wonder-blocks/no-custom-tab-role": "error",
         "@khanacademy/wonder-blocks/no-excessive-bodytext-children": "error",
         "@khanacademy/wonder-blocks/no-invalid-bodytext-parent": "error",
+        "@khanacademy/wonder-blocks/no-raw-button": "error",
     },
 };

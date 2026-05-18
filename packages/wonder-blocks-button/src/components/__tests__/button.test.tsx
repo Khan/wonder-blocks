@@ -142,6 +142,21 @@ describe("Button", () => {
             },
             description: "calls onMouseLeave handler when button is unhovered",
         },
+        {
+            eventName: "onFocus",
+            userAction: async (button: HTMLElement) => {
+                await userEvent.click(button);
+            },
+            description: "calls onFocus handler when button receives focus",
+        },
+        {
+            eventName: "onBlur",
+            userAction: async (button: HTMLElement) => {
+                await userEvent.click(button);
+                await userEvent.tab();
+            },
+            description: "calls onBlur handler when button loses focus",
+        },
     ])("$description", async ({eventName, userAction}) => {
         // Arrange
         const mockHandler = jest.fn();

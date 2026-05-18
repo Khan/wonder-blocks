@@ -1,3 +1,7 @@
+/* eslint-disable @khanacademy/wonder-blocks/no-raw-button */
+// Raw <button> elements here are minimal test fixtures — using WB Button in
+// unit tests would add unnecessary component coupling and the tests assert
+// behavior, not design system compliance.
 import * as React from "react";
 import {MemoryRouter} from "react-router-dom";
 import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";

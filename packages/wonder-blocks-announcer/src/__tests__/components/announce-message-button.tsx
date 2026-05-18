@@ -1,4 +1,5 @@
 import * as React from "react";
+import Button from "@khanacademy/wonder-blocks-button";
 import {announceMessage} from "../../announce-message";
 import {type AnnounceMessageProps} from "../../announce-message";
 
@@ -13,8 +14,8 @@ export const AnnounceMessageButton = (props: AnnounceMessageButtonProps) => {
         ...props,
     };
     return (
-        <button onClick={() => announceMessage(announceProps)}>
+        <Button onClick={() => announceMessage(announceProps)}>
             {buttonText}
-        </button>
+        </Button>
     );
 };

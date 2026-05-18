@@ -14,6 +14,7 @@ import {
 } from "@testing-library/user-event";
 
 import {PropsFor} from "@khanacademy/wonder-blocks-core";
+import Button from "@khanacademy/wonder-blocks-button";
 import OptionItem from "../option-item";
 import MultiSelect from "../multi-select";
 import {defaultLabels as builtinLabels} from "../../util/constants";
@@ -423,10 +424,12 @@ describe("MultiSelect", () => {
                         <OptionItem label="item 2" value="2" />
                         <OptionItem label="item 3" value="3" />
                     </MultiSelect>
-                    <button
+                    <Button
                         data-testid="parent-button"
                         onClick={() => handleToggleMenu(true)}
-                    />
+                    >
+                        {" "}
+                    </Button>
                 </React.Fragment>
             );
         };
@@ -1019,7 +1022,9 @@ describe("MultiSelect", () => {
                 <MultiSelect
                     aria-label="Search"
                     onChange={jest.fn()}
-                    opener={(eventState: any) => <button onClick={jest.fn()} />}
+                    opener={(eventState: any) => (
+                        <Button onClick={jest.fn()}>Search</Button>
+                    )}
                 >
                     <OptionItem label="item 1" value="1" />
                     <OptionItem label="item 2" value="2" />
@@ -1041,10 +1046,9 @@ describe("MultiSelect", () => {
                     aria-label="Not winning the label race"
                     onChange={jest.fn()}
                     opener={(eventState: any) => (
-                        <button
-                            aria-label="Search button"
-                            onClick={jest.fn()}
-                        />
+                        <Button aria-label="Search button" onClick={jest.fn()}>
+                            Search
+                        </Button>
                     )}
                 >
                     <OptionItem label="item 1" value="1" />
@@ -1066,7 +1070,9 @@ describe("MultiSelect", () => {
                 <MultiSelect
                     onChange={jest.fn()}
                     opener={(eventState: any) => (
-                        <button aria-label="Search" onClick={jest.fn()} />
+                        <Button aria-label="Search" onClick={jest.fn()}>
+                            Search
+                        </Button>
                     )}
                 >
                     <OptionItem label="item 1" value="1" />
@@ -1100,7 +1106,9 @@ describe("MultiSelect", () => {
                         selectedValues={["toggle_a"]}
                         showOpenerLabelAsText={false}
                         opener={(eventState: any) => (
-                            <button aria-label="Search" onClick={jest.fn()} />
+                            <Button aria-label="Search" onClick={jest.fn()}>
+                                Search
+                            </Button>
                         )}
                     >
                         <OptionItem
@@ -1133,7 +1141,9 @@ describe("MultiSelect", () => {
                 <MultiSelect
                     onChange={jest.fn()}
                     opener={() => (
-                        <button aria-label="Search" onClick={onClickMock} />
+                        <Button aria-label="Search" onClick={onClickMock}>
+                            Search
+                        </Button>
                     )}
                 >
                     <OptionItem label="item 1" value="1" />
@@ -1158,10 +1168,12 @@ describe("MultiSelect", () => {
                 <MultiSelect
                     onChange={onChange}
                     opener={() => (
-                        <button
-                            data-testid="custom-opener"
+                        <Button
+                            testId="custom-opener"
                             aria-label="Custom opener"
-                        />
+                        >
+                            Custom opener
+                        </Button>
                     )}
                 >
                     <OptionItem label="item 1" value="1" />
@@ -1184,7 +1196,11 @@ describe("MultiSelect", () => {
                 <MultiSelect
                     onChange={onChange}
                     testId="custom-opener"
-                    opener={() => <button aria-label="Custom opener" />}
+                    opener={() => (
+                        <Button aria-label="Custom opener">
+                            Custom opener
+                        </Button>
+                    )}
                 >
                     <OptionItem label="item 1" value="1" />
                     <OptionItem label="item 2" value="2" />
@@ -1211,9 +1227,9 @@ describe("MultiSelect", () => {
                     testId="openTest"
                     onChange={jest.fn()}
                     opener={({text}: any) => (
-                        <button onClick={jest.fn()} data-testid="custom-opener">
+                        <Button onClick={jest.fn()} testId="custom-opener">
                             {text}
-                        </button>
+                        </Button>
                     )}
                 >
                     <OptionItem label="item 1" value="1" />
@@ -1241,12 +1257,9 @@ describe("MultiSelect", () => {
                         }}
                         selectedValues={selected}
                         opener={({text}: any) => (
-                            <button
-                                onClick={jest.fn()}
-                                data-testid="custom-opener"
-                            >
+                            <Button onClick={jest.fn()} testId="custom-opener">
                                 {text}
-                            </button>
+                            </Button>
                         )}
                     >
                         <OptionItem label="item 1" value="1" />
@@ -1282,12 +1295,9 @@ describe("MultiSelect", () => {
                         }}
                         selectedValues={selected}
                         opener={({text}: any) => (
-                            <button
-                                onClick={jest.fn()}
-                                data-testid="custom-opener"
-                            >
+                            <Button onClick={jest.fn()} testId="custom-opener">
                                 {text}
-                            </button>
+                            </Button>
                         )}
                     >
                         <OptionItem label="item 1" value="1" />
@@ -1323,12 +1333,9 @@ describe("MultiSelect", () => {
                         }}
                         selectedValues={selected}
                         opener={({text}: any) => (
-                            <button
-                                onClick={jest.fn()}
-                                data-testid="custom-opener"
-                            >
+                            <Button onClick={jest.fn()} testId="custom-opener">
                                 {text}
-                            </button>
+                            </Button>
                         )}
                     >
                         <OptionItem label="item 1" value="1" />
@@ -2187,7 +2194,9 @@ describe("MultiSelect", () => {
                     onChange={jest.fn()}
                     dropdownId={dropdownId}
                     opener={() => (
-                        <button aria-label="Search" onClick={jest.fn()} />
+                        <Button aria-label="Search" onClick={jest.fn()}>
+                            Search
+                        </Button>
                     )}
                 >
                     <OptionItem label="item 1" value="1" />
@@ -2211,7 +2220,9 @@ describe("MultiSelect", () => {
                 <MultiSelect
                     onChange={jest.fn()}
                     opener={() => (
-                        <button aria-label="Search" onClick={jest.fn()} />
+                        <Button aria-label="Search" onClick={jest.fn()}>
+                            Search
+                        </Button>
                     )}
                 >
                     <OptionItem label="item 1" value="1" />
@@ -2253,7 +2264,9 @@ describe("MultiSelect", () => {
                 <MultiSelect
                     onChange={jest.fn()}
                     opener={() => (
-                        <button aria-label="Search" onClick={jest.fn()} />
+                        <Button aria-label="Search" onClick={jest.fn()}>
+                            Search
+                        </Button>
                     )}
                 >
                     <OptionItem label="item 1" value="1" />
@@ -2309,7 +2322,9 @@ describe("MultiSelect", () => {
                 <MultiSelect
                     onChange={jest.fn()}
                     opener={() => (
-                        <button aria-label="Search" onClick={jest.fn()} />
+                        <Button aria-label="Search" onClick={jest.fn()}>
+                            Search
+                        </Button>
                     )}
                 >
                     <OptionItem label="item 1" value="1" />
@@ -2330,7 +2345,9 @@ describe("MultiSelect", () => {
                 <MultiSelect
                     onChange={jest.fn()}
                     opener={() => (
-                        <button aria-label="Search" onClick={jest.fn()} />
+                        <Button aria-label="Search" onClick={jest.fn()}>
+                            Search
+                        </Button>
                     )}
                 >
                     <OptionItem label="item 1" value="1" />
@@ -2379,7 +2396,9 @@ describe("MultiSelect", () => {
                         onChange={jest.fn()}
                         error={error}
                         opener={() => (
-                            <button aria-label="Search" onClick={jest.fn()} />
+                            <Button aria-label="Search" onClick={jest.fn()}>
+                                Search
+                            </Button>
                         )}
                     />,
                 );
@@ -2550,10 +2569,9 @@ describe("MultiSelect", () => {
                         <ControlledMultiSelect
                             validate={() => "Error"}
                             opener={() => (
-                                <button
-                                    aria-label="Search"
-                                    onClick={jest.fn()}
-                                />
+                                <Button aria-label="Search" onClick={jest.fn()}>
+                                    Search
+                                </Button>
                             )}
                         />,
                     );
@@ -3006,10 +3024,9 @@ describe("MultiSelect", () => {
                             onValidate={onValidate}
                             required={requiredMessage}
                             opener={() => (
-                                <button
-                                    aria-label="Search"
-                                    onClick={jest.fn()}
-                                />
+                                <Button aria-label="Search" onClick={jest.fn()}>
+                                    Search
+                                </Button>
                             )}
                         />,
                     );
@@ -3030,10 +3047,9 @@ describe("MultiSelect", () => {
                     const {userEvent} = doRender(
                         <ControlledMultiSelect
                             opener={() => (
-                                <button
-                                    aria-label="Search"
-                                    onClick={jest.fn()}
-                                />
+                                <Button aria-label="Search" onClick={jest.fn()}>
+                                    Search
+                                </Button>
                             )}
                             required={requiredMessage}
                         />,
@@ -3056,10 +3072,9 @@ describe("MultiSelect", () => {
                     doRender(
                         <ControlledMultiSelect
                             opener={() => (
-                                <button
-                                    aria-label="Search"
-                                    onClick={jest.fn()}
-                                />
+                                <Button aria-label="Search" onClick={jest.fn()}>
+                                    Search
+                                </Button>
                             )}
                             required={requiredMessage}
                         />,

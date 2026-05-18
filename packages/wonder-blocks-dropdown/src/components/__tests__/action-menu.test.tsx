@@ -5,6 +5,7 @@ import {PointerEventsCheckLevel, userEvent} from "@testing-library/user-event";
 
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
+import Button from "@khanacademy/wonder-blocks-button";
 import ActionItem from "../action-item";
 import OptionItem from "../option-item";
 import SeparatorItem from "../separator-item";
@@ -365,10 +366,12 @@ describe("ActionMenu", () => {
                         <ActionItem label="Create" />
                         <ActionItem label="Delete" />
                     </ActionMenu>
-                    <button
+                    <Button
                         data-testid="parent-button"
                         onClick={() => handleToggleMenu(true)}
-                    />
+                    >
+                        Toggle Menu
+                    </Button>
                 </React.Fragment>
             );
         };
@@ -431,16 +434,16 @@ describe("ActionMenu", () => {
                     testId="openTest"
                     onChange={onChange}
                     selectedValues={[]}
-                    opener={() => (
-                        <button aria-label="Search" onClick={jest.fn()} />
-                    )}
+                    opener={() => <Button onClick={jest.fn()}>Search</Button>}
                 >
                     <ActionItem label="Action" onClick={onClick} />
                 </ActionMenu>,
             );
 
             // Act
-            await userEvent.click(await screen.findByLabelText("Search"));
+            await userEvent.click(
+                await screen.findByRole("button", {name: "Search"}),
+            );
 
             // Assert
             expect(
@@ -524,7 +527,7 @@ describe("ActionMenu", () => {
                     onChange={onChange}
                     selectedValues={[]}
                     opener={(eventState: any) => (
-                        <button aria-label="Search" onClick={onClickMock} />
+                        <Button onClick={onClickMock}>Search</Button>
                     )}
                 >
                     <ActionItem label="Action" onClick={onClick} />
@@ -532,7 +535,9 @@ describe("ActionMenu", () => {
             );
 
             // Act
-            await userEvent.click(await screen.findByLabelText("Search"));
+            await userEvent.click(
+                await screen.findByRole("button", {name: "Search"}),
+            );
 
             // Assert
             expect(onClickMock).toHaveBeenCalledTimes(1);
@@ -545,10 +550,9 @@ describe("ActionMenu", () => {
                     onChange={onChange}
                     menuText="Action menu!"
                     opener={() => (
-                        <button
-                            data-testid="custom-opener"
-                            aria-label="Custom opener"
-                        />
+                        <Button data-testid="custom-opener">
+                            Custom opener
+                        </Button>
                     )}
                 >
                     <OptionItem label="item 1" value="1" />
@@ -557,7 +561,9 @@ describe("ActionMenu", () => {
             );
 
             // Act
-            const opener = await screen.findByLabelText("Custom opener");
+            const opener = await screen.findByRole("button", {
+                name: "Custom opener",
+            });
 
             // Assert
             expect(opener).toHaveAttribute("data-testid", "custom-opener");
@@ -570,7 +576,7 @@ describe("ActionMenu", () => {
                     onChange={onChange}
                     menuText="Action menu!"
                     testId="custom-opener"
-                    opener={() => <button aria-label="Custom opener" />}
+                    opener={() => <Button>Custom opener</Button>}
                 >
                     <OptionItem label="item 1" value="1" />
                     <OptionItem label="item 2" value="2" />
@@ -578,7 +584,9 @@ describe("ActionMenu", () => {
             );
 
             // Act
-            const opener = await screen.findByLabelText("Custom opener");
+            const opener = await screen.findByRole("button", {
+                name: "Custom opener",
+            });
 
             // Assert
             expect(opener).not.toHaveAttribute("data-testid");
@@ -593,9 +601,9 @@ describe("ActionMenu", () => {
                     onChange={onChange}
                     selectedValues={[]}
                     opener={({text}: any) => (
-                        <button onClick={jest.fn()} data-testid="custom-opener">
+                        <Button onClick={jest.fn()} data-testid="custom-opener">
                             {text}
-                        </button>
+                        </Button>
                     )}
                 >
                     <OptionItem label="Toggle A" value="toggle_a" />
@@ -1073,16 +1081,14 @@ describe("ActionMenu", () => {
                 <ActionMenu
                     menuText={"Action menu!"}
                     dropdownId={dropdownId}
-                    opener={() => (
-                        <button aria-label="Search" onClick={jest.fn()} />
-                    )}
+                    opener={() => <Button onClick={jest.fn()}>Search</Button>}
                 >
                     <ActionItem label="Action" onClick={onClick} />
                 </ActionMenu>,
             );
 
             // Act
-            const opener = await screen.findByLabelText("Search");
+            const opener = await screen.findByRole("button", {name: "Search"});
             await userEvent.click(opener);
             const dropdown = await screen.findByRole("menu", {hidden: true});
 
@@ -1096,16 +1102,14 @@ describe("ActionMenu", () => {
             render(
                 <ActionMenu
                     menuText={"Action menu!"}
-                    opener={() => (
-                        <button aria-label="Search" onClick={jest.fn()} />
-                    )}
+                    opener={() => <Button onClick={jest.fn()}>Search</Button>}
                 >
                     <ActionItem label="Action" onClick={onClick} />
                 </ActionMenu>,
             );
 
             // Act
-            const opener = await screen.findByLabelText("Search");
+            const opener = await screen.findByRole("button", {name: "Search"});
             await userEvent.click(opener);
             const dropdown = await screen.findByRole("menu", {hidden: true});
 
@@ -1137,16 +1141,14 @@ describe("ActionMenu", () => {
                 <ActionMenu
                     menuText={"Action menu!"}
                     onChange={onChange}
-                    opener={() => (
-                        <button aria-label="Search" onClick={jest.fn()} />
-                    )}
+                    opener={() => <Button onClick={jest.fn()}>Search</Button>}
                 >
                     <ActionItem label="Action" onClick={onClick} />
                 </ActionMenu>,
             );
 
             // Act
-            const opener = await screen.findByLabelText("Search");
+            const opener = await screen.findByRole("button", {name: "Search"});
 
             // Assert
             expect(opener).toHaveAttribute("aria-haspopup", "menu");
@@ -1191,16 +1193,14 @@ describe("ActionMenu", () => {
                 <ActionMenu
                     menuText={"Action menu!"}
                     onChange={onChange}
-                    opener={() => (
-                        <button aria-label="Search" onClick={jest.fn()} />
-                    )}
+                    opener={() => <Button onClick={jest.fn()}>Search</Button>}
                 >
                     <ActionItem label="Action" onClick={onClick} />
                 </ActionMenu>,
             );
 
             // Act
-            const opener = await screen.findByLabelText("Search");
+            const opener = await screen.findByRole("button", {name: "Search"});
 
             // Assert
             expect(opener).toHaveAttribute("aria-expanded", "false");
@@ -1212,16 +1212,14 @@ describe("ActionMenu", () => {
                 <ActionMenu
                     menuText={"Action menu!"}
                     onChange={onChange}
-                    opener={() => (
-                        <button aria-label="Search" onClick={jest.fn()} />
-                    )}
+                    opener={() => <Button onClick={jest.fn()}>Search</Button>}
                 >
                     <ActionItem label="Action" onClick={onClick} />
                 </ActionMenu>,
             );
 
             // Act
-            const opener = await screen.findByLabelText("Search");
+            const opener = await screen.findByRole("button", {name: "Search"});
             await userEvent.click(opener);
 
             // Assert
@@ -1254,7 +1252,7 @@ describe("ActionMenu", () => {
                 <ActionMenu
                     menuText={"Action menu!"}
                     aria-label="Action menu label"
-                    opener={() => <button>Custom opener</button>}
+                    opener={() => <Button>Custom opener</Button>}
                 >
                     <ActionItem label="Create" />
                 </ActionMenu>,
@@ -1274,9 +1272,7 @@ describe("ActionMenu", () => {
                     menuText={"Action menu!"}
                     aria-label="Action menu label"
                     opener={() => (
-                        <button aria-label="Custom opener label">
-                            Custom opener
-                        </button>
+                        <Button aria-label="Custom opener label"> </Button>
                     )}
                 >
                     <ActionItem label="Create" />

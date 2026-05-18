@@ -13,8 +13,10 @@
         "typescript": "5.7.3"
     },
     "dependencies": {
+        "@phosphor-icons/core": "catalog:",
         "@khanacademy/wonder-blocks-button": "workspace:*",
         "@khanacademy/wonder-blocks-clickable": "workspace:*",
+        "@khanacademy/wonder-blocks-icon-button": "workspace:*",
         "@khanacademy/wonder-blocks-core": "workspace:*",
         "@khanacademy/wonder-blocks-form": "workspace:*",
         "@khanacademy/wonder-blocks-link": "workspace:*",

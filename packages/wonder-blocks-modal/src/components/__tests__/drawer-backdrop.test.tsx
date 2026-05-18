@@ -2,6 +2,7 @@ import * as React from "react";
 import {render, screen, fireEvent, waitFor} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
+import Button from "@khanacademy/wonder-blocks-button";
 import DrawerBackdrop from "../drawer-backdrop";
 import DrawerDialog from "../drawer-dialog";
 import {DrawerContext} from "../../util/drawer-context";
@@ -37,9 +38,9 @@ const exampleModalWithButtons = (
     <DrawerDialog
         content={
             <div>
-                <button>first focusable button</button>
-                <button />
-                <button />
+                <Button>first focusable button</Button>
+                <Button>second focusable button</Button>
+                <Button>third focusable button</Button>
             </div>
         }
         title="Title"
@@ -175,9 +176,9 @@ describe("DrawerBackdrop", () => {
                         content={
                             <div data-modal-content>
                                 <input type="text" />
-                                <button id="initial-focus">
+                                <Button id="initial-focus">
                                     Initial focus
-                                </button>
+                                </Button>
                             </div>
                         }
                         title="Title"

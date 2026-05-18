@@ -5,27 +5,34 @@ import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-styles/package.json";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {actionStyles} from "@khanacademy/wonder-blocks-styles";
-import {addStyle, View} from "@khanacademy/wonder-blocks-core";
+import {View} from "@khanacademy/wonder-blocks-core";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import Button from "@khanacademy/wonder-blocks-button";
 import Link from "@khanacademy/wonder-blocks-link";
 
 /**
- * Styles that can be used to create reusable states for interactive elements.
+ * Styles that implement interactive states (hover, press, focus) for elements
+ * on inverse/dark backgrounds.
  *
- * NOTE: We recommend using existing Wonder Blocks interactive components (e.g.
- * `Button`, `IconButton`, `Link` etc.). These styles are meant to be used
- * as a last resort when our components do not meet your needs.
+ * `actionStyles` is used **internally** by Wonder Blocks components to ensure
+ * consistent interactive states across light and dark backgrounds.
  *
- * ### Usage
+ * ### When to use
+ *
+ * - **WB component authors**: apply `actionStyles.inverse` when implementing a
+ *   new WB component that needs to support inverse/dark backgrounds.
+ * - **Consumers**: prefer using WB components (`Button`, `IconButton`, `Link`,
+ *   etc.) directly — they already handle inverse styles. If you need to apply
+ *   inverse styles to a WB component, pass the style via the `style` prop.
  *
  * ```tsx
  * import {actionStyles} from "@khanacademy/wonder-blocks-styles";
  *
- * <StyledButton style={actionStyles.inverse}>
- *      Custom button
- * </StyledButton>
+ * // Applying to a WB component via style prop
+ * <Button style={actionStyles.inverse}>
+ *     Button on dark background
+ * </Button>
  * ```
  */
 export default {
@@ -43,15 +50,12 @@ export default {
 
 type Story = StoryObj<any>;
 
-const StyledButton = addStyle("button");
-
 /**
  * A style that can be applied to interactive elements on inverse backgrounds.
  *
  * This is used for special cases where the element is on a dark background.
- *
- * In the example below, the `inverse` style is applied to WB components along
- * with a `button` element.
+ * WB interactive components already include support for this style — apply it
+ * via the `style` prop when needed.
  */
 export const InverseOutline: Story = {
     name: "inverse",
@@ -88,7 +92,9 @@ export const InverseOutline: Story = {
                     {() => "Clickable component"}
                 </Clickable>
 
-                <StyledButton
+                <Button
+                    kind="primary"
+                    onClick={() => {}}
                     style={[
                         {
                             border: `${border.width.thin} solid ${semanticColor.core.border.critical.default}`,
@@ -99,8 +105,8 @@ export const InverseOutline: Story = {
                         actionStyles.inverse,
                     ]}
                 >
-                    Custom button
-                </StyledButton>
+                    Custom styled button
+                </Button>
 
                 <Button kind="primary" style={actionStyles.inverse}>
                     Primary button

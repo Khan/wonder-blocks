@@ -12,6 +12,7 @@ import {
 } from "@testing-library/user-event";
 
 import {PropsFor} from "@khanacademy/wonder-blocks-core";
+import Button from "@khanacademy/wonder-blocks-button";
 
 import OptionItem from "../option-item";
 import SingleSelect from "../single-select";
@@ -574,10 +575,12 @@ describe("SingleSelect", () => {
                         <OptionItem label="item 2" value="2" />
                         <OptionItem label="item 3" value="3" />
                     </SingleSelect>
-                    <button
-                        data-testid="parent-button"
+                    <Button
+                        testId="parent-button"
                         onClick={() => handleToggleMenu(true)}
-                    />
+                    >
+                        {" "}
+                    </Button>
                 </React.Fragment>
             );
         };
@@ -673,7 +676,9 @@ describe("SingleSelect", () => {
                     aria-label="Custom opener"
                     placeholder="e.g. item 1"
                     onChange={jest.fn()}
-                    opener={(eventState: any) => <button onClick={jest.fn()} />}
+                    opener={(eventState: any) => (
+                        <Button onClick={jest.fn()}> </Button>
+                    )}
                 >
                     <OptionItem label="item 1" value="1" />
                     <OptionItem label="item 2" value="2" />
@@ -696,10 +701,12 @@ describe("SingleSelect", () => {
                     placeholder="Choose an item"
                     onChange={jest.fn()}
                     opener={(eventState: any) => (
-                        <button
+                        <Button
                             aria-label="Custom opener button"
                             onClick={jest.fn()}
-                        />
+                        >
+                            {" "}
+                        </Button>
                     )}
                 >
                     <OptionItem label="item 1" value="1" />
@@ -723,9 +730,7 @@ describe("SingleSelect", () => {
                     placeholder="custom opener"
                     testId="openTest"
                     opener={(eventState: any) => (
-                        <button aria-label="Search" onClick={jest.fn()}>
-                            Search
-                        </button>
+                        <Button onClick={jest.fn()}>Search</Button>
                     )}
                 >
                     <OptionItem label="item 1" value="1" />
@@ -759,9 +764,7 @@ describe("SingleSelect", () => {
                         onChange={jest.fn()}
                         selectedValue="toggle_a"
                         showOpenerLabelAsText={false}
-                        opener={(eventState: any) => (
-                            <button aria-label="Search">Search</button>
-                        )}
+                        opener={(eventState: any) => <Button>Search</Button>}
                     >
                         <OptionItem
                             label={<div>custom item A</div>}
@@ -794,10 +797,12 @@ describe("SingleSelect", () => {
                     onChange={jest.fn()}
                     placeholder="custom opener"
                     opener={() => (
-                        <button
+                        <Button
                             aria-label="Custom opener"
                             onClick={onClickMock}
-                        />
+                        >
+                            Custom opener
+                        </Button>
                     )}
                 >
                     <OptionItem label="item 1" value="1" />
@@ -807,7 +812,9 @@ describe("SingleSelect", () => {
             );
 
             // Act
-            const opener = await screen.findByLabelText("Custom opener");
+            const opener = await screen.findByRole("combobox", {
+                name: "Custom opener",
+            });
             await userEvent.click(opener);
 
             // Assert
@@ -821,7 +828,11 @@ describe("SingleSelect", () => {
                     onChange={onChange}
                     placeholder="Choose"
                     testId="custom-opener"
-                    opener={() => <button aria-label="Custom opener" />}
+                    opener={() => (
+                        <Button aria-label="Custom opener">
+                            Custom opener
+                        </Button>
+                    )}
                 >
                     <OptionItem label="item 1" value="1" />
                     <OptionItem label="item 2" value="2" />
@@ -829,7 +840,9 @@ describe("SingleSelect", () => {
             );
 
             // Act
-            const opener = await screen.findByLabelText("Custom opener");
+            const opener = await screen.findByRole("combobox", {
+                name: "Custom opener",
+            });
 
             // Assert
             expect(opener).not.toHaveAttribute("data-testid");
@@ -843,7 +856,7 @@ describe("SingleSelect", () => {
                     testId="openTest"
                     onChange={jest.fn()}
                     opener={({text}: any) => (
-                        <button onClick={jest.fn()}>{text}</button>
+                        <Button onClick={jest.fn()}>{text}</Button>
                     )}
                 >
                     <OptionItem label="Toggle A" value="toggle_a" />
@@ -883,7 +896,7 @@ describe("SingleSelect", () => {
                                 selectedValue={this.state.selectedValue}
                                 placeholder="Custom placeholder"
                                 opener={({text}: any) => (
-                                    <button onClick={jest.fn()}>{text}</button>
+                                    <Button onClick={jest.fn()}>{text}</Button>
                                 )}
                             >
                                 <OptionItem label="Toggle A" value="toggle_a" />
@@ -1804,7 +1817,9 @@ describe("SingleSelect", () => {
                     onChange={jest.fn()}
                     dropdownId={dropdownId}
                     opener={() => (
-                        <button aria-label="Search" onClick={jest.fn()} />
+                        <Button aria-label="Search" onClick={jest.fn()}>
+                            Search
+                        </Button>
                     )}
                 >
                     <OptionItem label="item 1" value="1" />
@@ -1829,7 +1844,9 @@ describe("SingleSelect", () => {
                     placeholder="Choose"
                     onChange={jest.fn()}
                     opener={() => (
-                        <button aria-label="Search" onClick={jest.fn()} />
+                        <Button aria-label="Search" onClick={jest.fn()}>
+                            Search
+                        </Button>
                     )}
                 >
                     <OptionItem label="item 1" value="1" />
@@ -1872,7 +1889,9 @@ describe("SingleSelect", () => {
                     placeholder="Choose"
                     onChange={jest.fn()}
                     opener={() => (
-                        <button aria-label="Search" onClick={jest.fn()} />
+                        <Button aria-label="Search" onClick={jest.fn()}>
+                            Search
+                        </Button>
                     )}
                 >
                     <OptionItem label="item 1" value="1" />
@@ -1929,7 +1948,9 @@ describe("SingleSelect", () => {
                     placeholder="Choose"
                     onChange={jest.fn()}
                     opener={() => (
-                        <button aria-label="Search" onClick={jest.fn()} />
+                        <Button aria-label="Search" onClick={jest.fn()}>
+                            Search
+                        </Button>
                     )}
                 >
                     <OptionItem label="item 1" value="1" />
@@ -1951,7 +1972,9 @@ describe("SingleSelect", () => {
                     placeholder="Choose"
                     onChange={jest.fn()}
                     opener={() => (
-                        <button aria-label="Search" onClick={jest.fn()} />
+                        <Button aria-label="Search" onClick={jest.fn()}>
+                            Search
+                        </Button>
                     )}
                 >
                     <OptionItem label="item 1" value="1" />
@@ -2007,7 +2030,9 @@ describe("SingleSelect", () => {
                         onChange={jest.fn()}
                         error={error}
                         opener={() => (
-                            <button aria-label="Search" onClick={jest.fn()} />
+                            <Button aria-label="Search" onClick={jest.fn()}>
+                                Search
+                            </Button>
                         )}
                     />,
                 );
@@ -2158,7 +2183,9 @@ describe("SingleSelect", () => {
                     <ControlledSingleSelect
                         validate={() => "Error"}
                         opener={() => (
-                            <button aria-label="Search" onClick={jest.fn()} />
+                            <Button aria-label="Search" onClick={jest.fn()}>
+                                Search
+                            </Button>
                         )}
                     />,
                 );
@@ -2371,10 +2398,9 @@ describe("SingleSelect", () => {
                             onValidate={onValidate}
                             required={requiredMessage}
                             opener={() => (
-                                <button
-                                    aria-label="Search"
-                                    onClick={jest.fn()}
-                                />
+                                <Button aria-label="Search" onClick={jest.fn()}>
+                                    Search
+                                </Button>
                             )}
                         />,
                     );
@@ -2395,10 +2421,9 @@ describe("SingleSelect", () => {
                     const {userEvent} = doRender(
                         <ControlledSingleSelect
                             opener={() => (
-                                <button
-                                    aria-label="Search"
-                                    onClick={jest.fn()}
-                                />
+                                <Button aria-label="Search" onClick={jest.fn()}>
+                                    Search
+                                </Button>
                             )}
                             required={requiredMessage}
                         />,
@@ -2421,10 +2446,9 @@ describe("SingleSelect", () => {
                     doRender(
                         <ControlledSingleSelect
                             opener={() => (
-                                <button
-                                    aria-label="Search"
-                                    onClick={jest.fn()}
-                                />
+                                <Button aria-label="Search" onClick={jest.fn()}>
+                                    Search
+                                </Button>
                             )}
                             required={requiredMessage}
                         />,

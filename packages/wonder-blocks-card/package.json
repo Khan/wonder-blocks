@@ -34,6 +34,7 @@
     "@phosphor-icons/core": "catalog:"
   },
   "devDependencies": {
-    "@khanacademy/wb-dev-build-settings": "workspace:*"
+    "@khanacademy/wb-dev-build-settings": "workspace:*",
+    "@khanacademy/wonder-blocks-button": "workspace:*"
   }
 }
