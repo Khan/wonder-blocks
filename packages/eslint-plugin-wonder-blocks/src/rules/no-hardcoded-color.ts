@@ -64,8 +64,12 @@ const COLOR_PROPERTIES = new Set([
     "lightingColor",
 ]);
 
-// Full CSS named color list (excluding transparent/currentColor/inherit/initial/unset
-// which are valid CSS keywords for resetting or inheriting values).
+// Full CSS named color list (excluding the following CSS keywords, which are
+// valid for resetting or inheriting values and are intentionally not flagged):
+//   transparent  — explicitly no color; valid for clearing backgrounds/borders
+//   currentColor — inherits the nearest ancestor's color; valid when that
+//                  ancestor already uses a semanticColor token
+//   inherit / initial / unset / revert — CSS-wide keywords
 const CSS_NAMED_COLORS = [
     "aliceblue",
     "antiquewhite",
@@ -352,24 +356,36 @@ export default createRule<Options, MessageIds>({
 
         return {
             // Inline style prop: style={{color: "#fff"}}
+            // Multi-part styles prop: styles={{root: {color: "#fff"}, tab: {...}}}
             JSXAttribute(node) {
-                if (
-                    node.name.type !== "JSXIdentifier" ||
-                    node.name.name !== "style"
-                ) {
+                if (node.name.type !== "JSXIdentifier") {
                     return;
                 }
-                const styleValue = node.value;
-                if (
-                    !styleValue ||
-                    styleValue.type !== "JSXExpressionContainer"
-                ) {
+                const propName = node.name.name;
+                const propValue = node.value;
+                if (!propValue || propValue.type !== "JSXExpressionContainer") {
                     return;
                 }
-                if (styleValue.expression.type === "JSXEmptyExpression") {
+                if (propValue.expression.type === "JSXEmptyExpression") {
                     return;
                 }
-                handleStyleExpression(styleValue.expression);
+
+                if (propName === "style") {
+                    handleStyleExpression(propValue.expression);
+                } else if (propName === "styles") {
+                    // The `styles` prop used by WB components maps part names
+                    // to style objects: styles={{ root: {...}, tab: {...} }}
+                    const expr = propValue.expression;
+                    if (expr.type === "ObjectExpression") {
+                        for (const property of expr.properties) {
+                            if (property.type === "Property") {
+                                handleStyleExpression(
+                                    property.value as TSESTree.Expression,
+                                );
+                            }
+                        }
+                    }
+                }
             },
             // Aphrodite StyleSheet.create({...})
             CallExpression(node) {
@@ -390,6 +406,24 @@ export default createRule<Options, MessageIds>({
                                 checkProperties(styleProperty.value.properties);
                             }
                         }
+                    }
+                }
+            },
+            // Object property named "styles" with a multi-part value:
+            //   args: { styles: { root: { color: "#fff" } } }
+            // This covers Storybook args and any other non-JSX usage of the
+            // WB multi-part styles pattern.
+            "Property[key.name='styles'], Property[key.value='styles']"(
+                node: TSESTree.Property,
+            ) {
+                if (node.value.type !== "ObjectExpression") {
+                    return;
+                }
+                for (const property of node.value.properties) {
+                    if (property.type === "Property") {
+                        handleStyleExpression(
+                            property.value as TSESTree.Expression,
+                        );
                     }
                 }
             },

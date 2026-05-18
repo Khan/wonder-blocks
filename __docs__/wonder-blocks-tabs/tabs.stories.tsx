@@ -17,7 +17,7 @@ import {TextField} from "@khanacademy/wonder-blocks-form";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Placeholder} from "../components/placeholder";
 import {generateTabs, ControlledTabs} from "./tabs-utils";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -451,10 +451,19 @@ export const CustomStyles: StoryComponentType = {
         // visual regression tests to ensure that the custom styles are applied
         // correctly.
         styles: {
-            root: {border: "2px solid lightpink"},
-            tablist: {backgroundColor: "lavender"},
-            tabPanel: {backgroundColor: "lavenderblush"},
-            tab: {backgroundColor: "lightcyan"},
+            root: {
+                border: `2px solid ${semanticColor.learning.border.gems.default}`,
+            },
+            tablist: {
+                backgroundColor:
+                    semanticColor.core.background.instructive.subtle,
+            },
+            tabPanel: {
+                backgroundColor: semanticColor.core.background.warning.subtle,
+            },
+            tab: {
+                backgroundColor: semanticColor.core.background.success.subtle,
+            },
         },
         tabs: [
             {
@@ -471,7 +480,8 @@ export const CustomStyles: StoryComponentType = {
                 label: (
                     <View
                         style={{
-                            backgroundColor: "honeydew",
+                            backgroundColor:
+                                semanticColor.core.background.neutral.subtle,
                             fontStyle: "italic",
                         }}
                     >
@@ -482,7 +492,8 @@ export const CustomStyles: StoryComponentType = {
                 panel: (
                     <View
                         style={{
-                            backgroundColor: "honeydew",
+                            backgroundColor:
+                                semanticColor.core.background.neutral.subtle,
                             fontStyle: "italic",
                         }}
                     >
