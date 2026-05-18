@@ -341,7 +341,7 @@ const styles = StyleSheet.create({
     multipleChoice: {
         margin: 0,
         blockSize: sizing.size_480,
-        borderTop: "solid 1px #CCC",
+        borderTop: `solid 1px ${semanticColor.core.border.neutral.subtle}`,
         justifyContent: "center",
     },
     firstChoice: {
@@ -351,6 +351,6 @@ const styles = StyleSheet.create({
         color: semanticColor.core.foreground.neutral.default,
     },
     last: {
-        borderBottom: "solid 1px #CCC",
+        borderBottom: `solid 1px ${semanticColor.core.border.neutral.subtle}`,
     },
 });
