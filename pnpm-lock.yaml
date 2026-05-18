@@ -585,6 +585,9 @@ importers:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
         version: link:../../build-settings
+      '@khanacademy/wonder-blocks-button':
+        specifier: workspace:*
+        version: link:../wonder-blocks-button
 
   packages/wonder-blocks-badge:
     dependencies:
@@ -777,6 +780,9 @@ importers:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
         version: link:../../build-settings
+      '@khanacademy/wonder-blocks-button':
+        specifier: workspace:*
+        version: link:../wonder-blocks-button
 
   packages/wonder-blocks-cell:
     dependencies:
@@ -938,6 +944,9 @@ importers:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
         version: link:../../build-settings
+      '@khanacademy/wonder-blocks-button':
+        specifier: workspace:*
+        version: link:../wonder-blocks-button
 
   packages/wonder-blocks-dropdown:
     dependencies:
@@ -1274,6 +1283,9 @@ importers:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
         version: link:../../build-settings
+      '@khanacademy/wonder-blocks-button':
+        specifier: workspace:*
+        version: link:../wonder-blocks-button
 
   packages/wonder-blocks-pill:
     dependencies:
@@ -1351,6 +1363,9 @@ importers:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
         version: link:../../build-settings
+      '@khanacademy/wonder-blocks-button':
+        specifier: workspace:*
+        version: link:../wonder-blocks-button
 
   packages/wonder-blocks-progress-spinner:
     dependencies:

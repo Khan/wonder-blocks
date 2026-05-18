@@ -2,7 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import {View, addStyle} from "@khanacademy/wonder-blocks-core";
+import {View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
@@ -74,46 +74,6 @@ Default.parameters = {
     },
 };
 
-/**
- * This is an example of a `<ClickableBehavior>` wrapping a button. Since
- * buttons have a built in tabIndex, a tabIndex does not need to be added to
- * `<ClickableBehavior>` here.
- */
-export const WrappingButton: StoryComponentType = (args: any) => {
-    const ClickableBehavior = getClickableBehavior();
-    const StyledButton = addStyle("button");
-
-    return (
-        <ClickableBehavior {...args}>
-            {(state, childrenProps) => {
-                const {pressed, hovered, focused} = state;
-                return (
-                    <StyledButton
-                        style={[
-                            styles.clickable,
-                            styles.newButton,
-                            hovered && styles.hover,
-                            focused && styles.focus,
-                            pressed && styles.press,
-                        ]}
-                        {...childrenProps}
-                    >
-                        This is an element wrapped with ClickableBehavior
-                    </StyledButton>
-                );
-            }}
-        </ClickableBehavior>
-    );
-};
-
-WrappingButton.parameters = {
-    chromatic: {
-        // we don't need screenshots because this story only displays the
-        // resting/default state.
-        disableSnapshot: true,
-    },
-};
-
 export const WithTabIndex: StoryComponentType = () => {
     const ClickableBehavior = getClickableBehavior();
 
@@ -163,11 +123,6 @@ const styles = StyleSheet.create({
         cursor: "pointer",
         padding: sizing.size_160,
         textAlign: "center",
-    },
-    newButton: {
-        border: "none",
-        backgroundColor: actionCategory.default.background,
-        width: "100%",
     },
     hover: {
         textDecoration: "underline",

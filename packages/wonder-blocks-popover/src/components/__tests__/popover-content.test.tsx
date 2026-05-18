@@ -2,6 +2,7 @@ import * as React from "react";
 import {render, screen} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
+import Button from "@khanacademy/wonder-blocks-button";
 import PopoverContent from "../popover-content";
 import PopoverContext from "../popover-context";
 
@@ -18,7 +19,7 @@ describe("PopoverContent", () => {
                     title="Title"
                     content="content"
                     actions={({close}: any) => (
-                        <button onClick={close}>close popover</button>
+                        <Button onClick={close}>close popover</Button>
                     )}
                 />
             </PopoverContext.Provider>,

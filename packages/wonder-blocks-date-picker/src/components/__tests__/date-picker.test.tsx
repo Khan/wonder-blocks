@@ -328,7 +328,7 @@ describe("DatePicker", () => {
                         minDate={minDate}
                         maxDate={maxDate}
                     />
-                    <button>Other element</button>
+                    <Button>Other element</Button>
                 </>,
             );
             await userEvent.tab();
@@ -354,7 +354,7 @@ describe("DatePicker", () => {
                     updateDate={jest.fn()}
                     dateFormat="MMMM D, YYYY"
                 />
-                <button>Other element</button>
+                <Button>Other element</Button>
             </>,
         );
 
@@ -396,7 +396,7 @@ describe("DatePicker", () => {
                         minDate={minDate}
                         resetInvalidValueOnBlur={false}
                     />
-                    <button>Other element</button>
+                    <Button>Other element</Button>
                 </>,
             );
             // Act
@@ -443,7 +443,7 @@ describe("DatePicker", () => {
                         minDate={minDate}
                         resetInvalidValueOnBlur={false}
                     />
-                    <button>Other element</button>
+                    <Button>Other element</Button>
                 </>,
             );
             // Act

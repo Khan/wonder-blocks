@@ -242,7 +242,7 @@ export const WithFocusableContent: StoryComponentType = {
                 panel: (
                     <div>
                         Tab contents with button{" "}
-                        <button>Focusable Button</button>
+                        <Button>Focusable Button</Button>
                     </div>
                 ),
             },

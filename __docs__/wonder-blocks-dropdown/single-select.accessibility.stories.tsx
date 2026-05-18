@@ -3,7 +3,7 @@ import caretDown from "@phosphor-icons/core/regular/caret-down.svg";
 import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
-import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {allCountries} from "./option-item-examples";
 
 export default {
@@ -85,10 +85,12 @@ const SingleSelectCustomOpenerLabeledField = () => {
                     <SingleSelect
                         placeholder="Choose"
                         onChange={() => {}}
-                        opener={(eventState: any) => (
-                            <button onClick={() => {}}>
-                                <PhosphorIcon icon={caretDown} size="medium" />
-                            </button>
+                        opener={() => (
+                            <IconButton
+                                icon={caretDown}
+                                aria-label="Show preferences"
+                                onClick={() => {}}
+                            />
                         )}
                     >
                         <OptionItem label="item 1" value="1" />
@@ -112,10 +114,12 @@ const SingleSelectCustomOpenerLabel = () => {
             <SingleSelect
                 placeholder="Choose"
                 onChange={() => {}}
-                opener={(eventState: any) => (
-                    <button aria-label="Preferences" onClick={() => {}}>
-                        <PhosphorIcon icon={caretDown} size="medium" />
-                    </button>
+                opener={() => (
+                    <IconButton
+                        icon={caretDown}
+                        aria-label="Preferences"
+                        onClick={() => {}}
+                    />
                 )}
             >
                 <OptionItem label="item 1" value="1" />

@@ -3,24 +3,41 @@ import {Meta, StoryObj} from "@storybook/react-vite";
 import info from "@phosphor-icons/core/regular/info.svg";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-styles/package.json";
+import Button from "@khanacademy/wonder-blocks-button";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
-import {addStyle, View} from "@khanacademy/wonder-blocks-core";
+import {View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {ScenariosLayout} from "../components/scenarios-layout";
 
 /**
- * Styles that can be used to create reusable focus states.
+ * Styles that implement accessible focus indicators for interactive elements.
  *
- * ### Usage
+ * `focusStyles` is used internally by Wonder Blocks components (`Button`,
+ * `IconButton`, `Clickable`, etc.) to ensure consistent `:focus-visible` rings
+ * that meet WCAG contrast requirements across light and dark backgrounds.
+ *
+ * ### When to use
+ *
+ * - **WB component authors**: apply `focusStyles.focus` when implementing a
+ *   new WB primitive that renders a focusable element.
+ * - **Consumers**: it should be rare to need this directly — WB interactive
+ *   components already include these styles. If you need to override focus
+ *   appearance on a WB component, pass the style via the `style` prop.
  *
  * ```tsx
  * import {focusStyles} from "@khanacademy/wonder-blocks-styles";
  *
- * <StyledButton style={focusStyles.focus}>
- *      Custom button
- * </StyledButton>
+ * // Applying to a WB component via style prop
+ * <IconButton
+ *     icon={myIcon}
+ *     aria-label="Action"
+ *     style={focusStyles.focus}
+ * />
+ *
+ * // Merging with other styles in a WB component implementation
+ * <StyledElement style={{...myStyles, ...focusStyles.focus}} />
  * ```
  */
 export default {
@@ -37,8 +54,6 @@ export default {
 
 type Story = StoryObj<any>;
 
-const StyledButton = addStyle("button");
-
 /**
  * A global focus style that can be applied to interactive elements.
  *
@@ -46,8 +61,8 @@ const StyledButton = addStyle("button");
  * the element is focused. This is used for accessibility purposes as it allows
  * the element to present a focus state on Windows High Contrast mode.
  *
- * In the example below, the focus style is applied to an `IconButton` component
- * and to a `button` element.
+ * Wonder Blocks interactive components (`Button`, `IconButton`, `Clickable`,
+ * etc.) already include these focus styles — no manual application needed.
  */
 export const Focus: Story = {
     name: "focus",
@@ -154,20 +169,21 @@ export const Scenarios: Story = {
                 },
             },
             {
-                name: "Using an HTML element",
+                name: "Using Button",
                 props: {
                     children: (
-                        <StyledButton style={focusStyles.focus}>
-                            Custom button
-                        </StyledButton>
+                        <Button onClick={() => {}} style={focusStyles.focus}>
+                            Custom styled button
+                        </Button>
                     ),
                 },
             },
             {
-                name: "Spreading focus styles in an existing style",
+                name: "Spreading focus styles with existing styles",
                 props: {
                     children: (
-                        <StyledButton
+                        <Button
+                            onClick={() => {}}
                             style={{
                                 background:
                                     semanticColor.core.background.critical
@@ -179,8 +195,8 @@ export const Scenarios: Story = {
                                 ...focusStyles.focus,
                             }}
                         >
-                            Custom button merging styles
-                        </StyledButton>
+                            Button merging styles
+                        </Button>
                     ),
                 },
             },
@@ -188,25 +204,18 @@ export const Scenarios: Story = {
                 name: "Overriding :focus-visible pseudo-class",
                 props: {
                     children: (
-                        <StyledButton
+                        <Button
+                            onClick={() => {}}
                             style={{
-                                backgroundColor:
-                                    semanticColor.action.secondary.progressive
-                                        .default.background,
-                                color: semanticColor.action.secondary
-                                    .progressive.default.foreground,
                                 ":focus-visible": {
-                                    backgroundColor:
-                                        semanticColor.action.secondary
-                                            .progressive.default.background,
                                     // focus styles will be merged with the
                                     // component ones
                                     ...focusStyles.focus[":focus-visible"],
                                 },
                             }}
                         >
-                            Custom button overriding :focus-visible
-                        </StyledButton>
+                            Button overriding :focus-visible
+                        </Button>
                     ),
                 },
             },

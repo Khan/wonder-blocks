@@ -1,3 +1,5 @@
+/* eslint-disable @khanacademy/wonder-blocks/no-raw-button */
+// We allow raw buttons in this test since DropdownCore is a low-level component.
 import * as React from "react";
 import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
