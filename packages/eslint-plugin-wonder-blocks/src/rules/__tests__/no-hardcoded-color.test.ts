@@ -24,7 +24,11 @@ ruleTester.run(ruleName, rule, {
         {code: `StyleSheet.create({root: {fontSize: 16}})`},
         // CSS keywords that are not hardcoded colors
         {code: `StyleSheet.create({root: {color: "inherit"}})`},
+        // currentColor is valid: it inherits from an ancestor that already
+        // uses a semanticColor token, so it participates in theming.
         {code: `StyleSheet.create({root: {color: "currentColor"}})`},
+        {code: `StyleSheet.create({root: {fill: "currentColor"}})`},
+        {code: `<div style={{color: "currentColor"}} />`},
         {code: `StyleSheet.create({root: {color: "initial"}})`},
         {code: `StyleSheet.create({root: {color: "unset"}})`},
         {code: `StyleSheet.create({root: {color: "transparent"}})`},
@@ -51,6 +55,12 @@ ruleTester.run(ruleName, rule, {
         {code: `StyleSheet.create({root: {}})`},
         // No JSX style
         {code: `<div />`},
+        // styles prop with token values
+        {
+            code: `<Tabs styles={{root: {color: semanticColor.core.foreground.neutral.strong}}} />`,
+        },
+        // styles prop non-color properties
+        {code: `<Tabs styles={{root: {flexGrow: 1}}} />`},
     ],
     invalid: [
         // ── Hex colors ────────────────────────────────────────────────
@@ -189,6 +199,34 @@ ruleTester.run(ruleName, rule, {
         // ── Template literal (no interpolations) ─────────────────────
         {
             code: "StyleSheet.create({root: {color: `#fff`}})",
+            errors: [{messageId: "noHardcodedColor"}],
+        },
+        // ── WB multi-part styles prop (JSX attribute) ─────────────────
+        {
+            code: `<Tabs styles={{root: {border: "2px solid lightpink"}}} />`,
+            errors: [{messageId: "noHardcodedColor"}],
+        },
+        // ── WB multi-part styles as plain object property (e.g. Storybook args)
+        {
+            code: `const story = {args: {styles: {root: {color: "red"}}}}`,
+            errors: [{messageId: "noHardcodedColor"}],
+        },
+        {
+            code: `const story = {args: {styles: {root: {backgroundColor: "#fff"}, tab: {borderColor: "blue"}}}}`,
+            errors: [
+                {messageId: "noHardcodedColor"},
+                {messageId: "noHardcodedColor"},
+            ],
+        },
+        {
+            code: `<Tabs styles={{tablist: {backgroundColor: "lavender"}, tab: {backgroundColor: "#fff"}}} />`,
+            errors: [
+                {messageId: "noHardcodedColor"},
+                {messageId: "noHardcodedColor"},
+            ],
+        },
+        {
+            code: `<Tabs styles={{root: {boxShadow: "0 2px 4px rgba(0,0,0,0.5)"}}} />`,
             errors: [{messageId: "noHardcodedColor"}],
         },
     ],

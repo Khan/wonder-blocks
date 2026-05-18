@@ -17,7 +17,15 @@ Detected color formats:
 - **CSS Color Level 4 functions**: `color()`, `lab()`, `lch()`, `oklab()`, `oklch()`
 - **CSS named colors**: `red`, `blue`, `white`, `black`, etc.
 
-CSS keywords `transparent`, `currentColor`, `inherit`, `initial`, and `unset` are **not** flagged, as they are valid values for resetting or inheriting styles.
+The following CSS keywords are **not** flagged:
+
+| Keyword | Why it's allowed |
+|---|---|
+| `currentColor` | Inherits the computed `color` value from the nearest ancestor. Valid when that ancestor already uses a `semanticColor` token, so the value participates in theming. |
+| `transparent` | Explicitly no color; valid for clearing backgrounds or borders. |
+| `inherit` | Inherits the property value from the parent element. |
+| `initial` | Resets the property to its browser default. |
+| `unset` | Resets the property as if no value had been set. |
 
 Examples of **incorrect** code:
 
@@ -64,11 +72,21 @@ const styles = StyleSheet.create({
 ```
 
 ```tsx
-// CSS keywords for resetting values are allowed
+// CSS keywords for resetting or inheriting values are allowed
 const styles = StyleSheet.create({
     root: {
         color: "inherit",
         backgroundColor: "transparent",
+    },
+});
+```
+
+```tsx
+// currentColor is allowed — it inherits the computed color from an ancestor
+// that already uses a semanticColor token, so it participates in theming.
+const styles = StyleSheet.create({
+    icon: {
+        fill: "currentColor",
     },
 });
 ```

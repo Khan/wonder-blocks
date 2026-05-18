@@ -17,24 +17,18 @@ export function ValidExample() {
     );
 }
 
-// ❌ Invalid: hardcoded hex color in StyleSheet.create
-// eslint-disable-next-line @khanacademy/wonder-blocks/no-hardcoded-color
+// ❌ Invalid: hardcoded hex colors in StyleSheet.create
 const invalidHexStyles = StyleSheet.create({
     root: {
-        // @khanacademy/wonder-blocks/no-hardcoded-color: '#333333' is hardcoded
         color: "#333333",
-        // @khanacademy/wonder-blocks/no-hardcoded-color: '#ffffff' is hardcoded
         backgroundColor: "#ffffff",
     },
 });
 
-// ❌ Invalid: hardcoded RGB color in StyleSheet.create
-// eslint-disable-next-line @khanacademy/wonder-blocks/no-hardcoded-color
+// ❌ Invalid: hardcoded RGB color and named color in StyleSheet.create
 const invalidRgbStyles = StyleSheet.create({
     root: {
-        // @khanacademy/wonder-blocks/no-hardcoded-color: rgba is hardcoded
         boxShadow: "0 2px 4px rgba(0, 0, 0, 0.5)",
-        // @khanacademy/wonder-blocks/no-hardcoded-color: named color is hardcoded
         borderColor: "red",
     },
 });
@@ -42,12 +36,16 @@ const invalidRgbStyles = StyleSheet.create({
 // ❌ Invalid: hardcoded color in inline style prop
 export function InvalidExample() {
     return (
-        // @khanacademy/wonder-blocks/no-hardcoded-color: '#fff' is hardcoded
-        // eslint-disable-next-line @khanacademy/wonder-blocks/no-hardcoded-color
         <div style={{color: "#fff", backgroundColor: "hsl(200, 100%, 50%)"}}>
             <span>Invalid usage</span>
         </div>
     );
+}
+
+// ❌ Invalid: hardcoded color in WB multi-part styles prop
+export function InvalidStylesPropExample() {
+    // @ts-expect-error — simplified for demo purposes
+    return <div styles={{root: {backgroundColor: "lavender"}}} />;
 }
 
 // Suppress unused variable warnings for the invalid style objects above
