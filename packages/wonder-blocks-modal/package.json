@@ -50,6 +50,7 @@
     "react-dom": "catalog:"
   },
   "devDependencies": {
+    "@khanacademy/wonder-blocks-button": "workspace:*",
     "@khanacademy/wonder-blocks-breadcrumbs": "^3.0.8",
     "@khanacademy/wb-dev-build-settings": "workspace:*"
   }

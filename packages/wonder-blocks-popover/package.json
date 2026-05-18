@@ -41,6 +41,7 @@
     "react-popper": "catalog:"
   },
   "devDependencies": {
+    "@khanacademy/wonder-blocks-button": "workspace:*",
     "@khanacademy/wb-dev-build-settings": "workspace:*"
   }
 }

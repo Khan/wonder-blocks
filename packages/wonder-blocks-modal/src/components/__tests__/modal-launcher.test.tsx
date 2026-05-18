@@ -30,7 +30,9 @@ describe("ModalLauncher", () => {
         // Arrange
         render(
             <ModalLauncher modal={exampleModal} testId="modal-launcher-portal">
-                {({openModal}: any) => <button onClick={openModal} />}
+                {({openModal}: any) => (
+                    <Button onClick={openModal}>Open modal</Button>
+                )}
             </ModalLauncher>,
         );
 
@@ -92,7 +94,9 @@ describe("ModalLauncher", () => {
                 onClose={onCloseMock}
                 testId="modal-launcher-portal"
             >
-                {({openModal}: any) => <button onClick={openModal} />}
+                {({openModal}: any) => (
+                    <Button onClick={openModal}>Open modal</Button>
+                )}
             </ModalLauncher>,
         );
 
@@ -114,7 +118,9 @@ describe("ModalLauncher", () => {
         // Arrange
         render(
             <ModalLauncher modal={exampleModal}>
-                {({openModal}: any) => <button onClick={openModal} />}
+                {({openModal}: any) => (
+                    <Button onClick={openModal}>Open modal</Button>
+                )}
             </ModalLauncher>,
         );
 
@@ -137,7 +143,9 @@ describe("ModalLauncher", () => {
         // Arrange
         render(
             <ModalLauncher modal={exampleModal}>
-                {({openModal}: any) => <button onClick={openModal} />}
+                {({openModal}: any) => (
+                    <Button onClick={openModal}>Open modal</Button>
+                )}
             </ModalLauncher>,
         );
 
@@ -157,7 +165,9 @@ describe("ModalLauncher", () => {
         // Arrange
         render(
             <ModalLauncher modal={exampleModal}>
-                {({openModal}: any) => <button onClick={openModal} />}
+                {({openModal}: any) => (
+                    <Button onClick={openModal}>Open modal</Button>
+                )}
             </ModalLauncher>,
         );
 
@@ -187,7 +197,9 @@ describe("ModalLauncher", () => {
                 opened={false}
                 onClose={() => {}}
             >
-                {({openModal}: any) => <button onClick={openModal} />}
+                {({openModal}: any) => (
+                    <Button onClick={openModal}>Open modal</Button>
+                )}
             </ModalLauncher>,
         );
 
@@ -332,7 +344,9 @@ describe("ModalLauncher", () => {
                 modal={exampleModal}
                 testId="modal-launcher-backdrop"
             >
-                {({openModal}: any) => <button onClick={openModal} />}
+                {({openModal}: any) => (
+                    <Button onClick={openModal}>Open modal</Button>
+                )}
             </ModalLauncher>,
         );
 
@@ -396,7 +410,7 @@ describe("ModalLauncher", () => {
                 }
             >
                 {({openModal}: any) => (
-                    <button onClick={openModal}>Open modal</button>
+                    <Button onClick={openModal}>Open modal</Button>
                 )}
             </ModalLauncher>,
         );

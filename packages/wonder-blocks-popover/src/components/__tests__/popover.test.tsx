@@ -20,9 +20,9 @@ describe("Popover", () => {
                 content={<PopoverContent title="Title" content="content" />}
             >
                 {({open}: any) => (
-                    <button data-anchor onClick={open} ref={ref}>
+                    <Button data-anchor onClick={open} ref={ref}>
                         Open default popover
-                    </button>
+                    </Button>
                 )}
             </Popover>,
         );
@@ -44,7 +44,7 @@ describe("Popover", () => {
                 content={<PopoverContent title="Title" content="content" />}
             >
                 {({open}: any) => (
-                    <button onClick={open}>Open default popover</button>
+                    <Button onClick={open}>Open default popover</Button>
                 )}
             </Popover>,
         );
@@ -72,7 +72,7 @@ describe("Popover", () => {
                 placement="top"
                 content={<PopoverContent title="Title" content="content" />}
             >
-                <button>Anchor</button>
+                <Button>Anchor</Button>
             </Popover>,
         );
 
@@ -88,9 +88,9 @@ describe("Popover", () => {
                 content={<PopoverContent title="Title" content="content" />}
             >
                 {({open}: any) => (
-                    <button data-anchor onClick={open}>
+                    <Button data-anchor onClick={open}>
                         Open default popover
-                    </button>
+                    </Button>
                 )}
             </Popover>,
         );
@@ -107,9 +107,9 @@ describe("Popover", () => {
                 content={<PopoverContent title="Title" content="content" />}
             >
                 {({open}: any) => (
-                    <button data-anchor onClick={open}>
+                    <Button data-anchor onClick={open}>
                         Open default popover
-                    </button>
+                    </Button>
                 )}
             </Popover>,
         );
@@ -132,16 +132,16 @@ describe("Popover", () => {
                 content={({close}: any) => (
                     <PopoverContentCore>
                         <span>custom popover</span>
-                        <button data-close-button onClick={close}>
+                        <Button data-close-button onClick={close}>
                             close popover
-                        </button>
+                        </Button>
                     </PopoverContentCore>
                 )}
             >
                 {({open}: any) => (
-                    <button data-anchor onClick={open}>
+                    <Button data-anchor onClick={open}>
                         Open default popover
-                    </button>
+                    </Button>
                 )}
             </Popover>,
         );
@@ -181,9 +181,9 @@ describe("Popover", () => {
                 }
             >
                 {({open}: any) => (
-                    <button data-anchor onClick={open}>
+                    <Button data-anchor onClick={open}>
                         Open default popover
-                    </button>
+                    </Button>
                 )}
             </Popover>,
         );
@@ -400,9 +400,9 @@ describe("Popover", () => {
                     content={<PopoverContent title="Title" content="content" />}
                 >
                     {({open}: any) => (
-                        <button data-anchor onClick={open}>
+                        <Button data-anchor onClick={open}>
                             Open default popover
-                        </button>
+                        </Button>
                     )}
                 </Popover>,
             );
@@ -437,9 +437,9 @@ describe("Popover", () => {
                     content={<PopoverContent title="Title" content="content" />}
                 >
                     {({open}: any) => (
-                        <button data-anchor onClick={open}>
+                        <Button data-anchor onClick={open}>
                             Open default popover
-                        </button>
+                        </Button>
                     )}
                 </Popover>,
             );
@@ -475,9 +475,9 @@ describe("Popover", () => {
                     content={<PopoverContent title="Title" content="content" />}
                 >
                     {({open}: any) => (
-                        <button data-anchor onClick={open}>
+                        <Button data-anchor onClick={open}>
                             Open default popover
-                        </button>
+                        </Button>
                     )}
                 </Popover>,
             );
@@ -513,9 +513,9 @@ describe("Popover", () => {
                         }
                     >
                         {({open}: any) => (
-                            <button data-anchor onClick={open}>
+                            <Button data-anchor onClick={open}>
                                 Open default popover
-                            </button>
+                            </Button>
                         )}
                     </Popover>
                     <Button>Next button outside</Button>
@@ -561,9 +561,9 @@ describe("Popover", () => {
                     }
                 >
                     {({open}: any) => (
-                        <button data-anchor onClick={open}>
+                        <Button data-anchor onClick={open}>
                             Open default popover
-                        </button>
+                        </Button>
                     )}
                 </Popover>,
             );
@@ -857,9 +857,9 @@ describe("Popover", () => {
                     onClose={jest.fn()}
                     content={
                         <PopoverContentCore aria-label="Popover Content Core">
-                            <button data-close-button onClick={close}>
+                            <Button data-close-button onClick={close}>
                                 Close Popover
-                            </button>
+                            </Button>
                         </PopoverContentCore>
                     }
                 >

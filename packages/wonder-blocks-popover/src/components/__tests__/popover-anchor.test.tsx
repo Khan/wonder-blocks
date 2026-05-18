@@ -2,6 +2,7 @@ import * as React from "react";
 import {render, screen} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
+import Button from "@khanacademy/wonder-blocks-button";
 import PopoverAnchor from "../popover-anchor";
 
 describe("PopoverAnchor", () => {
@@ -11,7 +12,7 @@ describe("PopoverAnchor", () => {
 
         render(
             <PopoverAnchor anchorRef={updateRef} onClick={jest.fn()}>
-                <button>test</button>
+                <Button>test</Button>
             </PopoverAnchor>,
         );
 
@@ -28,7 +29,7 @@ describe("PopoverAnchor", () => {
 
         render(
             <PopoverAnchor anchorRef={jest.fn()} onClick={onClickMock}>
-                {({open}: any) => <button onClick={open}>open</button>}
+                {({open}: any) => <Button onClick={open}>open</Button>}
             </PopoverAnchor>,
         );
 
@@ -46,7 +47,7 @@ describe("PopoverAnchor", () => {
 
         render(
             <PopoverAnchor anchorRef={jest.fn()} onClick={onClickMock}>
-                <button onClick={onClickInnerMock}>test</button>
+                <Button onClick={onClickInnerMock}>test</Button>
             </PopoverAnchor>,
         );
 

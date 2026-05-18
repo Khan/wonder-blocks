@@ -3,6 +3,7 @@ import * as ReactDOM from "react-dom";
 import {render, screen} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
+import Button from "@khanacademy/wonder-blocks-button";
 import {ModalLauncherPortalAttributeName} from "./constants";
 import maybeGetPortalMountedModalHostElement from "./maybe-get-portal-mounted-modal-host-element";
 import ModalLauncher from "../components/modal-launcher";
@@ -25,7 +26,7 @@ describe("maybeGetPortalMountedModalHostElement", () => {
         const nodes = (
             <div>
                 <div>
-                    <button>Button</button>
+                    <Button>Button</Button>
                 </div>
             </div>
         );
@@ -47,7 +48,7 @@ describe("maybeGetPortalMountedModalHostElement", () => {
                 <div>
                     Fake modal things
                     <div>
-                        <button>Candidate</button>
+                        <Button>Candidate</Button>
                     </div>
                 </div>
             );
@@ -95,7 +96,7 @@ describe("maybeGetPortalMountedModalHostElement", () => {
                 const launcher = (
                     <ModalLauncher modal={modal}>
                         {({openModal}: any) => (
-                            <button onClick={openModal}>Modal</button>
+                            <Button onClick={openModal}>Modal</Button>
                         )}
                     </ModalLauncher>
                 );
