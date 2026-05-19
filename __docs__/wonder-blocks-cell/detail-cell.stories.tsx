@@ -116,6 +116,7 @@ export const DetailCellDisabled: StoryComponentType = {
             rightAccessory={
                 <PhosphorIcon icon={IconMappings.caretRightBold} size="small" />
             }
+            onClick={() => {}} // To show the disabled state, the cell needs to be clickable
             disabled={true}
         />
     ),

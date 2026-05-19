@@ -233,20 +233,14 @@ export const CompactCellHorizontalRules: StoryComponentType = {
 export const CompactCellWithCustomStyles: StoryComponentType = {
     render: () => (
         <CompactCell
-            title="CompactCell with a dark background"
+            title="CompactCell with a different background"
             leftAccessory={
                 <PhosphorIcon icon={IconMappings.article} size="medium" />
             }
-            rightAccessory={
-                <PhosphorIcon
-                    icon={IconMappings.calendar}
-                    color={semanticColor.core.foreground.knockout.default}
-                />
-            }
+            rightAccessory={<PhosphorIcon icon={IconMappings.calendar} />}
             styles={{
                 root: {
-                    background: semanticColor.core.background.neutral.strong,
-                    color: semanticColor.core.foreground.knockout.default,
+                    background: semanticColor.core.background.neutral.subtle,
                 },
             }}
             onClick={() => {}}
