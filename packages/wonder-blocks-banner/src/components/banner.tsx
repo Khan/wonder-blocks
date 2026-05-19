@@ -392,11 +392,9 @@ const styles = StyleSheet.create({
         lineHeight: font.body.lineHeight.small,
         textDecoration: theme.link.font.decoration,
         textUnderlineOffset: theme.link.font.underlineOffset,
-        color: semanticColor.core.foreground.instructive.strong, // TODO: Confirm this
     },
     button: {
         marginInline: theme.button.layout.marginInline,
-        color: semanticColor.core.foreground.instructive.strong, // TODO: Confirm this
     },
     dismiss: {
         flexShrink: 1,
