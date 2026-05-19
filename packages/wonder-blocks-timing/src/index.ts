@@ -13,5 +13,7 @@ export type {
 export {SchedulePolicy, ClearPolicy, ActionPolicy} from "./util/policies";
 export {default as ActionSchedulerProvider} from "./components/action-scheduler-provider";
 export {default as withActionScheduler} from "./components/with-action-scheduler";
+export {useActionScheduler} from "./hooks/use-action-scheduler";
+export {useAnimationFrame} from "./hooks/use-animation-frame";
 export {useInterval} from "./hooks/use-interval";
 export {useTimeout} from "./hooks/use-timeout";
