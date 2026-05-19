@@ -10,7 +10,7 @@ import {
     longTextWithNoWordBreak,
 } from "../components/text-for-testing";
 import {ScenariosLayout} from "../components/scenarios-layout";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 
 const defaultProps = {
     title: "Title for article item",
@@ -33,7 +33,7 @@ export default {
             value: "baseSubtle",
         },
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
         },
     },
     tags: ["!autodocs", "!manifest"],
