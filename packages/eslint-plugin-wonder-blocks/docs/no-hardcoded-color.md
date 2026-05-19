@@ -4,7 +4,14 @@ Warn about hardcoded color values in various formats to support theming and dark
 
 ## Rule Details
 
-This rule flags hardcoded color values in Aphrodite `StyleSheet.create()` calls and inline JSX `style` props. Hardcoded colors prevent the UI from adapting to themes (including dark mode) and bypass the Wonder Blocks design system's semantic color layer.
+This rule flags hardcoded color values in:
+
+- Aphrodite `StyleSheet.create()` calls
+- Inline JSX `style` and `styles` props
+- SVG presentation attributes used as JSX props (`fill`, `stroke`, `stopColor`, `floodColor`, `lightingColor`)
+- The `color` prop on WB components such as `PhosphorIcon`
+
+Hardcoded colors prevent the UI from adapting to themes (including dark mode) and bypass the Wonder Blocks design system's semantic color layer.
 
 Use semantic color tokens from `@khanacademy/wonder-blocks-tokens` instead, which resolve to the correct value for the active theme at runtime.
 
@@ -37,6 +44,7 @@ const styles = StyleSheet.create({
         color: "#333333",
         backgroundColor: "rgba(0, 0, 0, 0.5)",
         borderColor: "red",
+        backgroundImage: "linear-gradient(180deg, #b8bdc4 0%, #8b93a0 50%, #717883 100%)",
         boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
     },
 });
@@ -45,6 +53,17 @@ const styles = StyleSheet.create({
 ```tsx
 // Inline style
 <div style={{color: "#fff", backgroundColor: "hsl(200, 100%, 50%)"}} />
+```
+
+```tsx
+// SVG presentation attributes
+<path fill="#ff0000" />
+<circle stroke="blue" />
+```
+
+```tsx
+// PhosphorIcon color prop
+<PhosphorIcon icon={someIcon} color="#3C6D4A" />
 ```
 
 Examples of **correct** code:
@@ -89,4 +108,15 @@ const styles = StyleSheet.create({
         fill: "currentColor",
     },
 });
+```
+
+```tsx
+// SVG presentation attributes accept currentColor, none, or transparent
+<path fill="currentColor" />
+<path fill="none" />
+```
+
+```tsx
+// PhosphorIcon color prop with a semantic token
+<PhosphorIcon icon={someIcon} color={semanticColor.core.foreground.primary} />
 ```

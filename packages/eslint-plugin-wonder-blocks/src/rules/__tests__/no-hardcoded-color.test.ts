@@ -61,6 +61,18 @@ ruleTester.run(ruleName, rule, {
         },
         // styles prop non-color properties
         {code: `<Tabs styles={{root: {flexGrow: 1}}} />`},
+        // SVG fill with allowed values
+        {code: `<path fill="currentColor" />`},
+        {code: `<path fill="none" />`},
+        {code: `<path fill="transparent" />`},
+        // color prop with token reference
+        {
+            code: `<PhosphorIcon color={semanticColor.core.foreground.primary} />`,
+        },
+        // backgroundImage without hardcoded colors
+        {
+            code: `StyleSheet.create({root: {backgroundImage: "url('foo.png')"}})`,
+        },
     ],
     invalid: [
         // ── Hex colors ────────────────────────────────────────────────
@@ -227,6 +239,49 @@ ruleTester.run(ruleName, rule, {
         },
         {
             code: `<Tabs styles={{root: {boxShadow: "0 2px 4px rgba(0,0,0,0.5)"}}} />`,
+            errors: [{messageId: "noHardcodedColor"}],
+        },
+        // ── backgroundImage with hardcoded colors ─────────────────────
+        {
+            code: `StyleSheet.create({root: {backgroundImage: "linear-gradient(180deg, #b8bdc4 0%, #8b93a0 50%, #717883 100%)"}})`,
+            errors: [{messageId: "noHardcodedColor"}],
+        },
+        {
+            code: `StyleSheet.create({root: {backgroundImage: "linear-gradient(45deg, #ccc 25%, transparent 25%)"}})`,
+            errors: [{messageId: "noHardcodedColor"}],
+        },
+        // ── SVG fill/stroke as direct JSX attributes ──────────────────
+        {
+            code: `<path fill="#ff0000" />`,
+            errors: [{messageId: "noHardcodedColor"}],
+        },
+        {
+            code: `<circle fill={"#ff0000"} />`,
+            errors: [{messageId: "noHardcodedColor"}],
+        },
+        {
+            code: `<path fill="red" />`,
+            errors: [{messageId: "noHardcodedColor"}],
+        },
+        {
+            code: `<path stroke="#000" />`,
+            errors: [{messageId: "noHardcodedColor"}],
+        },
+        {
+            code: `<stop stopColor="#ffffff" />`,
+            errors: [{messageId: "noHardcodedColor"}],
+        },
+        // ── color prop on WB components (e.g. PhosphorIcon) ───────────
+        {
+            code: `<PhosphorIcon color="#3C6D4A" />`,
+            errors: [{messageId: "noHardcodedColor"}],
+        },
+        {
+            code: `<PhosphorIcon color={"#3C6D4A"} />`,
+            errors: [{messageId: "noHardcodedColor"}],
+        },
+        {
+            code: `<PhosphorIcon color="green" />`,
             errors: [{messageId: "noHardcodedColor"}],
         },
     ],

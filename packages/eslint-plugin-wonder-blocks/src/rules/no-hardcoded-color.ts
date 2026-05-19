@@ -12,6 +12,17 @@ const createRule = ESLintUtils.RuleCreator<WonderBlocksPluginDocs>(
 type Options = [];
 type MessageIds = "noHardcodedColor";
 
+// SVG presentation attributes (and WB color props like PhosphorIcon's `color`)
+// used directly as JSX attributes — not inside a style object.
+const JSX_COLOR_ATTR_NAMES = new Set([
+    "fill",
+    "stroke",
+    "stopColor",
+    "floodColor",
+    "lightingColor",
+    "color",
+]);
+
 // CSS properties that accept color values (camelCase).
 const COLOR_PROPERTIES = new Set([
     // Text & foreground
@@ -21,6 +32,7 @@ const COLOR_PROPERTIES = new Set([
     // Backgrounds
     "background",
     "backgroundColor",
+    "backgroundImage",
     // Borders
     "border",
     "borderColor",
@@ -357,13 +369,43 @@ export default createRule<Options, MessageIds>({
         return {
             // Inline style prop: style={{color: "#fff"}}
             // Multi-part styles prop: styles={{root: {color: "#fff"}, tab: {...}}}
+            // SVG/WB color attrs: fill="#fff", color="#3C6D4A"
             JSXAttribute(node) {
                 if (node.name.type !== "JSXIdentifier") {
                     return;
                 }
                 const propName = node.name.name;
                 const propValue = node.value;
-                if (!propValue || propValue.type !== "JSXExpressionContainer") {
+                if (!propValue) {
+                    return;
+                }
+
+                // Direct JSX color attributes: fill="red", color="#fff", etc.
+                // These can be plain string literals OR expression containers.
+                if (JSX_COLOR_ATTR_NAMES.has(propName)) {
+                    let strVal: string | null = null;
+                    if (
+                        propValue.type === "Literal" &&
+                        typeof propValue.value === "string"
+                    ) {
+                        strVal = propValue.value;
+                    } else if (
+                        propValue.type === "JSXExpressionContainer" &&
+                        propValue.expression.type !== "JSXEmptyExpression"
+                    ) {
+                        strVal = getStringValue(propValue.expression);
+                    }
+                    if (strVal !== null && containsHardcodedColor(strVal)) {
+                        context.report({
+                            node: propValue,
+                            messageId: "noHardcodedColor",
+                            data: {value: strVal},
+                        });
+                    }
+                    return;
+                }
+
+                if (propValue.type !== "JSXExpressionContainer") {
                     return;
                 }
                 if (propValue.expression.type === "JSXEmptyExpression") {

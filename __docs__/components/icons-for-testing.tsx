@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+
 export const singleColoredIcon = (
     <svg
         viewBox="0 0 256 256"
@@ -25,27 +27,34 @@ export const multiColoredIcon = (
         <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
             <g>
                 <g>
-                    <mask id="mask-2" fill="white">
+                    <mask
+                        id="mask-2"
+                        fill={semanticColor.core.background.base.default}
+                    >
                         <use xlinkHref="#path-1" />
                     </mask>
-                    <use id="Mask" fill="#1865F2" xlinkHref="#path-1" />
+                    <use
+                        id="Mask"
+                        fill={semanticColor.core.background.instructive.default}
+                        xlinkHref="#path-1"
+                    />
                     <path
                         d="M51,128 L205,128 C205,170.525926 170.525926,205 128,205 C85.4740743,205 51,170.525926 51,128 Z"
                         id="Smile"
-                        fill="#FFFFFF"
+                        fill={semanticColor.core.foreground.knockout.default}
                         fillRule="nonzero"
                         mask="url(#mask-2)"
                     />
                     <path
                         d="M128,0 L252,0 C254.209139,-4.05812251e-16 256,1.790861 256,4 L256,128 L128,128 L128,0 Z M192,91 C206.911688,91 219,78.9116882 219,64 C219,49.0883118 206.911688,37 192,37 C177.088312,37 165,49.0883118 165,64 C165,78.9116882 177.088312,91 192,91 Z"
                         id="Right-Eye"
-                        fill="#FFD633"
+                        fill={semanticColor.core.foreground.warning.default}
                         mask="url(#mask-2)"
                     />
                     <path
                         d="M4,0 L128,0 L128,128 L0,128 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 Z M64,91 C78.9116882,91 91,78.9116882 91,64 C91,49.0883118 78.9116882,37 64,37 C49.0883118,37 37,49.0883118 37,64 C37,78.9116882 49.0883118,91 64,91 Z"
                         id="Left-Eye"
-                        fill="#37C5FD"
+                        fill={semanticColor.core.foreground.instructive.subtle}
                         mask="url(#mask-2)"
                     />
                 </g>

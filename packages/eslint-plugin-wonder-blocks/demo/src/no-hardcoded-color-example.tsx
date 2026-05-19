@@ -48,6 +48,31 @@ export function InvalidStylesPropExample() {
     return <div styles={{root: {backgroundColor: "lavender"}}} />;
 }
 
+// ❌ Invalid: hardcoded color in backgroundImage gradient
+const invalidGradientStyles = StyleSheet.create({
+    root: {
+        backgroundImage:
+            "linear-gradient(180deg, #b8bdc4 0%, #8b93a0 50%, #717883 100%)",
+    },
+});
+
+// ❌ Invalid: hardcoded color as SVG presentation attribute
+export function InvalidSvgFillExample() {
+    return (
+        <svg viewBox="0 0 24 24">
+            <path fill="#ff0000" d="M12 2L2 22h20L12 2z" />
+            <circle stroke="blue" cx="12" cy="12" r="10" />
+        </svg>
+    );
+}
+
+// ❌ Invalid: hardcoded color on PhosphorIcon's color prop
+export function InvalidPhosphorIconExample() {
+    // @ts-expect-error — simplified for demo purposes
+    return <PhosphorIcon color="#3C6D4A" />;
+}
+
 // Suppress unused variable warnings for the invalid style objects above
 void invalidHexStyles;
 void invalidRgbStyles;
+void invalidGradientStyles;
