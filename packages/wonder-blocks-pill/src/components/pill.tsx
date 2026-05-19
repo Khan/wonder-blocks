@@ -270,7 +270,7 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
         kind === "transparent" || kind === "neutral"
             ? color.offBlack16 // NOTE(WB-1950): Neutral pills will be replaced with Badge and the transparent kind will be removed
             : kind === "accent"
-              ? semanticColor.core.background.instructive.strong
+              ? semanticColor.action.primary.progressive.hover.background
               : // NOTE(WB-1950): This will be simplified once we split this into Badge and Pill.
                 `color-mix(in srgb, ${color.offBlack32}, ${backgroundColor})`;
 
