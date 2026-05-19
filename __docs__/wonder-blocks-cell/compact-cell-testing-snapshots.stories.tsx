@@ -28,10 +28,12 @@ export default {
     args: {
         title: defaultProps.title,
     },
-    parameters: {
+    globals: {
         backgrounds: {
             value: "baseSubtle",
         },
+    },
+    parameters: {
         chromatic: {
             modes: allThemeModes,
         },

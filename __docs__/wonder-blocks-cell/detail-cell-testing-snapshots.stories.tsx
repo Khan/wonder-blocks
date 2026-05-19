@@ -33,10 +33,12 @@ export default {
         subtitle1: defaultProps.subtitle1,
         subtitle2: defaultProps.subtitle2,
     },
-    parameters: {
+    globals: {
         backgrounds: {
             value: "baseSubtle",
         },
+    },
+    parameters: {
         chromatic: {
             modes: allThemeModes,
         },
