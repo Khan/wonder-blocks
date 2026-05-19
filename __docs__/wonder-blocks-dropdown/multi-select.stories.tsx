@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     scrolledWrapper: {
         height: 200,
         overflow: "auto",
-        border: "1px solid grey",
+        border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
         borderRadius: border.radius.radius_040,
         margin: sizing.size_080,
         padding: sizing.size_160,

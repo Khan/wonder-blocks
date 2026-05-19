@@ -729,7 +729,7 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         gap: sizing.size_160,
         padding: sizing.size_160,
-        backgroundColor: "rgba(33, 36, 44, 0.08)",
+        backgroundColor: semanticColor.core.background.neutral.subtle,
         borderRadius: 4,
     },
     buttonRow: {

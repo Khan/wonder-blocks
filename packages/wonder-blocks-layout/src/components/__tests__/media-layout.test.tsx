@@ -1,3 +1,7 @@
+/* eslint-disable @khanacademy/wonder-blocks/no-hardcoded-color */
+// Hardcoded colors here are test fixtures used to assert which stylesheet wins
+// across breakpoints. jsdom does not resolve CSS custom properties, so
+// semanticColor tokens cannot be used for these assertions.
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {View} from "@khanacademy/wonder-blocks-core";
