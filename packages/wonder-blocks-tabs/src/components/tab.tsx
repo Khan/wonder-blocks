@@ -136,22 +136,24 @@ export const styles = StyleSheet.create({
         },
         // Only apply hover styles to tabs that are not selected
         [":hover:not([aria-selected='true'])" as any]: {
-            color: semanticColor.link.hover,
+            color: semanticColor.core.foreground.instructive.default,
             [":after" as any]: {
                 height: border.width.thin,
-                backgroundColor: semanticColor.link.hover,
+                backgroundColor:
+                    semanticColor.core.background.instructive.default,
             },
         },
         // Only apply active styles to tabs that are not selected
         [":active:not([aria-selected='true'])" as any]: {
-            color: semanticColor.link.press,
+            color: semanticColor.core.foreground.instructive.default,
             [":after" as any]: {
                 height: border.width.thick,
-                backgroundColor: semanticColor.link.press,
+                backgroundColor:
+                    semanticColor.core.background.instructive.default,
             },
         },
     },
     selectedTab: {
-        color: semanticColor.link.rest,
+        color: semanticColor.core.foreground.instructive.default,
     },
 });
