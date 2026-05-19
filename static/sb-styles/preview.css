@@ -27,7 +27,6 @@ html {
 .sbdocs li,
 .sbdocs p,
 .sbdocs p *:not(a) {
-    color: var(--color-text);
     font-size: var(--typography-body-size-md);
     line-height: var(--typography-base-line-height);
 }
@@ -45,7 +44,6 @@ html {
 .sbdocs h4,
 .sbdocs h5,
 .sbdocs h6 {
-    color: var(--color-text);
     font-family: 'Source Serif Pro', sans-serif;
     font-weight: 400;
     margin-top: 0.96rem;
