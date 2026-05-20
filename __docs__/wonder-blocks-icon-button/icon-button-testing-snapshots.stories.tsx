@@ -26,11 +26,6 @@ export default {
         actionType: "progressive",
         size: "medium",
     },
-    parameters: {
-        chromatic: {
-            modes: allThemeModes,
-        },
-    },
 } as Meta;
 
 type StoryComponentType = StoryObj<typeof IconButton>;
@@ -74,6 +69,9 @@ export const StateSheetStory: StoryComponentType = {
     },
     parameters: {
         pseudo: defaultPseudoStates,
+        chromatic: {
+            modes: allThemeModes,
+        },
     },
 };
 
