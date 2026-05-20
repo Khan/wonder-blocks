@@ -27,8 +27,7 @@
       "require": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
-    "./*.css": "./src/styles/*.css",
-    "./package.json": "./package.json"
+    "./*.css": "./src/styles/*.css"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
