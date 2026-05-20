@@ -733,29 +733,19 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
         characters: {
             flesh: {
                 blue: {
-                    subtle: color.blue_40,
                     default: color.blue_30,
-                    strong: color.blue_10,
                 },
                 cyan: {
-                    subtle: color.cyan_40,
                     default: color.cyan_30,
-                    strong: color.cyan_10,
                 },
                 green: {
-                    subtle: color.green_40,
                     default: color.green_30,
-                    strong: color.green_10,
                 },
                 magenta: {
-                    subtle: color.magenta_40,
                     default: color.magenta_30,
-                    strong: color.magenta_10,
                 },
                 orange: {
-                    subtle: color.orange_40,
                     default: color.orange_30,
-                    strong: color.orange_10,
                 },
             },
         },

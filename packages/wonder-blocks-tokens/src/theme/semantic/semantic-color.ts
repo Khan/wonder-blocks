@@ -280,29 +280,19 @@ export const semanticColor = {
         characters: {
             flesh: {
                 blue: {
-                    subtle: thunderBlocksColor.blue_40,
                     default: thunderBlocksColor.blue_30,
-                    strong: thunderBlocksColor.blue_10,
                 },
                 cyan: {
-                    subtle: thunderBlocksColor.cyan_40,
                     default: thunderBlocksColor.cyan_30,
-                    strong: thunderBlocksColor.cyan_10,
                 },
                 green: {
-                    subtle: thunderBlocksColor.green_40,
                     default: thunderBlocksColor.green_30,
-                    strong: thunderBlocksColor.green_10,
                 },
                 magenta: {
-                    subtle: thunderBlocksColor.magenta_40,
                     default: thunderBlocksColor.magenta_30,
-                    strong: thunderBlocksColor.magenta_10,
                 },
                 orange: {
-                    subtle: thunderBlocksColor.orange_40,
                     default: thunderBlocksColor.orange_30,
-                    strong: thunderBlocksColor.orange_10,
                 },
             },
         },
