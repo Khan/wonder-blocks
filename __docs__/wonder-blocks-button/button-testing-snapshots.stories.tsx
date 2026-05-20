@@ -17,11 +17,6 @@ import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
  */
 export default {
     title: "Packages / Button / Testing / Snapshots / Button",
-    parameters: {
-        chromatic: {
-            modes: allThemeModes,
-        },
-    },
     tags: ["!autodocs", "!manifest"],
     args: {
         children: "Button",
@@ -92,6 +87,9 @@ export const StateSheetStory: StoryComponentType = {
     },
     parameters: {
         pseudo: defaultPseudoStates,
+        chromatic: {
+            modes: allThemeModes,
+        },
     },
 };
 
@@ -102,6 +100,7 @@ const sizes = [
 ];
 
 export const Sizes: StoryComponentType = {
+    // No need to test this in all themes since this is coered by the statesheet
     render: (args) => {
         return (
             <AllVariants rows={sizes} columns={kinds} title="Size / Kind">
