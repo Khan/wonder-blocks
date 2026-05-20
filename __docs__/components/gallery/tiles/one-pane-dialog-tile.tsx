@@ -4,11 +4,11 @@ import {StyleSheet} from "aphrodite";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
-import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentTile from "../component-tile";
 import {CommonTileProps} from "../types";
+import {modalPositionerStyle} from "../../../wonder-blocks-modal/modal-story-utils";
 
 export default function OnePaneDialogTile(props: CommonTileProps) {
     return (
@@ -52,22 +52,7 @@ export default function OnePaneDialogTile(props: CommonTileProps) {
 const mobile = "@media (max-width: 1023px)";
 
 const localStyles = StyleSheet.create({
-    modalPositioner: {
-        // Checkerboard background
-        backgroundImage: `linear-gradient(45deg, ${semanticColor.core.background.neutral.subtle} 25%, transparent 25%), linear-gradient(-45deg, ${semanticColor.core.background.neutral.subtle} 25%, transparent 25%), linear-gradient(45deg, transparent 75%, ${semanticColor.core.background.neutral.subtle} 75%), linear-gradient(-45deg, transparent 75%, ${semanticColor.core.background.neutral.subtle} 75%)`,
-        backgroundSize: "20px 20px",
-        backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
-
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-
-        position: "absolute",
-        insetInlineStart: 0,
-        insetInlineEnd: 0,
-        insetBlockStart: 0,
-        insetBlockEnd: 0,
-    },
+    modalPositioner: modalPositionerStyle,
     previewSizer: {
         minBlockSize: 500,
         width: "100%",

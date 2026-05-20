@@ -18,6 +18,7 @@ import ComponentInfo from "../components/component-info";
 import modalPanelArgtypes from "./modal-panel.argtypes";
 import {allModes} from "../../.storybook/modes";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
+import {modalPositionerStyle} from "./modal-story-utils";
 
 const longBody = (
     <View style={{gap: sizing.size_160}}>
@@ -353,22 +354,7 @@ const styles = StyleSheet.create({
         maxInlineSize: 600,
         maxBlockSize: 500,
     },
-    modalPositioner: {
-        // Checkerboard background
-        backgroundImage: `linear-gradient(45deg, ${semanticColor.core.background.neutral.subtle} 25%, transparent 25%), linear-gradient(-45deg, ${semanticColor.core.background.neutral.subtle} 25%, transparent 25%), linear-gradient(45deg, transparent 75%, ${semanticColor.core.background.neutral.subtle} 75%), linear-gradient(-45deg, transparent 75%, ${semanticColor.core.background.neutral.subtle} 75%)`,
-        backgroundSize: "20px 20px",
-        backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
-
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-
-        position: "absolute",
-        insetInlineStart: 0,
-        insetInlineEnd: 0,
-        insetBlockStart: 0,
-        insetBlockEnd: 0,
-    },
+    modalPositioner: modalPositionerStyle,
     previewSizer: {
         height: 600,
     },

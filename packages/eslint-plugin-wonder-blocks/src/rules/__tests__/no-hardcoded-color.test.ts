@@ -63,10 +63,21 @@ ruleTester.run(ruleName, rule, {
         // SVG fill with allowed values
         {code: `<path fill="currentColor" />`},
         {code: `<path fill="none" />`},
-        // SVG paint server reference — url() fragment should not false-positive
+        // SVG paint server reference — url() fragment should not false-positive.
+        // The hex regex would match #abc, #face, #1a2b3c if not stripped first.
         {code: `<path fill="url(#gradient)" />`},
+        {code: `<path fill="url(#face)" />`},
+        // 6-char hex-like fragment in a paint server id
+        {code: `<path fill="url(#1a2b3c)" />`},
+        // url() in a CSS property (fill as style object key)
+        {code: `StyleSheet.create({root: {fill: "url(#gradient)"}})`},
+        // Image URL with a hex-like fragment identifier
         {
             code: `StyleSheet.create({root: {backgroundImage: "url('icon.svg#abc')"}})`,
+        },
+        // Image URL whose path contains a word that is also a named color
+        {
+            code: `StyleSheet.create({root: {backgroundImage: "url('/images/red-button.png')"}})`,
         },
         // color prop with token reference
         {
@@ -98,6 +109,18 @@ ruleTester.run(ruleName, rule, {
                     <mask id="m"><use xlinkHref="#p" /></mask>
                     <use id="Mask" fill={semanticColor.background} xlinkHref="#p" />
                 </g>
+            `,
+        },
+        // An element with mask="url(...)" consumes the mask but is not inside
+        // it. Its fill is a real visible color — confirmed valid here because it
+        // uses a semantic token. The rule must not confuse mask="url(#m)" (an
+        // attribute) with being a descendant of a <mask> element.
+        {
+            code: `
+                <svg>
+                    <defs><mask id="m"><rect fill="white" /></mask></defs>
+                    <rect fill={semanticColor.bg} mask="url(#m)" />
+                </svg>
             `,
         },
     ],
@@ -289,6 +312,11 @@ ruleTester.run(ruleName, rule, {
             code: `StyleSheet.create({root: {backgroundImage: "linear-gradient(45deg, #ccc 25%, transparent 25%)"}})`,
             errors: [{messageId: "noHardcodedColor"}],
         },
+        // url() stripped but a real hardcoded color in the same value must still fire
+        {
+            code: `StyleSheet.create({root: {backgroundImage: "url('mask.svg'), linear-gradient(#fff, #000)"}})`,
+            errors: [{messageId: "noHardcodedColor"}],
+        },
         // ── SVG fill/stroke as direct JSX attributes ──────────────────
         {
             code: `<path fill="#ff0000" />`,
@@ -310,7 +338,7 @@ ruleTester.run(ruleName, rule, {
             code: `<stop stopColor="#ffffff" />`,
             errors: [{messageId: "noHardcodedColor"}],
         },
-        // ── <use> sibling of <mask> with hardcoded fill ───────────────
+        // ── siblings and consumers of <mask> with hardcoded fill ────────
         // <use id="Mask" fill="#1865F2"> is a sibling, not a child, of <mask>.
         // Its fill is a real visible color and must be flagged.
         {
@@ -319,6 +347,19 @@ ruleTester.run(ruleName, rule, {
                     <mask id="m"><use xlinkHref="#p" /></mask>
                     <use id="Mask" fill="#1865F2" xlinkHref="#p" />
                 </g>
+            `,
+            errors: [{messageId: "noHardcodedColor"}],
+        },
+        // <rect mask="url(#m)"> references the mask via an attribute but is not
+        // inside it. Its fill is a real visible color — the exact case from the
+        // ValidSvgMaskExample review comment where fill="blue" was incorrectly
+        // labelled as valid.
+        {
+            code: `
+                <svg>
+                    <defs><mask id="m"><rect fill="white" /></mask></defs>
+                    <rect fill="blue" mask="url(#m)" />
+                </svg>
             `,
             errors: [{messageId: "noHardcodedColor"}],
         },

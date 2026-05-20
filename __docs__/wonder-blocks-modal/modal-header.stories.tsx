@@ -8,7 +8,6 @@ import {
 } from "@khanacademy/wonder-blocks-breadcrumbs";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
-import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {
@@ -20,6 +19,7 @@ import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 
 import ComponentInfo from "../components/component-info";
 import ModalHeaderArgtypes from "./modal-header.argtypes";
+import {modalPositionerStyle} from "./modal-story-utils";
 
 const longBody = (
     <>
@@ -229,22 +229,7 @@ const styles = StyleSheet.create({
         maxInlineSize: 600,
         maxBlockSize: 500,
     },
-    modalPositioner: {
-        // Checkerboard background
-        backgroundImage: `linear-gradient(45deg, ${semanticColor.core.background.neutral.subtle} 25%, transparent 25%), linear-gradient(-45deg, ${semanticColor.core.background.neutral.subtle} 25%, transparent 25%), linear-gradient(45deg, transparent 75%, ${semanticColor.core.background.neutral.subtle} 75%), linear-gradient(-45deg, transparent 75%, ${semanticColor.core.background.neutral.subtle} 75%)`,
-        backgroundSize: "20px 20px",
-        backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
-
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-
-        position: "absolute",
-        insetInlineStart: 0,
-        insetInlineEnd: 0,
-        insetBlockStart: 0,
-        insetBlockEnd: 0,
-    },
+    modalPositioner: modalPositionerStyle,
     previewSizer: {
         height: 600,
     },
