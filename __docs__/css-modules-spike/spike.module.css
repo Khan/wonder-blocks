@@ -1,0 +1,39 @@
+/*
+ * Phase 0 spike — proves the PostCSS pipeline works end-to-end:
+ *   - cross-package @import resolved through the workspace
+ *   - @apply expands a mixin defined in a sibling package at build time
+ *   - CSS Modules hashing yields stable, locally-scoped class names
+ *   - declared inside @layer shared so consumer .overrides can win
+ *   - token CSS variables resolve at runtime
+ */
+@import "@khanacademy/wonder-blocks-styles/focus-styles.css";
+
+@layer shared {
+    .root {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--wb-sizing-size_080);
+
+        padding: var(--wb-sizing-size_080) var(--wb-sizing-size_120);
+        border: var(--wb-border-width-thin) solid var(--wb-semanticColor-core-border-neutral-default);
+        border-radius: var(--wb-border-radius-radius_040);
+
+        background: var(--wb-semanticColor-core-background-base-default);
+        color: var(--wb-semanticColor-core-foreground-neutral-strong);
+        font-family: inherit;
+        font-size: var(--wb-sizing-size_160);
+        cursor: pointer;
+    }
+
+    .root:focus-visible {
+        @apply --wb-focus-visible;
+    }
+
+    .pill {
+        padding: 0 var(--wb-sizing-size_060);
+        border-radius: 999px;
+        background: var(--wb-semanticColor-core-background-instructive-subtle);
+        color: var(--wb-semanticColor-core-foreground-instructive-strong);
+        font-size: var(--wb-sizing-size_120);
+    }
+}

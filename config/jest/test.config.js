@@ -45,6 +45,10 @@ const projectConfig = {
     moduleNameMapper: {
         "^@khanacademy/wonder-blocks-(.*)$":
             "<rootDir>/packages/wonder-blocks-$1/src/index.ts",
+        // Order matters: the module.css pattern must come before the generic
+        // CSS mock so identity-obj-proxy handles `styles.foo` lookups, while
+        // plain `*.css` imports keep using the no-op mock.
+        "\\.module\\.(css|less|scss|sass)$": "identity-obj-proxy",
         "\\.(css|less|scss|sass)$": "<rootDir>/config/jest/css.mock.js",
     },
 };
