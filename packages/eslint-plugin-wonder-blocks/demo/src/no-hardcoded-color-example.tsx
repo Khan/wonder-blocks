@@ -7,13 +7,49 @@
 import * as React from "react";
 
 import {StyleSheet} from "aphrodite";
+import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
 
-// ✅ Valid: using CSS keywords and variable references
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+
+// ✅ Valid: using CSS keywords and semantic token references
 export function ValidExample() {
     return (
-        <div style={{color: "inherit", backgroundColor: "transparent"}}>
+        <div
+            style={{
+                color: "inherit",
+                backgroundColor: semanticColor.core.transparent,
+            }}
+        >
             <span className="example">Valid usage</span>
         </div>
+    );
+}
+
+// ✅ Valid: PhosphorIcon with a semantic color token
+export function ValidPhosphorIconExample() {
+    return (
+        <PhosphorIcon
+            icon={magnifyingGlassIcon}
+            color={semanticColor.core.foreground.neutral.strong}
+        />
+    );
+}
+
+// ✅ Valid: fill on <mask> children has masking semantics, not color
+export function ValidSvgMaskExample() {
+    return (
+        <svg viewBox="0 0 100 100">
+            <defs>
+                <mask id="circle-mask">
+                    {/* fill here means "include this area in the mask" */}
+                    <rect fill="white" width="100" height="100" />
+                    <circle fill="black" cx="50" cy="50" r="30" />
+                    {/* <use> inside <mask> also has masking semantics */}
+                    <use fill="white" xlinkHref="#reusable-shape" />
+                </mask>
+            </defs>
+        </svg>
     );
 }
 
@@ -42,6 +78,11 @@ export function InvalidExample() {
     );
 }
 
+// ❌ Invalid: `transparent` keyword — use semanticColor.core.transparent instead
+export function InvalidTransparentExample() {
+    return <div style={{backgroundColor: "transparent"}} />;
+}
+
 // ❌ Invalid: hardcoded color in WB multi-part styles prop
 export function InvalidStylesPropExample() {
     // @ts-expect-error — simplified for demo purposes
@@ -66,30 +107,9 @@ export function InvalidSvgFillExample() {
     );
 }
 
-// ✅ Valid: fill on <mask> and its children has masking semantics
-// (white = include area, black = exclude area) — not a visible color.
-// These should NOT be flagged.
-export function ValidSvgMaskExample() {
-    return (
-        <svg viewBox="0 0 100 100">
-            <defs>
-                <mask id="circle-mask">
-                    {/* fill here means "include this area in the mask" */}
-                    <rect fill="white" width="100" height="100" />
-                    <circle fill="black" cx="50" cy="50" r="30" />
-                    {/* <use> inside <mask> also has masking semantics */}
-                    <use fill="white" xlinkHref="#reusable-shape" />
-                </mask>
-            </defs>
-            <rect width="100" height="100" fill="blue" mask="url(#circle-mask)" />
-        </svg>
-    );
-}
-
 // ❌ Invalid: hardcoded color on PhosphorIcon's color prop
 export function InvalidPhosphorIconExample() {
-    // @ts-expect-error — simplified for demo purposes
-    return <PhosphorIcon color="#3C6D4A" />;
+    return <PhosphorIcon icon={magnifyingGlassIcon} color="#3C6D4A" />;
 }
 
 // Suppress unused variable warnings for the invalid style objects above

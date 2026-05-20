@@ -31,7 +31,6 @@ ruleTester.run(ruleName, rule, {
         {code: `<div style={{color: "currentColor"}} />`},
         {code: `StyleSheet.create({root: {color: "initial"}})`},
         {code: `StyleSheet.create({root: {color: "unset"}})`},
-        {code: `StyleSheet.create({root: {color: "transparent"}})`},
         // CSS custom properties (variables) are allowed
         {
             code: `StyleSheet.create({root: {color: "var(--color-primary)"}})`,
@@ -64,7 +63,11 @@ ruleTester.run(ruleName, rule, {
         // SVG fill with allowed values
         {code: `<path fill="currentColor" />`},
         {code: `<path fill="none" />`},
-        {code: `<path fill="transparent" />`},
+        // SVG paint server reference — url() fragment should not false-positive
+        {code: `<path fill="url(#gradient)" />`},
+        {
+            code: `StyleSheet.create({root: {backgroundImage: "url('icon.svg#abc')"}})`,
+        },
         // color prop with token reference
         {
             code: `<PhosphorIcon color={semanticColor.core.foreground.primary} />`,
@@ -147,7 +150,19 @@ ruleTester.run(ruleName, rule, {
             code: `StyleSheet.create({root: {color: "hwb(194 0% 0%)"}})`,
             errors: [{messageId: "noHardcodedColor"}],
         },
-        // ── Named colors ──────────────────────────────────────────────
+        // ── Named colors (including transparent) ─────────────────────
+        {
+            code: `StyleSheet.create({root: {color: "transparent"}})`,
+            errors: [{messageId: "noHardcodedColor"}],
+        },
+        {
+            code: `<div style={{backgroundColor: "transparent"}} />`,
+            errors: [{messageId: "noHardcodedColor"}],
+        },
+        {
+            code: `<path fill="transparent" />`,
+            errors: [{messageId: "noHardcodedColor"}],
+        },
         {
             code: `StyleSheet.create({root: {color: "red"}})`,
             errors: [{messageId: "noHardcodedColor"}],

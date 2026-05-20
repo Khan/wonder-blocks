@@ -81,12 +81,13 @@ const COLOR_PROPERTIES = new Set([
     "lightingColor",
 ]);
 
-// Full CSS named color list (excluding the following CSS keywords, which are
-// valid for resetting or inheriting values and are intentionally not flagged):
-//   transparent  — explicitly no color; valid for clearing backgrounds/borders
+// Full CSS named color list (including `transparent`).
+// The following CSS keywords are intentionally NOT flagged:
 //   currentColor — inherits the nearest ancestor's color; valid when that
 //                  ancestor already uses a semanticColor token
 //   inherit / initial / unset / revert — CSS-wide keywords
+// `transparent` IS flagged: use semanticColor.core.transparent instead so
+// the value participates in theming.
 const CSS_NAMED_COLORS = [
     "aliceblue",
     "antiquewhite",
@@ -227,6 +228,7 @@ const CSS_NAMED_COLORS = [
     "steelblue",
     "tan",
     "teal",
+    "transparent",
     "thistle",
     "tomato",
     "turquoise",
@@ -260,7 +262,11 @@ const COLOR_VALUE_PATTERNS: ReadonlyArray<RegExp> = [
 ];
 
 function containsHardcodedColor(value: string): boolean {
-    return COLOR_VALUE_PATTERNS.some((re) => re.test(value));
+    // Strip url(...) substrings first: fragment identifiers in SVG paint
+    // references (fill: "url(#gradient)") and image URLs may contain
+    // hex-like sequences that would otherwise false-positive.
+    const stripped = value.replace(/url\([^)]*\)/gi, "");
+    return COLOR_VALUE_PATTERNS.some((re) => re.test(stripped));
 }
 
 function getStringValue(node: TSESTree.Node | null | undefined): string | null {
@@ -302,7 +308,7 @@ export default createRule<Options, MessageIds>({
         },
         messages: {
             noHardcodedColor:
-                "Avoid hardcoded color value '{{value}}'. Use a semantic color token from @khanacademy/wonder-blocks-tokens instead (e.g. semanticColor.core.foreground.primary) to support theming and dark mode.",
+                "Avoid hardcoded color value '{{value}}'. Use a semantic color token from @khanacademy/wonder-blocks-tokens instead (e.g. semanticColor.core.foreground.primary) to support theming and dark mode. See https://khan.github.io/wonder-blocks/?path=/docs/packages-tokens-semantic-colors-groups--docs for available tokens.",
         },
         schema: [],
         type: "suggestion",

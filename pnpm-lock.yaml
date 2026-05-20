@@ -498,12 +498,21 @@ importers:
       '@khanacademy/wonder-blocks-form':
         specifier: workspace:*
         version: link:../../wonder-blocks-form
+      '@khanacademy/wonder-blocks-icon':
+        specifier: workspace:*
+        version: link:../../wonder-blocks-icon
       '@khanacademy/wonder-blocks-link':
         specifier: workspace:*
         version: link:../../wonder-blocks-link
+      '@khanacademy/wonder-blocks-tokens':
+        specifier: workspace:*
+        version: link:../../wonder-blocks-tokens
       '@khanacademy/wonder-blocks-typography':
         specifier: workspace:*
         version: link:../../wonder-blocks-typography
+      '@phosphor-icons/core':
+        specifier: 'catalog:'
+        version: 2.1.1
       '@types/react':
         specifier: '18'
         version: 18.3.18

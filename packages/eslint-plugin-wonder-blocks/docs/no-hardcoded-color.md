@@ -13,7 +13,7 @@ This rule flags hardcoded color values in:
 
 Hardcoded colors prevent the UI from adapting to themes (including dark mode) and bypass the Wonder Blocks design system's semantic color layer.
 
-Use semantic color tokens from `@khanacademy/wonder-blocks-tokens` instead, which resolve to the correct value for the active theme at runtime.
+Use semantic color tokens from `@khanacademy/wonder-blocks-tokens` instead, which resolve to the correct value for the active theme at runtime. See the [Semantic Colors docs](https://khan.github.io/wonder-blocks/?path=/docs/packages-tokens-semantic-colors-groups--docs) for available tokens.
 
 Detected color formats:
 
@@ -22,17 +22,18 @@ Detected color formats:
 - **HSL / HSLA**: `hsl(120, 100%, 50%)`, `hsla(120, 100%, 50%, 0.3)`
 - **HWB**: `hwb(194 0% 0%)`
 - **CSS Color Level 4 functions**: `color()`, `lab()`, `lch()`, `oklab()`, `oklch()`
-- **CSS named colors**: `red`, `blue`, `white`, `black`, etc.
+- **CSS named colors**: `red`, `blue`, `white`, `black`, `transparent`, etc.
 
 The following CSS keywords are **not** flagged:
 
 | Keyword | Why it's allowed |
 |---|---|
 | `currentColor` | Inherits the computed `color` value from the nearest ancestor. Valid when that ancestor already uses a `semanticColor` token, so the value participates in theming. |
-| `transparent` | Explicitly no color; valid for clearing backgrounds or borders. |
 | `inherit` | Inherits the property value from the parent element. |
 | `initial` | Resets the property to its browser default. |
 | `unset` | Resets the property as if no value had been set. |
+
+> **Note:** `transparent` is flagged. Use `semanticColor.core.transparent` instead so the value participates in theming.
 
 Examples of **incorrect** code:
 
@@ -52,13 +53,14 @@ const styles = StyleSheet.create({
 
 ```tsx
 // Inline style
-<div style={{color: "#fff", backgroundColor: "hsl(200, 100%, 50%)"}} />
+<div style={{color: "#fff", backgroundColor: "transparent"}} />
 ```
 
 ```tsx
 // SVG presentation attributes
 <path fill="#ff0000" />
 <circle stroke="blue" />
+<path fill="transparent" />
 ```
 
 ```tsx
@@ -77,6 +79,8 @@ const styles = StyleSheet.create({
         color: semanticColor.core.foreground.primary,
         backgroundColor: semanticColor.core.background.primary,
         borderColor: semanticColor.core.border.neutral.subtle,
+        // Use semanticColor.core.transparent instead of the "transparent" keyword
+        outlineColor: semanticColor.core.transparent,
     },
 });
 ```
@@ -95,7 +99,6 @@ const styles = StyleSheet.create({
 const styles = StyleSheet.create({
     root: {
         color: "inherit",
-        backgroundColor: "transparent",
     },
 });
 ```
@@ -111,9 +114,18 @@ const styles = StyleSheet.create({
 ```
 
 ```tsx
-// SVG presentation attributes accept currentColor, none, or transparent
+// SVG presentation attributes accept currentColor and none
 <path fill="currentColor" />
 <path fill="none" />
+```
+
+```tsx
+// fill on <mask>, <clipPath>, and <pattern> elements (and their children)
+// controls masking semantics (white = include, black = exclude), not color.
+// These are not flagged.
+<mask fill="white">
+    <use fill="black" xlinkHref="#shape" />
+</mask>
 ```
 
 ```tsx
