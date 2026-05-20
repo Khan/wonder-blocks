@@ -104,7 +104,7 @@ export const Overlays: StoryObj = {
                         </Heading>
                         <iframe
                             title={component.name}
-                            src={`/iframe.html?id=${component.storyId}&globals=theme:${globals.theme};direction:${globals.direction}`}
+                            src={`./iframe.html?id=${component.storyId}&globals=theme:${globals.theme};direction:${globals.direction}`}
                             style={{
                                 height: "500px",
                                 border: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
