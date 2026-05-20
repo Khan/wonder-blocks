@@ -331,12 +331,6 @@ const preview: Preview = {
     initialGlobals: {
         // 👇 Set the initial background color
         backgrounds: {value: "baseDefault"},
-        // Set the default theme so `data-wb-theme="default"` is always present on
-        // <body>. This lets a11y rule selectors (e.g.
-        // `:not([data-wb-theme="default"] *)`) reliably scope to a theme,
-        // including in `test:storybook` where the theme global would
-        // otherwise be undefined.
-        theme: "default",
     },
 };
 
