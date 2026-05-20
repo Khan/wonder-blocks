@@ -49,9 +49,9 @@ export const IconContrast = {
 export const RightToLeftIcons = {
     render: () => (
         <View
+            dir="ltr"
             style={{
                 flexDirection: "row",
-                direction: "ltr", // eslint-disable-line @khanacademy/wonder-blocks/require-logical-properties-for-rtl
             }}
         >
             <PhosphorIcon icon={IconMappings.caretRight} />

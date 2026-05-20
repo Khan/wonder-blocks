@@ -231,9 +231,9 @@ const sharedStyles = StyleSheet.create({
     },
     iconWrapper: {
         padding: theme.icon.padding,
-        // View has a default minWidth of 0, which causes the label text
+        // View has a default minInlineSize of 0, which causes the label text
         // to encroach on the icon when it needs to truncate. We can fix
-        // this by setting the minWidth to auto.
+        // this by setting the minInlineSize to auto.
         minInlineSize: "auto",
     },
     endIconWrapper: {

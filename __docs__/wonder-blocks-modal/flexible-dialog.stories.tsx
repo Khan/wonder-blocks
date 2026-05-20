@@ -403,7 +403,7 @@ export const WithFullScreenStyling: StoryComponentType = () => {
                     maxWidth: "none",
                     maxHeight: "none",
                     height: "100%",
-                    minHeight: "100vh",
+                    minBlockSize: "100vh",
                     margin: 0,
                 },
             }}

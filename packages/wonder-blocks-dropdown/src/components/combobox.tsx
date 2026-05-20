@@ -669,7 +669,7 @@ export default function Combobox({
                                             // The listbox width is at least the
                                             // width of the combobox.
                                             {
-                                                minWidth:
+                                                minInlineSize:
                                                     rootNodeRef?.current
                                                         ?.offsetWidth,
                                             },
