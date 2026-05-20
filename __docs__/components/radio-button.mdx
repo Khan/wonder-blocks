@@ -13,7 +13,10 @@ import {NeutralBadge, StatusBadge} from "@khanacademy/wonder-blocks-badge";
 
 # Radio Button
 
-<StatusBadge kind="warning" label="Draft" /> <NeutralBadge label="Mutually exclusive selection" />
+<div style={{display: "flex", gap: "8px", marginBottom: "8px"}}>
+  <StatusBadge kind="warning" label="Draft" />
+  <NeutralBadge label="Mutually exclusive selection" />
+</div>
 
 A mutually exclusive selection mechanism used to allow users to choose only one option from a small, visible set of choices.
 
@@ -23,27 +26,11 @@ A mutually exclusive selection mechanism used to allow users to choose only one 
 
 The choice to use radio buttons is determined by the need to present a small, visible set of mutually exclusive options where only one can be selected at a time.
 
-Dimension
-
-Logic
-
-List size
-
-Interaction
-
-Rule
-
-Must be used for mutually exclusive selections where only one item can be chosen.
-
-Used for small, visible lists, typically 2 to 4 options, where the user must compare choices easily without an extra action.
-
-Preferred over a single-select Dropdown when the list is small, as it provides lower interaction cost (one action vs. two actions).
-
-Example use
-
-Filtering messages by importance: "High," "Medium," or "Low".
-
-Selecting a Country or Status (Complete, In Progress, To Do).
+| Dimension | Rule | Example use |
+| --- | --- | --- |
+| Logic | Must be used for mutually exclusive selections where only one item can be chosen. | Filtering messages by importance: "High," "Medium," or "Low". |
+| List size | Used for small, visible lists, typically 2 to 4 options, where the user must compare choices easily without an extra action. | Selecting a Country or Status (Complete, In Progress, To Do). |
+| Interaction | Preferred over a single-select Dropdown when the list is small, as it provides lower interaction cost (one action vs. two actions). |  |
 
 ## When NOT to use
 
