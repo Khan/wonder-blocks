@@ -8,7 +8,7 @@ import {DrawerDialog, DrawerLauncher} from "@khanacademy/wonder-blocks-modal";
 
 import type {ModalElement} from "../../packages/wonder-blocks-modal/src/util/types";
 
-import {allModes} from "../../.storybook/modes";
+import {allModes, allThemeModes} from "../../.storybook/modes";
 import {reallyLongText} from "../components/text-for-testing";
 
 const DefaultModal = (): ModalElement => (
@@ -28,10 +28,9 @@ export default {
     parameters: {
         chromatic: {
             modes: {
-                default: allModes.themeDefault,
                 "default rtl": allModes["themeDefault rtl"],
                 small: allModes.small,
-                thunderblocks: allModes.themeThunderBlocks,
+                ...allThemeModes,
             },
         },
     },

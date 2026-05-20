@@ -636,13 +636,6 @@ export const FocusManagementPattern: StoryComponentType = () => {
     return <CompletionModalContainer />;
 };
 
-FocusManagementPattern.parameters = {
-    chromatic: {
-        // All the examples for ModalLauncher are behavior based, not visual.
-        disableSnapshot: true,
-    },
-};
-
 export const FocusTrap: StoryComponentType = () => {
     const [selectedValue, setSelectedValue] = React.useState<any>(null);
 

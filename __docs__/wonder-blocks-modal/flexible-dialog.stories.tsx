@@ -12,7 +12,7 @@ import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 
 import ComponentInfo from "../components/component-info";
 import FlexibleDialogArgTypes from "./flexible-dialog.argtypes";
-import {allModes} from "../../.storybook/modes";
+import {allModes, allThemeModes} from "../../.storybook/modes";
 
 import celebrationBg from "../../static/celebration_bg.svg";
 import celebrationChest from "../../static/celebration-chest.svg";
@@ -47,8 +47,7 @@ export default {
         chromatic: {
             modes: {
                 small: allModes.small,
-                large: allModes.large,
-                thunderblocks: allModes.themeThunderBlocks,
+                ...allThemeModes,
             },
         },
     },

@@ -18,7 +18,7 @@ import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 
 import ComponentInfo from "../components/component-info";
 import OnePaneDialogArgTypes from "./one-pane-dialog.argtypes";
-import {allModes} from "../../.storybook/modes";
+import {allModes, allThemeModes} from "../../.storybook/modes";
 import {reallyLongText} from "../components/text-for-testing";
 
 export default {
@@ -50,8 +50,7 @@ export default {
         chromatic: {
             modes: {
                 small: allModes.small,
-                large: allModes.large,
-                thunderblocks: allModes.themeThunderBlocks,
+                ...allThemeModes,
             },
         },
     },
