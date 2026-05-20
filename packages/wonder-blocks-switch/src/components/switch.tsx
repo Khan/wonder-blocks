@@ -244,13 +244,13 @@ const _generateStyles = (
                 ...sharedSwitchStyles,
             },
             slider: {
-                transform: theme.slider.transform.default,
+                insetInlineStart: theme.slider.transform.default,
             },
             icon: {
                 color: disabled
                     ? baseStyles.color.bg.icon.disabledOn
                     : baseStyles.color.bg.icon.on,
-                transform: theme.icon.transform.default,
+                insetInlineStart: theme.icon.transform.default,
             },
         };
     } else {
