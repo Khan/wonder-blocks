@@ -27,10 +27,7 @@ export const multiColoredIcon = (
         <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
             <g>
                 <g>
-                    <mask
-                        id="mask-2"
-                        fill={semanticColor.core.background.base.default}
-                    >
+                    <mask id="mask-2" fill="white">
                         <use xlinkHref="#path-1" />
                     </mask>
                     <use

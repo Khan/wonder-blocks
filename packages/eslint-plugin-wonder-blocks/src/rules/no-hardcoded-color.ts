@@ -23,6 +23,11 @@ const JSX_COLOR_ATTR_NAMES = new Set([
     "color",
 ]);
 
+// SVG structural elements where `fill` controls masking/clipping semantics
+// (white = include, black = exclude) rather than a visible color.
+// Flagging these would produce false positives — the values must not change.
+const SVG_MASK_ELEMENTS = new Set(["mask", "clipPath", "pattern"]);
+
 // CSS properties that accept color values (camelCase).
 const COLOR_PROPERTIES = new Set([
     // Text & foreground
@@ -383,6 +388,36 @@ export default createRule<Options, MessageIds>({
                 // Direct JSX color attributes: fill="red", color="#fff", etc.
                 // These can be plain string literals OR expression containers.
                 if (JSX_COLOR_ATTR_NAMES.has(propName)) {
+                    // Skip elements whose fill controls masking semantics
+                    // (white=include, black=exclude) rather than visible color:
+                    // - The element itself is mask/clipPath/pattern
+                    // - OR any JSX ancestor is mask/clipPath/pattern (e.g.
+                    //   <mask><use fill="white" /></mask> — the <use> inherits
+                    //   the masking context and its fill is also non-color)
+                    const openingEl = node.parent;
+                    if (
+                        openingEl.type === "JSXOpeningElement" &&
+                        openingEl.name.type === "JSXIdentifier" &&
+                        SVG_MASK_ELEMENTS.has(openingEl.name.name)
+                    ) {
+                        return;
+                    }
+                    let ancestor: TSESTree.Node | undefined =
+                        node.parent.parent;
+                    while (ancestor) {
+                        if (
+                            ancestor.type === "JSXElement" &&
+                            ancestor.openingElement.name.type ===
+                                "JSXIdentifier" &&
+                            SVG_MASK_ELEMENTS.has(
+                                ancestor.openingElement.name.name,
+                            )
+                        ) {
+                            return;
+                        }
+                        ancestor = ancestor.parent;
+                    }
+
                     let strVal: string | null = null;
                     if (
                         propValue.type === "Literal" &&

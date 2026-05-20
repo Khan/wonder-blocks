@@ -73,6 +73,30 @@ ruleTester.run(ruleName, rule, {
         {
             code: `StyleSheet.create({root: {backgroundImage: "url('foo.png')"}})`,
         },
+        // fill on mask/clipPath/pattern controls masking semantics, not color
+        {code: `<mask fill="white"><rect /></mask>`},
+        {code: `<mask fill="black"><rect /></mask>`},
+        {code: `<mask fill="#fff"><rect /></mask>`},
+        {code: `<clipPath fill="white"><rect /></clipPath>`},
+        {code: `<pattern fill="black"><rect /></pattern>`},
+        // fill on children inside mask/clipPath/pattern also has masking semantics
+        {code: `<mask><use fill="white" xlinkHref="#p" /></mask>`},
+        {code: `<mask><use fill="black" xlinkHref="#p" /></mask>`},
+        {code: `<mask><use fill="#fff" xlinkHref="#p" /></mask>`},
+        {code: `<clipPath><use fill="white" xlinkHref="#p" /></clipPath>`},
+        // <use> that is a sibling of <mask> (not inside it) still uses masking
+        // semantics when it replicates the masked shape — but only the <use>
+        // inside <mask> is excluded; the sibling <use> has a real color fill
+        // and must use a semantic token. This test confirms the ancestor check
+        // does NOT skip siblings.
+        {
+            code: `
+                <g>
+                    <mask id="m"><use xlinkHref="#p" /></mask>
+                    <use id="Mask" fill={semanticColor.background} xlinkHref="#p" />
+                </g>
+            `,
+        },
     ],
     invalid: [
         // ── Hex colors ────────────────────────────────────────────────
@@ -269,6 +293,18 @@ ruleTester.run(ruleName, rule, {
         },
         {
             code: `<stop stopColor="#ffffff" />`,
+            errors: [{messageId: "noHardcodedColor"}],
+        },
+        // ── <use> sibling of <mask> with hardcoded fill ───────────────
+        // <use id="Mask" fill="#1865F2"> is a sibling, not a child, of <mask>.
+        // Its fill is a real visible color and must be flagged.
+        {
+            code: `
+                <g>
+                    <mask id="m"><use xlinkHref="#p" /></mask>
+                    <use id="Mask" fill="#1865F2" xlinkHref="#p" />
+                </g>
+            `,
             errors: [{messageId: "noHardcodedColor"}],
         },
         // ── color prop on WB components (e.g. PhosphorIcon) ───────────

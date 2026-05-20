@@ -66,6 +66,26 @@ export function InvalidSvgFillExample() {
     );
 }
 
+// ✅ Valid: fill on <mask> and its children has masking semantics
+// (white = include area, black = exclude area) — not a visible color.
+// These should NOT be flagged.
+export function ValidSvgMaskExample() {
+    return (
+        <svg viewBox="0 0 100 100">
+            <defs>
+                <mask id="circle-mask">
+                    {/* fill here means "include this area in the mask" */}
+                    <rect fill="white" width="100" height="100" />
+                    <circle fill="black" cx="50" cy="50" r="30" />
+                    {/* <use> inside <mask> also has masking semantics */}
+                    <use fill="white" xlinkHref="#reusable-shape" />
+                </mask>
+            </defs>
+            <rect width="100" height="100" fill="blue" mask="url(#circle-mask)" />
+        </svg>
+    );
+}
+
 // ❌ Invalid: hardcoded color on PhosphorIcon's color prop
 export function InvalidPhosphorIconExample() {
     // @ts-expect-error — simplified for demo purposes
