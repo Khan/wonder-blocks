@@ -62,6 +62,16 @@ ruleTester.run(ruleName, rule, {
         {code: '<div style={{cursor: "e-resize"}} />'},
         {code: '<div style={{backgroundPositionX: "left"}} />'},
 
+        // Zero X-offset shadows are not directional.
+        {
+            code: '<div style={{boxShadow: "0 4px 8px rgba(0,0,0,.2)"}} />',
+            options: [{warnShadows: true}],
+        },
+        {
+            code: '<div style={{boxShadow: "0px 4px 8px rgba(0,0,0,.2)"}} />',
+            options: [{warnShadows: true}],
+        },
+
         // When warnBackgroundPosition is explicitly off, directional bg is allowed.
         {
             code: '<div style={{backgroundPosition: "left top"}} />',

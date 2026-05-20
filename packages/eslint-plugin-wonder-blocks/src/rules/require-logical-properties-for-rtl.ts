@@ -400,7 +400,7 @@ export default createRule<Options, MessageIds>({
                 case "boxShadow":
                 case "textShadow": {
                     if (
-                        /^(?:inset\s+)?(?:-?(?:\d*\.\d+|\d+)|calc\(|var\()/.test(
+                        /^(?:inset\s+)?(?!0(?:\s|$|[a-zA-Z%]))(?:-?(?:\d*\.\d+|\d+)|calc\(|var\()/.test(
                             strVal,
                         ) &&
                         (options.warnShadows ?? false)
