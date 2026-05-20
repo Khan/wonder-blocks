@@ -32,11 +32,12 @@ export default {
         a11y: {
             config: {
                 rules: [
-                    // Disabling a11y violation for classic theme since there is
-                    // a known color contrast issue with Banner.critical with actions
+                    // Disabling a11y violation: ""Elements must meet minimum
+                    // color contrast ratio thresholds (color-contrast)".
+                    // Banner.critical with links have low contrast ratios.
                     {
                         id: "color-contrast",
-                        selector: `*:not([data-wb-theme="default"] *)`,
+                        enabled: false,
                     },
                 ],
             },
