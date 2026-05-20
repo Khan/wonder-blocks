@@ -210,6 +210,15 @@ export const LearningShadow = () => {
     );
 };
 
+export const LearningCharactersFlesh = () => {
+    return (
+        <ColorGroupStory
+            category={semanticColor.learning.characters.flesh}
+            group="learning.characters.flesh"
+        />
+    );
+};
+
 export const Khanmigo = () => {
     return (
         <ColorGroup
