@@ -410,6 +410,12 @@ export const AllBadgesScenarios: StoryComponentType = {
             </View>
         );
     },
+    parameters: {
+        chromatic: {
+            // Delay to allow the tooltip to render
+            delay: 500,
+        },
+    },
 };
 
 const styles = StyleSheet.create({
