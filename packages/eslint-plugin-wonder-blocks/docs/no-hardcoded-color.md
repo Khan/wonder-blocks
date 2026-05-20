@@ -13,7 +13,7 @@ This rule flags hardcoded color values in:
 
 Hardcoded colors prevent the UI from adapting to themes (including dark mode) and bypass the Wonder Blocks design system's semantic color layer.
 
-Use semantic color tokens from `@khanacademy/wonder-blocks-tokens` instead, which resolve to the correct value for the active theme at runtime. See the [Semantic Colors docs](https://khan.github.io/wonder-blocks/?path=/docs/packages-tokens-semantic-colors-groups--docs) for available tokens.
+Use semantic color tokens from `@khanacademy/wonder-blocks-tokens` instead, which resolve to the correct value for the active theme at runtime. See the [Semantic Color docs](https://khan.github.io/wonder-blocks/?path=/docs/foundations-using-color--docs) for available tokens.
 
 Detected color formats:
 

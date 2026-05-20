@@ -308,7 +308,7 @@ export default createRule<Options, MessageIds>({
         },
         messages: {
             noHardcodedColor:
-                "Avoid hardcoded color value '{{value}}'. Use a semantic color token from @khanacademy/wonder-blocks-tokens instead (e.g. semanticColor.core.foreground.primary) to support theming and dark mode. See https://khan.github.io/wonder-blocks/?path=/docs/packages-tokens-semantic-colors-groups--docs for available tokens.",
+                "Avoid hardcoded color value '{{value}}'. Use a semantic color token from @khanacademy/wonder-blocks-tokens instead (e.g. semanticColor.core.foreground.primary) to support theming and dark mode. See https://khan.github.io/wonder-blocks/?path=/docs/foundations-using-color--docs for available tokens.",
         },
         schema: [],
         type: "suggestion",
