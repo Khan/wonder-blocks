@@ -85,7 +85,6 @@ describe("Announcer utility functions", () => {
                 expect(dictionary.size).toBe(1);
             },
         );
-
     });
 
     describe("removeMessage", () => {

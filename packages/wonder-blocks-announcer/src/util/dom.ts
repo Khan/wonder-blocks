@@ -40,13 +40,7 @@ export function createDuplicateRegions(
     idSuffix: string = "",
 ): HTMLElement[] {
     const result = new Array(regionCount).fill(0).map((el, i) => {
-        const region = createRegion(
-            level,
-            i,
-            layerId,
-            dictionary,
-            idSuffix,
-        );
+        const region = createRegion(level, i, layerId, dictionary, idSuffix);
         wrapper.appendChild(region);
         return region;
     });

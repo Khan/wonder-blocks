@@ -1,5 +1,5 @@
 import * as React from "react";
-import {render, screen, waitFor} from "@testing-library/react";
+import {render, screen, waitFor, within} from "@testing-library/react";
 import Announcer, {REMOVAL_TIMEOUT_DELAY} from "../announcer";
 import {AnnounceMessageButton} from "./components/announce-message-button";
 import {announceMessage} from "../announce-message";
@@ -43,8 +43,10 @@ describe("Announcer.announceMessage", () => {
 
         // ASSERT: expect live regions to exist
         const wrapperElement = screen.getByTestId("wbAnnounce");
-        const regionElements = wrapperElement.querySelectorAll("[aria-live]");
         expect(wrapperElement).toBeInTheDocument();
+        const regionElements = within(wrapperElement).getAllByTestId(
+            /^wbARegion-(polite|assertive)\d$/,
+        );
         expect(regionElements).toHaveLength(4);
     });
 

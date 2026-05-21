@@ -1,5 +1,5 @@
 import * as React from "react";
-import {render} from "@testing-library/react";
+import {render, screen, within} from "@testing-library/react";
 
 import * as Announcer from "@khanacademy/wonder-blocks-announcer";
 
@@ -118,16 +118,19 @@ describe("useModalAnnouncer — live region DOM structure", () => {
 
     it("attaches live regions inside the dialog without a role attribute", () => {
         // Arrange — no mock so the real announcer writes to the DOM
-        const {getByRole} = render(<TestDialog />);
+        render(<TestDialog />);
 
         // Act
-        const dialog = getByRole("dialog");
-        const liveRegions = dialog.querySelectorAll("[aria-live]");
+        const dialog = screen.getByRole("dialog");
+        const liveRegions = within(dialog).getAllByTestId(
+            /wbARegion-modal-(polite|assertive)\d/,
+        );
 
         // Assert
         expect(liveRegions.length).toBeGreaterThan(0);
         liveRegions.forEach((region) => {
-            expect(region.getAttribute("role")).toBeNull();
+            expect(region).toHaveAttribute("aria-live");
+            expect(region).not.toHaveAttribute("role");
         });
     });
 });
