@@ -76,7 +76,7 @@ export const styles: StyleDeclaration = StyleSheet.create({
     row: {
         flexDirection: "row",
         alignItems: "center",
-        marginBottom: sizing.size_080,
+        marginBlockEnd: sizing.size_080,
     },
     rowWithGap: {
         flexDirection: "row",
@@ -84,22 +84,22 @@ export const styles: StyleDeclaration = StyleSheet.create({
         gap: sizing.size_160,
     },
     button: {
-        marginRight: sizing.size_080,
+        marginInlineEnd: sizing.size_080,
     },
     truncatedButton: {
-        maxWidth: 200,
-        marginBottom: sizing.size_160,
+        maxInlineSize: 200,
+        marginBlockEnd: sizing.size_160,
     },
     fillSpace: {
-        minWidth: 140,
+        minInlineSize: 140,
     },
     example: {
         background: semanticColor.core.background.base.subtle,
         padding: sizing.size_160,
     },
     label: {
-        marginTop: sizing.size_240,
-        marginBottom: sizing.size_080,
+        marginBlockStart: sizing.size_240,
+        marginBlockEnd: sizing.size_080,
     },
 });
 
@@ -978,7 +978,7 @@ export const PressDurationTracking: StoryComponentType = {
                         backgroundColor:
                             semanticColor.core.background.base.subtle,
                         borderRadius: 4,
-                        maxWidth: 400,
+                        maxInlineSize: 400,
                     }}
                 >
                     <BodyText size="medium" weight="bold">
@@ -1005,7 +1005,7 @@ export const PressDurationTracking: StoryComponentType = {
                         Interaction History:
                     </BodyText>
                     {interactionHistory.length > 0 ? (
-                        <View style={{marginTop: sizing.size_080}}>
+                        <View style={{marginBlockStart: sizing.size_080}}>
                             {interactionHistory.map((entry, index) => (
                                 <BodyText
                                     key={index}

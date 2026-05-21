@@ -85,7 +85,7 @@ export const SemanticColors = () => (
             {
                 label: "CSS Variable",
                 cell: (row) => (
-                    <Code style={{minWidth: "200px"}}>{row.css}</Code>
+                    <Code style={{minInlineSize: "200px"}}>{row.css}</Code>
                 ),
             },
             {

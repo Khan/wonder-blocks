@@ -2,7 +2,7 @@ import * as React from "react";
 import {CSSProperties, StyleSheet} from "aphrodite";
 
 import {AriaProps, View, addStyle} from "@khanacademy/wonder-blocks-core";
-import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {useId} from "react";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
@@ -107,20 +107,20 @@ const sharedStyles = StyleSheet.create({
     } as any,
     slider: {
         position: "absolute",
-        top: theme.slider.position.top,
-        left: theme.slider.position.left,
+        insetBlockStart: theme.slider.position.top,
+        insetInlineStart: theme.slider.position.left,
         height: theme.slider.sizing.height,
         width: theme.slider.sizing.width,
         borderRadius: theme.root.border.radius.default,
         backgroundColor: baseStyles.color.bg.slider.on,
-        transition: theme.slider.transform.transition,
+        transition: "inset-inline-start 0.15s ease-in-out",
     },
     icon: {
         position: "absolute",
-        top: theme.icon.position.top,
-        left: theme.icon.position.left,
+        insetBlockStart: theme.icon.position.top,
+        insetInlineStart: theme.icon.position.left,
         zIndex: 1,
-        transition: theme.icon.transform.transition,
+        transition: "inset-inline-start 0.15s ease-in-out",
     },
 });
 
@@ -244,13 +244,17 @@ const _generateStyles = (
                 ...sharedSwitchStyles,
             },
             slider: {
-                transform: theme.slider.transform.default,
+                // Positions the slider at the far end of the track:
+                // track width - slider width - edge offset
+                insetInlineStart: `calc(100% - ${sizing.size_200} - ${sizing.size_020})`,
             },
             icon: {
                 color: disabled
                     ? baseStyles.color.bg.icon.disabledOn
                     : baseStyles.color.bg.icon.on,
-                transform: theme.icon.transform.default,
+                // Positions the icon at the far end of the track:
+                // track width - icon width (small = size_160) - edge offset
+                insetInlineStart: `calc(100% - ${sizing.size_160} - ${sizing.size_040})`,
             },
         };
     } else {

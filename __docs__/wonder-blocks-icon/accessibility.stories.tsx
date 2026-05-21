@@ -31,7 +31,7 @@ export const IconContrast = {
         <View
             style={{
                 flexDirection: "row",
-                marginBottom: sizing.size_080,
+                marginBlockEnd: sizing.size_080,
             }}
         >
             <LabelMedium>High contrast icon (GOOD):</LabelMedium>
@@ -49,9 +49,9 @@ export const IconContrast = {
 export const RightToLeftIcons = {
     render: () => (
         <View
+            dir="ltr"
             style={{
                 flexDirection: "row",
-                direction: "ltr",
             }}
         >
             <PhosphorIcon icon={IconMappings.caretRight} />

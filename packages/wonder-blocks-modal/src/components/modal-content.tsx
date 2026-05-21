@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     wrapperSmallHeight: {
         [modalMediaQuery.smMinOrSmallerHeight as any]: {
             flex: "unset",
-            minHeight: "unset",
+            minBlockSize: "unset",
             overflow: "unset",
         },
     },
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
 
     content: {
         flex: 1,
-        minHeight: "100%",
+        minBlockSize: "100%",
         padding: theme.panel.layout.gap.default,
         boxSizing: "border-box",
         [modalMediaQuery.midOrSmaller as any]: {
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     contentSmallHeight: {
         [modalMediaQuery.smMinOrSmallerHeight as any]: {
             flex: "unset",
-            minHeight: "unset",
+            minBlockSize: "unset",
             overflow: "unset",
         },
     },
