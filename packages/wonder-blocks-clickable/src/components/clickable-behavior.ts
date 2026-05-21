@@ -158,6 +158,14 @@ interface CommonProps extends ExposedEventHandlers {
      * @see https://reactrouter.com/6.30.0/components/link#viewtransition
      */
     viewTransition?: boolean;
+    /**
+     * Adds state to the destination's location, accessible via
+     * `useLocation().state` on the target route. Only has effect for
+     * client-side navigation.
+     *
+     * @see https://reactrouter.com/6.30.0/components/link#state
+     */
+    state?: unknown;
 }
 
 type Props =
@@ -385,6 +393,7 @@ export default class ClickableBehavior extends React.Component<
                     // @see https://remix.run/docs/en/main/hooks/use-navigate#options
                     navigate(href, {
                         viewTransition: this.props.viewTransition,
+                        state: this.props.state,
                     });
                     this.setState({waiting: false});
                 } else {

@@ -142,6 +142,16 @@ type CommonProps = AriaProps & {
      * @see https://reactrouter.com/6.30.0/components/link#viewtransition
      */
     viewTransition?: boolean;
+
+    /**
+     * Adds state to the destination's location, accessible via
+     * `useLocation().state` on the target route. Only has effect for
+     * client-side navigation (i.e. when the underlying react-router `Link` is
+     * used).
+     *
+     * @see https://reactrouter.com/6.30.0/components/link#state
+     */
+    state?: unknown;
 };
 
 export type SharedProps =
@@ -210,6 +220,7 @@ const Link = React.forwardRef(function Link(
         target = undefined,
         inline = false,
         viewTransition = false,
+        state,
         ...sharedProps
     } = props;
 
@@ -233,12 +244,13 @@ const Link = React.forwardRef(function Link(
                 onKeyDown={onKeyDown}
                 onKeyUp={onKeyUp}
                 viewTransition={viewTransition}
+                state={state}
             >
-                {(state, {...childrenProps}) => {
+                {(clickableState, {...childrenProps}) => {
                     return (
                         <LinkCore
                             {...sharedProps}
-                            {...state}
+                            {...clickableState}
                             {...childrenProps}
                             skipClientNav={skipClientNav}
                             href={href}
@@ -247,6 +259,7 @@ const Link = React.forwardRef(function Link(
                             inline={inline}
                             ref={ref}
                             viewTransition={viewTransition}
+                            state={state}
                         >
                             {children}
                         </LinkCore>
@@ -266,12 +279,13 @@ const Link = React.forwardRef(function Link(
                 onKeyDown={onKeyDown}
                 onKeyUp={onKeyUp}
                 viewTransition={viewTransition}
+                state={state}
             >
-                {(state, {...childrenProps}) => {
+                {(clickableState, {...childrenProps}) => {
                     return (
                         <LinkCore
                             {...sharedProps}
-                            {...state}
+                            {...clickableState}
                             {...childrenProps}
                             skipClientNav={skipClientNav}
                             href={href}
@@ -280,6 +294,7 @@ const Link = React.forwardRef(function Link(
                             inline={inline}
                             ref={ref}
                             viewTransition={viewTransition}
+                            state={state}
                         >
                             {children}
                         </LinkCore>
