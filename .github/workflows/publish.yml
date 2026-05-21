@@ -172,14 +172,13 @@ jobs:
         if: |
             (github.event_name == 'workflow_dispatch' && inputs.run_type == 'snapshot') ||
             (github.event_name == 'pull_request' && !startsWith(github.head_ref, 'changeset-release/'))
-        runs-on: ubuntu-latest
+        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && 'ubuntu-latest' || 'ephemeral-runner' }}
         permissions:
             id-token: write # required for publishing to npm with provenance
             issues: write # required because we write a comment on the PR
             pull-requests: write # required because we create a comment on the PR
         strategy:
             matrix:
-                os: [ubuntu-latest]
                 node-version: [24.x]
         steps:
             # We need to checkout all history, so that the changeset tool can diff it
