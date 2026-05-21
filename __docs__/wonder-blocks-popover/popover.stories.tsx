@@ -884,6 +884,40 @@ export const WithCustomAriaDescribedBy: StoryComponentType = {
 };
 
 /**
+ * The `titleHeadingTag` prop allows customizing the heading level used for the
+ * popover title. It defaults to `"h4"`. This does not affect the visual appearance of the title.
+ */
+export const WithTitleHeadingTag: StoryComponentType = {
+    render: function Render() {
+        const [opened, setOpened] = React.useState(false);
+        return (
+            <Popover
+                opened={opened}
+                onClose={() => setOpened(false)}
+                content={
+                    <PopoverContent
+                        titleHeadingTag="h2"
+                        title="Title rendered as h2"
+                        content="This popover title is rendered as an h2 element instead of the default h4. This does not affect the visual appearance of the title."
+                        closeButtonVisible
+                    />
+                }
+            >
+                <Button onClick={() => setOpened(true)}>
+                    Open popover with h2 title
+                </Button>
+            </Popover>
+        );
+    },
+    parameters: {
+        chromatic: {
+            // Popover is closed by default, so we don't need to test it.
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
  * If the Popover is placed near the edge of the viewport, default spacing of
  * 12px is applied to provide spacing between the Popover and the viewport. This
  * spacing value can be overridden using the `viewportPadding` prop.

@@ -92,7 +92,7 @@ describe("PopoverContent", () => {
     });
 
     it("should render the title as h4 by default", () => {
-        // Arrange
+        // Act
         render(<PopoverContent title="Title" content="content" />);
 
         // Assert
@@ -102,7 +102,7 @@ describe("PopoverContent", () => {
     });
 
     it("should render the title using the heading tag specified by titleHeadingTag", () => {
-        // Arrange
+        // Act
         render(
             <PopoverContent
                 title="Title"

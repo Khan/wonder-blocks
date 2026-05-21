@@ -84,7 +84,7 @@ export const WithIcon: StoryComponentType = {
 
 /**
  * Use the `titleHeadingTag` prop to override the heading level of the popover
- * title. The default is `h4`.
+ * title. The default is `h4`. This does not affect the visual appearance of the title.
  */
 export const WithTitleHeadingTag: StoryComponentType = {
     args: {

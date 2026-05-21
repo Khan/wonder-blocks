@@ -22,6 +22,7 @@ type CommonProps = AriaProps & {
     title: string;
     /**
      * The heading tag for the popover title. Defaults to `"h4"`.
+     * This does not affect the visual appearance of the title.
      */
     titleHeadingTag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
     /**
@@ -238,7 +239,8 @@ export default class PopoverContent extends React.Component<Props> {
 
                                 <View style={styles.text}>
                                     <Heading
-                                        tag={titleHeadingTag ?? "h4"}
+                                        size="medium"
+                                        tag={titleHeadingTag}
                                         id={`${uniqueId}-title`}
                                         style={styles.title}
                                     >
