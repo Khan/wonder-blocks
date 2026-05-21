@@ -172,7 +172,7 @@ jobs:
         if: |
             (github.event_name == 'workflow_dispatch' && inputs.run_type == 'snapshot') ||
             (github.event_name == 'pull_request' && !startsWith(github.head_ref, 'changeset-release/'))
-        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && 'ubuntu-latest' || 'ephemeral-runner' }}
+        runs-on: ubuntu-22.04
         permissions:
             id-token: write # required for publishing to npm with provenance
             issues: write # required because we write a comment on the PR
