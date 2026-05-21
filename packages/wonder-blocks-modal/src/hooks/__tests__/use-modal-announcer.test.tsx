@@ -110,3 +110,24 @@ describe("useModalAnnouncer", () => {
         expect(refCallback).toHaveBeenCalledWith(expect.any(HTMLElement));
     });
 });
+
+describe("useModalAnnouncer — live region DOM structure", () => {
+    afterEach(() => {
+        jest.restoreAllMocks();
+    });
+
+    it("attaches live regions inside the dialog without a role attribute", () => {
+        // Arrange — no mock so the real announcer writes to the DOM
+        const {getByRole} = render(<TestDialog />);
+
+        // Act
+        const dialog = getByRole("dialog");
+        const liveRegions = dialog.querySelectorAll("[aria-live]");
+
+        // Assert
+        expect(liveRegions.length).toBeGreaterThan(0);
+        liveRegions.forEach((region) => {
+            expect(region.getAttribute("role")).toBeNull();
+        });
+    });
+});

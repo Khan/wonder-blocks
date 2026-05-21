@@ -81,24 +81,11 @@ describe("Announcer utility functions", () => {
 
                 // Assert
                 expect(region.getAttribute("aria-live")).toBe(politenessLevel);
-                expect(region.getAttribute("role")).toBe("log");
+                expect(region.getAttribute("role")).toBeNull();
                 expect(dictionary.size).toBe(1);
             },
         );
 
-        test("it allows the role to be overridden", () => {
-            const dictionary = new Map();
-            const region = createRegion(
-                "polite",
-                0,
-                "document",
-                dictionary,
-                "timer",
-            );
-
-            expect(region.getAttribute("aria-live")).toBe("polite");
-            expect(region.getAttribute("role")).toBe("timer");
-        });
     });
 
     describe("removeMessage", () => {

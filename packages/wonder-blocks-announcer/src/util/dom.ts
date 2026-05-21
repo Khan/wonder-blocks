@@ -45,7 +45,6 @@ export function createDuplicateRegions(
             i,
             layerId,
             dictionary,
-            "log",
             idSuffix,
         );
         wrapper.appendChild(region);
@@ -68,11 +67,9 @@ export function createRegion(
     index: number,
     layerId: LayerContext,
     dictionary: RegionDictionary,
-    role = "log",
     idSuffix: string = "",
 ) {
     const region = document.createElement("div");
-    region.setAttribute("role", role);
     region.setAttribute("aria-live", level);
     region.classList.add("wbARegion");
     // Omit "document" from page-level ids, but include "modal"

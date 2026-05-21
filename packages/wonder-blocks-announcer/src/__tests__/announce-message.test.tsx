@@ -43,7 +43,7 @@ describe("Announcer.announceMessage", () => {
 
         // ASSERT: expect live regions to exist
         const wrapperElement = screen.getByTestId("wbAnnounce");
-        const regionElements = screen.queryAllByRole("log");
+        const regionElements = wrapperElement.querySelectorAll("[aria-live]");
         expect(wrapperElement).toBeInTheDocument();
         expect(regionElements).toHaveLength(4);
     });
