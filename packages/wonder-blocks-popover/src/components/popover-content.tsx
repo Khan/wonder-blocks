@@ -21,6 +21,10 @@ type CommonProps = AriaProps & {
      */
     title: string;
     /**
+     * The heading tag for the popover title. Defaults to `"h4"`.
+     */
+    titleHeadingTag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+    /**
      * User-defined actions.
      *
      * It can be either a Node or a function using the children-as-function
@@ -208,6 +212,7 @@ export default class PopoverContent extends React.Component<Props> {
             image,
             style,
             title,
+            titleHeadingTag,
             testId,
             uniqueId,
         } = this.props;
@@ -233,7 +238,7 @@ export default class PopoverContent extends React.Component<Props> {
 
                                 <View style={styles.text}>
                                     <Heading
-                                        size="medium"
+                                        tag={titleHeadingTag ?? "h4"}
                                         id={`${uniqueId}-title`}
                                         style={styles.title}
                                     >

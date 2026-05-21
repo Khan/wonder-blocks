@@ -90,4 +90,35 @@ describe("PopoverContent", () => {
         // Assert
         expect(screen.getByRole("img")).toHaveAttribute("alt", iconAlt);
     });
+
+    it("should render the title as h4 by default", () => {
+        // Arrange
+        render(
+            <PopoverContent
+                title="Title"
+                content="content"
+            />,
+        );
+
+        // Assert
+        expect(
+            screen.getByRole("heading", {level: 4, name: "Title"}),
+        ).toBeInTheDocument();
+    });
+
+    it("should render the title using the heading tag specified by titleHeadingTag", () => {
+        // Arrange
+        render(
+            <PopoverContent
+                title="Title"
+                content="content"
+                titleHeadingTag="h2"
+            />,
+        );
+
+        // Assert
+        expect(
+            screen.getByRole("heading", {level: 2, name: "Title"}),
+        ).toBeInTheDocument();
+    });
 });
