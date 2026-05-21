@@ -146,10 +146,8 @@ type CommonProps = AriaProps & {
     /**
      * Adds state to the destination's location, accessible via
      * `useLocation().state` on the target route. Only has effect for
-     * client-side navigation (i.e. when the underlying react-router `Link` is
-     * used).
-     *
-     * @see https://reactrouter.com/6.30.0/components/link#state
+     * when the underlying react-router `Link` is used. See
+     * https://reactrouter.com/api/components/Link#state
      */
     state?: unknown;
 };
