@@ -23,19 +23,11 @@ export default {
             top: sizing.size_020,
             left: sizing.size_020,
         },
-        transform: {
-            default: `calc(100% - ${sizing.size_200} - ${sizing.size_020})`,
-            transition: "inset-inline-start 0.15s ease-in-out",
-        },
     },
     icon: {
         position: {
             top: sizing.size_040,
             left: sizing.size_040,
-        },
-        transform: {
-            default: `calc(100% - ${sizing.size_160} - ${sizing.size_040})`,
-            transition: "inset-inline-start 0.15s ease-in-out",
         },
     },
 };
