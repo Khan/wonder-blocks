@@ -413,6 +413,13 @@ export const WithPopperPlacement: StoryComponentType = {
             <Button endIcon={IconMappings.caretRight}>{text}</Button>
         ),
     } as Partial<typeof ActionMenu>,
+    parameters: {
+        chromatic: {
+            // Delay to allow the dropdown menu to position itself to avoid
+            // flaky snapshots.
+            delay: 300,
+        },
+    },
 };
 
 /**
