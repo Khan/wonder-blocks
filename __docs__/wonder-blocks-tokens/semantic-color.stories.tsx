@@ -75,6 +75,12 @@ export default {
 
 type Row = {label: string; css: string; value: string};
 
+const publicTokens = Object.fromEntries(
+    Object.entries(flattenNestedTokens(semanticColor)).filter(
+        ([key, _]) => !key.includes(".action.") || key.includes(".status."),
+    ),
+);
+
 export const SemanticColors = () => (
     <TokenTable
         columns={[
@@ -97,6 +103,6 @@ export const SemanticColors = () => (
                 cell: (row) => <ColorSwatch backgroundColor={row.value} />,
             },
         ]}
-        tokens={flattenNestedTokens(semanticColor)}
+        tokens={publicTokens}
     />
 );
