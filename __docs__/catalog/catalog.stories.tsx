@@ -52,6 +52,14 @@ export default {
                         id: "label",
                         enabled: false,
                     },
+                    {
+                        // The Overlays story renders components inside
+                        // iframes, which axe-core cannot reach into. Each
+                        // embedded story is tested individually anyways, so it
+                        // is not needed at the catalog level
+                        id: "frame-tested",
+                        enabled: false,
+                    },
                 ],
             },
         },
