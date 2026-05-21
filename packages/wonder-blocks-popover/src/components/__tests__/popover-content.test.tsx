@@ -93,12 +93,7 @@ describe("PopoverContent", () => {
 
     it("should render the title as h4 by default", () => {
         // Arrange
-        render(
-            <PopoverContent
-                title="Title"
-                content="content"
-            />,
-        );
+        render(<PopoverContent title="Title" content="content" />);
 
         // Assert
         expect(
