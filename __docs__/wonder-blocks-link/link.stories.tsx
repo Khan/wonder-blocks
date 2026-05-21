@@ -575,6 +575,24 @@ export const WithTitle: StoryComponentType = {
 };
 
 /**
+ * Link can take a `state` prop that adds persistent client side routing state
+ * to the next location. See https://reactrouter.com/api/components/Link#state
+ */
+export const WithState: StoryComponentType = {
+    render: () => (
+        <MemoryRouter>
+            <CompatRouter>
+                <View>
+                    <Link href="/foo" state={{from: "wonder-blocks-link"}}>
+                        Link with state
+                    </Link>
+                </View>
+            </CompatRouter>
+        </MemoryRouter>
+    ),
+};
+
+/**
  * When in the right-to-left direction, the `startIcon` and `endIcon` are
  * flipped. This example has text in Arabic, a right-to-left language.
  */

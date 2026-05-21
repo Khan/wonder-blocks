@@ -159,10 +159,8 @@ interface CommonProps extends ExposedEventHandlers {
      */
     viewTransition?: boolean;
     /**
-     * Adds state to the destination's location, accessible via
-     * `useLocation().state` on the target route. Only has effect for
-     * when the underlying react-router `Link` is used. See
-     * https://reactrouter.com/api/components/Link#state
+     * Adds persistent client side routing state to the next location.
+     * See https://reactrouter.com/api/components/Link#state
      */
     state?: unknown;
 }
