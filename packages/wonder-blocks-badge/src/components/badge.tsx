@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
         color: badgeTokens.root.color.foreground,
     },
     icon: {
-        // Use minWidth and minHeight to ensure custom sized icons don't
+        // Use minInlineSize and minBlockSize to ensure custom sized icons don't
         // overflow the badge
         minInlineSize: badgeTokens.icon.sizing.width,
         minBlockSize: badgeTokens.icon.sizing.height,

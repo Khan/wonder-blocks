@@ -261,7 +261,7 @@ const getComponentStyles = ({
             },
         },
         dialog: {
-            // Override the minHeight and minWidth on View
+            // Override the minBlockSize and minInlineSize on View
             // And allow BlockEnd content to provide its own height
             minBlockSize: alignment === "blockEnd" ? "unset" : "100vh",
             minInlineSize: "unset",
