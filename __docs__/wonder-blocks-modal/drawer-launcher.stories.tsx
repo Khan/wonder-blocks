@@ -438,13 +438,6 @@ export const TriggeringProgrammatically: StoryComponentType = {
     },
 };
 
-TriggeringProgrammatically.parameters = {
-    chromatic: {
-        // All the examples for DrawerLauncher are behavior based, not visual.
-        disableSnapshot: true,
-    },
-};
-
 /**
  *
  *  You can use the `closedFocusId` prop on the
@@ -502,13 +495,6 @@ export const WithClosedFocusId: StoryComponentType = {
                 />
             </View>
         );
-    },
-};
-
-WithClosedFocusId.parameters = {
-    chromatic: {
-        // All the examples for DrawerLauncher are behavior based, not visual.
-        disableSnapshot: true,
     },
 };
 
@@ -583,13 +569,6 @@ export const WithInitialFocusId: StoryComponentType = {
                 )}
             </DrawerLauncher>
         );
-    },
-};
-
-WithInitialFocusId.parameters = {
-    chromatic: {
-        // All the examples for DrawerLauncher are behavior based, not visual.
-        disableSnapshot: true,
     },
 };
 
