@@ -9,7 +9,7 @@ on:
 jobs:
     validate-workflows:
         timeout-minutes: 15
-        runs-on: ubuntu-22.04
+        runs-on: ubuntu-slim
         # pull-requests & issues write permissions are required to post comments.
         permissions:
             contents: write
