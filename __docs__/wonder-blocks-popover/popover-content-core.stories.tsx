@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
         padding: 0,
     },
     customPopover: {
-        maxWidth: `calc(${sizing.size_160} * 25)`,
+        maxInlineSize: `calc(${sizing.size_160} * 25)`,
         width: `calc(${sizing.size_160} * 25)`,
         textAlign: "center",
     },

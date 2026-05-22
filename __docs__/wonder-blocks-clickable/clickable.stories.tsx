@@ -303,11 +303,11 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     heading: {
-        marginRight: sizing.size_240,
+        marginInlineEnd: sizing.size_240,
     },
     navigation: {
         border: `1px dashed ${semanticColor.core.border.neutral.subtle}`,
-        marginTop: sizing.size_240,
+        marginBlockStart: sizing.size_240,
         padding: sizing.size_240,
     },
     disabled: {
@@ -315,7 +315,7 @@ const styles = StyleSheet.create({
         backgroundColor: semanticColor.action.primary.disabled.background,
     },
     button: {
-        maxWidth: 150,
+        maxInlineSize: 150,
     },
     centered: {
         alignItems: "center",

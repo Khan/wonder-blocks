@@ -575,13 +575,31 @@ export const WithTitle: StoryComponentType = {
 };
 
 /**
+ * Link can take a `state` prop that adds persistent client side routing state
+ * to the next location. See https://reactrouter.com/api/components/Link#state
+ */
+export const WithState: StoryComponentType = {
+    render: () => (
+        <MemoryRouter>
+            <CompatRouter>
+                <View>
+                    <Link href="/foo" state={{from: "wonder-blocks-link"}}>
+                        Link with state
+                    </Link>
+                </View>
+            </CompatRouter>
+        </MemoryRouter>
+    ),
+};
+
+/**
  * When in the right-to-left direction, the `startIcon` and `endIcon` are
  * flipped. This example has text in Arabic, a right-to-left language.
  */
 export const RightToLeftWithIcons: StoryComponentType = {
     render: () => (
         <View style={{padding: sizing.size_160}}>
-            <View style={styles.rightToLeft}>
+            <View dir="rtl">
                 <Link
                     href="/"
                     startIcon={
@@ -620,11 +638,11 @@ export const RightToLeftWithIcons: StoryComponentType = {
 
 const styles = StyleSheet.create({
     heading: {
-        marginRight: sizing.size_240,
+        marginInlineEnd: sizing.size_240,
     },
     navigation: {
         border: `1px dashed ${semanticColor.core.border.neutral.subtle}`,
-        marginTop: sizing.size_240,
+        marginBlockStart: sizing.size_240,
         padding: sizing.size_240,
     },
     customLink: {
@@ -639,16 +657,13 @@ const styles = StyleSheet.create({
         // instead of taking the full width of the parent
         // container.
         display: "inline-block",
-        marginBottom: sizing.size_080,
+        marginBlockEnd: sizing.size_080,
     },
-    rightToLeft: {
-        width: "100%",
-        direction: "rtl",
-    },
+
     multiLine: {
         display: "inline-block",
-        marginBottom: sizing.size_080,
-        maxWidth: "15%",
+        marginBlockEnd: sizing.size_080,
+        maxInlineSize: "15%",
     },
     card: {
         background: semanticColor.core.background.base.subtle,

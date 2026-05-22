@@ -269,13 +269,13 @@ const styles = StyleSheet.create({
         justifyContent: "center",
 
         position: "absolute",
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
+        insetInlineStart: 0,
+        insetInlineEnd: 0,
+        insetBlockStart: 0,
+        insetBlockEnd: 0,
     },
     previewSizer: {
-        minHeight: 600,
+        minBlockSize: 600,
         width: "100%",
     },
     row: {
@@ -289,12 +289,12 @@ const styles = StyleSheet.create({
         width: "100%",
     },
     squareDialog: {
-        maxHeight: 500,
-        maxWidth: 500,
+        maxBlockSize: 500,
+        maxInlineSize: 500,
         backgroundColor: semanticColor.core.background.neutral.strong,
     },
     smallSquarePanel: {
-        maxHeight: 400,
-        maxWidth: 400,
+        maxBlockSize: 400,
+        maxInlineSize: 400,
     },
 });

@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     },
 
     content: {
-        maxWidth: 472,
+        maxInlineSize: 472,
         borderRadius: border.radius.radius_040,
         border: `solid 1px ${semanticColor.core.border.neutral.subtle}`,
         backgroundColor: semanticColor.core.background.base.default,

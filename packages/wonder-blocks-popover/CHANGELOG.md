@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-popover
 
+## 6.3.0
+
+### Minor Changes
+
+- dbc9011: Add a new prop to the PopoverContent component that represents the heading tag for the title prop. This allows users to specify the proper heading level for their page for a11y compliance.
+
 ## 6.2.5
 
 ### Patch Changes

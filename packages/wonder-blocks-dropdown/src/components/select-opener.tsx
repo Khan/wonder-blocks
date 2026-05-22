@@ -252,7 +252,7 @@ const styles = StyleSheet.create({
     },
 
     caret: {
-        minWidth: sizing.size_160,
+        minInlineSize: sizing.size_160,
     },
     /**
      * Theming

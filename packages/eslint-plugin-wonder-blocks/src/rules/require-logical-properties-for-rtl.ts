@@ -134,6 +134,9 @@ function getKeyName(property: TSESTree.Property): string | null {
     if (property.method || property.kind !== "init" || property.shorthand) {
         return null;
     }
+    if (property.computed) {
+        return null;
+    }
     if (property.key.type === "Identifier") {
         return property.key.name;
     }
@@ -197,7 +200,7 @@ export default createRule<Options, MessageIds>({
             avoidDirectionalCursor:
                 "Cursor is directional; consider 'ew-resize' or conditional swap based on `dir`.",
             avoidForceDirection:
-                "Avoid forcing 'direction' in component styles; rely on container `dir` unless whitelisted.",
+                "Avoid forcing 'direction' in component styles; rely on container `dir` instead.",
             preferLogicalPaddingShorthand:
                 "Prefer logical shorthands: 'paddingBlock'/'paddingInline' instead of two-value 'padding'.",
             preferLogicalMarginShorthand:
@@ -321,7 +324,9 @@ export default createRule<Options, MessageIds>({
                     if (
                         (keyName === "backgroundPosition" ||
                             keyName === "background") &&
-                        /\b(left|right)\b/.test(strVal) &&
+                        /\b(left|right)\b/.test(
+                            strVal.replace(/url\([^)]*\)/g, ""),
+                        ) &&
                         (options.warnBackgroundPosition ?? true)
                     ) {
                         context.report({
@@ -395,7 +400,7 @@ export default createRule<Options, MessageIds>({
                 case "boxShadow":
                 case "textShadow": {
                     if (
-                        /^(?:inset\s+)?(?:-?(?:\d*\.\d+|\d+)|calc\(|var\()/.test(
+                        /^(?:inset\s+)?(?!0(?:\s|$|[a-zA-Z%]))(?:-?(?:\d*\.\d+|\d+)|calc\(|var\()/.test(
                             strVal,
                         ) &&
                         (options.warnShadows ?? false)
@@ -513,6 +518,21 @@ export default createRule<Options, MessageIds>({
         function handleStyleExpression(expr: TSESTree.Expression) {
             if (expr.type === "ObjectExpression") {
                 checkProperties(expr.properties);
+                return;
+            }
+            if (expr.type === "ConditionalExpression") {
+                if (expr.consequent.type === "ObjectExpression") {
+                    checkProperties(expr.consequent.properties);
+                }
+                if (expr.alternate.type === "ObjectExpression") {
+                    checkProperties(expr.alternate.properties);
+                }
+                return;
+            }
+            if (expr.type === "LogicalExpression" && expr.operator === "&&") {
+                if (expr.right.type === "ObjectExpression") {
+                    checkProperties(expr.right.properties);
+                }
                 return;
             }
             if (expr.type === "ArrayExpression") {

@@ -263,6 +263,6 @@ const styles = StyleSheet.create({
         fontSize: sizing.size_320,
         fontWeight: font.weight.semi,
         lineHeight: sizing.size_400,
-        marginTop: sizing.size_200,
+        marginBlockStart: sizing.size_200,
     },
 });

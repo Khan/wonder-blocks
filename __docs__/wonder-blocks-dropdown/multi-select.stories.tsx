@@ -93,11 +93,11 @@ export default {
 
 const styles = StyleSheet.create({
     setWidth: {
-        minWidth: 170,
+        minInlineSize: 170,
         width: "100%",
     },
     customDropdown: {
-        maxHeight: 200,
+        maxBlockSize: 200,
     },
     wrapper: {
         height: "600px",
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
      * Custom opener styles
      */
     customOpener: {
-        borderLeft: `${border.width.thick} solid ${semanticColor.core.border.instructive.default}`,
+        borderInlineStart: `${border.width.thick} solid ${semanticColor.core.border.instructive.default}`,
         borderRadius: border.radius.radius_040,
         background: semanticColor.core.background.instructive.subtle,
         color: semanticColor.core.foreground.instructive.default,
@@ -552,7 +552,7 @@ const DropdownInModalWrapper = (args: MultiSelectArgs) => {
     const modalContent = (
         <View style={styles.scrollableArea}>
             <View style={styles.scrolledWrapper}>
-                <View style={{minHeight: "100vh"}}>
+                <View style={{minBlockSize: "100vh"}}>
                     <MultiSelect
                         {...args}
                         onChange={setSelectedValues}

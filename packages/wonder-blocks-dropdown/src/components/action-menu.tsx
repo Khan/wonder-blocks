@@ -320,7 +320,7 @@ const styles = StyleSheet.create({
     },
     // This is to adjust the space between the menu and the opener.
     menuTopSpace: {
-        top: `calc(-1 * ${sizing.size_040})`,
+        insetBlockStart: `calc(-1 * ${sizing.size_040})`,
     },
 });
 
