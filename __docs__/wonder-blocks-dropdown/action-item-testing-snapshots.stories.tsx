@@ -37,6 +37,18 @@ const columns = [
             subtitle2: "Subtitle 2",
         },
     },
+    {
+        name: "Horizontal rule: Inset",
+        props: {
+            horizontalRule: "inset",
+        },
+    },
+    {
+        name: "Horizontal rule: Full width",
+        props: {
+            horizontalRule: "full-width",
+        },
+    },
 ];
 
 type Story = StoryObj<typeof ActionItem>;
