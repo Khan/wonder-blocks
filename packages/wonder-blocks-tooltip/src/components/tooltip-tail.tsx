@@ -9,13 +9,13 @@ import type {getRefFn, Placement, Offset} from "../util/types";
 
 export type Props = {
     /**
-     * Whether we should use the default white background color or switch to a
+     * Whether we should use the default background color or switch to a
      * different bg color.
      *
      * NOTE: Added to support custom popovers
      * @ignore
      */
-    color: keyof typeof color;
+    color?: keyof typeof color;
     /** The offset of the tail indicating where it should be positioned. */
     offset?: Offset;
     /** The placement of the tail with respect to the tooltip anchor. */
@@ -28,7 +28,6 @@ export type Props = {
 };
 
 type DefaultProps = {
-    color: Props["color"];
     show: Props["show"];
 };
 
@@ -51,7 +50,6 @@ let tempIdCounter = 0;
 
 export default class TooltipTail extends React.Component<Props> {
     static defaultProps: DefaultProps = {
-        color: "white",
         show: true,
     };
 
@@ -347,6 +345,12 @@ export default class TooltipTail extends React.Component<Props> {
             this._calculateDimensionsFromPlacement();
 
         const {color: arrowColor, show} = this.props;
+        // When no primitive override is passed, use the same semantic
+        // background as the bubble so the tail follows the theme
+        const tailFill =
+            arrowColor !== undefined && color[arrowColor]
+                ? color[arrowColor]
+                : semanticColor.core.background.base.default;
 
         if (!show) {
             // If we aren't showing the tail, we still need to take up space
@@ -382,8 +386,8 @@ export default class TooltipTail extends React.Component<Props> {
                  * outline, it draws over white and not the dropshadow behind.
                  */}
                 <polyline
-                    fill={color[arrowColor]}
-                    stroke={color[arrowColor]}
+                    fill={tailFill}
+                    stroke={tailFill}
                     points={points.join(" ")}
                 />
                 {/* Draw the tooltip outline around the tooltip arrow. */}
@@ -391,15 +395,12 @@ export default class TooltipTail extends React.Component<Props> {
                     // Redraw the stroke on top of the background color,
                     // so that the ends aren't extra dark where they meet
                     // the border of the tooltip.
-                    fill={color[arrowColor]}
+                    fill={tailFill}
                     points={points.join(" ")}
-                    stroke={semanticColor.core.shadow.transparent.mid}
+                    stroke={semanticColor.core.border.neutral.subtle}
                 />
                 {/* Draw a trimline to make the arrow appear flush */}
-                <polyline
-                    stroke={color[arrowColor]}
-                    points={trimlinePoints.join(" ")}
-                />
+                <polyline stroke={tailFill} points={trimlinePoints.join(" ")} />
             </svg>
         );
     }
