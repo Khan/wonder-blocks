@@ -49,11 +49,11 @@ const columns = [
         },
     },
     {
-        name: "With icon",
+        name: "With icon and no tail",
         props: {
             content: (
                 <PopoverContent
-                    title="Popover with Icon"
+                    title="Popover with Icon and no tail"
                     content="Popovers can include images on the left."
                     icon={
                         <img
@@ -64,6 +64,7 @@ const columns = [
                     }
                 />
             ),
+            showTail: false,
         },
     },
     {
@@ -123,8 +124,9 @@ export const StateSheetStory: Story = {
                 // overlapping content below the table.
                 <View style={styles.anchorCell} key={name}>
                     <Popover
-                        placement="bottom"
                         {...props}
+                        // Use top placement for coverage with the close button and illustration.
+                        placement="top"
                         opened={true}
                         onClose={() => {}}
                     >
@@ -139,6 +141,7 @@ export const StateSheetStory: Story = {
 const styles = StyleSheet.create({
     anchorCell: {
         alignItems: "center",
+        justifyContent: "flex-end",
         padding: sizing.size_120,
         width: 270,
         minHeight: 420,
