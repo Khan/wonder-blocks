@@ -2,7 +2,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 import * as React from "react";
 
 import Pill from "@khanacademy/wonder-blocks-pill";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -35,7 +35,7 @@ const meta = {
     component: Pill,
     parameters: {
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
         },
     },
 

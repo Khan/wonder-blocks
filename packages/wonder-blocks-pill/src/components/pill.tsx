@@ -232,8 +232,12 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
 
     switch (kind) {
         case "accent":
-            backgroundColor = semanticColor.core.background.instructive.default;
-            textColor = semanticColor.core.foreground.knockout.default;
+            // Use action tokens for accent so it is similar to the button
+            // primary progressive background and foreground colors
+            backgroundColor =
+                semanticColor.action.primary.progressive.default.background;
+            textColor =
+                semanticColor.action.primary.progressive.default.foreground;
             break;
         case "info":
             backgroundColor = semanticColor.feedback.info.subtle.background;
@@ -266,7 +270,7 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
         kind === "transparent" || kind === "neutral"
             ? color.offBlack16 // NOTE(WB-1950): Neutral pills will be replaced with Badge and the transparent kind will be removed
             : kind === "accent"
-              ? semanticColor.core.background.instructive.strong
+              ? semanticColor.action.primary.progressive.press.background
               : // NOTE(WB-1950): This will be simplified once we split this into Badge and Pill.
                 `color-mix(in srgb, ${color.offBlack32}, ${backgroundColor})`;
 
