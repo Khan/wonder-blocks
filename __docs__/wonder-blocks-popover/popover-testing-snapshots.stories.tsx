@@ -12,15 +12,6 @@ import {StateSheet} from "../components/state-sheet";
 
 type Story = StoryObj<typeof Popover>;
 
-/**
- * The following stories are used to generate visual snapshots for the
- * `Popover` component in Chromatic across all supported themes (including
- * syl-dark). The StateSheet lays out content variants horizontally (one per
- * column) so each popover can open downward below its anchor. Each cell uses
- * `opened={true}` so the popover dialog is forced open and the snapshot
- * captures the full container (background, border, shadow, tail) around the
- * inner `PopoverContent`.
- */
 const meta = {
     title: "Packages / Popover / Testing / Snapshots / Popover",
     parameters: {
@@ -37,13 +28,17 @@ export default meta;
 
 const columns = [
     {
-        name: "Text only with close button",
+        name: "Text only and actions with close button",
         props: {
             content: (
                 <PopoverContent
                     title="A simple popover"
-                    content="The default version only includes text."
+                    content="Include text and actions"
                     closeButtonVisible={true}
+                    actions={[
+                        <Button kind="tertiary">Take action</Button>,
+                        <Button>Take action</Button>,
+                    ]}
                 />
             ),
         },
@@ -65,18 +60,6 @@ const columns = [
                 />
             ),
             showTail: false,
-        },
-    },
-    {
-        name: "With actions",
-        props: {
-            content: (
-                <PopoverContent
-                    title="Popover with actions"
-                    content="Popovers can include actions for the user to take."
-                    actions={<Button>Take action</Button>}
-                />
-            ),
         },
     },
     {
@@ -103,9 +86,6 @@ const columns = [
 
 const rows = [{name: "Default", props: {}}];
 
-// Popover with `opened` controlled to `true` has no interactive pseudo states
-// here, so render a single "Default" state per cell instead of cycling through
-// rest/hover/press/focus.
 const states = [{name: "Default", className: "default"}];
 
 export const StateSheetStory: Story = {
@@ -118,10 +98,6 @@ export const StateSheetStory: Story = {
             title="Content variant"
         >
             {({props, name}) => (
-                // The popover dialog portals out of the cell and is positioned
-                // by Popper below the anchor, so give each cell enough vertical
-                // room (~288px wide dialog + padding + tail) to render without
-                // overlapping content below the table.
                 <View style={styles.anchorCell} key={name}>
                     <Popover
                         {...props}
