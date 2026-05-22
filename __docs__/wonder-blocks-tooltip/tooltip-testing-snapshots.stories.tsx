@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import Tooltip, {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 
@@ -72,6 +72,16 @@ const rows = [
                     </BodyText>
                 </TooltipContent>
             ),
+        },
+    },
+    {
+        name: "Custom primitive background color",
+        props: {
+            content: "Custom background color",
+            backgroundColor: "darkBlue",
+            contentStyle: {
+                color: semanticColor.core.foreground.knockout.default,
+            },
         },
     },
 ];
