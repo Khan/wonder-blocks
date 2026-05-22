@@ -144,6 +144,6 @@ const styles = StyleSheet.create({
         justifyContent: "flex-end",
         padding: sizing.size_120,
         width: 270,
-        minHeight: 420,
+        minBlockSize: 420,
     },
 });
