@@ -32,6 +32,19 @@ module.exports = {
             },
         ],
 
+        // Forbid CSS Modules `@value`. Tokens from
+        // `@khanacademy/wonder-blocks-tokens` are the single source of
+        // truth for shared values — `@value` would create a second,
+        // parallel variable system that bypasses the design system.
+        "at-rule-disallowed-list": ["value"],
+
+        // Forbid CSS Modules `composes`. Compositional inheritance
+        // between modules is hard to trace at scale and conflicts with
+        // our `@apply` mixin pattern from
+        // `@khanacademy/wonder-blocks-styles`. Authors should compose
+        // class names in JS or share styles via mixins instead.
+        "property-disallowed-list": ["composes"],
+
         // CSS Modules class names use camelCase. Matches the Aphrodite
         // convention authors already know and lets `styles.foo` work
         // without `localsConvention` conversion in Vite's CSS Modules
