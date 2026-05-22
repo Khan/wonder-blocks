@@ -1,6 +1,11 @@
 import * as React from "react";
 import {MemoryRouter} from "react-router-dom";
-import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
+import {
+    CompatRouter,
+    Route,
+    Routes,
+    useLocation,
+} from "react-router-dom-v5-compat";
 import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
@@ -248,6 +253,41 @@ describe("Link", () => {
 
             // Assert
             expect(safeWithNavMock).not.toHaveBeenCalled();
+        });
+
+        test("forwards `state` to the destination route's location", async () => {
+            // Arrange
+            function StateReader() {
+                const location = useLocation();
+                return (
+                    <div data-testid="state">
+                        {(location.state as {from?: string})?.from}
+                    </div>
+                );
+            }
+            render(
+                <MemoryRouter>
+                    <CompatRouter>
+                        <div>
+                            <Link href="/foo" state={{from: "home"}}>
+                                Click me!
+                            </Link>
+                            <Routes>
+                                <Route path="/foo" element={<StateReader />} />
+                            </Routes>
+                        </div>
+                    </CompatRouter>
+                </MemoryRouter>,
+            );
+
+            // Act
+            const link = await screen.findByText("Click me!");
+            await userEvent.click(link);
+
+            // Assert
+            expect(await screen.findByTestId("state")).toHaveTextContent(
+                "home",
+            );
         });
     });
 
