@@ -8,7 +8,10 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {themeModes} from "../../.storybook/modes";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 
-const rows = [{name: "Unselected", props: {}}];
+const rows = [
+    {name: "Unselected", props: {}},
+    {name: "Active", props: {active: true}},
+];
 
 const columns = [
     {
