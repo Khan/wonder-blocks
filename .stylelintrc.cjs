@@ -29,10 +29,11 @@ module.exports = {
             },
         ],
 
-        // Naming convention for CSS Modules classes is deliberately
-        // deferred until 0.5+ picks a project-wide direction (kebab-case
-        // vs camelCase). Leave the pattern unset for now.
-        "selector-class-pattern": null,
+        // CSS Modules class names use camelCase. Matches the Aphrodite
+        // convention authors already know and lets `styles.foo` work
+        // without `localsConvention` conversion in Vite's CSS Modules
+        // pass. Examples: `.root`, `.pill`, `.iconWrapper`.
+        "selector-class-pattern": "^[a-z]+([A-Z][a-z0-9]+)*$",
 
         // Wonder Blocks tokens use a camelCase + underscore convention
         // (`--wb-semanticColor-core-background-base`,
