@@ -8,6 +8,8 @@
 //
 // Phase 0 lands with permissive defaults; severity tightens to `error`
 // once Phase 5 migrates the last component (per WB-2324 0.4 plan).
+const path = require("node:path");
+
 /** @type {import("stylelint").Config} */
 module.exports = {
     extends: ["stylelint-config-standard", "stylelint-config-css-modules"],
@@ -69,8 +71,14 @@ module.exports = {
         "csstools/value-no-unknown-custom-properties": [
             true,
             {
+                // Absolute path so the rule resolves the same regardless of
+                // the cwd stylelint is invoked from (root `pnpm lint:css`,
+                // editor / `vscode-stylelint`, or a package-scoped run).
                 importFrom: [
-                    "./packages/wonder-blocks-tokens/dist/css/index.css",
+                    path.resolve(
+                        __dirname,
+                        "packages/wonder-blocks-tokens/dist/css/index.css",
+                    ),
                 ],
             },
         ],
