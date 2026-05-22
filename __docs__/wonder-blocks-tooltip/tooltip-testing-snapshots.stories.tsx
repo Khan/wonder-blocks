@@ -78,6 +78,11 @@ const rows = [
         name: "Custom primitive background color",
         props: {
             content: "Custom background color",
+            // TODO(WB-2125): Remove this once `backgroundColor` prop is removed
+            // in favour of a stroong tooltip variant.
+            //
+            // Note: This won't look right in syl-dark. We include this to ensure
+            // existing behaviour is not broken.
             backgroundColor: "darkBlue",
             contentStyle: {
                 color: semanticColor.core.foreground.knockout.default,
