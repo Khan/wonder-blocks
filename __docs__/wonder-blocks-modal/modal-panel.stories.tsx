@@ -16,7 +16,7 @@ import {
 import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 import ComponentInfo from "../components/component-info";
 import modalPanelArgtypes from "./modal-panel.argtypes";
-import {allModes, allThemeModes} from "../../.storybook/modes";
+import {allModes} from "../../.storybook/modes";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 
 const longBody = (
@@ -116,7 +116,8 @@ export default {
         chromatic: {
             modes: {
                 small: allModes.small,
-                ...allThemeModes,
+                large: allModes.large,
+                thunderblocks: allModes.themeThunderBlocks,
             },
         },
     },
