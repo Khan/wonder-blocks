@@ -5,7 +5,7 @@ import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {ActionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 
 const rows = [
@@ -86,7 +86,7 @@ const meta = {
     },
     parameters: {
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
         },
     },
     tags: ["!autodocs", "!manifest"],
