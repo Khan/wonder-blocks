@@ -69,6 +69,10 @@ jobs:
                   limited-trigger: ${{ steps.js-ts-files.outputs.filtered }}
                   limited: pnpm lint:ci {}
 
+            - name: Stylelint
+              if: always() # CSS Modules migration: lint CSS files alongside ESLint
+              run: pnpm lint:css
+
             - name: Typecheck
               if: always() # always run this check until we update the eslint config
               # if: steps.js-ts-files.outputs.filtered != '[]' || steps.typecheck-reset.outputs.filtered != '[]'

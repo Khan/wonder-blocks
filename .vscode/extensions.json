@@ -19,6 +19,10 @@
 
         // CSS Modules autocomplete + go-to-definition. Pairs with the
         // `typescript-plugin-css-modules` configured in tsconfig.json.
-        "clinyong.vscode-css-modules"
+        "clinyong.vscode-css-modules",
+
+        // Stylelint live diagnostics in the editor. Surfaces token-strict
+        // and at-rule-allowlist violations alongside the CLI runner.
+        "stylelint.vscode-stylelint"
     ]
 }
