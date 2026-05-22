@@ -53,6 +53,18 @@ module.exports = {
         // pass. Examples: `.root`, `.pill`, `.iconWrapper`.
         "selector-class-pattern": "^[a-z]+([A-Z][a-z0-9]+)*$",
 
+        // Keep CSS Modules shallow. Authors coming from Aphrodite have
+        // no nesting today; the migration plan keeps it close to flat.
+        // Limit `2` allows one level of `&`-nested state or descendant
+        // selectors inside a class (e.g. `.root { &:hover { … } }`) but
+        // blocks deeper Sass-style chains. `@layer`, `@media`, and
+        // `@supports` are ignored so the conventional
+        // `@layer shared { .root { … } }` shape doesn't trip the rule.
+        "max-nesting-depth": [
+            2,
+            {ignoreAtRules: ["layer", "media", "supports"]},
+        ],
+
         // Wonder Blocks tokens use a camelCase + underscore convention
         // (`--wb-semanticColor-core-background-base`,
         // `--wb-sizing-size_080`) that intentionally doesn't conform to
@@ -109,5 +121,14 @@ module.exports = {
                 severity: "warning",
             },
         ],
+
+        // Forbid hex literals (`#fff`, `#112233`). Pairs with
+        // `declaration-strict-value` above by closing the side-channel:
+        // a hex used in a property *not* on that list (e.g. `box-shadow`,
+        // `outline`, `fill`) would otherwise still slip through. Authors
+        // should reach for a `--wb-*` token via `var()` instead. WARN
+        // during the migration; tightens to `error` in Phase 5 alongside
+        // `declaration-strict-value`.
+        "color-no-hex": [true, {severity: "warning"}],
     },
 };
