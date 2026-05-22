@@ -382,8 +382,8 @@ export default class TooltipTail extends React.Component<Props> {
                 {/**
                  * Draw the actual background of the tooltip arrow.
                  *
-                 * We draw the outline in white too so that when we draw the
-                 * outline, it draws over white and not the dropshadow behind.
+                 * We draw the outline in the tailFill color too so that when we draw the
+                 * outline, it draws over the tailFill color and not the dropshadow behind.
                  */}
                 <polyline
                     fill={tailFill}
