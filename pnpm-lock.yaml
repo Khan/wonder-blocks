@@ -459,6 +459,9 @@ importers:
       stylelint-declaration-strict-value:
         specifier: ^1.11.1
         version: 1.11.1(stylelint@17.12.0(typescript@5.7.3))
+      stylelint-value-no-unknown-custom-properties:
+        specifier: ^6.1.1
+        version: 6.1.1(stylelint@17.12.0(typescript@5.7.3))
       swc_mut_cjs_exports:
         specifier: ^10.7.0
         version: 10.7.0(@swc/core@1.11.22(@swc/helpers@0.5.17))(@swc/jest@0.2.38(@swc/core@1.11.22(@swc/helpers@0.5.17)))
@@ -7843,6 +7846,12 @@ packages:
     engines: {node: '>=20.19.0'}
     peerDependencies:
       stylelint: ^16.8.2 || ^17.0.0
+
+  stylelint-value-no-unknown-custom-properties@6.1.1:
+    resolution: {integrity: sha512-eQ1zidKD5t9zMEaskjGUY4W47lH76qMlmsDSmCAPEwtaGzB4Ls7ORTfysC1D6hamp2zFC+vN1vpQ+GFz3Tw3lw==}
+    engines: {node: '>=18.12.0'}
+    peerDependencies:
+      stylelint: '>=16'
 
   stylelint@17.12.0:
     resolution: {integrity: sha512-KIlzWXMHUvgfPUR0R7TK3H80yCIi0uoivUwf+6Az4yrHJD1Q3c1qIkh/H5Z0i/K3QXgtq/UMEkWyBUSUwnpnOg==}
@@ -16333,6 +16342,12 @@ snapshots:
       postcss-value-parser: 4.2.0
       stylelint: 17.12.0(typescript@5.7.3)
     optional: true
+
+  stylelint-value-no-unknown-custom-properties@6.1.1(stylelint@17.12.0(typescript@5.7.3)):
+    dependencies:
+      postcss-value-parser: 4.2.0
+      resolve: 1.22.11
+      stylelint: 17.12.0(typescript@5.7.3)
 
   stylelint@17.12.0(typescript@5.7.3):
     dependencies:

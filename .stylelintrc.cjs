@@ -11,7 +11,10 @@
 /** @type {import("stylelint").Config} */
 module.exports = {
     extends: ["stylelint-config-standard", "stylelint-config-css-modules"],
-    plugins: ["stylelint-declaration-strict-value"],
+    plugins: [
+        "stylelint-declaration-strict-value",
+        "stylelint-value-no-unknown-custom-properties",
+    ],
     rules: {
         // PostCSS at-rules from our pipeline (and cascade-layer literals).
         // Without this allow-list stylelint flags every `@apply` / `@mixin`
@@ -42,6 +45,22 @@ module.exports = {
         // owns the naming; authors should not invent new custom
         // properties without going through the tokens package.
         "custom-property-pattern": null,
+
+        // Reject `var(--anything-not-in-tokens)`. The token codegen
+        // emits the canonical set of `--wb-*` custom properties into
+        // `packages/wonder-blocks-tokens/dist/css/index.css`; any
+        // reference outside that set is either a typo or an attempt to
+        // bypass the design system. Requires `pnpm build:css` (CI's
+        // build step already runs first; locally the `prelint:css` hook
+        // ensures the file is fresh).
+        "csstools/value-no-unknown-custom-properties": [
+            true,
+            {
+                importFrom: [
+                    "./packages/wonder-blocks-tokens/dist/css/index.css",
+                ],
+            },
+        ],
 
         // Token-required properties. WARN level during the migration so
         // un-migrated Aphrodite call-sites can still co-exist without
