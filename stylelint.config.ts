@@ -8,10 +8,14 @@
 //
 // Phase 0 lands with permissive defaults; severity tightens to `error`
 // once Phase 5 migrates the last component (per WB-2324 0.4 plan).
-const path = require("node:path");
+import path from "node:path";
+import {fileURLToPath} from "node:url";
 
-/** @type {import("stylelint").Config} */
-module.exports = {
+import type {Config} from "stylelint";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+const config: Config = {
     extends: ["stylelint-config-standard", "stylelint-config-css-modules"],
     plugins: [
         "stylelint-declaration-strict-value",
@@ -132,3 +136,5 @@ module.exports = {
         "color-no-hex": [true, {severity: "warning"}],
     },
 };
+
+export default config;
