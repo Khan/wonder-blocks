@@ -19,6 +19,7 @@ const config: Config = {
     extends: ["stylelint-config-standard", "stylelint-config-css-modules"],
     plugins: [
         "stylelint-declaration-strict-value",
+        "stylelint-use-logical",
         "stylelint-value-no-unknown-custom-properties",
     ],
     rules: {
@@ -165,6 +166,14 @@ const config: Config = {
         // during the migration; tightens to `error` in Phase 5 alongside
         // `declaration-strict-value`.
         "color-no-hex": [true, {severity: "warning"}],
+
+        // Require logical properties / values for inline-axis sizing,
+        // positioning, and text alignment so styles work in RTL locales
+        // without per-component flips. Mirrors the Aphrodite-side
+        // `@khanacademy/wonder-blocks/require-logical-properties-for-rtl`
+        // ESLint rule (CLASS-14218) for the CSS Modules pipeline. WARN
+        // during the migration; tightens to `error` in Phase 5.
+        "csstools/use-logical": ["always", {severity: "warning"}],
     },
 };
 
