@@ -7,9 +7,7 @@ import {ActionItem, SeparatorItem} from "@khanacademy/wonder-blocks-dropdown";
 import {allThemeModes} from "../../.storybook/modes";
 import {StateSheet} from "../components/state-sheet";
 
-const rows = [{name: "Default", props: {}}];
-
-const columns = [
+const rows = [
     {
         name: "Standalone",
         props: {context: "standalone"},
@@ -27,6 +25,8 @@ const columns = [
         props: {context: "bottom"},
     },
 ];
+
+const columns = [{name: "Default", props: {}}];
 
 // SeparatorItem has no interactive pseudo states, so render a single
 // "Default" state per cell instead of cycling through rest/hover/press/focus.
