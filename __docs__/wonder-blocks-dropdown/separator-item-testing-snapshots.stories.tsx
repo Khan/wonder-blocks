@@ -73,10 +73,7 @@ export default meta;
 // width — it needs its parent to provide one).
 const MENU_WIDTH = 240;
 
-const renderContext = (
-    context: string,
-    key: string,
-): React.ReactElement => {
+const renderContext = (context: string, key: string): React.ReactElement => {
     switch (context) {
         case "between":
             return (
@@ -118,12 +115,7 @@ const renderContext = (
         case "standalone":
         default:
             return (
-                <View
-                    key={key}
-                    role="menu"
-                    aria-label={key}
-                    style={{width: MENU_WIDTH}}
-                >
+                <View key={key} style={{width: MENU_WIDTH}}>
                     <SeparatorItem />
                 </View>
             );
