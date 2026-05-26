@@ -3,7 +3,7 @@
  *   - cross-package @import resolved through the workspace
  *   - @apply expands a mixin defined in a sibling package at build time
  *   - CSS Modules hashing yields stable, locally-scoped class names
- *   - declared inside @layer shared so consumer .overrides can win
+ *   - declared inside @layer shared so consumer styles can win
  *   - token CSS variables resolve at runtime
  */
 @import "@khanacademy/wonder-blocks-styles/focus-styles.css";
@@ -31,7 +31,7 @@
 
     .pill {
         padding: 0 var(--wb-sizing-size_060);
-        border-radius: 999px;
+        border-radius: var(--wb-border-radius-radius_full);
         background: var(--wb-semanticColor-core-background-instructive-subtle);
         color: var(--wb-semanticColor-core-foreground-instructive-strong);
         font-size: var(--wb-sizing-size_120);

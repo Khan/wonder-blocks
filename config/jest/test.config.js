@@ -38,12 +38,9 @@ const projectConfig = {
     globals: {
         SNAPSHOT_INLINE_APHRODITE: true,
     },
-    testMatch: [
-        "<rootDir>/**/*.test.ts",
-        "<rootDir>/**/*.test.tsx",
-    ],
+    testMatch: ["<rootDir>/**/*.test.ts", "<rootDir>/**/*.test.tsx"],
     moduleNameMapper: {
-        "^@khanacademy/wonder-blocks-(.*)$":
+        "^@khanacademy/wonder-blocks-([^/]*)$":
             "<rootDir>/packages/wonder-blocks-$1/src/index.ts",
         // Order matters: the module.css pattern must come before the generic
         // CSS mock so identity-obj-proxy handles `styles.foo` lookups, while

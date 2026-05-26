@@ -29,6 +29,7 @@
     },
     "./*.css": "./src/styles/*.css"
   },
+  "files": ["dist", "src/styles/*.css"],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"

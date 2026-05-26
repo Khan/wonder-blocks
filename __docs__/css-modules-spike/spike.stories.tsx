@@ -12,8 +12,8 @@ import {Spike} from "./spike";
  *   - the component reads the locally-scoped `styles.root` / `styles.pill`
  *   - a cross-package `@import` from `@khanacademy/wonder-blocks-styles`
  *     resolves and the `wb-focus-visible` `@mixin` expands
- *   - declared inside `@layer shared`, so consumer overrides could defeat
- *     these rules from `@layer overrides`
+ *   - declared inside `@layer shared`, so consumer legacy styles could
+ *     defeat these rules from `@layer legacy`
  *
  * Delete once Phase 1 migrates the first real component to CSS Modules.
  */

@@ -20,13 +20,13 @@
      * Earlier layers lose to later ones, so authoring order is also
      * priority order. Anything unlayered wins over everything below.
      *
-     *   reset     — future normalize / reset rules
-     *   tokens    — CSS custom properties from @khanacademy/wonder-blocks-tokens
-     *   shared    — every Wonder Blocks component (CSS Modules output is
-     *               wrapped in @layer shared by the build pipeline)
-     *   overrides — consumer-owned escape hatch
+     *   reset  — future normalize / reset rules
+     *   shared — every Wonder Blocks component (CSS Modules output is
+     *            wrapped in @layer shared by the build pipeline)
+     *   legacy — consumer-owned escape hatch for legacy styles that need
+     *            to win over Wonder Blocks defaults
      */
-    @layer reset, tokens, shared, overrides;
+    @layer reset, shared, legacy;
 
     body {
         font-family: "Lato", sans-serif;
