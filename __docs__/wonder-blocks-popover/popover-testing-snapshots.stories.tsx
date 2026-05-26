@@ -26,6 +26,8 @@ const meta = {
 
 export default meta;
 
+// Note: Favour coverage in PopperContent StateSheet since the Popover StateSheet
+// snapshot will only show the opened Popovers that are in the initial viewport.
 const columns = [
     {
         name: "Text only and actions with close button",
@@ -35,10 +37,7 @@ const columns = [
                     title="A simple popover"
                     content="Include text and actions"
                     closeButtonVisible={true}
-                    actions={[
-                        <Button kind="tertiary">Take action</Button>,
-                        <Button>Take action</Button>,
-                    ]}
+                    actions={<Button>Take action</Button>}
                 />
             ),
         },
@@ -60,26 +59,6 @@ const columns = [
                 />
             ),
             showTail: false,
-        },
-    },
-    {
-        name: "With illustration",
-        props: {
-            content: (
-                <PopoverContent
-                    title="Popover with Illustration"
-                    content="Popover with a full-bleed illustration."
-                    image={
-                        <img
-                            src="./illustration.svg"
-                            alt="An illustration of a person skating on a pencil"
-                            width={288}
-                            height={200}
-                        />
-                    }
-                    closeButtonVisible={true}
-                />
-            ),
         },
     },
 ];
