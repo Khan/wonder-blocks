@@ -1,5 +1,5 @@
 .customStyle {
-    border: 1px solid var(--wb-semanticColor-core-border-neutral-strong);
+    border: var(--wb-border-width-thin) solid var(--wb-semanticColor-core-border-neutral-strong);
 
     /* NOTE: The color style is not applied to the text because the styles
     defined via Aphrodite take more precedence */

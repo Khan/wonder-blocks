@@ -6,7 +6,7 @@
  *   - declared inside @layer shared so consumer styles can win
  *   - token CSS variables resolve at runtime
  */
-@import url("@khanacademy/wonder-blocks-styles/focus-styles.css");
+@import "@khanacademy/wonder-blocks-styles/focus-styles.css";
 
 @layer shared {
     .root {

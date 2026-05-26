@@ -99,17 +99,44 @@ const config: Config = {
             },
         ],
 
+        // Override the standard rule to allow importing css files with the
+        // `@import` notation that our PostCSS pipeline uses.
+        "import-notation": "string",
+
         // Token-required properties. WARN level during the migration so
         // un-migrated Aphrodite call-sites can still co-exist without
         // failing CI. Tighten to `error` once Phase 5 component waves
         // complete.
         "scale-unlimited/declaration-strict-value": [
             [
+                /**
+                 * WB semanticColor tokens
+                 */
                 "/color/",
                 "background-color",
                 "border-color",
+                /**
+                 * WB sizing tokens
+                 */
                 "padding",
                 "margin",
+                /**
+                 * WB border tokens
+                 */
+                // radius
+                "border-radius",
+                // width
+                "border",
+                "border-width",
+                "border-top-width",
+                "border-bottom-width",
+                "border-left-width",
+                "border-right-width",
+                /**
+                 * WB font/typography tokens
+                 */
+                "font-weight",
+                "line-height",
                 "font-size",
                 "font-family",
             ],
@@ -121,6 +148,10 @@ const config: Config = {
                     "0",
                     "auto",
                     "none",
+                    //border-width: border-style values
+                    "solid",
+                    "dashed",
+                    "dotted",
                 ],
                 severity: "warning",
             },
