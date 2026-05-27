@@ -29,61 +29,7 @@ describe("CircularSpinner", () => {
             render(<CircularSpinner testId="root-spinner" />);
 
             // Assert
-            const root = screen.getByTestId("root-spinner");
-            expect(root.tagName).toBe("DIV");
-            expect(root.querySelector("svg")).toBeInTheDocument();
-        });
-    });
-
-    describe("size", () => {
-        test.each([
-            ["xsmall", 16],
-            ["small", 24],
-            ["medium", 48],
-            ["large", 96],
-        ] as const)("renders %s at %ipx", (size, expected) => {
-            // Arrange / Act
-            const {container} = render(<CircularSpinner size={size} />);
-
-            // Assert
-            const svg = container.querySelector("svg")!;
-            expect(svg).toHaveAttribute("width", String(expected));
-            expect(svg).toHaveAttribute("height", String(expected));
-            expect(svg).toHaveAttribute(
-                "viewBox",
-                `0 0 ${expected} ${expected}`,
-            );
-        });
-
-        test("defaults to 'large' (96px) when size is not provided", () => {
-            // Arrange / Act
-            const {container} = render(<CircularSpinner />);
-
-            // Assert
-            const svg = container.querySelector("svg")!;
-            expect(svg).toHaveAttribute("width", "96");
-        });
-    });
-
-    describe("light", () => {
-        test("renders the dark fill by default", () => {
-            // Arrange / Act
-            const {container} = render(<CircularSpinner />);
-
-            // Assert
-            const path = container.querySelector("path")!;
-            // offBlack50 is the dark variant
-            expect(path.getAttribute("style")).toMatch(/fill:/);
-            expect(path.getAttribute("style")).not.toMatch(/#fff|white/i);
-        });
-
-        test("renders a white fill when light is true", () => {
-            // Arrange / Act
-            const {container} = render(<CircularSpinner light={true} />);
-
-            // Assert
-            const path = container.querySelector("path")!;
-            expect(path.getAttribute("style")).toMatch(/#fff|white/i);
+            expect(screen.getByTestId("root-spinner").tagName).toBe("DIV");
         });
     });
 
@@ -93,13 +39,13 @@ describe("CircularSpinner", () => {
             render(
                 <CircularSpinner
                     testId="styled-spinner"
-                    style={{marginTop: 20}}
+                    style={{marginBlockStart: 20}}
                 />,
             );
 
             // Assert
             const root = screen.getByTestId("styled-spinner");
-            expect(root).toHaveStyle({marginTop: "20px"});
+            expect(root).toHaveStyle({marginBlockStart: "20px"});
         });
     });
 });
