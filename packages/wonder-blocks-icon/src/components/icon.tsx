@@ -58,9 +58,12 @@ const Icon = React.forwardRef(
             },
         });
 
+        // only allow the sizes defined in IconSize
+        const sizeStyles = styles[size] || styles.small;
+
         return (
             <StyledDiv
-                className={styles[size]}
+                className={sizeStyles}
                 style={style}
                 id={id}
                 data-testid={testId}
