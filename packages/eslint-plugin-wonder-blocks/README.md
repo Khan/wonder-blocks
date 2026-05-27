@@ -75,4 +75,4 @@ The following shows what rules are enabled in each config:
 | [`no-hardcoded-color`](docs/no-hardcoded-color.md)| |✅|
 | [`no-invalid-bodytext-children`](docs/no-invalid-bodytext-children.md)|✅|✅|
 | [`no-invalid-bodytext-parent`](docs/no-invalid-bodytext-parent.md)| |✅|
-| [`require-logical-properties-for-rtl`](docs/require-logical-properties-for-rtl.md)|✅|✅|
+| [`require-logical-properties-for-rtl`](docs/require-logical-properties-for-rtl.md)| opt-in | opt-in |
