@@ -662,11 +662,7 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
             foreground: core.foreground.neutral.strong,
             placeholder: core.foreground.neutral.subtle,
         },
-        checked: {
-            border: core.border.instructive.default,
-            background: core.background.instructive.default,
-            foreground: core.foreground.knockout.default,
-        },
+        checked: thunderblocksSemanticColor.input.checked,
         disabled: {
             border: core.border.disabled.default,
             background: core.background.base.default,
