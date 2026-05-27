@@ -1,11 +1,30 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable import/no-commonjs */
+import crypto from "crypto";
 import fs from "fs";
 import path from "path";
 import {nodeExternals} from "rollup-plugin-node-externals";
 import swc from "@rollup/plugin-swc";
 import resolve from "@rollup/plugin-node-resolve";
-import styles from "rollup-plugin-styles";
+import styles from "rollup-plugin-styler";
+
+// Produce kebab-cased hashed selectors (`wb-<name>-<local>-<hash>`) instead
+// of styler's default, which routes the placeholder string through
+// `@rollup/pluginutils`'s `makeLegalIdentifier` and camel-cases away the
+// dashes. Hash is content-derived so the value stays stable across builds.
+const generateScopedName = (local, file, css) => {
+    const {base, name} = path.parse(file);
+    // `path.parse("icon.module.css").name` is `"icon.module"`; strip the
+    // `.module` suffix so selectors read as `wb-<component>-<local>-<hash>`
+    // (an embedded dot would otherwise render as a compound class anyway).
+    const safeName = name.replace(/\.module$/, "");
+    const hash = crypto
+        .createHash("sha256")
+        .update(`${base}:${css}`)
+        .digest("hex")
+        .slice(0, 8);
+    return `wb-${safeName}-${local}-${hash}`;
+};
 
 // Recursively check whether a package contains any `*.module.css` files
 // in its `src/` tree. Used to decide whether the package's JS bundle needs
@@ -65,8 +84,7 @@ const createConfig = (pkgName) => {
                     // `[local]` and an 8-char content hash. Round-trips
                     // deterministically across builds and stays readable
                     // in DevTools.
-                    generateScopedName: "wb-[name]-[local]-[hash:8]",
-                    localsConvention: "camelCaseOnly",
+                    generateScopedName,
                 },
                 sourceMap: true,
             }),

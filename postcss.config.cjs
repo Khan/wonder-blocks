@@ -16,18 +16,27 @@
 // CSS Modules class-name hashing is handled by the consumer:
 //   - Vite handles `*.module.css` natively (its built-in CSS Modules pass
 //     runs *after* this PostCSS chain).
-//   - Rollup uses `rollup-plugin-postcss`'s `modules` option.
+//   - Rollup uses `rollup-plugin-styler`'s `modules` option.
 const postcssImport = require("postcss-import");
 const postcssMixins = require("@csstools/postcss-mixins");
 
 const wrapInLayer = (layerName) => ({
     postcssPlugin: "wrap-in-layer",
     Once(root, {AtRule}) {
+        // Only wrap CSS Module files. Plain `.css` files (fonts, focus
+        // styles, Storybook scaffolding, etc.) shouldn't be coerced into
+        // `@layer shared` — those manage their own cascade.
+        const from = root.source?.input?.from ?? "";
+        if (!from.endsWith(".module.css")) {
+            return;
+        }
+
         // Skip files where every non-import/charset node is *already* an
         // `@layer <same name>` block — re-wrapping would create nested
         // `@layer shared { @layer shared { … } }`.
         const nonHeaderNodes = root.nodes.filter(
             (node) =>
+                node.type !== "comment" &&
                 !(
                     node.type === "atrule" &&
                     (node.name === "import" || node.name === "charset")

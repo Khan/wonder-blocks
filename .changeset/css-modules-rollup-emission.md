@@ -4,10 +4,14 @@
 Phase 0.1 of the CSS Modules migration (WB-2324): Rollup-side CSS emission
 and the first real component migration.
 
-- `rollup-plugin-styles` is wired into `build-settings/rollup.config.mjs`.
-  Every `*.module.css` imported from a package's source is hashed
-  (`wb-[name]-[local]-[hash:8]`), camel-cased (`localsConvention:
-  "camelCaseOnly"`), and extracted to that package's `dist/index.css`.
+- `rollup-plugin-styler` (maintained fork of the unmaintained
+  `rollup-plugin-styles`) is wired into
+  `build-settings/rollup.config.mjs`. Every `*.module.css` imported from
+  a package's source is hashed (`wb-[name]-[local]-[hash:8]`) and
+  extracted to that package's `dist/index.css`. Authors already write
+  camelCase class names (enforced by stylelint's
+  `selector-class-pattern`), so no `localsConvention` conversion is
+  needed.
 - A `wrap-in-layer` PostCSS plugin in `postcss.config.cjs` moves every
   emitted rule into `@layer shared { … }`. Vite (Storybook) and Rollup
   (build) share the same plugin chain, so authors never write the
