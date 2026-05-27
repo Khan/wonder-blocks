@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import {View, addStyle} from "@khanacademy/wonder-blocks-core";
 import {color} from "@khanacademy/wonder-blocks-tokens";
 
-import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 const heights = {
     xsmall: 16,
@@ -26,27 +26,26 @@ const colors = {
 
 const StyledPath = addStyle("path");
 
-type Props = AriaProps & {
+type Props = {
     /**
      * The size of the spinner. (large = 96px, medium = 48px, small = 24px,
      * xsmall = 16px)
+     *
+     * @default "large"
      */
-    size: "xsmall" | "small" | "medium" | "large";
+    size?: "xsmall" | "small" | "medium" | "large";
     /** Should a light version of the spinner be shown?
      * (To be used on a dark background.)
+     *
+     * @default false
      */
-    light: boolean;
+    light?: boolean;
     /** Any (optional) styling to apply to the spinner container. */
     style?: StyleType;
     /**
-     * Test ID used for e2e testing.
+     * Test ID used for e2e testing. Defaults to `"circular-spinner"`.
      */
     testId?: string;
-};
-
-type DefaultProps = {
-    light: Props["light"];
-    size: Props["size"];
 };
 
 /**
@@ -61,37 +60,32 @@ type DefaultProps = {
  * <CircularSpinner />
  * ```
  */
-export default class CircularSpinner extends React.Component<Props> {
-    static defaultProps: DefaultProps = {
-        size: "large",
-        light: false,
-    };
+export default function CircularSpinner({
+    size = "large",
+    light = false,
+    style,
+    testId = "circular-spinner",
+}: Props): React.ReactElement {
+    const height = heights[size];
+    const path = paths[size];
+    const fill = light ? colors.light : colors.dark;
 
-    render(): React.ReactNode {
-        const {size, light, style, testId} = this.props;
-
-        const height = heights[size];
-        const path = paths[size];
-        const color = light ? colors.light : colors.dark;
-
-        const svg = (
+    return (
+        <View style={[styles.spinnerContainer, style]} testId={testId}>
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width={height}
                 height={height}
                 viewBox={`0 0 ${height} ${height}`}
-                data-testid={testId}
             >
                 <StyledPath
-                    style={[styles.loadingSpinner, {fill: color}]}
+                    style={[styles.loadingSpinner, {fill}]}
                     fillRule="nonzero"
                     d={path}
                 />
             </svg>
-        );
-
-        return <View style={[styles.spinnerContainer, style]}>{svg}</View>;
-    }
+        </View>
+    );
 }
 
 const rotateKeyFrames = {
