@@ -96,9 +96,12 @@ jobs:
                   # registry.npmjs.org: npm package registry for pnpm install
                   # azure.archive.ubuntu.com, archive.ubuntu.com, security.ubuntu.com, deb.debian.org: Ubuntu package mirrors for playwright --with-deps
                   # packages.microsoft.com, playwright.download.prss.microsoft.com: Microsoft package/download servers for playwright --with-deps
-                  # cdn.playwright.dev: Playwright browser binary CDN
+                  # cdn.playwright.dev: Playwright browser binary CDN (CNAME to storage.googleapis.com)
+                  # storage.googleapis.com: GCS origin that cdn.playwright.dev resolves to; without
+                  #   this the DNS lookup fails and Playwright falls back to the Microsoft CDN which
+                  #   is heavily throttled from these runners (~6 h for 165 MiB).
                   # chromatic.com, *.chromatic.com: Chromatic-hosted Storybook URL loaded by Playwright during test:storybook
-                  extra-domains: registry.npmjs.org azure.archive.ubuntu.com archive.ubuntu.com security.ubuntu.com deb.debian.org packages.microsoft.com playwright.download.prss.microsoft.com cdn.playwright.dev chromatic.com
+                  extra-domains: registry.npmjs.org azure.archive.ubuntu.com archive.ubuntu.com security.ubuntu.com deb.debian.org packages.microsoft.com playwright.download.prss.microsoft.com cdn.playwright.dev storage.googleapis.com chromatic.com
 
             - name: Use Node.js 24.x
               uses: actions/setup-node@v6
@@ -118,11 +121,12 @@ jobs:
               uses: actions/cache@v4
               with:
                   path: ~/.cache/ms-playwright
-                  # Key on the lockfile (contains the exact resolved Playwright
-                  # version) and this workflow file (so install procedure changes
-                  # bust the cache). No restore-keys: an old browser binary
-                  # doesn't help — it would just fail at runtime.
-                  key: playwright-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml', '.github/workflows/chromatic-pr.yml') }}
+                  # Key on the lockfile only: it contains the exact resolved
+                  # Playwright version, which is all that matters for the binary.
+                  # Excluding the workflow file avoids busting the cache on every
+                  # workflow-only change (which would force another full download).
+                  # No restore-keys: an old browser binary fails at runtime.
+                  key: playwright-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
 
             - name: Verify Playwright cache
               if: steps.playwright-cache.outputs.cache-hit == 'true'
