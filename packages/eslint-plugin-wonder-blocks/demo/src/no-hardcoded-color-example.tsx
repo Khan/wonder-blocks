@@ -1,0 +1,118 @@
+/**
+ * This file demonstrates the wonder-blocks ESLint rule:
+ * `@khanacademy/wonder-blocks/no-hardcoded-color`
+ * Run `pnpm lint` in this directory to see the errors.
+ */
+
+import * as React from "react";
+
+import {StyleSheet} from "aphrodite";
+import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
+
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+
+// ✅ Valid: using CSS keywords and semantic token references
+export function ValidExample() {
+    return (
+        <div
+            style={{
+                color: "inherit",
+                backgroundColor: semanticColor.core.transparent,
+            }}
+        >
+            <span className="example">Valid usage</span>
+        </div>
+    );
+}
+
+// ✅ Valid: PhosphorIcon with a semantic color token
+export function ValidPhosphorIconExample() {
+    return (
+        <PhosphorIcon
+            icon={magnifyingGlassIcon}
+            color={semanticColor.core.foreground.neutral.strong}
+        />
+    );
+}
+
+// ✅ Valid: fill on <mask> children has masking semantics, not color
+export function ValidSvgMaskExample() {
+    return (
+        <svg viewBox="0 0 100 100">
+            <defs>
+                <mask id="circle-mask">
+                    {/* fill here means "include this area in the mask" */}
+                    <rect fill="white" width="100" height="100" />
+                    <circle fill="black" cx="50" cy="50" r="30" />
+                    {/* <use> inside <mask> also has masking semantics */}
+                    <use fill="white" xlinkHref="#reusable-shape" />
+                </mask>
+            </defs>
+        </svg>
+    );
+}
+
+// ❌ Invalid: hardcoded hex colors in StyleSheet.create
+const invalidHexStyles = StyleSheet.create({
+    root: {
+        color: "#333333",
+        backgroundColor: "#ffffff",
+    },
+});
+
+// ❌ Invalid: hardcoded RGB color and named color in StyleSheet.create
+const invalidRgbStyles = StyleSheet.create({
+    root: {
+        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.5)",
+        borderColor: "red",
+    },
+});
+
+// ❌ Invalid: hardcoded color in inline style prop
+export function InvalidExample() {
+    return (
+        <div style={{color: "#fff", backgroundColor: "hsl(200, 100%, 50%)"}}>
+            <span>Invalid usage</span>
+        </div>
+    );
+}
+
+// ❌ Invalid: `transparent` keyword — use semanticColor.core.transparent instead
+export function InvalidTransparentExample() {
+    return <div style={{backgroundColor: "transparent"}} />;
+}
+
+// ❌ Invalid: hardcoded color in WB multi-part styles prop
+export function InvalidStylesPropExample() {
+    // @ts-expect-error — simplified for demo purposes
+    return <div styles={{root: {backgroundColor: "lavender"}}} />;
+}
+
+// ❌ Invalid: hardcoded color in backgroundImage gradient
+const invalidGradientStyles = StyleSheet.create({
+    root: {
+        backgroundImage:
+            "linear-gradient(180deg, #b8bdc4 0%, #8b93a0 50%, #717883 100%)",
+    },
+});
+
+// ❌ Invalid: hardcoded color as SVG presentation attribute
+export function InvalidSvgFillExample() {
+    return (
+        <svg viewBox="0 0 24 24">
+            <path fill="#ff0000" d="M12 2L2 22h20L12 2z" />
+            <circle stroke="blue" cx="12" cy="12" r="10" />
+        </svg>
+    );
+}
+
+// ❌ Invalid: hardcoded color on PhosphorIcon's color prop
+export function InvalidPhosphorIconExample() {
+    return <PhosphorIcon icon={magnifyingGlassIcon} color="#3C6D4A" />;
+}
+
+// Suppress unused variable warnings for the invalid style objects above
+void invalidHexStyles;
+void invalidRgbStyles;
+void invalidGradientStyles;

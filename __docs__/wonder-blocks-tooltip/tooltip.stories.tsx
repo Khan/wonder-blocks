@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     scrollbox: {
         height: 100,
         overflow: "auto",
-        border: "1px solid black",
+        border: `1px solid ${semanticColor.core.border.neutral.strong}`,
         margin: sizing.size_120,
     },
     hostbox: {
