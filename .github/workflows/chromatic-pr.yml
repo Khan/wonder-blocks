@@ -112,11 +112,39 @@ jobs:
                   node-version: 24.x
 
             # Install Playwright browsers
-            - name: Install Playwright browsers
+            - name: Cache Playwright browsers
+              id: playwright-cache
+              uses: actions/cache@v4
+              with:
+                  path: ~/.cache/ms-playwright
+                  # Key on the lockfile (contains the exact resolved Playwright
+                  # version) and this workflow file (so install procedure changes
+                  # bust the cache). No restore-keys: an old browser binary
+                  # doesn't help — it would just fail at runtime.
+                  key: playwright-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml', '.github/workflows/chromatic-pr.yml') }}
+
+            - name: Verify Playwright cache
+              if: steps.playwright-cache.outputs.cache-hit == 'true'
+              run: |
+                  if [ ! -d "$HOME/.cache/ms-playwright" ]; then
+                      echo "Cache reported a hit but ~/.cache/ms-playwright does not exist!" >&2
+                      exit 1
+                  fi
+                  echo "Playwright cache hit. Contents:"
+                  ls -la $HOME/.cache/ms-playwright
+
+            - name: Install Playwright system dependencies
               run: |
                   sudo apt-get update
                   sudo apt-get install -y fonts-liberation fonts-ipafont-gothic fonts-wqy-zenhei fonts-tlwg-loma-otf fonts-freefont-ttf
-                  pnpm exec playwright install --with-deps chromium
+                  pnpm exec playwright install-deps chromium
+
+            - name: Install Playwright browsers
+              if: steps.playwright-cache.outputs.cache-hit != 'true'
+              run: |
+                  pnpm exec playwright install chromium
+                  echo "Playwright browser installed. Contents:"
+                  ls -la $HOME/.cache/ms-playwright
 
             # Build the project
             - name: Generate WB build artifacts
