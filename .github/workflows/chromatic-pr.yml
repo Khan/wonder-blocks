@@ -130,3 +130,6 @@ jobs:
               run: pnpm test:storybook
               env:
                   SB_URL: "${{ needs.chromatic_review.outputs.storybookUrl }}"
+                  # Explicitly set the timezone to avoid:
+                  # `Invalid time zone specified: ETC/UNKNOWN`
+                  TZ: America/Los_Angeles
