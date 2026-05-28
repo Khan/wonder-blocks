@@ -87,13 +87,13 @@ jobs:
         strategy:
             fail-fast: false
         steps:
-            # Install Playwright browsers before checkout/secure-network
-            # so we don't need to allowlist Ubuntu/Playwright domains.
-            - name: Install Playwright browsers
+            # Install Playwright system dependencies before checkout/secure-network
+            # so we don't need to allowlist Ubuntu package domains.
+            - name: Install Playwright dependencies
+              timeout-minutes: 5
               run: |
                   sudo apt-get update
                   sudo apt-get install -y fonts-liberation fonts-ipafont-gothic fonts-wqy-zenhei fonts-tlwg-loma-otf fonts-freefont-ttf
-                  npx playwright install --with-deps chromium
 
             - name: Checking out latest commit
               uses: actions/checkout@v5
@@ -102,7 +102,9 @@ jobs:
               timeout-minutes: 5
               with:
                   # registry.npmjs.org: npm package registry for pnpm install
-                  extra-domains: registry.npmjs.org
+                  # playwright.download.prss.microsoft.com: Playwright browser binary downloads
+                  # cdn.playwright.dev: Playwright browser binary CDN
+                  extra-domains: registry.npmjs.org playwright.download.prss.microsoft.com cdn.playwright.dev
 
             - name: Use Node.js 24.x
               uses: actions/setup-node@v6
@@ -115,6 +117,10 @@ jobs:
               timeout-minutes: 5
               with:
                   node-version: 24.x
+
+            - name: Install Playwright browsers
+              timeout-minutes: 5
+              run: pnpm exec playwright install chromium
 
             # Build the project
             - name: Generate WB build artifacts
