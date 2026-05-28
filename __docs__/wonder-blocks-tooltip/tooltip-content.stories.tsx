@@ -19,6 +19,11 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // Visual coverage is provided by the Tooltip StateSheet snapshot,
+            // which renders TooltipContent inside the Tooltip bubble.
+            disableSnapshot: true,
+        },
     },
 } as Meta<typeof TooltipContent>;
 
