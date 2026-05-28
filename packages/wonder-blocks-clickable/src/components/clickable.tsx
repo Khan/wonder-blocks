@@ -341,7 +341,7 @@ const styles = StyleSheet.create({
         width: "auto",
         overflow: "visible",
 
-        background: "transparent",
+        background: semanticColor.core.transparent,
         textDecoration: "none",
 
         /* inherit font & color from ancestor */

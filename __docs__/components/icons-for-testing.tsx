@@ -1,3 +1,4 @@
+/* eslint-disable @khanacademy/wonder-blocks/no-hardcoded-color -- WB logo colors; these are theme-invariant and must not be replaced with semantic tokens */
 import * as React from "react";
 
 export const singleColoredIcon = (

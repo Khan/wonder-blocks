@@ -289,7 +289,7 @@ export const CompactCellActive: StoryComponentType = {
                 <PhosphorIcon
                     icon={IconMappings.playCircle}
                     size="medium"
-                    color="black"
+                    color={semanticColor.core.foreground.neutral.strong}
                 />
             }
             rightAccessory={
