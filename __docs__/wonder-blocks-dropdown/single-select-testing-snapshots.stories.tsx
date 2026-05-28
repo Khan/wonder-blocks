@@ -30,14 +30,31 @@ export default {
             <OptionItem label="item 3" value="3" key="3" />,
         ],
         onChange: () => {},
-        placeholder: "Placeholder",
+        placeholder: "",
     },
     tags: ["!autodocs", "!manifest"],
 } as Meta;
 
 type Story = StoryObj<typeof SingleSelect>;
 
-const rows = [{name: "Default", props: {"aria-label": "Example"}}];
+const rows = [
+    {
+        name: "Default",
+        props: {"aria-label": "Example", style: {minInlineSize: 200}},
+    },
+    {
+        name: "Placeholder",
+        props: {"aria-label": "Example", placeholder: "Placeholder"},
+    },
+    {
+        name: "With Value",
+        props: {
+            "aria-label": "Example",
+            placeholder: "Placeholder",
+            selectedValue: "1",
+        },
+    },
+];
 
 const columns = [
     {
@@ -55,18 +72,6 @@ const columns = [
     {
         name: "Error",
         props: {error: true},
-    },
-    {
-        name: "With selection",
-        props: {selectedValue: "1"},
-    },
-    {
-        name: "With selection + Disabled",
-        props: {selectedValue: "1", disabled: true},
-    },
-    {
-        name: "With selection + Readonly",
-        props: {selectedValue: "1", readOnly: true},
     },
 ];
 
