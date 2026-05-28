@@ -27,7 +27,20 @@ export default mergeConfig(
                             enabled: true,
                             instances: [{browser: "chromium"}],
                             headless: true,
-                            provider: playwright({}),
+                            provider: playwright({
+                                launchOptions: {
+                                    // In CI, use the pre-installed system Chrome
+                                    // to avoid downloading Playwright's Chromium.
+                                    // Set PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH in
+                                    // the workflow to activate this.
+                                    ...(process.env
+                                        .PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH && {
+                                        executablePath:
+                                            process.env
+                                                .PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH,
+                                    }),
+                                },
+                            }),
                         },
                         setupFiles: ["./.storybook/vitest.setup.ts"],
                     },
