@@ -97,7 +97,8 @@ jobs:
                   # azure.archive.ubuntu.com, archive.ubuntu.com, security.ubuntu.com, deb.debian.org: Ubuntu package mirrors for playwright --with-deps
                   # packages.microsoft.com, playwright.download.prss.microsoft.com: Microsoft package/download servers for playwright --with-deps
                   # cdn.playwright.dev: Playwright browser binary CDN
-                  extra-domains: registry.npmjs.org azure.archive.ubuntu.com archive.ubuntu.com security.ubuntu.com deb.debian.org packages.microsoft.com playwright.download.prss.microsoft.com cdn.playwright.dev
+                  # chromatic.com, *.chromatic.com: Chromatic-hosted Storybook URL loaded by Playwright during test:storybook
+                  extra-domains: registry.npmjs.org azure.archive.ubuntu.com archive.ubuntu.com security.ubuntu.com deb.debian.org packages.microsoft.com playwright.download.prss.microsoft.com cdn.playwright.dev chromatic.com
 
             - name: Use Node.js 24.x
               uses: actions/setup-node@v6
@@ -152,5 +153,6 @@ jobs:
 
             - name: Run Storybook tests
               run: pnpm test:storybook
+              timeout-minutes: 15
               env:
                   SB_URL: "${{ needs.chromatic_review.outputs.storybookUrl }}"
