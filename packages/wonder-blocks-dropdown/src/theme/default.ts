@@ -2,7 +2,6 @@ import {
     border,
     boxShadow,
     font,
-    semanticColor,
     sizing,
 } from "@khanacademy/wonder-blocks-tokens";
 
@@ -29,9 +28,6 @@ export default {
             radius: {
                 rest: border.radius.radius_040,
             },
-        },
-        color: {
-            icon: semanticColor.core.foreground.neutral.default,
         },
         layout: {
             padding: {

@@ -155,7 +155,7 @@ export default class SelectOpener extends React.Component<
 
         const iconColor = disabled
             ? semanticColor.core.foreground.disabled.default
-            : theme.opener.color.icon;
+            : semanticColor.core.foreground.neutral.default;
 
         const style = [
             styles.shared,
