@@ -16,6 +16,11 @@ export default {
             modes: allThemeModes,
         },
     },
+    globals: {
+        backgrounds: {
+            value: "baseSubtle",
+        },
+    },
     tags: ["!autodocs", "!manifest"],
 } satisfies Meta;
 
