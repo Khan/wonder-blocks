@@ -1,5 +1,15 @@
 # @khanacademy/eslint-plugin-wonder-blocks
 
+## 0.7.0
+
+### Minor Changes
+
+- 73c82e6: Add new lint rule for no-hardcoded-color that suggests semanticColor usage for theming support
+
+### Patch Changes
+
+- 73c82e6: Disable `require-logical-properties-for-rtl` from the recommended (and strict) configs to facilitate intentional rollout. The rule is still available in the plugin for opt-in use.
+
 ## 0.6.0
 
 ### Minor Changes

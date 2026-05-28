@@ -1,5 +1,11 @@
 # eslint-plugin-wonder-blocks-demo
 
+## 0.3.0
+
+### Minor Changes
+
+- 73c82e6: Add new lint rule for no-hardcoded-color that suggests semanticColor usage for theming support
+
 ## 0.2.5
 
 ### Patch Changes
