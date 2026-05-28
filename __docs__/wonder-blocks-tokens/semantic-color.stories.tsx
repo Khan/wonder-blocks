@@ -39,6 +39,12 @@ import {ColorSwatch} from "../components/color-swatch";
  *     color: semanticColor.core.foreground.neutral.strong,
  * };
  * ```
+ *
+ * Semantic colors are exported as CSS `var(--...)` references so the active
+ * theme can switch values through the CSS cascade. If you need the computed raw
+ * value of a token at runtime (e.g. for a third-party library), use the
+ * [`tokenValue`](./?path=/docs/packages-tokens-utilities-tokenvalue--docs)
+ * utility.
  */
 export default {
     title: "Packages / Tokens / Semantic Color",

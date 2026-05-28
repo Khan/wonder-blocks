@@ -75,6 +75,7 @@ how to use these colors depending on the context.
     />
 </View>
 
+
 ### Core
 
 Core colors are used for the most common elements in the UI. These colors are
@@ -238,6 +239,15 @@ it.
 Standalone colors used only for communicating mastery.
 
 <Canvas of={SemanticColorGroups.Mastery} layout="fullscreen" />
+
+
+## Getting raw token values
+
+Semantic colors are exported as CSS `var(--...)` references so the active theme
+can switch values through the CSS cascade. This is great for styling, but less
+useful when something expects a concrete hex value (e.g. a third-party library).
+Use the [tokenValue](./?path=/docs/packages-tokens-utilities-tokenvalue--docs)
+utility to resolve a token to its computed raw value at runtime.
 
 ## Accessibility
 
