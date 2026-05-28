@@ -89,19 +89,6 @@ jobs:
         steps:
             - name: Checking out latest commit
               uses: actions/checkout@v5
-            - name: Secure Network
-              uses: Khan/actions@secure-network-v1
-              timeout-minutes: 5
-              with:
-                  # registry.npmjs.org: npm package registry for pnpm install
-                  # azure.archive.ubuntu.com, archive.ubuntu.com, security.ubuntu.com, deb.debian.org: Ubuntu package mirrors for playwright --with-deps
-                  # packages.microsoft.com, playwright.download.prss.microsoft.com: Microsoft package/download servers for playwright --with-deps
-                  # cdn.playwright.dev: Playwright browser binary CDN (CNAME to storage.googleapis.com)
-                  # storage.googleapis.com: GCS origin that cdn.playwright.dev resolves to; without
-                  #   this the DNS lookup fails and Playwright falls back to the Microsoft CDN which
-                  #   is heavily throttled from these runners (~6 h for 165 MiB).
-                  # chromatic.com, *.chromatic.com: Chromatic-hosted Storybook URL loaded by Playwright during test:storybook
-                  extra-domains: registry.npmjs.org azure.archive.ubuntu.com archive.ubuntu.com security.ubuntu.com deb.debian.org packages.microsoft.com playwright.download.prss.microsoft.com cdn.playwright.dev storage.googleapis.com chromatic.com
 
             - name: Use Node.js 24.x
               uses: actions/setup-node@v6
@@ -109,34 +96,28 @@ jobs:
                   node-version: 24.x
 
             # Cache and install dependencies
+            # Runs before Secure Network so npm registry access is unrestricted.
             - name: Install & cache node_modules
               uses: ./.github/actions/shared-node-cache
               timeout-minutes: 5
               with:
                   node-version: 24.x
 
-            # Install Playwright browsers
-            - name: Cache Playwright browsers
-              id: playwright-cache
-              uses: actions/cache@v4
-              with:
-                  path: ~/.cache/ms-playwright
-                  # Key on the lockfile only: it contains the exact resolved
-                  # Playwright version, which is all that matters for the binary.
-                  # Excluding the workflow file avoids busting the cache on every
-                  # workflow-only change (which would force another full download).
-                  # No restore-keys: an old browser binary fails at runtime.
-                  key: playwright-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
-
-            - name: Verify Playwright cache
-              if: steps.playwright-cache.outputs.cache-hit == 'true'
+            # Use the pre-installed Chrome on the runner instead of downloading
+            # Playwright's Chromium. Downloading via playwright install takes
+            # 2-6 h from these runners regardless of which CDN is used, making
+            # CI unusable. ubuntu-latest always ships google-chrome-stable;
+            # setting PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH tells Playwright to
+            # use it instead of looking in ~/.cache/ms-playwright.
+            - name: Set Playwright to use system Chrome
               run: |
-                  if [ ! -d "$HOME/.cache/ms-playwright" ]; then
-                      echo "Cache reported a hit but ~/.cache/ms-playwright does not exist!" >&2
-                      exit 1
+                  CHROME=$(which google-chrome-stable || which google-chrome || which chromium-browser || echo "")
+                  if [ -z "$CHROME" ]; then
+                    echo "No system Chrome/Chromium found on this runner" >&2
+                    exit 1
                   fi
-                  echo "Playwright cache hit. Contents:"
-                  ls -la $HOME/.cache/ms-playwright
+                  echo "Found system browser: $CHROME ($($CHROME --version))"
+                  echo "PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=$CHROME" >> $GITHUB_ENV
 
             - name: Install Playwright system dependencies
               run: |
@@ -144,12 +125,15 @@ jobs:
                   sudo apt-get install -y fonts-liberation fonts-ipafont-gothic fonts-wqy-zenhei fonts-tlwg-loma-otf fonts-freefont-ttf
                   pnpm exec playwright install-deps chromium
 
-            - name: Install Playwright browsers
-              if: steps.playwright-cache.outputs.cache-hit != 'true'
-              run: |
-                  pnpm exec playwright install chromium
-                  echo "Playwright browser installed. Contents:"
-                  ls -la $HOME/.cache/ms-playwright
+            - name: Secure Network
+              uses: Khan/actions@secure-network-v1
+              timeout-minutes: 5
+              with:
+                  # chromatic.com: Chromatic-hosted Storybook URL loaded by
+                  # Playwright during test:storybook. All install-time domains
+                  # (npm registry, apt mirrors, Playwright CDN) are handled
+                  # before this step and no longer need to be listed here.
+                  extra-domains: chromatic.com
 
             # Build the project
             - name: Generate WB build artifacts
