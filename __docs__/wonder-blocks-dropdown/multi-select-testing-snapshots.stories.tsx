@@ -36,7 +36,13 @@ export default {
 
 type Story = StoryObj<typeof MultiSelect>;
 
-const rows = [{name: "Default", props: {"aria-label": "Example"}}];
+const rows = [
+    {name: "Default", props: {"aria-label": "Example"}},
+    {
+        name: "With 1 selected",
+        props: {"aria-label": "Example", selectedValues: ["1"]},
+    },
+];
 
 const columns = [
     {
@@ -54,26 +60,6 @@ const columns = [
     {
         name: "Error",
         props: {error: true},
-    },
-    {
-        name: "With selection (1 selected)",
-        props: {selectedValues: ["1"]},
-    },
-    {
-        name: "With selection (2 selected)",
-        props: {selectedValues: ["1", "2"]},
-    },
-    {
-        name: "With selection (All selected)",
-        props: {selectedValues: ["1", "2", "3"]},
-    },
-    {
-        name: "With selection (All selected) + Disabled",
-        props: {selectedValues: ["1", "2", "3"], disabled: true},
-    },
-    {
-        name: "With selection (All selected) + Readonly",
-        props: {selectedValues: ["1", "2", "3"], readOnly: true},
     },
 ];
 
@@ -175,6 +161,50 @@ export const Scenarios: Story = {
                         />,
                     ],
                     selectedValues: ["1"],
+                },
+            },
+            {
+                name: "0 selected",
+                props: {
+                    children: [
+                        <OptionItem label="item 1" value="1" key="1" />,
+                        <OptionItem label="item 2" value="2" key="2" />,
+                        <OptionItem label="item 3" value="3" key="3" />,
+                    ],
+                    selectedValues: [],
+                },
+            },
+            {
+                name: "1 selected",
+                props: {
+                    children: [
+                        <OptionItem label="item 1" value="1" key="1" />,
+                        <OptionItem label="item 2" value="2" key="2" />,
+                        <OptionItem label="item 3" value="3" key="3" />,
+                    ],
+                    selectedValues: ["1"],
+                },
+            },
+            {
+                name: "2 selected",
+                props: {
+                    children: [
+                        <OptionItem label="item 1" value="1" key="1" />,
+                        <OptionItem label="item 2" value="2" key="2" />,
+                        <OptionItem label="item 3" value="3" key="3" />,
+                    ],
+                    selectedValues: ["1", "2"],
+                },
+            },
+            {
+                name: "All selected",
+                props: {
+                    children: [
+                        <OptionItem label="item 1" value="1" key="1" />,
+                        <OptionItem label="item 2" value="2" key="2" />,
+                        <OptionItem label="item 3" value="3" key="3" />,
+                    ],
+                    selectedValues: ["1", "2", "3"],
                 },
             },
         ];
