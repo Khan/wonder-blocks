@@ -27,7 +27,7 @@ const styles: StyleDeclaration = StyleSheet.create({
     },
 
     error: {
-        color: semanticColor.status.critical.foreground,
+        color: semanticColor.input.outerContents.error.foreground,
         marginBlockStart: sizing.size_040,
     },
 

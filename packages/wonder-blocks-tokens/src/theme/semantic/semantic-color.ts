@@ -712,6 +712,11 @@ export const semanticColor = {
             text: core.foreground.neutral.strong,
             icon: core.transparent,
         },
+        outerContents: {
+            error: {
+                foreground: core.foreground.critical.default,
+            },
+        },
     },
     /**
      * For labels, icons, filters, alerts, and other elements where color can
