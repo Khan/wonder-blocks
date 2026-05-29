@@ -63,7 +63,7 @@ const meta = {
             modes: allThemeModes,
         },
     },
-    tags: ["!autodocs", "!manifest"],
+    tags: ["!autodocs", "!manifest", "deprecated"],
 } satisfies Meta<typeof SeparatorItem>;
 
 export default meta;
