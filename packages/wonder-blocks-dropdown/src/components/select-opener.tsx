@@ -271,11 +271,17 @@ const styles = StyleSheet.create({
             // the focus behaviour more consistent with the other field components.
             ...focusStyles.focus[":focus-visible"],
         },
+        [":focus:active" as any]: {
+            boxShadow: `${PRESS_SHADOW}, ${focusStyles.focus[":focus-visible"].boxShadow}`,
+        },
     },
     error: {
         background: semanticColor.input.error.background,
         border: `${theme.opener.border.width.error} solid ${semanticColor.input.error.border}`,
         color: semanticColor.input.error.foreground,
+        [":focus:active" as any]: {
+            boxShadow: `${PRESS_SHADOW}, ${focusStyles.focus[":focus-visible"].boxShadow}`,
+        },
     },
     disabled: {
         background: semanticColor.input.disabled.background,
@@ -285,7 +291,9 @@ const styles = StyleSheet.create({
         ":active": {
             boxShadow: "none",
         },
-        ":focus": focusStyles.focus[":focus-visible"],
+        [":focus:active" as any]: {
+            boxShadow: focusStyles.focus[":focus-visible"].boxShadow,
+        },
     },
     press: {
         boxShadow: PRESS_SHADOW,
@@ -304,6 +312,8 @@ const styles = StyleSheet.create({
         ":active": {
             boxShadow: "none",
         },
-        ":focus": focusStyles.focus[":focus-visible"],
+        [":focus:active" as any]: {
+            boxShadow: focusStyles.focus[":focus-visible"].boxShadow,
+        },
     },
 });
