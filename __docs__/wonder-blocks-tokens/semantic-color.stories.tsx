@@ -45,6 +45,10 @@ import {ColorSwatch} from "../components/color-swatch";
  * value of a token at runtime (e.g. for a third-party library), use the
  * [`tokenValue`](./?path=/docs/packages-tokens-utilities-tokenvalue--docs)
  * utility.
+ *
+ * Use `tokenValue` only for edge cases where a concrete raw value is required.
+ * Favour using tokens directly wherever possible, since resolving raw values
+ * can break theming if overused.
  */
 export default {
     title: "Packages / Tokens / Semantic Color",

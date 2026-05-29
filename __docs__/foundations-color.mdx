@@ -249,6 +249,17 @@ useful when something expects a concrete hex value (e.g. a third-party library).
 Use the [tokenValue](./?path=/docs/packages-tokens-utilities-tokenvalue--docs)
 utility to resolve a token to its computed raw value at runtime.
 
+<Banner
+    kind="info"
+    text={
+        <>
+            Use <code>tokenValue</code> only for edge cases where a concrete raw
+            value is required. Favour using tokens directly wherever possible,
+            since resolving raw values can break theming if overused.
+        </>
+    }
+/>
+
 ## Accessibility
 
 When using color, it is important to consider accessibility. The contrast
