@@ -3,7 +3,6 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {Combobox, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {PropsFor} from "@khanacademy/wonder-blocks-core";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {themeModes} from "../../.storybook/modes";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 import {ScenariosLayout} from "../components/scenarios-layout";
@@ -122,7 +121,6 @@ export const Scenarios: Story = {
                         <OptionItem label={longText} value="1" key="1" />,
                     ],
                     opened: true,
-                    style: {paddingBlockEnd: sizing.size_560},
                 },
             },
             {
@@ -139,7 +137,6 @@ export const Scenarios: Story = {
                         />,
                     ],
                     opened: true,
-                    style: {paddingBlockEnd: sizing.size_560},
                 },
             },
             {
