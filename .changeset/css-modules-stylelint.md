@@ -4,7 +4,7 @@
 Phase 0.4 of the CSS Modules migration (WB-2324): Stylelint with token-strict
 values, PostCSS at-rule allow-list, and CI wiring.
 
-- Root `.stylelintrc.cjs` extending `stylelint-config-standard` +
+- Root `stylelint.config.ts` extending `stylelint-config-standard` +
   `stylelint-config-css-modules`. Allow-lists the PostCSS at-rules used by
   our pipeline (`@apply`, `@mixin`, `@define-mixin`, `@include`, `@layer`).
 - `stylelint-declaration-strict-value` flags raw values for color / spacing
