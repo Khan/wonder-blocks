@@ -8,6 +8,11 @@
 
         "paths": {
             "@khanacademy/*": ["./packages/*/src"]
-        }
+        },
+
+        // Provides live IDE autocomplete and "Go to Definition" for
+        // `*.module.css` imports. Build-time type safety still comes from
+        // the generated `*.module.css.d.ts` files (see `gen:css-types`).
+        "plugins": [{"name": "typescript-plugin-css-modules"}]
     }
 }

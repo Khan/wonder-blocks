@@ -15,6 +15,10 @@
 
         // Jest
         "orta.vscode-jest",
-        "csstools.postcss"
+        "csstools.postcss",
+
+        // CSS Modules autocomplete + go-to-definition. Pairs with the
+        // `typescript-plugin-css-modules` configured in tsconfig.json.
+        "clinyong.vscode-css-modules"
     ]
 }
