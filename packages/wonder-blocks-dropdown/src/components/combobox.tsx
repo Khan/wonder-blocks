@@ -761,9 +761,18 @@ const styles = StyleSheet.create({
         width: "auto",
         display: "inline-grid",
         gridArea: "1 / 2",
+        // The combobox wrapper handles the focus and press indicators, so we
+        // reset the TextField's own focus and press states to avoid showing a
+        // duplicate focus ring / press border on the inner input.
         ":focus-visible": {
             outline: "none",
             border: "none",
+            boxShadow: "none",
+        },
+        // Matches the TextField's press selector so this reset takes
+        // precedence over the press box shadow it applies.
+        [":active:not([aria-disabled='true']):not([readonly])" as any]: {
+            boxShadow: "none",
         },
     },
     /**
