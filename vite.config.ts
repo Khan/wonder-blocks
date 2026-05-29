@@ -17,8 +17,13 @@ export default defineConfig({
                 ),
             },
             // Allow us to detect changes from local wonder-blocks packages.
+            // Anchored to `$` so subpath imports like
+            // `@khanacademy/wonder-blocks-styles/focus-styles.css` are NOT
+            // rewritten here — node resolution + the workspace symlink handles
+            // those. (Greedy `.*` would otherwise eat the subpath and append
+            // `/src`.)
             {
-                find: /^@khanacademy\/wonder-blocks(-.*)$/,
+                find: /^@khanacademy\/wonder-blocks(-[^/]*)$/,
                 replacement: resolve(
                     __dirname,
                     "./packages/wonder-blocks$1/src",
