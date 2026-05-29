@@ -262,14 +262,14 @@ const styles = StyleSheet.create({
         border: `${border.width.thin} solid ${semanticColor.input.default.border}`,
         color: semanticColor.input.default.foreground,
         cursor: "pointer",
+        ":active": {
+            boxShadow: PRESS_SHADOW,
+        },
         ":focus": {
             // Using :focus instead of :focus-visible to ensure the focus ring is
             // visible when the button is focused (even when clicked). This makes
             // the focus behaviour more consistent with the other field components.
             ...focusStyles.focus[":focus-visible"],
-        },
-        ":active": {
-            boxShadow: `${PRESS_SHADOW}, ${focusStyles.focus[":focus-visible"].boxShadow}`,
         },
     },
     error: {
@@ -285,6 +285,7 @@ const styles = StyleSheet.create({
         ":active": {
             boxShadow: "none",
         },
+        ":focus": focusStyles.focus[":focus-visible"],
     },
     press: {
         boxShadow: PRESS_SHADOW,
@@ -301,8 +302,8 @@ const styles = StyleSheet.create({
         background: semanticColor.input.readOnly.background,
         color: semanticColor.input.readOnly.text,
         ":active": {
-            // Make sure press shadow outline is not shown when it is read-only.
-            boxShadow: focusStyles.focus[":focus-visible"].boxShadow,
+            boxShadow: "none",
         },
+        ":focus": focusStyles.focus[":focus-visible"],
     },
 });
