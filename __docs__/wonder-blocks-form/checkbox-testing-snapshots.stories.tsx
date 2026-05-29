@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 
 const rows = [
     {name: "Unchecked", props: {checked: false}},
@@ -42,7 +42,7 @@ const meta = {
     },
     parameters: {
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
         },
     },
     tags: ["!autodocs", "!manifest"],
