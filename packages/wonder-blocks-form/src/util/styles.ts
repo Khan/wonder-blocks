@@ -89,7 +89,7 @@ export const baseStyles = {
     },
     icon: {
         default: {
-            foreground: semanticColor.core.foreground.knockout.default,
+            foreground: semanticColor.input.checked.foreground,
         },
         disabled: {
             foreground: semanticColor.core.foreground.neutral.subtle,
@@ -125,7 +125,7 @@ export const colorStates: StyleMap = {
                     background: semanticColor.input.checked.background,
                 },
                 hover: {
-                    border: semanticColor.core.border.instructive.default,
+                    border: semanticColor.input.checked.border,
                 },
                 press: {
                     border: semanticColor.input.checked.border,
