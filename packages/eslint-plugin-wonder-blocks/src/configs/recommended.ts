@@ -5,12 +5,18 @@ export default {
         "@khanacademy/wonder-blocks/require-logical-properties-for-rtl": [
             "error",
             {
-                warnDirectionalTransforms: true,
+                // Only the value-heuristics that reliably indicate a real RTL
+                // bug are enabled. The others were producing almost entirely
+                // false positives (e.g. `translateX(-50%)` centering, symmetric
+                // gradients, X-offset shadows, block-axis `backgroundPositionY`)
+                // that have no logical-property fix and so forced suppressions
+                // on correct code. This matches the rule's own defaultOptions.
                 warnBackgroundPosition: true,
-                warnShadows: true,
-                warnGradients: true,
-                warnCursorDirections: true,
-                warnBackgroundPositionXY: true,
+                warnDirectionalTransforms: false,
+                warnShadows: false,
+                warnGradients: false,
+                warnCursorDirections: false,
+                warnBackgroundPositionXY: false,
             },
         ],
     },
