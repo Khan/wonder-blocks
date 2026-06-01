@@ -62,7 +62,7 @@ export default {
         ),
         chromatic: {
             // Disable snapshots since they're covered by the testing snapshots
-            disableSnapshots: true,
+            disableSnapshot: true,
         },
     },
     argTypes: PhosphorIconArgtypes,
@@ -244,11 +244,6 @@ export const Variants: StoryComponentType = {
                 <tbody>{iconsWithLabels}</tbody>
             </StyledTable>
         );
-    },
-    parameters: {
-        chromatic: {
-            disableSnapshot: true,
-        },
     },
     decorators: [
         (Story) => (
