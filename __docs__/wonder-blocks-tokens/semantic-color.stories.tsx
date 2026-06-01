@@ -87,7 +87,7 @@ type Row = {label: string; css: string; value: string};
 
 const publicTokens = Object.fromEntries(
     Object.entries(flattenNestedTokens(semanticColor)).filter(
-        ([key, _]) => !key.includes("action.") || key.includes("status."),
+        ([key, _]) => !key.includes("action.") && !key.includes("status."),
     ),
 );
 
