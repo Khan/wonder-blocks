@@ -1,0 +1,23 @@
+/* Size variants for `Icon`. Tokens come from `@khanacademy/wonder-blocks-tokens`;
+ * the build wraps these rules in `@layer shared { … }` via the wrap-in-layer
+ * plugin in `postcss.config.cjs`. */
+
+.small {
+    width: var(--wb-sizing-size_160);
+    height: var(--wb-sizing-size_160);
+}
+
+.medium {
+    width: var(--wb-sizing-size_240);
+    height: var(--wb-sizing-size_240);
+}
+
+.large {
+    width: var(--wb-sizing-size_480);
+    height: var(--wb-sizing-size_480);
+}
+
+.xlarge {
+    width: var(--wb-sizing-size_960);
+    height: var(--wb-sizing-size_960);
+}
