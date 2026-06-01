@@ -131,6 +131,11 @@ type Props = {
     startIcon?: React.ReactElement<
         React.ComponentProps<typeof PhosphorIcon>
     > | null;
+
+    /**
+     * An optional aria-label to display on the combobox.
+     */
+    "aria-label"?: string;
 };
 
 /**
@@ -160,6 +165,7 @@ export default function Combobox({
     startIcon,
     testId,
     value = "",
+    "aria-label": ariaLabel,
 }: Props) {
     // eslint-disable-next-line import/no-deprecated
     const generatedUniqueId = useId();
@@ -580,6 +586,7 @@ export default function Combobox({
                 {maybeRenderStartIcon()}
 
                 <TextField
+                    aria-label={ariaLabel}
                     id={textFieldId}
                     testId={testId}
                     style={styles.combobox}
