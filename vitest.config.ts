@@ -23,6 +23,14 @@ export default mergeConfig(
 
                     test: {
                         name: "storybook",
+                        // Cap concurrency to keep peak memory under the CI
+                        // runner's limit. Browser mode spawns one Chromium
+                        // context per worker, and the suite had grown large
+                        // enough to OOM-kill the runner (exit 137) at the
+                        // default worker count (~CPU count). Bound it to a
+                        // small fixed number; this trades a little wall-clock
+                        // time for reliable memory headroom.
+                        maxWorkers: 2,
                         browser: {
                             enabled: true,
                             instances: [{browser: "chromium"}],
