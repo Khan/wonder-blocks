@@ -1,7 +1,6 @@
 import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import {View} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
 import {
     Breadcrumbs,
