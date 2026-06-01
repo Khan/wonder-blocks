@@ -903,6 +903,9 @@ importers:
       '@khanacademy/wonder-blocks-testing-core':
         specifier: workspace:*
         version: link:../wonder-blocks-testing-core
+      '@khanacademy/wonder-blocks-tokens':
+        specifier: workspace:*
+        version: link:../wonder-blocks-tokens
 
   packages/wonder-blocks-data:
     dependencies:
@@ -12211,7 +12214,7 @@ snapshots:
 
   core-js-compat@3.47.0:
     dependencies:
-      browserslist: 4.28.1
+      browserslist: 4.28.2
     optional: true
 
   core-util-is@1.0.3: {}
