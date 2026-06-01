@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@khanacademy/wb-dev-build-settings": "workspace:*",
-    "@khanacademy/wonder-tokens": "workspace:*",
+    "@khanacademy/wonder-blocks-tokens": "workspace:*",
     "@khanacademy/wonder-blocks-testing-core": "workspace:*"
   }
 }
