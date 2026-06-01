@@ -1,6 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import addStyle from "./add-style";
 
 const styles = StyleSheet.create({
@@ -33,7 +34,7 @@ const list4 = (
             styles.customList,
             "module-class",
             false && "skipped",
-            {color: "red"},
+            {color: semanticColor.core.foreground.critical.default},
             ["nested", styles.list],
         ]}
     />

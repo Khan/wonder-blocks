@@ -1,9 +1,10 @@
 import {StyleSheet} from "aphrodite";
 
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {processStyleList} from "../util";
 
 const styles = StyleSheet.create({
-    red: {color: "red"},
+    red: {color: semanticColor.core.foreground.critical.default},
     bold: {fontWeight: "bold"},
 });
 
@@ -240,13 +241,17 @@ describe("processStyleList", () => {
         it("converts kebab-case keys in aphrodite definitions to camelCase", () => {
             const sheet = StyleSheet.create({
                 box: {
-                    backgroundColor: "blue",
+                    backgroundColor:
+                        semanticColor.core.background.instructive.default,
                 },
             });
 
             const result = processStyleList(sheet.box);
 
-            expect(result.style).toHaveProperty("backgroundColor", "blue");
+            expect(result.style).toHaveProperty(
+                "backgroundColor",
+                "var(--wb-semanticColor-core-background-instructive-default)",
+            );
         });
 
         it("merges aphrodite + inline + strings while inlining", () => {
