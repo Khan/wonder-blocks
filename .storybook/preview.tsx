@@ -68,7 +68,13 @@ function DocsContainerWithTheme({children, context, ...props}) {
     const theme = context.store.userGlobals.globals.theme;
 
     return (
-        <DocsContainer context={context} {...props} theme={theme === "syl-dark" ? wonderBlocksDarkTheme : wonderBlocksTheme}>
+        <DocsContainer
+            context={context}
+            {...props}
+            theme={
+                theme === "syl-dark" ? wonderBlocksDarkTheme : wonderBlocksTheme
+            }
+        >
             <ThemeSwitcher theme={theme}>{children}</ThemeSwitcher>
         </DocsContainer>
     );
@@ -93,7 +99,17 @@ const parameters: Preview["parameters"] = {
          * See https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#options-parameter
          * to learn more about the available options.
          */
-        options: {},
+        options: {
+            /*
+             * Disable axe-core's asset preloading. It fetches cross-origin
+             * stylesheets (for the color-contrast checks), which can't be
+             * loaded in the headless/network-isolated test browser and log a
+             * noisy `Couldn't load preload assets: ProgressEvent` warning for
+             * every story. Same-origin styles are already in the CSSOM, so
+             * audit results are unchanged — this only silences the warning.
+             */
+            preload: false,
+        },
     },
     backgrounds: {
         default: "baseDefault",
