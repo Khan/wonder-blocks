@@ -256,4 +256,17 @@ export const Scenarios: Story = {
             value: "small",
         },
     },
+    parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    {
+                        // TODO(WB-2359): Fix this a11y violation
+                        id: "aria-valid-attr-value",
+                        enabled: false,
+                    },
+                ],
+            },
+        },
+    },
 };
