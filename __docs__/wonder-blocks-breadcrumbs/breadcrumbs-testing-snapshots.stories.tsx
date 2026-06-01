@@ -11,7 +11,26 @@ import {
 import {allThemeModes} from "../../.storybook/modes";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 
-const rows = [{name: "Default", props: {}}];
+const rows = [
+    {
+        name: "Default",
+        props: {
+            children: [
+                <BreadcrumbsItem>
+                    <Link href="#course">Course</Link>
+                </BreadcrumbsItem>,
+                <BreadcrumbsItem>
+                    <Link href="#unit">Unit</Link>
+                </BreadcrumbsItem>,
+                <BreadcrumbsItem>Lesson</BreadcrumbsItem>,
+            ],
+        },
+    },
+    {
+        name: "Single breadcrumb",
+        props: {children: <BreadcrumbsItem>Lesson</BreadcrumbsItem>},
+    },
+];
 
 const columns = [{name: "Default", props: {}}];
 
@@ -44,18 +63,8 @@ export const StateSheetStory: Story = {
     render: (args) => {
         return (
             <StateSheet rows={rows} columns={columns}>
-                {({className, name}) => (
-                    <View className={className} key={name}>
-                        <Breadcrumbs {...args} aria-label="Navigation Menu">
-                            <BreadcrumbsItem>
-                                <Link href="#course">Course</Link>
-                            </BreadcrumbsItem>
-                            <BreadcrumbsItem>
-                                <Link href="#unit">Unit</Link>
-                            </BreadcrumbsItem>
-                            <BreadcrumbsItem>Lesson</BreadcrumbsItem>
-                        </Breadcrumbs>
-                    </View>
+                {({props, name}) => (
+                    <Breadcrumbs {...props} aria-label={name} />
                 )}
             </StateSheet>
         );
