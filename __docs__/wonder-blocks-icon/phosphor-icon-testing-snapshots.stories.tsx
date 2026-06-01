@@ -40,13 +40,20 @@ const rows = [
         name: "Semantic color",
         props: {
             icon: magnifyingGlassIcon,
-            color: semanticColor.core.foreground.critical.default,
+            color: semanticColor.core.foreground.instructive.default,
         },
     },
     {
         name: "Custom icon",
         props: {
             icon: crownIcon,
+        },
+    },
+    {
+        name: "Custom icon with semantic color",
+        props: {
+            icon: crownIcon,
+            color: semanticColor.core.foreground.instructive.default,
         },
     },
 ];
