@@ -734,6 +734,25 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                 },
             },
         },
+        characters: {
+            flesh: {
+                blue: {
+                    default: color.blue_30,
+                },
+                cyan: {
+                    default: color.cyan_30,
+                },
+                green: {
+                    default: color.green_30,
+                },
+                magenta: {
+                    default: color.magenta_30,
+                },
+                orange: {
+                    default: color.orange_30,
+                },
+            },
+        },
     },
     /**
      * For inputs, form elements, and other elements that require user input.

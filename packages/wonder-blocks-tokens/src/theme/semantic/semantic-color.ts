@@ -281,6 +281,25 @@ export const semanticColor = {
                 },
             },
         },
+        characters: {
+            flesh: {
+                blue: {
+                    default: thunderBlocksColor.blue_30,
+                },
+                cyan: {
+                    default: thunderBlocksColor.cyan_30,
+                },
+                green: {
+                    default: thunderBlocksColor.green_30,
+                },
+                magenta: {
+                    default: thunderBlocksColor.magenta_30,
+                },
+                orange: {
+                    default: thunderBlocksColor.orange_30,
+                },
+            },
+        },
     },
 
     /**

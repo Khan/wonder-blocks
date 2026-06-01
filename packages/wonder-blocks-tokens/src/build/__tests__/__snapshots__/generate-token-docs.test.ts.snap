@@ -298,6 +298,11 @@ import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 | \`semanticColor.learning.shadow.progress.notStarted.default\` | \`--wb-semanticColor-learning-shadow-progress-notStarted-default\` | \`#717279\` | \`#717279\` |
 | \`semanticColor.learning.shadow.progress.attempted.default\` | \`--wb-semanticColor-learning-shadow-progress-attempted-default\` | \`#FCB706\` | \`#FCB706\` |
 | \`semanticColor.learning.shadow.progress.complete.default\` | \`--wb-semanticColor-learning-shadow-progress-complete-default\` | \`#579F6C\` | \`#579F6C\` |
+| \`semanticColor.learning.characters.flesh.blue.default\` | \`--wb-semanticColor-learning-characters-flesh-blue-default\` | \`#5753FA\` | \`#5753FA\` |
+| \`semanticColor.learning.characters.flesh.cyan.default\` | \`--wb-semanticColor-learning-characters-flesh-cyan-default\` | \`#28A9FF\` | \`#28A9FF\` |
+| \`semanticColor.learning.characters.flesh.green.default\` | \`--wb-semanticColor-learning-characters-flesh-green-default\` | \`#579F6C\` | \`#579F6C\` |
+| \`semanticColor.learning.characters.flesh.magenta.default\` | \`--wb-semanticColor-learning-characters-flesh-magenta-default\` | \`#E83FA4\` | \`#E83FA4\` |
+| \`semanticColor.learning.characters.flesh.orange.default\` | \`--wb-semanticColor-learning-characters-flesh-orange-default\` | \`#F8551A\` | \`#F8551A\` |
 | \`semanticColor.chonky.progressive.background.primary.rest\` | \`--wb-semanticColor-chonky-progressive-background-primary-rest\` | \`#1865f2\` | \`#5753FA\` |
 | \`semanticColor.chonky.progressive.background.primary.hover\` | \`--wb-semanticColor-chonky-progressive-background-primary-hover\` | \`#1865f2\` | \`#5753FA\` |
 | \`semanticColor.chonky.progressive.background.primary.press\` | \`--wb-semanticColor-chonky-progressive-background-primary-press\` | \`#1865f2\` | \`#5753FA\` |
