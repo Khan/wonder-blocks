@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
             border: "none",
             outline: "none",
             color: semanticColor.link.hover,
-            backgroundColor: "transparent",
+            backgroundColor: semanticColor.core.transparent,
         },
         // NOTE: We use :not[aria-disabled] to avoid the hover styles to be
         // applied when the interactive element is disabled.

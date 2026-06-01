@@ -62,10 +62,32 @@ ruleTester.run(ruleName, rule, {
         {code: '<div style={{cursor: "e-resize"}} />'},
         {code: '<div style={{backgroundPositionX: "left"}} />'},
 
+        // Zero X-offset shadows are not directional.
+        {
+            code: '<div style={{boxShadow: "0 4px 8px rgba(0,0,0,.2)"}} />',
+            options: [{warnShadows: true}],
+        },
+        {
+            code: '<div style={{boxShadow: "0px 4px 8px rgba(0,0,0,.2)"}} />',
+            options: [{warnShadows: true}],
+        },
+
         // When warnBackgroundPosition is explicitly off, directional bg is allowed.
         {
             code: '<div style={{backgroundPosition: "left top"}} />',
             options: [{warnBackgroundPosition: false}],
+        },
+
+        // Computed property keys (variables) must not be auto-fixed.
+        {code: '<div style={{[marginLeft]: "10px"}} />'},
+
+        // background with url() containing "left"/"right" in the filename
+        // must not trigger the directional warning.
+        {
+            code: '<div style={{background: "url(/images/left-arrow.png) no-repeat"}} />',
+        },
+        {
+            code: '<div style={{backgroundPosition: "url(top-right.svg) center"}} />',
         },
     ],
     invalid: [
@@ -286,6 +308,25 @@ ruleTester.run(ruleName, rule, {
         {
             code: 'StyleSheet.create({foo: {[mediaLarge]: {marginLeft: "10px"}}});',
             output: 'StyleSheet.create({foo: {[mediaLarge]: {marginInlineStart: "10px"}}});',
+            errors: [{messageId: "useLogicalProperty"}],
+        },
+
+        // --- Top-level conditional expression in style={...} -----------------
+        {
+            code: '<div style={cond ? {marginLeft: "10px"} : null} />',
+            output: '<div style={cond ? {marginInlineStart: "10px"} : null} />',
+            errors: [{messageId: "useLogicalProperty"}],
+        },
+        {
+            code: '<div style={cond ? null : {paddingRight: "8px"}} />',
+            output: '<div style={cond ? null : {paddingInlineEnd: "8px"}} />',
+            errors: [{messageId: "useLogicalProperty"}],
+        },
+
+        // --- Top-level logical && in style={...} -----------------------------
+        {
+            code: '<div style={cond && {marginLeft: "10px"}} />',
+            output: '<div style={cond && {marginInlineStart: "10px"}} />',
             errors: [{messageId: "useLogicalProperty"}],
         },
     ],

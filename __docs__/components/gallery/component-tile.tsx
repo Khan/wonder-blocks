@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     tileWithDetails: {
         // Set the width to half the max width of the stories page content.
         width: 484,
-        minHeight: 300,
+        minBlockSize: 300,
     },
     tileWithoutDetails: {
         width: "auto",
@@ -140,20 +140,20 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     descriptionText: {
-        marginTop: sizing.size_120,
+        marginBlockStart: sizing.size_120,
     },
     componentView: {
         flexDirection: "column",
         justifyContent: "center",
         padding: sizing.size_240,
         border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
-        borderTop: "none",
+        borderBlockStart: "none",
         borderEndStartRadius: sizing.size_120,
         borderEndEndRadius: sizing.size_120,
         flexGrow: 1,
     },
     externalLinkIcon: {
-        marginLeft: sizing.size_080,
-        marginRight: sizing.size_080,
+        marginInlineStart: sizing.size_080,
+        marginInlineEnd: sizing.size_080,
     },
 });

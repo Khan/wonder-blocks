@@ -194,8 +194,8 @@ const componentStyles = StyleSheet.create({
 
         // Default widths/heights for FlexibleDialog alone
         height: "auto",
-        maxHeight: "100vh",
-        maxWidth: 576,
+        maxBlockSize: "100vh",
+        maxInlineSize: 576,
         width: "93.75%",
     },
 });

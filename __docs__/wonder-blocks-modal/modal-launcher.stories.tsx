@@ -722,14 +722,14 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "column",
         gap: sizing.size_240,
-        maxWidth: 600,
+        maxInlineSize: 600,
     },
     description: {
         display: "flex",
         flexDirection: "column",
         gap: sizing.size_160,
         padding: sizing.size_160,
-        backgroundColor: "rgba(33, 36, 44, 0.08)",
+        backgroundColor: semanticColor.core.background.neutral.subtle,
         borderRadius: 4,
     },
     buttonRow: {
@@ -892,7 +892,7 @@ export const CreatingACustomModal: StoryComponentType = {
                 }}
             >
                 <ModalPanel
-                    style={{maxWidth: 423}}
+                    style={{maxInlineSize: 423}}
                     closeButtonVisible={true}
                     content={
                         <View style={{gap: sizing.size_240}}>

@@ -1016,7 +1016,7 @@ class DropdownCore extends React.Component<Props, State> {
                     style={[
                         styles.listboxOrMenu,
                         {
-                            minWidth: minDropdownWidth,
+                            minInlineSize: minDropdownWidth,
                         },
                     ]}
                     // Only the `listbox` role supports aria-invalid and aria-required because
@@ -1080,7 +1080,7 @@ class DropdownCore extends React.Component<Props, State> {
 const styles = StyleSheet.create({
     menuWrapper: {
         width: "fit-content",
-        maxWidth: "100%",
+        maxInlineSize: "100%",
     },
 
     dropdown: {
@@ -1093,7 +1093,7 @@ const styles = StyleSheet.create({
         // We use a custom property to set the max height of the dropdown.
         // This comes from the maxHeight custom modifier.
         // @see ../util/popper-max-height-modifier.ts
-        maxHeight: "var(--popper-max-height)",
+        maxBlockSize: "var(--popper-max-height)",
     },
 
     listboxOrMenu: {
@@ -1114,9 +1114,9 @@ const styles = StyleSheet.create({
     searchInputStyle: {
         margin: sizing.size_080,
         marginBlockStart: sizing.size_040,
-        // Set `minHeight` to "auto" to stop the search field from having
+        // Set `minBlockSize` to "auto" to stop the search field from having
         // a height of 0 and being cut off.
-        minHeight: "auto",
+        minBlockSize: "auto",
         position: "sticky",
     },
 

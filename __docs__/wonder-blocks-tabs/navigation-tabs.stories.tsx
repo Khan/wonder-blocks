@@ -157,7 +157,7 @@ export const HeaderWithNavigationTabsExample: StoryComponentType = {
                 display: "flex",
                 alignItems: "center",
                 flexWrap: "wrap",
-                borderBottom: `1px solid ${semanticColor.core.border.neutral.subtle}`,
+                borderBlockEnd: `1px solid ${semanticColor.core.border.neutral.subtle}`,
                 gap: sizing.size_240,
                 padding: `${headerVerticalSpacing} ${sizing.size_240}`,
             },
@@ -357,7 +357,7 @@ export const ChildrenRenderFunction: StoryComponentType = {
             <View
                 style={{
                     // Need to set the height so tooltip/popover are captured in chromatic
-                    minHeight: 400,
+                    minBlockSize: 400,
                     gap: sizing.size_240,
                 }}
             >

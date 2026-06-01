@@ -443,7 +443,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                         readOnly && styles.readOnly,
                         rows && {
                             // Set the min height to the height of the number of rows
-                            minHeight: getHeightForNumberOfRows(rows),
+                            minBlockSize: getHeightForNumberOfRows(rows),
                         },
                         autoResize && autoResizeStyles,
                         style,

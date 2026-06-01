@@ -1,5 +1,23 @@
 # @khanacademy/wonder-blocks-popover
 
+## 6.3.1
+
+### Patch Changes
+
+- Updated dependencies [40cb70f]
+- Updated dependencies [40cb70f]
+    - @khanacademy/wonder-blocks-core@12.4.4
+    - @khanacademy/wonder-blocks-modal@8.7.1
+    - @khanacademy/wonder-blocks-tooltip@4.1.76
+    - @khanacademy/wonder-blocks-icon-button@11.3.1
+    - @khanacademy/wonder-blocks-typography@4.3.5
+
+## 6.3.0
+
+### Minor Changes
+
+- dbc9011: Add a new prop to the PopoverContent component that represents the heading tag for the title prop. This allows users to specify the proper heading level for their page for a11y compliance.
+
 ## 6.2.5
 
 ### Patch Changes

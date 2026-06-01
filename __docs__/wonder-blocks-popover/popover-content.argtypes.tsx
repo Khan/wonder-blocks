@@ -66,6 +66,12 @@ export default {
         options: Object.keys(ActionsMappings) as Array<React.ReactNode>,
         mapping: ActionsMappings,
     },
+    titleHeadingTag: {
+        description:
+            "The heading level for the popover title. Defaults to `h4`. This does not affect the visual appearance of the title.",
+        control: {type: "select"},
+        options: ["h1", "h2", "h3", "h4", "h5", "h6"],
+    },
     closeButtonVisible: {
         description: `When true, the close button is shown; otherwise, the close button is not shown.`,
         table: {

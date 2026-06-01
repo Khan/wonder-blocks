@@ -16,6 +16,7 @@ import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 import modalDialogArgtypes from "./modal-dialog.argtypes";
 import {reallyLongText} from "../components/text-for-testing";
+import {modalPositionerStyle} from "./modal-story-utils";
 
 /**
  * `ModalDialog` is a component that contains these elements:
@@ -257,25 +258,9 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
     },
-    modalPositioner: {
-        // Checkerboard background
-        backgroundImage:
-            "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
-        backgroundSize: "20px 20px",
-        backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
-
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-
-        position: "absolute",
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-    },
+    modalPositioner: modalPositionerStyle,
     previewSizer: {
-        minHeight: 600,
+        minBlockSize: 600,
         width: "100%",
     },
     row: {
@@ -289,12 +274,12 @@ const styles = StyleSheet.create({
         width: "100%",
     },
     squareDialog: {
-        maxHeight: 500,
-        maxWidth: 500,
+        maxBlockSize: 500,
+        maxInlineSize: 500,
         backgroundColor: semanticColor.core.background.neutral.strong,
     },
     smallSquarePanel: {
-        maxHeight: 400,
-        maxWidth: 400,
+        maxBlockSize: 400,
+        maxInlineSize: 400,
     },
 });

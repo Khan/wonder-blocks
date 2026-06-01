@@ -135,7 +135,7 @@ export const CatalogComponentInfo = <
     ];
 
     return (
-        <View key={name} style={{maxWidth: "100%"}}>
+        <View key={name} style={{maxInlineSize: "100%"}}>
             {heading}
             <View
                 style={{
@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
     stateGroup: {
         gap: sizing.size_200,
         flexWrap: "wrap",
-        maxWidth: "100%",
+        maxInlineSize: "100%",
     },
     row: {
         flexDirection: "row",
@@ -249,7 +249,7 @@ const styles = StyleSheet.create({
     },
     tooltipList: {
         margin: 0,
-        paddingLeft: sizing.size_160,
+        paddingInlineStart: sizing.size_160,
     },
     tooltipWrapper: {
         gap: sizing.size_040,

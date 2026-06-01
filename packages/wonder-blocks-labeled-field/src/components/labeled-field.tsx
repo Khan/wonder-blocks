@@ -340,7 +340,7 @@ const styles = StyleSheet.create({
     label: {
         color: semanticColor.core.foreground.neutral.strong,
         overflowWrap: "break-word",
-        minWidth: sizing.size_0, // This enables the wrapping behaviour
+        minInlineSize: sizing.size_0, // This enables the wrapping behaviour
     },
     contextLabel: {
         // Make the line height match the label so the context label is aligned
@@ -348,7 +348,7 @@ const styles = StyleSheet.create({
         lineHeight: font.body.lineHeight.medium,
         // At most, the context label will take up 30% of the width of the
         // LabeledField
-        maxWidth: "30%",
+        maxInlineSize: "30%",
         // This prevents the context label from shrinking to fit the label
         flexShrink: 0,
     },
@@ -384,7 +384,7 @@ const styles = StyleSheet.create({
         color: theme.helperText.color.default.foreground,
         fontSize: theme.helperText.font.size,
         lineHeight: theme.helperText.font.lineHeight,
-        minWidth: sizing.size_0, // This enables the wrapping behaviour on the helper message
+        minInlineSize: sizing.size_0, // This enables the wrapping behaviour on the helper message
         overflowWrap: "break-word",
     },
     disabledHelperText: {
@@ -394,7 +394,7 @@ const styles = StyleSheet.create({
         color: semanticColor.core.foreground.critical.default,
     },
     errorIcon: {
-        marginTop: sizing.size_010, // This vertically aligns the icon with the text
+        marginBlockStart: sizing.size_010, // This vertically aligns the icon with the text
     },
     errorMessage: {
         fontWeight: theme.error.font.weight,

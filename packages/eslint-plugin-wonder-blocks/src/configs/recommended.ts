@@ -2,8 +2,10 @@ export default {
     plugins: ["@khanacademy/wonder-blocks"],
     rules: {
         "@khanacademy/wonder-blocks/no-invalid-bodytext-children": "error",
-        // require-logical-properties-for-rtl is intentionally not enabled here yet.
-        // It will be turned on in a follow-up PR once WB's existing violations
-        // are auto-fixed via `eslint --fix` as part of CLASS-14218
+        // require-logical-properties-for-rtl is available in the plugin but
+        // intentionally not enabled in the recommended config. It was released
+        // without a timely integration plan for consumers and caused widespread
+        // failures. It will be re-enabled here once a migration path is ready.
+        // To opt in now: "@khanacademy/wonder-blocks/require-logical-properties-for-rtl": "error"
     },
 };

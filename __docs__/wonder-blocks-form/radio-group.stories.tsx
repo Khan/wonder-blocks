@@ -263,13 +263,13 @@ const styles = StyleSheet.create({
     choice: {
         margin: 0,
         height: 48,
-        borderTop: "solid 1px #CCC",
+        borderBlockStart: `solid 1px ${semanticColor.core.border.neutral.subtle}`,
         justifyContent: "center",
     },
     lastChoice: {
-        borderBottom: "solid 1px #CCC",
+        borderBlockEnd: `solid 1px ${semanticColor.core.border.neutral.subtle}`,
     },
     prompt: {
-        marginBottom: 16,
+        marginBlockEnd: 16,
     },
 });
