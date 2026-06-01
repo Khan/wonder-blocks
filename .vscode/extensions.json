@@ -19,6 +19,16 @@
 
         // CSS Modules autocomplete + go-to-definition. Pairs with the
         // `typescript-plugin-css-modules` configured in tsconfig.json.
-        "clinyong.vscode-css-modules"
+        "clinyong.vscode-css-modules",
+
+        // Stylelint live diagnostics in the editor. Surfaces token-strict
+        // and at-rule-allowlist violations alongside the CLI runner.
+        "stylelint.vscode-stylelint",
+
+        // CSS variable autocomplete (`var(--wb-…)`). Scans the merged
+        // token CSS at `packages/wonder-blocks-tokens/dist/css/index.css`
+        // (see `.vscode/settings.json` → `cssvar.files`). Run `pnpm build`
+        // at least once after a fresh checkout so the file exists.
+        "vunguyentuan.vscode-css-variables"
     ]
 }
