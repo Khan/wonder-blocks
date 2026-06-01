@@ -82,11 +82,7 @@ const VALUE_WARN_KEYS = new Set<string>([
     "margin",
 ]);
 
-type RuleOptions = {
-    warnBackgroundPosition?: boolean;
-};
-
-type Options = [RuleOptions];
+type Options = [];
 
 type MessageIds =
     | "useLogicalProperty"
@@ -203,24 +199,10 @@ export default createRule<Options, MessageIds>({
             preferLogicalMarginShorthand:
                 "Prefer logical margin shorthands (e.g. marginBlock/marginInline/marginInlineStart) instead of the physical 'margin' shorthand.",
         },
-        schema: [
-            {
-                type: "object",
-                properties: {
-                    warnBackgroundPosition: {type: "boolean"},
-                },
-                additionalProperties: false,
-            },
-        ],
+        schema: [],
     },
-    defaultOptions: [
-        {
-            warnBackgroundPosition: true,
-        },
-    ],
+    defaultOptions: [],
     create(context) {
-        const options: RuleOptions = context.options[0] ?? {};
-
         function reportInvalidProperty(
             property: TSESTree.Property,
             keyName: string,
@@ -275,15 +257,17 @@ export default createRule<Options, MessageIds>({
             switch (keyName) {
                 case "float": {
                     if (strVal === "left" || strVal === "right") {
+                        const logical =
+                            strVal === "left" ? "inline-start" : "inline-end";
                         context.report({
                             node: property.value,
                             messageId: "useLogicalFloat",
-                            data: {
-                                logical:
-                                    strVal === "left"
-                                        ? "inline-start"
-                                        : "inline-end",
-                                physical: strVal,
+                            data: {logical, physical: strVal},
+                            fix(fixer) {
+                                return fixer.replaceText(
+                                    property.value,
+                                    JSON.stringify(logical),
+                                );
                             },
                         });
                     }
@@ -291,15 +275,17 @@ export default createRule<Options, MessageIds>({
                 }
                 case "clear": {
                     if (strVal === "left" || strVal === "right") {
+                        const logical =
+                            strVal === "left" ? "inline-start" : "inline-end";
                         context.report({
                             node: property.value,
                             messageId: "useLogicalClear",
-                            data: {
-                                logical:
-                                    strVal === "left"
-                                        ? "inline-start"
-                                        : "inline-end",
-                                physical: strVal,
+                            data: {logical, physical: strVal},
+                            fix(fixer) {
+                                return fixer.replaceText(
+                                    property.value,
+                                    JSON.stringify(logical),
+                                );
                             },
                         });
                     }
@@ -310,8 +296,7 @@ export default createRule<Options, MessageIds>({
                     if (
                         /\b(left|right)\b/.test(
                             strVal.replace(/url\([^)]*\)/g, ""),
-                        ) &&
-                        (options.warnBackgroundPosition ?? true)
+                        )
                     ) {
                         context.report({
                             node: property.value,

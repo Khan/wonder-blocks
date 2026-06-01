@@ -70,12 +70,6 @@ ruleTester.run(ruleName, rule, {
         // warning fires.
         {code: '<div style={{padding: "calc(1px + 2px) 10px"}} />'},
 
-        // When warnBackgroundPosition is explicitly off, directional bg is allowed.
-        {
-            code: '<div style={{backgroundPosition: "left top"}} />',
-            options: [{warnBackgroundPosition: false}],
-        },
-
         // Computed property keys (variables) must not be auto-fixed.
         {code: '<div style={{[marginLeft]: "10px"}} />'},
 
@@ -166,9 +160,10 @@ ruleTester.run(ruleName, rule, {
             errors: [{messageId: "useTextAlignValue"}],
         },
 
-        // --- float / clear value warnings (no fix) ---------------------------
+        // --- float / clear value auto-fix ------------------------------------
         {
             code: '<div style={{float: "left"}} />',
+            output: '<div style={{float: "inline-start"}} />',
             errors: [
                 {
                     messageId: "useLogicalFloat",
@@ -177,7 +172,23 @@ ruleTester.run(ruleName, rule, {
             ],
         },
         {
+            code: '<div style={{float: "right"}} />',
+            output: '<div style={{float: "inline-end"}} />',
+            errors: [
+                {
+                    messageId: "useLogicalFloat",
+                    data: {logical: "inline-end", physical: "right"},
+                },
+            ],
+        },
+        {
             code: '<div style={{clear: "right"}} />',
+            output: '<div style={{clear: "inline-end"}} />',
+            errors: [{messageId: "useLogicalClear"}],
+        },
+        {
+            code: '<div style={{clear: "left"}} />',
+            output: '<div style={{clear: "inline-start"}} />',
             errors: [{messageId: "useLogicalClear"}],
         },
 
@@ -187,7 +198,7 @@ ruleTester.run(ruleName, rule, {
             errors: [{messageId: "avoidForceDirection"}],
         },
 
-        // --- backgroundPosition directional (warnBackgroundPosition on by default) --
+        // --- backgroundPosition directional (always on) ---------------------
         {
             code: '<div style={{backgroundPosition: "left top"}} />',
             errors: [{messageId: "avoidBackgroundDirectional"}],
