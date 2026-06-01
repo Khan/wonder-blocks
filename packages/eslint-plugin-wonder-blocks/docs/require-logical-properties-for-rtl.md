@@ -62,8 +62,10 @@ StyleSheet.create({
 | `scrollMarginLeft/Right/Top/Bottom` | `scrollMargin{Inline,Block}{Start,End}` |
 | `scrollPaddingLeft/Right/Top/Bottom` | `scrollPadding{Inline,Block}{Start,End}` |
 | `textAlign: "left"` / `"right"` | `textAlign: "start"` / `"end"` (value swap) |
-| Two-value `padding: "A B"` | `paddingBlock: "A", paddingInline: "B"` |
-| Two-value `margin: "A B"` | `marginBlock: "A", marginInline: "B"` |
+| `padding: "A B"` / `"A B C"` / `"A B C D"` | `paddingBlock`/`paddingInline`/`paddingBlockStart`/`paddingInlineEnd`/… |
+| `margin: "A B"` / `"A B C"` / `"A B C D"` | `marginBlock`/`marginInline`/`marginBlockStart`/`marginInlineEnd`/… |
+
+The 4-value `padding`/`margin` shorthand is the case that genuinely breaks in RTL — its left and right values differ and don't auto-mirror. Values containing functions (`calc()`, `var()`, …) are left alone since they can't be split safely.
 
 ## Value-based warnings (no auto-fix)
 
@@ -74,13 +76,9 @@ Some CSS values are directional but have no straightforward logical replacement.
 | `float: "left"` / `"right"` | Use `inline-start` / `inline-end` | always on |
 | `clear: "left"` / `"right"` | Use `inline-start` / `inline-end` | always on |
 | `direction: "ltr"` / `"rtl"` | Don't force direction in styles; rely on container `dir` | always on |
-| `backgroundPosition` containing `left`/`right` | Use percentages or conditional assets | option `warnBackgroundPosition` |
-| `backgroundPositionX/Y` with directional keywords | Same | option `warnBackgroundPositionXY` |
-| `linear-gradient(to left/right/top/bottom, ...)` | Gradients are physical; verify or flip | option `warnGradients` |
-| `transform: "translateX(...)"` | translateX is directional | option `warnDirectionalTransforms` |
-| `transformOrigin` containing `left`/`right` | Use percentages instead | option `warnDirectionalTransforms` |
-| `boxShadow` / `textShadow` with a horizontal offset | Verify in RTL or conditionally flip the X sign | option `warnShadows` |
-| `cursor: "e-resize"` / `"w-resize"` | Use `ew-resize` or conditional swap | option `warnCursorDirections` |
+| `backgroundPosition` / `background` containing `left`/`right` | Use percentages or conditional assets | option `warnBackgroundPosition` |
+
+Directional `transform`/`transformOrigin`, `boxShadow`/`textShadow`, `linear-gradient` directions, `cursor` resize directions, and `backgroundPositionX/Y` are intentionally **not** checked. They have no logical-property fix, and the heuristics produced almost entirely false positives on RTL-safe code (`translateX(-50%)` centering, symmetric gradients, X-offset shadows, block-axis `backgroundPositionY`), forcing `eslint-disable` suppressions on correct code.
 
 ## Options
 
@@ -88,16 +86,11 @@ Some CSS values are directional but have no straightforward logical replacement.
 {
     "@khanacademy/wonder-blocks/require-logical-properties-for-rtl": ["error", {
         warnBackgroundPosition: true,        // default: true
-        warnBackgroundPositionXY: false,     // default: false
-        warnGradients: false,                // default: false
-        warnDirectionalTransforms: false,    // default: false
-        warnShadows: false,                  // default: false
-        warnCursorDirections: false,         // default: false
     }],
 }
 ```
 
-All options are booleans. Property-name and `textAlign` fixes always run regardless of options; the options only gate the value-based warnings listed above.
+`warnBackgroundPosition` is the only option (a boolean). It defaults to `true` and exists as an escape hatch: the `backgroundPosition` check has no auto-fix, so a consumer hitting a decorative false positive can disable it config-wide rather than scattering `eslint-disable` comments. Property-name and `textAlign` fixes, `float`/`clear`, `direction`, and `padding`/`margin` shorthand expansion always run regardless of options.
 
 ## When not to use
 
