@@ -102,6 +102,22 @@ const config: Config = {
             },
         ],
 
+        // Closes the gap left by `csstools/value-no-unknown-custom-properties`:
+        // that rule intentionally skips `var()` calls with a fallback (the
+        // fallback is treated as a safety net), so a typo like
+        // `var(--wb-typoed-token, 10px)` slips through. Banning the
+        // fallback form forces every custom-property reference to be
+        // validated against the token set above. WARN during the migration;
+        // tightens to `error` in Phase 5.
+        "declaration-property-value-disallowed-list": [
+            {"/.*/": ["/var\\([^,)]+,[^)]+\\)/"]},
+            {
+                message:
+                    "Avoid var() fallbacks — reference --wb-* tokens directly so typos are caught by csstools/value-no-unknown-custom-properties.",
+                severity: "warning",
+            },
+        ],
+
         // Override the standard rule to allow importing css files with the
         // `@import` notation that our PostCSS pipeline uses.
         "import-notation": "string",
