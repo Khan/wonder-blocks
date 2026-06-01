@@ -29,6 +29,6 @@
         // token CSS at `packages/wonder-blocks-tokens/dist/css/index.css`
         // (see `.vscode/settings.json` → `cssvar.files`). Run `pnpm build`
         // at least once after a fresh checkout so the file exists.
-        "phoenisx.cssvar"
+        "vunguyentuan.vscode-css-variables"
     ]
 }

@@ -17,6 +17,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const config: Config = {
     extends: ["stylelint-config-standard", "stylelint-config-css-modules"],
+    ignoreFiles: ["**/dist/**", "**/node_modules/**"],
     plugins: [
         "stylelint-declaration-strict-value",
         "stylelint-use-logical",
@@ -35,6 +36,7 @@ const config: Config = {
                     "define-mixin",
                     "include",
                     "layer",
+                    "value",
                 ],
             },
         ],
@@ -129,10 +131,10 @@ const config: Config = {
                 // width
                 "border",
                 "border-width",
-                "border-top-width",
-                "border-bottom-width",
-                "border-left-width",
-                "border-right-width",
+                "border-block-start-width",
+                "border-block-end-width",
+                "border-inline-start-width",
+                "border-inline-end-width",
                 /**
                  * WB font/typography tokens
                  */
