@@ -1,5 +1,5 @@
 import * as React from "react";
-import {css, StyleSheet} from "aphrodite";
+import {StyleSheet} from "aphrodite";
 
 import styles from "./spike.module.css";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
