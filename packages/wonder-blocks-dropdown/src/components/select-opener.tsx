@@ -163,8 +163,10 @@ export default class SelectOpener extends React.Component<
             disabled && styles.disabled,
             error && styles.error,
             isPlaceholder && styles.placeholder,
+            isPlaceholder && disabled && styles.disabledPlaceholder,
             !disabled && !readOnly && this.state.pressed && styles.press,
             readOnly && styles.readOnly,
+            readOnly && isPlaceholder && styles.readOnlyPlaceholder,
         ];
 
         const allowInteraction = !disabled && !readOnly;
@@ -304,6 +306,12 @@ const styles = StyleSheet.create({
         },
     },
     placeholder: {
+        color: semanticColor.input.default.placeholder,
+    },
+    disabledPlaceholder: {
+        color: semanticColor.input.disabled.placeholder,
+    },
+    readOnlyPlaceholder: {
         color: semanticColor.input.default.placeholder,
     },
     readOnly: {
