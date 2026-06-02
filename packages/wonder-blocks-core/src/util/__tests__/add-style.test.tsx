@@ -88,6 +88,81 @@ describe("addStyle", () => {
         expect(classNames[1]).toEqual("foo");
     });
 
+    describe("CSS Modules", () => {
+        it("should forward a CSS module class name (string `style`) as a className", () => {
+            // Arrange
+            render(<StyledDiv style="module-class" data-testid="styled-div" />);
+
+            // Act
+            const div = screen.getByTestId("styled-div");
+
+            // Assert
+            expect(div).toHaveAttribute("class", "module-class");
+        });
+
+        it("should not generate an inline style attribute for a CSS module class name", () => {
+            // Arrange
+            render(<StyledDiv style="module-class" data-testid="styled-div" />);
+
+            // Act
+            const div = screen.getByTestId("styled-div");
+
+            // Assert
+            expect(div).not.toHaveAttribute("style");
+        });
+
+        it("should combine a CSS module class name with the consumer's className", () => {
+            // Arrange
+            render(
+                <StyledDiv
+                    className="foo"
+                    style="module-class"
+                    data-testid="styled-div"
+                />,
+            );
+
+            // Act
+            const div = screen.getByTestId("styled-div");
+
+            // Assert — the CSS module class flows through `processStyleList`,
+            // then the consumer's `className` is appended.
+            expect(div).toHaveAttribute("class", "module-class foo");
+        });
+
+        it("should join multiple CSS module class names passed via `style`", () => {
+            // Arrange
+            render(
+                <StyledDiv
+                    style={["module-a", "module-b"]}
+                    data-testid="styled-div"
+                />,
+            );
+
+            // Act
+            const div = screen.getByTestId("styled-div");
+
+            // Assert
+            expect(div).toHaveAttribute("class", "module-a module-b");
+        });
+
+        it("should append a CSS module class name after an aphrodite-generated class", () => {
+            // Arrange
+            render(
+                <StyledDiv
+                    style={[styles.foo, "module-class"]}
+                    data-testid="styled-div"
+                />,
+            );
+
+            // Act
+            const div = screen.getByTestId("styled-div");
+
+            // Assert — aphrodite-generated class first, then the CSS module class.
+            const classNames = div.className.split(" ");
+            expect(classNames[1]).toEqual("module-class");
+        });
+    });
+
     it("should forward a ref to the component", () => {
         // Arrange
         const ref = React.createRef<HTMLDivElement>();

@@ -51,7 +51,7 @@ describe("processStyleList", () => {
     });
 
     describe("pure Aphrodite stylesheets", () => {
-        it("emits a generated class and no inline style", () => {
+        it("emits no inline style", () => {
             // Arrange
             // (uses pre-created `styles` stylesheet)
 
@@ -60,11 +60,31 @@ describe("processStyleList", () => {
 
             // Assert
             expect(result.style).toEqual({});
+        });
+
+        it("emits a generated class name string", () => {
+            // Arrange
+            // (uses pre-created `styles` stylesheet)
+
+            // Act
+            const result = processStyleList(styles.noPadding);
+
+            // Assert
             expect(result.className).toEqual(expect.any(String));
+        });
+
+        it("emits a non-empty generated class name", () => {
+            // Arrange
+            // (uses pre-created `styles` stylesheet)
+
+            // Act
+            const result = processStyleList(styles.noPadding);
+
+            // Assert
             expect(result.className.length).toBeGreaterThan(0);
         });
 
-        it("includes multiple stylesheets in the generated class", () => {
+        it("emits no inline style for multiple stylesheets", () => {
             // Arrange
             // (uses pre-created `styles` stylesheet)
 
@@ -72,8 +92,17 @@ describe("processStyleList", () => {
             const result = processStyleList([styles.noPadding, styles.bold]);
 
             // Assert
-            // A single class is produced by aphrodite that encodes both.
             expect(result.style).toEqual({});
+        });
+
+        it("encodes multiple stylesheets into a single generated class", () => {
+            // Arrange
+            // (uses pre-created `styles` stylesheet)
+
+            // Act
+            const result = processStyleList([styles.noPadding, styles.bold]);
+
+            // Assert
             expect(result.className.split(" ")).toHaveLength(1);
         });
     });
@@ -134,6 +163,16 @@ describe("processStyleList", () => {
 
             // Assert
             expect(result.style).toEqual({padding: 10, fontSize: 12});
+        });
+
+        it("emits no className when merging multiple inline objects", () => {
+            // Arrange
+            const input = [{padding: 0, fontSize: 12}, {padding: 10}];
+
+            // Act
+            const result = processStyleList(input);
+
+            // Assert
             expect(result.className).toEqual("");
         });
 
@@ -146,12 +185,25 @@ describe("processStyleList", () => {
 
             // Assert
             expect(result.style).toEqual({"--my-var": "12px"});
+        });
+
+        it("emits no className for CSS custom property keys (--*)", () => {
+            // Arrange
+            const input = {"--my-var": "12px"} as any;
+
+            // Act
+            const result = processStyleList(input);
+
+            // Assert
             expect(result.className).toEqual("");
         });
     });
 
     describe("mixed inputs", () => {
-        it("buckets aphrodite, strings, and inline objects together", () => {
+        // Aphrodite class first, then string class. Inline styles are
+        // wrapped into the aphrodite class (no fast-path because aphrodite
+        // is in the merge), so `style` stays empty.
+        it("produces two classes for aphrodite + string + inline object", () => {
             // Arrange
             const input = [styles.noPadding, "module-class", {fontSize: 14}];
 
@@ -159,18 +211,44 @@ describe("processStyleList", () => {
             const result = processStyleList(input);
 
             // Assert
-            // Aphrodite class first, then string class. Inline styles are
-            // wrapped into the aphrodite class (no fast-path because aphrodite
-            // is in the merge), so `style` stays empty.
-            const classes = result.className.split(" ");
-            expect(classes).toHaveLength(2);
-            expect(classes[0]).toEqual(expect.any(String));
-            expect(classes[0].length).toBeGreaterThan(0);
-            expect(classes[1]).toEqual("module-class");
+            expect(result.className.split(" ")).toHaveLength(2);
+        });
+
+        it("emits the aphrodite-generated class first", () => {
+            // Arrange
+            const input = [styles.noPadding, "module-class", {fontSize: 14}];
+
+            // Act
+            const result = processStyleList(input);
+
+            // Assert
+            expect(result.className.split(" ")[0].length).toBeGreaterThan(0);
+        });
+
+        it("emits the string class after the aphrodite class", () => {
+            // Arrange
+            const input = [styles.noPadding, "module-class", {fontSize: 14}];
+
+            // Act
+            const result = processStyleList(input);
+
+            // Assert
+            expect(result.className.split(" ")[1]).toEqual("module-class");
+        });
+
+        it("wraps inline styles into the aphrodite class, leaving `style` empty", () => {
+            // Arrange
+            const input = [styles.noPadding, "module-class", {fontSize: 14}];
+
+            // Act
+            const result = processStyleList(input);
+
+            // Assert
             expect(result.style).toEqual({});
         });
 
-        it("preserves string source order across aphrodite + strings", () => {
+        // aphrodite class, then strings in source order.
+        it("emits the leading string after the aphrodite class", () => {
             // Arrange
             const input = ["outer", styles.noPadding, "inner"];
 
@@ -178,16 +256,24 @@ describe("processStyleList", () => {
             const result = processStyleList(input);
 
             // Assert
-            // aphrodite class, then strings in source order.
-            const classes = result.className.split(" ");
-            expect(classes).toHaveLength(3);
-            expect(classes[1]).toEqual("outer");
-            expect(classes[2]).toEqual("inner");
+            expect(result.className.split(" ")[1]).toEqual("outer");
+        });
+
+        it("emits the trailing string last, preserving source order", () => {
+            // Arrange
+            const input = ["outer", styles.noPadding, "inner"];
+
+            // Act
+            const result = processStyleList(input);
+
+            // Assert
+            expect(result.className.split(" ")[2]).toEqual("inner");
         });
     });
 
     describe("nested arrays", () => {
-        it("flattens deeply nested arrays of mixed leaves", () => {
+        // aphrodite-generated class, then strings in source order.
+        it("flattens nested arrays, emitting the first string after the aphrodite class", () => {
             // Arrange
             const input = [["a", [styles.noPadding, ["b", [{fontSize: 14}]]]]];
 
@@ -195,11 +281,18 @@ describe("processStyleList", () => {
             const result = processStyleList(input);
 
             // Assert
-            // aphrodite-generated class, then strings in source order.
-            const classes = result.className.split(" ");
-            expect(classes).toHaveLength(3);
-            expect(classes[1]).toEqual("a");
-            expect(classes[2]).toEqual("b");
+            expect(result.className.split(" ")[1]).toEqual("a");
+        });
+
+        it("flattens nested arrays, preserving source order of strings", () => {
+            // Arrange
+            const input = [["a", [styles.noPadding, ["b", [{fontSize: 14}]]]]];
+
+            // Act
+            const result = processStyleList(input);
+
+            // Assert
+            expect(result.className.split(" ")[2]).toEqual("b");
         });
 
         it("ignores falsy leaves inside nested arrays", () => {
@@ -297,7 +390,28 @@ describe("processStyleList", () => {
             // Assert
             // No generated class — inline styles flow as `style` directly.
             expect(result.className).toEqual("");
+        });
+
+        it("flows inline styles through as `style` when no class is generated", () => {
+            // Arrange
+            const input = {padding: 10};
+
+            // Act
+            const result = processStyleList(input);
+
+            // Assert
             expect(result.style).toEqual({padding: 10});
+        });
+
+        it("wraps inline styles into the aphrodite class, leaving `style` empty (no fast-path)", () => {
+            // Arrange
+            const input = [styles.noPadding, {fontSize: 14}];
+
+            // Act
+            const result = processStyleList(input);
+
+            // Assert
+            expect(result.style).toEqual({});
         });
 
         it("generates a class when aphrodite is in the merge (no fast-path)", () => {
@@ -308,8 +422,6 @@ describe("processStyleList", () => {
             const result = processStyleList(input);
 
             // Assert
-            // Aphrodite forces the inline-style wrap, so `style` is empty.
-            expect(result.style).toEqual({});
             expect(result.className.length).toBeGreaterThan(0);
         });
     });
@@ -328,8 +440,17 @@ describe("processStyleList", () => {
             const result = processStyleList(styles.noPadding);
 
             // Assert
-            // Aphrodite gets inlined; no class is generated.
             expect(result.style).toEqual({padding: 0});
+        });
+
+        it("generates no class when inlining aphrodite stylesheets", () => {
+            // Arrange
+            // (uses pre-created `styles` stylesheet)
+
+            // Act
+            const result = processStyleList(styles.noPadding);
+
+            // Assert
             expect(result.className).toEqual("");
         });
 
@@ -348,7 +469,7 @@ describe("processStyleList", () => {
             expect(result.style).toHaveProperty("margin", 10);
         });
 
-        it("merges aphrodite + inline + strings while inlining", () => {
+        it("merges aphrodite + inline + strings into inline styles while inlining", () => {
             // Arrange
             const input = [styles.noPadding, "module-class", {fontSize: 14}];
 
@@ -357,6 +478,16 @@ describe("processStyleList", () => {
 
             // Assert
             expect(result.style).toEqual({padding: 0, fontSize: 14});
+        });
+
+        it("keeps string class names while inlining aphrodite + inline", () => {
+            // Arrange
+            const input = [styles.noPadding, "module-class", {fontSize: 14}];
+
+            // Act
+            const result = processStyleList(input);
+
+            // Assert
             expect(result.className).toEqual("module-class");
         });
     });
