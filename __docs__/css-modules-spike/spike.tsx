@@ -1,6 +1,8 @@
 import * as React from "react";
+import {css, StyleSheet} from "aphrodite";
 
 import styles from "./spike.module.css";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 type Props = {
     label: string;
@@ -20,9 +22,25 @@ type Props = {
  */
 export function Spike({label, badge}: Props): React.ReactElement {
     return (
-        <button type="button" className={styles.root}>
+        <button
+            type="button"
+            className={[styles.root, css(aphroditeStyles.root)].join(" ")}
+            style={inlineStyles.root}
+        >
             <span>{label}</span>
             {badge ? <span className={styles.pill}>{badge}</span> : null}
         </button>
     );
 }
+
+const aphroditeStyles = StyleSheet.create({
+    root: {
+        color: semanticColor.core.foreground.instructive.default,
+    },
+});
+
+const inlineStyles = {
+    root: {
+        backgroundColor: semanticColor.core.background.instructive.subtle,
+    },
+};

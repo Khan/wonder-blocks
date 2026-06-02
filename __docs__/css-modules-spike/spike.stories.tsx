@@ -22,9 +22,9 @@ export default {
     component: Spike,
     parameters: {
         chromatic: {
-            // Spike artifact, not a real component — no need to spend a
-            // Chromatic snapshot on it.
-            disableSnapshot: true,
+            // NOTE: This will be switched back to true once we start migrating
+            // real components.
+            disableSnapshot: false,
         },
     },
 } as Meta<typeof Spike>;
