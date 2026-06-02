@@ -38,11 +38,9 @@ export default {
                 version={packageConfig.version}
             />
         ),
-        parameters: {
-            chromatic: {
-                // Disabling because this is already covered by the statesheet
-                disableSnapshot: true,
-            },
+        chromatic: {
+            // Disabling because this is already covered by the statesheet
+            disableSnapshot: true,
         },
     },
 } as Meta<any>;
