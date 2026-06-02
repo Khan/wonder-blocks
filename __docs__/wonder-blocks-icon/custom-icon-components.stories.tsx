@@ -5,7 +5,7 @@ import packageConfig from "../../packages/wonder-blocks-icon/package.json";
 import {GemIcon, Icon, StreakIcon} from "@khanacademy/wonder-blocks-icon";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {themeModes} from "../../.storybook/modes";
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 
 /**
  * Custom icon components that render an inline svg. Use with the `Icon`
@@ -24,12 +24,13 @@ export default {
             />
         ),
         chromatic: {
+            // Disable snapshots since they're covered by the testing snapshots
             disableSnapshot: true,
-            modes: themeModes,
         },
     },
     component: GemIcon,
     argTypes: {
+        ...AriaArgTypes,
         style: {
             table: {
                 type: {
@@ -69,12 +70,6 @@ export const AllCustomIcons: StoryComponentType = {
             {/* Add other custom icons here */}
         </View>
     ),
-    parameters: {
-        chromatic: {
-            // Include snapshots for all the custom icons
-            disableSnapshot: false,
-        },
-    },
 };
 
 /**
