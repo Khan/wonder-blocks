@@ -1,0 +1,5 @@
+{
+    "name": "Storybook",
+    "command": "pnpm start",
+    "url": "http://localhost:6061"
+}
