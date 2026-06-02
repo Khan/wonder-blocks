@@ -1,5 +1,11 @@
 {
-    "name": "Storybook",
-    "command": "pnpm start",
-    "url": "http://localhost:6061"
+    "version": "0.0.1",
+    "configurations": [
+        {
+            "name": "Storybook",
+            "runtimeExecutable": "pnpm",
+            "runtimeArgs": ["start"],
+            "port": 6061
+        }
+    ]
 }
