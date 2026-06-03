@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     wrapper: {
         flex: "1 1 auto",
         flexDirection: "column",
-        background: semanticColor.core.background.base.subtle,
+        background: semanticColor.core.background.base.default,
         boxSizing: "border-box",
         overflow: "hidden",
         height: "100%",

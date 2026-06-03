@@ -45,8 +45,8 @@ const core = {
     },
     background: {
         base: {
-            subtle: color.gray_05,
-            default: color.black_100,
+            subtle: color.black_100,
+            default: color.gray_05,
             strong: color.white_100,
         },
         instructive: {
