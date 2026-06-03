@@ -1,0 +1,85 @@
+/*
+ * Cross-package action-style mixins.
+ *
+ * Mirrors the Aphrodite-shaped `actionStyles` JS exports so CSS Modules
+ * authors can opt into the same interactive-control styling without
+ * pulling in Aphrodite.
+ *
+ * Authors include a mixin via:
+ *
+ *   @import "@khanacademy/wonder-blocks-styles/action-styles.css";
+ *
+ *   .my-control {
+ *       @apply --wb-action-inverse;
+ *   }
+ *
+ * postcss-import resolves the @import through the workspace and
+ * @csstools/postcss-mixins expands the @apply at build time
+ * (CSS Mixins Level 1 syntax — note the leading `--` on the name).
+ */
+
+/*
+ * Pull in `--wb-focus-visible` so `--wb-action-inverse` can reuse the shared
+ * focus ring (parity with the JS `inverse` style, which spreads `focus`).
+ * postcss-import dedupes by resolved path, so consumers that also import
+ * focus-styles.css directly won't get a duplicate definition.
+ */
+@import "./focus-styles.css";
+
+/*
+ * The inverse styles for an interactive control, for special cases where the
+ * element sits on a dark background.
+ *
+ * NOTE: This mirrors `actionStyles.inverse`, which is slated to be deprecated
+ * in the future.
+ *
+ * The `&` selectors below have no scoping root at the mixin *definition*
+ * site, but they resolve to the consumer's selector once the mixin is
+ * `@apply`-ed inside a rule. Stylelint can't see that context, so the
+ * `nesting-selector-no-missing-scoping-root` rule is disabled for the block.
+ */
+/* stylelint-disable nesting-selector-no-missing-scoping-root */
+@mixin --wb-action-inverse() {
+    /*
+     * Overriding border-color only to preserve the visual integrity of the
+     * control, as there might be some cases where the interactive element
+     * already includes a border.
+     */
+    &:not([aria-disabled="true"]) {
+        border-color: var(--wb-semanticColor-core-border-knockout-default);
+        color: var(--wb-semanticColor-core-foreground-knockout-default);
+    }
+
+    &:hover:not([aria-disabled="true"]) {
+        color: var(--wb-semanticColor-core-foreground-knockout-default);
+
+        /*
+         * Overriding border-color only to preserve the visual integrity of
+         * the control, as there might be some cases where the interactive
+         * element already includes a border.
+         */
+        border-color: var(--wb-semanticColor-core-border-knockout-default);
+    }
+
+    /* Use the shared focus styles to keep the focus state consistent. */
+    &:focus-visible {
+        @apply --wb-focus-visible;
+    }
+
+    &:active:not([aria-disabled="true"]) {
+        border-radius: var(--wb-border-radius-radius_080);
+
+        /* A slightly darker color than the inverse border color. */
+        border-color: color-mix(
+            in srgb,
+            var(--wb-semanticColor-core-border-neutral-default) 55%,
+            var(--wb-semanticColor-core-border-knockout-default)
+        );
+        background: color-mix(
+            in srgb,
+            var(--wb-semanticColor-core-background-base-default) 5%,
+            transparent
+        );
+    }
+}
+/* stylelint-enable nesting-selector-no-missing-scoping-root */
