@@ -8,6 +8,12 @@ import {addStyle} from "@khanacademy/wonder-blocks-core";
 type Props = {
     label: string;
     badge?: string;
+    /**
+     * Render the control with the cross-package `--wb-action-inverse` mixin
+     * applied, sitting on a dark backdrop. Used to prove the multi-state
+     * action mixin expands (WB-2327, Phase 3).
+     */
+    inverse?: boolean;
 };
 
 const StyledButton = addStyle("button");
@@ -23,7 +29,20 @@ const StyledButton = addStyle("button");
  *
  * Delete once Phase 1 migrates the first real component to CSS Modules.
  */
-export function Spike({label, badge}: Props): React.ReactElement {
+export function Spike({label, badge, inverse}: Props): React.ReactElement {
+    if (inverse) {
+        return (
+            <div className={styles.inverseBackdrop}>
+                <button type="button" className={styles.inverse}>
+                    <span>{label}</span>
+                    {badge ? (
+                        <span className={styles.pill}>{badge}</span>
+                    ) : null}
+                </button>
+            </div>
+        );
+    }
+
     return (
         <StyledButton
             type="button"
