@@ -167,6 +167,7 @@ const styles = StyleSheet.create({
     newButton: {
         border: "none",
         backgroundColor: actionCategory.default.background,
+        color: actionCategory.default.foreground,
         width: "100%",
     },
     hover: {
