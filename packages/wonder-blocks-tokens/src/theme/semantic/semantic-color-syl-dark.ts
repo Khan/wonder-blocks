@@ -141,7 +141,7 @@ const core = {
             },
             disabled: {
                 subtle: transparent,
-                default: color.gray_10,
+                default: color.gray_05,
             },
         },
     },
