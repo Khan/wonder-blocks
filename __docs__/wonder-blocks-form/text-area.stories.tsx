@@ -56,7 +56,7 @@ export default {
         },
         chromatic: {
             // Disabling snapshots because this is covered by the testing snapshots
-            disableSnapshots: true,
+            disableSnapshot: true,
         },
     },
     argTypes: TextAreaArgTypes,
