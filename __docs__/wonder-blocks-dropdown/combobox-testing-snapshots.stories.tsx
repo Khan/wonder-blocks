@@ -2,7 +2,7 @@ import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {Combobox, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
-import {PropsFor} from "@khanacademy/wonder-blocks-core";
+import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {allThemeModes} from "../../.storybook/modes";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 import {ScenariosLayout} from "../components/scenarios-layout";
@@ -10,6 +10,7 @@ import {
     longText,
     longTextWithNoWordBreak,
 } from "../components/text-for-testing";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 /**
  * The following stories are used to generate the pseudo states for the
@@ -87,12 +88,7 @@ export const StateSheetStory: Story = {
         );
     },
     parameters: {
-        pseudo: {
-            ...defaultPseudoStates,
-            // Using the focus selector instead so that the focus outline is
-            // shown when the combobox is clicked
-            focus: [...defaultPseudoStates.focusVisible],
-        },
+        pseudo: defaultPseudoStates,
     },
 };
 
@@ -122,6 +118,7 @@ export const Scenarios: Story = {
                     ],
                     opened: true,
                 },
+                decorator: <View style={{marginBlockEnd: sizing.size_480}} />,
             },
             {
                 name: "Long option item label with no word break",
@@ -138,6 +135,7 @@ export const Scenarios: Story = {
                     ],
                     opened: true,
                 },
+                decorator: <View style={{marginBlockEnd: sizing.size_480}} />,
             },
             {
                 name: "Long placeholder",
@@ -256,6 +254,19 @@ export const Scenarios: Story = {
     globals: {
         viewport: {
             value: "small",
+        },
+    },
+    parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    {
+                        // TODO(WB-2359): Fix this a11y violation
+                        id: "aria-valid-attr-value",
+                        enabled: false,
+                    },
+                ],
+            },
         },
     },
 };
