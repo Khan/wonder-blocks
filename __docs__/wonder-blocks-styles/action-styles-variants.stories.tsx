@@ -2,7 +2,7 @@ import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 import info from "@phosphor-icons/core/regular/info.svg";
 import {ScenariosLayout} from "../components/scenarios-layout";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {actionStyles} from "@khanacademy/wonder-blocks-styles";
@@ -10,6 +10,13 @@ import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Button from "@khanacademy/wonder-blocks-button";
 import Link from "@khanacademy/wonder-blocks-link";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
+
+// The no-raw-button rule is disabled here intentionally: the "Using an HTML
+// element" scenario documents Classic and devadmin usage where raw elements
+// with actionStyles are still in active use. This pattern should be rare in
+// new consumer code — prefer WB Button, IconButton, or CustomOpener instead.
+// eslint-disable-next-line @khanacademy/wonder-blocks/no-raw-button
+const StyledButton = addStyle("button");
 
 /**
  * The following stories are used to generate the pseudo states for these
@@ -105,6 +112,36 @@ export default {
                         >
                             {() => "Clickable component"}
                         </Clickable>
+                    ),
+                },
+            },
+            {
+                // This scenario is intentionally kept to document Classic and
+                // devadmin usage, where raw HTML elements with actionStyles
+                // are still in use. Remove once a long-term design solution
+                // is in place.
+                name: "Using an HTML element",
+                props: {
+                    children: (
+                        // eslint-disable-next-line @khanacademy/wonder-blocks/no-raw-button
+                        <StyledButton
+                            style={[
+                                {
+                                    // NOTE: Swapping the colors is intentional
+                                    // here to show the inverse version of the
+                                    // button.
+                                    border: `${border.width.thin} solid ${semanticColor.core.border.critical.default}`,
+                                    backgroundColor:
+                                        semanticColor.core.background.critical
+                                            .default,
+                                    color: semanticColor.core.foreground
+                                        .knockout.default,
+                                },
+                                actionStyles.inverse,
+                            ]}
+                        >
+                            Custom button
+                        </StyledButton>
                     ),
                 },
             },

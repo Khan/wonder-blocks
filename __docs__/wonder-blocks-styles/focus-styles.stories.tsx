@@ -3,10 +3,9 @@ import {Meta, StoryObj} from "@storybook/react-vite";
 import info from "@phosphor-icons/core/regular/info.svg";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-styles/package.json";
-import Button from "@khanacademy/wonder-blocks-button";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {ScenariosLayout} from "../components/scenarios-layout";
@@ -53,6 +52,14 @@ export default {
 } as Meta<any>;
 
 type Story = StoryObj<any>;
+
+// The no-raw-button rule is disabled here intentionally: these stories
+// demonstrate focusStyles applied to an element that does NOT already include
+// them. Using a WB Button would obscure this because Button applies focusStyles
+// internally. This pattern should be rare in consumer code — prefer WB
+// interactive components which include focus styles out of the box.
+// eslint-disable-next-line @khanacademy/wonder-blocks/no-raw-button
+const StyledButton = addStyle("button");
 
 /**
  * A global focus style that can be applied to interactive elements.
@@ -169,21 +176,22 @@ export const Scenarios: Story = {
                 },
             },
             {
-                name: "Using Button",
+                name: "Using an HTML element",
                 props: {
                     children: (
-                        <Button onClick={() => {}} style={focusStyles.focus}>
-                            Custom styled button
-                        </Button>
+                        // eslint-disable-next-line @khanacademy/wonder-blocks/no-raw-button
+                        <StyledButton style={focusStyles.focus}>
+                            Custom button
+                        </StyledButton>
                     ),
                 },
             },
             {
-                name: "Spreading focus styles with existing styles",
+                name: "Spreading focus styles in an existing style",
                 props: {
                     children: (
-                        <Button
-                            onClick={() => {}}
+                        // eslint-disable-next-line @khanacademy/wonder-blocks/no-raw-button
+                        <StyledButton
                             style={{
                                 background:
                                     semanticColor.core.background.critical
@@ -195,8 +203,8 @@ export const Scenarios: Story = {
                                 ...focusStyles.focus,
                             }}
                         >
-                            Button merging styles
-                        </Button>
+                            Custom button merging styles
+                        </StyledButton>
                     ),
                 },
             },
@@ -204,18 +212,26 @@ export const Scenarios: Story = {
                 name: "Overriding :focus-visible pseudo-class",
                 props: {
                     children: (
-                        <Button
-                            onClick={() => {}}
+                        // eslint-disable-next-line @khanacademy/wonder-blocks/no-raw-button
+                        <StyledButton
                             style={{
+                                backgroundColor:
+                                    semanticColor.action.secondary.progressive
+                                        .default.background,
+                                color: semanticColor.action.secondary
+                                    .progressive.default.foreground,
                                 ":focus-visible": {
+                                    backgroundColor:
+                                        semanticColor.action.secondary
+                                            .progressive.default.background,
                                     // focus styles will be merged with the
                                     // component ones
                                     ...focusStyles.focus[":focus-visible"],
                                 },
                             }}
                         >
-                            Button overriding :focus-visible
-                        </Button>
+                            Custom button overriding :focus-visible
+                        </StyledButton>
                     ),
                 },
             },
