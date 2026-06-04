@@ -1,6 +1,6 @@
 # no-raw-button
 
-Disallow raw `<button>` elements and `addStyle("button")` components in favor of Wonder Blocks Button, IconButton, or ActivityButton.
+Disallow raw `<button>` elements and `addStyle("button")` components in favor of Wonder Blocks button components.
 
 ## Rule Details
 
@@ -18,7 +18,7 @@ Flagged patterns:
 - `<button>` — raw HTML button element
 - Components declared as `const X = addStyle("button")` — styled wrappers around a raw button
 
-Examples of **incorrect** code:
+### Examples of **incorrect** code
 
 ```tsx
 // Raw HTML button
@@ -34,12 +34,25 @@ function MyComponent() {
 }
 ```
 
-Examples of **correct** code:
+### Examples of **correct** code
+
+For most interactive button needs, use `Button` or `IconButton`. The `style`
+prop accepts Aphrodite styles, so visual customization does not require a raw
+button.
 
 ```tsx
 import Button from "@khanacademy/wonder-blocks-button";
 
 <Button onClick={handleClick}>Save</Button>
+```
+
+```tsx
+import Button from "@khanacademy/wonder-blocks-button";
+
+// style overrides are applied on top of the base button styles
+<Button kind="tertiary" style={styles.myButton} onClick={handleClick}>
+    Save
+</Button>
 ```
 
 ```tsx
@@ -53,19 +66,43 @@ import plusIcon from "@phosphor-icons/core/regular/plus.svg";
 />
 ```
 
-```tsx
-import {ActivityButton} from "@khanacademy/wonder-blocks-activity-button";
+#### Custom dropdown openers
 
-<ActivityButton onClick={handleClick}>Start exercise</ActivityButton>
+When `SingleSelect`, `MultiSelect`, or `ActionMenu` needs a custom-styled
+opener, use `CustomOpener` from `@khanacademy/wonder-blocks-dropdown`. It
+provides a blank-slate `<button>` with the WB focus ring baked in and correct
+ref forwarding for the dropdown's focus management wiring.
+
+```tsx
+import {SingleSelect, OptionItem, CustomOpener} from "@khanacademy/wonder-blocks-dropdown";
+
+<SingleSelect
+    placeholder="Choose an option"
+    opener={({hovered, focused, text}) => (
+        <CustomOpener style={styles.myOpener}>
+            <MyOpenerContent hovered={hovered} focused={focused} text={text} />
+        </CustomOpener>
+    )}
+    onChange={handleChange}
+>
+    <OptionItem label="Option 1" value="1" />
+</SingleSelect>
 ```
 
 ## When Not To Use
 
-Disable this rule for files that implement Wonder Blocks button primitives themselves (e.g. `button-unstyled.tsx`, `clickable.tsx`, `icon-button-unstyled.tsx`). These files intentionally use `addStyle("button")` as the underlying DOM implementation.
+Disable this rule for files that **implement** Wonder Blocks button primitives
+themselves. These files intentionally use `addStyle("button")` as the
+underlying DOM element, and wrapping them in a higher-level WB component would
+be circular.
+
+Examples include: `button-unstyled.tsx`, `clickable.tsx`,
+`icon-button-unstyled.tsx`, `select-opener.tsx`, `custom-opener.tsx`,
+`tab.tsx`, and similar primitive implementation files.
 
 ```ts
-// eslint-disable-next-line @khanacademy/wonder-blocks/no-raw-button
+/* eslint-disable @khanacademy/wonder-blocks/no-raw-button */
+// This file IS the Wonder Blocks Foo implementation — it intentionally
+// wraps addStyle("button") as its underlying DOM primitive.
 const StyledButton = addStyle("button");
 ```
-
-Also acceptable to disable for stories that explicitly demonstrate low-level styling utilities (e.g. `focus-styles.stories.tsx`) where using the raw primitive is the purpose of the example.

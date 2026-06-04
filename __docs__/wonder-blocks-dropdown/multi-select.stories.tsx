@@ -5,10 +5,16 @@ import {action} from "storybook/actions";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {
+    MultiSelect,
+    OptionItem,
+    CustomOpener,
+} from "@khanacademy/wonder-blocks-dropdown";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {LabelsValues} from "@khanacademy/wonder-blocks-dropdown";
 
 import ComponentInfo from "../components/component-info";
@@ -22,7 +28,6 @@ import {
 } from "./option-item-examples";
 import {OpenerProps} from "../../packages/wonder-blocks-dropdown/src/util/types";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
-import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {StatusBadge} from "@khanacademy/wonder-blocks-badge";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
@@ -125,21 +130,19 @@ const styles = StyleSheet.create({
      * Custom opener styles
      */
     customOpener: {
+        display: "inline-flex",
+        alignItems: "center",
+        gap: sizing.size_080,
+        height: sizing.size_400,
+        paddingInline: sizing.size_160,
+        border: `${border.width.thin} solid ${semanticColor.core.border.instructive.default}`,
         borderInlineStart: `${border.width.thick} solid ${semanticColor.core.border.instructive.default}`,
         borderRadius: border.radius.radius_040,
-        background: semanticColor.core.background.instructive.subtle,
         color: semanticColor.core.foreground.instructive.default,
-        padding: sizing.size_160,
-    },
-    focused: focusStyles.focus[":focus-visible"],
-    hovered: {
-        background: semanticColor.core.background.instructive.subtle,
-        textDecoration: "underline",
-        cursor: "pointer",
-    },
-    pressed: {
-        background: semanticColor.core.background.instructive.subtle,
-        color: semanticColor.core.foreground.instructive.strong,
+        background: semanticColor.core.background.base.default,
+        ":hover": {
+            background: semanticColor.core.background.instructive.subtle,
+        },
     },
 });
 
@@ -757,50 +760,43 @@ export const VirtualizedFilterable: StoryComponentType = {
 };
 
 /**
- * In case you need to use a custom opener with the `MultiSelect`, you can use
- * the opener property to achieve this. In this example, the opener prop accepts
- * a function with the following arguments:
- *  - `eventState`: lets you customize the style for different states, such as
- *    pressed, hovered and focused.
- *  - `text`: Passes the menu value defined in the parent component. This value
- *  is passed using the placeholder prop set in the `MultiSelect` component.
- *  - `opened`: Whether the dropdown is opened.
+ * When you need a fully custom-styled opener, use `CustomOpener`. It provides
+ * a blank-slate `<button>` with the WB focus ring baked in and correct ref
+ * forwarding for the dropdown's focus management wiring.
  *
- * **Note:** If you need to use a custom ID for testing the opener, make sure to
- * pass the testId prop inside the opener component/element.
+ * The `opener` render prop receives `hovered`, `focused`, `pressed`, `text`,
+ * and `opened` values that can be passed to child content for conditional
+ * styling. Focus ring styles are handled automatically by `CustomOpener` via
+ * CSS — you do not need to apply `focusStyles` yourself.
  *
- * **Accessibility:** When a custom opener is used, the following attributes are
- * added automatically: `aria-expanded`, `aria-haspopup`, and `aria-controls`.
- * With a custom opener, you are still responsible for labeling the `MultiSelect`
- * by wrapping it in a `<LabeledField>` or using `aria-label` on the parent component
- * to describe the purpose of the control. Because it is a combobox, the value
- * can't also be used for the label.
+ * **Note:** Pass `testId` directly to `CustomOpener` for e2e test targeting.
+ *
+ * **Accessibility:** When a custom opener is used, `aria-expanded`,
+ * `aria-haspopup`, and `aria-controls` are added automatically. You are still
+ * responsible for labeling the `MultiSelect` by wrapping it in a `LabeledField`
+ * or using `aria-label` on the parent component, because a combobox's value
+ * cannot double as its label.
  */
-export const CustomOpener: StoryComponentType = {
+export const WithCustomOpener: StoryComponentType = {
     render: Template,
     args: {
         selectedValues: [],
         "aria-label": "Custom opener",
-        opener: ({focused, hovered, pressed, text, opened}: OpenerProps) => {
-            action(JSON.stringify({focused, hovered, pressed, opened}))(
+        opener: ({hovered, pressed, text, opened}: OpenerProps) => {
+            action(JSON.stringify({hovered, pressed, opened}))(
                 "state changed!",
             );
 
             return (
-                <Button
-                    kind="secondary"
-                    onClick={() => {
-                        // eslint-disable-next-line no-console
-                        console.log("custom click!!!!!");
-                    }}
-                    style={[
-                        styles.customOpener,
-                        focused && styles.focused,
-                        hovered && styles.hovered,
-                        pressed && styles.pressed,
-                    ]}
-                    startIcon={IconMappings.plusCircle}
-                >{`${text} ${opened ? ": opened" : ""}`}</Button>
+                <CustomOpener
+                    testId="multi-select-custom-opener"
+                    style={styles.customOpener}
+                >
+                    <PhosphorIcon icon={IconMappings.plusCircle} size="small" />
+                    <BodyText tag="span" weight="bold">
+                        {text}
+                    </BodyText>
+                </CustomOpener>
             );
         },
     } as MultiSelectArgs,

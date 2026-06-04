@@ -17,6 +17,7 @@ import {
     SingleSelect,
     OptionItem,
     SeparatorItem,
+    CustomOpener,
 } from "@khanacademy/wonder-blocks-dropdown";
 
 import type {SingleSelectLabelsValues} from "@khanacademy/wonder-blocks-dropdown";
@@ -34,7 +35,6 @@ import {
 import {OpenerProps} from "../../packages/wonder-blocks-dropdown/src/util/types";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {StatusBadge} from "@khanacademy/wonder-blocks-badge";
-import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 
 type StoryComponentType = StoryObj<typeof SingleSelect>;
 type SingleSelectArgs = Partial<typeof SingleSelect>;
@@ -129,21 +129,19 @@ const styles = StyleSheet.create({
      * Custom opener styles
      */
     customOpener: {
+        display: "inline-flex",
+        alignItems: "center",
+        gap: sizing.size_080,
+        height: sizing.size_400,
+        paddingInline: sizing.size_160,
+        border: `${border.width.thin} solid ${semanticColor.core.border.instructive.default}`,
         borderInlineStart: `${border.width.thick} solid ${semanticColor.core.border.instructive.default}`,
         borderRadius: border.radius.radius_040,
-        background: semanticColor.core.background.instructive.subtle,
         color: semanticColor.core.foreground.instructive.default,
-        padding: sizing.size_160,
-    },
-    focused: focusStyles.focus[":focus-visible"],
-    hovered: {
-        background: semanticColor.core.background.instructive.subtle,
-        textDecoration: "underline",
-        cursor: "pointer",
-    },
-    pressed: {
-        background: semanticColor.core.background.instructive.subtle,
-        color: semanticColor.core.foreground.instructive.strong,
+        background: semanticColor.core.background.base.default,
+        ":hover": {
+            background: semanticColor.core.background.instructive.subtle,
+        },
     },
 
     fullBleed: {
@@ -834,45 +832,39 @@ export const DropdownInModal: StoryComponentType = {
 };
 
 /**
- * In case you need to use a custom opener with the `SingleSelect`, you can use
- * the opener property to achieve this. In this example, the opener prop accepts
- * a function with the following arguments:
- *  - `eventState`: lets you customize the style for different states, such as
- *    pressed, hovered and focused.
- *  - `text`: Passes the menu label defined in the parent component. This value
- *   is passed using the placeholder prop set in the `SingleSelect` component.
- *  - `opened`: Whether the dropdown is opened.
+ * When you need a fully custom-styled opener, use `CustomOpener`. It provides
+ * a blank-slate `<button>` with the WB focus ring baked in and correct ref
+ * forwarding for the dropdown's focus management wiring.
  *
- * **Note:** If you need to use a custom ID for testing the opener, make sure to
- * pass the testId prop inside the opener component/element.
+ * The `opener` render prop receives `hovered`, `focused`, `pressed`, `text`,
+ * and `opened` values that can be passed to child content for conditional
+ * styling. Focus ring styles are handled automatically by `CustomOpener` via
+ * CSS — you do not need to apply `focusStyles` yourself.
  *
- * **Accessibility:** When a custom opener is used, the following attributes are
- * added automatically: `aria-expanded`, `aria-haspopup`, and `aria-controls`.
+ * **Note:** Pass `testId` directly to `CustomOpener` for e2e test targeting.
+ *
+ * **Accessibility:** When a custom opener is used, `aria-expanded`,
+ * `aria-haspopup`, and `aria-controls` are added automatically.
  */
-export const CustomOpener: StoryComponentType = {
+export const WithCustomOpener: StoryComponentType = {
     render: Template,
     args: {
         selectedValue: "",
-        opener: ({focused, hovered, pressed, text, opened}: OpenerProps) => {
-            action(JSON.stringify({focused, hovered, pressed, opened}))(
+        opener: ({hovered, pressed, text, opened}: OpenerProps) => {
+            action(JSON.stringify({hovered, pressed, opened}))(
                 "state changed!",
             );
 
             return (
-                <Button
-                    kind="secondary"
-                    onClick={() => {
-                        // eslint-disable-next-line no-console
-                        console.log("custom click!!!!!");
-                    }}
-                    style={[
-                        styles.customOpener,
-                        focused && styles.focused,
-                        hovered && styles.hovered,
-                        pressed && styles.pressed,
-                    ]}
-                    startIcon={IconMappings.plusCircle}
-                >{`${text} ${opened ? ": opened" : ""}`}</Button>
+                <CustomOpener
+                    testId="single-select-custom-opener"
+                    style={styles.customOpener}
+                >
+                    <PhosphorIcon icon={IconMappings.plusCircle} size="small" />
+                    <BodyText tag="span" weight="bold">
+                        {text}
+                    </BodyText>
+                </CustomOpener>
             );
         },
     } as SingleSelectArgs,
