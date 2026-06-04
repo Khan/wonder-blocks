@@ -323,6 +323,11 @@ const styles = StyleSheet.create({
             // without changing the border
             boxShadow: `0 0 0 ${theme.field.border.width.press} ${semanticColor.input.default.border}`,
         },
+        // Focus + Active (and not disabled and not readonly)
+        [":focus-visible:active:not([aria-disabled='true']):not([readonly])" as any]:
+            {
+                boxShadow: `0 0 0 ${theme.field.border.width.press} ${semanticColor.input.default.border}, ${focusStyles.focus[":focus-visible"].boxShadow}`,
+            },
     },
     error: {
         background: semanticColor.input.error.background,
@@ -331,6 +336,11 @@ const styles = StyleSheet.create({
         "::placeholder": {
             color: semanticColor.input.default.placeholder,
         },
+        // Focus + Active (and not disabled and not readonly)
+        [":focus-visible:active:not([aria-disabled='true']):not([readonly])" as any]:
+            {
+                boxShadow: focusStyles.focus[":focus-visible"].boxShadow,
+            },
     },
     disabled: {
         background: semanticColor.input.disabled.background,
