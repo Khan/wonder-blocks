@@ -155,7 +155,7 @@ export default class SelectOpener extends React.Component<
 
         const iconColor = disabled
             ? semanticColor.core.foreground.disabled.default
-            : theme.opener.color.icon;
+            : semanticColor.core.foreground.neutral.default;
 
         const style = [
             styles.shared,
@@ -163,8 +163,11 @@ export default class SelectOpener extends React.Component<
             disabled && styles.disabled,
             error && styles.error,
             isPlaceholder && styles.placeholder,
+            isPlaceholder && disabled && styles.disabledPlaceholder,
             !disabled && !readOnly && this.state.pressed && styles.press,
             readOnly && styles.readOnly,
+            // Re-apply placeholder styles for readOnly + placeholder combination
+            readOnly && isPlaceholder && styles.placeholder,
         ];
 
         const allowInteraction = !disabled && !readOnly;
@@ -262,13 +265,16 @@ const styles = StyleSheet.create({
         border: `${border.width.thin} solid ${semanticColor.input.default.border}`,
         color: semanticColor.input.default.foreground,
         cursor: "pointer",
+        ":active": {
+            boxShadow: PRESS_SHADOW,
+        },
         ":focus": {
             // Using :focus instead of :focus-visible to ensure the focus ring is
             // visible when the button is focused (even when clicked). This makes
             // the focus behaviour more consistent with the other field components.
             ...focusStyles.focus[":focus-visible"],
         },
-        ":active": {
+        [":focus:active" as any]: {
             boxShadow: `${PRESS_SHADOW}, ${focusStyles.focus[":focus-visible"].boxShadow}`,
         },
     },
@@ -276,6 +282,9 @@ const styles = StyleSheet.create({
         background: semanticColor.input.error.background,
         border: `${theme.opener.border.width.error} solid ${semanticColor.input.error.border}`,
         color: semanticColor.input.error.foreground,
+        [":focus:active" as any]: {
+            boxShadow: `${PRESS_SHADOW}, ${focusStyles.focus[":focus-visible"].boxShadow}`,
+        },
     },
     disabled: {
         background: semanticColor.input.disabled.background,
@@ -284,6 +293,9 @@ const styles = StyleSheet.create({
         cursor: "not-allowed",
         ":active": {
             boxShadow: "none",
+        },
+        [":focus:active" as any]: {
+            boxShadow: focusStyles.focus[":focus-visible"].boxShadow,
         },
     },
     press: {
@@ -297,11 +309,16 @@ const styles = StyleSheet.create({
     placeholder: {
         color: semanticColor.input.default.placeholder,
     },
+    disabledPlaceholder: {
+        color: semanticColor.input.disabled.placeholder,
+    },
     readOnly: {
         background: semanticColor.input.readOnly.background,
         color: semanticColor.input.readOnly.text,
         ":active": {
-            // Make sure press shadow outline is not shown when it is read-only.
+            boxShadow: "none",
+        },
+        [":focus:active" as any]: {
             boxShadow: focusStyles.focus[":focus-visible"].boxShadow,
         },
     },

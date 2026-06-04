@@ -76,8 +76,9 @@ const core = {
         },
         disabled: {
             subtle: transparent,
-            default: color.gray_05,
-            strong: color.gray_20,
+            default: color.gray_10,
+            // There is no difference between subtle and default in dark mode, intentional to sync with design
+            strong: color.gray_10,
         },
         overlay: {
             default: color.black_80,
@@ -115,8 +116,8 @@ const core = {
         },
         disabled: {
             subtle: color.gray_10,
-            default: color.gray_10,
-            strong: color.gray_20,
+            default: color.gray_20,
+            strong: color.gray_30,
         },
         knockout: {
             default: color.black_100,
@@ -140,7 +141,7 @@ const core = {
             },
             disabled: {
                 subtle: transparent,
-                default: color.gray_10,
+                default: color.gray_05,
             },
         },
     },
@@ -683,7 +684,7 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
         },
         checked: thunderblocksSemanticColor.input.checked,
         disabled: {
-            border: core.border.disabled.default,
+            border: core.border.disabled.strong,
             background: core.background.base.default,
             foreground: core.foreground.disabled.strong,
             placeholder: core.foreground.disabled.subtle,
@@ -695,7 +696,7 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
         },
         readOnly: {
             background: core.background.disabled.default,
-            text: core.foreground.neutral.default,
+            text: core.foreground.neutral.strong,
             icon: core.foreground.neutral.subtle,
         },
     },
