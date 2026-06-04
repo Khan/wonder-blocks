@@ -785,10 +785,5 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
             text: core.foreground.neutral.default,
             icon: core.foreground.neutral.subtle,
         },
-        outerContents: {
-            error: {
-                foreground: core.foreground.critical.default,
-            },
-        },
     },
 });

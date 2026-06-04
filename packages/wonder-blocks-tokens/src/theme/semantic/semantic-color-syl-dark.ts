@@ -699,10 +699,5 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
             text: core.foreground.neutral.strong,
             icon: core.foreground.neutral.subtle,
         },
-        outerContents: {
-            error: {
-                foreground: core.foreground.critical.default,
-            },
-        },
     },
 });
