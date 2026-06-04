@@ -1,8 +1,10 @@
 import * as React from "react";
+import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {allThemeModes} from "../../.storybook/modes";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 import {ScenariosLayout} from "../components/scenarios-layout";
@@ -144,6 +146,30 @@ export const Scenarios: Story = {
                 name: "With Placeholder (long, no word breaks)",
                 props: {placeholder: longTextWithNoWordBreak},
             },
+            {
+                name: "Type: number",
+                props: {type: "number", value: "1234.5"},
+            },
+            {
+                name: "Type: whole-number",
+                props: {type: "whole-number", value: "1234"},
+            },
+            {
+                name: "Type: password",
+                props: {type: "password", value: "password"},
+            },
+            {
+                name: "Type: email",
+                props: {type: "email", value: "email@example.com"},
+            },
+            {
+                name: "Type: tel",
+                props: {type: "tel", value: "123-456-7890"},
+            },
+            {
+                name: "Custom style",
+                props: {style: styles.customField, value: "Custom style"},
+            },
         ];
         return (
             <ScenariosLayout scenarios={scenarios}>
@@ -157,3 +183,15 @@ export const Scenarios: Story = {
         );
     },
 };
+
+const styles = StyleSheet.create({
+    customField: {
+        backgroundColor: semanticColor.status.notice.background,
+        color: semanticColor.status.notice.foreground,
+        border: "none",
+        maxInlineSize: 250,
+        "::placeholder": {
+            color: semanticColor.core.foreground.neutral.default,
+        },
+    },
+});
