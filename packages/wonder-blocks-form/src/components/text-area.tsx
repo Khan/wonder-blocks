@@ -476,6 +476,8 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
     },
 );
 
+const ACTIVE_BOX_SHADOW = `0 0 0 ${theme.field.border.width.press} ${semanticColor.input.default.border}`;
+
 const styles = StyleSheet.create({
     textarea: {
         borderRadius: theme.field.border.radius,
@@ -499,16 +501,17 @@ const styles = StyleSheet.create({
             color: semanticColor.input.default.placeholder,
         },
         ...focusStyles.focus,
+        // TODO(WB-2365): Use rounded corners for the active state instead
         // Don't show active styles if field is disabled or readonly
         [":active:not([aria-disabled='true']):not([readonly])" as any]: {
             // Use box shadow to make the border in the press state look thicker
             // without changing the border
-            boxShadow: `0 0 0 ${theme.field.border.width.press} ${semanticColor.input.default.border}`,
+            boxShadow: ACTIVE_BOX_SHADOW,
         },
         // Focus + Active (and not disabled and not readonly)
         [":focus-visible:active:not([aria-disabled='true']):not([readonly])" as any]:
             {
-                boxShadow: `0 0 0 ${theme.field.border.width.press} ${semanticColor.input.default.border}, ${focusStyles.focus[":focus-visible"].boxShadow}`,
+                boxShadow: `${ACTIVE_BOX_SHADOW}, ${focusStyles.focus[":focus-visible"].boxShadow}`,
             },
     },
     disabled: {
