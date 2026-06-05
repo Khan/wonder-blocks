@@ -17,8 +17,30 @@
 //   - Vite handles `*.module.css` natively (its built-in CSS Modules pass
 //     runs *after* this PostCSS chain).
 //   - Rollup uses `rollup-plugin-styler`'s `modules` option.
+const {createRequire} = require("node:module");
+const path = require("node:path");
 const postcssImport = require("postcss-import");
 const postcssMixins = require("@csstools/postcss-mixins");
+
+// postcss-import's default resolver (browserify/resolve) does not honor the
+// `exports` field in package.json. `@khanacademy/wonder-blocks-styles`
+// exposes its CSS via a subpath pattern (`"./*.css": "./src/styles/*.css"`)
+// with no fallback `main`/`style`, so the default resolver fails on
+// `@import "@khanacademy/wonder-blocks-styles/focus-styles.css"`.
+//
+// Node's own resolver understands `exports`, so we delegate to it for bare
+// specifiers. Relative and absolute paths are left for postcss-import to
+// handle itself.
+//
+// Note: Vite overrides this resolver in its own pipeline (it injects its
+// resolver that already honors `exports`), so this primarily benefits the
+// rspack build.
+function resolveCssImport(id, basedir) {
+    if (id.startsWith(".") || path.isAbsolute(id)) {
+        return id;
+    }
+    return createRequire(path.join(basedir, "_")).resolve(id);
+}
 
 const wrapInLayer = (layerName) => ({
     postcssPlugin: "wrap-in-layer",
@@ -73,5 +95,16 @@ const wrapInLayer = (layerName) => ({
 wrapInLayer.postcss = true;
 
 module.exports = {
-    plugins: [postcssImport(), postcssMixins(), wrapInLayer("shared")],
+    plugins: [
+        postcssImport({
+            resolve: resolveCssImport,
+            filter: (id) => {
+                // Only process WB imports — don't try to inline @imports that
+                // appear in third-party CSS files (e.g. font CDN URLs).
+                return id.includes("@khanacademy/wonder-blocks-styles");
+            },
+        }),
+        postcssMixins(),
+        wrapInLayer("shared"),
+    ],
 };
