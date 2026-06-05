@@ -1,0 +1,287 @@
+/**
+ * ActivityButton styles (CSS Modules migration — WB-2328 / CSS Modules Phase 4).
+ *
+ * `ActivityButton` uses a "chonky" design: a transparent focusable root element
+ * wrapping an inner `.chonky` box that carries the colours, border and the 3D
+ * drop shadow. Interactive states animate the chonky box (it "presses down"
+ * toward its shadow), so the state rules are written as descendant selectors
+ * from the root (`.root:hover .chonky`, `.root:active .chonky`, …).
+ *
+ * Design notes:
+ * - The colour matrix (`kind × actionType`) is set as inheriting custom
+ *   property "slots" on the root (`.root[data-kind="…"].progressive`). The
+ *   `.chonky` child reads the slots (custom properties inherit), so the chonky
+ *   colours stay in one place. `[data-kind]` is set by `button-unstyled`.
+ * - Programmatic (keyboard) press / focus use the `.pressed` / `.focused`
+ *   compound classes; pointer states use `:active` / `:focus-visible`.
+ * - `disabled` is selected via `[aria-disabled="true"]` (the element stays
+ *   focusable).
+ * - The ActivityButton theme reused the same tokens across every theme, so we
+ *   reference the underlying token variables directly (no per-component
+ *   `--wb-c-…` variables, matching the previous inline-theme approach).
+ * - `px` units are used for the shadow offsets to avoid a Safari bug where the
+ *   shadow animation flickers with `rem` units.
+ * - The build wraps every rule below in `@layer shared { … }`.
+ */
+
+@import "@khanacademy/wonder-blocks-styles/focus-styles.css";
+
+.root {
+    /* Transparent so the chonky box shows through; the root only carries the
+     * focus ring and the column layout. */
+    background: transparent;
+
+    /* Used for the focus ring shape. */
+    border-radius: var(--wb-border-radius-radius_120);
+    block-size: auto;
+    flex-direction: column;
+    gap: var(--wb-sizing-size_020);
+    place-self: flex-start center;
+}
+
+/**
+ * Label colour by actionType (ActivityButton only supports progressive /
+ * neutral).
+ */
+.root.progressive {
+    color: var(--wb-semanticColor-core-foreground-instructive-default);
+}
+
+.root.neutral {
+    color: var(--wb-semanticColor-core-foreground-neutral-default);
+}
+
+/**
+ * Colour matrix: `kind × actionType`. Sets the inheriting chonky slots for the
+ * rest / hover / press states.
+ */
+.root[data-kind="primary"].progressive {
+    --chonky-bg-rest: var(--wb-semanticColor-chonky-progressive-background-primary-rest);
+    --chonky-bg-hover: var(--wb-semanticColor-chonky-progressive-background-primary-hover);
+    --chonky-bg-press: var(--wb-semanticColor-chonky-progressive-background-primary-press);
+    --chonky-border-rest: var(--wb-semanticColor-chonky-progressive-border-primary-rest);
+    --chonky-border-hover: var(--wb-semanticColor-chonky-progressive-border-primary-hover);
+    --chonky-border-press: var(--wb-semanticColor-chonky-progressive-border-primary-press);
+    --chonky-fg-rest: var(--wb-semanticColor-chonky-progressive-foreground-primary-rest);
+    --chonky-fg-hover: var(--wb-semanticColor-chonky-progressive-foreground-primary-hover);
+    --chonky-fg-press: var(--wb-semanticColor-chonky-progressive-foreground-primary-press);
+    --chonky-shadow-rest: var(--wb-semanticColor-chonky-progressive-shadow-primary-rest);
+    --chonky-shadow-hover: var(--wb-semanticColor-chonky-progressive-shadow-primary-hover);
+    --chonky-shadow-press: var(--wb-semanticColor-chonky-progressive-shadow-primary-press);
+}
+
+.root[data-kind="secondary"].progressive {
+    --chonky-bg-rest: var(--wb-semanticColor-chonky-progressive-background-secondary-rest);
+    --chonky-bg-hover: var(--wb-semanticColor-chonky-progressive-background-secondary-hover);
+    --chonky-bg-press: var(--wb-semanticColor-chonky-progressive-background-secondary-press);
+    --chonky-border-rest: var(--wb-semanticColor-chonky-progressive-border-secondary-rest);
+    --chonky-border-hover: var(--wb-semanticColor-chonky-progressive-border-secondary-hover);
+    --chonky-border-press: var(--wb-semanticColor-chonky-progressive-border-secondary-press);
+    --chonky-fg-rest: var(--wb-semanticColor-chonky-progressive-foreground-secondary-rest);
+    --chonky-fg-hover: var(--wb-semanticColor-chonky-progressive-foreground-secondary-hover);
+    --chonky-fg-press: var(--wb-semanticColor-chonky-progressive-foreground-secondary-press);
+    --chonky-shadow-rest: var(--wb-semanticColor-chonky-progressive-shadow-secondary-rest);
+    --chonky-shadow-hover: var(--wb-semanticColor-chonky-progressive-shadow-secondary-hover);
+    --chonky-shadow-press: var(--wb-semanticColor-chonky-progressive-shadow-secondary-press);
+}
+
+.root[data-kind="tertiary"].progressive {
+    --chonky-bg-rest: var(--wb-semanticColor-chonky-progressive-background-tertiary-rest);
+    --chonky-bg-hover: var(--wb-semanticColor-chonky-progressive-background-tertiary-hover);
+    --chonky-bg-press: var(--wb-semanticColor-chonky-progressive-background-tertiary-press);
+    --chonky-border-rest: var(--wb-semanticColor-chonky-progressive-border-tertiary-rest);
+    --chonky-border-hover: var(--wb-semanticColor-chonky-progressive-border-tertiary-hover);
+    --chonky-border-press: var(--wb-semanticColor-chonky-progressive-border-tertiary-press);
+    --chonky-fg-rest: var(--wb-semanticColor-chonky-progressive-foreground-tertiary-rest);
+    --chonky-fg-hover: var(--wb-semanticColor-chonky-progressive-foreground-tertiary-hover);
+    --chonky-fg-press: var(--wb-semanticColor-chonky-progressive-foreground-tertiary-press);
+    --chonky-shadow-rest: var(--wb-semanticColor-chonky-progressive-shadow-tertiary-rest);
+    --chonky-shadow-hover: var(--wb-semanticColor-chonky-progressive-shadow-tertiary-hover);
+    --chonky-shadow-press: var(--wb-semanticColor-chonky-progressive-shadow-tertiary-press);
+}
+
+.root[data-kind="primary"].neutral {
+    --chonky-bg-rest: var(--wb-semanticColor-chonky-neutral-background-primary-rest);
+    --chonky-bg-hover: var(--wb-semanticColor-chonky-neutral-background-primary-hover);
+    --chonky-bg-press: var(--wb-semanticColor-chonky-neutral-background-primary-press);
+    --chonky-border-rest: var(--wb-semanticColor-chonky-neutral-border-primary-rest);
+    --chonky-border-hover: var(--wb-semanticColor-chonky-neutral-border-primary-hover);
+    --chonky-border-press: var(--wb-semanticColor-chonky-neutral-border-primary-press);
+    --chonky-fg-rest: var(--wb-semanticColor-chonky-neutral-foreground-primary-rest);
+    --chonky-fg-hover: var(--wb-semanticColor-chonky-neutral-foreground-primary-hover);
+    --chonky-fg-press: var(--wb-semanticColor-chonky-neutral-foreground-primary-press);
+    --chonky-shadow-rest: var(--wb-semanticColor-chonky-neutral-shadow-primary-rest);
+    --chonky-shadow-hover: var(--wb-semanticColor-chonky-neutral-shadow-primary-hover);
+    --chonky-shadow-press: var(--wb-semanticColor-chonky-neutral-shadow-primary-press);
+}
+
+.root[data-kind="secondary"].neutral {
+    --chonky-bg-rest: var(--wb-semanticColor-chonky-neutral-background-secondary-rest);
+    --chonky-bg-hover: var(--wb-semanticColor-chonky-neutral-background-secondary-hover);
+    --chonky-bg-press: var(--wb-semanticColor-chonky-neutral-background-secondary-press);
+    --chonky-border-rest: var(--wb-semanticColor-chonky-neutral-border-secondary-rest);
+    --chonky-border-hover: var(--wb-semanticColor-chonky-neutral-border-secondary-hover);
+    --chonky-border-press: var(--wb-semanticColor-chonky-neutral-border-secondary-press);
+    --chonky-fg-rest: var(--wb-semanticColor-chonky-neutral-foreground-secondary-rest);
+    --chonky-fg-hover: var(--wb-semanticColor-chonky-neutral-foreground-secondary-hover);
+    --chonky-fg-press: var(--wb-semanticColor-chonky-neutral-foreground-secondary-press);
+    --chonky-shadow-rest: var(--wb-semanticColor-chonky-neutral-shadow-secondary-rest);
+    --chonky-shadow-hover: var(--wb-semanticColor-chonky-neutral-shadow-secondary-hover);
+    --chonky-shadow-press: var(--wb-semanticColor-chonky-neutral-shadow-secondary-press);
+}
+
+.root[data-kind="tertiary"].neutral {
+    --chonky-bg-rest: var(--wb-semanticColor-chonky-neutral-background-tertiary-rest);
+    --chonky-bg-hover: var(--wb-semanticColor-chonky-neutral-background-tertiary-hover);
+    --chonky-bg-press: var(--wb-semanticColor-chonky-neutral-background-tertiary-press);
+    --chonky-border-rest: var(--wb-semanticColor-chonky-neutral-border-tertiary-rest);
+    --chonky-border-hover: var(--wb-semanticColor-chonky-neutral-border-tertiary-hover);
+    --chonky-border-press: var(--wb-semanticColor-chonky-neutral-border-tertiary-press);
+    --chonky-fg-rest: var(--wb-semanticColor-chonky-neutral-foreground-tertiary-rest);
+    --chonky-fg-hover: var(--wb-semanticColor-chonky-neutral-foreground-tertiary-hover);
+    --chonky-fg-press: var(--wb-semanticColor-chonky-neutral-foreground-tertiary-press);
+    --chonky-shadow-rest: var(--wb-semanticColor-chonky-neutral-shadow-tertiary-rest);
+    --chonky-shadow-hover: var(--wb-semanticColor-chonky-neutral-shadow-tertiary-hover);
+    --chonky-shadow-press: var(--wb-semanticColor-chonky-neutral-shadow-tertiary-press);
+}
+
+/**
+ * Disabled chonky slots (depend on `kind` only).
+ */
+.root[data-kind="primary"] {
+    --chonky-bg-disabled: var(--wb-semanticColor-chonky-disabled-background-primary);
+    --chonky-border-disabled: var(--wb-semanticColor-chonky-disabled-border-primary);
+    --chonky-fg-disabled: var(--wb-semanticColor-chonky-disabled-foreground-primary);
+    --chonky-shadow-disabled: var(--wb-semanticColor-chonky-disabled-shadow-primary);
+}
+
+.root[data-kind="secondary"] {
+    --chonky-bg-disabled: var(--wb-semanticColor-chonky-disabled-background-secondary);
+    --chonky-border-disabled: var(--wb-semanticColor-chonky-disabled-border-secondary);
+    --chonky-fg-disabled: var(--wb-semanticColor-chonky-disabled-foreground-secondary);
+    --chonky-shadow-disabled: var(--wb-semanticColor-chonky-disabled-shadow-secondary);
+}
+
+.root[data-kind="tertiary"] {
+    --chonky-bg-disabled: var(--wb-semanticColor-chonky-disabled-background-tertiary);
+    --chonky-border-disabled: var(--wb-semanticColor-chonky-disabled-border-tertiary);
+    --chonky-fg-disabled: var(--wb-semanticColor-chonky-disabled-foreground-tertiary);
+    --chonky-shadow-disabled: var(--wb-semanticColor-chonky-disabled-shadow-tertiary);
+}
+
+/**
+ * The chonky box. Carries the colours, border and the 3D drop shadow.
+ */
+.chonky {
+    /* Layout: spacing between the icon(s) and the label. */
+    flex-direction: row;
+    gap: var(--wb-sizing-size_080);
+    border-radius: var(--wb-border-radius-radius_120);
+
+    /* Leaves room for the drop shadow below the box. */
+    margin-block-end: 6px;
+    max-inline-size: 100%;
+    padding-block: var(--wb-sizing-size_140);
+    padding-inline: var(--wb-sizing-size_480);
+
+    /* Theming */
+    background: var(--chonky-bg-rest);
+    border: var(--wb-border-width-thin) solid var(--chonky-border-rest);
+    color: var(--chonky-fg-rest);
+
+    /* Gives the button its "chonky" look and feel. */
+    box-shadow: 0 6px 0 0 var(--chonky-shadow-rest);
+
+    /* Motion */
+    transition: all 0.12s ease-out;
+}
+
+@media not (hover: hover) {
+    .chonky {
+        transition: none;
+    }
+}
+
+/**
+ * Hover: the chonky box lifts slightly and deepens its shadow.
+ */
+@media (hover: hover) {
+    .root:hover .chonky {
+        background: var(--chonky-bg-hover);
+        border: var(--wb-border-width-thin) solid var(--chonky-border-hover);
+        box-shadow: 0 8px 0 0 var(--chonky-shadow-hover);
+        color: var(--chonky-fg-hover);
+
+        /* Lift by the difference between the hover and rest shadow offsets. */
+        transform: translateY(calc((8px - 6px) * -1));
+    }
+}
+
+/**
+ * Press: the chonky box presses down onto its shadow. `:active` covers pointer
+ * presses; `.pressed` covers programmatic (keyboard) presses.
+ */
+.root:active .chonky,
+.root.pressed .chonky {
+    background: var(--chonky-bg-press);
+    border: var(--wb-border-width-thin) solid var(--chonky-border-press);
+    box-shadow: 0 0 0 0 var(--chonky-shadow-press);
+    color: var(--chonky-fg-press);
+
+    /* Move the box down by the rest shadow offset so it sits on the shadow. */
+    transform: translateY(6px);
+}
+
+/**
+ * Focus ring (on the root). `:focus-visible` for keyboard users; `.focused`
+ * for programmatic focus tracked by `ClickableBehavior`.
+ */
+.root:focus-visible,
+.root.focused {
+    @apply --wb-focus-visible;
+}
+
+/**
+ * Disabled. The element stays focusable; hover / active animations are reset.
+ */
+.root[aria-disabled="true"] {
+    cursor: not-allowed;
+    color: var(--wb-semanticColor-core-foreground-disabled-default);
+    outline: none;
+    transform: none;
+}
+
+.root[aria-disabled="true"]:hover,
+.root[aria-disabled="true"]:active {
+    outline: none;
+    transform: none;
+}
+
+.root[aria-disabled="true"]:focus-visible {
+    transform: none;
+}
+
+.root[aria-disabled="true"] .chonky,
+.root[aria-disabled="true"]:hover .chonky,
+.root[aria-disabled="true"]:active .chonky {
+    background: var(--chonky-bg-disabled);
+    border: var(--wb-border-width-thin) solid var(--chonky-border-disabled);
+    color: var(--chonky-fg-disabled);
+    box-shadow: 0 6px 0 0 var(--chonky-shadow-disabled);
+    transform: none;
+}
+
+/**
+ * Icon + label.
+ */
+.icon {
+    align-self: center;
+    inline-size: var(--wb-sizing-size_200);
+    block-size: var(--wb-sizing-size_200);
+}
+
+.label {
+    /* Intended by design to correctly align the text with the icon. */
+    line-height: var(--wb-sizing-size_140);
+    padding-block: var(--wb-sizing-size_040) var(--wb-sizing-size_060);
+}
