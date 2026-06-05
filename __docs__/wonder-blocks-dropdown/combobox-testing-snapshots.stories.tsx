@@ -3,7 +3,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {Combobox, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 import {ScenariosLayout} from "../components/scenarios-layout";
 import {
@@ -20,7 +20,7 @@ export default {
     title: "Packages / Dropdown / Testing / Snapshots / Combobox",
     parameters: {
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
         },
     },
     args: {
