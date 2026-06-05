@@ -28,8 +28,10 @@
 
 .root {
     /* Transparent so the chonky box shows through; the root only carries the
-     * focus ring and the column layout. */
+     * focus ring and the column layout. The visible box/border is the
+     * `.chonky` child, so the root removes any native control border. */
     background: transparent;
+    border: none;
 
     /* Used for the focus ring shape. */
     border-radius: var(--wb-border-radius-radius_120);

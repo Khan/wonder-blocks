@@ -1,0 +1,39 @@
+/**
+ * Reset styles shared by the rendered `<button>` / `<a>` / `Link` element of
+ * `Button` and `ActivityButton` (CSS Modules migration — WB-2328).
+ *
+ * Cascade note: this reset and the per-component styles
+ * (`button.module.css`, `activity-button.module.css`) all live in
+ * `@layer shared`, so ordering matters. The reset deliberately does NOT zero
+ * `border` — `button.module.css` fully specifies the border for every kind,
+ * and `ActivityButton` removes it on its own root, so zeroing it here (at the
+ * same specificity as the component rules) would risk wiping the component
+ * border depending on emission order. `outline` / `text-decoration` are safe
+ * to reset here because the component re-applies them at higher specificity
+ * (`:focus-visible`, the tertiary `:hover`/`:active` underline). Keeping the
+ * reset in `@layer shared` (instead of Aphrodite, which injects *unlayered*
+ * styles that beat everything in `@layer shared`) is what lets those win.
+ */
+
+.reset {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+    box-sizing: border-box;
+
+    /* Removes the 300ms click delay on mobile browsers by indicating that
+     * "double-tap to zoom" shouldn't be used on this element. */
+    touch-action: manipulation;
+    user-select: none;
+}
+
+.reset:focus {
+    /* Mobile: removes the blue highlight shown when the user taps a button. */
+    -webkit-tap-highlight-color: transparent;
+}

@@ -3,8 +3,9 @@ import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
-import {StyleSheet} from "aphrodite";
 import {ButtonProps} from "../util/button.types";
+
+import styles from "./button-unstyled.module.css";
 
 const StyledA = addStyle("a");
 const StyledButton = addStyle("button");
@@ -78,30 +79,6 @@ const ButtonUnstyled: React.ForwardRefExoticComponent<
             </StyledButton>
         );
     }
-});
-
-const styles = StyleSheet.create({
-    reset: {
-        position: "relative",
-        display: "inline-flex",
-        alignItems: "center",
-        justifyContent: "center",
-        margin: 0,
-        padding: 0,
-        border: "none",
-        cursor: "pointer",
-        outline: "none",
-        textDecoration: "none",
-        boxSizing: "border-box",
-        // This removes the 300ms click delay on mobile browsers by indicating that
-        // "double-tap to zoom" shouldn't be used on this element.
-        touchAction: "manipulation",
-        userSelect: "none",
-        ":focus": {
-            // Mobile: Removes a blue highlight style shown when the user clicks a button
-            WebkitTapHighlightColor: "rgba(0,0,0,0)",
-        },
-    },
 });
 
 export {ButtonUnstyled};

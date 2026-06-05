@@ -13,6 +13,10 @@ is an internal styling refactor.
   each interactive state is declared once instead of once-per-cell. Theming
   (default / thunderblocks / syl-dark) is unchanged — the modules reference the
   same `--wb-*` token variables that switch on `[data-wb-theme]`.
+- The shared element reset in `button-unstyled` also moves to a CSS Module
+  (`button-unstyled.module.css`), so the reset lives in `@layer shared`
+  alongside the component styles rather than as unlayered Aphrodite (which would
+  otherwise override the layered focus ring / border / underline).
 - The package now ships its bundled stylesheet at `dist/index.css` (imported
   automatically as a side-effect of the JS entry) and exposes it explicitly via
   the new `@khanacademy/wonder-blocks-button/css` subpath. `sideEffects` is set
