@@ -37,6 +37,10 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // Disabling snapshots because this is covered by the testing snapshots
+            disableSnapshot: true,
+        },
     },
     argTypes: TextFieldArgTypes,
 } as Meta<typeof TextField>;
@@ -104,13 +108,6 @@ export const WithLabeledField: StoryComponentType = {
                 contextLabel="required"
             />
         );
-    },
-    parameters: {
-        chromatic: {
-            // Disabling because this is for documentation purposes and is
-            // covered by the LabeledField stories
-            disableSnapshot: true,
-        },
     },
 };
 
@@ -183,12 +180,6 @@ export const Required: StoryComponentType = {
         required: true,
     },
     render: ControlledTextField,
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -451,12 +442,6 @@ export const Error: ControlledStoryComponentType = {
         value: "khan",
         label: "Error state using error prop",
     },
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -476,12 +461,6 @@ export const ErrorFromValidation: ControlledStoryComponentType = {
         label: "Error state from validation",
         validate: validateEmail,
         value: "khan",
-    },
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
     },
 };
 
@@ -553,13 +532,6 @@ export const ErrorFromPropAndValidation = (
     );
 };
 
-ErrorFromPropAndValidation.parameters = {
-    chromatic: {
-        // Disabling because this doesn't test anything visual.
-        disableSnapshot: true,
-    },
-};
-
 /**
  * The `instantValidation` prop controls when validation is triggered. Validation
  * is triggered if the `validate` or `required` props are set.
@@ -624,12 +596,6 @@ export const InstantValidation: StoryComponentType = {
                 />
             </View>
         );
-    },
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
     },
 };
 
@@ -737,13 +703,6 @@ export const Ref: StoryComponentType = {
             </View>
         );
     },
-    parameters: {
-        chromatic: {
-            // Disabling snapshot because this is testing interaction,
-            // not visuals.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -778,13 +737,6 @@ export const ReadOnly: StoryComponentType = {
                 readOnly={true}
             />
         );
-    },
-    parameters: {
-        chromatic: {
-            // Disabling snapshot because this is testing interaction,
-            // not visuals.
-            disableSnapshot: true,
-        },
     },
 };
 
@@ -849,13 +801,6 @@ export const WithAutofocus: StoryComponentType = {
             </View>
         );
     },
-    parameters: {
-        chromatic: {
-            // Disabling snapshot because this is testing interaction,
-            // not visuals.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -896,13 +841,6 @@ export const AutoComplete: StoryComponentType = {
                 <Button type="submit">Submit</Button>
             </form>
         );
-    },
-    parameters: {
-        chromatic: {
-            // Disabling snapshot because this is testing interaction,
-            // not visuals.
-            disableSnapshot: true,
-        },
     },
 };
 

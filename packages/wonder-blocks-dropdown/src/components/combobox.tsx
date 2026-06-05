@@ -774,6 +774,12 @@ const styles = StyleSheet.create({
         [":active:not([aria-disabled='true']):not([readonly])" as any]: {
             boxShadow: "none",
         },
+        // Matches the TextField's selector so this reset takes precedence over
+        // the box shadow it applies.
+        [":focus-visible:active:not([aria-disabled='true']):not([readonly])" as any]:
+            {
+                boxShadow: "none",
+            },
     },
     /**
      * Listbox custom styles
