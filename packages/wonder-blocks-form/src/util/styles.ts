@@ -201,7 +201,6 @@ export const colorStates: StyleMap = {
             disabled: {
                 rest: {
                     border: semanticColor.core.border.disabled.default,
-                    // TODO confirm this with design
                     background: semanticColor.core.background.base.default,
                 },
                 hover: {
