@@ -51,7 +51,6 @@ const ActivityButtonCore: React.ForwardRefExoticComponent<
     const sharedStyles = [
         buttonStyles.button,
         disabled && buttonStyles.disabled,
-        !disabled && pressed && buttonStyles.pressed,
         // Enables programmatic focus.
         !disabled && !pressed && focused && buttonStyles.focused,
         stylesProp?.root,
@@ -60,7 +59,6 @@ const ActivityButtonCore: React.ForwardRefExoticComponent<
     const chonkyStyles = [
         buttonStyles.chonky,
         disabled && buttonStyles.chonkyDisabled,
-        !disabled && pressed && buttonStyles.chonkyPressed,
         stylesProp?.box,
     ];
 
@@ -72,6 +70,8 @@ const ActivityButtonCore: React.ForwardRefExoticComponent<
             ref={ref}
             style={sharedStyles}
             type={type}
+            // NOTE: attribute selector (always in stylesheet) avoids lazy CSS injection on mousedown that interrupts Chrome's :active transition.
+            data-state={pressed ? "pressed" : undefined}
         >
             <>
                 {/* NOTE: Using a regular className to be able to use descendant selectors to account for the hover and press states */}
@@ -378,7 +378,8 @@ const _generateStyles = (
                 transform: `translateY(calc((${theme.root.shadow.y.hover} - ${theme.root.shadow.y.rest}) * -1))`,
             },
 
-            [":is(:active) .chonky" as any]: chonkyPressed,
+            [":is(:active, [data-state='pressed']) .chonky" as any]:
+                chonkyPressed,
 
             // :focus-visible -> Provide focus styles for keyboard users only.
             ...focusStyles.focus,
@@ -398,13 +399,9 @@ const _generateStyles = (
             // Reset hover and active styles on the chonky element.
             [":is(:hover) .chonky" as any]: disabledStatesStyles,
             [":is(:hover) .chonky" as any]: chonkyDisabled,
-            [":is(:active) .chonky" as any]: chonkyDisabled,
+            [":is(:active, [data-state='pressed']) .chonky" as any]:
+                chonkyDisabled,
         },
-        // Enable keyboard support for press styles.
-        pressed: {
-            [".chonky" as any]: chonkyPressed,
-        },
-
         chonky: {
             // layout
             // Spacing between the icon(s) and the label.
@@ -430,7 +427,6 @@ const _generateStyles = (
                 transition: "none",
             },
         },
-        chonkyPressed,
         chonkyDisabled,
     } as const;
 
