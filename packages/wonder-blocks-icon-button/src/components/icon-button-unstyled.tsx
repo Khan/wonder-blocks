@@ -67,23 +67,25 @@ export const IconButtonUnstyled: React.ForwardRefExoticComponent<
             // for links, which is to activate the link on `Enter`.
             if (!href && (key === keys.enter || key === keys.space)) {
                 e.preventDefault();
-                onPress?.(true);
+                if (!disabled) {
+                    onPress?.(true);
+                }
             }
         },
-        [href, onPress],
+        [disabled, href, onPress],
     );
 
     const handleKeyUp = React.useCallback(
         (e: React.KeyboardEvent) => {
             const key = e.key;
             if (!href && (key === keys.enter || key === keys.space)) {
-                if (restProps.onClick) {
+                if (!disabled && restProps.onClick) {
                     restProps.onClick(e);
                 }
                 onPress?.(false);
             }
         },
-        [href, onPress, restProps],
+        [disabled, href, onPress, restProps],
     );
 
     const commonProps = {
