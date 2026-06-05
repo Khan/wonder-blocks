@@ -533,7 +533,7 @@ const styles = StyleSheet.create({
         // Focus + Active (and not disabled and not readonly)
         [":focus-visible:active:not([aria-disabled='true']):not([readonly])" as any]:
             {
-                boxShadow: focusStyles.focus[":focus-visible"].boxShadow,
+                boxShadow: `${ACTIVE_BOX_SHADOW}, ${focusStyles.focus[":focus-visible"].boxShadow}`,
             },
     },
 });
