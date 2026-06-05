@@ -2,6 +2,7 @@ import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {Choice, CheckboxGroup} from "@khanacademy/wonder-blocks-form";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {allThemeModes} from "../../.storybook/modes";
 import {ScenariosLayout} from "../components/scenarios-layout";
@@ -9,7 +10,6 @@ import {
     longText,
     longTextWithNoWordBreak,
 } from "../components/text-for-testing";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 /**
  * The following stories are used to generate snapshots for the CheckboxGroup
@@ -32,13 +32,14 @@ export default {
 type Story = StoryObj<typeof CheckboxGroup>;
 
 const defaultChildren = [
-    <Choice label="Pepperoni" value="pepperoni" />,
+    <Choice label="Pepperoni" value="pepperoni" key="pepperoni" />,
     <Choice
         label="Sausage"
         value="sausage"
+        key="sausage"
         description="Imported from Italy"
     />,
-    <Choice label="Extra cheese" value="cheese" />,
+    <Choice label="Extra cheese" value="cheese" key="cheese" />,
 ];
 /**
  * The following story shows how the component handles specific scenarios.
