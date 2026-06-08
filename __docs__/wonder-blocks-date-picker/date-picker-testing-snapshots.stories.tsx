@@ -208,7 +208,8 @@ export const OpenedScenarios: StoryComponentType = {
             },
         ];
         return (
-            <View style={{inlineSize: "100%"}}>
+            // Add height so snapshots includes calendar overlay
+            <View style={{inlineSize: "100%", blockSize: "500px"}}>
                 <ScenariosLayout
                     scenarios={scenarios}
                     styles={{
