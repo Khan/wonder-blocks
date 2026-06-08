@@ -16,8 +16,6 @@ import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-date-picker/package.json";
 import DatePickerArgTypes from "./date-picker.argtypes";
 
-import {allModes} from "../../.storybook/modes";
-
 type Props = PropsFor<typeof DatePicker>;
 
 const DatePickerWrapper = (props: Props) => {
@@ -336,8 +334,7 @@ const DatePickerWithOpenOverlay = (props: Props) => {
 };
 
 /**
- * DatePicker with the calendar overlay already open. This story is useful for
- * visual regression testing and taking snapshots of the calendar popup.
+ * DatePicker with the calendar overlay already open.
  *
  * The calendar automatically opens when the story loads, showing a month view
  * with the current date selection and available dates within the min/max range.
@@ -349,18 +346,6 @@ export const OpenCalendarOverlay: Story = {
         minDate: Temporal.PlainDate.from("2025-11-01"),
         maxDate: Temporal.PlainDate.from("2026-12-31"),
         updateDate: () => {},
-    },
-    parameters: {
-        chromatic: {
-            // Re-enable snapshots for this story since the calendar is visible
-            disableSnapshot: false,
-            modes: {
-                small: allModes.small,
-                large: allModes.large,
-                thunderblocks: allModes.themeThunderBlocks,
-                "default rtl": allModes["themeDefault rtl"],
-            },
-        },
     },
 };
 
