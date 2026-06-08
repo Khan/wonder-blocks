@@ -38,7 +38,7 @@ describe("addStyle", () => {
         expect(div).toHaveAttribute("class", "foo");
     });
 
-    it("should forward inline styles as `style` and not generate a class when no aphrodite styles are present", () => {
+    it("should wrap inline styles into a generated class alongside the consumer className", () => {
         // Arrange
         render(
             <StyledDiv
@@ -51,10 +51,14 @@ describe("addStyle", () => {
         // Act
         const div = screen.getByTestId("styled-div");
 
-        // Assert — fast-path: inline styles flow as a `style` attribute,
-        // and only the consumer's `className` survives.
-        expect(div).toHaveAttribute("class", "foo");
-        expect(div).toHaveStyle({width: "100%"});
+        // Assert — inline styles are wrapped into a generated aphrodite class
+        // (so they can outweigh aphrodite's `!important`); the consumer's
+        // `className` is appended and no inline `style` attribute is emitted.
+        const classNames = div.className.split(" ");
+        expect(classNames).toHaveLength(2);
+        expect(classNames[0]).toEqual(expect.any(String));
+        expect(classNames[1]).toEqual("foo");
+        expect(div).not.toHaveAttribute("style");
     });
 
     it("should set the class if an stylesheet style is provided", () => {
