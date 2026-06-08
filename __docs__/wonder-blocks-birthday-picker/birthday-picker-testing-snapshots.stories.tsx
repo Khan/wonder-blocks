@@ -73,7 +73,13 @@ export const StateSheetStory: StoryComponentType = {
             </StateSheet>
         );
     },
-    parameters: {pseudo: defaultPseudoStates},
+    parameters: {
+        pseudo: {
+            ...defaultPseudoStates,
+            // BirthdayPicker uses SingleSelect, which uses ":focus" for focus
+            focus: [...defaultPseudoStates.focusVisible],
+        },
+    },
 };
 
 /**
@@ -106,7 +112,6 @@ export const Scenarios: StoryComponentType = {
                         day: "Día",
                         month: "Mes",
                         year: "Año",
-                        errorMessage: "Por favor seleccione una fecha válida.",
                     },
                 },
             },

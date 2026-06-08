@@ -50,7 +50,7 @@ const rows = [
     },
     {
         name: "With Selected Date",
-        props: {selectedDate, dateFormat: "MMMM D, YYYY"},
+        props: {selectedDate},
     },
     {
         name: "With Placeholder",
@@ -86,13 +86,6 @@ type PropsForDatePicker = Omit<
     React.ComponentProps<typeof DatePicker>,
     "updateDate" | "inputAriaLabel"
 >;
-
-/**
- * Approximate height of the open calendar popup. Used as bottom margin on the
- * opened scenarios so the following scenarios render below the popup instead of
- * underneath it.
- */
-const openedCalendarMargin = 360;
 
 /**
  * Renders a DatePicker for a scenario. When `opened` is true, the calendar
@@ -147,6 +140,10 @@ export const Scenarios: StoryComponentType = {
                 props: {selectedDate, dateFormat: "dateStyle:full"},
             },
             {
+                name: "Format MMMM D, YYYY",
+                props: {selectedDate, dateFormat: "MMMM D, YYYY"},
+            },
+            {
                 name: "RTL",
                 props: {selectedDate, dateFormat: "MMMM D, YYYY"},
                 decorator: <div dir="rtl" />,
@@ -186,9 +183,6 @@ export const OpenedScenarios: StoryComponentType = {
                     opened: true,
                     selectedDate,
                 },
-                decorator: (
-                    <View style={{marginBlockEnd: openedCalendarMargin}} />
-                ),
             },
             {
                 name: "Opened + Spanish localization",
@@ -200,9 +194,6 @@ export const OpenedScenarios: StoryComponentType = {
                     minDate: Temporal.PlainDate.from("2026-01-05"),
                     maxDate: Temporal.PlainDate.from("2026-01-26"),
                 },
-                decorator: (
-                    <View style={{marginBlockEnd: openedCalendarMargin}} />
-                ),
             },
             {
                 name: "Opened + RTL",
@@ -229,7 +220,7 @@ export const OpenedScenarios: StoryComponentType = {
                 >
                     {(props, name) => (
                         <View
-                            style={{inlineSize: 400, alignItems: "flex-start"}}
+                            style={{inlineSize: 330, alignItems: "flex-start"}}
                         >
                             <DatePickerScenario
                                 {...props}
