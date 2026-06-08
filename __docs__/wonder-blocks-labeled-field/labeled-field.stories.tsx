@@ -17,7 +17,7 @@ import {
 import SearchField from "@khanacademy/wonder-blocks-search-field";
 import Button from "@khanacademy/wonder-blocks-button";
 import Banner from "@khanacademy/wonder-blocks-banner";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 
 /**
@@ -529,7 +529,7 @@ export const Fields: StoryComponentType = {
             // Keep snapshots enabled for this story because it shows all the fields
             // with LabeledField
             disableSnapshot: false,
-            modes: themeModes,
+            modes: allThemeModes,
         },
     },
 };
@@ -622,7 +622,7 @@ export const ValidationAfterSubmission: AllFieldsStoryComponentType = {
     parameters: {
         chromatic: {
             disableSnapshot: false,
-            modes: themeModes,
+            modes: allThemeModes,
         },
     },
 };
