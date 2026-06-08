@@ -110,15 +110,6 @@ export function processStyleList(style?: StyleType): StyledExport {
     const inlineStylesObject = Object.assign({}, ...inlineStylesList);
     const joinedClassNames = classNameStrings.join(" ");
 
-    // Fast-path: nothing to compete with Aphrodite's `!important`, so we can
-    // forward inline styles directly as `style` and skip the generated class.
-    if (aphroditeStyles.length === 0) {
-        return {
-            style: inlineStylesObject,
-            className: joinedClassNames,
-        };
-    }
-
     // TODO(somewhatabstract): When aphrodite no longer puts "!important" on
     // all the styles, remove this <ADD JIRA ISSUE HERE IF THIS PASSES REVIEW>
     // If we're not snapshotting styles, let's create a class for the inline
