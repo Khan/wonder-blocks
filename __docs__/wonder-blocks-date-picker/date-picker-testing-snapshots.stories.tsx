@@ -11,7 +11,6 @@ import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-date-picker/package.json";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 import {ScenariosLayout} from "../components/scenarios-layout";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 export default {
     title: "Packages / DatePicker / Testing / Snapshots / DatePicker",
