@@ -55,6 +55,7 @@ export default {
             />
         ),
         chromatic: {
+            // Disabling snapshots because this is covered by the testing snapshots
             disableSnapshot: true,
         },
     },
