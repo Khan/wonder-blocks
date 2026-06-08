@@ -12211,7 +12211,7 @@ snapshots:
 
   core-js-compat@3.47.0:
     dependencies:
-      browserslist: 4.28.1
+      browserslist: 4.28.2
     optional: true
 
   core-util-is@1.0.3: {}

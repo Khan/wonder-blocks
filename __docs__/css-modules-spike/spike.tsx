@@ -1,11 +1,16 @@
 import * as React from "react";
+import {StyleSheet} from "aphrodite";
 
 import styles from "./spike.module.css";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {addStyle} from "@khanacademy/wonder-blocks-core";
 
 type Props = {
     label: string;
     badge?: string;
 };
+
+const StyledButton = addStyle("button");
 
 /**
  * Phase 0 spike component — not part of the public Wonder Blocks API.
@@ -20,9 +25,24 @@ type Props = {
  */
 export function Spike({label, badge}: Props): React.ReactElement {
     return (
-        <button type="button" className={styles.root}>
+        <StyledButton
+            type="button"
+            style={[styles.root, aphroditeStyles.root, inlineStyles.root]}
+        >
             <span>{label}</span>
             {badge ? <span className={styles.pill}>{badge}</span> : null}
-        </button>
+        </StyledButton>
     );
 }
+
+const aphroditeStyles = StyleSheet.create({
+    root: {
+        color: semanticColor.core.foreground.instructive.default,
+    },
+});
+
+const inlineStyles = {
+    root: {
+        backgroundColor: semanticColor.core.background.instructive.subtle,
+    },
+};
