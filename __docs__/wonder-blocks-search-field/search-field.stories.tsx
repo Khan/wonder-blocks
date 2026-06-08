@@ -54,6 +54,9 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            disableSnapshot: true,
+        },
     },
     argTypes: SearchFieldArgtypes,
 } as Meta<typeof SearchField>;
@@ -142,13 +145,6 @@ export const WithLabeledField: StoryComponentType = {
                 errorMessage={errorMessage}
             />
         );
-    },
-    parameters: {
-        chromatic: {
-            // Disabling because this is for documentation purposes and is
-            // covered by the LabeledField stories
-            disableSnapshot: true,
-        },
     },
 };
 
@@ -254,12 +250,6 @@ export const Error: StoryComponentType = {
         error: true,
     },
     render: Template,
-    parameters: {
-        chromatic: {
-            // Disabling because this is covered by the All Variants stories
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -297,11 +287,5 @@ export const Validation: StoryComponentType = {
                 />
             </View>
         );
-    },
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
     },
 };
