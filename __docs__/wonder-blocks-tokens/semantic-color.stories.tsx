@@ -39,6 +39,16 @@ import {ColorSwatch} from "../components/color-swatch";
  *     color: semanticColor.core.foreground.neutral.strong,
  * };
  * ```
+ *
+ * Semantic colors are exported as CSS `var(--...)` references so the active
+ * theme can switch values through the CSS cascade. If you need the computed raw
+ * value of a token at runtime (e.g. for a third-party library), use the
+ * [`tokenValue`](./?path=/docs/packages-tokens-utilities-tokenvalue--docs)
+ * utility.
+ *
+ * Use `tokenValue` only for edge cases where a concrete raw value is required.
+ * Favour using tokens directly wherever possible, since resolving raw values
+ * can break theming if overused.
  */
 export default {
     title: "Packages / Tokens / Semantic Color",
@@ -75,6 +85,12 @@ export default {
 
 type Row = {label: string; css: string; value: string};
 
+const publicTokens = Object.fromEntries(
+    Object.entries(flattenNestedTokens(semanticColor)).filter(
+        ([key, _]) => !key.includes("action.") && !key.includes("status."),
+    ),
+);
+
 export const SemanticColors = () => (
     <TokenTable
         columns={[
@@ -97,6 +113,6 @@ export const SemanticColors = () => (
                 cell: (row) => <ColorSwatch backgroundColor={row.value} />,
             },
         ]}
-        tokens={flattenNestedTokens(semanticColor)}
+        tokens={publicTokens}
     />
 );

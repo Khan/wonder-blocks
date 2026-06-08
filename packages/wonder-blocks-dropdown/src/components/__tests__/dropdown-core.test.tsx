@@ -170,6 +170,64 @@ describe("DropdownCore", () => {
         ).toHaveFocus();
     });
 
+    it("navigates from search field to items when search field is initially focused", async () => {
+        // Arrange
+        // Don't set initialFocusedIndex so focus goes to search field
+        render(
+            <DropdownCore
+                onSearchTextChanged={jest.fn()}
+                searchText=""
+                isFilterable={true}
+                items={items}
+                role="listbox"
+                open={true}
+                opener={<button />}
+                onOpenChanged={jest.fn()}
+            />,
+        );
+
+        // Act
+        // Verify search field has focus initially
+        const searchField = await screen.findByRole("textbox");
+        expect(searchField).toHaveFocus();
+
+        // Navigate down from search field to first item
+        await userEvent.keyboard("{ArrowDown}");
+
+        // Assert
+        expect(
+            await screen.findByRole("option", {name: "item 0"}),
+        ).toHaveFocus();
+    });
+
+    it("navigates from search field to last item with ArrowUp", async () => {
+        // Arrange
+        render(
+            <DropdownCore
+                onSearchTextChanged={jest.fn()}
+                searchText=""
+                isFilterable={true}
+                items={items}
+                role="listbox"
+                open={true}
+                opener={<button />}
+                onOpenChanged={jest.fn()}
+            />,
+        );
+
+        // Act
+        const searchField = await screen.findByRole("textbox");
+        expect(searchField).toHaveFocus();
+
+        // Navigate up from search field to last item
+        await userEvent.keyboard("{ArrowUp}");
+
+        // Assert
+        expect(
+            await screen.findByRole("option", {name: "item 2"}),
+        ).toHaveFocus();
+    });
+
     // NOTE(john): This fails after upgrading to user-event v14, it's not clear
     // what's wrong exactly, but tabbing no longer triggers the change, which
     // makes me think that the initial focus is different now.

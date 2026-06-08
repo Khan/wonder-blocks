@@ -1,5 +1,23 @@
 # @khanacademy/eslint-plugin-wonder-blocks
 
+## 0.7.0
+
+### Minor Changes
+
+- 73c82e6: Add new lint rule for no-hardcoded-color that suggests semanticColor usage for theming support
+
+### Patch Changes
+
+- 73c82e6: Disable `require-logical-properties-for-rtl` from the recommended (and strict) configs to facilitate intentional rollout. The rule is still available in the plugin for opt-in use.
+
+## 0.6.0
+
+### Minor Changes
+
+- 40cb70f: Enable `require-logical-properties-for-rtl` in the `recommended` config. Auto-fixes all existing WB violations (physical CSS properties → logical equivalents, `textAlign: "left"|"right"` → `"start"|"end"`). Story files using `direction: "ltr"|"rtl"` in styles are updated to use the `dir` HTML attribute instead. Part of CLASS-14218.
+- 40cb70f: Add `require-logical-properties-for-rtl` ESLint rule to `eslint-plugin-wonder-blocks` recommended config, and migrate all Wonder Blocks component source files to use CSS logical properties for improved RTL layout support.
+- 40cb70f: Enable RTL logical-properties ESLint rule in recommended config
+
 ## 0.5.0
 
 ### Minor Changes

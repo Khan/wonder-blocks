@@ -15,6 +15,7 @@ import {
 import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 
 import ComponentInfo from "../components/component-info";
+import {modalPositionerStyle} from "./modal-story-utils";
 
 const longBody = (
     <>
@@ -295,23 +296,7 @@ const styles = StyleSheet.create({
         maxInlineSize: 600,
         maxBlockSize: 500,
     },
-    modalPositioner: {
-        // Checkerboard background
-        backgroundImage:
-            "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
-        backgroundSize: "20px 20px",
-        backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
-
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-
-        position: "absolute",
-        insetInlineStart: 0,
-        insetInlineEnd: 0,
-        insetBlockStart: 0,
-        insetBlockEnd: 0,
-    },
+    modalPositioner: modalPositionerStyle,
     previewSizer: {
         height: 600,
     },

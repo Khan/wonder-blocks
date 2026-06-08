@@ -1,5 +1,24 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 8.2.1
+
+### Patch Changes
+
+- Updated dependencies [a676ce6]
+    - @khanacademy/wonder-blocks-tokens@16.6.0
+
+## 8.2.0
+
+### Minor Changes
+
+- c97ece4: Accepts the `state` prop from the React router Link component.
+
+### Patch Changes
+
+- Updated dependencies [40cb70f]
+- Updated dependencies [40cb70f]
+    - @khanacademy/wonder-blocks-core@12.4.4
+
 ## 8.1.10
 
 ### Patch Changes

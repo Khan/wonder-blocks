@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
         padding: `${sizing.size_120} 0`,
     },
     action: {
-        backgroundColor: "transparent",
+        backgroundColor: semanticColor.core.transparent,
         border: "none",
         color: semanticColor.core.foreground.knockout.default,
         cursor: "pointer",

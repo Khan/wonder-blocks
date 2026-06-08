@@ -401,6 +401,7 @@ describe("LabeledTextField", () => {
         const styles = StyleSheet.create({
             style1: {
                 minInlineSize: 250,
+                // eslint-disable-next-line @khanacademy/wonder-blocks/no-hardcoded-color
                 background: "blue",
             },
         });

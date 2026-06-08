@@ -114,7 +114,7 @@ export const styles = StyleSheet.create({
         display: "flex",
         alignItems: "center",
         textWrap: "nowrap",
-        backgroundColor: "transparent",
+        backgroundColor: semanticColor.core.transparent,
         border: "none",
         margin: 0,
         padding: 0,

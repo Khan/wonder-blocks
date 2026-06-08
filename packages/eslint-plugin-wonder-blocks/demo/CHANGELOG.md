@@ -1,5 +1,38 @@
 # eslint-plugin-wonder-blocks-demo
 
+## 0.3.1
+
+### Patch Changes
+
+- Updated dependencies [a676ce6]
+    - @khanacademy/wonder-blocks-tokens@16.6.0
+    - @khanacademy/wonder-blocks-button@11.6.2
+    - @khanacademy/wonder-blocks-clickable@8.2.1
+    - @khanacademy/wonder-blocks-form@7.6.2
+    - @khanacademy/wonder-blocks-icon@5.3.16
+    - @khanacademy/wonder-blocks-link@10.3.1
+    - @khanacademy/wonder-blocks-typography@4.3.6
+
+## 0.3.0
+
+### Minor Changes
+
+- 73c82e6: Add new lint rule for no-hardcoded-color that suggests semanticColor usage for theming support
+
+## 0.2.5
+
+### Patch Changes
+
+- Updated dependencies [40cb70f]
+- Updated dependencies [40cb70f]
+- Updated dependencies [c97ece4]
+    - @khanacademy/wonder-blocks-button@11.6.1
+    - @khanacademy/wonder-blocks-core@12.4.4
+    - @khanacademy/wonder-blocks-form@7.6.1
+    - @khanacademy/wonder-blocks-clickable@8.2.0
+    - @khanacademy/wonder-blocks-link@10.3.0
+    - @khanacademy/wonder-blocks-typography@4.3.5
+
 ## 0.2.4
 
 ### Patch Changes

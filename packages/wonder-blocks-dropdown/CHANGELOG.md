@@ -1,5 +1,44 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.9.2
+
+### Patch Changes
+
+- 1fdc9db: Fix arrow key navigation from search field in filterable dropdowns. When `isFilterable` is `true` and the dropdown opens with focus on the search field, pressing ArrowUp/ArrowDown now correctly moves focus to the dropdown items.
+- Updated dependencies [a676ce6]
+    - @khanacademy/wonder-blocks-tokens@16.6.0
+    - @khanacademy/wonder-blocks-cell@6.2.2
+    - @khanacademy/wonder-blocks-clickable@8.2.1
+    - @khanacademy/wonder-blocks-form@7.6.2
+    - @khanacademy/wonder-blocks-icon@5.3.16
+    - @khanacademy/wonder-blocks-icon-button@11.3.2
+    - @khanacademy/wonder-blocks-modal@8.7.2
+    - @khanacademy/wonder-blocks-pill@3.1.65
+    - @khanacademy/wonder-blocks-search-field@5.1.71
+    - @khanacademy/wonder-blocks-styles@0.2.46
+    - @khanacademy/wonder-blocks-typography@4.3.6
+
+## 10.9.1
+
+### Patch Changes
+
+- 40cb70f: Add `require-logical-properties-for-rtl` ESLint rule to `eslint-plugin-wonder-blocks` recommended config, and migrate all Wonder Blocks component source files to use CSS logical properties for improved RTL layout support.
+- 40cb70f: Enable RTL logical-properties ESLint rule in recommended config
+- Updated dependencies [40cb70f]
+- Updated dependencies [40cb70f]
+- Updated dependencies [c97ece4]
+    - @khanacademy/wonder-blocks-cell@6.2.1
+    - @khanacademy/wonder-blocks-core@12.4.4
+    - @khanacademy/wonder-blocks-form@7.6.1
+    - @khanacademy/wonder-blocks-modal@8.7.1
+    - @khanacademy/wonder-blocks-clickable@8.2.0
+    - @khanacademy/wonder-blocks-announcer@1.1.1
+    - @khanacademy/wonder-blocks-icon@5.3.15
+    - @khanacademy/wonder-blocks-icon-button@11.3.1
+    - @khanacademy/wonder-blocks-pill@3.1.64
+    - @khanacademy/wonder-blocks-search-field@5.1.70
+    - @khanacademy/wonder-blocks-typography@4.3.5
+
 ## 10.9.0
 
 ### Minor Changes

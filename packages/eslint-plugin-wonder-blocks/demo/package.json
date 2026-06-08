@@ -1,6 +1,6 @@
 {
     "name": "eslint-plugin-wonder-blocks-demo",
-    "version": "0.2.4",
+    "version": "0.3.1",
     "private": true,
     "license": "MIT",
     "scripts": {
@@ -13,12 +13,16 @@
         "typescript": "5.7.3"
     },
     "dependencies": {
+        "aphrodite": "catalog:",
         "@khanacademy/wonder-blocks-button": "workspace:*",
         "@khanacademy/wonder-blocks-clickable": "workspace:*",
         "@khanacademy/wonder-blocks-core": "workspace:*",
         "@khanacademy/wonder-blocks-form": "workspace:*",
+        "@khanacademy/wonder-blocks-icon": "workspace:*",
         "@khanacademy/wonder-blocks-link": "workspace:*",
+        "@khanacademy/wonder-blocks-tokens": "workspace:*",
         "@khanacademy/wonder-blocks-typography": "workspace:*",
+        "@phosphor-icons/core": "catalog:",
         "@types/react": "^18.2.6",
         "react": "^18.2.0"
     }

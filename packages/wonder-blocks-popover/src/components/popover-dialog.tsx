@@ -126,8 +126,8 @@ const styles = StyleSheet.create({
     hide: {
         pointerEvents: "none",
         opacity: 0,
-        backgroundColor: "transparent",
-        color: "transparent",
+        backgroundColor: tokens.semanticColor.core.transparent,
+        color: tokens.semanticColor.core.transparent,
     },
 
     /**

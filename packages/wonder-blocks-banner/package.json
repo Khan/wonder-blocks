@@ -3,7 +3,7 @@
   "description": "Banner components for Wonder Blocks.",
   "author": "Khan Academy",
   "license": "MIT",
-  "version": "5.1.0",
+  "version": "5.1.2",
   "publishConfig": {
     "access": "public"
   },

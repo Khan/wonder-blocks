@@ -608,16 +608,17 @@ class DropdownCore extends React.Component<Props, State> {
     }
 
     focusPreviousItem(): void {
-        if (
-            this.focusedIndex === 0 ||
-            (this.isSearchFieldFocused() && !this.props.enableTypeAhead)
-        ) {
-            // Move the focus to the search field if it is the first item.
-            if (this.hasSearchField() && !this.isSearchFieldFocused()) {
+        if (this.isSearchFieldFocused()) {
+            // From search field, up arrow goes to last item
+            this.focusedIndex = this.state.itemRefs.length - 1;
+        } else if (this.focusedIndex === 0) {
+            // At first item, go to search field if it exists
+            if (this.hasSearchField()) {
                 return this.focusSearchField();
             }
+            // Otherwise wrap to last item
             this.focusedIndex = this.state.itemRefs.length - 1;
-        } else if (!this.isSearchFieldFocused()) {
+        } else {
             this.focusedIndex -= 1;
         }
 
@@ -625,16 +626,17 @@ class DropdownCore extends React.Component<Props, State> {
     }
 
     focusNextItem(): void {
-        if (
-            this.focusedIndex === this.state.itemRefs.length - 1 ||
-            (this.isSearchFieldFocused() && !this.props.enableTypeAhead)
-        ) {
-            // Move the focus to the search field if it is the last item.
-            if (this.hasSearchField() && !this.isSearchFieldFocused()) {
+        if (this.isSearchFieldFocused()) {
+            // From search field, down arrow goes to first item
+            this.focusedIndex = 0;
+        } else if (this.focusedIndex === this.state.itemRefs.length - 1) {
+            // At last item, go to search field if it exists
+            if (this.hasSearchField()) {
                 return this.focusSearchField();
             }
+            // Otherwise wrap to first item
             this.focusedIndex = 0;
-        } else if (!this.isSearchFieldFocused()) {
+        } else {
             this.focusedIndex += 1;
         }
 

@@ -1,4 +1,9 @@
-import {Meta, ColorPalette, ColorItem, Canvas} from "@storybook/addon-docs/blocks";
+import {
+    Meta,
+    ColorPalette,
+    ColorItem,
+    Canvas,
+} from "@storybook/addon-docs/blocks";
 import {StyleSheet} from "aphrodite";
 
 import Banner from "@khanacademy/wonder-blocks-banner";
@@ -6,7 +11,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
-import * as SemanticColorGroups from "./wonder-blocks-tokens/semantic-color-groups.stories"
+import * as SemanticColorGroups from "./wonder-blocks-tokens/semantic-color-groups.stories";
 
 import {ColorGroup, ActionColorGroup} from "./components/color";
 
@@ -157,7 +162,6 @@ and include an icon or label to provide more context and clarity."
     ]}
 />
 
-
 #### Info
 
 <Canvas of={SemanticColorGroups.FeedbackInfo} layout="fullscreen" />
@@ -209,6 +213,13 @@ in the UI.
 
 <Canvas of={SemanticColorGroups.LearningMath} layout="fullscreen" />
 
+#### Flesh
+
+For character illustrations and other decorative elements that add warmth to the
+experience.
+
+<Canvas of={SemanticColorGroups.LearningCharactersFlesh} layout="fullscreen" />
+
 #### Border
 
 <Canvas of={SemanticColorGroups.LearningBorder} layout="fullscreen" />
@@ -216,7 +227,6 @@ in the UI.
 #### Background
 
 <Canvas of={SemanticColorGroups.LearningBackground} layout="fullscreen" />
-
 
 #### Foreground
 
@@ -238,6 +248,25 @@ it.
 Standalone colors used only for communicating mastery.
 
 <Canvas of={SemanticColorGroups.Mastery} layout="fullscreen" />
+
+## Getting raw token values
+
+Semantic colors are exported as CSS `var(--...)` references so the active theme
+can switch values through the CSS cascade. This is great for styling, but less
+useful when something expects a concrete hex value (e.g. a third-party library).
+Use the [tokenValue](./?path=/docs/packages-tokens-utilities-tokenvalue--docs)
+utility to resolve a token to its computed raw value at runtime.
+
+<Banner
+    kind="info"
+    text={
+        <>
+            Use <code>tokenValue</code> only for edge cases where a concrete raw
+            value is required. Favour using tokens directly wherever possible,
+            since resolving raw values can break theming if overused.
+        </>
+    }
+/>
 
 ## Accessibility
 
