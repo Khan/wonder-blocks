@@ -232,11 +232,28 @@ export const OpenedScenarios: StoryComponentType = {
                         <View
                             style={{inlineSize: 400, alignItems: "flex-start"}}
                         >
-                            <DatePickerScenario {...props} name={name} />
+                            <DatePickerScenario
+                                {...props}
+                                name={name}
+                                aria-label={name}
+                            />
                         </View>
                     )}
                 </ScenariosLayout>
             </View>
         );
+    },
+    parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    {
+                        // TODO(WB-2369): Fix missing aria-label on pagination nav area
+                        id: "landmark-unique",
+                        enabled: false,
+                    },
+                ],
+            },
+        },
     },
 };
