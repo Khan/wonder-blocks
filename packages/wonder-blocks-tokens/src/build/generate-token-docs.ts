@@ -5,6 +5,7 @@ import path from "node:path";
 // TODO(WB-2312): Update once we change the default theme to TB
 import themeDefault from "../theme/default";
 import themeThunderblocks from "../theme/thunderblocks";
+import themeSylDark from "../theme/syl-dark";
 import {breakpoint} from "../tokens/media-queries";
 import {CSS_VAR_PREFIX} from "../util/constants";
 
@@ -17,6 +18,7 @@ const themes: ReadonlyArray<{
 }> = [
     {id: "default", label: "Default", theme: themeDefault},
     {id: "thunderblocks", label: "Thunderblocks", theme: themeThunderblocks},
+    {id: "syl-dark", label: "Syl Dark", theme: themeSylDark},
 ];
 
 export function flattenToMap(
