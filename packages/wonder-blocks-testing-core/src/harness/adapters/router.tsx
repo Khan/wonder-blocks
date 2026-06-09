@@ -118,7 +118,7 @@ type DataRoutesConfig = {
  *   (`createMemoryRouter` + `RouterProvider`). Use it when a route `loader` or
  *   `errorElement` needs to run for the test.
  */
-type Config =
+export type Config =
     | Readonly<
           | (NotDataRoutes & {
                 /**
