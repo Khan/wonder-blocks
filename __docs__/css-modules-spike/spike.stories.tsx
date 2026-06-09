@@ -43,3 +43,17 @@ export const WithBadge: Story = {
         badge: "NEW",
     },
 };
+
+/**
+ * Proves the cross-package `--wb-action-inverse` mixin (WB-2327, Phase 3)
+ * expands end-to-end: the control's interactive styling — including its
+ * nested `:hover` / `:focus-visible` / `:active` rules and the reused
+ * `--wb-focus-visible` ring — comes entirely from the mixin. Tab to the
+ * button to see the focus ring on the dark backdrop.
+ */
+export const Inverse: Story = {
+    args: {
+        label: "Inverse spike button",
+        inverse: true,
+    },
+};
