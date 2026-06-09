@@ -421,7 +421,10 @@ const _generateStyles = (
             // Gives the button a "chonky" look and feel.
             boxShadow: `0 ${theme.root.shadow.y.rest} 0 0 ${themeVariant.shadow[kind].rest}`,
             // motion
-            transition: "all 0.12s ease-out",
+            transitionProperty:
+                "transform, box-shadow, background, border-color, color",
+            transitionDuration: "0.12s",
+            transitionTimingFunction: "ease-out",
 
             ["@media not (hover: hover)" as any]: {
                 transition: "none",
