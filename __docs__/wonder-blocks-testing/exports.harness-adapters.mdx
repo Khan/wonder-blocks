@@ -223,10 +223,12 @@ type Config = {
      *
      * Provide either an array of route objects (the harnessed component is
      * mounted as the `element` of the route matching the initial location), or
-     * a function `(children) => routes` for full control over where the
-     * harnessed component is placed (e.g. as a route's `errorElement`).
+     * a function `(harnessedComponent) => routes` for full control over where
+     * the harnessed component is placed (e.g. as a route's `errorElement`).
      */
-    routes: Array<RouteObject> | ((children: React.ReactNode) => Array<RouteObject>);
+    routes:
+        | Array<RouteObject>
+        | ((harnessedComponent: React.ReactNode) => Array<RouteObject>);
 
     /**
      * The initial history entries. Defaults to the adapter's default location.
@@ -262,19 +264,19 @@ type Config = {
     // available via `useLoaderData()`.
     ```
 
--   **Function form** — `routes: (children) => [...]` gives you full control over placement. This is what you want when the component-under-test is an `errorElement`:
+-   **Function form** — `routes: (harnessedComponent) => [...]` gives you full control over placement. This is what you want when the component-under-test is an `errorElement`:
 
     ```tsx
     const Harnessed = testHarness(RouteErrorBoundary, {
         router: {
-            routes: (children) => [
+            routes: (harnessedComponent) => [
                 {
                     path: "/items/:id",
                     loader: () => {
                         throw new Error("kaboom");
                     },
                     element: <ItemPage />,
-                    errorElement: children, // the component under test
+                    errorElement: harnessedComponent, // the component under test
                 },
             ],
             initialEntries: ["/items/42"],

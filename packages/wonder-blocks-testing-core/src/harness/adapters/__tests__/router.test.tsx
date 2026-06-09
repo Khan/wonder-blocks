@@ -272,11 +272,11 @@ describe("Router.adapter", () => {
         it("should run a route loader and pass resolved data to the component (function form)", async () => {
             // Arrange
             const config = {
-                routes: (children: React.ReactNode) => [
+                routes: (harnessedComponent: React.ReactNode) => [
                     {
                         path: "/",
                         loader: () => ({greeting: "hello"}),
-                        element: children,
+                        element: harnessedComponent,
                     },
                 ],
                 initialEntries: ["/"],
@@ -292,14 +292,14 @@ describe("Router.adapter", () => {
         it("should render the errorElement when a route loader rejects (function form)", async () => {
             // Arrange
             const config = {
-                routes: (children: React.ReactNode) => [
+                routes: (harnessedComponent: React.ReactNode) => [
                     {
                         path: "/",
                         loader: () => {
                             throw new Error("loader failed");
                         },
                         element: <div>content</div>,
-                        errorElement: children,
+                        errorElement: harnessedComponent,
                     },
                 ],
                 initialEntries: ["/"],
@@ -317,13 +317,13 @@ describe("Router.adapter", () => {
         it("should render the errorElement synchronously from pre-resolved hydrationData", () => {
             // Arrange
             const config = {
-                routes: (children: React.ReactNode) => [
+                routes: (harnessedComponent: React.ReactNode) => [
                     {
                         id: "root",
                         path: "/",
                         loader: () => ({}),
                         element: <div>content</div>,
-                        errorElement: children,
+                        errorElement: harnessedComponent,
                     },
                 ],
                 initialEntries: ["/"],
@@ -346,8 +346,13 @@ describe("Router.adapter", () => {
             // Arrange
             const loader = jest.fn(() => ({greeting: "hi"}));
             const config = {
-                routes: (children: React.ReactNode) => [
-                    {id: "root", path: "/", loader, element: children},
+                routes: (harnessedComponent: React.ReactNode) => [
+                    {
+                        id: "root",
+                        path: "/",
+                        loader,
+                        element: harnessedComponent,
+                    },
                 ],
                 initialEntries: ["/"],
                 hydrationData: {
@@ -397,8 +402,12 @@ describe("Router.adapter", () => {
             // @ts-expect-error: simulate an environment without the Fetch API.
             delete globalThis.Request;
             const config = {
-                routes: (children: React.ReactNode) => [
-                    {path: "/", loader: () => ({}), element: children},
+                routes: (harnessedComponent: React.ReactNode) => [
+                    {
+                        path: "/",
+                        loader: () => ({}),
+                        element: harnessedComponent,
+                    },
                 ],
                 initialEntries: ["/"],
             };

@@ -59,14 +59,15 @@ type DataRoutesConfig = {
      *
      * Provide either:
      *
-     * - A function `(children) => routes` for full control over where the
-     *   harnessed component is mounted (e.g. as a route's `errorElement`).
+     * - A function `(harnessedComponent) => routes` for full control over
+     *   where the harnessed component is mounted (e.g. as a route's
+     *   `errorElement`).
      * - An array of route objects, in which case the harnessed component is
      *   mounted as the `element` of the route that matches the initial
      *   location. In this form the matched leaf route must not define its own
      *   `element`.
      */
-    routes: DataRoutes | ((children: React.ReactNode) => DataRoutes);
+    routes: DataRoutes | ((harnessedComponent: React.ReactNode) => DataRoutes);
     /**
      * The initial history entries for the data router.
      *
@@ -275,8 +276,8 @@ const injectChildrenIntoRoutes = (
                 `'${describeLocation(location)}'. In array \`routes\` mode the ` +
                 `harnessed component is mounted as the matched leaf route's ` +
                 `\`element\`, so a route must match the location. Use the ` +
-                `function form \`routes: (children) => [...]\` to place the ` +
-                `component yourself.`,
+                `function form \`routes: (harnessedComponent) => [...]\` to ` +
+                `place the component yourself.`,
         );
     }
 
@@ -292,7 +293,8 @@ const injectChildrenIntoRoutes = (
                             `\`element\`. In array \`routes\` mode the harnessed ` +
                             `component is mounted there, so the matched leaf must ` +
                             `not set its own \`element\`. Use the function form ` +
-                            `\`routes: (children) => [...]\` for full control.`,
+                            `\`routes: (harnessedComponent) => [...]\` for full ` +
+                            `control.`,
                     );
                 }
                 return {...route, element};

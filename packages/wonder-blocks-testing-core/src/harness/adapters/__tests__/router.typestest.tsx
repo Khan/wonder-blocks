@@ -29,8 +29,8 @@ describe("router adapter config", () => {
 
     it("should accept a data-routes function config", () => {
         adapter(null, {
-            routes: (children: React.ReactNode) => [
-                {path: "/", element: children},
+            routes: (harnessedComponent: React.ReactNode) => [
+                {path: "/", element: harnessedComponent},
             ],
         });
     });
