@@ -100,9 +100,11 @@ const sharedStyles = StyleSheet.create({
         cursor: "not-allowed",
         ":hover": {
             outline: "none",
+            boxShadow: "none",
         },
         ":active": {
             outline: "none",
+            boxShadow: "none",
         },
     },
     disabledFocus: {
