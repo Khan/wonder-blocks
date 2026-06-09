@@ -239,6 +239,19 @@ import {Meta} from "@storybook/addon-docs/blocks";
 
 <Meta title="${group.title}" summary="${group.description}" />
 
+{/*
+  Constrain wide token tables to the docs content width and let them scroll
+  horizontally on their own. Without this, the table overflows the page and
+  reveals the body background past the edge of the docs container.
+*/}
+<style>{\`
+  .sbdocs.sbdocs-content table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+\`}</style>
+
 # ${group.heading}
 
 ${group.description}
