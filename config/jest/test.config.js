@@ -39,6 +39,20 @@ const projectConfig = {
         SNAPSHOT_INLINE_APHRODITE: true,
     },
     testMatch: ["<rootDir>/**/*.test.ts", "<rootDir>/**/*.test.tsx"],
+    // Ignore repo copies created under `.claude/worktrees/` (by Claude Code).
+    // Each worktree has its own `packages/**/package.json`, whose duplicate
+    // `name` fields otherwise collide in Jest's Haste module map ("The name
+    // `@khanacademy/wonder-blocks-core` was looked up in the Haste module
+    // map").
+    modulePathIgnorePatterns: ["/\\.claude/"],
+    // We turn off Prettier as Prettier v3 is incompatible with Jest v29's
+    // inline-snapshot formatting ("Inline Snapshots are not supported when
+    // using Prettier 3.0.0 or above"). This must live on each project config —
+    // `prettierPath` is a project-level option, so setting it only at the root
+    // of a multi-project config has no effect.
+    // Once Jest v30 ships we can switch to that:
+    // https://github.com/jestjs/jest/issues/14305
+    prettierPath: null,
     moduleNameMapper: {
         "^@khanacademy/wonder-blocks-([^/]*)$":
             "<rootDir>/packages/wonder-blocks-$1/src/index.ts",

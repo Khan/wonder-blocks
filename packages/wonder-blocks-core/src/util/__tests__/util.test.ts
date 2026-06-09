@@ -107,7 +107,7 @@ describe("processStyleList", () => {
         });
     });
 
-    describe("CSS Module class name strings (fast-path)", () => {
+    describe("CSS Module class name strings", () => {
         it("forwards a single string as className with no inline style", () => {
             // Arrange
             const input = "module-class";
@@ -142,8 +142,12 @@ describe("processStyleList", () => {
         });
     });
 
-    describe("inline-object styles (fast-path)", () => {
-        it("forwards a single inline object as `style` with no className", () => {
+    describe("inline-object styles", () => {
+        // Plain objects (no `_definition`) are merged and wrapped into a
+        // single generated Aphrodite class so they apply alongside Aphrodite's
+        // `!important`. The merged values are observable in snapshot mode (see
+        // the SNAPSHOT_INLINE_APHRODITE block); here we pin the wrapping.
+        it("wraps a single inline object into a generated class, leaving `style` empty", () => {
             // Arrange
             const input = {padding: 0};
 
@@ -151,10 +155,21 @@ describe("processStyleList", () => {
             const result = processStyleList(input);
 
             // Assert
-            expect(result).toEqual({style: {padding: 0}, className: ""});
+            expect(result.style).toEqual({});
         });
 
-        it("merges multiple inline objects, later overriding earlier", () => {
+        it("emits a non-empty generated class for a single inline object", () => {
+            // Arrange
+            const input = {padding: 0};
+
+            // Act
+            const result = processStyleList(input);
+
+            // Assert
+            expect(result.className.length).toBeGreaterThan(0);
+        });
+
+        it("merges multiple inline objects into a single generated class", () => {
             // Arrange
             const input = [{padding: 0, fontSize: 12}, {padding: 10}];
 
@@ -162,21 +177,10 @@ describe("processStyleList", () => {
             const result = processStyleList(input);
 
             // Assert
-            expect(result.style).toEqual({padding: 10, fontSize: 12});
+            expect(result.className.split(" ")).toHaveLength(1);
         });
 
-        it("emits no className when merging multiple inline objects", () => {
-            // Arrange
-            const input = [{padding: 0, fontSize: 12}, {padding: 10}];
-
-            // Act
-            const result = processStyleList(input);
-
-            // Assert
-            expect(result.className).toEqual("");
-        });
-
-        it("forwards CSS custom property keys (--*) as inline style", () => {
+        it("wraps CSS custom property keys (--*) into a generated class", () => {
             // Arrange
             const input = {"--my-var": "12px"} as any;
 
@@ -184,25 +188,15 @@ describe("processStyleList", () => {
             const result = processStyleList(input);
 
             // Assert
-            expect(result.style).toEqual({"--my-var": "12px"});
-        });
-
-        it("emits no className for CSS custom property keys (--*)", () => {
-            // Arrange
-            const input = {"--my-var": "12px"} as any;
-
-            // Act
-            const result = processStyleList(input);
-
-            // Assert
-            expect(result.className).toEqual("");
+            expect(result.style).toEqual({});
+            expect(result.className.length).toBeGreaterThan(0);
         });
     });
 
     describe("mixed inputs", () => {
-        // Aphrodite class first, then string class. Inline styles are
-        // wrapped into the aphrodite class (no fast-path because aphrodite
-        // is in the merge), so `style` stays empty.
+        // Aphrodite class first, then string class. Inline styles are wrapped
+        // into the (single) aphrodite class, so the className contains the
+        // generated class plus the string class, and `style` stays empty.
         it("produces two classes for aphrodite + string + inline object", () => {
             // Arrange
             const input = [styles.noPadding, "module-class", {fontSize: 14}];
@@ -349,7 +343,16 @@ describe("processStyleList", () => {
     });
 
     describe("order of precedence", () => {
-        it("later inline-style keys win without `!important`", () => {
+        // Inline styles are wrapped into a generated class in normal
+        // operation, so the merge isn't observable on the result. We assert
+        // the merge order in snapshot mode, where the merged inline object is
+        // returned directly via `style`.
+        beforeEach(() => {
+            // @ts-expect-error: globalThis index signature
+            global.SNAPSHOT_INLINE_APHRODITE = true;
+        });
+
+        it("merges inline objects with later keys winning", () => {
             // Arrange
             // Consumer override is last in the array.
             const input = [{padding: 0}, {padding: 10}];
@@ -379,8 +382,8 @@ describe("processStyleList", () => {
         });
     });
 
-    describe("fast-path", () => {
-        it("returns empty className when only inline styles are present", () => {
+    describe("inline styles are wrapped into a generated class", () => {
+        it("emits a non-empty generated class when only inline styles are present", () => {
             // Arrange
             const input = {padding: 10};
 
@@ -388,11 +391,12 @@ describe("processStyleList", () => {
             const result = processStyleList(input);
 
             // Assert
-            // No generated class — inline styles flow as `style` directly.
-            expect(result.className).toEqual("");
+            // Inline styles are wrapped into a generated class so they can
+            // outweigh Aphrodite's `!important`.
+            expect(result.className.length).toBeGreaterThan(0);
         });
 
-        it("flows inline styles through as `style` when no class is generated", () => {
+        it("leaves `style` empty when only inline styles are present", () => {
             // Arrange
             const input = {padding: 10};
 
@@ -400,10 +404,10 @@ describe("processStyleList", () => {
             const result = processStyleList(input);
 
             // Assert
-            expect(result.style).toEqual({padding: 10});
+            expect(result.style).toEqual({});
         });
 
-        it("wraps inline styles into the aphrodite class, leaving `style` empty (no fast-path)", () => {
+        it("leaves `style` empty when aphrodite is also present", () => {
             // Arrange
             const input = [styles.noPadding, {fontSize: 14}];
 
@@ -414,7 +418,7 @@ describe("processStyleList", () => {
             expect(result.style).toEqual({});
         });
 
-        it("generates a class when aphrodite is in the merge (no fast-path)", () => {
+        it("generates a class when aphrodite is in the merge", () => {
             // Arrange
             const input = [styles.noPadding, {fontSize: 14}];
 

@@ -35,17 +35,18 @@ function flatten(list?: StyleType): Array<StyleLeaf> {
  *      object. These are emitted as a generated class via `css(...)`.
  *   2. Strings — treated as CSS class names (e.g. CSS Module identifiers) and
  *      appended to the resulting `className`.
- *   3. Plain objects without the Aphrodite `_definition` marker — forwarded
- *      as inline `style`. Includes objects whose keys are CSS custom
- *      properties (e.g. `{"--x": "value"}`).
+ *   3. Plain objects without the Aphrodite `_definition` marker — merged
+ *      together (later keys winning) and wrapped into a generated Aphrodite
+ *      class so they apply even alongside Aphrodite's `!important`. Includes
+ *      objects whose keys are CSS custom properties (e.g. `{"--x": "value"}`).
  *
  * Any other truthy leaf (numbers, booleans, symbols, etc.) is silently
  * ignored.
  *
- * Fast-path: when no Aphrodite stylesheet is present in the merge, the
- * inline-style object is forwarded directly as `style` instead of being
- * wrapped in a generated class. The wrap only exists to outweigh Aphrodite's
- * `!important`, so it's pointless when no Aphrodite is involved.
+ * In normal operation everything is delivered via `className` and `style` is
+ * empty. The one exception is snapshot mode (`SNAPSHOT_INLINE_APHRODITE`),
+ * where Aphrodite stylesheets and inline objects are both flattened into the
+ * returned `style` so tests can assert on concrete values.
  */
 export function processStyleList(style?: StyleType): StyledExport {
     const aphroditeStyles: Array<any> = [];
@@ -110,15 +111,6 @@ export function processStyleList(style?: StyleType): StyledExport {
     const inlineStylesObject = Object.assign({}, ...inlineStylesList);
     const joinedClassNames = classNameStrings.join(" ");
 
-    // Fast-path: nothing to compete with Aphrodite's `!important`, so we can
-    // forward inline styles directly as `style` and skip the generated class.
-    if (aphroditeStyles.length === 0) {
-        return {
-            style: inlineStylesObject,
-            className: joinedClassNames,
-        };
-    }
-
     // TODO(somewhatabstract): When aphrodite no longer puts "!important" on
     // all the styles, remove this <ADD JIRA ISSUE HERE IF THIS PASSES REVIEW>
     // If we're not snapshotting styles, let's create a class for the inline
@@ -131,10 +123,13 @@ export function processStyleList(style?: StyleType): StyledExport {
         aphroditeStyles.push(inlineStylesStyleSheet.inlineStyles);
     }
 
+    // Join the aphrodite-generated class (empty when no aphrodite is present)
+    // with the CSS Module / plain class-name strings, dropping empties so we
+    // never emit a leading/trailing space.
     const aphroditeClassName = css(...aphroditeStyles);
-    const finalClassName = joinedClassNames
-        ? `${aphroditeClassName} ${joinedClassNames}`
-        : aphroditeClassName;
+    const finalClassName = [aphroditeClassName, joinedClassNames]
+        .filter(Boolean)
+        .join(" ");
 
     return {
         style: shouldInlineStyles ? inlineStylesObject : {},
