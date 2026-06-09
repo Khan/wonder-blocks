@@ -15,13 +15,13 @@ const rows = [
         name: "Default",
         props: {
             children: [
-                <BreadcrumbsItem>
+                <BreadcrumbsItem key="course">
                     <Link href="#course">Course</Link>
                 </BreadcrumbsItem>,
-                <BreadcrumbsItem>
+                <BreadcrumbsItem key="unit">
                     <Link href="#unit">Unit</Link>
                 </BreadcrumbsItem>,
-                <BreadcrumbsItem>Lesson</BreadcrumbsItem>,
+                <BreadcrumbsItem key="lesson">Lesson</BreadcrumbsItem>,
             ],
         },
     },

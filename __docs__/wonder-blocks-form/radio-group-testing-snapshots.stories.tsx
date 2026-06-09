@@ -32,13 +32,14 @@ export default {
 type Story = StoryObj<typeof RadioGroup>;
 
 const defaultChildren = [
-    <Choice label="Bulbasaur" value="bulbasaur" />,
+    <Choice label="Bulbasaur" value="bulbasaur" key="bulbasaur" />,
     <Choice
         label="Charmander"
         value="charmander"
+        key="charmander"
         description="Oops, we ran out of Charmanders"
     />,
-    <Choice label="Squirtle" value="squirtle" />,
+    <Choice label="Squirtle" value="squirtle" key="squirtle" />,
 ];
 /**
  * The following story shows how the component handles specific scenarios.
@@ -76,9 +77,9 @@ export const Scenarios: Story = {
                     description: longText,
                     errorMessage: longText,
                     children: [
-                        <Choice label={longText} value="1" />,
-                        <Choice label={longText} value="2" />,
-                        <Choice label={longText} value="3" />,
+                        <Choice label={longText} value="1" key="1" />,
+                        <Choice label={longText} value="2" key="2" />,
+                        <Choice label={longText} value="3" key="3" />,
                     ],
                 },
             },
@@ -89,9 +90,21 @@ export const Scenarios: Story = {
                     description: longTextWithNoWordBreak,
                     errorMessage: longTextWithNoWordBreak,
                     children: [
-                        <Choice label={longTextWithNoWordBreak} value="1" />,
-                        <Choice label={longTextWithNoWordBreak} value="2" />,
-                        <Choice label={longTextWithNoWordBreak} value="3" />,
+                        <Choice
+                            label={longTextWithNoWordBreak}
+                            value="1"
+                            key="1"
+                        />,
+                        <Choice
+                            label={longTextWithNoWordBreak}
+                            value="2"
+                            key="2"
+                        />,
+                        <Choice
+                            label={longTextWithNoWordBreak}
+                            value="3"
+                            key="3"
+                        />,
                     ],
                 },
             },
