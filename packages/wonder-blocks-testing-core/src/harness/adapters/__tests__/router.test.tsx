@@ -1,7 +1,12 @@
 import * as React from "react";
 import {Redirect, useLocation as useLocationV5} from "react-router-dom";
-import {useLocation, useNavigate} from "react-router-dom-v5-compat";
-import {render} from "@testing-library/react";
+import {
+    useLocation,
+    useNavigate,
+    useLoaderData,
+    useRouteError,
+} from "react-router-dom-v5-compat";
+import {render, screen} from "@testing-library/react";
 import * as Router from "../router";
 
 describe("Router.adapter", () => {
@@ -235,6 +240,174 @@ describe("Router.adapter", () => {
                     pathname: "/location/current",
                 }),
             );
+        });
+    });
+
+    describe("data-routes mode", () => {
+        const LoaderConsumer = (): React.ReactElement => {
+            const data = useLoaderData() as {greeting: string};
+            return <div>{data.greeting}</div>;
+        };
+
+        const RouteErrorConsumer = (): React.ReactElement => {
+            const error = useRouteError() as Error;
+            return <div>Caught: {error.message}</div>;
+        };
+
+        it("should mount the harnessed component as the matched leaf route's element (array form)", async () => {
+            // Arrange
+            const Component = () => <div>CALCULATOR</div>;
+            const config = {
+                routes: [{path: "/math", children: [{path: "calculator"}]}],
+                initialEntries: ["/math/calculator"],
+            };
+
+            // Act
+            render(Router.adapter(<Component />, config));
+
+            // Assert
+            expect(await screen.findByText("CALCULATOR")).toBeInTheDocument();
+        });
+
+        it("should run a route loader and pass resolved data to the component (function form)", async () => {
+            // Arrange
+            const config = {
+                routes: (children: React.ReactNode) => [
+                    {
+                        path: "/",
+                        loader: () => ({greeting: "hello"}),
+                        element: children,
+                    },
+                ],
+                initialEntries: ["/"],
+            };
+
+            // Act
+            render(Router.adapter(<LoaderConsumer />, config));
+
+            // Assert
+            expect(await screen.findByText("hello")).toBeInTheDocument();
+        });
+
+        it("should render the errorElement when a route loader rejects (function form)", async () => {
+            // Arrange
+            const config = {
+                routes: (children: React.ReactNode) => [
+                    {
+                        path: "/",
+                        loader: () => {
+                            throw new Error("loader failed");
+                        },
+                        element: <div>content</div>,
+                        errorElement: children,
+                    },
+                ],
+                initialEntries: ["/"],
+            };
+
+            // Act
+            render(Router.adapter(<RouteErrorConsumer />, config));
+
+            // Assert
+            expect(
+                await screen.findByText("Caught: loader failed"),
+            ).toBeInTheDocument();
+        });
+
+        it("should render the errorElement synchronously from pre-resolved hydrationData", () => {
+            // Arrange
+            const config = {
+                routes: (children: React.ReactNode) => [
+                    {
+                        id: "root",
+                        path: "/",
+                        loader: () => ({}),
+                        element: <div>content</div>,
+                        errorElement: children,
+                    },
+                ],
+                initialEntries: ["/"],
+                hydrationData: {
+                    loaderData: {},
+                    errors: {root: new Error("hydrated failure")},
+                },
+            };
+
+            // Act
+            render(Router.adapter(<RouteErrorConsumer />, config));
+
+            // Assert
+            expect(
+                screen.getByText("Caught: hydrated failure"),
+            ).toBeInTheDocument();
+        });
+
+        it("should not run route loaders when hydrationData is provided", () => {
+            // Arrange
+            const loader = jest.fn(() => ({greeting: "hi"}));
+            const config = {
+                routes: (children: React.ReactNode) => [
+                    {id: "root", path: "/", loader, element: children},
+                ],
+                initialEntries: ["/"],
+                hydrationData: {
+                    loaderData: {root: {greeting: "hydrated hi"}},
+                },
+            };
+
+            // Act
+            render(Router.adapter(<LoaderConsumer />, config));
+
+            // Assert
+            expect(loader).not.toHaveBeenCalled();
+        });
+
+        it("should throw if no route matches the location (array form)", () => {
+            // Arrange
+            const config = {
+                routes: [{path: "/math"}],
+                initialEntries: ["/science"],
+            };
+
+            // Act
+            const underTest = () => Router.adapter(<div />, config);
+
+            // Assert
+            expect(underTest).toThrow(
+                /No route in `routes` matches the location/,
+            );
+        });
+
+        it("should throw if the matched leaf route already defines an element (array form)", () => {
+            // Arrange
+            const config = {
+                routes: [{path: "/math", element: <div>existing</div>}],
+                initialEntries: ["/math"],
+            };
+
+            // Act
+            const underTest = () => Router.adapter(<div />, config);
+
+            // Assert
+            expect(underTest).toThrow(/already defines an `element`/);
+        });
+
+        it("should throw a helpful error when the Fetch API is unavailable and loaders would run", () => {
+            // Arrange
+            // @ts-expect-error: simulate an environment without the Fetch API.
+            delete globalThis.Request;
+            const config = {
+                routes: (children: React.ReactNode) => [
+                    {path: "/", loader: () => ({}), element: children},
+                ],
+                initialEntries: ["/"],
+            };
+
+            // Act
+            const underTest = () => Router.adapter(<div />, config);
+
+            // Assert
+            expect(underTest).toThrow(/require the Fetch API `Request` global/);
         });
     });
 });
