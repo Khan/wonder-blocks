@@ -26,6 +26,10 @@ const meta: Meta<typeof BirthdayPicker> = {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // Disabled because this component is covered by the testing snapshots
+            disableSnapshot: true,
+        },
         docs: {
             description: {
                 component: null,
@@ -55,11 +59,6 @@ export const BirthdayPickerDefault: StoryComponentType = {
         onChange: () => {},
         defaultValue: "",
     },
-    parameters: {
-        chromatic: {
-            disableSnapshot: true,
-        },
-    },
 };
 
 export const BirthdayPickerWithDefaultValue: StoryComponentType = {
@@ -68,9 +67,6 @@ export const BirthdayPickerWithDefaultValue: StoryComponentType = {
         defaultValue: "2021-07-19",
     },
     parameters: {
-        chromatic: {
-            disableSnapshot: true,
-        },
         docs: {
             description: {
                 story: "This component is empty by default, but we can pass in a defined birthday by using the `defaultValue` prop.",
