@@ -418,5 +418,29 @@ describe("Router.adapter", () => {
             // Assert
             expect(underTest).toThrow(/require the Fetch API `Request` global/);
         });
+
+        it("should reuse the same data router across rerenders (loaders run once)", async () => {
+            // Arrange
+            // A fresh router would re-run its loader on initialization, so the
+            // loader call count reveals whether the router survives rerenders.
+            const loader = jest.fn(() => ({greeting: "hi"}));
+            const config = {
+                routes: (harnessedComponent: React.ReactNode) => [
+                    {path: "/", loader, element: harnessedComponent},
+                ],
+                initialEntries: ["/"],
+            };
+
+            // Act
+            const {rerender} = render(
+                Router.adapter(<LoaderConsumer />, config),
+            );
+            await screen.findByText("hi");
+            rerender(Router.adapter(<LoaderConsumer />, config));
+            rerender(Router.adapter(<LoaderConsumer />, config));
+
+            // Assert
+            expect(loader).toHaveBeenCalledTimes(1);
+        });
     });
 });

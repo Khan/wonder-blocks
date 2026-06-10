@@ -309,6 +309,35 @@ const injectChildrenIntoRoutes = (
 };
 
 /**
+ * The data router produced by `createMemoryRouter`.
+ */
+type DataRouter = ReturnType<typeof createMemoryRouter>;
+
+/**
+ * Render a memory data router whose instance is stable across rerenders.
+ *
+ * The harness re-invokes the adapter on every render, so the router must be
+ * created lazily and cached — otherwise each render would build a fresh router
+ * and `RouterProvider`, which only seeds its state from the initial router but
+ * re-subscribes to whatever router it's handed, would diverge (the UI would
+ * show the old router's state while navigation/loader events flowed to the new
+ * one). This mirrors how the context-mode `MemoryRouter` caches its history.
+ */
+const CachedDataRouter = ({
+    routes,
+    options,
+}: {
+    routes: Array<RouteObject>;
+    options: DataRouterOptions;
+}): React.ReactElement => {
+    const routerRef = React.useRef<DataRouter | null>(null);
+    if (routerRef.current == null) {
+        routerRef.current = createMemoryRouter(routes, options);
+    }
+    return <RouterProvider router={routerRef.current} />;
+};
+
+/**
  * Render the harnessed component inside a RR v6 data router.
  *
  * This is the data-routes mode of the adapter: it exercises route `loader`s,
@@ -352,7 +381,7 @@ const renderDataRoutes = (
         );
     }
 
-    const router = createMemoryRouter(routes, {
+    const options: DataRouterOptions = {
         initialEntries,
         ...(config.initialIndex != null
             ? {initialIndex: config.initialIndex}
@@ -360,9 +389,9 @@ const renderDataRoutes = (
         ...(config.hydrationData != null
             ? {hydrationData: config.hydrationData}
             : {}),
-    });
+    };
 
-    return <RouterProvider router={router} />;
+    return <CachedDataRouter routes={routes} options={options} />;
 };
 
 /**
