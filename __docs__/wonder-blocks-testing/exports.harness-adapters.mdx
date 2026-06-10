@@ -251,7 +251,7 @@ type Config = {
 
 **Mapping the harnessed component into the routes.** The harness wraps a _component_, but data-routes mode is route-tree-centric, so you need to tell the adapter where the component goes:
 
--   **Array form** — the harnessed component is mounted as the `element` of the route that matches the initial location. The matched leaf route must not define its own `element`. This is the ergonomic default for "the component _is_ the page":
+-   **Array form** — the harnessed component is mounted as the `element` of the route that matches the initial location. The matched leaf route must not define its own `element`, `Component`, or `lazy`. This is the ergonomic default for "the component _is_ the page":
 
     ```tsx
     const Harnessed = testHarness(MyPage, {
