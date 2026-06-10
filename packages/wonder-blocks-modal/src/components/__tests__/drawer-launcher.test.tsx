@@ -35,9 +35,7 @@ describe("DrawerLauncher", () => {
                 modal={exampleModal}
                 testId="modal-launcher-portal"
             >
-                {({openModal}: any) => (
-                    <Button onClick={openModal}>Open modal</Button>
-                )}
+                {({openModal}: any) => <button onClick={openModal} />}
             </DrawerLauncher>,
         );
 
@@ -102,9 +100,7 @@ describe("DrawerLauncher", () => {
                 onClose={onCloseMock}
                 testId="modal-launcher-portal"
             >
-                {({openModal}: any) => (
-                    <Button onClick={openModal}>Open modal</Button>
-                )}
+                {({openModal}: any) => <button onClick={openModal} />}
             </DrawerLauncher>,
         );
 
@@ -130,9 +126,7 @@ describe("DrawerLauncher", () => {
                 alignment="inlineEnd"
                 modal={exampleModal}
             >
-                {({openModal}: any) => (
-                    <Button onClick={openModal}>Open modal</Button>
-                )}
+                {({openModal}: any) => <button onClick={openModal} />}
             </DrawerLauncher>,
         );
 
@@ -155,9 +149,7 @@ describe("DrawerLauncher", () => {
         // Arrange
         render(
             <DrawerLauncher alignment="inlineEnd" modal={exampleModal}>
-                {({openModal}: any) => (
-                    <Button onClick={openModal}>Open modal</Button>
-                )}
+                {({openModal}: any) => <button onClick={openModal} />}
             </DrawerLauncher>,
         );
 
@@ -181,9 +173,7 @@ describe("DrawerLauncher", () => {
                 animated={false}
                 modal={exampleModal}
             >
-                {({openModal}: any) => (
-                    <Button onClick={openModal}>Open modal</Button>
-                )}
+                {({openModal}: any) => <button onClick={openModal} />}
             </DrawerLauncher>,
         );
 
@@ -242,7 +232,7 @@ describe("DrawerLauncher", () => {
                 }
             >
                 {({openModal}: any) => (
-                    <Button onClick={openModal}>Open modal</Button>
+                    <button onClick={openModal}>Open modal</button>
                 )}
             </DrawerLauncher>,
         );
@@ -573,9 +563,7 @@ describe("DrawerLauncher", () => {
                     }
                     onClose={() => {}}
                 >
-                    {({openModal}: any) => (
-                        <Button onClick={openModal}>Open modal</Button>
-                    )}
+                    {({openModal}: any) => <button onClick={openModal} />}
                 </DrawerLauncher>,
             );
 
@@ -610,9 +598,7 @@ describe("DrawerLauncher", () => {
                     }
                     onClose={() => {}}
                 >
-                    {({openModal}: any) => (
-                        <Button onClick={openModal}>Open modal</Button>
-                    )}
+                    {({openModal}: any) => <button onClick={openModal} />}
                 </DrawerLauncher>,
             );
 

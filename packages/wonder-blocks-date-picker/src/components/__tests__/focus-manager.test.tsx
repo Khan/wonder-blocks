@@ -1,4 +1,3 @@
-/* eslint-disable @khanacademy/wonder-blocks/no-raw-button */
 // Allowing raw button in inernal utility testing
 import * as React from "react";
 import {describe, it} from "@jest/globals";

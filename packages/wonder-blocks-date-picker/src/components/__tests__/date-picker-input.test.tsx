@@ -3,7 +3,6 @@ import {describe, it} from "@jest/globals";
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {Temporal} from "temporal-polyfill";
-import Button from "@khanacademy/wonder-blocks-button";
 import {TemporalLocaleUtils} from "@khanacademy/wonder-blocks-date-picker";
 import DatePickerInput from "../date-picker-input";
 
@@ -437,7 +436,7 @@ describe("DatePickerInput", () => {
         const onChangeSpy = jest.fn();
         render(
             <>
-                <Button>Before</Button>
+                <button>Before</button>
                 <DatePickerInput
                     dateFormat="M/D/YYYY"
                     value="1/1/2026"
@@ -445,7 +444,7 @@ describe("DatePickerInput", () => {
                     onChange={onChangeSpy}
                     testId="date-picker-input"
                 />
-                <Button>After</Button>
+                <button>After</button>
             </>,
         );
 

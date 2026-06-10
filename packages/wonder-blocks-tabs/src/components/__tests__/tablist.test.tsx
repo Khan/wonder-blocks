@@ -1,4 +1,3 @@
-/* eslint-disable @khanacademy/wonder-blocks/no-raw-button */
 // Allowing raw button in tabs for internal testing
 import * as React from "react";
 import {render, screen} from "@testing-library/react";

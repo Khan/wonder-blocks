@@ -2,7 +2,6 @@ import * as React from "react";
 import {render, screen, fireEvent, waitFor} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
-import Button from "@khanacademy/wonder-blocks-button";
 import ModalBackdrop from "../modal-backdrop";
 import OnePaneDialog from "../one-pane-dialog";
 
@@ -19,9 +18,9 @@ const exampleModalWithButtons = (
     <OnePaneDialog
         content={
             <div>
-                <Button>first focusable button</Button>
-                <Button>second focusable button</Button>
-                <Button>third focusable button</Button>
+                <button>first focusable button</button>
+                <button />
+                <button />
             </div>
         }
         title="Title"
@@ -159,7 +158,7 @@ describe("ModalBackdrop", () => {
                     content={
                         <div data-modal-content>
                             <input type="text" />
-                            <Button id="initial-focus">Initial focus</Button>
+                            <button id="initial-focus">Initial focus</button>
                         </div>
                     }
                     title="Title"

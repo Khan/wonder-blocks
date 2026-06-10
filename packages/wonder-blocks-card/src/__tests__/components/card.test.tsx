@@ -2,7 +2,6 @@ import * as React from "react";
 import {render, screen} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
-import Button from "@khanacademy/wonder-blocks-button";
 import Card from "../../components/card";
 
 describe("Card", () => {
@@ -266,7 +265,7 @@ describe("Card", () => {
                 <Card inert testId="card">
                     <h2>Heading</h2>
                     <p>Description</p>
-                    <Button>Button</Button>
+                    <button>Button</button>
                 </Card>,
             );
 
