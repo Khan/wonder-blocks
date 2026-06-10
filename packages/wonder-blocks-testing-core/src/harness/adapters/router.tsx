@@ -61,11 +61,13 @@ type DataRoutesConfig = {
      *
      * - A function `(harnessedComponent) => routes` for full control over
      *   where the harnessed component is mounted (e.g. as a route's
-     *   `errorElement`).
+     *   `errorElement`). The `harnessedComponent` argument is a stable
+     *   placeholder element: mount it wherever you like and it will always
+     *   render the current harnessed component, even across rerenders.
      * - An array of route objects, in which case the harnessed component is
      *   mounted as the `element` of the route that matches the initial
      *   location. In this form the matched leaf route must not define its own
-     *   `element`.
+     *   `element`, `Component`, or `lazy`.
      */
     routes: DataRoutes | ((harnessedComponent: React.ReactNode) => DataRoutes);
     /**
@@ -254,19 +256,24 @@ const describeLocation = (location: InitialEntry): string =>
     typeof location === "string" ? location : (location.pathname ?? "");
 
 /**
- * Mount the harnessed component into an array of route objects.
+ * Mount a placeholder for the harnessed component into an array of route
+ * objects.
  *
- * The component is placed as the `element` of the route that matches the
+ * The placeholder is placed as the `element` of the route that matches the
  * initial location, with the rest of the array supplying ancestors/siblings
- * (loaders, `errorElement`s, …).
+ * (loaders, `errorElement`s, …). A placeholder — rather than the live children
+ * — is injected so the route tree can be cached by `CachedDataRouter` while the
+ * harnessed component still updates across rerenders (see `ChildrenSlot`).
  *
  * @throws If no route matches the location, or if the matched leaf route
- * already defines its own `element`. In either case the function form of
- * `routes` should be used for full control.
+ * already defines its own `element`, `Component`, or `lazy` — any of which
+ * would occupy (or, in React Router's normalization, override) the slot the
+ * harnessed component needs. In either case the function form of `routes`
+ * should be used for full control.
  */
 const injectChildrenIntoRoutes = (
     routes: DataRoutes,
-    children: React.ReactNode,
+    harnessedElement: React.ReactNode,
     location: InitialEntry,
 ): Array<RouteObject> => {
     const matches = matchRoutes(routes as Array<RouteObject>, location);
@@ -282,22 +289,32 @@ const injectChildrenIntoRoutes = (
     }
 
     const leafRoute = matches[matches.length - 1].route;
-    const element = <>{children}</>;
 
     const cloneWithChildren = (routeList: DataRoutes): Array<RouteObject> =>
         routeList.map((route): RouteObject => {
             if (route === leafRoute) {
-                if (route.element != null) {
+                // `RouteObject` accepts `Component` and `lazy` as well as
+                // `element`, and React Router's `mapRouteProperties` overrides
+                // an `element` with `Component`/`lazy` when both are present.
+                // Any of them would mask the harnessed component, so reject all
+                // three rather than just `element`.
+                if (
+                    route.element != null ||
+                    route.Component != null ||
+                    route.lazy != null
+                ) {
                     throw new Error(
                         `The route matching the location already defines an ` +
-                            `\`element\`. In array \`routes\` mode the harnessed ` +
-                            `component is mounted there, so the matched leaf must ` +
-                            `not set its own \`element\`. Use the function form ` +
+                            `\`element\`, \`Component\`, or \`lazy\`. In array ` +
+                            `\`routes\` mode the harnessed component is mounted ` +
+                            `as the matched leaf's \`element\`, so that leaf must ` +
+                            `not define its own \`element\`, \`Component\`, or ` +
+                            `\`lazy\`. Use the function form ` +
                             `\`routes: (harnessedComponent) => [...]\` for full ` +
                             `control.`,
                     );
                 }
-                return {...route, element};
+                return {...route, element: harnessedElement};
             }
             if (route.children != null) {
                 return {...route, children: cloneWithChildren(route.children)};
@@ -314,6 +331,31 @@ const injectChildrenIntoRoutes = (
 type DataRouter = ReturnType<typeof createMemoryRouter>;
 
 /**
+ * Carry the latest harnessed children into the cached data router's tree.
+ *
+ * `createMemoryRouter` captures the route elements at construction and
+ * `CachedDataRouter` caches that router, so the harnessed component is embedded
+ * once and never refreshed by `RouterProvider` on rerender. Threading children
+ * through context — read by `ChildrenSlot` at render time — lets the router
+ * stay stable while the harnessed component still receives fresh props. Context
+ * updates reach the slot even though `RouterProvider`/`MemoizedDataRoutes` may
+ * bail out of rerendering, because React propagates context to consumers
+ * regardless of intervening memoization.
+ */
+const HarnessedChildrenContext = React.createContext<React.ReactNode>(null);
+
+/**
+ * Render the latest harnessed children from `HarnessedChildrenContext`.
+ *
+ * Baked into the cached router's route tree as a stable placeholder so children
+ * update across rerenders even though the router (and its route objects) are
+ * created only once.
+ */
+const ChildrenSlot = (): React.ReactElement => (
+    <>{React.useContext(HarnessedChildrenContext)}</>
+);
+
+/**
  * Render a memory data router whose instance is stable across rerenders.
  *
  * The harness re-invokes the adapter on every render, so the router must be
@@ -322,6 +364,11 @@ type DataRouter = ReturnType<typeof createMemoryRouter>;
  * re-subscribes to whatever router it's handed, would diverge (the UI would
  * show the old router's state while navigation/loader events flowed to the new
  * one). This mirrors how the context-mode `MemoryRouter` caches its history.
+ *
+ * Caching the router also caches its route tree, so the harnessed component is
+ * threaded in via `HarnessedChildrenContext`/`ChildrenSlot` rather than baked
+ * into `routes` directly — keeping the router stable without freezing the
+ * harnessed component's props at first render.
  */
 const CachedDataRouter = ({
     routes,
@@ -356,13 +403,17 @@ const renderDataRoutes = (
             ? [defaultConfig.location]
             : config.initialEntries;
 
-    // Resolve the route tree, placing the harnessed component into it.
+    // Resolve the route tree, placing a stable placeholder for the harnessed
+    // component into it. The live children are supplied separately via
+    // `HarnessedChildrenContext` (below) and rendered by the placeholder, so
+    // the cached router never freezes the harnessed component's props.
+    const harnessedSlot = <ChildrenSlot />;
     const routes =
         typeof config.routes === "function"
-            ? [...config.routes(children)]
+            ? [...config.routes(harnessedSlot)]
             : injectChildrenIntoRoutes(
                   config.routes,
-                  children,
+                  harnessedSlot,
                   initialEntries[
                       config.initialIndex ?? initialEntries.length - 1
                   ],
@@ -391,7 +442,11 @@ const renderDataRoutes = (
             : {}),
     };
 
-    return <CachedDataRouter routes={routes} options={options} />;
+    return (
+        <HarnessedChildrenContext.Provider value={children}>
+            <CachedDataRouter routes={routes} options={options} />
+        </HarnessedChildrenContext.Provider>
+    );
 };
 
 /**
