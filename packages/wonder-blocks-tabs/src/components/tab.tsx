@@ -1,5 +1,5 @@
 /* eslint-disable @khanacademy/wonder-blocks/no-raw-button */
-// This file IS the Wonder Blocks Tab implementation — it intentionally uses
+// This file is the Wonder Blocks Tab implementation — it intentionally uses
 // addStyle("button") as the underlying DOM element for the tab button.
 import {
     addStyle,

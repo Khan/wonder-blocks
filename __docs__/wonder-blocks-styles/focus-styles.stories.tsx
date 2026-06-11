@@ -28,13 +28,6 @@ import {ScenariosLayout} from "../components/scenarios-layout";
  * ```tsx
  * import {focusStyles} from "@khanacademy/wonder-blocks-styles";
  *
- * // Applying to a WB component via style prop
- * <IconButton
- *     icon={myIcon}
- *     aria-label="Action"
- *     style={focusStyles.focus}
- * />
- *
  * // Merging with other styles in a WB component implementation
  * <StyledElement style={{...myStyles, ...focusStyles.focus}} />
  * ```
@@ -53,12 +46,7 @@ export default {
 
 type Story = StoryObj<any>;
 
-// The no-raw-button rule is disabled here intentionally: these stories
-// demonstrate focusStyles applied to an element that does NOT already include
-// them. Using a WB Button would obscure this because Button applies focusStyles
-// internally. This pattern should be rare in consumer code — prefer WB
-// interactive components which include focus styles out of the box.
-// eslint-disable-next-line @khanacademy/wonder-blocks/no-raw-button
+// eslint-disable-next-line @khanacademy/wonder-blocks/no-raw-button -- StyledButton is used to demonstrate focusStyles applied to a raw element; a WB Button would obscure this since it already includes focus styles internally.
 const StyledButton = addStyle("button");
 
 /**
@@ -68,8 +56,8 @@ const StyledButton = addStyle("button");
  * the element is focused. This is used for accessibility purposes as it allows
  * the element to present a focus state on Windows High Contrast mode.
  *
- * Wonder Blocks interactive components (`Button`, `IconButton`, `Clickable`,
- * etc.) already include these focus styles — no manual application needed.
+ * In the example below, the focus style is applied to an `IconButton` component
+ * and to a `button` element.
  */
 export const Focus: Story = {
     name: "focus",

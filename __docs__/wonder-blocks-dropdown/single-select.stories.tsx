@@ -3,7 +3,6 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import planetIcon from "@phosphor-icons/core/regular/planet.svg";
 
-import {action} from "storybook/actions";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import Button from "@khanacademy/wonder-blocks-button";
@@ -32,7 +31,7 @@ import {
     allProfilesWithPictures,
     currencies,
 } from "./option-item-examples";
-import {OpenerProps} from "../../packages/wonder-blocks-dropdown/src/util/types";
+
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {StatusBadge} from "@khanacademy/wonder-blocks-badge";
 
@@ -139,9 +138,18 @@ const styles = StyleSheet.create({
         borderRadius: border.radius.radius_040,
         color: semanticColor.core.foreground.instructive.default,
         background: semanticColor.core.background.base.default,
-        ":hover": {
-            background: semanticColor.core.background.instructive.subtle,
-        },
+    },
+    customOpenerHovered: {
+        background: semanticColor.core.background.instructive.subtle,
+    },
+    customOpenerPressed: {
+        background: semanticColor.core.background.instructive.default,
+    },
+    customOpenerDisabled: {
+        color: semanticColor.core.foreground.neutral.subtle,
+        borderColor: semanticColor.core.border.neutral.subtle,
+        background: semanticColor.core.background.base.default,
+        cursor: "not-allowed",
     },
 
     fullBleed: {
@@ -847,26 +855,44 @@ export const DropdownInModal: StoryComponentType = {
  * `aria-haspopup`, and `aria-controls` are added automatically.
  */
 export const WithCustomOpener: StoryComponentType = {
-    render: Template,
+    render: function Render(args) {
+        const [selectedValue, setSelectedValue] = React.useState(
+            args.selectedValue ?? "",
+        );
+        return (
+            <SingleSelect
+                {...args}
+                selectedValue={selectedValue}
+                onChange={setSelectedValue}
+                opener={({hovered, pressed, text}) => (
+                    <CustomOpener
+                        testId="single-select-custom-opener"
+                        styles={{
+                            root: [
+                                styles.customOpener,
+                                hovered && styles.customOpenerHovered,
+                                pressed && styles.customOpenerPressed,
+                                args.disabled && styles.customOpenerDisabled,
+                            ],
+                        }}
+                    >
+                        <PhosphorIcon
+                            icon={IconMappings.plusCircle}
+                            size="small"
+                        />
+                        <BodyText tag="span" weight="bold">
+                            {text}
+                        </BodyText>
+                    </CustomOpener>
+                )}
+            >
+                {items}
+            </SingleSelect>
+        );
+    },
     args: {
         selectedValue: "",
-        opener: ({hovered, pressed, text, opened}: OpenerProps) => {
-            action(JSON.stringify({hovered, pressed, opened}))(
-                "state changed!",
-            );
-
-            return (
-                <CustomOpener
-                    testId="single-select-custom-opener"
-                    style={styles.customOpener}
-                >
-                    <PhosphorIcon icon={IconMappings.plusCircle} size="small" />
-                    <BodyText tag="span" weight="bold">
-                        {text}
-                    </BodyText>
-                </CustomOpener>
-            );
-        },
+        disabled: false,
     } as SingleSelectArgs,
     name: "With custom opener",
 };

@@ -24,7 +24,10 @@ import actionMenuArgtypes from "./action-menu.argtypes";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 
-import type {Item} from "../../packages/wonder-blocks-dropdown/src/util/types";
+import type {
+    Item,
+    OpenerProps,
+} from "../../packages/wonder-blocks-dropdown/src/util/types";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
 import Button from "@khanacademy/wonder-blocks-button";
@@ -157,9 +160,18 @@ const styles = StyleSheet.create({
         borderRadius: border.radius.radius_040,
         background: semanticColor.status.warning.background,
         color: semanticColor.core.foreground.neutral.strong,
-        ":hover": {
-            filter: "brightness(0.95)",
-        },
+    },
+    customOpenerHovered: {
+        filter: "brightness(0.95)",
+    },
+    customOpenerPressed: {
+        filter: "brightness(0.9)",
+    },
+    customOpenerDisabled: {
+        color: semanticColor.core.foreground.neutral.subtle,
+        borderColor: semanticColor.core.border.neutral.subtle,
+        background: semanticColor.core.background.base.default,
+        cursor: "not-allowed",
     },
 });
 
@@ -363,17 +375,37 @@ export const Controlled: StoryComponentType = {
  */
 export const WithCustomOpener: StoryComponentType = {
     name: "With custom opener",
-    args: {
-        opener: ({text}: any) => (
-            <CustomOpener
-                testId="teacher-menu-custom-opener"
-                style={styles.customOpener}
+    render: function Render(args) {
+        const [opened, setOpened] = React.useState(false);
+        return (
+            <ActionMenu
+                {...args}
+                opened={opened}
+                onToggle={setOpened}
+                opener={({hovered, pressed, text}: OpenerProps) => (
+                    <CustomOpener
+                        testId="teacher-menu-custom-opener"
+                        styles={{
+                            root: [
+                                styles.customOpener,
+                                hovered && styles.customOpenerHovered,
+                                pressed && styles.customOpenerPressed,
+                                args.disabled && styles.customOpenerDisabled,
+                            ],
+                        }}
+                    >
+                        <BodyText tag="span" weight="bold">
+                            {text}
+                        </BodyText>
+                    </CustomOpener>
+                )}
             >
-                <BodyText tag="span" weight="bold">
-                    {text}
-                </BodyText>
-            </CustomOpener>
-        ),
+                {actionItems.map((actionItem, index) => actionItem)}
+            </ActionMenu>
+        );
+    },
+    args: {
+        disabled: false,
     } as Partial<typeof ActionMenu>,
 };
 

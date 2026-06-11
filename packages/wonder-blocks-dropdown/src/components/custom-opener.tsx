@@ -6,15 +6,13 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 const StyledButton = addStyle("button");
 
-type Props = Omit<
-    React.ButtonHTMLAttributes<HTMLButtonElement>,
-    "disabled" | "style"
-> & {
+type Props = Partial<Omit<AriaProps, "aria-disabled">> & {
     /**
      * Content to render inside the button.
      */
@@ -27,15 +25,63 @@ type Props = Omit<
      */
     disabled?: boolean;
     /**
-     * Custom styles applied on top of the base button reset.
-     * Use this to apply your visual design — layout, colors, borders, etc.
-     * The WB focus ring is already included and does not need to be added here.
+     * Adds CSS classes to the opener element.
      */
-    style?: StyleType;
+    className?: string;
+    /**
+     * An optional id attribute.
+     */
+    id?: string;
+    /**
+     * Set the tabindex attribute on the opener element.
+     */
+    tabIndex?: number;
     /**
      * Test ID for e2e testing.
      */
     testId?: string;
+    /**
+     * Called when the opener is clicked.
+     */
+    onClick?: (e: React.MouseEvent) => unknown;
+    /**
+     * Called when the opener receives keyboard input.
+     */
+    onKeyDown?: (e: React.KeyboardEvent) => unknown;
+    /**
+     * Called when a keyboard key is released on the opener.
+     */
+    onKeyUp?: (e: React.KeyboardEvent) => unknown;
+    /**
+     * Called when the opener receives focus.
+     */
+    onFocus?: (e: React.FocusEvent) => unknown;
+    /**
+     * Called when the opener loses focus.
+     */
+    onBlur?: (e: React.FocusEvent) => unknown;
+    /**
+     * Called when the pointer enters the opener.
+     */
+    onMouseEnter?: (e: React.MouseEvent) => unknown;
+    /**
+     * Called when the pointer leaves the opener.
+     */
+    onMouseLeave?: (e: React.MouseEvent) => unknown;
+    /**
+     * Optional custom styles for sub-elements within `CustomOpener`.
+     *
+     * - `root`: Styles applied to the root `<button>` element. Use this to
+     *   apply your visual design — layout, colors, borders, etc. The WB
+     *   focus ring is already included and does not need to be added here.
+     * - `label`: Styles applied to the `BodyText` element that wraps
+     *   `children`. Use this to customize typography (e.g. font weight,
+     *   color) without replacing the component entirely.
+     */
+    styles?: {
+        root?: StyleType;
+        label?: StyleType;
+    };
 };
 
 /**
@@ -55,6 +101,14 @@ type Props = Omit<
  * The `hovered`, `focused`, and `pressed` values from the `opener` render
  * prop are available to pass to child content if your design needs them.
  *
+ * ## Disabled styling
+ *
+ * `CustomOpener` sets `cursor: not-allowed` when `disabled` is true, but you
+ * are responsible for applying visual disabled styles (e.g. reduced opacity or
+ * muted colors using `semanticColor` disabled tokens) via `styles.root`.
+ * The default opener handles this automatically, which is one reason it is
+ * preferred over custom implementations.
+ *
  * ## Usage
  *
  * ```tsx
@@ -63,7 +117,7 @@ type Props = Omit<
  * <SingleSelect
  *   placeholder="Choose an option"
  *   opener={({hovered, focused, text}) => (
- *     <CustomOpener style={styles.myOpener}>
+ *     <CustomOpener styles={{root: styles.myOpener}}>
  *       <MyOpenerContent hovered={hovered} focused={focused} text={text} />
  *     </CustomOpener>
  *   )}
@@ -92,16 +146,22 @@ export const CustomOpener = React.forwardRef(function CustomOpener(
     const {
         children,
         disabled,
-        "aria-disabled": ariaDisabledProp,
         onClick,
-        style,
+        styles: stylesProp,
         testId,
         ...restProps
     } = props;
 
-    // Prefer an explicit aria-disabled prop (injected by DropdownOpener, which
+    // DropdownOpener injects `aria-disabled` via React.cloneElement at runtime,
+    // bypassing the public Props type. We read it off the spread props here so
+    // we can prefer it over the `disabled` prop (it also encodes readOnly state).
+    const injectedAriaDisabled = (
+        restProps as {"aria-disabled"?: boolean | undefined}
+    )["aria-disabled"];
+
+    // Prefer an explicit aria-disabled (injected by DropdownOpener, which
     // also accounts for readOnly state), falling back to the disabled prop.
-    const ariaDisabled = ariaDisabledProp ?? (disabled || undefined);
+    const ariaDisabled = injectedAriaDisabled ?? (disabled || undefined);
 
     return (
         <StyledButton
@@ -111,9 +171,15 @@ export const CustomOpener = React.forwardRef(function CustomOpener(
             aria-disabled={ariaDisabled}
             onClick={disabled ? undefined : onClick}
             data-testid={testId}
-            style={[styles.reset, disabled && styles.disabled, style]}
+            style={[
+                styles.reset,
+                disabled && styles.disabled,
+                stylesProp?.root,
+            ]}
         >
-            {children}
+            <BodyText tag="span" style={stylesProp?.label}>
+                {children}
+            </BodyText>
         </StyledButton>
     );
 });

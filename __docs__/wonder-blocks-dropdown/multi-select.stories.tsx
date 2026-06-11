@@ -1,7 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {action} from "storybook/actions";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
@@ -26,7 +25,7 @@ import {
     locales,
     chatIcon,
 } from "./option-item-examples";
-import {OpenerProps} from "../../packages/wonder-blocks-dropdown/src/util/types";
+
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {StatusBadge} from "@khanacademy/wonder-blocks-badge";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
@@ -140,9 +139,18 @@ const styles = StyleSheet.create({
         borderRadius: border.radius.radius_040,
         color: semanticColor.core.foreground.instructive.default,
         background: semanticColor.core.background.base.default,
-        ":hover": {
-            background: semanticColor.core.background.instructive.subtle,
-        },
+    },
+    customOpenerHovered: {
+        background: semanticColor.core.background.instructive.subtle,
+    },
+    customOpenerPressed: {
+        background: semanticColor.core.background.instructive.default,
+    },
+    customOpenerDisabled: {
+        color: semanticColor.core.foreground.neutral.subtle,
+        borderColor: semanticColor.core.border.neutral.subtle,
+        background: semanticColor.core.background.base.default,
+        cursor: "not-allowed",
     },
 });
 
@@ -778,27 +786,45 @@ export const VirtualizedFilterable: StoryComponentType = {
  * cannot double as its label.
  */
 export const WithCustomOpener: StoryComponentType = {
-    render: Template,
+    render: function Render(args) {
+        const [selectedValues, setSelectedValues] = React.useState<string[]>(
+            args.selectedValues ?? [],
+        );
+        return (
+            <MultiSelect
+                {...args}
+                selectedValues={selectedValues}
+                onChange={setSelectedValues}
+                opener={({hovered, pressed, text}) => (
+                    <CustomOpener
+                        testId="multi-select-custom-opener"
+                        styles={{
+                            root: [
+                                styles.customOpener,
+                                hovered && styles.customOpenerHovered,
+                                pressed && styles.customOpenerPressed,
+                                args.disabled && styles.customOpenerDisabled,
+                            ],
+                        }}
+                    >
+                        <PhosphorIcon
+                            icon={IconMappings.plusCircle}
+                            size="small"
+                        />
+                        <BodyText tag="span" weight="bold">
+                            {text}
+                        </BodyText>
+                    </CustomOpener>
+                )}
+            >
+                {items}
+            </MultiSelect>
+        );
+    },
     args: {
         selectedValues: [],
         "aria-label": "Custom opener",
-        opener: ({hovered, pressed, text, opened}: OpenerProps) => {
-            action(JSON.stringify({hovered, pressed, opened}))(
-                "state changed!",
-            );
-
-            return (
-                <CustomOpener
-                    testId="multi-select-custom-opener"
-                    style={styles.customOpener}
-                >
-                    <PhosphorIcon icon={IconMappings.plusCircle} size="small" />
-                    <BodyText tag="span" weight="bold">
-                        {text}
-                    </BodyText>
-                </CustomOpener>
-            );
-        },
+        disabled: false,
     } as MultiSelectArgs,
     name: "With custom opener",
 };
