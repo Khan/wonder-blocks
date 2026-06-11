@@ -1,5 +1,26 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.10.0
+
+### Minor Changes
+
+- d69335d: Add new CustomOpener component for custom Dropdowns
+
+### Patch Changes
+
+- Updated dependencies [d69335d]
+- Updated dependencies [34d66ac]
+    - @khanacademy/wonder-blocks-icon-button@11.3.3
+    - @khanacademy/wonder-blocks-clickable@8.2.2
+    - @khanacademy/wonder-blocks-modal@8.7.3
+    - @khanacademy/wonder-blocks-search-field@5.1.72
+    - @khanacademy/wonder-blocks-cell@6.2.3
+    - @khanacademy/wonder-blocks-form@7.6.3
+    - @khanacademy/wonder-blocks-pill@3.1.66
+    - @khanacademy/wonder-blocks-core@12.4.4
+    - @khanacademy/wonder-blocks-timing@7.1.0
+    - @khanacademy/wonder-blocks-announcer@1.1.1
+
 ## 10.9.2
 
 ### Patch Changes

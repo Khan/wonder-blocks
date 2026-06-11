@@ -1,5 +1,11 @@
 # @khanacademy/eslint-plugin-wonder-blocks
 
+## 0.8.0
+
+### Minor Changes
+
+- d69335d: Add new no-raw-button lint rule to encourage use of WB components instead
+
 ## 0.7.0
 
 ### Minor Changes
