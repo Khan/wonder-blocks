@@ -51,9 +51,10 @@ ruleTester.run(ruleName, rule, {
             code: 'StyleSheet.create({foo: {marginInlineStart: "10px"}});',
         },
 
-        // Default options: warnShadows, warnGradients, warnDirectionalTransforms,
-        // warnCursorDirections, warnBackgroundPositionXY are all OFF by default,
-        // so these don't warn.
+        // Transforms, shadows, gradients, cursors, and backgroundPositionX/Y are
+        // not checked: there is no logical-property fix for them and the
+        // heuristics produced almost entirely false positives on RTL-safe code
+        // (e.g. translateX(-50%) centering, symmetric gradients).
         {code: '<div style={{boxShadow: "4px 0 4px rgba(0,0,0,.2)"}} />'},
         {
             code: '<div style={{background: "linear-gradient(to bottom, red, blue)"}} />',
@@ -62,21 +63,12 @@ ruleTester.run(ruleName, rule, {
         {code: '<div style={{cursor: "e-resize"}} />'},
         {code: '<div style={{backgroundPositionX: "left"}} />'},
 
-        // Zero X-offset shadows are not directional.
-        {
-            code: '<div style={{boxShadow: "0 4px 8px rgba(0,0,0,.2)"}} />',
-            options: [{warnShadows: true}],
-        },
-        {
-            code: '<div style={{boxShadow: "0px 4px 8px rgba(0,0,0,.2)"}} />',
-            options: [{warnShadows: true}],
-        },
+        // Single-value padding/margin has no directionality, so it's not flagged.
+        {code: '<div style={{padding: "10px"}} />'},
 
-        // When warnBackgroundPosition is explicitly off, directional bg is allowed.
-        {
-            code: '<div style={{backgroundPosition: "left top"}} />',
-            options: [{warnBackgroundPosition: false}],
-        },
+        // Values containing functions can't be safely split, so no shorthand
+        // warning fires.
+        {code: '<div style={{padding: "calc(1px + 2px) 10px"}} />'},
 
         // Computed property keys (variables) must not be auto-fixed.
         {code: '<div style={{[marginLeft]: "10px"}} />'},
@@ -168,9 +160,10 @@ ruleTester.run(ruleName, rule, {
             errors: [{messageId: "useTextAlignValue"}],
         },
 
-        // --- float / clear value warnings (no fix) ---------------------------
+        // --- float / clear value auto-fix ------------------------------------
         {
             code: '<div style={{float: "left"}} />',
+            output: '<div style={{float: "inline-start"}} />',
             errors: [
                 {
                     messageId: "useLogicalFloat",
@@ -179,7 +172,23 @@ ruleTester.run(ruleName, rule, {
             ],
         },
         {
+            code: '<div style={{float: "right"}} />',
+            output: '<div style={{float: "inline-end"}} />',
+            errors: [
+                {
+                    messageId: "useLogicalFloat",
+                    data: {logical: "inline-end", physical: "right"},
+                },
+            ],
+        },
+        {
             code: '<div style={{clear: "right"}} />',
+            output: '<div style={{clear: "inline-end"}} />',
+            errors: [{messageId: "useLogicalClear"}],
+        },
+        {
+            code: '<div style={{clear: "left"}} />',
+            output: '<div style={{clear: "inline-start"}} />',
             errors: [{messageId: "useLogicalClear"}],
         },
 
@@ -189,76 +198,19 @@ ruleTester.run(ruleName, rule, {
             errors: [{messageId: "avoidForceDirection"}],
         },
 
-        // --- backgroundPosition directional (warnBackgroundPosition on by default) --
+        // --- backgroundPosition directional (always on) ---------------------
         {
             code: '<div style={{backgroundPosition: "left top"}} />',
             errors: [{messageId: "avoidBackgroundDirectional"}],
         },
-
-        // --- backgroundPositionX/Y (off by default, requires option) ---------
+        // The `background` shorthand is also checked for directional keywords.
         {
-            code: '<div style={{backgroundPositionX: "right"}} />',
-            options: [{warnBackgroundPositionXY: true}],
-            errors: [{messageId: "avoidBackgroundPositionXYDirectional"}],
-        },
-        {
-            code: '<div style={{backgroundPositionY: "top"}} />',
-            options: [{warnBackgroundPositionXY: true}],
-            errors: [{messageId: "avoidBackgroundPositionXYDirectional"}],
+            code: '<div style={{background: "url(x.png) no-repeat right center"}} />',
+            errors: [{messageId: "avoidBackgroundDirectional"}],
         },
 
-        // --- gradient direction (off by default) -----------------------------
-        // backgroundImage isolates the gradient warning (no directional-bg check
-        // runs on backgroundImage).
-        {
-            code: '<div style={{backgroundImage: "linear-gradient(to left, red, blue)"}} />',
-            options: [{warnGradients: true}],
-            errors: [{messageId: "avoidGradientDirection"}],
-        },
-        // background shorthand with a directional gradient triggers BOTH the
-        // directional-bg-position warning (left/right in the string) AND the
-        // gradient warning — matches frontend's intended behavior.
-        {
-            code: '<div style={{background: "linear-gradient(to right, red, blue)"}} />',
-            options: [{warnGradients: true}],
-            errors: [
-                {messageId: "avoidBackgroundDirectional"},
-                {messageId: "avoidGradientDirection"},
-            ],
-        },
-
-        // --- transform translateX / transformOrigin (off by default) ---------
-        {
-            code: '<div style={{transform: "translateX(10px)"}} />',
-            options: [{warnDirectionalTransforms: true}],
-            errors: [{messageId: "avoidTranslateXDirectional"}],
-        },
-        {
-            code: '<div style={{transformOrigin: "left center"}} />',
-            options: [{warnDirectionalTransforms: true}],
-            errors: [{messageId: "avoidTransformOriginDirectional"}],
-        },
-
-        // --- shadow X-offset (off by default) --------------------------------
-        {
-            code: '<div style={{boxShadow: "4px 0 4px rgba(0,0,0,.2)"}} />',
-            options: [{warnShadows: true}],
-            errors: [{messageId: "avoidShadowDirectional"}],
-        },
-        {
-            code: '<div style={{textShadow: "2px 0 1px #000"}} />',
-            options: [{warnShadows: true}],
-            errors: [{messageId: "avoidShadowDirectional"}],
-        },
-
-        // --- directional cursor (off by default) -----------------------------
-        {
-            code: '<div style={{cursor: "e-resize"}} />',
-            options: [{warnCursorDirections: true}],
-            errors: [{messageId: "avoidDirectionalCursor"}],
-        },
-
-        // --- padding / margin two-value shorthand auto-fix -------------------
+        // --- padding / margin shorthand auto-fix -----------------------------
+        // Two-value (block / inline) — no RTL bug, but normalized to logical.
         {
             code: '<div style={{padding: "10px 20px"}} />',
             output: '<div style={{paddingBlock: "10px", paddingInline: "20px"}} />',
@@ -267,6 +219,29 @@ ruleTester.run(ruleName, rule, {
         {
             code: '<div style={{margin: "0 4px"}} />',
             output: '<div style={{marginBlock: "0", marginInline: "4px"}} />',
+            errors: [{messageId: "preferLogicalMarginShorthand"}],
+        },
+        // Three-value (top / inline / bottom) — symmetric inline, no RTL bug.
+        {
+            code: '<div style={{padding: "10px 20px 30px"}} />',
+            output: '<div style={{paddingBlockStart: "10px", paddingInline: "20px", paddingBlockEnd: "30px"}} />',
+            errors: [{messageId: "preferLogicalPaddingShorthand"}],
+        },
+        {
+            code: '<div style={{margin: "1px 2px 3px"}} />',
+            output: '<div style={{marginBlockStart: "1px", marginInline: "2px", marginBlockEnd: "3px"}} />',
+            errors: [{messageId: "preferLogicalMarginShorthand"}],
+        },
+        // Four-value (top / right / bottom / left) — the genuine RTL hazard:
+        // left and right differ and don't auto-mirror.
+        {
+            code: '<div style={{padding: "10px 20px 30px 40px"}} />',
+            output: '<div style={{paddingBlockStart: "10px", paddingInlineEnd: "20px", paddingBlockEnd: "30px", paddingInlineStart: "40px"}} />',
+            errors: [{messageId: "preferLogicalPaddingShorthand"}],
+        },
+        {
+            code: '<div style={{margin: "1px 2px 3px 4px"}} />',
+            output: '<div style={{marginBlockStart: "1px", marginInlineEnd: "2px", marginBlockEnd: "3px", marginInlineStart: "4px"}} />',
             errors: [{messageId: "preferLogicalMarginShorthand"}],
         },
 
