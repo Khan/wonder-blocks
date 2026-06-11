@@ -131,6 +131,7 @@ const scenarios = [
         name: "Using an HTML element",
         props: {
             renderControl: (disabled: boolean) => (
+                // eslint-disable-next-line @khanacademy/wonder-blocks/no-raw-button -- Testing raw button with action styles
                 <StyledButton
                     aria-disabled={disabled ? "true" : undefined}
                     style={[
