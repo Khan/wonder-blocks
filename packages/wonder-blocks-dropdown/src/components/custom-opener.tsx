@@ -9,6 +9,7 @@ import {addStyle} from "@khanacademy/wonder-blocks-core";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 const StyledButton = addStyle("button");
 
@@ -177,7 +178,7 @@ export const CustomOpener = React.forwardRef(function CustomOpener(
                 stylesProp?.root,
             ]}
         >
-            <BodyText tag="span" style={stylesProp?.label}>
+            <BodyText tag="span" style={[styles.labelReset, stylesProp?.label]}>
                 {children}
             </BodyText>
         </StyledButton>
@@ -202,6 +203,12 @@ const styles = StyleSheet.create({
         touchAction: "manipulation",
         // WB focus ring — always applied, no need to add it yourself
         ...focusStyles.focus,
+    },
+    labelReset: {
+        alignItems: "center",
+        display: "flex",
+        flexDirection: "row",
+        gap: sizing.size_020,
     },
     disabled: {
         cursor: "not-allowed",

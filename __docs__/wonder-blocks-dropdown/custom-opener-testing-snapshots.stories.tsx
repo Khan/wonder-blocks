@@ -8,7 +8,7 @@ import {CustomOpener} from "@khanacademy/wonder-blocks-dropdown";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 
 export default {
@@ -16,7 +16,7 @@ export default {
     tags: ["!autodocs", "!manifest"],
     parameters: {
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
         },
     },
 } satisfies Meta;
