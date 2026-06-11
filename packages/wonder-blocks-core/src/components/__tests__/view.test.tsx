@@ -7,74 +7,68 @@ import View from "../view";
 
 describe("View", () => {
     it("Should set the tag to be section", () => {
-        // Arrage, Act
+        // Arrange, Act
         const view = <View tag="section" />;
         const {container} = render(view);
 
         const section = container.querySelector("section");
 
         // Assert
-        expect(container).toMatchSnapshot();
-        expect(section).toBeDefined();
+        expect(section).toBeInTheDocument();
     });
 
     it("Should set the tag to be article", () => {
-        // Arrage, Act
+        // Arrange, Act
         const view = <View tag="article" />;
         const {container} = render(view);
 
         const article = container.querySelector("article");
 
         // Assert
-        expect(container).toMatchSnapshot();
-        expect(article).toBeDefined();
+        expect(article).toBeInTheDocument();
     });
 
     it("Should set the tag to be aside", () => {
-        // Arrage, Act
+        // Arrange, Act
         const view = <View tag="aside" />;
         const {container} = render(view);
 
         const aside = container.querySelector("aside");
 
         // Assert
-        expect(container).toMatchSnapshot();
-        expect(aside).toBeDefined();
+        expect(aside).toBeInTheDocument();
     });
 
     it("Should set the tag to be nav", () => {
-        // Arrage, Act
+        // Arrange, Act
         const view = <View tag="nav" />;
         const {container} = render(view);
 
         const nav = container.querySelector("nav");
 
         // Assert
-        expect(container).toMatchSnapshot();
-        expect(nav).toBeDefined();
+        expect(nav).toBeInTheDocument();
     });
 
     it("Should set the tag to be main", () => {
-        // Arrage, Act
+        // Arrange, Act
         const view = <View tag="main" />;
         const {container} = render(view);
 
         const main = container.querySelector("main");
 
         // Assert
-        expect(container).toMatchSnapshot();
-        expect(main).toBeDefined();
+        expect(main).toBeInTheDocument();
     });
 
     it("Should set the tag to be div", () => {
-        // Arrage, Act
+        // Arrange, Act
         const view = <View />;
         const {container} = render(view);
 
         const div = container.querySelector("div");
 
         // Assert
-        expect(container).toMatchSnapshot();
-        expect(div).toBeDefined();
+        expect(div).toBeInTheDocument();
     });
 });

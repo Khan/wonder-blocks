@@ -1,0 +1,22 @@
+/*
+ * Cross-package focus-visible mixin.
+ *
+ * Authors include the mixin via:
+ *
+ *   @import "@khanacademy/wonder-blocks-styles/focus-styles.css";
+ *
+ *   .my-component:focus-visible {
+ *       @apply --wb-focus-visible;
+ *   }
+ *
+ * postcss-import resolves the @import through the workspace and
+ * @csstools/postcss-mixins expands the @apply at build time
+ * (CSS Mixins Level 1 syntax — note the leading `--` on the name).
+ */
+@mixin --wb-focus-visible() {
+    box-shadow: 0 0 0 var(--wb-border-width-medium)
+        var(--wb-semanticColor-focus-inner);
+    outline: var(--wb-border-width-medium) solid
+        var(--wb-semanticColor-focus-outer);
+    outline-offset: var(--wb-border-width-medium);
+}

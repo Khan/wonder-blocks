@@ -1,0 +1,16 @@
+/* Default styles for `Text`. The build wraps these rules in
+ * `@layer shared { … }` via the wrap-in-layer plugin in `postcss.config.cjs`. */
+
+.text {
+    /* Disable subpixel antialiasing on Mac desktop for consistency of
+     * rendering with mobile and Sketch (neither of which support it).
+     * See https://bjango.com/articles/subpixeltext/ for more details. */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.header {
+    /* User agent stylesheets add vertical margins to header tags by default.
+     * We prefer to be more deliberate in our spacing instead. */
+    margin-block: 0;
+}

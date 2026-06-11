@@ -112,7 +112,7 @@ export const WithStyle: StoryObj<typeof Heading> = {
 
         return (
             <Heading
-                className={`${css(styles.highlighted)} custom-style`}
+                className={`${css(styles.highlighted)} customStyle`}
                 size="xxlarge"
                 style={styles.blueText}
             >

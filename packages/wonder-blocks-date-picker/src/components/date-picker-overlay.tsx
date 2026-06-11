@@ -127,11 +127,21 @@ const DatePickerOverlay = ({
                         !isTestEnvironment &&
                         (isReferenceHidden || hasPopperEscaped);
 
+                    // Only spread `style` if it's a plain CSSProperties object;
+                    // StyleType also allows strings, arrays, and falsy values
+                    // which are not valid spreadable inputs here.
+                    const customStyle =
+                        style &&
+                        typeof style === "object" &&
+                        !Array.isArray(style)
+                            ? style
+                            : null;
+
                     // Combine styles: base -> popper positioning -> custom -> boundary hiding
                     const combinedStyles = {
                         ...BASE_CONTAINER_STYLES,
                         ...popperStyle,
-                        ...style,
+                        ...customStyle,
                         ...(outOfBoundaries && OUT_OF_BOUNDARIES_STYLES),
                     } as React.CSSProperties;
 
