@@ -1,7 +1,7 @@
 import {sizing} from "./sizing";
 
 export const fontFamily = {
-    sans: 'Lato, "Noto Sans", sans-serif',
+    sans: '"Lato", "Noto Sans", "Helvetica", "Corbel", sans-serif',
     serif: '"Noto Serif", serif',
     mono: "Inconsolata, monospace",
 };
