@@ -42,7 +42,7 @@ export function ValidCustomOpenerExample() {
         <SingleSelect
             placeholder="Choose an option"
             opener={({hovered, focused, text}) => (
-                <CustomOpener style={styles.myOpener}>
+                <CustomOpener styles={{root: styles.myOpener}}>
                     {String(text)}
                 </CustomOpener>
             )}

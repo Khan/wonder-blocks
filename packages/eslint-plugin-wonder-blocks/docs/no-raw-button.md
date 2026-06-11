@@ -56,7 +56,7 @@ import Button from "@khanacademy/wonder-blocks-button";
 ```
 
 ```tsx
-import {IconButton} from "@khanacademy/wonder-blocks-icon-button";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import plusIcon from "@phosphor-icons/core/regular/plus.svg";
 
 <IconButton

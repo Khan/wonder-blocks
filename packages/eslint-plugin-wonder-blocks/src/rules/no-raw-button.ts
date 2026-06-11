@@ -17,12 +17,12 @@ export default createRule<Options, MessageIds>({
     meta: {
         docs: {
             description:
-                'Disallow raw <button> elements and addStyle("button") components in favor of Wonder Blocks Button or IconButton.',
+                'Disallow raw <button> elements and addStyle("button") components in favor of Wonder Blocks components.',
             recommended: true,
         },
         messages: {
             noRawButton:
-                "Avoid '{{element}}'. Use Button or IconButton from Wonder Blocks for consistent focus styles, keyboard navigation, and design system behavior.",
+                "Avoid '{{element}}'. Use a Wonder Blocks interactive component (Button, IconButton, ActivityButton, etc.) for consistent focus styles, keyboard navigation, and design system behavior.",
         },
         schema: [],
         type: "suggestion",
