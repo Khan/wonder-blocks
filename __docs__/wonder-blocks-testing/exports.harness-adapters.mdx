@@ -107,7 +107,16 @@ The default configuration for this adapter is for it to not be used.
 
 ## router
 
-The `router` adapter is useful for testing components that use React Router. It will render either a `MemoryRouter` or `StaticRouter`, depending on configuration. It may also optionally render a `Route` with suitable `path` match, depending on the configuration.
+The `router` adapter is useful for testing components that use React Router. It has two modes, selected purely by the shape of the config:
+
+-   **Context mode** (a location string, `{location}`, or `{initialEntries}`) renders a `MemoryRouter` or `StaticRouter` _around_ the harnessed component, providing routing _context_. Use it for components that consume routing (`useNavigate`, `useParams`, `<Link>`).
+-   **Data-routes mode** (a config including `routes`) renders a React Router v6 _data router_ (`createMemoryRouter` + `RouterProvider`) so that route `loader`s run and `errorElement`s render.
+
+**Which mode when?** Ask: does a `loader` or `errorElement` need to run for this test? **No → context mode** (the common case). **Yes → data-routes mode.** The two modes occupy the same single router slot, so they can never be nested — and combining a context-mode `location` with `routes` is a type error.
+
+### Context mode
+
+It renders either a `MemoryRouter` or `StaticRouter`, depending on configuration. It may also optionally render a `Route` with suitable `path` match, depending on the configuration.
 
 ```ts
 type Config =
@@ -202,6 +211,84 @@ There are four distinct shapes to the configuration:
 The first of these provides the most flexibility, basically supporting full configuration of a `MemoryRouter`, which supports history and navigation. The second configuration type is for scenarios where we absolutely do not want navigation, such as server-side rendering scenarios; it forces the use of a `StaticRouter` instance. The third type is for when you just need to render a single location with a matched route path. The fourth and final type allows you to just provide the location as a string.
 
 By default, the router adapter is configured with `{location: "/"}`.
+
+### Data-routes mode
+
+Passing a `routes` config switches the adapter into data-routes mode, where it builds a React Router v6 data router and renders it with `RouterProvider`. This exercises the data-router machinery that context mode can't: route `loader`s, `errorElement`s, `useRouteError`/`useLoaderData`, redirects, and deferred data.
+
+```ts
+type Config = {
+    /**
+     * The RR v6 route tree to render.
+     *
+     * Provide either an array of route objects (the harnessed component is
+     * mounted as the `element` of the route matching the initial location), or
+     * a function `(harnessedComponent) => routes` for full control over where
+     * the harnessed component is placed (e.g. as a route's `errorElement`).
+     */
+    routes:
+        | Array<RouteObject>
+        | ((harnessedComponent: React.ReactNode) => Array<RouteObject>);
+
+    /**
+     * The initial history entries. Defaults to the adapter's default location.
+     */
+    initialEntries?: Array<string | Partial<Location>>;
+
+    /**
+     * The index of `initialEntries` to render first.
+     */
+    initialIndex?: number;
+
+    /**
+     * Pre-resolved loader data and errors. When provided, the data router
+     * starts already initialized: `loader`s do not run and the tree renders
+     * synchronously.
+     */
+    hydrationData?: HydrationState;
+};
+```
+
+**Mapping the harnessed component into the routes.** The harness wraps a _component_, but data-routes mode is route-tree-centric, so you need to tell the adapter where the component goes:
+
+-   **Array form** — the harnessed component is mounted as the `element` of the route that matches the initial location. The matched leaf route must not define its own `element`, `Component`, or `lazy`. This is the ergonomic default for "the component _is_ the page":
+
+    ```tsx
+    const Harnessed = testHarness(MyPage, {
+        router: {
+            routes: [{path: "/items/:id", loader: itemLoader}],
+            initialEntries: ["/items/42"],
+        },
+    });
+    // MyPage renders as the element of `/items/:id`, with `itemLoader`'s data
+    // available via `useLoaderData()`.
+    ```
+
+-   **Function form** — `routes: (harnessedComponent) => [...]` gives you full control over placement. This is what you want when the component-under-test is an `errorElement`:
+
+    ```tsx
+    const Harnessed = testHarness(RouteErrorBoundary, {
+        router: {
+            routes: (harnessedComponent) => [
+                {
+                    path: "/items/:id",
+                    loader: () => {
+                        throw new Error("kaboom");
+                    },
+                    element: <ItemPage />,
+                    errorElement: harnessedComponent, // the component under test
+                },
+            ],
+            initialEntries: ["/items/42"],
+        },
+    });
+    // The loader rejects, so RouteErrorBoundary renders and can read the error
+    // via `useRouteError()`.
+    ```
+
+**Pre-resolving with `hydrationData`.** By default the data router runs your `loader`s, which is right for navigation-driven tests. For loader/error-state assertions you can instead pass `hydrationData` (pre-resolved `loaderData` / `errors`). The router then starts already initialized — `loader`s don't run and the tree renders synchronously, which is the most robust way to assert on a resolved or error state.
+
+**Fetch API requirement.** Running `loader`s uses the Fetch API, whose `Request` global isn't present in every test environment (e.g. jsdom). When loaders will run (i.e. no `hydrationData`), make sure `Request`/`Response` are polyfilled in your test setup; otherwise pass `hydrationData` to avoid running them. The adapter throws a clear error if `Request` is missing and no `hydrationData` was provided.
 
 ## renderState
 

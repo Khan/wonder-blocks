@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-tabs
 
+## 0.5.17
+
+### Patch Changes
+
+- d69335d: Disables no-raw-button lint rule for internal button usage
+- Updated dependencies [d69335d]
+- Updated dependencies [d69335d]
+    - @khanacademy/wonder-blocks-dropdown@10.10.0
+    - @khanacademy/wonder-blocks-button@11.7.0
+    - @khanacademy/wonder-blocks-link@10.3.2
+    - @khanacademy/wonder-blocks-core@12.4.4
+
 ## 0.5.16
 
 ### Patch Changes

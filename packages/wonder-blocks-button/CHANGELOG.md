@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-button
 
+## 11.7.0
+
+### Minor Changes
+
+- d69335d: Add new onFocus/onBlur on BaseButtonProps and a related ActivityButton fix
+
+### Patch Changes
+
+- Updated dependencies [d69335d]
+    - @khanacademy/wonder-blocks-clickable@8.2.2
+    - @khanacademy/wonder-blocks-core@12.4.4
+
 ## 11.6.2
 
 ### Patch Changes

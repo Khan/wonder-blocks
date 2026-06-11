@@ -24,9 +24,13 @@ import Link from "@khanacademy/wonder-blocks-link";
  * import {actionStyles} from "@khanacademy/wonder-blocks-styles";
  *
  * <StyledButton style={actionStyles.inverse}>
- *      Custom button
+ *     Custom button
  * </StyledButton>
  * ```
+ *
+ * **Note:** Using `actionStyles` with a raw HTML element via `addStyle`
+ * requires disabling the `@khanacademy/wonder-blocks/no-raw-button` lint rule.
+ * This should be rare — prefer WB components whenever possible.
  */
 export default {
     tags: ["!manifest"],
@@ -47,6 +51,7 @@ export default {
 
 type Story = StoryObj<any>;
 
+// eslint-disable-next-line @khanacademy/wonder-blocks/no-raw-button
 const StyledButton = addStyle("button");
 
 /**
@@ -92,6 +97,7 @@ export const InverseOutline: Story = {
                     {() => "Clickable component"}
                 </Clickable>
 
+                {/* eslint-disable-next-line @khanacademy/wonder-blocks/no-raw-button */}
                 <StyledButton
                     style={[
                         {

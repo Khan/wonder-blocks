@@ -12,16 +12,25 @@ import {ScenariosLayout} from "../components/scenarios-layout";
 import {allThemeModes} from "../../.storybook/modes";
 
 /**
- * Styles that can be used to create reusable focus states.
+ * Styles that implement accessible focus indicators for interactive elements.
  *
- * ### Usage
+ * `focusStyles` is used internally by Wonder Blocks components (`Button`,
+ * `IconButton`, `Clickable`, etc.) to ensure consistent `:focus-visible` rings
+ * that meet WCAG contrast requirements across light and dark backgrounds.
+ *
+ * ### When to use
+ *
+ * - **WB component authors**: apply `focusStyles.focus` when implementing a
+ *   new WB primitive that renders a focusable element.
+ * - **Consumers**: it should be rare to need this directly — WB interactive
+ *   components already include these styles. If you need to override focus
+ *   appearance on a WB component, pass the style via the `style` prop.
  *
  * ```tsx
  * import {focusStyles} from "@khanacademy/wonder-blocks-styles";
  *
- * <StyledButton style={focusStyles.focus}>
- *      Custom button
- * </StyledButton>
+ * // Merging with other styles in a WB component implementation
+ * <StyledElement style={{...myStyles, ...focusStyles.focus}} />
  * ```
  */
 export default {
@@ -42,6 +51,7 @@ export default {
 
 type Story = StoryObj<any>;
 
+// eslint-disable-next-line @khanacademy/wonder-blocks/no-raw-button -- StyledButton is used to demonstrate focusStyles applied to a raw element; a WB Button would obscure this since it already includes focus styles internally.
 const StyledButton = addStyle("button");
 
 /**
@@ -158,6 +168,7 @@ export const Scenarios: Story = {
                 name: "Using an HTML element",
                 props: {
                     children: (
+                        // eslint-disable-next-line @khanacademy/wonder-blocks/no-raw-button
                         <StyledButton style={focusStyles.focus}>
                             Custom button
                         </StyledButton>
@@ -168,6 +179,7 @@ export const Scenarios: Story = {
                 name: "Spreading focus styles in an existing style",
                 props: {
                     children: (
+                        // eslint-disable-next-line @khanacademy/wonder-blocks/no-raw-button
                         <StyledButton
                             style={{
                                 background:
@@ -189,6 +201,7 @@ export const Scenarios: Story = {
                 name: "Overriding :focus-visible pseudo-class",
                 props: {
                     children: (
+                        // eslint-disable-next-line @khanacademy/wonder-blocks/no-raw-button
                         <StyledButton
                             style={{
                                 backgroundColor:

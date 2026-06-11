@@ -1,7 +1,12 @@
 import * as React from "react";
 import {Redirect, useLocation as useLocationV5} from "react-router-dom";
-import {useLocation, useNavigate} from "react-router-dom-v5-compat";
-import {render} from "@testing-library/react";
+import {
+    useLocation,
+    useNavigate,
+    useLoaderData,
+    useRouteError,
+} from "react-router-dom-v5-compat";
+import {render, screen} from "@testing-library/react";
 import * as Router from "../router";
 
 describe("Router.adapter", () => {
@@ -235,6 +240,238 @@ describe("Router.adapter", () => {
                     pathname: "/location/current",
                 }),
             );
+        });
+    });
+
+    describe("data-routes mode", () => {
+        const LoaderConsumer = (): React.ReactElement => {
+            const data = useLoaderData() as {greeting: string};
+            return <div>{data.greeting}</div>;
+        };
+
+        const RouteErrorConsumer = (): React.ReactElement => {
+            const error = useRouteError() as Error;
+            return <div>Caught: {error.message}</div>;
+        };
+
+        it("should mount the harnessed component as the matched leaf route's element (array form)", async () => {
+            // Arrange
+            const Component = () => <div>CALCULATOR</div>;
+            const config = {
+                routes: [{path: "/math", children: [{path: "calculator"}]}],
+                initialEntries: ["/math/calculator"],
+            };
+
+            // Act
+            render(Router.adapter(<Component />, config));
+
+            // Assert
+            expect(await screen.findByText("CALCULATOR")).toBeInTheDocument();
+        });
+
+        it("should run a route loader and pass resolved data to the component (function form)", async () => {
+            // Arrange
+            const config = {
+                routes: (harnessedComponent: React.ReactNode) => [
+                    {
+                        path: "/",
+                        loader: () => ({greeting: "hello"}),
+                        element: harnessedComponent,
+                    },
+                ],
+                initialEntries: ["/"],
+            };
+
+            // Act
+            render(Router.adapter(<LoaderConsumer />, config));
+
+            // Assert
+            expect(await screen.findByText("hello")).toBeInTheDocument();
+        });
+
+        it("should render the errorElement when a route loader rejects (function form)", async () => {
+            // Arrange
+            const config = {
+                routes: (harnessedComponent: React.ReactNode) => [
+                    {
+                        path: "/",
+                        loader: () => {
+                            throw new Error("loader failed");
+                        },
+                        element: <div>content</div>,
+                        errorElement: harnessedComponent,
+                    },
+                ],
+                initialEntries: ["/"],
+            };
+
+            // Act
+            render(Router.adapter(<RouteErrorConsumer />, config));
+
+            // Assert
+            expect(
+                await screen.findByText("Caught: loader failed"),
+            ).toBeInTheDocument();
+        });
+
+        it("should render the errorElement synchronously from pre-resolved hydrationData", () => {
+            // Arrange
+            const config = {
+                routes: (harnessedComponent: React.ReactNode) => [
+                    {
+                        id: "root",
+                        path: "/",
+                        loader: () => ({}),
+                        element: <div>content</div>,
+                        errorElement: harnessedComponent,
+                    },
+                ],
+                initialEntries: ["/"],
+                hydrationData: {
+                    loaderData: {},
+                    errors: {root: new Error("hydrated failure")},
+                },
+            };
+
+            // Act
+            render(Router.adapter(<RouteErrorConsumer />, config));
+
+            // Assert
+            expect(
+                screen.getByText("Caught: hydrated failure"),
+            ).toBeInTheDocument();
+        });
+
+        it("should not run route loaders when hydrationData is provided", () => {
+            // Arrange
+            const loader = jest.fn(() => ({greeting: "hi"}));
+            const config = {
+                routes: (harnessedComponent: React.ReactNode) => [
+                    {
+                        id: "root",
+                        path: "/",
+                        loader,
+                        element: harnessedComponent,
+                    },
+                ],
+                initialEntries: ["/"],
+                hydrationData: {
+                    loaderData: {root: {greeting: "hydrated hi"}},
+                },
+            };
+
+            // Act
+            render(Router.adapter(<LoaderConsumer />, config));
+
+            // Assert
+            expect(loader).not.toHaveBeenCalled();
+        });
+
+        it("should throw if no route matches the location (array form)", () => {
+            // Arrange
+            const config = {
+                routes: [{path: "/math"}],
+                initialEntries: ["/science"],
+            };
+
+            // Act
+            const underTest = () => Router.adapter(<div />, config);
+
+            // Assert
+            expect(underTest).toThrow(
+                /No route in `routes` matches the location/,
+            );
+        });
+
+        it.each`
+            field          | leafRoute
+            ${"element"}   | ${{path: "/math", element: <div>existing</div>}}
+            ${"Component"} | ${{path: "/math", Component: () => <div>existing</div>}}
+            ${"lazy"}      | ${{path: "/math", lazy: () => Promise.resolve({element: <div>existing</div>})}}
+        `(
+            "should throw if the matched leaf route defines its own $field, since the harnessed component is mounted there (array form)",
+            ({leafRoute}: any) => {
+                // Arrange
+                const config = {
+                    routes: [leafRoute],
+                    initialEntries: ["/math"],
+                };
+
+                // Act
+                const underTest = () => Router.adapter(<div />, config);
+
+                // Assert
+                expect(underTest).toThrow(/must not define its own/);
+            },
+        );
+
+        it("should throw a helpful error when the Fetch API is unavailable and loaders would run", () => {
+            // Arrange
+            // @ts-expect-error: simulate an environment without the Fetch API.
+            delete globalThis.Request;
+            const config = {
+                routes: (harnessedComponent: React.ReactNode) => [
+                    {
+                        path: "/",
+                        loader: () => ({}),
+                        element: harnessedComponent,
+                    },
+                ],
+                initialEntries: ["/"],
+            };
+
+            // Act
+            const underTest = () => Router.adapter(<div />, config);
+
+            // Assert
+            expect(underTest).toThrow(/require the Fetch API `Request` global/);
+        });
+
+        it("should reuse the same data router across rerenders (loaders run once)", async () => {
+            // Arrange
+            // A fresh router would re-run its loader on initialization, so the
+            // loader call count reveals whether the router survives rerenders.
+            const loader = jest.fn(() => ({greeting: "hi"}));
+            const config = {
+                routes: (harnessedComponent: React.ReactNode) => [
+                    {path: "/", loader, element: harnessedComponent},
+                ],
+                initialEntries: ["/"],
+            };
+
+            // Act
+            const {rerender} = render(
+                Router.adapter(<LoaderConsumer />, config),
+            );
+            await screen.findByText("hi");
+            rerender(Router.adapter(<LoaderConsumer />, config));
+            rerender(Router.adapter(<LoaderConsumer />, config));
+
+            // Assert
+            expect(loader).toHaveBeenCalledTimes(1);
+        });
+
+        it("should render the harnessed component with fresh props after a rerender (cached router must not freeze children)", () => {
+            // Arrange
+            // The cached data router captures its route tree once, so the
+            // harnessed component must be threaded in such that new props still
+            // flow through on rerender rather than being frozen at first render.
+            const Greeting = ({name}: {name: string}): React.ReactElement => (
+                <div>{`Hello ${name}`}</div>
+            );
+            const config = {
+                routes: [{path: "/"}],
+                initialEntries: ["/"],
+            };
+
+            // Act
+            const {rerender} = render(
+                Router.adapter(<Greeting name="Alice" />, config),
+            );
+            rerender(Router.adapter(<Greeting name="Bob" />, config));
+
+            // Assert
+            expect(screen.getByText("Hello Bob")).toBeInTheDocument();
         });
     });
 });

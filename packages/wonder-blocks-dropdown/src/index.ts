@@ -6,6 +6,7 @@ import SingleSelect from "./components/single-select";
 import MultiSelect from "./components/multi-select";
 import Combobox from "./components/combobox";
 import Listbox from "./components/listbox";
+import {CustomOpener} from "./components/custom-opener";
 
 import type {LabelsValues} from "./components/multi-select";
 import type {SingleSelectLabelsValues} from "./components/single-select";
@@ -19,6 +20,7 @@ export {
     MultiSelect,
     Combobox,
     Listbox,
+    CustomOpener,
 };
 
 export type {LabelsValues, SingleSelectLabelsValues};
