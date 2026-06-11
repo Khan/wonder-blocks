@@ -54,6 +54,7 @@ module.exports = {
                 "no-undef": "off",
                 "import/no-deprecated": "off",
                 "@typescript-eslint/no-require-imports": "off",
+                "@khanacademy/wonder-blocks/no-raw-button": "off",
             },
         },
         {

@@ -1,3 +1,4 @@
+// Allowing raw button in tabs for internal testing
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";

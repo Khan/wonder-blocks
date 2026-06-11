@@ -148,6 +148,16 @@ export type BaseButtonProps =
          * Respond to a raw "mouseleave" event.
          */
         onMouseLeave?: (e: React.MouseEvent) => unknown;
+
+        /**
+         * Respond to a raw "blur" event.
+         */
+        onBlur?: (e: React.FocusEvent) => unknown;
+
+        /**
+         * Respond to a raw "focus" event.
+         */
+        onFocus?: (e: React.FocusEvent) => unknown;
         /**
          * Run async code before navigating. If the promise returned rejects then
          * navigation will not occur.
