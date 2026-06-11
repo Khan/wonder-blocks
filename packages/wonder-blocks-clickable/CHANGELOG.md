@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 8.2.2
+
+### Patch Changes
+
+- d69335d: Disables no-raw-button lint rule for internal button usage
+    - @khanacademy/wonder-blocks-core@12.4.4
+
 ## 8.2.1
 
 ### Patch Changes

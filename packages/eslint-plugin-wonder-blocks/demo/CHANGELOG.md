@@ -1,5 +1,25 @@
 # eslint-plugin-wonder-blocks-demo
 
+## 0.4.0
+
+### Minor Changes
+
+- d69335d: Add new no-raw-button lint rule to encourage use of WB components instead
+
+### Patch Changes
+
+- Updated dependencies [d69335d]
+- Updated dependencies [d69335d]
+- Updated dependencies [d69335d]
+- Updated dependencies [34d66ac]
+    - @khanacademy/wonder-blocks-dropdown@10.10.0
+    - @khanacademy/wonder-blocks-icon-button@11.3.3
+    - @khanacademy/wonder-blocks-clickable@8.2.2
+    - @khanacademy/wonder-blocks-button@11.7.0
+    - @khanacademy/wonder-blocks-form@7.6.3
+    - @khanacademy/wonder-blocks-link@10.3.2
+    - @khanacademy/wonder-blocks-core@12.4.4
+
 ## 0.3.1
 
 ### Patch Changes

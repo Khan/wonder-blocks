@@ -1,5 +1,14 @@
 # @khanacademy/wonder-blocks-card
 
+## 1.4.16
+
+### Patch Changes
+
+- Updated dependencies [d69335d]
+- Updated dependencies [34d66ac]
+    - @khanacademy/wonder-blocks-icon-button@11.3.3
+    - @khanacademy/wonder-blocks-core@12.4.4
+
 ## 1.4.15
 
 ### Patch Changes
