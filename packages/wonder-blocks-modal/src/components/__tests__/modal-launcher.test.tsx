@@ -43,27 +43,26 @@ describe("ModalLauncher", () => {
         expect(portal).toBeInTheDocument();
     });
 
-    test("Modal can be manually opened and closed", async () => {
+    test("Modal can be manually opened and closed via modal prop", async () => {
         // Arrange
-        const UnderTest = ({opened}: {opened: boolean}) => (
+        const UnderTest = ({isOpen}: {isOpen: boolean}) => (
             <ModalLauncher
-                modal={exampleModal}
-                opened={opened}
+                modal={isOpen ? exampleModal : null}
                 onClose={() => {}}
                 testId="modal-launcher-portal"
             />
         );
-        const {rerender} = render(<UnderTest opened={false} />);
+        const {rerender} = render(<UnderTest isOpen={false} />);
 
         // Act
         expect(
             screen.queryByTestId("modal-launcher-portal"),
         ).not.toBeInTheDocument();
-        rerender(<UnderTest opened={true} />);
+        rerender(<UnderTest isOpen={true} />);
         expect(
             await screen.findByTestId("modal-launcher-portal"),
         ).toBeInTheDocument();
-        rerender(<UnderTest opened={false} />);
+        rerender(<UnderTest isOpen={false} />);
         expect(
             screen.queryByTestId("modal-launcher-portal"),
         ).not.toBeInTheDocument();
@@ -176,43 +175,7 @@ describe("ModalLauncher", () => {
         expect(document.body).not.toHaveStyle("overflow: hidden");
     });
 
-    test("using `opened` and `children` should warn", async () => {
-        // Arrange
-        jest.spyOn(console, "warn").mockImplementation(() => {});
-
-        // Act
-        render(
-            <ModalLauncher
-                modal={exampleModal}
-                opened={false}
-                onClose={() => {}}
-            >
-                {({openModal}: any) => <button onClick={openModal} />}
-            </ModalLauncher>,
-        );
-
-        // Assert
-        // eslint-disable-next-line no-console
-        expect(console.warn).toHaveBeenCalledWith(
-            "'children' and 'opened' can't be used together",
-        );
-    });
-
-    test("using `opened` without `onClose` should throw", async () => {
-        // Arrange
-        jest.spyOn(console, "warn").mockImplementation(() => {});
-
-        // Act
-        render(<ModalLauncher modal={exampleModal} opened={false} />);
-
-        // Assert
-        // eslint-disable-next-line no-console
-        expect(console.warn).toHaveBeenCalledWith(
-            "'onClose' should be used with 'opened'",
-        );
-    });
-
-    test("using neither `opened` nor `children` should throw", async () => {
+    test("using controlled mode (no children) without 'onClose' should warn", async () => {
         // Arrange
         jest.spyOn(console, "warn").mockImplementation(() => {});
 
@@ -222,20 +185,19 @@ describe("ModalLauncher", () => {
         // Assert
         // eslint-disable-next-line no-console
         expect(console.warn).toHaveBeenCalledWith(
-            "either 'children' or 'opened' must be set",
+            "'onClose' should be provided when using ModalLauncher in controlled mode (without children)",
         );
     });
 
     test("Clicking outside the modal dialog closes it by default", async () => {
         // Arrange
         const ModalLauncherWrapper = () => {
-            const [opened, setOpened] = React.useState(true);
+            const [isOpen, setIsOpen] = React.useState(true);
 
             return (
                 <ModalLauncher
-                    modal={exampleModal}
-                    opened={opened}
-                    onClose={() => setOpened(false)}
+                    modal={isOpen ? exampleModal : null}
+                    onClose={() => setIsOpen(false)}
                     testId="modal-launcher-backdrop"
                 />
             );
@@ -262,13 +224,12 @@ describe("ModalLauncher", () => {
     test("Clicking outside the modal dialog closes it when backdropDismissEnabled is true", async () => {
         // Arrange
         const ModalLauncherWrapper = () => {
-            const [opened, setOpened] = React.useState(true);
+            const [isOpen, setIsOpen] = React.useState(true);
 
             return (
                 <ModalLauncher
-                    modal={exampleModal}
-                    opened={opened}
-                    onClose={() => setOpened(false)}
+                    modal={isOpen ? exampleModal : null}
+                    onClose={() => setIsOpen(false)}
                     backdropDismissEnabled={true}
                     testId="modal-launcher-backdrop"
                 />
@@ -295,13 +256,12 @@ describe("ModalLauncher", () => {
     test("If backdropDismissEnabled set to false, clicking outside the modal does not close it", async () => {
         // Arrange
         const ModalLauncherWrapper = () => {
-            const [opened, setOpened] = React.useState(true);
+            const [isOpen, setIsOpen] = React.useState(true);
 
             return (
                 <ModalLauncher
-                    modal={exampleModal}
-                    opened={opened}
-                    onClose={() => setOpened(false)}
+                    modal={isOpen ? exampleModal : null}
+                    onClose={() => setIsOpen(false)}
                     backdropDismissEnabled={false}
                     testId="modal-launcher-backdrop"
                 />
@@ -357,13 +317,12 @@ describe("ModalLauncher", () => {
     test("Clicking modal content does not close the modal", async () => {
         // Arrange
         const ModalLauncherWrapper = () => {
-            const [opened, setOpened] = React.useState(true);
+            const [isOpen, setIsOpen] = React.useState(true);
 
             return (
                 <ModalLauncher
-                    modal={exampleModal}
-                    opened={opened}
-                    onClose={() => setOpened(false)}
+                    modal={isOpen ? exampleModal : null}
+                    onClose={() => setIsOpen(false)}
                     testId="modal-launcher-backdrop"
                 />
             );
@@ -422,15 +381,7 @@ describe("ModalLauncher", () => {
     test("if modal is closed, return focus to the last element focused outside the modal", async () => {
         // Arrange
         const ModalLauncherWrapper = () => {
-            const [opened, setOpened] = React.useState(false);
-
-            const handleOpen = () => {
-                setOpened(true);
-            };
-
-            const handleClose = () => {
-                setOpened(false);
-            };
+            const [isOpen, setIsOpen] = React.useState(false);
 
             return (
                 <MemoryRouter>
@@ -441,27 +392,32 @@ describe("ModalLauncher", () => {
                             </Button>
                             <Button
                                 testId="launcher-button"
-                                onClick={() => handleOpen()}
+                                onClick={() => setIsOpen(true)}
                             >
                                 Open modal
                             </Button>
                             <ModalLauncher
-                                onClose={() => handleClose()}
-                                opened={opened}
-                                modal={({closeModal}: any) => (
-                                    <OnePaneDialog
-                                        title="Regular modal"
-                                        content={<View>Hello World</View>}
-                                        footer={
-                                            <Button
-                                                testId="modal-close-button"
-                                                onClick={closeModal}
-                                            >
-                                                Close Modal
-                                            </Button>
-                                        }
-                                    />
-                                )}
+                                onClose={() => setIsOpen(false)}
+                                modal={
+                                    isOpen
+                                        ? ({closeModal}: any) => (
+                                              <OnePaneDialog
+                                                  title="Regular modal"
+                                                  content={
+                                                      <View>Hello World</View>
+                                                  }
+                                                  footer={
+                                                      <Button
+                                                          testId="modal-close-button"
+                                                          onClick={closeModal}
+                                                      >
+                                                          Close Modal
+                                                      </Button>
+                                                  }
+                                              />
+                                          )
+                                        : null
+                                }
                             />
                         </View>
                     </CompatRouter>
@@ -488,14 +444,10 @@ describe("ModalLauncher", () => {
         });
     });
 
-    test("if modal with opened=true is closed, return focus to the last element focused outside the modal", async () => {
+    test("if modal with controlled open state is closed, return focus to the last element focused outside the modal", async () => {
         // Arrange
         const ModalLauncherWrapper = () => {
-            const [opened, setOpened] = React.useState(false);
-
-            const handleClose = () => {
-                setOpened(false);
-            };
+            const [isOpen, setIsOpen] = React.useState(false);
 
             return (
                 <MemoryRouter>
@@ -506,27 +458,32 @@ describe("ModalLauncher", () => {
                             </Button>
                             <Button
                                 testId="launcher-button"
-                                onClick={() => setOpened(true)}
+                                onClick={() => setIsOpen(true)}
                             >
                                 Open modal
                             </Button>
                             <ModalLauncher
-                                onClose={() => handleClose()}
-                                opened={opened}
-                                modal={({closeModal}: any) => (
-                                    <OnePaneDialog
-                                        title="Regular modal"
-                                        content={<View>Hello World</View>}
-                                        footer={
-                                            <Button
-                                                testId="modal-close-button"
-                                                onClick={closeModal}
-                                            >
-                                                Close Modal
-                                            </Button>
-                                        }
-                                    />
-                                )}
+                                onClose={() => setIsOpen(false)}
+                                modal={
+                                    isOpen
+                                        ? ({closeModal}: any) => (
+                                              <OnePaneDialog
+                                                  title="Regular modal"
+                                                  content={
+                                                      <View>Hello World</View>
+                                                  }
+                                                  footer={
+                                                      <Button
+                                                          testId="modal-close-button"
+                                                          onClick={closeModal}
+                                                      >
+                                                          Close Modal
+                                                      </Button>
+                                                  }
+                                              />
+                                          )
+                                        : null
+                                }
                             />
                         </View>
                     </CompatRouter>
@@ -554,15 +511,7 @@ describe("ModalLauncher", () => {
     test("if `closedFocusId` is passed, shift focus to specified element after the modal closes", async () => {
         // Arrange
         const ModalLauncherWrapper = () => {
-            const [opened, setOpened] = React.useState(false);
-
-            const handleOpen = () => {
-                setOpened(true);
-            };
-
-            const handleClose = () => {
-                setOpened(false);
-            };
+            const [isOpen, setIsOpen] = React.useState(false);
 
             return (
                 <View>
@@ -572,28 +521,31 @@ describe("ModalLauncher", () => {
                     </Button>
                     <Button
                         testId="launcher-button"
-                        onClick={() => handleOpen()}
+                        onClick={() => setIsOpen(true)}
                     >
                         Open modal
                     </Button>
                     <ModalLauncher
-                        onClose={() => handleClose()}
-                        opened={opened}
+                        onClose={() => setIsOpen(false)}
                         closedFocusId="button-to-focus-on"
-                        modal={({closeModal}: any) => (
-                            <OnePaneDialog
-                                title="Triggered from action menu"
-                                content={<View>Hello World</View>}
-                                footer={
-                                    <Button
-                                        testId="modal-close-button"
-                                        onClick={closeModal}
-                                    >
-                                        Close Modal
-                                    </Button>
-                                }
-                            />
-                        )}
+                        modal={
+                            isOpen
+                                ? ({closeModal}: any) => (
+                                      <OnePaneDialog
+                                          title="Triggered from action menu"
+                                          content={<View>Hello World</View>}
+                                          footer={
+                                              <Button
+                                                  testId="modal-close-button"
+                                                  onClick={closeModal}
+                                              >
+                                                  Close Modal
+                                              </Button>
+                                          }
+                                      />
+                                  )
+                                : null
+                        }
                     />
                 </View>
             );
@@ -622,7 +574,6 @@ describe("ModalLauncher", () => {
         // Arrange
         render(
             <ModalLauncher
-                opened={true}
                 onClose={jest.fn()}
                 modal={<div role="dialog">dialog</div>}
                 testId="test-id-example"
@@ -639,37 +590,36 @@ describe("ModalLauncher", () => {
     test("should handle focus correctly when opened programmatically through a wrapper component", async () => {
         // Arrange
         const WrappedModalLauncher = () => {
-            const [opened, setOpened] = React.useState(false);
-
-            const handleClose = () => {
-                setOpened(false);
-            };
+            const [isOpen, setIsOpen] = React.useState(false);
 
             return (
                 <View>
                     <Button
                         testId="focused-button"
-                        onClick={() => setOpened(true)}
+                        onClick={() => setIsOpen(true)}
                     >
                         Button that should receive focus
                     </Button>
                     <ModalLauncher
-                        onClose={handleClose}
-                        opened={opened}
-                        modal={({closeModal}) => (
-                            <OnePaneDialog
-                                title="Modal"
-                                content={<View>Content</View>}
-                                footer={
-                                    <Button
-                                        testId="modal-close-button"
-                                        onClick={closeModal}
-                                    >
-                                        Close Modal
-                                    </Button>
-                                }
-                            />
-                        )}
+                        onClose={() => setIsOpen(false)}
+                        modal={
+                            isOpen
+                                ? ({closeModal}) => (
+                                      <OnePaneDialog
+                                          title="Modal"
+                                          content={<View>Content</View>}
+                                          footer={
+                                              <Button
+                                                  testId="modal-close-button"
+                                                  onClick={closeModal}
+                                              >
+                                                  Close Modal
+                                              </Button>
+                                          }
+                                      />
+                                  )
+                                : null
+                        }
                     />
                 </View>
             );
@@ -799,7 +749,6 @@ describe("ModalLauncher", () => {
                         );
                     })}
                     <ModalLauncher
-                        opened={!!selectedItem}
                         onClose={handleCloseModal}
                         closedFocusId={modalTriggerId || undefined}
                         modal={conditionalModal}

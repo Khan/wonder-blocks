@@ -77,10 +77,9 @@ import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 <DrawerLauncher
      onClose={handleClose}
-     opened={opened}
      animated={animated}
      alignment="inlineStart"
-     modal={({closeModal}) => (
+     modal={isOpen ? ({closeModal}) => (
          <DrawerDialog
              title="Assign Mastery Mission"
              content={
@@ -91,7 +90,7 @@ import {BodyText} from "@khanacademy/wonder-blocks-typography";
                  </View>
              }
          />
-     )}
+     ) : null}
 />
 \`\`\``,
             },
@@ -490,18 +489,21 @@ export const TriggeringProgrammatically: StoryComponentType = {
 
                 <DrawerLauncher
                     onClose={handleClose}
-                    opened={opened}
                     alignment={args.alignment}
-                    modal={({closeModal}) => (
-                        <DrawerDialog
-                            title="Triggered from action menu"
-                            content={
-                                <View>
-                                    <BodyText>Hello, world</BodyText>
-                                </View>
-                            }
-                        />
-                    )}
+                    modal={
+                        opened
+                            ? ({closeModal}) => (
+                                  <DrawerDialog
+                                      title="Triggered from action menu"
+                                      content={
+                                          <View>
+                                              <BodyText>Hello, world</BodyText>
+                                          </View>
+                                      }
+                                  />
+                              )
+                            : null
+                    }
                     // Note that this modal launcher has no children.
                 />
             </View>
@@ -567,9 +569,8 @@ export const WithClosedFocusId: StoryComponentType = {
                 <DrawerLauncher
                     alignment={args.alignment}
                     onClose={() => handleClose()}
-                    opened={opened}
                     closedFocusId="button-to-focus-on"
-                    modal={DefaultModal}
+                    modal={opened ? DefaultModal : null}
                 />
             </View>
         );

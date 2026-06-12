@@ -17,17 +17,34 @@ import ModalContext from "./modal-context";
 
 type Props = Readonly<{
     /**
-     * The modal to render.
+     * The modal to render, or `null` to indicate a closed state.
      *
-     * The modal will be rendered inside of a container whose parent is
-     * document.body. This allows us to use ModalLauncher within menus and
-     * other components that clip their content. If the modal needs to close
-     * itself by some other means than tapping the backdrop or the default
-     * close button a render callback can be passed. The closeModal function
-     * provided to this callback can be called to close the modal.
+     * Pass a React element or render function to show the modal. Pass `null`
+     * to keep the launcher mounted but in a closed state — this is the
+     * recommended pattern for controlled usage because it lets the launcher
+     * capture and restore keyboard focus across open/close transitions:
+     *
+     * ```jsx
+     * <ModalLauncher
+     *     modal={isOpen ? <MyDialog /> : null}
+     *     onClose={() => setIsOpen(false)}
+     * />
+     * ```
+     *
+     * The modal is rendered inside a portal appended to `document.body`, so
+     * it won't be clipped by overflow constraints in the component tree. When
+     * a render function is used, the `closeModal` callback can be called to
+     * trigger a close:
+     *
+     * ```jsx
+     * <ModalLauncher
+     *     modal={({closeModal}) => <MyDialog onClose={closeModal} />}
+     *     onClose={() => setIsOpen(false)}
+     * />
+     * ```
      *
      * Note: Don't call `closeModal` while rendering! It should be used to
-     * respond to user intearction, like `onClick`.
+     * respond to user interaction, like `onClick`.
      */
     modal: ModalElement | ((props: {closeModal: () => void}) => ModalElement);
     /**
@@ -52,17 +69,6 @@ type Props = Readonly<{
     testId?: string;
 
     /**
-     * Renders the modal when true, renders nothing when false.
-     *
-     * Using this prop makes the component behave as a controlled component.
-     * The parent is responsible for managing the opening/closing of the modal
-     * when using this prop.  `onClose` should always be used and `children`
-     * should never be used with this prop.  Not doing so will result in an
-     * error being thrown.
-     */
-    opened?: boolean;
-
-    /**
      * If the parent needs to be notified when the modal is closed, use this
      * prop. You probably want to use this instead of `onClose` on the modals
      * themselves, since this will capture a more complete set of close events.
@@ -70,14 +76,26 @@ type Props = Readonly<{
      * Called when the modal needs to notify the parent component that it should
      * be closed.
      *
-     * This prop must be used when the component is being used as a controlled
-     * component.
+     * Required when using controlled mode (no `children`) so that close events
+     * initiated from within the modal (e.g. X button, Escape key, backdrop
+     * click) propagate to the parent.
      */
     onClose?: () => unknown;
 
     /**
-     * WARNING: This props should only be used when using the component as a
-     * controlled component.
+     * Render prop that receives an `openModal` callback. When provided the
+     * component operates in **uncontrolled** mode: the launcher manages its
+     * own open/close state, and the `modal` prop always describes the dialog
+     * content (never `null`).
+     *
+     * ```jsx
+     * <ModalLauncher modal={<MyDialog />}>
+     *     {({openModal}) => <button onClick={openModal}>Open</button>}
+     * </ModalLauncher>
+     * ```
+     *
+     * When omitted the component operates in **controlled** mode: pass
+     * `modal={null}` to close and `modal={<MyDialog />}` to open.
      */
     children?: (arg1: {openModal: () => unknown}) => React.ReactNode;
 }> &
@@ -86,18 +104,24 @@ type Props = Readonly<{
 /**
  * This component enables you to launch a modal, covering the screen.
  *
- * Children have access to `openModal` function via the function-as-children
- * pattern, so one common use case is for this component to wrap a button:
+ * **Controlled mode** — keep the launcher always mounted and use
+ * `modal={null}` to close:
  *
- * ```js
- * <ModalLauncher modal={<TwoColumnModal ... />}>
- *     {({openModal}) => <button onClick={openModal}>Learn more</button>}
- * </ModalLauncher>
+ * ```jsx
+ * <ModalLauncher
+ *     modal={isOpen ? <MyDialog /> : null}
+ *     onClose={() => setIsOpen(false)}
+ * />
  * ```
  *
- * The actual modal itself is constructed separately, using a layout component
- * like OnePaneDialog and is provided via
- * the `modal` prop.
+ * **Uncontrolled mode** — use the `children` render prop to get an
+ * `openModal` callback:
+ *
+ * ```jsx
+ * <ModalLauncher modal={<MyDialog />}>
+ *     {({openModal}) => <button onClick={openModal}>Open</button>}
+ * </ModalLauncher>
+ * ```
  */
 const ModalLauncher = (props: Props): React.ReactElement | null => {
     const {
@@ -107,7 +131,6 @@ const ModalLauncher = (props: Props): React.ReactElement | null => {
         initialFocusId,
         modal,
         onClose,
-        opened: controlledOpened,
         schedule,
         testId,
     } = props;
@@ -116,41 +139,30 @@ const ModalLauncher = (props: Props): React.ReactElement | null => {
         null,
     );
 
+    // Uncontrolled open state (used only when `children` is provided)
     const [opened, setOpened] = React.useState(false);
-    const isOpened =
-        typeof controlledOpened === "boolean" ? controlledOpened : opened;
+
+    // In controlled mode (no children), open state is derived from the modal prop.
+    const isControlled = !children;
+    const isOpened = isControlled ? modal != null : opened;
 
     React.useEffect(() => {
-        if (typeof controlledOpened === "boolean" && children) {
-            // eslint-disable-next-line no-console
-            console.warn("'children' and 'opened' can't be used together");
+        if (!isControlled && !onClose) {
+            return;
         }
-        if (typeof controlledOpened === "boolean" && !onClose) {
+        if (isControlled && !onClose) {
             // eslint-disable-next-line no-console
-            console.warn("'onClose' should be used with 'opened'");
+            console.warn(
+                "'onClose' should be provided when using ModalLauncher in controlled mode (without children)",
+            );
         }
-        if (typeof controlledOpened !== "boolean" && !children) {
-            // eslint-disable-next-line no-console
-            console.warn("either 'children' or 'opened' must be set");
-        }
-    }, [controlledOpened, children, onClose]);
+    }, [isControlled, onClose]);
 
     const saveLastElementFocused = React.useCallback(() => {
         // keep a reference of the element that triggers the modal
         // @ts-expect-error [FEI-5019] - TS2322 - Type 'Element | null' is not assignable to type 'HTMLElement | null'.
         lastElementFocusedOutsideModalRef.current = document.activeElement;
     }, []);
-
-    React.useEffect(() => {
-        if (!opened && controlledOpened) {
-            saveLastElementFocused();
-        }
-    }, [controlledOpened, opened, saveLastElementFocused]);
-
-    const openModal = React.useCallback(() => {
-        saveLastElementFocused();
-        setOpened(true);
-    }, [saveLastElementFocused]);
 
     const returnFocus = React.useCallback(() => {
         // Focus on the specified element after closing the modal.
@@ -180,11 +192,40 @@ const ModalLauncher = (props: Props): React.ReactElement | null => {
         }
     }, [closedFocusId, schedule]);
 
+    // Track modal prop transitions to manage focus in controlled mode.
+    const prevModalRef = React.useRef(modal);
+    React.useEffect(() => {
+        if (!isControlled) {
+            prevModalRef.current = modal;
+            return;
+        }
+        const prevModal = prevModalRef.current;
+        prevModalRef.current = modal;
+
+        const wasOpen = prevModal != null;
+        const isNowOpen = modal != null;
+
+        if (!wasOpen && isNowOpen) {
+            saveLastElementFocused();
+        } else if (wasOpen && !isNowOpen) {
+            returnFocus();
+        }
+    }, [modal, isControlled, saveLastElementFocused, returnFocus]);
+
+    const openModal = React.useCallback(() => {
+        saveLastElementFocused();
+        setOpened(true);
+    }, [saveLastElementFocused]);
+
     const handleCloseModal = React.useCallback(() => {
-        setOpened(false);
+        if (!isControlled) {
+            setOpened(false);
+            returnFocus();
+        }
+        // In controlled mode, returnFocus() is called by the modal transition
+        // effect once the parent updates modal to null.
         onClose?.();
-        returnFocus();
-    }, [onClose, returnFocus]);
+    }, [isControlled, onClose, returnFocus]);
 
     const renderModal = React.useCallback((): ModalElement => {
         if (typeof modal === "function") {

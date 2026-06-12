@@ -263,20 +263,27 @@ export const TriggeringProgrammatically: StoryComponentType = () => {
 
             <ModalLauncher
                 onClose={handleClose}
-                opened={opened}
-                modal={({closeModal}) => (
-                    <OnePaneDialog
-                        title="Triggered from action menu"
-                        content={
-                            <View>
-                                <Heading size="xxlarge">Hello, world</Heading>
-                            </View>
-                        }
-                        footer={
-                            <Button onClick={closeModal}>Close Modal</Button>
-                        }
-                    />
-                )}
+                modal={
+                    opened
+                        ? ({closeModal}) => (
+                              <OnePaneDialog
+                                  title="Triggered from action menu"
+                                  content={
+                                      <View>
+                                          <Heading size="xxlarge">
+                                              Hello, world
+                                          </Heading>
+                                      </View>
+                                  }
+                                  footer={
+                                      <Button onClick={closeModal}>
+                                          Close Modal
+                                      </Button>
+                                  }
+                              />
+                          )
+                        : null
+                }
                 // Note that this modal launcher has no children.
             />
         </View>
@@ -403,16 +410,14 @@ export const WithOpenedTrue = () => {
 
             {/* Edit Modal */}
             <ModalLauncher
-                opened={openedModal === "EDIT"}
                 onClose={handleClose}
-                modal={editDialog}
+                modal={openedModal === "EDIT" ? editDialog : null}
             />
 
             {/* Delete Modal */}
             <ModalLauncher
-                opened={openedModal === "DELETE"}
                 onClose={handleClose}
-                modal={deleteDialog}
+                modal={openedModal === "DELETE" ? deleteDialog : null}
             />
         </View>
     );
@@ -438,9 +443,8 @@ export const WithClosedFocusId: StoryComponentType = () => {
             </ActionMenu>
             <ModalLauncher
                 onClose={() => handleClose()}
-                opened={opened}
                 closedFocusId="button-to-focus-on"
-                modal={DefaultModal}
+                modal={opened ? DefaultModal : null}
             />
         </View>
     );
@@ -565,25 +569,29 @@ export const FocusManagementPattern: StoryComponentType = () => {
     }: CompletionModalProps) => {
         return (
             <ModalLauncher
-                opened={isOpen}
                 onClose={handleClose}
                 closedFocusId={returnFocusToId || undefined}
-                modal={() => (
-                    <OnePaneDialog
-                        title="Unit: Sample Unit"
-                        content={
-                            <View style={styles.modalContent}>
-                                <BodyText>
-                                    This is a reproduction of the focus
-                                    management pattern. When this modal is
-                                    closed, focus should return to the button
-                                    that opened it.
-                                </BodyText>
-                            </View>
-                        }
-                        style={styles.modal}
-                    />
-                )}
+                modal={
+                    isOpen
+                        ? () => (
+                              <OnePaneDialog
+                                  title="Unit: Sample Unit"
+                                  content={
+                                      <View style={styles.modalContent}>
+                                          <BodyText>
+                                              This is a reproduction of the
+                                              focus management pattern. When
+                                              this modal is closed, focus should
+                                              return to the button that opened
+                                              it.
+                                          </BodyText>
+                                      </View>
+                                  }
+                                  style={styles.modal}
+                              />
+                          )
+                        : null
+                }
             />
         );
     };
@@ -622,13 +630,11 @@ export const FocusManagementPattern: StoryComponentType = () => {
                         );
                     })}
                 </View>
-                {selectedItem && (
-                    <CompletionModal
-                        isOpen={true}
-                        handleClose={handleCloseModal}
-                        returnFocusToId={modalTriggerId}
-                    />
-                )}
+                <CompletionModal
+                    isOpen={selectedItem !== null}
+                    handleClose={handleCloseModal}
+                    returnFocusToId={modalTriggerId}
+                />
             </View>
         );
     };
@@ -842,14 +848,13 @@ export const ConditionalDialogsWithFocusManagement: StoryComponentType = () => {
 
             {/* Single ModalLauncher with conditional dialogs */}
             <ModalLauncher
-                opened={openedModal !== null}
                 onClose={handleClose}
                 closedFocusId={
                     openedModal === "WRAPPED"
                         ? "alternative-modal-trigger"
                         : undefined
                 }
-                modal={conditionalDialog}
+                modal={openedModal !== null ? conditionalDialog : null}
             />
         </View>
     );

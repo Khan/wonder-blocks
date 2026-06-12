@@ -36,10 +36,8 @@ export const WithOnePaneDialog = {
                         footer={<Button>Action</Button>}
                     />
                 }
-                opened={true}
-            >
-                {({openModal}) => <Button onClick={openModal}>Open</Button>}
-            </ModalLauncher>
+                onClose={() => {}}
+            />
         );
     },
 };
@@ -54,10 +52,8 @@ export const WithFlexibleDialog = {
                         content={<div>{reallyLongText}</div>}
                     />
                 }
-                opened={true}
-            >
-                {({openModal}) => <Button onClick={openModal}>Open</Button>}
-            </ModalLauncher>
+                onClose={() => {}}
+            />
         );
     },
 };
