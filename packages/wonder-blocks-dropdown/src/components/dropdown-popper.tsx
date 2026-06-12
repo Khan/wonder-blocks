@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {Popper} from "react-popper";
+import {Popper, type PopperChildrenProps} from "react-popper";
 
 import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
 
@@ -37,20 +37,22 @@ const modifiers = [
 function VisualViewportUpdater({
     update,
 }: {
-    update: (() => Promise<unknown>) | null;
+    update: PopperChildrenProps["update"];
 }): null {
     React.useEffect(() => {
         const vv =
             typeof window !== "undefined" ? window.visualViewport : undefined;
         // Guard for SSR / browsers without the visualViewport API.
-        if (!vv || !update) {
+        if (!vv) {
             return;
         }
 
         const handleViewportChange = () => {
-            // update() returns a promise; we don't need the result, but we
-            // swallow rejections (e.g. the popper unmounting mid-flight).
-            void update()?.catch(() => {});
+            // Popper debounces update() internally, so rapid pinch-zoom events
+            // coalesce and we don't need to throttle here. update() returns a
+            // promise; we don't need the result, but we swallow rejections
+            // (e.g. the popper unmounting mid-flight).
+            void update().catch(() => {});
         };
 
         vv.addEventListener("resize", handleViewportChange);

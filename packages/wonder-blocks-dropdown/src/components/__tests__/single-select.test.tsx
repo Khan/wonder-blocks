@@ -10,6 +10,7 @@ import {
     userEvent as ue,
     PointerEventsCheckLevel,
 } from "@testing-library/user-event";
+import {Popper} from "react-popper";
 
 import {PropsFor} from "@khanacademy/wonder-blocks-core";
 
@@ -1197,6 +1198,79 @@ describe("SingleSelect", () => {
                 "dropdown-core-container",
             );
             expect(dropdownMenu).toHaveStyle("max-height: 200px");
+        });
+    });
+
+    // Regression coverage for the iOS/iPadOS pinch-zoom bug: under pinch-zoom,
+    // Popper falsely reports `isReferenceHidden` for the opener, which used to
+    // hide the menu entirely (making the bottom-most dropdown impossible to
+    // open). The menu should only be hidden when the popper itself genuinely
+    // escapes its clipping area (`hasPopperEscaped`).
+    describe("pinch-zoom menu visibility", () => {
+        const mockPopper = Popper as unknown as jest.Mock;
+        const defaultPopperImpl = mockPopper.getMockImplementation();
+
+        afterEach(() => {
+            // Restore the shared Popper mock so other tests are unaffected.
+            if (defaultPopperImpl) {
+                mockPopper.mockImplementation(defaultPopperImpl);
+            }
+        });
+
+        const renderWithPopperState = (popperState: {
+            isReferenceHidden: boolean;
+            hasPopperEscaped: boolean;
+        }) => {
+            mockPopper.mockImplementation(({children}: any) =>
+                children({
+                    ref: jest.fn(),
+                    style: {},
+                    placement: "bottom",
+                    update: jest.fn().mockResolvedValue(null),
+                    ...popperState,
+                }),
+            );
+
+            return doRender(
+                <SingleSelect
+                    onChange={onChange}
+                    opened={true}
+                    placeholder="Choose"
+                    selectedValue="2"
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </SingleSelect>,
+            );
+        };
+
+        it("keeps the menu visible when only the reference is reported hidden", async () => {
+            // Arrange + Act: the pinch-zoom false-positive.
+            renderWithPopperState({
+                isReferenceHidden: true,
+                hasPopperEscaped: false,
+            });
+
+            // Assert
+            const dropdownMenu = await screen.findByTestId(
+                "dropdown-core-container",
+            );
+            expect(dropdownMenu).not.toHaveStyle("visibility: hidden");
+        });
+
+        it("hides the menu when the popper has genuinely escaped", async () => {
+            // Arrange + Act
+            renderWithPopperState({
+                isReferenceHidden: false,
+                hasPopperEscaped: true,
+            });
+
+            // Assert
+            const dropdownMenu = await screen.findByTestId(
+                "dropdown-core-container",
+            );
+            expect(dropdownMenu).toHaveStyle("visibility: hidden");
         });
     });
 
