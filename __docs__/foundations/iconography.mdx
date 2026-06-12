@@ -4,14 +4,12 @@ import iconLibraryImg from "./assets/iconography/icon-library.png";
 import usageGuidelines1Img from "./assets/iconography/usage-guidelines-1.png";
 import usageGuidelines2Img from "./assets/iconography/usage-guidelines-2.png";
 import usageGuidelines3Img from "./assets/iconography/usage-guidelines-3.png";
-import usageGuidelines4Img from "./assets/iconography/usage-guidelines-4.png";
-import usageGuidelines5Img from "./assets/iconography/usage-guidelines-5.png";
-import usageGuidelines6Img from "./assets/iconography/usage-guidelines-6.png";
 import customIcons1Img from "./assets/iconography/custom-icons-1.png";
 import customIcons2Img from "./assets/iconography/custom-icons-2.png";
 import customIcons3Img from "./assets/iconography/custom-icons-3.png";
 import customIcons4Img from "./assets/iconography/custom-icons-4.png";
 import customIcons5Img from "./assets/iconography/custom-icons-5.png";
+import customIcons6Img from "./assets/iconography/custom-icons-6.png";
 
 <Meta title="Design Guidelines / Foundations / Iconography" />
 
@@ -60,31 +58,19 @@ Phosphor provides icons in six weights: Thin, Light, Regular, Bold, Fill, and Du
 
 ## Sizes and weights
 
-Icon size and weight are paired. The correct weight for any icon is determined by its rendered size — not by surrounding context, emphasis, or preference.
+Icon size and weight are paired. The correct weight for any icon is determined by its rendered size — not by surrounding context, emphasis, or preference. If a design calls for an icon at a size not mentioned below like 18px or 22px, round to the nearest approved size. Off-scale icons break the size–weight pairing rule and may introduce rendering artifacts.
 
-Size
+| Size | Weight | Typical use |
+| --- | --- | --- |
+| 12px | Bold | Small buttons, active filters, breadcrumb separators |
+| 16px | Bold | Inputs, selects, badges, checkboxes, radio buttons, inline status indicators, conversation buttons, info icon when inline with text or heading |
+| 20px | Bold | Buttons, banners, toasts, standalone icon-only actions (ex. close, back, info) |
+| 24px | Regular | Icon buttons, metric button, Khanmigo within search field, class icons, role icons in role switcher view, subject icons |
+| 40px | ... | ... |
+| 48px | ... | ... |
+| 96px | ... | ... |
 
-12px
-
-20px
-
-...
-
-Weight
-
-...
-
-...
-
-...
-
-Typical use
-
-...
-
-...
-
-...
+Weight exception: low-emphasis affordance icons such as resize handles and drag grips may use Regular where Bold reads as too visually heavy for a background interaction cue. High-emphasis confirmation actions such as the primary CTA check icon may use Bold to ensure the icon reads clearly against a filled background.
 
 ## Usage guidelines
 
@@ -92,7 +78,7 @@ Guidance for how to apply illustration correctly across contexts. Visual example
 
 ### Use the Phosphor library exclusively
 
-All UI icons must come from Phosphor. Using icons from other libraries — even ones that look similar — introduces inconsistency in stroke weight, geometry, and corner radius that is visible at icon sizes.
+All UI icons must come from Phosphor, except for custom icons listed below. Using icons from other libraries — even ones that look similar — introduces inconsistency in stroke weight, geometry, and corner radius that is visible at icon sizes.
 
 <img src={usageGuidelines1Img} alt="Usage guidelines 1" />
 
@@ -102,29 +88,11 @@ Icons that represent universal, well-understood actions (close, search, back) ma
 
 <img src={usageGuidelines2Img} alt="Usage guidelines 2" />
 
-### Regular and Bold only — no Thin, Light, or Duotone
+### Only Regular, Bold, and Fill weights are approved for use
 
-Thin and Light weights are too delicate for product UI and fail contrast requirements at small sizes. Duotone introduces two-color complexity that conflicts with our single-color icon system. These weights are not approved for use.
+Thin and Light are too delicate for product UI and fail contrast requirements at small sizes. Duotone introduces two-color complexity that conflicts with our single-color icon system. Fill is reserved exclusively for active or selected states — never use it for decoration, emphasis, or stylistic variation. Components without a toggled or selected state should always use Regular or Bold.
 
 <img src={usageGuidelines3Img} alt="Usage guidelines 3" />
-
-### Do not recolor icons outside the token system
-
-Icons should not be recolored with brand colors, gradients, or raw hex values. All icon color must come from the semantic token system to ensure accessible pairings and consistent theming.
-
-<img src={usageGuidelines4Img} alt="Usage guidelines 4" />
-
-### Do not scale icons to non-standard sizes
-
-If a design calls for an icon at 18px or 22px, round to the nearest approved size. Off-scale icons break the size–weight pairing rule and may introduce rendering artifacts.
-
-<img src={usageGuidelines5Img} alt="Usage guidelines 5" />
-
-### Fill is reserved for selected state only
-
-The Fill weight communicates that an icon button is in an active or selected state. It must not be used for decoration, emphasis, or stylistic variation. If a component doesn't have a toggled or selected state, its icon should always be Regular or Bold.
-
-<img src={usageGuidelines6Img} alt="Usage guidelines 6" />
 
 ## Custom icons
 
@@ -149,34 +117,33 @@ Mastery icons must always appear alongside their label in any context where a le
 
 <img src={customIcons3Img} alt="Custom icons 3" />
 
-### Class icons
+### Subject type icons
 
-Classes are represented by a set of shape-based icons. These appear wherever a class needs to be visually distinguished — in navigation, dashboards, and class-selection surfaces. The shape is assigned to a class and helps users quickly identify and differentiate between multiple classes at a glance.
+Each subject has a unique icon used to identify it across the product. Subject icons are always paired with the subject name — they are never used alone. There are no icons at the course level.
 
 <img src={customIcons4Img} alt="Custom icons 4" />
 
-### Role icons
+### Class icons
 
-Each user role in the Khan Academy product has a dedicated icon. These appear in role-selection flows, account settings, and any surface where a user's role needs to be communicated visually.
+Every class is assigned a unique shape that travels with it across the product. This is the most meaningful use of shapes — the form carries the object's identity.
 
 <img src={customIcons5Img} alt="Custom icons 5" />
+
+### Role icons
+
+Each role — Administrator, Teacher, and Learner — has a distinct shape used as its profile icon throughout the product. The shape makes it easy to identify and switch between roles, especially for users who hold multiple roles.
+
+<img src={customIcons6Img} alt="Custom icons 6" />
 
 ## Accessibility
 
 Provide text alternatives for all meaningful icons Every icon that conveys meaning — whether standalone or paired with a label — must have an accessible text alternative via aria-label or equivalent. Icons that are purely decorative should be hidden from assistive technology with aria-hidden="true".
 Meet contrast minimums at all icon sizes The 3:1 contrast requirement applies at all sizes, including 16px. Do not apply opacity to icons as a way to indicate disabled or subdued states without verifying the resulting contrast against the background.
 
-Icon type
-
-Meaningful icons (convey information or action)
-
-Decorative icons (purely visual, no meaning conveyed)
-
-Rationale
-
-3:1
-
-No requirement
+| Icon type | Rationale |
+| --- | --- |
+| Meaningful icons (convey information or action) | 3:1 |
+| Decorative icons (purely visual, no meaning conveyed) | No requirement |
 
 An icon is considered meaningful if removing it would cause a user to lose information or miss a function. When in doubt, treat the icon as meaningful and apply the 3:1 minimum.
 Do not use color as the only differentiator between icon states. When an icon changes state (e.g., default to selected), the change must be visible through more than color alone. Using Fill weight for selected states satisfies this requirement for icon buttons.
@@ -186,36 +153,13 @@ Touch targets must meet minimum size requirements. Regardless of icon size, inte
 
 Choosing which icon to use is a product decision. Creating an icon that doesn't exist yet is a visual design decision. These responsibilities belong to different disciplines.
 
-Responsibility
-
-Select Phosphor icons for UI contexts
-
-Create and maintain custom icon assets
-
-Ensure custom icons fit the visual system
-
-Flag the need for a new custom icon
-
-Visual design
-
-Contributes
-
-Owns
-
-Owns
-
-Contributes
-
-Product design
-
-Owns
-
-–
-
-–
-
-Contributes
+| Responsibility | Visual design | Product design |
+| --- | --- | --- |
+| Select Phosphor icons for UI contexts | Contributes | Owns |
+| Create and maintain custom icon assets | Owns | – |
+| Ensure custom icons fit the visual system | Owns | – |
+| Flag the need for a new custom icon | Contributes | Contributes |
 
 ---
 
-<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=13493-5800&t=6lEHCsAo03k7G4Lr-4" target="_blank" rel="noopener noreferrer">Figma source</a>
+<a href="https://www.figma.com/design/G9Yxa0SOlALS078wtq87cM/Design-system-guidelines---Thunderblocks?node-id=13493-5800&t=IKnTQaL8T2yFayiW-4" target="_blank" rel="noopener noreferrer">Figma source</a>
