@@ -48,26 +48,29 @@ type DrawerModalFunction = (props: {
     styles?: DrawerDialogStyles;
 }) => DrawerModalElement;
 
-/**
- * Base props shared between controlled and uncontrolled modes
- */
-type BaseProps = Readonly<{
+type Props = Readonly<{
     /**
-     * The modal to render. Should be a DrawerDialog for proper drawer functionality.
+     * The modal to render, or `null` to indicate a closed state.
      *
-     * The modal will be rendered inside of a container whose parent is
-     * document.body. This allows us to use DrawerLauncher within menus and
-     * other components that clip their content. If the modal needs to close
-     * itself by some other means than tapping the backdrop or the default
-     * close button a render callback can be passed. The closeModal function
-     * provided to this callback can be called to close the modal.
+     * Pass a React element or render function to show the drawer. Pass `null`
+     * to keep the launcher mounted but in a closed state — this is the
+     * recommended pattern because it lets the launcher capture and restore
+     * keyboard focus across open/close transitions:
      *
-     * Note: Don't call `closeModal` while rendering! It should be used to
-     * respond to user interaction, like `onClick`.
+     * ```jsx
+     * <DrawerLauncher
+     *     modal={isOpen ? ({closeModal}) => <DrawerDialog .../> : null}
+     *     onClose={() => setIsOpen(false)}
+     *     alignment="inlineStart"
+     * />
+     * ```
      *
      * IMPORTANT: DrawerLauncher is designed specifically for DrawerDialog.
      * Using other modal types may result in incorrect animations, positioning,
      * and styling behavior.
+     *
+     * Note: Don't call `closeModal` while rendering! It should be used to
+     * respond to user interaction, like `onClick`.
      */
     modal: DrawerModalElement | DrawerModalFunction;
     /**
@@ -120,49 +123,34 @@ type BaseProps = Readonly<{
      * Test ID used for e2e testing. It's set on the DrawerBackdrop
      */
     testId?: string;
-}> &
-    WithActionSchedulerProps;
-
-/**
- * Controlled component mode: `opened` and `onClose` are required, `children` is forbidden
- */
-type ControlledProps = BaseProps & {
-    /**
-     * Renders the modal when true, renders nothing when false.
-     *
-     * Using this prop makes the component behave as a controlled component.
-     * The parent is responsible for managing the opening/closing of the modal
-     * when using this prop. `onClose` is required and `children` is forbidden.
-     */
-    opened: boolean;
     /**
      * Called when the modal needs to notify the parent component that it should
-     * be closed. Required when using `opened` prop (controlled mode).
-     */
-    onClose: () => unknown;
-    children?: never;
-};
-
-/**
- * Uncontrolled component mode: `children` is required, `opened` is forbidden
- */
-type UncontrolledProps = BaseProps & {
-    /**
-     * Render prop that provides `openModal` function to trigger the modal.
-     * Required when not using `opened` prop (uncontrolled mode).
-     */
-    children: (arg1: {openModal: () => unknown}) => React.ReactNode;
-    /**
-     * Optional callback when the modal is closed in uncontrolled mode.
+     * be closed. Required in controlled mode (no `children`) so that close
+     * events initiated from within the drawer propagate to the parent.
      */
     onClose?: () => unknown;
-    opened?: never;
-};
-
-/**
- * DrawerLauncher props - enforces proper controlled/uncontrolled usage at the type level
- */
-type Props = ControlledProps | UncontrolledProps;
+    /**
+     * Render prop that receives an `openModal` callback. When provided the
+     * component operates in **uncontrolled** mode: the launcher manages its
+     * own open/close state, and the `modal` prop always describes the dialog
+     * content (never `null`).
+     *
+     * When omitted the component operates in **controlled** mode: pass
+     * `modal={null}` to close and `modal={<DrawerDialog />}` (or a render
+     * function) to open.
+     */
+    children?: (arg1: {openModal: () => unknown}) => React.ReactNode;
+    /**
+     * @deprecated Use `modal={isOpen ? ... : null}` instead and keep the
+     * launcher always mounted. Passing `opened` will be removed in a future
+     * major version.
+     *
+     * Controls whether the drawer is visible. When provided, `onClose` must
+     * also be supplied.
+     */
+    opened?: boolean;
+}> &
+    WithActionSchedulerProps;
 
 const defaultProps = {
     backdropDismissEnabled: DEFAULT_DRAWER_BACKDROP_DISMISS_ENABLED,
@@ -176,9 +164,10 @@ const DrawerLauncher = (props: Props) => {
         initialFocusId,
         closedFocusId,
         testId,
-        opened: controlledOpened,
         onClose,
         children,
+        // eslint-disable-next-line @typescript-eslint/no-deprecated
+        opened: deprecatedOpened,
         schedule,
         alignment,
         styles,
@@ -186,7 +175,7 @@ const DrawerLauncher = (props: Props) => {
         timingDuration = defaultProps.defaultTimingDuration,
     } = props;
 
-    // State for uncontrolled mode
+    // Uncontrolled open state (used only when `children` is provided)
     const [uncontrolledOpened, setUncontrolledOpened] = React.useState(false);
     // State to track exit animation
     const [isExiting, setIsExiting] = React.useState(false);
@@ -196,26 +185,47 @@ const DrawerLauncher = (props: Props) => {
         null,
     );
 
-    // Determine if we're in controlled or uncontrolled mode
-    const opened =
-        typeof controlledOpened === "boolean"
-            ? controlledOpened
-            : uncontrolledOpened;
+    // In controlled mode (no children), open state is derived from the modal
+    // prop (or the deprecated `opened` prop when provided as a shim).
+    const isControlled = !children;
+
+    React.useEffect(() => {
+        if (deprecatedOpened !== undefined) {
+            // eslint-disable-next-line no-console
+            console.warn(
+                "DrawerLauncher: the `opened` prop is deprecated. " +
+                    "Keep the launcher always mounted and use " +
+                    "`modal={isOpen ? ... : null}` instead.",
+            );
+        }
+    }, [deprecatedOpened]);
+
+    // Preserve the last non-null modal so it can be displayed during exit animation.
+    const lastNonNullModalRef = React.useRef<
+        DrawerModalElement | DrawerModalFunction
+    >(null as any);
+    if (modal != null) {
+        lastNonNullModalRef.current = modal;
+    }
+
+    // The modal to actually render: use the real value when open, or the
+    // cached value when playing the exit animation.
+    const displayModal =
+        modal ?? (isExiting ? lastNonNullModalRef.current : null);
+
+    // Resolve the open signal: deprecated `opened` takes priority as a shim,
+    // otherwise derive from whether modal is non-null.
+    const controlledOpenSignal =
+        deprecatedOpened !== undefined ? deprecatedOpened : modal != null;
+
+    const opened = isControlled
+        ? controlledOpenSignal || isExiting
+        : uncontrolledOpened;
 
     const saveLastElementFocused = React.useCallback(() => {
         lastElementFocusedOutsideModalRef.current =
             document.activeElement as HTMLElement;
     }, []);
-
-    // Save last focused element when modal opens
-    React.useEffect(() => {
-        if (controlledOpened && !prevControlledOpened.current) {
-            saveLastElementFocused();
-        }
-        prevControlledOpened.current = controlledOpened;
-    }, [controlledOpened, saveLastElementFocused]);
-
-    const prevControlledOpened = React.useRef(controlledOpened);
 
     const returnFocus = React.useCallback(() => {
         // Focus on the specified element after closing the modal.
@@ -233,31 +243,69 @@ const DrawerLauncher = (props: Props) => {
         });
     }, [closedFocusId, schedule]);
 
+    // Track open/close transitions in controlled mode to capture/restore focus.
+    // Supports both the new (modal prop) and deprecated (opened prop) patterns.
+    const prevSignalRef = React.useRef(controlledOpenSignal);
+    React.useEffect(() => {
+        if (!isControlled) {
+            prevSignalRef.current = controlledOpenSignal;
+            return;
+        }
+        const wasOpen = prevSignalRef.current;
+        const isNowOpen = controlledOpenSignal;
+        prevSignalRef.current = isNowOpen;
+
+        if (!wasOpen && isNowOpen) {
+            saveLastElementFocused();
+        } else if (wasOpen && !isNowOpen) {
+            if (animated) {
+                setIsExiting(true);
+            } else {
+                returnFocus();
+            }
+        }
+    }, [
+        controlledOpenSignal,
+        isControlled,
+        animated,
+        saveLastElementFocused,
+        returnFocus,
+    ]);
+
+    // Handle exit animation completion in controlled mode.
+    React.useEffect(() => {
+        if (!isExiting || !isControlled) {
+            return;
+        }
+        const timer = setTimeout(() => {
+            setIsExiting(false);
+            returnFocus();
+        }, timingDuration);
+        return () => clearTimeout(timer);
+    }, [isExiting, isControlled, timingDuration, returnFocus]);
+
     const handleCloseModal = React.useCallback(() => {
-        if (animated) {
-            // If component is animated, allow time for exit animations
-            setIsExiting(true);
-            setTimeout(() => {
-                setIsExiting(false);
-                if (typeof controlledOpened === "boolean") {
-                    onClose?.();
-                } else {
+        if (!isControlled) {
+            if (animated) {
+                // Allow time for exit animations
+                setIsExiting(true);
+                setTimeout(() => {
+                    setIsExiting(false);
                     setUncontrolledOpened(false);
                     onClose?.();
-                }
-                returnFocus();
-            }, timingDuration);
-        } else {
-            // For non-animated case, cleanup immediately
-            if (typeof controlledOpened === "boolean") {
-                onClose?.();
+                    returnFocus();
+                }, timingDuration);
             } else {
                 setUncontrolledOpened(false);
                 onClose?.();
+                returnFocus();
             }
-            returnFocus();
+        } else {
+            // Controlled: notify parent so they can set modal=null (or opened=false).
+            // The transition effect handles exit animation and focus restoration.
+            onClose?.();
         }
-    }, [controlledOpened, onClose, returnFocus, animated, timingDuration]);
+    }, [isControlled, onClose, returnFocus, animated, timingDuration]);
 
     const openModal = React.useCallback(() => {
         saveLastElementFocused();
@@ -276,9 +324,8 @@ const DrawerLauncher = (props: Props) => {
     );
 
     const renderModal = React.useCallback(() => {
-        // Handle function-based modals
-        if (typeof modal === "function") {
-            const renderedModal = modal({
+        if (typeof displayModal === "function") {
+            const renderedModal = displayModal({
                 closeModal: handleCloseModal,
             });
 
@@ -289,13 +336,12 @@ const DrawerLauncher = (props: Props) => {
             return renderedModal;
         }
 
-        // Handle element-based modals
-        if (!modal) {
+        if (!displayModal) {
             return null;
         }
 
-        return modal;
-    }, [modal, handleCloseModal]);
+        return displayModal;
+    }, [displayModal, handleCloseModal]);
 
     const renderedChildren = children
         ? children({
@@ -370,41 +416,25 @@ function DrawerLauncherKeypressListener({onClose}: {onClose: () => unknown}) {
  * **IMPORTANT**: This component should ONLY be used with DrawerDialog. Using other
  * modal components may result in incorrect animations, positioning, and styling.
  *
+ * Keep the launcher always mounted and use `modal={null}` to close. This
+ * ensures keyboard focus is captured and restored correctly across open/close
+ * transitions:
+ *
+ * ```jsx
+ * <DrawerLauncher
+ *     modal={isOpen ? ({closeModal}) => <DrawerDialog .../> : null}
+ *     onClose={() => setIsOpen(false)}
+ *     animated={animated}
+ *     alignment="inlineStart"
+ * />
+ * ```
+ *
  * - Slide animations can be turned off with the `animated` prop.
  * - Timing of animations can be fine-tuned with the `timingDuration` prop, used on
  * enter and exit animations. It is also used to coordinate timing of focus management
  * on open and close.
  *
- * For conditionally rendering modals, ensure there is only one `DrawerLauncher` in
- * your component tree. A launcher needs to stay mounted on the current page to
- * properly handle the user's keyboard focus on close of modals.
  * Read [more details on Confluence](https://khanacademy.atlassian.net/wiki/spaces/FRONTEND/blog/2025/11/24/4454383789/Wonder+Blocks+Modal+Tips+Tricks).
- *
- * ### Usage
- *
- * ```jsx
- * import {DrawerLauncher, DrawerDialog} from "@khanacademy/wonder-blocks-modal";
- * import {BodyText} from "@khanacademy/wonder-blocks-typography";
- *
- * <DrawerLauncher
- *      onClose={handleClose}
- *      opened={opened}
- *      animated={animated}
- *      alignment="inlineStart"
- *      modal={({closeModal}) => (
- *          <DrawerDialog
- *              title="Assign Mastery Mission"
- *              content={
- *                  <View>
- *                      <BodyText>
- *                          Hello, world
- *                      </BodyText>
- *                  </View>
- *              }
- *          />
- *      )}
- * />
- * ```
  */
 
 DrawerLauncher.displayName = "DrawerLauncher";

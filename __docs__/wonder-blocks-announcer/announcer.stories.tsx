@@ -241,9 +241,8 @@ export const AnnouncerInModal: StoryComponentType = {
                     <Button onClick={handleOpen}>Open Modal to Test</Button>
                 )}
                 <ModalLauncher
-                    opened={isOpen}
                     onClose={handleClose}
-                    modal={ModalContent}
+                    modal={isOpen ? ModalContent : null}
                 />
             </View>
         );

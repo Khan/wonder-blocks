@@ -53,7 +53,6 @@ export const InlineStart: StoryComponentType = {
         <DrawerLauncher
             modal={DefaultModal}
             alignment="inlineStart"
-            opened={true}
             animated={false}
             onClose={() => {}}
         />
@@ -71,7 +70,6 @@ export const InlineEnd: StoryComponentType = {
         <DrawerLauncher
             modal={DefaultModal}
             alignment="inlineEnd"
-            opened={true}
             animated={false}
             onClose={() => {}}
         />
@@ -115,7 +113,6 @@ export const InlineEndCustomStyle: StoryComponentType = {
                 />
             }
             alignment="inlineEnd"
-            opened={true}
             animated={false}
             onClose={() => {}}
         />
@@ -133,7 +130,6 @@ export const BlockEnd: StoryComponentType = {
         <DrawerLauncher
             modal={DefaultModal}
             alignment="blockEnd"
-            opened={true}
             animated={false}
             onClose={() => {}}
         />
