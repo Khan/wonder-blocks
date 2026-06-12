@@ -81,11 +81,15 @@ jobs:
         if: |
             github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]' &&
             !startsWith(github.head_ref, 'changeset-release/')
-        name: Run Storybook tests
+        name: Run Storybook tests (${{ matrix.theme }})
         needs: chromatic_review
         runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && 'ubuntu-latest' || 'ephemeral-runner' }}
         strategy:
             fail-fast: false
+            # Run the a11y suite once per theme in parallel so every story is
+            # audited under each theme without tripling wall-clock time.
+            matrix:
+                theme: [default, thunderblocks, syl-dark]
         steps:
             # Install Playwright system dependencies before checkout/secure-network
             # so we don't need to allowlist Ubuntu package domains.
@@ -129,6 +133,8 @@ jobs:
             - name: Run Storybook tests
               run: pnpm test:storybook
               env:
+                  # Audit every story under this matrix theme.
+                  VITE_WB_THEME: ${{ matrix.theme }}
                   SB_URL: "${{ needs.chromatic_review.outputs.storybookUrl }}"
                   # Explicitly set the timezone to avoid:
                   # `Invalid time zone specified: ETC/UNKNOWN`

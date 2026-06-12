@@ -36,6 +36,7 @@
     "test:common": "pnpm run build && pnpm run lint && pnpm run typecheck && pnpm run alex",
     "test:coverage": "pnpm run test:common && pnpm run jest --coverage",
     "test:storybook": "vitest --project=storybook",
+    "test:storybook:themes": "VITE_WB_THEME=default vitest run --project=storybook && VITE_WB_THEME=thunderblocks vitest run --project=storybook && VITE_WB_THEME=syl-dark vitest run --project=storybook",
     "test": "pnpm run jest && pnpm run test:common",
     "typecheck": "tsc",
     "typetest": "tstyche",
