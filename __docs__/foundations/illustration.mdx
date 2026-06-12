@@ -1,4 +1,5 @@
 import {Meta} from "@storybook/addon-docs/blocks";
+import Principle, {PrincipleSet} from "../components/principle";
 import illustrationImg from "./assets/illustration/illustration.png";
 import audienceCalibration1Img from "./assets/illustration/audience-calibration-1.png";
 import audienceCalibration2Img from "./assets/illustration/audience-calibration-2.png";
@@ -18,47 +19,42 @@ import typesOfIllustration6Img from "./assets/illustration/types-of-illustration
 
 <img src={illustrationImg} alt="Illustration" />
 
-### Illustration
-
-Khan Academy's illustration system is built entirely on shapes.  From Khanmigo to empty states to confetti blasts — every illustration element is shape based, used at different levels of meaning, fidelity, and emotion.
+Khan Academy's illustration system is built entirely on shapes. From Khanmigo to empty states to confetti blasts — every illustration element is shape based, used at different levels of meaning, fidelity, and emotion.
 
 ## Principles
 
-Foundational
-
-### Shapes are the brand
-
-Shapes are not decoration added on top of the brand — they are its structural DNA. Every illustration element, at every scale, is a shape. Identity, character, environment, spot illustration, and accent all begin and end with shapes.
-
-Purposeful
-
-### Every shape earns its place
-
-Shapes can carry identity, build character, set a scene, or celebrate a moment — but they should never be filler. If a shape isn't doing one of these jobs, it shouldn't be there.
-
-Accessible
-
-### Contrast follows meaning
-
-Whether an illustration requires 3:1 contrast depends entirely on whether it is carrying meaning. Meaningful illustrations communicate something the user must understand. Decorative illustrations add delight — no hard minimum, but mindfulness always applies.
-
-Restrained
-
-### Flat, geometric, warm
-
-All illustration is flat — no gradients, drop shadows, or dimensional shading. Forms are intentionally geometric. Despite this restraint, illustrations should always feel warm and human, never clinical or cold.
-
-Cohesive
-
-### Color from primitives
-
-Illustration colors pull from the primitive tokens. There is no separate illustration palette. Saturation serves as an emotional register, more vibrant for learner-facing moments, more restrained for teacher-facing utility contexts.
-
-Systematic
-
-### System over individual
-
-No illustration is a standalone creative piece. Every new illustration should feel like it always belonged alongside existing ones. Extending the system means working within its constraints — not around them.
+<PrincipleSet>
+    <Principle
+        label="Foundational"
+        title="Shapes are the brand"
+        description="Shapes are not decoration added on top of the brand — they are its structural DNA. Every illustration element, at every scale, is a shape. Identity, character, environment, spot illustration, and accent all begin and end with shapes."
+    />
+    <Principle
+        label="Purposeful"
+        title="Every shape earns its place"
+        description="Shapes can carry identity, build character, set a scene, or celebrate a moment — but they should never be filler. If a shape isn't doing one of these jobs, it shouldn't be there."
+    />
+    <Principle
+        label="Accessible"
+        title="Contrast follows meaning"
+        description="Whether an illustration requires 3:1 contrast depends entirely on whether it is carrying meaning. Meaningful illustrations communicate something the user must understand. Decorative illustrations add delight — no hard minimum, but mindfulness always applies."
+    />
+    <Principle
+        label="Restrained"
+        title="Flat, geometric, warm"
+        description="All illustration is flat — no gradients, drop shadows, or dimensional shading. Forms are intentionally geometric. Despite this restraint, illustrations should always feel warm and human, never clinical or cold."
+    />
+    <Principle
+        label="Cohesive"
+        title="Color from primitives"
+        description="Illustration colors pull from the primitive tokens. There is no separate illustration palette. Saturation serves as an emotional register, more vibrant for learner-facing moments, more restrained for teacher-facing utility contexts."
+    />
+    <Principle
+        label="Systematic"
+        title="System over individual"
+        description="No illustration is a standalone creative piece. Every new illustration should feel like it always belonged alongside existing ones. Extending the system means working within its constraints — not around them."
+    />
+</PrincipleSet>
 
 ## Audience calibration
 

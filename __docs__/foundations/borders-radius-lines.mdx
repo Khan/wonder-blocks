@@ -8,7 +8,7 @@ import usageGuidelines2Img from "./assets/borders-radius-lines/usage-guidelines-
 import usageGuidelines3Img from "./assets/borders-radius-lines/usage-guidelines-3.png";
 import usageGuidelines4Img from "./assets/borders-radius-lines/usage-guidelines-4.png";
 import usageGuidelines5Img from "./assets/borders-radius-lines/usage-guidelines-5.png";
-import {NeutralBadge} from "@khanacademy/wonder-blocks-badge";
+import Principle, {PrincipleSet} from "../components/principle";
 
 <Meta title="Design Guidelines / Foundations / Borders, radius, lines" />
 
@@ -24,11 +24,18 @@ A border makes an edge explicit. It says: this is where something begins or ends
 
 ### Principles
 
-> <NeutralBadge label="Structural" /> **Borders define containment.** <br/>
-> A border claims an edge. When everything has one, the signal disappears — reserve borders for contexts where the boundary is meaningful.
-<br/>
-> <NeutralBadge label="Accessible" /> **Focus borders are non-negotiable.** <br/>
-> Focus rings show keyboard users where they are. They must be high-contrast and visible — never suppressed without a fully accessible replacement.
+<PrincipleSet>
+    <Principle
+        label="Structural"
+        title="Borders define containment"
+        description="A border claims an edge. When everything has one, the signal disappears — reserve borders for contexts where the boundary is meaningful."
+    />
+    <Principle
+        label="Accessible"
+        title="Focus borders are non-negotiable"
+        description="Focus rings show keyboard users where they are. They must be high-contrast and visible — never suppressed without a fully accessible replacement."
+    />
+</PrincipleSet>
 
 ### Usage
 
@@ -59,11 +66,19 @@ Border color and width always come from the token system — never raw hex value
 Radius is one of the most visible personality signals in a design system. The degree of rounding on a component communicates where it sits in the hierarchy — small, dense components like badges and chips sit at one end; large containers like modals and cards sit at the other. Consistent radius is what makes a collection of components feel like a system.
 
 ### Principles
-> <NeutralBadge label="Hierarchical" /> **Radius follows component scale** <br/>
-> Smaller components carry less radius; larger components carry more. Applying one value to everything flattens the hierarchy radius is meant to reinforce.
-<br/>
-> <NeutralBadge label="Relational" /> **Nested radius must be calculated, not guessed** <br/>
-> When a rounded container holds a rounded child, the inner radius should equal the outer radius minus the gap between them. If both use the same value, the shapes look unrelated rather than nested.
+
+<PrincipleSet>
+    <Principle
+        label="Hierarchical"
+        title="Radius follows component scale"
+        description="Smaller components carry less radius; larger components carry more. Applying one value to everything flattens the hierarchy radius is meant to reinforce."
+    />
+    <Principle
+        label="Relational"
+        title="Nested radius must be calculated, not guessed"
+        description="When a rounded container holds a rounded child, the inner radius should equal the outer radius minus the gap between them. If both use the same value, the shapes look unrelated rather than nested."
+    />
+</PrincipleSet>
 
 ### Usage
 
@@ -95,11 +110,18 @@ A line is the minimum possible separator — 1px, a subtle color, nothing more. 
 
 ### Principles
 
-> <NeutralBadge label="Restrained" /> **Spacing first, lines second** <br/>
-> A line should only appear when spacing alone isn't enough. In most layouts, spacing handles separation without any lines at all — lines become necessary only in dense contexts where items are too compressed for spacing to do the job.
-<br/>
-> <NeutralBadge label="Restrained" /> **Lines are not headings**<br/>
-> A heading names a section; a line marks a boundary. When used together, pick one — using both is redundant.
+<PrincipleSet>
+    <Principle
+        label="Restrained"
+        title="Spacing first, lines second"
+        description="A line should only appear when spacing alone isn't enough. In most layouts, spacing handles separation without any lines at all — lines become necessary only in dense contexts where items are too compressed for spacing to do the job."
+    />
+    <Principle
+        label="Restrained"
+        title="Lines are not headings"
+        description="A heading names a section; a line marks a boundary. When used together, pick one — using both is redundant."
+    />
+</PrincipleSet>
 
 ### Usage
 

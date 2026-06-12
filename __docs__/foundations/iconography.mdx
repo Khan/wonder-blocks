@@ -1,4 +1,5 @@
 import {Meta} from "@storybook/addon-docs/blocks";
+import Principle, {PrincipleSet} from "../components/principle";
 import iconographyImg from "./assets/iconography/iconography.png";
 import iconLibraryImg from "./assets/iconography/icon-library.png";
 import usageGuidelines1Img from "./assets/iconography/usage-guidelines-1.png";
@@ -17,41 +18,36 @@ import customIcons6Img from "./assets/iconography/custom-icons-6.png";
 
 <img src={iconographyImg} alt="Iconography" />
 
-### Iconography
-
 Icons communicate meaning at a glance — but only when used consistently and intentionally. Our system is built on a single library, clear size and weight rules, and a small set of custom icons unique to Khan Academy.
 
 ## Principles
 
-Contextual
-
-### Familiarity earns independence
-
-Some icons are universally understood — an X means close, an info circle invites more detail. They've earned the right to stand alone. Others carry meaning only within context: a label, a position, a pattern the user already knows. The goal is always clarity.
-
-Consistent
-
-### One library, one visual language
-
-A shared icon library is a shared vocabulary. When every icon comes from the same source, users learn the system once and carry that knowledge everywhere. Consistency is what makes icons feel familiar rather than arbitrary.
-
-Intentional
-
-### Weight is a response to size
-
-Icon weight isn't a stylistic preference — it's a function of how much visual mass an icon needs to read clearly at a given size. Small icons need more weight to stay legible. Larger icons already have the presence they need.
-
-Accessible
-
-### Legibility is respect
-
-Every person using this product deserves to see and understand it clearly. An icon that disappears against its background isn't a minor aesthetic issue — it's a failure to communicate. Contrast is what makes icons work for everyone.
+<PrincipleSet>
+    <Principle
+        label="Contextual"
+        title="Familiarity earns independence"
+        description="Some icons are universally understood — an X means close, an info circle invites more detail. They've earned the right to stand alone. Others carry meaning only within context: a label, a position, a pattern the user already knows. The goal is always clarity."
+    />
+    <Principle
+        label="Consistent"
+        title="One library, one visual language"
+        description="A shared icon library is a shared vocabulary. When every icon comes from the same source, users learn the system once and carry that knowledge everywhere. Consistency is what makes icons feel familiar rather than arbitrary."
+    />
+    <Principle
+        label="Intentional"
+        title="Weight is a response to size"
+        description="Icon weight isn't a stylistic preference — it's a function of how much visual mass an icon needs to read clearly at a given size. Small icons need more weight to stay legible. Larger icons already have the presence they need."
+    />
+    <Principle
+        label="Accessible"
+        title="Legibility is respect"
+        description="Every person using this product deserves to see and understand it clearly. An icon that disappears against its background isn't a minor aesthetic issue — it's a failure to communicate. Contrast is what makes icons work for everyone."
+    />
+</PrincipleSet>
 
 ## Icon library
 
 <img src={iconLibraryImg} alt="Icon library" />
-
-### Icon library
 
 The primary icon library for this design system is Phosphor Icons. All icons outside of the custom set (defined below) must come from Phosphor. Do not source icons from other libraries, use SVG assets from the web, or create ad-hoc icon shapes — this preserves visual consistency across every surface.
 Phosphor provides icons in six weights: Thin, Light, Regular, Bold, Fill, and Duotone. This system uses Regular, Bold, and Fill only.

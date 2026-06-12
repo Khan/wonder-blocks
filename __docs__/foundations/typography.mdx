@@ -1,4 +1,5 @@
 import {Meta} from "@storybook/addon-docs/blocks";
+import Principle, {PrincipleSet} from "../components/principle";
 import shapeImg from "./assets/typography/shape.png";
 import plusJakartaSansImg from "./assets/typography/plus-jakarta-sans.png";
 
@@ -16,29 +17,28 @@ Our typographic system is built on legibility and accessibility. It's clear, con
 
 ## Principles
 
-Structured
-
-### Hierarchy over decoration
-
-Every type choice should create structure, not style. If a decision can't be explained by the hierarchy, it shouldn't be there.
-
-Accessible
-
-### Legibility at every level
-
-From 12px metadata to 32px headlines, type must be readable for every learner — regardless of age, context, or device.
-
-Consistent
-
-### Consistency builds clarity
-
-The same style should always mean the same thing. When two styles look identical, they should behave identically.
-
-Intentional
-
-### Let content lead
-
-Type should recede so understanding can happen. When in doubt, use less.
+<PrincipleSet>
+    <Principle
+        label="Structured"
+        title="Hierarchy over decoration"
+        description="Every type choice should create structure, not style. If a decision can't be explained by the hierarchy, it shouldn't be there."
+    />
+    <Principle
+        label="Accessible"
+        title="Legibility at every level"
+        description="From 12px metadata to 32px headlines, type must be readable for every learner — regardless of age, context, or device."
+    />
+    <Principle
+        label="Consistent"
+        title="Consistency builds clarity"
+        description="The same style should always mean the same thing. When two styles look identical, they should behave identically."
+    />
+    <Principle
+        label="Intentional"
+        title="Let content lead"
+        description="Type should recede so understanding can happen. When in doubt, use less."
+    />
+</PrincipleSet>
 
 ## Plus Jakarta Sans
 

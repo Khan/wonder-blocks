@@ -1,4 +1,5 @@
 import {Meta} from "@storybook/addon-docs/blocks";
+import Principle, {PrincipleSet} from "../components/principle";
 import spacingImg from "./assets/spacing/spacing.png";
 import howTheScaleWorksImg from "./assets/spacing/how-the-scale-works.png";
 import usageGuidelines1Img from "./assets/spacing/usage-guidelines-1.png";
@@ -26,35 +27,33 @@ Space is not the absence of content — it's content. The distance between two e
 
 ## Principles
 
-Relational
-
-### Space defines belonging
-
-Proximity communicates relationship. Close together means related, further apart means separate. There is no neutral gap.
-
-Contextual
-
-### Density follows the task
-
-The right amount of space depends on what the user is doing. Focused tasks need room to breathe; scanning tasks need information packed efficiently.
-
-Consistent
-
-### Repetition builds rhythm
-
-When the same spacing is used for the same relationships throughout the product, structure becomes invisible — users feel the logic without noticing it. Inconsistent spacing makes structure visible as friction.
-
-Intentional
-
-### More is not always better
-
-Generous spacing can feel calm and focused. It can also feel empty or slow. More space is not inherently better — it's appropriate or it isn't. The goal is never maximum space; it's the right amount for the context.
-
-Accessible
-
-### Space scales with the user
-
-The spacing system uses relative units so it responds when a user changes their zoom. A comfortable gap at default zoom stays comfortable at 150%. Space is a proportion, not a fixed dimension.
+<PrincipleSet>
+    <Principle
+        label="Relational"
+        title="Space defines belonging"
+        description="Proximity communicates relationship. Close together means related, further apart means separate. There is no neutral gap."
+    />
+    <Principle
+        label="Contextual"
+        title="Density follows the task"
+        description="The right amount of space depends on what the user is doing. Focused tasks need room to breathe; scanning tasks need information packed efficiently."
+    />
+    <Principle
+        label="Consistent"
+        title="Repetition builds rhythm"
+        description="When the same spacing is used for the same relationships throughout the product, structure becomes invisible — users feel the logic without noticing it. Inconsistent spacing makes structure visible as friction."
+    />
+    <Principle
+        label="Intentional"
+        title="More is not always better"
+        description="Generous spacing can feel calm and focused. It can also feel empty or slow. More space is not inherently better — it's appropriate or it isn't. The goal is never maximum space; it's the right amount for the context."
+    />
+    <Principle
+        label="Accessible"
+        title="Space scales with the user"
+        description="The spacing system uses relative units so it responds when a user changes their zoom. A comfortable gap at default zoom stays comfortable at 150%. Space is a proportion, not a fixed dimension."
+    />
+</PrincipleSet>
 
 ## How the scale works
 

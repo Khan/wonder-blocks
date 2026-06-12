@@ -1,4 +1,5 @@
 import {Meta} from "@storybook/addon-docs/blocks";
+import Principle, {PrincipleSet} from "../components/principle";
 import motionImg from "./assets/motion/motion.png";
 import exceptions1Img from "./assets/motion/exceptions-1.png";
 import exceptions2Img from "./assets/motion/exceptions-2.png";
@@ -19,53 +20,48 @@ Motion helps users understand what's happening — where something is going, wha
 
 ## Principles
 
-Purposeful
-
-### Motion earns its place
-
-Every animation should help the user — orient, confirm, or guide. If removing it doesn't confuse anyone, remove it.
-
-Fast
-
-### Snappy, not sluggish
-
-Teachers are between tasks. Default durations should feel quick. Motion that holds up the interface is motion that fails.
-
-Honest
-
-### Show what's actually happening
-
-Loading states should reflect real progress where possible. Spinners are a last resort — tell the user what the system is doing.
-
-Calm
-
-### Never compete for attention
-
-Animations shouldn't draw the eye away from content. Motion should support focus, not fracture it.
-
-Consistent
-
-### Same action, same feel
-
-Expanding a panel, opening a drawer, revealing data — similar interactions should move the same way across the product.
-
-Restrained
-
-### Animate once, then reset
-
-Animations play on trigger, then stop and reset - they do not loop. If replay is useful, it should be user-initiated.
-
-Accessible
-
-### Respect reduced motion
-
-Honor prefers-reduced-motion system settings. Motion should complement the interaction, never dominate it — transitions that are smooth and subtle by default, never the most noticeable thing on screen.
-
-Foundational
-
-### Motion clarifies, never carries
-
-An experience should be fully understandable without animation. Motion shows where you came from, where you're going, or what just changed — but it should never be the only way to communicate it.
+<PrincipleSet>
+    <Principle
+        label="Purposeful"
+        title="Motion earns its place"
+        description="Every animation should help the user — orient, confirm, or guide. If removing it doesn't confuse anyone, remove it."
+    />
+    <Principle
+        label="Fast"
+        title="Snappy, not sluggish"
+        description="Teachers are between tasks. Default durations should feel quick. Motion that holds up the interface is motion that fails."
+    />
+    <Principle
+        label="Honest"
+        title="Show what's actually happening"
+        description="Loading states should reflect real progress where possible. Spinners are a last resort — tell the user what the system is doing."
+    />
+    <Principle
+        label="Calm"
+        title="Never compete for attention"
+        description="Animations shouldn't draw the eye away from content. Motion should support focus, not fracture it."
+    />
+    <Principle
+        label="Consistent"
+        title="Same action, same feel"
+        description="Expanding a panel, opening a drawer, revealing data — similar interactions should move the same way across the product."
+    />
+    <Principle
+        label="Restrained"
+        title="Animate once, then reset"
+        description="Animations play on trigger, then stop and reset - they do not loop. If replay is useful, it should be user-initiated."
+    />
+    <Principle
+        label="Accessible"
+        title="Respect reduced motion"
+        description="Honor prefers-reduced-motion system settings. Motion should complement the interaction, never dominate it — transitions that are smooth and subtle by default, never the most noticeable thing on screen."
+    />
+    <Principle
+        label="Foundational"
+        title="Motion clarifies, never carries"
+        description="An experience should be fully understandable without animation. Motion shows where you came from, where you're going, or what just changed — but it should never be the only way to communicate it."
+    />
+</PrincipleSet>
 
 ## Exceptions
 
