@@ -140,6 +140,15 @@ type Props = Readonly<{
      * function) to open.
      */
     children?: (arg1: {openModal: () => unknown}) => React.ReactNode;
+    /**
+     * @deprecated Use `modal={isOpen ? ... : null}` instead and keep the
+     * launcher always mounted. Passing `opened` will be removed in a future
+     * major version.
+     *
+     * Controls whether the drawer is visible. When provided, `onClose` must
+     * also be supplied.
+     */
+    opened?: boolean;
 }> &
     WithActionSchedulerProps;
 
@@ -157,6 +166,8 @@ const DrawerLauncher = (props: Props) => {
         testId,
         onClose,
         children,
+        // eslint-disable-next-line @typescript-eslint/no-deprecated
+        opened: deprecatedOpened,
         schedule,
         alignment,
         styles,
@@ -174,8 +185,20 @@ const DrawerLauncher = (props: Props) => {
         null,
     );
 
-    // In controlled mode (no children), open state is derived from the modal prop.
+    // In controlled mode (no children), open state is derived from the modal
+    // prop (or the deprecated `opened` prop when provided as a shim).
     const isControlled = !children;
+
+    React.useEffect(() => {
+        if (deprecatedOpened !== undefined) {
+            // eslint-disable-next-line no-console
+            console.warn(
+                "DrawerLauncher: the `opened` prop is deprecated. " +
+                    "Keep the launcher always mounted and use " +
+                    "`modal={isOpen ? ... : null}` instead.",
+            );
+        }
+    }, [deprecatedOpened]);
 
     // Preserve the last non-null modal so it can be displayed during exit animation.
     const lastNonNullModalRef = React.useRef<
@@ -190,8 +213,13 @@ const DrawerLauncher = (props: Props) => {
     const displayModal =
         modal ?? (isExiting ? lastNonNullModalRef.current : null);
 
+    // Resolve the open signal: deprecated `opened` takes priority as a shim,
+    // otherwise derive from whether modal is non-null.
+    const controlledOpenSignal =
+        deprecatedOpened !== undefined ? deprecatedOpened : modal != null;
+
     const opened = isControlled
-        ? modal != null || isExiting
+        ? controlledOpenSignal || isExiting
         : uncontrolledOpened;
 
     const saveLastElementFocused = React.useCallback(() => {
@@ -215,19 +243,17 @@ const DrawerLauncher = (props: Props) => {
         });
     }, [closedFocusId, schedule]);
 
-    // Track modal prop transitions to manage focus and exit animation in
-    // controlled mode.
-    const prevModalRef = React.useRef(modal);
+    // Track open/close transitions in controlled mode to capture/restore focus.
+    // Supports both the new (modal prop) and deprecated (opened prop) patterns.
+    const prevSignalRef = React.useRef(controlledOpenSignal);
     React.useEffect(() => {
         if (!isControlled) {
-            prevModalRef.current = modal;
+            prevSignalRef.current = controlledOpenSignal;
             return;
         }
-        const prevModal = prevModalRef.current;
-        prevModalRef.current = modal;
-
-        const wasOpen = prevModal != null;
-        const isNowOpen = modal != null;
+        const wasOpen = prevSignalRef.current;
+        const isNowOpen = controlledOpenSignal;
+        prevSignalRef.current = isNowOpen;
 
         if (!wasOpen && isNowOpen) {
             saveLastElementFocused();
@@ -238,7 +264,13 @@ const DrawerLauncher = (props: Props) => {
                 returnFocus();
             }
         }
-    }, [modal, isControlled, animated, saveLastElementFocused, returnFocus]);
+    }, [
+        controlledOpenSignal,
+        isControlled,
+        animated,
+        saveLastElementFocused,
+        returnFocus,
+    ]);
 
     // Handle exit animation completion in controlled mode.
     React.useEffect(() => {
@@ -269,9 +301,8 @@ const DrawerLauncher = (props: Props) => {
                 returnFocus();
             }
         } else {
-            // Controlled: notify parent so they can set modal=null.
-            // The modal transition effect handles exit animation and focus
-            // restoration once the parent updates modal to null.
+            // Controlled: notify parent so they can set modal=null (or opened=false).
+            // The transition effect handles exit animation and focus restoration.
             onClose?.();
         }
     }, [isControlled, onClose, returnFocus, animated, timingDuration]);
