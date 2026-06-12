@@ -48,28 +48,29 @@ describe("DrawerLauncher", () => {
         expect(portal).toBeInTheDocument();
     });
 
-    test("Modal can be manually opened and closed", async () => {
+    test("Modal can be manually opened and closed via modal prop", async () => {
         // Arrange
-        const UnderTest = ({opened}: {opened: boolean}) => (
+        const UnderTest = ({isOpen}: {isOpen: boolean}) => (
             <DrawerLauncher
                 alignment="inlineEnd"
-                modal={exampleModal}
-                opened={opened}
+                animated={false}
+                modal={isOpen ? exampleModal : null}
                 onClose={() => {}}
                 testId="modal-launcher-portal"
             />
         );
-        const {rerender} = render(<UnderTest opened={false} />);
+        const {rerender} = render(<UnderTest isOpen={false} />);
 
         // Act
         expect(
             screen.queryByTestId("modal-launcher-portal"),
         ).not.toBeInTheDocument();
-        rerender(<UnderTest opened={true} />);
+        rerender(<UnderTest isOpen={true} />);
         expect(
             await screen.findByTestId("modal-launcher-portal"),
         ).toBeInTheDocument();
-        rerender(<UnderTest opened={false} />);
+        rerender(<UnderTest isOpen={false} />);
+        // Without animation the portal should be gone immediately
         expect(
             screen.queryByTestId("modal-launcher-portal"),
         ).not.toBeInTheDocument();
@@ -201,7 +202,6 @@ describe("DrawerLauncher", () => {
                 alignment="inlineEnd"
                 onClose={onClose}
                 modal={exampleModal}
-                opened={true}
                 backdropDismissEnabled={false}
                 testId="modal-launcher-backdrop"
             />,
@@ -258,15 +258,7 @@ describe("DrawerLauncher", () => {
     test("if modal is closed, return focus to the last element focused outside the modal", async () => {
         // Arrange
         const DrawerLauncherWrapper = () => {
-            const [opened, setOpened] = React.useState(false);
-
-            const handleOpen = () => {
-                setOpened(true);
-            };
-
-            const handleClose = () => {
-                setOpened(false);
-            };
+            const [isOpen, setIsOpen] = React.useState(false);
 
             return (
                 <MemoryRouter>
@@ -277,30 +269,38 @@ describe("DrawerLauncher", () => {
                             </Button>
                             <Button
                                 testId="launcher-button"
-                                onClick={() => handleOpen()}
+                                onClick={() => setIsOpen(true)}
                             >
                                 Open modal
                             </Button>
                             <DrawerLauncher
                                 alignment="inlineStart"
-                                onClose={() => handleClose()}
-                                opened={opened}
-                                modal={({closeModal}: any) => (
-                                    <FlexibleDialog
-                                        title="Regular modal"
-                                        content={
-                                            <View>
-                                                <BodyText>Hello World</BodyText>
-                                                <Button
-                                                    testId="modal-close-button"
-                                                    onClick={closeModal}
-                                                >
-                                                    Close Modal
-                                                </Button>
-                                            </View>
-                                        }
-                                    />
-                                )}
+                                animated={false}
+                                onClose={() => setIsOpen(false)}
+                                modal={
+                                    isOpen
+                                        ? ({closeModal}: any) => (
+                                              <FlexibleDialog
+                                                  title="Regular modal"
+                                                  content={
+                                                      <View>
+                                                          <BodyText>
+                                                              Hello World
+                                                          </BodyText>
+                                                          <Button
+                                                              testId="modal-close-button"
+                                                              onClick={
+                                                                  closeModal
+                                                              }
+                                                          >
+                                                              Close Modal
+                                                          </Button>
+                                                      </View>
+                                                  }
+                                              />
+                                          )
+                                        : null
+                                }
                             />
                         </View>
                     </CompatRouter>
@@ -330,15 +330,7 @@ describe("DrawerLauncher", () => {
     test("if `closedFocusId` is passed, shift focus to specified element after the modal closes", async () => {
         // Arrange
         const DrawerLauncherWrapper = () => {
-            const [opened, setOpened] = React.useState(false);
-
-            const handleOpen = () => {
-                setOpened(true);
-            };
-
-            const handleClose = () => {
-                setOpened(false);
-            };
+            const [isOpen, setIsOpen] = React.useState(false);
 
             return (
                 <View>
@@ -348,31 +340,35 @@ describe("DrawerLauncher", () => {
                     </Button>
                     <Button
                         testId="launcher-button"
-                        onClick={() => handleOpen()}
+                        onClick={() => setIsOpen(true)}
                     >
                         Open modal
                     </Button>
                     <DrawerLauncher
                         alignment="inlineStart"
-                        onClose={() => handleClose()}
-                        opened={opened}
+                        animated={false}
+                        onClose={() => setIsOpen(false)}
                         closedFocusId="button-to-focus-on"
-                        modal={({closeModal}: any) => (
-                            <FlexibleDialog
-                                title="Triggered from action menu"
-                                content={
-                                    <View>
-                                        {" "}
-                                        <Button
-                                            testId="modal-close-button"
-                                            onClick={closeModal}
-                                        >
-                                            Close Modal
-                                        </Button>
-                                    </View>
-                                }
-                            />
-                        )}
+                        modal={
+                            isOpen
+                                ? ({closeModal}: any) => (
+                                      <FlexibleDialog
+                                          title="Triggered from action menu"
+                                          content={
+                                              <View>
+                                                  {" "}
+                                                  <Button
+                                                      testId="modal-close-button"
+                                                      onClick={closeModal}
+                                                  >
+                                                      Close Modal
+                                                  </Button>
+                                              </View>
+                                          }
+                                      />
+                                  )
+                                : null
+                        }
                     />
                 </View>
             );
@@ -402,7 +398,6 @@ describe("DrawerLauncher", () => {
         render(
             <DrawerLauncher
                 alignment="inlineEnd"
-                opened={true}
                 onClose={jest.fn()}
                 modal={<div role="dialog">dialog</div>}
                 testId="test-id-example"
@@ -417,7 +412,7 @@ describe("DrawerLauncher", () => {
     });
 
     describe("Slide animations", () => {
-        test("Modal closes with animation when animated=true", async () => {
+        test("Modal closes and notifies parent when animated=true", async () => {
             // Arrange
             const onCloseMock = jest.fn();
             render(
@@ -431,7 +426,6 @@ describe("DrawerLauncher", () => {
                             content={<div data-testid="modal-content" />}
                         />
                     }
-                    opened={true}
                     onClose={onCloseMock}
                 />,
             );
@@ -442,15 +436,8 @@ describe("DrawerLauncher", () => {
             });
             await userEvent.click(closeButton);
 
-            // Assert
-            expect(onCloseMock).not.toHaveBeenCalled();
-            // Wait for animation
-            await waitFor(
-                () => {
-                    expect(onCloseMock).toHaveBeenCalled();
-                },
-                {timeout: 200}, // A bit longer than animation duration
-            );
+            // Assert - onClose is called immediately in controlled mode
+            expect(onCloseMock).toHaveBeenCalled();
         });
 
         test("Modal closes immediately when animated=false", async () => {
@@ -466,7 +453,6 @@ describe("DrawerLauncher", () => {
                             content={<div data-testid="modal-content" />}
                         />
                     }
-                    opened={true}
                     onClose={onCloseMock}
                 />,
             );
@@ -481,7 +467,7 @@ describe("DrawerLauncher", () => {
             expect(onCloseMock).toHaveBeenCalled();
         });
 
-        test("Modal shows exit animation when closing via backdrop click", async () => {
+        test("Modal notifies parent when closing via backdrop click", async () => {
             // Arrange
             const onCloseMock = jest.fn();
             render(
@@ -495,7 +481,6 @@ describe("DrawerLauncher", () => {
                             content={<div data-testid="modal-content" />}
                         />
                     }
-                    opened={true}
                     onClose={onCloseMock}
                     testId="modal-backdrop"
                 />,
@@ -505,18 +490,11 @@ describe("DrawerLauncher", () => {
             const backdrop = await screen.findByTestId("modal-backdrop");
             await userEvent.click(backdrop);
 
-            // Assert
-            expect(onCloseMock).not.toHaveBeenCalled();
-            // Wait for animation
-            await waitFor(
-                () => {
-                    expect(onCloseMock).toHaveBeenCalled();
-                },
-                {timeout: 200}, // A bit longer than animation duration
-            );
+            // Assert - onClose is called immediately in controlled mode
+            expect(onCloseMock).toHaveBeenCalled();
         });
 
-        test("Modal shows exit animation when closing via escape key", async () => {
+        test("Modal notifies parent when closing via escape key", async () => {
             // Arrange
             const onCloseMock = jest.fn();
             render(
@@ -530,7 +508,6 @@ describe("DrawerLauncher", () => {
                             content={<div data-testid="modal-content" />}
                         />
                     }
-                    opened={true}
                     onClose={onCloseMock}
                 />,
             );
@@ -538,15 +515,8 @@ describe("DrawerLauncher", () => {
             // Act
             await userEvent.keyboard("{Escape}");
 
-            // Assert
-            expect(onCloseMock).not.toHaveBeenCalled();
-            // Wait for animation
-            await waitFor(
-                () => {
-                    expect(onCloseMock).toHaveBeenCalled();
-                },
-                {timeout: 200}, // A bit longer than animation duration
-            );
+            // Assert - onClose is called immediately in controlled mode
+            expect(onCloseMock).toHaveBeenCalled();
         });
 
         test("Uncontrolled modal is removed from DOM after closing", async () => {
@@ -617,22 +587,25 @@ describe("DrawerLauncher", () => {
             await expect(document.body).not.toHaveStyle("overflow: hidden");
         });
 
-        test("Controlled modal is removed from DOM after closing", async () => {
+        test("Controlled modal is removed from DOM after closing without animation", async () => {
             // Arrange
             const TestComponent = () => {
-                const [opened, setOpened] = React.useState(true);
+                const [isOpen, setIsOpen] = React.useState(true);
                 return (
                     <DrawerLauncher
                         alignment="inlineEnd"
                         animated={false}
                         modal={
-                            <FlexibleDialog
-                                title="Animation test"
-                                content={<div data-testid="modal-content" />}
-                            />
+                            isOpen ? (
+                                <FlexibleDialog
+                                    title="Animation test"
+                                    content={
+                                        <div data-testid="modal-content" />
+                                    }
+                                />
+                            ) : null
                         }
-                        opened={opened}
-                        onClose={() => setOpened(false)}
+                        onClose={() => setIsOpen(false)}
                     />
                 );
             };
@@ -649,22 +622,25 @@ describe("DrawerLauncher", () => {
             expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
         });
 
-        test("Scroll is re-enabled after closing controlled modal", async () => {
+        test("Scroll is re-enabled after closing controlled modal without animation", async () => {
             // Arrange
             const TestComponent = () => {
-                const [opened, setOpened] = React.useState(true);
+                const [isOpen, setIsOpen] = React.useState(true);
                 return (
                     <DrawerLauncher
                         alignment="inlineEnd"
                         animated={false}
                         modal={
-                            <FlexibleDialog
-                                title="Animation test"
-                                content={<div data-testid="modal-content" />}
-                            />
+                            isOpen ? (
+                                <FlexibleDialog
+                                    title="Animation test"
+                                    content={
+                                        <div data-testid="modal-content" />
+                                    }
+                                />
+                            ) : null
                         }
-                        opened={opened}
-                        onClose={() => setOpened(false)}
+                        onClose={() => setIsOpen(false)}
                     />
                 );
             };
@@ -687,20 +663,23 @@ describe("DrawerLauncher", () => {
         test("Controlled modal is removed from DOM after animation", async () => {
             // Arrange
             const TestComponent = () => {
-                const [opened, setOpened] = React.useState(true);
+                const [isOpen, setIsOpen] = React.useState(true);
                 return (
                     <DrawerLauncher
                         alignment="inlineEnd"
                         animated={true}
                         timingDuration={100} // Short duration for test
                         modal={
-                            <FlexibleDialog
-                                title="Animation test"
-                                content={<div data-testid="modal-content" />}
-                            />
+                            isOpen ? (
+                                <FlexibleDialog
+                                    title="Animation test"
+                                    content={
+                                        <div data-testid="modal-content" />
+                                    }
+                                />
+                            ) : null
                         }
-                        opened={opened}
-                        onClose={() => setOpened(false)}
+                        onClose={() => setIsOpen(false)}
                     />
                 );
             };
@@ -727,20 +706,23 @@ describe("DrawerLauncher", () => {
         test("Scroll is re-enabled after animated close of controlled modal", async () => {
             // Arrange
             const TestComponent = () => {
-                const [opened, setOpened] = React.useState(true);
+                const [isOpen, setIsOpen] = React.useState(true);
                 return (
                     <DrawerLauncher
                         alignment="inlineEnd"
                         animated={true}
                         timingDuration={100} // Short duration for test
                         modal={
-                            <FlexibleDialog
-                                title="Animation test"
-                                content={<div data-testid="modal-content" />}
-                            />
+                            isOpen ? (
+                                <FlexibleDialog
+                                    title="Animation test"
+                                    content={
+                                        <div data-testid="modal-content" />
+                                    }
+                                />
+                            ) : null
                         }
-                        opened={opened}
-                        onClose={() => setOpened(false)}
+                        onClose={() => setIsOpen(false)}
                     />
                 );
             };

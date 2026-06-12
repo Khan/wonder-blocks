@@ -635,35 +635,38 @@ export const OpeningModal: StoryComponentType = {
                     onClose={() => {
                         setOpened(false);
                     }}
-                    opened={opened}
-                    modal={({closeModal}) => (
-                        <OnePaneDialog
-                            title="Are you sure?"
-                            content="This is just a test"
-                            style={{maxBlockSize: "fit-content"}}
-                            footer={
-                                <View
-                                    style={{
-                                        flexDirection: "row",
-                                        gap: sizing.size_160,
-                                    }}
-                                >
-                                    <Button
-                                        kind="tertiary"
-                                        onClick={closeModal}
-                                    >
-                                        Cancel
-                                    </Button>
-                                    <Button
-                                        actionType="destructive"
-                                        onClick={closeModal}
-                                    >
-                                        Delete
-                                    </Button>
-                                </View>
-                            }
-                        />
-                    )}
+                    modal={
+                        opened
+                            ? ({closeModal}) => (
+                                  <OnePaneDialog
+                                      title="Are you sure?"
+                                      content="This is just a test"
+                                      style={{maxBlockSize: "fit-content"}}
+                                      footer={
+                                          <View
+                                              style={{
+                                                  flexDirection: "row",
+                                                  gap: sizing.size_160,
+                                              }}
+                                          >
+                                              <Button
+                                                  kind="tertiary"
+                                                  onClick={closeModal}
+                                              >
+                                                  Cancel
+                                              </Button>
+                                              <Button
+                                                  actionType="destructive"
+                                                  onClick={closeModal}
+                                              >
+                                                  Delete
+                                              </Button>
+                                          </View>
+                                      }
+                                  />
+                              )
+                            : null
+                    }
                 />
             </>
         );
