@@ -146,6 +146,10 @@ const core = {
                 default: color.gray_30,
                 strong: color.gray_10,
             },
+            disabled: {
+                subtle: transparent,
+                default: color.gray_60,
+            },
         },
     },
 };
@@ -525,9 +529,9 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                 tertiary: color.gray_50,
             },
             shadow: {
-                primary: core.shadow.chonky.neutral.subtle,
-                secondary: core.shadow.chonky.neutral.subtle,
-                tertiary: core.transparent,
+                primary: core.shadow.chonky.disabled.default,
+                secondary: core.shadow.chonky.disabled.default,
+                tertiary: core.shadow.chonky.disabled.subtle,
             },
         },
     },

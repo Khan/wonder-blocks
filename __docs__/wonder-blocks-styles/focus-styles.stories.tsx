@@ -9,6 +9,7 @@ import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {ScenariosLayout} from "../components/scenarios-layout";
+import {allThemeModes} from "../../.storybook/modes";
 
 /**
  * Styles that implement accessible focus indicators for interactive elements.
@@ -41,6 +42,10 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // Disabling because this is already covered by the Scenarios story.
+            disableSnapshot: true,
+        },
     },
 } as Meta<any>;
 
@@ -110,10 +115,6 @@ export const Focus: Story = {
     },
     parameters: {
         pseudo: {focusVisible: true},
-        chromatic: {
-            // Disabling because this is already covered by the Scenarios story.
-            disableSnapshot: true,
-        },
     },
 };
 
@@ -134,7 +135,7 @@ export const Scenarios: Story = {
                 },
             },
             {
-                name: "On a dark background",
+                name: "On a neutral strong background",
                 props: {
                     children: (
                         <IconButton
@@ -253,6 +254,11 @@ export const Scenarios: Story = {
                 type: "code",
                 excludeDecorators: true,
             },
+        },
+        chromatic: {
+            // Enable scenarios snapshots
+            disableSnapshot: false,
+            modes: allThemeModes,
         },
     },
 };

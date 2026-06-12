@@ -52,7 +52,7 @@ export const color = {
     yellow_20: "#D69900",
     yellow_10: "#966B00",
     yellow_05: "#5F4500",
-    yellow_01: "#3A2D10",
+    yellow_01: "#312405",
     // Green
     green_90: "#F1FBF1",
     green_80: "#E3F7E3",
@@ -64,7 +64,7 @@ export const color = {
     green_20: "#3C6D4A",
     green_10: "#2C5037",
     green_05: "#24432D",
-    green_01: "#1C2C27",
+    green_01: "#1A2924",
     // Cyan
     cyan_90: "#EEF7FE",
     cyan_80: "#DDF0FE",

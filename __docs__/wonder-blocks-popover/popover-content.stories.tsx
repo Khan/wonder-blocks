@@ -30,6 +30,11 @@ export default {
                 excludeDecorators: true,
             },
         },
+        chromatic: {
+            // Visual coverage is provided by the Popover StateSheet snapshot,
+            // which renders PopoverContent inside the Popover.
+            disableSnapshot: true,
+        },
     },
     decorators: [
         (Story): React.ReactElement<React.ComponentProps<typeof View>> => (

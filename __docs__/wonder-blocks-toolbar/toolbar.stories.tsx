@@ -37,6 +37,10 @@ export default {
                 excludeDecorators: true,
             },
         },
+        chromatic: {
+            // Disable snapshots because it is covered by testing snapshots
+            disableSnapshot: true,
+        },
     },
     decorators: [
         (Story: any): React.ReactElement<React.ComponentProps<typeof View>> => (
@@ -189,6 +193,7 @@ Responsive.parameters = {
             medium: allModes.medium,
             large: allModes.large,
         },
+        disableSnapshot: false,
     },
 };
 

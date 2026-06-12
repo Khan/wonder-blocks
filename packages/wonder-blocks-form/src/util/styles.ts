@@ -89,7 +89,7 @@ export const baseStyles = {
     },
     icon: {
         default: {
-            foreground: semanticColor.core.foreground.knockout.default,
+            foreground: semanticColor.input.checked.foreground,
         },
         disabled: {
             foreground: semanticColor.core.foreground.neutral.subtle,
@@ -125,7 +125,7 @@ export const colorStates: StyleMap = {
                     background: semanticColor.input.checked.background,
                 },
                 hover: {
-                    border: semanticColor.core.border.instructive.default,
+                    border: semanticColor.input.checked.border,
                 },
                 press: {
                     border: semanticColor.input.checked.border,
@@ -176,7 +176,8 @@ export const colorStates: StyleMap = {
             default: {
                 rest: {
                     border: semanticColor.input.checked.background,
-                    background: semanticColor.core.background.base.default,
+                    // background is used for the radio checked state
+                    background: semanticColor.input.checked.foreground,
                 },
                 hover: baseStyles.choice.checked,
                 press: {
@@ -186,11 +187,14 @@ export const colorStates: StyleMap = {
                 },
             },
             error: {
-                rest: baseStyles.choice.error,
+                rest: {
+                    ...baseStyles.choice.error,
+                    // background is used for the radio checked state
+                    background: semanticColor.input.checked.foreground,
+                },
                 hover: baseStyles.choice.error,
                 press: {
                     ...baseStyles.choice.error,
-                    background: semanticColor.core.background.critical.strong,
                     border: semanticColor.core.border.critical.strong,
                 },
             },
@@ -201,11 +205,9 @@ export const colorStates: StyleMap = {
                 },
                 hover: {
                     border: semanticColor.core.border.disabled.strong,
-                    background: semanticColor.core.background.base.default,
                 },
                 press: {
                     border: semanticColor.core.border.disabled.strong,
-                    background: semanticColor.core.background.base.default,
                 },
             },
         },

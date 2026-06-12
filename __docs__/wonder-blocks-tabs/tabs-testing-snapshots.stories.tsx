@@ -14,7 +14,7 @@ import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {ScenariosLayout} from "../components/scenarios-layout";
 import {ControlledTabs, generateTabs} from "./tabs-utils";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 
 const StyledDiv = addStyle("div");
 
@@ -187,7 +187,7 @@ const meta = {
     },
     parameters: {
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
             delay: 500, // Delay to allow focus to settle
         },
     },

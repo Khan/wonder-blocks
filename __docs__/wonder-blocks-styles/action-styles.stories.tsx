@@ -42,6 +42,10 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // Disabling because this is already covered by the statesheet
+            disableSnapshot: true,
+        },
     },
 } as Meta<any>;
 
@@ -143,13 +147,6 @@ export const InverseOutline: Story = {
     globals: {
         backgrounds: {
             value: "neutralStrong",
-        },
-    },
-    parameters: {
-        chromatic: {
-            // Disabling because this is already covered by the All variants
-            // stories.
-            disableSnapshot: true,
         },
     },
 };
