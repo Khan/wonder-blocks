@@ -24,6 +24,47 @@ const modifiers = [
     maxHeightModifier,
 ];
 
+/**
+ * Re-runs Popper's positioning when the visual viewport changes (e.g. iOS/iPad
+ * pinch-zoom). On iOS, `position: fixed` is anchored to the layout viewport and
+ * does not track the visual viewport during pinch-zoom, and Popper does not
+ * listen to `visualViewport` events on its own. Without this, the menu position
+ * goes stale and drifts away from its opener while zoomed.
+ *
+ * This is a separate component because hooks can't be called inside react-popper's
+ * render-prop body.
+ */
+function VisualViewportUpdater({
+    update,
+}: {
+    update: (() => Promise<unknown>) | null;
+}): null {
+    React.useEffect(() => {
+        const vv =
+            typeof window !== "undefined" ? window.visualViewport : undefined;
+        // Guard for SSR / browsers without the visualViewport API.
+        if (!vv || !update) {
+            return;
+        }
+
+        const handleViewportChange = () => {
+            // update() returns a promise; we don't need the result, but we
+            // swallow rejections (e.g. the popper unmounting mid-flight).
+            void update()?.catch(() => {});
+        };
+
+        vv.addEventListener("resize", handleViewportChange);
+        vv.addEventListener("scroll", handleViewportChange);
+
+        return () => {
+            vv.removeEventListener("resize", handleViewportChange);
+            vv.removeEventListener("scroll", handleViewportChange);
+        };
+    }, [update]);
+
+    return null;
+}
+
 type Props = {
     /**
      * The children that will be wrapped by PopperJS.
@@ -91,20 +132,26 @@ const DropdownPopper = function ({
             placement={placement}
             modifiers={modifiers}
         >
-            {({placement, ref, style, hasPopperEscaped, isReferenceHidden}) => {
-                const shouldHidePopper = !!(
-                    hasPopperEscaped || isReferenceHidden
-                );
+            {({placement, ref, style, hasPopperEscaped, update}) => {
+                // Only suppress the menu when the popper itself has genuinely
+                // escaped its clipping area. We intentionally no longer hide on
+                // `isReferenceHidden`, which falsely trips during iOS pinch-zoom
+                // (a layout- vs visual-viewport coordinate mismatch) and made
+                // the menu impossible to open while zoomed.
+                const shouldHidePopper = !!hasPopperEscaped;
 
                 return (
-                    <div
-                        ref={ref}
-                        style={{...style, maxInlineSize: "100%"}}
-                        data-testid="dropdown-popper"
-                        data-placement={placement}
-                    >
-                        {children(shouldHidePopper)}
-                    </div>
+                    <>
+                        <VisualViewportUpdater update={update} />
+                        <div
+                            ref={ref}
+                            style={{...style, maxInlineSize: "100%"}}
+                            data-testid="dropdown-popper"
+                            data-placement={placement}
+                        >
+                            {children(shouldHidePopper)}
+                        </div>
+                    </>
                 );
             }}
         </Popper>,
