@@ -37,13 +37,29 @@ describe("ModalLauncher", () => {
         // Act
         await userEvent.click(await screen.findByRole("button"));
 
-        const portal = await screen.findByTestId("modal-launcher-portal");
-
         // Assert
-        expect(portal).toBeInTheDocument();
+        expect(
+            await screen.findByTestId("modal-launcher-portal"),
+        ).toBeInTheDocument();
     });
 
-    test("Modal can be manually opened and closed via modal prop", async () => {
+    test("starts closed when modal prop is null", () => {
+        // Arrange
+        render(
+            <ModalLauncher
+                modal={null}
+                onClose={() => {}}
+                testId="modal-launcher-portal"
+            />,
+        );
+
+        // Assert
+        expect(
+            screen.queryByTestId("modal-launcher-portal"),
+        ).not.toBeInTheDocument();
+    });
+
+    test("shows portal when modal prop becomes non-null", async () => {
         // Arrange
         const UnderTest = ({isOpen}: {isOpen: boolean}) => (
             <ModalLauncher
@@ -55,14 +71,30 @@ describe("ModalLauncher", () => {
         const {rerender} = render(<UnderTest isOpen={false} />);
 
         // Act
-        expect(
-            screen.queryByTestId("modal-launcher-portal"),
-        ).not.toBeInTheDocument();
         rerender(<UnderTest isOpen={true} />);
+
+        // Assert
         expect(
             await screen.findByTestId("modal-launcher-portal"),
         ).toBeInTheDocument();
+    });
+
+    test("hides portal when modal prop returns to null", async () => {
+        // Arrange
+        const UnderTest = ({isOpen}: {isOpen: boolean}) => (
+            <ModalLauncher
+                modal={isOpen ? exampleModal : null}
+                onClose={() => {}}
+                testId="modal-launcher-portal"
+            />
+        );
+        const {rerender} = render(<UnderTest isOpen={true} />);
+        await screen.findByTestId("modal-launcher-portal");
+
+        // Act
         rerender(<UnderTest isOpen={false} />);
+
+        // Assert
         expect(
             screen.queryByTestId("modal-launcher-portal"),
         ).not.toBeInTheDocument();
@@ -80,11 +112,7 @@ describe("ModalLauncher", () => {
                 }
             />
         );
-
         const onCloseMock = jest.fn();
-
-        // Mount the modal launcher. This shouldn't trigger any closing yet,
-        // because we shouldn't be calling the `modal` function yet.
         render(
             <ModalLauncher
                 modal={modalFn}
@@ -94,10 +122,7 @@ describe("ModalLauncher", () => {
                 {({openModal}: any) => <button onClick={openModal} />}
             </ModalLauncher>,
         );
-
         await userEvent.click(await screen.findByRole("button"));
-
-        // wait until the modal is open
         await screen.findByRole("dialog");
 
         // Act
@@ -116,20 +141,16 @@ describe("ModalLauncher", () => {
                 {({openModal}: any) => <button onClick={openModal} />}
             </ModalLauncher>,
         );
-
-        // Launch the modal.
         await userEvent.click(await screen.findByRole("button"));
-
-        // wait until the modal is open
         await screen.findByRole("dialog");
 
         // Act
-        // Simulate an Escape keypress.
         await userEvent.keyboard("{Escape}");
 
         // Assert
-        // Confirm that the modal is no longer mounted.
-        await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
+        await waitFor(() =>
+            expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),
+        );
     });
 
     test("Disable scrolling when the modal is open", async () => {
@@ -141,14 +162,10 @@ describe("ModalLauncher", () => {
         );
 
         // Act
-        // Launch the modal.
         await userEvent.click(await screen.findByRole("button"));
-
-        // wait until the modal is open
         await screen.findByRole("dialog");
 
         // Assert
-        // Now that the modal is open, there should be a ScrollDisabler.
         expect(document.body).toHaveStyle("overflow: hidden");
     });
 
@@ -159,34 +176,117 @@ describe("ModalLauncher", () => {
                 {({openModal}: any) => <button onClick={openModal} />}
             </ModalLauncher>,
         );
-
-        // Launch the modal.
         await userEvent.click(await screen.findByRole("button"));
-
         await screen.findByRole("dialog");
 
-        // Close the modal.
+        // Act
         await userEvent.click(
             await screen.findByRole("button", {name: "Close modal"}),
         );
 
         // Assert
-        // Now that the modal is closed, there should be no ScrollDisabler.
         expect(document.body).not.toHaveStyle("overflow: hidden");
     });
 
-    test("using controlled mode (no children) without 'onClose' should warn", async () => {
+    test("using controlled mode (no children) without 'onClose' should warn", () => {
         // Arrange
-        jest.spyOn(console, "warn").mockImplementation(() => {});
+        const warnSpy = jest
+            .spyOn(console, "warn")
+            .mockImplementation(() => {});
 
         // Act
         render(<ModalLauncher modal={exampleModal} />);
 
         // Assert
-        // eslint-disable-next-line no-console
-        expect(console.warn).toHaveBeenCalledWith(
+        expect(warnSpy).toHaveBeenCalledWith(
             "'onClose' should be provided when using ModalLauncher in controlled mode (without children)",
         );
+    });
+
+    test("using deprecated `opened` prop logs a deprecation warning", () => {
+        // Arrange
+        const warnSpy = jest
+            .spyOn(console, "warn")
+            .mockImplementation(() => {});
+
+        // Act
+        render(
+            <ModalLauncher
+                modal={exampleModal}
+                opened={false}
+                onClose={() => {}}
+            />,
+        );
+
+        // Assert
+        expect(warnSpy).toHaveBeenCalledWith(
+            expect.stringContaining("`opened` prop is deprecated"),
+        );
+    });
+
+    test("deprecated `opened` prop: starts closed when false", () => {
+        // Arrange
+        jest.spyOn(console, "warn").mockImplementation(() => {});
+
+        // Act
+        render(
+            <ModalLauncher
+                modal={exampleModal}
+                opened={false}
+                onClose={() => {}}
+                testId="modal-launcher-portal"
+            />,
+        );
+
+        // Assert
+        expect(
+            screen.queryByTestId("modal-launcher-portal"),
+        ).not.toBeInTheDocument();
+    });
+
+    test("deprecated `opened` prop: shows portal when opened becomes true", async () => {
+        // Arrange
+        jest.spyOn(console, "warn").mockImplementation(() => {});
+        const UnderTest = ({isOpen}: {isOpen: boolean}) => (
+            <ModalLauncher
+                modal={exampleModal}
+                opened={isOpen}
+                onClose={() => {}}
+                testId="modal-launcher-portal"
+            />
+        );
+        const {rerender} = render(<UnderTest isOpen={false} />);
+
+        // Act
+        rerender(<UnderTest isOpen={true} />);
+
+        // Assert
+        expect(
+            await screen.findByTestId("modal-launcher-portal"),
+        ).toBeInTheDocument();
+    });
+
+    test("deprecated `opened` prop: hides portal when opened becomes false", async () => {
+        // Arrange
+        jest.spyOn(console, "warn").mockImplementation(() => {});
+        const UnderTest = ({isOpen}: {isOpen: boolean}) => (
+            <ModalLauncher
+                modal={exampleModal}
+                opened={isOpen}
+                onClose={() => {}}
+                testId="modal-launcher-portal"
+            />
+        );
+        const {rerender} = render(<UnderTest isOpen={true} />);
+        await screen.findByTestId("modal-launcher-portal");
+
+        // Act
+        rerender(<UnderTest isOpen={false} />);
+
+        // Assert
+        expect(
+            screen.queryByTestId("modal-launcher-portal"),
+        ).not.toBeInTheDocument();
     });
 
     test("Clicking outside the modal dialog closes it by default", async () => {
@@ -202,23 +302,19 @@ describe("ModalLauncher", () => {
                 />
             );
         };
-
         render(<ModalLauncherWrapper />);
-
         await screen.findByRole("dialog");
         const backdrop = await screen.findByTestId("modal-launcher-backdrop");
 
         // Act
-        // Click at top-left corner of the backdrop (outside the modal dialog)
-        // This simulates a real user clicking outside the dialog
         await userEvent.pointer([
             {target: backdrop, coords: {clientX: 10, clientY: 10}},
             {keys: "[MouseLeft>]", target: backdrop},
             {keys: "[/MouseLeft]", target: backdrop},
         ]);
 
-        // Assert - modal should be removed from DOM
-        await expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+        // Assert
+        expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
     });
 
     test("Clicking outside the modal dialog closes it when backdropDismissEnabled is true", async () => {
@@ -235,22 +331,18 @@ describe("ModalLauncher", () => {
                 />
             );
         };
-
         render(<ModalLauncherWrapper />);
-
         const backdrop = screen.getByTestId("modal-launcher-backdrop");
 
         // Act
-        // Click at top-left corner of the backdrop (outside the modal dialog)
-        // This simulates a real user clicking outside the dialog
         await userEvent.pointer([
             {target: backdrop, coords: {clientX: 10, clientY: 10}},
             {keys: "[MouseLeft>]", target: backdrop},
             {keys: "[/MouseLeft]", target: backdrop},
         ]);
 
-        // Assert - modal should be removed from DOM
-        await expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+        // Assert
+        expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
     });
 
     test("If backdropDismissEnabled set to false, clicking outside the modal does not close it", async () => {
@@ -267,21 +359,17 @@ describe("ModalLauncher", () => {
                 />
             );
         };
-
         render(<ModalLauncherWrapper />);
-
         const backdrop = screen.getByTestId("modal-launcher-backdrop");
 
         // Act
-        // Click at top-left corner of the backdrop (outside the modal dialog)
-        // This simulates a real user clicking outside the dialog
         await userEvent.pointer([
             {target: backdrop, coords: {clientX: 10, clientY: 10}},
             {keys: "[MouseLeft>]", target: backdrop},
             {keys: "[/MouseLeft]", target: backdrop},
         ]);
 
-        // Assert - modal should still be in DOM
+        // Assert
         expect(screen.getByRole("dialog")).toBeInTheDocument();
     });
 
@@ -295,23 +383,18 @@ describe("ModalLauncher", () => {
                 {({openModal}: any) => <button onClick={openModal} />}
             </ModalLauncher>,
         );
-
-        // Open the modal
         await userEvent.click(screen.getByRole("button"));
-
         const backdrop = screen.getByTestId("modal-launcher-backdrop");
 
         // Act
-        // Click at top-left corner of the backdrop (outside the modal dialog)
-        // This simulates a real user clicking outside the dialog
         await userEvent.pointer([
             {target: backdrop, coords: {clientX: 10, clientY: 10}},
             {keys: "[MouseLeft>]", target: backdrop},
             {keys: "[/MouseLeft]", target: backdrop},
         ]);
 
-        // Assert - modal should be removed from DOM
-        await expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+        // Assert
+        expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
     });
 
     test("Clicking modal content does not close the modal", async () => {
@@ -327,15 +410,12 @@ describe("ModalLauncher", () => {
                 />
             );
         };
-
         render(<ModalLauncherWrapper />);
 
-        const dialog = screen.getByRole("dialog");
-
         // Act
-        await userEvent.click(dialog);
+        await userEvent.click(screen.getByRole("dialog"));
 
-        // Assert - modal should still be in DOM
+        // Assert
         expect(screen.getByRole("dialog")).toBeInTheDocument();
     });
 
@@ -359,21 +439,16 @@ describe("ModalLauncher", () => {
                 )}
             </ModalLauncher>,
         );
-
-        // focus on the open modal button
         await userEvent.tab();
 
         // Act
-        // Launch the modal.
         await userEvent.keyboard("{enter}");
-
-        // wait until the modal is open
         await screen.findByRole("dialog");
 
         // Assert
-        await waitFor(async () =>
+        await waitFor(() =>
             expect(
-                await screen.findByRole("button", {name: "Close modal"}),
+                screen.getByRole("button", {name: "Close modal"}),
             ).toHaveFocus(),
         );
     });
@@ -424,24 +499,16 @@ describe("ModalLauncher", () => {
                 </MemoryRouter>
             );
         };
-
         render(<ModalLauncherWrapper />);
-
         const lastButton = await screen.findByTestId("launcher-button");
-
-        // Launch the modal.
         await userEvent.click(lastButton);
+        await screen.findByRole("dialog");
 
         // Act
-        // Close modal
-        const modalCloseButton =
-            await screen.findByTestId("modal-close-button");
-        await userEvent.click(modalCloseButton);
+        await userEvent.click(await screen.findByTestId("modal-close-button"));
 
         // Assert
-        await waitFor(() => {
-            expect(lastButton).toHaveFocus();
-        });
+        await waitFor(() => expect(lastButton).toHaveFocus());
     });
 
     test("if modal with controlled open state is closed, return focus to the last element focused outside the modal", async () => {
@@ -490,22 +557,16 @@ describe("ModalLauncher", () => {
                 </MemoryRouter>
             );
         };
-
         render(<ModalLauncherWrapper />);
-
         const lastButton = await screen.findByTestId("launcher-button");
         await userEvent.click(lastButton);
+        await screen.findByRole("dialog");
 
         // Act
-        // Close modal
-        const modalCloseButton =
-            await screen.findByTestId("modal-close-button");
-        await userEvent.click(modalCloseButton);
+        await userEvent.click(await screen.findByTestId("modal-close-button"));
 
         // Assert
-        await waitFor(() => {
-            expect(lastButton).toHaveFocus();
-        });
+        await waitFor(() => expect(lastButton).toHaveFocus());
     });
 
     test("if `closedFocusId` is passed, shift focus to specified element after the modal closes", async () => {
@@ -550,24 +611,17 @@ describe("ModalLauncher", () => {
                 </View>
             );
         };
-
         render(<ModalLauncherWrapper />);
-
-        // Launch modal
-        const launcherButton = await screen.findByTestId("launcher-button");
-        await userEvent.click(launcherButton);
+        await userEvent.click(await screen.findByTestId("launcher-button"));
+        await screen.findByRole("dialog");
 
         // Act
-        // Close modal
-        const modalCloseButton =
-            await screen.findByTestId("modal-close-button");
-        await userEvent.click(modalCloseButton);
+        await userEvent.click(await screen.findByTestId("modal-close-button"));
 
         // Assert
-        const focusedButton = await screen.findByTestId("focused-button");
-        await waitFor(() => {
-            expect(focusedButton).toHaveFocus();
-        });
+        await waitFor(() =>
+            expect(screen.getByTestId("focused-button")).toHaveFocus(),
+        );
     });
 
     test("testId should be added to the Backdrop", async () => {
@@ -580,11 +634,10 @@ describe("ModalLauncher", () => {
             />,
         );
 
-        // Act
-        const backdrop = await screen.findByTestId("test-id-example");
-
         // Assert
-        expect(backdrop).toBeInTheDocument();
+        expect(
+            await screen.findByTestId("test-id-example"),
+        ).toBeInTheDocument();
     });
 
     test("should handle focus correctly when opened programmatically through a wrapper component", async () => {
@@ -624,23 +677,16 @@ describe("ModalLauncher", () => {
                 </View>
             );
         };
-
         render(<WrappedModalLauncher />);
-
-        // Focus the button before the modal opens
         const buttonToFocus = await screen.findByTestId("focused-button");
-        await userEvent.click(buttonToFocus); // Move focus to the button
+        await userEvent.click(buttonToFocus);
+        await screen.findByRole("dialog");
 
         // Act
-        // Close modal
-        const modalCloseButton =
-            await screen.findByTestId("modal-close-button");
-        await userEvent.click(modalCloseButton);
+        await userEvent.click(await screen.findByTestId("modal-close-button"));
 
         // Assert
-        await waitFor(() => {
-            expect(buttonToFocus).toHaveFocus();
-        });
+        await waitFor(() => expect(buttonToFocus).toHaveFocus());
     });
 
     describe("Conditional modal content pattern", () => {
@@ -656,7 +702,6 @@ describe("ModalLauncher", () => {
             {id: "3", name: "Charlie Brown", progress: 95},
         ];
 
-        // Shared component for all tests
         const ConditionalModalContainer = () => {
             const [selectedItem, setSelectedItem] = React.useState<{
                 type: "content" | "mastery";
@@ -757,8 +802,7 @@ describe("ModalLauncher", () => {
             );
         };
 
-        // Parameterized tests for opening modals
-        [
+        it.each([
             {
                 name: "opens content modal when clicking content button",
                 triggerId: "content-modal-trigger-1",
@@ -769,24 +813,18 @@ describe("ModalLauncher", () => {
                 triggerId: "mastery-modal-trigger-2",
                 expectedTitle: "Mastery: Bob Johnson",
             },
-        ].forEach(({name, triggerId, expectedTitle}) => {
-            test(name, async () => {
-                // Arrange
-                render(<ConditionalModalContainer />);
+        ])("$name", async ({triggerId, expectedTitle}) => {
+            // Arrange
+            render(<ConditionalModalContainer />);
 
-                // Act
-                const button = await screen.findByTestId(triggerId);
-                await userEvent.click(button);
+            // Act
+            await userEvent.click(await screen.findByTestId(triggerId));
 
-                // Assert
-                expect(
-                    await screen.findByText(expectedTitle),
-                ).toBeInTheDocument();
-            });
+            // Assert
+            expect(await screen.findByText(expectedTitle)).toBeInTheDocument();
         });
 
-        // Parameterized tests for focus management
-        [
+        it.each([
             {
                 name: "returns focus to correct button after closing content modal",
                 triggerId: "content-modal-trigger-1",
@@ -795,30 +833,29 @@ describe("ModalLauncher", () => {
                 name: "returns focus to correct button after closing mastery modal from different row",
                 triggerId: "mastery-modal-trigger-3",
             },
-        ].forEach(({name, triggerId}) => {
-            test(name, async () => {
-                // Arrange
-                render(<ConditionalModalContainer />);
-                const button = await screen.findByTestId(triggerId);
+        ])("$name", async ({triggerId}) => {
+            // Arrange
+            render(<ConditionalModalContainer />);
+            const button = await screen.findByTestId(triggerId);
+            await userEvent.click(button);
+            await screen.findByRole("dialog");
 
-                // Act
-                await userEvent.click(button);
-                await userEvent.click(
-                    await screen.findByRole("button", {name: "Close modal"}),
-                );
+            // Act
+            await userEvent.click(
+                await screen.findByRole("button", {name: "Close modal"}),
+            );
 
-                // Assert
-                await waitFor(() => expect(button).toHaveFocus());
-            });
+            // Assert
+            await waitFor(() => expect(button).toHaveFocus());
         });
 
         test("closes modal and removes it from DOM", async () => {
             // Arrange
             render(<ConditionalModalContainer />);
-            const contentButton = await screen.findByTestId(
-                "content-modal-trigger-1",
+            await userEvent.click(
+                await screen.findByTestId("content-modal-trigger-1"),
             );
-            await userEvent.click(contentButton);
+            await screen.findByRole("dialog");
 
             // Act
             await userEvent.click(
@@ -834,19 +871,17 @@ describe("ModalLauncher", () => {
         test("opens different modal type after closing previous modal", async () => {
             // Arrange
             render(<ConditionalModalContainer />);
-            const contentButton = await screen.findByTestId(
-                "content-modal-trigger-1",
+            await userEvent.click(
+                await screen.findByTestId("content-modal-trigger-1"),
             );
-            await userEvent.click(contentButton);
             await userEvent.click(
                 await screen.findByRole("button", {name: "Close modal"}),
             );
 
             // Act
-            const masteryButton = await screen.findByTestId(
-                "mastery-modal-trigger-2",
+            await userEvent.click(
+                await screen.findByTestId("mastery-modal-trigger-2"),
             );
-            await userEvent.click(masteryButton);
 
             // Assert
             expect(
@@ -861,6 +896,7 @@ describe("ModalLauncher", () => {
                 "mastery-modal-trigger-2",
             );
             await userEvent.click(masteryButton2);
+            await screen.findByRole("dialog");
 
             // Act
             await userEvent.click(

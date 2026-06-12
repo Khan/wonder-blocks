@@ -98,6 +98,15 @@ type Props = Readonly<{
      * `modal={null}` to close and `modal={<MyDialog />}` to open.
      */
     children?: (arg1: {openModal: () => unknown}) => React.ReactNode;
+    /**
+     * @deprecated Use `modal={isOpen ? <Dialog /> : null}` instead and keep
+     * the launcher always mounted. Passing `opened` will be removed in a
+     * future major version.
+     *
+     * Controls whether the modal is visible. When provided, the component
+     * operates in controlled mode and `onClose` must also be supplied.
+     */
+    opened?: boolean;
 }> &
     WithActionSchedulerProps;
 
@@ -131,6 +140,8 @@ const ModalLauncher = (props: Props): React.ReactElement | null => {
         initialFocusId,
         modal,
         onClose,
+        // eslint-disable-next-line @typescript-eslint/no-deprecated
+        opened: deprecatedOpened,
         schedule,
         testId,
     } = props;
@@ -142,13 +153,23 @@ const ModalLauncher = (props: Props): React.ReactElement | null => {
     // Uncontrolled open state (used only when `children` is provided)
     const [opened, setOpened] = React.useState(false);
 
-    // In controlled mode (no children), open state is derived from the modal prop.
+    // In controlled mode (no children), open state is derived from the modal
+    // prop (or the deprecated `opened` prop when provided as a shim).
     const isControlled = !children;
-    const isOpened = isControlled ? modal != null : opened;
+    const isOpened = isControlled
+        ? deprecatedOpened !== undefined
+            ? deprecatedOpened
+            : modal != null
+        : opened;
 
     React.useEffect(() => {
-        if (!isControlled && !onClose) {
-            return;
+        if (deprecatedOpened !== undefined) {
+            // eslint-disable-next-line no-console
+            console.warn(
+                "ModalLauncher: the `opened` prop is deprecated. " +
+                    "Keep the launcher always mounted and use " +
+                    "`modal={isOpen ? <Dialog /> : null}` instead.",
+            );
         }
         if (isControlled && !onClose) {
             // eslint-disable-next-line no-console
@@ -156,7 +177,7 @@ const ModalLauncher = (props: Props): React.ReactElement | null => {
                 "'onClose' should be provided when using ModalLauncher in controlled mode (without children)",
             );
         }
-    }, [isControlled, onClose]);
+    }, [deprecatedOpened, isControlled, onClose]);
 
     const saveLastElementFocused = React.useCallback(() => {
         // keep a reference of the element that triggers the modal
@@ -192,25 +213,36 @@ const ModalLauncher = (props: Props): React.ReactElement | null => {
         }
     }, [closedFocusId, schedule]);
 
-    // Track modal prop transitions to manage focus in controlled mode.
-    const prevModalRef = React.useRef(modal);
+    // Track transitions in controlled mode to capture/restore focus.
+    // Supports both the new (modal prop) and deprecated (opened prop) patterns.
+    const prevSignalRef = React.useRef(
+        deprecatedOpened !== undefined ? deprecatedOpened : modal != null,
+    );
     React.useEffect(() => {
         if (!isControlled) {
-            prevModalRef.current = modal;
+            prevSignalRef.current =
+                deprecatedOpened !== undefined
+                    ? deprecatedOpened
+                    : modal != null;
             return;
         }
-        const prevModal = prevModalRef.current;
-        prevModalRef.current = modal;
-
-        const wasOpen = prevModal != null;
-        const isNowOpen = modal != null;
+        const wasOpen = prevSignalRef.current;
+        const isNowOpen =
+            deprecatedOpened !== undefined ? deprecatedOpened : modal != null;
+        prevSignalRef.current = isNowOpen;
 
         if (!wasOpen && isNowOpen) {
             saveLastElementFocused();
         } else if (wasOpen && !isNowOpen) {
             returnFocus();
         }
-    }, [modal, isControlled, saveLastElementFocused, returnFocus]);
+    }, [
+        modal,
+        deprecatedOpened,
+        isControlled,
+        saveLastElementFocused,
+        returnFocus,
+    ]);
 
     const openModal = React.useCallback(() => {
         saveLastElementFocused();
@@ -222,8 +254,8 @@ const ModalLauncher = (props: Props): React.ReactElement | null => {
             setOpened(false);
             returnFocus();
         }
-        // In controlled mode, returnFocus() is called by the modal transition
-        // effect once the parent updates modal to null.
+        // In controlled mode, returnFocus() is called by the transition effect
+        // once the parent updates modal to null (or opened to false).
         onClose?.();
     }, [isControlled, onClose, returnFocus]);
 
