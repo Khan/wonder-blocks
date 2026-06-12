@@ -378,6 +378,9 @@ const _generateStyles = (
                 transform: `translateY(calc((${theme.root.shadow.y.hover} - ${theme.root.shadow.y.rest}) * -1))`,
             },
 
+            // TODO: remove the data attribute and apply these styles using CSS
+            // modules once WB-2328 is merged. Be sure to test this fix still
+            // works: https://github.com/Khan/wonder-blocks/pull/3107
             [":is(:active, [data-state='pressed']) .chonky" as any]:
                 chonkyPressed,
 
@@ -399,6 +402,9 @@ const _generateStyles = (
             // Reset hover and active styles on the chonky element.
             [":is(:hover) .chonky" as any]: disabledStatesStyles,
             [":is(:hover) .chonky" as any]: chonkyDisabled,
+            // TODO: remove the data attribute and apply these styles using CSS
+            // modules once WB-2328 is merged. Be sure to test this fix still
+            // works: https://github.com/Khan/wonder-blocks/pull/3107
             [":is(:active, [data-state='pressed']) .chonky" as any]:
                 chonkyDisabled,
         },
