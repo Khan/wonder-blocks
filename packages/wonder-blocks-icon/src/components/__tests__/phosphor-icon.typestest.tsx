@@ -6,16 +6,16 @@ import PlusCircleFill from "@phosphor-icons/core/fill/plus-circle-fill.svg";
 import {PhosphorIcon} from "../phosphor-icon";
 
 // Valid: small + bold
-<PhosphorIcon icon={PlusCircleBold} size="small" color="green" />;
+<PhosphorIcon icon={PlusCircleBold} size="small" color="currentColor" />;
 
 // Valid: medium + regular
-<PhosphorIcon icon={PlusCircleRegular} size="medium" color="green" />;
+<PhosphorIcon icon={PlusCircleRegular} size="medium" color="currentColor" />;
 
 // Valid: large + fill
-<PhosphorIcon icon={PlusCircleFill} size="large" color="green" />;
+<PhosphorIcon icon={PlusCircleFill} size="large" color="currentColor" />;
 
 // Valid: small + regular
-<PhosphorIcon icon={PlusCircleRegular} size="small" color="green" />;
+<PhosphorIcon icon={PlusCircleRegular} size="small" color="currentColor" />;
 
 // Valid: medium + bold
-<PhosphorIcon icon={PlusCircleBold} size="medium" color="green" />;
+<PhosphorIcon icon={PlusCircleBold} size="medium" color="currentColor" />;

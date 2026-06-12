@@ -234,12 +234,12 @@ const styles = StyleSheet.create({
         border: `1px dashed ${semanticColor.core.border.neutral.subtle}`,
     },
     item: {
-        maxWidth: itemWidth,
+        maxInlineSize: itemWidth,
         overflowWrap: "break-word",
     },
     compactItem: {
         marginBlockEnd: sizing.size_080,
-        maxWidth: "100%",
+        maxInlineSize: "100%",
         width: "100%",
 
         backgroundColor: semanticColor.core.background.base.subtle,

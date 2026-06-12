@@ -102,7 +102,7 @@ export const Default = {
                             <View
                                 style={{
                                     backgroundColor: row.value,
-                                    boxShadow: "0 0 0 1px rgba(0, 0, 0, 0.1)",
+                                    boxShadow: `0 0 0 1px ${semanticColor.core.shadow.transparent.color.subtle}`,
                                 }}
                             >
                                 &nbsp;

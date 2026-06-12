@@ -51,6 +51,6 @@ const styles = StyleSheet.create({
     },
     scenario: {
         gap: sizing.size_080,
-        maxWidth: "100%",
+        maxInlineSize: "100%",
     },
 });

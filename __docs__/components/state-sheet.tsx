@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
         color: semanticColor.core.foreground.neutral.default,
     },
     content: {
-        maxWidth: "100%",
+        maxInlineSize: "100%",
     },
     cell: {
         alignContent: "flex-start",

@@ -147,8 +147,8 @@ const sharedStyles = StyleSheet.create({
     default: {
         height: baseStyles.choice.sizing.size,
         width: baseStyles.choice.sizing.size,
-        minHeight: baseStyles.choice.sizing.size,
-        minWidth: baseStyles.choice.sizing.size,
+        minBlockSize: baseStyles.choice.sizing.size,
+        minInlineSize: baseStyles.choice.sizing.size,
         margin: 0,
         outline: "none",
         boxSizing: "border-box",

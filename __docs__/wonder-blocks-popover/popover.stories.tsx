@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     },
     playground: {
         border: `1px dashed ${semanticColor.core.border.neutral.subtle}`,
-        marginTop: sizing.size_240,
+        marginBlockStart: sizing.size_240,
         padding: sizing.size_240,
         flexDirection: "row",
         gap: sizing.size_160,
@@ -602,7 +602,7 @@ export const CustomKeyboardNavigation: StoryComponentType = {
         };
 
         return (
-            <View style={[{padding: "120px 0"}]}>
+            <View style={[{paddingBlock: "120px", paddingInline: "0"}]}>
                 <View style={[styles.row, {gap: sizing.size_160}]}>
                     <Button
                         kind="secondary"
@@ -786,7 +786,7 @@ export const PopoverAlignment: StoryComponentType = {
 export const WithDocumentRootBoundary: StoryComponentType = {
     render: () => {
         return (
-            <View style={{paddingBottom: "500px"}}>
+            <View style={{paddingBlockEnd: "500px"}}>
                 <Popover
                     rootBoundary="document"
                     content={() => (
@@ -873,6 +873,40 @@ export const WithCustomAriaDescribedBy: StoryComponentType = {
                     </Button>
                 </Popover>
             </View>
+        );
+    },
+    parameters: {
+        chromatic: {
+            // Popover is closed by default, so we don't need to test it.
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * The `titleHeadingTag` prop allows customizing the heading level used for the
+ * popover title. It defaults to `"h4"`. This does not affect the visual appearance of the title.
+ */
+export const WithTitleHeadingTag: StoryComponentType = {
+    render: function Render() {
+        const [opened, setOpened] = React.useState(false);
+        return (
+            <Popover
+                opened={opened}
+                onClose={() => setOpened(false)}
+                content={
+                    <PopoverContent
+                        titleHeadingTag="h2"
+                        title="Title rendered as h2"
+                        content="This popover title is rendered as an h2 element instead of the default h4. This does not affect the visual appearance of the title."
+                        closeButtonVisible
+                    />
+                }
+            >
+                <Button onClick={() => setOpened(true)}>
+                    Open popover with h2 title
+                </Button>
+            </Popover>
         );
     },
     parameters: {
@@ -994,8 +1028,8 @@ export const AutoUpdate: StoryComponentType = {
                         style={
                             position && {
                                 position: "absolute",
-                                top: position.y,
-                                left: position.x,
+                                insetBlockStart: position.y,
+                                insetInlineStart: position.x,
                             }
                         }
                     >

@@ -21,8 +21,8 @@ const styles = StyleSheet.create({
         position: "relative",
         zIndex: 0,
         // fix flexbox bugs
-        minHeight: 0,
-        minWidth: 0,
+        minBlockSize: 0,
+        minInlineSize: 0,
     },
 });
 

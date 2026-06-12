@@ -204,7 +204,11 @@ export const WithBackgroundImage: StoryComponentType = {
                 <Heading size="small" style={styles.eotCardText}>
                     Practice
                 </Heading>
-                <img src={eotIcon} alt="" style={{maxWidth: sizing.size_640}} />
+                <img
+                    src={eotIcon}
+                    alt=""
+                    style={{maxInlineSize: sizing.size_640}}
+                />
                 <Heading
                     size="small"
                     weight="semi"

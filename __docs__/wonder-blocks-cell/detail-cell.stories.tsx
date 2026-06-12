@@ -477,7 +477,7 @@ const styles = StyleSheet.create({
     },
     navigation: {
         border: `${border.width.thin} dashed ${semanticColor.core.border.instructive.default}`,
-        marginTop: sizing.size_240,
+        marginBlockStart: sizing.size_240,
         padding: sizing.size_240,
     },
 });

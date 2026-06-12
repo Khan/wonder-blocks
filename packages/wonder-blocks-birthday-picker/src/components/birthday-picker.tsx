@@ -157,7 +157,7 @@ const defaultStyles = StyleSheet.create({
     },
     input: {
         [screenSizes.small]: {
-            minWidth: "100%",
+            minInlineSize: "100%",
         },
     },
     errorRow: {
@@ -423,7 +423,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                 selectedValue={day}
                 style={[
                     {
-                        minWidth: FIELD_MIN_WIDTH_DAY,
+                        minInlineSize: FIELD_MIN_WIDTH_DAY,
                     },
                     defaultStyles.input,
                     dropdownStyle,

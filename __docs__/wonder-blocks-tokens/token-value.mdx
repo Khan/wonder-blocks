@@ -26,6 +26,18 @@ value such as `#1865f2` or `rgba(24, 101, 242, 0.5)`.
 
 The `tokenValue` helper resolves a token to its computed raw value at runtime.
 
+<Banner
+    kind="info"
+    text={
+        <>
+            Use <code>tokenValue</code> only for edge cases where a concrete raw
+            value is required. Favour using tokens directly wherever possible,
+            since resolving raw values can break theming if overused.
+        </>
+    }
+/>
+
+<br />
 ## Usage
 
 ```js

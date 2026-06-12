@@ -20,9 +20,9 @@ const mobile = "@media (max-width: 1023px)";
 
 const styles = StyleSheet.create({
     fillContent: {
-        marginLeft: sizing.size_120,
+        marginInlineStart: sizing.size_120,
         [mobile]: {
-            marginLeft: 0,
+            marginInlineStart: 0,
             width: "100%",
         },
     },

@@ -158,6 +158,7 @@ describe("FieldHeading", () => {
         const styles = StyleSheet.create({
             style1: {
                 flexGrow: 1,
+                // eslint-disable-next-line @khanacademy/wonder-blocks/no-hardcoded-color
                 background: "blue",
             },
         });

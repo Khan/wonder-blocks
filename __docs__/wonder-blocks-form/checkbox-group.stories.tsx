@@ -330,18 +330,18 @@ const styles = StyleSheet.create({
         flexWrap: "wrap",
     },
     choice: {
-        marginTop: sizing.size_080,
+        marginBlockStart: sizing.size_080,
         width: 200,
     },
     title: {
-        paddingBottom: sizing.size_080,
-        borderBottom: `1px solid ${semanticColor.core.border.neutral.default}`,
+        paddingBlockEnd: sizing.size_080,
+        borderBlockEnd: `1px solid ${semanticColor.core.border.neutral.default}`,
     },
     // Multiple choice styling
     multipleChoice: {
         margin: 0,
         blockSize: sizing.size_480,
-        borderTop: "solid 1px #CCC",
+        borderBlockStart: `solid 1px ${semanticColor.core.border.neutral.subtle}`,
         justifyContent: "center",
     },
     firstChoice: {
@@ -351,6 +351,6 @@ const styles = StyleSheet.create({
         color: semanticColor.core.foreground.neutral.default,
     },
     last: {
-        borderBottom: "solid 1px #CCC",
+        borderBlockEnd: `solid 1px ${semanticColor.core.border.neutral.subtle}`,
     },
 });

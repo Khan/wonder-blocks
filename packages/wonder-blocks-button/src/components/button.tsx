@@ -51,6 +51,8 @@ const Button = React.forwardRef(function Button(
         onMouseUp,
         onMouseEnter,
         onMouseLeave,
+        onBlur,
+        onFocus,
         ...sharedButtonCoreProps
     } = props;
 
@@ -80,6 +82,8 @@ const Button = React.forwardRef(function Button(
             onMouseUp={onMouseUp}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
+            onBlur={onBlur}
+            onFocus={onFocus}
             safeWithNav={safeWithNav}
             rel={rel}
             {...extraClickableProps}

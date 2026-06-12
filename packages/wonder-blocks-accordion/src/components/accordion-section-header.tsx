@@ -158,20 +158,20 @@ const ANIMATION_LENGTH = "300ms";
 
 const styles = StyleSheet.create({
     heading: {
-        // As this is a grid item, it has a default minWidth of auto,
-        // which means it would grow to fit its content. minWidth 0 is
+        // As this is a grid item, it has a default minInlineSize of auto,
+        // which means it would grow to fit its content. minInlineSize 0 is
         // necessary here to stop a custom header from overflowing out of
         // it container when its content is too long (See AccordionSection's
         // "React Element in Header" story).
-        minWidth: 0,
-        marginTop: 0,
+        minInlineSize: 0,
+        marginBlockStart: 0,
     },
     headerWrapper: {
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
         overflow: "hidden",
-        minWidth: "auto",
+        minInlineSize: "auto",
         width: "100%",
         // Always make the header's outline show up in front of
         // the content panel.

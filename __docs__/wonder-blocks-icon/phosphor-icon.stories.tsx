@@ -349,7 +349,7 @@ const styles = StyleSheet.create({
     table: {
         borderCollapse: "collapse",
         borderSpacing: 0,
-        maxWidth: 600,
+        maxInlineSize: 600,
         textAlign: "center",
     },
 

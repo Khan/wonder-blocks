@@ -608,16 +608,17 @@ class DropdownCore extends React.Component<Props, State> {
     }
 
     focusPreviousItem(): void {
-        if (
-            this.focusedIndex === 0 ||
-            (this.isSearchFieldFocused() && !this.props.enableTypeAhead)
-        ) {
-            // Move the focus to the search field if it is the first item.
-            if (this.hasSearchField() && !this.isSearchFieldFocused()) {
+        if (this.isSearchFieldFocused()) {
+            // From search field, up arrow goes to last item
+            this.focusedIndex = this.state.itemRefs.length - 1;
+        } else if (this.focusedIndex === 0) {
+            // At first item, go to search field if it exists
+            if (this.hasSearchField()) {
                 return this.focusSearchField();
             }
+            // Otherwise wrap to last item
             this.focusedIndex = this.state.itemRefs.length - 1;
-        } else if (!this.isSearchFieldFocused()) {
+        } else {
             this.focusedIndex -= 1;
         }
 
@@ -625,16 +626,17 @@ class DropdownCore extends React.Component<Props, State> {
     }
 
     focusNextItem(): void {
-        if (
-            this.focusedIndex === this.state.itemRefs.length - 1 ||
-            (this.isSearchFieldFocused() && !this.props.enableTypeAhead)
-        ) {
-            // Move the focus to the search field if it is the last item.
-            if (this.hasSearchField() && !this.isSearchFieldFocused()) {
+        if (this.isSearchFieldFocused()) {
+            // From search field, down arrow goes to first item
+            this.focusedIndex = 0;
+        } else if (this.focusedIndex === this.state.itemRefs.length - 1) {
+            // At last item, go to search field if it exists
+            if (this.hasSearchField()) {
                 return this.focusSearchField();
             }
+            // Otherwise wrap to first item
             this.focusedIndex = 0;
-        } else if (!this.isSearchFieldFocused()) {
+        } else {
             this.focusedIndex += 1;
         }
 
@@ -1016,7 +1018,7 @@ class DropdownCore extends React.Component<Props, State> {
                     style={[
                         styles.listboxOrMenu,
                         {
-                            minWidth: minDropdownWidth,
+                            minInlineSize: minDropdownWidth,
                         },
                     ]}
                     // Only the `listbox` role supports aria-invalid and aria-required because
@@ -1080,7 +1082,7 @@ class DropdownCore extends React.Component<Props, State> {
 const styles = StyleSheet.create({
     menuWrapper: {
         width: "fit-content",
-        maxWidth: "100%",
+        maxInlineSize: "100%",
     },
 
     dropdown: {
@@ -1093,7 +1095,7 @@ const styles = StyleSheet.create({
         // We use a custom property to set the max height of the dropdown.
         // This comes from the maxHeight custom modifier.
         // @see ../util/popper-max-height-modifier.ts
-        maxHeight: "var(--popper-max-height)",
+        maxBlockSize: "var(--popper-max-height)",
     },
 
     listboxOrMenu: {
@@ -1114,9 +1116,9 @@ const styles = StyleSheet.create({
     searchInputStyle: {
         margin: sizing.size_080,
         marginBlockStart: sizing.size_040,
-        // Set `minHeight` to "auto" to stop the search field from having
+        // Set `minBlockSize` to "auto" to stop the search field from having
         // a height of 0 and being cut off.
-        minHeight: "auto",
+        minBlockSize: "auto",
         position: "sticky",
     },
 

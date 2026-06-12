@@ -669,7 +669,7 @@ export default function Combobox({
                                             // The listbox width is at least the
                                             // width of the combobox.
                                             {
-                                                minWidth:
+                                                minInlineSize:
                                                     rootNodeRef?.current
                                                         ?.offsetWidth,
                                             },
@@ -688,7 +688,7 @@ export default function Combobox({
                                         // The listbox width is at least the
                                         // width of the combobox.
                                         {
-                                            minWidth:
+                                            minInlineSize:
                                                 rootNodeRef?.current
                                                     ?.offsetWidth,
                                         },
@@ -716,7 +716,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         width: "100%",
-        maxWidth: "100%",
+        maxInlineSize: "100%",
         flexWrap: "wrap",
         // The following styles are to emulate the input styles
         background: semanticColor.core.background.base.default,
@@ -746,7 +746,7 @@ const styles = StyleSheet.create({
         border: "none",
         outline: "none",
         padding: 0,
-        minWidth: sizing.size_040,
+        minInlineSize: sizing.size_040,
         width: "auto",
         display: "inline-grid",
         gridArea: "1 / 2",
@@ -766,7 +766,7 @@ const styles = StyleSheet.create({
         // We use a custom property to set the max height of the dropdown.
         // This comes from the maxHeight custom modifier.
         // @see ../util/popper-max-height-modifier.ts
-        maxHeight: "var(--popper-max-height)",
+        maxBlockSize: "var(--popper-max-height)",
         overflowY: "auto",
     },
     hidden: {

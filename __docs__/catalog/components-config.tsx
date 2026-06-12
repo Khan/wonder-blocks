@@ -1353,7 +1353,7 @@ export const floatingComponents = [
             return (
                 <View
                     style={{
-                        maxWidth: "200px",
+                        maxInlineSize: "200px",
                         marginInlineEnd: sizing.size_200,
                     }}
                 >
@@ -1549,7 +1549,7 @@ export const inputComponents = [
     createComponentConfig({
         name: "Combobox (single)",
         Component: (props: PropsFor<typeof Combobox>) => (
-            <View style={{maxWidth: "200px"}}>
+            <View style={{maxInlineSize: "200px"}}>
                 <Combobox {...props} />
             </View>
         ),
@@ -1579,7 +1579,7 @@ export const inputComponents = [
     createComponentConfig({
         name: "Combobox (multiple)",
         Component: (props: PropsFor<typeof Combobox>) => (
-            <View style={{maxWidth: "200px"}}>
+            <View style={{maxInlineSize: "200px"}}>
                 <Combobox {...props} />
             </View>
         ),

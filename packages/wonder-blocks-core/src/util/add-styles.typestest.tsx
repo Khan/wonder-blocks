@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
         padding: 8,
     },
     customList: {
+        // eslint-disable-next-line @khanacademy/wonder-blocks/no-hardcoded-color
         border: "solid 1px blue",
     },
 });

@@ -131,7 +131,7 @@ const sharedStyles = StyleSheet.create({
         flex: 1,
         display: "grid",
         alignItems: "center",
-        minHeight: 66,
+        minBlockSize: 66,
         paddingInline: sizing.size_160,
         width: "100%",
     },
@@ -146,7 +146,7 @@ const sharedStyles = StyleSheet.create({
         gridTemplateColumns: "auto auto 1fr",
     },
     small: {
-        minHeight: 50,
+        minBlockSize: 50,
     },
     // TODO(WB-1852): Remove light variant.
     dark: {
@@ -172,7 +172,7 @@ const sharedStyles = StyleSheet.create({
         padding: sizing.size_120,
         textAlign: "center",
         justifySelf: "center",
-        maxWidth: "100%",
+        maxInlineSize: "100%",
     },
     spacer: {
         minInlineSize: sizing.size_120,

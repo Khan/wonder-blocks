@@ -11,6 +11,11 @@ import Button from "@khanacademy/wonder-blocks-button";
 import Link from "@khanacademy/wonder-blocks-link";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
+// The no-raw-button rule is disabled here intentionally: the "Using an HTML
+// element" scenario documents Classic and devadmin usage where raw elements
+// with actionStyles are still in active use. This pattern should be rare in
+// new consumer code — prefer WB Button, IconButton, or CustomOpener instead.
+// eslint-disable-next-line @khanacademy/wonder-blocks/no-raw-button
 const StyledButton = addStyle("button");
 
 /**
@@ -111,9 +116,14 @@ export default {
                 },
             },
             {
+                // This scenario is intentionally kept to document Classic and
+                // devadmin usage, where raw HTML elements with actionStyles
+                // are still in use. Remove once a long-term design solution
+                // is in place.
                 name: "Using an HTML element",
                 props: {
                     children: (
+                        // eslint-disable-next-line @khanacademy/wonder-blocks/no-raw-button
                         <StyledButton
                             style={[
                                 {
@@ -132,6 +142,29 @@ export default {
                         >
                             Custom button
                         </StyledButton>
+                    ),
+                },
+            },
+            {
+                name: "Using Button with custom styles",
+                props: {
+                    children: (
+                        <Button
+                            onClick={() => {}}
+                            style={[
+                                {
+                                    border: `${border.width.thin} solid ${semanticColor.core.border.critical.default}`,
+                                    backgroundColor:
+                                        semanticColor.core.background.critical
+                                            .default,
+                                    color: semanticColor.core.foreground
+                                        .knockout.default,
+                                },
+                                actionStyles.inverse,
+                            ]}
+                        >
+                            Custom styled button
+                        </Button>
                     ),
                 },
             },

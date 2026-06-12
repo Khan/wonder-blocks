@@ -52,6 +52,7 @@ const LinkCore = React.forwardRef(function LinkCore(
         endIcon,
         labels,
         viewTransition,
+        state,
         ...restProps
     } = props;
 
@@ -123,6 +124,7 @@ const LinkCore = React.forwardRef(function LinkCore(
             to={href}
             ref={ref as React.ForwardedRef<typeof Link>}
             viewTransition={viewTransition}
+            state={state}
         >
             {linkContent}
         </StyledLink>

@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 16.6.0
+
+### Minor Changes
+
+- a676ce6: Add `learning.characters.flesh` semantic color tokens (`blue`, `cyan`, `green`, `magenta`, `orange` × `subtle`/`default`/`strong`) for use with learning characters, sourced from the Foundations Figma library.
+
 ## 16.5.0
 
 ### Minor Changes

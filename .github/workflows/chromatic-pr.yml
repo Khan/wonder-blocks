@@ -83,10 +83,18 @@ jobs:
             !startsWith(github.head_ref, 'changeset-release/')
         name: Run Storybook tests
         needs: chromatic_review
-        runs-on: ubuntu-latest
+        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && 'ubuntu-latest' || 'ephemeral-runner' }}
         strategy:
             fail-fast: false
         steps:
+            # Install Playwright system dependencies before checkout/secure-network
+            # so we don't need to allowlist Ubuntu package domains.
+            - name: Install Playwright dependencies
+              timeout-minutes: 5
+              run: |
+                  sudo apt-get update
+                  sudo apt-get install -y fonts-liberation fonts-ipafont-gothic fonts-wqy-zenhei fonts-tlwg-loma-otf fonts-freefont-ttf
+
             - name: Checking out latest commit
               uses: actions/checkout@v5
             - name: Secure Network
@@ -94,10 +102,9 @@ jobs:
               timeout-minutes: 5
               with:
                   # registry.npmjs.org: npm package registry for pnpm install
-                  # azure.archive.ubuntu.com, archive.ubuntu.com, security.ubuntu.com, deb.debian.org: Ubuntu package mirrors for playwright --with-deps
-                  # packages.microsoft.com, playwright.download.prss.microsoft.com: Microsoft package/download servers for playwright --with-deps
+                  # playwright.download.prss.microsoft.com: Playwright browser binary downloads
                   # cdn.playwright.dev: Playwright browser binary CDN
-                  extra-domains: registry.npmjs.org azure.archive.ubuntu.com archive.ubuntu.com security.ubuntu.com deb.debian.org packages.microsoft.com playwright.download.prss.microsoft.com cdn.playwright.dev
+                  extra-domains: registry.npmjs.org playwright.download.prss.microsoft.com cdn.playwright.dev
 
             - name: Use Node.js 24.x
               uses: actions/setup-node@v6
@@ -111,12 +118,9 @@ jobs:
               with:
                   node-version: 24.x
 
-            # Install Playwright browsers
             - name: Install Playwright browsers
-              run: |
-                  sudo apt-get update
-                  sudo apt-get install -y fonts-liberation fonts-ipafont-gothic fonts-wqy-zenhei fonts-tlwg-loma-otf fonts-freefont-ttf
-                  pnpm exec playwright install --with-deps chromium
+              timeout-minutes: 5
+              run: pnpm exec playwright install chromium
 
             # Build the project
             - name: Generate WB build artifacts
@@ -126,3 +130,6 @@ jobs:
               run: pnpm test:storybook
               env:
                   SB_URL: "${{ needs.chromatic_review.outputs.storybookUrl }}"
+                  # Explicitly set the timezone to avoid:
+                  # `Invalid time zone specified: ETC/UNKNOWN`
+                  TZ: America/Los_Angeles

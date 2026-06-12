@@ -1,3 +1,6 @@
+/* eslint-disable @khanacademy/wonder-blocks/no-raw-button */
+// This file is the Wonder Blocks Tab implementation — it intentionally uses
+// addStyle("button") as the underlying DOM element for the tab button.
 import {
     addStyle,
     AriaProps,
@@ -114,7 +117,7 @@ export const styles = StyleSheet.create({
         display: "flex",
         alignItems: "center",
         textWrap: "nowrap",
-        backgroundColor: "transparent",
+        backgroundColor: semanticColor.core.transparent,
         border: "none",
         margin: 0,
         padding: 0,
@@ -130,9 +133,9 @@ export const styles = StyleSheet.create({
         ":after": {
             content: "''",
             position: "absolute",
-            left: 0,
-            right: 0,
-            bottom: `calc(${bottomSpacing} * -1)`,
+            insetInlineStart: 0,
+            insetInlineEnd: 0,
+            insetBlockEnd: `calc(${bottomSpacing} * -1)`,
         },
         // Only apply hover styles to tabs that are not selected
         [":hover:not([aria-selected='true'])" as any]: {

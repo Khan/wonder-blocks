@@ -2,11 +2,10 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "storybook",
+      "name": "Storybook",
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["start"],
-      "port": 6061,
-      "autoPort": false
+      "port": 6061
     }
   ]
 }

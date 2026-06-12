@@ -78,8 +78,8 @@ const styles = StyleSheet.create({
     checkbox: {
         alignSelf: "center",
         // Semantically, this are the constants for a small-sized icon
-        minHeight: sizing.size_160,
-        minWidth: sizing.size_160,
+        minBlockSize: sizing.size_160,
+        minInlineSize: sizing.size_160,
         height: sizing.size_160,
         background: checkboxTokens.color.default.background,
         // TODO(WB-1864): Use the correct token once TB is updated.
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     // of place. Move it back.
     disabledCheckFormatting: {
         position: "absolute",
-        top: -1,
-        left: -1,
+        insetBlockStart: -1,
+        insetInlineStart: -1,
     },
 });

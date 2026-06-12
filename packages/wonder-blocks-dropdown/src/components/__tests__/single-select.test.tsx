@@ -1134,7 +1134,7 @@ describe("SingleSelect", () => {
                 "dropdown-core-container",
             );
             expect(dropdownMenuWrapper).toHaveStyle(
-                "max-height: var(--popper-max-height)",
+                "max-block-size: var(--popper-max-height)",
             );
         });
 
@@ -1169,7 +1169,7 @@ describe("SingleSelect", () => {
             );
             // Max allowed height
             expect(dropdownMenuWrapper).toHaveStyle(
-                "max-height: var(--popper-max-height)",
+                "max-block-size: var(--popper-max-height)",
             );
         });
 

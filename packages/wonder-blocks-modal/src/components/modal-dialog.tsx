@@ -151,20 +151,20 @@ const componentStyles = StyleSheet.create({
     above: {
         pointerEvents: "none",
         position: "absolute",
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
+        insetBlockStart: 0,
+        insetInlineStart: 0,
+        insetBlockEnd: 0,
+        insetInlineEnd: 0,
         zIndex: 1,
     },
 
     below: {
         pointerEvents: "none",
         position: "absolute",
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
+        insetBlockStart: 0,
+        insetInlineStart: 0,
+        insetBlockEnd: 0,
+        insetInlineEnd: 0,
         zIndex: -1,
     },
 });

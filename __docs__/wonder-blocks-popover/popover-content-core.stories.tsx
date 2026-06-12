@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
         padding: 0,
     },
     customPopover: {
-        maxWidth: `calc(${sizing.size_160} * 25)`,
+        maxInlineSize: `calc(${sizing.size_160} * 25)`,
         width: `calc(${sizing.size_160} * 25)`,
         textAlign: "center",
     },
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
         padding: `${sizing.size_120} 0`,
     },
     action: {
-        backgroundColor: "transparent",
+        backgroundColor: semanticColor.core.transparent,
         border: "none",
         color: semanticColor.core.foreground.knockout.default,
         cursor: "pointer",

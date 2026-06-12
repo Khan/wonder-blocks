@@ -285,6 +285,6 @@ const styles = StyleSheet.create({
     },
     container: {
         width: "100%",
-        minHeight: "auto", // override setting the min height: 0 style
+        minBlockSize: "auto", // override setting the min height: 0 style
     },
 });

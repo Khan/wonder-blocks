@@ -1,3 +1,6 @@
+/* eslint-disable @khanacademy/wonder-blocks/no-raw-button */
+// This file implements the SelectOpener button primitive used by WB dropdowns —
+// it intentionally wraps addStyle("button") as its underlying DOM element.
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
@@ -252,7 +255,7 @@ const styles = StyleSheet.create({
     },
 
     caret: {
-        minWidth: sizing.size_160,
+        minInlineSize: sizing.size_160,
     },
     /**
      * Theming

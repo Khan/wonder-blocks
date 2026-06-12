@@ -236,7 +236,7 @@ export const CustomToolbar: StoryComponentType = {
             <View
                 style={{
                     width: 300,
-                    maxWidth: "100%",
+                    maxInlineSize: "100%",
                     height: sizing.size_080,
                     background: semanticColor.mastery.primary,
                 }}

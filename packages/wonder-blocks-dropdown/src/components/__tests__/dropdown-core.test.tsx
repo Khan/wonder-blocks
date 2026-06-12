@@ -1,3 +1,4 @@
+// We allow raw buttons in this test since DropdownCore is a low-level component.
 import * as React from "react";
 import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
@@ -167,6 +168,64 @@ describe("DropdownCore", () => {
         // Assert
         expect(
             await screen.findByRole("option", {name: "item 1"}),
+        ).toHaveFocus();
+    });
+
+    it("navigates from search field to items when search field is initially focused", async () => {
+        // Arrange
+        // Don't set initialFocusedIndex so focus goes to search field
+        render(
+            <DropdownCore
+                onSearchTextChanged={jest.fn()}
+                searchText=""
+                isFilterable={true}
+                items={items}
+                role="listbox"
+                open={true}
+                opener={<button />}
+                onOpenChanged={jest.fn()}
+            />,
+        );
+
+        // Act
+        // Verify search field has focus initially
+        const searchField = await screen.findByRole("textbox");
+        expect(searchField).toHaveFocus();
+
+        // Navigate down from search field to first item
+        await userEvent.keyboard("{ArrowDown}");
+
+        // Assert
+        expect(
+            await screen.findByRole("option", {name: "item 0"}),
+        ).toHaveFocus();
+    });
+
+    it("navigates from search field to last item with ArrowUp", async () => {
+        // Arrange
+        render(
+            <DropdownCore
+                onSearchTextChanged={jest.fn()}
+                searchText=""
+                isFilterable={true}
+                items={items}
+                role="listbox"
+                open={true}
+                opener={<button />}
+                onOpenChanged={jest.fn()}
+            />,
+        );
+
+        // Act
+        const searchField = await screen.findByRole("textbox");
+        expect(searchField).toHaveFocus();
+
+        // Navigate up from search field to last item
+        await userEvent.keyboard("{ArrowUp}");
+
+        // Assert
+        expect(
+            await screen.findByRole("option", {name: "item 2"}),
         ).toHaveFocus();
     });
 

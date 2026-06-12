@@ -174,6 +174,6 @@ const styles = StyleSheet.create({
         justifyContent: "space-evenly",
     },
     topic: {
-        maxWidth: 600,
+        maxInlineSize: 600,
     },
 });
