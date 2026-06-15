@@ -60,6 +60,10 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // Disable snapshots since they're covered by the testing snapshots
+            disableSnapshot: true,
+        },
     },
     argTypes: PhosphorIconArgtypes,
 } satisfies Meta<typeof PhosphorIcon>;
@@ -241,11 +245,6 @@ export const Variants: StoryComponentType = {
             </StyledTable>
         );
     },
-    parameters: {
-        chromatic: {
-            disableSnapshot: true,
-        },
-    },
     decorators: [
         (Story) => (
             <View style={{gap: sizing.size_160}}>
@@ -284,6 +283,12 @@ export const Inline: StoryComponentType = {
                 when it is inline.
             </Body>
         );
+    },
+    parameters: {
+        chromatic: {
+            // Enable snapshot for inline alignment coverage
+            disableSnapshot: false,
+        },
     },
 };
 
@@ -375,13 +380,6 @@ export const DescriptiveIcon: StoryComponentType = {
         role: "img",
         "aria-label": "Search",
     },
-    parameters: {
-        chromatic: {
-            // This story is not meant to be visually tested, so we disable
-            // snapshots.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -393,12 +391,5 @@ export const DecorativeIcon: StoryComponentType = {
         icon: IconMappings.magnifyingGlassBold,
         size: "small",
         "aria-hidden": true,
-    },
-    parameters: {
-        chromatic: {
-            // This story is not meant to be visually tested, so we disable
-            // snapshots.
-            disableSnapshot: true,
-        },
     },
 };

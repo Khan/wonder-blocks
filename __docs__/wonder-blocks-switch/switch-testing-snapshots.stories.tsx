@@ -8,7 +8,7 @@ import Switch from "@khanacademy/wonder-blocks-switch";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 
 const rows = [
     {name: "Off", props: {checked: false}},
@@ -52,7 +52,7 @@ const meta = {
     },
     parameters: {
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
         },
     },
     tags: ["!autodocs", "!manifest"],

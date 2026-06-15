@@ -88,18 +88,18 @@ describe("TooltipTail", () => {
         />
       </g>
       <polyline
-        fill="#ffffff"
+        fill="var(--wb-semanticColor-core-background-base-default)"
         points="0,0 12,12 24,0"
-        stroke="#ffffff"
+        stroke="var(--wb-semanticColor-core-background-base-default)"
       />
       <polyline
-        fill="#ffffff"
+        fill="var(--wb-semanticColor-core-background-base-default)"
         points="0,0 12,12 24,0"
-        stroke="var(--wb-semanticColor-core-shadow-transparent-mid)"
+        stroke="var(--wb-semanticColor-core-border-neutral-subtle)"
       />
       <polyline
         points="0,-0.5 24,-0.5"
-        stroke="#ffffff"
+        stroke="var(--wb-semanticColor-core-background-base-default)"
       />
     </svg>
   </div>

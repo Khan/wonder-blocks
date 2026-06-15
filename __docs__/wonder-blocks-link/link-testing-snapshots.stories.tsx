@@ -6,7 +6,7 @@ import Link from "@khanacademy/wonder-blocks-link";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
-import {allModes} from "../../.storybook/modes";
+import {allModes, allThemeModes} from "../../.storybook/modes";
 import {rtlText} from "../components/text-for-testing";
 
 const rows = [
@@ -63,10 +63,8 @@ const meta = {
     parameters: {
         chromatic: {
             modes: {
-                default: allModes.themeDefault,
+                ...allThemeModes,
                 "default rtl": allModes["themeDefault rtl"],
-                dark: allModes.dark,
-                thunderblocks: allModes.themeThunderBlocks,
             },
         },
     },

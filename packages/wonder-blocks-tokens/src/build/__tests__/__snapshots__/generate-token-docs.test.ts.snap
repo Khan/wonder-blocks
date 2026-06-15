@@ -248,6 +248,8 @@ import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 | \`semanticColor.core.shadow.chonky.neutral.subtle\` | \`--wb-semanticColor-core-shadow-chonky-neutral-subtle\` | \`#b8b9bb\` | \`#CBCBCD\` |
 | \`semanticColor.core.shadow.chonky.neutral.default\` | \`--wb-semanticColor-core-shadow-chonky-neutral-default\` | \`#909296\` | \`#8A8B90\` |
 | \`semanticColor.core.shadow.chonky.neutral.strong\` | \`--wb-semanticColor-core-shadow-chonky-neutral-strong\` | \`#21242c\` | \`#4A4C53\` |
+| \`semanticColor.core.shadow.chonky.disabled.subtle\` | \`--wb-semanticColor-core-shadow-chonky-disabled-subtle\` | \`transparent\` | \`transparent\` |
+| \`semanticColor.core.shadow.chonky.disabled.default\` | \`--wb-semanticColor-core-shadow-chonky-disabled-default\` | \`#b8b9bb\` | \`#CBCBCD\` |
 | \`semanticColor.learning.math.foreground.blue\` | \`--wb-semanticColor-learning-math-foreground-blue\` | \`#3D7586\` | \`#20628F\` |
 | \`semanticColor.learning.math.foreground.gold\` | \`--wb-semanticColor-learning-math-foreground-gold\` | \`#946700\` | \`#966B00\` |
 | \`semanticColor.learning.math.foreground.green\` | \`--wb-semanticColor-learning-math-foreground-green\` | \`#447A53\` | \`#3C6D4A\` |

@@ -12,7 +12,6 @@ import {
     multiColoredIcon,
     singleColoredIcon,
 } from "../components/icons-for-testing";
-import {themeModes} from "../../.storybook/modes";
 
 export default {
     title: "Packages / Icon / Icon",
@@ -28,7 +27,8 @@ export default {
             />
         ),
         chromatic: {
-            modes: themeModes,
+            // Disable snapshots since they're covered by the testing snapshots
+            disableSnapshot: true,
         },
     },
 } as Meta<typeof Icon>;
@@ -78,6 +78,12 @@ export const CustomStyles: StoryComponentType = {
         style: {
             borderRadius: border.radius.radius_full,
             overflow: "hidden",
+        },
+    },
+    parameters: {
+        chromatic: {
+            // Enable snapshot for custom styles coverage
+            disableSnapshot: false,
         },
     },
 };

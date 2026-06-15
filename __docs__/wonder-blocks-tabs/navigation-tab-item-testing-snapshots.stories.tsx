@@ -18,7 +18,7 @@ import {
 } from "../components/text-for-testing";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {ScenariosLayout} from "../components/scenarios-layout";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 
 const StyledA = addStyle("a");
 const generateRows = (rtl: boolean = false) => {
@@ -153,7 +153,7 @@ const meta = {
     component: NavigationTabItem,
     parameters: {
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
         },
     },
     tags: ["!autodocs", "!manifest"],
