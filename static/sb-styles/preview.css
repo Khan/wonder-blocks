@@ -30,7 +30,13 @@ html {
     font-size: 1.6rem;
 }
 
+.sbdocs h1 {
+    font-size: 4rem;
+    padding-top: 2rem !important;
+}
+
 .sbdocs h2 {
+    font-size: 3rem;
     counter-reset: story;
 }
 
