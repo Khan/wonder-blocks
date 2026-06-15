@@ -50,9 +50,9 @@ export default function Principle({
 const styles = StyleSheet.create({
     set: {
         display: "grid",
-        gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 300px), 1fr))",
+        gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 400px), 1fr))",
         gap: sizing.size_160,
-        padding: sizing.size_160,
+        paddingBlock: sizing.size_160,
     },
     container: {
         backgroundColor: semanticColor.core.background.base.default,
