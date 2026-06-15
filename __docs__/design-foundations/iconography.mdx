@@ -8,9 +8,9 @@ import usageGuidelines3Img from "./assets/iconography/usage-guidelines-3.png";
 import customIcons1Img from "./assets/iconography/custom-icons-1.png";
 import customIcons2Img from "./assets/iconography/custom-icons-2.png";
 import customIcons3Img from "./assets/iconography/custom-icons-3.png";
-import customIcons4Img from "./assets/iconography/custom-icons-4.png";
-import customIcons5Img from "./assets/iconography/custom-icons-5.png";
-import customIcons6Img from "./assets/iconography/custom-icons-6.png";
+import classImg from "./assets/iconography/class.png";
+import roleImg from "./assets/iconography/role.png";
+import subjectImg from "./assets/iconography/subject.png";
 
 <Meta title="Design Guidelines / Foundations / Iconography" />
 
@@ -76,19 +76,19 @@ Guidance for how to apply illustration correctly across contexts. Visual example
 
 All UI icons must come from Phosphor, except for custom icons listed below. Using icons from other libraries — even ones that look similar — introduces inconsistency in stroke weight, geometry, and corner radius that is visible at icon sizes.
 
-<img src={usageGuidelines1Img} alt="Usage guidelines 1" />
+<img src={usageGuidelines1Img} alt="A visual of the Phosphor Icon Figma plugin" />
 
 ### Always pair icons with labels when the meaning is ambiguous
 
 Icons that represent universal, well-understood actions (close, search, back) may stand alone when space is constrained. All other icons should have a visible label or a tooltip fallback.
 
-<img src={usageGuidelines2Img} alt="Usage guidelines 2" />
+<img src={usageGuidelines2Img} alt="Close, previous and info icons are shown to be common patterns and accetable, along with three that need description" />
 
 ### Only Regular, Bold, and Fill weights are approved for use
 
 Thin and Light are too delicate for product UI and fail contrast requirements at small sizes. Duotone introduces two-color complexity that conflicts with our single-color icon system. Fill is reserved exclusively for active or selected states — never use it for decoration, emphasis, or stylistic variation. Components without a toggled or selected state should always use Regular or Bold.
 
-<img src={usageGuidelines3Img} alt="Usage guidelines 3" />
+<img src={usageGuidelines3Img} alt="Visual represenation of which icon weights can be utilized" />
 
 ## Custom icons
 
@@ -98,38 +98,38 @@ A small set of icons exist outside the Phosphor library. These represent concept
 
 The gem icon represents Khan Academy's reward currency. It appears in progress contexts, badges, and achievement surfaces. This is a brand-specific icon with a fixed visual form — do not substitute a Phosphor diamond or gem-adjacent icon.
 
-<img src={customIcons1Img} alt="Custom icons 1" />
+<img src={customIcons1Img} alt="The simple gem icon" />
 
 ### Content type icons
 
 Each content type in the Khan Academy product has a dedicated icon. These appear in course navigation, progress views, and assignment lists to help learners and teachers identify content at a glance without reading the label.
 
-<img src={customIcons2Img} alt="Custom icons 2" />
+<img src={customIcons2Img} alt="Icons for content types: Exercise, Video, Article... etc." />
 
 ### Mastery level icons
 
 The mastery system uses a dedicated set of icons to represent a learner's level of proficiency within a skill. These icons appear in skill trees, progress dashboards, and mastery views.
 Mastery icons must always appear alongside their label in any context where a learner or teacher needs to act on or communicate about a skill level. They must not be used as standalone status indicators without a visible or accessible label.
 
-<img src={customIcons3Img} alt="Custom icons 3" />
+<img src={customIcons3Img} alt="Attempted and Familiar are yellow. Proficient and Mastered are green." />
 
 ### Subject type icons
 
 Each subject has a unique icon used to identify it across the product. Subject icons are always paired with the subject name — they are never used alone. There are no icons at the course level.
 
-<img src={customIcons4Img} alt="Custom icons 4" />
+<img src={subjectImg} alt="Icons for subjects are more are representative of actual objects" />
 
 ### Class icons
 
 Every class is assigned a unique shape that travels with it across the product. This is the most meaningful use of shapes — the form carries the object's identity.
 
-<img src={customIcons5Img} alt="Custom icons 5" />
+<img src={classImg} alt="Class icons shown as simpler shapes or shape groupings" />
 
 ### Role icons
 
 Each role — Administrator, Teacher, and Learner — has a distinct shape used as its profile icon throughout the product. The shape makes it easy to identify and switch between roles, especially for users who hold multiple roles.
 
-<img src={customIcons6Img} alt="Custom icons 6" />
+<img src={roleImg} alt="Two-tone styled icons for user roles" />
 
 ## Accessibility
 
