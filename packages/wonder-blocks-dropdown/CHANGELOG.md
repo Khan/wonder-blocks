@@ -1,5 +1,46 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.11.0
+
+### Minor Changes
+
+- 8413cfe: Combobox: Add support for `aria-label`
+
+### Patch Changes
+
+- e6c705d: Combobox: Reset boxshadow of TextField
+- 5928e1c: Combobox: Remove state styling for the dropdown button and the internal text field
+- 022e775: SingleSelect and MultiSelect opener - Updating styles:
+    - Use `semanticColor.core.foreground.neutral.default` for the dropdown icon in all themes
+    - Fixed `placeholder` styling in selects when the field is `disabled` or `readOnly`
+    - Improved the `press + focus` styling to work with `syl-dark`
+- Updated dependencies [c033245]
+- Updated dependencies [ddcaaeb]
+- Updated dependencies [1921d68]
+- Updated dependencies [0907f64]
+- Updated dependencies [9773405]
+- Updated dependencies [e6c705d]
+- Updated dependencies [9773405]
+- Updated dependencies [fcf3bb1]
+- Updated dependencies [022e775]
+- Updated dependencies [e181c15]
+- Updated dependencies [29ae44b]
+- Updated dependencies [dd15fbf]
+- Updated dependencies [c033245]
+- Updated dependencies [a2bbc0a]
+    - @khanacademy/wonder-blocks-modal@8.7.4
+    - @khanacademy/wonder-blocks-icon@5.3.17
+    - @khanacademy/wonder-blocks-pill@3.1.67
+    - @khanacademy/wonder-blocks-tokens@16.7.0
+    - @khanacademy/wonder-blocks-icon-button@11.3.4
+    - @khanacademy/wonder-blocks-form@7.6.4
+    - @khanacademy/wonder-blocks-search-field@5.1.73
+    - @khanacademy/wonder-blocks-cell@6.2.4
+    - @khanacademy/wonder-blocks-clickable@8.2.3
+    - @khanacademy/wonder-blocks-styles@0.2.47
+    - @khanacademy/wonder-blocks-typography@4.3.7
+    - @khanacademy/wonder-blocks-announcer@1.1.1
+
 ## 10.10.0
 
 ### Minor Changes

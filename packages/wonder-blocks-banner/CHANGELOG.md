@@ -1,5 +1,25 @@
 # @khanacademy/wonder-blocks-banner
 
+## 5.1.4
+
+### Patch Changes
+
+- 0907f64: Banner: Use borderless style for banners in Thunderblocks and syl-dark
+- Updated dependencies [ddcaaeb]
+- Updated dependencies [0907f64]
+- Updated dependencies [9773405]
+- Updated dependencies [9773405]
+- Updated dependencies [022e775]
+- Updated dependencies [e181c15]
+- Updated dependencies [c033245]
+- Updated dependencies [a2bbc0a]
+    - @khanacademy/wonder-blocks-icon@5.3.17
+    - @khanacademy/wonder-blocks-tokens@16.7.0
+    - @khanacademy/wonder-blocks-icon-button@11.3.4
+    - @khanacademy/wonder-blocks-button@11.7.1
+    - @khanacademy/wonder-blocks-link@10.3.3
+    - @khanacademy/wonder-blocks-typography@4.3.7
+
 ## 5.1.3
 
 ### Patch Changes

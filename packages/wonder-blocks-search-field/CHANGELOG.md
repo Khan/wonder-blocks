@@ -1,5 +1,26 @@
 # @khanacademy/wonder-blocks-search-field
 
+## 5.1.73
+
+### Patch Changes
+
+- dd15fbf: SearchField: Update token usage for search icon for rest, disabled, and error states.
+- Updated dependencies [ddcaaeb]
+- Updated dependencies [0907f64]
+- Updated dependencies [9773405]
+- Updated dependencies [e6c705d]
+- Updated dependencies [9773405]
+- Updated dependencies [fcf3bb1]
+- Updated dependencies [022e775]
+- Updated dependencies [e181c15]
+- Updated dependencies [c033245]
+- Updated dependencies [a2bbc0a]
+    - @khanacademy/wonder-blocks-icon@5.3.17
+    - @khanacademy/wonder-blocks-tokens@16.7.0
+    - @khanacademy/wonder-blocks-icon-button@11.3.4
+    - @khanacademy/wonder-blocks-form@7.6.4
+    - @khanacademy/wonder-blocks-typography@4.3.7
+
 ## 5.1.72
 
 ### Patch Changes
