@@ -1,5 +1,23 @@
 # @khanacademy/wonder-blocks-pill
 
+## 3.1.67
+
+### Patch Changes
+
+- 1921d68: Pill: Use semantic color action tokens for `accent` kind to address color contrast issues in the `syl-dark` theme
+- Updated dependencies [0907f64]
+- Updated dependencies [9773405]
+- Updated dependencies [9773405]
+- Updated dependencies [022e775]
+- Updated dependencies [e181c15]
+- Updated dependencies [c033245]
+- Updated dependencies [a2bbc0a]
+    - @khanacademy/wonder-blocks-tokens@16.7.0
+    - @khanacademy/wonder-blocks-link@10.3.3
+    - @khanacademy/wonder-blocks-clickable@8.2.3
+    - @khanacademy/wonder-blocks-styles@0.2.47
+    - @khanacademy/wonder-blocks-typography@4.3.7
+
 ## 3.1.66
 
 ### Patch Changes

@@ -1,5 +1,22 @@
 # @khanacademy/wonder-blocks-switch
 
+## 3.4.3
+
+### Patch Changes
+
+- be4306d: Update token usage to support SYL Dark. Update disabled styling
+- Updated dependencies [ddcaaeb]
+- Updated dependencies [0907f64]
+- Updated dependencies [9773405]
+- Updated dependencies [9773405]
+- Updated dependencies [022e775]
+- Updated dependencies [e181c15]
+- Updated dependencies [c033245]
+- Updated dependencies [a2bbc0a]
+    - @khanacademy/wonder-blocks-icon@5.3.17
+    - @khanacademy/wonder-blocks-tokens@16.7.0
+    - @khanacademy/wonder-blocks-styles@0.2.47
+
 ## 3.4.2
 
 ### Patch Changes

@@ -3,7 +3,7 @@
   "description": "Card component for Wonder Blocks.",
   "author": "Khan Academy",
   "license": "MIT",
-  "version": "1.4.16",
+  "version": "1.4.17",
   "publishConfig": {
     "access": "public"
   },

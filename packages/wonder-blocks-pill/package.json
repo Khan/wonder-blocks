@@ -3,7 +3,7 @@
   "description": "Pill components for Wonder Blocks.",
   "author": "Khan Academy",
   "license": "MIT",
-  "version": "3.1.66",
+  "version": "3.1.67",
   "publishConfig": {
     "access": "public"
   },

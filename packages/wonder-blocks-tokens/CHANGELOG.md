@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 16.7.0
+
+### Minor Changes
+
+- 9773405: Add `core.shadow.chonky.disabled.subtle/default` tokens and use for `chonky.disabled.*` tokens. Update semantic color core tokens in `syl-dark` related to chonky tokens and border neutral tokens
+
+### Patch Changes
+
+- 0907f64: Update yellow_01 and green_01 primitives. Update syl-dark background.success/warning.subtle to address color contrast issues with interactive elements in banners
+- 9773405: ActivityIconButton: Add component theme token for the label to accommodate syl-dark
+- 022e775: SYL Dark - Update disabled semantic color core tokens
+- e181c15: syl-dark theme: Update `core.background.neutral.default` to `gray_30`
+- c033245: SYL Dark tokens: Update background.base.subtle/default
+- a2bbc0a: SYL Dark semantic color tokens: Use TB tokens for `input.checked`
+
 ## 16.6.0
 
 ### Minor Changes

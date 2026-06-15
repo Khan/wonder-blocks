@@ -1,5 +1,25 @@
 # @khanacademy/wonder-blocks-form
 
+## 7.6.4
+
+### Patch Changes
+
+- e6c705d: TextField and TextArea: Improved the `press + focus` styling to work with `syl-dark`
+- fcf3bb1: Update token usage for radio and checkboxes
+- Updated dependencies [ddcaaeb]
+- Updated dependencies [0907f64]
+- Updated dependencies [9773405]
+- Updated dependencies [9773405]
+- Updated dependencies [022e775]
+- Updated dependencies [e181c15]
+- Updated dependencies [c033245]
+- Updated dependencies [a2bbc0a]
+    - @khanacademy/wonder-blocks-icon@5.3.17
+    - @khanacademy/wonder-blocks-tokens@16.7.0
+    - @khanacademy/wonder-blocks-clickable@8.2.3
+    - @khanacademy/wonder-blocks-layout@3.1.54
+    - @khanacademy/wonder-blocks-typography@4.3.7
+
 ## 7.6.3
 
 ### Patch Changes
