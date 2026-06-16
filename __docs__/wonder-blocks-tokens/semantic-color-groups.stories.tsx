@@ -157,11 +157,7 @@ export const LearningMath = () => {
 export const LearningBorder = () => {
     return (
         <ColorGroupStory
-            category={{
-                gems: semanticColor.learning.border.gems,
-                streaks: semanticColor.learning.border.streaks,
-                due: semanticColor.learning.border.due,
-            }}
+            category={semanticColor.learning.border}
             group="learning.border"
         />
     );
@@ -216,20 +212,10 @@ export const LearningShadow = () => {
 
 export const LearningCharactersFlesh = () => {
     return (
-        <>
-            <ColorGroupStory
-                category={semanticColor.learning.characters.flesh}
-                group="learning.characters.flesh"
-            />
-            <ColorGroupStory
-                category={semanticColor.learning.background.characters.flesh}
-                group="learning.background.characters.flesh"
-            />
-            <ColorGroupStory
-                category={semanticColor.learning.border.characters.flesh}
-                group="learning.border.characters.flesh"
-            />
-        </>
+        <ColorGroupStory
+            category={semanticColor.learning.characters.flesh}
+            group="learning.characters.flesh"
+        />
     );
 };
 
