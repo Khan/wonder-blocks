@@ -38,7 +38,7 @@ export default function Principle({
             <Heading size="medium" style={styles.title}>
                 {title}
             </Heading>
-            <BodyText tag="p" style={styles.description}>
+            <BodyText style={styles.description}>
                 {description}
             </BodyText>
         </View>
