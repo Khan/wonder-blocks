@@ -220,6 +220,35 @@ export const semanticColor = {
                     default: thunderBlocksColor.green_60,
                 },
             },
+            characters: {
+                flesh: {
+                    blue: {
+                        subtle: thunderBlocksColor.blue_40,
+                        default: thunderBlocksColor.blue_30,
+                        strong: thunderBlocksColor.blue_20,
+                    },
+                    cyan: {
+                        subtle: thunderBlocksColor.cyan_40,
+                        default: thunderBlocksColor.cyan_30,
+                        strong: thunderBlocksColor.cyan_20,
+                    },
+                    green: {
+                        subtle: thunderBlocksColor.green_40,
+                        default: thunderBlocksColor.green_30,
+                        strong: thunderBlocksColor.green_20,
+                    },
+                    magenta: {
+                        subtle: thunderBlocksColor.magenta_40,
+                        default: thunderBlocksColor.magenta_30,
+                        strong: thunderBlocksColor.magenta_20,
+                    },
+                    orange: {
+                        subtle: thunderBlocksColor.orange_40,
+                        default: thunderBlocksColor.orange_30,
+                        strong: thunderBlocksColor.orange_20,
+                    },
+                },
+            },
         },
         border: {
             gems: {
@@ -236,6 +265,35 @@ export const semanticColor = {
                 subtle: thunderBlocksColor.cyan_80,
                 default: thunderBlocksColor.cyan_60,
                 strong: thunderBlocksColor.cyan_30,
+            },
+            characters: {
+                flesh: {
+                    blue: {
+                        subtle: thunderBlocksColor.blue_40,
+                        default: thunderBlocksColor.blue_20,
+                        strong: thunderBlocksColor.blue_10,
+                    },
+                    cyan: {
+                        subtle: thunderBlocksColor.cyan_40,
+                        default: thunderBlocksColor.cyan_20,
+                        strong: thunderBlocksColor.cyan_10,
+                    },
+                    green: {
+                        subtle: thunderBlocksColor.green_40,
+                        default: thunderBlocksColor.green_20,
+                        strong: thunderBlocksColor.green_10,
+                    },
+                    magenta: {
+                        subtle: thunderBlocksColor.magenta_40,
+                        default: thunderBlocksColor.magenta_20,
+                        strong: thunderBlocksColor.magenta_10,
+                    },
+                    orange: {
+                        subtle: thunderBlocksColor.orange_40,
+                        default: thunderBlocksColor.orange_20,
+                        strong: thunderBlocksColor.orange_10,
+                    },
+                },
             },
         },
         foreground: {
@@ -283,59 +341,20 @@ export const semanticColor = {
         },
         characters: {
             flesh: {
-                background: {
-                    blue: {
-                        subtle: thunderBlocksColor.blue_40,
-                        default: thunderBlocksColor.blue_30,
-                        strong: thunderBlocksColor.blue_20,
-                    },
-                    cyan: {
-                        subtle: thunderBlocksColor.cyan_40,
-                        default: thunderBlocksColor.cyan_30,
-                        strong: thunderBlocksColor.cyan_20,
-                    },
-                    green: {
-                        subtle: thunderBlocksColor.green_40,
-                        default: thunderBlocksColor.green_30,
-                        strong: thunderBlocksColor.green_20,
-                    },
-                    magenta: {
-                        subtle: thunderBlocksColor.magenta_40,
-                        default: thunderBlocksColor.magenta_30,
-                        strong: thunderBlocksColor.magenta_20,
-                    },
-                    orange: {
-                        subtle: thunderBlocksColor.orange_40,
-                        default: thunderBlocksColor.orange_30,
-                        strong: thunderBlocksColor.orange_20,
-                    },
+                blue: {
+                    default: thunderBlocksColor.blue_30,
                 },
-                border: {
-                    blue: {
-                        subtle: thunderBlocksColor.blue_40,
-                        default: thunderBlocksColor.blue_20,
-                        strong: thunderBlocksColor.blue_10,
-                    },
-                    cyan: {
-                        subtle: thunderBlocksColor.cyan_40,
-                        default: thunderBlocksColor.cyan_20,
-                        strong: thunderBlocksColor.cyan_10,
-                    },
-                    green: {
-                        subtle: thunderBlocksColor.green_40,
-                        default: thunderBlocksColor.green_20,
-                        strong: thunderBlocksColor.green_10,
-                    },
-                    magenta: {
-                        subtle: thunderBlocksColor.magenta_40,
-                        default: thunderBlocksColor.magenta_20,
-                        strong: thunderBlocksColor.magenta_10,
-                    },
-                    orange: {
-                        subtle: thunderBlocksColor.orange_40,
-                        default: thunderBlocksColor.orange_20,
-                        strong: thunderBlocksColor.orange_10,
-                    },
+                cyan: {
+                    default: thunderBlocksColor.cyan_30,
+                },
+                green: {
+                    default: thunderBlocksColor.green_30,
+                },
+                magenta: {
+                    default: thunderBlocksColor.magenta_30,
+                },
+                orange: {
+                    default: thunderBlocksColor.orange_30,
                 },
             },
         },
