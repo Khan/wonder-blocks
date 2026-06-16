@@ -212,10 +212,16 @@ export const LearningShadow = () => {
 
 export const LearningCharactersFlesh = () => {
     return (
-        <ColorGroupStory
-            category={semanticColor.learning.characters.flesh}
-            group="learning.characters.flesh"
-        />
+        <>
+            <ColorGroupStory
+                category={semanticColor.learning.characters.flesh.background}
+                group="learning.characters.flesh.background"
+            />
+            <ColorGroupStory
+                category={semanticColor.learning.characters.flesh.border}
+                group="learning.characters.flesh.border"
+            />
+        </>
     );
 };
 

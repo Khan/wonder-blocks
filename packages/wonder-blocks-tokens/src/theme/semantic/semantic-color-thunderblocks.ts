@@ -736,20 +736,59 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
         },
         characters: {
             flesh: {
-                blue: {
-                    default: color.blue_30,
+                background: {
+                    blue: {
+                        subtle: color.blue_40,
+                        default: color.blue_30,
+                        strong: color.blue_20,
+                    },
+                    cyan: {
+                        subtle: color.cyan_40,
+                        default: color.cyan_30,
+                        strong: color.cyan_20,
+                    },
+                    green: {
+                        subtle: color.green_40,
+                        default: color.green_30,
+                        strong: color.green_20,
+                    },
+                    magenta: {
+                        subtle: color.magenta_40,
+                        default: color.magenta_30,
+                        strong: color.magenta_20,
+                    },
+                    orange: {
+                        subtle: color.orange_40,
+                        default: color.orange_30,
+                        strong: color.orange_20,
+                    },
                 },
-                cyan: {
-                    default: color.cyan_30,
-                },
-                green: {
-                    default: color.green_30,
-                },
-                magenta: {
-                    default: color.magenta_30,
-                },
-                orange: {
-                    default: color.orange_30,
+                border: {
+                    blue: {
+                        subtle: color.blue_40,
+                        default: color.blue_20,
+                        strong: color.blue_10,
+                    },
+                    cyan: {
+                        subtle: color.cyan_40,
+                        default: color.cyan_20,
+                        strong: color.cyan_10,
+                    },
+                    green: {
+                        subtle: color.green_40,
+                        default: color.green_20,
+                        strong: color.green_10,
+                    },
+                    magenta: {
+                        subtle: color.magenta_40,
+                        default: color.magenta_20,
+                        strong: color.magenta_10,
+                    },
+                    orange: {
+                        subtle: color.orange_40,
+                        default: color.orange_20,
+                        strong: color.orange_10,
+                    },
                 },
             },
         },
