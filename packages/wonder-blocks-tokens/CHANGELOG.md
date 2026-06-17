@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 16.8.0
+
+### Minor Changes
+
+- f13552a: Add learning tokens for character flesh background and border
+
 ## 16.7.0
 
 ### Minor Changes
