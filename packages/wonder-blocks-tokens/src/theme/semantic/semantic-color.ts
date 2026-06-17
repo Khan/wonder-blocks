@@ -339,6 +339,8 @@ export const semanticColor = {
                 },
             },
         },
+        // TODO(WB-2380): Remove in favour of the flesh tokens as part of
+        // learning.background/border
         characters: {
             flesh: {
                 blue: {
