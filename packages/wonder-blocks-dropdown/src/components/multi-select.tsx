@@ -666,6 +666,12 @@ const MultiSelect = (props: Props) => {
 
     const {clearSearch, filter, noResults, someSelected} = labels;
 
+    // Use a ref so the filter-count effect below only re-fires when the
+    // filtered item count or open state changes, not on every render caused
+    // by label prop object identity churn.
+    const someSelectedRef = React.useRef(someSelected);
+    someSelectedRef.current = someSelected;
+
     const allChildren = (
         React.Children.toArray(children) as Array<
             React.ReactElement<React.ComponentProps<typeof OptionItem>>
@@ -678,11 +684,14 @@ const MultiSelect = (props: Props) => {
     const isDisabled = numEnabledOptions === 0 || disabled;
     const disableInteraction = isDisabled || readOnly;
 
+    // Announce the number of visible items when the dropdown opens or when
+    // the search filter changes. Selection-count announcements are handled
+    // separately by the opener-change effect above.
     React.useEffect(() => {
         if (open) {
-            handleAnnouncement(someSelected(filteredItems.length));
+            handleAnnouncement(someSelectedRef.current(filteredItems.length));
         }
-    }, [filteredItems.length, someSelected, open]);
+    }, [filteredItems.length, open, someSelectedRef]);
     return (
         <Id id={dropdownId}>
             {(uniqueDropdownId) => (

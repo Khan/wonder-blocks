@@ -1759,6 +1759,95 @@ describe("MultiSelect", () => {
             });
         });
 
+        it("should announce the selected item count (not total item count) when selecting while open", async () => {
+            // Arrange
+            const ControlledMultiSelect = (
+                props: Partial<PropsFor<typeof MultiSelect>>,
+            ) => {
+                const [selectedValues, setSelectedValues] = React.useState<
+                    Array<string>
+                >(["1"]);
+                return (
+                    <MultiSelect
+                        {...props}
+                        onChange={setSelectedValues}
+                        selectedValues={selectedValues}
+                        labels={{
+                            ...builtinLabels,
+                            someSelected: (numOptions: number): string =>
+                                numOptions <= 1
+                                    ? `${numOptions} item`
+                                    : `${numOptions} items`,
+                        }}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                        <OptionItem label="item 3" value="3" />
+                    </MultiSelect>
+                );
+            };
+
+            const {userEvent} = doRender(<ControlledMultiSelect />);
+            // Open the dropdown first
+            await userEvent.click(await screen.findByRole("combobox"));
+
+            // Act
+            // Select a second item while dropdown is open (now 2 of 3 selected)
+            await userEvent.click(await screen.findByText("item 2"));
+
+            // Assert
+            // Should announce "2 items" (selected count), not "3 items" (total count)
+            expect(announceMessageSpy).toHaveBeenLastCalledWith({
+                message: "2 items",
+            });
+        });
+
+        it("should announce the selected item count (not total item count) when deselecting while open", async () => {
+            // Arrange
+            // Start with 3 of 4 selected so deselecting stays in the count
+            // range (≥2) and the opener uses someSelected rather than an item label
+            const ControlledMultiSelect = (
+                props: Partial<PropsFor<typeof MultiSelect>>,
+            ) => {
+                const [selectedValues, setSelectedValues] = React.useState<
+                    Array<string>
+                >(["1", "2", "3"]);
+                return (
+                    <MultiSelect
+                        {...props}
+                        onChange={setSelectedValues}
+                        selectedValues={selectedValues}
+                        labels={{
+                            ...builtinLabels,
+                            someSelected: (numOptions: number): string =>
+                                numOptions <= 1
+                                    ? `${numOptions} item`
+                                    : `${numOptions} items`,
+                        }}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                        <OptionItem label="item 3" value="3" />
+                        <OptionItem label="item 4" value="4" />
+                    </MultiSelect>
+                );
+            };
+
+            const {userEvent} = doRender(<ControlledMultiSelect />);
+            // Open the dropdown first
+            await userEvent.click(await screen.findByRole("combobox"));
+
+            // Act
+            // Deselect one item while dropdown is open (now 2 of 4 selected)
+            await userEvent.click(await screen.findByText("item 1"));
+
+            // Assert
+            // Should announce "2 items" (selected count), not "4 items" (total count)
+            expect(announceMessageSpy).toHaveBeenLastCalledWith({
+                message: "2 items",
+            });
+        });
+
         it("should announce the number of options when the listbox is open", async () => {
             // Arrange
             const labels: LabelsValues = {
