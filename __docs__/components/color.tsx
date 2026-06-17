@@ -19,13 +19,11 @@ import {CopyButton} from "./copy-button";
 
 type Variant = "primitive" | "semantic" | "compact";
 
-type ColorMap = {[key: string]: string | ColorMap};
-
 type Props = {
     /**
-     * A dictionary of colors to display. Supports nested structures.
+     * A dictionary of colors to display.
      */
-    colors: ColorMap;
+    colors: Record<string, string>;
     /**
      * The type of color group to display.
      */
@@ -53,26 +51,15 @@ export function ColorGroup({
 }: Props) {
     return (
         <View style={[styles.group, style]}>
-            {Object.entries(colors).map(([name, value]) =>
-                typeof value === "string" ? (
-                    <Color
-                        key={name}
-                        name={group + "." + name}
-                        value={value}
-                        variant={variant}
-                        valuePrefix={valuePrefix}
-                    />
-                ) : (
-                    <ColorGroup
-                        key={name}
-                        colors={value}
-                        group={group + "." + name}
-                        variant={variant}
-                        style={style}
-                        valuePrefix={valuePrefix}
-                    />
-                ),
-            )}
+            {Object.entries(colors).map(([name, value]) => (
+                <Color
+                    key={name}
+                    name={group + "." + name}
+                    value={value}
+                    variant={variant}
+                    valuePrefix={valuePrefix}
+                />
+            ))}
         </View>
     );
 }
@@ -174,7 +161,7 @@ type ActionColorGroupProps = {
     /**
      * A dictionary of colors to display.
      */
-    category: ColorMap;
+    category: Record<string, Record<string, string>>;
     /**
      * The group name to use as a prefix for the color names.
      */
@@ -196,27 +183,18 @@ export function ActionColorGroup({
     includeExample = true,
     valuePrefix,
 }: ActionColorGroupProps) {
-    return Object.entries(category).map(([state, colorGroup], index) => {
-        const isFlat =
-            typeof colorGroup === "object" &&
-            Object.values(colorGroup).every((v) => typeof v === "string");
-        return (
-            <View style={styles.actionGroup} key={index}>
-                <LabelLarge style={styles.capitalized}>{state}</LabelLarge>
-                {includeExample && isFlat && (
-                    <Example style={colorGroup as Record<string, string>} />
-                )}
-                {typeof colorGroup !== "string" && (
-                    <ColorGroup
-                        colors={colorGroup}
-                        group={group + "." + state}
-                        variant="compact"
-                        valuePrefix={valuePrefix}
-                    />
-                )}
-            </View>
-        );
-    });
+    return Object.entries(category).map(([state, colorGroup], index) => (
+        <View style={styles.actionGroup} key={index}>
+            <LabelLarge style={styles.capitalized}>{state}</LabelLarge>
+            {includeExample && <Example style={colorGroup} />}
+            <ColorGroup
+                colors={colorGroup}
+                group={group + "." + state}
+                variant="compact"
+                valuePrefix={valuePrefix}
+            />
+        </View>
+    ));
 }
 
 function Example({style}: {style?: any}) {
