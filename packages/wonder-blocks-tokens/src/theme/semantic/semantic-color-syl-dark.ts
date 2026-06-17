@@ -591,6 +591,35 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
                     default: color.green_40,
                 },
             },
+            characters: {
+                flesh: {
+                    blue: {
+                        subtle: color.blue_20,
+                        default: color.blue_30,
+                        strong: color.blue_40,
+                    },
+                    cyan: {
+                        subtle: color.cyan_20,
+                        default: color.cyan_30,
+                        strong: color.cyan_40,
+                    },
+                    green: {
+                        subtle: color.green_20,
+                        default: color.green_30,
+                        strong: color.green_40,
+                    },
+                    magenta: {
+                        subtle: color.magenta_20,
+                        default: color.magenta_30,
+                        strong: color.magenta_40,
+                    },
+                    orange: {
+                        subtle: color.orange_20,
+                        default: color.orange_30,
+                        strong: color.orange_40,
+                    },
+                },
+            },
         },
         border: {
             gems: {
@@ -607,6 +636,35 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
                 subtle: color.cyan_20,
                 default: color.cyan_40,
                 strong: color.cyan_60,
+            },
+            characters: {
+                flesh: {
+                    blue: {
+                        subtle: color.blue_10,
+                        default: color.blue_20,
+                        strong: color.blue_40,
+                    },
+                    cyan: {
+                        subtle: color.cyan_10,
+                        default: color.cyan_20,
+                        strong: color.cyan_40,
+                    },
+                    green: {
+                        subtle: color.green_20,
+                        default: color.green_30,
+                        strong: color.green_50,
+                    },
+                    magenta: {
+                        subtle: color.magenta_10,
+                        default: color.magenta_20,
+                        strong: color.magenta_40,
+                    },
+                    orange: {
+                        subtle: color.orange_10,
+                        default: color.orange_20,
+                        strong: color.orange_40,
+                    },
+                },
             },
         },
         foreground: {
