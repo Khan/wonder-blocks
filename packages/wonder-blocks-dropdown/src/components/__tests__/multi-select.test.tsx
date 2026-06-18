@@ -1695,8 +1695,8 @@ describe("MultiSelect", () => {
         });
 
         it("should not announce initial values on mount", async () => {
-            // Arrange & Act
-            doRender(
+            // Arrange
+            const element = (
                 <MultiSelect
                     onChange={jest.fn()}
                     selectedValues={["1", "2"]}
@@ -1711,18 +1711,21 @@ describe("MultiSelect", () => {
                     <OptionItem label="item 1" value="1" />
                     <OptionItem label="item 2" value="2" />
                     <OptionItem label="item 3" value="3" />
-                </MultiSelect>,
+                </MultiSelect>
             );
+
+            // Act
+            doRender(element);
 
             // Assert
             expect(announceMessageSpy).not.toHaveBeenCalled();
         });
 
         it("should announce when values change after mount", async () => {
+            // Arrange
             const ControlledMultiSelect = (
                 props: Partial<PropsFor<typeof MultiSelect>>,
             ) => {
-                // Arrange
                 const [selectedValues, setSelectedValues] = React.useState<
                     Array<string>
                 >([]);
@@ -1745,17 +1748,16 @@ describe("MultiSelect", () => {
                     </MultiSelect>
                 );
             };
-
             const {userEvent} = doRender(<ControlledMultiSelect />);
-            // Act
             await userEvent.click(await screen.findByRole("combobox"));
+
+            // Act
             await userEvent.click(await screen.findByText("item 1"));
 
             // Assert
-            // First call announces total options ("3 items")
-            // Second call announces selected item count
-            expect(announceMessageSpy).toHaveBeenNthCalledWith(2, {
+            expect(announceMessageSpy).toHaveBeenCalledWith({
                 message: "item 1",
+                level: "assertive",
             });
         });
 
@@ -1799,6 +1801,7 @@ describe("MultiSelect", () => {
             // Should announce "2 items" (selected count), not "3 items" (total count)
             expect(announceMessageSpy).toHaveBeenLastCalledWith({
                 message: "2 items",
+                level: "assertive",
             });
         });
 
@@ -1845,21 +1848,24 @@ describe("MultiSelect", () => {
             // Should announce "2 items" (selected count), not "4 items" (total count)
             expect(announceMessageSpy).toHaveBeenLastCalledWith({
                 message: "2 items",
+                level: "assertive",
             });
         });
 
-        it("should announce the number of options when the listbox is open", async () => {
+        it("should announce the selected count (not total count) when the listbox is opened", async () => {
             // Arrange
-            const labels: LabelsValues = {
-                ...builtinLabels,
-                someSelected: (numOptions: number): string =>
-                    numOptions <= 1
-                        ? `${numOptions} school`
-                        : `${numOptions} schools`,
-            };
-
             const {userEvent} = doRender(
-                <MultiSelect onChange={jest.fn()} labels={labels} opened={true}>
+                <MultiSelect
+                    onChange={jest.fn()}
+                    labels={{
+                        ...builtinLabels,
+                        someSelected: (numOptions: number): string =>
+                            numOptions <= 1
+                                ? `${numOptions} school`
+                                : `${numOptions} schools`,
+                    }}
+                    selectedValues={["1", "2"]}
+                >
                     <OptionItem label="school 1" value="1" />
                     <OptionItem label="school 2" value="2" />
                     <OptionItem label="school 3" value="3" />
@@ -1871,8 +1877,92 @@ describe("MultiSelect", () => {
             await userEvent.click(opener);
 
             // Assert
-            await expect(announceMessageSpy).toHaveBeenCalledWith({
-                message: "3 schools",
+            expect(announceMessageSpy).toHaveBeenCalledWith({
+                message: "2 schools",
+                level: "assertive",
+            });
+        });
+
+        it("should announce after selecting all items via the shortcut", async () => {
+            // Arrange
+            const ControlledMultiSelect = (
+                props: Partial<PropsFor<typeof MultiSelect>>,
+            ) => {
+                const [selectedValues, setSelectedValues] = React.useState<
+                    Array<string>
+                >([]);
+                return (
+                    <MultiSelect
+                        {...props}
+                        onChange={setSelectedValues}
+                        selectedValues={selectedValues}
+                        shortcuts={true}
+                        labels={{
+                            ...builtinLabels,
+                            selectAllLabel: (n: number) => `Select all (${n})`,
+                            someSelected: (n: number) =>
+                                n === 1 ? "1 item" : `${n} items`,
+                            allSelected: "All items",
+                        }}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                        <OptionItem label="item 3" value="3" />
+                    </MultiSelect>
+                );
+            };
+            const {userEvent} = doRender(<ControlledMultiSelect />);
+            await userEvent.click(await screen.findByRole("combobox"));
+
+            // Act
+            await userEvent.click(await screen.findByText("Select all (3)"));
+
+            // Assert
+            expect(announceMessageSpy).toHaveBeenLastCalledWith({
+                message: "All items",
+                level: "assertive",
+            });
+        });
+
+        it("should announce after clearing all items via the shortcut", async () => {
+            // Arrange
+            const ControlledMultiSelect = (
+                props: Partial<PropsFor<typeof MultiSelect>>,
+            ) => {
+                const [selectedValues, setSelectedValues] = React.useState<
+                    Array<string>
+                >(["1", "2"]);
+                return (
+                    <MultiSelect
+                        {...props}
+                        onChange={setSelectedValues}
+                        selectedValues={selectedValues}
+                        shortcuts={true}
+                        labels={{
+                            ...builtinLabels,
+                            selectAllLabel: (n: number) => `Select all (${n})`,
+                            selectNoneLabel: "Clear selection",
+                            noneSelected: "0 items",
+                            someSelected: (n: number) =>
+                                n === 1 ? "1 item" : `${n} items`,
+                        }}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                        <OptionItem label="item 3" value="3" />
+                    </MultiSelect>
+                );
+            };
+            const {userEvent} = doRender(<ControlledMultiSelect />);
+            await userEvent.click(await screen.findByRole("combobox"));
+
+            // Act
+            await userEvent.click(await screen.findByText("Clear selection"));
+
+            // Assert
+            expect(announceMessageSpy).toHaveBeenLastCalledWith({
+                message: "0 items",
+                level: "assertive",
             });
         });
 
@@ -1907,8 +1997,9 @@ describe("MultiSelect", () => {
             await userEvent.paste("ear");
 
             // Assert
-            await expect(announceMessageSpy).toHaveBeenCalledWith({
+            expect(announceMessageSpy).toHaveBeenCalledWith({
                 message: "1 planet",
+                level: "assertive",
             });
         });
     });

@@ -553,6 +553,7 @@ const MultiSelect = (props: Props) => {
     const handleAnnouncement = (message: string) => {
         announceMessage({
             message,
+            level: "assertive",
         });
     };
 
@@ -577,26 +578,38 @@ const MultiSelect = (props: Props) => {
         [selectedValues],
     );
 
+    // Refs so the announcement effect re-fires only on meaningful changes,
+    // not on every render caused by inline label object identity churn.
+    const childrenRef = React.useRef(children);
+    childrenRef.current = children;
+    const getMenuTextOrNodeRef = React.useRef(getMenuTextOrNode);
+    getMenuTextOrNodeRef.current = getMenuTextOrNode;
+    const maybeGetOpenerStringValueRef = React.useRef(
+        maybeGetOpenerStringValue,
+    );
+    maybeGetOpenerStringValueRef.current = maybeGetOpenerStringValue;
+
+    // Announces the opener value on open and after each selection change.
     React.useEffect(() => {
         if (isInitialRender.current) {
             isInitialRender.current = false;
             return;
         }
-
+        if (!open) {
+            return;
+        }
         const optionItems = React.Children.toArray(
-            children,
+            childrenRef.current,
         ) as OptionItemComponentArray;
-        const openerContent = getMenuTextOrNode(optionItems);
-        const openerStringValue = maybeGetOpenerStringValue(
+        const openerContent = getMenuTextOrNodeRef.current(optionItems);
+        const openerStringValue = maybeGetOpenerStringValueRef.current(
             optionItems,
             openerContent,
         );
-
         if (openerStringValue) {
-            // opener value changed, so let's announce it
             handleAnnouncement(openerStringValue);
         }
-    }, [children, getMenuTextOrNode, maybeGetOpenerStringValue]);
+    }, [open, selectedValues]);
 
     // If aria-required was supplied, use that. Otherwise, convert `required` to a boolean
     // and apply that value to aria-required.
@@ -666,9 +679,8 @@ const MultiSelect = (props: Props) => {
 
     const {clearSearch, filter, noResults, someSelected} = labels;
 
-    // Use a ref so the filter-count effect below only re-fires when the
-    // filtered item count or open state changes, not on every render caused
-    // by label prop object identity churn.
+    // Use refs so the effects below only re-fire when their relevant values
+    // change, not on every render caused by label prop object identity churn.
     const someSelectedRef = React.useRef(someSelected);
     someSelectedRef.current = someSelected;
 
@@ -684,14 +696,14 @@ const MultiSelect = (props: Props) => {
     const isDisabled = numEnabledOptions === 0 || disabled;
     const disableInteraction = isDisabled || readOnly;
 
-    // Announce the number of visible items when the dropdown opens or when
-    // the search filter changes. Selection-count announcements are handled
-    // separately by the opener-change effect above.
+    // Announces the filtered count when the search filter changes while open.
+    // Filtering only changes displayed options, not selectedValues, so this
+    // effect is separate from the selection/open effect above.
     React.useEffect(() => {
         if (open) {
             handleAnnouncement(someSelectedRef.current(filteredItems.length));
         }
-    }, [filteredItems.length, open, someSelectedRef]);
+    }, [filteredItems.length, someSelectedRef]); // eslint-disable-line react-hooks/exhaustive-deps
     return (
         <Id id={dropdownId}>
             {(uniqueDropdownId) => (
