@@ -23,6 +23,10 @@ const meta: Meta<typeof Breadcrumbs> = {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // Disable snapshots since they're covered by the testing snapshots
+            disableSnapshot: true,
+        },
     },
 };
 

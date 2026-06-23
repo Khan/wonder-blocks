@@ -33,6 +33,10 @@ export default {
                 excludeDecorators: true,
             },
         },
+        chromatic: {
+            // Disable snapshots for this component because it is covered by StateSheet snapshots
+            disableSnapshot: true,
+        },
     },
     decorators: [
         (Story: any): React.ReactElement<React.ComponentProps<typeof View>> => (
@@ -150,6 +154,11 @@ Inline.parameters = {
     docs: {
         description: {story: `Circular spinners also work inline.`},
     },
+    chromatic: {
+        // Re-enable snapshots for this story since it shows the spinner in
+        // the context of text.
+        disableSnapshot: false,
+    },
 };
 
 export const WithStyle: StoryComponentType = () => {
@@ -171,6 +180,11 @@ WithStyle.parameters = {
             is \`solid 5px \${Color.teal}\` as well as a \`borderRadius\`
             of \`50%\`.`,
         },
+    },
+    chromatic: {
+        // Re-enable snapshots for this story since it shows the spinner in
+        // the context of custom styles.
+        disableSnapshot: false,
     },
 };
 

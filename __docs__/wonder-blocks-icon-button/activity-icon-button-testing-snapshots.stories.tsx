@@ -13,7 +13,7 @@ import bookOpen from "@phosphor-icons/core/regular/book-open.svg";
 import wrench from "@phosphor-icons/core/regular/wrench.svg";
 import {ActivityIconButton} from "@khanacademy/wonder-blocks-icon-button";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 import {ScenariosLayout} from "../components/scenarios-layout";
 import {longTextWithNoWordBreak} from "../components/text-for-testing";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -40,7 +40,7 @@ export default {
     },
     parameters: {
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
         },
     },
 } as Meta;

@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Meta, StoryObj} from "@storybook/react-vite";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-search-field/package.json";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
@@ -22,7 +22,7 @@ export default {
             />
         ),
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
         },
     },
 } as Meta<typeof SearchField>;

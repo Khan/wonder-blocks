@@ -3,7 +3,7 @@ import {action} from "storybook/actions";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import paperPlaneIcon from "@phosphor-icons/core/fill/paper-plane-tilt-fill.svg";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -17,11 +17,6 @@ import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
  */
 export default {
     title: "Packages / Button / Testing / Snapshots / Button",
-    parameters: {
-        chromatic: {
-            modes: themeModes,
-        },
-    },
     tags: ["!autodocs", "!manifest"],
     args: {
         children: "Button",
@@ -45,6 +40,7 @@ const actionTypes = [
     {name: "Destructive", props: {actionType: "destructive"}},
     {name: "Neutral", props: {actionType: "neutral"}},
     {name: "Disabled", props: {disabled: true}},
+    {name: "Loading", props: {spinner: true, "aria-label": "Loading"}},
 ];
 
 export const StateSheetStory: StoryComponentType = {
@@ -92,6 +88,9 @@ export const StateSheetStory: StoryComponentType = {
     },
     parameters: {
         pseudo: defaultPseudoStates,
+        chromatic: {
+            modes: allThemeModes,
+        },
     },
 };
 
@@ -102,25 +101,23 @@ const sizes = [
 ];
 
 export const Sizes: StoryComponentType = {
+    // No need to test this in all themes since this is coered by the statesheet
     render: (args) => {
         return (
             <AllVariants rows={sizes} columns={kinds} title="Size / Kind">
                 {({props}) => (
                     <View style={{gap: sizing.size_160, flexDirection: "row"}}>
                         <Button {...args} {...props} />
-                        {actionTypes.map(
-                            ({props: {actionType, disabled}}, index) => (
-                                <Button
-                                    {...args}
-                                    {...props}
-                                    actionType={actionType}
-                                    disabled={disabled}
-                                    key={index}
-                                    startIcon={paperPlaneIcon}
-                                    endIcon={paperPlaneIcon}
-                                />
-                            ),
-                        )}
+                        {actionTypes.map(({props: actionTypeProps}, index) => (
+                            <Button
+                                {...args}
+                                {...props}
+                                {...actionTypeProps}
+                                key={index}
+                                startIcon={paperPlaneIcon}
+                                endIcon={paperPlaneIcon}
+                            />
+                        ))}
                     </View>
                 )}
             </AllVariants>

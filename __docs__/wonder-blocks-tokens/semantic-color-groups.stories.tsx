@@ -3,6 +3,7 @@ import {StyleSheet} from "aphrodite";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {ActionColorGroup, ColorGroup} from "../components/color";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
+import {Heading} from "@khanacademy/wonder-blocks-typography";
 
 export default {
     title: "Packages/Tokens/Semantic Colors/Groups",
@@ -156,16 +157,27 @@ export const LearningMath = () => {
 
 export const LearningBorder = () => {
     return (
-        <ColorGroupStory
-            category={semanticColor.learning.border}
-            group="learning.border"
-        />
+        <View style={styles.groupOfColorGroupStory}>
+            <ColorGroupStory
+                category={{
+                    gems: semanticColor.learning.border.gems,
+                    streaks: semanticColor.learning.border.streaks,
+                    due: semanticColor.learning.border.due,
+                }}
+                group="learning.border"
+            />
+            <Heading size="medium">Characters Flesh</Heading>
+            <ColorGroupStory
+                category={semanticColor.learning.border.characters.flesh}
+                group="learning.border.characters.flesh"
+            />
+        </View>
     );
 };
 
 export const LearningBackground = () => {
     return (
-        <>
+        <View style={styles.groupOfColorGroupStory}>
             <ColorGroupStory
                 category={{
                     gems: semanticColor.learning.background.gems,
@@ -174,17 +186,23 @@ export const LearningBackground = () => {
                 }}
                 group="learning.background"
             />
+            <Heading size="medium">Progress</Heading>
             <ColorGroupStory
                 category={semanticColor.learning.background.progress}
                 group="learning.background.progress"
             />
-        </>
+            <Heading size="medium">Characters Flesh</Heading>
+            <ColorGroupStory
+                category={semanticColor.learning.background.characters.flesh}
+                group="learning.background.characters.flesh"
+            />
+        </View>
     );
 };
 
 export const LearningForeground = () => {
     return (
-        <>
+        <View style={styles.groupOfColorGroupStory}>
             <ColorGroupStory
                 category={{
                     gems: semanticColor.learning.foreground.gems,
@@ -193,11 +211,12 @@ export const LearningForeground = () => {
                 }}
                 group="learning.foreground"
             />
+            <Heading size="medium">Progress</Heading>
             <ColorGroupStory
                 category={semanticColor.learning.foreground.progress}
                 group="learning.foreground.progress"
             />
-        </>
+        </View>
     );
 };
 
@@ -206,15 +225,6 @@ export const LearningShadow = () => {
         <ColorGroupStory
             category={semanticColor.learning.shadow.progress}
             group="learning.shadow.progress"
-        />
-    );
-};
-
-export const LearningCharactersFlesh = () => {
-    return (
-        <ColorGroupStory
-            category={semanticColor.learning.characters.flesh}
-            group="learning.characters.flesh"
         />
     );
 };
@@ -240,6 +250,9 @@ export const Mastery = () => {
 };
 
 const styles = StyleSheet.create({
+    groupOfColorGroupStory: {
+        gap: sizing.size_080,
+    },
     grid: {
         display: "grid",
         gridTemplateColumns: "repeat(2, minmax(100px, auto))",

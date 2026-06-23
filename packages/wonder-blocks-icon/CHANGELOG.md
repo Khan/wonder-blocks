@@ -1,5 +1,26 @@
 # @khanacademy/wonder-blocks-icon
 
+## 5.3.18
+
+### Patch Changes
+
+- Updated dependencies [f13552a]
+    - @khanacademy/wonder-blocks-tokens@16.8.0
+
+## 5.3.17
+
+### Patch Changes
+
+- ddcaaeb: Use hex colors in StreakIcon and GemIcon so it looks the same across all themes
+- Updated dependencies [0907f64]
+- Updated dependencies [9773405]
+- Updated dependencies [9773405]
+- Updated dependencies [022e775]
+- Updated dependencies [e181c15]
+- Updated dependencies [c033245]
+- Updated dependencies [a2bbc0a]
+    - @khanacademy/wonder-blocks-tokens@16.7.0
+
 ## 5.3.16
 
 ### Patch Changes

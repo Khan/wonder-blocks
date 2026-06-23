@@ -1,5 +1,48 @@
 # eslint-plugin-wonder-blocks-demo
 
+## 0.4.2
+
+### Patch Changes
+
+- Updated dependencies [f13552a]
+    - @khanacademy/wonder-blocks-tokens@16.8.0
+    - @khanacademy/wonder-blocks-button@11.7.2
+    - @khanacademy/wonder-blocks-clickable@8.2.4
+    - @khanacademy/wonder-blocks-dropdown@10.11.1
+    - @khanacademy/wonder-blocks-form@7.6.5
+    - @khanacademy/wonder-blocks-icon@5.3.18
+    - @khanacademy/wonder-blocks-icon-button@11.3.5
+    - @khanacademy/wonder-blocks-link@10.3.4
+    - @khanacademy/wonder-blocks-typography@4.3.8
+
+## 0.4.1
+
+### Patch Changes
+
+- Updated dependencies [ddcaaeb]
+- Updated dependencies [0907f64]
+- Updated dependencies [9773405]
+- Updated dependencies [e6c705d]
+- Updated dependencies [e6c705d]
+- Updated dependencies [9773405]
+- Updated dependencies [5928e1c]
+- Updated dependencies [fcf3bb1]
+- Updated dependencies [022e775]
+- Updated dependencies [e181c15]
+- Updated dependencies [022e775]
+- Updated dependencies [8413cfe]
+- Updated dependencies [c033245]
+- Updated dependencies [a2bbc0a]
+    - @khanacademy/wonder-blocks-icon@5.3.17
+    - @khanacademy/wonder-blocks-tokens@16.7.0
+    - @khanacademy/wonder-blocks-icon-button@11.3.4
+    - @khanacademy/wonder-blocks-form@7.6.4
+    - @khanacademy/wonder-blocks-dropdown@10.11.0
+    - @khanacademy/wonder-blocks-button@11.7.1
+    - @khanacademy/wonder-blocks-link@10.3.3
+    - @khanacademy/wonder-blocks-clickable@8.2.3
+    - @khanacademy/wonder-blocks-typography@4.3.7
+
 ## 0.4.0
 
 ### Minor Changes

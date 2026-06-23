@@ -5,7 +5,7 @@ import {
     ModalLauncher,
     OnePaneDialog,
 } from "@khanacademy/wonder-blocks-modal";
-import {allModes} from "../../.storybook/modes";
+import {allModes, allThemeModes} from "../../.storybook/modes";
 import Button from "@khanacademy/wonder-blocks-button";
 import {reallyLongText} from "../components/text-for-testing";
 
@@ -14,10 +14,9 @@ export default {
     parameters: {
         chromatic: {
             modes: {
-                default: allModes.themeDefault,
                 "default rtl": allModes["themeDefault rtl"],
                 small: allModes.small,
-                thunderblocks: allModes.themeThunderBlocks,
+                ...allThemeModes,
             },
         },
     },
