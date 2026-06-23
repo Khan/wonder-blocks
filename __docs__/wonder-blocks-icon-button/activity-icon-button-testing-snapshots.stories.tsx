@@ -659,7 +659,7 @@ export const LabelFittingLocaleMatrix: Story = {
         // Label fitting is layout, not theming — one snapshot is enough.
         chromatic: {
             modes: {
-                thunderblocks: themeModes.thunderblocks,
+                thunderblocks: allThemeModes.thunderblocks,
             },
         },
     },
