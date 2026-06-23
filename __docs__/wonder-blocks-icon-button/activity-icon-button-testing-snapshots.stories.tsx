@@ -657,6 +657,10 @@ export const LabelFittingLocaleMatrix: Story = {
         // This is a wide matrix; let it scroll rather than clip.
         layout: "fullscreen",
         // Label fitting is layout, not theming — one snapshot is enough.
-        chromatic: {modes: {thunderblocks: themeModes.thunderblocks}},
+        chromatic: {
+            modes: {
+                thunderblocks: themeModes.thunderblocks,
+            },
+        },
     },
 };
