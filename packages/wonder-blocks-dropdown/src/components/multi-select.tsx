@@ -580,6 +580,7 @@ const MultiSelect = (props: Props) => {
 
     // Refs so the announcement effect re-fires only on meaningful changes,
     // not on every render caused by inline label object identity churn.
+    const prevOpenRef = React.useRef(open);
     const childrenRef = React.useRef(children);
     childrenRef.current = children;
     const getMenuTextOrNodeRef = React.useRef(getMenuTextOrNode);
@@ -589,15 +590,7 @@ const MultiSelect = (props: Props) => {
     );
     maybeGetOpenerStringValueRef.current = maybeGetOpenerStringValue;
 
-    // Announces the opener value on open and after each selection change.
-    React.useEffect(() => {
-        if (isInitialRender.current) {
-            isInitialRender.current = false;
-            return;
-        }
-        if (!open) {
-            return;
-        }
+    const announceOpenerValue = () => {
         const optionItems = React.Children.toArray(
             childrenRef.current,
         ) as OptionItemComponentArray;
@@ -609,7 +602,24 @@ const MultiSelect = (props: Props) => {
         if (openerStringValue) {
             handleAnnouncement(openerStringValue);
         }
-    }, [open, selectedValues]);
+    };
+
+    // Announces the opener value when selectedValues changes (while open) or
+    // when the dropdown opens (VoiceOver/Safari workaround for stale combobox
+    // values). Skips the open trigger for filterable dropdowns since focus moves
+    // to the search input there.
+    React.useEffect(() => {
+        if (isInitialRender.current) {
+            isInitialRender.current = false;
+            prevOpenRef.current = open;
+            return;
+        }
+        const justOpened = open && !prevOpenRef.current;
+        prevOpenRef.current = open;
+        if (open && (!justOpened || !isFilterable)) {
+            announceOpenerValue();
+        }
+    }, [selectedValues, open]); // eslint-disable-line react-hooks/exhaustive-deps
 
     // If aria-required was supplied, use that. Otherwise, convert `required` to a boolean
     // and apply that value to aria-required.
@@ -696,11 +706,9 @@ const MultiSelect = (props: Props) => {
     const isDisabled = numEnabledOptions === 0 || disabled;
     const disableInteraction = isDisabled || readOnly;
 
-    // Announces the filtered count when the search filter changes while open.
-    // Filtering only changes displayed options, not selectedValues, so this
-    // effect is separate from the selection/open effect above.
+    // Announces the filtered count when the user types in the search field.
     React.useEffect(() => {
-        if (open) {
+        if (searchText) {
             handleAnnouncement(someSelectedRef.current(filteredItems.length));
         }
     }, [filteredItems.length, someSelectedRef]); // eslint-disable-line react-hooks/exhaustive-deps

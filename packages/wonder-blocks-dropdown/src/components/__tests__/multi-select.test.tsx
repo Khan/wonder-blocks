@@ -1852,7 +1852,7 @@ describe("MultiSelect", () => {
             });
         });
 
-        it("should announce the selected count (not total count) when the listbox is opened", async () => {
+        it("should announce the selected count when a non-filterable listbox is opened", async () => {
             // Arrange
             const {userEvent} = doRender(
                 <MultiSelect
@@ -1871,16 +1871,43 @@ describe("MultiSelect", () => {
                     <OptionItem label="school 3" value="3" />
                 </MultiSelect>,
             );
-            const opener = await screen.findByRole("combobox");
 
             // Act
-            await userEvent.click(opener);
+            await userEvent.click(await screen.findByRole("combobox"));
 
             // Assert
             expect(announceMessageSpy).toHaveBeenCalledWith({
                 message: "2 schools",
                 level: "assertive",
             });
+        });
+
+        it("should not announce when a filterable listbox is opened", async () => {
+            // Arrange
+            const {userEvent} = doRender(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    isFilterable={true}
+                    labels={{
+                        ...builtinLabels,
+                        someSelected: (numOptions: number): string =>
+                            numOptions <= 1
+                                ? `${numOptions} school`
+                                : `${numOptions} schools`,
+                    }}
+                    selectedValues={["1", "2"]}
+                >
+                    <OptionItem label="school 1" value="1" />
+                    <OptionItem label="school 2" value="2" />
+                    <OptionItem label="school 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            await userEvent.click(await screen.findByRole("combobox"));
+
+            // Assert
+            expect(announceMessageSpy).not.toHaveBeenCalled();
         });
 
         it("should announce after selecting all items via the shortcut", async () => {
