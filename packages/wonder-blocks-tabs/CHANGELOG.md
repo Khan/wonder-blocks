@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tabs
 
+## 0.5.20
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-dropdown@10.11.2
+
 ## 0.5.19
 
 ### Patch Changes
