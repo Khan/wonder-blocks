@@ -5,6 +5,7 @@ import path from "node:path";
 // TODO(WB-2312): Update once we change the default theme to TB
 import themeDefault from "../theme/default";
 import themeThunderblocks from "../theme/thunderblocks";
+import themeSylDark from "../theme/syl-dark";
 import {breakpoint} from "../tokens/media-queries";
 import {CSS_VAR_PREFIX} from "../util/constants";
 
@@ -17,6 +18,7 @@ const themes: ReadonlyArray<{
 }> = [
     {id: "default", label: "Default", theme: themeDefault},
     {id: "thunderblocks", label: "Thunderblocks", theme: themeThunderblocks},
+    {id: "syl-dark", label: "Syl Dark", theme: themeSylDark},
 ];
 
 export function flattenToMap(
@@ -236,6 +238,19 @@ export function renderMdx(group: Group): string {
 import {Meta} from "@storybook/addon-docs/blocks";
 
 <Meta title="${group.title}" summary="${group.description}" />
+
+{/*
+  Constrain wide token tables to the docs content width and let them scroll
+  horizontally on their own. Without this, the table overflows the page and
+  reveals the body background past the edge of the docs container.
+*/}
+<style>{\`
+  .sbdocs.sbdocs-content table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+\`}</style>
 
 # ${group.heading}
 

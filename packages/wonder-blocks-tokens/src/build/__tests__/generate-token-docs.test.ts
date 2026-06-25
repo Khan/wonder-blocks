@@ -173,7 +173,8 @@ describe("renderThemedTable", () => {
         const getTokens = jest
             .fn()
             .mockReturnValueOnce({foo: "default-foo", bar: "default-bar"})
-            .mockReturnValueOnce({foo: "tb-foo", bar: "tb-bar"});
+            .mockReturnValueOnce({foo: "tb-foo", bar: "tb-bar"})
+            .mockReturnValueOnce({foo: "syl-dark-foo", bar: "syl-dark-bar"});
         const group = {
             id: "demo",
             title: "Demo",
@@ -190,10 +191,10 @@ describe("renderThemedTable", () => {
         // Assert
         expect(result).toBe(
             [
-                "| Token | CSS Variable | Default | Thunderblocks |",
-                "| --- | --- | --- | --- |",
-                "| `demo.foo` | `--wb-demo-foo` | `default-foo` | `tb-foo` |",
-                "| `demo.bar` | `--wb-demo-bar` | `default-bar` | `tb-bar` |",
+                "| Token | CSS Variable | Default | Thunderblocks | Syl Dark |",
+                "| --- | --- | --- | --- | --- |",
+                "| `demo.foo` | `--wb-demo-foo` | `default-foo` | `tb-foo` | `syl-dark-foo` |",
+                "| `demo.bar` | `--wb-demo-bar` | `default-bar` | `tb-bar` | `syl-dark-bar` |",
             ].join("\n"),
         );
     });
@@ -203,7 +204,8 @@ describe("renderThemedTable", () => {
         const getTokens = jest
             .fn()
             .mockReturnValueOnce({foo: "default-foo"})
-            .mockReturnValueOnce({foo: "tb-foo"});
+            .mockReturnValueOnce({foo: "tb-foo"})
+            .mockReturnValueOnce({foo: "syl-dark-foo"});
         const group = {
             id: "demo",
             title: "Demo",
@@ -220,9 +222,9 @@ describe("renderThemedTable", () => {
         // Assert
         expect(result).toBe(
             [
-                "| Token | Default | Thunderblocks |",
-                "| --- | --- | --- |",
-                "| `demo.foo` | `default-foo` | `tb-foo` |",
+                "| Token | Default | Thunderblocks | Syl Dark |",
+                "| --- | --- | --- | --- |",
+                "| `demo.foo` | `default-foo` | `tb-foo` | `syl-dark-foo` |",
             ].join("\n"),
         );
     });
@@ -232,7 +234,8 @@ describe("renderThemedTable", () => {
         const getTokens = jest
             .fn()
             .mockReturnValueOnce({shared: "default", onlyDefault: "d"})
-            .mockReturnValueOnce({shared: "tb", onlyTb: "t"});
+            .mockReturnValueOnce({shared: "tb", onlyTb: "t"})
+            .mockReturnValueOnce({shared: "syl-dark", onlySylDark: "s"});
         const group = {
             id: "demo",
             title: "Demo",
@@ -249,11 +252,12 @@ describe("renderThemedTable", () => {
         // Assert
         expect(result).toBe(
             [
-                "| Token | Default | Thunderblocks |",
-                "| --- | --- | --- |",
-                "| `demo.shared` | `default` | `tb` |",
-                "| `demo.onlyDefault` | `d` | — |",
-                "| `demo.onlyTb` | — | `t` |",
+                "| Token | Default | Thunderblocks | Syl Dark |",
+                "| --- | --- | --- | --- |",
+                "| `demo.shared` | `default` | `tb` | `syl-dark` |",
+                "| `demo.onlyDefault` | `d` | — | — |",
+                "| `demo.onlyTb` | — | `t` | — |",
+                "| `demo.onlySylDark` | — | — | `s` |",
             ].join("\n"),
         );
     });
@@ -262,6 +266,7 @@ describe("renderThemedTable", () => {
         // Arrange
         const getTokens = jest
             .fn()
+            .mockReturnValueOnce({color: {bg: "white"}})
             .mockReturnValueOnce({color: {bg: "white"}})
             .mockReturnValueOnce({color: {bg: "black"}});
         const group = {
@@ -280,9 +285,9 @@ describe("renderThemedTable", () => {
         // Assert
         expect(result).toBe(
             [
-                "| Token | CSS Variable | Default | Thunderblocks |",
-                "| --- | --- | --- | --- |",
-                "| `semanticColor.color.bg` | `--wb-semanticColor-color-bg` | `white` | `black` |",
+                "| Token | CSS Variable | Default | Thunderblocks | Syl Dark |",
+                "| --- | --- | --- | --- | --- |",
+                "| `semanticColor.color.bg` | `--wb-semanticColor-color-bg` | `white` | `white` | `black` |",
             ].join("\n"),
         );
     });

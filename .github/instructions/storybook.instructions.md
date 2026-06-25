@@ -280,7 +280,7 @@ export const WithIcon: StoryComponentType = {
     render: () => <IconExample />,
     parameters: {
         chromatic: {
-            modes: themeModes, // Test in multiple themes
+            modes: allThemeModes, // Test in multiple themes
         },
     },
 };
@@ -291,13 +291,13 @@ export const WithIcon: StoryComponentType = {
 Theme modes allow Chromatic to capture snapshots in multiple themes:
 
 ```tsx
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 
 export default {
     title: "Packages / Component / Testing / Snapshots",
     parameters: {
         chromatic: {
-            modes: themeModes, // Captures snapshots in all themes
+            modes: allThemeModes, // Captures snapshots in all themes
         },
     },
     tags: ["!autodocs"],
@@ -322,7 +322,7 @@ export default {
     tags: ["!autodocs"], // Exclude from auto-generated docs
     parameters: {
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
         },
     },
 } as Meta;
