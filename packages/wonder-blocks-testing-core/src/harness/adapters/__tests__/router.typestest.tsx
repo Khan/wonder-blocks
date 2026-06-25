@@ -1,7 +1,8 @@
 import * as React from "react";
-import {describe, it} from "tstyche";
+import {describe, expect, it} from "tstyche";
 
 import {adapter} from "../router";
+import type {Config} from "../router";
 
 describe("router adapter config", () => {
     it("should accept a context-mode location string", () => {
@@ -73,5 +74,74 @@ describe("router adapter config", () => {
             // @ts-expect-error: is not assignable to type 'undefined'
             initialEntries: ["/math"],
         });
+    });
+});
+
+/**
+ * These assertions check the exported `Config` type directly (rather than
+ * through the `adapter` call site). They exercise structural assignability,
+ * which - unlike passing a fresh object literal as a function argument - does
+ * NOT rely on excess-property checking. That is exactly the guarantee TS 6.0
+ * weakened, so these are the regression tests for the `NotLocation` /
+ * `NotInitialEntries` / `NotDataRoutes` `never` guards that make `Config` a
+ * disjoint union.
+ */
+describe("Config (disjoint union)", () => {
+    it("accepts a bare location string", () => {
+        expect("/math").type.toBeAssignableTo<Config>();
+    });
+
+    it("accepts a location object", () => {
+        expect({location: "/math"}).type.toBeAssignableTo<Config>();
+    });
+
+    it("accepts a forceStatic location object", () => {
+        expect({
+            location: "/math",
+            forceStatic: true,
+        } as const).type.toBeAssignableTo<Config>();
+    });
+
+    it("accepts an initialEntries object", () => {
+        expect({initialEntries: ["/math"]}).type.toBeAssignableTo<Config>();
+    });
+
+    it("accepts a data-routes object", () => {
+        expect({routes: [{path: "/"}]}).type.toBeAssignableTo<Config>();
+    });
+
+    it("accepts data-routes combined with initialEntries", () => {
+        expect({
+            routes: [{path: "/"}],
+            initialEntries: ["/"],
+        }).type.toBeAssignableTo<Config>();
+    });
+
+    it("rejects combining location with initialEntries", () => {
+        expect({
+            location: "/math",
+            initialEntries: ["/math"],
+        }).type.not.toBeAssignableTo<Config>();
+    });
+
+    it("rejects combining location with data-routes routes", () => {
+        expect({
+            location: "/math",
+            routes: [{path: "/"}],
+        }).type.not.toBeAssignableTo<Config>();
+    });
+
+    it("rejects combining context-mode path with data-routes routes", () => {
+        expect({
+            path: "/math/*",
+            routes: [{path: "/"}],
+        }).type.not.toBeAssignableTo<Config>();
+    });
+
+    it("rejects combining location with data-routes hydrationData", () => {
+        expect({
+            location: "/math",
+            hydrationData: {loaderData: {}},
+        }).type.not.toBeAssignableTo<Config>();
     });
 });

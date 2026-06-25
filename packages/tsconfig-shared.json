@@ -13,11 +13,11 @@
         // declarations. (The root `tsconfig.json` used by `typecheck` does not
         // extend this file, so its behaviour is unaffected.)
         //
-        // KEEP IN SYNC: this list must include every `@types/*` package whose
-        // globals are used by package source. Because `typecheck` still
-        // auto-resolves all `@types/*`, a missing entry here passes `typecheck`
-        // but fails `build:types` with "Cannot find name ...". When adding a
-        // new global-providing `@types/*` dependency, add it here too.
+        // This list must stay in sync with the repo's `@types/*` dependencies:
+        // because `typecheck` still auto-resolves all `@types/*`, a missing
+        // entry here passes `typecheck` but fails `build:types`. The test in
+        // consistency-tests/__tests__/tsconfig-shared-types.test.ts enforces
+        // this.
         "types": [
             "aria-query",
             "history",
