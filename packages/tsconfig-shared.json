@@ -12,6 +12,12 @@
         // list them explicitly here to keep them in scope when emitting
         // declarations. (The root `tsconfig.json` used by `typecheck` does not
         // extend this file, so its behaviour is unaffected.)
+        //
+        // KEEP IN SYNC: this list must include every `@types/*` package whose
+        // globals are used by package source. Because `typecheck` still
+        // auto-resolves all `@types/*`, a missing entry here passes `typecheck`
+        // but fails `build:types` with "Cannot find name ...". When adding a
+        // new global-providing `@types/*` dependency, add it here too.
         "types": [
             "aria-query",
             "history",
