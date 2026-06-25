@@ -60,4 +60,18 @@ describe("router adapter config", () => {
         // @ts-expect-error: is not assignable to type 'undefined'
         adapter(null, {path: "/math/*", routes: [{path: "/"}]});
     });
+
+    it("should reject combining location with initialEntries", () => {
+        // @ts-expect-error: is not assignable to type 'undefined'
+        adapter(null, {location: "/math", initialEntries: ["/math"]});
+    });
+
+    it("should reject combining forceStatic location with initialEntries", () => {
+        adapter(null, {
+            location: "/math",
+            forceStatic: true,
+            // @ts-expect-error: is not assignable to type 'undefined'
+            initialEntries: ["/math"],
+        });
+    });
 });

@@ -46,6 +46,30 @@ type NotDataRoutes = {
 };
 
 /**
+ * Key that only exists in the MemoryRouter (`initialEntries`) context mode.
+ *
+ * Forbidden (typed as `never`) in the `location` context modes so the two
+ * context-mode shapes can never be combined: passing `initialEntries`
+ * alongside a `location` is a type error.
+ *
+ * TS 6.0 relaxed union excess-property checking, so this exclusivity must be
+ * enforced structurally rather than relying on excess-property errors.
+ */
+type NotInitialEntries = {
+    initialEntries?: never;
+};
+
+/**
+ * Key that only exists in the `location` context modes.
+ *
+ * Forbidden (typed as `never`) in the `initialEntries` context mode for the
+ * same reason as `NotInitialEntries`.
+ */
+type NotLocation = {
+    location?: never;
+};
+
+/**
  * Configuration for the data-routes mode of the `router` adapter.
  *
  * Selected by the presence of `routes`. Renders a RR v6 data router
@@ -123,80 +147,83 @@ type DataRoutesConfig = {
  */
 export type Config =
     | Readonly<
-          | (NotDataRoutes & {
-                /**
-                 * See MemoryRouter prop for initialEntries.
-                 */
-                initialEntries: MemoryRouterProps["initialEntries"];
-                /**
-                 * See MemoryRouter prop for initialIndex.
-                 */
-                initialIndex?: MemoryRouterProps["initialIndex"];
-                /**
-                 * A path match to use.
-                 *
-                 * When this is specified, the harnessed component will be
-                 * rendered inside a `Route` handler with this path.
-                 *
-                 * If the path matches the location, then the route will
-                 * render the component.
-                 *
-                 * If the path does not match the location, then the route
-                 * will not render the component.
-                 */
-                path?: string;
-            })
-          | (NotDataRoutes & {
-                /**
-                 * The location to use.
-                 */
-                location: LocationDescriptor;
-                /**
-                 * Force the use of a StaticRouter, instead of MemoryRouter.
-                 */
-                forceStatic: true;
-                /**
-                 * If true, then we will not use a CompatRouter.
-                 *
-                 * NOTE(john): There are cases where we don't want a CompatRouter
-                 * here as it uses useLayoutEffect, which causes issues in our
-                 * test environment. Namely, that it generates a warning about
-                 * the use of useLayoutEffect, which causes an error.
-                 */
-                disableCompatRouter?: boolean;
-                /**
-                 * A path match to use.
-                 *
-                 * When this is specified, the harnessed component will be
-                 * rendered inside a `Route` handler with this path.
-                 *
-                 * If the path matches the location, then the route will
-                 * render the component.
-                 *
-                 * If the path does not match the location, then the route
-                 * will not render the component.
-                 */
-                path?: string;
-            })
-          | (NotDataRoutes & {
-                /**
-                 * The initial location to use.
-                 */
-                location: LocationDescriptor;
-                /**
-                 * A path match to use.
-                 *
-                 * When this is specified, the harnessed component will be
-                 * rendered inside a `Route` handler with this path.
-                 *
-                 * If the path matches the location, then the route will
-                 * render the component.
-                 *
-                 * If the path does not match the location, then the route
-                 * will not render the component.
-                 */
-                path?: string;
-            })
+          | (NotDataRoutes &
+                NotLocation & {
+                    /**
+                     * See MemoryRouter prop for initialEntries.
+                     */
+                    initialEntries: MemoryRouterProps["initialEntries"];
+                    /**
+                     * See MemoryRouter prop for initialIndex.
+                     */
+                    initialIndex?: MemoryRouterProps["initialIndex"];
+                    /**
+                     * A path match to use.
+                     *
+                     * When this is specified, the harnessed component will be
+                     * rendered inside a `Route` handler with this path.
+                     *
+                     * If the path matches the location, then the route will
+                     * render the component.
+                     *
+                     * If the path does not match the location, then the route
+                     * will not render the component.
+                     */
+                    path?: string;
+                })
+          | (NotDataRoutes &
+                NotInitialEntries & {
+                    /**
+                     * The location to use.
+                     */
+                    location: LocationDescriptor;
+                    /**
+                     * Force the use of a StaticRouter, instead of MemoryRouter.
+                     */
+                    forceStatic: true;
+                    /**
+                     * If true, then we will not use a CompatRouter.
+                     *
+                     * NOTE(john): There are cases where we don't want a CompatRouter
+                     * here as it uses useLayoutEffect, which causes issues in our
+                     * test environment. Namely, that it generates a warning about
+                     * the use of useLayoutEffect, which causes an error.
+                     */
+                    disableCompatRouter?: boolean;
+                    /**
+                     * A path match to use.
+                     *
+                     * When this is specified, the harnessed component will be
+                     * rendered inside a `Route` handler with this path.
+                     *
+                     * If the path matches the location, then the route will
+                     * render the component.
+                     *
+                     * If the path does not match the location, then the route
+                     * will not render the component.
+                     */
+                    path?: string;
+                })
+          | (NotDataRoutes &
+                NotInitialEntries & {
+                    /**
+                     * The initial location to use.
+                     */
+                    location: LocationDescriptor;
+                    /**
+                     * A path match to use.
+                     *
+                     * When this is specified, the harnessed component will be
+                     * rendered inside a `Route` handler with this path.
+                     *
+                     * If the path matches the location, then the route will
+                     * render the component.
+                     *
+                     * If the path does not match the location, then the route
+                     * will not render the component.
+                     */
+                    path?: string;
+                })
           | DataRoutesConfig
       >
     // The initial location to use.

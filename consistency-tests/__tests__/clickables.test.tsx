@@ -123,6 +123,7 @@ describe.each`
         // Note: window.location.assign and window.open need mock functions in
         // the testing environment, but JSDOM protects assign from being changed
         // so we need to replace the whole location object.
+        // @ts-expect-error [FEI-5019] - TS2322 - Type '{ assign: Mock<any, any, any>; ... }' is not assignable to type 'string & Location'.
         window.location = {...window.location, assign: jest.fn()};
         window.open = jest.fn();
     });
