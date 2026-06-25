@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 11.4.0
+
+### Minor Changes
+
+- 48a4552: `ActivityIconButton`: improve fitting of long, translated labels. The visible label now renders at Body/Small and uses locale-aware hyphenation (`hyphens: auto` with `wordBreak: normal` + `overflowWrap: break-word`) so longer international strings stay within two lines instead of being clipped. Hyphenation follows the document/ancestor `lang`. (WB-2354)
+
 ## 11.3.5
 
 ### Patch Changes
