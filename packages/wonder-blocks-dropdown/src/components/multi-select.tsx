@@ -550,11 +550,11 @@ const MultiSelect = (props: Props) => {
         handleOpenChanged(!open);
     };
 
-    const handleAnnouncement = (message: string) => {
-        announceMessage({
-            message,
-            level: "assertive",
-        });
+    const handleAnnouncement = (
+        message: string,
+        level: "assertive" | "polite" = "assertive",
+    ) => {
+        announceMessage({message, level});
     };
 
     const maybeGetOpenerStringValue = React.useCallback(
@@ -581,6 +581,7 @@ const MultiSelect = (props: Props) => {
     // Refs so the announcement effect re-fires only on meaningful changes,
     // not on every render caused by inline label object identity churn.
     const prevOpenRef = React.useRef(open);
+    const selectionChangedRef = React.useRef(false);
     const childrenRef = React.useRef(children);
     childrenRef.current = children;
     const getMenuTextOrNodeRef = React.useRef(getMenuTextOrNode);
@@ -590,7 +591,9 @@ const MultiSelect = (props: Props) => {
     );
     maybeGetOpenerStringValueRef.current = maybeGetOpenerStringValue;
 
-    const announceOpenerValue = () => {
+    const announceOpenerValue = (
+        level: "assertive" | "polite" = "assertive",
+    ) => {
         const optionItems = React.Children.toArray(
             childrenRef.current,
         ) as OptionItemComponentArray;
@@ -600,14 +603,14 @@ const MultiSelect = (props: Props) => {
             openerContent,
         );
         if (openerStringValue) {
-            handleAnnouncement(openerStringValue);
+            handleAnnouncement(openerStringValue, level);
         }
     };
 
-    // Announces the opener value when selectedValues changes (while open) or
+    // Announces the opener value when selectedValues changes (while open),
     // when the dropdown opens (VoiceOver/Safari workaround for stale combobox
-    // values). Skips the open trigger for filterable dropdowns since focus moves
-    // to the search input there.
+    // values, skipped for filterable dropdowns), or when the dropdown closes
+    // after a selection change.
     React.useEffect(() => {
         if (isInitialRender.current) {
             isInitialRender.current = false;
@@ -615,8 +618,27 @@ const MultiSelect = (props: Props) => {
             return;
         }
         const justOpened = open && !prevOpenRef.current;
+        const justClosed = !open && prevOpenRef.current;
         prevOpenRef.current = open;
-        if (open && (!justOpened || !isFilterable)) {
+        if (justOpened) {
+            selectionChangedRef.current = false;
+            // don't announce when moving focus to input so we don't
+            // prevent other system announcements
+            if (!isFilterable) {
+                announceOpenerValue();
+            }
+        } else if (justClosed) {
+            if (selectionChangedRef.current) {
+                // announce updated value politely to work around VO/Safari
+                // holding onto stale value, but not stomping over collapse
+                // announcement
+                announceOpenerValue("polite");
+            }
+        } else if (open) {
+            // announce changed values assertively to work around VO/Safari
+            // making confusing stale announcements on both the opener value
+            // and individual additions/removals in the listbox
+            selectionChangedRef.current = true;
             announceOpenerValue();
         }
     }, [selectedValues, open]); // eslint-disable-line react-hooks/exhaustive-deps

@@ -1910,6 +1910,125 @@ describe("MultiSelect", () => {
             expect(announceMessageSpy).not.toHaveBeenCalled();
         });
 
+        it("should not announce from a neighboring MultiSelect when a parent re-renders due to interaction with another MultiSelect", async () => {
+            // Regression: inline label objects recreate on every parent render,
+            // which used to cause effect deps to fire and announce stale values
+            // in unrelated MultiSelects on the same page.
+            const TwoSelects = () => {
+                const [selectedA, setSelectedA] = React.useState<Array<string>>(
+                    [],
+                );
+                const [selectedB] = React.useState<Array<string>>(["1"]);
+                return (
+                    <>
+                        <MultiSelect
+                            onChange={setSelectedA}
+                            selectedValues={selectedA}
+                            labels={{
+                                ...builtinLabels,
+                                noneSelected: "All categories",
+                            }}
+                            testId="select-a"
+                        >
+                            <OptionItem label="cat 1" value="1" />
+                            <OptionItem label="cat 2" value="2" />
+                        </MultiSelect>
+                        <MultiSelect
+                            onChange={jest.fn()}
+                            selectedValues={selectedB}
+                            labels={{
+                                ...builtinLabels,
+                                noneSelected: "All categories",
+                            }}
+                            testId="select-b"
+                        >
+                            <OptionItem label="cat 1" value="1" />
+                            <OptionItem label="cat 2" value="2" />
+                        </MultiSelect>
+                    </>
+                );
+            };
+            const {userEvent} = doRender(<TwoSelects />);
+            const [comboboxA] = await screen.findAllByRole("combobox");
+            await userEvent.click(comboboxA); // open select-a, causing parent re-render
+            announceMessageSpy.mockClear();
+
+            // Act
+            const [cat1] = await screen.findAllByText("cat 1");
+            await userEvent.click(cat1); // select in select-a
+
+            // Assert
+            // Only the interacted select should announce; select-b must stay silent
+            expect(announceMessageSpy).toHaveBeenCalledTimes(1);
+            expect(announceMessageSpy).toHaveBeenCalledWith({
+                message: "cat 1",
+                level: "assertive",
+            });
+        });
+
+        it("should announce the final selection when the dropdown closes after a selection change", async () => {
+            // Arrange
+            const ControlledMultiSelect = () => {
+                const [selectedValues, setSelectedValues] = React.useState<
+                    Array<string>
+                >(["1"]);
+                return (
+                    <MultiSelect
+                        onChange={setSelectedValues}
+                        selectedValues={selectedValues}
+                        labels={{
+                            ...builtinLabels,
+                            someSelected: (n: number) =>
+                                n === 1 ? `1 item` : `${n} items`,
+                        }}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                        <OptionItem label="item 3" value="3" />
+                    </MultiSelect>
+                );
+            };
+            const {userEvent} = doRender(<ControlledMultiSelect />);
+            await userEvent.click(await screen.findByRole("combobox")); // open
+            await userEvent.click(await screen.findByText("item 2")); // select
+            announceMessageSpy.mockClear();
+
+            // Act
+            await userEvent.keyboard("{Escape}"); // close
+
+            // Assert
+            expect(announceMessageSpy).toHaveBeenCalledWith({
+                message: "2 items",
+                level: "polite",
+            });
+        });
+
+        it("should not announce on close if no selection changed", async () => {
+            // Arrange
+            const {userEvent} = doRender(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    selectedValues={["1"]}
+                    labels={{
+                        ...builtinLabels,
+                        someSelected: (n: number) =>
+                            n === 1 ? `1 item` : `${n} items`,
+                    }}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </MultiSelect>,
+            );
+            await userEvent.click(await screen.findByRole("combobox")); // open
+            announceMessageSpy.mockClear();
+
+            // Act
+            await userEvent.keyboard("{Escape}"); // close without selecting
+
+            // Assert
+            expect(announceMessageSpy).not.toHaveBeenCalled();
+        });
+
         it("should announce after selecting all items via the shortcut", async () => {
             // Arrange
             const ControlledMultiSelect = (
