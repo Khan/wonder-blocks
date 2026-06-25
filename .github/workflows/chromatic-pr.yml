@@ -104,7 +104,8 @@ jobs:
                   # registry.npmjs.org: npm package registry for pnpm install
                   # playwright.download.prss.microsoft.com: Playwright browser binary downloads
                   # cdn.playwright.dev: Playwright browser binary CDN
-                  extra-domains: registry.npmjs.org playwright.download.prss.microsoft.com cdn.playwright.dev
+                  # storage.googleapis.com: cdn.playwright.dev returns a 307 redirect to storage.googleapis.com for downloads, so we need to allowlist that too.
+                  extra-domains: registry.npmjs.org playwright.download.prss.microsoft.com cdn.playwright.dev storage.googleapis.com
 
             - name: Use Node.js 24.x
               uses: actions/setup-node@v6
