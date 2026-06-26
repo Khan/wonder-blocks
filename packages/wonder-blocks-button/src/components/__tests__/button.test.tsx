@@ -19,8 +19,10 @@ describe("Button", () => {
     });
 
     afterAll(() => {
-        // @ts-expect-error [FEI-5019] - TS2322 - Type 'Location' is not assignable to type 'string & Location'.
-        window.location = location;
+        // The DOM types treat `window.location` as non-reassignable, so cast
+        // the saved value to restore it (a targeted cast rather than an
+        // `@ts-expect-error` that would suppress the whole line).
+        window.location = location as any;
     });
 
     describe("attributes", () => {

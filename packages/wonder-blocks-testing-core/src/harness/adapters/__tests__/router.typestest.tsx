@@ -62,19 +62,8 @@ describe("router adapter config", () => {
         adapter(null, {path: "/math/*", routes: [{path: "/"}]});
     });
 
-    it("should reject combining location with initialEntries", () => {
-        // @ts-expect-error: is not assignable to type 'undefined'
-        adapter(null, {location: "/math", initialEntries: ["/math"]});
-    });
-
-    it("should reject combining forceStatic location with initialEntries", () => {
-        adapter(null, {
-            location: "/math",
-            forceStatic: true,
-            // @ts-expect-error: is not assignable to type 'undefined'
-            initialEntries: ["/math"],
-        });
-    });
+    // NOTE: the `location`-vs-`initialEntries` exclusivity is covered without
+    // suppressions in the "Config (disjoint union)" suite below.
 });
 
 /**
@@ -122,6 +111,14 @@ describe("Config (disjoint union)", () => {
             location: "/math",
             initialEntries: ["/math"],
         }).type.not.toBeAssignableTo<Config>();
+    });
+
+    it("rejects combining forceStatic location with initialEntries", () => {
+        expect({
+            location: "/math",
+            forceStatic: true,
+            initialEntries: ["/math"],
+        } as const).type.not.toBeAssignableTo<Config>();
     });
 
     it("rejects combining location with data-routes routes", () => {
