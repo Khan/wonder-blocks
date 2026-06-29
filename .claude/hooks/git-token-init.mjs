@@ -7,12 +7,12 @@
  *   2. ~/.config/ka-agent-gh-token (raw token text)
  *   3. ~/.config/ka-olc           (JSON, key "token")
  *
- * On success:
- *   - When running in Cursor (CURSOR_PROJECT_DIR is set): emits
- *     { env: { GH_TOKEN, GITHUB_TOKEN } } to stdout so Cursor's sessionStart
- *     hook contract propagates the token to downstream hooks.
- *   - When running in Claude Code (CLAUDE_ENV_FILE is set): appends exports
- *     to the env file so all subsequent tool calls see the token.
+ * On success (harness detected by the hook's install path):
+ *   - Cursor: emits { env: { GH_TOKEN, GITHUB_TOKEN } } to stdout so Cursor's
+ *     sessionStart hook contract propagates the token to downstream hooks.
+ *   - Claude Code: appends exports to CLAUDE_ENV_FILE so all subsequent tool
+ *     calls see the token.
+ *   - Codex: no SessionStart env-injection mechanism, so nothing is emitted.
  *
  * On failure: logs a warning to stderr and exits 0 so workflows that don't
  * need GitHub access can still proceed.
@@ -23,6 +23,14 @@ import { homedir } from "os";
 
 const REQUIRED_SCOPES = ["read:org", "read:packages", "repo", "workflow"];
 const home = homedir();
+
+// Which agent harness is running this hook, by its install path (.claude/.codex/.cursor).
+const hookPath = process.argv[1] ?? "";
+const harness = hookPath.includes("/.codex/")
+    ? "codex"
+    : hookPath.includes("/.cursor/")
+      ? "cursor"
+      : "claude";
 
 function readFileOrNull(path) {
     try {
@@ -62,9 +70,7 @@ function validateToken(token) {
         });
         // Match the literal X-OAuth-Scopes header line (not a substring of
         // Access-Control-Expose-Headers, which lists header names).
-        const headerLine = raw
-            .split(/\r?\n/)
-            .find((line) => /^x-oauth-scopes\s*:/i.test(line));
+        const headerLine = raw.split(/\r?\n/).find((line) => /^x-oauth-scopes\s*:/i.test(line));
         if (!headerLine) return { valid: false, scopes: [] };
         const scopes = headerLine
             .replace(/^[^:]*:\s*/, "")
@@ -97,13 +103,11 @@ for (const { label, get } of SOURCES) {
 
     console.error(`Valid token from ${label} with scopes: ${scopes.join(", ")}`);
 
-    if (process.env.CURSOR_PROJECT_DIR) {
+    if (harness === "cursor") {
         // Cursor sessionStart contract: emit env JSON to stdout so downstream
         // hooks receive the token.
-        process.stdout.write(
-            JSON.stringify({ env: { GH_TOKEN: token, GITHUB_TOKEN: token } }),
-        );
-    } else if (process.env.CLAUDE_ENV_FILE) {
+        process.stdout.write(JSON.stringify({ env: { GH_TOKEN: token, GITHUB_TOKEN: token } }));
+    } else if (harness === "claude" && process.env.CLAUDE_ENV_FILE) {
         // Claude Code: persist to env file so all subsequent tool calls see it.
         appendFileSync(process.env.CLAUDE_ENV_FILE, `export GH_TOKEN=${token}\n`);
         appendFileSync(process.env.CLAUDE_ENV_FILE, `export GITHUB_TOKEN=${token}\n`);
