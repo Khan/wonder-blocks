@@ -2,7 +2,7 @@ import type {ArgTypes} from "@storybook/react-vite";
 import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {LabelSmall, LabelXSmall} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
@@ -19,13 +19,13 @@ export const AccessoryMappings = {
     withCaret: (
         <PhosphorIcon icon={IconMappings.caretRight} size="medium" />
     ) as React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>,
-    withText: (<LabelSmall>26.3 GB</LabelSmall>) as React.ReactElement<
-        React.ComponentProps<typeof LabelSmall>
+    withText: (<BodyText size="small">26.3 GB</BodyText>) as React.ReactElement<
+        React.ComponentProps<typeof BodyText>
     >,
     withIconText: (
         <View style={{alignItems: "center"}}>
             <PhosphorIcon icon={IconMappings.infoBold} size="small" />
-            <LabelXSmall>Info</LabelXSmall>
+            <BodyText size="xsmall">Info</BodyText>
         </View>
     ) as React.ReactElement<React.ComponentProps<typeof View>>,
     withImage: (

@@ -9,7 +9,7 @@ import {
     semanticColor,
     sizing,
 } from "@khanacademy/wonder-blocks-tokens";
-import {Body} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
@@ -102,7 +102,7 @@ export const KeyboardNavigation = {
                             pressed && styles.press,
                         ]}
                     >
-                        <Body>School Info</Body>
+                        <BodyText>School Info</BodyText>
                     </View>
                 )}
             </Clickable>

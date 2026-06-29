@@ -2,11 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {StyleType, View} from "@khanacademy/wonder-blocks-core";
-import {
-    Footnote,
-    LabelLarge,
-    LabelSmall,
-} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {
     border,
     color,
@@ -79,14 +75,14 @@ function Color({name, value, variant, valuePrefix}: ColorProps) {
             const tokenName = name.toString().split(".");
             return (
                 <View style={styles.card}>
-                    <LabelLarge style={styles.capitalized}>
+                    <BodyText weight="bold" style={styles.capitalized}>
                         {tokenName.at(tokenName.length - 1)}
-                    </LabelLarge>
-                    <LabelSmall>{name}</LabelSmall>
+                    </BodyText>
+                    <BodyText size="small">{name}</BodyText>
 
-                    <Footnote>
+                    <BodyText size="xsmall">
                         <em>{getTokenName(color, rawValue) || rawValue}</em>
-                    </Footnote>
+                    </BodyText>
                 </View>
             );
         }
@@ -94,14 +90,17 @@ function Color({name, value, variant, valuePrefix}: ColorProps) {
         if (variant === "primitive") {
             return (
                 <>
-                    <LabelSmall
+                    <BodyText
+                        size="small"
                         style={{
                             fontWeight: font.weight.bold,
                         }}
                     >
                         {name}
-                    </LabelSmall>
-                    <Footnote style={styles.code}>{value}</Footnote>
+                    </BodyText>
+                    <BodyText size="xsmall" style={styles.code}>
+                        {value}
+                    </BodyText>
                 </>
             );
         }
@@ -115,16 +114,17 @@ function Color({name, value, variant, valuePrefix}: ColorProps) {
                     paddingInlineStart: sizing.size_040,
                 }}
             >
-                <LabelSmall
+                <BodyText
+                    size="small"
                     style={{
                         fontWeight: font.weight.bold,
                     }}
                 >
                     {name}
-                </LabelSmall>
-                <Footnote>
+                </BodyText>
+                <BodyText size="xsmall">
                     <em>{getTokenName(color, rawValue) || rawValue}</em>
-                </Footnote>
+                </BodyText>
             </View>
         );
     }
@@ -185,7 +185,9 @@ export function ActionColorGroup({
 }: ActionColorGroupProps) {
     return Object.entries(category).map(([state, colorGroup], index) => (
         <View style={styles.actionGroup} key={index}>
-            <LabelLarge style={styles.capitalized}>{state}</LabelLarge>
+            <BodyText weight="bold" style={styles.capitalized}>
+                {state}
+            </BodyText>
             {includeExample && <Example style={colorGroup} />}
             <ColorGroup
                 colors={colorGroup}

@@ -1,6 +1,6 @@
 import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react-vite";
-import {Body} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {View, InitialFallback} from "@khanacademy/wonder-blocks-core";
 import packageConfig from "../../packages/wonder-blocks-core/package.json";
@@ -100,18 +100,18 @@ export const NestedComponent: StoryComponentType = (): React.ReactElement => {
 
     return (
         <View>
-            <Body>
+            <BodyText>
                 The list below should have three render entries; root
                 placeholder, root children render, and child children render. If
                 there are two child renders that means that the second forced
                 render is still occurring for nested InitialFallback components,
                 which would be a bug.
-            </Body>
+            </BodyText>
             <ul id={resultsId} />
-            <Body>
+            <BodyText>
                 And below this is the actual InitialFallback nesting, which
                 should just show the child render.
-            </Body>
+            </BodyText>
             <InitialFallback
                 fallback={() => (
                     <View>{trackAndRender("Root: placeholder")}</View>
@@ -179,16 +179,16 @@ export const SideBySide: StoryComponentType = (): React.ReactElement => {
 
     return (
         <View>
-            <Body>
+            <BodyText>
                 The list below should have six render entries; 2 x root
                 placeholder, 2 x root children render, and 2 x child children
                 render.
-            </Body>
+            </BodyText>
             <ul id={resultsId} />
-            <Body>
+            <BodyText>
                 And below this are the InitialFallback component trees, which
                 should just show their child renders.
-            </Body>
+            </BodyText>
             <InitialFallback
                 fallback={() => (
                     <View>{trackAndRender("Root 1: placeholder")}</View>

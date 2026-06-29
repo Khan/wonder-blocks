@@ -6,7 +6,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import packageConfig from "../../packages/wonder-blocks-clickable/package.json";
@@ -63,7 +63,7 @@ export const Default: StoryComponentType = (args: any) => (
                     focused && styles.focused,
                 ]}
             >
-                <Body>This text is clickable!</Body>
+                <BodyText>This text is clickable!</BodyText>
             </View>
         )}
     </Clickable>
@@ -89,7 +89,7 @@ export const Basic: StoryComponentType = () => (
                         pressed && styles.pressed,
                     ]}
                 >
-                    <Body>This text is clickable!</Body>
+                    <BodyText>This text is clickable!</BodyText>
                 </View>
             )}
         </Clickable>
@@ -124,9 +124,9 @@ export const Disabled: StoryComponentType = (args: any) => (
                         pressed && styles.pressed,
                     ]}
                 >
-                    <Body>
+                    <BodyText>
                         Disabled clickable using the default disabled style
-                    </Body>
+                    </BodyText>
                 </View>
             )}
         </Clickable>
@@ -140,9 +140,9 @@ export const Disabled: StoryComponentType = (args: any) => (
                         args.disabled && styles.disabled,
                     ]}
                 >
-                    <Body>
+                    <BodyText>
                         Disabled clickable passing custom disabled styles
-                    </Body>
+                    </BodyText>
                 </View>
             )}
         </Clickable>
@@ -175,7 +175,9 @@ export const ClientSideNavigation: StoryComponentType = () => (
                         }}
                     >
                         {(eventState) => (
-                            <LabelLarge>Uses Client-side Nav</LabelLarge>
+                            <BodyText weight="bold">
+                                Uses Client-side Nav
+                            </BodyText>
                         )}
                     </Clickable>
                     <Clickable
@@ -184,7 +186,9 @@ export const ClientSideNavigation: StoryComponentType = () => (
                         skipClientNav
                     >
                         {(eventState) => (
-                            <LabelLarge>Avoids Client-side Nav</LabelLarge>
+                            <BodyText weight="bold">
+                                Avoids Client-side Nav
+                            </BodyText>
                         )}
                     </Clickable>
                 </View>
@@ -245,7 +249,7 @@ export const Ref: StoryComponentType = () => {
                             focused && styles.focused,
                         ]}
                     >
-                        <Body>Press below to focus me!</Body>
+                        <BodyText>Press below to focus me!</BodyText>
                     </View>
                 )}
             </Clickable>

@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
-import {Body} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentTile from "../component-tile";
 import {CommonTileProps} from "../types";
@@ -26,7 +26,7 @@ export default function OnePaneDialogTile(props: CommonTileProps) {
                     <OnePaneDialog
                         title="Dialog title"
                         content={
-                            <Body>
+                            <BodyText>
                                 {`Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                 sed do eiusmod tempor incididunt ut labore et dolore magna
                 aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -35,7 +35,7 @@ export default function OnePaneDialogTile(props: CommonTileProps) {
                 esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
                 occaecat cupidatat non proident, sunt in culpa qui officia
                 deserunt mollit anim id est.`}
-                            </Body>
+                            </BodyText>
                         }
                         footer={
                             <View style={localStyles.footer}>
