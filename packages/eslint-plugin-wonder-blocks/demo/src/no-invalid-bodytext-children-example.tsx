@@ -7,11 +7,7 @@
 import * as React from "react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {
-    Heading,
-    HeadingLarge,
-    BodyText,
-} from "@khanacademy/wonder-blocks-typography";
+import {Heading, BodyText} from "@khanacademy/wonder-blocks-typography";
 
 // ✅ Valid: inline/phrasing-content children
 export function ValidExamples() {
@@ -82,7 +78,7 @@ export function InvalidHeadingChildren() {
                 <Heading>Title</Heading>
             </BodyText>
             <BodyText>
-                <HeadingLarge>Title</HeadingLarge>
+                <Heading>Title</Heading>
             </BodyText>
         </>
     );

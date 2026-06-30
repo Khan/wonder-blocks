@@ -20,27 +20,6 @@ export const font = {
         serif: fontFamily.serif,
         mono: fontFamily.mono,
     },
-    size: {
-        // Legacy size tokens to be deprecated
-        xxxLarge: sizing.size_360,
-        xxLarge: sizing.size_280,
-        xLarge: sizing.size_240,
-        large: sizing.size_200,
-        medium: sizing.size_160,
-        small: sizing.size_140,
-        xSmall: sizing.size_120,
-    },
-    lineHeight: {
-        // Legacy lineHeight tokens to be deprecated
-        xxxLarge: sizing.size_400,
-        xxLarge: sizing.size_320,
-        xLarge: sizing.size_280,
-        large: sizing.size_240,
-        xMedium: sizing.size_220,
-        medium: sizing.size_200,
-        small: sizing.size_180,
-        xSmall: sizing.size_160,
-    },
     weight: {
         light: fontWeight.light,
         regular: fontWeight.regular, // WB-1964: remove regular at a later date

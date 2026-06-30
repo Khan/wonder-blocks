@@ -132,8 +132,10 @@ export const FontFamily = {
  * WB `BodyText` component can be used instead, which will apply all the needed
  * font properties by default.
  *
- * **Note:** the legacy font token API will be deprecated in the future (e.g. `font.size.small`) to support
- * both Classic and Thunderblocks with the same theme structure.
+ * **Note:** the legacy font token API (e.g. `font.size.*` and
+ * `font.lineHeight.*`) has been removed. Use `font.body.*` / `font.heading.*`
+ * for typography, or the underlying `sizing.size_*` tokens where a raw value is
+ * needed.
  */
 export const BodyFontSize = {
     name: "Font Size (Body)",

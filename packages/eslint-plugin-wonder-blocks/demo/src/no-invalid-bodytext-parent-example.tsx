@@ -7,11 +7,7 @@
 import * as React from "react";
 
 import {Checkbox, Choice} from "@khanacademy/wonder-blocks-form";
-import {
-    Heading,
-    HeadingLarge,
-    BodyText,
-} from "@khanacademy/wonder-blocks-typography";
+import {Heading, BodyText} from "@khanacademy/wonder-blocks-typography";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 
 const StyledButton = addStyle("button");
@@ -108,9 +104,9 @@ export function InvalidHeadingElements() {
             <Heading>
                 <BodyText>Sub text</BodyText>
             </Heading>
-            <HeadingLarge>
+            <Heading>
                 <BodyText>Sub text</BodyText>
-            </HeadingLarge>
+            </Heading>
             <h1>
                 <BodyText>Sub text</BodyText>
             </h1>
