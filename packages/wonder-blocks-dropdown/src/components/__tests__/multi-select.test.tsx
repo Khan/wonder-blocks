@@ -1757,7 +1757,7 @@ describe("MultiSelect", () => {
             // Assert
             expect(announceMessageSpy).toHaveBeenCalledWith({
                 message: "item 1",
-                level: "assertive",
+                level: "polite",
             });
         });
 
@@ -1801,7 +1801,7 @@ describe("MultiSelect", () => {
             // Should announce "2 items" (selected count), not "3 items" (total count)
             expect(announceMessageSpy).toHaveBeenLastCalledWith({
                 message: "2 items",
-                level: "assertive",
+                level: "polite",
             });
         });
 
@@ -1848,66 +1848,78 @@ describe("MultiSelect", () => {
             // Should announce "2 items" (selected count), not "4 items" (total count)
             expect(announceMessageSpy).toHaveBeenLastCalledWith({
                 message: "2 items",
-                level: "assertive",
+                level: "polite",
             });
         });
 
-        it("should announce the selected count when a non-filterable listbox is opened", async () => {
+        it.each([
+            ["non-filterable", false],
+            ["filterable", true],
+        ])(
+            "should not announce when a %s listbox is opened",
+            async (_label, isFilterable) => {
+                // Arrange
+                const {userEvent} = doRender(
+                    <MultiSelect
+                        onChange={jest.fn()}
+                        isFilterable={isFilterable}
+                        selectedValues={["1", "2"]}
+                        labels={{
+                            ...builtinLabels,
+                            someSelected: (n: number): string =>
+                                n <= 1 ? `${n} school` : `${n} schools`,
+                        }}
+                    >
+                        <OptionItem label="school 1" value="1" />
+                        <OptionItem label="school 2" value="2" />
+                        <OptionItem label="school 3" value="3" />
+                    </MultiSelect>,
+                );
+
+                // Act
+                await userEvent.click(await screen.findByRole("combobox"));
+
+                // Assert
+                expect(announceMessageSpy).not.toHaveBeenCalled();
+            },
+        );
+
+        it("should announce when selecting an item in a filterable listbox", async () => {
             // Arrange
-            const {userEvent} = doRender(
-                <MultiSelect
-                    onChange={jest.fn()}
-                    labels={{
-                        ...builtinLabels,
-                        someSelected: (numOptions: number): string =>
-                            numOptions <= 1
-                                ? `${numOptions} school`
-                                : `${numOptions} schools`,
-                    }}
-                    selectedValues={["1", "2"]}
-                >
-                    <OptionItem label="school 1" value="1" />
-                    <OptionItem label="school 2" value="2" />
-                    <OptionItem label="school 3" value="3" />
-                </MultiSelect>,
-            );
+            const ControlledMultiSelect = () => {
+                const [selectedValues, setSelectedValues] = React.useState<
+                    Array<string>
+                >(["1", "2"]);
+                return (
+                    <MultiSelect
+                        onChange={setSelectedValues}
+                        selectedValues={selectedValues}
+                        isFilterable={true}
+                        labels={{
+                            ...builtinLabels,
+                            someSelected: (n: number): string =>
+                                n <= 1 ? `${n} school` : `${n} schools`,
+                        }}
+                    >
+                        <OptionItem label="school 1" value="1" />
+                        <OptionItem label="school 2" value="2" />
+                        <OptionItem label="school 3" value="3" />
+                        <OptionItem label="school 4" value="4" />
+                    </MultiSelect>
+                );
+            };
+            const {userEvent} = doRender(<ControlledMultiSelect />);
+            await userEvent.click(await screen.findByRole("combobox")); // open
+            announceMessageSpy.mockClear();
 
             // Act
-            await userEvent.click(await screen.findByRole("combobox"));
+            await userEvent.click(await screen.findByText("school 3"));
 
             // Assert
             expect(announceMessageSpy).toHaveBeenCalledWith({
-                message: "2 schools",
-                level: "assertive",
+                message: "3 schools",
+                level: "polite",
             });
-        });
-
-        it("should not announce when a filterable listbox is opened", async () => {
-            // Arrange
-            const {userEvent} = doRender(
-                <MultiSelect
-                    onChange={jest.fn()}
-                    isFilterable={true}
-                    labels={{
-                        ...builtinLabels,
-                        someSelected: (numOptions: number): string =>
-                            numOptions <= 1
-                                ? `${numOptions} school`
-                                : `${numOptions} schools`,
-                    }}
-                    selectedValues={["1", "2"]}
-                >
-                    <OptionItem label="school 1" value="1" />
-                    <OptionItem label="school 2" value="2" />
-                    <OptionItem label="school 3" value="3" />
-                </MultiSelect>,
-            );
-
-            // Act
-            await userEvent.click(await screen.findByRole("combobox"));
-
-            // Assert
-            expect(announceMessageSpy).not.toHaveBeenCalled();
         });
 
         it("should not announce from a neighboring MultiSelect when a parent re-renders due to interaction with another MultiSelect", async () => {
@@ -1951,19 +1963,17 @@ describe("MultiSelect", () => {
             const {userEvent} = doRender(<TwoSelects />);
             const [comboboxA] = await screen.findAllByRole("combobox");
             await userEvent.click(comboboxA); // open select-a, causing parent re-render
-            announceMessageSpy.mockClear();
 
             // Act
             const [cat1] = await screen.findAllByText("cat 1");
             await userEvent.click(cat1); // select in select-a
+            await userEvent.keyboard("{Escape}"); // close to trigger close announcement
 
             // Assert
-            // Only the interacted select should announce; select-b must stay silent
-            expect(announceMessageSpy).toHaveBeenCalledTimes(1);
-            expect(announceMessageSpy).toHaveBeenCalledWith({
-                message: "cat 1",
-                level: "assertive",
-            });
+            // select-b must not have announced its noneSelected label
+            expect(announceMessageSpy).not.toHaveBeenCalledWith(
+                expect.objectContaining({message: "All categories"}),
+            );
         });
 
         it("should announce the final selection when the dropdown closes after a selection change", async () => {
@@ -2066,7 +2076,7 @@ describe("MultiSelect", () => {
             // Assert
             expect(announceMessageSpy).toHaveBeenLastCalledWith({
                 message: "All items",
-                level: "assertive",
+                level: "polite",
             });
         });
 
@@ -2108,7 +2118,7 @@ describe("MultiSelect", () => {
             // Assert
             expect(announceMessageSpy).toHaveBeenLastCalledWith({
                 message: "0 items",
-                level: "assertive",
+                level: "polite",
             });
         });
 
@@ -2145,7 +2155,7 @@ describe("MultiSelect", () => {
             // Assert
             expect(announceMessageSpy).toHaveBeenCalledWith({
                 message: "1 planet",
-                level: "assertive",
+                level: "polite",
             });
         });
     });

@@ -1264,53 +1264,36 @@ describe("SingleSelect", () => {
             // Assert
             expect(announceMessageSpy).toHaveBeenCalledWith({
                 message: "item 1",
-                level: "assertive",
+                level: "polite",
             });
         });
 
-        it("should announce the selected item when a non-filterable dropdown is opened", async () => {
-            // Arrange
-            const {userEvent} = doRender(
-                <SingleSelect
-                    onChange={onChange}
-                    placeholder="Choose"
-                    selectedValue="2"
-                >
-                    <OptionItem label="item 1" value="1" />
-                    <OptionItem label="item 2" value="2" />
-                </SingleSelect>,
-            );
+        it.each([
+            ["non-filterable", false],
+            ["filterable", true],
+        ])(
+            "should not announce when a %s dropdown is opened",
+            async (_label, isFilterable) => {
+                // Arrange
+                const {userEvent} = doRender(
+                    <SingleSelect
+                        onChange={onChange}
+                        placeholder="Choose"
+                        selectedValue="2"
+                        isFilterable={isFilterable}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                    </SingleSelect>,
+                );
 
-            // Act
-            await userEvent.click(await screen.findByRole("combobox"));
+                // Act
+                await userEvent.click(await screen.findByRole("combobox"));
 
-            // Assert
-            expect(announceMessageSpy).toHaveBeenCalledWith({
-                message: "item 2",
-                level: "assertive",
-            });
-        });
-
-        it("should not announce when a filterable dropdown is opened", async () => {
-            // Arrange
-            const {userEvent} = doRender(
-                <SingleSelect
-                    onChange={onChange}
-                    placeholder="Choose"
-                    selectedValue="2"
-                    isFilterable={true}
-                >
-                    <OptionItem label="item 1" value="1" />
-                    <OptionItem label="item 2" value="2" />
-                </SingleSelect>,
-            );
-
-            // Act
-            await userEvent.click(await screen.findByRole("combobox"));
-
-            // Assert
-            expect(announceMessageSpy).not.toHaveBeenCalled();
-        });
+                // Assert
+                expect(announceMessageSpy).not.toHaveBeenCalled();
+            },
+        );
 
         it("should change the number of options after using the search filter", async () => {
             // Arrange
@@ -1334,7 +1317,7 @@ describe("SingleSelect", () => {
             // Assert
             await expect(announceMessageSpy).toHaveBeenCalledWith({
                 message: "1 item",
-                level: "assertive",
+                level: "polite",
             });
         });
     });

@@ -550,11 +550,8 @@ const MultiSelect = (props: Props) => {
         handleOpenChanged(!open);
     };
 
-    const handleAnnouncement = (
-        message: string,
-        level: "assertive" | "polite" = "assertive",
-    ) => {
-        announceMessage({message, level});
+    const handleAnnouncement = (message: string) => {
+        announceMessage({message, level: "polite"});
     };
 
     const maybeGetOpenerStringValue = React.useCallback(
@@ -578,10 +575,11 @@ const MultiSelect = (props: Props) => {
         [selectedValues],
     );
 
-    // Refs so the announcement effect re-fires only on meaningful changes,
-    // not on every render caused by inline label object identity churn.
     const prevOpenRef = React.useRef(open);
     const selectionChangedRef = React.useRef(false);
+    // Refs so announceOpenerValue always reads current values: the effect only
+    // re-runs on [selectedValues, open], so plain closure vars would be stale
+    // if children/labels change identity mid-session (parent re-renders).
     const childrenRef = React.useRef(children);
     childrenRef.current = children;
     const getMenuTextOrNodeRef = React.useRef(getMenuTextOrNode);
@@ -591,9 +589,7 @@ const MultiSelect = (props: Props) => {
     );
     maybeGetOpenerStringValueRef.current = maybeGetOpenerStringValue;
 
-    const announceOpenerValue = (
-        level: "assertive" | "polite" = "assertive",
-    ) => {
+    const announceOpenerValue = () => {
         const optionItems = React.Children.toArray(
             childrenRef.current,
         ) as OptionItemComponentArray;
@@ -603,14 +599,13 @@ const MultiSelect = (props: Props) => {
             openerContent,
         );
         if (openerStringValue) {
-            handleAnnouncement(openerStringValue, level);
+            handleAnnouncement(openerStringValue);
         }
     };
 
-    // Announces the opener value when selectedValues changes (while open),
-    // when the dropdown opens (VoiceOver/Safari workaround for stale combobox
-    // values, skipped for filterable dropdowns), or when the dropdown closes
-    // after a selection change.
+    // Announces the current selection when selectedValues changes while open,
+    // and when the dropdown closes after a selection change (polite workaround
+    // for VoiceOver/Safari caching a stale combobox value on close).
     React.useEffect(() => {
         if (isInitialRender.current) {
             isInitialRender.current = false;
@@ -621,26 +616,23 @@ const MultiSelect = (props: Props) => {
         const justClosed = !open && prevOpenRef.current;
         prevOpenRef.current = open;
         if (justOpened) {
+            // Intercept open transition so it doesn't fall into the selection
+            // branch below; reset so prior-session selections don't carry over.
             selectionChangedRef.current = false;
-            // don't announce when moving focus to input so we don't
-            // prevent other system announcements
-            if (!isFilterable) {
-                announceOpenerValue();
-            }
         } else if (justClosed) {
+            // Announce the final value on close — works around VoiceOver/Safari
+            // caching a stale combobox value when the dropdown closes.
             if (selectionChangedRef.current) {
-                // announce updated value politely to work around VO/Safari
-                // holding onto stale value, but not stomping over collapse
-                // announcement
-                announceOpenerValue("polite");
+                announceOpenerValue();
+                selectionChangedRef.current = false;
             }
         } else if (open) {
-            // announce changed values assertively to work around VO/Safari
-            // making confusing stale announcements on both the opener value
-            // and individual additions/removals in the listbox
+            // Selection changed while open — announce and track for close.
             selectionChangedRef.current = true;
             announceOpenerValue();
         }
+        // announceOpenerValue excluded from deps intentionally — it reads via refs
+        // to avoid re-firing on label identity churn (see comment above).
     }, [selectedValues, open]); // eslint-disable-line react-hooks/exhaustive-deps
 
     // If aria-required was supplied, use that. Otherwise, convert `required` to a boolean

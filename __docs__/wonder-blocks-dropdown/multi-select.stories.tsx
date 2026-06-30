@@ -1008,16 +1008,12 @@ export const CustomOptionItemsWithNodeLabel: StoryComponentType = {
 };
 
 /**
- * Two MultiSelects side by side for manual screen reader testing. Use this
- * story to verify:
- * - The focused select announces its current value on open (VoiceOver/Safari
- *   workaround for stale combobox values).
+ * Two MultiSelects side by side for manual screen reader testing.
  * - Only the interacted select announces — the neighboring select stays silent
  *   even as the parent re-renders.
  * - Selecting items announces the updated count while the dropdown is open.
- * - Closing the dropdown after making selections announces the final state.
- * - Opening a filterable select does not stomp over the search input
- *   announcement with an assertive selection announcement.
+ * - Closing the dropdown after making selections announces the final state
+ *   (VoiceOver/Safari workaround for stale combobox values).
  */
 export const TwoMultiSelects: StoryComponentType = {
     render: function Render() {

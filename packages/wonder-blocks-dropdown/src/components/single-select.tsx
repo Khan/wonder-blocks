@@ -441,13 +441,9 @@ const SingleSelect = (props: Props) => {
     };
 
     const handleAnnouncement = (message: string) => {
-        announceMessage({
-            message,
-            level: "assertive",
-        });
+        announceMessage({message, level: "polite"});
     };
 
-    const isInitialOpenRender = React.useRef(true);
     const childrenRef = React.useRef(children);
     childrenRef.current = children;
 
@@ -474,19 +470,6 @@ const SingleSelect = (props: Props) => {
         }
         announceSelectedItem();
     }, [selectedValue]); // eslint-disable-line react-hooks/exhaustive-deps
-
-    // VoiceOver/Safari workaround: re-announces the current selection on open
-    // since VoiceOver may cache a stale combobox value. Skipped for filterable
-    // dropdowns where focus moves to the search input instead.
-    React.useEffect(() => {
-        if (isInitialOpenRender.current) {
-            isInitialOpenRender.current = false;
-            return;
-        }
-        if (open && !isFilterable) {
-            announceSelectedItem();
-        }
-    }, [open]); // eslint-disable-line react-hooks/exhaustive-deps
 
     // If aria-required was supplied, use that. Otherwise, convert `required` to a boolean
     // and apply that value to aria-required.
