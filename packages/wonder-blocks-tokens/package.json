@@ -3,7 +3,7 @@
   "description": "Core primitive design tokens for Web Wonder Blocks",
   "author": "Khan Academy",
   "license": "MIT",
-  "version": "16.8.0",
+  "version": "16.8.1",
   "publishConfig": {
     "access": "public"
   },
