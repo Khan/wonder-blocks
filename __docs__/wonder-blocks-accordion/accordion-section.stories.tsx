@@ -9,7 +9,12 @@ import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    font,
+    semanticColor,
+    sizing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentInfo from "../components/component-info";
@@ -257,14 +262,17 @@ export const ReactElementInHeader: StoryComponentType = {
                                 weight="bold"
                                 // Rendering as a span here to avoid introducing
                                 // an extra heading level, since h2 is already
-                                // set on the AccordionSection's clickable header.
-                                // This way we can avoid redundancy in the a11y tree.
+                                // set on the AccordionSection's clickable
+                                // header. This way we can avoid redundancy in
+                                // the a11y tree.
                                 tag="span"
                                 style={{
                                     whiteSpace: "nowrap",
                                     overflow: "hidden",
                                     textOverflow: "ellipsis",
                                     alignSelf: "center",
+                                    fontSize: font.heading.size.medium,
+                                    lineHeight: font.heading.lineHeight.medium,
                                 }}
                             >
                                 World History Project - Origins to the Present
