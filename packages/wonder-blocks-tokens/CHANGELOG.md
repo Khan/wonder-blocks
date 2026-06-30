@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 16.8.1
+
+### Patch Changes
+
+- 0735aef: Add `Helvetica` and `Corbel` fallback fonts to the `default` theme's `font.family.sans` token
+
 ## 16.8.0
 
 ### Minor Changes
