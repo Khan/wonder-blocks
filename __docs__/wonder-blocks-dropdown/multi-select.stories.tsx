@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
@@ -99,6 +100,14 @@ const styles = StyleSheet.create({
     setWidth: {
         minInlineSize: 170,
         width: "100%",
+    },
+    twoSelectsContainer: {
+        flexDirection: "row",
+        gap: sizing.size_080,
+        alignItems: "flex-start",
+    },
+    fullWidth: {
+        inlineSize: "100%",
     },
     customDropdown: {
         maxBlockSize: 200,
@@ -996,4 +1005,84 @@ export const CustomOptionItemsWithNodeLabel: StoryComponentType = {
             <View style={styles.wrapper}>{Story()}</View>
         ),
     ],
+};
+
+/**
+ * Two MultiSelects side by side for manual screen reader testing.
+ * - Only the interacted select announces — the neighboring select stays silent
+ *   even as the parent re-renders.
+ * - Selecting items announces the updated count while the dropdown is open.
+ * - Closing the dropdown after making selections announces the final state
+ *   (VoiceOver/Safari workaround for stale combobox values).
+ */
+export const TwoMultiSelects: StoryComponentType = {
+    render: function Render() {
+        const [gradeValues, setGradeValues] = React.useState<Array<string>>([
+            "6",
+            "7",
+        ]);
+        const [categoryValues, setCategoryValues] = React.useState<
+            Array<string>
+        >([]);
+
+        return (
+            <View style={styles.twoSelectsContainer}>
+                <LabeledField
+                    label="Grade Level"
+                    field={
+                        <MultiSelect
+                            aria-label="Select grade levels"
+                            isFilterable={true}
+                            labels={{
+                                noneSelected: "All grades",
+                                someSelected: (n: number) =>
+                                    n === 1
+                                        ? "1 grade selected"
+                                        : `${n} grades selected`,
+                            }}
+                            onChange={setGradeValues}
+                            selectedValues={gradeValues}
+                            style={styles.fullWidth}
+                        >
+                            <OptionItem label="Grade 3" value="3" />
+                            <OptionItem label="Grade 4" value="4" />
+                            <OptionItem label="Grade 5" value="5" />
+                            <OptionItem label="Grade 6" value="6" />
+                            <OptionItem label="Grade 7" value="7" />
+                            <OptionItem label="Grade 8" value="8" />
+                        </MultiSelect>
+                    }
+                />
+                <LabeledField
+                    label="Categories"
+                    field={
+                        <MultiSelect
+                            aria-label="Select categories"
+                            labels={{
+                                noneSelected: "All categories",
+                                someSelected: (n: number) =>
+                                    n === 1
+                                        ? "1 category selected"
+                                        : `${n} categories selected`,
+                            }}
+                            onChange={setCategoryValues}
+                            selectedValues={categoryValues}
+                            style={styles.fullWidth}
+                        >
+                            <OptionItem label="Argumentative" value="arg" />
+                            <OptionItem label="Expository" value="exp" />
+                            <OptionItem label="Narrative" value="nar" />
+                            <OptionItem label="Persuasive" value="per" />
+                        </MultiSelect>
+                    }
+                />
+            </View>
+        );
+    },
+    parameters: {
+        chromatic: {
+            // Manual screen reader testing story — no snapshot needed
+            disableSnapshot: true,
+        },
+    },
 };

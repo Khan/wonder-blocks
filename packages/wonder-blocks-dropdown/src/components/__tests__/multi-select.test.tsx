@@ -1695,8 +1695,8 @@ describe("MultiSelect", () => {
         });
 
         it("should not announce initial values on mount", async () => {
-            // Arrange & Act
-            doRender(
+            // Arrange
+            const element = (
                 <MultiSelect
                     onChange={jest.fn()}
                     selectedValues={["1", "2"]}
@@ -1711,18 +1711,21 @@ describe("MultiSelect", () => {
                     <OptionItem label="item 1" value="1" />
                     <OptionItem label="item 2" value="2" />
                     <OptionItem label="item 3" value="3" />
-                </MultiSelect>,
+                </MultiSelect>
             );
+
+            // Act
+            doRender(element);
 
             // Assert
             expect(announceMessageSpy).not.toHaveBeenCalled();
         });
 
         it("should announce when values change after mount", async () => {
+            // Arrange
             const ControlledMultiSelect = (
                 props: Partial<PropsFor<typeof MultiSelect>>,
             ) => {
-                // Arrange
                 const [selectedValues, setSelectedValues] = React.useState<
                     Array<string>
                 >([]);
@@ -1745,45 +1748,377 @@ describe("MultiSelect", () => {
                     </MultiSelect>
                 );
             };
-
             const {userEvent} = doRender(<ControlledMultiSelect />);
-            // Act
             await userEvent.click(await screen.findByRole("combobox"));
+
+            // Act
             await userEvent.click(await screen.findByText("item 1"));
 
             // Assert
-            // First call announces total options ("3 items")
-            // Second call announces selected item count
-            expect(announceMessageSpy).toHaveBeenNthCalledWith(2, {
+            expect(announceMessageSpy).toHaveBeenCalledWith({
                 message: "item 1",
+                level: "polite",
             });
         });
 
-        it("should announce the number of options when the listbox is open", async () => {
+        it("should announce the selected item count (not total item count) when selecting while open", async () => {
             // Arrange
-            const labels: LabelsValues = {
-                ...builtinLabels,
-                someSelected: (numOptions: number): string =>
-                    numOptions <= 1
-                        ? `${numOptions} school`
-                        : `${numOptions} schools`,
+            const ControlledMultiSelect = (
+                props: Partial<PropsFor<typeof MultiSelect>>,
+            ) => {
+                const [selectedValues, setSelectedValues] = React.useState<
+                    Array<string>
+                >(["1"]);
+                return (
+                    <MultiSelect
+                        {...props}
+                        onChange={setSelectedValues}
+                        selectedValues={selectedValues}
+                        labels={{
+                            ...builtinLabels,
+                            someSelected: (numOptions: number): string =>
+                                numOptions <= 1
+                                    ? `${numOptions} item`
+                                    : `${numOptions} items`,
+                        }}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                        <OptionItem label="item 3" value="3" />
+                    </MultiSelect>
+                );
             };
 
-            const {userEvent} = doRender(
-                <MultiSelect onChange={jest.fn()} labels={labels} opened={true}>
-                    <OptionItem label="school 1" value="1" />
-                    <OptionItem label="school 2" value="2" />
-                    <OptionItem label="school 3" value="3" />
-                </MultiSelect>,
-            );
-            const opener = await screen.findByRole("combobox");
+            const {userEvent} = doRender(<ControlledMultiSelect />);
+            // Open the dropdown first
+            await userEvent.click(await screen.findByRole("combobox"));
 
             // Act
-            await userEvent.click(opener);
+            // Select a second item while dropdown is open (now 2 of 3 selected)
+            await userEvent.click(await screen.findByText("item 2"));
 
             // Assert
-            await expect(announceMessageSpy).toHaveBeenCalledWith({
+            // Should announce "2 items" (selected count), not "3 items" (total count)
+            expect(announceMessageSpy).toHaveBeenLastCalledWith({
+                message: "2 items",
+                level: "polite",
+            });
+        });
+
+        it("should announce the selected item count (not total item count) when deselecting while open", async () => {
+            // Arrange
+            // Start with 3 of 4 selected so deselecting stays in the count
+            // range (≥2) and the opener uses someSelected rather than an item label
+            const ControlledMultiSelect = (
+                props: Partial<PropsFor<typeof MultiSelect>>,
+            ) => {
+                const [selectedValues, setSelectedValues] = React.useState<
+                    Array<string>
+                >(["1", "2", "3"]);
+                return (
+                    <MultiSelect
+                        {...props}
+                        onChange={setSelectedValues}
+                        selectedValues={selectedValues}
+                        labels={{
+                            ...builtinLabels,
+                            someSelected: (numOptions: number): string =>
+                                numOptions <= 1
+                                    ? `${numOptions} item`
+                                    : `${numOptions} items`,
+                        }}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                        <OptionItem label="item 3" value="3" />
+                        <OptionItem label="item 4" value="4" />
+                    </MultiSelect>
+                );
+            };
+
+            const {userEvent} = doRender(<ControlledMultiSelect />);
+            // Open the dropdown first
+            await userEvent.click(await screen.findByRole("combobox"));
+
+            // Act
+            // Deselect one item while dropdown is open (now 2 of 4 selected)
+            await userEvent.click(await screen.findByText("item 1"));
+
+            // Assert
+            // Should announce "2 items" (selected count), not "4 items" (total count)
+            expect(announceMessageSpy).toHaveBeenLastCalledWith({
+                message: "2 items",
+                level: "polite",
+            });
+        });
+
+        it.each([
+            ["non-filterable", false],
+            ["filterable", true],
+        ])(
+            "should not announce when a %s listbox is opened",
+            async (_label, isFilterable) => {
+                // Arrange
+                const {userEvent} = doRender(
+                    <MultiSelect
+                        onChange={jest.fn()}
+                        isFilterable={isFilterable}
+                        selectedValues={["1", "2"]}
+                        labels={{
+                            ...builtinLabels,
+                            someSelected: (n: number): string =>
+                                n <= 1 ? `${n} school` : `${n} schools`,
+                        }}
+                    >
+                        <OptionItem label="school 1" value="1" />
+                        <OptionItem label="school 2" value="2" />
+                        <OptionItem label="school 3" value="3" />
+                    </MultiSelect>,
+                );
+
+                // Act
+                await userEvent.click(await screen.findByRole("combobox"));
+
+                // Assert
+                expect(announceMessageSpy).not.toHaveBeenCalled();
+            },
+        );
+
+        it("should announce when selecting an item in a filterable listbox", async () => {
+            // Arrange
+            const ControlledMultiSelect = () => {
+                const [selectedValues, setSelectedValues] = React.useState<
+                    Array<string>
+                >(["1", "2"]);
+                return (
+                    <MultiSelect
+                        onChange={setSelectedValues}
+                        selectedValues={selectedValues}
+                        isFilterable={true}
+                        labels={{
+                            ...builtinLabels,
+                            someSelected: (n: number): string =>
+                                n <= 1 ? `${n} school` : `${n} schools`,
+                        }}
+                    >
+                        <OptionItem label="school 1" value="1" />
+                        <OptionItem label="school 2" value="2" />
+                        <OptionItem label="school 3" value="3" />
+                        <OptionItem label="school 4" value="4" />
+                    </MultiSelect>
+                );
+            };
+            const {userEvent} = doRender(<ControlledMultiSelect />);
+            await userEvent.click(await screen.findByRole("combobox")); // open
+            announceMessageSpy.mockClear();
+
+            // Act
+            await userEvent.click(await screen.findByText("school 3"));
+
+            // Assert
+            expect(announceMessageSpy).toHaveBeenCalledWith({
                 message: "3 schools",
+                level: "polite",
+            });
+        });
+
+        it("should not announce from a neighboring MultiSelect when a parent re-renders due to interaction with another MultiSelect", async () => {
+            // Regression: inline label objects recreate on every parent render,
+            // which used to cause effect deps to fire and announce stale values
+            // in unrelated MultiSelects on the same page.
+            const TwoSelects = () => {
+                const [selectedA, setSelectedA] = React.useState<Array<string>>(
+                    [],
+                );
+                const [selectedB] = React.useState<Array<string>>(["1"]);
+                return (
+                    <>
+                        <MultiSelect
+                            onChange={setSelectedA}
+                            selectedValues={selectedA}
+                            labels={{
+                                ...builtinLabels,
+                                noneSelected: "All categories",
+                            }}
+                            testId="select-a"
+                        >
+                            <OptionItem label="cat 1" value="1" />
+                            <OptionItem label="cat 2" value="2" />
+                        </MultiSelect>
+                        <MultiSelect
+                            onChange={jest.fn()}
+                            selectedValues={selectedB}
+                            labels={{
+                                ...builtinLabels,
+                                noneSelected: "All categories",
+                            }}
+                            testId="select-b"
+                        >
+                            <OptionItem label="cat 1" value="1" />
+                            <OptionItem label="cat 2" value="2" />
+                        </MultiSelect>
+                    </>
+                );
+            };
+            const {userEvent} = doRender(<TwoSelects />);
+            const [comboboxA] = await screen.findAllByRole("combobox");
+            await userEvent.click(comboboxA); // open select-a, causing parent re-render
+
+            // Act
+            const [cat1] = await screen.findAllByText("cat 1");
+            await userEvent.click(cat1); // select in select-a
+            await userEvent.keyboard("{Escape}"); // close to trigger close announcement
+
+            // Assert
+            // select-b must not have announced its noneSelected label
+            expect(announceMessageSpy).not.toHaveBeenCalledWith(
+                expect.objectContaining({message: "All categories"}),
+            );
+        });
+
+        it("should announce the final selection when the dropdown closes after a selection change", async () => {
+            // Arrange
+            const ControlledMultiSelect = () => {
+                const [selectedValues, setSelectedValues] = React.useState<
+                    Array<string>
+                >(["1"]);
+                return (
+                    <MultiSelect
+                        onChange={setSelectedValues}
+                        selectedValues={selectedValues}
+                        labels={{
+                            ...builtinLabels,
+                            someSelected: (n: number) =>
+                                n === 1 ? `1 item` : `${n} items`,
+                        }}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                        <OptionItem label="item 3" value="3" />
+                    </MultiSelect>
+                );
+            };
+            const {userEvent} = doRender(<ControlledMultiSelect />);
+            await userEvent.click(await screen.findByRole("combobox")); // open
+            await userEvent.click(await screen.findByText("item 2")); // select
+            announceMessageSpy.mockClear();
+
+            // Act
+            await userEvent.keyboard("{Escape}"); // close
+
+            // Assert
+            expect(announceMessageSpy).toHaveBeenCalledWith({
+                message: "2 items",
+                level: "polite",
+            });
+        });
+
+        it("should not announce on close if no selection changed", async () => {
+            // Arrange
+            const {userEvent} = doRender(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    selectedValues={["1"]}
+                    labels={{
+                        ...builtinLabels,
+                        someSelected: (n: number) =>
+                            n === 1 ? `1 item` : `${n} items`,
+                    }}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </MultiSelect>,
+            );
+            await userEvent.click(await screen.findByRole("combobox")); // open
+            announceMessageSpy.mockClear();
+
+            // Act
+            await userEvent.keyboard("{Escape}"); // close without selecting
+
+            // Assert
+            expect(announceMessageSpy).not.toHaveBeenCalled();
+        });
+
+        it("should announce after selecting all items via the shortcut", async () => {
+            // Arrange
+            const ControlledMultiSelect = (
+                props: Partial<PropsFor<typeof MultiSelect>>,
+            ) => {
+                const [selectedValues, setSelectedValues] = React.useState<
+                    Array<string>
+                >([]);
+                return (
+                    <MultiSelect
+                        {...props}
+                        onChange={setSelectedValues}
+                        selectedValues={selectedValues}
+                        shortcuts={true}
+                        labels={{
+                            ...builtinLabels,
+                            selectAllLabel: (n: number) => `Select all (${n})`,
+                            someSelected: (n: number) =>
+                                n === 1 ? "1 item" : `${n} items`,
+                            allSelected: "All items",
+                        }}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                        <OptionItem label="item 3" value="3" />
+                    </MultiSelect>
+                );
+            };
+            const {userEvent} = doRender(<ControlledMultiSelect />);
+            await userEvent.click(await screen.findByRole("combobox"));
+
+            // Act
+            await userEvent.click(await screen.findByText("Select all (3)"));
+
+            // Assert
+            expect(announceMessageSpy).toHaveBeenLastCalledWith({
+                message: "All items",
+                level: "polite",
+            });
+        });
+
+        it("should announce after clearing all items via the shortcut", async () => {
+            // Arrange
+            const ControlledMultiSelect = (
+                props: Partial<PropsFor<typeof MultiSelect>>,
+            ) => {
+                const [selectedValues, setSelectedValues] = React.useState<
+                    Array<string>
+                >(["1", "2"]);
+                return (
+                    <MultiSelect
+                        {...props}
+                        onChange={setSelectedValues}
+                        selectedValues={selectedValues}
+                        shortcuts={true}
+                        labels={{
+                            ...builtinLabels,
+                            selectAllLabel: (n: number) => `Select all (${n})`,
+                            selectNoneLabel: "Clear selection",
+                            noneSelected: "0 items",
+                            someSelected: (n: number) =>
+                                n === 1 ? "1 item" : `${n} items`,
+                        }}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                        <OptionItem label="item 3" value="3" />
+                    </MultiSelect>
+                );
+            };
+            const {userEvent} = doRender(<ControlledMultiSelect />);
+            await userEvent.click(await screen.findByRole("combobox"));
+
+            // Act
+            await userEvent.click(await screen.findByText("Clear selection"));
+
+            // Assert
+            expect(announceMessageSpy).toHaveBeenLastCalledWith({
+                message: "0 items",
+                level: "polite",
             });
         });
 
@@ -1818,8 +2153,9 @@ describe("MultiSelect", () => {
             await userEvent.paste("ear");
 
             // Assert
-            await expect(announceMessageSpy).toHaveBeenCalledWith({
+            expect(announceMessageSpy).toHaveBeenCalledWith({
                 message: "1 planet",
+                level: "polite",
             });
         });
     });
