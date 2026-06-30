@@ -19,13 +19,17 @@ export const AccessoryMappings = {
     withCaret: (
         <PhosphorIcon icon={IconMappings.caretRight} size="medium" />
     ) as React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>,
-    withText: (<BodyText size="small">26.3 GB</BodyText>) as React.ReactElement<
-        React.ComponentProps<typeof BodyText>
-    >,
+    withText: (
+        <BodyText tag="span" size="small">
+            26.3 GB
+        </BodyText>
+    ) as React.ReactElement<React.ComponentProps<typeof BodyText>>,
     withIconText: (
         <View style={{alignItems: "center"}}>
             <PhosphorIcon icon={IconMappings.infoBold} size="small" />
-            <BodyText size="xsmall">Info</BodyText>
+            <BodyText tag="span" size="xsmall">
+                Info
+            </BodyText>
         </View>
     ) as React.ReactElement<React.ComponentProps<typeof View>>,
     withImage: (

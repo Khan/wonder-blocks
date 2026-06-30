@@ -32,7 +32,7 @@ function ComponentInfo({name, version}: Props): React.ReactElement {
                 gap: 10,
             }}
         >
-            <BodyText size="small">
+            <BodyText size="small" tag="span">
                 {name}@{version}
             </BodyText>
             <Button

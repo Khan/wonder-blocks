@@ -102,7 +102,7 @@ export const KeyboardNavigation = {
                             pressed && styles.press,
                         ]}
                     >
-                        <BodyText>School Info</BodyText>
+                        <BodyText tag="span">School Info</BodyText>
                     </View>
                 )}
             </Clickable>

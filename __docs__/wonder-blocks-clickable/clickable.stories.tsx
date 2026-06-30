@@ -63,7 +63,7 @@ export const Default: StoryComponentType = (args: any) => (
                     focused && styles.focused,
                 ]}
             >
-                <BodyText>This text is clickable!</BodyText>
+                <BodyText tag="span">This text is clickable!</BodyText>
             </View>
         )}
     </Clickable>
@@ -89,7 +89,7 @@ export const Basic: StoryComponentType = () => (
                         pressed && styles.pressed,
                     ]}
                 >
-                    <BodyText>This text is clickable!</BodyText>
+                    <BodyText tag="span">This text is clickable!</BodyText>
                 </View>
             )}
         </Clickable>
@@ -124,7 +124,7 @@ export const Disabled: StoryComponentType = (args: any) => (
                         pressed && styles.pressed,
                     ]}
                 >
-                    <BodyText>
+                    <BodyText tag="span">
                         Disabled clickable using the default disabled style
                     </BodyText>
                 </View>
@@ -140,7 +140,7 @@ export const Disabled: StoryComponentType = (args: any) => (
                         args.disabled && styles.disabled,
                     ]}
                 >
-                    <BodyText>
+                    <BodyText tag="span">
                         Disabled clickable passing custom disabled styles
                     </BodyText>
                 </View>
@@ -175,7 +175,7 @@ export const ClientSideNavigation: StoryComponentType = () => (
                         }}
                     >
                         {(eventState) => (
-                            <BodyText weight="bold">
+                            <BodyText tag="span" weight="bold">
                                 Uses Client-side Nav
                             </BodyText>
                         )}
@@ -186,7 +186,7 @@ export const ClientSideNavigation: StoryComponentType = () => (
                         skipClientNav
                     >
                         {(eventState) => (
-                            <BodyText weight="bold">
+                            <BodyText tag="span" weight="bold">
                                 Avoids Client-side Nav
                             </BodyText>
                         )}
@@ -249,7 +249,7 @@ export const Ref: StoryComponentType = () => {
                             focused && styles.focused,
                         ]}
                     >
-                        <BodyText>Press below to focus me!</BodyText>
+                        <BodyText tag="span">Press below to focus me!</BodyText>
                     </View>
                 )}
             </Clickable>

@@ -129,8 +129,6 @@ const styles = StyleSheet.create({
     label: {
         paddingBlockEnd: sizing.size_080,
         color: semanticColor.core.foreground.neutral.default,
-        // STOPSHIP(juan): Verify snapshots before landing.
-        lineHeight: sizing.size_200,
     },
     content: {
         maxInlineSize: "100%",

@@ -56,16 +56,24 @@ export const Sizes: StoryComponentType = () => (
         <tbody>
             <tr>
                 <th>
-                    <BodyText weight="bold">xsmall</BodyText>
+                    <BodyText tag="span" weight="bold">
+                        xsmall
+                    </BodyText>
                 </th>
                 <th>
-                    <BodyText weight="bold">small</BodyText>
+                    <BodyText tag="span" weight="bold">
+                        small
+                    </BodyText>
                 </th>
                 <th>
-                    <BodyText weight="bold">medium</BodyText>
+                    <BodyText tag="span" weight="bold">
+                        medium
+                    </BodyText>
                 </th>
                 <th>
-                    <BodyText weight="bold">large</BodyText>
+                    <BodyText tag="span" weight="bold">
+                        large
+                    </BodyText>
                 </th>
             </tr>
             <tr>

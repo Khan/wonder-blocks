@@ -242,7 +242,7 @@ export const CustomSpec: StoryComponentType = () => {
                             <Heading size={headingSize}>
                                 Current mediaSpec: {mediaSize}
                             </Heading>
-                            <BodyText tag="p">
+                            <BodyText>
                                 {`Lorem ipsum dolor sit amet, consectetur
                                 adipiscing elit, sed do eiusmod tempor
                                 incididunt ut labore et dolore magna aliqua.

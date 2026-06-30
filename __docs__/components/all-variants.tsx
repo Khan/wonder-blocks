@@ -120,7 +120,7 @@ export function AllVariants(props: Props) {
                                     style={[styles.cell, stylesProp?.rowHeader]}
                                 >
                                     {typeof row.name === "string" ? (
-                                        <BodyText weight="bold">
+                                        <BodyText tag="span" weight="bold">
                                             {row.name}
                                         </BodyText>
                                     ) : (
