@@ -42,8 +42,8 @@ if (process.env.CLAUDE_CODE_REMOTE && existsSync(NVM_SCRIPT)) {
             appendFileSync(
                 process.env.CLAUDE_ENV_FILE,
                 `export NVM_DIR="${NVM_DIR}"\n` +
-                `export NVM_BIN="${nodeBinDir}"\n` +
-                `export PATH="${nodeBinDir}:$PATH"\n`,
+                    `export NVM_BIN="${nodeBinDir}"\n` +
+                    `export PATH="${nodeBinDir}:$PATH"\n`,
             );
         }
     } else {
@@ -60,9 +60,7 @@ const result = spawnSync("pnpm", ["install"], {
 });
 
 if (result.status !== 0) {
-    const output = [result.stdout?.trim(), result.stderr?.trim()]
-        .filter(Boolean)
-        .join("\n");
+    const output = [result.stdout?.trim(), result.stderr?.trim()].filter(Boolean).join("\n");
     process.stderr.write(output ? `pnpm install failed:\n${output}\n` : "pnpm install failed\n");
     process.exit(2);
 }
