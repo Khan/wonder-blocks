@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.11.4
+
+### Patch Changes
+
+- 77ba389: Fixes a bug in MultiSelect with incorrect screen reader announcements for more than 2 items
+
 ## 10.11.3
 
 ### Patch Changes
