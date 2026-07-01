@@ -9,6 +9,11 @@ import * as previewAnnotations from "./preview";
 const annotations = setProjectAnnotations([
     a11yAddonAnnotations,
     previewAnnotations,
+    // Drive the theme from an env var so the a11y suite can be run once per
+    // theme. Each run re-renders every story under the given theme so
+    // axe's color-contrast and any theme-specific markup are audited correctly.
+    // Defaults to "default" when unset, preserving the single-theme local run.
+    {initialGlobals: {theme: import.meta.env.VITE_WB_THEME ?? undefined}},
 ]);
 
 beforeAll(annotations.beforeAll);
