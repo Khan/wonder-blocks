@@ -6,7 +6,7 @@ import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import Button from "@khanacademy/wonder-blocks-button";
-import {LabelLarge, Body} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
@@ -218,10 +218,10 @@ export const Number: StoryComponentType = {
                     onKeyDown={handleKeyDown}
                 />
                 <Strut size={12} />
-                <Body>
+                <BodyText>
                     The following text field has a min of 0, a max of 15, and a
                     step of 3
-                </Body>
+                </BodyText>
                 <TextField
                     id="tf-3a"
                     type="number"
@@ -788,9 +788,12 @@ export const WithAutofocus: StoryComponentType = {
 
         return (
             <View>
-                <LabelLarge style={{marginBlockEnd: sizing.size_120}}>
+                <BodyText
+                    weight="bold"
+                    style={{marginBlockEnd: sizing.size_120}}
+                >
                     Press the button to view the text field with autofocus.
-                </LabelLarge>
+                </BodyText>
                 <Button
                     onClick={handleShowDemo}
                     style={{width: 300, marginBlockEnd: sizing.size_240}}

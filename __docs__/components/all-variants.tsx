@@ -10,7 +10,7 @@ import {
     sizing,
 } from "@khanacademy/wonder-blocks-tokens";
 
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 const StyledTable = addStyle("table");
 const StyledTh = addStyle("th");
@@ -95,7 +95,9 @@ export function AllVariants(props: Props) {
                     <thead>
                         <tr>
                             <StyledTh style={styles.cell}>
-                                <LabelLarge>{title}</LabelLarge>
+                                <BodyText tag="span" weight="bold">
+                                    {title}
+                                </BodyText>
                             </StyledTh>
                             {columns.map((col, index) => (
                                 <StyledTh
@@ -103,7 +105,9 @@ export function AllVariants(props: Props) {
                                     scope="col"
                                     style={styles.cell}
                                 >
-                                    <LabelLarge>{col.name}</LabelLarge>
+                                    <BodyText tag="span" weight="bold">
+                                        {col.name}
+                                    </BodyText>
                                 </StyledTh>
                             ))}
                         </tr>
@@ -116,7 +120,9 @@ export function AllVariants(props: Props) {
                                     style={[styles.cell, stylesProp?.rowHeader]}
                                 >
                                     {typeof row.name === "string" ? (
-                                        <LabelLarge>{row.name}</LabelLarge>
+                                        <BodyText tag="span" weight="bold">
+                                            {row.name}
+                                        </BodyText>
                                     ) : (
                                         row.name
                                     )}
@@ -166,9 +172,9 @@ export function AllVariants(props: Props) {
 
                         return (
                             <li key={`${row.name} ${column.name}`}>
-                                <LabelLarge>
+                                <BodyText tag="span" weight="bold">
                                     Column: {column.name}, Row: {row.name}
-                                </LabelLarge>
+                                </BodyText>
 
                                 <View style={styles.childrenWrapper}>
                                     {children({

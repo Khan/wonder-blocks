@@ -4,7 +4,7 @@ import * as React from "react";
 import Button from "@khanacademy/wonder-blocks-button";
 import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 import {Spring, Strut} from "@khanacademy/wonder-blocks-layout";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 type Mappings = Record<string, React.ReactNode>;
 
@@ -20,7 +20,7 @@ const ActionsMappings: Mappings = {
     ),
     steps: (
         <>
-            <LabelLarge>Step 1 of 5</LabelLarge>
+            <BodyText weight="bold">Step 1 of 5</BodyText>
             <Spring />
             <Button kind="tertiary">Skip this step</Button>
         </>

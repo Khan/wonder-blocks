@@ -8,7 +8,7 @@ import {
     ClearPolicy,
     SchedulePolicy,
 } from "@khanacademy/wonder-blocks-timing";
-import {Body} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 export default {
     title: "Packages / Timing / useInterval",
@@ -34,10 +34,10 @@ export const Immediately = () => {
     }, 100);
     return (
         <View>
-            <Body>
+            <BodyText>
                 Interval should fire every second until cleared. Setting the
                 interval again resets the interval.
-            </Body>
+            </BodyText>
             <View>isSet = {String(intervalSet)}</View>
             <View>callCount = {callCount}</View>
             <View style={{flexDirection: "row"}}>
@@ -65,12 +65,12 @@ export const OnDemandAndResolveOnClear = () => {
     }, 100);
     return (
         <View>
-            <Body>
+            <BodyText>
                 Interval will not start until set is explicitly invoked.
                 Interval should fire every second until cleared. Clearing the
                 interval will invoke the interval action one more time. Setting
                 the interval again resets the interval.
-            </Body>
+            </BodyText>
             <View>isSet = {String(intervalSet)}</View>
             <View>callCount = {callCount}</View>
             <View style={{flexDirection: "row"}}>

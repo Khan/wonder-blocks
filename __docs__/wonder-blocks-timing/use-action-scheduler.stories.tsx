@@ -7,7 +7,7 @@ import {
     useActionScheduler,
     type IInterval,
 } from "@khanacademy/wonder-blocks-timing";
-import {Body} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 export default {
     title: "Packages / Timing / useActionScheduler",
@@ -30,10 +30,10 @@ export const Default = () => {
 
     return (
         <View>
-            <Body>
+            <BodyText>
                 Schedule timeouts, intervals, and animation frames from a single
                 hook. All pending actions are cleared automatically on unmount.
-            </Body>
+            </BodyText>
             <View style={{flexDirection: "row", gap: 8}}>
                 <Button
                     onClick={() =>
@@ -66,7 +66,7 @@ export const Default = () => {
             </View>
             <View>
                 {log.map((entry, i) => (
-                    <Body key={i}>{entry}</Body>
+                    <BodyText key={i}>{entry}</BodyText>
                 ))}
             </View>
         </View>

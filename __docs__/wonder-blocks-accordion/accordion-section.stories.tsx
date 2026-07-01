@@ -9,8 +9,13 @@ import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {HeadingSmall, LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {
+    border,
+    font,
+    semanticColor,
+    sizing,
+} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-accordion/package.json";
@@ -132,9 +137,9 @@ export const Controlled: StoryComponentType = {
                 >
                     Click me to toggle the accordion section
                 </Button>
-                <LabelLarge style={styles.space}>
+                <BodyText weight="bold" style={styles.space}>
                     {`Expanded state: ${expanded}`}
-                </LabelLarge>
+                </BodyText>
                 <AccordionSection
                     expanded={expanded}
                     header="Controlled section"
@@ -253,22 +258,26 @@ export const ReactElementInHeader: StoryComponentType = {
                                     style={styles.icon}
                                 />
                             </View>
-                            <HeadingSmall
-                                // Setting the tag to span here to override
-                                // HeadingSmall's heading level since h2 is already
-                                // set on the AccordionSection's clickable header.
-                                // This way we can avoid redundancy in the a11y tree.
+                            <BodyText
+                                weight="bold"
+                                // Rendering as a span here to avoid introducing
+                                // an extra heading level, since h2 is already
+                                // set on the AccordionSection's clickable
+                                // header. This way we can avoid redundancy in
+                                // the a11y tree.
                                 tag="span"
                                 style={{
                                     whiteSpace: "nowrap",
                                     overflow: "hidden",
                                     textOverflow: "ellipsis",
                                     alignSelf: "center",
+                                    fontSize: font.heading.size.medium,
+                                    lineHeight: font.heading.lineHeight.medium,
                                 }}
                             >
                                 World History Project - Origins to the Present
                                 (Example of a long title)
-                            </HeadingSmall>
+                            </BodyText>
                         </View>
                     }
                 >
@@ -346,10 +355,10 @@ export const CaretPositions: StoryComponentType = {
                 {/* Left-to-right */}
                 <View style={styles.sideBySide}>
                     <View style={styles.fullWidth}>
-                        <LabelLarge style={styles.space}>
+                        <BodyText weight="bold" style={styles.space}>
                             Caret position: end, language direction: left to
                             right
-                        </LabelLarge>
+                        </BodyText>
                         <AccordionSection
                             caretPosition="end"
                             header="Header"
@@ -361,10 +370,10 @@ export const CaretPositions: StoryComponentType = {
                     </View>
                     <Strut size={32} />
                     <View style={styles.fullWidth}>
-                        <LabelLarge style={styles.space}>
+                        <BodyText weight="bold" style={styles.space}>
                             Caret position: start, language direction: left to
                             right
-                        </LabelLarge>
+                        </BodyText>
                         <AccordionSection
                             caretPosition="start"
                             header="Header"
@@ -379,10 +388,10 @@ export const CaretPositions: StoryComponentType = {
                 {/* Right-to-left */}
                 <View dir="rtl" style={styles.sideBySide}>
                     <View style={styles.fullWidth}>
-                        <LabelLarge style={styles.space}>
+                        <BodyText weight="bold" style={styles.space}>
                             Caret position: end, language direction: right to
                             left
-                        </LabelLarge>
+                        </BodyText>
                         <AccordionSection
                             caretPosition="end"
                             header="ہیڈر"
@@ -394,10 +403,10 @@ export const CaretPositions: StoryComponentType = {
                     </View>
                     <Strut size={32} />
                     <View style={styles.fullWidth}>
-                        <LabelLarge style={styles.space}>
+                        <BodyText weight="bold" style={styles.space}>
                             Caret position: start, language direction: right to
                             left
-                        </LabelLarge>
+                        </BodyText>
                         <AccordionSection
                             caretPosition="start"
                             header="ہیڈر"
@@ -436,9 +445,9 @@ export const CornerKinds: StoryComponentType = {
         return (
             <View style={styles.sideBySide}>
                 <View style={[styles.fullWidth, styles.space]}>
-                    <LabelLarge style={styles.space}>
+                    <BodyText weight="bold" style={styles.space}>
                         Corner kind: square
-                    </LabelLarge>
+                    </BodyText>
                     <AccordionSection
                         cornerKind="square"
                         header="Header"
@@ -449,9 +458,9 @@ export const CornerKinds: StoryComponentType = {
                     </AccordionSection>
                 </View>
                 <View style={[styles.fullWidth, styles.space]}>
-                    <LabelLarge style={styles.space}>
+                    <BodyText weight="bold" style={styles.space}>
                         Corner kind: rounded
-                    </LabelLarge>
+                    </BodyText>
                     <AccordionSection
                         cornerKind="rounded"
                         header="Header"
@@ -462,9 +471,9 @@ export const CornerKinds: StoryComponentType = {
                     </AccordionSection>
                 </View>
                 <View style={[styles.fullWidth, styles.space]}>
-                    <LabelLarge style={styles.space}>
+                    <BodyText weight="bold" style={styles.space}>
                         Corner kind: rounded-per-section
-                    </LabelLarge>
+                    </BodyText>
                     <AccordionSection
                         cornerKind="rounded-per-section"
                         header="Header"

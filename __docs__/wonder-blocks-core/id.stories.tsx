@@ -2,7 +2,7 @@ import * as React from "react";
 
 import {Meta} from "@storybook/react-vite";
 import {View, Id} from "@khanacademy/wonder-blocks-core";
-import {Body, BodyMonospace} from "@khanacademy/wonder-blocks-typography";
+import {BodyMonospace, BodyText} from "@khanacademy/wonder-blocks-typography";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 
 export default {
@@ -22,7 +22,7 @@ export const GeneratedIdExample = () => (
         <Id>
             {(id) => (
                 <View style={{flexDirection: "row"}}>
-                    <Body>Generated identifier: </Body>
+                    <BodyText>Generated identifier: </BodyText>
                     <Strut size={8} />
                     <BodyMonospace>{id}</BodyMonospace>
                 </View>
@@ -36,7 +36,7 @@ export const PassedThroughIdExample = () => (
         <Id id="my-identifier">
             {(id) => (
                 <View style={{flexDirection: "row"}}>
-                    <Body>Passed through identifier: </Body>
+                    <BodyText>Passed through identifier: </BodyText>
                     <Strut size={8} />
                     <BodyMonospace>{id}</BodyMonospace>
                 </View>

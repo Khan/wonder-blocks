@@ -9,7 +9,7 @@ import {
     ClearPolicy,
     SchedulePolicy,
 } from "@khanacademy/wonder-blocks-timing";
-import {Body} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 export default {
     title: "Packages / Timing / useAnimationFrame",
@@ -75,10 +75,10 @@ export const OnDemandAndResolveOnClear = () => {
 
     return (
         <View>
-            <Body>
+            <BodyText>
                 Loop does not start on mount (OnDemand). Stopping with
                 ClearPolicy.Resolve fires one final callback.
-            </Body>
+            </BodyText>
             <View>isSet = {String(frameSet)}</View>
             <View>frameCount = {frameCount}</View>
             <View style={{flexDirection: "row"}}>
@@ -101,9 +101,9 @@ export const Immediately = () => {
     });
     return (
         <View>
-            <Body>
+            <BodyText>
                 Frame fires immediately on mount unless set again or cleared
-            </Body>
+            </BodyText>
             <View>callCount = {callCount}</View>
             <View style={{flexDirection: "row"}}>
                 <Button onClick={() => animationFrame.set()}>Set frame</Button>
@@ -129,10 +129,10 @@ export const OneShot = () => {
     );
     return (
         <View>
-            <Body>
+            <BodyText>
                 Fires once per click — useful for deferring a DOM read/write to
                 just before the next paint.
-            </Body>
+            </BodyText>
             <View>Last fired: {lastFired}</View>
             <Button onClick={() => animationFrame.set()}>
                 Request animation frame

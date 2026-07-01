@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {TextArea} from "@khanacademy/wonder-blocks-form";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
@@ -34,9 +34,9 @@ export const FormLabelExample = () => {
     const [value, setValue] = React.useState("");
     return (
         <View style={styles.container}>
-            <LabelMedium tag="label" htmlFor="description-field">
+            <BodyText tag="label" htmlFor="description-field">
                 Description
-            </LabelMedium>
+            </BodyText>
             <TextArea
                 value={value}
                 onChange={(value) => setValue(value)}

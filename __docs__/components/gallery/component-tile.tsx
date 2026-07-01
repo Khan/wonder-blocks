@@ -6,7 +6,7 @@ import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {Body, HeadingSmall} from "@khanacademy/wonder-blocks-typography";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {CommonTileProps} from "./types";
 import {Spring} from "@khanacademy/wonder-blocks-layout";
@@ -66,7 +66,9 @@ export default function ComponentTile(props: Props) {
                             ]}
                         >
                             <View style={styles.headingContainer}>
-                                <HeadingSmall tag="h4">{name}</HeadingSmall>
+                                <Heading size="medium" tag="h4">
+                                    {name}
+                                </Heading>
                                 <View style={styles.externalLinkIcon}>
                                     <PhosphorIcon
                                         icon={externalLinkIcon}
@@ -79,9 +81,9 @@ export default function ComponentTile(props: Props) {
                             </View>
 
                             {!compactGrid && (
-                                <Body style={styles.descriptionText}>
+                                <BodyText style={styles.descriptionText}>
                                     {description}
-                                </Body>
+                                </BodyText>
                             )}
                         </View>
                     </>

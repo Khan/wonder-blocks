@@ -7,7 +7,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {HeadingMedium, LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
 
 import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
@@ -293,9 +293,9 @@ export const WithActions: StoryComponentType = {
                                     {gap: sizing.size_160},
                                 ]}
                             >
-                                <LabelLarge>
+                                <BodyText weight="bold">
                                     Step {step} of {totalSteps}
-                                </LabelLarge>
+                                </BodyText>
                                 <Button
                                     kind="tertiary"
                                     onClick={() => {
@@ -789,13 +789,14 @@ export const WithCustomAriaDescribedBy: StoryComponentType = {
                     onClose={() => setOpened(false)}
                     content={
                         <>
-                            <HeadingMedium
+                            <Heading
+                                size="large"
                                 id="custom-popover-description"
                                 style={styles.srOnly}
                             >
                                 Hidden text that would describe the popover
                                 content
-                            </HeadingMedium>
+                            </Heading>
                             <PopoverContent
                                 title="Title"
                                 content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo."
