@@ -69,7 +69,6 @@ export function InvalidBlockChildren() {
     );
 }
 
-
 // ❌ Invalid: WB Heading components render as block-level headings
 export function InvalidHeadingChildren() {
     return (
@@ -77,10 +76,6 @@ export function InvalidHeadingChildren() {
             <BodyText>
                 <Heading>Title</Heading>
             </BodyText>
-            <BodyText>
-                <Heading>Title</Heading>
-            </BodyText>
         </>
     );
 }
-

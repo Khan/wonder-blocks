@@ -45,7 +45,11 @@ export function InvalidFormComponents() {
     return (
         <>
             <Choice value="" label={<BodyText>Option A</BodyText>} />
-            <Choice value="" label="" description={<BodyText>More details</BodyText>} />
+            <Choice
+                value=""
+                label=""
+                description={<BodyText>More details</BodyText>}
+            />
             <Checkbox
                 checked={false}
                 onChange={() => {}}
@@ -101,9 +105,6 @@ export function InvalidLabelElements() {
 export function InvalidHeadingElements() {
     return (
         <>
-            <Heading>
-                <BodyText>Sub text</BodyText>
-            </Heading>
             <Heading>
                 <BodyText>Sub text</BodyText>
             </Heading>
